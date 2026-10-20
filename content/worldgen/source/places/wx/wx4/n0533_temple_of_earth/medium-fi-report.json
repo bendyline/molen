@@ -1,0 +1,1101 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0533_temple_of_earth",
+  "sourceHash": "sha256:4240b94f86169583af12bad8da1d08e0fed5a0be3a1ae7c3550ea0816b94fc93",
+  "runtimeHash": "sha256:f0a737830c8674203e83de47643601441edbc85e10cdbbc8aca74ad18bf73795",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:8c0a2f47dabb82bed7cde87fbdcdf4a6a300ec836bd0baa3dd8bec30ca78cdf5",
+      "bytes": 93656,
+      "gzipBytes": 19436,
+      "triangles": 880,
+      "cpuBytes": 92220,
+      "gpuBytes": 92220,
+      "errorMeters": 0.8,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:bb52b1095a2ad679ea7d24621b2a2f877e86f68a3b2d0e32bd995e70700f65ba",
+      "bytes": 353416,
+      "gzipBytes": 92584,
+      "triangles": 3668,
+      "cpuBytes": 345936,
+      "gpuBytes": 345936,
+      "errorMeters": 0.4,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:285889dc283cf22f8f927e9d8cd98dcb9d4b3f4a537e5df0772ee6a059cd0c04",
+      "bytes": 807940,
+      "gzipBytes": 222940,
+      "triangles": 8244,
+      "cpuBytes": 799236,
+      "gpuBytes": 799236,
+      "errorMeters": 0.15,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:05eba71e31744336e21a61660aca00eb29afdab87471ff76fd7b75b1410b13a9",
+      "bytes": 826084,
+      "gzipBytes": 227881,
+      "triangles": 8436,
+      "cpuBytes": 817380,
+      "gpuBytes": 817380,
+      "errorMeters": 0.04,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:09ea3821349ee046429ee32d20f5694568edf97eaffa69c79bf13e46488de3fe"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:6b96c54b80ff483f0e6264c419c3490dba6a554c40416d0720a6e60135afa74a"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:6fd276bbdebb6d5fb5bf35cc668e9455164fc94ef2178bf19beb4d12bda4b8ee",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 147254,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          57.599999999999994,
+          36.0827,
+          117.8628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:b0eda3f1f240e0437c2a3eddd1e0f9073e26a4f9c1bbe904e1d135075200aaef",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 147254,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          57.599999999999994,
+          36.0827,
+          117.8628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:36b2b0d00a239db7dde66f06c18d65d9fc8970a9c20c08657a7cf9431fb5b708",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 147254,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          57.599999999999994,
+          36.0827,
+          117.8628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:1e192b505c54bc9b87c9892a8e523923584b61b32baadd74e1e9f7c85743ff88",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 147254,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          57.599999999999994,
+          36.0827,
+          117.8628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:1529c5cd428826beb5f471952a8fc281cb75327277a2a004749fd3f5db71a790",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 142486,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          79.28269999999999,
+          219.8628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:44a179ba8db261caf180d5b4886fa722afddf90825b7b30a0b9ec2b905ad2134",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 142486,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          79.28269999999999,
+          219.8628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:edbf7f7ca8c1cc7818babb8b2bd9b2d95cc8bf3f6c59246135ed44e289d09723",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 142486,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          79.28269999999999,
+          219.8628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:b8c1a789f862d8208729ab1e03bc1997bf0783fd842a20dafbee349437e88917",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 142486,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          79.28269999999999,
+          219.8628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:01a5b08e2e1af973fa8b15500776aae3e46b51804fa3170655e789e94119d727",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 139698,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          232.79999999999998,
+          124.8827,
+          421.4628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:8a815ac876f18db8b97d74f12a90eefb83aeb5fd375bac95fcd61bb249a1ec53",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 139698,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          232.79999999999998,
+          124.8827,
+          421.4628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:3a3d99422c74604e9fffe6b05f9bc00c0f699c56bcce51574054ece911f82bb4",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 139698,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          232.79999999999998,
+          124.8827,
+          421.4628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:324b6f161b4376996f18a5da3ee74a7febd7e509e8f4b1a315a737a6d4db5ac2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 139698,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          232.79999999999998,
+          124.8827,
+          421.4628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:6497849a238b6a2e192076f0caaa1876f931767ed5d5519663b77073139d908c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 134002,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          232.79999999999998,
+          124.8827,
+          421.4628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/two-square-yellow-brick-terraces-stairs-and-vessels.png",
+      "hash": "sha256:3e2a02c4cc5b3edaea4d564482b4f494d727faac2a439c6410b95f9e8116050b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 147254,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          -32.543266563638895,
+          14,
+          -24.998715994385442
+        ],
+        "lookAt": [
+          0,
+          4.168978818156205,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-north-lingxing-gate-and-yellow-tile-coping.png",
+      "hash": "sha256:05f7820a8943b5eff674bbc6b6c51d54091c49e88f40c9e78ef9400180ca1df0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 147254,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          -20.887859411907662,
+          8,
+          -81.37381230585414
+        ],
+        "lookAt": [
+          -6.310198303044219,
+          3,
+          -65.59719046861883
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mapped-huangqi-hall-open-door-painted-beams-and-hipped-roof.png",
+      "hash": "sha256:71dc15ff2af5cd76a306bb221d245cb08dfc325cff95ca0d12e079a4b2ca4f12",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 146786,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          8.234856662546324,
+          11,
+          85.60483126405492
+        ],
+        "lookAt": [
+          8.867272150909494,
+          7.487399134588733,
+          102.62247066116515
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/earth-temple-skyline.png",
+      "hash": "sha256:c7d47cba737f9b0fe16ebe95c08e2910f90f004c58d939730076f8ff6ea0a9a4",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 139698,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          -207.32024076807255,
+          155,
+          -170.93366481728646
+        ],
+        "lookAt": [
+          1.915082944778215,
+          3,
+          19.908100293966264
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/earth-temple-district.png",
+      "hash": "sha256:3fe3365b40b12156c7db04770a7c1db3e92769d1657023072a3d03b4a6c604ef",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 142486,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          -207.32024076807255,
+          155,
+          -170.93366481728646
+        ],
+        "lookAt": [
+          1.915082944778215,
+          3,
+          19.908100293966264
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/earth-temple-street.png",
+      "hash": "sha256:785262ed8ffa2a031f77bc8a060ed0095fe23ded6424f94a2c5cabf0b76982f8",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 147062,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          -207.32024076807255,
+          155,
+          -170.93366481728646
+        ],
+        "lookAt": [
+          1.915082944778215,
+          3,
+          19.908100293966264
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/earth-temple-closeup.png",
+      "hash": "sha256:09763e24ff5a16306fad90cc5fe425005fd825bcc5c2df0b1a1f82250c97bee1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 147254,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          -207.32024076807255,
+          155,
+          -170.93366481728646
+        ],
+        "lookAt": [
+          1.915082944778215,
+          3,
+          19.908100293966264
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:1590396c3a83294a7287c5af4201e08583694b066ceaae0c5cfca3e58189273d",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 139698,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          79.28269999999999,
+          219.8628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:44a179ba8db261caf180d5b4886fa722afddf90825b7b30a0b9ec2b905ad2134",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 142486,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          79.28269999999999,
+          219.8628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:76f5463d22e3e6c6e604ef972119ab0d249784eb9bd9a43c64378b7dc201d787",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 147062,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          79.28269999999999,
+          219.8628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:b7914eb0733972eee7eac11c379ef6a0ec52586057ad402234f22dcfc860e417",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 147254,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          79.28269999999999,
+          219.8628
+        ],
+        "lookAt": [
+          0,
+          18.0827,
+          18.2628
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

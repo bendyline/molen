@@ -516,6 +516,12 @@ geohash cells and geometry is clipped to each resident tile, so a bridge end sta
 its center is outside the view. Extended structures use either `datum: 'sea-level'` with an
 absolute `elevation`, or a `terrainReference` with the host sampler described below. Every
 tile must resolve the same model origin, avoiding inconsistent ground samples between tiles.
+
+Models with `groundCutout` stay whole in each intersecting resident tile. Their floors and
+openings therefore remain together while adjacent tiles load, including when the anchor tile
+is absent. These instances share the library's geometry and textures and release with their
+tiles. Ordinary extended bridges continue to use clipped geometry.
+
 `replaceRoads: { length, width, deckHeight?, deckHeights? }` describes a model-local rectangle along +X:
 mapped parallel bridge lines inside it are replaced only after the model loads successfully.
 Outside approach fragments remain procedural. `deckHeight` joins those approaches to the
@@ -540,6 +546,34 @@ axis. The remaining grade fragment receives a 20 m terrain blend. Nearby roads, 
 and tunnels remain intact. This requires the source tile to retain the shared bridge/approach
 endpoint; disconnected or generalized map geometry is left in place.
 Sunken structures can declare `groundCutout: { outline: [[x, z], ...], basis: 'source evidence' }` on a placement. The simple polygon uses native model metres and follows the same heading and scale as the model. It should bound the ground opening covered by the authored concourse or rim. The terrain pyramid subtracts the polygon from actual elevation and draped ground triangles across tile and LOD boundaries, preserving interpolated heights and surface attributes along its edge. The cutout becomes active only when its successfully loaded structure is visible, and the original ground returns on layer hiding or eviction. Failed or cancelled models leave the ground intact. Heights remain available for anchoring; an opening does not itself author walkable floors or collision.
+
+For separated parts, `groundCutout.outlines` supplies the complete set of up to 64 simple polygons
+and supersedes the single `outline`. Keep `outline` as the primary boundary for compatibility.
+Each ring follows the same model pose and lifetime; ground in the gaps stays visible. This lets
+a structure cover a main building and a detached component without clearing the ground between them.
+For an extended structure, each resident tile clips these openings to its own rendered model
+piece. Terrain outside that tile stays intact until the corresponding model piece loads.
+
+A landmark that authors a lake or basin can separately declare
+`waterCutout: { outlines: [[[x, z], ...], ...], basis: 'source evidence' }` with geographic
+`bounds`. Up to 16 simple native model polygons replace only the covered native water. The
+viewer keeps other polygons from the same map feature, and clips replacement to resident model
+tiles. Native water returns when the model is hidden or evicted; failed or cancelled loads
+leave it intact. Ground openings and water openings are independent, so a bridge's ground
+opening does not remove the river underneath it. Custom water adapters can register their mesh
+with `markTerrainWaterSurface`; `TerrainGroundCutoutController` coordinates both surface kinds.
+
+When a map merges a landmark with neighboring buildings, declare
+`buildingCutout: { outline: [[x, z], ...], basis: 'source evidence' }` and geographic `bounds`.
+This simple native model polygon follows the placement's heading and scale. While the model is
+loaded, the viewer subtracts only that area from mapped buildings and preserves their remaining
+polygons, holes, heights and other attributes. It takes precedence over `replaceFootprint` for
+that placement. Bounds ensure every overlapping tile receives the mask. Failed loads leave the
+mapped buildings intact; eviction restores the original source data. This affects procedural
+building geometry; use `groundCutout` separately when the model also covers the terrain opening.
+For separated buildings or precincts, `buildingCutout.outlines` provides up to 64 independent
+simple masks and supersedes `outline`. Keep the primary `outline` for compatibility. Separate
+masks preserve intervening buildings without inventing connecting structure geometry.
 
 ### Bridge elevations and terrain fit
 

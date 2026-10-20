@@ -1,0 +1,697 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_basalt_raw",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "outer": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "inset": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.9,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      81.84041105330864,
+      45,
+      39.72589984664259
+    ],
+    "lookAt": [
+      -3.4932222516231435,
+      4,
+      -3.577345147000068
+    ],
+    "fov": 44
+  },
+  "qaCameras": [
+    {
+      "name": "east-mandapa-stairs-carved-door-and-three-towers",
+      "position": [
+        27.549975986017447,
+        10,
+        2.449249511556967
+      ],
+      "lookAt": [
+        -5.47634603905272,
+        5,
+        -3.318076861760678
+      ],
+      "fov": 49
+    },
+    {
+      "name": "west-stellate-shrine-relief-and-layered-tower",
+      "position": [
+        -36.43542138131639,
+        12,
+        -16.415238918940926
+      ],
+      "lookAt": [
+        -14.530037225105508,
+        5,
+        -3.142931471898213
+      ],
+      "fov": 48
+    },
+    {
+      "name": "gate-pavilion-real-passage-and-court-corridor",
+      "position": [
+        46.648920251837815,
+        6,
+        1.9693245892123414
+      ],
+      "lookAt": [
+        26.253634559820497,
+        2.5,
+        -7.466369425590914
+      ],
+      "fov": 51
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        81.84041105330864,
+        45,
+        39.72589984664259
+      ],
+      "lookAt": [
+        -3.4932222516231435,
+        4,
+        -3.577345147000068
+      ],
+      "fov": 44,
+      "name": "somanathapura-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        81.84041105330864,
+        45,
+        39.72589984664259
+      ],
+      "lookAt": [
+        -3.4932222516231435,
+        4,
+        -3.577345147000068
+      ],
+      "fov": 44,
+      "name": "somanathapura-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        81.84041105330864,
+        45,
+        39.72589984664259
+      ],
+      "lookAt": [
+        -3.4932222516231435,
+        4,
+        -3.577345147000068
+      ],
+      "fov": 44,
+      "name": "somanathapura-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        81.84041105330864,
+        45,
+        39.72589984664259
+      ],
+      "lookAt": [
+        -3.4932222516231435,
+        4,
+        -3.577345147000068
+      ],
+      "fov": 44,
+      "name": "somanathapura-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/somanathapura-model.mjs",
+    "export": "buildSomanathapuraSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSomanathapuraDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "outer": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSomanathapuraStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "outer": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSomanathapuraCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "outer": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      76.88155573,
+      12.27573677
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain original standard6m Mapzen ground, water and all independent buildings. Main jagati is locally level with buried bottom edges and short east stairs; enclosure outer walls/column footings and roof ranges follow sampled native grade. Court stays native ground. No broad courtyard/plaza slab, flattening or ground/water cutout. Coarse rural DEM does not resolve stone paving, thresholds or exact court elevation; picture-led enclosure dimensions and absolute heights remain approximate.",
+    "replaceFootprint": false,
+    "bounds": [
+      76.88117119372326,
+      12.275478741664942,
+      76.88200365832131,
+      12.276075373337932
+    ],
+    "terrainReference": {
+      "anchor": [
+        76.88155573,
+        12.27573677
+      ],
+      "modelHeight": 0,
+      "basis": "Retain original standard6m Mapzen ground, water and all independent buildings. Main jagati is locally level with buried bottom edges and short east stairs; enclosure outer walls/column footings and roof ranges follow sampled native grade. Court stays native ground. No broad courtyard/plaza slab, flattening or ground/water cutout. Coarse rural DEM does not resolve stone paving, thresholds or exact court elevation; picture-led enclosure dimensions and absolute heights remain approximate."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -21.16835563842854,
+          -1.8848960252433988
+        ],
+        [
+          -20.584845098579645,
+          -3.343672246868274
+        ],
+        [
+          -20.52001058178579,
+          -3.343672246868274
+        ],
+        [
+          -20.00133455873075,
+          -4.510693171331207
+        ],
+        [
+          -17.37553712941072,
+          -6.552979677218724
+        ],
+        [
+          -17.33553712941072,
+          -6.552979677218724
+        ],
+        [
+          -14.164214771634171,
+          -6.264677705318855
+        ],
+        [
+          -12.123942270770664,
+          -9.762286754795415
+        ],
+        [
+          -12.123942270770664,
+          -11.221062584097902
+        ],
+        [
+          -11.248676460997322,
+          -13.846858891754803
+        ],
+        [
+          -10.081655381299532,
+          -15.013879397002281
+        ],
+        [
+          -7.164102682055055,
+          -15.889144745880934
+        ],
+        [
+          -7.124102682055056,
+          -15.889144745880934
+        ],
+        [
+          -5.373571062508371,
+          -15.597389632224624
+        ],
+        [
+          -3.914794712886132,
+          -14.722124275436247
+        ],
+        [
+          -3.0395289031127897,
+          -13.263348620147722
+        ],
+        [
+          -2.4560183632638943,
+          -11.51281774046673
+        ],
+        [
+          1.3254957976933208,
+          -8.894847308391252
+        ],
+        [
+          4.5061081149228475,
+          -9.762286754795415
+        ],
+        [
+          4.546108114922847,
+          -9.762286754795415
+        ],
+        [
+          6.58839500439398,
+          -9.470531579443247
+        ],
+        [
+          8.338926623940665,
+          -8.595266039149235
+        ],
+        [
+          9.505947703638457,
+          -7.136490078545304
+        ],
+        [
+          10.089458243487352,
+          -4.802448394141728
+        ],
+        [
+          10.089458243487352,
+          -3.0119170082383016
+        ],
+        [
+          9.505947703638457,
+          -1.2613855179264963
+        ],
+        [
+          8.047171354016218,
+          0.1973908049428658
+        ],
+        [
+          6.296639734469532,
+          1.0726566347328317
+        ],
+        [
+          4.546108114922847,
+          1.3644119144933773
+        ],
+        [
+          4.5061081149228475,
+          1.3644119144933773
+        ],
+        [
+          2.497760619600227,
+          1.0775051197746504
+        ],
+        [
+          -0.41373147379276165,
+          3.4066989677339024
+        ],
+        [
+          -0.7054867437172091,
+          5.157230842458369
+        ],
+        [
+          -2.4560183632638943,
+          7.783028850706263
+        ],
+        [
+          -3.914794712886132,
+          8.658294905132434
+        ],
+        [
+          -5.373571062508371,
+          8.95005026240829
+        ],
+        [
+          -5.41357106250837,
+          8.95005026240829
+        ],
+        [
+          -7.164102682055055,
+          8.658294905132434
+        ],
+        [
+          -8.622879031677293,
+          7.783028850706263
+        ],
+        [
+          -10.081655381299532,
+          5.448986166513378
+        ],
+        [
+          -10.081655381299532,
+          3.698454274387515
+        ],
+        [
+          -12.977389898826203,
+          2.2505868710344625
+        ],
+        [
+          -14.417984430166245,
+          3.1149436674080704
+        ],
+        [
+          -16.16851604971293,
+          3.4066989677339024
+        ],
+        [
+          -16.20851604971293,
+          3.4066989677339024
+        ],
+        [
+          -17.959047669259615,
+          3.1149436674080704
+        ],
+        [
+          -20.293089828655198,
+          1.3644119144933773
+        ],
+        [
+          -20.876600368504093,
+          -0.09436446532600905
+        ],
+        [
+          -21.16835563842854,
+          -1.8448960252433988
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -21.16835563842854,
+            -1.8848960252433988
+          ],
+          [
+            -20.584845098579645,
+            -3.343672246868274
+          ],
+          [
+            -20.52001058178579,
+            -3.343672246868274
+          ],
+          [
+            -20.00133455873075,
+            -4.510693171331207
+          ],
+          [
+            -17.37553712941072,
+            -6.552979677218724
+          ],
+          [
+            -17.33553712941072,
+            -6.552979677218724
+          ],
+          [
+            -14.164214771634171,
+            -6.264677705318855
+          ],
+          [
+            -12.123942270770664,
+            -9.762286754795415
+          ],
+          [
+            -12.123942270770664,
+            -11.221062584097902
+          ],
+          [
+            -11.248676460997322,
+            -13.846858891754803
+          ],
+          [
+            -10.081655381299532,
+            -15.013879397002281
+          ],
+          [
+            -7.164102682055055,
+            -15.889144745880934
+          ],
+          [
+            -7.124102682055056,
+            -15.889144745880934
+          ],
+          [
+            -5.373571062508371,
+            -15.597389632224624
+          ],
+          [
+            -3.914794712886132,
+            -14.722124275436247
+          ],
+          [
+            -3.0395289031127897,
+            -13.263348620147722
+          ],
+          [
+            -2.4560183632638943,
+            -11.51281774046673
+          ],
+          [
+            1.3254957976933208,
+            -8.894847308391252
+          ],
+          [
+            4.5061081149228475,
+            -9.762286754795415
+          ],
+          [
+            4.546108114922847,
+            -9.762286754795415
+          ],
+          [
+            6.58839500439398,
+            -9.470531579443247
+          ],
+          [
+            8.338926623940665,
+            -8.595266039149235
+          ],
+          [
+            9.505947703638457,
+            -7.136490078545304
+          ],
+          [
+            10.089458243487352,
+            -4.802448394141728
+          ],
+          [
+            10.089458243487352,
+            -3.0119170082383016
+          ],
+          [
+            9.505947703638457,
+            -1.2613855179264963
+          ],
+          [
+            8.047171354016218,
+            0.1973908049428658
+          ],
+          [
+            6.296639734469532,
+            1.0726566347328317
+          ],
+          [
+            4.546108114922847,
+            1.3644119144933773
+          ],
+          [
+            4.5061081149228475,
+            1.3644119144933773
+          ],
+          [
+            2.497760619600227,
+            1.0775051197746504
+          ],
+          [
+            -0.41373147379276165,
+            3.4066989677339024
+          ],
+          [
+            -0.7054867437172091,
+            5.157230842458369
+          ],
+          [
+            -2.4560183632638943,
+            7.783028850706263
+          ],
+          [
+            -3.914794712886132,
+            8.658294905132434
+          ],
+          [
+            -5.373571062508371,
+            8.95005026240829
+          ],
+          [
+            -5.41357106250837,
+            8.95005026240829
+          ],
+          [
+            -7.164102682055055,
+            8.658294905132434
+          ],
+          [
+            -8.622879031677293,
+            7.783028850706263
+          ],
+          [
+            -10.081655381299532,
+            5.448986166513378
+          ],
+          [
+            -10.081655381299532,
+            3.698454274387515
+          ],
+          [
+            -12.977389898826203,
+            2.2505868710344625
+          ],
+          [
+            -14.417984430166245,
+            3.1149436674080704
+          ],
+          [
+            -16.16851604971293,
+            3.4066989677339024
+          ],
+          [
+            -16.20851604971293,
+            3.4066989677339024
+          ],
+          [
+            -17.959047669259615,
+            3.1149436674080704
+          ],
+          [
+            -20.293089828655198,
+            1.3644119144933773
+          ],
+          [
+            -20.876600368504093,
+            -0.09436446532600905
+          ],
+          [
+            -21.16835563842854,
+            -1.8448960252433988
+          ]
+        ]
+      ],
+      "basis": "Replace only the single mapped Somanathapura temple shell with a two-centimeter numeric tolerance to prevent zero-area native edge slivers. Preserve all independent independent buildings and native courtyard ground and water."
+    },
+    "notes": "Named standard PMTiles Keshava Temple archaeological-site point35184523899922 correlates the main lobed building35184523899920. No exact-QID building attribution claimed. Anchor76.88155573,12.27573677; heading0, internal local+x angle-.13rad, entrance approximately east/local+x. Three lobe centers establish west/north/south shrine stations; the eastern lobe establishes the mandapa. Standard map does not resolve the enclosing corridor: its68x52m approximate picture-led footprint is fitted to open surroundings and the east footway, with no mapped dimension claim. Native toilet point and remote independent building stay outside it. Retain original standard6m Mapzen ground, water and all independent buildings. Main jagati is locally level with buried bottom edges and short east stairs; enclosure outer walls/column footings and roof ranges follow sampled native grade. Court stays native ground. No broad courtyard/plaza slab, flattening or ground/water cutout. Coarse rural DEM does not resolve stone paving, thresholds or exact court elevation; picture-led enclosure dimensions and absolute heights remain approximate."
+  }
+}

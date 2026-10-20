@@ -1,0 +1,393 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.58,
+      "metallic": 0.8
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      63.71181976968117,
+      33,
+      36.122071114979875
+    ],
+    "lookAt": [
+      -0.8596503353287532,
+      2,
+      -1.8058242718961228
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "ruined-podium-twin-tall-columns-stair-altar-and-sundial",
+      "position": [
+        -6.882788359687437,
+        11,
+        32.072218887937126
+      ],
+      "lookAt": [
+        -4.522095904452686,
+        3,
+        -6.70750688638724
+      ],
+      "fov": 49
+    },
+    {
+      "name": "roofless-cella-real-entry-and-broken-columns",
+      "position": [
+        6.406908552875045,
+        12,
+        -7.480075052771635
+      ],
+      "lookAt": [
+        -7.101046910438946,
+        4,
+        -12.124979702075608
+      ],
+      "fov": 53
+    },
+    {
+      "name": "east-fluted-portico-entablature-and-bronze-replica",
+      "position": [
+        6.06081414792058,
+        5.4,
+        10.405120463712361
+      ],
+      "lookAt": [
+        14.256800820149767,
+        2.6,
+        -1.6922264548744392
+      ],
+      "fov": 55
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        63.71181976968117,
+        33,
+        36.122071114979875
+      ],
+      "lookAt": [
+        -0.8596503353287532,
+        2,
+        -1.8058242718961228
+      ],
+      "fov": 46,
+      "name": "apollo-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        63.71181976968117,
+        33,
+        36.122071114979875
+      ],
+      "lookAt": [
+        -0.8596503353287532,
+        2,
+        -1.8058242718961228
+      ],
+      "fov": 46,
+      "name": "apollo-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        63.71181976968117,
+        33,
+        36.122071114979875
+      ],
+      "lookAt": [
+        -0.8596503353287532,
+        2,
+        -1.8058242718961228
+      ],
+      "fov": 46,
+      "name": "apollo-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        63.71181976968117,
+        33,
+        36.122071114979875
+      ],
+      "lookAt": [
+        -0.8596503353287532,
+        2,
+        -1.8058242718961228
+      ],
+      "fov": 46,
+      "name": "apollo-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/apollo-pompeii-model.mjs",
+    "export": "buildApolloPompeiiSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildApolloPompeiiDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.8
+          }
+        }
+      },
+      "street": {
+        "export": "buildApolloPompeiiStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.8
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildApolloPompeiiCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.8
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      14.484426935,
+      40.749212932
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard6m Mapzen ground, native paths, water and independent buildings retained. Only the occupied temple podium, short stair, altar footing and narrow column/wall footings are authored. Open court/portico floors remain native ground. Grade-following peripheral bases and buried occupied foundations; no broad precinct slab, flattening or ground/water cutout. Coarse DEM cannot resolve level excavated paving, precise step/threshold or absolute archaeological floor levels.",
+    "replaceFootprint": false,
+    "bounds": [
+      14.484080084419952,
+      40.74890593369432,
+      14.484752315580048,
+      40.749520666305685
+    ],
+    "terrainReference": {
+      "anchor": [
+        14.484426935,
+        40.749212932
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard6m Mapzen ground, native paths, water and independent buildings retained. Only the occupied temple podium, short stair, altar footing and narrow column/wall footings are authored. Open court/portico floors remain native ground. Grade-following peripheral bases and buried occupied foundations; no broad precinct slab, flattening or ground/water cutout. Coarse DEM cannot resolve level excavated paving, precise step/threshold or absolute archaeological floor levels."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -1.5497257225763255,
+          4.409530129915512
+        ],
+        [
+          2.2956411764219515,
+          2.599944845350384
+        ],
+        [
+          2.3356411764219516,
+          2.599944845350384
+        ],
+        [
+          4.5976217052444674,
+          7.350107160964103
+        ],
+        [
+          4.5976217052444674,
+          7.390107160964102
+        ],
+        [
+          0.7522548062461906,
+          9.425891942052516
+        ],
+        [
+          0.7122548062461905,
+          9.425891942052516
+        ],
+        [
+          -1.5497257225763255,
+          4.4495301299155114
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -1.5497257225763255,
+            4.409530129915512
+          ],
+          [
+            2.2956411764219515,
+            2.599944845350384
+          ],
+          [
+            2.3356411764219516,
+            2.599944845350384
+          ],
+          [
+            4.5976217052444674,
+            7.350107160964103
+          ],
+          [
+            4.5976217052444674,
+            7.390107160964102
+          ],
+          [
+            0.7522548062461906,
+            9.425891942052516
+          ],
+          [
+            0.7122548062461905,
+            9.425891942052516
+          ],
+          [
+            -1.5497257225763255,
+            4.4495301299155114
+          ]
+        ]
+      ],
+      "basis": "Replace only the central Apollo altar-like control35185565970074 with two-centimeter numeric tolerance. Preserve all independent ruins/buildings and original native ground/water."
+    },
+    "notes": "Retained exact-QID ruins-area way240573968/Q2699249 fixes the55.1x34.4m precinct boundary, not the temple building footprint. Named standard PMTiles point35184612662800 and central occupied altar-like control35185565970074 correlate the sanctuary. Anchor14.484426935,40.749212932; heading0, internal cross-axis-.444299136394rad, front toward south/southeast local+z. Internal podium/cella/column allocation is ordinary-picture-led within the mapped precinct. Other independent mapped structures including northeast corner control35185565970071 remain native. Original standard6m Mapzen ground, native paths, water and independent buildings retained. Only the occupied temple podium, short stair, altar footing and narrow column/wall footings are authored. Open court/portico floors remain native ground. Grade-following peripheral bases and buried occupied foundations; no broad precinct slab, flattening or ground/water cutout. Coarse DEM cannot resolve level excavated paving, precise step/threshold or absolute archaeological floor levels."
+  }
+}

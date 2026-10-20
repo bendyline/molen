@@ -1,0 +1,355 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.12
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.52,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/sarena-model.mjs",
+    "export": "buildSarenaSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSarenaDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildSarenaStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSarenaCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -38,
+      27,
+      -39
+    ],
+    "lookAt": [
+      0,
+      10,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-sarena-skyline",
+      "position": [
+        -38,
+        27,
+        -39
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-sarena-district",
+      "position": [
+        -38,
+        27,
+        -39
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-sarena-street",
+      "position": [
+        -38,
+        27,
+        -39
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-sarena-closeup",
+      "position": [
+        -38,
+        27,
+        -39
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Retained exact mosque identity/axis and current named rectangle;porch facing,unmapped tower position and all heights remain estimated.",
+    "anchor": [
+      20.966761314,
+      42.005730484
+    ],
+    "heading": -0.979405912548,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Ordinary viewer Protomaps20261014 and Mapzen/USGS extractN0472;datum 470.5791049422154 m. 154 footprint samples span -0.06710494221545105 to 0.014665425620819406 m. Floor 0.24128936509498544 m equals the median of 40 outer samples plus0.25 m. Foundations sample edges at<=2 m. Replacement and preview seating use only the retained mosque outline. Park,street,courtyard objects and nearby buildings remain host content. Exact thresholds,steps and grade are unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -10.312,
+          -7.95
+        ],
+        [
+          -10.307,
+          -2.606
+        ],
+        [
+          -10.302,
+          7.949
+        ],
+        [
+          -0.258,
+          7.949
+        ],
+        [
+          10.308,
+          7.95
+        ],
+        [
+          10.312,
+          -7.95
+        ]
+      ],
+      "basis": "Ordinary viewer Protomaps20261014 and Mapzen/USGS extractN0472;datum 470.5791049422154 m. 154 footprint samples span -0.06710494221545105 to 0.014665425620819406 m. Floor 0.24128936509498544 m equals the median of 40 outer samples plus0.25 m. Foundations sample edges at<=2 m. Replacement and preview seating use only the retained mosque outline. Park,street,courtyard objects and nearby buildings remain host content. Exact thresholds,steps and grade are unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        20.966761314,
+        42.005730484
+      ],
+      "modelHeight": 0,
+      "basis": "Ordinary viewer Protomaps20261014 and Mapzen/USGS extractN0472;datum 470.5791049422154 m. 154 footprint samples span -0.06710494221545105 to 0.014665425620819406 m. Floor 0.24128936509498544 m equals the median of 40 outer samples plus0.25 m. Foundations sample edges at<=2 m. Replacement and preview seating use only the retained mosque outline. Park,street,courtyard objects and nearby buildings remain host content. Exact thresholds,steps and grade are unverified."
+    },
+    "bounds": [
+      20.9664,
+      42.0055,
+      20.9671,
+      42.006
+    ],
+    "notes": "Retained Q1009896 /way241085465 anchor,axis and six-vertex rectangle remain unchanged. Current named mosque/main polygon supplies four quantized corners. The front porch/upper gallery is assigned to negative X and the stone minaret is estimated inside the positive-X/positive-Z corner. No independent height tags or separate tower/tomb polygon are resolved. All partitions,facing,heights and painted-panel geometry remain picture-guided visualization estimates. The current named mosque and main polygon share id35184613174297. The separate tomb,courtyard enclosures,fountain and neighboring buildings are excluded. Ordinary viewer Protomaps20261014 and Mapzen/USGS extractN0472;datum 470.5791049422154 m. 154 footprint samples span -0.06710494221545105 to 0.014665425620819406 m. Floor 0.24128936509498544 m equals the median of 40 outer samples plus0.25 m. Foundations sample edges at<=2 m. Replacement and preview seating use only the retained mosque outline. Park,street,courtyard objects and nearby buildings remain host content. Exact thresholds,steps and grade are unverified."
+  },
+  "geographicNote": "Ordinary viewer Protomaps20261014 and Mapzen/USGS extractN0472;datum 470.5791049422154 m. 154 footprint samples span -0.06710494221545105 to 0.014665425620819406 m. Floor 0.24128936509498544 m equals the median of 40 outer samples plus0.25 m. Foundations sample edges at<=2 m. Replacement and preview seating use only the retained mosque outline. Park,street,courtyard objects and nearby buildings remain host content. Exact thresholds,steps and grade are unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

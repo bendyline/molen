@@ -2,7 +2,9 @@ import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import {
   markTerrainGroundSurface,
+  markTerrainWaterSurface,
   setTerrainGroundCutout,
+  setTerrainWaterCutout,
   subtractTerrainGroundGeometry,
   TerrainGroundCutoutController,
   terrainGroundSourceGeometry,
@@ -59,6 +61,51 @@ const square: [[number, number], [number, number], [number, number], [number, nu
   [3, 7],
 ];
 describe('model-owned ground openings', () => {
+  it('keeps ground and native-water openings independent and restores each visible owner', () => {
+    const scene = new THREE.Group(),
+      ground = new THREE.Mesh(plane()),
+      water = new THREE.Mesh(plane());
+    markTerrainGroundSurface(ground);
+    markTerrainWaterSurface(water);
+    scene.add(ground, water);
+    const originalGround = ground.geometry,
+      originalWater = water.geometry,
+      groundOwner = new THREE.Group(),
+      waterOwner = new THREE.Group();
+    scene.add(groundOwner, waterOwner);
+    setTerrainGroundCutout(groundOwner, square);
+    const controller = new TerrainGroundCutoutController();
+    try {
+      controller.update(scene);
+      expect(area(ground.geometry)).toBeCloseTo(84, 5);
+      expect(water.geometry).toBe(originalWater);
+      setTerrainWaterCutout(waterOwner, [
+        [1, 1],
+        [3, 1],
+        [3, 3],
+        [1, 3],
+      ]);
+      controller.update(scene);
+      expect(area(ground.geometry)).toBeCloseTo(84, 5);
+      expect(area(water.geometry)).toBeCloseTo(96, 5);
+      waterOwner.visible = false;
+      controller.update(scene);
+      expect(water.geometry).toBe(originalWater);
+      expect(area(ground.geometry)).toBeCloseTo(84, 5);
+      groundOwner.removeFromParent();
+      waterOwner.visible = true;
+      controller.update(scene);
+      expect(ground.geometry).toBe(originalGround);
+      expect(area(water.geometry)).toBeCloseTo(96, 5);
+      waterOwner.removeFromParent();
+      controller.update(scene);
+      expect(water.geometry).toBe(originalWater);
+    } finally {
+      controller.dispose();
+      ground.geometry.dispose();
+      water.geometry.dispose();
+    }
+  });
   it('leaves regions without cutouts untouched without traversing their buildings', () => {
     const root = new THREE.Group(),
       ground = new THREE.Mesh(plane());

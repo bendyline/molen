@@ -1,0 +1,326 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.78,
+      "metallic": 0.24
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "mosaic": {
+      "slot": "wall",
+      "graph": "tile_mosaic",
+      "roughness": 0.55,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.58,
+      "metallic": 0.5
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.46,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/umayyad-model.mjs",
+    "export": "buildUmayyadSkyline",
+    "errorMeters": 2.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildUmayyadDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "mosaic": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.55,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildUmayyadStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "mosaic": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.55,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildUmayyadCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "mosaic": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.55,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -172,
+      116,
+      -171
+    ],
+    "lookAt": [
+      0,
+      19,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-umayyad-skyline",
+      "position": [
+        -172,
+        116,
+        -171
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-umayyad-district",
+      "position": [
+        -172,
+        116,
+        -171
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-umayyad-street",
+      "position": [
+        -172,
+        116,
+        -171
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-umayyad-closeup",
+      "position": [
+        -172,
+        116,
+        -171
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      36.306650188,
+      33.511602424
+    ],
+    "heading": 0.080762031862,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and declared raised court/hall floor,not surveyed ground contact. Standard viewer DEM datum695.751299m;whole perimeter-9.26 to-1.45m relative to it. Floor2.800m is maximum anchor/perimeter/interior-grid sample plus0.35m,an approximate raised attachment plane. Interior samples prevent the coarse central terrain hump from covering court paving. Stone footings crossY=0 and extend below retained terrain. No terrain flattening,ground cutout or road replacement. Exact door/step/court/street/base joins,altitude,walking and current construction finish remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        36.306650188,
+        33.511602424
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum695.751299m;whole perimeter-9.26 to-1.45m relative to it. Floor2.800m is maximum anchor/perimeter/interior-grid sample plus0.35m,an approximate raised attachment plane. Interior samples prevent the coarse central terrain hump from covering court paving. Stone footings crossY=0 and extend below retained terrain. No terrain flattening,ground cutout or road replacement. Exact door/step/court/street/base joins,altitude,walking and current construction finish remain unverified."
+    },
+    "bounds": [
+      36.301,
+      33.506,
+      36.313,
+      33.517
+    ],
+    "notes": "Retained exact way/315255977 /Q183562 identifies Umayyad Mosque (Omayyad Mosque),Damascus. Current whole35184687344809 and selected hall/gallery/roof/minaret controls match the retained perimeter and current same-ID named POI. Anchor[36.306650188,33.511602424] and heading0.080762031862rad unchanged,no horizontal rescale. Native+X east-northeast toward southeast Jesus minaret,+Z south-southeast prayer hall/mihrab,−Z north-northwest open courtyard/Bride minaret. Pictures resolve signed court/hall facing with approximate3° uncertainty. Treasury,Clock and fountain are photo-led placements inside the mapped court,not independent PMTiles footprints;working horizontal uncertainty about8m. Separate Saladin mausoleum/tomb,northern buildings,markets,streets and Roman propylaeum remain host content. Standard viewer DEM datum695.751299m;whole perimeter-9.26 to-1.45m relative to it. Floor2.800m is maximum anchor/perimeter/interior-grid sample plus0.35m,an approximate raised attachment plane. Interior samples prevent the coarse central terrain hump from covering court paving. Stone footings crossY=0 and extend below retained terrain. No terrain flattening,ground cutout or road replacement. Exact door/step/court/street/base joins,altitude,walking and current construction finish remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum695.751299m;whole perimeter-9.26 to-1.45m relative to it. Floor2.800m is maximum anchor/perimeter/interior-grid sample plus0.35m,an approximate raised attachment plane. Interior samples prevent the coarse central terrain hump from covering court paving. Stone footings crossY=0 and extend below retained terrain. No terrain flattening,ground cutout or road replacement. Exact door/step/court/street/base joins,altitude,walking and current construction finish remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

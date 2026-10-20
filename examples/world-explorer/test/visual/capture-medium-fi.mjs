@@ -44,6 +44,22 @@ try {
       out = resolve(dir, 'medium-fi'),
       spec = JSON.parse(await readFile(resolve(dir, 'spec.json'))),
       errors = [];
+    const captureNames = new Set([
+      'silhouette',
+      ...['skyline', 'district', 'street', 'closeup'].map((level) => `transition-${level}`),
+      ...['street', 'block', 'skyline'].flatMap((distance) =>
+        ['noon', 'late'].flatMap((time) =>
+          ['economy', 'high'].map((mode) => `${distance}-${time}-${mode}`),
+        ),
+      ),
+    ]);
+    for (const camera of [...spec.qaCameras, ...(spec.qaLodCameras ?? [])]) {
+      if (captureNames.has(camera.name))
+        throw new Error(
+          `${id}: duplicate capture name ${camera.name}; give review cameras unique names`,
+        );
+      captureNames.add(camera.name);
+    }
     await mkdir(out, { recursive: true });
     const page = await browser.newPage({ viewport: { width: 1200, height: 760 } });
     page.on('pageerror', (e) => errors.push(e.message));

@@ -18,6 +18,7 @@ import {
   historicalIdentityResolved,
 } from './historical-placement.mjs';
 import { reviewedMediumFi } from './medium-fi-readiness.mjs';
+import { readinessRefresh } from './readiness-refresh.mjs';
 import { readinessSourceIdentity } from './readiness-source-identity.mjs';
 import { reviewedSourceMapFrame } from './reviewed-source-map-frame.mjs';
 
@@ -59,6 +60,20 @@ async function imageFiles(directory) {
 const collectionPath = 'content/worldgen/source/next-1000/collections.json';
 const collectionBytes = await bytes(collectionPath);
 const collections = validateStructureCollections(JSON.parse(collectionBytes), catalog.candidates);
+const selectedArguments = process.argv.filter((argument) => argument.startsWith('--ids='));
+if (process.argv.includes('--ids') || selectedArguments.length > 1)
+  throw new Error('Use one --ids=N0001,N0002 argument for a selected readiness refresh.');
+const selectedArgument = selectedArguments[0];
+if (selectedArgument && process.argv.includes('--check'))
+  throw new Error('--check always verifies the full ledger; omit --ids.');
+const refresh = selectedArgument
+  ? readinessRefresh(
+      catalog.candidates,
+      await readJson('content/earth/structures/readiness.json'),
+      selectedArgument.slice(6).split(','),
+      { collections, hash: hash(collectionBytes) },
+    )
+  : undefined;
 async function modelReadiness(candidate, geo) {
   if (geo?.wikidataId !== candidate.wikidataId)
     throw new Error(`${candidate.id}: stale geographic identity; regenerate georeferencing`);
@@ -267,6 +282,10 @@ async function modelReadiness(candidate, geo) {
 }
 const records = [];
 for (const candidate of catalog.candidates) {
+  if (refresh && !refresh.selected.has(candidate.id)) {
+    records.push(refresh.records.get(candidate.id));
+    continue;
+  }
   const collection = collections.find((entry) => entry.id === candidate.id);
   if (!collection) {
     records.push(await modelReadiness(candidate, geoById.get(candidate.id)));
@@ -407,3 +426,7 @@ if (process.argv.includes('--check')) {
     throw new Error('Structure production progress is stale; rebuild the readiness ledger.');
 } else await writeIndex(progressPath, progress);
 console.log(JSON.stringify(counts));
+if (refresh)
+  console.log(
+    `Refreshed ${[...refresh.selected].join(', ')}; retained ${records.length - refresh.selected.size} previously checked candidate records. Full verification requires --check without --ids.`,
+  );

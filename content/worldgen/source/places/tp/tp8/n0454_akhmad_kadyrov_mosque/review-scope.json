@@ -1,0 +1,511 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "accent": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.8,
+      "metallic": 0.17
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.54,
+      "metallic": 0.5
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.48,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kadyrov-model.mjs",
+    "export": "buildKadyrovSkyline",
+    "errorMeters": 1.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKadyrovDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.17
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.54,
+            "metallic": 0.5
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildKadyrovStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.17
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.54,
+            "metallic": 0.5
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKadyrovCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.17
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.54,
+            "metallic": 0.5
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      128,
+      86,
+      140
+    ],
+    "lookAt": [
+      -5,
+      19,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-kadyrov-skyline",
+      "position": [
+        128,
+        86,
+        140
+      ],
+      "lookAt": [
+        -5,
+        19,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-kadyrov-district",
+      "position": [
+        128,
+        86,
+        140
+      ],
+      "lookAt": [
+        -5,
+        19,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-kadyrov-street",
+      "position": [
+        128,
+        86,
+        140
+      ],
+      "lookAt": [
+        -5,
+        19,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-kadyrov-closeup",
+      "position": [
+        128,
+        86,
+        140
+      ],
+      "lookAt": [
+        -5,
+        19,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Mapped principal plan and heights; repeated details and precise terrain fit remain approximate.",
+    "anchor": [
+      45.694044193,
+      43.317941695
+    ],
+    "heading": 1.286881076932,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Normal viewer DEM datum 124.2808983117137 m; floor -0.3157523352428001 m is median of 134 outside-perimeter samples every 3 m at 1 m offset plus 0.35 m. 527 raw footprint samples span -1.417415058856875..2.2325225342034543 m. Adaptive footings follow the outer outline; preview terrain seats the compound and 1.5 m margin. The paved court is open above its floor. Ground cutout follows the full compound outline, covered by the model paving. Exact street steps, thresholds, paving grades and host terrain joins remain unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -35.51018871397653,
+          -29.56342161147594
+        ],
+        [
+          -35.56216059675809,
+          -28.19048448625288
+        ],
+        [
+          -37.83011302148097,
+          -28.207586152350913
+        ],
+        [
+          -37.646907541263374,
+          -22.151071942035
+        ],
+        [
+          -50.35962636909967,
+          -22.288544700275658
+        ],
+        [
+          -50.197879279140615,
+          22.47072811660101
+        ],
+        [
+          -37.75453068570577,
+          22.460507297493805
+        ],
+        [
+          -37.84071991994144,
+          28.36933507369489
+        ],
+        [
+          -35.572762605282655,
+          28.386435312918827
+        ],
+        [
+          -35.624735493386446,
+          29.759372731493016
+        ],
+        [
+          -27.925855443096317,
+          29.77580707335546
+        ],
+        [
+          -27.79527402932369,
+          31.774361404167315
+        ],
+        [
+          -23.528756702177027,
+          31.66087620359149
+        ],
+        [
+          -23.38994711298811,
+          29.810009389900763
+        ],
+        [
+          -14.318138495349517,
+          29.878416369800437
+        ],
+        [
+          -14.32701815890417,
+          28.296940306623007
+        ],
+        [
+          -12.267607429243128,
+          28.374894046725835
+        ],
+        [
+          -12.4508151114505,
+          22.318380478946402
+        ],
+        [
+          -5.169039271476995,
+          22.456525044111558
+        ],
+        [
+          14.703680697990198,
+          22.315085386008388
+        ],
+        [
+          15.390148266425726,
+          22.341070746539835
+        ],
+        [
+          15.364163385027263,
+          23.027538999847597
+        ],
+        [
+          18.318571821535897,
+          23.07062939868573
+        ],
+        [
+          22.585061786302052,
+          22.957152182401018
+        ],
+        [
+          22.671897743266502,
+          22.479223004417495
+        ],
+        [
+          23.35836461313976,
+          22.5052085687881
+        ],
+        [
+          45.49894311752314,
+          22.380897973651777
+        ],
+        [
+          45.4798434410555,
+          8.356162337331753
+        ],
+        [
+          50.22424222212699,
+          8.329527532803738
+        ],
+        [
+          50.36992349451093,
+          -8.232539224897724
+        ],
+        [
+          45.41699021660624,
+          -8.145054446794468
+        ],
+        [
+          45.39788583547355,
+          -22.169788710302093
+        ],
+        [
+          22.77941717550921,
+          -22.132325972086704
+        ],
+        [
+          22.80540144338776,
+          -22.818794046370513
+        ],
+        [
+          15.584515898696017,
+          -22.74841098045066
+        ],
+        [
+          15.497680123965209,
+          -22.270481855642565
+        ],
+        [
+          -12.34323547225156,
+          -22.29318606583427
+        ],
+        [
+          -12.257055777946752,
+          -28.20201105830149
+        ],
+        [
+          -14.316462106665478,
+          -28.279966082591002
+        ],
+        [
+          -14.473030664570887,
+          -29.592051499833484
+        ],
+        [
+          -23.5448189267123,
+          -29.66046441942892
+        ],
+        [
+          -23.46686221720236,
+          -31.719869782007095
+        ],
+        [
+          -24.15333183880353,
+          -31.745854543428685
+        ],
+        [
+          -27.79422040268247,
+          -31.814926638124735
+        ],
+        [
+          -27.811326200636685,
+          -29.546982152364418
+        ]
+      ],
+      "basis": "Normal viewer DEM datum 124.2808983117137 m; floor -0.3157523352428001 m is median of 134 outside-perimeter samples every 3 m at 1 m offset plus 0.35 m. 527 raw footprint samples span -1.417415058856875..2.2325225342034543 m. Adaptive footings follow the outer outline; preview terrain seats the compound and 1.5 m margin. The paved court is open above its floor. Ground cutout follows the full compound outline, covered by the model paving. Exact street steps, thresholds, paving grades and host terrain joins remain unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        45.694044193,
+        43.317941695
+      ],
+      "modelHeight": 0,
+      "basis": "Normal viewer DEM datum 124.2808983117137 m; floor -0.3157523352428001 m is median of 134 outside-perimeter samples every 3 m at 1 m offset plus 0.35 m. 527 raw footprint samples span -1.417415058856875..2.2325225342034543 m. Adaptive footings follow the outer outline; preview terrain seats the compound and 1.5 m margin. The paved court is open above its floor. Ground cutout follows the full compound outline, covered by the model paving. Exact street steps, thresholds, paving grades and host terrain joins remain unverified."
+    },
+    "bounds": [
+      45.687,
+      43.312,
+      45.701,
+      43.324
+    ],
+    "notes": "Retained exact relation 6012185 / Q340549 is current viewer building 52776564145433. All 45 current outer vertices and the 19-vertex open-court ring, original anchor and heading remain unchanged. Selected principal body, dome, roof and four minaret parts retain raw polygons/properties and mapped height ranges. Positive X NNE points from the SSW prayer hall toward the open court and gate; positive Z ESE toward the eastern side porch. Two inspected pictures resolve the signed axis without rescaling. The relation has no current QID tile tag; the retained exact relation supplies identity. Tiny mapped facade/ornament parts are consolidated into shared medium-fi window/arch rhythms. Park, streets and city buildings remain host content. Normal viewer DEM datum 124.2808983117137 m; floor -0.3157523352428001 m is median of 134 outside-perimeter samples every 3 m at 1 m offset plus 0.35 m. 527 raw footprint samples span -1.417415058856875..2.2325225342034543 m. Adaptive footings follow the outer outline; preview terrain seats the compound and 1.5 m margin. The paved court is open above its floor. Ground cutout follows the full compound outline, covered by the model paving. Exact street steps, thresholds, paving grades and host terrain joins remain unverified."
+  },
+  "geographicNote": "Normal viewer DEM datum 124.2808983117137 m; floor -0.3157523352428001 m is median of 134 outside-perimeter samples every 3 m at 1 m offset plus 0.35 m. 527 raw footprint samples span -1.417415058856875..2.2325225342034543 m. Adaptive footings follow the outer outline; preview terrain seats the compound and 1.5 m margin. The paved court is open above its floor. Ground cutout follows the full compound outline, covered by the model paving. Exact street steps, thresholds, paving grades and host terrain joins remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

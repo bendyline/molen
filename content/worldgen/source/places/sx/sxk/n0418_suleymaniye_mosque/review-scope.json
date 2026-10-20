@@ -1,0 +1,302 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.78,
+      "metallic": 0.24
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.58,
+      "metallic": 0.5
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.46,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/suleymaniye-model.mjs",
+    "export": "buildSuleymaniyeSkyline",
+    "errorMeters": 2.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSuleymaniyeDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildSuleymaniyeStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSuleymaniyeCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -148,
+      106,
+      143
+    ],
+    "lookAt": [
+      0,
+      27,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-suleymaniye-skyline",
+      "position": [
+        -148,
+        106,
+        143
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-suleymaniye-district",
+      "position": [
+        -148,
+        106,
+        143
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-suleymaniye-street",
+      "position": [
+        -148,
+        106,
+        143
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-suleymaniye-closeup",
+      "position": [
+        -148,
+        106,
+        143
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      28.963824495,
+      41.016240297
+    ],
+    "heading": -0.834335421047,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and declared court/hall floor,not surveyed ground contact. Standard viewer DEM datum57.901142m;whole perimeter-3.80 to4.85m relative to datum. Floor5.155m is maximum retained perimeter/interior-grid sample plus0.30m. Adaptive stone footings crossY=0 and extend below retained ground. This is an approximate attachment plane;coarse terrain may expose tall footings. No cutout,flattening or road replacement. Exact door/step/court/garden/street/base contact,altitude and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        28.963824495,
+        41.016240297
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum57.901142m;whole perimeter-3.80 to4.85m relative to datum. Floor5.155m is maximum retained perimeter/interior-grid sample plus0.30m. Adaptive stone footings crossY=0 and extend below retained ground. This is an approximate attachment plane;coarse terrain may expose tall footings. No cutout,flattening or road replacement. Exact door/step/court/garden/street/base contact,altitude and walking remain unverified."
+    },
+    "bounds": [
+      28.958,
+      41.011,
+      28.97,
+      41.021
+    ],
+    "notes": "Retained exact relation/1564032 /Q178643 identifies Istanbul Süleymaniye Mosque. Current whole52776559697280 (3×2^44+1564032),dome and four separate minaret base/shaft pairs match its retained plan. Ten controls with current raw polygons/properties retained;the mapped courtyard hole remains open above modeled paving. Anchor[28.963824495,41.016240297] and heading−0.834335421047rad unchanged,no horizontal rescale. Native+X southeast prayer hall/mihrab,−X northwest courtyard entrance,+Z southwest,−Z northeast side gallery. Pictures resolve the signed axis with about3° working facing uncertainty. Surrounding madrasas,tombs,Sinan mausoleum,outer garden/walls,streets and city buildings remain separate host content. Standard viewer DEM datum57.901142m;whole perimeter-3.80 to4.85m relative to datum. Floor5.155m is maximum retained perimeter/interior-grid sample plus0.30m. Adaptive stone footings crossY=0 and extend below retained ground. This is an approximate attachment plane;coarse terrain may expose tall footings. No cutout,flattening or road replacement. Exact door/step/court/garden/street/base contact,altitude and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum57.901142m;whole perimeter-3.80 to4.85m relative to datum. Floor5.155m is maximum retained perimeter/interior-grid sample plus0.30m. Adaptive stone footings crossY=0 and extend below retained ground. This is an approximate attachment plane;coarse terrain may expose tall footings. No cutout,flattening or road replacement. Exact door/step/court/garden/street/base contact,altitude and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

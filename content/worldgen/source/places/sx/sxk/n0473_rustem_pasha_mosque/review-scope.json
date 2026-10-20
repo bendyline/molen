@@ -1,0 +1,391 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.85,
+      "metallic": 0.16
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "wall",
+      "graph": "tile_ceramic",
+      "roughness": 0.75,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "roof",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.55,
+      "metallic": 0.65
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.52,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/rustem-model.mjs",
+    "export": "buildRustemSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRustemDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0.16
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_ceramic",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.55,
+            "metallic": 0.65
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildRustemStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0.16
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_ceramic",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.55,
+            "metallic": 0.65
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildRustemCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0.16
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_ceramic",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.55,
+            "metallic": 0.65
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -64,
+      42,
+      -69
+    ],
+    "lookAt": [
+      0,
+      13,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-rustem-skyline",
+      "position": [
+        -64,
+        42,
+        -69
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-rustem-district",
+      "position": [
+        -64,
+        42,
+        -69
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-rustem-street",
+      "position": [
+        -64,
+        42,
+        -69
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-rustem-closeup",
+      "position": [
+        -64,
+        42,
+        -69
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Retained exact identity/axis plus named point/main polygon;front,partitions and all vertical dimensions remain estimated.",
+    "anchor": [
+      28.968763623,
+      41.017654992
+    ],
+    "heading": 0.773643792926,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0473;datum 10.46533676004657 m. 358 footprint samples span -2.3500027495321802 to 2.0671052745382514 m. Foundation plane 0.3515711559351722 m equals the median of 95 outer samples plus0.25 m. Edge foundations sample at<=2 m. Replacement and preview terrain seating use only the retained mosque outline. Adjacent buildings,streets and courtyards remain host content;shop thresholds,stairs,terrace level and exact grade joins are unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -23.17,
+          -19.723
+        ],
+        [
+          -23.174,
+          -11.557
+        ],
+        [
+          -21.721,
+          -11.554
+        ],
+        [
+          -21.723,
+          -2.561
+        ],
+        [
+          -23.175,
+          -2.564
+        ],
+        [
+          -23.179,
+          5.913
+        ],
+        [
+          -18.494,
+          5.914
+        ],
+        [
+          -15.311,
+          5.911
+        ],
+        [
+          -15.3,
+          19.724
+        ],
+        [
+          12.42,
+          19.724
+        ],
+        [
+          12.408,
+          6.034
+        ],
+        [
+          20.047,
+          6.291
+        ],
+        [
+          19.014,
+          -10.622
+        ],
+        [
+          23.179,
+          -10.631
+        ],
+        [
+          23.173,
+          -19.724
+        ]
+      ],
+      "basis": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0473;datum 10.46533676004657 m. 358 footprint samples span -2.3500027495321802 to 2.0671052745382514 m. Foundation plane 0.3515711559351722 m equals the median of 95 outer samples plus0.25 m. Edge foundations sample at<=2 m. Replacement and preview terrain seating use only the retained mosque outline. Adjacent buildings,streets and courtyards remain host content;shop thresholds,stairs,terrace level and exact grade joins are unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        28.968763623,
+        41.017654992
+      ],
+      "modelHeight": 0,
+      "basis": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0473;datum 10.46533676004657 m. 358 footprint samples span -2.3500027495321802 to 2.0671052745382514 m. Foundation plane 0.3515711559351722 m equals the median of 95 outer samples plus0.25 m. Edge foundations sample at<=2 m. Replacement and preview terrain seating use only the retained mosque outline. Adjacent buildings,streets and courtyards remain host content;shop thresholds,stairs,terrace level and exact grade joins are unverified."
+    },
+    "bounds": [
+      28.9683,
+      41.0172,
+      28.9692,
+      41.0181
+    ],
+    "notes": "Retained Q1137511 /way175518494 anchor,axis and15-vertex outline remain unchanged. Current named mosque point and14-vertex main polygon share id35184547607326. Negative Z is assigned to the broad porch/platform end and positive Z to the narrower rear hall. This facing and all internal partitions are picture/map-guided approximations. The raw denomination=anglican tag is retained as source data without endorsement. Adjacent shop blocks and their courtyards remain separate host buildings. Standard Protomaps20261014 and Mapzen/USGS viewer extractN0473;datum 10.46533676004657 m. 358 footprint samples span -2.3500027495321802 to 2.0671052745382514 m. Foundation plane 0.3515711559351722 m equals the median of 95 outer samples plus0.25 m. Edge foundations sample at<=2 m. Replacement and preview terrain seating use only the retained mosque outline. Adjacent buildings,streets and courtyards remain host content;shop thresholds,stairs,terrace level and exact grade joins are unverified."
+  },
+  "geographicNote": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0473;datum 10.46533676004657 m. 358 footprint samples span -2.3500027495321802 to 2.0671052745382514 m. Foundation plane 0.3515711559351722 m equals the median of 95 outer samples plus0.25 m. Edge foundations sample at<=2 m. Replacement and preview terrain seating use only the retained mosque outline. Adjacent buildings,streets and courtyards remain host content;shop thresholds,stairs,terrace level and exact grade joins are unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

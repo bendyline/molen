@@ -25,3 +25,11 @@ Accepted medium-fi exterior and approximate picture/PMTiles fit. Preserve492m he
 - [Inspected picture 1](https://www.kpf.com/project/shanghai-world-financial-center) — actual pixels inspected; image not redistributed.
 - [Inspected picture 2](https://e1.nmcdn.io/assets/kpf2024/wp-content/uploads/imported-files/Shanghai-World-Financial-Center_P1.webp) — actual pixels inspected; image not redistributed.
 - Standard viewer Protomaps20261008/Mapzen Terrarium PMTiles; controls/hashes retained in pmtiles-fit.json. ©OpenStreetMap contributors/ODbL, elevation attribution retained with the fit data.
+
+## Source binding maintenance — 550 checkpoint
+
+Exact prior input reconstructed using HEAD tower generator; only validation guard gained support for centerline/point frames. These three outlined frames and all six approved model files are unchanged. Existing visual acceptance is retained through byte-equivalent rebuilding; this is not a new visual review.
+
+Previous input: sha256:c212e19cc785d2b98a7c551d1b9e502536f3f4a7592b368ddc2af87277d7a3ae
+
+Current input: sha256:54597f576025649334df8fe1fa01b2f56eef0c20528450bd197a5d21bbe37e08

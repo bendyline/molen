@@ -231,9 +231,15 @@ async function mount(input: ReviewInput) {
           wgs84ToWorld(factor, entry.bounds[2], entry.bounds[3]),
         ]
       : [];
-    const tileSize = Math.max(
-      256,
+    const boundedSpan = Math.max(
+      0,
       ...boundCorners.flatMap((point) => point.map((v, i) => 2 * Math.abs(v - center[i]) + 16)),
+    );
+    // Small bounded ruins need a local review query. Preserve the existing stage
+    // size for point placements and larger structures.
+    const tileSize = Math.max(
+      input.reviewBoundedPlacement && entry.bounds && boundedSpan < 128 ? 128 : 256,
+      boundedSpan,
     );
     const origin: [number, number] = [center[0] - tileSize / 2, center[1] - tileSize / 2];
     const [west, north] = worldToWgs84(factor, ...origin);

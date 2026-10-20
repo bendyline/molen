@@ -1,0 +1,569 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "cream": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "red": {
+      "slot": "trim",
+      "graph": "plaster_lime",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "dark": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.88,
+      "metallic": 0.2
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -95.0355997727778,
+      77,
+      147.77426966772123
+    ],
+    "lookAt": [
+      -21.19641424195332,
+      8,
+      18.322445887040256
+    ],
+    "fov": 43
+  },
+  "qaCameras": [
+    {
+      "name": "navaratna-nine-spires-bowed-cornices-and-red-trim",
+      "position": [
+        -41.92237176530256,
+        20.18004992915392,
+        31.56762179150914
+      ],
+      "lookAt": [
+        -14.23731738496561,
+        15.48004992915392,
+        -1.5161773246411376
+      ],
+      "fov": 49
+    },
+    {
+      "name": "five-bay-recesses-platform-and-south-approach",
+      "position": [
+        -26.27368422452469,
+        6.180049929153919,
+        17.85198916843617
+      ],
+      "lookAt": [
+        -13.39886003433455,
+        4.180049929153919,
+        6.439763177346841
+      ],
+      "fov": 49
+    },
+    {
+      "name": "twelve-riverfront-shrines-and-open-courtyard",
+      "position": [
+        -90.70608646551925,
+        28,
+        26.653440267810524
+      ],
+      "lookAt": [
+        -26.064069886866925,
+        6,
+        19.840974293933165
+      ],
+      "fov": 58
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "dakshineswar-skyline",
+      "position": [
+        -41.92237176530256,
+        20.18004992915392,
+        31.56762179150914
+      ],
+      "lookAt": [
+        -14.23731738496561,
+        15.48004992915392,
+        -1.5161773246411376
+      ],
+      "fov": 49,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "dakshineswar-district",
+      "position": [
+        -41.92237176530256,
+        20.18004992915392,
+        31.56762179150914
+      ],
+      "lookAt": [
+        -14.23731738496561,
+        15.48004992915392,
+        -1.5161773246411376
+      ],
+      "fov": 49,
+      "reviewLod": "district"
+    },
+    {
+      "name": "dakshineswar-street",
+      "position": [
+        -41.92237176530256,
+        20.18004992915392,
+        31.56762179150914
+      ],
+      "lookAt": [
+        -14.23731738496561,
+        15.48004992915392,
+        -1.5161773246411376
+      ],
+      "fov": 49,
+      "reviewLod": "street"
+    },
+    {
+      "name": "dakshineswar-closeup",
+      "position": [
+        -41.92237176530256,
+        20.18004992915392,
+        31.56762179150914
+      ],
+      "lookAt": [
+        -14.23731738496561,
+        15.48004992915392,
+        -1.5161773246411376
+      ],
+      "fov": 49,
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": -4,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/dakshineswar-model.mjs",
+    "export": "buildDakshineswarSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDakshineswarDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "cream": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "buildDakshineswarStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "cream": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildDakshineswarCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "cream": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      88.357777777,
+      22.655
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Pinned standard Protomaps2026-10-14 and Mapzen13\u201314 terrain. Retain the original six-meter native grid and water. Each principal building has a locally sampled level datum and buried base; the main floor is raised about2.2m. Low boundary wings follow coarse native grade with buried bottoms. No terrain/water cutout or river surface is authored. The DEM does not resolve historic courtyard paving/ghat levels; exact thresholds and embankment engineering are approximate.",
+    "replaceFootprint": false,
+    "bounds": [
+      88.35712850450057,
+      22.65421783594571,
+      88.3579540217064,
+      22.655492035470765
+    ],
+    "terrainReference": {
+      "anchor": [
+        88.357777777,
+        22.655
+      ],
+      "modelHeight": 0,
+      "basis": "Pinned standard Protomaps2026-10-14 and Mapzen13\u201314 terrain. Retain the original six-meter native grid and water. Each principal building has a locally sampled level datum and buried base; the main floor is raised about2.2m. Low boundary wings follow coarse native grade with buried bottoms. No terrain/water cutout or river surface is authored. The DEM does not resolve historic courtyard paving/ghat levels; exact thresholds and embankment engineering are approximate."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -63.69987975552564,
+          -44.0579355465698
+        ],
+        [
+          -63.424335944676194,
+          -41.57804819656053
+        ],
+        [
+          -57.3623721059884,
+          11.601855134956706
+        ],
+        [
+          -47.99388253710724,
+          10.499679096073327
+        ],
+        [
+          -46.34061967201056,
+          26.75678375373818
+        ],
+        [
+          -55.433565430042265,
+          27.85896096642483
+        ],
+        [
+          -51.024864456451134,
+          65.33303350900341
+        ],
+        [
+          -51.019243650411994,
+          65.33303350900341
+        ],
+        [
+          -48.82051396965557,
+          84.07010424059402
+        ],
+        [
+          -31.185710075291038,
+          81.86574178526735
+        ],
+        [
+          -31.461253886140486,
+          80.21247015179812
+        ],
+        [
+          -17.684063343668196,
+          78.28365347441142
+        ],
+        [
+          -17.40851953281875,
+          79.9369248990639
+        ],
+        [
+          -14.1019938026254,
+          79.38583440308713
+        ],
+        [
+          -13.826449991775954,
+          80.76356067624988
+        ],
+        [
+          1.328459604943566,
+          78.55919869867063
+        ],
+        [
+          1.328459604943566,
+          76.90592742272098
+        ],
+        [
+          14.554562525716966,
+          74.70156600198641
+        ],
+        [
+          13.108806295106483,
+          65.33303350900341
+        ],
+        [
+          13.176843471469736,
+          65.33303350900341
+        ],
+        [
+          -2.2536099360992297,
+          -34.138383737230306
+        ],
+        [
+          15.105650147415856,
+          -36.3427291391887
+        ],
+        [
+          13.727931093168626,
+          -50.395423609497044
+        ],
+        [
+          5.461616767685253,
+          -49.568794881458466
+        ],
+        [
+          5.186072956835807,
+          -51.77313805762009
+        ],
+        [
+          -7.764486153088146,
+          -50.67096650987888
+        ],
+        [
+          -7.488942342238699,
+          -47.63999433991191
+        ],
+        [
+          -24.021570993205447,
+          -46.26227951844981
+        ],
+        [
+          -24.297114804054893,
+          -49.01770903798228
+        ],
+        [
+          -39.727568211623854,
+          -47.63999433991191
+        ],
+        [
+          -39.176480589924964,
+          -43.78239252754208
+        ],
+        [
+          -54.60693399749393,
+          -42.40467735805206
+        ],
+        [
+          -54.882477808343374,
+          -44.88456457201406
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -63.69987975552564,
+            -44.0579355465698
+          ],
+          [
+            -63.424335944676194,
+            -41.57804819656053
+          ],
+          [
+            -57.3623721059884,
+            11.601855134956706
+          ],
+          [
+            -47.99388253710724,
+            10.499679096073327
+          ],
+          [
+            -46.34061967201056,
+            26.75678375373818
+          ],
+          [
+            -55.433565430042265,
+            27.85896096642483
+          ],
+          [
+            -51.024864456451134,
+            65.33303350900341
+          ],
+          [
+            -51.019243650411994,
+            65.33303350900341
+          ],
+          [
+            -48.82051396965557,
+            84.07010424059402
+          ],
+          [
+            -31.185710075291038,
+            81.86574178526735
+          ],
+          [
+            -31.461253886140486,
+            80.21247015179812
+          ],
+          [
+            -17.684063343668196,
+            78.28365347441142
+          ],
+          [
+            -17.40851953281875,
+            79.9369248990639
+          ],
+          [
+            -14.1019938026254,
+            79.38583440308713
+          ],
+          [
+            -13.826449991775954,
+            80.76356067624988
+          ],
+          [
+            1.328459604943566,
+            78.55919869867063
+          ],
+          [
+            1.328459604943566,
+            76.90592742272098
+          ],
+          [
+            14.554562525716966,
+            74.70156600198641
+          ],
+          [
+            13.108806295106483,
+            65.33303350900341
+          ],
+          [
+            13.176843471469736,
+            65.33303350900341
+          ],
+          [
+            -2.2536099360992297,
+            -34.138383737230306
+          ],
+          [
+            15.105650147415856,
+            -36.3427291391887
+          ],
+          [
+            13.727931093168626,
+            -50.395423609497044
+          ],
+          [
+            5.461616767685253,
+            -49.568794881458466
+          ],
+          [
+            5.186072956835807,
+            -51.77313805762009
+          ],
+          [
+            -7.764486153088146,
+            -50.67096650987888
+          ],
+          [
+            -7.488942342238699,
+            -47.63999433991191
+          ],
+          [
+            -24.021570993205447,
+            -46.26227951844981
+          ],
+          [
+            -24.297114804054893,
+            -49.01770903798228
+          ],
+          [
+            -39.727568211623854,
+            -47.63999433991191
+          ],
+          [
+            -39.176480589924964,
+            -43.78239252754208
+          ],
+          [
+            -54.60693399749393,
+            -42.40467735805206
+          ],
+          [
+            -54.882477808343374,
+            -44.88456457201406
+          ]
+        ]
+      ],
+      "basis": "Replace only the single broad mapped compound shell with separate authored structures and open court. Independent buildings remain host context."
+    },
+    "notes": "Q1157765 and way291865633 identify the mapped compound. Standard PMTiles record35184663954465 supplies its precise irregular outer outline; it currently has no courtyard holes or individual temple plans. Replace that one broad native shell with an open compound. Align local east/south about6degrees to the mapped walls. Main-shrine, Natmandir, northern shrine and twelve riverfront-shrine centers/dimensions are explicit picture-led subdivisions inside the boundary, not surveyed footprints. The south-facing main approach and western riverfront give signed orientation. Preserve every independent surrounding map record. Pinned standard Protomaps2026-10-14 and Mapzen13\u201314 terrain. Retain the original six-meter native grid and water. Each principal building has a locally sampled level datum and buried base; the main floor is raised about2.2m. Low boundary wings follow coarse native grade with buried bottoms. No terrain/water cutout or river surface is authored. The DEM does not resolve historic courtyard paving/ghat levels; exact thresholds and embankment engineering are approximate."
+  }
+}

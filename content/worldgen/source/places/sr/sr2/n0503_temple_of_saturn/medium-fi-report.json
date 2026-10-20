@@ -1,0 +1,1159 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0503_temple_of_saturn",
+  "sourceHash": "sha256:5af767fdd7608389fb59fd913656e1a4c791f1b65c12103f7c56f3a040d91aaf",
+  "runtimeHash": "sha256:a1effa1dc9f4d12e1509258c78d67c5fc5c51201dd91e3be1d41b20d1bb4ffa5",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:3323fc3fe351eb17cef39c76fffa662f7be206889f658d815619837d1e5c50f4",
+      "bytes": 69056,
+      "gzipBytes": 12628,
+      "triangles": 662,
+      "cpuBytes": 67620,
+      "gpuBytes": 67620,
+      "errorMeters": 0.7,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:5f70232c60835b33077b6ec28defebb454b641ad157be2d4da703dd7f153c48f",
+      "bytes": 212812,
+      "gzipBytes": 65945,
+      "triangles": 2110,
+      "cpuBytes": 206556,
+      "gpuBytes": 206556,
+      "errorMeters": 0.3,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:61fa0e0208aa02c42d94946911536bb8e1ed6f65fb1aa0c8675ba817b51ce013",
+      "bytes": 527528,
+      "gzipBytes": 167178,
+      "triangles": 5150,
+      "cpuBytes": 521260,
+      "gpuBytes": 521260,
+      "errorMeters": 0.1,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:57d46ae67fadf147e57d9d0087f517979df24059acf79bf68578f9fa9ec93e83",
+      "bytes": 1086592,
+      "gzipBytes": 326083,
+      "triangles": 10869,
+      "cpuBytes": 1080312,
+      "gpuBytes": 1080312,
+      "errorMeters": 0.035,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:5c2eec030af13364f434e97f3034fdc550131910a08d4ef2146e09de628b0fcd"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:881ed4fc2b2222e7051e179c4cc03bb0a9af5191695edab6d86cb5a3f8a379c4"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:68c2ae99fa92e5bdd82947027c90c7dd9c8df6b072184056361b0afbce8ef9a8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 35767,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          104.15100000000001,
+          64.3979,
+          184.8616
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:abb95a759de618caf9d5884120430fc5638dbdac3060e9dad19acd1d069afada",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 35767,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          104.15100000000001,
+          64.3979,
+          184.8616
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:ded33f2175acf18b5a9199b28403390346261c3b707d59960719e587903354b4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 35767,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          104.15100000000001,
+          64.3979,
+          184.8616
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:8e7e74cf0f3bed954349c8fbb29197fbe08aaf059af3de291d0543e4aa5e74ea",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 35767,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          104.15100000000001,
+          64.3979,
+          184.8616
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:f52a4dd5fb34e6f6006b5afeaf1d840058afd8c295d35db027a475f8903afa9d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 27008,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          211.951,
+          143.5979,
+          371.8616
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:03194e075ec0f627a97125a14497a537cc2057e2aa59990643fcd6f4fb1f8caf",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 27008,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          211.951,
+          143.5979,
+          371.8616
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:b93e99f409ea56b17917fb51cdf9fd0d178716ab0349c5f8a271d0935de5a408",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 27008,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          211.951,
+          143.5979,
+          371.8616
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:6d5448a11e45c4c6414b1a5b129dd33d0174f4bed26ce6fdc39f45a55dbeec30",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 27008,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          211.951,
+          143.5979,
+          371.8616
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:8c5329ec233cb760da7ae137634fd572ede3c05ea883eb40397cf2d120b690af",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25560,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          425.351,
+          227.19790000000003,
+          741.4616000000001
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:49acfbc22ad891e7eb7c2b47af278d2775f1990e7cf377f294b67198f4199d2b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25560,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          425.351,
+          227.19790000000003,
+          741.4616000000001
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:a37eaf53d7959b3d0c545a322731623bd83c478880ec676d797d66e53dea338b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25560,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          425.351,
+          227.19790000000003,
+          741.4616000000001
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:fdc661b201f7ca4f5577ffdcf3250bfd59ea00baacc0ce9df9793bea5a9d1d0b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25560,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          425.351,
+          227.19790000000003,
+          741.4616000000001
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:8a90f3fae494aa14864903d6310bf0698354d0de291295e7aeb6d1ae6f49c04f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 19864,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          425.351,
+          227.19790000000003,
+          741.4616000000001
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northeast-inscribed-front.png",
+      "hash": "sha256:1a6a79e7d45d4533241ee4c9afcb03bd7033776eba6abfd0c228de39b998c57c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 35767,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          37.66059667280234,
+          14.61251149354041,
+          -14.888903863230126
+        ],
+        "lookAt": [
+          8.2746720705201,
+          12.61251149354041,
+          -8.836843448050589
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/ionic-capitals-and-frieze.png",
+      "hash": "sha256:1f7cd568983a0680c8998c72807fb6de7c74ae93b032d0535047f1c750b849b9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 35767,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          16.61940529020908,
+          20.61251149354041,
+          -16.394979957284804
+        ],
+        "lookAt": [
+          8.855711339961696,
+          17.61251149354041,
+          -9.650718971313683
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roofless-podium-and-returns.png",
+      "hash": "sha256:d56b4b51ec0dc2f468d82e46588abd0da26131eba3ebe94b098464ac7eadbb94",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 35767,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          -35.80211210267896,
+          21.61251149354041,
+          8.843572184768366
+        ],
+        "lookAt": [
+          0,
+          7.612511493540409,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/podium-chamber-niche.png",
+      "hash": "sha256:fd0411abe9d4b91fcf3c322cdc94158a57245ef6d151ee94017e5bacda3b6044",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 35767,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          13.642359754716999,
+          -0.10912537872564343,
+          15.654077822015937
+        ],
+        "lookAt": [
+          7.878458549976693,
+          -0.6591253787256435,
+          11.681994879529306
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mapped-ruin-plan.png",
+      "hash": "sha256:22796bbd8b52478e53baf2662375d7e7a160f8864a71470001fb7e462e8d3072",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 35767,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          80,
+          0.01
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-ruin-skyline.png",
+      "hash": "sha256:c471666fd2719dbe1b1b64cf5b24c2a05383014a0bf968e107b8c1fc0a221081",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25560,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          48.47171199881977,
+          31.61251149354041,
+          -14.542803577834338
+        ],
+        "lookAt": [
+          0,
+          9.61251149354041,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-ruin-district.png",
+      "hash": "sha256:3e97d4db5bc1e47119bef680a563ae23ac75ee87ebfa4654783cb4459e035a60",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 27008,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          48.47171199881977,
+          31.61251149354041,
+          -14.542803577834338
+        ],
+        "lookAt": [
+          0,
+          9.61251149354041,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-ruin-street.png",
+      "hash": "sha256:26b9d07a4a118cf36cb27fdd14e1721ffa362cde4cea0b839d442e50da43f6f8",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 30048,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          48.47171199881977,
+          31.61251149354041,
+          -14.542803577834338
+        ],
+        "lookAt": [
+          0,
+          9.61251149354041,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-ruin-closeup.png",
+      "hash": "sha256:60177e9db07564d9aff3fc9d37664322c06db628fe4f236c2df49f4cb04276b4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 35767,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          48.47171199881977,
+          31.61251149354041,
+          -14.542803577834338
+        ],
+        "lookAt": [
+          0,
+          9.61251149354041,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:1c653f96d73d642401752037270dcf249b9d0b2b69f6597aef1a8ccca58ddab0",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25560,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          211.951,
+          143.5979,
+          371.8616
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:03194e075ec0f627a97125a14497a537cc2057e2aa59990643fcd6f4fb1f8caf",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 27008,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          211.951,
+          143.5979,
+          371.8616
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:2ac87a6f1b727c75fd5c076c3f64de37b76fcc099b2043c7adc2f4740178e213",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 30048,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          211.951,
+          143.5979,
+          371.8616
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:be62846bdf2d31c506be747c869685c2bf2daf9efebf81f1bf796fec5dca3b07",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 35767,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/terrain-review.height.png"
+        },
+        "position": [
+          211.951,
+          143.5979,
+          371.8616
+        ],
+        "lookAt": [
+          -1.449,
+          31.397900000000003,
+          2.2616
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

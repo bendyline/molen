@@ -1,0 +1,950 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "granite": {
+      "slot": "wall",
+      "graph": "stone_granite",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "marble": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "rubble": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick_longformat",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "ground": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 1,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/saturn-model.mjs",
+    "export": "buildSaturnSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSaturnDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSaturnStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSaturnCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      48.47171199881977,
+      31.61251149354041,
+      -14.542803577834338
+    ],
+    "lookAt": [
+      0,
+      9.61251149354041,
+      0
+    ],
+    "fov": 44
+  },
+  "qaCameras": [
+    {
+      "name": "northeast-inscribed-front",
+      "position": [
+        37.66059667280234,
+        14.61251149354041,
+        -14.888903863230126
+      ],
+      "lookAt": [
+        8.2746720705201,
+        12.61251149354041,
+        -8.836843448050589
+      ],
+      "fov": 44
+    },
+    {
+      "name": "ionic-capitals-and-frieze",
+      "position": [
+        16.61940529020908,
+        20.61251149354041,
+        -16.394979957284804
+      ],
+      "lookAt": [
+        8.855711339961696,
+        17.61251149354041,
+        -9.650718971313683
+      ],
+      "fov": 44
+    },
+    {
+      "name": "roofless-podium-and-returns",
+      "position": [
+        -35.80211210267896,
+        21.61251149354041,
+        8.843572184768366
+      ],
+      "lookAt": [
+        0,
+        7.612511493540409,
+        0
+      ],
+      "fov": 44
+    },
+    {
+      "name": "podium-chamber-niche",
+      "position": [
+        13.642359754716999,
+        -0.10912537872564343,
+        15.654077822015937
+      ],
+      "lookAt": [
+        7.878458549976693,
+        -0.6591253787256435,
+        11.681994879529306
+      ],
+      "fov": 44
+    },
+    {
+      "name": "mapped-ruin-plan",
+      "position": [
+        0,
+        80,
+        0.01
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 40
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-ruin-skyline",
+      "position": [
+        48.47171199881977,
+        31.61251149354041,
+        -14.542803577834338
+      ],
+      "lookAt": [
+        0,
+        9.61251149354041,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-ruin-district",
+      "position": [
+        48.47171199881977,
+        31.61251149354041,
+        -14.542803577834338
+      ],
+      "lookAt": [
+        0,
+        9.61251149354041,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-ruin-street",
+      "position": [
+        48.47171199881977,
+        31.61251149354041,
+        -14.542803577834338
+      ],
+      "lookAt": [
+        0,
+        9.61251149354041,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-ruin-closeup",
+      "position": [
+        48.47171199881977,
+        31.61251149354041,
+        -14.542803577834338
+      ],
+      "lookAt": [
+        0,
+        9.61251149354041,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 2.2,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      12.484095461,
+      41.892421117
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "bounds": [
+      12.483817500910815,
+      41.892199202500485,
+      12.48433844877243,
+      41.892602398484684
+    ],
+    "terrainReference": {
+      "anchor": [
+        12.484095461,
+        41.892421117
+      ],
+      "modelHeight": 0,
+      "basis": "The original161-square/6m standard Mapzen/USGS DEM is retained at the new anchor. The occupied opaque top is seated0.2m above the highest nearby grid vertex across the footprint bounds, with continuous retaining faces reaching below the minimum grade. Recessed podium niches begin above their local coarse ground. No ground or water cutout is proposed; original terrain remains under and around the ruin. Exact archaeological thresholds and street levels are not surveyed."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -22.22483846712854,
+          7.951878614776366
+        ],
+        [
+          -22.213459620183016,
+          7.951878614776366
+        ],
+        [
+          -19.838543264414415,
+          5.437166447229993
+        ],
+        [
+          -19.838543264414415,
+          5.425117801896844
+        ],
+        [
+          -19.827244825732546,
+          5.425117801896844
+        ],
+        [
+          -12.952095966943299,
+          -1.95418491979017
+        ],
+        [
+          -12.952095966943299,
+          -1.966311871661088
+        ],
+        [
+          -12.942690338602691,
+          -1.966311871661088
+        ],
+        [
+          -7.9677407959031346,
+          -9.292777626996786
+        ],
+        [
+          -7.9677407959031346,
+          -9.306629026564444
+        ],
+        [
+          -7.958367784196405,
+          -9.306629026564444
+        ],
+        [
+          -1.383784491920832,
+          -19.042055323414118
+        ],
+        [
+          -1.383784491920832,
+          -19.055934570294696
+        ],
+        [
+          -1.343784491920832,
+          -19.055934570294696
+        ],
+        [
+          -1.343784491920832,
+          -19.04768842748551
+        ],
+        [
+          -1.326518025771986,
+          -19.073116257832215
+        ],
+        [
+          -1.326518025771986,
+          -19.086967657399875
+        ],
+        [
+          -1.286518025771986,
+          -19.086967657399875
+        ],
+        [
+          -1.286518025771986,
+          -19.07675524820054
+        ],
+        [
+          0.7061078287134939,
+          -17.528460812661006
+        ],
+        [
+          0.7192510075172636,
+          -17.528460812661006
+        ],
+        [
+          0.7192510075172636,
+          -17.51909084525727
+        ],
+        [
+          10.885927926951972,
+          -10.656786518649383
+        ],
+        [
+          10.93986957217366,
+          -10.72870858716413
+        ],
+        [
+          10.93986957217366,
+          -10.742041911219708
+        ],
+        [
+          10.949687976963109,
+          -10.742041911219708
+        ],
+        [
+          13.415472406223405,
+          -14.130856442901385
+        ],
+        [
+          13.415472406223405,
+          -14.144350222987587
+        ],
+        [
+          13.455472406223404,
+          -14.144350222987587
+        ],
+        [
+          13.455472406223404,
+          -14.134990961384128
+        ],
+        [
+          13.481455753318688,
+          -14.117484266978687
+        ],
+        [
+          13.507937675173991,
+          -14.152793434695981
+        ],
+        [
+          13.507937675173991,
+          -14.16612675875156
+        ],
+        [
+          13.54793767517399,
+          -14.16612675875156
+        ],
+        [
+          13.54793767517399,
+          -14.156830444999857
+        ],
+        [
+          16.201167298006922,
+          -12.38801399690396
+        ],
+        [
+          16.21511179465366,
+          -12.38801399690396
+        ],
+        [
+          16.21511179465366,
+          -12.34801399690396
+        ],
+        [
+          16.205992323271172,
+          -12.34801399690396
+        ],
+        [
+          13.81848569086099,
+          -8.658236458797981
+        ],
+        [
+          15.072865450892081,
+          -7.75528978294288
+        ],
+        [
+          15.086415712070556,
+          -7.75528978294288
+        ],
+        [
+          15.086415712070556,
+          -7.74591678978722
+        ],
+        [
+          17.743267897714993,
+          -5.9516819023846095
+        ],
+        [
+          18.17549238426341,
+          -6.816130103868876
+        ],
+        [
+          18.17549238426341,
+          -6.831408740549482
+        ],
+        [
+          18.21549238426341,
+          -6.831408740549482
+        ],
+        [
+          18.21549238426341,
+          -6.822732553453635
+        ],
+        [
+          19.31235460900406,
+          -6.164615820101155
+        ],
+        [
+          19.32681493404661,
+          -6.164615820101155
+        ],
+        [
+          19.32681493404661,
+          -6.124615820101156
+        ],
+        [
+          19.31813873704761,
+          -6.124615820101156
+        ],
+        [
+          19.262730939207085,
+          -6.032269562936873
+        ],
+        [
+          19.262730939207085,
+          -6.017809245968793
+        ],
+        [
+          19.25431473658491,
+          -6.017809245968793
+        ],
+        [
+          18.71693980236425,
+          -5.081093499141716
+        ],
+        [
+          19.167471622398985,
+          -4.815714241029759
+        ],
+        [
+          19.182019072070258,
+          -4.815714241029759
+        ],
+        [
+          19.182019072070258,
+          -4.7757142410297595
+        ],
+        [
+          19.172663618411285,
+          -4.7757142410297595
+        ],
+        [
+          18.103555617968404,
+          -3.1879329530395957
+        ],
+        [
+          18.103555617968404,
+          -3.174038740056227
+        ],
+        [
+          18.094696737895816,
+          -3.174038740056227
+        ],
+        [
+          16.21511179465366,
+          -0.13778719797414496
+        ],
+        [
+          16.21511179465366,
+          -0.12347670438447401
+        ],
+        [
+          16.17511179465366,
+          -0.12347670438447401
+        ],
+        [
+          16.17511179465366,
+          -0.13347670396831193
+        ],
+        [
+          16.089436437169205,
+          -0.1977332176247918
+        ],
+        [
+          -0.3078644018165462,
+          23.596438109812773
+        ],
+        [
+          -0.3078644018165462,
+          23.61021417736646
+        ],
+        [
+          -0.3478644018165462,
+          23.61021417736646
+        ],
+        [
+          -0.3478644018165462,
+          23.60050962718853
+        ],
+        [
+          -22.21124507289602,
+          7.991878614776365
+        ],
+        [
+          -22.22483846712854,
+          7.991878614776365
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -22.22483846712854,
+            7.951878614776366
+          ],
+          [
+            -22.213459620183016,
+            7.951878614776366
+          ],
+          [
+            -19.838543264414415,
+            5.437166447229993
+          ],
+          [
+            -19.838543264414415,
+            5.425117801896844
+          ],
+          [
+            -19.827244825732546,
+            5.425117801896844
+          ],
+          [
+            -12.952095966943299,
+            -1.95418491979017
+          ],
+          [
+            -12.952095966943299,
+            -1.966311871661088
+          ],
+          [
+            -12.942690338602691,
+            -1.966311871661088
+          ],
+          [
+            -7.9677407959031346,
+            -9.292777626996786
+          ],
+          [
+            -7.9677407959031346,
+            -9.306629026564444
+          ],
+          [
+            -7.958367784196405,
+            -9.306629026564444
+          ],
+          [
+            -1.383784491920832,
+            -19.042055323414118
+          ],
+          [
+            -1.383784491920832,
+            -19.055934570294696
+          ],
+          [
+            -1.343784491920832,
+            -19.055934570294696
+          ],
+          [
+            -1.343784491920832,
+            -19.04768842748551
+          ],
+          [
+            -1.326518025771986,
+            -19.073116257832215
+          ],
+          [
+            -1.326518025771986,
+            -19.086967657399875
+          ],
+          [
+            -1.286518025771986,
+            -19.086967657399875
+          ],
+          [
+            -1.286518025771986,
+            -19.07675524820054
+          ],
+          [
+            0.7061078287134939,
+            -17.528460812661006
+          ],
+          [
+            0.7192510075172636,
+            -17.528460812661006
+          ],
+          [
+            0.7192510075172636,
+            -17.51909084525727
+          ],
+          [
+            10.885927926951972,
+            -10.656786518649383
+          ],
+          [
+            10.93986957217366,
+            -10.72870858716413
+          ],
+          [
+            10.93986957217366,
+            -10.742041911219708
+          ],
+          [
+            10.949687976963109,
+            -10.742041911219708
+          ],
+          [
+            13.415472406223405,
+            -14.130856442901385
+          ],
+          [
+            13.415472406223405,
+            -14.144350222987587
+          ],
+          [
+            13.455472406223404,
+            -14.144350222987587
+          ],
+          [
+            13.455472406223404,
+            -14.134990961384128
+          ],
+          [
+            13.481455753318688,
+            -14.117484266978687
+          ],
+          [
+            13.507937675173991,
+            -14.152793434695981
+          ],
+          [
+            13.507937675173991,
+            -14.16612675875156
+          ],
+          [
+            13.54793767517399,
+            -14.16612675875156
+          ],
+          [
+            13.54793767517399,
+            -14.156830444999857
+          ],
+          [
+            16.201167298006922,
+            -12.38801399690396
+          ],
+          [
+            16.21511179465366,
+            -12.38801399690396
+          ],
+          [
+            16.21511179465366,
+            -12.34801399690396
+          ],
+          [
+            16.205992323271172,
+            -12.34801399690396
+          ],
+          [
+            13.81848569086099,
+            -8.658236458797981
+          ],
+          [
+            15.072865450892081,
+            -7.75528978294288
+          ],
+          [
+            15.086415712070556,
+            -7.75528978294288
+          ],
+          [
+            15.086415712070556,
+            -7.74591678978722
+          ],
+          [
+            17.743267897714993,
+            -5.9516819023846095
+          ],
+          [
+            18.17549238426341,
+            -6.816130103868876
+          ],
+          [
+            18.17549238426341,
+            -6.831408740549482
+          ],
+          [
+            18.21549238426341,
+            -6.831408740549482
+          ],
+          [
+            18.21549238426341,
+            -6.822732553453635
+          ],
+          [
+            19.31235460900406,
+            -6.164615820101155
+          ],
+          [
+            19.32681493404661,
+            -6.164615820101155
+          ],
+          [
+            19.32681493404661,
+            -6.124615820101156
+          ],
+          [
+            19.31813873704761,
+            -6.124615820101156
+          ],
+          [
+            19.262730939207085,
+            -6.032269562936873
+          ],
+          [
+            19.262730939207085,
+            -6.017809245968793
+          ],
+          [
+            19.25431473658491,
+            -6.017809245968793
+          ],
+          [
+            18.71693980236425,
+            -5.081093499141716
+          ],
+          [
+            19.167471622398985,
+            -4.815714241029759
+          ],
+          [
+            19.182019072070258,
+            -4.815714241029759
+          ],
+          [
+            19.182019072070258,
+            -4.7757142410297595
+          ],
+          [
+            19.172663618411285,
+            -4.7757142410297595
+          ],
+          [
+            18.103555617968404,
+            -3.1879329530395957
+          ],
+          [
+            18.103555617968404,
+            -3.174038740056227
+          ],
+          [
+            18.094696737895816,
+            -3.174038740056227
+          ],
+          [
+            16.21511179465366,
+            -0.13778719797414496
+          ],
+          [
+            16.21511179465366,
+            -0.12347670438447401
+          ],
+          [
+            16.17511179465366,
+            -0.12347670438447401
+          ],
+          [
+            16.17511179465366,
+            -0.13347670396831193
+          ],
+          [
+            16.089436437169205,
+            -0.1977332176247918
+          ],
+          [
+            -0.3078644018165462,
+            23.596438109812773
+          ],
+          [
+            -0.3078644018165462,
+            23.61021417736646
+          ],
+          [
+            -0.3478644018165462,
+            23.61021417736646
+          ],
+          [
+            -0.3478644018165462,
+            23.60050962718853
+          ],
+          [
+            -22.21124507289602,
+            7.991878614776365
+          ],
+          [
+            -22.22483846712854,
+            7.991878614776365
+          ]
+        ]
+      ],
+      "basis": "The occupied podium envelope contains all13 original mapped components, with a0.02m building-only numerical margin. Independent buildings remain outside; all original control vertices and terrain remain unchanged."
+    },
+    "notes": "Q746721/relation1849835 identifies this ruin. The current standard map provides eight individual column centres and five podium/fragment footprints inside the temple outline. Six columns form the northeast front; one return stands behind each end. Ordinary front and reverse photographs establish the inscription faces northeast, resolving the unsigned old rectangle axis. Raw east/south control vertices remain unchanged. Reviewed approximate full-site fit on the unchanged161-square/6m standard DEM. Thirteen original mapped components retain97 vertices, including eight separate column centres. Six front columns face northeast, with two short rear returns; the ordinary front inscription photograph resolves the signed orientation. Geometry retains raw east/south coordinates at heading0, with a35.5237-degree internal architectural rotation. The occupied podium top clears every rendered grid cell intersecting its bounds by at least0.200001m: all81 bounding grid vertices were checked, so triangle interpolation cannot rise through it. Deep retaining sides and bounded chamber recesses enclose the native ground without any terrain/water opening. Full-site loading replaces13 authored records and preserves1932 independent tile buildings exactly. All2831 independent buildings in the retained extract are outside the replacement envelope;328 nearby records are retained in source, including the13 controls. Native water remains unchanged at127038.71519859218 square metres. Failed loads preserve1945 native tile buildings; eviction releases model geometry. Synthetic10m partial residency clips away the remote columns, entablature and much of the podium while preserving original ground under and outside the clipped model. Full architecture requires surrounding tiles; the partial fixture does not establish architectural completeness. The surrounding unmodeled Forum ruins still use the generic procedural renderer and are not historical reconstructions. Height, chamber placement, damage and stone profiles remain approximate; no surveyed thresholds are claimed.",
+    "groundContactBasis": "Reviewed approximate full-site fit on the unchanged161-square/6m standard DEM. Thirteen original mapped components retain97 vertices, including eight separate column centres. Six front columns face northeast, with two short rear returns; the ordinary front inscription photograph resolves the signed orientation. Geometry retains raw east/south coordinates at heading0, with a35.5237-degree internal architectural rotation. The occupied podium top clears every rendered grid cell intersecting its bounds by at least0.200001m: all81 bounding grid vertices were checked, so triangle interpolation cannot rise through it. Deep retaining sides and bounded chamber recesses enclose the native ground without any terrain/water opening. Full-site loading replaces13 authored records and preserves1932 independent tile buildings exactly. All2831 independent buildings in the retained extract are outside the replacement envelope;328 nearby records are retained in source, including the13 controls. Native water remains unchanged at127038.71519859218 square metres. Failed loads preserve1945 native tile buildings; eviction releases model geometry. Synthetic10m partial residency clips away the remote columns, entablature and much of the podium while preserving original ground under and outside the clipped model. Full architecture requires surrounding tiles; the partial fixture does not establish architectural completeness. The surrounding unmodeled Forum ruins still use the generic procedural renderer and are not historical reconstructions. Height, chamber placement, damage and stone profiles remain approximate; no surveyed thresholds are claimed."
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

@@ -1,0 +1,466 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "ground": {
+      "slot": "roof",
+      "graph": "gravel",
+      "roughness": 1,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/bel-model.mjs",
+    "export": "buildBelSkyline",
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBelDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildBelStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBelCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -234.31261270983615,
+      180,
+      231.99698171547476
+    ],
+    "lookAt": [
+      5,
+      0,
+      0
+    ],
+    "fov": 44
+  },
+  "qaCameras": [
+    {
+      "name": "whole-temenos-and-west-gate",
+      "position": [
+        -234.31261270983615,
+        180,
+        231.99698171547476
+      ],
+      "lookAt": [
+        5,
+        0,
+        0
+      ],
+      "fov": 44
+    },
+    {
+      "name": "standing-cella-doorway",
+      "position": [
+        -7.01680818500761,
+        13.412192734098152,
+        16.99458227993204
+      ],
+      "lookAt": [
+        16.46906097283703,
+        9.412192734098152,
+        2.503759325365179
+      ],
+      "fov": 44
+    },
+    {
+      "name": "doorway-cornice-and-horns",
+      "position": [
+        3.3281812795074788,
+        20.412192734098152,
+        8.393350218240423
+      ],
+      "lookAt": [
+        16.46906097283703,
+        13.412192734098152,
+        2.503759325365179
+      ],
+      "fov": 44
+    },
+    {
+      "name": "fortified-west-gate",
+      "position": [
+        -146.6153611702877,
+        9,
+        14.315581333151856
+      ],
+      "lookAt": [
+        -106.67298851874413,
+        5,
+        -8.361430528317527
+      ],
+      "fov": 44
+    },
+    {
+      "name": "destroyed-cella-rubble",
+      "position": [
+        61.146485458923394,
+        26.412192734098152,
+        39.68302426282798
+      ],
+      "lookAt": [
+        23.508748057552268,
+        5.412192734098153,
+        4.180901462839959
+      ],
+      "fov": 44
+    },
+    {
+      "name": "surviving-perimeter-remains",
+      "position": [
+        10.975059159005653,
+        17,
+        113.24110594857471
+      ],
+      "lookAt": [
+        3.0073008798698915,
+        4,
+        87.52117538869057
+      ],
+      "fov": 44
+    },
+    {
+      "name": "mapped-complete-plan",
+      "position": [
+        0,
+        360,
+        0.01
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 44
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-ruins-skyline",
+      "position": [
+        -234.31261270983615,
+        180,
+        231.99698171547476
+      ],
+      "lookAt": [
+        5,
+        0,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-ruins-district",
+      "position": [
+        -234.31261270983615,
+        180,
+        231.99698171547476
+      ],
+      "lookAt": [
+        5,
+        0,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-ruins-street",
+      "position": [
+        -234.31261270983615,
+        180,
+        231.99698171547476
+      ],
+      "lookAt": [
+        5,
+        0,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-ruins-closeup",
+      "position": [
+        -234.31261270983615,
+        180,
+        231.99698171547476
+      ],
+      "lookAt": [
+        5,
+        0,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.6,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "groundY": -7
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      38.273815491,
+      34.547352174
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "bounds": [
+      38.272594405255056,
+      34.54633570349066,
+      38.27512169711859,
+      34.548359896267755
+    ],
+    "terrainReference": {
+      "anchor": [
+        38.273815491,
+        34.547352174
+      ],
+      "modelHeight": 0,
+      "basis": "The original161-square/6m Mapzen/USGS grid remains unchanged. Only the small mapped central cella footprint has an opaque podium floor; its top clears every original rendered grid-cell vertex in its bounds by0.2m. Outer walls, gate, perimeter stumps and scattered rubble use local standard DEM grade and extend slightly below it. No ground or water cutout is needed; the open court keeps its original terrain. Gate threshold and individual stones remain approximate."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          15.803450870278674,
+          22.728587347728077
+        ],
+        [
+          15.80421981089163,
+          22.728587347728077
+        ],
+        [
+          17.279027930235205,
+          -14.879035670373579
+        ],
+        [
+          17.279027930235205,
+          -14.898643664332978
+        ],
+        [
+          17.319027930235205,
+          -14.898643664332978
+        ],
+        [
+          17.319027930235205,
+          -14.897954218708685
+        ],
+        [
+          31.317360768533234,
+          -14.406785420255524
+        ],
+        [
+          31.337009999822246,
+          -14.406785420255524
+        ],
+        [
+          31.337009999822246,
+          -14.366785420255525
+        ],
+        [
+          31.336115888737492,
+          -14.366785420255525
+        ],
+        [
+          29.615503429872955,
+          23.240904865172432
+        ],
+        [
+          29.615503429872955,
+          23.26044758822026
+        ],
+        [
+          29.575503429872956,
+          23.26044758822026
+        ],
+        [
+          29.575503429872956,
+          23.259746051834114
+        ],
+        [
+          15.82309384034838,
+          22.768587347728076
+        ],
+        [
+          15.803450870278674,
+          22.768587347728076
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            15.803450870278674,
+            22.728587347728077
+          ],
+          [
+            15.80421981089163,
+            22.728587347728077
+          ],
+          [
+            17.279027930235205,
+            -14.879035670373579
+          ],
+          [
+            17.279027930235205,
+            -14.898643664332978
+          ],
+          [
+            17.319027930235205,
+            -14.898643664332978
+          ],
+          [
+            17.319027930235205,
+            -14.897954218708685
+          ],
+          [
+            31.317360768533234,
+            -14.406785420255524
+          ],
+          [
+            31.337009999822246,
+            -14.406785420255524
+          ],
+          [
+            31.337009999822246,
+            -14.366785420255525
+          ],
+          [
+            31.336115888737492,
+            -14.366785420255525
+          ],
+          [
+            29.615503429872955,
+            23.240904865172432
+          ],
+          [
+            29.615503429872955,
+            23.26044758822026
+          ],
+          [
+            29.575503429872956,
+            23.26044758822026
+          ],
+          [
+            29.575503429872956,
+            23.259746051834114
+          ],
+          [
+            15.82309384034838,
+            22.768587347728076
+          ],
+          [
+            15.803450870278674,
+            22.768587347728076
+          ]
+        ]
+      ],
+      "basis": "The occupied podium envelope contains the original mapped central cella, with a0.02m building-only numerical margin. Independent buildings remain outside; all original control vertices and terrain remain unchanged."
+    },
+    "notes": "Q797481/way226891786 identifies the complete temenos boundary. Its original16 vertices are retained at the mapped anchor, with a4.589-degree internal rotation and west gate on the western boundary. PMTiles building35184675160368 supplies four original central cella/podium corners. That coarse generic building record is replaced by the surviving ruin, not extruded into the lost temple. Standing cella doorway position follows the west long side; exact doorway offset and surviving perimeter column positions are picture-guided estimates. Reviewed approximate full-site fit on the unchanged161-square/6m standard DEM. The mapped temenos boundary retains16 original vertices; the central cella/podium retains four original building vertices. Geometry uses raw east/south coordinates at heading0, with a4.589-degree internal compound rotation. The western boundary fixes the fortified gate; the cella doorway faces west on the long mapped side. Post-destruction2016/2018 pictures govern the isolated doorway and rubble; the enclosing gate form also uses an ordinary pre-destruction picture. Exact current damage, surviving column sections and heights remain uncertain. The small occupied podium clears all40 rendered terrain vertices in its bounds by at least0.2000005m. Outer walls and scattered fragments seat on local coarse grade; the open court keeps the original terrain. No ground/water cutout. Full loading replaces one obsolete generic cella building record, preserves17 independent tile buildings exactly, and leaves43 independent buildings in the retained extract outside the replacement envelope. One native water record retains51.800969034666196 square metres. Failed loads preserve all18 tile buildings; eviction frees all model geometry. Synthetic10m residency through the cella doorway keeps original terrain while clipping the rear podium/rubble and excluding the enclosing walls/gate; full architectural completeness requires surrounding tiles. Column count/positions, rubble layout, gate profiles and podium height remain medium-fi estimates; this is not a measured post-destruction survey.",
+    "groundContactBasis": "Reviewed approximate full-site fit on the unchanged161-square/6m standard DEM. The mapped temenos boundary retains16 original vertices; the central cella/podium retains four original building vertices. Geometry uses raw east/south coordinates at heading0, with a4.589-degree internal compound rotation. The western boundary fixes the fortified gate; the cella doorway faces west on the long mapped side. Post-destruction2016/2018 pictures govern the isolated doorway and rubble; the enclosing gate form also uses an ordinary pre-destruction picture. Exact current damage, surviving column sections and heights remain uncertain. The small occupied podium clears all40 rendered terrain vertices in its bounds by at least0.2000005m. Outer walls and scattered fragments seat on local coarse grade; the open court keeps the original terrain. No ground/water cutout. Full loading replaces one obsolete generic cella building record, preserves17 independent tile buildings exactly, and leaves43 independent buildings in the retained extract outside the replacement envelope. One native water record retains51.800969034666196 square metres. Failed loads preserve all18 tile buildings; eviction frees all model geometry. Synthetic10m residency through the cella doorway keeps original terrain while clipping the rear podium/rubble and excluding the enclosing walls/gate; full architectural completeness requires surrounding tiles. Column count/positions, rubble layout, gate profiles and podium height remain medium-fi estimates; this is not a measured post-destruction survey."
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

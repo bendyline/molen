@@ -1,0 +1,764 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0513_baphuon",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:10ec2d3c387310bea408a62a873a57de9f1b4455f27ed7a7e6d02d6edc062c41",
+  "sourceHash": "sha256:e7bab795971b39b0557f1313c2a14f085240caa34ee65ed26e9ddacd935d6358",
+  "runtimeHash": "sha256:f9a7ecb79b659d06a86fa06a6a36edee7460714a635b3b43b344be3c2928a013",
+  "captureReportHash": "sha256:0759e407b8e3a311a79fb8f87f562463b678a34e194db9792970311cfa8e862b",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/east-terraces-and-open-galleries.png",
+      "shots/western-reclining-buddha.png",
+      "shots/raised-causeway-and-stone-supports.png",
+      "shots/whole-temple-and-raised-eastern-approach.png"
+    ],
+    "notes": "Inspected all current portable, shared, medium-fi and actual-site renders in this continuous authoring round. Baphuon has three steep terraces, cardinal stairs, roofless lintel galleries, surviving entrance crowns, an open summit without the lost central tower, the west-wall reclining Buddha, four outer cruciform pavilions, eastern gopura and the long cross-shaped raised eastern causeway. Fixed floating main/stair foundations and reshaped the initially tubular Buddha as a supported block relief. The detailed source, browser levels and the site were checked together; no separate retrospective research/re-evaluation queue is created."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/east-terraces-and-open-galleries.png",
+      "shots/shared/western-reclining-buddha.png",
+      "shots/shared/raised-causeway-and-stone-supports.png",
+      "shots/shared/whole-temple-and-raised-eastern-approach.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Three reused 256² graphs: coursed sandstone, raw sandstone and weathered limestone. Metric UVs and linear neutral tints, no embedded images or unique atlas. Each graph loads once, model draws stay at three, geometry is released on eviction. The flat shared stage exposes buried foundations because the long causeway spans a different native terrain height; it is a material inspection stage. Actual-site captures use the retained unmodified terrain for contact review.",
+    "captureReportHash": "sha256:e0d0b044f0a25a59635723c4e77828af55d64c3e87fc49fad3f2158c97be1058"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/east-terraces-and-open-galleries.png",
+      "medium-fi/western-reclining-buddha.png",
+      "medium-fi/raised-causeway-and-stone-supports.png",
+      "medium-fi/whole-temple-and-raised-eastern-approach.png",
+      "medium-fi/baphuon-skyline.png",
+      "medium-fi/baphuon-district.png",
+      "medium-fi/baphuon-street.png",
+      "medium-fi/baphuon-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 25 medium-fi frames, including noon/late light, Economy/High, street/block/skyline, untextured silhouette, four details, four explicit authored levels and transitions. Levels 858 / 3,654 / 14,138 / 18,148 triangles, initial geometry 428,148 bytes. Separate GPU attribute streams avoid duplicate uploads. The skyline causeway follows the same coarse terrain profile as the nearer levels. Generic street context is centered on the long compound and crops part of the temple at the left; the dedicated east/west detail and all explicit LOD cameras inspect the complete temple. Physical-device and dense-city timings remain pending.",
+    "captureReportHash": "sha256:c3595b671042df28a17e5738bbc20fff7f25728a28eb8eacbecb23883d94c335"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:43cbd88ab8a46cf19c6a85f8f1c309dc02b4499ae533c2bb794ab4f4bde85b21",
+    "mapFrameHash": "sha256:fbc5e8a31d874b5e064ae9088281a6fcb3f6226f8d4cbdb924d7dd6119946e12",
+    "notes": "Q790118/way240141751 identifies the main temple. Nine pinned standard PMTiles records fix the main mound, upper sanctuary and entrance part, four cruciform outer pavilions, eastern gopura and long cross-shaped causeway. Raw +X east and +Z south at heading0 retain its slight mapped axis rotation; the east entrance/causeway resolves the facing direction. Bayon to the southeast, Phimeanakas to the north and the Terrace of the Elephants east/northeast remain independent. Reused unmodified nearby N0497 Bayon standard PMTiles/Mapzen extract. Main terrace foundations and outer pavilions extend into the native terrain; the causeway deck is segmented along the coarse native ground with supports seated at each segment. This intentionally accommodates the noisy standard DEM rather than claiming surveyed level causeway elevations. Ground and mapped water remain native; no ground or water cutout. Approximate native-terrain fit: buried main foundations and first stair footings, individually seated pavilion bases, a raised causeway deck and columns following the retained standard grid. Exact historic levels and horizontal flatness are not claimed. No terrain or water cutout. Nine temple map records are replaced to sub-1e-7m² residual boundary slivers while all 49 independent in-tile structures remain unchanged. Native ground and 530873.06m² of water remain unchanged; failed loading restores all 58 original records and eviction frees geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted as a medium-fi present-day exterior and approximate standard-map placement. Terrace heights, lost roof edges, individual damage, sculptural anatomy, support inventories and exact historic levels are visualization estimates. The causeway is deliberately fitted to the noisy native DEM; it is not a survey of level causeway elevations. No lost central sanctuary tower, complete bas-relief inventory, navigable interior or neighboring royal palace is reconstructed. Neighboring native procedural shells are preserved context, not verified reconstructions of those other monuments."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/w6/w63/n0513_baphuon/models/source.glb\",\"hash\":\"sha256:e7bab795971b39b0557f1313c2a14f085240caa34ee65ed26e9ddacd935d6358\",\"bytes\":2180268,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/w6/w63/n0513_baphuon/model.glb\",\"hash\":\"sha256:f9a7ecb79b659d06a86fa06a6a36edee7460714a635b3b43b344be3c2928a013\",\"bytes\":2179896,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/w6/w63/n0513_baphuon/model.skyline.glb\",\"hash\":\"sha256:a5ebfa18f1746740a70e0695f213e02fcf8174b61d7a507532d43ab419d73dc4\",\"bytes\":89348,\"errors\":0,\"warnings\":0,\"triangles\":858,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/w6/w63/n0513_baphuon/model.district.glb\",\"hash\":\"sha256:a1f246cb9b3c56e1a0d87615e289c731889464a030a5f425797a6629acba6726\",\"bytes\":338800,\"errors\":0,\"warnings\":0,\"triangles\":3654,\"draws\":3}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/w6/w63/n0513_baphuon/model.street.glb\",\"hash\":\"sha256:bd2ae561ab0b7296896cee68f54fd3374487ac50f73949de1899f58116928255\",\"bytes\":1311968,\"errors\":0,\"warnings\":0,\"triangles\":14138,\"draws\":3}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/w6/w63/n0513_baphuon/model.closeup.glb\",\"hash\":\"sha256:81f0efc53351f6e2bc51e0fa6f3abfb02c968184853a877f05168d23d6292280\",\"bytes\":1689768,\"errors\":0,\"warnings\":0,\"triangles\":18148,\"draws\":3}"
+      },
+      {
+        "check": "native-terrain-foundations-and-raised-deck",
+        "passed": true,
+        "notes": "1,146 actual mesh rays across all six files confirm buried main foundations and a continuous raised causeway above the retained native grade. All four authored levels pass the same terrain-contact probes."
+      },
+      {
+        "check": "shared-materials-GPU-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Three registered graphs, zero embedded images, separate GPU streams, all triangle/draw/download caps pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:e7bab795971b39b0557f1313c2a14f085240caa34ee65ed26e9ddacd935d6358"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:f9a7ecb79b659d06a86fa06a6a36edee7460714a635b3b43b344be3c2928a013"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:a5ebfa18f1746740a70e0695f213e02fcf8174b61d7a507532d43ab419d73dc4"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:a1f246cb9b3c56e1a0d87615e289c731889464a030a5f425797a6629acba6726"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:bd2ae561ab0b7296896cee68f54fd3374487ac50f73949de1899f58116928255"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:81f0efc53351f6e2bc51e0fa6f3abfb02c968184853a877f05168d23d6292280"
+      }
+    ],
+    "reports": [
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 58,
+          "independentBuildings": 49,
+          "remainingBuildings": 57,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184612230583,
+              "area": 3.9405279039783636e-8
+            },
+            {
+              "id": 35185157705637,
+              "area": 3.4788172342814505e-9
+            },
+            {
+              "id": 35185157705646,
+              "area": 2.1231016944511794e-9
+            },
+            {
+              "id": 35185157705647,
+              "area": 1.092246293410426e-8
+            },
+            {
+              "id": 35185157705648,
+              "area": 1.2994405551580712e-8
+            },
+            {
+              "id": 35185157705649,
+              "area": 1.1318945780658396e-8
+            },
+            {
+              "id": 35185157705654,
+              "area": 6.164668775454629e-9
+            },
+            {
+              "id": 52776569059262,
+              "area": 5.3589133131026756e-8
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0513_baphuon"
+          ],
+          "rawTerrainRange": {
+            "min": -21.72167007507961,
+            "max": 15.811129924920387
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 530873.0621485843,
+          "remainingWaterArea": 530873.0621485843,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:411e1b27d47e656270e777fa3c71b8f3783853985ae5cbb8308745b7b021dca7",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 145369
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                100,
+                63,
+                92
+              ],
+              "lookAt": [
+                2,
+                13,
+                -3
+              ],
+              "fov": 44
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-east-terraces-and-open-galleries.png",
+            "hash": "sha256:bc75ff3d4b40acaed61dad2a695987470c960a668e6f7e3e33858d40796b87dd",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 145369
+            },
+            "camera": {
+              "name": "east-terraces-and-open-galleries",
+              "position": [
+                95,
+                42,
+                55
+              ],
+              "lookAt": [
+                2,
+                15,
+                -3
+              ],
+              "fov": 45
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-western-reclining-buddha.png",
+            "hash": "sha256:f9d9ad281e82835730c9a7749818476cff434c07f57caf4997317b265eab1a31",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 145369
+            },
+            "camera": {
+              "name": "western-reclining-buddha",
+              "position": [
+                -68,
+                18,
+                18
+              ],
+              "lookAt": [
+                -31,
+                13,
+                -7
+              ],
+              "fov": 53
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-raised-causeway-and-stone-supports.png",
+            "hash": "sha256:eed10f08b997cdeb1895a4bf73598eeb0ac6f442122cfe61691099fa57649ffb",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 11,
+              "triangles": 143857
+            },
+            "camera": {
+              "name": "raised-causeway-and-stone-supports",
+              "position": [
+                200,
+                -2,
+                18
+              ],
+              "lookAt": [
+                198,
+                -8,
+                -4
+              ],
+              "fov": 54
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-whole-temple-and-raised-eastern-approach.png",
+            "hash": "sha256:beb39f3e28bdf4d9a5d730439c4b71952e57e9d84a4e668c7fe5e3be1f3b53d5",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 145369
+            },
+            "camera": {
+              "name": "whole-temple-and-raised-eastern-approach",
+              "position": [
+                240,
+                130,
+                250
+              ],
+              "lookAt": [
+                95,
+                7,
+                -3
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 58,
+          "independentBuildings": 49,
+          "remainingBuildings": 57,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184612230583,
+              "area": 3.9405279039783636e-8
+            },
+            {
+              "id": 35185157705637,
+              "area": 3.4788172342814505e-9
+            },
+            {
+              "id": 35185157705646,
+              "area": 2.1231016944511794e-9
+            },
+            {
+              "id": 35185157705647,
+              "area": 1.092246293410426e-8
+            },
+            {
+              "id": 35185157705648,
+              "area": 1.2994405551580712e-8
+            },
+            {
+              "id": 35185157705649,
+              "area": 1.1318945780658396e-8
+            },
+            {
+              "id": 35185157705654,
+              "area": 6.164668775454629e-9
+            },
+            {
+              "id": 52776569059262,
+              "area": 5.3589133131026756e-8
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0513_baphuon"
+          ],
+          "rawTerrainRange": {
+            "min": -21.72167007507961,
+            "max": 15.811129924920387
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 530873.0621485843,
+          "remainingWaterArea": 530873.0621485843,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:6ea9989af36aa8b8d4343ee255b81c55c5e471f19e2d6fb13e744db329404302",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 141359
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                100,
+                63,
+                92
+              ],
+              "lookAt": [
+                2,
+                13,
+                -3
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 58,
+          "independentBuildings": 49,
+          "remainingBuildings": 57,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184612230583,
+              "area": 3.9405279039783636e-8
+            },
+            {
+              "id": 35185157705637,
+              "area": 3.4788172342814505e-9
+            },
+            {
+              "id": 35185157705646,
+              "area": 2.1231016944511794e-9
+            },
+            {
+              "id": 35185157705647,
+              "area": 1.092246293410426e-8
+            },
+            {
+              "id": 35185157705648,
+              "area": 1.2994405551580712e-8
+            },
+            {
+              "id": 35185157705649,
+              "area": 1.1318945780658396e-8
+            },
+            {
+              "id": 35185157705654,
+              "area": 6.164668775454629e-9
+            },
+            {
+              "id": 52776569059262,
+              "area": 5.3589133131026756e-8
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0513_baphuon"
+          ],
+          "rawTerrainRange": {
+            "min": -21.72167007507961,
+            "max": 15.811129924920387
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 530873.0621485843,
+          "remainingWaterArea": 530873.0621485843,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:1cbf2ca9541c1061740df0ad278812f43f48ec430a88e8dbe54308fadccfe2c7",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 130875
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                100,
+                63,
+                92
+              ],
+              "lookAt": [
+                2,
+                13,
+                -3
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 58,
+          "independentBuildings": 49,
+          "remainingBuildings": 57,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184612230583,
+              "area": 3.9405279039783636e-8
+            },
+            {
+              "id": 35185157705637,
+              "area": 3.4788172342814505e-9
+            },
+            {
+              "id": 35185157705646,
+              "area": 2.1231016944511794e-9
+            },
+            {
+              "id": 35185157705647,
+              "area": 1.092246293410426e-8
+            },
+            {
+              "id": 35185157705648,
+              "area": 1.2994405551580712e-8
+            },
+            {
+              "id": 35185157705649,
+              "area": 1.1318945780658396e-8
+            },
+            {
+              "id": 35185157705654,
+              "area": 6.164668775454629e-9
+            },
+            {
+              "id": 52776569059262,
+              "area": 5.3589133131026756e-8
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0513_baphuon"
+          ],
+          "rawTerrainRange": {
+            "min": -21.72167007507961,
+            "max": 15.811129924920387
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 530873.0621485843,
+          "remainingWaterArea": 530873.0621485843,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:31124c8084ebb762709451f59da184d292efee7c23ed463cd194c557503f4fec",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 128079
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                100,
+                63,
+                92
+              ],
+              "lookAt": [
+                2,
+                13,
+                -3
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 58,
+          "independentBuildings": 49,
+          "remainingBuildings": 58,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184612230583,
+              "area": 4903.975966845166
+            },
+            {
+              "id": 35185157705637,
+              "area": 222.8907536129782
+            },
+            {
+              "id": 35185157705646,
+              "area": 106.63850793106917
+            },
+            {
+              "id": 35185157705647,
+              "area": 106.2166809018521
+            },
+            {
+              "id": 35185157705648,
+              "area": 107.27101157405343
+            },
+            {
+              "id": 35185157705649,
+              "area": 107.228674590867
+            },
+            {
+              "id": 35185157705654,
+              "area": 75.18240390689925
+            },
+            {
+              "id": 35185157705655,
+              "area": 307.0545715252891
+            },
+            {
+              "id": 52776569059262,
+              "area": 1574.3184681912453
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0513_baphuon"
+          ],
+          "rawTerrainRange": {
+            "min": -21.72167007507961,
+            "max": 15.811129924920387
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 530873.0621485843,
+          "remainingWaterArea": 530873.0621485843,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:aee64924029c06120f6c83b68e4c346aee42c3425796e86ff58c1261268a0e3a",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 9,
+              "triangles": 134244
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                100,
+                63,
+                92
+              ],
+              "lookAt": [
+                2,
+                13,
+                -3
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Baphuon present-day medium-fi exterior: three steep sandstone terraces, cardinal stair flights, open roofless galleries, surviving pointed entrance crowns, open upper sanctuary platform, west-wall reclining Buddha relief, four outlying cruciform pavilions, eastern gopura and the long raised cross-shaped eastern causeway on stone supports. No intact lost central tower, detailed bas-relief inventory or neighboring royal palace is reconstructed.",
+    "Q790118/way240141751 identifies the main temple. Nine pinned standard PMTiles records fix the main mound, upper sanctuary and entrance part, four cruciform outer pavilions, eastern gopura and long cross-shaped causeway. Raw +X east and +Z south at heading0 retain its slight mapped axis rotation; the east entrance/causeway resolves the facing direction. Bayon to the southeast, Phimeanakas to the north and the Terrace of the Elephants east/northeast remain independent.",
+    "Ordinary 2019 exterior pictures guide the three steep terraces, open galleries, steep stairs, surviving gopura crowns and missing upper sanctuary. About27m to the open summit terrace and34m at its surviving entrance crown; lower terrace rise7.5m and middle rise9m are visualization estimates, not surveyed levels. The causeway follows its mapped footprint with three rows of stone supports, about1.6m above the coarse native ground. Secondary pavilion roofs and damage are broad picture-led estimates.",
+    "Reused unmodified nearby N0497 Bayon standard PMTiles/Mapzen extract. Main terrace foundations and outer pavilions extend into the native terrain; the causeway deck is segmented along the coarse native ground with supports seated at each segment. This intentionally accommodates the noisy standard DEM rather than claiming surveyed level causeway elevations. Ground and mapped water remain native; no ground or water cutout.",
+    "Mapped components retain their plan positions. Terrace heights, lost roof edges, Buddha relief anatomy and support inventories are visualization estimates. The missing central sanctuary tower is not reconstructed. No navigable interior is claimed.",
+    "Accepted as a medium-fi present-day exterior and approximate standard-map placement. Terrace heights, lost roof edges, individual damage, sculptural anatomy, support inventories and exact historic levels are visualization estimates. The causeway is deliberately fitted to the noisy native DEM; it is not a survey of level causeway elevations. No lost central sanctuary tower, complete bas-relief inventory, navigable interior or neighboring royal palace is reconstructed. Neighboring native procedural shells are preserved context, not verified reconstructions of those other monuments."
+  ]
+}

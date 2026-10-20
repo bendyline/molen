@@ -1,6 +1,8 @@
 import { FrameAdmissionQueue } from '@bendyline/molen-client';
 import {
   createTerrainSurfaceRenderer,
+  markTerrainGroundSurface,
+  TerrainGroundCutoutController,
   type TerrainPyramidTileLayerContext,
 } from '@bendyline/molen-terrain/client';
 import {
@@ -698,6 +700,12 @@ describe('worldgen human-feature tile orchestration', () => {
       generalized: false,
       replaced: false,
     },
+    {
+      source: 'unrelated building in an empty corner inside the model extent',
+      box: [76, 72, 94, 78],
+      generalized: false,
+      replaced: false,
+    },
     { source: 'generalized arm part', box: [95, 52, 125, 68], generalized: true, replaced: false },
   ])('replaces the $source by model footprint: $replaced', async (fixture) => {
     // An L-shaped landmark anchored at world (50, 60): a 40 m block plus a 60 by 20 m arm east.
@@ -956,6 +964,107 @@ describe('worldgen human-feature tile orchestration', () => {
     expect(models.get('span')).toBeUndefined();
     renderers.dispose();
     models.dispose();
+  });
+
+  it('keeps sunken floors and openings whole while resident tile ownership changes', async () => {
+    const loads = vi.fn(async () => {
+      const floor = new THREE.Mesh(
+        new THREE.BoxGeometry(80, 0.4, 80),
+        new THREE.MeshStandardMaterial(),
+      );
+      floor.position.y = -6;
+      return new THREE.Group().add(floor);
+    });
+    const models = new ModelLibrary(loads);
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Excavation',
+        entries: [
+          {
+            id: 'excavation',
+            title: 'Excavation',
+            asset: 'excavation',
+            anchor: [0, 0],
+            bounds: [-0.0004, -0.0004, 0.0004, 0.0004],
+            datum: 'sea-level',
+            groundCutout: {
+              outline: [
+                [-40, -40],
+                [40, -40],
+                [40, 40],
+                [-40, 40],
+              ],
+              basis: 'test',
+            },
+            minLevel: 0,
+            status: 'preview',
+            source: 'test',
+          },
+        ],
+      }),
+      structureModels: models,
+      roads: { renderTransportation: false },
+      generator: { generate: async () => output(), dispose() {} },
+    });
+    const scene = new THREE.Scene();
+    const ground = new THREE.Mesh(
+      new THREE.PlaneGeometry(120, 120).rotateX(-Math.PI / 2),
+      new THREE.MeshBasicMaterial(),
+    );
+    const original = ground.geometry;
+    markTerrainGroundSurface(ground);
+    scene.add(ground);
+    const cuts = new TerrainGroundCutoutController();
+    const roots: THREE.Object3D[] = [];
+    for (const x of [-5, 5]) {
+      const ctx = context(new AbortController().signal);
+      ctx.origin = [x, -5];
+      ctx.tileSize = 10;
+      const root = await renderers.humanFeatures.createTile(createEmptyTerrainSemanticTile(), ctx);
+      expect(root).toBeDefined();
+      if (!root) throw new Error('Missing excavation');
+      root.position.set(x, 0, -5);
+      scene.add(root);
+      scene.updateMatrixWorld(true);
+      const model = root.getObjectByName('structure:excavation');
+      expect(model).toBeDefined();
+      if (!model) throw new Error('Missing excavation model');
+      const box = new THREE.Box3().setFromObject(model);
+      expect(box.min.x).toBe(-40);
+      expect(box.max.x).toBe(40);
+      roots.push(root);
+    }
+    const firstMesh = roots[0]?.getObjectByProperty('isMesh', true) as THREE.Mesh;
+    const secondMesh = roots[1]?.getObjectByProperty('isMesh', true) as THREE.Mesh;
+    expect(firstMesh.geometry).toBe(secondMesh.geometry);
+    expect(loads).toHaveBeenCalledOnce();
+    const heightAt = (x: number) =>
+      new THREE.Raycaster(
+        new THREE.Vector3(x, 20, 0),
+        new THREE.Vector3(0, -1, 0),
+        0,
+        40,
+      ).intersectObject(scene, true)[0]?.point.y;
+    cuts.update(scene);
+    expect(heightAt(30)).toBeCloseTo(-5.8);
+    expect(heightAt(50)).toBeCloseTo(0);
+    scene.remove(roots[0] as THREE.Object3D);
+    renderers.humanFeatures.disposeTile?.(roots[0] as THREE.Object3D);
+    cuts.update(scene);
+    expect(models.get('excavation')).toBeDefined();
+    expect(heightAt(30)).toBeCloseTo(-5.8);
+    scene.remove(roots[1] as THREE.Object3D);
+    renderers.humanFeatures.disposeTile?.(roots[1] as THREE.Object3D);
+    cuts.update(scene);
+    expect(models.get('excavation')).toBeUndefined();
+    expect(ground.geometry).toBe(original);
+    expect(heightAt(30)).toBeCloseTo(0);
+    renderers.dispose();
+    models.dispose();
+    cuts.dispose();
+    ground.geometry.dispose();
+    (ground.material as THREE.Material).dispose();
   });
 
   it('keeps procedural bridge roads when an authored replacement fails to load', async () => {

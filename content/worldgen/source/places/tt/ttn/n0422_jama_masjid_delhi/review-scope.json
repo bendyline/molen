@@ -1,0 +1,302 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "stone_marble",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.58,
+      "metallic": 0.5
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.46,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/jama-delhi-model.mjs",
+    "export": "buildJamaDelhiSkyline",
+    "errorMeters": 2.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildJamaDelhiDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildJamaDelhiStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildJamaDelhiCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      160,
+      100,
+      144
+    ],
+    "lookAt": [
+      -6,
+      17,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-jama-delhi-skyline",
+      "position": [
+        160,
+        100,
+        144
+      ],
+      "lookAt": [
+        -6,
+        17,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-jama-delhi-district",
+      "position": [
+        160,
+        100,
+        144
+      ],
+      "lookAt": [
+        -6,
+        17,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-jama-delhi-street",
+      "position": [
+        160,
+        100,
+        144
+      ],
+      "lookAt": [
+        -6,
+        17,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-jama-delhi-closeup",
+      "position": [
+        160,
+        100,
+        144
+      ],
+      "lookAt": [
+        -6,
+        17,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.south_asian.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      77.23347554,
+      28.650691208
+    ],
+    "heading": 0.064310858946,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and declared court/hall floor,not surveyed ground contact. Standard viewer DEM datum227.662404m;whole perimeter-8.56 to-0.40m relative to datum. Floor0.921m is maximum retained perimeter/interior-grid sample plus0.30m. Adaptive sandstone footings crossY=0 and extend below retained ground. Approximate platform plane;coarse terrain may expose tall foundations. No cutout,flattening or road replacement. Stair lower endpoints sample the standard DEM,not surveyed street levels. Exact door/step/court/pool/street/base contact,altitude and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        77.23347554,
+        28.650691208
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum227.662404m;whole perimeter-8.56 to-0.40m relative to datum. Floor0.921m is maximum retained perimeter/interior-grid sample plus0.30m. Adaptive sandstone footings crossY=0 and extend below retained ground. Approximate platform plane;coarse terrain may expose tall foundations. No cutout,flattening or road replacement. Stair lower endpoints sample the standard DEM,not surveyed street levels. Exact door/step/court/pool/street/base contact,altitude and walking remain unverified."
+    },
+    "bounds": [
+      77.227,
+      28.645,
+      77.24,
+      28.657
+    ],
+    "notes": "Retained exact relation/3926057 /Q233678 identifies Jama Masjid in Delhi. Current whole52776562059305 (3×2^44+3926057) and three circular dome controls retain101 raw building outline/courtyard-hole/dome points/properties,including two clipped fragments of the compound. Water3602640052 retains the mapped basin ring/properties;three independently retained steps lines preserve original MultiLineString boundaries and properties. Anchor[77.23347554,28.650691208] and heading0.064310858946rad unchanged,no horizontal rescale. Native−X west prayer hall/qibla,+X east main gate,+Z south side gate,−Z north side gate. Pictures resolve facing with about3° uncertainty. Dome centers/radii and basin follow map controls;gate footprints follow compound/courtyard projections. Minaret centers,portal/arcade/chhatri subdivisions and exterior stair widths/counts/grades are picture/map-led estimates with about2.5m horizontal working uncertainty. Adjacent streets,markets,Red Fort,outer plazas,trees and city buildings remain host content. Standard viewer DEM datum227.662404m;whole perimeter-8.56 to-0.40m relative to datum. Floor0.921m is maximum retained perimeter/interior-grid sample plus0.30m. Adaptive sandstone footings crossY=0 and extend below retained ground. Approximate platform plane;coarse terrain may expose tall foundations. No cutout,flattening or road replacement. Stair lower endpoints sample the standard DEM,not surveyed street levels. Exact door/step/court/pool/street/base contact,altitude and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum227.662404m;whole perimeter-8.56 to-0.40m relative to datum. Floor0.921m is maximum retained perimeter/interior-grid sample plus0.30m. Adaptive sandstone footings crossY=0 and extend below retained ground. Approximate platform plane;coarse terrain may expose tall foundations. No cutout,flattening or road replacement. Stair lower endpoints sample the standard DEM,not surveyed street levels. Exact door/step/court/pool/street/base contact,altitude and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

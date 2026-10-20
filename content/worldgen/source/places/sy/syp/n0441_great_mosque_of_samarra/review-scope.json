@@ -1,0 +1,230 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "cap": {
+      "slot": "trim",
+      "graph": "clay_fired",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "clay_fired",
+      "roughness": 0.94,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/samarra-model.mjs",
+    "export": "buildSamarraSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSamarraDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "clay_fired",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "clay_fired",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSamarraStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "clay_fired",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "clay_fired",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSamarraCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "clay_fired",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "clay_fired",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      310,
+      205,
+      295
+    ],
+    "lookAt": [
+      -25,
+      15,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-samarra-skyline",
+      "position": [
+        310,
+        205,
+        295
+      ],
+      "lookAt": [
+        -25,
+        15,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-samarra-district",
+      "position": [
+        310,
+        205,
+        295
+      ],
+      "lookAt": [
+        -25,
+        15,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-samarra-street",
+      "position": [
+        310,
+        205,
+        295
+      ],
+      "lookAt": [
+        -25,
+        15,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-samarra-closeup",
+      "position": [
+        310,
+        205,
+        295
+      ],
+      "lookAt": [
+        -25,
+        15,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.regional.south_asian.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Exact compound identity and map-controlled ruin exterior;QA records scope.",
+    "anchor": [
+      43.879900384,
+      34.206219804
+    ],
+    "heading": 1.263002799727,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor;approximate compound working plane. Standard viewer DEM datum 82.184284 m;working floor 4.813216 m from maximum principal-wall/platform/approach2 m bilinear sample plus0.25 m. Relative sample range -1.159..4.563 m. The minaret uses its own platform-footprint2m working plane 4.180113 m (389 samples,max plus0.25m);the approach joins the two planes. Terrain is unflattened;footings extend below it and crossY=0. Exact archaeological ground levels,terraces,thresholds and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        43.879900384,
+        34.206219804
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 82.184284 m;working floor 4.813216 m from maximum principal-wall/platform/approach2 m bilinear sample plus0.25 m. Relative sample range -1.159..4.563 m. The minaret uses its own platform-footprint2m working plane 4.180113 m (389 samples,max plus0.25m);the approach joins the two planes. Terrain is unflattened;footings extend below it and crossY=0. Exact archaeological ground levels,terraces,thresholds and walking remain unverified."
+    },
+    "bounds": [
+      43.872,
+      34.199,
+      43.888,
+      34.214
+    ],
+    "notes": "Retained exact-QID way/1232333692 is the large archaeological-site fence,not the mosque wall. Original anchor[43.879900384,34.206219804] and heading1.263002799727 rad retained. Current named compound POI35185604422524 matches that fence. Inside it,current Malwiya relation14135984 /52776572269232 supplies the11-point enclosure and10-point open interior;platform35185431953743 and approach35185431960014 have separate exact outlines. All380 height-tagged minaret ramp parts are retained as inputs. The northern/positiveX minaret and approach establish the compound hand;two inspected exterior pictures support its ruin/enclosure/spiral form within15°visual orientation uncertainty. The fence grounds are not extruded or filled. Doorway location and unseen interior remains approximate. Standard viewer DEM datum 82.184284 m;working floor 4.813216 m from maximum principal-wall/platform/approach2 m bilinear sample plus0.25 m. Relative sample range -1.159..4.563 m. The minaret uses its own platform-footprint2m working plane 4.180113 m (389 samples,max plus0.25m);the approach joins the two planes. Terrain is unflattened;footings extend below it and crossY=0. Exact archaeological ground levels,terraces,thresholds and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum 82.184284 m;working floor 4.813216 m from maximum principal-wall/platform/approach2 m bilinear sample plus0.25 m. Relative sample range -1.159..4.563 m. The minaret uses its own platform-footprint2m working plane 4.180113 m (389 samples,max plus0.25m);the approach joins the two planes. Terrain is unflattened;footings extend below it and crossY=0. Exact archaeological ground levels,terraces,thresholds and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

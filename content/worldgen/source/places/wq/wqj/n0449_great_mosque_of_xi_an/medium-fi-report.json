@@ -1,0 +1,1200 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0449_great_mosque_of_xi_an",
+  "sourceHash": "sha256:1237e6fe21683bd35c8c8ef537c8552002f0252b7dd6c301088cace2a557e0b4",
+  "runtimeHash": "sha256:cf61d1991d9a9c8516583747b879ca6a2b54ed0834aa9d6b0bd594b94e7c7e07",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4320,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:9dc02a3308566a83a191d5f5a356914d02246005659b1ae54e7571fcd4e59285",
+      "bytes": 96688,
+      "gzipBytes": 16204,
+      "triangles": 962,
+      "cpuBytes": 95268,
+      "gpuBytes": 95268,
+      "errorMeters": 1.2,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:e6ed1fa4384db73bc4fe9bf3f5010af1984b93cb62da415658403a8213d72cb9",
+      "bytes": 349300,
+      "gzipBytes": 89353,
+      "triangles": 3939,
+      "cpuBytes": 340760,
+      "gpuBytes": 340760,
+      "errorMeters": 0.5,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:43d5ea12eed6e96e061e172912ab4f09c1aa36e3e9cba25c1faef69c177af81e",
+      "bytes": 971820,
+      "gzipBytes": 241863,
+      "triangles": 11397,
+      "cpuBytes": 963236,
+      "gpuBytes": 963236,
+      "errorMeters": 0.18,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:1feaa7af8e71efc7f9ad1a92aa8fc76b20aabb9fcbf90449a5a4ff37bea80191",
+      "bytes": 2023060,
+      "gzipBytes": 514139,
+      "triangles": 22408,
+      "cpuBytes": 2014444,
+      "gpuBytes": 2014444,
+      "errorMeters": 0.08,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:53df7bf46ded9fccd9c7f411ab097634849e57b70b3f69a1d2923b134a2c6ec3"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:0d186dba966e3f64db4def0ae8789373feb763da1e199beb6bf9bdaf2f215afc"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:05b637b3c7c942af3fc5ee8e9aec09aa65f7c5fa91ff8bd1f7316ccae1916d5e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 47530,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          68.755,
+          46.9178,
+          127.5572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:3638a1943d5d7d104167524dd6ec398285cbb3981cb2ad5e9a6cd170fce450d8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47530,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          68.755,
+          46.9178,
+          127.5572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:f60e7b00e3eb2efa104ee2de9dc54d9662ce5802e4da8a5168296e578566583a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 47530,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          68.755,
+          46.9178,
+          127.5572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:d10f616652ab3d84372fc454b953ff6496ba665f08a9baaabfc1f6af4aa5770a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47530,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          68.755,
+          46.9178,
+          127.5572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:ddd1d2522acddec09245022c8f9fb4854bbb1ecbea4151d3b7490c2460384aff",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 29061,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          142.255,
+          100.9178,
+          255.0572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:57a25c11a8b34140560e19baff164d0a45e05e77113d37d45120ec49530795be",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 29061,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          142.255,
+          100.9178,
+          255.0572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:bd7c371d7e7bf6eff612d9aee1cfa535220c9f262f752dbebeec244cc58902ff",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 29061,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          142.255,
+          100.9178,
+          255.0572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:a0694b45d9d4566abdbee7b0d05d7e6a798e2b9af1a32a759d96a34640c20ea5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 29061,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          142.255,
+          100.9178,
+          255.0572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:a431a152468269364c43b8c35b896dc7f49da6737df582fb3762686f80c24209",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 26084,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          287.755,
+          157.9178,
+          507.0572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:c6db1908912bfcbd922a0ed8636291558baf1d3cf73afc575e8e7cb08e3ec860",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26084,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          287.755,
+          157.9178,
+          507.0572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:525ead703fd85e9648184cb88b94e067fb7340b4e3af95debbc5e75a7cb2a5b8",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 26084,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          287.755,
+          157.9178,
+          507.0572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:a18c8c548c3960a33ec286ace51db340cdcfe7287a526b6280595da9a39fc102",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26084,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          287.755,
+          157.9178,
+          507.0572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:92154796c7046c80b79955c5b1c6b0ae4a8ecc6124a21ac24a92e9b7fc45a601",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21764,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          287.755,
+          157.9178,
+          507.0572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-east-west-courtyard-sequence.png",
+      "hash": "sha256:0839746363f09648bb1d1ddd748cbc0f81c7c4626b145914a9f1a80255ff313a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47530,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          160,
+          115,
+          155
+        ],
+        "lookAt": [
+          -5,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/green-prayer-hall-and-open-portico.png",
+      "hash": "sha256:27f716ad6e0b769a6cb4e7444dcd9e17a42acd1492db7ada9aac6499128ad7b4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47530,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          -33,
+          15,
+          33
+        ],
+        "lookAt": [
+          -78,
+          6,
+          -2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/phoenix-three-roof-open-pavilion.png",
+      "hash": "sha256:b83d2d83cf374332e647af414e507a58f33cb23d0666b7c877e94b619ad22260",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47530,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          -13,
+          15,
+          23
+        ],
+        "lookAt": [
+          -33,
+          6,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/three-eave-octagonal-tower.png",
+      "hash": "sha256:b89054677b306a1909cf9ec1720bab0907ee73d12956211dab5423d8c1911137",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47530,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          25,
+          17,
+          26
+        ],
+        "lookAt": [
+          4.2,
+          8,
+          2.2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/axial-gates-and-paifang.png",
+      "hash": "sha256:4f9e647f236e9772bacec1a010ab21e2405ec9634c49e04aca444d26f2fe8b4a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47530,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          116,
+          15,
+          29
+        ],
+        "lookAt": [
+          62,
+          5,
+          3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roof-and-signed-plan.png",
+      "hash": "sha256:e0e3745335d914d14f733005e3c19fe5325cfd01c71b16f77b410d34d963620a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47530,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          310,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-xian-skyline.png",
+      "hash": "sha256:0de700fdc024fc4946f369efbad5196164897f91220bfad07b8dac67756faa91",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26084,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          190,
+          135,
+          185
+        ],
+        "lookAt": [
+          -5,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-xian-district.png",
+      "hash": "sha256:7b30dc0e45f82b8944023087a52bcf711c680aa586ae2f6ef3d0e74570e391dc",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 29061,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          190,
+          135,
+          185
+        ],
+        "lookAt": [
+          -5,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-xian-street.png",
+      "hash": "sha256:53f5fe56dcde922c525a84a5d9e50545f5633d608067222c08ab35aa939cb937",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 36519,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          190,
+          135,
+          185
+        ],
+        "lookAt": [
+          -5,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-xian-closeup.png",
+      "hash": "sha256:e2c5c72bfb51a4214e2d97c9d6f4fe269d1830702479c70d76488064983a2894",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47530,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          190,
+          135,
+          185
+        ],
+        "lookAt": [
+          -5,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:b8f85475e8e4c176ca5457271198f71a3d021a52fd36681b4742d84854c7dc15",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26084,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          142.255,
+          100.9178,
+          255.0572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:57a25c11a8b34140560e19baff164d0a45e05e77113d37d45120ec49530795be",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 29061,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          142.255,
+          100.9178,
+          255.0572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:3eb5dfe94d09864317b39b45bfe55008374c13a0459e225119813b4c9c9d46fc",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 36519,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          142.255,
+          100.9178,
+          255.0572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:98c7eaa312014df29ab7ca188858c4c8ceadc27f754ad206a61532c7b9b60746",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 47530,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/terrain-review.height.png"
+        },
+        "position": [
+          142.255,
+          100.9178,
+          255.0572
+        ],
+        "lookAt": [
+          -3.245,
+          24.4178,
+          3.0572
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

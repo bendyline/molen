@@ -286,7 +286,9 @@ for (let study of signatureTowers.filter(
     if (
       !frame.anchor?.every(Number.isFinite) ||
       !Number.isFinite(frame.heading) ||
-      !frame.geometry?.outline?.length ||
+      (!frame.geometry?.outline?.length &&
+        !frame.geometry?.centerlines?.some((line) => line.length >= 2) &&
+        !(frame.geometry?.point?.length === 2 && frame.geometry.point.every(Number.isFinite))) ||
       !frame.sourceUrl
     )
       throw new Error(`${study.id}: incomplete source-local geographic frame`);

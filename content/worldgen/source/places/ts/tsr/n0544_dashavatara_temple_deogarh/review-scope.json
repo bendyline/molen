@@ -1,0 +1,296 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "rubble": {
+      "slot": "wall",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "inset": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.9,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -23.722168581686223,
+      19,
+      27.170916763739474
+    ],
+    "lookAt": [
+      0,
+      4,
+      0
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "west-nested-carved-door-and-cornice",
+      "position": [
+        -11.518557663360946,
+        7,
+        6.026842403433891
+      ],
+      "lookAt": [
+        -1.9923893961834416,
+        4,
+        0.1743114854958812
+      ],
+      "fov": 46
+    },
+    {
+      "name": "three-side-reliefs-and-broken-upper-stones",
+      "position": [
+        12.726545374812924,
+        13,
+        -15.16690617175526
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "raised-moulded-plinth-four-stairs-and-corner-remnants",
+      "position": [
+        -20.409346890457687,
+        13,
+        -15.279350755348384
+      ],
+      "lookAt": [
+        0,
+        1,
+        0
+      ],
+      "fov": 49
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -23.722168581686223,
+        19,
+        27.170916763739474
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 46,
+      "name": "deogarh-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -23.722168581686223,
+        19,
+        27.170916763739474
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 46,
+      "name": "deogarh-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -23.722168581686223,
+        19,
+        27.170916763739474
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 46,
+      "name": "deogarh-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -23.722168581686223,
+        19,
+        27.170916763739474
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 46,
+      "name": "deogarh-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/deogarh-model.mjs",
+    "export": "buildDeogarhSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDeogarhDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildDeogarhStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildDeogarhCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      78.24,
+      24.52694444
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard6m Mapzen rural terrain and all map paths/water retained. Only the occupied temple plinth has a level top/buried bottom; narrow short stairs/cheeks descend to sampled grade. No broad archaeological precinct slab, ground flattening or ground/water cutout. Coarse wooded DEM cannot resolve paving/steps, individual archaeological terraces or exact threshold elevations. Surrounding trees, boundary, paths and unmodeled ruins remain host context.",
+    "replaceFootprint": false,
+    "bounds": [
+      78.23986093708444,
+      24.52681792526632,
+      78.24013906291555,
+      24.52707095473368
+    ],
+    "terrainReference": {
+      "anchor": [
+        78.24,
+        24.52694444
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard6m Mapzen rural terrain and all map paths/water retained. Only the occupied temple plinth has a level top/buried bottom; narrow short stairs/cheeks descend to sampled grade. No broad archaeological precinct slab, ground flattening or ground/water cutout. Coarse wooded DEM cannot resolve paving/steps, individual archaeological terraces or exact threshold elevations. Surrounding trees, boundary, paths and unmodeled ruins remain host context."
+    },
+    "notes": "Wikidata Q1171865 reference coordinate78.24,24.52694444 lies inside retained exact-QID archaeological-site boundaryway718980905. Boundary is about200m across and is NOT a temple footprint. Standard20261014 PMTiles resolves nearby service road/woods/water but no sanctuary building or site POI. The body/plinth dimensions and center within that site are explicit ordinary-picture/reference-point approximations, not mapped building control. Heading0; internal local+x angle-.0872664626rad, entrance approximately west/local-x from the west doorway reference. No native building removal. Original standard6m Mapzen rural terrain and all map paths/water retained. Only the occupied temple plinth has a level top/buried bottom; narrow short stairs/cheeks descend to sampled grade. No broad archaeological precinct slab, ground flattening or ground/water cutout. Coarse wooded DEM cannot resolve paving/steps, individual archaeological terraces or exact threshold elevations. Surrounding trees, boundary, paths and unmodeled ruins remain host context."
+  }
+}

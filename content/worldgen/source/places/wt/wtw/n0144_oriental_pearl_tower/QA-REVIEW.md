@@ -25,3 +25,11 @@ Accepted medium-fi exterior and approximate picture/PMTiles fitting. Preserve468
 - [Inspected picture 1](https://www.otis.com/en/us/our-company/global-projects/project-showcase/oriental-pearl-tower) — actual pixels inspected; image not redistributed.
 - [Inspected picture 2](https://www.otis.com/documents/256045/29403070/oriental-pearl-aerial-900x600.jpg/c9605743-d2b2-d130-f945-3adfe8d06160?t=1606906196437) — actual pixels inspected; image not redistributed.
 - Standard viewer Protomaps20261008/Mapzen Terrarium PMTiles; controls/hashes retained in pmtiles-fit.json. ©OpenStreetMap contributors/ODbL, elevation attribution retained with the fit data.
+
+## Source binding maintenance — 550 checkpoint
+
+Exact prior input reconstructed using HEAD tower generator; only validation guard gained support for centerline/point frames. These three outlined frames and all six approved model files are unchanged. Existing visual acceptance is retained through byte-equivalent rebuilding; this is not a new visual review.
+
+Previous input: sha256:41f73f23cc7978f12a43ea81fac918b489d2b87110be4c3f42fc34da73c9f6d4
+
+Current input: sha256:82fbdae951b2f4a946f5cd752b83f3b1e3e462429cf5e9a27af226115c30af16

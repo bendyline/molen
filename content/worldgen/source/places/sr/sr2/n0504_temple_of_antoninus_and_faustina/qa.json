@@ -1,0 +1,682 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0504_temple_of_antoninus_and_faustina",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:e27823bd2213c987deb4fc4c36f93be1c271cdb142458d5b047c0a5ce700ac71",
+  "sourceHash": "sha256:6fd94a02c8f07e200f22baf8b7bf288e2f9b5a5bedd71a5c873751745ca9bd2a",
+  "runtimeHash": "sha256:5dd3af5079222ff47fe3351d6ba5f406df9d4b08f2b1ddeeb9edccfba275bba8",
+  "captureReportHash": "sha256:20e8723ab8f934cfe34b321a252525db8e63a97cb5c3ca4ebfc50718ba4f8e86",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/southwest-temple-and-church.png",
+      "shots/corinthian-and-dedication.png",
+      "shots/raised-doorway.png",
+      "shots/west-buttresses-and-roof.png",
+      "shots/split-pediment-and-cross.png",
+      "shots/mapped-complete-plan.png"
+    ],
+    "notes": "Inspected all 11 portable views. The complete temple/church exterior includes six front columns and two returns behind each end, smooth shafts with selected repair/rope grooves, tiered bases, simplified Corinthian capitals, open U-shaped entablature, recessed two-line dedication, grey podium and descending brick stair treads. The later church has the raised closed doorway with curved canopy, pilasters, framed upper window, split curved pediment and cross. Both side walls, inclined buttresses and the complete tiled nave roof are included. The missing antique porch roof and full antique pediment remain absent. Early renders prompted correcting the doorway canopy and stair material. Fine carving, stone joints and exact damage remain medium-fi estimates."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/southwest-temple-and-church.png",
+      "shots/shared/corinthian-and-dedication.png",
+      "shots/shared/raised-doorway.png",
+      "shots/shared/west-buttresses-and-roof.png",
+      "shots/shared/split-pediment-and-cross.png",
+      "shots/shared/mapped-complete-plan.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all 11 shared-material views. Six common 256-square graphs provide marble, weathered limestone, long-format brick, ceramic roof tile, window grid and cast bronze through metric UVs and linear tints. Each graph is read once across the model; eviction releases geometry. Six near draws and one skyline draw. No embedded images, unique atlas or copied photograph. The shared marble approximates cipollino, brick and roof colors remain approximate, and the window-grid graph is a generic glazing treatment. Dark shared body-stone backs provide contrast behind the recessed dedication. Flat-stage views expose some buried retaining depth; terrain contact was inspected separately on the original standard DEM.",
+    "captureReportHash": "sha256:5779fd45224f1f0b359151f790b5b919990d04715b514742d6c46a9c9c9ce139"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/southwest-temple-and-church.png",
+      "medium-fi/corinthian-and-dedication.png",
+      "medium-fi/raised-doorway.png",
+      "medium-fi/west-buttresses-and-roof.png",
+      "medium-fi/split-pediment-and-cross.png",
+      "medium-fi/mapped-complete-plan.png",
+      "medium-fi/whole-temple-and-church-skyline.png",
+      "medium-fi/whole-temple-and-church-district.png",
+      "medium-fi/whole-temple-and-church-street.png",
+      "medium-fi/whole-temple-and-church-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 27 medium-fi views: street/block/skyline at noon and late afternoon in Economy/High, an untextured silhouette, six architectural details, all four whole-building levels and transitions. Levels 535/2674/6110/12412 triangles retain the ten columns, open porch, complete church body, roof and characteristic split pediment. Skyline uses a simple stair ramp and coarse columns; district adds steps, bases, coarse capitals, buttresses and facade trim; street adds more profiles and canopy geometry; closeup adds recessed dedication letters, Corinthian leaf/volute masses and selected shaft grooves. Initial skyline plus district geometry totals 317136 bytes, plus six reused common graphs. Separate attribute streams avoid duplicate GPU uploads. Physical-device and dense-city measurements remain pending.",
+    "captureReportHash": "sha256:dc534ba4c8b365791f62d7c18dded467481b270fb4db5bd0b645312e12f7eaca"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:e10560876143dd69bfde4b26b46cf595ed0bceb0792630d4cf841c8af66799e4",
+    "mapFrameHash": "sha256:5f963201835e86095b68d667cad677452016d2d350132525a0c5dabcdda1a25c",
+    "notes": "Reviewed approximate full-site fit on the unchanged161-square/6m standard DEM. Four mapped component footprints retain29 original vertices and include the complete church/cella body, temple porch, beam and stair projection. Ten picture-guided column positions fit the mapped beam (six front and two returns behind each end); they are not separately mapped controls. The southwest stair and front/west photos establish the signed front. Geometry uses raw east/south coordinates at heading0 with a33.1047-degree internal rotation. The church/porch floor and lower stair pocket cover their original grade: all88 vertices of the rendered grid cells intersecting their bounds were checked, leaving at least0.200000m clearance. Retaining faces continue below the coarse grade, and treads connect to the low pocket. No ground or water opening is needed. Full-site loading replaces4 authored records and preserves2042 independent tile buildings exactly; all2768 independent records in the retained extract remain outside the replacement envelope. Source retains465 nearby records including the four controls. Nine native water features retain127658.69298314617 square metres. Failed loads preserve all2046 native tile buildings; eviction frees geometry. Synthetic10m partial residency clips the church body, facade, roof, returns and outer porch while keeping original terrain under and outside the remaining columns/stairs. Full architecture requires surrounding tiles; partial architectural completeness is not claimed. Neighboring unmodeled Forum ruins retain generic procedural shells and their historical appearance is not approved. Height, exact stonework, column positions, raised threshold and roof pitch remain approximate."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted for the specific medium-fi Temple of Antoninus and Faustina / San Lorenzo in Miranda exterior and approximate standard-map/DEM placement. Four mapped components retain 29 original vertices and include the church/cella body, porch, front stair projection and U-shaped beam. The ten column positions are picture-guided within that beam, not separate map controls: six across the southwest front and two behind each end. An ordinary article describes eight columns, while the inspected front/west pictures support the modeled return arrangement; this discrepancy remains explicit. Geometry uses raw east/south coordinates at heading 0, with an internal 33.1047-degree rotation and local +Z facing southwest. Heights, precise column positions, coarse Corinthian carving, lettering, raised threshold, buttress dimensions, roof pitch and Baroque facade profiles are estimates. The 17m shaft top, 20.6m entablature and 33.5m cross top above the lower model datum are not surveyed heights. No complete interior, restored antique porch roof, full antique pediment, guildhall or independent neighboring monument is claimed. Two conservative opaque floor pockets clear the original terrain by at least 0.200000m over all 88 relevant rendered grid vertices; retaining sides extend below coarse grade. Ground and water remain intact. Synthetic 10m residency clips the church, facade, roof, returns and outer porch, leaving only the resident architecture; full completeness requires surrounding tiles. Neighboring Forum ruins retain generic procedural shells and their historical appearance is not approved. Only ordinary pictures and the standard map/DEM were used."
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:6fd94a02c8f07e200f22baf8b7bf288e2f9b5a5bedd71a5c873751745ca9bd2a"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:5dd3af5079222ff47fe3351d6ba5f406df9d4b08f2b1ddeeb9edccfba275bba8"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:aa09cc1ebadc9299c4ce8f9fabeca65ddd4ce8f78f476127e16e5dd5d304d5bc"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:4d505e2474758cc1ac17438ea68bde904bc36ec9d8b8cea749d8c59d4c5fe96a"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:3c2b29381fbd4bf01fd89c1721e9ac9ca3461becc0072e77c0317ec9b58b1496"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:d546179f8e816c59b25b272e4dda385f2c9ff71dbf3f2bb0498fff8b09aa9d2d"
+      }
+    ],
+    "reports": [
+      {
+        "phase": "final",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2046,
+          "independentBuildings": 2042,
+          "remainingBuildings": 2042,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.window_grid": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.stone_marble": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0504_temple_of_antoninus_and_faustina"
+          ],
+          "rawTerrainRange": {
+            "min": -2.944785625767743,
+            "max": 32.38641437423226
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127658.69298314617,
+          "remainingWaterArea": 127658.69298314617,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:19b521bc286af8840bf175983d12cb907bbe10e428e6eaa3431421dad45eb7a4",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-southwest-temple-and-church.png",
+            "hash": "sha256:5afa05e173d2684116d3675aa4ed5a6360779a2f77e329f39b2dfad1c7e53958",
+            "camera": "southwest-temple-and-church"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-corinthian-and-dedication.png",
+            "hash": "sha256:36538ad20a91e445dd7a64e79379ad2225078c03f4c057381ac6bfc523efdc1f",
+            "camera": "corinthian-and-dedication"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-raised-doorway.png",
+            "hash": "sha256:2de1043876b6e36f93c406a3e6a5922f300064021ca430f8386e075eb6560639",
+            "camera": "raised-doorway"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-west-buttresses-and-roof.png",
+            "hash": "sha256:540d3fe4a5968255e1648ff24f0289efb1e0bde7f3ed149220239a4d3ceb1df3",
+            "camera": "west-buttresses-and-roof"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-split-pediment-and-cross.png",
+            "hash": "sha256:c1c45c6c8d9c28545f6464f2f9f836a4f344435c402d22f3c1b081df4cca84d1",
+            "camera": "split-pediment-and-cross"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-mapped-complete-plan.png",
+            "hash": "sha256:0d78b1e54f8f2b83207e6cae82cbb1a4e8c93b07d6136e96b8eafa05bf2e3c65",
+            "camera": "mapped-complete-plan"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2046,
+          "independentBuildings": 2042,
+          "remainingBuildings": 2042,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0504_temple_of_antoninus_and_faustina"
+          ],
+          "rawTerrainRange": {
+            "min": -2.944785625767743,
+            "max": 32.38641437423226
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127658.69298314617,
+          "remainingWaterArea": 127658.69298314617,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:d3c178defa9d7a9e2dca0977cee3f579d576dd78e97976b8224b67a3e0dcaacc",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-southwest-temple-and-church.png",
+            "hash": "sha256:8b9cc5d90c8980ff76b593ece0b5dd1aed78b0df84186cb43e9357d9c28750bd",
+            "camera": "southwest-temple-and-church"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-west-buttresses-and-roof.png",
+            "hash": "sha256:0a053674a0cec1a1f020d5619f585ee28d2ea7e18b556d47138110babcf40189",
+            "camera": "west-buttresses-and-roof"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2046,
+          "independentBuildings": 2042,
+          "remainingBuildings": 2042,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.window_grid": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.stone_marble": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0504_temple_of_antoninus_and_faustina"
+          ],
+          "rawTerrainRange": {
+            "min": -2.944785625767743,
+            "max": 32.38641437423226
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127658.69298314617,
+          "remainingWaterArea": 127658.69298314617,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:c0c64d9e3a6861beef141643785fd6e9c723c5cb3419f1b0d7476ea8ad61f49d",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-district-southwest-temple-and-church.png",
+            "hash": "sha256:4d600d56bce13c4e48afcf485c53ea4a8dfef5ee8045480343bb70c0446e3d74",
+            "camera": "southwest-temple-and-church"
+          },
+          {
+            "path": "shots/site-integration/final-district-west-buttresses-and-roof.png",
+            "hash": "sha256:a66412a464a1ceab1a10ec63246b173df0ee7931293c6e6dcb20edb182bea943",
+            "camera": "west-buttresses-and-roof"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2046,
+          "independentBuildings": 2042,
+          "remainingBuildings": 2042,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.window_grid": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.stone_marble": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0504_temple_of_antoninus_and_faustina"
+          ],
+          "rawTerrainRange": {
+            "min": -2.944785625767743,
+            "max": 32.38641437423226
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127658.69298314617,
+          "remainingWaterArea": 127658.69298314617,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:3b21cab586400c9ccbb5149cd2dca43881ac93d378fbf6a7e9ed3bb886f8f95a",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-street-southwest-temple-and-church.png",
+            "hash": "sha256:4c39204bc55e1c53ceedb816f0e364288d4837462d923394dcce9eb2a1f1477b",
+            "camera": "southwest-temple-and-church"
+          },
+          {
+            "path": "shots/site-integration/final-street-west-buttresses-and-roof.png",
+            "hash": "sha256:fa30201d7316ecf7e21df308a1de248eae3c3564ba2ca3b6fa96cd576112a37c",
+            "camera": "west-buttresses-and-roof"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 2046,
+          "independentBuildings": 2042,
+          "remainingBuildings": 2046,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 52776559974334,
+              "area": 591.4397136340796
+            },
+            {
+              "id": 52776559974338,
+              "area": 263.0411357304183
+            },
+            {
+              "id": 52776559974383,
+              "area": 92.08545325168274
+            },
+            {
+              "id": 52776559974419,
+              "area": 50.83469434675578
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0504_temple_of_antoninus_and_faustina"
+          ],
+          "rawTerrainRange": {
+            "min": -2.944785625767743,
+            "max": 32.38641437423226
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127658.69298314617,
+          "remainingWaterArea": 127658.69298314617,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:f74fc924c26afb814da3d438fd11a6e5fc9887438bb4185a94bf38dbd4691ce7",
+            "camera": "whole-site"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.window_grid": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.stone_marble": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0504_temple_of_antoninus_and_faustina"
+          ],
+          "rawTerrainRange": {
+            "min": -2.944785625767743,
+            "max": 32.38641437423226
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127658.69298314617,
+          "remainingWaterArea": 127658.69298314617,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-closeup-whole-site.png",
+            "hash": "sha256:7b895b0e007ff608ba4cb3f9af7faec03a1b86518e7c16ba994946dfae594c56",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-southwest-temple-and-church.png",
+            "hash": "sha256:dd2b3fd9db6776ce4a930f6a67b2cc0d695c84c4ab6333657ddacc1a10da3aee",
+            "camera": "southwest-temple-and-church"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-west-buttresses-and-roof.png",
+            "hash": "sha256:b6a4bfdd485e204843ce924be205ffab344e3885efb20d9af216892f86829316",
+            "camera": "west-buttresses-and-roof"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.window_grid": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.stone_marble": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0504_temple_of_antoninus_and_faustina"
+          ],
+          "rawTerrainRange": {
+            "min": -2.944785625767743,
+            "max": 32.38641437423226
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127658.69298314617,
+          "remainingWaterArea": 127658.69298314617,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-district-whole-site.png",
+            "hash": "sha256:d5197a9e2275486fefbd87767c590bcff2568ab0ebdf01fc78b314162791f95b",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-district-southwest-temple-and-church.png",
+            "hash": "sha256:34f967ecb6d442eaa1104005aa1436f71fbaf8cdeaa174fa806be46e5c7e2d07",
+            "camera": "southwest-temple-and-church"
+          },
+          {
+            "path": "shots/site-integration/partial-district-west-buttresses-and-roof.png",
+            "hash": "sha256:ab36fec83d946c7afb305a7b5d9f1ef06e6f3f039fc194dec1f5cb0f9b3d412e",
+            "camera": "west-buttresses-and-roof"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0504_temple_of_antoninus_and_faustina"
+          ],
+          "rawTerrainRange": {
+            "min": -2.944785625767743,
+            "max": 32.38641437423226
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127658.69298314617,
+          "remainingWaterArea": 127658.69298314617,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-failure-whole-site.png",
+            "hash": "sha256:5012a32468af4a9c8ac2ed23e1935f91a123469f96f5923275374e316f2566e0",
+            "camera": "whole-site"
+          }
+        ]
+      }
+    ],
+    "floorCoverage": {
+      "checks": 8,
+      "samples": 432,
+      "missing": 0
+    },
+    "partialResidency": {
+      "status": "native-ground-preserved",
+      "notes": "Synthetic 10m residency clips most of the church and outer porch; original ground remains intact. Complete architecture requires surrounding tiles."
+    }
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/sr2/n0504_temple_of_antoninus_and_faustina/models/source.glb\",\"hash\":\"sha256:6fd94a02c8f07e200f22baf8b7bf288e2f9b5a5bedd71a5c873751745ca9bd2a\",\"bytes\":1493348,\"triangles\":12412,\"materials\":6,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0504_temple_of_antoninus_and_faustina/model.glb\",\"hash\":\"sha256:5dd3af5079222ff47fe3351d6ba5f406df9d4b08f2b1ddeeb9edccfba275bba8\",\"bytes\":1492728,\"triangles\":12412,\"materials\":6,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0504_temple_of_antoninus_and_faustina/model.skyline.glb\",\"hash\":\"sha256:aa09cc1ebadc9299c4ce8f9fabeca65ddd4ce8f78f476127e16e5dd5d304d5bc\",\"bytes\":58140,\"triangles\":535,\"materials\":1,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0504_temple_of_antoninus_and_faustina/model.district.glb\",\"hash\":\"sha256:4d505e2474758cc1ac17438ea68bde904bc36ec9d8b8cea749d8c59d4c5fe96a\",\"bytes\":258996,\"triangles\":2674,\"materials\":6,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0504_temple_of_antoninus_and_faustina/model.street.glb\",\"hash\":\"sha256:3c2b29381fbd4bf01fd89c1721e9ac9ca3461becc0072e77c0317ec9b58b1496\",\"bytes\":616976,\"triangles\":6110,\"materials\":6,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0504_temple_of_antoninus_and_faustina/model.closeup.glb\",\"hash\":\"sha256:d546179f8e816c59b25b272e4dda385f2c9ff71dbf3f2bb0498fff8b09aa9d2d\",\"bytes\":1225344,\"triangles\":12412,\"materials\":6,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "156-shaft-bay-door-and-roof-probes",
+        "passed": true,
+        "notes": "Ten shafts, open front bays, supported entablature, raised doorway and complete church body/roof pass at the applicable detail levels."
+      },
+      {
+        "check": "432-occupied-floor-samples",
+        "passed": true,
+        "notes": "All four browser levels cover the upper church/porch podium and lower stair pocket."
+      },
+      {
+        "check": "29-original-control-vertices",
+        "passed": true,
+        "notes": "All four mapped component outlines retain their original east/south vertices."
+      },
+      {
+        "check": "88-rendered-terrain-vertices",
+        "passed": true,
+        "notes": "All rendered grid cells intersecting the occupied floor bounds lie below their opaque tops, with at least 0.200000m clearance. No ground or water cutout."
+      },
+      {
+        "check": "selected-source-runtime-placement-scene",
+        "passed": true,
+        "notes": "Selected source/import/LOD/placement checks, strict medium-fi audit, asset hash verification, scene validation and sim30 pass."
+      }
+    ]
+  },
+  "limitations": [
+    "Present-day Temple of Antoninus and Faustina with San Lorenzo in Miranda: mapped church/cella body, southwest six-column porch with two returns behind each end, Corinthian capitals, inscribed open entablature, high podium/stair area, raised bronze doorway, side buttresses, tiled nave roof and later Baroque facade with split curved pediment and cross. Independent adjoining Forum monuments remain native; the missing ancient porch roof and complete antique pediment are not reconstructed.",
+    "Q752555/relation1841090 identifies the temple porch. Four PMTiles component footprints also include the main32m church body, stair projection and surviving porch beam. Their raw east/south vertices remain intact. The southwest stair and front/west photographs establish the signed front. Ten column positions (six front plus two returns behind each end) are picture-guided within the mapped porch beam, not individually mapped or surveyed control points.",
+    "The map supplies32m for the church body. Front/west pictures guide proportions: a3.2m modeled porch podium,17m shaft top,18.3m capital top and20.6m entablature above the lower local datum; the nave eaves/ridge are24.2/26.3m. The later facade rises through two orders to curved split wings around32.4m and a33.5m cross. The bronze door bottom is8.8m, deliberately above the3.2m porch floor. An ordinary article mentions17m columns and a roughly6m inaccessible entrance gap but gives a column count inconsistent with the pictured return arrangement; photos/map govern this approximate model. Heights, column allocation, stonework and opening dimensions are visualization estimates, not a survey.",
+    "The original161-square/6m standard Mapzen/USGS grid is retained at the new anchor. A high occupied floor covers the church/porch and a separate low floor covers the mapped stair base. Both opaque floors clear the relevant original grid cells; their retaining sides continue below the lowest coarse grade. Treads descend to the low stair pocket. No terrain or water opening is proposed. Exact thresholds and archaeological ground levels remain approximate.",
+    "Present-day exterior only. Columns, Corinthian leaf masses, dedication lettering, side carving, split pediment, roof pitch, buttresses and raised door are picture/map-guided medium-fi approximations. The ancient porch roof and full antique pediment remain absent. Complete interiors, exact masonry courses and neighboring structures are outside scope. Shared marble approximates cipollino; common window-grid and ceramic graphs stand in for glazing and roof tiles. Current acceptance is recorded in qa.json.",
+    "Accepted for the specific medium-fi Temple of Antoninus and Faustina / San Lorenzo in Miranda exterior and approximate standard-map/DEM placement. Four mapped components retain 29 original vertices and include the church/cella body, porch, front stair projection and U-shaped beam. The ten column positions are picture-guided within that beam, not separate map controls: six across the southwest front and two behind each end. An ordinary article describes eight columns, while the inspected front/west pictures support the modeled return arrangement; this discrepancy remains explicit. Geometry uses raw east/south coordinates at heading 0, with an internal 33.1047-degree rotation and local +Z facing southwest. Heights, precise column positions, coarse Corinthian carving, lettering, raised threshold, buttress dimensions, roof pitch and Baroque facade profiles are estimates. The 17m shaft top, 20.6m entablature and 33.5m cross top above the lower model datum are not surveyed heights. No complete interior, restored antique porch roof, full antique pediment, guildhall or independent neighboring monument is claimed. Two conservative opaque floor pockets clear the original terrain by at least 0.200000m over all 88 relevant rendered grid vertices; retaining sides extend below coarse grade. Ground and water remain intact. Synthetic 10m residency clips the church, facade, roof, returns and outer porch, leaving only the resident architecture; full completeness requires surrounding tiles. Neighboring Forum ruins retain generic procedural shells and their historical appearance is not approved. Only ordinary pictures and the standard map/DEM were used."
+  ],
+  "reviewMaintenance": {
+    "formatOnlyCheckpoint": {
+      "reviewedOn": "2026-10-19",
+      "previousInputHash": "sha256:e3d11bba60a6da89daba00c99a7a1a9a1b2da7921dbb2444254e4d76dd6c33a7",
+      "inputHash": "sha256:e27823bd2213c987deb4fc4c36f93be1c271cdb142458d5b047c0a5ce700ac71",
+      "proof": "TypeScript parser/printer equality of all non-import statements; same import bindings and explicit side-effect import order. Rebuilt selected source/runtime/fourLOD GLBs retain exact bytes. Source/view/camera/material metadata preserved. Existing reviews retained; no new visual approval added."
+    }
+  }
+}

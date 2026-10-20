@@ -1,0 +1,326 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "court": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "clay_fired",
+      "roughness": 0.89,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "trim",
+      "graph": "tile_mosaic",
+      "roughness": 0.5,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.45,
+      "metallic": 0.7
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/koutoubia-model.mjs",
+    "export": "buildKoutoubiaSkyline",
+    "errorMeters": 0.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKoutoubiaDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "court": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.5,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.45,
+            "metallic": 0.7
+          }
+        }
+      },
+      "street": {
+        "export": "buildKoutoubiaStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "court": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.5,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.45,
+            "metallic": 0.7
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKoutoubiaCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "court": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.5,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.45,
+            "metallic": 0.7
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      142,
+      110,
+      -138
+    ],
+    "lookAt": [
+      2,
+      25,
+      0
+    ],
+    "fov": 47
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-koutoubia-skyline",
+      "position": [
+        142,
+        110,
+        -138
+      ],
+      "lookAt": [
+        2,
+        25,
+        0
+      ],
+      "fov": 47,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-koutoubia-district",
+      "position": [
+        142,
+        110,
+        -138
+      ],
+      "lookAt": [
+        2,
+        25,
+        0
+      ],
+      "fov": 47,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-koutoubia-street",
+      "position": [
+        142,
+        110,
+        -138
+      ],
+      "lookAt": [
+        2,
+        25,
+        0
+      ],
+      "fov": 47,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-koutoubia-closeup",
+      "position": [
+        142,
+        110,
+        -138
+      ],
+      "lookAt": [
+        2,
+        25,
+        0
+      ],
+      "fov": 47,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.4,
+    "neighborStyle": "molen.worldgen.regional.arid.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Exact retained compound identity;current map/picture exterior review and explicit height/terrain limits.",
+    "anchor": [
+      -7.993581375,
+      31.623738656
+    ],
+    "heading": 0.378293139479,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor;component working planes. Standard viewer DEM datum465.550273m. Hall and tower floors use independent maximum2m/vertex samples plus0.25m:hall:2.846627m (1196samples,-0.531..2.597); tower:0.818348m (48samples,-0.343..0.568). Footings extend below retained terrain;no flattening/cutout. DEM does not resolve exact courtyard paving,steps or archaeological terraces;thresholds and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        -7.993581375,
+        31.623738656
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum465.550273m. Hall and tower floors use independent maximum2m/vertex samples plus0.25m:hall:2.846627m (1196samples,-0.531..2.597); tower:0.818348m (48samples,-0.343..0.568). Footings extend below retained terrain;no flattening/cutout. DEM does not resolve exact courtyard paving,steps or archaeological terraces;thresholds and walking remain unverified."
+    },
+    "bounds": [
+      -8.001,
+      31.617,
+      -7.987,
+      31.631
+    ],
+    "notes": "Retained OSM relation12255861 has exact Q1137533 and supplies the compound anchor/axis. Current encoded relation52776570389109 matches its distinctive open court and service void;individual current height-tagged roof parts,shaft/lantern/cap and a contiguous southern annex constrain the exterior. Original anchor[-7.993581375,31.623738656] and heading0.378293139479rad retained. PositiveX runs toward the tower/eastern side of this local frame;negativeZ toward the tower/court front. Exact facade hand follows the mapped tower corner and inspected pictures,with15-degree visual orientation allowance;not a surveyed doorway bearing. Standard viewer DEM datum465.550273m. Hall and tower floors use independent maximum2m/vertex samples plus0.25m:hall:2.846627m (1196samples,-0.531..2.597); tower:0.818348m (48samples,-0.343..0.568). Footings extend below retained terrain;no flattening/cutout. DEM does not resolve exact courtyard paving,steps or archaeological terraces;thresholds and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum465.550273m. Hall and tower floors use independent maximum2m/vertex samples plus0.25m:hall:2.846627m (1196samples,-0.531..2.597); tower:0.818348m (48samples,-0.343..0.568). Footings extend below retained terrain;no flattening/cutout. DEM does not resolve exact courtyard paving,steps or archaeological terraces;thresholds and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

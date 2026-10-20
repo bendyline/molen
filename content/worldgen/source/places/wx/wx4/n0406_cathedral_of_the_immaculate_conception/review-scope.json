@@ -1,0 +1,302 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "cap": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.82,
+      "metallic": 0.12
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/beijing-immaculate-model.mjs",
+    "export": "buildBeijingImmaculateSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBeijingImmaculateDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.12
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildBeijingImmaculateStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.12
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBeijingImmaculateCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.12
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      81,
+      47,
+      73
+    ],
+    "lookAt": [
+      0,
+      13,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-nantang-skyline",
+      "position": [
+        81,
+        47,
+        73
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-nantang-district",
+      "position": [
+        81,
+        47,
+        73
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-nantang-street",
+      "position": [
+        81,
+        47,
+        73
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-nantang-closeup",
+      "position": [
+        81,
+        47,
+        73
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.east_asian.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior; current acceptance recorded separately in QA.",
+    "anchor": [
+      116.369212569,
+      39.899511376
+    ],
+    "heading": -1.56861635065,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 attachment convention, not exact host-ground contact. Standard viewer DEM datum52.489617m; selected perimeter-2.02 to-0.05m relative to it. Floor0.5m; adaptive footings crossY=0 and extend below retained samples. No flattening, cutout or road replacement. Exact courtyard/street levels, threshold/steps/base joins, concealed adjoining walls, altitude and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        116.369212569,
+        39.899511376
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum52.489617m; selected perimeter-2.02 to-0.05m relative to it. Floor0.5m; adaptive footings crossY=0 and extend below retained samples. No flattening, cutout or road replacement. Exact courtyard/street levels, threshold/steps/base joins, concealed adjoining walls, altitude and walking remain unverified."
+    },
+    "bounds": [
+      116.365,
+      39.895,
+      116.374,
+      39.904
+    ],
+    "notes": "Exact retained way/442394489 and Q1188864 identify Beijing Nantang / Cathedral of the Immaculate Conception Xianwumen. Current standard viewer whole35184814483321 and same-ID named place-of-worship POI; all18 raw outline points/properties and earlier outline/multilingual tags retained. Anchor[116.369212569,39.899511376] and heading−1.56861635065rad unchanged; no horizontal rescale. Native+X points south toward the main Baroque facade and Xuanwumen East Avenue, −X north toward the irregular rear/drum, +Z west toward courtyard. Signed facing follows the street-side facade photograph and standard road map, with approximate3° uncertainty. Separate western courtyard building35184814483322, boundary/gate, trees, street/utility lines and surrounding town remain host content. Detailed facade, drum and roof sub-plans are picture estimates inside the selected church envelope. Standard viewer DEM datum52.489617m; selected perimeter-2.02 to-0.05m relative to it. Floor0.5m; adaptive footings crossY=0 and extend below retained samples. No flattening, cutout or road replacement. Exact courtyard/street levels, threshold/steps/base joins, concealed adjoining walls, altitude and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum52.489617m; selected perimeter-2.02 to-0.05m relative to it. Floor0.5m; adaptive footings crossY=0 and extend below retained samples. No flattening, cutout or road replacement. Exact courtyard/street levels, threshold/steps/base joins, concealed adjoining walls, altitude and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

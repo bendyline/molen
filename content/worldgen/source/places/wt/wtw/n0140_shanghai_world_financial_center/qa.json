@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0140_shanghai_world_financial_center",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:c212e19cc785d2b98a7c551d1b9e502536f3f4a7592b368ddc2af87277d7a3ae",
+  "inputHash": "sha256:54597f576025649334df8fe1fa01b2f56eef0c20528450bd197a5d21bbe37e08",
   "sourceHash": "sha256:dcc6c7893926b740e19aa905f55dbf00e8b61d06bff7c943dd6838b9573efeab",
   "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
-  "captureReportHash": "sha256:7db2404844c8b9af96a4faa6ad537521b58c53df0121fd130d72ad7c6df7def3",
+  "captureReportHash": "sha256:45f9aebab43605df8f496a5f3d7f741acecb4b991521f2abd7d3e8c658f88f01",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -24,7 +24,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:293c0ca3b9656aed87d05f8d7923acfe92eb660052038c700ab385178cd9efd7",
+    "captureReportHash": "sha256:77206fefacd5294c6144fc37f55ec2869616ebdf9e553035df9318c0d7ad0094",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -398,5 +398,47 @@
     "framesVerified": 46,
     "sourceRebuild": "assets-4c110226cdb7e02d",
     "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  },
+  "sourceBindingMaintenance": {
+    "reviewedOn": "2026-10-19",
+    "status": "carried-existing-acceptance-after-source-equivalence",
+    "previousInputHash": "sha256:c212e19cc785d2b98a7c551d1b9e502536f3f4a7592b368ddc2af87277d7a3ae",
+    "inputHash": "sha256:54597f576025649334df8fe1fa01b2f56eef0c20528450bd197a5d21bbe37e08",
+    "originalVisualReviewOn": "2026-10-12",
+    "sourceRelease": "assets-3ad02ba96a6d989f",
+    "modelPins": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/wt/wtw/n0140_shanghai_world_financial_center/models/source.glb",
+        "hash": "sha256:dcc6c7893926b740e19aa905f55dbf00e8b61d06bff7c943dd6838b9573efeab"
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.glb",
+        "hash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985"
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.skyline.glb",
+        "hash": "sha256:b50e080689c23041d94cc8583827b4d1eb33200a5fdfa896476b6e346a8960b6"
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.district.glb",
+        "hash": "sha256:c0c6fe5e83838ca69fc01317accd118b3e83684719684e6e704946da0f48f9b6"
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.street.glb",
+        "hash": "sha256:f0bf21c7a5b26b4681e70a41784a56bcf12eb1196a230886ac882c6b1f3ea5af"
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.closeup.glb",
+        "hash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05"
+      }
+    ],
+    "change": "Exact prior input reconstructed using HEAD tower generator; only validation guard gained support for centerline/point frames. These three outlined frames and all six approved model files are unchanged.",
+    "scope": "Existing inspected images, materials, LODs and placement retained; no new visual inspection is claimed."
   }
 }

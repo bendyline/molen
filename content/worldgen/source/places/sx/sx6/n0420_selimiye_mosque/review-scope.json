@@ -1,0 +1,302 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.78,
+      "metallic": 0.24
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.58,
+      "metallic": 0.5
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.46,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/selimiye-model.mjs",
+    "export": "buildSelimiyeSkyline",
+    "errorMeters": 2.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSelimiyeDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildSelimiyeStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSelimiyeCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.24
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -132,
+      93,
+      122
+    ],
+    "lookAt": [
+      2,
+      25,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-selimiye-skyline",
+      "position": [
+        -132,
+        93,
+        122
+      ],
+      "lookAt": [
+        2,
+        25,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-selimiye-district",
+      "position": [
+        -132,
+        93,
+        122
+      ],
+      "lookAt": [
+        2,
+        25,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-selimiye-street",
+      "position": [
+        -132,
+        93,
+        122
+      ],
+      "lookAt": [
+        2,
+        25,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-selimiye-closeup",
+      "position": [
+        -132,
+        93,
+        122
+      ],
+      "lookAt": [
+        2,
+        25,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      26.559193172,
+      41.678081868
+    ],
+    "heading": -0.876785669959,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and declared court/hall floor,not surveyed ground contact. Standard viewer DEM datum80.799435m;whole perimeter-2.00 to-0.70m relative to datum. Floor0.579m is maximum retained perimeter/interior-grid sample plus0.30m. Adaptive stone footings crossY=0 and extend below retained ground. Approximate attachment plane;coarse terrain may expose tall footings. No cutout,flattening or road replacement. Exact arcade/door/step/court/garden/street/base contact,altitude and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        26.559193172,
+        41.678081868
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum80.799435m;whole perimeter-2.00 to-0.70m relative to datum. Floor0.579m is maximum retained perimeter/interior-grid sample plus0.30m. Adaptive stone footings crossY=0 and extend below retained ground. Approximate attachment plane;coarse terrain may expose tall footings. No cutout,flattening or road replacement. Exact arcade/door/step/court/garden/street/base contact,altitude and walking remain unverified."
+    },
+    "bounds": [
+      26.553,
+      41.673,
+      26.566,
+      41.684
+    ],
+    "notes": "Retained exact relation/3376582 /Q184534 identifies Edirne Selimiye Mosque. Current whole52776561509830 (3×2^44+3376582) and central circular part35185902468061 retain34 raw outline/courtyard-hole/dome points and all properties. Whole courtyard hole remains open above modeled paving. Anchor[26.559193172,41.678081868] and heading−0.876785669959rad unchanged,no horizontal rescale. Native+X southeast prayer hall/mihrab,−X northwest court entrance,+Z southwest,−Z northeast gallery. Pictures resolve facing with about3° uncertainty. Dome center/radius follow the mapped circular part;hall/court boundary,minaret centers,buttress turrets,side galleries and roof partitions are picture-led estimates with about2.5m horizontal working uncertainty. Separate madrasas,arasta,outer garden/walls,roads and surrounding city buildings remain host content. Standard viewer DEM datum80.799435m;whole perimeter-2.00 to-0.70m relative to datum. Floor0.579m is maximum retained perimeter/interior-grid sample plus0.30m. Adaptive stone footings crossY=0 and extend below retained ground. Approximate attachment plane;coarse terrain may expose tall footings. No cutout,flattening or road replacement. Exact arcade/door/step/court/garden/street/base contact,altitude and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum80.799435m;whole perimeter-2.00 to-0.70m relative to datum. Floor0.579m is maximum retained perimeter/interior-grid sample plus0.30m. Adaptive stone footings crossY=0 and extend below retained ground. Approximate attachment plane;coarse terrain may expose tall footings. No cutout,flattening or road replacement. Exact arcade/door/step/court/garden/street/base contact,altitude and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

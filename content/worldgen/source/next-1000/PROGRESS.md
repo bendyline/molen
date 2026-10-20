@@ -2,7 +2,7 @@
 
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
-There are 401 authored assets, 401 imported assets and 397 active geographic asset previews.
+There are 552 authored assets, 552 imported assets and 546 active geographic asset previews.
 A candidate is complete only after its current source/runtime,
 portable render, shared-material render, geographic fit and its declared fidelity standard pass.
 New models follow [medium-fi](../../../../docs-src/guide/medium-fi.md); older maximum-fidelity
@@ -10,14 +10,14 @@ approvals retain their original scope and are not automatically medium-fi approv
 
 | Stage | Models |
 | --- | ---: |
-| Source GLBs authored | 401 |
-| Runtime GLBs imported | 401 |
-| Portable visual reviews passed | 401 |
-| Shared-material reviews passed | 401 |
-| Active geographic previews | 397 |
-| Declared fidelity reviews passed | 401 |
-| Complete | 401 |
-| Source models still to author | 599 |
+| Source GLBs authored | 552 |
+| Runtime GLBs imported | 552 |
+| Portable visual reviews passed | 551 |
+| Shared-material reviews passed | 551 |
+| Active geographic previews | 546 |
+| Declared fidelity reviews passed | 551 |
+| Complete | 551 |
+| Source models still to author | 448 |
 
 ## Authored models
 
@@ -297,7 +297,158 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0389 | [Cathedral of Christ the Saviour](../places/sr/sru/n0389_cathedral_of_christ_the_saviour/README.md) | 37632 | Passed | Passed | Passed | Passed | Yes |
 | N0390 | [Havana Cathedral](../places/dh/dhj/n0390_havana_cathedral/README.md) | 18283 | Passed | Passed | Passed | Passed | Yes |
 | N0391 | [Liège Cathedral](../places/u1/u15/n0391_liege_cathedral/README.md) | 20815 | Passed | Passed | Passed | Passed | Yes |
+| N0392 | [New Cathedral, Linz](../places/u2/u2d/n0392_new_cathedral_linz/README.md) | 36586 | Passed | Passed | Passed | Passed | Yes |
+| N0393 | [Graz Cathedral](../places/u2/u26/n0393_graz_cathedral/README.md) | 9172 | Passed | Passed | Passed | Passed | Yes |
+| N0394 | [Cathedral of St. Elizabeth](../places/u2/u2x/n0394_cathedral_of_st_elizabeth/README.md) | 31686 | Passed | Passed | Passed | Passed | Yes |
+| N0395 | [Ferrara Cathedral](../places/sr/srb/n0395_ferrara_cathedral/README.md) | 30986 | Passed | Passed | Passed | Passed | Yes |
+| N0396 | [St. Joseph's Church, Beijing](../places/wx/wx4/n0396_st_joseph_s_church_beijing/README.md) | 25233 | Passed | Passed | Passed | Passed | Yes |
+| N0397 | [Monza Cathedral](../places/u0/u0n/n0397_monza_cathedral/README.md) | 13953 | Passed | Passed | Passed | Passed | Yes |
+| N0398 | [Tampere Cathedral](../places/ud/udb/n0398_tampere_cathedral/README.md) | 7269 | Passed | Passed | Passed | Passed | Yes |
+| N0399 | [Armenian Cathedral of the Holy Cross](../places/sy/syy/n0399_armenian_cathedral_of_the_holy_cross/README.md) | 6845 | Passed | Passed | Passed | Passed | Yes |
+| N0400 | [Porto Cathedral](../places/ez/ez3/n0400_porto_cathedral/README.md) | 11673 | Passed | Passed | Passed | Passed | Yes |
+| N0401 | [Catania Cathedral](../places/sq/sqd/n0401_catania_cathedral/README.md) | 14403 | Passed | Passed | Passed | Passed | Yes |
+| N0402 | [Sarlat Cathedral](../places/sp/spb/n0402_sarlat_cathedral/README.md) | 8957 | Passed | Passed | Passed | Passed | Yes |
+| N0403 | [Lausanne Cathedral](../places/u0/u0k/n0403_lausanne_cathedral/README.md) | 10236 | Passed | Passed | Passed | Passed | Yes |
+| N0404 | [Gurk Cathedral](../places/u2/u26/n0404_gurk_cathedral/README.md) | 13299 | Passed | Passed | Passed | Passed | Yes |
+| N0405 | [Kotor Cathedral](../places/sr/srt/n0405_kotor_cathedral/README.md) | 10960 | Passed | Passed | Passed | Passed | Yes |
+| N0406 | [Cathedral of the Immaculate Conception](../places/wx/wx4/n0406_cathedral_of_the_immaculate_conception/README.md) | 12363 | Passed | Passed | Passed | Passed | Yes |
+| N0407 | [Padua Cathedral](../places/u2/u20/n0407_padua_cathedral/README.md) | 21127 | Passed | Passed | Passed | Passed | Yes |
+| N0408 | [Church of Saint Nicholas](../places/u2/u2f/n0408_church_of_saint_nicholas/README.md) | 12180 | Passed | Passed | Passed | Passed | Yes |
+| N0409 | [St. Stephan's Cathedral, Passau](../places/u2/u29/n0409_st_stephan_s_cathedral_passau/README.md) | 23463 | Passed | Passed | Passed | Passed | Yes |
+| N0410 | [Saigon Notre-Dame Basilica](../places/w3/w3g/n0410_saigon_notre_dame_basilica/README.md) | 18845 | Passed | Passed | Passed | Passed | Yes |
+| N0411 | [Hagia Sophia](../places/sx/sxk/n0411_hagia_sophia/README.md) | 29679 | Passed | Passed | Passed | Passed | Yes |
+| N0412 | [Al-Masjid Al-Haram](../places/sg/sgu/n0412_al_masjid_al_haram/README.md) | 63782 | Passed | Passed | Passed | Passed | Yes |
+| N0413 | [Al-Aqsa Mosque](../places/sv/sv9/n0413_al_aqsa_mosque/README.md) | 16737 | Passed | Passed | Passed | Passed | Yes |
+| N0414 | [Sultan Ahmed Mosque](../places/sx/sxk/n0414_sultan_ahmed_mosque/README.md) | 29971 | Passed | Passed | Passed | Passed | Yes |
+| N0415 | [Dome of the Rock](../places/sv/sv9/n0415_dome_of_the_rock/README.md) | 16828 | Passed | Passed | Passed | Passed | Yes |
+| N0416 | [Umayyad Mosque](../places/sv/svc/n0416_umayyad_mosque/README.md) | 19589 | Passed | Passed | Passed | Passed | Yes |
+| N0418 | [Süleymaniye Mosque](../places/sx/sxk/n0418_suleymaniye_mosque/README.md) | 40950 | Passed | Passed | Passed | Passed | Yes |
+| N0419 | [Badshahi Mosque](../places/tt/tts/n0419_badshahi_mosque/README.md) | 43977 | Passed | Passed | Passed | Passed | Yes |
+| N0420 | [Selimiye Mosque](../places/sx/sx6/n0420_selimiye_mosque/README.md) | 31676 | Passed | Passed | Passed | Passed | Yes |
+| N0421 | [Quba Mosque](../places/su/suk/n0421_quba_mosque/README.md) | 37468 | Passed | Passed | Passed | Passed | Yes |
+| N0422 | [Jama Masjid, Delhi](../places/tt/ttn/n0422_jama_masjid_delhi/README.md) | 39201 | Passed | Passed | Passed | Passed | Yes |
+| N0423 | [Great Mosque of Djenné](../places/ef/efk/n0423_great_mosque_of_djenne/README.md) | 23113 | Passed | Passed | Passed | Passed | Yes |
+| N0424 | [Sheikh Zayed Mosque](../places/th/thq/n0424_sheikh_zayed_mosque/README.md) | 52759 | Passed | Passed | Passed | Passed | Yes |
+| N0425 | [Faisal Mosque](../places/tt/ttg/n0425_faisal_mosque/README.md) | 39776 | Passed | Passed | Passed | Passed | Yes |
+| N0426 | [Hassan II Mosque](../places/ev/evf/n0426_hassan_ii_mosque/README.md) | 22096 | Passed | Passed | Passed | Passed | Yes |
+| N0427 | [Jameh Mosque of Isfahan](../places/tj/tju/n0427_jameh_mosque_of_isfahan/README.md) | 15042 | Passed | Passed | Passed | Passed | Yes |
+| N0428 | [Cavern of the Patriarchs](../places/sv/sv8/n0428_cavern_of_the_patriarchs/README.md) | 10266 | Passed | Passed | Passed | Passed | Yes |
+| N0429 | [Imam Ali Mosque](../places/sv/svx/n0429_imam_ali_mosque/README.md) | 17475 | Passed | Passed | Passed | Passed | Yes |
+| N0430 | [Charminar](../places/te/tep/n0430_charminar/README.md) | 52109 | Passed | Passed | Passed | Passed | Yes |
+| N0431 | [Shah Mosque](../places/tj/tju/n0431_shah_mosque/README.md) | 17105 | Passed | Passed | Passed | Passed | Yes |
+| N0432 | [Great Mosque of Aleppo](../places/sy/sy6/n0432_great_mosque_of_aleppo/README.md) | 11949 | Passed | Passed | Passed | Passed | Yes |
+| N0433 | [Qol Şärif Mosque](../places/v1/v1f/n0433_qol_sarif_mosque/README.md) | 13851 | Passed | Passed | Passed | Passed | Yes |
+| N0434 | [Grand Mosque of Paris](../places/u0/u09/n0434_grand_mosque_of_paris/README.md) | 15874 | Passed | Passed | Passed | Passed | Yes |
+| N0435 | [Mosque of Ibn Tulun](../places/st/stq/n0435_mosque_of_ibn_tulun/README.md) | 17523 | Passed | Passed | Passed | Passed | Yes |
+| N0436 | [Great Mosque of Kairouan](../places/sn/snr/n0436_great_mosque_of_kairouan/README.md) | 21631 | Passed | Passed | Passed | Passed | Yes |
+| N0437 | [Blue Mosque](../places/tq/tqx/n0437_blue_mosque/README.md) | 20750 | Passed | Passed | Passed | Passed | Yes |
+| N0438 | [Nasir-ol-Molk Mosque](../places/tj/tjm/n0438_nasir_ol_molk_mosque/README.md) | 7031 | Passed | Passed | Passed | Passed | Yes |
+| N0439 | [Chora Church](../places/sx/sxk/n0439_chora_church/README.md) | 11575 | Passed | Passed | Passed | Passed | Yes |
+| N0440 | [Blue Mosque](../places/sz/szp/n0440_blue_mosque/README.md) | 3643 | Passed | Passed | Passed | Passed | Yes |
+| N0441 | [Great Mosque of Samarra](../places/sy/syp/n0441_great_mosque_of_samarra/README.md) | 10916 | Passed | Passed | Passed | Passed | Yes |
+| N0442 | [Bibi-Khanym Mosque](../places/tr/trp/n0442_bibi_khanym_mosque/README.md) | 3500 | Passed | Passed | Passed | Passed | Yes |
+| N0443 | [Koutoubia Mosque](../places/ev/evd/n0443_koutoubia_mosque/README.md) | 10036 | Passed | Passed | Passed | Passed | Yes |
+| N0444 | [Saint Petersburg Mosque](../places/ud/udt/n0444_saint_petersburg_mosque/README.md) | 11127 | Passed | Passed | Passed | Passed | Yes |
+| N0445 | [al-Azhar Mosque](../places/st/stq/n0445_al_azhar_mosque/README.md) | 27476 | Passed | Passed | Passed | Passed | Yes |
+| N0446 | [Istiqlal Mosque](../places/qq/qqg/n0446_istiqlal_mosque/README.md) | 20201 | Passed | Passed | Passed | Passed | Yes |
+| N0447 | [New Mosque](../places/sx/sxk/n0447_new_mosque/README.md) | 35083 | Passed | Passed | Passed | Passed | Yes |
+| N0448 | [Divriği Great Mosque and Hospital](../places/sy/syg/n0448_divrigi_great_mosque_and_hospital/README.md) | 5628 | Passed | Passed | Passed | Passed | Yes |
+| N0449 | [Great Mosque of Xi'an](../places/wq/wqj/n0449_great_mosque_of_xi_an/README.md) | 22408 | Passed | Passed | Passed | Passed | Yes |
+| N0450 | [Kocatepe Mosque](../places/sx/sxp/n0450_kocatepe_mosque/README.md) | 48621 | Passed | Passed | Passed | Passed | Yes |
+| N0451 | [Omar Ali Saifuddien Mosque](../places/w8/w8c/n0451_omar_ali_saifuddien_mosque/README.md) | 23085 | Passed | Passed | Passed | Passed | Yes |
+| N0452 | [Ortaköy Mosque](../places/sx/sxk/n0452_ortakoy_mosque/README.md) | 18480 | Passed | Passed | Passed | Passed | Yes |
+| N0453 | [Al-Askari Shrine](../places/sy/syp/n0453_al_askari_shrine/README.md) | 9445 | Passed | Passed | Passed | Passed | Yes |
+| N0454 | [Akhmad Kadyrov Mosque](../places/tp/tp8/n0454_akhmad_kadyrov_mosque/README.md) | 28066 | Passed | Passed | Passed | Passed | Yes |
+| N0455 | [Fatih Istanbul Mosque](../places/sx/sxk/n0455_fatih_istanbul_mosque/README.md) | 20736 | Passed | Passed | Passed | Passed | Yes |
+| N0456 | [Baitul Mukarram National Mosque](../places/wh/wh0/n0456_baitul_mukarram_national_mosque/README.md) | 9676 | Passed | Passed | Passed | Passed | Yes |
+| N0457 | [Moscow Cathedral Mosque](../places/uc/ucf/n0457_moscow_cathedral_mosque/README.md) | 30742 | Passed | Passed | Passed | Passed | Yes |
+| N0458 | [Sheikh Lotfollah Mosque](../places/tj/tju/n0458_sheikh_lotfollah_mosque/README.md) | 5171 | Passed | Passed | Passed | Passed | Yes |
+| N0459 | [Little Hagia Sophia](../places/sx/sxk/n0459_little_hagia_sophia/README.md) | 6373 | Passed | Passed | Passed | Passed | Yes |
+| N0460 | [National Mosque of Malaysia](../places/w2/w28/n0460_national_mosque_of_malaysia/README.md) | 9087 | Passed | Passed | Passed | Passed | Yes |
+| N0461 | [Masjid al-Qiblatain](../places/su/suk/n0461_masjid_al_qiblatain/README.md) | 14874 | Passed | Passed | Passed | Passed | Yes |
+| N0462 | [Mosque of Amr ibn al-As](../places/st/stq/n0462_mosque_of_amr_ibn_al_as/README.md) | 23357 | Passed | Passed | Passed | Passed | Yes |
+| N0463 | [Imam Husayn Mausoleum](../places/sv/svz/n0463_imam_husayn_mausoleum/README.md) | 50808 | Passed | Passed | Passed | Passed | Yes |
+| N0464 | [Sultan Qaboos Grand Mosque](../places/tk/tk1/n0464_sultan_qaboos_grand_mosque/README.md) | 26946 | Passed | Passed | Passed | Passed | Yes |
+| N0465 | [Goharshad Mosque](../places/tq/tq6/n0465_goharshad_mosque/README.md) | 11924 | Passed | Passed | Passed | Passed | Yes |
+| N0466 | [Muhammad Ali Mosque](../places/st/stq/n0466_muhammad_ali_mosque/README.md) | 29190 | Passed | Passed | Passed | Passed | Yes |
+| N0467 | [Blue Mosque](../places/tn/tnb/n0467_blue_mosque/README.md) | 2463 | Passed | Passed | Passed | Passed | Yes |
+| N0468 | [Wazir Khan Mosque](../places/tt/tts/n0468_wazir_khan_mosque/README.md) | 8361 | Passed | Passed | Passed | Passed | Yes |
+| N0469 | [Great Mosque of al-Nuri](../places/sy/syq/n0469_great_mosque_of_al_nuri/README.md) | 7515 | Passed | Passed | Passed | Passed | Yes |
+| N0470 | [Niujie Mosque](../places/wx/wx4/n0470_niujie_mosque/README.md) | 17770 | Passed | Passed | Passed | Passed | Yes |
+| N0471 | [Banya Bashi Mosque](../places/sx/sx8/n0471_banya_bashi_mosque/README.md) | 6288 | Passed | Passed | Passed | Passed | Yes |
+| N0472 | [Šarena Mosque](../places/sr/srq/n0472_sarena_mosque/README.md) | 9478 | Passed | Passed | Passed | Passed | Yes |
+| N0473 | [Rüstem Pasha Mosque](../places/sx/sxk/n0473_rustem_pasha_mosque/README.md) | 12926 | Passed | Passed | Passed | Passed | Yes |
+| N0474 | [Sultan Abdul Samad Jamek Mosque](../places/w2/w28/n0474_sultan_abdul_samad_jamek_mosque/README.md) | 24082 | Passed | Passed | Passed | Passed | Yes |
+| N0475 | [Friday Mosque of Herat](../places/tq/tqh/n0475_friday_mosque_of_herat/README.md) | 24616 | Passed | Passed | Passed | Passed | Yes |
+| N0476 | [Sokollu Mehmed Pasha I Mosque](../places/sx/sxk/n0476_sokollu_mehmed_pasha_i_mosque/README.md) | 10649 | Passed | Passed | Passed | Passed | Yes |
+| N0477 | [Moschea di Roma](../places/sr/sr2/n0477_moschea_di_roma/README.md) | 18752 | Passed | Passed | Passed | Passed | Yes |
+| N0478 | [Putra Mosque](../places/w2/w28/n0478_putra_mosque/README.md) | 20608 | Passed | Passed | Passed | Passed | Yes |
+| N0479 | [Id Kah Mosque](../places/tx/txn/n0479_id_kah_mosque/README.md) | 9819 | Passed | Passed | Passed | Passed | Yes |
+| N0480 | [Ibrahim-al-Ibrahim Mosque](../places/ey/eyk/n0480_ibrahim_al_ibrahim_mosque/README.md) | 5092 | Passed | Passed | Passed | Passed | Yes |
+| N0481 | [Baitul Futuh Mosque](../places/gc/gcp/n0481_baitul_futuh_mosque/README.md) | 6432 | Passed | Passed | Passed | Passed | Yes |
+| N0482 | [Bayezid II Mosque](../places/sx/sxk/n0482_bayezid_ii_mosque/README.md) | 21031 | Passed | Passed | Passed | Passed | Yes |
+| N0483 | [Bursa Grand Mosque](../places/sx/sxh/n0483_bursa_grand_mosque/README.md) | 26642 | Passed | Passed | Passed | Passed | Yes |
+| N0484 | [Gazi Husrev-beg Mosque](../places/sr/srv/n0484_gazi_husrev_beg_mosque/README.md) | 8278 | Passed | Passed | Passed | Passed | Yes |
+| N0485 | [Abuja National Mosque](../places/s1/s1t/n0485_abuja_national_mosque/README.md) | 4962 | Passed | Passed | Passed | Passed | Yes |
+| N0486 | [Ajanta Caves](../places/te/tet/n0486_ajanta_caves/README.md) | 12826 | Passed | Passed | Passed | Passed | Yes |
+| N0488 | [Temple of Heaven](../places/wx/wx4/n0488_temple_of_heaven/README.md) | 53681 | Passed | Passed | Passed | Passed | Yes |
+| N0489 | [Karnak Temple Complex](../places/ss/ssx/n0489_karnak_temple_complex/README.md) | 64074 | Passed | Passed | Passed | Passed | Yes |
+| N0491 | [Luxor Temple](../places/ss/ssx/n0491_luxor_temple/README.md) | 38363 | Passed | Passed | Passed | Passed | Yes |
+| N0492 | [Lotus Temple](../places/tt/ttn/n0492_lotus_temple/README.md) | 36395 | Passed | Passed | Passed | Passed | Yes |
+| N0493 | [Pyramid of the Sun](../places/9g/9g9/n0493_pyramid_of_the_sun/README.md) | 2216 | Passed | Passed | Passed | Passed | Yes |
+| N0494 | [Ġgantija](../places/sq/sq6/n0494_ggantija/README.md) | 29249 | Passed | Passed | Passed | Passed | Yes |
+| N0495 | [Temple of Edfu](../places/ss/ssr/n0495_temple_of_edfu/README.md) | 14019 | Passed | Passed | Passed | Passed | Yes |
+| N0496 | [Pashupatinath Temple](../places/tu/tuu/n0496_pashupatinath_temple/README.md) | 2828 | Passed | Passed | Passed | Passed | Yes |
+| N0497 | [Bayon](../places/w6/w63/n0497_bayon/README.md) | 54624 | Passed | Passed | Passed | Passed | Yes |
 | N0498 | [Garni Temple](../places/sz/szp/n0498_garni_temple/README.md) | 1209206 | Passed | Passed | Passed | Passed | Yes |
+| N0499 | [Temple of Kukulcan](../places/d5/d59/n0499_temple_of_kukulcan/README.md) | 15588 | Passed | Passed | Passed | Passed | Yes |
+| N0500 | [Bulguksa](../places/wy/wy7/n0500_bulguksa/README.md) | 33463 | Passed | Passed | Passed | Passed | Yes |
+| N0501 | [Temple of Vesta](../places/sr/sr2/n0501_temple_of_vesta/README.md) | 5486 | Passed | Passed | Passed | Passed | Yes |
+| N0502 | [Akshardham](../places/tt/ttn/n0502_akshardham/README.md) | 48097 | Passed | Passed | Passed | Passed | Yes |
+| N0503 | [Temple of Saturn](../places/sr/sr2/n0503_temple_of_saturn/README.md) | 10869 | Passed | Passed | Passed | Passed | Yes |
+| N0504 | [Temple of Antoninus and Faustina](../places/sr/sr2/n0504_temple_of_antoninus_and_faustina/README.md) | 12412 | Passed | Passed | Passed | Passed | Yes |
+| N0505 | [Temple of Bel](../places/sy/sy5/n0505_temple_of_bel/README.md) | 10734 | Passed | Passed | Passed | Passed | Yes |
+| N0506 | [Temple of Portunus](../places/sr/sr2/n0506_temple_of_portunus/README.md) | 26740 | Passed | Passed | Passed | Passed | Yes |
+| N0507 | [Temple of Jupiter Optimus Maximus](../places/sr/sr2/n0507_temple_of_jupiter_optimus_maximus/README.md) | 9156 | Pending | Pending | Pending | Pending | Pending |
+| N0508 | [Dendera Temple complex](../places/ss/ssx/n0508_dendera_temple_complex/README.md) | 22832 | Passed | Passed | Passed | Passed | Yes |
+| N0509 | [Sarmizegetusa Regia](../places/u8/u80/n0509_sarmizegetusa_regia/README.md) | 11030 | Passed | Passed | Passed | Passed | Yes |
+| N0510 | [Banteay Srei](../places/w6/w63/n0510_banteay_srei/README.md) | 15110 | Passed | Passed | Passed | Passed | Yes |
+| N0511 | [Temple of Caesar](../places/sr/sr2/n0511_temple_of_caesar/README.md) | 2835 | Passed | Passed | Passed | Passed | Yes |
+| N0512 | [Templo Mayor](../places/9g/9g3/n0512_templo_mayor/README.md) | 4612 | Passed | Passed | Passed | Passed | Yes |
+| N0513 | [Baphuon](../places/w6/w63/n0513_baphuon/README.md) | 18148 | Passed | Passed | Passed | Passed | Yes |
+| N0514 | [Temple of Venus and Roma](../places/sr/sr2/n0514_temple_of_venus_and_roma/README.md) | 14228 | Passed | Passed | Passed | Passed | Yes |
+| N0515 | [Temple of Kom Ombo](../places/ss/ssr/n0515_temple_of_kom_ombo/README.md) | 10232 | Passed | Passed | Passed | Passed | Yes |
+| N0517 | [Temple of Peace](../places/sr/sr2/n0517_temple_of_peace/README.md) | 5236 | Passed | Passed | Passed | Passed | Yes |
+| N0518 | [Temple of Hercules Victor](../places/sr/sr2/n0518_temple_of_hercules_victor/README.md) | 19764 | Passed | Passed | Passed | Passed | Yes |
+| N0519 | [Temple of Concord](../places/sr/sr2/n0519_temple_of_concord/README.md) | 2836 | Passed | Passed | Passed | Passed | Yes |
+| N0520 | [Temple of Baalshamin](../places/sy/sy5/n0520_temple_of_baalshamin/README.md) | 8676 | Passed | Passed | Passed | Passed | Yes |
+| N0521 | [Dakshineswar Kali Temple](../places/tu/tun/n0521_dakshineswar_kali_temple/README.md) | 30742 | Passed | Passed | Passed | Passed | Yes |
+| N0522 | [Shrine of the Báb](../places/sv/svb/n0522_shrine_of_the_bab/README.md) | 24264 | Passed | Passed | Passed | Passed | Yes |
+| N0523 | [Serapeum of Alexandria](../places/st/stt/n0523_serapeum_of_alexandria/README.md) | 4586 | Passed | Passed | Passed | Passed | Yes |
+| N0524 | [Banteay Kdei](../places/w6/w63/n0524_banteay_kdei/README.md) | 17169 | Passed | Passed | Passed | Passed | Yes |
+| N0525 | [Temple of Vespasian and Titus](../places/sr/sr2/n0525_temple_of_vespasian_and_titus/README.md) | 7578 | Passed | Passed | Passed | Passed | Yes |
+| N0526 | [Serabit el-Khadim](../places/st/stp/n0526_serabit_el_khadim/README.md) | 3280 | Passed | Passed | Passed | Passed | Yes |
+| N0527 | [A-Ma Temple](../places/we/web/n0527_a_ma_temple/README.md) | 7824 | Passed | Passed | Passed | Passed | Yes |
+| N0528 | [Eanna](../places/tj/tj8/n0528_eanna/README.md) | 5472 | Passed | Passed | Passed | Passed | Yes |
+| N0529 | [Banteay Samré](../places/w6/w63/n0529_banteay_samre/README.md) | 16828 | Passed | Passed | Passed | Passed | Yes |
+| N0530 | [Baksei Chamkrong](../places/w6/w63/n0530_baksei_chamkrong/README.md) | 3948 | Passed | Passed | Passed | Passed | Yes |
+| N0531 | [Temple of Augustus in Ankara](../places/sx/sxp/n0531_temple_of_augustus_in_ankara/README.md) | 2148 | Passed | Passed | Passed | Passed | Yes |
+| N0532 | [Temple of Venus Genetrix](../places/sr/sr2/n0532_temple_of_venus_genetrix/README.md) | 12204 | Passed | Passed | Passed | Passed | Yes |
+| N0533 | [Temple of Earth](../places/wx/wx4/n0533_temple_of_earth/README.md) | 8436 | Passed | Passed | Passed | Passed | Yes |
+| N0535 | [Quba Mere Diwane](../places/sz/szp/n0535_quba_mere_diwane/README.md) | 4860 | Passed | Passed | Passed | Passed | Yes |
+| N0536 | [Temple of Augustus](../places/sr/src/n0536_temple_of_augustus/README.md) | 10732 | Passed | Passed | Passed | Passed | Yes |
+| N0537 | [Baidicheng](../places/wm/wmt/n0537_baidicheng/README.md) | 9446 | Passed | Passed | Passed | Passed | Yes |
+| N0538 | [Sukuh](../places/qq/qqx/n0538_sukuh/README.md) | 6868 | Passed | Passed | Passed | Passed | Yes |
+| N0539 | [Kapaleeshwarar Temple](../places/tf/tf3/n0539_kapaleeshwarar_temple/README.md) | 52892 | Passed | Passed | Passed | Passed | Yes |
+| N0540 | [Metekhi church](../places/sz/szr/n0540_metekhi_church/README.md) | 7865 | Passed | Passed | Passed | Passed | Yes |
+| N0541 | [Monastery of Santa Cruz](../places/ez/ez4/n0541_monastery_of_santa_cruz/README.md) | 11827 | Passed | Passed | Passed | Passed | Yes |
+| N0542 | [Chennakesava Temple at Somanathapura Mysore](../places/td/tdn/n0542_chennakesava_temple_at_somanathapura_mysore/README.md) | 63168 | Passed | Passed | Passed | Passed | Yes |
+| N0543 | [Po Nagar](../places/w6/w6j/n0543_po_nagar/README.md) | 7872 | Passed | Passed | Passed | Passed | Yes |
+| N0544 | [Dashavatara Temple, Deogarh](../places/ts/tsr/n0544_dashavatara_temple_deogarh/README.md) | 6760 | Passed | Passed | Passed | Passed | Yes |
+| N0545 | [Temple of Isis in Philae](../places/ss/ssr/n0545_temple_of_isis_in_philae/README.md) | 16948 | Passed | Passed | Passed | Passed | Yes |
+| N0546 | [Capela dos Ossos](../places/ey/eyf/n0546_capela_dos_ossos/README.md) | 54368 | Passed | Passed | Passed | Passed | Yes |
+| N0547 | [Temple of Apollo](../places/sr/sr4/n0547_temple_of_apollo/README.md) | 23850 | Passed | Passed | Passed | Passed | Yes |
+| N0548 | [Temple of Romulus](../places/sr/sr2/n0548_temple_of_romulus/README.md) | 11088 | Passed | Passed | Passed | Passed | Yes |
 | N0561 | [Galata Tower](../places/sx/sxk/n0561_galata_tower/README.md) | 121046 | Passed | Passed | Passed | Passed | Yes |
 | N0562 | [Maiden Tower](../places/tp/tp5/n0562_maiden_tower/README.md) | 85366 | Passed | Passed | Passed | Passed | Yes |
 | N0563 | [Azadi Tower](../places/tn/tnk/n0563_azadi_tower/README.md) | 162112 | Passed | Passed | Passed | Passed | Yes |

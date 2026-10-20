@@ -1,0 +1,321 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_standing_seam",
+      "roughness": 0.78,
+      "metallic": 0.42
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.64,
+      "metallic": 0.18
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kosice-cathedral-model.mjs",
+    "export": "buildKosiceCathedralSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKosiceCathedralDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.42
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.18
+          }
+        }
+      },
+      "street": {
+        "export": "buildKosiceCathedralStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.42
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.18
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKosiceCathedralCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.42
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.18
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      79,
+      60,
+      -86
+    ],
+    "lookAt": [
+      0,
+      22,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-kosice-cathedral-skyline",
+      "position": [
+        -94,
+        73,
+        -96
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-kosice-cathedral-district",
+      "position": [
+        -94,
+        73,
+        -96
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-kosice-cathedral-street",
+      "position": [
+        -94,
+        73,
+        -96
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-kosice-cathedral-closeup",
+      "position": [
+        -94,
+        73,
+        -96
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.2,
+    "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance and limits recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "ReviewedY=0 attachment convention,not exact host terrain contact.Standard viewer DEM datum213.023687 m; raw perimeter-0.30..0.81 m. Estimated floor0.45 m; footings crossY=0 and extend below samples. No flattening,host DEM changes or road replacement. Exact plaza/door joins,base clipping,absolute altitude and walking remain unverified. Separate St. Michael chapel,Urban tower,neighboring blocks and streets remain host content.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        21.25819725,
+        48.7202683
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum213.023687 m; raw perimeter-0.30..0.81 m. Estimated floor0.45 m; footings crossY=0 and extend below samples. No flattening,host DEM changes or road replacement. Exact plaza/door joins,base clipping,absolute altitude and walking remain unverified. Separate St. Michael chapel,Urban tower,neighboring blocks and streets remain host content."
+    },
+    "bounds": [
+      21.25,
+      48.714,
+      21.266,
+      48.726
+    ],
+    "notes": "Standard viewer DEM datum213.023687 m; raw perimeter-0.30..0.81 m. Estimated floor0.45 m; footings crossY=0 and extend below samples. No flattening,host DEM changes or road replacement. Exact plaza/door joins,base clipping,absolute altitude and walking remain unverified. Separate St. Michael chapel,Urban tower,neighboring blocks and streets remain host content."
+  },
+  "geographicNote": "Standard viewer DEM datum213.023687 m; raw perimeter-0.30..0.81 m. Estimated floor0.45 m; footings crossY=0 and extend below samples. No flattening,host DEM changes or road replacement. Exact plaza/door joins,base clipping,absolute altitude and walking remain unverified. Separate St. Michael chapel,Urban tower,neighboring blocks and streets remain host content.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

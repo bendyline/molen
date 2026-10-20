@@ -24,3 +24,11 @@ Accepted medium-fi exterior and approximate picture/PMTiles fitting. Preserve309
 
 - [Inspected picture 1](https://www.the-shard.com/media/ofbab4sg/layer-image-02.jpg?quality=95&rmode=crop&rxy=0%2C0&width=810) — actual pixels inspected; image not redistributed.
 - Standard viewer Protomaps20261008/Mapzen Terrarium PMTiles; controls/hashes retained in pmtiles-fit.json. ©OpenStreetMap contributors/ODbL, elevation attribution retained with the fit data.
+
+## Source binding maintenance — 550 checkpoint
+
+Exact prior input reconstructed using HEAD tower generator; only validation guard gained support for centerline/point frames. These three outlined frames and all six approved model files are unchanged. Existing visual acceptance is retained through byte-equivalent rebuilding; this is not a new visual review.
+
+Previous input: sha256:fc0800ab7cd3b75b39ad52dfb0d072913ea8aea60ae075e2171b09fedd1abce4
+
+Current input: sha256:2a39d51e640c8bfe9d81f3b6c0230d2ec5fd38764e34ca64d12bb3db6699ae55

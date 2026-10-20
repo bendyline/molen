@@ -1,0 +1,878 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0517_temple_of_peace",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:201192e0d66562c2c785f93ef7436265e0f98b58ad2792efd3c8783e3d6dec80",
+  "sourceHash": "sha256:2e30d2bd3fac28cef8a9ef4169991dd892ee1734103141de532a31374edcae15",
+  "runtimeHash": "sha256:dab320766607b1767f414ce4b8ce31a4958e9ba43bb832fdcd53ccf6b954bed0",
+  "captureReportHash": "sha256:fc2fbc2782f4c791e3e0b43a21c2d7cd665f5a90b750191215226e08ca83718f",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/plain-granite-shafts-and-white-step-bases.png",
+      "shots/roofless-court-traces-and-fallen-drums.png",
+      "shots/separate-low-mapped-eastern-relics.png"
+    ],
+    "notes": "Inspected current source, shared-material, medium-fi and retained-terrain site renders during the same authoring round. Seven individually mapped plain pink granite shafts, white moulded bases and broad steps, two low rectangular court traces, broken roofless wall cores, fallen drums and long shaft, pale paving fragments and eight small eastern mapped relics. Removed two unverified precinct pads after the first render; the intervening native terrain now remains intact. Skyline base profiles were simplified to stay within its triangle cap. No restored entablature or ancient temple roof is invented."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/plain-granite-shafts-and-white-step-bases.png",
+      "shots/shared/roofless-court-traces-and-fallen-drums.png",
+      "shots/shared/separate-low-mapped-eastern-relics.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Five reused 256² material graphs: granite, travertine, long-format brick, weathered limestone and gravel. Metric UVs and linear material tints; zero embedded images or unique atlas. Shared graphs load once, at most five model draws, separate GPU attribute streams and geometry disposal on eviction. Flat shared/context stages expose buried retaining foundations and are not proof of native grade.",
+    "captureReportHash": "sha256:00d32a6244a54b3f530f5ff4d4fbbede831c56529ff0b555682dc3e641dc6325"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/plain-granite-shafts-and-white-step-bases.png",
+      "medium-fi/roofless-court-traces-and-fallen-drums.png",
+      "medium-fi/separate-low-mapped-eastern-relics.png",
+      "medium-fi/peace-skyline.png",
+      "medium-fi/peace-district.png",
+      "medium-fi/peace-street.png",
+      "medium-fi/peace-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected 24 current medium-fi views: noon/late, Economy/High, street/block/skyline, untextured silhouette, three specific detail views, four authored levels and transitions. Levels 688 / 1,904 / 3,224 / 5,236 triangles. Initial geometry is 270,480 bytes. The seven-shaft row and stepped base remain legible at distance; mouldings, broken tops, drums and paving resolve nearer. Physical laptop/phone and dense-city timings remain pending.",
+    "captureReportHash": "sha256:55c52fe073b3f2f773bdfbc72bf3aa8a28498ad7d19c826d4e2dd1fc0bb73d30"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:8b239f3c3a7bc0cbd58a3f62013e5dc8f7b6ec9b19d3f6b7f43ad342c83ab52a",
+    "mapFrameHash": "sha256:ea3c574d17dab2fe50d4628b5a7ef719b60d408e69cc3fcb6d35b9683eb7c0d0",
+    "notes": "Q1456939/relation1841167 identifies three separated archaeological areas, not a solid building. Seven individual pinned PMTiles column footprints determine the standing row. Its own measured map axis controls the internal architecture, rather than applying the broad precinct bounding-box axis to every shaft. Eight small eastern mapped remnants are low fragment treatments. Native+X east/+Z south and runtime heading0. Only the visible western court has an authored ground surface. Other archaeological boundary polygons do not imply invented building masses or paved platforms. Later neighboring footprints stay independent. Reused pinned N0506 standard Rome PMTiles/Mapzen extract. Only the photographed western court receives a shallow visualization pavement above its local coarse grid, with buried retaining foundations and stepped colonnade. Unverified intervening/southeastern precinct surfaces stay native; eight eastern mapped remnants sit locally on the original terrain. No ground or water opening. Exact excavated depths and street retaining levels remain approximate. All 1,866 independent in-tile buildings remain unchanged. Fifteen mapped authored records are replaced to boundary remnants below 1e-7m². The native ground and original water geometry remain unchanged. Failed loading restores all 1,881 original records; unloading frees the model geometry. Later church and neighboring Forum remains stay independent procedural context."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted as a medium-fi present-day exposed exterior and approximate standard-map fit. Seven mapped column centers control the row; shaft heights, mouldings, exact damage, low court rectangles, stone inventories and relative excavation levels are picture-led visualization estimates. Only the photographed western court receives a ground treatment; unverified intervening precinct areas stay native. The eight small eastern mapped remnants use simplified low geometry. No historical intact temple, exact archaeological reconstruction, detailed inscriptions or navigable interior is claimed."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/sr2/n0517_temple_of_peace/models/source.glb\",\"hash\":\"sha256:2e30d2bd3fac28cef8a9ef4169991dd892ee1734103141de532a31374edcae15\",\"bytes\":631728,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0517_temple_of_peace/model.glb\",\"hash\":\"sha256:dab320766607b1767f414ce4b8ce31a4958e9ba43bb832fdcd53ccf6b954bed0\",\"bytes\":631172,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0517_temple_of_peace/model.skyline.glb\",\"hash\":\"sha256:947940ef74966d8f28b4c95a2abc808e73a3bf11a8ad580cad1447f095fafbc7\",\"bytes\":71080,\"errors\":0,\"warnings\":0,\"triangles\":688,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0517_temple_of_peace/model.district.glb\",\"hash\":\"sha256:21ced750fa76b9617ebb5daecb31211c54dd16f623984fcd424b70c83311bb0f\",\"bytes\":199400,\"errors\":0,\"warnings\":0,\"triangles\":1904,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0517_temple_of_peace/model.street.glb\",\"hash\":\"sha256:d519cb89df835a7c513ecca98290d1cc3251ef46f91d4859f79952a33259da8d\",\"bytes\":339916,\"errors\":0,\"warnings\":0,\"triangles\":3224,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0517_temple_of_peace/model.closeup.glb\",\"hash\":\"sha256:608ee8d78106a58a0ac9605a6ebefbd7539ca63a9c9d689a5766dcdbc7d55fb8\",\"bytes\":555680,\"errors\":0,\"warnings\":0,\"triangles\":5236,\"draws\":5}"
+      },
+      {
+        "check": "seated-pavement-seven-shafts-and-no-invented-entablature",
+        "passed": true,
+        "notes": "1,488 actual mesh probes across source/runtime/four levels confirm sealed western pavement above native grade, buried foundations, all seven mapped shafts and open row gaps."
+      },
+      {
+        "check": "shared-materials-GPU-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Five shared graphs, zero embedded images, separate GPU streams, triangle/draw/download caps pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:2e30d2bd3fac28cef8a9ef4169991dd892ee1734103141de532a31374edcae15"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:dab320766607b1767f414ce4b8ce31a4958e9ba43bb832fdcd53ccf6b954bed0"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:947940ef74966d8f28b4c95a2abc808e73a3bf11a8ad580cad1447f095fafbc7"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:21ced750fa76b9617ebb5daecb31211c54dd16f623984fcd424b70c83311bb0f"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:d519cb89df835a7c513ecca98290d1cc3251ef46f91d4859f79952a33259da8d"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:608ee8d78106a58a0ac9605a6ebefbd7539ca63a9c9d689a5766dcdbc7d55fb8"
+      }
+    ],
+    "reports": [
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1881,
+          "independentBuildings": 1866,
+          "remainingBuildings": 1881,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185367502347,
+              "area": 1.5347723092418164e-10
+            },
+            {
+              "id": 35185367502363,
+              "area": 2.0463630789890885e-10
+            },
+            {
+              "id": 35185367502364,
+              "area": 1.7905676941154525e-10
+            },
+            {
+              "id": 35185367502365,
+              "area": 1.7905676941154525e-10
+            },
+            {
+              "id": 35185367502366,
+              "area": 3.836930773104541e-10
+            },
+            {
+              "id": 35185367502367,
+              "area": 2.3021584638627246e-10
+            },
+            {
+              "id": 35185367502368,
+              "area": 7.673861546209082e-11
+            },
+            {
+              "id": 35185367502369,
+              "area": 3.581135388230905e-10
+            },
+            {
+              "id": 35185367502530,
+              "area": 6.394884621840902e-11
+            },
+            {
+              "id": 35185367502531,
+              "area": 1.9184653865522705e-10
+            },
+            {
+              "id": 35185367502532,
+              "area": 7.673861546209082e-11
+            },
+            {
+              "id": 35185367502533,
+              "area": 1.0231815394945443e-10
+            },
+            {
+              "id": 35185367502534,
+              "area": 2.5579538487363607e-10
+            },
+            {
+              "id": 35185367502535,
+              "area": 3.836930773104541e-11
+            },
+            {
+              "id": 35185367502536,
+              "area": 7.673861546209082e-11
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.gravel": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.stone_travertine": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0517_temple_of_peace"
+          ],
+          "rawTerrainRange": {
+            "min": -6.84207439842314,
+            "max": 31.787825601576856
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 126604.31862649776,
+          "remainingWaterArea": 126604.31862649776,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:1cd5c84e295456cb711f480cbdc85327ac76d8d3c0d8d23a42f522e2f580b5ac",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 305193
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                3.031782070724894,
+                41.49449729563655,
+                -28.181496547409708
+              ],
+              "lookAt": [
+                -67.25506929106518,
+                -0.5055027043634519,
+                -27.31056276942799
+              ],
+              "fov": 44
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-plain-granite-shafts-and-white-step-bases.png",
+            "hash": "sha256:774dad13cf5a07f8287552b44a07cd815c37d95ac3adab1aee1677cfd5609c1e",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 305193
+            },
+            "camera": {
+              "name": "plain-granite-shafts-and-white-step-bases",
+              "position": [
+                -43.72934841735941,
+                1.494497295636548,
+                -19.79122387744522
+              ],
+              "lookAt": [
+                -69.53576021609705,
+                1.494497295636548,
+                -25.361601788680225
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-roofless-court-traces-and-fallen-drums.png",
+            "hash": "sha256:8be05a90c41b6b4017f43f10301da0865693a19a4736a0e602c61480ca1b2d7d",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 305193
+            },
+            "camera": {
+              "name": "roofless-court-traces-and-fallen-drums",
+              "position": [
+                -64.93295968107644,
+                12.494497295636549,
+                -56.91812610988541
+              ],
+              "lookAt": [
+                -66.27368568653182,
+                -1.505502704363452,
+                -30.779984366863665
+              ],
+              "fov": 50
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-separate-low-mapped-eastern-relics.png",
+            "hash": "sha256:9e85ab72daac45ce1d6897dee1d9688496944eacbd1ad7d5cc1b93546fa76324",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 305193
+            },
+            "camera": {
+              "name": "separate-low-mapped-eastern-relics",
+              "position": [
+                55.48189630688401,
+                23,
+                47.17407513307279
+              ],
+              "lookAt": [
+                30.48189630688401,
+                4,
+                21.174075133072787
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1881,
+          "independentBuildings": 1866,
+          "remainingBuildings": 1881,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185367502347,
+              "area": 1.5347723092418164e-10
+            },
+            {
+              "id": 35185367502363,
+              "area": 2.0463630789890885e-10
+            },
+            {
+              "id": 35185367502364,
+              "area": 1.7905676941154525e-10
+            },
+            {
+              "id": 35185367502365,
+              "area": 1.7905676941154525e-10
+            },
+            {
+              "id": 35185367502366,
+              "area": 3.836930773104541e-10
+            },
+            {
+              "id": 35185367502367,
+              "area": 2.3021584638627246e-10
+            },
+            {
+              "id": 35185367502368,
+              "area": 7.673861546209082e-11
+            },
+            {
+              "id": 35185367502369,
+              "area": 3.581135388230905e-10
+            },
+            {
+              "id": 35185367502530,
+              "area": 6.394884621840902e-11
+            },
+            {
+              "id": 35185367502531,
+              "area": 1.9184653865522705e-10
+            },
+            {
+              "id": 35185367502532,
+              "area": 7.673861546209082e-11
+            },
+            {
+              "id": 35185367502533,
+              "area": 1.0231815394945443e-10
+            },
+            {
+              "id": 35185367502534,
+              "area": 2.5579538487363607e-10
+            },
+            {
+              "id": 35185367502535,
+              "area": 3.836930773104541e-11
+            },
+            {
+              "id": 35185367502536,
+              "area": 7.673861546209082e-11
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.gravel": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.stone_travertine": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0517_temple_of_peace"
+          ],
+          "rawTerrainRange": {
+            "min": -6.84207439842314,
+            "max": 31.787825601576856
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 126604.31862649776,
+          "remainingWaterArea": 126604.31862649776,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:3a357562e997d845594559132d6ddd77365e455319eaa7b7b1d15862106f66f4",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 303181
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                3.031782070724894,
+                41.49449729563655,
+                -28.181496547409708
+              ],
+              "lookAt": [
+                -67.25506929106518,
+                -0.5055027043634519,
+                -27.31056276942799
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1881,
+          "independentBuildings": 1866,
+          "remainingBuildings": 1881,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185367502347,
+              "area": 1.5347723092418164e-10
+            },
+            {
+              "id": 35185367502363,
+              "area": 2.0463630789890885e-10
+            },
+            {
+              "id": 35185367502364,
+              "area": 1.7905676941154525e-10
+            },
+            {
+              "id": 35185367502365,
+              "area": 1.7905676941154525e-10
+            },
+            {
+              "id": 35185367502366,
+              "area": 3.836930773104541e-10
+            },
+            {
+              "id": 35185367502367,
+              "area": 2.3021584638627246e-10
+            },
+            {
+              "id": 35185367502368,
+              "area": 7.673861546209082e-11
+            },
+            {
+              "id": 35185367502369,
+              "area": 3.581135388230905e-10
+            },
+            {
+              "id": 35185367502530,
+              "area": 6.394884621840902e-11
+            },
+            {
+              "id": 35185367502531,
+              "area": 1.9184653865522705e-10
+            },
+            {
+              "id": 35185367502532,
+              "area": 7.673861546209082e-11
+            },
+            {
+              "id": 35185367502533,
+              "area": 1.0231815394945443e-10
+            },
+            {
+              "id": 35185367502534,
+              "area": 2.5579538487363607e-10
+            },
+            {
+              "id": 35185367502535,
+              "area": 3.836930773104541e-11
+            },
+            {
+              "id": 35185367502536,
+              "area": 7.673861546209082e-11
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.gravel": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.stone_travertine": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0517_temple_of_peace"
+          ],
+          "rawTerrainRange": {
+            "min": -6.84207439842314,
+            "max": 31.787825601576856
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 126604.31862649776,
+          "remainingWaterArea": 126604.31862649776,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:4e486a6b4bc8f982fe63fd53010fc347a77f1e28d0a233dd175a7cc49558061b",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 301861
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                3.031782070724894,
+                41.49449729563655,
+                -28.181496547409708
+              ],
+              "lookAt": [
+                -67.25506929106518,
+                -0.5055027043634519,
+                -27.31056276942799
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1881,
+          "independentBuildings": 1866,
+          "remainingBuildings": 1881,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185367502347,
+              "area": 1.5347723092418164e-10
+            },
+            {
+              "id": 35185367502363,
+              "area": 2.0463630789890885e-10
+            },
+            {
+              "id": 35185367502364,
+              "area": 1.7905676941154525e-10
+            },
+            {
+              "id": 35185367502365,
+              "area": 1.7905676941154525e-10
+            },
+            {
+              "id": 35185367502366,
+              "area": 3.836930773104541e-10
+            },
+            {
+              "id": 35185367502367,
+              "area": 2.3021584638627246e-10
+            },
+            {
+              "id": 35185367502368,
+              "area": 7.673861546209082e-11
+            },
+            {
+              "id": 35185367502369,
+              "area": 3.581135388230905e-10
+            },
+            {
+              "id": 35185367502530,
+              "area": 6.394884621840902e-11
+            },
+            {
+              "id": 35185367502531,
+              "area": 1.9184653865522705e-10
+            },
+            {
+              "id": 35185367502532,
+              "area": 7.673861546209082e-11
+            },
+            {
+              "id": 35185367502533,
+              "area": 1.0231815394945443e-10
+            },
+            {
+              "id": 35185367502534,
+              "area": 2.5579538487363607e-10
+            },
+            {
+              "id": 35185367502535,
+              "area": 3.836930773104541e-11
+            },
+            {
+              "id": 35185367502536,
+              "area": 7.673861546209082e-11
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0517_temple_of_peace"
+          ],
+          "rawTerrainRange": {
+            "min": -6.84207439842314,
+            "max": 31.787825601576856
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 126604.31862649776,
+          "remainingWaterArea": 126604.31862649776,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:9b3b398223a82d60fac6441e76b873be6cf966ebfda1d674f23642bcd349bbf9",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 300645
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                3.031782070724894,
+                41.49449729563655,
+                -28.181496547409708
+              ],
+              "lookAt": [
+                -67.25506929106518,
+                -0.5055027043634519,
+                -27.31056276942799
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 1881,
+          "independentBuildings": 1866,
+          "remainingBuildings": 1881,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185367502347,
+              "area": 12.547956784345615
+            },
+            {
+              "id": 35185367502363,
+              "area": 2.3218638044284035
+            },
+            {
+              "id": 35185367502364,
+              "area": 2.3218609785033095
+            },
+            {
+              "id": 35185367502365,
+              "area": 2.3712629436715815
+            },
+            {
+              "id": 35185367502366,
+              "area": 2.3712670898333954
+            },
+            {
+              "id": 35185367502367,
+              "area": 2.371264199575762
+            },
+            {
+              "id": 35185367502368,
+              "area": 2.519469057139645
+            },
+            {
+              "id": 35185367502369,
+              "area": 2.3218638441534267
+            },
+            {
+              "id": 35185367502530,
+              "area": 0.4446098089758266
+            },
+            {
+              "id": 35185367502531,
+              "area": 0.5434117484824696
+            },
+            {
+              "id": 35185367502532,
+              "area": 0.3952083733423706
+            },
+            {
+              "id": 35185367502533,
+              "area": 0.5187107514842637
+            },
+            {
+              "id": 35185367502534,
+              "area": 0.51871054051702
+            },
+            {
+              "id": 35185367502535,
+              "area": 0.4940098304444973
+            },
+            {
+              "id": 35185367502536,
+              "area": 0.49400963073225057
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0517_temple_of_peace"
+          ],
+          "rawTerrainRange": {
+            "min": -6.84207439842314,
+            "max": 31.787825601576856
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 126604.31862649776,
+          "remainingWaterArea": 126604.31862649776,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:e68d432bfed50e4f7f7f260d0a510db990c3737b60cd78ee5b3c469c3227fa16",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 9,
+              "triangles": 299969
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                3.031782070724894,
+                41.49449729563655,
+                -28.181496547409708
+              ],
+              "lookAt": [
+                -67.25506929106518,
+                -0.5055027043634519,
+                -27.31056276942799
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Temple of Peace present-day visible ruins: seven mapped re-erected plain pink granite shafts on white stepped bases/stylobate, roofless low brick/concrete court traces, fallen drums and fragments, patchy paving in the exposed western court, and eight low mapped eastern relics. The intervening native terrain is preserved. Keep the independent Santi Cosma e Damiano church, later structures, Basilica of Maxentius, Nerva and neighboring Roman Forum. No intact Roman roof, entablature or lost superstructure is reconstructed.",
+    "Q1456939/relation1841167 identifies three separated archaeological areas, not a solid building. Seven individual pinned PMTiles column footprints determine the standing row. Its own measured map axis controls the internal architecture, rather than applying the broad precinct bounding-box axis to every shaft. Eight small eastern mapped remnants are low fragment treatments. Native+X east/+Z south and runtime heading0. Only the visible western court has an authored ground surface. Other archaeological boundary polygons do not imply invented building masses or paved platforms. Later neighboring footprints stay independent.",
+    "Two ordinary current-state photographs guide approximate shafts6.8m tall above the white bases, a1.35m stepped stylobate and low0.35–2.2m broken walls. No capitals/entablature are invented. Fallen drums, paving patches, low court rectangles, small fragment height and erosion are picture-led visualization estimates, not surveyed inventories.",
+    "Reused pinned N0506 standard Rome PMTiles/Mapzen extract. Only the photographed western court receives a shallow visualization pavement above its local coarse grid, with buried retaining foundations and stepped colonnade. Unverified intervening/southeastern precinct surfaces stay native; eight eastern mapped remnants sit locally on the original terrain. No ground or water opening. Exact excavated depths and street retaining levels remain approximate.",
+    "Mapped column centers and low eastern relics retain approximate placement. Court traces, fragments, erosion and exact excavated levels are picture-led estimates. The independent church and neighboring Forum monuments remain separate; no intact ancient temple or navigable interior is claimed.",
+    "Accepted as a medium-fi present-day exposed exterior and approximate standard-map fit. Seven mapped column centers control the row; shaft heights, mouldings, exact damage, low court rectangles, stone inventories and relative excavation levels are picture-led visualization estimates. Only the photographed western court receives a ground treatment; unverified intervening precinct areas stay native. The eight small eastern mapped remnants use simplified low geometry. No historical intact temple, exact archaeological reconstruction, detailed inscriptions or navigable interior is claimed."
+  ]
+}

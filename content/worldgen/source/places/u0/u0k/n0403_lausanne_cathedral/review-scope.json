@@ -1,0 +1,326 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.84,
+      "metallic": 0.15
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/lausanne-cathedral-model.mjs",
+    "export": "buildLausanneSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLausanneDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildLausanneStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildLausanneCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -117,
+      94,
+      121
+    ],
+    "lookAt": [
+      0,
+      31,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-lausanne-skyline",
+      "position": [
+        -117,
+        94,
+        121
+      ],
+      "lookAt": [
+        0,
+        31,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-lausanne-district",
+      "position": [
+        -117,
+        94,
+        121
+      ],
+      "lookAt": [
+        0,
+        31,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-lausanne-street",
+      "position": [
+        -117,
+        94,
+        121
+      ],
+      "lookAt": [
+        0,
+        31,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-lausanne-closeup",
+      "position": [
+        -117,
+        94,
+        121
+      ],
+      "lookAt": [
+        0,
+        31,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 2,
+    "neighborStyle": "molen.worldgen.catalog.swiss_chalet",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior; current acceptance recorded separately in QA.",
+    "anchor": [
+      6.635364655,
+      46.522599639
+    ],
+    "heading": -0.121409763039,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 attachment convention, not exact host-ground contact. Standard viewer DEM datum 532.855765 m; selected raw perimeter -5.17 to 0.35 m. Floor 0.5 m, adaptive footings cross Y=0 and extend below retained samples. No ground cutout or flattening. Exact hilltop terrace, west parvis, south steps, threshold/base joins, absolute altitude and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        6.635364655,
+        46.522599639
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 532.855765 m; selected raw perimeter -5.17 to 0.35 m. Floor 0.5 m, adaptive footings cross Y=0 and extend below retained samples. No ground cutout or flattening. Exact hilltop terrace, west parvis, south steps, threshold/base joins, absolute altitude and walking remain unverified."
+    },
+    "bounds": [
+      6.627,
+      46.516,
+      6.644,
+      46.529
+    ],
+    "notes": "Exact retained way/25718547 and Q669544 identify Cathédrale Notre-Dame de Lausanne, current standard viewer PMTiles whole 35184397807379 and same-ID POI. Preserve its 56 raw outline points/properties and earlier whole/tags. Anchor [6.635364655,46.522599639] and heading -0.121409763039 rad unchanged. Native +X faces the eastern rounded choir, -X the west Montfalcon entrance; +Z faces the south rose/painted porch and western beffroi. No horizontal rescale. The long nave, southern porch projection, western block and eastern transept/apse constrain estimated detailed plans. Neighboring episcopal/town buildings and streets remain host content. Standard viewer DEM datum 532.855765 m; selected raw perimeter -5.17 to 0.35 m. Floor 0.5 m, adaptive footings cross Y=0 and extend below retained samples. No ground cutout or flattening. Exact hilltop terrace, west parvis, south steps, threshold/base joins, absolute altitude and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum 532.855765 m; selected raw perimeter -5.17 to 0.35 m. Floor 0.5 m, adaptive footings cross Y=0 and extend below retained samples. No ground cutout or flattening. Exact hilltop terrace, west parvis, south steps, threshold/base joins, absolute altitude and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

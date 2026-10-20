@@ -1,0 +1,592 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0521_dakshineswar_kali_temple",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:b573713f1883aa2b3c991eef1c3c0234622c2692304ed801c494c10649f5a999",
+  "sourceHash": "sha256:742761bdce090ef12fe86268c35a915431ee16ba55f13d8631359b593d0c37f7",
+  "runtimeHash": "sha256:035b2a1050379454a9b7d377895ebf1ea2748615b53e2ccfc6bd60eb0525fe3c",
+  "captureReportHash": "sha256:afbbcb384f33929414a3f0fe3029019511028b48725b3758f46d572c01f2e18d",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/navaratna-nine-spires-bowed-cornices-and-red-trim.png",
+      "shots/five-bay-recesses-platform-and-south-approach.png",
+      "shots/twelve-riverfront-shrines-and-open-courtyard.png"
+    ],
+    "notes": "Inspected current source, shared-material, medium-fi and retained-terrain renders during this same authoring round. Specific nine-spire Navaratna main shrine with four lower/four upper/one central crown, bowed cornices, cream/red facades, five recessed arch bays, raised platform and south steps; separate southern Natmandir and northern shrine; twelve red double-curved-roof riverfront shrines in two rows around an open passage; low mapped boundary wings. Closed an observed cornice-underside gap, added the missing red panel/frieze rhythm, separated the west shrine row from boundary wings and widened the main-spire review camera. The native broad shell is replaced with an open compound. Unique LOD camera filenames prevent overwritten images. Refined the skyline cornice to retain its bowed silhouette. Unchanged master/source/shared views were carried forward only after checking all other spec/scope fields, master and other-level GLB hashes, camera poses and every retained image hash. The affected level views were captured again."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/navaratna-nine-spires-bowed-cornices-and-red-trim.png",
+      "shots/shared/five-bay-recesses-platform-and-south-approach.png",
+      "shots/shared/twelve-riverfront-shrines-and-open-courtyard.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Three reused 256-square graphs: lime plaster, raw limestone and painted metal. Cream/red roles share the same plaster texture with linear palette tints. Metric UVs, no embedded images or unique atlas, one read per graph, at most four model draws, separate GPU streams and geometry disposal on eviction. Flat/shared stages show buried bases and do not prove terrain contact; the native-grid fixture supplies that check.",
+    "captureReportHash": "sha256:882f69a7b78e03da67483e11440a9b7e11fb66e7da7d8d94b44304a59705924e"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/navaratna-nine-spires-bowed-cornices-and-red-trim.png",
+      "medium-fi/five-bay-recesses-platform-and-south-approach.png",
+      "medium-fi/twelve-riverfront-shrines-and-open-courtyard.png",
+      "medium-fi/dakshineswar-skyline.png",
+      "medium-fi/dakshineswar-district.png",
+      "medium-fi/dakshineswar-street.png",
+      "medium-fi/dakshineswar-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected 24 current medium-fi views: noon/late, Economy/High, street/block/skyline, silhouette, three details, four explicit levels and transitions. Levels 876 / 3,623 / 12,814 / 30,742 triangles. Initial skyline-plus-district geometry 458,540 bytes. All nine main spires, twelve subordinate shrines and open layout remain at distance; crowns, real recess depth, red panel rhythm and small rails resolve nearer. Physical laptop/phone and dense-city timings remain pending.",
+    "captureReportHash": "sha256:f95cd0eb000622063aaee4c3e80a0ca8425bbb17e8c9dcb5a58de511f37d146f"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:e791e61f3e09a5f8bc38065d4d1cc670c637a198af04aab48a509fea3922e226",
+    "mapFrameHash": "sha256:dbbfb9d1d10c270a730ca401c886dde9107fe1b54e4e93200a8890ce689958f6",
+    "notes": "Q1157765 and way291865633 identify the mapped compound. Standard PMTiles record35184663954465 supplies its precise irregular outer outline; it currently has no courtyard holes or individual temple plans. Replace that one broad native shell with an open compound. Align local east/south about6degrees to the mapped walls. Main-shrine, Natmandir, northern shrine and twelve riverfront-shrine centers/dimensions are explicit picture-led subdivisions inside the boundary, not surveyed footprints. The south-facing main approach and western riverfront give signed orientation. Preserve every independent surrounding map record. Pinned standard Protomaps2026-10-14 and Mapzen13–14 terrain. Retain the original six-meter native grid and water. Each principal building has a locally sampled level datum and buried base; the main floor is raised about2.2m. Low boundary wings follow coarse native grade with buried bottoms. No terrain/water cutout or river surface is authored. The DEM does not resolve historic courtyard paving/ghat levels; exact thresholds and embankment engineering are approximate. The single native compound record is replaced to a boundary residue below 1e-7 square meters; all 408 independent in-tile buildings are byte-identical. Native ground and original Hooghly/pond water geometry stay unchanged. Failed loading restores all 409 original buildings; eviction releases all model geometry. Grass/ground and water classes in the fixture are host context: this model does not repaint the whole court, add the ghat embankment or reconstruct landscaping."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Dakshineswar Kali Temple medium-fi compound: the specific cream/red nine-spired Navaratna main shrine with four lower/four upper/one central ridged spires, strongly bowed cornices, five-bay recessed arches, raised platform and south approach; a separate southern Natmandir hall and northern shrine, twelve small red double-curved-roof Shiva shrines along the riverfront split around the central passage, and mapped low courtyard boundary wings. Keep the court open and the Hooghly outside the asset; no large solid compound extrusion. Q1157765 and way291865633 identify the mapped compound. Standard PMTiles record35184663954465 supplies its precise irregular outer outline; it currently has no courtyard holes or individual temple plans. Replace that one broad native shell with an open compound. Align local east/south about6degrees to the mapped walls. Main-shrine, Natmandir, northern shrine and twelve riverfront-shrine centers/dimensions are explicit picture-led subdivisions inside the boundary, not surveyed footprints. The south-facing main approach and western riverfront give signed orientation. Preserve every independent surrounding map record. Daylight pictures guide the main three diminishing bowed stages, four-plus-four-plus-one spire silhouette, cream plaster/red pilasters, ribbed conical-curved crowns, five-bay arcades, plinth and shallow stairs. Main total height is estimated about31m above its approach, with subordinate hall about7m and small riverfront shrines about7m. Fine mouldings, rib counts, sculpture, inscriptions, exact balcony/door patterns and hidden interiors remain simplified; later restoration paint is not independently certified. Pinned standard Protomaps2026-10-14 and Mapzen13–14 terrain. Retain the original six-meter native grid and water. Each principal building has a locally sampled level datum and buried base; the main floor is raised about2.2m. Low boundary wings follow coarse native grade with buried bottoms. No terrain/water cutout or river surface is authored. The DEM does not resolve historic courtyard paving/ghat levels; exact thresholds and embankment engineering are approximate. Accepted for medium-fi exterior and approximate standard-map fit. The large outer outline is mapped; all internal positions/dimensions and facade motifs remain picture-led estimates. Recesses have opaque backs and closed floors; no navigable/furnished interior, idols or exact sacred iconography is modeled. Courtyard paving, landscaping, river ghat and exact current repair/paint are not authored. Context buildings remain native procedural shells."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/tu/tun/n0521_dakshineswar_kali_temple/models/source.glb\",\"hash\":\"sha256:742761bdce090ef12fe86268c35a915431ee16ba55f13d8631359b593d0c37f7\",\"bytes\":3692008,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/tu/tun/n0521_dakshineswar_kali_temple/model.glb\",\"hash\":\"sha256:035b2a1050379454a9b7d377895ebf1ea2748615b53e2ccfc6bd60eb0525fe3c\",\"bytes\":3691568,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/tu/tun/n0521_dakshineswar_kali_temple/model.skyline.glb\",\"hash\":\"sha256:98d3066f2d42879654f8695e2a409ccd930915be9581623e759075dcba0206fa\",\"bytes\":94172,\"errors\":0,\"warnings\":0,\"triangles\":876,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/tu/tun/n0521_dakshineswar_kali_temple/model.district.glb\",\"hash\":\"sha256:89ee9e85810fc908871d30bdb3015d90999539a93f89486e5589694efa66926b\",\"bytes\":364368,\"errors\":0,\"warnings\":0,\"triangles\":3623,\"draws\":4}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/tu/tun/n0521_dakshineswar_kali_temple/model.street.glb\",\"hash\":\"sha256:dd29c37be3c11b0e20071c72e1fbbb54d1aaebc65e9a9458b97a48ef6cdadefb\",\"bytes\":1243996,\"errors\":0,\"warnings\":0,\"triangles\":12814,\"draws\":4}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/tu/tun/n0521_dakshineswar_kali_temple/model.closeup.glb\",\"hash\":\"sha256:6efd69ee19cd79c0b405b13c74f0798901db639e4935709b5ee0bd1d2129476a\",\"bytes\":2860884,\"errors\":0,\"warnings\":0,\"triangles\":30742,\"draws\":4}"
+      },
+      {
+        "check": "raised-podium-nine-spires-twelve-shrines-deep-recesses-sealed-cornice-open-court",
+        "passed": true,
+        "notes": "336 actual mesh probes across source/runtime/four levels confirm sealed raised podium/buried bases, all nine crowns, twelve separate shrines, both halls, entrance depth/backs, closed cornice underside and open courtyard/passage."
+      },
+      {
+        "check": "shared-materials-GPU-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Three shared graphs, zero embedded images, separate GPU streams, triangle/draw/download caps pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:742761bdce090ef12fe86268c35a915431ee16ba55f13d8631359b593d0c37f7"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:035b2a1050379454a9b7d377895ebf1ea2748615b53e2ccfc6bd60eb0525fe3c"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:98d3066f2d42879654f8695e2a409ccd930915be9581623e759075dcba0206fa"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:89ee9e85810fc908871d30bdb3015d90999539a93f89486e5589694efa66926b"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:dd29c37be3c11b0e20071c72e1fbbb54d1aaebc65e9a9458b97a48ef6cdadefb"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:6efd69ee19cd79c0b405b13c74f0798901db639e4935709b5ee0bd1d2129476a"
+      }
+    ],
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 409,
+          "independentBuildings": 408,
+          "remainingBuildings": 409,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184663954465,
+              "area": 5.0609116897248896e-8
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0521_dakshineswar_kali_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -7.019150070846081,
+            "max": 9.002849929153918
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 1873662.6025418495,
+          "remainingWaterArea": 1873662.6025418495,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/lod-correction-skyline-whole-site.png",
+            "hash": "sha256:e0b94e55a11120cc22d6c18cafe88e303ce84276e513344ba746b89e1e38b65b",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 196762
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -95.0355997727778,
+                77,
+                147.77426966772123
+              ],
+              "lookAt": [
+                -21.19641424195332,
+                8,
+                18.322445887040256
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 409,
+          "independentBuildings": 408,
+          "remainingBuildings": 409,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184663954465,
+              "area": 5.0609116897248896e-8
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0521_dakshineswar_kali_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -7.019150070846081,
+            "max": 9.002849929153918
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 1873662.6025418495,
+          "remainingWaterArea": 1873662.6025418495,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:995d97456ca56ea3130befbc23339e81b16dc8ad7b4a62ac732448619d3a97d8",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 199509
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -95.0355997727778,
+                77,
+                147.77426966772123
+              ],
+              "lookAt": [
+                -21.19641424195332,
+                8,
+                18.322445887040256
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 409,
+          "independentBuildings": 408,
+          "remainingBuildings": 409,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184663954465,
+              "area": 5.0609116897248896e-8
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0521_dakshineswar_kali_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -7.019150070846081,
+            "max": 9.002849929153918
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 1873662.6025418495,
+          "remainingWaterArea": 1873662.6025418495,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:96e9736299198040db3909ebb3855ad6053f378c80f9ada584667c0ec6c3e51c",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 208700
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -95.0355997727778,
+                77,
+                147.77426966772123
+              ],
+              "lookAt": [
+                -21.19641424195332,
+                8,
+                18.322445887040256
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 409,
+          "independentBuildings": 408,
+          "remainingBuildings": 409,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184663954465,
+              "area": 5.0609116897248896e-8
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0521_dakshineswar_kali_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -7.019150070846081,
+            "max": 9.002849929153918
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 1873662.6025418495,
+          "remainingWaterArea": 1873662.6025418495,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:72d36c780365fa601d7a36494c07f2cbabb50fdc1925f69c867a3155022c3007",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 226628
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -95.0355997727778,
+                77,
+                147.77426966772123
+              ],
+              "lookAt": [
+                -21.19641424195332,
+                8,
+                18.322445887040256
+              ],
+              "fov": 43
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-navaratna-nine-spires-bowed-cornices-and-red-trim.png",
+            "hash": "sha256:d72f2627950126b87e8cd8bc09d68a020da635d00b5cd39727dbda5b4f2ea67f",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 226628
+            },
+            "camera": {
+              "name": "navaratna-nine-spires-bowed-cornices-and-red-trim",
+              "position": [
+                -41.92237176530256,
+                20.18004992915392,
+                31.56762179150914
+              ],
+              "lookAt": [
+                -14.23731738496561,
+                15.48004992915392,
+                -1.5161773246411376
+              ],
+              "fov": 49
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-five-bay-recesses-platform-and-south-approach.png",
+            "hash": "sha256:5c8b78cf37e1a356f6fc45a4a59cc072bbb07414a585f262d91d6f7ddf693171",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 226628
+            },
+            "camera": {
+              "name": "five-bay-recesses-platform-and-south-approach",
+              "position": [
+                -26.27368422452469,
+                6.180049929153919,
+                17.85198916843617
+              ],
+              "lookAt": [
+                -13.39886003433455,
+                4.180049929153919,
+                6.439763177346841
+              ],
+              "fov": 49
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-twelve-riverfront-shrines-and-open-courtyard.png",
+            "hash": "sha256:060baa0e4c3121ba0f0ec0a7e07f6f468a40c06484c16d3a5dc935f6c5d5d5c6",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 226628
+            },
+            "camera": {
+              "name": "twelve-riverfront-shrines-and-open-courtyard",
+              "position": [
+                -90.70608646551925,
+                28,
+                26.653440267810524
+              ],
+              "lookAt": [
+                -26.064069886866925,
+                6,
+                19.840974293933165
+              ],
+              "fov": 58
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 409,
+          "independentBuildings": 408,
+          "remainingBuildings": 409,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184663954465,
+              "area": 7969.609192288649
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0521_dakshineswar_kali_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -7.019150070846081,
+            "max": 9.002849929153918
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 1873662.6025418495,
+          "remainingWaterArea": 1873662.6025418495,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:241054906e59d2afa63a4a565c1a76df1303b2163fca028a9e207ca34fe557ba",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 9,
+              "triangles": 195900
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -95.0355997727778,
+                77,
+                147.77426966772123
+              ],
+              "lookAt": [
+                -21.19641424195332,
+                8,
+                18.322445887040256
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Dakshineswar Kali Temple medium-fi compound: the specific cream/red nine-spired Navaratna main shrine with four lower/four upper/one central ridged spires, strongly bowed cornices, five-bay recessed arches, raised platform and south approach; a separate southern Natmandir hall and northern shrine, twelve small red double-curved-roof Shiva shrines along the riverfront split around the central passage, and mapped low courtyard boundary wings. Keep the court open and the Hooghly outside the asset; no large solid compound extrusion.",
+    "Q1157765 and way291865633 identify the mapped compound. Standard PMTiles record35184663954465 supplies its precise irregular outer outline; it currently has no courtyard holes or individual temple plans. Replace that one broad native shell with an open compound. Align local east/south about6degrees to the mapped walls. Main-shrine, Natmandir, northern shrine and twelve riverfront-shrine centers/dimensions are explicit picture-led subdivisions inside the boundary, not surveyed footprints. The south-facing main approach and western riverfront give signed orientation. Preserve every independent surrounding map record.",
+    "Daylight pictures guide the main three diminishing bowed stages, four-plus-four-plus-one spire silhouette, cream plaster/red pilasters, ribbed conical-curved crowns, five-bay arcades, plinth and shallow stairs. Main total height is estimated about31m above its approach, with subordinate hall about7m and small riverfront shrines about7m. Fine mouldings, rib counts, sculpture, inscriptions, exact balcony/door patterns and hidden interiors remain simplified; later restoration paint is not independently certified.",
+    "Pinned standard Protomaps2026-10-14 and Mapzen13–14 terrain. Retain the original six-meter native grid and water. Each principal building has a locally sampled level datum and buried base; the main floor is raised about2.2m. Low boundary wings follow coarse native grade with buried bottoms. No terrain/water cutout or river surface is authored. The DEM does not resolve historic courtyard paving/ghat levels; exact thresholds and embankment engineering are approximate.",
+    "The compound outline is mapped; internal centers, dimensions, carved profiles and levels are picture-led estimates. Nine main spires and twelve riverfront shrines remain distinct. Preserve independent neighboring buildings, river water and native terrain; no navigable interior is claimed.",
+    "Dakshineswar Kali Temple medium-fi compound: the specific cream/red nine-spired Navaratna main shrine with four lower/four upper/one central ridged spires, strongly bowed cornices, five-bay recessed arches, raised platform and south approach; a separate southern Natmandir hall and northern shrine, twelve small red double-curved-roof Shiva shrines along the riverfront split around the central passage, and mapped low courtyard boundary wings. Keep the court open and the Hooghly outside the asset; no large solid compound extrusion. Q1157765 and way291865633 identify the mapped compound. Standard PMTiles record35184663954465 supplies its precise irregular outer outline; it currently has no courtyard holes or individual temple plans. Replace that one broad native shell with an open compound. Align local east/south about6degrees to the mapped walls. Main-shrine, Natmandir, northern shrine and twelve riverfront-shrine centers/dimensions are explicit picture-led subdivisions inside the boundary, not surveyed footprints. The south-facing main approach and western riverfront give signed orientation. Preserve every independent surrounding map record. Daylight pictures guide the main three diminishing bowed stages, four-plus-four-plus-one spire silhouette, cream plaster/red pilasters, ribbed conical-curved crowns, five-bay arcades, plinth and shallow stairs. Main total height is estimated about31m above its approach, with subordinate hall about7m and small riverfront shrines about7m. Fine mouldings, rib counts, sculpture, inscriptions, exact balcony/door patterns and hidden interiors remain simplified; later restoration paint is not independently certified. Pinned standard Protomaps2026-10-14 and Mapzen13–14 terrain. Retain the original six-meter native grid and water. Each principal building has a locally sampled level datum and buried base; the main floor is raised about2.2m. Low boundary wings follow coarse native grade with buried bottoms. No terrain/water cutout or river surface is authored. The DEM does not resolve historic courtyard paving/ghat levels; exact thresholds and embankment engineering are approximate. Accepted for medium-fi exterior and approximate standard-map fit. The large outer outline is mapped; all internal positions/dimensions and facade motifs remain picture-led estimates. Recesses have opaque backs and closed floors; no navigable/furnished interior, idols or exact sacred iconography is modeled. Courtyard paving, landscaping, river ghat and exact current repair/paint are not authored. Context buildings remain native procedural shells."
+  ]
+}

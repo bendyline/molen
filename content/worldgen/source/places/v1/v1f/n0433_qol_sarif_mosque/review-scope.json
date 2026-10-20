@@ -1,0 +1,350 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "podiumroof": {
+      "slot": "roof",
+      "graph": "stone_limestone",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.65,
+      "metallic": 0.22
+    },
+    "dome": {
+      "slot": "wall",
+      "graph": "tile_mosaic",
+      "roughness": 0.72,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.44,
+      "metallic": 0.6
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.46,
+      "metallic": 0.04
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/qol-model.mjs",
+    "export": "buildQolSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildQolDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "podiumroof": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.65,
+            "metallic": 0.22
+          },
+          "dome": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.44,
+            "metallic": 0.6
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "buildQolStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "podiumroof": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.65,
+            "metallic": 0.22
+          },
+          "dome": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.44,
+            "metallic": 0.6
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.04
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildQolCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "podiumroof": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.65,
+            "metallic": 0.22
+          },
+          "dome": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.44,
+            "metallic": 0.6
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      75,
+      45,
+      95
+    ],
+    "lookAt": [
+      0,
+      26,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-qol-skyline",
+      "position": [
+        75,
+        45,
+        95
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-qol-district",
+      "position": [
+        75,
+        45,
+        95
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-qol-street",
+      "position": [
+        75,
+        45,
+        95
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-qol-closeup",
+      "position": [
+        75,
+        45,
+        95
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;acceptance recorded separately in QA.",
+    "anchor": [
+      49.1051597,
+      55.79834865
+    ],
+    "heading": -0.715370228567,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and working floor,not surveyed paving. Standard viewer DEM datum82.214506m;perimeter-2.74..2.48m relative to anchor. Working floor2.725m is maximum bilinear whole-footprint sample at1m spacing plus0.25m,not surveyed paving. Raw DEM retained without cutout/flattening;adaptive footings crossY=0 below terrain. Exact altitude,podium/approach thresholds and terrain joins,walking and exterior ramp levels remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        49.1051597,
+        55.79834865
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum82.214506m;perimeter-2.74..2.48m relative to anchor. Working floor2.725m is maximum bilinear whole-footprint sample at1m spacing plus0.25m,not surveyed paving. Raw DEM retained without cutout/flattening;adaptive footings crossY=0 below terrain. Exact altitude,podium/approach thresholds and terrain joins,walking and exterior ramp levels remain unverified."
+    },
+    "bounds": [
+      49.097,
+      55.792,
+      49.113,
+      55.805
+    ],
+    "notes": "Retained exact way/230132591 /Q121198 matches current PMTiles whole35184602221423 (2*2^44+230132591). Anchor[49.1051597,55.79834865] and heading−0.715370228567rad unchanged,no horizontal rescale. Earlier30-vertex closed outer retained separately from current29-point whole. Nine exact current controls/111 raw points locate8m whole,31m core,31–39m dome,four58m minarets and two35m turrets. Main architectural corners derive from current core vertices0/1/6/7;its internal basis remains separate from the whole-map axes. Entry on the+v main face is picture-based facing,approximately south-southwest,not an extra mapped doorway. Detached pavilion,curved approaches and neighbouring Kremlin ranges remain host context. Standard viewer DEM datum82.214506m;perimeter-2.74..2.48m relative to anchor. Working floor2.725m is maximum bilinear whole-footprint sample at1m spacing plus0.25m,not surveyed paving. Raw DEM retained without cutout/flattening;adaptive footings crossY=0 below terrain. Exact altitude,podium/approach thresholds and terrain joins,walking and exterior ramp levels remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum82.214506m;perimeter-2.74..2.48m relative to anchor. Working floor2.725m is maximum bilinear whole-footprint sample at1m spacing plus0.25m,not surveyed paving. Raw DEM retained without cutout/flattening;adaptive footings crossY=0 below terrain. Exact altitude,podium/approach thresholds and terrain joins,walking and exterior ramp levels remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

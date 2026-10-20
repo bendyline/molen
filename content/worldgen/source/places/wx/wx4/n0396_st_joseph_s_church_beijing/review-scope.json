@@ -1,0 +1,344 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.78,
+      "metallic": 0.28
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    },
+    "louver": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "accent": {
+      "slot": "trim",
+      "graph": "stone_ashlar",
+      "roughness": 0.92,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/beijing-joseph-model.mjs",
+    "export": "buildBeijingJosephSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBeijingJosephDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.28
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "louver": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildBeijingJosephStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.28
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "louver": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBeijingJosephCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.28
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "louver": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -76,
+      43,
+      70
+    ],
+    "lookAt": [
+      -1,
+      11,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-beijing-joseph-skyline",
+      "position": [
+        -76,
+        43,
+        70
+      ],
+      "lookAt": [
+        -1,
+        11,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-beijing-joseph-district",
+      "position": [
+        -76,
+        43,
+        70
+      ],
+      "lookAt": [
+        -1,
+        11,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-beijing-joseph-street",
+      "position": [
+        -76,
+        43,
+        70
+      ],
+      "lookAt": [
+        -1,
+        11,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-beijing-joseph-closeup",
+      "position": [
+        -76,
+        43,
+        70
+      ],
+      "lookAt": [
+        -1,
+        11,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-cutout.terrain.json",
+    "heightmap": "terrain-cutout.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.2,
+    "neighborStyle": "molen.worldgen.catalog.taiwan_shophouse",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "ReviewedY=0 attachment convention,not exact host terrain contact.Standard viewer DEM datum56.218566 m,raw control perimeter-1.99..4.30 m. Estimated floor0.65 m;footings crossY=0 and extend below samples. Western approach steps are picture-led.No flattening,host DEM change or road replacement.Exact pavement/door joins,base clipping,absolute altitude and walking remain unverified. Standard DEM rises4.30 m at the north-front raw control and buried its portal in the first current render. A bounded76x32 m visual ground opening covers the authored church and paved apron only. Complete opaque floor atY=0 and a fitted perimeter apron from the retained standard DEM edge cover the opening;three entrance treads rise to the estimated0.65 m floor. Original terrain returns when the model hides/unloads. No source DEM heights,roads or neighboring buildings are changed. The plaza shape/grade is reconstructed,not surveyed;exact host-edge/door joins and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        116.405948092,
+        39.915947886
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum56.218566 m,raw control perimeter-1.99..4.30 m. Estimated floor0.65 m;footings crossY=0 and extend below samples. Western approach steps are picture-led.No flattening,host DEM change or road replacement.Exact pavement/door joins,base clipping,absolute altitude and walking remain unverified."
+    },
+    "bounds": [
+      116.399,
+      39.91,
+      116.414,
+      39.922
+    ],
+    "notes": "Standard viewer DEM datum56.218566 m,raw control perimeter-1.99..4.30 m. Estimated floor0.65 m;footings crossY=0 and extend below samples. Western approach steps are picture-led.No flattening,host DEM change or road replacement.Exact pavement/door joins,base clipping,absolute altitude and walking remain unverified. Standard DEM rises4.30 m at the north-front raw control and buried its portal in the first current render. A bounded76x32 m visual ground opening covers the authored church and paved apron only. Complete opaque floor atY=0 and a fitted perimeter apron from the retained standard DEM edge cover the opening;three entrance treads rise to the estimated0.65 m floor. Original terrain returns when the model hides/unloads. No source DEM heights,roads or neighboring buildings are changed. The plaza shape/grade is reconstructed,not surveyed;exact host-edge/door joins and walking remain unverified.",
+    "groundCutout": {
+      "outline": [
+        [
+          -40,
+          -16
+        ],
+        [
+          36,
+          -16
+        ],
+        [
+          36,
+          16
+        ],
+        [
+          -40,
+          16
+        ]
+      ],
+      "basis": "Standard DEM rises4.30 m at the north-front raw control and buried its portal in the first current render. A bounded76x32 m visual ground opening covers the authored church and paved apron only. Complete opaque floor atY=0 and a fitted perimeter apron from the retained standard DEM edge cover the opening;three entrance treads rise to the estimated0.65 m floor. Original terrain returns when the model hides/unloads. No source DEM heights,roads or neighboring buildings are changed. The plaza shape/grade is reconstructed,not surveyed;exact host-edge/door joins and walking remain unverified."
+    }
+  },
+  "geographicNote": "Standard viewer DEM datum56.218566 m,raw control perimeter-1.99..4.30 m. Estimated floor0.65 m;footings crossY=0 and extend below samples. Western approach steps are picture-led.No flattening,host DEM change or road replacement.Exact pavement/door joins,base clipping,absolute altitude and walking remain unverified. Standard DEM rises4.30 m at the north-front raw control and buried its portal in the first current render. A bounded76x32 m visual ground opening covers the authored church and paved apron only. Complete opaque floor atY=0 and a fitted perimeter apron from the retained standard DEM edge cover the opening;three entrance treads rise to the estimated0.65 m floor. Original terrain returns when the model hides/unloads. No source DEM heights,roads or neighboring buildings are changed. The plaza shape/grade is reconstructed,not surveyed;exact host-edge/door joins and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-cutout.terrain.json",
+    "terrain-cutout.height.png"
+  ]
+}

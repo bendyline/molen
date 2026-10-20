@@ -1,0 +1,706 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "shared-edge-protection.json"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick_longformat",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "porphyry": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.72,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.57,
+      "metallic": 0.6
+    },
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.61,
+      "metallic": 0.8
+    },
+    "inset": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.9,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -45.823276752825215,
+      25,
+      26.650090199359333
+    ],
+    "lookAt": [
+      0,
+      7,
+      0
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "brick-rotunda-stepped-tile-roof-and-arched-lantern",
+      "position": [
+        -29.767414706436178,
+        21,
+        15.19542765752406
+      ],
+      "lookAt": [
+        0.7736908889550019,
+        10,
+        -1.7353392775904135
+      ],
+      "fov": 48
+    },
+    {
+      "name": "green-bronze-leaves-porphyry-columns-and-carved-lintel",
+      "position": [
+        -10.526380775134992,
+        4.7,
+        15.014836255413126
+      ],
+      "lookAt": [
+        -3.135484128922903,
+        4,
+        7.0326907565506245
+      ],
+      "fov": 48
+    },
+    {
+      "name": "concave-niches-right-columns-and-broken-left-bases",
+      "position": [
+        7.67938023104117,
+        9,
+        31.890862629710945
+      ],
+      "lookAt": [
+        -0.7212393280769875,
+        3,
+        8.984977119149223
+      ],
+      "fov": 52
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -45.823276752825215,
+        25,
+        26.650090199359333
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 46,
+      "name": "romulus-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -45.823276752825215,
+        25,
+        26.650090199359333
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 46,
+      "name": "romulus-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -45.823276752825215,
+        25,
+        26.650090199359333
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 46,
+      "name": "romulus-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -45.823276752825215,
+        25,
+        26.650090199359333
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 46,
+      "name": "romulus-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/romulus-model.mjs",
+    "export": "buildRomulusSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRomulusDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "porphyry": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.6
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.61,
+            "metallic": 0.8
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildRomulusStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "porphyry": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.6
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.61,
+            "metallic": 0.8
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildRomulusCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "porphyry": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.6
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.61,
+            "metallic": 0.8
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      12.487210858,
+      41.891868949
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard6m Mapzen Forum ground, native paths/water and independent buildings retained. Local temple floor1.2m above anchor DEM datum; occupied round footing, short vestibule/stair and narrow wing/column footings have buried bases. Open front holes remain native ground. No broad Forum/plaza slab, flattening or ground/water cutout. Coarse urban DEM cannot resolve excavated floor, threshold or individual steps; absolute levels remain approximate. Shared-edge protection preserves neighboring church/hall records.",
+    "replaceFootprint": false,
+    "bounds": [
+      12.486964220073714,
+      41.89167670120035,
+      12.487356657948787,
+      41.89199512079367
+    ],
+    "terrainReference": {
+      "anchor": [
+        12.487210858,
+        41.891868949
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard6m Mapzen Forum ground, native paths/water and independent buildings retained. Local temple floor1.2m above anchor DEM datum; occupied round footing, short vestibule/stair and narrow wing/column footings have buried bases. Open front holes remain native ground. No broad Forum/plaza slab, flattening or ground/water cutout. Coarse urban DEM cannot resolve excavated floor, threshold or individual steps; absolute levels remain approximate. Shared-edge protection preserves neighboring church/hall records."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -12.831448024585569,
+          7.049526585143318
+        ],
+        [
+          -6.6079879471121,
+          -6.508726280427452
+        ],
+        [
+          -4.385323633728719,
+          -8.731388218029817
+        ],
+        [
+          -3.273991477037028,
+          -9.398186665794361
+        ],
+        [
+          -0.1622614383002941,
+          -10.287251163678524
+        ],
+        [
+          1.6158700124064111,
+          -12.065379824074487
+        ],
+        [
+          1.6558700124064112,
+          -12.065379824074487
+        ],
+        [
+          1.6583700286694552,
+          -12.06204647448958
+        ],
+        [
+          1.6348700124064113,
+          -12.046379824074487
+        ],
+        [
+          1.6348700124064113,
+          -12.044379824074488
+        ],
+        [
+          2.322669306421426,
+          -11.160067820116087
+        ],
+        [
+          2.322669306421426,
+          -11.13631554766264
+        ],
+        [
+          1.2552396545724342,
+          -10.282373114562704
+        ],
+        [
+          3.1708701386532594,
+          -10.069525587466249
+        ],
+        [
+          3.1907350317747785,
+          -10.0439850502811
+        ],
+        [
+          5.257773414380633,
+          -7.820944930586464
+        ],
+        [
+          10.10199440326326,
+          -2.5079330437446785
+        ],
+        [
+          10.10199440326326,
+          -2.4690694071878054
+        ],
+        [
+          10.08299440326326,
+          -2.4889330437446784
+        ],
+        [
+          10.080994403263261,
+          -2.4889330437446784
+        ],
+        [
+          8.080596521218219,
+          3.0677279666832784
+        ],
+        [
+          8.080596521218219,
+          3.069727966683278
+        ],
+        [
+          8.10843652093883,
+          3.069727966683278
+        ],
+        [
+          8.101596521218218,
+          3.0887279666832783
+        ],
+        [
+          3.434001463113117,
+          14.202063013275232
+        ],
+        [
+          3.394001463113117,
+          14.202063013275232
+        ],
+        [
+          1.8381364437447494,
+          13.535262420393119
+        ],
+        [
+          1.8381364437447494,
+          13.49526242039312
+        ],
+        [
+          2.494935754563935,
+          11.962727950914491
+        ],
+        [
+          1.171337149729735,
+          9.756726909634795
+        ],
+        [
+          0.06000499303804406,
+          8.645393321132508
+        ],
+        [
+          -1.495860026330323,
+          7.978593247128392
+        ],
+        [
+          -6.6079879471121,
+          5.97819340794676
+        ],
+        [
+          -9.457451554510497,
+          5.97819340794676
+        ],
+        [
+          -10.791050142540527,
+          6.422726656678152
+        ],
+        [
+          -11.457849436555541,
+          7.534059903480294
+        ],
+        [
+          -11.49784943655554,
+          7.534059903480294
+        ],
+        [
+          -12.831448024585569,
+          7.089526585143317
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -12.831448024585569,
+            7.049526585143318
+          ],
+          [
+            -6.6079879471121,
+            -6.508726280427452
+          ],
+          [
+            -4.385323633728719,
+            -8.731388218029817
+          ],
+          [
+            -3.273991477037028,
+            -9.398186665794361
+          ],
+          [
+            -0.1622614383002941,
+            -10.287251163678524
+          ],
+          [
+            1.6158700124064111,
+            -12.065379824074487
+          ],
+          [
+            1.6558700124064112,
+            -12.065379824074487
+          ],
+          [
+            1.6583700286694552,
+            -12.06204647448958
+          ],
+          [
+            1.6348700124064113,
+            -12.046379824074487
+          ],
+          [
+            1.6348700124064113,
+            -12.044379824074488
+          ],
+          [
+            2.322669306421426,
+            -11.160067820116087
+          ],
+          [
+            2.322669306421426,
+            -11.13631554766264
+          ],
+          [
+            1.2552396545724342,
+            -10.282373114562704
+          ],
+          [
+            3.1708701386532594,
+            -10.069525587466249
+          ],
+          [
+            3.1907350317747785,
+            -10.0439850502811
+          ],
+          [
+            5.257773414380633,
+            -7.820944930586464
+          ],
+          [
+            10.10199440326326,
+            -2.5079330437446785
+          ],
+          [
+            10.10199440326326,
+            -2.4690694071878054
+          ],
+          [
+            10.08299440326326,
+            -2.4889330437446784
+          ],
+          [
+            10.080994403263261,
+            -2.4889330437446784
+          ],
+          [
+            8.080596521218219,
+            3.0677279666832784
+          ],
+          [
+            8.080596521218219,
+            3.069727966683278
+          ],
+          [
+            8.10843652093883,
+            3.069727966683278
+          ],
+          [
+            8.101596521218218,
+            3.0887279666832783
+          ],
+          [
+            3.434001463113117,
+            14.202063013275232
+          ],
+          [
+            3.394001463113117,
+            14.202063013275232
+          ],
+          [
+            1.8381364437447494,
+            13.535262420393119
+          ],
+          [
+            1.8381364437447494,
+            13.49526242039312
+          ],
+          [
+            2.494935754563935,
+            11.962727950914491
+          ],
+          [
+            1.171337149729735,
+            9.756726909634795
+          ],
+          [
+            0.06000499303804406,
+            8.645393321132508
+          ],
+          [
+            -1.495860026330323,
+            7.978593247128392
+          ],
+          [
+            -6.6079879471121,
+            5.97819340794676
+          ],
+          [
+            -9.457451554510497,
+            5.97819340794676
+          ],
+          [
+            -10.791050142540527,
+            6.422726656678152
+          ],
+          [
+            -11.457849436555541,
+            7.534059903480294
+          ],
+          [
+            -11.49784943655554,
+            7.534059903480294
+          ],
+          [
+            -12.831448024585569,
+            7.089526585143317
+          ]
+        ]
+      ],
+      "basis": "Replace the three selected temple parent/dome/lantern controls with2cm numeric pad, subtracting all independent neighboring footprints plus1mm protection. Original map control overlaps adjacent independent edges slightly: protected residual temple fragments stay entirely inside those independent footprint envelopes. Preserve all independent inputs and native ground/water."
+    },
+    "notes": "Retained exact-QID relation1841089/Q338397 correlates standard PMTiles parent52776559974337 and its dome35184503447773/lantern35184503447753. Parent23.3x17.7m outline and two front holes establish the occupied envelope/curved entrance. Anchor12.487210858,41.891868949; heading0; internal cross-axis+.419392559901rad, portal faces southwest/local+z. Roof/lantern center aboutlocal[0,-1.9]; footprint controls extent, ordinary high-front and portal photographs establish facing/features. Church52776559959379 and other independent map inputs are preserved. Original standard6m Mapzen Forum ground, native paths/water and independent buildings retained. Local temple floor1.2m above anchor DEM datum; occupied round footing, short vestibule/stair and narrow wing/column footings have buried bases. Open front holes remain native ground. No broad Forum/plaza slab, flattening or ground/water cutout. Coarse urban DEM cannot resolve excavated floor, threshold or individual steps; absolute levels remain approximate. Shared-edge protection preserves neighboring church/hall records."
+  }
+}

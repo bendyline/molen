@@ -1,0 +1,302 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick_longformat",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_sandstone",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "plaster_lime",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "trim",
+      "graph": "tile_mosaic",
+      "roughness": 0.72,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.52,
+      "metallic": 0.01
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/isfahan-model.mjs",
+    "export": "buildIsfahanSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildIsfahanDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.01
+          }
+        }
+      },
+      "street": {
+        "export": "buildIsfahanStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.01
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildIsfahanCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.01
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      240,
+      175,
+      235
+    ],
+    "lookAt": [
+      -8,
+      11,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-isfahan-skyline",
+      "position": [
+        240,
+        175,
+        235
+      ],
+      "lookAt": [
+        -8,
+        11,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-isfahan-district",
+      "position": [
+        240,
+        175,
+        235
+      ],
+      "lookAt": [
+        -8,
+        11,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-isfahan-street",
+      "position": [
+        240,
+        175,
+        235
+      ],
+      "lookAt": [
+        -8,
+        11,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-isfahan-closeup",
+      "position": [
+        240,
+        175,
+        235
+      ],
+      "lookAt": [
+        -8,
+        11,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      51.685304841,
+      32.669782786
+    ],
+    "heading": 0.933690517117,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and declared floor,not surveyed ground contact. Standard viewer DEM datum1575.420164m;whole perimeter-2.58..1.76m relative to anchor. Floor3.910m clears the maximum retained DEM grid sample affecting the footprint,including an8.5m interpolation margin,plus0.25m. The initial median-perimeter floor allowed coarse DEM to protrude into the court;this explicit working platform plane corrects that visible burial without flattening or deleting terrain. Adaptive brick footings crossY=0 and extend below retained ground. Raw DEM retained without flattening/cutout;coarse building contamination may expose or bury base margins. Exact altitude,ground/court/threshold/stair/street joins and walking unverified;no road replacement.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        51.685304841,
+        32.669782786
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum1575.420164m;whole perimeter-2.58..1.76m relative to anchor. Floor3.910m clears the maximum retained DEM grid sample affecting the footprint,including an8.5m interpolation margin,plus0.25m. The initial median-perimeter floor allowed coarse DEM to protrude into the court;this explicit working platform plane corrects that visible burial without flattening or deleting terrain. Adaptive brick footings crossY=0 and extend below retained ground. Raw DEM retained without flattening/cutout;coarse building contamination may expose or bury base margins. Exact altitude,ground/court/threshold/stair/street joins and walking unverified;no road replacement."
+    },
+    "bounds": [
+      51.678,
+      32.663,
+      51.693,
+      32.677
+    ],
+    "notes": "Retained exact relation/5730508 /Q1256501 matches current PMTiles whole52776563863756 (3×2^44+5730508). One fragment retains29 outer points and two4-point courtyard holes,with all raw properties;there are no separately mapped roof parts or building heights in this extract. Anchor[51.685304841,32.669782786] and heading0.933690517117rad unchanged,no horizontal rescale. Main70×57m court follows its mapped skew quadrilateral;the60m width fact is explicitly courtyard-qualified,not a whole-building dimension. Native−X southwest south/prayer iwan and larger dome,+X northeast north iwan/Taj al-Mulk dome;−Z northwest west iwan/lookout,+Z southeast east iwan/small mapped court. Pictures resolve facing to about3°. Four iwans/domes/minarets/roof vaults/fountain/pavilion are picture-estimated subplans within about4m working uncertainty;unseen roof divisions remain unverified. Adjacent bazaar,roads and separate buildings remain host assets. Standard viewer DEM datum1575.420164m;whole perimeter-2.58..1.76m relative to anchor. Floor3.910m clears the maximum retained DEM grid sample affecting the footprint,including an8.5m interpolation margin,plus0.25m. The initial median-perimeter floor allowed coarse DEM to protrude into the court;this explicit working platform plane corrects that visible burial without flattening or deleting terrain. Adaptive brick footings crossY=0 and extend below retained ground. Raw DEM retained without flattening/cutout;coarse building contamination may expose or bury base margins. Exact altitude,ground/court/threshold/stair/street joins and walking unverified;no road replacement."
+  },
+  "geographicNote": "Standard viewer DEM datum1575.420164m;whole perimeter-2.58..1.76m relative to anchor. Floor3.910m clears the maximum retained DEM grid sample affecting the footprint,including an8.5m interpolation margin,plus0.25m. The initial median-perimeter floor allowed coarse DEM to protrude into the court;this explicit working platform plane corrects that visible burial without flattening or deleting terrain. Adaptive brick footings crossY=0 and extend below retained ground. Raw DEM retained without flattening/cutout;coarse building contamination may expose or bury base margins. Exact altitude,ground/court/threshold/stair/street joins and walking unverified;no road replacement.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

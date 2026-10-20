@@ -1,0 +1,628 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0510_banteay_srei",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:dd8f4b84a27cdf130c1ac9bb482b9279406286175197120699a93c27109c3158",
+  "sourceHash": "sha256:15bafb0e6bad53ef1f0e64fa194c5b76cbcb84b0299fb869da483026c8992b17",
+  "runtimeHash": "sha256:8d6394e8fd47fdffd0cf47458cfbfea49809f5c728975bde95d9ec7cdb11ae54",
+  "captureReportHash": "sha256:8c2c3efc8a2649b4b3f0733b5a66a014f2197cadb7565dfadda5aac170b400e4",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/three-west-false-doors-and-tiered-towers.png",
+      "shots/east-pediments-mandapa-and-libraries.png",
+      "shots/lotus-finials-and-upper-aedicules.png",
+      "shots/moat-enclosures-and-approach-gates.png"
+    ],
+    "notes": "Inspected the current portable, shared-material, medium-fi and actual-site renders in this authoring round. Three pink sandstone sanctuary towers retain their unequal heights, receding cruciform storeys, corner aedicules, lotus finials, recessed eastern doors and false west panels. Curved pediments, eastern mandapa, paired corbel-roofed libraries, inner gateways, lower outer/approach gateway remains and three enclosure traces complete the exterior. Corrected tower-tier gaps before the first render and then floating long enclosure walls on the sloping terrain. Far enclosure spans retain additional terrain segments after a concrete buried-wall check failed."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/three-west-false-doors-and-tiered-towers.png",
+      "shots/shared/east-pediments-mandapa-and-libraries.png",
+      "shots/shared/lotus-finials-and-upper-aedicules.png",
+      "shots/shared/moat-enclosures-and-approach-gates.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Three reused 256² graphs: raw sandstone, coursed sandstone for laterite approximation, and weathered limestone for worn plinths/coping. Pink/brown linear tints and metric UVs; zero embedded images or unique atlases. Each graph loads once and eviction releases model geometry. Dense figurative carving is simplified into broad pediment/pilaster relief, without invented narrative figures.",
+    "captureReportHash": "sha256:913a43f77b8fe497582022de51fea796f416e1acc7b1c9678a3f16b3f836a848"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/three-west-false-doors-and-tiered-towers.png",
+      "medium-fi/east-pediments-mandapa-and-libraries.png",
+      "medium-fi/lotus-finials-and-upper-aedicules.png",
+      "medium-fi/moat-enclosures-and-approach-gates.png",
+      "medium-fi/temple-skyline.png",
+      "medium-fi/temple-district.png",
+      "medium-fi/temple-street.png",
+      "medium-fi/temple-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All 25 standard views inspected: noon/late, Economy/High, street/block/skyline, untextured silhouette, four architecture details, four authored levels and transitions. All four levels meet 1k/4k/16k/64k caps and at most three draws. Initial geometry 456,760 bytes; separate vertex streams avoid repeated GPU uploads. Flat stages intentionally expose terrain-relative wall foundations; actual ground contact is checked on retained terrain. Physical-device and dense-city timings remain pending.",
+    "captureReportHash": "sha256:5a2ce7bc4d3b81e64b159c772efb893182725f0fae668a7640060993930f16f3"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:99f0724e350d3e3cbb4265f7a52b19098604b632b247dabc107302e11705355f",
+    "mapFrameHash": "sha256:a0e7fb93dca9dd4873f0f0092db961e6da33b5f82e08d5e697ebca40d24f1e1b",
+    "notes": "Approximate fit on the retained standard Mapzen grid. Sanctuary/library/gateway plinths have buried retaining foundations; enclosure strips follow local coarse grade instead of floating at a constant center height. The eastern approach gate is lower on its local terrain. The central mapped building alone is replaced; all independent facilities, original ground and mapped moat remain native. Exact archaeological floors, wall damage, individual carving and seasonal water height are not surveyed. Model+X east,+Z south,heading 0. The west-view reference establishes false doors to the west; the mapped east–west causeway establishes the main approach. Only building 35184600057289 supplies the central 27×24m mapped envelope. Individual towers, libraries, gateways and walls are proportional picture/path/moat estimates rather than separately surveyed polygons. The distant eastern gateway is placed at the approach junction with explicit uncertainty."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted as medium-fi surviving exterior with approximate standard-map fit. Exact carved narratives, individual statues, damage patterns, enclosure extents, archaeological floor levels and seasonal moat height are not surveyed or reproduced. Temple component proportions and gateway positions are visualization estimates. No navigable interior, ancient restoration or new terrain/water mesh is claimed. The native water and all 115 independent in-tile buildings remain unchanged; only the mapped central temple building is replaced to a sub-1e-7m² boundary remnant."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/w6/w63/n0510_banteay_srei/models/source.glb\",\"hash\":\"sha256:15bafb0e6bad53ef1f0e64fa194c5b76cbcb84b0299fb869da483026c8992b17\",\"bytes\":1815712,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/w6/w63/n0510_banteay_srei/model.glb\",\"hash\":\"sha256:8d6394e8fd47fdffd0cf47458cfbfea49809f5c728975bde95d9ec7cdb11ae54\",\"bytes\":1815356,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/w6/w63/n0510_banteay_srei/model.skyline.glb\",\"hash\":\"sha256:9d2e210425826e328066121895af4df0a3e920bedeffa3b84f1f7d5f53875999\",\"bytes\":102140,\"errors\":0,\"warnings\":0,\"triangles\":974,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/w6/w63/n0510_banteay_srei/model.district.glb\",\"hash\":\"sha256:deebcefb6b1362320e648882f4fa675c686afcb02055abde2bfc716f61a226a5\",\"bytes\":354620,\"errors\":0,\"warnings\":0,\"triangles\":3962,\"draws\":3}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/w6/w63/n0510_banteay_srei/model.street.glb\",\"hash\":\"sha256:a2dbc1a31960940363322f3e7b3fdaf070afbcb808c32268863bcd15f2022d03\",\"bytes\":758000,\"errors\":0,\"warnings\":0,\"triangles\":8582,\"draws\":3}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/w6/w63/n0510_banteay_srei/model.closeup.glb\",\"hash\":\"sha256:4f1e1df53ba8f14c2e00ee806c2a0107dde8b176abd1cd9ad5d970aed191b291\",\"bytes\":1334148,\"errors\":0,\"warnings\":0,\"triangles\":15110,\"draws\":3}"
+      },
+      {
+        "check": "enclosure-terrain-contact",
+        "passed": true,
+        "notes": "324 actual mesh rays across all six files confirm wall tops above native grade and foundations below it, including the corrected long outer walls."
+      },
+      {
+        "check": "shared-materials-and-GPU-layout",
+        "passed": true,
+        "notes": "Central material coverage, zero images, all level budgets and separate GPU attribute streams pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:15bafb0e6bad53ef1f0e64fa194c5b76cbcb84b0299fb869da483026c8992b17"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:8d6394e8fd47fdffd0cf47458cfbfea49809f5c728975bde95d9ec7cdb11ae54"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:9d2e210425826e328066121895af4df0a3e920bedeffa3b84f1f7d5f53875999"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:deebcefb6b1362320e648882f4fa675c686afcb02055abde2bfc716f61a226a5"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:a2dbc1a31960940363322f3e7b3fdaf070afbcb808c32268863bcd15f2022d03"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:4f1e1df53ba8f14c2e00ee806c2a0107dde8b176abd1cd9ad5d970aed191b291"
+      }
+    ],
+    "reports": [
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 116,
+          "independentBuildings": 115,
+          "remainingBuildings": 116,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184600057289,
+              "area": 1.8890489172918024e-8
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0510_banteay_srei"
+          ],
+          "rawTerrainRange": {
+            "min": -21.75736006217052,
+            "max": 7.1191399378294875
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3628.2948669879697,
+          "remainingWaterArea": 3628.2948669879697,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:e8ae770bd4b03e87f0aad66a60f2dcf2e959becb73024b7796147e7c8bdad631",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 137705
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                91,
+                45,
+                80
+              ],
+              "lookAt": [
+                19,
+                4,
+                4
+              ],
+              "fov": 44
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-three-west-false-doors-and-tiered-towers.png",
+            "hash": "sha256:94c40604e209480784f472e3e6c71a53038ee019b33859d59d3d59e894ad660a",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 137705
+            },
+            "camera": {
+              "name": "three-west-false-doors-and-tiered-towers",
+              "position": [
+                -20,
+                13,
+                26
+              ],
+              "lookAt": [
+                11,
+                5,
+                4
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-east-pediments-mandapa-and-libraries.png",
+            "hash": "sha256:99cbf3572c3eabf20245c4704aec630e863f444f476281733ec204f1821c1b81",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 137705
+            },
+            "camera": {
+              "name": "east-pediments-mandapa-and-libraries",
+              "position": [
+                51,
+                18,
+                32
+              ],
+              "lookAt": [
+                19,
+                5,
+                5
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-lotus-finials-and-upper-aedicules.png",
+            "hash": "sha256:45321b9eda9af9d766642ff4556f7242fbc440ff157bb3ca490d1fd577d5aade",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 137705
+            },
+            "camera": {
+              "name": "lotus-finials-and-upper-aedicules",
+              "position": [
+                26,
+                15,
+                -4
+              ],
+              "lookAt": [
+                11,
+                9,
+                3
+              ],
+              "fov": 44
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-moat-enclosures-and-approach-gates.png",
+            "hash": "sha256:0b99deb2fe1d1926ded4dcf5281d4b8fccecf778a6a5eb7f8a72d00f3f72cb85",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 137705
+            },
+            "camera": {
+              "name": "moat-enclosures-and-approach-gates",
+              "position": [
+                190,
+                150,
+                -165
+              ],
+              "lookAt": [
+                75,
+                0,
+                4
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 116,
+          "independentBuildings": 115,
+          "remainingBuildings": 116,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184600057289,
+              "area": 1.8890489172918024e-8
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0510_banteay_srei"
+          ],
+          "rawTerrainRange": {
+            "min": -21.75736006217052,
+            "max": 7.1191399378294875
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3628.2948669879697,
+          "remainingWaterArea": 3628.2948669879697,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:9242271f9398e39d3165fb48a4b4bce9857783a40756848587b5534fb5b5ebcc",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 131177
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                91,
+                45,
+                80
+              ],
+              "lookAt": [
+                19,
+                4,
+                4
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 116,
+          "independentBuildings": 115,
+          "remainingBuildings": 116,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184600057289,
+              "area": 1.8890489172918024e-8
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0510_banteay_srei"
+          ],
+          "rawTerrainRange": {
+            "min": -21.75736006217052,
+            "max": 7.1191399378294875
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3628.2948669879697,
+          "remainingWaterArea": 3628.2948669879697,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:07071f6141a8021f6bf28776f70ea732ec3aff9b1b0fdd0d20dde1fe0e87aa08",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 126557
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                91,
+                45,
+                80
+              ],
+              "lookAt": [
+                19,
+                4,
+                4
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 116,
+          "independentBuildings": 115,
+          "remainingBuildings": 116,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184600057289,
+              "area": 1.8890489172918024e-8
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0510_banteay_srei"
+          ],
+          "rawTerrainRange": {
+            "min": -21.75736006217052,
+            "max": 7.1191399378294875
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3628.2948669879697,
+          "remainingWaterArea": 3628.2948669879697,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:f970745bfda8174766bdc31c0613dc09176368b4d97863ca3585033f716f7aae",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 123569
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                91,
+                45,
+                80
+              ],
+              "lookAt": [
+                19,
+                4,
+                4
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 116,
+          "independentBuildings": 115,
+          "remainingBuildings": 116,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184600057289,
+              "area": 658.3272570885711
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0510_banteay_srei"
+          ],
+          "rawTerrainRange": {
+            "min": -21.75736006217052,
+            "max": 7.1191399378294875
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3628.2948669879697,
+          "remainingWaterArea": 3628.2948669879697,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:12e65dc7f0ce535df194d5733623949c04ae015c46c9f59720ccd0d9792a83f9",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 9,
+              "triangles": 122865
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                91,
+                45,
+                80
+              ],
+              "lookAt": [
+                19,
+                4,
+                4
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Banteay Srei medium-fi surviving exterior: three stepped pink-sandstone sanctuary towers and lotus finials, recessed/false doors with curved pediments, eastern mandapa, two corbel-roofed libraries, inner gateways, lower outer/approach gateway remains and concentric stone/laterite enclosure traces. Native map moat and paths remain independent. Fine narrative sculpture, individual carved figures and exact damage inventories are not reproduced.",
+    "Q790099/way227968458 identifies the temple complex. Standard PMTiles building 35184600057289 controls the central 27×24m platform envelope; native moat polygon406679270 and the named east–west causeway constrain the overall plan. The three-tower photograph is explicitly from the west, showing false west doors; the principal entrance faces east along the mapped causeway. Other component locations are proportional visualization estimates within this frame, not separate surveyed building polygons.",
+    "Photographic proportions estimate central tower11.2m and flanking towers9.8m above their bases; libraries and gateways4–6m, lower outer ruins1–3m. Heights and individual ornament are not measured. The map controls the central envelope, moat and approach, not exact shrine partitions.",
+    "SourceY0 is the retained standard Mapzen sample at the raw anchor. Individual plinths use their local coarse grade with retaining foundations. The common platform is an approximate graded stone terrace. Original ground and native moat water stay intact; exact archaeological floors and seasonal water levels are not surveyed.",
+    "Component positions beyond the mapped central envelope are photo/approach-based visualization estimates. Sculpted narratives and independent foreground statues are not counterfeit copies. No navigable interior or exact ancient grade is claimed.",
+    "Accepted as medium-fi surviving exterior with approximate standard-map fit. Exact carved narratives, individual statues, damage patterns, enclosure extents, archaeological floor levels and seasonal moat height are not surveyed or reproduced. Temple component proportions and gateway positions are visualization estimates. No navigable interior, ancient restoration or new terrain/water mesh is claimed. The native water and all 115 independent in-tile buildings remain unchanged; only the mapped central temple building is replaced to a sub-1e-7m² boundary remnant."
+  ],
+  "reviewMaintenance": {
+    "formatOnlyCheckpoint": {
+      "reviewedOn": "2026-10-19",
+      "previousInputHash": "sha256:2f33eeaf79a5c96cd7bf48eb2136fec9e3ac993cb4293ef53092dee80805183a",
+      "inputHash": "sha256:dd8f4b84a27cdf130c1ac9bb482b9279406286175197120699a93c27109c3158",
+      "proof": "TypeScript parser/printer equality of all non-import statements; same import bindings and explicit side-effect import order. Rebuilt selected source/runtime/fourLOD GLBs retain exact bytes. Source/view/camera/material metadata preserved. Existing reviews retained; no new visual approval added."
+    }
+  }
+}

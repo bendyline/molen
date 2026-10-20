@@ -231,6 +231,63 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
           "replaceFootprint": {
             "type": "boolean"
           },
+          "buildingCutout": {
+            "type": "object",
+            "properties": {
+              "outline": {
+                "minItems": 3,
+                "maxItems": 512,
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              },
+              "outlines": {
+                "minItems": 1,
+                "maxItems": 64,
+                "type": "array",
+                "items": {
+                  "minItems": 3,
+                  "maxItems": 512,
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 2,
+                    "maxItems": 2
+                  }
+                }
+              },
+              "basis": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "outline",
+              "basis"
+            ],
+            "additionalProperties": false
+          },
           "groundCutout": {
             "type": "object",
             "properties": {
@@ -253,6 +310,30 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
                   "maxItems": 2
                 }
               },
+              "outlines": {
+                "minItems": 1,
+                "maxItems": 64,
+                "type": "array",
+                "items": {
+                  "minItems": 3,
+                  "maxItems": 512,
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 2,
+                    "maxItems": 2
+                  }
+                }
+              },
               "basis": {
                 "type": "string",
                 "minLength": 1
@@ -260,6 +341,44 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
             },
             "required": [
               "outline",
+              "basis"
+            ],
+            "additionalProperties": false
+          },
+          "waterCutout": {
+            "type": "object",
+            "properties": {
+              "outlines": {
+                "minItems": 1,
+                "maxItems": 16,
+                "type": "array",
+                "items": {
+                  "minItems": 3,
+                  "maxItems": 512,
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 2,
+                    "maxItems": 2
+                  }
+                }
+              },
+              "basis": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "outlines",
               "basis"
             ],
             "additionalProperties": false

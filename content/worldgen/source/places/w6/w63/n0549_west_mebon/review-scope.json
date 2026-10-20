@@ -1,0 +1,415 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "carved": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "base": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.96,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      160,
+      120,
+      205
+    ],
+    "lookAt": [
+      12,
+      2,
+      49
+    ],
+    "fov": 47
+  },
+  "qaCameras": [
+    {
+      "name": "east-gateway-recessed-door-and-worn-crown",
+      "position": [
+        80,
+        8,
+        14
+      ],
+      "lookAt": [
+        63,
+        6,
+        0.2
+      ],
+      "fov": 47
+    },
+    {
+      "name": "perforated-east-wall-and-three-towers",
+      "position": [
+        81,
+        6,
+        25
+      ],
+      "lookAt": [
+        63,
+        4,
+        35
+      ],
+      "fov": 48
+    },
+    {
+      "name": "central-platform-and-map-aligned-causeway",
+      "position": [
+        -12,
+        12,
+        78
+      ],
+      "lookAt": [
+        26,
+        2.1,
+        49
+      ],
+      "fov": 50
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        160,
+        120,
+        205
+      ],
+      "lookAt": [
+        12,
+        2,
+        49
+      ],
+      "fov": 47,
+      "name": "mebon-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        160,
+        120,
+        205
+      ],
+      "lookAt": [
+        12,
+        2,
+        49
+      ],
+      "fov": 47,
+      "name": "mebon-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        160,
+        120,
+        205
+      ],
+      "lookAt": [
+        12,
+        2,
+        49
+      ],
+      "fov": 47,
+      "name": "mebon-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        160,
+        120,
+        205
+      ],
+      "lookAt": [
+        12,
+        2,
+        49
+      ],
+      "fov": 47,
+      "name": "mebon-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/west-mebon-model.mjs",
+    "export": "buildWestMebonSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWestMebonDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildWestMebonStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildWestMebonCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      103.80011111,
+      13.43463611
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain original standard6m Mapzen grid, native rectangular pool/reservoir water, paths and landmass. Local east gateway threshold2.1m above anchor datum with individually buried narrow footings; causeway and central platform top2.1m, narrow supports extend into water. Low ruin footings follow sampled banks. No entire island slab, terrain flattening or native water/ground cutout. Coarse DEM cannot resolve bank steps, seasonal water, archaeological paving or absolute threshold heights.",
+    "replaceFootprint": false,
+    "bounds": [
+      103.79967702329671,
+      13.433656946340307,
+      103.8007760938859,
+      13.434725941528411
+    ],
+    "terrainReference": {
+      "anchor": [
+        103.80011111,
+        13.43463611
+      ],
+      "modelHeight": 0,
+      "basis": "Retain original standard6m Mapzen grid, native rectangular pool/reservoir water, paths and landmass. Local east gateway threshold2.1m above anchor datum with individually buried narrow footings; causeway and central platform top2.1m, narrow supports extend into water. Low ruin footings follow sampled banks. No entire island slab, terrain flattening or native water/ground cutout. Coarse DEM cannot resolve bank steps, seasonal water, archaeological paving or absolute threshold heights."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -74.46164009941303,
+          137.32913399130098
+        ],
+        [
+          -73.00958198818162,
+          -45.92091344131243
+        ],
+        [
+          -72.96958198818163,
+          -45.92091344131243
+        ],
+        [
+          101.56780298183455,
+          -44.178446647060696
+        ],
+        [
+          102.72944947081967,
+          -12.233201920197347
+        ],
+        [
+          132.0610233176943,
+          7.805198365940942
+        ],
+        [
+          147.74325091899357,
+          43.52586226502943
+        ],
+        [
+          147.74325091899357,
+          43.56586226502944
+        ],
+        [
+          134.09390467341828,
+          83.35234903858583
+        ],
+        [
+          100.11574487060314,
+          114.71692054629378
+        ],
+        [
+          99.82533324835684,
+          138.8211996096763
+        ],
+        [
+          99.78533324835685,
+          138.8211996096763
+        ],
+        [
+          -74.46164009941303,
+          137.369133991301
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -74.46164009941303,
+            137.32913399130098
+          ],
+          [
+            -73.00958198818162,
+            -45.92091344131243
+          ],
+          [
+            -72.96958198818163,
+            -45.92091344131243
+          ],
+          [
+            101.56780298183455,
+            -44.178446647060696
+          ],
+          [
+            102.72944947081967,
+            -12.233201920197347
+          ],
+          [
+            132.0610233176943,
+            7.805198365940942
+          ],
+          [
+            147.74325091899357,
+            43.52586226502943
+          ],
+          [
+            147.74325091899357,
+            43.56586226502944
+          ],
+          [
+            134.09390467341828,
+            83.35234903858583
+          ],
+          [
+            100.11574487060314,
+            114.71692054629378
+          ],
+          [
+            99.82533324835684,
+            138.8211996096763
+          ],
+          [
+            99.78533324835685,
+            138.8211996096763
+          ],
+          [
+            -74.46164009941303,
+            137.369133991301
+          ]
+        ],
+        [
+          [
+            -36.998540829642515,
+            -0.03591657937219834
+          ],
+          [
+            61.160587489601184,
+            -0.6167398175463329
+          ],
+          [
+            61.20058748960119,
+            -0.6167398175463329
+          ],
+          [
+            61.20058748960119,
+            99.61545559283653
+          ],
+          [
+            -36.377717585149945,
+            99.90586829951086
+          ],
+          [
+            -36.41771758514995,
+            99.90586829951086
+          ],
+          [
+            -36.998540829642515,
+            0.004083420627801662
+          ]
+        ]
+      ],
+      "basis": "Replace only the erroneous West Mebon island/pool control52776565116292 with two-centimeter numeric tolerance. Preserve all independent inputs and original native ground/water."
+    },
+    "notes": "Standard PMTiles named Prasat Mebon Khang Lech/West Mebon POI52776565116292 and water POI35184706717784 correlate candidateQ599465. The matching building record52776565116292 incorrectly covers the island embankment and pool; use its inner98x100m pool boundary plus east-west bridged path35185367201669 for layout, not its222x185m outer landmass as a roof. Anchor103.80011111,13.43463611; heading0/native east-south axes. East gateways nearx63.1, z0.2/49.5/99.2; causeway follows native path from[61.471,48.773] to[13.843,48.483]. Facing approximately east-west. Exact individual tower foundations are not separately mapped. Retain original standard6m Mapzen grid, native rectangular pool/reservoir water, paths and landmass. Local east gateway threshold2.1m above anchor datum with individually buried narrow footings; causeway and central platform top2.1m, narrow supports extend into water. Low ruin footings follow sampled banks. No entire island slab, terrain flattening or native water/ground cutout. Coarse DEM cannot resolve bank steps, seasonal water, archaeological paving or absolute threshold heights."
+  }
+}

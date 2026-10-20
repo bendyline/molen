@@ -1,0 +1,379 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.52,
+      "metallic": 0.68
+    },
+    "tile": {
+      "slot": "wall",
+      "graph": "tile_mosaic",
+      "roughness": 0.7,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "plaster_lime",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.5,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/askari-model.mjs",
+    "export": "buildAskariSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAskariDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.52,
+            "metallic": 0.68
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildAskariStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.52,
+            "metallic": 0.68
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAskariCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.52,
+            "metallic": 0.68
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_mosaic",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      91,
+      60,
+      107
+    ],
+    "lookAt": [
+      0,
+      15,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-askari-skyline",
+      "position": [
+        91,
+        60,
+        107
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-askari-district",
+      "position": [
+        91,
+        60,
+        107
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-askari-street",
+      "position": [
+        91,
+        60,
+        107
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-askari-closeup",
+      "position": [
+        91,
+        60,
+        107
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Retained exact main outline with picture-proportioned exterior;dome map-height conflict unresolved.",
+    "anchor": [
+      43.873528499,
+      34.198922256
+    ],
+    "heading": -0.111519191529,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Normal viewer DEM datum83.47183983893558m;floor-0.33405444613394764m is median of118 outside-perimeter samples every2m at1m offset plus0.25m. 719 raw footprint samples range-1.4503527652346406..1.0631131244933698m. Preview terrain seats the footprint and1.5m margin;the source footing follows the retained perimeter. Exact marble paving,steps,thresholds,roof reconstruction,current construction state and host terrain joins remain unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -28.022071593247713,
+          20.457482687456952
+        ],
+        [
+          -17.84989394357718,
+          20.312358478775653
+        ],
+        [
+          -17.789143032954197,
+          27.51202201451992
+        ],
+        [
+          -7.371544680384034,
+          27.33941552401596
+        ],
+        [
+          -7.318506532716329,
+          25.59398347246474
+        ],
+        [
+          6.617429945950953,
+          25.772876891099937
+        ],
+        [
+          6.809812441149221,
+          27.490826124736138
+        ],
+        [
+          17.745735259877893,
+          27.508675021261006
+        ],
+        [
+          17.684984013876246,
+          20.30900849063129
+        ],
+        [
+          28.13006553102831,
+          20.381822881495545
+        ],
+        [
+          28.007136757935665,
+          -27.3160779529775
+        ],
+        [
+          -28.17247993999375,
+          -27.48580696188639
+        ]
+      ],
+      "basis": "Normal viewer DEM datum83.47183983893558m;floor-0.33405444613394764m is median of118 outside-perimeter samples every2m at1m offset plus0.25m. 719 raw footprint samples range-1.4503527652346406..1.0631131244933698m. Preview terrain seats the footprint and1.5m margin;the source footing follows the retained perimeter. Exact marble paving,steps,thresholds,roof reconstruction,current construction state and host terrain joins remain unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        43.873528499,
+        34.198922256
+      ],
+      "modelHeight": 0,
+      "basis": "Normal viewer DEM datum83.47183983893558m;floor-0.33405444613394764m is median of118 outside-perimeter samples every2m at1m offset plus0.25m. 719 raw footprint samples range-1.4503527652346406..1.0631131244933698m. Preview terrain seats the footprint and1.5m margin;the source footing follows the retained perimeter. Exact marble paving,steps,thresholds,roof reconstruction,current construction state and host terrain joins remain unverified."
+    },
+    "bounds": [
+      43.867,
+      34.193,
+      43.88,
+      34.205
+    ],
+    "notes": "Retained exact way1188251537/Q309484 is current viewer building35185560340369. Its12 raw outline vertices and12m body height,original anchor and heading remain unchanged. Current building parts locate the central dome and two front minarets. PositiveX ENE across the shrine;positiveZ SSE toward the projecting marble portico and forecourt. The northern expansion,other domes,galleries and city remain separate host buildings. Current tile properties omit the QID;retained exact identity supplies the binding. Normal viewer DEM datum83.47183983893558m;floor-0.33405444613394764m is median of118 outside-perimeter samples every2m at1m offset plus0.25m. 719 raw footprint samples range-1.4503527652346406..1.0631131244933698m. Preview terrain seats the footprint and1.5m margin;the source footing follows the retained perimeter. Exact marble paving,steps,thresholds,roof reconstruction,current construction state and host terrain joins remain unverified."
+  },
+  "geographicNote": "Normal viewer DEM datum83.47183983893558m;floor-0.33405444613394764m is median of118 outside-perimeter samples every2m at1m offset plus0.25m. 719 raw footprint samples range-1.4503527652346406..1.0631131244933698m. Preview terrain seats the footprint and1.5m margin;the source footing follows the retained perimeter. Exact marble paving,steps,thresholds,roof reconstruction,current construction state and host terrain joins remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

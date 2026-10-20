@@ -1,0 +1,302 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "stone_marble",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.58,
+      "metallic": 0.48
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.46,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/faisal-model.mjs",
+    "export": "buildFaisalSkyline",
+    "errorMeters": 2.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildFaisalDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.48
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildFaisalStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.48
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildFaisalCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.48
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.46,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      335,
+      205,
+      290
+    ],
+    "lookAt": [
+      -20,
+      22,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-faisal-skyline",
+      "position": [
+        335,
+        205,
+        290
+      ],
+      "lookAt": [
+        -20,
+        22,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-faisal-district",
+      "position": [
+        335,
+        205,
+        290
+      ],
+      "lookAt": [
+        -20,
+        22,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-faisal-street",
+      "position": [
+        335,
+        205,
+        290
+      ],
+      "lookAt": [
+        -20,
+        22,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-faisal-closeup",
+      "position": [
+        335,
+        205,
+        290
+      ],
+      "lookAt": [
+        -20,
+        22,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.south_asian.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      73.038055921,
+      33.729879546
+    ],
+    "heading": 0.257094798389,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and declared court/hall floor,not surveyed ground contact. Standard viewer DEM datum601.695316m;whole perimeter-10.79 to4.48m relative to anchor. Platform plane8.000m is representative median perimeter sample plus nominal8m podium height. Foundations crossY=0 and extend below retained ground;flat court/lightwell floors/pool water levels and exterior landings are working estimates. Raw DEM retained without cutout/flattening. Coarse slope/building contamination can expose tall footings or bury margins. Exact altitude,terrain/platform/pool/threshold/street joins and walking unverified;no road replacement.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        73.038055921,
+        33.729879546
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum601.695316m;whole perimeter-10.79 to4.48m relative to anchor. Platform plane8.000m is representative median perimeter sample plus nominal8m podium height. Foundations crossY=0 and extend below retained ground;flat court/lightwell floors/pool water levels and exterior landings are working estimates. Raw DEM retained without cutout/flattening. Coarse slope/building contamination can expose tall footings or bury margins. Exact altitude,terrain/platform/pool/threshold/street joins and walking unverified;no road replacement."
+    },
+    "bounds": [
+      73.03,
+      33.723,
+      73.046,
+      33.737
+    ],
+    "notes": "Retained exact relation/12715128 /Q500983 identifies Faisal Mosque. Current whole52776570848376 and24 separately mapped parts retain all raw rings/holes/properties and fragment counts. The main platform has62 outer points and eight holes;four90m minaret controls,four broader50m tower controls,four60m central crest controls and twelve55m roof/fold controls retained. Split fragments are reunited independently by ID. Pool8381863032 reunites two raw fragments;fountain8381904390 component1 follows the octagonal court hole;the remote component0 remains separate. Anchor[73.038055921,33.729879546] and heading0.257094798389rad unchanged,no horizontal rescale. Native−X west tent prayer hall,+X east court/main approach,+Z south. Four inspected pictures resolve facing within about3°. Roof footprint/minaret centers/lightwells/pools follow map controls. Eight folded surfaces,wall fins,awning,column cadence,crest and east entrance canopy are picture-led estimates with about3m horizontal working uncertainty. Trees,lawns,roads,hills,outer fountain and adjacent campus buildings remain host content. Standard viewer DEM datum601.695316m;whole perimeter-10.79 to4.48m relative to anchor. Platform plane8.000m is representative median perimeter sample plus nominal8m podium height. Foundations crossY=0 and extend below retained ground;flat court/lightwell floors/pool water levels and exterior landings are working estimates. Raw DEM retained without cutout/flattening. Coarse slope/building contamination can expose tall footings or bury margins. Exact altitude,terrain/platform/pool/threshold/street joins and walking unverified;no road replacement."
+  },
+  "geographicNote": "Standard viewer DEM datum601.695316m;whole perimeter-10.79 to4.48m relative to anchor. Platform plane8.000m is representative median perimeter sample plus nominal8m podium height. Foundations crossY=0 and extend below retained ground;flat court/lightwell floors/pool water levels and exterior landings are working estimates. Raw DEM retained without cutout/flattening. Coarse slope/building contamination can expose tall footings or bury margins. Exact altitude,terrain/platform/pool/threshold/street joins and walking unverified;no road replacement.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

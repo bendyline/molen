@@ -66,6 +66,8 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
     replaceFootprint: active && proposal.replaceFootprint !== false,
     ...(historical ? { appearance } : {}),
     ...(proposal.groundCutout ? { groundCutout: proposal.groundCutout } : {}),
+    ...(proposal.buildingCutout ? { buildingCutout: proposal.buildingCutout } : {}),
+    ...(proposal.waterCutout ? { waterCutout: proposal.waterCutout } : {}),
     ...(proposal.terrainReference ? { terrainReference: proposal.terrainReference } : {}),
     ...(proposal.bounds ? { bounds: proposal.bounds } : {}),
     ...(proposal.replaceRoads ? { replaceRoads: proposal.replaceRoads } : {}),

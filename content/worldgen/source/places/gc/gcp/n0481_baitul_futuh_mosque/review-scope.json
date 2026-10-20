@@ -1,0 +1,608 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "panel": {
+      "slot": "wall",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.48,
+      "metallic": 0.6
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.75,
+      "metallic": 0.45
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.42,
+      "metallic": 0.04
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/futuh-model.mjs",
+    "export": "buildFutuhSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildFutuhDistrict",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.48,
+            "metallic": 0.6
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.45
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "buildFutuhStreet",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.48,
+            "metallic": 0.6
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.45
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.04
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildFutuhCloseup",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.48,
+            "metallic": 0.6
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.45
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -160,
+      110,
+      170
+    ],
+    "lookAt": [
+      0,
+      9,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-futuh-skyline",
+      "position": [
+        -160,
+        110,
+        170
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-futuh-district",
+      "position": [
+        -160,
+        110,
+        170
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-futuh-street",
+      "position": [
+        -160,
+        110,
+        170
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-futuh-closeup",
+      "position": [
+        -160,
+        110,
+        170
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Retained identity/axis and current compound/named point;frontage,hall roof roles and heights are reviewed approximations from pictures of different dates.",
+    "anchor": [
+      -0.1992892,
+      51.396687581
+    ],
+    "heading": -1.367958720376,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0481;datum 24.95192944138828 m. 781 footprint samples span -2.0207217984460044 to 1.4460806653913139 m;floor -0.2818550929968424 m is the median of 168 edge samples plus0.25 m. Footings sample grade;the synthetic review fixture seats the envelope and a3 m margin. Exact threshold,stair,drain and finished ground levels remain unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -79.657,
+          7.726
+        ],
+        [
+          -75.753,
+          8.359
+        ],
+        [
+          -75.583,
+          23.171
+        ],
+        [
+          -60.222,
+          23.969
+        ],
+        [
+          -58.977,
+          31.841
+        ],
+        [
+          5.996,
+          20.513
+        ],
+        [
+          5.336,
+          14.769
+        ],
+        [
+          4.549,
+          8.041
+        ],
+        [
+          37.103,
+          6.142
+        ],
+        [
+          41.656,
+          9.808
+        ],
+        [
+          42.901,
+          7.015
+        ],
+        [
+          45.837,
+          8.987
+        ],
+        [
+          50.747,
+          2.573
+        ],
+        [
+          55.236,
+          7.382
+        ],
+        [
+          57.793,
+          3.682
+        ],
+        [
+          61.901,
+          7.08
+        ],
+        [
+          69.914,
+          5.749
+        ],
+        [
+          79.887,
+          -5.991
+        ],
+        [
+          79.426,
+          -15.63
+        ],
+        [
+          75.065,
+          -19.293
+        ],
+        [
+          78.227,
+          -23.287
+        ],
+        [
+          67.769,
+          -31.841
+        ],
+        [
+          62.637,
+          -27.11
+        ],
+        [
+          60.064,
+          -30.958
+        ],
+        [
+          49.779,
+          -30.074
+        ],
+        [
+          46.298,
+          -25.528
+        ],
+        [
+          42.457,
+          -28.956
+        ],
+        [
+          31.441,
+          -15.345
+        ],
+        [
+          23.47,
+          -22.785
+        ],
+        [
+          14.898,
+          -23.158
+        ],
+        [
+          5.533,
+          -23.652
+        ],
+        [
+          4.912,
+          -30.14
+        ],
+        [
+          -75.383,
+          -31.841
+        ],
+        [
+          -75.984,
+          -15.493
+        ],
+        [
+          -79.887,
+          -15.636
+        ]
+      ],
+      "basis": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0481;datum 24.95192944138828 m. 781 footprint samples span -2.0207217984460044 to 1.4460806653913139 m;floor -0.2818550929968424 m is the median of 168 edge samples plus0.25 m. Footings sample grade;the synthetic review fixture seats the envelope and a3 m margin. Exact threshold,stair,drain and finished ground levels remain unverified."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -59.00280400130926,
+          31.913776881435005
+        ],
+        [
+          5.9094802637968655,
+          20.539071015562453
+        ],
+        [
+          4.479359590174434,
+          8.072659551366636
+        ],
+        [
+          37.00631466972345,
+          6.20370928536791
+        ],
+        [
+          41.59021488182211,
+          9.809148681261947
+        ],
+        [
+          42.92057306876104,
+          7.039686979401871
+        ],
+        [
+          45.7599512540208,
+          8.954993993995195
+        ],
+        [
+          50.69059789880483,
+          2.5515743594977387
+        ],
+        [
+          55.231814775844164,
+          7.2893869031347585
+        ],
+        [
+          57.88220017374593,
+          3.650258196830004
+        ],
+        [
+          61.91869292600998,
+          7.143114516781277
+        ],
+        [
+          70.00066446950834,
+          5.762229798302782
+        ],
+        [
+          79.81929634653373,
+          -5.912231814233907
+        ],
+        [
+          79.36106321274882,
+          -15.706263847408948
+        ],
+        [
+          75.142083189262,
+          -19.236651585585445
+        ],
+        [
+          78.27001179097562,
+          -23.348141742845055
+        ],
+        [
+          67.8299947988508,
+          -31.77163187896763
+        ],
+        [
+          62.68967206246087,
+          -27.123062961977652
+        ],
+        [
+          60.0430987644948,
+          -30.900636003438763
+        ],
+        [
+          49.80897911266922,
+          -30.15256681561047
+        ],
+        [
+          46.38600224535918,
+          -25.53118221233143
+        ],
+        [
+          42.53200388898087,
+          -28.986505648756893
+        ],
+        [
+          31.35071334054545,
+          -15.309993215191085
+        ],
+        [
+          23.3903795668011,
+          -22.843113057948184
+        ],
+        [
+          5.492427568052649,
+          -23.67123323989377
+        ],
+        [
+          4.90613573941819,
+          -30.068147617009423
+        ],
+        [
+          -75.35174845885078,
+          -31.929682124048334
+        ],
+        [
+          -76.06214637610613,
+          -15.52908776893379
+        ],
+        [
+          -79.86167555266009,
+          -15.549753780327253
+        ],
+        [
+          -79.6959255029083,
+          7.6877523758074755
+        ],
+        [
+          -75.8265076840885,
+          8.293367929518437
+        ],
+        [
+          -75.65173106629197,
+          23.164285062722783
+        ],
+        [
+          -60.23873529155311,
+          24.051910187292673
+        ]
+      ],
+      "basis": "Precisely subtract the current associated compound footprint;retain independent neighboring buildings. The model and ground mask preserve the slightly different retained envelope."
+    },
+    "terrainReference": {
+      "anchor": [
+        -0.1992892,
+        51.396687581
+      ],
+      "modelHeight": 0,
+      "basis": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0481;datum 24.95192944138828 m. 781 footprint samples span -2.0207217984460044 to 1.4460806653913139 m;floor -0.2818550929968424 m is the median of 168 edge samples plus0.25 m. Footings sample grade;the synthetic review fixture seats the envelope and a3 m margin. Exact threshold,stair,drain and finished ground levels remain unverified."
+    },
+    "bounds": [
+      -0.2005,
+      51.3956,
+      -0.198,
+      51.3978
+    ],
+    "notes": "Retained Q788652 way/33790628 preserves anchor,undirected heading,35 outer vertices,original tags and empty dimensional facts. Current ordinary PMTiles provides a33-vertex compound building and named mosque point sharing id35184405879460. The northern/front block and southern irregular prayer-hall group are retained together. The 2023 frontage picture guides the new facade;older hall/overview pictures guide the silver dome and glazed roof turrets only. Exact roof partitions,turret positions,signed facade bearing and complete current condition remain approximations. Standard Protomaps20261014 and Mapzen/USGS viewer extractN0481;datum 24.95192944138828 m. 781 footprint samples span -2.0207217984460044 to 1.4460806653913139 m;floor -0.2818550929968424 m is the median of 168 edge samples plus0.25 m. Footings sample grade;the synthetic review fixture seats the envelope and a3 m margin. Exact threshold,stair,drain and finished ground levels remain unverified."
+  },
+  "geographicNote": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0481;datum 24.95192944138828 m. 781 footprint samples span -2.0207217984460044 to 1.4460806653913139 m;floor -0.2818550929968424 m is the median of 168 edge samples plus0.25 m. Footings sample grade;the synthetic review fixture seats the envelope and a3 m margin. Exact threshold,stair,drain and finished ground levels remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

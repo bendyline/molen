@@ -1,0 +1,978 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "shared-edge-protection.json"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.89,
+      "metallic": 0
+    },
+    "inset": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.1
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "trim",
+      "graph": "tile_ceramic",
+      "roughness": 0.6,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -74.74707966391492,
+      65,
+      72.3731585721969
+    ],
+    "lookAt": [
+      16.681750738037394,
+      10,
+      -22.841173181646973
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "west-stone-front-portal-window-pinnacles",
+      "position": [
+        -56.23034075591065,
+        17,
+        15.84767422917865
+      ],
+      "lookAt": [
+        -15.662883284838019,
+        14,
+        3.4024384205363343
+      ],
+      "fov": 47
+    },
+    {
+      "name": "open-cloister-arches-tracery-and-fountain",
+      "position": [
+        29.064744328664098,
+        5,
+        -27.807204769796414
+      ],
+      "lookAt": [
+        41.29375235820056,
+        4.8,
+        -33.76130945593796
+      ],
+      "fov": 68
+    },
+    {
+      "name": "cloister-court-and-surrounding-roofs",
+      "position": [
+        31.413021378279467,
+        46,
+        -32.22145384503557
+      ],
+      "lookAt": [
+        31.413021378279467,
+        0,
+        -32.22145384503557
+      ],
+      "fov": 58
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -74.74707966391492,
+        65,
+        72.3731585721969
+      ],
+      "lookAt": [
+        16.681750738037394,
+        10,
+        -22.841173181646973
+      ],
+      "fov": 45,
+      "name": "santacruz-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -74.74707966391492,
+        65,
+        72.3731585721969
+      ],
+      "lookAt": [
+        16.681750738037394,
+        10,
+        -22.841173181646973
+      ],
+      "fov": 45,
+      "name": "santacruz-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -74.74707966391492,
+        65,
+        72.3731585721969
+      ],
+      "lookAt": [
+        16.681750738037394,
+        10,
+        -22.841173181646973
+      ],
+      "fov": 45,
+      "name": "santacruz-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -74.74707966391492,
+        65,
+        72.3731585721969
+      ],
+      "lookAt": [
+        16.681750738037394,
+        10,
+        -22.841173181646973
+      ],
+      "fov": 45,
+      "name": "santacruz-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/santacruz-model.mjs",
+    "export": "buildSantaCruzSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSantaCruzDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.1
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.6,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSantaCruzStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.1
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.6,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSantaCruzCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.1
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.6,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      -8.428761,
+      40.210945
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard6m Mapzen ground/water and all independent buildings retained. Each mapped structure has a small grade-buried local plinth; cloister courts stay native ground, entrance has short descending steps. No broad monastery/plaza slab, flattening or ground/water cutout. Coarse urban DEM does not resolve actual paved court/plaza floors or thresholds; absolute heights and approaches remain approximate.",
+    "replaceFootprint": false,
+    "bounds": [
+      -8.428993584389522,
+      40.21081278113416,
+      -8.42789562321367,
+      40.211559481671635
+    ],
+    "terrainReference": {
+      "anchor": [
+        -8.428761,
+        40.210945
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard6m Mapzen ground/water and all independent buildings retained. Each mapped structure has a small grade-buried local plinth; cloister courts stay native ground, entrance has short descending steps. No broad monastery/plaza slab, flattening or ground/water cutout. Coarse urban DEM does not resolve actual paved court/plaza floors or thresholds; absolute heights and approaches remain approximate."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -18.29238453199437,
+          -5.542994675496994
+        ],
+        [
+          -15.190068483010212,
+          -5.986182339341491
+        ],
+        [
+          -14.853099008110526,
+          -3.9258624280040597
+        ],
+        [
+          -14.851099008110527,
+          -3.9258624280040597
+        ],
+        [
+          18.667699125951145,
+          -8.942276916749623
+        ],
+        [
+          18.667699125951145,
+          -8.944276916749622
+        ],
+        [
+          11.827128078183458,
+          -44.05908495574869
+        ],
+        [
+          10.9150519384811,
+          -46.79529689850496
+        ],
+        [
+          10.9130519384811,
+          -46.79529689850496
+        ],
+        [
+          6.582635003618151,
+          -46.11155106510852
+        ],
+        [
+          4.53051896056459,
+          -57.51211745373985
+        ],
+        [
+          4.52851896056459,
+          -57.51211745373985
+        ],
+        [
+          4.5095189605645905,
+          -57.50879247803241
+        ],
+        [
+          4.5095189605645905,
+          -57.53111745373985
+        ],
+        [
+          9.753956763853152,
+          -58.67120385328657
+        ],
+        [
+          10.43801386862992,
+          -60.267324520941294
+        ],
+        [
+          12.262166148034638,
+          -60.49534173251061
+        ],
+        [
+          12.302166148034637,
+          -60.49534173251061
+        ],
+        [
+          13.665512145423442,
+          -58.90478398566058
+        ],
+        [
+          17.96264202117438,
+          -59.583272848266674
+        ],
+        [
+          18.646699125951145,
+          -61.635427682784915
+        ],
+        [
+          20.470851405355862,
+          -62.09146201417073
+        ],
+        [
+          20.51085140535586,
+          -62.09146201417073
+        ],
+        [
+          21.874290289935683,
+          -60.273558237043375
+        ],
+        [
+          25.715289208644425,
+          -60.95137613033812
+        ],
+        [
+          26.39934631342119,
+          -63.00353059468121
+        ],
+        [
+          28.4515176277515,
+          -63.45956484380587
+        ],
+        [
+          28.4915176277515,
+          -63.45956484380587
+        ],
+        [
+          29.85486362514308,
+          -61.86900772121954
+        ],
+        [
+          34.15199350089123,
+          -62.54749631708153
+        ],
+        [
+          35.064069640593594,
+          -64.59965034797165
+        ],
+        [
+          36.888221919998315,
+          -65.05568449901573
+        ],
+        [
+          36.92822191999832,
+          -65.05568449901573
+        ],
+        [
+          38.29133612981744,
+          -63.23821433048629
+        ],
+        [
+          52.621535329863995,
+          -65.96775272200661
+        ],
+        [
+          53.07757339971517,
+          -66.42378678762564
+        ],
+        [
+          53.11757339971518,
+          -66.42378678762564
+        ],
+        [
+          56.537858923599025,
+          -63.91559906445553
+        ],
+        [
+          56.537858923599025,
+          -63.87559906445552
+        ],
+        [
+          56.088195392287375,
+          -63.425939328540935
+        ],
+        [
+          65.2014487014151,
+          -15.3537790680401
+        ],
+        [
+          68.1268297048041,
+          -15.803836757827929
+        ],
+        [
+          68.16682970480409,
+          -15.803836757827929
+        ],
+        [
+          71.58711522868792,
+          1.5255935488469972
+        ],
+        [
+          71.58711522868792,
+          1.5655935488469972
+        ],
+        [
+          56.537858923599025,
+          7.266072742331008
+        ],
+        [
+          56.49785892359902,
+          7.266072742331008
+        ],
+        [
+          55.10119902034344,
+          -0.7259208298173209
+        ],
+        [
+          55.15074471404549,
+          -0.7335969237372111
+        ],
+        [
+          55.15074471404549,
+          -0.7355969237372111
+        ],
+        [
+          52.4145162949384,
+          -16.240873857617686
+        ],
+        [
+          52.412516294938406,
+          -16.240873857617686
+        ],
+        [
+          36.223164815221544,
+          -13.276632202761835
+        ],
+        [
+          36.223164815221544,
+          -13.274632202761836
+        ],
+        [
+          36.517167519882406,
+          -11.657618559437974
+        ],
+        [
+          36.70020288507273,
+          -10.559408101175443
+        ],
+        [
+          36.70020288507273,
+          -10.519408101175443
+        ],
+        [
+          36.68562718116182,
+          -10.517355187689695
+        ],
+        [
+          36.68120288507272,
+          -10.540408101175442
+        ],
+        [
+          36.679202885072726,
+          -10.540408101175442
+        ],
+        [
+          20.48985140535586,
+          -8.260220593156372
+        ],
+        [
+          20.48985140535586,
+          -8.258220593156373
+        ],
+        [
+          22.54202271968617,
+          4.2828230227189845
+        ],
+        [
+          22.544055671170923,
+          4.304778929132974
+        ],
+        [
+          10.476505435569953,
+          6.185437857900314
+        ],
+        [
+          10.459013868629919,
+          6.104976556871837
+        ],
+        [
+          10.45701386862992,
+          6.104976556871837
+        ],
+        [
+          -12.57290865885463,
+          9.753284950847547
+        ],
+        [
+          -12.57290865885463,
+          9.755284950847546
+        ],
+        [
+          -12.527466008333644,
+          10.003154498871854
+        ],
+        [
+          -12.32388962392904,
+          12.242497994631105
+        ],
+        [
+          -12.32388962392904,
+          12.282497994631104
+        ],
+        [
+          -15.516156112887296,
+          12.738536818741032
+        ],
+        [
+          -15.556156112887296,
+          12.738536818741032
+        ],
+        [
+          -18.29238453199437,
+          -5.5029946754969945
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -18.29238453199437,
+            -5.542994675496994
+          ],
+          [
+            -15.190068483010212,
+            -5.986182339341491
+          ],
+          [
+            -14.853099008110526,
+            -3.9258624280040597
+          ],
+          [
+            -14.851099008110527,
+            -3.9258624280040597
+          ],
+          [
+            18.667699125951145,
+            -8.942276916749623
+          ],
+          [
+            18.667699125951145,
+            -8.944276916749622
+          ],
+          [
+            11.827128078183458,
+            -44.05908495574869
+          ],
+          [
+            10.9150519384811,
+            -46.79529689850496
+          ],
+          [
+            10.9130519384811,
+            -46.79529689850496
+          ],
+          [
+            6.582635003618151,
+            -46.11155106510852
+          ],
+          [
+            4.53051896056459,
+            -57.51211745373985
+          ],
+          [
+            4.52851896056459,
+            -57.51211745373985
+          ],
+          [
+            4.5095189605645905,
+            -57.50879247803241
+          ],
+          [
+            4.5095189605645905,
+            -57.53111745373985
+          ],
+          [
+            9.753956763853152,
+            -58.67120385328657
+          ],
+          [
+            10.43801386862992,
+            -60.267324520941294
+          ],
+          [
+            12.262166148034638,
+            -60.49534173251061
+          ],
+          [
+            12.302166148034637,
+            -60.49534173251061
+          ],
+          [
+            13.665512145423442,
+            -58.90478398566058
+          ],
+          [
+            17.96264202117438,
+            -59.583272848266674
+          ],
+          [
+            18.646699125951145,
+            -61.635427682784915
+          ],
+          [
+            20.470851405355862,
+            -62.09146201417073
+          ],
+          [
+            20.51085140535586,
+            -62.09146201417073
+          ],
+          [
+            21.874290289935683,
+            -60.273558237043375
+          ],
+          [
+            25.715289208644425,
+            -60.95137613033812
+          ],
+          [
+            26.39934631342119,
+            -63.00353059468121
+          ],
+          [
+            28.4515176277515,
+            -63.45956484380587
+          ],
+          [
+            28.4915176277515,
+            -63.45956484380587
+          ],
+          [
+            29.85486362514308,
+            -61.86900772121954
+          ],
+          [
+            34.15199350089123,
+            -62.54749631708153
+          ],
+          [
+            35.064069640593594,
+            -64.59965034797165
+          ],
+          [
+            36.888221919998315,
+            -65.05568449901573
+          ],
+          [
+            36.92822191999832,
+            -65.05568449901573
+          ],
+          [
+            38.29133612981744,
+            -63.23821433048629
+          ],
+          [
+            52.621535329863995,
+            -65.96775272200661
+          ],
+          [
+            53.07757339971517,
+            -66.42378678762564
+          ],
+          [
+            53.11757339971518,
+            -66.42378678762564
+          ],
+          [
+            56.537858923599025,
+            -63.91559906445553
+          ],
+          [
+            56.537858923599025,
+            -63.87559906445552
+          ],
+          [
+            56.088195392287375,
+            -63.425939328540935
+          ],
+          [
+            65.2014487014151,
+            -15.3537790680401
+          ],
+          [
+            68.1268297048041,
+            -15.803836757827929
+          ],
+          [
+            68.16682970480409,
+            -15.803836757827929
+          ],
+          [
+            71.58711522868792,
+            1.5255935488469972
+          ],
+          [
+            71.58711522868792,
+            1.5655935488469972
+          ],
+          [
+            56.537858923599025,
+            7.266072742331008
+          ],
+          [
+            56.49785892359902,
+            7.266072742331008
+          ],
+          [
+            55.10119902034344,
+            -0.7259208298173209
+          ],
+          [
+            55.15074471404549,
+            -0.7335969237372111
+          ],
+          [
+            55.15074471404549,
+            -0.7355969237372111
+          ],
+          [
+            52.4145162949384,
+            -16.240873857617686
+          ],
+          [
+            52.412516294938406,
+            -16.240873857617686
+          ],
+          [
+            36.223164815221544,
+            -13.276632202761835
+          ],
+          [
+            36.223164815221544,
+            -13.274632202761836
+          ],
+          [
+            36.517167519882406,
+            -11.657618559437974
+          ],
+          [
+            36.70020288507273,
+            -10.559408101175443
+          ],
+          [
+            36.70020288507273,
+            -10.519408101175443
+          ],
+          [
+            36.68562718116182,
+            -10.517355187689695
+          ],
+          [
+            36.68120288507272,
+            -10.540408101175442
+          ],
+          [
+            36.679202885072726,
+            -10.540408101175442
+          ],
+          [
+            20.48985140535586,
+            -8.260220593156372
+          ],
+          [
+            20.48985140535586,
+            -8.258220593156373
+          ],
+          [
+            22.54202271968617,
+            4.2828230227189845
+          ],
+          [
+            22.544055671170923,
+            4.304778929132974
+          ],
+          [
+            10.476505435569953,
+            6.185437857900314
+          ],
+          [
+            10.459013868629919,
+            6.104976556871837
+          ],
+          [
+            10.45701386862992,
+            6.104976556871837
+          ],
+          [
+            -12.57290865885463,
+            9.753284950847547
+          ],
+          [
+            -12.57290865885463,
+            9.755284950847546
+          ],
+          [
+            -12.527466008333644,
+            10.003154498871854
+          ],
+          [
+            -12.32388962392904,
+            12.242497994631105
+          ],
+          [
+            -12.32388962392904,
+            12.282497994631104
+          ],
+          [
+            -15.516156112887296,
+            12.738536818741032
+          ],
+          [
+            -15.556156112887296,
+            12.738536818741032
+          ],
+          [
+            -18.29238453199437,
+            -5.5029946754969945
+          ]
+        ]
+      ],
+      "basis": "Replace the two mapped church/monastery shells, with2cm numeric pad, subtracting all independent neighboring footprints plus1mm protection. Original map controls overlap Town Hall/cafe edges slightly: protected residual control fragments stay entirely inside those independent footprint envelopes. Preserve all independent inputs and native ground/water."
+    },
+    "notes": "Named standard PMTiles church building/POI35184576280912 and monastery building/POI52776561095808, correlated with ordinary facade/cloister pictures, establish the two authored controls. Named monastery point corresponds to mapped relation2962560; no exact-QID footprint attribution claimed. Anchor-8.428761,40.210945; heading0, internal local+x angle-.154600686944rad, west entrance local-x. The mapped courtyard hole is retained. Town Hall35184576280911 and Cafe Santa Cruz35184595417581 remain independent native buildings. Original standard6m Mapzen ground/water and all independent buildings retained. Each mapped structure has a small grade-buried local plinth; cloister courts stay native ground, entrance has short descending steps. No broad monastery/plaza slab, flattening or ground/water cutout. Coarse urban DEM does not resolve actual paved court/plaza floors or thresholds; absolute heights and approaches remain approximate."
+  }
+}

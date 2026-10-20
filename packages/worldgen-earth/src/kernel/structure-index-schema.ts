@@ -1,6 +1,6 @@
 import { getSchema, registerSchema } from '@bendyline/molen-schema';
 import { z } from 'zod';
-import { validGroundOutline } from './ground-cutout';
+import { MAX_STRUCTURE_GROUND_OUTLINES, validGroundOutline } from './ground-cutout';
 import { isHistoricalStructureAppearance, isStructureViewingDate } from './structure-date';
 
 const finite = z.number().finite();
@@ -50,6 +50,33 @@ const placement = z
       )
       .optional(),
     replaceFootprint: z.boolean().optional(),
+    buildingCutout: z
+      .strictObject({
+        outline: z
+          .array(z.tuple([finite, finite]))
+          .min(3)
+          .max(512)
+          .refine(
+            validGroundOutline,
+            'building cutout must be a simple polygon with positive area',
+          ),
+        outlines: z
+          .array(
+            z
+              .array(z.tuple([finite, finite]))
+              .min(3)
+              .max(512)
+              .refine(
+                validGroundOutline,
+                'building cutout must be a simple polygon with positive area',
+              ),
+          )
+          .min(1)
+          .max(MAX_STRUCTURE_GROUND_OUTLINES)
+          .optional(),
+        basis: z.string().trim().min(1),
+      })
+      .optional(),
     groundCutout: z
       .strictObject({
         outline: z
@@ -57,6 +84,38 @@ const placement = z
           .min(3)
           .max(512)
           .refine(validGroundOutline, 'ground cutout must be a simple polygon with positive area'),
+        outlines: z
+          .array(
+            z
+              .array(z.tuple([finite, finite]))
+              .min(3)
+              .max(512)
+              .refine(
+                validGroundOutline,
+                'ground cutout must be a simple polygon with positive area',
+              ),
+          )
+          .min(1)
+          .max(MAX_STRUCTURE_GROUND_OUTLINES)
+          .optional(),
+        basis: z.string().trim().min(1),
+      })
+      .optional(),
+    waterCutout: z
+      .strictObject({
+        outlines: z
+          .array(
+            z
+              .array(z.tuple([finite, finite]))
+              .min(3)
+              .max(512)
+              .refine(
+                validGroundOutline,
+                'water cutout must be a simple polygon with positive area',
+              ),
+          )
+          .min(1)
+          .max(16),
         basis: z.string().trim().min(1),
       })
       .optional(),
@@ -91,6 +150,14 @@ const placement = z
     source: z.string().url(),
     note: z.string().optional(),
   })
+  .refine(
+    (entry) => !entry.buildingCutout || !!entry.bounds,
+    'building cutouts require bounds so every overlapping tile receives the placement',
+  )
+  .refine(
+    (entry) => !entry.waterCutout || !!entry.bounds,
+    'water cutouts require bounds so every overlapping tile receives the placement',
+  )
   .refine(
     (entry) => !entry.terrainReference || entry.datum !== 'sea-level',
     'terrain reference cannot be combined with an absolute sea-level datum',

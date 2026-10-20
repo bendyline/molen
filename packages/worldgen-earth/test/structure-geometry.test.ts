@@ -1,10 +1,13 @@
 import type { TerrainPyramidTileLayerContext } from '@bendyline/molen-terrain/client';
 import { createEmptyTerrainSemanticTile, Heightfield } from '@bendyline/molen-terrain/kernel';
 import * as THREE from 'three';
-import { describe, expect, it, vi } from 'vitest';
+import { assert, describe, expect, it, vi } from 'vitest';
 import {
   clipStructureGeometry,
+  clipStructureGroundOutlines,
   clipStructureObject,
+  footprintCovers,
+  structureFootprint,
   withoutStructureRoads,
 } from '../src/client/structure-geometry';
 import type { StructurePlacement } from '../src/kernel/structure-index';
@@ -19,6 +22,53 @@ const entry: StructurePlacement = {
   status: 'preview',
   source: 'test',
 };
+
+it('clips a concave ground opening into separate resident pieces without filling its gap', () => {
+  const result = clipStructureGroundOutlines(
+    [
+      [
+        [10, 20],
+        [30, 20],
+        [30, 110],
+        [70, 110],
+        [70, 20],
+        [90, 20],
+        [90, 120],
+        [10, 120],
+      ],
+    ],
+    new THREE.Matrix4(),
+    100,
+  );
+  expect(result).toHaveLength(2);
+  expect(
+    result.every((ring) => ring.every(([x, z]) => x >= 0 && x <= 100 && z >= 0 && z <= 100)),
+  ).toBe(true);
+  const areas = result.map(
+    (ring) =>
+      Math.abs(
+        ring.reduce((sum, p, i) => {
+          const q = ring[(i + 1) % ring.length] as [number, number];
+          return sum + p[0] * q[1] - p[1] * q[0];
+        }, 0),
+      ) / 2,
+  );
+  expect(areas).toEqual([1600, 1600]);
+  expect(
+    clipStructureGroundOutlines(
+      [
+        [
+          [110, 10],
+          [120, 10],
+          [120, 20],
+          [110, 20],
+        ],
+      ],
+      new THREE.Matrix4(),
+      100,
+    ),
+  ).toEqual([]);
+});
 const context = {
   origin: [-100, -100],
   tileSize: 200,
@@ -28,6 +78,63 @@ const context = {
     height: { min: 0, max: 1 },
   }),
 } as TerrainPyramidTileLayerContext;
+describe('landmark ground coverage', () => {
+  const box = (minX: number, minZ: number, maxX: number, maxZ: number) => ({
+    outer: [
+      [minX, minZ],
+      [maxX, minZ],
+      [maxX, maxZ],
+      [minX, maxZ],
+    ].map(
+      ([x, z]) => [((x as number) + 100) / 200, ((z as number) + 100) / 200] as [number, number],
+    ),
+  });
+  it('keeps empty ground beside a broad roof triangle', () => {
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute(
+      'position',
+      new THREE.Float32BufferAttribute([0, 0, 0, 100, 0, 0, 0, 0, 100], 3),
+    );
+    const material = new THREE.MeshBasicMaterial();
+    const object = new THREE.Mesh(geometry, material),
+      frame = new THREE.Group().add(object);
+    const footprint = structureFootprint(object, frame, [0, 0]);
+    assert(footprint);
+    expect(footprintCovers(footprint, box(10, 10, 20, 20), context)).toBe(true);
+    expect(footprintCovers(footprint, box(75, 75, 85, 85), context)).toBe(false);
+    geometry.dispose();
+    material.dispose();
+  });
+  it('preserves a neighbour inside the bounding box of a rotated narrow building', () => {
+    const geometry = new THREE.BoxGeometry(100, 20, 8),
+      material = new THREE.MeshBasicMaterial();
+    const object = new THREE.Mesh(geometry, material);
+    object.rotation.y = Math.PI / 4;
+    const frame = new THREE.Group().add(object),
+      footprint = structureFootprint(object, frame, [0, 0]);
+    assert(footprint);
+    expect(footprintCovers(footprint, box(18, -22, 22, -18), context)).toBe(true);
+    expect(footprintCovers(footprint, box(18, 18, 22, 22), context)).toBe(false);
+    geometry.dispose();
+    material.dispose();
+  });
+  it('retains a wall whose projected triangle has no area', () => {
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute(
+      'position',
+      new THREE.Float32BufferAttribute([-50, 0, 0, 50, 0, 0, 50, 20, 0], 3),
+    );
+    const material = new THREE.MeshBasicMaterial(),
+      object = new THREE.Mesh(geometry, material),
+      frame = new THREE.Group().add(object),
+      footprint = structureFootprint(object, frame, [0, 0]);
+    assert(footprint);
+    expect(footprintCovers(footprint, box(-4, -0.1, 4, 0.1), context)).toBe(true);
+    expect(footprintCovers(footprint, box(-4, 10, 4, 12), context)).toBe(false);
+    geometry.dispose();
+    material.dispose();
+  });
+});
 describe('extended structure geometry', () => {
   it('clips an opted-in authored approach only through its shared bridge endpoint', () => {
     const tile = createEmptyTerrainSemanticTile();

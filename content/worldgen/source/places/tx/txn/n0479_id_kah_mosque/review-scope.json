@@ -1,0 +1,658 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick_glazed",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "plaster_lime",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "trim",
+      "graph": "tile_ceramic",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_limestone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "roof",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.65,
+      "metallic": 0.45
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/idkah-model.mjs",
+    "export": "buildIdkahSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildIdkahDistrict",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_glazed",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.65,
+            "metallic": 0.45
+          }
+        }
+      },
+      "street": {
+        "export": "buildIdkahStreet",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_glazed",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.65,
+            "metallic": 0.45
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildIdkahCloseup",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_glazed",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.65,
+            "metallic": 0.45
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      190,
+      135,
+      180
+    ],
+    "lookAt": [
+      2,
+      4,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-idkah-skyline",
+      "position": [
+        190,
+        135,
+        180
+      ],
+      "lookAt": [
+        2,
+        4,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-idkah-district",
+      "position": [
+        190,
+        135,
+        180
+      ],
+      "lookAt": [
+        2,
+        4,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-idkah-street",
+      "position": [
+        190,
+        135,
+        180
+      ],
+      "lookAt": [
+        2,
+        4,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-idkah-closeup",
+      "position": [
+        190,
+        135,
+        180
+      ],
+      "lookAt": [
+        2,
+        4,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.arid.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Named PMTiles point and associated compound ring;gate facing and internal roles are reviewed approximations.",
+    "anchor": [
+      75.984106,
+      39.47227
+    ],
+    "heading": 0.29271244284415965,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0479;datum 1300.191498056187 m. The floor is the median of 344 outer/court edge samples plus0.25 m. 1103 mapped-ring samples range -2.956909692738691 to 2.7874161669869864 m. Footings follow sampled grade;the exact court hole remains open in the replacement mask. The synthetic fixture seats only the mapped ring and a3 m margin to avoid raster interpolation at walls. Exact steps,thresholds,drains and finished ground levels remain approximate.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -53.66008928753114,
+          -67.94764446962226
+        ],
+        [
+          -37.50198249234329,
+          -66.44820984315453
+        ],
+        [
+          0,
+          -65.29064572599135
+        ],
+        [
+          0,
+          -60.87529366967745
+        ],
+        [
+          -37.441510668640056,
+          -61.85624997940819
+        ],
+        [
+          -37.9130240754203,
+          -2.7802772372784084
+        ],
+        [
+          -32.151122476452365,
+          -2.7288908075421423
+        ],
+        [
+          -31.31071718708619,
+          13.652952574253872
+        ],
+        [
+          -36.918445049009875,
+          13.888757953943681
+        ],
+        [
+          -35.86044438625062,
+          67.88951330305146
+        ],
+        [
+          -13.774134111766099,
+          60.10204903411081
+        ],
+        [
+          -14.674993429891247,
+          56.70111511442857
+        ],
+        [
+          -7.894322561967781,
+          54.1708016128262
+        ],
+        [
+          -6.573260065031633,
+          56.976191264640995
+        ],
+        [
+          0,
+          54.7333747899413
+        ],
+        [
+          0,
+          60.31743106163358
+        ],
+        [
+          -35.79999347073675,
+          72.48154254413036
+        ],
+        [
+          -53.66008928753114,
+          72.6357825132237
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -53.66008928753114,
+            -67.94764446962226
+          ],
+          [
+            -37.50198249234329,
+            -66.44820984315453
+          ],
+          [
+            0,
+            -65.29064572599135
+          ],
+          [
+            0,
+            -60.87529366967745
+          ],
+          [
+            -37.441510668640056,
+            -61.85624997940819
+          ],
+          [
+            -37.9130240754203,
+            -2.7802772372784084
+          ],
+          [
+            -32.151122476452365,
+            -2.7288908075421423
+          ],
+          [
+            -31.31071718708619,
+            13.652952574253872
+          ],
+          [
+            -36.918445049009875,
+            13.888757953943681
+          ],
+          [
+            -35.86044438625062,
+            67.88951330305146
+          ],
+          [
+            -13.774134111766099,
+            60.10204903411081
+          ],
+          [
+            -14.674993429891247,
+            56.70111511442857
+          ],
+          [
+            -7.894322561967781,
+            54.1708016128262
+          ],
+          [
+            -6.573260065031633,
+            56.976191264640995
+          ],
+          [
+            0,
+            54.7333747899413
+          ],
+          [
+            0,
+            60.31743106163358
+          ],
+          [
+            -35.79999347073675,
+            72.48154254413036
+          ],
+          [
+            -53.66008928753114,
+            72.6357825132237
+          ]
+        ],
+        [
+          [
+            0,
+            -65.29064572599135
+          ],
+          [
+            45.259545991395186,
+            -63.89363087725818
+          ],
+          [
+            55.80389836898425,
+            -57.34577678890024
+          ],
+          [
+            65.31738001334085,
+            -56.163762533489106
+          ],
+          [
+            62.84166016753282,
+            16.75147204010862
+          ],
+          [
+            64.16574892433658,
+            17.150511573988474
+          ],
+          [
+            64.32899831678331,
+            27.791591769154167
+          ],
+          [
+            62.07683853341231,
+            28.075759275929304
+          ],
+          [
+            61.57803936709741,
+            38.51733357538055
+          ],
+          [
+            11.13265567616473,
+            56.53478051864364
+          ],
+          [
+            0,
+            60.31743106163358
+          ],
+          [
+            0,
+            54.7333747899413
+          ],
+          [
+            52.992623639573694,
+            36.65212923438081
+          ],
+          [
+            53.769543342741194,
+            33.27539302886162
+          ],
+          [
+            53.92976354580468,
+            28.74990468979413
+          ],
+          [
+            52.03129848207774,
+            28.659215593803708
+          ],
+          [
+            52.384984443073854,
+            10.71145968103528
+          ],
+          [
+            57.48484087485833,
+            10.563328961158282
+          ],
+          [
+            57.554368243799786,
+            7.936315567122595
+          ],
+          [
+            60.60158479206429,
+            7.410307534594656
+          ],
+          [
+            61.435851002503384,
+            -41.686575119368506
+          ],
+          [
+            53.046938882459855,
+            -41.807507235901696
+          ],
+          [
+            52.63277231446314,
+            -46.024610415091026
+          ],
+          [
+            48.12845733890464,
+            -45.456290635957195
+          ],
+          [
+            49.73675751764142,
+            -25.2323121746417
+          ],
+          [
+            35.253413246876434,
+            -24.30123136448756
+          ],
+          [
+            33.01931820131031,
+            -56.02778493918813
+          ],
+          [
+            38.62704007798864,
+            -56.26357045870013
+          ],
+          [
+            37.792672637271494,
+            -59.88513702206731
+          ],
+          [
+            0,
+            -60.87529366967745
+          ]
+        ]
+      ],
+      "basis": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0479;datum 1300.191498056187 m. The floor is the median of 344 outer/court edge samples plus0.25 m. 1103 mapped-ring samples range -2.956909692738691 to 2.7874161669869864 m. Footings follow sampled grade;the exact court hole remains open in the replacement mask. The synthetic fixture seats only the mapped ring and a3 m margin to avoid raster interpolation at walls. Exact steps,thresholds,drains and finished ground levels remain approximate. The runtime accepts simple outlines;two exact notched pieces partition the mapped ring and preserve the courtyard ground."
+    },
+    "terrainReference": {
+      "anchor": [
+        75.984106,
+        39.47227
+      ],
+      "modelHeight": 0,
+      "basis": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0479;datum 1300.191498056187 m. The floor is the median of 344 outer/court edge samples plus0.25 m. 1103 mapped-ring samples range -2.956909692738691 to 2.7874161669869864 m. Footings follow sampled grade;the exact court hole remains open in the replacement mask. The synthetic fixture seats only the mapped ring and a3 m margin to avoid raster interpolation at walls. Exact steps,thresholds,drains and finished ground levels remain approximate."
+    },
+    "bounds": [
+      75.9828,
+      39.471,
+      75.9858,
+      39.4735
+    ],
+    "notes": "Retained Q1325825 reference anchor is unchanged. Current PMTiles has one named Id Kah Mosque point inside a single large courtyard building,52776572429281,with13 outer and27 inner vertices. The building has no exact Wikidata tag;selection is a reviewed approximate association from the named point,location and compound shape. The west outer edge supplies an undirected alignment;the eastern projecting gate and inspected gateway picture supply approximate facing. The courtyard hole stays open. No measured facade,roof partition or signed survey bearing is claimed. Standard Protomaps20261014 and Mapzen/USGS viewer extractN0479;datum 1300.191498056187 m. The floor is the median of 344 outer/court edge samples plus0.25 m. 1103 mapped-ring samples range -2.956909692738691 to 2.7874161669869864 m. Footings follow sampled grade;the exact court hole remains open in the replacement mask. The synthetic fixture seats only the mapped ring and a3 m margin to avoid raster interpolation at walls. Exact steps,thresholds,drains and finished ground levels remain approximate.",
+    "buildingCutout": {
+      "outline": [
+        [
+          -53.66008928753114,
+          -67.94764446962226
+        ],
+        [
+          -53.660089287531136,
+          72.6357825132237
+        ],
+        [
+          -35.79999347073675,
+          72.48154254413036
+        ],
+        [
+          11.13265567616473,
+          56.53478051864364
+        ],
+        [
+          61.57803936709741,
+          38.51733357538055
+        ],
+        [
+          62.07683853341231,
+          28.075759275929304
+        ],
+        [
+          64.32899831678331,
+          27.791591769154167
+        ],
+        [
+          64.16574892433658,
+          17.150511573988474
+        ],
+        [
+          62.84166016753282,
+          16.75147204010862
+        ],
+        [
+          65.31738001334085,
+          -56.163762533489106
+        ],
+        [
+          55.80389836898425,
+          -57.34577678890024
+        ],
+        [
+          45.259545991395186,
+          -63.89363087725818
+        ],
+        [
+          -37.50198249234329,
+          -66.44820984315453
+        ]
+      ],
+      "basis": "Exact mapped compound outer perimeter for building subtraction. A separately mapped southern adjoining building shares boundary vertices but has zero area overlap;the geometric occupancy raster would claim it. Use precise polygon subtraction. The current extract has no independent building inside the courtyard. The terrain cutout separately preserves the courtyard hole."
+    }
+  },
+  "geographicNote": "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0479;datum 1300.191498056187 m. The floor is the median of 344 outer/court edge samples plus0.25 m. 1103 mapped-ring samples range -2.956909692738691 to 2.7874161669869864 m. Footings follow sampled grade;the exact court hole remains open in the replacement mask. The synthetic fixture seats only the mapped ring and a3 m margin to avoid raster interpolation at walls. Exact steps,thresholds,drains and finished ground levels remain approximate.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

@@ -1,0 +1,465 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "dressed": {
+      "slot": "trim",
+      "graph": "stone_basalt_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "carved": {
+      "slot": "trim",
+      "graph": "stone_basalt_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -94.78742897357839,
+      57,
+      86.0019959569476
+    ],
+    "lookAt": [
+      -31.9532145577521,
+      -2,
+      -1.7297628237013098
+    ],
+    "fov": 48
+  },
+  "qaCameras": [
+    {
+      "name": "main-pyramid-true-west-stair-channel",
+      "position": [
+        -29.04016450284641,
+        10,
+        18.45721662785642
+      ],
+      "lookAt": [
+        -0.9985379549297532,
+        3.5,
+        -0.05405508824066593
+      ],
+      "fov": 46
+    },
+    {
+      "name": "western-gateway-passage-and-stepped-kala-crest",
+      "position": [
+        -93.13430524967036,
+        -8.478781115133325,
+        -0.0344334317331656
+      ],
+      "lookAt": [
+        -82.77054008268819,
+        -10.478781115133325,
+        -6.483648233834779
+      ],
+      "fov": 46
+    },
+    {
+      "name": "upper-court-relief-platforms-and-turtle-forms",
+      "position": [
+        -24.775737241924062,
+        6,
+        13.680747206170315
+      ],
+      "lookAt": [
+        -14.033586457257211,
+        1,
+        0.24176671956043017
+      ],
+      "fov": 50
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -94.78742897357839,
+        57,
+        86.0019959569476
+      ],
+      "lookAt": [
+        -31.9532145577521,
+        -2,
+        -1.7297628237013098
+      ],
+      "fov": 48,
+      "name": "sukuh-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -94.78742897357839,
+        57,
+        86.0019959569476
+      ],
+      "lookAt": [
+        -31.9532145577521,
+        -2,
+        -1.7297628237013098
+      ],
+      "fov": 48,
+      "name": "sukuh-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -94.78742897357839,
+        57,
+        86.0019959569476
+      ],
+      "lookAt": [
+        -31.9532145577521,
+        -2,
+        -1.7297628237013098
+      ],
+      "fov": 48,
+      "name": "sukuh-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -94.78742897357839,
+        57,
+        86.0019959569476
+      ],
+      "lookAt": [
+        -31.9532145577521,
+        -2,
+        -1.7297628237013098
+      ],
+      "fov": 48,
+      "name": "sukuh-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -16,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/sukuh-model.mjs",
+    "export": "buildSukuhSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSukuhDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSukuhStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSukuhCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      111.131537336,
+      -7.627315249
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain original standard6m Mapzen ground/water and independent buildings. Small local level bases have constant buried bottoms sampled along all boundaries. Main pyramid front threshold follows local west grade; its lower body is buried into uphill grade. Gate and detached platforms use separate local floors; short approach steps and narrow retaining edges follow native slope. No broad flattened terrace/island slab or ground/water cutout. Coarse wooded DEM does not resolve exact archaeological terrace/paving/door thresholds; relative and absolute elevations remain approximate.",
+    "replaceFootprint": false,
+    "bounds": [
+      111.13064006515324,
+      -7.627656608807966,
+      111.1316642227864,
+      -7.627090670178969
+    ],
+    "terrainReference": {
+      "anchor": [
+        111.131537336,
+        -7.627315249
+      ],
+      "modelHeight": 0,
+      "basis": "Retain original standard6m Mapzen ground/water and independent buildings. Small local level bases have constant buried bottoms sampled along all boundaries. Main pyramid front threshold follows local west grade; its lower body is buried into uphill grade. Gate and detached platforms use separate local floors; short approach steps and narrow retaining edges follow native slope. No broad flattened terrace/island slab or ground/water cutout. Coarse wooded DEM does not resolve exact archaeological terrace/paving/door thresholds; relative and absolute elevations remain approximate."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -8.643690973926272,
+          6.903988728781568
+        ],
+        [
+          -7.755869776672339,
+          -7.893031372210223
+        ],
+        [
+          -7.715869776672339,
+          -7.893031372210223
+        ],
+        [
+          8.560852172983118,
+          -7.005210036399578
+        ],
+        [
+          8.560852172983118,
+          -6.965210036399579
+        ],
+        [
+          7.968971374813828,
+          7.8318097893337635
+        ],
+        [
+          7.928971374813829,
+          7.8318097893337635
+        ],
+        [
+          -8.643690973926272,
+          6.943988728781568
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -8.643690973926272,
+            6.903988728781568
+          ],
+          [
+            -7.755869776672339,
+            -7.893031372210223
+          ],
+          [
+            -7.715869776672339,
+            -7.893031372210223
+          ],
+          [
+            8.560852172983118,
+            -7.005210036399578
+          ],
+          [
+            8.560852172983118,
+            -6.965210036399579
+          ],
+          [
+            7.968971374813828,
+            7.8318097893337635
+          ],
+          [
+            7.928971374813829,
+            7.8318097893337635
+          ],
+          [
+            -8.643690973926272,
+            6.943988728781568
+          ]
+        ],
+        [
+          [
+            -84.70037353867994,
+            -9.372733634946037
+          ],
+          [
+            -80.51720795149492,
+            -9.372733634946037
+          ],
+          [
+            -80.51720795149492,
+            -9.332733634946038
+          ],
+          [
+            -80.81314835057957,
+            -3.709865280802272
+          ],
+          [
+            -80.85314835057956,
+            -3.709865280802272
+          ],
+          [
+            -84.70037353867994,
+            -4.0058057039252555
+          ]
+        ],
+        [
+          [
+            -19.593485740058124,
+            -4.933626984367821
+          ],
+          [
+            -19.297545340973482,
+            -8.188971822226273
+          ],
+          [
+            -19.257545340973483,
+            -8.188971822226273
+          ],
+          [
+            -11.859035363857364,
+            -7.893031372210223
+          ],
+          [
+            -11.859035363857364,
+            -7.853031372210224
+          ],
+          [
+            -12.154975762942009,
+            -4.301746128630184
+          ],
+          [
+            -12.194975762942008,
+            -4.301746128630184
+          ],
+          [
+            -19.593485740058124,
+            -4.893626984367822
+          ]
+        ],
+        [
+          [
+            -15.746260551957745,
+            9.271511518954076
+          ],
+          [
+            -15.450320152873099,
+            5.128346560218823
+          ],
+          [
+            -15.4103201528731,
+            5.128346560218823
+          ],
+          [
+            -9.195571772095562,
+            5.7202272909827965
+          ],
+          [
+            -9.195571772095562,
+            5.760227290982796
+          ],
+          [
+            -9.491512171180208,
+            9.607451859815912
+          ],
+          [
+            -9.531512171180207,
+            9.607451859815912
+          ],
+          [
+            -15.746260551957745,
+            9.311511518954076
+          ]
+        ],
+        [
+          [
+            -15.746260551957745,
+            3.056763944803916
+          ],
+          [
+            -15.450320152873099,
+            0.3933004499221955
+          ],
+          [
+            -12.746856561111297,
+            0.3933004499221955
+          ],
+          [
+            -12.746856561111297,
+            3.3927043236324366
+          ],
+          [
+            -12.786856561111296,
+            3.3927043236324366
+          ],
+          [
+            -15.746260551957745,
+            3.096763944803916
+          ]
+        ]
+      ],
+      "basis": "Replace only the five matching Sukuh pyramid/gateway/platform/shrine shells with a two-centimeter numeric tolerance to prevent zero-area native edge slivers. Preserve independent modern buildings, native courtyard ground and water."
+    },
+    "notes": "Exact-QID Q3101506/way646444755 and named standard building/POI35185018533587 establish the main approximately16.5x14.8m pyramid. Four additional map controls35185018533590..35185018533593 align with the western gate, north platform, south platform and small shrine in the ordinary precinct sketch. Anchor111.131537336,-7.627315249; heading0, internal local+x angle+.054081447315rad, west-front along local-x. Main mapped dimensions/positions are retained; internal stair, sculpture and terrace allocation are picture/map-led approximations. Retain original standard6m Mapzen ground/water and independent buildings. Small local level bases have constant buried bottoms sampled along all boundaries. Main pyramid front threshold follows local west grade; its lower body is buried into uphill grade. Gate and detached platforms use separate local floors; short approach steps and narrow retaining edges follow native slope. No broad flattened terrace/island slab or ground/water cutout. Coarse wooded DEM does not resolve exact archaeological terrace/paving/door thresholds; relative and absolute elevations remain approximate."
+  }
+}

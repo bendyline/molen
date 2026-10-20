@@ -1,0 +1,361 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_marble",
+      "roughness": 0.83,
+      "metallic": 0
+    },
+    "pink": {
+      "slot": "trim",
+      "graph": "stone_granite",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "roof",
+      "graph": "metal_stainless_polished",
+      "roughness": 0.35,
+      "metallic": 1
+    },
+    "blue": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.1
+    },
+    "turquoise": {
+      "slot": "trim",
+      "graph": "tile_ceramic",
+      "roughness": 0.65,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      77.49355257848714,
+      39,
+      -34.9249095741886
+    ],
+    "lookAt": [
+      0,
+      13,
+      0
+    ],
+    "fov": 44
+  },
+  "qaCameras": [
+    {
+      "name": "gold-dome-eighteen-window-drum-and-octagon",
+      "position": [
+        -5.4770000628197195,
+        31,
+        -41.844981423246836
+      ],
+      "lookAt": [
+        0,
+        21,
+        0
+      ],
+      "fov": 45
+    },
+    {
+      "name": "pink-shafts-pointed-arcade-and-covered-walk",
+      "position": [
+        -0.7622476550785535,
+        6.494351205999339,
+        -25.542493584462875
+      ],
+      "lookAt": [
+        2.6838903750789713,
+        5.494351205999339,
+        -11.081368708537697
+      ],
+      "fov": 49
+    },
+    {
+      "name": "level-apron-downhill-steps-and-retained-hillside",
+      "position": [
+        41.99164304315852,
+        11.49435120599934,
+        -20.241094697074978
+      ],
+      "lookAt": [
+        6.7595123347749615,
+        1.4943512059993393,
+        -12.26005681047299
+      ],
+      "fov": 49
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "bab-skyline",
+      "position": [
+        -5.4770000628197195,
+        31,
+        -41.844981423246836
+      ],
+      "lookAt": [
+        0,
+        21,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "bab-district",
+      "position": [
+        -5.4770000628197195,
+        31,
+        -41.844981423246836
+      ],
+      "lookAt": [
+        0,
+        21,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "bab-street",
+      "position": [
+        -5.4770000628197195,
+        31,
+        -41.844981423246836
+      ],
+      "lookAt": [
+        0,
+        21,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "bab-closeup",
+      "position": [
+        -5.4770000628197195,
+        31,
+        -41.844981423246836
+      ],
+      "lookAt": [
+        0,
+        21,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -4.386811359763397,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/bab-model.mjs",
+    "export": "buildBabSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBabDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "pink": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_stainless_polished",
+            "roughness": 0.35,
+            "metallic": 1
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.1
+          },
+          "turquoise": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.65,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildBabStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "pink": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_stainless_polished",
+            "roughness": 0.35,
+            "metallic": 1
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.1
+          },
+          "turquoise": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.65,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBabCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "pink": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "graph": "metal_stainless_polished",
+            "roughness": 0.35,
+            "metallic": 1
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.1
+          },
+          "turquoise": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.65,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      34.987141997,
+      32.814594604
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Pinned standard Protomaps2026-10-14 and Mapzen13–14 extract. Retain the original six-meter native terrain grid and water. A level shrine apron clears the sampled native grade, with a buried retaining base and short stair toward the downhill garden axis. The coarse hillside DEM does not resolve the actual terrace/threshold engineering: platform level, retaining-wall exposure and approach rise are approximate. No terrain/water cutout, garden reconstruction or bespoke topography.",
+    "replaceFootprint": false,
+    "bounds": [
+      34.98688296131187,
+      32.81438184422498,
+      34.98743096520898,
+      32.81485299070303
+    ],
+    "terrainReference": {
+      "anchor": [
+        34.987141997,
+        32.814594604
+      ],
+      "modelHeight": 0,
+      "basis": "Pinned standard Protomaps2026-10-14 and Mapzen13–14 extract. Retain the original six-meter native terrain grid and water. A level shrine apron clears the sampled native grade, with a buried retaining base and short stair toward the downhill garden axis. The coarse hillside DEM does not resolve the actual terrace/threshold engineering: platform level, retaining-wall exposure and approach rise are approximate. No terrain/water cutout, garden reconstruction or bespoke topography."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -21.07037613979975,
+          4.954293226198393
+        ],
+        [
+          7.0345643255865955,
+          20.512405299627293
+        ],
+        [
+          21.08703455827977,
+          -5.083185447074415
+        ],
+        [
+          -7.017905907106577,
+          -20.641257258418303
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -21.07037613979975,
+            4.954293226198393
+          ],
+          [
+            7.0345643255865955,
+            20.512405299627293
+          ],
+          [
+            21.08703455827977,
+            -5.083185447074415
+          ],
+          [
+            -7.017905907106577,
+            -20.641257258418303
+          ]
+        ]
+      ],
+      "basis": "Replace only the mapped shrine shell with the specific open arcade and upper shrine. Independent buildings and garden context remain native."
+    },
+    "notes": "Q1462314 / way91970948 identifies the shrine; standard PMTiles record35184464059780 fixes its 32.1 by29.2m rectangular arcade plan and mapped center. Native +X east/+Z south and runtime heading0; the internal architectural angle0.503874710567rad follows the mapped rectangle. The garden/terrain direction puts the approximate front approach toward local-V/northeast/downhill. Exact doorway facing, individual shaft spacing and interior partitions remain picture-led approximations. Preserve independent surrounding buildings and garden context. Pinned standard Protomaps2026-10-14 and Mapzen13–14 extract. Retain the original six-meter native terrain grid and water. A level shrine apron clears the sampled native grade, with a buried retaining base and short stair toward the downhill garden axis. The coarse hillside DEM does not resolve the actual terrace/threshold engineering: platform level, retaining-wall exposure and approach rise are approximate. No terrain/water cutout, garden reconstruction or bespoke topography."
+  }
+}

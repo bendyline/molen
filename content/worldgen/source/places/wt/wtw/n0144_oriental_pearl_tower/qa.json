@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0144_oriental_pearl_tower",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:41f73f23cc7978f12a43ea81fac918b489d2b87110be4c3f42fc34da73c9f6d4",
+  "inputHash": "sha256:82fbdae951b2f4a946f5cd752b83f3b1e3e462429cf5e9a27af226115c30af16",
   "sourceHash": "sha256:9f16c039d90dd9495feaf1f248772ab924d04f78da164364584c872f266872ee",
   "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
-  "captureReportHash": "sha256:237ff983ad015d3fce7e05c17d0eefbdb1a3028ba5a382b6ccfe3372b58b82b5",
+  "captureReportHash": "sha256:dce286c64ae57e19bebf78f0244ef0877b686672acf2f35da334dcdd7d237b1c",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -24,7 +24,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:dceca4ab1df3e0c9a5c2a6bcd35cf290f956d929e08cdedd607c97497d78bdc9",
+    "captureReportHash": "sha256:a5927e1eccc45c6026872fb2ccdb27f9d5e751bbf809b7b50a656759ce4241f4",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -397,5 +397,49 @@
     "framesVerified": 46,
     "sourceRebuild": "assets-4c110226cdb7e02d",
     "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  },
+  "sourceBindingMaintenance": {
+    "reviewedOn": "2026-10-19",
+    "status": "carried-existing-acceptance-after-source-equivalence",
+    "previousInputHash": "sha256:41f73f23cc7978f12a43ea81fac918b489d2b87110be4c3f42fc34da73c9f6d4",
+    "inputHash": "sha256:82fbdae951b2f4a946f5cd752b83f3b1e3e462429cf5e9a27af226115c30af16",
+    "originalVisualReviewOn": "2026-10-12",
+    "sourceRelease": "assets-3ad02ba96a6d989f",
+    "modelPins": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/wt/wtw/n0144_oriental_pearl_tower/models/source.glb",
+        "hash": "sha256:9f16c039d90dd9495feaf1f248772ab924d04f78da164364584c872f266872ee"
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/wt/wtw/n0144_oriental_pearl_tower/model.glb",
+        "hash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a"
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/wt/wtw/n0144_oriental_pearl_tower/model.skyline.glb",
+        "hash": "sha256:15c6cd4129d2bc94f21835039f7001c0d1e2a6f03f7b4e8bad742c38773895a8"
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/wt/wtw/n0144_oriental_pearl_tower/model.district.glb",
+        "hash": "sha256:aaf9fb6fd8cc00e77561d3aba6bc7cd419cc6143426a5545379917af4eb41e3d"
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/wt/wtw/n0144_oriental_pearl_tower/model.street.glb",
+        "hash": "sha256:05cdfd9b2071144be8de802058a1a7b9de20ac40ef0e2ce56b2f9cc0480d0550"
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/wt/wtw/n0144_oriental_pearl_tower/model.closeup.glb",
+        "hash": "sha256:38bcdca4e368941bd19c41651e47b88d09d8455e52aa307b65302499c45a7b3d"
+      }
+    ],
+    "change": "Exact prior input reconstructed using HEAD tower generator; only validation guard gained support for centerline/point frames. These three outlined frames and all six approved model files are unchanged.",
+    "scope": "Existing inspected images, materials, LODs and placement retained; no new visual inspection is claimed.",
+    "currentFrameTextHash": "sha256:0aa12b8384f829113488f21dc06fb551e9ff904a648a3357a452fbe1dbdbd1f1",
+    "geographicContract": "Retained exact mapped axis plus existing hash-bound reviewed placement. Legacy frame/proposal predates the newer source-local descriptive/hash contract. The prior combined input was reconstructed exactly, including the unchanged frame; retain its existing geometry hash and reviewed placement rather than relabeling it as a modern local frame."
   }
 }

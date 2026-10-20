@@ -1,0 +1,1077 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0522_shrine_of_the_bab",
+  "sourceHash": "sha256:58bd22b4516c5877f145b7ca873dab8b2b53f5940aa8fb370aa632ae4092adac",
+  "runtimeHash": "sha256:dd4e8ef495c256d27af10c689e7d5f92ed547bbcbbc50bd2cc9ae9abde9dc5be",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:24c09714439fdb2273a62dc36fc43e9260025fbdaa216d899f1d9fa29eb57241",
+      "bytes": 100316,
+      "gzipBytes": 16839,
+      "triangles": 952,
+      "cpuBytes": 98880,
+      "gpuBytes": 98880,
+      "errorMeters": 0.8,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:d0d9af7361bc82f47e3975497c4be66620bfe0613218cd21594de81e31262f93",
+      "bytes": 358700,
+      "gzipBytes": 79657,
+      "triangles": 3616,
+      "cpuBytes": 352392,
+      "gpuBytes": 352392,
+      "errorMeters": 0.4,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:3fa84a7453dfdff6447223ad209d36476a6b84feece89ebae4c4696fc6fc78e2",
+      "bytes": 1632996,
+      "gzipBytes": 432642,
+      "triangles": 15864,
+      "cpuBytes": 1626660,
+      "gpuBytes": 1626660,
+      "errorMeters": 0.15,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:263d8575462d3c6fef71f12cf84b6d10f0ae04852d857e3d04cd37e74cf0e7ab",
+      "bytes": 2516164,
+      "gzipBytes": 729443,
+      "triangles": 24264,
+      "cpuBytes": 2509812,
+      "gpuBytes": 2509812,
+      "errorMeters": 0.04,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:344cd8b3e2bdd4754a05df1cc325a8a8ff1934388f9df566b1b68161492b605e"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:f65aea0cf77df6f0d61192fac50b7a5e6570e519379a953001239b031beb8605"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:639afda68f016d822844591340b7e5d0c052f2da403252889372593316967f10",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 63754,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          57.599999999999994,
+          45.6538,
+          99.6
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:45741bbe6a639f25bdf4ca4a9e97b911ac5ea5ade34186833facbe3b35a844c4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 63754,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          57.599999999999994,
+          45.6538,
+          99.6
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:5636f6d9b0d4e2ade514624ffd88a296d54d488a04879d52b3353d50a24d268d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 63754,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          57.599999999999994,
+          45.6538,
+          99.6
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:910e10817023d92326a20352ef21f6a0c1018759faecb89385069767e2ce68f6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 63754,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          57.599999999999994,
+          45.6538,
+          99.6
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:6fe017966b7101db4131397b39200e016abf882d8d49134f9bff88e5e25edf84",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 43106,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          88.85379999999999,
+          201.6
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:c46074c273d71b90b738cb808e6b7dbb0dc6415701f58da4fb9b7a39538ed3e5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 43106,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          88.85379999999999,
+          201.6
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:50cd418d4d73afbd1fda1e6b5f20b3a85a587306cc763f63904c52b51c145d46",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 43106,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          88.85379999999999,
+          201.6
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:8371d9fbb4920c02bc4f802605c9118ed5ee1267fa9412e07b127944c05b9637",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 43106,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          88.85379999999999,
+          201.6
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:b88aaa4d80be3570e9ec3482369635841e6f258b7e3450e89669a04d4bee3792",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 40442,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          232.79999999999998,
+          134.4538,
+          403.2
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:738dfe0ae5c876a82a34e8dc8615d0d5cd7ba1cfc9afcc846ba1ddaacac44d85",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40442,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          232.79999999999998,
+          134.4538,
+          403.2
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:fc88de0680aa01f5cf13985160323afee2b9d78d50c8144286d2cae761236f25",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 40442,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          232.79999999999998,
+          134.4538,
+          403.2
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:0bf29bc448a803b25d331871d5c5b3f51ffd51653b590a143ffddbcff82041d2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40442,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          232.79999999999998,
+          134.4538,
+          403.2
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:b6749e04e861a52754ee8af31abd4f641880aba5f3f8db5d8c5f340ece634ef7",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 34746,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          232.79999999999998,
+          134.4538,
+          403.2
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/gold-dome-eighteen-window-drum-and-octagon.png",
+      "hash": "sha256:5e2cd4b7c600c32df00303908de67fbe5fbb86007fd57732749fd28fedee790e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 63754,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          -5.4770000628197195,
+          31,
+          -41.844981423246836
+        ],
+        "lookAt": [
+          0,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/pink-shafts-pointed-arcade-and-covered-walk.png",
+      "hash": "sha256:aa2cfdc4d9da2f661db9d9cc29ea91ffa27cb75bc7f1fae18fc40f0d3cf3333d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 62250,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          -0.7622476550785535,
+          6.494351205999339,
+          -25.542493584462875
+        ],
+        "lookAt": [
+          2.6838903750789713,
+          5.494351205999339,
+          -11.081368708537697
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/level-apron-downhill-steps-and-retained-hillside.png",
+      "hash": "sha256:fe9c0fc81150fdbefdde051fbf2359f06bbe1124b36b4b778ee4b6a56171502a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 62250,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          41.99164304315852,
+          11.49435120599934,
+          -20.241094697074978
+        ],
+        "lookAt": [
+          6.7595123347749615,
+          1.4943512059993393,
+          -12.26005681047299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/bab-skyline.png",
+      "hash": "sha256:85e2c1684e98d3e3b54f042d437a9fac574293a4612d0a44261b4c17018f0fd6",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40442,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          -5.4770000628197195,
+          31,
+          -41.844981423246836
+        ],
+        "lookAt": [
+          0,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/bab-district.png",
+      "hash": "sha256:b6e61c30d02e689078e040e5050f66e86af4b7597e7379e9374223a36bb1e112",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 43106,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          -5.4770000628197195,
+          31,
+          -41.844981423246836
+        ],
+        "lookAt": [
+          0,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/bab-street.png",
+      "hash": "sha256:f3ef8f1a725b294b984a650bb551bb1eb89f3274521c3f2613269cb0b5d9d1fc",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 55354,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          -5.4770000628197195,
+          31,
+          -41.844981423246836
+        ],
+        "lookAt": [
+          0,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/bab-closeup.png",
+      "hash": "sha256:5e2cd4b7c600c32df00303908de67fbe5fbb86007fd57732749fd28fedee790e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 63754,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          -5.4770000628197195,
+          31,
+          -41.844981423246836
+        ],
+        "lookAt": [
+          0,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:893c44848f3b86ed429cf42ab9797b49ea94459c27770a5f682b0b41cd52078e",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40442,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          88.85379999999999,
+          201.6
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:c46074c273d71b90b738cb808e6b7dbb0dc6415701f58da4fb9b7a39538ed3e5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 43106,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          88.85379999999999,
+          201.6
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:33b7870e9566e100d03eddd28884ba2c910bfa806679006a4ea857bc9ba07e99",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 55354,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          88.85379999999999,
+          201.6
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:af291f7cc0b6ad517b47e1ac0f1a88a78c72a33effd40f75d9ec2dadc0f9dd4d",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 63754,
+        "groundY": -27,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/terrain-review.height.png"
+        },
+        "position": [
+          116.39999999999999,
+          88.85379999999999,
+          201.6
+        ],
+        "lookAt": [
+          0,
+          27.653799999999997,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_stainless_polished": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

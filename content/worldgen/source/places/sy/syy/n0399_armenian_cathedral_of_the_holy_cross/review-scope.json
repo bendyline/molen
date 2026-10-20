@@ -1,0 +1,326 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "dark": {
+      "slot": "trim",
+      "graph": "stone_basalt_raw",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.8,
+      "metallic": 0.35
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/akhtamar-model.mjs",
+    "export": "buildAkhtamarSkyline",
+    "errorMeters": 0.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAkhtamarDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.8,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildAkhtamarStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.8,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAkhtamarCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.8,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -49,
+      36,
+      56
+    ],
+    "lookAt": [
+      0,
+      10,
+      1
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-akhtamar-skyline",
+      "position": [
+        -49,
+        36,
+        56
+      ],
+      "lookAt": [
+        0,
+        10,
+        1
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-akhtamar-district",
+      "position": [
+        -49,
+        36,
+        56
+      ],
+      "lookAt": [
+        0,
+        10,
+        1
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-akhtamar-street",
+      "position": [
+        -49,
+        36,
+        56
+      ],
+      "lookAt": [
+        0,
+        10,
+        1
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-akhtamar-closeup",
+      "position": [
+        -49,
+        36,
+        56
+      ],
+      "lookAt": [
+        0,
+        10,
+        1
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.anatolian_house",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      43.036987917,
+      38.340335015
+    ],
+    "heading": -0.050814185243,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Reviewed Y=0 attachment convention,not exact host terrain contact. Standard viewer DEM datum 1661.326535 m; current whole perimeter -2.63..0.59 m. Estimated floor0.5 m. Footings crossY=0 and extend below samples. Exact island terrace,paths,door/base joins,absolute altitude and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        43.036987917,
+        38.340335015
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 1661.326535 m; current whole perimeter -2.63..0.59 m. Estimated floor0.5 m. Footings crossY=0 and extend below samples. Exact island terrace,paths,door/base joins,absolute altitude and walking remain unverified."
+    },
+    "bounds": [
+      43.029,
+      38.334,
+      43.045,
+      38.347
+    ],
+    "notes": "Retained exact way/191563484 and Q1281985 match current whole35184563652316 and its same-ID multilingual Surp Haç Kilisesi/Armenian Cathedral of the Holy Cross POI. Retain all eight current raw outline points/properties and earlier eight distinct whole points/tags. Anchor and heading -0.050814185243 rad are unchanged. The low western narthex, main conical drum, northern/eastern annex and southern stacked bell entrance in inspected pictures sign the frame: +X east toward main sanctuary, -X west narthex, +Z south bell porch. No horizontal rescale. The map supplies one coarse whole outline, not independent architectural parts. Standard viewer DEM datum 1661.326535 m; current whole perimeter -2.63..0.59 m. Estimated floor0.5 m. Footings crossY=0 and extend below samples. Exact island terrace,paths,door/base joins,absolute altitude and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum 1661.326535 m; current whole perimeter -2.63..0.59 m. Estimated floor0.5 m. Footings crossY=0 and extend below samples. Exact island terrace,paths,door/base joins,absolute altitude and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

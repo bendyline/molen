@@ -1,7 +1,7 @@
 /** Indexed, geographic placements for authored structure assets. Coordinates are WGS84. */
 import { dmath } from '@bendyline/molen-kernel/determinism';
 import { type BuildingMetrics, matchesWhen } from '@bendyline/molen-worldgen/kernel';
-import { validGroundOutline } from './ground-cutout';
+import { MAX_STRUCTURE_GROUND_OUTLINES, validGroundOutline } from './ground-cutout';
 import { projectWgs84 } from './projection';
 import { createRegionResolver, regionStyleRules } from './region';
 import type { RegionAtlasDoc } from './region-atlas-types';
@@ -28,7 +28,7 @@ export interface StructurePlacement {
   elevation?: number;
   /** Ground at another known site point; modelHeight is that point's native model Y in metres. */
   terrainReference?: { anchor: [number, number]; modelHeight: number; basis: string };
-  /** WGS84 extent [west, south, east, north]. Extended models are clipped per resident tile. */
+  /** WGS84 extent [west, south, east, north]. Ground-opening models stay whole; others clip per tile. */
   bounds?: [number, number, number, number];
   /** Suppress mapped bridge centerlines inside this model-local rectangle (meters). */
   replaceRoads?: {
@@ -45,7 +45,21 @@ export interface StructurePlacement {
   /** Only a contained, nongeneralized mapped footprint may be replaced. */
   replaceFootprint?: boolean;
   /** Ground opening in native model X/Z metres; active only while this structure is visible. */
-  groundCutout?: { outline: [number, number][]; basis: string };
+  groundCutout?: {
+    outline: [number, number][];
+    /** Complete set for separated openings; when present, supersedes outline. */
+    outlines?: [number, number][][];
+    basis: string;
+  };
+  /** Remove only this native X/Z area from mapped buildings; overrides whole-footprint replacement. */
+  buildingCutout?: {
+    outline: [number, number][];
+    /** Complete set of independent occupied masks; supersedes outline when present. */
+    outlines?: [number, number][][];
+    basis: string;
+  };
+  /** Replace only native water in these model-local X/Z polygons while the model is resident. */
+  waterCutout?: { outlines: [number, number][][]; basis: string };
   /** Optional confirmed map identity used to refine orientation from a nearby feature. */
   mapIdentity?: { wikidata?: string; names?: string[]; maxDistance?: number };
   /** Fixed is the catalog heading; mapped follows a confirmed footprint or bridge axis. */
@@ -233,6 +247,24 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
     if (ids.has(entry.id)) throw new Error(`duplicate structure placement ${entry.id}`);
     ids.add(entry.id);
     if (
+      entry.waterCutout &&
+      (!entry.waterCutout.basis?.trim() ||
+        !entry.bounds ||
+        !Array.isArray(entry.waterCutout.outlines) ||
+        entry.waterCutout.outlines.length < 1 ||
+        entry.waterCutout.outlines.length > 16 ||
+        entry.waterCutout.outlines.some(
+          (outline) =>
+            outline.length < 3 ||
+            outline.length > 512 ||
+            outline.some((p) => p.length !== 2 || p.some((v) => !Number.isFinite(v))) ||
+            !validGroundOutline(outline),
+        ))
+    )
+      throw new Error(
+        `invalid water cutout ${entry.id}: valid outlines, basis and bounds are required`,
+      );
+    if (
       entry.groundCutout &&
       (!entry.groundCutout.basis?.trim() ||
         entry.groundCutout.outline.length < 3 ||
@@ -240,9 +272,44 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
         entry.groundCutout.outline.some(
           (p) => p.length !== 2 || p.some((v) => !Number.isFinite(v)),
         ) ||
-        !validGroundOutline(entry.groundCutout.outline))
+        !validGroundOutline(entry.groundCutout.outline) ||
+        (entry.groundCutout.outlines !== undefined &&
+          (entry.groundCutout.outlines.length < 1 ||
+            entry.groundCutout.outlines.length > MAX_STRUCTURE_GROUND_OUTLINES ||
+            entry.groundCutout.outlines.some(
+              (outline) =>
+                outline.length < 3 ||
+                outline.length > 512 ||
+                outline.some((p) => p.length !== 2 || p.some((v) => !Number.isFinite(v))) ||
+                !validGroundOutline(outline),
+            ))))
     )
       throw new Error(`invalid ground cutout ${entry.id}`);
+    if (
+      entry.buildingCutout &&
+      (!entry.bounds ||
+        !entry.buildingCutout.basis?.trim() ||
+        entry.buildingCutout.outline.length < 3 ||
+        entry.buildingCutout.outline.length > 512 ||
+        entry.buildingCutout.outline.some(
+          (p) => p.length !== 2 || p.some((v) => !Number.isFinite(v)),
+        ) ||
+        !validGroundOutline(entry.buildingCutout.outline) ||
+        (entry.buildingCutout.outlines !== undefined &&
+          (!Array.isArray(entry.buildingCutout.outlines) ||
+            entry.buildingCutout.outlines.length < 1 ||
+            entry.buildingCutout.outlines.length > MAX_STRUCTURE_GROUND_OUTLINES ||
+            entry.buildingCutout.outlines.some(
+              (outline) =>
+                outline.length < 3 ||
+                outline.length > 512 ||
+                outline.some((p) => p.length !== 2 || p.some((v) => !Number.isFinite(v))) ||
+                !validGroundOutline(outline),
+            ))))
+    )
+      throw new Error(
+        `invalid building cutout ${entry.id}: a valid outline and bounds are required`,
+      );
     if (!entry.asset || !entry.source || !['preview', 'draft', 'historical'].includes(entry.status))
       throw new Error(`invalid structure placement ${entry.id}`);
     if (

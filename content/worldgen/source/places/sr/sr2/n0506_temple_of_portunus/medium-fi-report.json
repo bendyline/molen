@@ -1,0 +1,1173 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0506_temple_of_portunus",
+  "sourceHash": "sha256:7a35c69efa2b8b17483fed4c9bbdc5a2bf13b732500ad54f9111c06250dcabb3",
+  "runtimeHash": "sha256:a961c6b86407567623c4d1735391b94be470eb3193e3e23023c23f29e0e0e13f",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:4818974c7cad44fc1fe87e65cab0611531c00ad677ae74c36b68216030c877a8",
+      "bytes": 83932,
+      "gzipBytes": 14096,
+      "triangles": 796,
+      "cpuBytes": 82500,
+      "gpuBytes": 82500,
+      "errorMeters": 0.7,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:54321d0f6475f3676d4e8eca382ddd8556f38db0e514e3e6d1ff4861182749c5",
+      "bytes": 275904,
+      "gzipBytes": 76663,
+      "triangles": 2848,
+      "cpuBytes": 270816,
+      "gpuBytes": 270816,
+      "errorMeters": 0.3,
+      "drawCalls": 4
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:ca335856b4cd017890a5ebde85cc2ff3c5ed41938d2e4f002b0a9b824112c689",
+      "bytes": 1554056,
+      "gzipBytes": 513235,
+      "triangles": 15076,
+      "cpuBytes": 1548924,
+      "gpuBytes": 1548924,
+      "errorMeters": 0.12,
+      "drawCalls": 4
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:1af1224ad1ffda67467b4f2314c877ad650746648d756370933d0d14ddc80830",
+      "bytes": 2717184,
+      "gzipBytes": 940889,
+      "triangles": 26740,
+      "cpuBytes": 2712048,
+      "gpuBytes": 2712048,
+      "errorMeters": 0.04,
+      "drawCalls": 4
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:055a07ddc7243ea7efc9ccc6309b3bab151e7a251ce4f602a22993ae4209f589"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:502a248f17eafebbf478f320b454235cee97c43e650d34c6ea98ed8dbe5b62e7"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:31fa7c347029f03801de32d911dbe939f4dca7b946059a51a0e197caa19e7c8d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 51638,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          86.8669,
+          52.639700000000005,
+          149.7956
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:bd0f33d607350e91a4f68596d5a777c732c644f335a3c57d8a8e13a2a53a816e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 51638,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          86.8669,
+          52.639700000000005,
+          149.7956
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:00353f7527a996912cc5b3cacfbe4424380ff3823683dfa8b712368f0a558f27",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 51638,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          86.8669,
+          52.639700000000005,
+          149.7956
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:7a7d3985ea8b48d81bed0a5eb622fe6b45b33af614d03486adbcfcbd64979a3a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 51638,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          86.8669,
+          52.639700000000005,
+          149.7956
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:69f0898f85e84503fdcfe55df3eec27aaa16846cf3acb032dc0dcdf8cf136b91",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 27746,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          175.0669,
+          117.4397,
+          302.79560000000004
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:a38853e67c5830a0f9d5cb68ecfc7ebb54e789d82741ee5c0671beebdb00ccf9",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 27746,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          175.0669,
+          117.4397,
+          302.79560000000004
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:c32cbfb8c904522244957ce88ad88aca3d20151719a02dbb93d2adde1a60c973",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 27746,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          175.0669,
+          117.4397,
+          302.79560000000004
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:c2693b76f9ccb4336e9a91a4b4daf8889b9860025a4b63f6e32c9ffe355cb0e3",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 27746,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          175.0669,
+          117.4397,
+          302.79560000000004
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:2c4fca599bf724acda1f128948ae97cab77980ecdb0bb797a64c597f900497c0",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25694,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          349.6669,
+          185.8397,
+          605.1956
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:9818e5762ad9195b8f21dc467c5e01af3799acbf5d2bd5ae843bb7c429c5c47d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25694,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          349.6669,
+          185.8397,
+          605.1956
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:a04cb1e6a99c0e54c806e15ee94cbe830379e269921fd1c6eaf5bd348fcd719a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25694,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          349.6669,
+          185.8397,
+          605.1956
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:c988c7f8bb5ebfa17c1dad082a6266188b9a41134efb2f6da142bc751653fbae",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25694,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          349.6669,
+          185.8397,
+          605.1956
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:9dae8bd2d60de28c651d96b58b82d93df2c7e2eaa8af90d0929ad1a55a7349a8",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 19998,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          349.6669,
+          185.8397,
+          605.1956
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northwest-portico-and-stairs.png",
+      "hash": "sha256:30c1c9aa5a5d6c9db7498a70a053db12086216c6e931e99b34f02ec866697c3f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 51638,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          -25.51392175845885,
+          13.455196513547794,
+          -21.3784891071198
+        ],
+        "lookAt": [
+          -0.5949043417124393,
+          6.4551965135477944,
+          -1.909473441609411
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/ionic-capitals-and-front-pediment.png",
+      "hash": "sha256:78d7328dd0182a02bde9a0640b1a7c362cf4f27b62a1eca78ca8169d6a5dee53",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 51638,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          -1.8336307773877536,
+          9.455196513547794,
+          -11.264448418463124
+        ],
+        "lookAt": [
+          -0.539713834163198,
+          10.405196513547793,
+          -7.111343682962654
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roofed-pronaos-and-closed-door.png",
+      "hash": "sha256:b9312a855201e854b0a816f3cfbdbb7c348a29095e913efd10f8d5fa543f6502",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 51638,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          -2.677069537705977,
+          6.255196513547794,
+          -8.59263048724235
+        ],
+        "lookAt": [
+          -0.29745217085621967,
+          7.4551965135477944,
+          -0.9547367208047055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/engaged-side-and-rear-columns.png",
+      "hash": "sha256:7458734b295217f43456fb54d2f32f40dfbae683e12abf49922c77ee3ef70260",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 51638,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          27.548155616540352,
+          12.455196513547794,
+          14.460260098866687
+        ],
+        "lookAt": [
+          2.0821651959935377,
+          6.4551965135477944,
+          6.683157045632939
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/complete-roof-and-pediments.png",
+      "hash": "sha256:dc00ae069eeb11f11264c358e43ec941867eb0fbd713d32bc421d6af9ae2e44b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 51638,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          -12.114125199604953,
+          24.455196513547794,
+          4.821614941935561
+        ],
+        "lookAt": [
+          0.29745217085621967,
+          10.455196513547794,
+          0.9547367208047055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mapped-complete-plan.png",
+      "hash": "sha256:0a9a5a41c601ce1830e2ffecac0d9d38e6c7188b87bd5b400dc70db122c251a5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 51638,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          70.45519651354779,
+          0.01
+        ],
+        "lookAt": [
+          0,
+          0.45519651354779406,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-temple-skyline.png",
+      "hash": "sha256:d0ed5e04afcbf25afda66ba1ac966594f714e6d3d5f48d3dcc8e552c8ca04236",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25694,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          16.97908675251255,
+          24.455196513547794,
+          -42.996634903799766
+        ],
+        "lookAt": [
+          0.29745217085621967,
+          5.4551965135477944,
+          0.9547367208047055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-temple-district.png",
+      "hash": "sha256:6adcfb3a060d091ae42a5aa4ac370ac6fb3408bd9a1ca0a09c9d388b9a2d9572",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 27746,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          16.97908675251255,
+          24.455196513547794,
+          -42.996634903799766
+        ],
+        "lookAt": [
+          0.29745217085621967,
+          5.4551965135477944,
+          0.9547367208047055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-temple-street.png",
+      "hash": "sha256:ea54eb6e474b60dea2d00e68639f3c303aaecc0e51fb67e14418eacb2559e1d4",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 39974,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          16.97908675251255,
+          24.455196513547794,
+          -42.996634903799766
+        ],
+        "lookAt": [
+          0.29745217085621967,
+          5.4551965135477944,
+          0.9547367208047055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-temple-closeup.png",
+      "hash": "sha256:5755a18e84c43e1d6318f37902010f735473d28974a9e90964d963aaa2aad006",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 51638,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          16.97908675251255,
+          24.455196513547794,
+          -42.996634903799766
+        ],
+        "lookAt": [
+          0.29745217085621967,
+          5.4551965135477944,
+          0.9547367208047055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:dbd04bfeb0e0f6044c75e82000d888ab03e45ca035d7c5e58dd6d7367000891e",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25694,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          175.0669,
+          117.4397,
+          302.79560000000004
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:a38853e67c5830a0f9d5cb68ecfc7ebb54e789d82741ee5c0671beebdb00ccf9",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 27746,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          175.0669,
+          117.4397,
+          302.79560000000004
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:5838cf683b2d9f431c17df484148b6a5cf9af4bd3498d3b3fcac3b433ec6165c",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 39974,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          175.0669,
+          117.4397,
+          302.79560000000004
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:c9b8cdc731b37d085727d9a8e8f706c1ec80dd467c341186e88947b371c0fd8b",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 51638,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/terrain-review.height.png"
+        },
+        "position": [
+          175.0669,
+          117.4397,
+          302.79560000000004
+        ],
+        "lookAt": [
+          0.4669,
+          25.6397,
+          0.3956
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.8,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

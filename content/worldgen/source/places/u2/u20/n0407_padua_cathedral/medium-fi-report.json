@@ -1,0 +1,1200 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0407_padua_cathedral",
+  "sourceHash": "sha256:82da41808bad947b2f84758574156b26b84212b6bb97e35da5f610b9c79a40bf",
+  "runtimeHash": "sha256:3bbfd583b5b3323cabb5a6682551cd43fdcaa3ddb4f85d99bfdd174652cc5a97",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 9870,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:2a1240b56511c43463091dbb1de5912f0dc706b4603b20852ff928f4ffb86919",
+      "bytes": 85024,
+      "gzipBytes": 15279,
+      "triangles": 996,
+      "cpuBytes": 83592,
+      "gpuBytes": 83592,
+      "errorMeters": 0.8,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:ee4adc789f8cd082a5d1392396980ba2d92712551ae23de45b2082af1df06723",
+      "bytes": 348152,
+      "gzipBytes": 97572,
+      "triangles": 3973,
+      "cpuBytes": 338444,
+      "gpuBytes": 338444,
+      "errorMeters": 0.35,
+      "drawCalls": 8
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:1a12f4e8a2952d88fddb20fc2de1d8a6ee1377f602522df2cf428bcb76b1ee7d",
+      "bytes": 1406928,
+      "gzipBytes": 375825,
+      "triangles": 15065,
+      "cpuBytes": 1397124,
+      "gpuBytes": 1397124,
+      "errorMeters": 0.12,
+      "drawCalls": 8
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:ca9e6ee2734e7af075f19d3638717217f98496c1b4ed191514ab4045d4b30aa1",
+      "bytes": 2030804,
+      "gzipBytes": 594128,
+      "triangles": 21127,
+      "cpuBytes": 2020980,
+      "gpuBytes": 2020980,
+      "errorMeters": 0.04,
+      "drawCalls": 8
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:e7a0a2ff4c49d90902e3dd8127fde1b8105222efd4b09667cde065ea1d0a8278"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:eb7faa495ce6e3a88b9dfc8638aff2d2ffe2b23b340ed154c777fc47c9bec1e2"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:c5a7973661f5254d27f8f2dc117087a9c6a3030fc38a4e8e2241190757778492",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 51799,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          72.3533,
+          67.71039999999999,
+          124.4991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:eb5c5fd4a44822014b61805900cd460097ea32bbad27b308569054136bbe935f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51799,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          72.3533,
+          67.71039999999999,
+          124.4991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:6715c2408c01a37e7def44800c150b74915bf2bfa6eb6b85616da00a9f427991",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 51799,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          72.3533,
+          67.71039999999999,
+          124.4991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:b829ec0bf2da285e397a6347e2224bed4dc4b79fafdcd5e9f23e03e353e5be1d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51799,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          72.3533,
+          67.71039999999999,
+          124.4991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:a8dc66865cb88d97fc725624375fbb5268b27afb3a0d4c19698cdb2ed0a69dd2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 34645,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          145.8533,
+          121.71039999999999,
+          251.9991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:72c0373917760c6f5481bd653f61a9b082d30a15259eca2637f321f657b15cf6",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34645,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          145.8533,
+          121.71039999999999,
+          251.9991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:103869b10227b7c9c4772860c445f64fb77550a6931b63136630f2d75e7c2ba0",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 34645,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          145.8533,
+          121.71039999999999,
+          251.9991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:b4376634da517a399566cbcde93e71f76ed4ebaab64bf70245844a8f9927e0c4",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34645,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          145.8533,
+          121.71039999999999,
+          251.9991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:ee658fbc847cf9935f442ea14a7816f0f14f2af37600ae89db5cd0ede7fa7ba1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 31668,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          291.3533,
+          178.7104,
+          503.9991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:41f939988933140a4b6e72cc9051005708a47ffd0d1f9d6a8c8eb05f4321774d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31668,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          291.3533,
+          178.7104,
+          503.9991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:bb7135eb6562e7b86febddb162744c7e1bd7503fe9ab9c46b38bfb2562ab4287",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 31668,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          291.3533,
+          178.7104,
+          503.9991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:aa4b48807f3755ae38edb309826275ae1dff39295622ce1bd091dea092e42f69",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31668,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          291.3533,
+          178.7104,
+          503.9991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:62a4690116056352f3d603c5163809b937dd25213df7c190d4584ed4660a47b3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21798,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          291.3533,
+          178.7104,
+          503.9991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/unfinished-east-front-three-portals.png",
+      "hash": "sha256:9696619ee9b6374a641b81d3b89b9cccae4fe27ca64f205c6ff91792bdacef3b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51799,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          109,
+          25,
+          4
+        ],
+        "lookAt": [
+          47,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-apse-and-crossing-dome.png",
+      "hash": "sha256:185c05513fda709fd329f4cb9ddacd4f1d20c8729d33feb2a141aad868fcfca5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51799,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -100,
+          52,
+          29
+        ],
+        "lookAt": [
+          -27,
+          27,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-apse-and-campanile.png",
+      "hash": "sha256:19ba187a0f320df9cae3550d2f68e54b7f5d7477b174682a3e5ca184ff5bbbc9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51799,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -41,
+          39,
+          -95
+        ],
+        "lookAt": [
+          -18,
+          26,
+          -14
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-apse-and-tile-roofs.png",
+      "hash": "sha256:c960a2f21b6e1117dc6f326e5a0f73d6cf21742aba46fb062e8aac7eff75e782",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51799,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          40,
+          105
+        ],
+        "lookAt": [
+          -8,
+          23,
+          15
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/dome-lantern-and-recessed-drum.png",
+      "hash": "sha256:44dd3782b7fd83de5684b91cddb66f0c3844c1992f9ec485be951b0753f4f8a3",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51799,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -39,
+          65,
+          49
+        ],
+        "lookAt": [
+          -13,
+          40,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roof-and-signed-plan.png",
+      "hash": "sha256:b8bc0409db45ea00a24d177e905cbee7d8bc87517475ffd99943168a0bfbac0e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51799,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          170,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          20,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-padua-skyline.png",
+      "hash": "sha256:61a36cb1093cbf8cc22d058a7ddaf7c6a1c31984deb2324539cb5eee134af1eb",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31668,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          112,
+          74,
+          104
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-padua-district.png",
+      "hash": "sha256:d4c02b15e0f85c732d1868cca82ccca368192351f7ab5ed764b5626c571f5384",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34645,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          112,
+          74,
+          104
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-padua-street.png",
+      "hash": "sha256:2d805c9c02ffe57534275de5c93660591636b13a31800fd8d553ee7fde60c573",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 45737,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          112,
+          74,
+          104
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-padua-closeup.png",
+      "hash": "sha256:addcbe902f57ecc1008933c939525a78512149e542fd182816a1818b87f8214c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51799,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          112,
+          74,
+          104
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:d7854ab1d8c346b430fae271f964518bb0785941f160ac321baea91e515d79ee",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31668,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          145.8533,
+          121.71039999999999,
+          251.9991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:72c0373917760c6f5481bd653f61a9b082d30a15259eca2637f321f657b15cf6",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34645,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          145.8533,
+          121.71039999999999,
+          251.9991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:a4af79e8b9914e414966790875b7190078fadae0a49b8c38899c81509f0072c3",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 45737,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          145.8533,
+          121.71039999999999,
+          251.9991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:625b7db9a3813df185d917d49d0048827af1f356f50da3638345f31d30ff458f",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51799,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u20/n0407_padua_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          145.8533,
+          121.71039999999999,
+          251.9991
+        ],
+        "lookAt": [
+          0.3533,
+          45.2104,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

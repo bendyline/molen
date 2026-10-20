@@ -116,6 +116,12 @@ reference contract, metric UV scale, tinting and shared texture lifetime. Keep u
 murals and facade art as their own materials. Inspect the model in the Earth renderer as well
 as its portable asset preview when it uses these bindings.
 
+The textured `window` slot uses a precolored glass texture and deliberately ignores vertex
+tints. A neutral shared graph such as `metal_painted` will therefore lose a dark palette tint
+in that slot. Use the `trim` slot for tinted painted frames or closed dark inset panels, and
+reserve `window` for a graph that already contains the intended glass color. Check the shared
+material render during construction; the portable GLB preview does not exercise this behavior.
+
 Choose a continuous surface for individually modeled stones: `stone_limestone_raw` has subtle
 pores and mineral mottling with a 1.2 × 1.2 m repeat. `stone_limestone_weathered` uses the same
 scale with stronger mineral variation, dark patina and open pores for exposed ancient stones.

@@ -1,0 +1,302 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.84,
+      "metallic": 0.15
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/sarlat-cathedral-model.mjs",
+    "export": "buildSarlatSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSarlatDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildSarlatStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSarlatCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -89,
+      67,
+      91
+    ],
+    "lookAt": [
+      0,
+      22,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-sarlat-skyline",
+      "position": [
+        -89,
+        67,
+        91
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-sarlat-district",
+      "position": [
+        -89,
+        67,
+        91
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-sarlat-street",
+      "position": [
+        -89,
+        67,
+        91
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-sarlat-closeup",
+      "position": [
+        -89,
+        67,
+        91
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 2,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior; current acceptance recorded separately in QA.",
+    "anchor": [
+      1.217166997,
+      44.888809157
+    ],
+    "heading": -0.322408167209,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 attachment convention, not exact host-ground contact. Standard viewer DEM datum 148.174833 m; selected raw perimeter -0.82 to 1.31 m. Floor 0.5 m; adaptive footings cross Y=0 and extend below retained samples. No terrain cutout or flattening. Exact parvis, steps, east terrace, door/base joins, absolute altitude and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        1.217166997,
+        44.888809157
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 148.174833 m; selected raw perimeter -0.82 to 1.31 m. Floor 0.5 m; adaptive footings cross Y=0 and extend below retained samples. No terrain cutout or flattening. Exact parvis, steps, east terrace, door/base joins, absolute altitude and walking remain unverified."
+    },
+    "bounds": [
+      1.21,
+      44.883,
+      1.224,
+      44.895
+    ],
+    "notes": "Retained exact way/376197270 and Q2942447 identify Cathédrale Saint-Sacerdos. Current standard viewer PMTiles whole 35184748286102 and roof part 35185096439581 plus two small unlabeled touching north projections provide 130 raw outline points. The small projections are interpreted as exterior buttress feet, not independently identified buildings. Preserve the original anchor and heading -0.322408167209 rad. The high nave follows its oblique mapped roof within this native frame: longitudinal positive toward the northeast choir, negative toward the southwest tower-porch. Do not rotate the nave to native X or relocate it to the older reference POI. Separate neighboring town houses and the Lanterne des Morts remain host content. Standard viewer DEM datum 148.174833 m; selected raw perimeter -0.82 to 1.31 m. Floor 0.5 m; adaptive footings cross Y=0 and extend below retained samples. No terrain cutout or flattening. Exact parvis, steps, east terrace, door/base joins, absolute altitude and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum 148.174833 m; selected raw perimeter -0.82 to 1.31 m. Floor 0.5 m; adaptive footings cross Y=0 and extend below retained samples. No terrain cutout or flattening. Exact parvis, steps, east terrace, door/base joins, absolute altitude and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

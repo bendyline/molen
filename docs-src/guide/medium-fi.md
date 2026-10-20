@@ -304,6 +304,11 @@ keep roofs darker than walls and to avoid baked shading. Hosts choose a fixed mo
 Run this review for every new or changed model, style or palette. A successful build is not a
 visual approval.
 
+Perform these checks during the same continuous pass that builds the model. Reuse the brief,
+reference pictures and map fit already established; do not restart research in a separate
+validation phase. Choose views that cover several checks together, fix observed defects and
+record the completed result once. Revisit it when a defect or relevant change warrants it.
+
 1. **Silhouette.** Render with textures off and flat shading. Name the object from the
    silhouette alone, at skyline distance.
 2. **Budget.** Record triangles, materials and draw calls per level, and check them against the

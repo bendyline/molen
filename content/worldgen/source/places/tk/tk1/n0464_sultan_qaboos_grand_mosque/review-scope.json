@@ -1,0 +1,347 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "membrane",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_marble",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.58,
+      "metallic": 0.68
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.54,
+      "metallic": 0.01
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/qaboos-model.mjs",
+    "export": "buildQaboosSkyline",
+    "errorMeters": 8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildQaboosDistrict",
+        "errorMeters": 3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.68
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54,
+            "metallic": 0.01
+          }
+        }
+      },
+      "street": {
+        "export": "buildQaboosStreet",
+        "errorMeters": 1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.68
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54,
+            "metallic": 0.01
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildQaboosCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.68
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54,
+            "metallic": 0.01
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      225,
+      185,
+      265
+    ],
+    "lookAt": [
+      -35,
+      18,
+      13
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-qaboos-skyline",
+      "position": [
+        225,
+        185,
+        265
+      ],
+      "lookAt": [
+        -35,
+        18,
+        13
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-qaboos-district",
+      "position": [
+        225,
+        185,
+        265
+      ],
+      "lookAt": [
+        -35,
+        18,
+        13
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-qaboos-street",
+      "position": [
+        225,
+        185,
+        265
+      ],
+      "lookAt": [
+        -35,
+        18,
+        13
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-qaboos-closeup",
+      "position": [
+        225,
+        185,
+        265
+      ],
+      "lookAt": [
+        -35,
+        18,
+        13
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Current named main polygon/courtyards and independent tower controls; reference anchor retained; internal profiles/facing reconstructed.",
+    "anchor": [
+      58.389166666,
+      23.583888888
+    ],
+    "heading": -0.003787873596683811,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Normal viewer DEM datum 13.009335527692382 m; working floor -0.886580763182782 m is the median of 242 outside-podium samples at 1 m offset plus 0.3 m. 3375 raw central-podium samples span -6.299770062965261..12.58198604660615 m. Adaptive foundations support the approximate central court podium and separate western auxiliary controls. Preview terrain seats the podium and 1.5 m margin. Exact paving/garden boundaries, thresholds, stairs, irrigation, drains and present terrain joins remain unverified.",
+    "replaceFootprint": true,
+    "groundCutout": {
+      "outline": [
+        [
+          -128.58019545134263,
+          -53.57180973203589
+        ],
+        [
+          96.36115104935435,
+          -53.57180973203589
+        ],
+        [
+          96.36115104935435,
+          82.17818848522425
+        ],
+        [
+          -128.58019545134263,
+          82.17818848522425
+        ]
+      ],
+      "basis": "Normal viewer DEM datum 13.009335527692382 m; working floor -0.886580763182782 m is the median of 242 outside-podium samples at 1 m offset plus 0.3 m. 3375 raw central-podium samples span -6.299770062965261..12.58198604660615 m. Adaptive foundations support the approximate central court podium and separate western auxiliary controls. Preview terrain seats the podium and 1.5 m margin. Exact paving/garden boundaries, thresholds, stairs, irrigation, drains and present terrain joins remain unverified."
+    },
+    "terrainReference": {
+      "anchor": [
+        58.389166666,
+        23.583888888
+      ],
+      "modelHeight": 0,
+      "basis": "Normal viewer DEM datum 13.009335527692382 m; working floor -0.886580763182782 m is the median of 242 outside-podium samples at 1 m offset plus 0.3 m. 3375 raw central-podium samples span -6.299770062965261..12.58198604660615 m. Adaptive foundations support the approximate central court podium and separate western auxiliary controls. Preview terrain seats the podium and 1.5 m margin. Exact paving/garden boundaries, thresholds, stairs, irrigation, drains and present terrain joins remain unverified."
+    },
+    "bounds": [
+      58.382,
+      23.577,
+      58.396,
+      23.591
+    ],
+    "notes": "Retained Q1548443 reference anchor [58.389166666,23.583888888] is unchanged. Its older record was reference-only. Current named POI 17593908033892 identifies Sultan Qaboos Grand Mosque within main building 52776570385584. Main raw outline has 18 vertices and two four-vertex courtyard holes. Dome part 35185642976769 supplies its own 19-vertex plan. Five separately mapped minaret bases fix the tall northern tower and four corner towers. Six narrow perimeter roof ranges, three intervening elevated gate ranges and four western auxiliary wall/range controls are retained. The paved central court is an approximate rectangular podium derived from the bounding limits of the four mapped corner towers; it is not a separately surveyed ground polygon. Western thin auxiliary controls keep their own foundations outside that podium. Heading -0.003787873596683811 rad follows the first main edge, positive X approximately east and positive Z south. Facade facing and internal architectural divisions remain visualization estimates. Detached visitor entrance/shop, gardens, roads and surrounding city remain host content. Normal viewer DEM datum 13.009335527692382 m; working floor -0.886580763182782 m is the median of 242 outside-podium samples at 1 m offset plus 0.3 m. 3375 raw central-podium samples span -6.299770062965261..12.58198604660615 m. Adaptive foundations support the approximate central court podium and separate western auxiliary controls. Preview terrain seats the podium and 1.5 m margin. Exact paving/garden boundaries, thresholds, stairs, irrigation, drains and present terrain joins remain unverified."
+  },
+  "geographicNote": "Normal viewer DEM datum 13.009335527692382 m; working floor -0.886580763182782 m is the median of 242 outside-podium samples at 1 m offset plus 0.3 m. 3375 raw central-podium samples span -6.299770062965261..12.58198604660615 m. Adaptive foundations support the approximate central court podium and separate western auxiliary controls. Preview terrain seats the podium and 1.5 m margin. Exact paving/garden boundaries, thresholds, stairs, irrigation, drains and present terrain joins remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

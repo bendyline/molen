@@ -1,0 +1,321 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "copper": {
+      "slot": "trim",
+      "graph": "metal_standing_seam",
+      "roughness": 0.78,
+      "metallic": 0.45
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.65,
+      "metallic": 0.15
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/graz-cathedral-model.mjs",
+    "export": "buildGrazCathedralSkyline",
+    "errorMeters": 0.9,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGrazCathedralDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.45
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.15
+          }
+        }
+      },
+      "street": {
+        "export": "buildGrazCathedralStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.45
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.15
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildGrazCathedralCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.45
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.15
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -83,
+      52,
+      80
+    ],
+    "lookAt": [
+      0,
+      17,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-graz-cathedral-skyline",
+      "position": [
+        -90,
+        64,
+        88
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-graz-cathedral-district",
+      "position": [
+        -90,
+        64,
+        88
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-graz-cathedral-street",
+      "position": [
+        -90,
+        64,
+        88
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-graz-cathedral-closeup",
+      "position": [
+        -90,
+        64,
+        88
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.15,
+    "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance and limits recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "ReviewedY=0 attachment convention,not exact host terrain contact.Standard viewer DEM datum362.580399m;raw perimeter-3.04..1.07m,estimated floor0.4m. Footings crossY=0 and extend below samples;no flattening,host DEM changes or road replacement. Exact pavement/door joins,base clipping,absolute altitude and walking remain unverified. Adjacent mausoleum/castle/university,streets,trees and site furniture remain host content.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        15.442365227,
+        47.071980059
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum362.580399m;raw perimeter-3.04..1.07m,estimated floor0.4m. Footings crossY=0 and extend below samples;no flattening,host DEM changes or road replacement. Exact pavement/door joins,base clipping,absolute altitude and walking remain unverified. Adjacent mausoleum/castle/university,streets,trees and site furniture remain host content."
+    },
+    "bounds": [
+      15.434,
+      47.066,
+      15.45,
+      47.078
+    ],
+    "notes": "Standard viewer DEM datum362.580399m;raw perimeter-3.04..1.07m,estimated floor0.4m. Footings crossY=0 and extend below samples;no flattening,host DEM changes or road replacement. Exact pavement/door joins,base clipping,absolute altitude and walking remain unverified. Adjacent mausoleum/castle/university,streets,trees and site furniture remain host content."
+  },
+  "geographicNote": "Standard viewer DEM datum362.580399m;raw perimeter-3.04..1.07m,estimated floor0.4m. Footings crossY=0 and extend below samples;no flattening,host DEM changes or road replacement. Exact pavement/door joins,base clipping,absolute altitude and walking remain unverified. Adjacent mausoleum/castle/university,streets,trees and site furniture remain host content.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

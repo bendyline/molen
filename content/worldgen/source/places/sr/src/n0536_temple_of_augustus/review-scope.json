@@ -1,0 +1,393 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_drywall",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "shaft": {
+      "slot": "trim",
+      "graph": "stone_granite",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.83,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.84,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -10.09105841969878,
+      22,
+      40.54300995035686
+    ],
+    "lookAt": [
+      -1.17138,
+      6,
+      0.92686
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "six-smooth-columns-open-portico-and-plain-pediment",
+      "position": [
+        -2.614118775996566,
+        9,
+        25.945223352230617
+      ],
+      "lookAt": [
+        0.538684376782439,
+        6.5,
+        4.5428909494333265
+      ],
+      "fov": 49
+    },
+    {
+      "name": "leafy-capitals-layered-cornice-and-dentils",
+      "position": [
+        9.810375648692919,
+        11,
+        10.113864020484653
+      ],
+      "lookAt": [
+        2.853495224986283,
+        9,
+        7.098600388520212
+      ],
+      "fov": 48
+    },
+    {
+      "name": "rubble-cella-side-anta-and-pitched-tile-roof",
+      "position": [
+        -17.87103536664558,
+        11,
+        7.7181419581626445
+      ],
+      "lookAt": [
+        -4.738435400466215,
+        6,
+        0.40139280787016585
+      ],
+      "fov": 50
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -10.09105841969878,
+        22,
+        40.54300995035686
+      ],
+      "lookAt": [
+        -1.17138,
+        6,
+        0.92686
+      ],
+      "fov": 45,
+      "name": "pula-augustus-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -10.09105841969878,
+        22,
+        40.54300995035686
+      ],
+      "lookAt": [
+        -1.17138,
+        6,
+        0.92686
+      ],
+      "fov": 45,
+      "name": "pula-augustus-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -10.09105841969878,
+        22,
+        40.54300995035686
+      ],
+      "lookAt": [
+        -1.17138,
+        6,
+        0.92686
+      ],
+      "fov": 45,
+      "name": "pula-augustus-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -10.09105841969878,
+        22,
+        40.54300995035686
+      ],
+      "lookAt": [
+        -1.17138,
+        6,
+        0.92686
+      ],
+      "fov": 45,
+      "name": "pula-augustus-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/pula-augustus-model.mjs",
+    "export": "buildPulaAugustusSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPulaAugustusDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "shaft": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildPulaAugustusStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "shaft": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPulaAugustusCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "shaft": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      13.84185,
+      44.8702
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain original standard6m Mapzen urban terrain, water and every independent building. A small locally level temple podium has grade-buried bottom edges; short central stairs descend toward local ground, with solid stone cheeks. Do not flatten the Forum or cut ground/water. Coarse urban DEM does not resolve exact paved Forum level, podium steps or thresholds.",
+    "replaceFootprint": false,
+    "bounds": [
+      13.841694714160894,
+      44.87005857143949,
+      13.84198534336474,
+      44.87031016400602
+    ],
+    "terrainReference": {
+      "anchor": [
+        13.84185,
+        44.8702
+      ],
+      "modelHeight": 0,
+      "basis": "Retain original standard6m Mapzen urban terrain, water and every independent building. A small locally level temple podium has grade-buried bottom edges; short central stairs descend toward local ground, with solid stone cheeks. Do not flatten the Forum or cut ground/water. Coarse urban DEM does not resolve exact paved Forum level, podium steps or thresholds."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -9.270948320329198,
+          -5.262868512327425
+        ],
+        [
+          -0.8066596988327773,
+          -9.28340105444777
+        ],
+        [
+          -0.7666596988327773,
+          -9.28340105444777
+        ],
+        [
+          7.697628922663644,
+          8.703211508100482
+        ],
+        [
+          7.697628922663644,
+          8.743211508100481
+        ],
+        [
+          -0.7666596988327773,
+          12.763755338981136
+        ],
+        [
+          -0.8066596988327773,
+          12.763755338981136
+        ],
+        [
+          -9.270948320329198,
+          -5.222868512327426
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -9.270948320329198,
+            -5.262868512327425
+          ],
+          [
+            -0.8066596988327773,
+            -9.28340105444777
+          ],
+          [
+            -0.7666596988327773,
+            -9.28340105444777
+          ],
+          [
+            7.697628922663644,
+            8.703211508100482
+          ],
+          [
+            7.697628922663644,
+            8.743211508100481
+          ],
+          [
+            -0.7666596988327773,
+            12.763755338981136
+          ],
+          [
+            -0.8066596988327773,
+            12.763755338981136
+          ],
+          [
+            -9.270948320329198,
+            -5.222868512327426
+          ]
+        ]
+      ],
+      "basis": "Replace only the one exact mapped Pula Temple of Augustus shell with a two-centimeter numeric tolerance to prevent zero-area native edge slivers. Preserve adjacent City Hall, independent buildings, native courtyard ground and water."
+    },
+    "notes": "Exact-QID Q770030/way119102927 and standard named building/POI35184491191759 fix the19.804x9.354m temple envelope beside the distinct City Hall35184491191751. Root heading0; local+z follows the long axis toward the southeast Forum, internal local+x angle-.441743326094rad from native east. Body origin[-1.17138,.92686]m relative to candidate anchor; it shifts the modeled podium/short stairs within the mapped overall envelope. Six-column/door/anta allocations are picture-led approximations. Retain original standard6m Mapzen urban terrain, water and every independent building. A small locally level temple podium has grade-buried bottom edges; short central stairs descend toward local ground, with solid stone cheeks. Do not flatten the Forum or cut ground/water. Coarse urban DEM does not resolve exact paved Forum level, podium steps or thresholds."
+  }
+}

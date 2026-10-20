@@ -1,0 +1,302 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "plaster_lime",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "egg": {
+      "slot": "trim",
+      "graph": "plaster_lime",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "dark": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.96,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/djenne-model.mjs",
+    "export": "buildDjenneSkyline",
+    "errorMeters": 2.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDjenneDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "egg": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildDjenneStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "egg": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildDjenneCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "egg": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      103,
+      64,
+      -94
+    ],
+    "lookAt": [
+      0,
+      6,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-djenne-skyline",
+      "position": [
+        103,
+        64,
+        -94
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-djenne-district",
+      "position": [
+        103,
+        64,
+        -94
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-djenne-street",
+      "position": [
+        103,
+        64,
+        -94
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-djenne-closeup",
+      "position": [
+        103,
+        64,
+        -94
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.west_african_compound",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      -4.555439256,
+      13.905098912
+    ],
+    "heading": -0.017237667395,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and declared court/hall floor,not surveyed ground contact. Standard viewer DEM datum273.991343m;whole perimeter-0.15 to1.11m relative to datum. Platform floor2.712m is maximum perimeter sample plus1.6m. Earth footings extend below retained terrain and crossY=0. Coarse DEM/platform height may expose tall footings or door gaps. No cutout,terrain flattening or road replacement. Stair lower landings use DEM samples,not surveyed street levels;exact ground,platform,court,door,step and street contact,altitude and walking unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        -4.555439256,
+        13.905098912
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum273.991343m;whole perimeter-0.15 to1.11m relative to datum. Platform floor2.712m is maximum perimeter sample plus1.6m. Earth footings extend below retained terrain and crossY=0. Coarse DEM/platform height may expose tall footings or door gaps. No cutout,terrain flattening or road replacement. Stair lower landings use DEM samples,not surveyed street levels;exact ground,platform,court,door,step and street contact,altitude and walking unverified."
+    },
+    "bounds": [
+      -4.562,
+      13.899,
+      -4.549,
+      13.911
+    ],
+    "notes": "Retained exact relation/11916275 /Q683632 identifies the Great Mosque of Djenné. Current PMTiles whole52776570049523 (3×2^44+11916275) retains26 outer and4 courtyard-hole points/properties,one fragment. Anchor[-4.555439256,13.905098912] and heading−0.017237667395rad unchanged,no horizontal rescale. Native+X east qibla facade/three projecting towers,−X west open courtyard,+Z south,−Z north. Pictures resolve east facade facing with about3° uncertainty. Tower bases follow the three east footprint projections;courtyard uses its mapped ring. Buttress cadence,taper,toron rows,gates and stairs are picture-led working estimates with about2m horizontal uncertainty. Standard map footprint is about60×59m;retained nominal75×75m facts have no linked references and may describe a wider platform,so they do not rescale this building. Separate markets,streets,city buildings and landscaping remain host assets. Standard viewer DEM datum273.991343m;whole perimeter-0.15 to1.11m relative to datum. Platform floor2.712m is maximum perimeter sample plus1.6m. Earth footings extend below retained terrain and crossY=0. Coarse DEM/platform height may expose tall footings or door gaps. No cutout,terrain flattening or road replacement. Stair lower landings use DEM samples,not surveyed street levels;exact ground,platform,court,door,step and street contact,altitude and walking unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum273.991343m;whole perimeter-0.15 to1.11m relative to datum. Platform floor2.712m is maximum perimeter sample plus1.6m. Earth footings extend below retained terrain and crossY=0. Coarse DEM/platform height may expose tall footings or door gaps. No cutout,terrain flattening or road replacement. Stair lower landings use DEM samples,not surveyed street levels;exact ground,platform,court,door,step and street contact,altitude and walking unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

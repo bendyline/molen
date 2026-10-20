@@ -1,0 +1,275 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "rubble": {
+      "slot": "wall",
+      "graph": "stone_drywall",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "blocks": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "ground": {
+      "slot": "foundation",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/ggantija-model.mjs",
+    "export": "buildGgantijaSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGgantijaDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "blocks": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildGgantijaStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "blocks": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildGgantijaCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "blocks": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      48,
+      34,
+      52
+    ],
+    "lookAt": [
+      -4,
+      1.8,
+      -7
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-temples-skyline",
+      "position": [
+        48,
+        34,
+        52
+      ],
+      "lookAt": [
+        -4,
+        1.8,
+        -7
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-temples-district",
+      "position": [
+        48,
+        34,
+        52
+      ],
+      "lookAt": [
+        -4,
+        1.8,
+        -7
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-temples-street",
+      "position": [
+        48,
+        34,
+        52
+      ],
+      "lookAt": [
+        -4,
+        1.8,
+        -7
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-temples-closeup",
+      "position": [
+        48,
+        34,
+        52
+      ],
+      "lookAt": [
+        -4,
+        1.8,
+        -7
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 0.65,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "groundY": -5
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      14.269023929,
+      36.047199574
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "bounds": [
+      14.268721987341014,
+      36.04704580202308,
+      14.269241641427907,
+      36.04749147477004
+    ],
+    "terrainReference": {
+      "anchor": [
+        14.269023929,
+        36.047199574
+      ],
+      "modelHeight": 0,
+      "basis": "Retain the unchanged normal161-square/6m Mapzen-USGS grid. NativeY0 is the126.847m center reference. Fit wall feet to their local standard terrain heights,with shallow foundations,instead of flattening the hillside or opening the ground. Detailed surveyed floor levels remain unknown. A small opaque earthen compound surface follows clipped triangles from the original grid at8cm clearance. Wall foundations extend45cm below their local samples. No terrain excavation or ground cutout is requested."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -26.276333748171094,
+          -31.381050175420636
+        ],
+        [
+          18.695245818323272,
+          -31.381050175420636
+        ],
+        [
+          18.695245818323272,
+          16.00462326086647
+        ],
+        [
+          -26.276333748171094,
+          16.00462326086647
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -26.276333748171094,
+            -31.381050175420636
+          ],
+          [
+            18.695245818323272,
+            -31.381050175420636
+          ],
+          [
+            18.695245818323272,
+            16.00462326086647
+          ],
+          [
+            -26.276333748171094,
+            16.00462326086647
+          ]
+        ]
+      ],
+      "basis": "Replace only the independently mapped temple wall mass. Its1m envelope intersects no independent map building. The archaeological park and all other buildings remain unchanged."
+    },
+    "notes": "Retained Q216862/way29546608 identifies the archaeological site. The standard PMTiles actual temple building35184714819646 supplies a75-vertex wall-mass outline with both apsidal chamber groups and southeast entrance corridors,about43×45m. The independent site boundary is about94×89m and is not the model footprint. Reviewed approximate contact on the unchanged 161-square / 6m standard DEM. Wall feet follow local samples with45cm foundations; a small compound surface follows original terrain triangles at8cm clearance. No terrain or water excavation is requested. Full-site loading replaces the single temple record and preserves456 independent tile buildings exactly;2730.8886 square metres of native water remain unchanged. Failure retains all457 map buildings. Partial24m residency retains original terrain under and around clipped model pieces;eviction frees geometry without disturbing either surface. Empty-semantic partial tests prove clipping/lifecycle only,not neighboring building replacement.",
+    "groundContactBasis": "Reviewed approximate contact on the unchanged 161-square / 6m standard DEM. Wall feet follow local samples with45cm foundations; a small compound surface follows original terrain triangles at8cm clearance. No terrain or water excavation is requested. Full-site loading replaces the single temple record and preserves456 independent tile buildings exactly;2730.8886 square metres of native water remain unchanged. Failure retains all457 map buildings. Partial24m residency retains original terrain under and around clipped model pieces;eviction frees geometry without disturbing either surface. Empty-semantic partial tests prove clipping/lifecycle only,not neighboring building replacement."
+  },
+  "geographicNote": "Retain the unchanged normal161-square/6m Mapzen-USGS grid. NativeY0 is the126.847m center reference. Fit wall feet to their local standard terrain heights,with shallow foundations,instead of flattening the hillside or opening the ground. Detailed surveyed floor levels remain unknown. A small opaque earthen compound surface follows clipped triangles from the original grid at8cm clearance. Wall foundations extend45cm below their local samples. No terrain excavation or ground cutout is requested.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

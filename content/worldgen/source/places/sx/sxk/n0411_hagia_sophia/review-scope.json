@@ -1,0 +1,326 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.22
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    },
+    "gold": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.55,
+      "metallic": 0.5
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/istanbul-hagia-sophia-model.mjs",
+    "export": "buildIstanbulSophiaSkyline",
+    "errorMeters": 3.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildIstanbulSophiaDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.22
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.5
+          }
+        }
+      },
+      "street": {
+        "export": "buildIstanbulSophiaStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.22
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.5
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildIstanbulSophiaCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.22
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.5
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      140,
+      93,
+      166
+    ],
+    "lookAt": [
+      0,
+      28,
+      -7
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-istanbul-sophia-skyline",
+      "position": [
+        140,
+        93,
+        166
+      ],
+      "lookAt": [
+        0,
+        28,
+        -7
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-istanbul-sophia-district",
+      "position": [
+        140,
+        93,
+        166
+      ],
+      "lookAt": [
+        0,
+        28,
+        -7
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-istanbul-sophia-street",
+      "position": [
+        140,
+        93,
+        166
+      ],
+      "lookAt": [
+        0,
+        28,
+        -7
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-istanbul-sophia-closeup",
+      "position": [
+        140,
+        93,
+        166
+      ],
+      "lookAt": [
+        0,
+        28,
+        -7
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      28.979951797,
+      41.008480724
+    ],
+    "heading": -0.588897917451,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 attachment convention,not exact host-ground contact. Standard viewer DEM datum44.669242m;selected perimeter-8.30 to4.09m relative to it. Floor0.5m;adaptive masonry footings crossY=0 and extend below retained samples. Coarse urban terrain is not used to infer precise courtyards,paths,entry steps or curbs. Exact road/court/threshold/step/base contact,altitude and walking remain unverified. No flattening,cutout or road replacement.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        28.979951797,
+        41.008480724
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum44.669242m;selected perimeter-8.30 to4.09m relative to it. Floor0.5m;adaptive masonry footings crossY=0 and extend below retained samples. Coarse urban terrain is not used to infer precise courtyards,paths,entry steps or curbs. Exact road/court/threshold/step/base contact,altitude and walking remain unverified. No flattening,cutout or road replacement."
+    },
+    "bounds": [
+      28.973,
+      41.004,
+      28.987,
+      41.013
+    ],
+    "notes": "Retained way/109862851 and Q12506 identify Hagia Sophia /Ayasofya in Istanbul,not the separate Q1568660 Thessaloniki Hagia Sophia assetN0361. Current standard viewer PMTiles whole35184481951683 and48 selected main-complex parts retain487 raw outline points/properties;earlier exact-QID whole/multilingual tags and same-ID named POI retained. Anchor[28.979951797,41.008480724] and heading−0.588897917451rad unchanged;no horizontal rescale. Native+X east-southeast polygonal apse,−X west-northwest narthex,+Z south-southwest toward tombs and Sultanahmet Park. Four matching exterior pictures resolve signed facing,approximate3°. Three separate domed tombs south of the whole,other town buildings,courtyards,roads,trees and park remain host content. Standard viewer DEM datum44.669242m;selected perimeter-8.30 to4.09m relative to it. Floor0.5m;adaptive masonry footings crossY=0 and extend below retained samples. Coarse urban terrain is not used to infer precise courtyards,paths,entry steps or curbs. Exact road/court/threshold/step/base contact,altitude and walking remain unverified. No flattening,cutout or road replacement."
+  },
+  "geographicNote": "Standard viewer DEM datum44.669242m;selected perimeter-8.30 to4.09m relative to it. Floor0.5m;adaptive masonry footings crossY=0 and extend below retained samples. Coarse urban terrain is not used to infer precise courtyards,paths,entry steps or curbs. Exact road/court/threshold/step/base contact,altitude and walking remain unverified. No flattening,cutout or road replacement.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

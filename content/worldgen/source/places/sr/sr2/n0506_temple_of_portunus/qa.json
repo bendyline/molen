@@ -1,0 +1,744 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0506_temple_of_portunus",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:597fedac26b45a64fbe5f09e43b032ee943ddfc222dcdbad0414f7681b7da96b",
+  "sourceHash": "sha256:7a35c69efa2b8b17483fed4c9bbdc5a2bf13b732500ad54f9111c06250dcabb3",
+  "runtimeHash": "sha256:a961c6b86407567623c4d1735391b94be470eb3193e3e23023c23f29e0e0e13f",
+  "captureReportHash": "sha256:4557048f8a4bb6b06965fa7335cf20829aa3ce201ca6c648cce2e6f8c64081f8",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/northwest-portico-and-stairs.png",
+      "shots/ionic-capitals-and-front-pediment.png",
+      "shots/roofed-pronaos-and-closed-door.png",
+      "shots/engaged-side-and-rear-columns.png",
+      "shots/complete-roof-and-pediments.png",
+      "shots/mapped-complete-plan.png"
+    ],
+    "notes": "Inspected all11 portable views. The complete Temple of Portunus exterior includes the high podium and mapped stairs, six free-standing Ionic portico columns, twelve engaged side/rear columns, roofed pronaos, recessed closed door, layered entablature, both triangular pediments and shallow tiled gable roof. Near geometry adds shaft fluting, tiered bases, paired volutes and original spiral relief strips. Initial renders prompted removing stair-side clipping scraps, lowering the conservative stair datum about0.546m, projecting the scroll faces beyond the neck block and moving the detail view below the cornice. Fine carving and exact wall repairs remain medium-fi estimates."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/northwest-portico-and-stairs.png",
+      "shots/shared/ionic-capitals-and-front-pediment.png",
+      "shots/shared/roofed-pronaos-and-closed-door.png",
+      "shots/shared/engaged-side-and-rear-columns.png",
+      "shots/shared/complete-roof-and-pediments.png",
+      "shots/shared/mapped-complete-plan.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all11 shared-material views. Four reused256-square graphs provide continuous raw limestone for modeled stones/columns, weathered limestone for walls, ceramic roof tile and cast bronze for the closed entrance. Metric UVs and linear tints; four near draws and one skyline draw. Each graph is read once and eviction releases geometry. No embedded images, unique atlas or copied photograph. Spiral contrast reuses the wall stone graph as a coarse carved-groove approximation. Weathered stone, roof and door colors are approximate. Flat-stage material views expose some buried retaining depth; actual contact was inspected on the original standard DEM separately.",
+    "captureReportHash": "sha256:9abc8d36b899c27e1545714cbd2352f4531c9372d8c3817a2ad26640f33f8a43"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/northwest-portico-and-stairs.png",
+      "medium-fi/ionic-capitals-and-front-pediment.png",
+      "medium-fi/roofed-pronaos-and-closed-door.png",
+      "medium-fi/engaged-side-and-rear-columns.png",
+      "medium-fi/complete-roof-and-pediments.png",
+      "medium-fi/mapped-complete-plan.png",
+      "medium-fi/whole-temple-skyline.png",
+      "medium-fi/whole-temple-district.png",
+      "medium-fi/whole-temple-street.png",
+      "medium-fi/whole-temple-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all27 medium-fi views: street/block/skyline at noon and late afternoon in Economy/High, an untextured silhouette, six detail/site views, every whole-temple detail level and transitions. Levels796/2848/15076/26740 triangles retain all18 column positions, roofed portico, complete cella, closed entrance, front stairs and both pediments. Skyline keeps coarse column/capital masses; district adds profiles and Ionic lobes; street adds fluting, visible volutes/spiral relief and selected dentils; closeup uses finer flutes and scroll profiles. Initial skyline plus district geometry totals359836 bytes, plus four shared graphs. Separate attribute streams avoid duplicate GPU uploads. Physical-device and dense-city measurements remain pending.",
+    "captureReportHash": "sha256:8d742b41e2d76b3d37c56028a7bda8fac70fb786e320ccaa9dca673a016eafdb"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:3553656ace62124819b993ce0ffc14bcb4a0f07e401184c2ef8713c7efe69970",
+    "mapFrameHash": "sha256:37d797fbd2be736f022c861654ad144f33d2f82e54ec438e13b5cec24fc8017d",
+    "notes": "Reviewed approximate full-site fit on the unchanged161-square/6m standard DEM. Twenty-two mapped temple components retain241 original control vertices, including18 shaft positions, cella wall, podium, eleven stair parts and roof/entablature bands. The mapped stair projection and two ordinary photographs establish the north-northwest front; geometry retains raw east/south coordinates at heading0, with a162.695-degree internal architectural rotation. Six columns are free-standing and twelve engaged. The lower datum is the least offset that keeps every mapped stair above its original terrain by0.2m; this lowers the initial conservative draft by about0.546m. For all12 occupied floors,76 intersecting original terrain triangles were clipped to the floor footprints and290 resulting corners evaluated; minimum clearance is0.200000017m. Retaining sides extend below coarse grade. Tiny upper-floor clipping scraps under0.1m² were removed to eliminate false stair-side spikes; all original controls remain unchanged. No ground/water cutout. Full loading replaces22 authored records and preserves1356 independent tile buildings exactly; all2491 independent buildings in the retained extract stay outside the replacement envelope. Source retains63 nearby records, including the22 controls. Twelve native water records retain203489.55596715916 square metres. Failed loads preserve all1378 native tile buildings; eviction frees all model geometry. Synthetic10m residency clips the portico/stairs, rear cella and pediments, exposing floor/roof edges while keeping original ground under and around the partial architecture. Full completeness requires surrounding tiles; exposed partial floors are not approved as a complete temple. Independent neighboring monuments retain native procedural shells in this single-landmark fixture; their historical appearance is not approved. Ionic carving, fluting, door, exact stucco loss, roof pitch and thresholds remain medium-fi estimates."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted for the specific medium-fi Temple of Portunus exterior and approximate standard-map/DEM fit. Twenty-two mapped parts preserve241 original source-control vertices, including all18 shaft positions, eleven stair parts, podium, cella and roof/entablature bands. Six columns are free-standing and twelve engaged; circular shafts and moldings are reconstructed around the mapped centers rather than presented as surveyed stonework. The mapped stair projection and front/rear pictures establish the north-northwest front. Geometry uses raw east/south coordinates at heading0 with a162.695-degree internal rotation. Approximate map heights supply the3m podium,3.2–10m shaft interval,10m cella and11.5–12.9m roof envelope above the declared lower datum. Ionic volutes, spiral contrast, flute counts, dentils, door, roof pitch and current stucco loss are stylized estimates. The rear picture dates from2004 and does not prove exact current repair patterns. No navigable interior, fresco reconstruction or neighboring monument is claimed. The lower datum seats the stairs against terrain directly beneath them:76 intersecting rendered triangles are clipped to the12 occupied floors, with290 corner-height checks and at least0.200000017m clearance. Original terrain/water stay intact. Synthetic10m residency clips the portico/stairs, rear cella and roof, exposing floor edges and unsupported-looking partial slices; complete appearance requires surrounding tiles. Independent monuments use native procedural shells in this single-landmark fixture, and their historical appearance is not approved. Only ordinary pictures and the standard PMTiles/DEM were used."
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:7a35c69efa2b8b17483fed4c9bbdc5a2bf13b732500ad54f9111c06250dcabb3"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:a961c6b86407567623c4d1735391b94be470eb3193e3e23023c23f29e0e0e13f"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:4818974c7cad44fc1fe87e65cab0611531c00ad677ae74c36b68216030c877a8"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:54321d0f6475f3676d4e8eca382ddd8556f38db0e514e3e6d1ff4861182749c5"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:ca335856b4cd017890a5ebde85cc2ff3c5ed41938d2e4f002b0a9b824112c689"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:1af1224ad1ffda67467b4f2314c877ad650746648d756370933d0d14ddc80830"
+      }
+    ],
+    "reports": [
+      {
+        "phase": "final",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1378,
+          "independentBuildings": 1356,
+          "remainingBuildings": 1356,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0506_temple_of_portunus"
+          ],
+          "rawTerrainRange": {
+            "min": -11.830311094669426,
+            "max": 32.08958890533057
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 203489.55596715916,
+          "remainingWaterArea": 203489.55596715916,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:2e826428d58f12906c6e30d840fbeef8889b3ce7f42cbc9f1e73d16dbffb7a6c",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-northwest-portico-and-stairs.png",
+            "hash": "sha256:1ffd4e5ec927c9c60ab2da483796156520fe7d2b96ac05406c8f49386ecfd392",
+            "camera": "northwest-portico-and-stairs"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-ionic-capitals-and-front-pediment.png",
+            "hash": "sha256:a7a78cc0e3d155c92b5a209d65a68429384009f840993f9c6a3dda1c44b3d972",
+            "camera": "ionic-capitals-and-front-pediment"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-roofed-pronaos-and-closed-door.png",
+            "hash": "sha256:0f5bb0aec373b4e1f8745bfbcb1bcfd0d031be922bdbcc15eb76ca39e1332d1a",
+            "camera": "roofed-pronaos-and-closed-door"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-engaged-side-and-rear-columns.png",
+            "hash": "sha256:a5436d59cc87d1efca217337e2e043ac3056c6df6e4028e64dfe4393b4c4596a",
+            "camera": "engaged-side-and-rear-columns"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-complete-roof-and-pediments.png",
+            "hash": "sha256:652dc0cc7013657f28378e8ce870a4b382bc992051bfdcb4aa0e3d04bcf54db8",
+            "camera": "complete-roof-and-pediments"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-mapped-complete-plan.png",
+            "hash": "sha256:b97196a5ee252da092711f9e176aabfd48e6b5715b7c8003bfc2bc684f8cefa0",
+            "camera": "mapped-complete-plan"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1378,
+          "independentBuildings": 1356,
+          "remainingBuildings": 1356,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0506_temple_of_portunus"
+          ],
+          "rawTerrainRange": {
+            "min": -11.830311094669426,
+            "max": 32.08958890533057
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 203489.55596715916,
+          "remainingWaterArea": 203489.55596715916,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:7bf768acd14c3ff4b99f7326aea8f4be9d4bb812dea03309fd1d14c5c9a7fe73",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-northwest-portico-and-stairs.png",
+            "hash": "sha256:8b359f3e301001b02e07c07fb06b66b86ee91ead600ed2430cacd0dfdc57f80c",
+            "camera": "northwest-portico-and-stairs"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-engaged-side-and-rear-columns.png",
+            "hash": "sha256:6634e8cfc916b3cbf37275e55957b52b002a3c0d30fc6453e2f09e154a15647b",
+            "camera": "engaged-side-and-rear-columns"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1378,
+          "independentBuildings": 1356,
+          "remainingBuildings": 1356,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0506_temple_of_portunus"
+          ],
+          "rawTerrainRange": {
+            "min": -11.830311094669426,
+            "max": 32.08958890533057
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 203489.55596715916,
+          "remainingWaterArea": 203489.55596715916,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:16575ab98e26964c589ee7d29a35f4fda82fa8177c1110e8b6d2d8283b06fe82",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-district-northwest-portico-and-stairs.png",
+            "hash": "sha256:447bf6f39666d52ef5b6c8c7511328e434400587cd7e845c3207dda64969d88a",
+            "camera": "northwest-portico-and-stairs"
+          },
+          {
+            "path": "shots/site-integration/final-district-engaged-side-and-rear-columns.png",
+            "hash": "sha256:fa3ad63d81b5aa6e423c4b84aa3fe1255259463ee5dee41e1a250bda9955c52b",
+            "camera": "engaged-side-and-rear-columns"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1378,
+          "independentBuildings": 1356,
+          "remainingBuildings": 1356,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0506_temple_of_portunus"
+          ],
+          "rawTerrainRange": {
+            "min": -11.830311094669426,
+            "max": 32.08958890533057
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 203489.55596715916,
+          "remainingWaterArea": 203489.55596715916,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:7ac1f271064cc05ffcb5bdddce5438054ca28505fb6bcfb50364c0fc23c9a99e",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-street-northwest-portico-and-stairs.png",
+            "hash": "sha256:6b5c27edd899da5480c4e43360e0bb394f0654cdb8c588617efa07f79acbdcdf",
+            "camera": "northwest-portico-and-stairs"
+          },
+          {
+            "path": "shots/site-integration/final-street-engaged-side-and-rear-columns.png",
+            "hash": "sha256:ecc52c2dd35a5b20296ea7e9470e71dbfea0ad04e15630791e6bc93ba86d4fb6",
+            "camera": "engaged-side-and-rear-columns"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 1378,
+          "independentBuildings": 1356,
+          "remainingBuildings": 1378,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184623420250,
+              "area": 256.7157587909392
+            },
+            {
+              "id": 35184623420251,
+              "area": 35.72086318881702
+            },
+            {
+              "id": 35184623420298,
+              "area": 1.8033322344265912
+            },
+            {
+              "id": 35184623420300,
+              "area": 198.0703668455078
+            },
+            {
+              "id": 35184623420321,
+              "area": 209.85380093809454
+            },
+            {
+              "id": 52776561506215,
+              "area": 193.37675625679225
+            },
+            {
+              "id": 52776561506216,
+              "area": 232.4572402581211
+            },
+            {
+              "id": 52776561506217,
+              "area": 232.4572402581211
+            },
+            {
+              "id": 52776561506218,
+              "area": 232.4572402581211
+            },
+            {
+              "id": 52776561506219,
+              "area": 193.37675625679225
+            },
+            {
+              "id": 52776561506220,
+              "area": 34.21395071222406
+            },
+            {
+              "id": 52776561506221,
+              "area": 5.854661625328106
+            },
+            {
+              "id": 52776561506222,
+              "area": 3.3596324792114274
+            },
+            {
+              "id": 52776561506223,
+              "area": 2.0750667708540504
+            },
+            {
+              "id": 52776561506224,
+              "area": 1.5810034463299871
+            },
+            {
+              "id": 52776561506225,
+              "area": 2.5691297145499448
+            },
+            {
+              "id": 52776561506226,
+              "area": 2.075066578508711
+            },
+            {
+              "id": 52776561506227,
+              "area": 2.371504668762725
+            },
+            {
+              "id": 52776561506228,
+              "area": 2.8408655790670423
+            },
+            {
+              "id": 52776561506229,
+              "area": 2.37150483753652
+            },
+            {
+              "id": 52776561506230,
+              "area": 3.1620063637902263
+            },
+            {
+              "id": 52776561506231,
+              "area": 3.3596311050402505
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0506_temple_of_portunus"
+          ],
+          "rawTerrainRange": {
+            "min": -11.830311094669426,
+            "max": 32.08958890533057
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 203489.55596715916,
+          "remainingWaterArea": 203489.55596715916,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:8ad3952888cd9189c0e7fd8c62d92ad8c8d8515927148f38e93c524db946b00f",
+            "camera": "whole-site"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0506_temple_of_portunus"
+          ],
+          "rawTerrainRange": {
+            "min": -11.830311094669426,
+            "max": 32.08958890533057
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 203489.55596715916,
+          "remainingWaterArea": 203489.55596715916,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-closeup-whole-site.png",
+            "hash": "sha256:aed36a75fd61ac200cead9f216b77e13d7a0bed37455135ccb773347eec51f74",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-northwest-portico-and-stairs.png",
+            "hash": "sha256:076fafa25030ccc25202185944237ad7942cb7ab77025b054be234bbb0130540",
+            "camera": "northwest-portico-and-stairs"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-engaged-side-and-rear-columns.png",
+            "hash": "sha256:51dd62b07c91f863b83b92db649301dd3b50d307c44068d0a12c882317e2b990",
+            "camera": "engaged-side-and-rear-columns"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_weathered": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0506_temple_of_portunus"
+          ],
+          "rawTerrainRange": {
+            "min": -11.830311094669426,
+            "max": 32.08958890533057
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 203489.55596715916,
+          "remainingWaterArea": 203489.55596715916,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-district-whole-site.png",
+            "hash": "sha256:fd59e798a2a21d7bc431f925c0c3ee4f1f8612e2ca74a9e2bec5b708e2ed5ceb",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-district-northwest-portico-and-stairs.png",
+            "hash": "sha256:81dbd51f65cc1c150ac0fc94fb83e1676ad5edf80a0ab490bc1a2fb0379ffb4d",
+            "camera": "northwest-portico-and-stairs"
+          },
+          {
+            "path": "shots/site-integration/partial-district-engaged-side-and-rear-columns.png",
+            "hash": "sha256:69b6a1f064dcc515449406425750533cd5be233360e3a333cd3547815c84bcb8",
+            "camera": "engaged-side-and-rear-columns"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0506_temple_of_portunus"
+          ],
+          "rawTerrainRange": {
+            "min": -11.830311094669426,
+            "max": 32.08958890533057
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 203489.55596715916,
+          "remainingWaterArea": 203489.55596715916,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-failure-whole-site.png",
+            "hash": "sha256:c5f9f75cf606016bda4eaa2d6da6bb9dd6d3f0bdfdf5e5f383351aeed8e846d9",
+            "camera": "whole-site"
+          }
+        ]
+      }
+    ],
+    "floorCoverage": {
+      "checks": 48,
+      "samples": 868,
+      "missing": 0
+    },
+    "partialResidency": {
+      "status": "native-ground-preserved",
+      "notes": "Synthetic 10m residency clips the portico/stairs, rear cella and roof; original ground remains intact. Complete architecture requires surrounding tiles."
+    }
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/models/source.glb\",\"hash\":\"sha256:7a35c69efa2b8b17483fed4c9bbdc5a2bf13b732500ad54f9111c06250dcabb3\",\"bytes\":3211780,\"triangles\":26740,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0506_temple_of_portunus/model.glb\",\"hash\":\"sha256:a961c6b86407567623c4d1735391b94be470eb3193e3e23023c23f29e0e0e13f\",\"bytes\":3211328,\"triangles\":26740,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0506_temple_of_portunus/model.skyline.glb\",\"hash\":\"sha256:4818974c7cad44fc1fe87e65cab0611531c00ad677ae74c36b68216030c877a8\",\"bytes\":83932,\"triangles\":796,\"materials\":1,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0506_temple_of_portunus/model.district.glb\",\"hash\":\"sha256:54321d0f6475f3676d4e8eca382ddd8556f38db0e514e3e6d1ff4861182749c5\",\"bytes\":275904,\"triangles\":2848,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0506_temple_of_portunus/model.street.glb\",\"hash\":\"sha256:ca335856b4cd017890a5ebde85cc2ff3c5ed41938d2e4f002b0a9b824112c689\",\"bytes\":1554056,\"triangles\":15076,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0506_temple_of_portunus/model.closeup.glb\",\"hash\":\"sha256:1af1224ad1ffda67467b4f2314c877ad650746648d756370933d0d14ddc80830\",\"bytes\":2717184,\"triangles\":26740,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "198-shaft-bay-door-roof-pediment-and-stair-probes",
+        "passed": true,
+        "notes": "All18 shafts, clear portico bays, complete roof over cella/pronaos, closed door, intact pediment and ascending stairs pass in all six files."
+      },
+      {
+        "check": "868-occupied-floor-samples",
+        "passed": true,
+        "notes": "All four browser levels cover the12 occupied podium/stair floors."
+      },
+      {
+        "check": "241-original-map-control-vertices",
+        "passed": true,
+        "notes": "All22 source component outlines retain their original raw east/south coordinates. Shafts and moldings are reconstructed around those controls."
+      },
+      {
+        "check": "76-native-triangles-and290-clipped-corners",
+        "passed": true,
+        "notes": "Every original rendered triangle intersecting an occupied floor is clipped to that footprint. Its maximum linear height is below the opaque floor by at least0.200000017m. No ground/water cutout."
+      },
+      {
+        "check": "selected-source-runtime-placement-scene",
+        "passed": true,
+        "notes": "Selected generation/import/LOD/placement checks, strict medium-fi, verified asset hashes, scene validation and sim30 pass."
+      }
+    ]
+  },
+  "limitations": [
+    "Specific present-day Temple of Portunus exterior: high mapped podium and eleven front stair parts, six free-standing Ionic portico columns, twelve engaged side/rear columns, roofed pronaos, closed recessed cella door, layered entablature, front/rear triangular pediments and complete shallow tiled gable roof. The neighboring Temple of Hercules Victor, church and modern street buildings remain independent.",
+    "Q849241/way251331418 identifies the exact temple. Twenty-two PMTiles building components retain their original vertices: main outline, U-shaped cella wall, podium, eleven stair parts, column bases, all18 shafts and roof/entablature bands. The mapped stair projection and ordinary front picture fix the north-northwest front; the rear photograph confirms four engaged rear columns. Geometry retains raw east/south coordinates at heading0, with an internal162.695-degree architectural rotation so local+Z faces north-northwest.",
+    "Standard-map parts provide podium3m, shaft interval3.2–10m, cella10m, cornice11–11.5m and roof envelope11.5–12.9m. The model follows these approximate heights above the declared lower datum, with fluted shafts ending9.65m and coarse Ionic capitals rising10.25m. Ordinary pictures guide cornice tiers, roof pitch, fluting, closed door and capitals; exact ornament, wall repairs and thresholds are not surveyed.",
+    "The original161-square/6m standard Mapzen/USGS grid remains unchanged. The lower datum is the least offset that keeps every mapped stair top0.2m above the actual rendered terrain directly beneath its footprint. Each intersecting native triangle is clipped to the footprint and its linear height evaluated at every resulting corner. The3m upper podium and all higher treads cover their original coarse grade; retaining faces extend below the minimum local terrain. Numerical clipping scraps under0.1 square metres are omitted from the upper floor, removing false stair-side spikes; all original mapped controls remain intact. No ground or water cutout. Surrounding ground remains native; exact archaeological levels remain approximate.",
+    "Specific present-day exterior. Six free and twelve engaged Ionic columns follow mapped positions; fluting, volutes, pediment/cornice profiles, closed entrance and stone repairs are medium-fi approximations. The complete gable roof is included. Fine carving, exact current stucco loss, interior frescoes and independent neighboring monuments are outside scope. Current acceptance is recorded in qa.json.",
+    "Accepted for the specific medium-fi Temple of Portunus exterior and approximate standard-map/DEM fit. Twenty-two mapped parts preserve241 original source-control vertices, including all18 shaft positions, eleven stair parts, podium, cella and roof/entablature bands. Six columns are free-standing and twelve engaged; circular shafts and moldings are reconstructed around the mapped centers rather than presented as surveyed stonework. The mapped stair projection and front/rear pictures establish the north-northwest front. Geometry uses raw east/south coordinates at heading0 with a162.695-degree internal rotation. Approximate map heights supply the3m podium,3.2–10m shaft interval,10m cella and11.5–12.9m roof envelope above the declared lower datum. Ionic volutes, spiral contrast, flute counts, dentils, door, roof pitch and current stucco loss are stylized estimates. The rear picture dates from2004 and does not prove exact current repair patterns. No navigable interior, fresco reconstruction or neighboring monument is claimed. The lower datum seats the stairs against terrain directly beneath them:76 intersecting rendered triangles are clipped to the12 occupied floors, with290 corner-height checks and at least0.200000017m clearance. Original terrain/water stay intact. Synthetic10m residency clips the portico/stairs, rear cella and roof, exposing floor edges and unsupported-looking partial slices; complete appearance requires surrounding tiles. Independent monuments use native procedural shells in this single-landmark fixture, and their historical appearance is not approved. Only ordinary pictures and the standard PMTiles/DEM were used."
+  ],
+  "reviewMaintenance": {
+    "formatOnlyCheckpoint": {
+      "reviewedOn": "2026-10-19",
+      "previousInputHash": "sha256:20210934eda726b84371ddf89a4d0d8bb24bc34342b8f4b490b92afaf6edbeb4",
+      "inputHash": "sha256:597fedac26b45a64fbe5f09e43b032ee943ddfc222dcdbad0414f7681b7da96b",
+      "proof": "TypeScript parser/printer equality of all non-import statements; same import bindings and explicit side-effect import order. Rebuilt selected source/runtime/fourLOD GLBs retain exact bytes. Source/view/camera/material metadata preserved. Existing reviews retained; no new visual approval added."
+    }
+  }
+}

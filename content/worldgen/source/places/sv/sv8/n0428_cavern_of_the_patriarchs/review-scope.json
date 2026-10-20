@@ -1,0 +1,278 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_sandstone",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.15
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.5,
+      "metallic": 0.01
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/patriarchs-model.mjs",
+    "export": "buildPatriarchsSkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPatriarchsDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.01
+          }
+        }
+      },
+      "street": {
+        "export": "buildPatriarchsStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.01
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPatriarchsCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.01
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      95,
+      73,
+      108
+    ],
+    "lookAt": [
+      0,
+      14,
+      0
+    ],
+    "fov": 46
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-patriarchs-skyline",
+      "position": [
+        95,
+        73,
+        108
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-patriarchs-district",
+      "position": [
+        95,
+        73,
+        108
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-patriarchs-street",
+      "position": [
+        95,
+        73,
+        108
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-patriarchs-closeup",
+      "position": [
+        95,
+        73,
+        108
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      35.110855844,
+      31.524788611
+    ],
+    "heading": -0.875871355461,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 anchor and declared working floor,not surveyed contact. Standard viewer DEM datum892.130383m;retained complex perimeter-4.65..5.35m relative to anchor. Working floor1.562m is maximum bilinear DEM sample on the estimated enclosure and its boundary at1.5m spacing plus0.4m. The uphill mapped annex has a separate working floor5.778m. The initial whole-complex maximum raised the enclosure disproportionately;separate planes preserve picture proportions. These are not surveyed platform elevations. Only the enclosure has modeled court paving;outside lanes retain host terrain. Adaptive foundations extend below retained DEM and crossY=0;outside exposure may differ from the actual hillside. Raw DEM retained without cutout/flattening;public approach/roads remain host content. Exact altitude,terrain/threshold/stair/street contact and walking unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        35.110855844,
+        31.524788611
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum892.130383m;retained complex perimeter-4.65..5.35m relative to anchor. Working floor1.562m is maximum bilinear DEM sample on the estimated enclosure and its boundary at1.5m spacing plus0.4m. The uphill mapped annex has a separate working floor5.778m. The initial whole-complex maximum raised the enclosure disproportionately;separate planes preserve picture proportions. These are not surveyed platform elevations. Only the enclosure has modeled court paving;outside lanes retain host terrain. Adaptive foundations extend below retained DEM and crossY=0;outside exposure may differ from the actual hillside. Raw DEM retained without cutout/flattening;public approach/roads remain host content. Exact altitude,terrain/threshold/stair/street contact and walking unverified."
+    },
+    "bounds": [
+      35.103,
+      31.518,
+      35.119,
+      31.532
+    ],
+    "notes": "Retained exact way/1302827171 /Q204200 identifies the Cavern of the Patriarchs complex. Current PMTiles exact feature35185674916003 (2^45+1302827171) appears as an attraction POI with nominal elevation890m,not a whole-building polygon. Preserve that identity separately from the earlier retained18-point complex outline and all nine current building/part controls. Current controls have58 raw points/properties and one fragment each;no height/min_height tags. No invented current whole-outline ID or horizontal rescale. Anchor[35.110855844,31.524788611] and heading−0.875871355461rad unchanged. Native+X southeast prayer-hall end,−X northwest attached ranges;native+Z southwest long pilastered enclosure/garden approach,−Z northeast Jawliyah annex/side street. Enclosure subdivision,wall thickness,minarets and door positions are picture-led estimates within about3m/facing about3°. Nine mapped ranges/three small dome controls retain their polygons. Adjacent city buildings,roads,park and public approach remain host content. Standard viewer DEM datum892.130383m;retained complex perimeter-4.65..5.35m relative to anchor. Working floor1.562m is maximum bilinear DEM sample on the estimated enclosure and its boundary at1.5m spacing plus0.4m. The uphill mapped annex has a separate working floor5.778m. The initial whole-complex maximum raised the enclosure disproportionately;separate planes preserve picture proportions. These are not surveyed platform elevations. Only the enclosure has modeled court paving;outside lanes retain host terrain. Adaptive foundations extend below retained DEM and crossY=0;outside exposure may differ from the actual hillside. Raw DEM retained without cutout/flattening;public approach/roads remain host content. Exact altitude,terrain/threshold/stair/street contact and walking unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum892.130383m;retained complex perimeter-4.65..5.35m relative to anchor. Working floor1.562m is maximum bilinear DEM sample on the estimated enclosure and its boundary at1.5m spacing plus0.4m. The uphill mapped annex has a separate working floor5.778m. The initial whole-complex maximum raised the enclosure disproportionately;separate planes preserve picture proportions. These are not surveyed platform elevations. Only the enclosure has modeled court paving;outside lanes retain host terrain. Adaptive foundations extend below retained DEM and crossY=0;outside exposure may differ from the actual hillside. Raw DEM retained without cutout/flattening;public approach/roads remain host content. Exact altitude,terrain/threshold/stair/street contact and walking unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

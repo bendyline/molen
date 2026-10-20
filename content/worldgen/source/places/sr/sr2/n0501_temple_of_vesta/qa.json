@@ -1,0 +1,672 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0501_temple_of_vesta",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:5284af6f649cd86e4eddfe29f801e0a8e4e3da5e5ff64d0f93953b04bddcddca",
+  "sourceHash": "sha256:f60dec979709bc2a381ac7fc2bc164dcb8d87eecadf19ae897ad23b8a1dd6f89",
+  "runtimeHash": "sha256:b041271b85e908912b2b32e2900ce8d143c21546d0a117aefa70619d5a8716a8",
+  "captureReportHash": "sha256:d6708cc611efa65c25593eadb5b405f1914311b413f1efb9738b9678e6722b0f",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/northwest-colonnade.png",
+      "shots/corinthian-capitals.png",
+      "shots/open-cella-and-brick-podium.png",
+      "shots/mapped-ruin-plan.png"
+    ],
+    "notes": "Inspected all9 portable views. The present-day Roman Forum ruin has three tall fluted columns, the northeastern low stump, curved broken entablature, a shorter marble cella sector, exposed-brick circular podium and three specifically mapped low masonry fragments. Initial picture interpretation was corrected: the stump moved to the northeastern mapped end, and the cella wall now stops inside the western bay so the western tall column stands open. The roofless centre and missing remainder of the historic colonnade remain absent. Bases, flutes, coarse Corinthian leaf/volute masses and sparse dentils are selected medium-fi geometry. Exact damage and carved ornament are approximate."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/northwest-colonnade.png",
+      "shots/shared/corinthian-capitals.png",
+      "shots/shared/open-cella-and-brick-podium.png",
+      "shots/shared/mapped-ruin-plan.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all9 shared-material views. Four common256-square graphs provide marble, long-format brick, weathered limestone and gravel with metric UVs and linear tints. No copied photographs, embedded images or unique atlas. Each graph is read once across the model; eviction frees geometry. Four near draws and one skyline draw. The flat stage intentionally exposes some buried foundation geometry; actual contact was reviewed on the retained raw DEM separately.",
+    "captureReportHash": "sha256:4fe26c2ab441a6f8d05a844f8a7742b27a0e40011c08ab82b83cdc42316b55e6"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/northwest-colonnade.png",
+      "medium-fi/corinthian-capitals.png",
+      "medium-fi/open-cella-and-brick-podium.png",
+      "medium-fi/mapped-ruin-plan.png",
+      "medium-fi/whole-ruin-skyline.png",
+      "medium-fi/whole-ruin-district.png",
+      "medium-fi/whole-ruin-street.png",
+      "medium-fi/whole-ruin-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all25 medium-fi views: street/block/skyline with procedural neighbors at noon and late afternoon in Economy/High, an untextured silhouette, four architectural details, four complete-ruin levels and all transitions. Levels630/1830/3494/5486 retain the roofless circular podium, three tall columns plus stump, shorter cella wall and broken curved entablature. District adds base profiles and podium marble panels; street adds coarse flutes, capitals and dentils; closeup adds selected finer shaft fluting and leaf masses. Initial skyline+district geometry234308bytes plus four common material graphs. Separate attribute streams avoid duplicate GPU uploads. Physical-device and dense-city measurements remain pending.",
+    "captureReportHash": "sha256:7cbbe8eb3be5e656739bb16f952561912fb2a8364e2da51b0ee2283bb8897fc9"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:b2300654e1bfb3ecc26b17799ace1f8eec8e457212480c97ae7ee44c304fd7e8",
+    "mapFrameHash": "sha256:d605d4a8c3027b16a0add2e9b4ab9ecfc67801c0f9cdaac6b36b4a30d3b89e62",
+    "notes": "Reviewed approximate full-site fit on the unchanged161-square/6m standard DEM. Eight mapped components retain raw east/south coordinates; three tall columns and the northeastern stump identify the signed northwest surviving sector. The cella wall ends inside the western open bay, while the broken entablature spans the tall columns. The circular occupied base is seated above original terrain, with retaining faces reaching below the lowest perimeter sample. Across2826 mesh-height/boundary probes, the top foundation clears native terrain by at least0.1476m, so no ground or water opening is needed. Full-site loading replaces all8 authored records and preserves2080 independent tile buildings exactly. All2702 independent records in the local extract were checked outside the replacement envelope;409 nearby records remain in source for inspection. Nine native water features retain127659.45095056188 square metres. Failure preserves all2088 native tile buildings and terrain; eviction frees geometry. Synthetic10m partial residency deliberately clips the circular podium and outer entablature, but preserves original ground under and outside the clipped model with no terrain opening. Partial architectural completeness is not claimed. The surrounding unmodeled Forum ruins use the existing generic procedural renderer and are not historical reconstructions. Heights, thresholds, damaged profiles and coarse DEM grade remain approximate."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted for the specific medium-fi present-day Temple of Vesta ruin in the Roman Forum and approximate standard-map/DEM placement. Eight raw map component footprints and57 vertices remain intact; mapped column centres are preserved. Ordinary northwest and reverse photos determine which three columns retain full height, the northeastern stump and open western bay. These survival heights are not supplied by PMTiles. The occupied foundation is14.9m across; the ordinary article describes an approximately15m historic podium and20 original columns, which are context rather than a full reconstruction. Podium2.05m,10.35m entablature top above the occupied floor, curved profiles, surviving wall ends, low fragments and carving are picture-guided visualization estimates. All2826 original triangle-height/boundary probes leave at least0.1476m clearance beneath the opaque base; retaining faces join below the terrain. No terrain/water cutout is needed, including under partial residency. Synthetic10m loading intentionally clips the podium and entablature; complete architecture requires surrounding tiles, while the native ground stays intact. Independent Forum ruins retain the existing generic procedural appearance and are not historical reconstructions. Exact damage patterns, navigable interiors, buried chambers, the missing roof and the remainder of the former colonnade are outside scope. No bespoke survey or archival research was used."
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:f60dec979709bc2a381ac7fc2bc164dcb8d87eecadf19ae897ad23b8a1dd6f89"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:b041271b85e908912b2b32e2900ce8d143c21546d0a117aefa70619d5a8716a8"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:f16fba05a1048fcb262972d58e78dda84b4dd1b81c1958d5e489fba44a5cb6a0"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:47f0c4cbd469c1faa74aeb3082e901f1ca577b6ba986cf7811a557937883462f"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:9454441a824a690b83edf1956cffaeb09babfab66eeb76773020a59e9120031c"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:df1ed8d8aa3f72935fc6a118bc64a04de5419cfe0b89e0e6c90f6c30c32c48f9"
+      }
+    ],
+    "reports": [
+      {
+        "phase": "final",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2088,
+          "independentBuildings": 2080,
+          "remainingBuildings": 2080,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.gravel": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0501_temple_of_vesta"
+          ],
+          "rawTerrainRange": {
+            "min": -10.922479047711695,
+            "max": 31.350920952288302
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127659.45095056188,
+          "remainingWaterArea": 127659.45095056188,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:39f5216e5aa9ffd07f2956da28ff177971c962940bfc5c73fa8ce4516a139b79",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-northwest-colonnade.png",
+            "hash": "sha256:de6d3afaddca873864dcfc60f89d1c6d71bcf7fe84b0bf1d07fe100d0b8e7a31",
+            "camera": "northwest-colonnade"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-corinthian-capitals.png",
+            "hash": "sha256:61f1e63a999598ae86c77fbbd13ee716bd059efd43d04434e346be0d34737361",
+            "camera": "corinthian-capitals"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-cella-and-brick-podium.png",
+            "hash": "sha256:802c423501b13a091588ec120a5ee762a45a965cca3b7bd58aabfa2cce188301",
+            "camera": "open-cella-and-brick-podium"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-mapped-ruin-plan.png",
+            "hash": "sha256:99a996d2e1b693db9fb0c4522e9a82eb51426609c18b7a719ce4a540de2efdb5",
+            "camera": "mapped-ruin-plan"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2088,
+          "independentBuildings": 2080,
+          "remainingBuildings": 2080,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.gravel": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0501_temple_of_vesta"
+          ],
+          "rawTerrainRange": {
+            "min": -10.922479047711695,
+            "max": 31.350920952288302
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127659.45095056188,
+          "remainingWaterArea": 127659.45095056188,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:f273aaebef8f5af1aef02ba6a180bb244564a1743c8b23b831a977ac286235d8",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-street-northwest-colonnade.png",
+            "hash": "sha256:c5b5b75ccc7a731177db247cb455758edc6f83c7ea5c9c7318dcc9ef5b312711",
+            "camera": "northwest-colonnade"
+          },
+          {
+            "path": "shots/site-integration/final-street-open-cella-and-brick-podium.png",
+            "hash": "sha256:e54562d97c89865bdcd82ed6df388f1eaa79f9f106e5be34df1eef8c86515816",
+            "camera": "open-cella-and-brick-podium"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2088,
+          "independentBuildings": 2080,
+          "remainingBuildings": 2080,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.gravel": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0501_temple_of_vesta"
+          ],
+          "rawTerrainRange": {
+            "min": -10.922479047711695,
+            "max": 31.350920952288302
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127659.45095056188,
+          "remainingWaterArea": 127659.45095056188,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:b6b350aadb89e20e8476d07c1661c698d37e112fd7e9f3d4ce5d29251ca89759",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-district-northwest-colonnade.png",
+            "hash": "sha256:bdea5f6c0b465dd804b6dffc46fba3a285c24cdc655483d85e69ce5b86fb3303",
+            "camera": "northwest-colonnade"
+          },
+          {
+            "path": "shots/site-integration/final-district-open-cella-and-brick-podium.png",
+            "hash": "sha256:a6d71ecad258a78a1853fdd9471d3c4aff183a1865c69e37da43a2a33b814a31",
+            "camera": "open-cella-and-brick-podium"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2088,
+          "independentBuildings": 2080,
+          "remainingBuildings": 2080,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0501_temple_of_vesta"
+          ],
+          "rawTerrainRange": {
+            "min": -10.922479047711695,
+            "max": 31.350920952288302
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127659.45095056188,
+          "remainingWaterArea": 127659.45095056188,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:8b6c30e73b6b341f021b2aa1484e098c299d9e9105fcd4a8b042a96060f73ad0",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-northwest-colonnade.png",
+            "hash": "sha256:71f10e1c616a5f9ae1650b961f9b7a88b2be66960dbd6def9fd801e6e3161f83",
+            "camera": "northwest-colonnade"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-open-cella-and-brick-podium.png",
+            "hash": "sha256:3d56f98baa79f73db07f36be8f514c47920998f867dc3824a202f9438e81a6db",
+            "camera": "open-cella-and-brick-podium"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 2088,
+          "independentBuildings": 2080,
+          "remainingBuildings": 2088,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184503447713,
+              "area": 0.2223117803126229
+            },
+            {
+              "id": 35184503447720,
+              "area": 0.14820787816205439
+            },
+            {
+              "id": 35184503447731,
+              "area": 0.19761043763253383
+            },
+            {
+              "id": 35184503447738,
+              "area": 0.1976104193431638
+            },
+            {
+              "id": 52776559975336,
+              "area": 11.412003851449981
+            },
+            {
+              "id": 52776559975345,
+              "area": 26.529225542094537
+            },
+            {
+              "id": 52776559975346,
+              "area": 5.977718227356377
+            },
+            {
+              "id": 52776559975351,
+              "area": 2.5442336476587
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0501_temple_of_vesta"
+          ],
+          "rawTerrainRange": {
+            "min": -10.922479047711695,
+            "max": 31.350920952288302
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127659.45095056188,
+          "remainingWaterArea": 127659.45095056188,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:eab4ff9e506e77d18860fd05d3b22d04a8a3dd7e01a96c6a1bb296daeb643bfd",
+            "camera": "whole-site"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.gravel": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0501_temple_of_vesta"
+          ],
+          "rawTerrainRange": {
+            "min": -10.922479047711695,
+            "max": 31.350920952288302
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127659.45095056188,
+          "remainingWaterArea": 127659.45095056188,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-closeup-whole-site.png",
+            "hash": "sha256:aeedd3e79e92f426ec10dfea3e7ca59df713d7994cdd2b5de4b5352de95ddb17",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-northwest-colonnade.png",
+            "hash": "sha256:8992e8039361e23dcc3a1b7f93a3a72a8795c07d8d715726f274aea2b32fdf6c",
+            "camera": "northwest-colonnade"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-open-cella-and-brick-podium.png",
+            "hash": "sha256:8f4dadd1e75e05b00d19eb0f3082133fd8bde692cc15b53eec470174f0280cc4",
+            "camera": "open-cella-and-brick-podium"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.gravel": 1,
+            "molen.worldgen.material.stone_limestone_weathered": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0501_temple_of_vesta"
+          ],
+          "rawTerrainRange": {
+            "min": -10.922479047711695,
+            "max": 31.350920952288302
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127659.45095056188,
+          "remainingWaterArea": 127659.45095056188,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-district-whole-site.png",
+            "hash": "sha256:009d22e136f192d6eecd14baf2ac3f35c6d2dff6c3193e49aa1ef7baac042e53",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-district-northwest-colonnade.png",
+            "hash": "sha256:64be04e52b94945f07af54d03bdb1a0f0e39e4c626005a3be990475ca8b1e92d",
+            "camera": "northwest-colonnade"
+          },
+          {
+            "path": "shots/site-integration/partial-district-open-cella-and-brick-podium.png",
+            "hash": "sha256:7af0e914240e1d2df9f336329a514b473c2f55efb879e1971a9dbf6a858a6f74",
+            "camera": "open-cella-and-brick-podium"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0501_temple_of_vesta"
+          ],
+          "rawTerrainRange": {
+            "min": -10.922479047711695,
+            "max": 31.350920952288302
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127659.45095056188,
+          "remainingWaterArea": 127659.45095056188,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-failure-whole-site.png",
+            "hash": "sha256:3c33ab8dc2cc874fb926604c1cc0486a87fcce20e64f8909578b54763e054015",
+            "camera": "whole-site"
+          }
+        ]
+      }
+    ],
+    "floorCoverage": {
+      "checks": 4,
+      "samples": 320,
+      "missing": 0
+    },
+    "partialResidency": {
+      "status": "native-ground-preserved",
+      "notes": "Synthetic10m residency clips architecture as expected. Original ground remains under and outside the partial model; full architectural completeness requires surrounding tiles."
+    }
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/sr2/n0501_temple_of_vesta/models/source.glb\",\"hash\":\"sha256:f60dec979709bc2a381ac7fc2bc164dcb8d87eecadf19ae897ad23b8a1dd6f89\",\"bytes\":661284,\"triangles\":5486,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0501_temple_of_vesta/model.glb\",\"hash\":\"sha256:b041271b85e908912b2b32e2900ce8d143c21546d0a117aefa70619d5a8716a8\",\"bytes\":660820,\"triangles\":5486,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0501_temple_of_vesta/model.skyline.glb\",\"hash\":\"sha256:f16fba05a1048fcb262972d58e78dda84b4dd1b81c1958d5e489fba44a5cb6a0\",\"bytes\":65152,\"triangles\":630,\"materials\":1,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0501_temple_of_vesta/model.district.glb\",\"hash\":\"sha256:47f0c4cbd469c1faa74aeb3082e901f1ca577b6ba986cf7811a557937883462f\",\"bytes\":169156,\"triangles\":1830,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0501_temple_of_vesta/model.street.glb\",\"hash\":\"sha256:9454441a824a690b83edf1956cffaeb09babfab66eeb76773020a59e9120031c\",\"bytes\":323152,\"triangles\":3494,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0501_temple_of_vesta/model.closeup.glb\",\"hash\":\"sha256:df1ed8d8aa3f72935fc6a118bc64a04de5419cfe0b89e0e6c90f6c30c32c48f9\",\"bytes\":503812,\"triangles\":5486,\"materials\":4,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "60-column-open-bay-and-roofless-centre-probes",
+        "passed": true,
+        "notes": "All six files retain the mapped columns/stump and entablature height; the centre, missing eastern colonnade and between-column bays stay open."
+      },
+      {
+        "check": "320-occupied-floor-samples",
+        "passed": true,
+        "notes": "Complete occupied foundation coverage in all four browser levels."
+      },
+      {
+        "check": "57-raw-map-vertices",
+        "passed": true,
+        "notes": "Every mapped control vertex retains its raw east/south coordinate."
+      },
+      {
+        "check": "2826-native-terrain-clearance-probes",
+        "passed": true,
+        "notes": "Opaque base clears the original rendered6m triangles by at least0.1476m; no terrain or water opening is needed."
+      },
+      {
+        "check": "selected-source-runtime-placement-scene",
+        "passed": true,
+        "notes": "Selected generation/import/LOD/placement checks, strict medium-fi audit, scene validate and sim30 pass."
+      }
+    ]
+  },
+  "limitations": [
+    "Present-day roofless Temple of Vesta in the Roman Forum: circular exposed-brick podium, three tall fluted Corinthian columns and one mapped stump, northwest curved marble cella/entablature sector, and individually mapped low ruin fragments. The missing roof and remaining historic colonnade are not reconstructed. Independent Forum ruins remain native.",
+    "Q753791/relation1842062 identifies the Roman Forum ruin. Eight current PMTiles component footprints include three full column positions, one stump, the northwest surviving sector and three low masonry fragments. Their raw east/south coordinates control placement. Ordinary northwest and reverse photographs confirm the surviving marble sector faces northwest; the old minimum-area rectangle axis is not a facade direction. In the northwest ordinary photographs the low stump appears left of the three tall columns. The northeastern end of the mapped four-column group,35184503447738, therefore remains the short stump;35184503447720/35184503447713/35184503447731 retain full height. The cella wall stops inside the western bay so the westernmost tall column stands open beneath the broken entablature. PMTiles provides positions, not these surviving heights; the signed survival assignment is picture-guided.",
+    "Ordinary photographs guide approximate podium2.05m, shaft/capital and10.35m entablature top above the occupied foundation. The ordinary article describes an approximately15m historic podium,20 original columns,6.19m architrave radius and8.6m inner cella diameter. These are plan context, not a full reconstruction or surveyed current dimensions. The outer occupied foundation is14.9m across; mapped column positions remain unchanged. Fragments, profiles, flutes and capitals are medium-fi approximations.",
+    "The unmodified161-square/6m standard Mapzen-USGS grid is retained with21.663m raw datum. The opaque occupied foundation clears the original rendered terrain by at least0.1476m across2826 grid/boundary probes. Its retaining faces continue below the lowest perimeter sample, enclosing the original ground. No terrain or water opening is needed. Eight authored map components are replaced inside the bounded foundation; surrounding Forum ruins remain native. Heights and grade are approximate viewer-scale fits, not surveyed thresholds. The source preview remains a separate visualization; production uses the unchanged full grid.",
+    "This represents the surviving Roman Forum ruin, including its partial twentieth-century reconstruction. Missing roof and colonnade remain absent. Fine carvings, exact damage patterns, buried chambers and adjoining Forum ruins are outside scope. Current review status is recorded in qa.json.",
+    "Accepted for the specific medium-fi present-day Temple of Vesta ruin in the Roman Forum and approximate standard-map/DEM placement. Eight raw map component footprints and57 vertices remain intact; mapped column centres are preserved. Ordinary northwest and reverse photos determine which three columns retain full height, the northeastern stump and open western bay. These survival heights are not supplied by PMTiles. The occupied foundation is14.9m across; the ordinary article describes an approximately15m historic podium and20 original columns, which are context rather than a full reconstruction. Podium2.05m,10.35m entablature top above the occupied floor, curved profiles, surviving wall ends, low fragments and carving are picture-guided visualization estimates. All2826 original triangle-height/boundary probes leave at least0.1476m clearance beneath the opaque base; retaining faces join below the terrain. No terrain/water cutout is needed, including under partial residency. Synthetic10m loading intentionally clips the podium and entablature; complete architecture requires surrounding tiles, while the native ground stays intact. Independent Forum ruins retain the existing generic procedural appearance and are not historical reconstructions. Exact damage patterns, navigable interiors, buried chambers, the missing roof and the remainder of the former colonnade are outside scope. No bespoke survey or archival research was used."
+  ],
+  "reviewMaintenance": {
+    "formatOnlyCheckpoint": {
+      "reviewedOn": "2026-10-19",
+      "previousInputHash": "sha256:02a02f7f84a397112c410e6d94e39f7d374d0c64f69e101a4216dd3dff26e70d",
+      "inputHash": "sha256:5284af6f649cd86e4eddfe29f801e0a8e4e3da5e5ff64d0f93953b04bddcddca",
+      "proof": "TypeScript parser/printer equality of all non-import statements; same import bindings and explicit side-effect import order. Rebuilt selected source/runtime/fourLOD GLBs retain exact bytes. Source/view/camera/material metadata preserved. Existing reviews retained; no new visual approval added."
+    }
+  }
+}

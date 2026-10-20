@@ -138,6 +138,31 @@ re-render unchanged models. Placement changes additionally require a geographic 
 Register new recipes before the final captures: review input hashes include the recipe files
 listed in the authoring index, so adding that registration later invalidates those reviews.
 
+**Complete each model in one continuous authoring pass.** The owner clarified this on
+2026-10-19: reference selection, geometry, shared materials, map fit, LODs and visual checks
+belong to the same round. Carry the working brief and inspected evidence through that round;
+do not hand a finished draft into a separate queue that restarts research and reconstructs its
+status. Inspect while building, fix concrete defects, run the selected integrity checks and
+record one concise completion decision before moving to the next model. Completion still
+requires the visual and placement checks; they are part of making the model, not a later
+re-evaluation project.
+
+Use the smallest capture set that covers the required views, modes and distances. One frame
+can cover several checks. Add views or probes to answer a specific unresolved issue, rather
+than creating new review obligations after each successful check. Reuse unchanged inputs and
+results. Reopen an accepted model only for a reported defect, relevant source/runtime change
+or a failing batch check. Catalog refreshes, lock updates and broad reproducibility checks stay
+at batch milestones.
+
+After accepting a changed model, refresh its readiness record with
+`node packages/worldgen-earth/scripts/build-structure-readiness.mjs --ids=N0518` (comma-separated
+IDs are supported). This runs the ordinary evidence checks for those candidates and retains
+the other records from the last full ledger; it does not re-approve or rehash unchanged models.
+The selected mode requires an existing ledger with matching catalog identities and collection
+membership. It is an incremental authoring update, not a full integrity assertion. The default
+command and `--check` still verify every candidate; `--check` rejects `--ids`. Run that full check
+at the batch milestone and in CI.
+
 For the current structure backlog, use reference pictures for appearance and standard viewer
 PMTiles for location, orientation, footprint and terrain fit. The owner explicitly requested
 this scope on 2026-10-11. Do not research separate surveys, cadastral records, local LiDAR or
@@ -159,6 +184,9 @@ record the chosen facing as approximate. Set `geographic.orientationPolicy` to
 `"reviewed-approximation"`, with the chosen heading, review date, picture references and
 honest angular uncertainty (up to 180 degrees). Current placement QA must still pass.
 Retain the mapped point; do not fabricate a footprint or describe the choice as a measured bearing.
+The source builder accepts point and centerline frames as well as outlines. For an ensemble
+located by a named constituent, preserve both the site and component identities and explain
+their reviewed association; do not claim that distinct Wikidata IDs are an exact match.
 A skyline that automatic reduction cannot represent can declare `runtimeLodOverlay` in
 that review scope: `level: "skyline"`, a `packages/worldgen/scripts/*.mjs` module, its exported
 builder and a conservative `errorMeters`. The registered runtime-LOD generator rebuilds
@@ -194,6 +222,9 @@ the strict 4000/16000/64000 ceilings stops generation. Inspect affected details 
 do not accept nominal triangle overages. Keri Lighthouse provides a street-cap example.
 
 Tall or asymmetric models should add explicit whole-model cameras to their scope.
+If the library's four automatic whole views crop an elongated group, use
+`capture-landmark-library.mjs --turntable-padding=1.2`; the report records explicit native-frame
+camera poses. The default camera path and rendering fixture are unchanged.
 An optional `reviewLod` on a QA camera chooses the derivative in the medium-fi fixture;
 portable and shared source captures still show the detailed master. `qaLodCameras` adds
 browser-only detail cameras for changed derivatives without altering source review views.

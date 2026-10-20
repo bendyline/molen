@@ -1,4 +1,6 @@
-/** node examples/world-explorer/test/visual/capture-landmark-library.mjs --ids=N0637,N0641 */
+/** node examples/world-explorer/test/visual/capture-landmark-library.mjs --ids=N0637,N0641
+ * Optional --turntable-padding=1.2 gives elongated groups extra room in the four whole views.
+ */
 import assert from 'node:assert/strict';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
@@ -99,6 +101,13 @@ const zeroReviewDatumFixtureHash =
 const clippingMode = process.argv.includes('--adaptive-clipping') ? 'bounds' : 'legacy';
 const reflectionMode = process.argv.includes('--reflections') ? 'sky-pmrem' : 'none';
 const reviewBoundedPlacement = process.argv.includes('--bounded-placement');
+const turntablePadding = Number(
+  process.argv.find((arg) => arg.startsWith('--turntable-padding='))?.split('=')[1] ?? 1,
+);
+assert(
+  Number.isFinite(turntablePadding) && turntablePadding >= 1 && turntablePadding <= 4,
+  '--turntable-padding must be a finite number between 1 and 4',
+);
 const selected = await authoredModels();
 const server = await createServer({
   configFile: false,
@@ -373,10 +382,25 @@ try {
       ? spec.qaCameras
       : Object.entries(spec.qaCameras ?? {}).map(([name, camera]) => ({ name, ...camera }));
     const views = [
-      ...[0.6, 0.6 + Math.PI / 2, 0.6 + Math.PI, 0.6 + (3 * Math.PI) / 2].map((angle, i) => ({
-        name: `angle-${i}`,
-        angle,
-      })),
+      ...[0.6, 0.6 + Math.PI / 2, 0.6 + Math.PI, 0.6 + (3 * Math.PI) / 2].map((angle, i) => {
+        const view = { name: `angle-${i}`, angle };
+        if (turntablePadding === 1) return view;
+        // Explicit native-frame poses use the existing fixture path and are recorded in
+        // each frame. Default poses and the rendering fixture remain unchanged.
+        const { min, max } = spec.actualBounds;
+        const target = min.map((value, axis) => (value + max[axis]) / 2);
+        const radius =
+          Math.max(...max.map((value, axis) => value - min[axis])) * 1.9 * turntablePadding;
+        return {
+          ...view,
+          position: [
+            target[0] + Math.sin(angle) * radius,
+            target[1] + radius * 0.3,
+            target[2] + Math.cos(angle) * radius,
+          ],
+          lookAt: target,
+        };
+      }),
       ...cameras,
       ...(mounted.mode === 'geographic-flat-terrain'
         ? [{ name: 'placement', placement: true }]

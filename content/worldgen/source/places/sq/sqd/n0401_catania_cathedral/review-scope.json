@@ -1,0 +1,326 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "lava": {
+      "slot": "wall",
+      "graph": "stone_basalt",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.84,
+      "metallic": 0.15
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.43,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/catania-cathedral-model.mjs",
+    "export": "buildCataniaSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCataniaDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "lava": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildCataniaStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "lava": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCataniaCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "lava": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -126,
+      90,
+      -117
+    ],
+    "lookAt": [
+      0,
+      23,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-catania-skyline",
+      "position": [
+        -126,
+        90,
+        -117
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-catania-district",
+      "position": [
+        -126,
+        90,
+        -117
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-catania-street",
+      "position": [
+        -126,
+        90,
+        -117
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-catania-closeup",
+      "position": [
+        -126,
+        90,
+        -117
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 2,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior;current acceptance recorded separately in QA.",
+    "anchor": [
+      15.088239428,
+      37.502490997
+    ],
+    "heading": 0.154164150898,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y=0 attachment convention,not exact host-ground contact. Standard viewer DEM datum 19.712368m;selected raw perimeter -2.28..2.13m. Floor0.5m,adaptive footings crossY=0 and extend below retained samples. No terrain cutout or flattening. Exact piazza/parvis,steps,door/base joins,absolute altitude and walking remain unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        15.088239428,
+        37.502490997
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 19.712368m;selected raw perimeter -2.28..2.13m. Floor0.5m,adaptive footings crossY=0 and extend below retained samples. No terrain cutout or flattening. Exact piazza/parvis,steps,door/base joins,absolute altitude and walking remain unverified."
+    },
+    "bounds": [
+      15.081,
+      37.496,
+      15.096,
+      37.509
+    ],
+    "notes": "Retained exact way/58102740 and Q1499188 match current whole35184430191572 and its same-ID Catania Cathedral POI. Preserve nine current whole/roof/attached-range controls and all raw coordinates/properties,plus earlier whole/tags. Anchor and heading0.154164150898rad unchanged. +X generally east toward three apses,-X west square-facing baroque facade,-Z north bell tower/transept,+Z south attached ranges. The actual nave follows its oblique mapped roof within this retained native frame;no horizontal rescale. Separate Badia di Sant'Agata,neighboring bishop/civic ranges and piazza remain host content. Standard viewer DEM datum 19.712368m;selected raw perimeter -2.28..2.13m. Floor0.5m,adaptive footings crossY=0 and extend below retained samples. No terrain cutout or flattening. Exact piazza/parvis,steps,door/base joins,absolute altitude and walking remain unverified."
+  },
+  "geographicNote": "Standard viewer DEM datum 19.712368m;selected raw perimeter -2.28..2.13m. Floor0.5m,adaptive footings crossY=0 and extend below retained samples. No terrain cutout or flattening. Exact piazza/parvis,steps,door/base joins,absolute altitude and walking remain unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

@@ -1,0 +1,631 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0548_temple_of_romulus",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:90dcfdf173e0a75545aef591cee2a47ff7bf4f1cbad661e2e34053dc29a761b9",
+  "sourceHash": "sha256:77a6a56e216b285ccbbcefb76361bb8b7970b3f0fb9d0e68dd0273aad2f775f5",
+  "runtimeHash": "sha256:ee970d7fbdecb28037f34a8845238aefbad235a4193a1203b6ec1134487242b3",
+  "captureReportHash": "sha256:364a69823931bd8041121c27ea95315d6c29f9e28b900f7da5fcbce3bd77ab3a",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/brick-rotunda-stepped-tile-roof-and-arched-lantern.png",
+      "shots/green-bronze-leaves-porphyry-columns-and-carved-lintel.png",
+      "shots/concave-niches-right-columns-and-broken-left-bases.png"
+    ],
+    "notes": "Inspected48 current source/shared/medium-fi/native/fallback views during the same construction round. Specific standing Romulus exterior: round weathered brick/lime body, shallow concentric tiled roof rings, eight arched lantern windows and gray metal dome/finial. Projecting pale nested portal/entablature, original simplified leafy capitals on smooth purple shafts, static closed green bronze paired leaves with recessed panels/studs/ring fitting. Concave lower wings have actual blind arched niches; two standing right-hand columns and broken left bases remain distinct. Initial renders prompted moving partly buried purple columns forward and replacing regular plaster stripes with broad irregular fields; adapted shared Corinthian capitals to smooth photographed shafts. No hidden ritual interior or complete restoration of lost front colonnades."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/brick-rotunda-stepped-tile-roof-and-arched-lantern.png",
+      "shots/shared/green-bronze-leaves-porphyry-columns-and-carved-lintel.png",
+      "shots/shared/concave-niches-right-columns-and-broken-left-bases.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Six existing256-square graphs: brick_longformat, plaster_lime, stone_limestone_raw (pale trim and purple shaft tints), tile_ceramic, metal_painted (cap and dark inset roles), metal_bronze_cast. Eight authored roles merge to at most six runtime draws. Each graph read once, metric UVs and linear tints; zero embedded images. Separate GPU streams and matching CPU/GPU accounting. LODs990/3212/9448/11088triangles; initial400828bytes, optional close-up1070784bytes. Eviction releases model geometry.",
+    "captureReportHash": "sha256:c3b6c5aa2188e56987daee918d9983b0c18aa13215f6a065efc936d0dfbd15df"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/brick-rotunda-stepped-tile-roof-and-arched-lantern.png",
+      "medium-fi/green-bronze-leaves-porphyry-columns-and-carved-lintel.png",
+      "medium-fi/concave-niches-right-columns-and-broken-left-bases.png",
+      "medium-fi/romulus-skyline.png",
+      "medium-fi/romulus-district.png",
+      "medium-fi/romulus-street.png",
+      "medium-fi/romulus-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected current noon/late/economy/high, street/block/skyline context, silhouette, all four levels/transitions and three combined detail angles. Skyline keeps round body, roof steps/lantern, portal/green leaves, curved wings, standing/broken columns and short stair. District restores window/niche depth and denser faceting; street/close restore smooth tapered shafts, original leafy capitals, finer frame/panel/stud/handle detail, plaster fields and metal roof seams. Skyline omits plaster patches and detailed ornament; the recognizable shape remains. Native/terrain and flat shared-stage contact differ slightly; current source/native views and mesh probes establish local footing/stair contact. Dark lantern insets sit behind actual apertures at district and nearer. Procedural office-like church/hall facades, paths, green ground and surrounding water are host context.",
+    "captureReportHash": "sha256:1ed6e05225839ba3219eb4188132dac3a1d73080dd0262c0729a0f3918fdc74b"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:2047ef5ab548946428bb377189ba3f7f5a132d594644942891f53a57c12b186f",
+    "mapFrameHash": "sha256:8aee311701692abc24a922277e6d26214bf4ba0365b709e3c2292b3f722e2a3c",
+    "notes": "Exact-QID relation1841089/Q338397 correlates parent52776559974337, dome35184503447773 and lantern35184503447753. Parent23.3x17.7m outline/two front holes control extent. Anchor12.487210858,41.891868949; heading0; internal cross-axis+.419392559901rad, portal faces southwest/local+z. Replace only those three controls with2cm numeric pad and subtract independent church/hall envelopes+1mm. All2056 independent resident inputs, including church52776559959379 and halls52776559974416/52776559974418, remain unchanged. Parent residual0.007717618924m2 is wholly inside independent envelopes+1.1mm, outside area0; roof-part residuals0. Loaded levels2057 records including protected fragment; failed load2059 full originals. Original6m ground, paths and3971.984898m2 native water retained. Occupied round/stair/threshold and narrow wing/column footings only, bases buried; mapped front holes open to native ground. No broad Forum slab, flattening or ground/water cutout. Unload restores ground/water and frees geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi from two inspected ordinary pictures:2008 whole high-front exterior and2005 closed-door detail, plus standard PMTiles/Mapzen. Carried the initial picture/map brief into this construction round without restarting research. Current exterior profile/height, capital/repair inventory, peripheral column positions, carving and absolute levels remain approximate. Nominal24m mapped dome height is retained as a source fact; authored roughly19m floor-to-finial profile follows pictured proportions against the27m mapped church, not a surveyed threshold-relative height. Static closed bronze leaves follow the2005 detail;2008 picture shows an open state. Original simplified leaf/frame ornament, no copied sculpture, text, painting or photo atlas. No hidden ritual interior, church reconstruction or precise excavated paving/threshold claims. Physical-device/dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/sr2/n0548_temple_of_romulus/models/source.glb\",\"hash\":\"sha256:77a6a56e216b285ccbbcefb76361bb8b7970b3f0fb9d0e68dd0273aad2f775f5\",\"bytes\":1334460,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0548_temple_of_romulus/model.glb\",\"hash\":\"sha256:ee970d7fbdecb28037f34a8845238aefbad235a4193a1203b6ec1134487242b3\",\"bytes\":1333896,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0548_temple_of_romulus/model.skyline.glb\",\"hash\":\"sha256:d88cdb403447b5e6b1980f47211a975f8eb1784d00e1e9f156e880d385510019\",\"bytes\":105296,\"errors\":0,\"warnings\":0,\"triangles\":990,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0548_temple_of_romulus/model.district.glb\",\"hash\":\"sha256:d5cfcf3086cfdc9d58633f1f66a9453ae44c11ad6bba64a6597697ebf3b05c0c\",\"bytes\":295532,\"errors\":0,\"warnings\":0,\"triangles\":3212,\"draws\":6}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0548_temple_of_romulus/model.street.glb\",\"hash\":\"sha256:61e9a55965c96c3b75f039ec0ddc2347bbe60fce750a2d1febacc11a9ad3152c\",\"bytes\":915564,\"errors\":0,\"warnings\":0,\"triangles\":9448,\"draws\":6}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/sr2/n0548_temple_of_romulus/model.closeup.glb\",\"hash\":\"sha256:3d87bef96ce7bf6001e9bfc012c77918d26b90641bd0070df2cbc450647e34e4\",\"bytes\":1070784,\"errors\":0,\"warnings\":0,\"triangles\":11088,\"draws\":6}"
+      },
+      {
+        "check": "round-body-lantern-window-recesses-closed-bronze-portal-shafts-niches-stairs-open-map-holes-and-footings",
+        "passed": true,
+        "notes": "188 actual mesh probes across source/runtime/four levels verify round brick body, lantern cap/finial and eight window recesses, recessed closed bronze leaf, both portal shafts, standing/broken external columns, threshold/stair treads, open mapped front holes, buried round footing and actual blind wing niche depth."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Six reused graphs, zero embedded images, separate GPU streams and all triangle/draw/download caps pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:77a6a56e216b285ccbbcefb76361bb8b7970b3f0fb9d0e68dd0273aad2f775f5"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:ee970d7fbdecb28037f34a8845238aefbad235a4193a1203b6ec1134487242b3"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:d88cdb403447b5e6b1980f47211a975f8eb1784d00e1e9f156e880d385510019"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:d5cfcf3086cfdc9d58633f1f66a9453ae44c11ad6bba64a6597697ebf3b05c0c"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:61e9a55965c96c3b75f039ec0ddc2347bbe60fce750a2d1febacc11a9ad3152c"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:3d87bef96ce7bf6001e9bfc012c77918d26b90641bd0070df2cbc450647e34e4"
+      }
+    ],
+    "reports": [
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2059,
+          "independentBuildings": 2056,
+          "remainingBuildings": 2057,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 52776559974337,
+              "area": 0.007717618659341952
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0548_temple_of_romulus"
+          ],
+          "rawTerrainRange": {
+            "min": -6.774591349596626,
+            "max": 30.303108650403374
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3971.984898361098,
+          "remainingWaterArea": 3971.984898361098,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:87af3bff5f04b21d8ebf34c0370608f77b1a8c621a46f65a3c73c115006d661b",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 329695
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -45.823276752825215,
+                25,
+                26.650090199359333
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-brick-rotunda-stepped-tile-roof-and-arched-lantern.png",
+            "hash": "sha256:87cecbde34c2144c2a08931078dfbe6d17e11f85f58f8cf9505ed5e9b5682fbd",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 329695
+            },
+            "camera": {
+              "name": "brick-rotunda-stepped-tile-roof-and-arched-lantern",
+              "position": [
+                -29.767414706436178,
+                21,
+                15.19542765752406
+              ],
+              "lookAt": [
+                0.7736908889550019,
+                10,
+                -1.7353392775904135
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-green-bronze-leaves-porphyry-columns-and-carved-lintel.png",
+            "hash": "sha256:ca46274dd11a843752b5220529223e2b5e953fc1363d52ce11676b1582426e9c",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 329131
+            },
+            "camera": {
+              "name": "green-bronze-leaves-porphyry-columns-and-carved-lintel",
+              "position": [
+                -10.526380775134992,
+                4.7,
+                15.014836255413126
+              ],
+              "lookAt": [
+                -3.135484128922903,
+                4,
+                7.0326907565506245
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-concave-niches-right-columns-and-broken-left-bases.png",
+            "hash": "sha256:7bd3a54d17f3fc8721e2c62f96c100733671f2b8a1fe71e259b4731b7aff4043",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 329695
+            },
+            "camera": {
+              "name": "concave-niches-right-columns-and-broken-left-bases",
+              "position": [
+                7.67938023104117,
+                9,
+                31.890862629710945
+              ],
+              "lookAt": [
+                -0.7212393280769875,
+                3,
+                8.984977119149223
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2059,
+          "independentBuildings": 2056,
+          "remainingBuildings": 2057,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 52776559974337,
+              "area": 0.007717618659341952
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0548_temple_of_romulus"
+          ],
+          "rawTerrainRange": {
+            "min": -6.774591349596626,
+            "max": 30.303108650403374
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3971.984898361098,
+          "remainingWaterArea": 3971.984898361098,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:77b80474e0dcf7c6409af5ebf29f590fd1f234a7a0fc60ac8a1be25acad9ca29",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 328055
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -45.823276752825215,
+                25,
+                26.650090199359333
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2059,
+          "independentBuildings": 2056,
+          "remainingBuildings": 2057,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 52776559974337,
+              "area": 0.007717618659341952
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0548_temple_of_romulus"
+          ],
+          "rawTerrainRange": {
+            "min": -6.774591349596626,
+            "max": 30.303108650403374
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3971.984898361098,
+          "remainingWaterArea": 3971.984898361098,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:1fb32a5ca775bb1f1cd78bbef02fdf08410b59040e1dbeab87130a858294cdcc",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 321819
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -45.823276752825215,
+                25,
+                26.650090199359333
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 2059,
+          "independentBuildings": 2056,
+          "remainingBuildings": 2057,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 52776559974337,
+              "area": 0.007717618659341952
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0548_temple_of_romulus"
+          ],
+          "rawTerrainRange": {
+            "min": -6.774591349596626,
+            "max": 30.303108650403374
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3971.984898361098,
+          "remainingWaterArea": 3971.984898361098,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:21142f2884fe9b182c675b90aaf12458726aae97d9fa5b0a64f9a119bd865e4f",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 319597
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -45.823276752825215,
+                25,
+                26.650090199359333
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 2059,
+          "independentBuildings": 2056,
+          "remainingBuildings": 2059,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184503447753,
+              "area": 11.807162703036056
+            },
+            {
+              "id": 35184503447773,
+              "area": 154.57996620772292
+            },
+            {
+              "id": 52776559974337,
+              "area": 283.7424782620687
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0548_temple_of_romulus"
+          ],
+          "rawTerrainRange": {
+            "min": -6.774591349596626,
+            "max": 30.303108650403374
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3971.984898361098,
+          "remainingWaterArea": 3971.984898361098,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:c3799c11851c5ac3dfd938e86482f71ed43ebb383015545545436ed2440794ae",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 9,
+              "triangles": 318657
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -45.823276752825215,
+                25,
+                26.650090199359333
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ],
+    "sharedEdgeProtection": {
+      "candidateId": "N0548",
+      "status": "passed-protected-map-overlap",
+      "toleranceMeters": 0.0011,
+      "controls": [
+        {
+          "id": 52776559974337,
+          "remainingArea": 0.0077176189236300985,
+          "outsideProtectedArea": 0
+        },
+        {
+          "id": 35184503447773,
+          "remainingArea": 0,
+          "outsideProtectedArea": 0
+        },
+        {
+          "id": 35184503447753,
+          "remainingArea": 0,
+          "outsideProtectedArea": 0
+        }
+      ],
+      "notes": "Remaining fragments of the authored temple map records are entirely inside original independent native building envelopes plus1.1mm numerical tolerance. They preserve shared map overlap edges behind neighboring native buildings; no independent input geometry or terrain is modified."
+    }
+  },
+  "limitations": [
+    "Specific standing Romulus exterior: round weathered brick/lime body, concentric shallow tiled roof rings, eight-sided arched-window lantern and gray metal dome; projecting pale portal with purple shafts/leafy capitals and static closed green bronze paired leaves/panels/studs. Concave lower entrance wings with recessed arched niches, two standing right-hand columns and broken left bases. Neighboring church and independent halls remain native. No hidden ritual interior, copied sculpture/text atlas or complete restoration of missing front colonnades.",
+    "Retained exact-QID relation1841089/Q338397 correlates standard PMTiles parent52776559974337 and its dome35184503447773/lantern35184503447753. Parent23.3x17.7m outline and two front holes establish the occupied envelope/curved entrance. Anchor12.487210858,41.891868949; heading0; internal cross-axis+.419392559901rad, portal faces southwest/local+z. Roof/lantern center aboutlocal[0,-1.9]; footprint controls extent, ordinary high-front and portal photographs establish facing/features. Church52776559959379 and other independent map inputs are preserved.",
+    "Picture/map visualization estimates: body radius7.2m and eave11.4m above local floor, three shallow tiled roof steps ending14.6m; lantern radius1.85m/height2.5m, metal dome1.65m and finial0.25m, top about19m above floor. Nominal mapped dome height24m is retained as a source fact, not a surveyed threshold-relative height; profile follows photographed proportions against the27m mapped church. Portal opening2.85x4.8m, outer entablature5.3x6.2m, purple columns5.1m. Right columns about7.5/6.2m, left stumps0.8/1.7m; positions/inventory/capital/carving/repair details approximate. Closed door follows inspected2005 detail;2008 whole photo shows an open state.",
+    "Original standard6m Mapzen Forum ground, native paths/water and independent buildings retained. Local temple floor1.2m above anchor DEM datum; occupied round footing, short vestibule/stair and narrow wing/column footings have buried bases. Open front holes remain native ground. No broad Forum/plaza slab, flattening or ground/water cutout. Coarse urban DEM cannot resolve excavated floor, threshold or individual steps; absolute levels remain approximate. Shared-edge protection preserves neighboring church/hall records.",
+    "Approximate exterior only. Temple24m nominal mapped dome height is not a surveyed threshold-relative height; the authored profile follows two ordinary photographs. Static closed bronze door state, no ritual interior, hidden room reconstruction, copied text/photo atlas or complete restoration of missing front columns. Neighboring church/halls remain host context."
+  ]
+}
