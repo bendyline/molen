@@ -36,7 +36,14 @@ const GRAIN = 1;
 const PATCH = 128;
 /** Hue drift between yellower and bluer greens, bare specks in turf, and close-up grain. */
 const HUE = 32;
-const SPECK = 2;
+const SPECK = 0.5;
+/**
+ * Soil's share where a speck shows. At 2 m cells and 22% the specks were olive blotches a meter
+ * across, which read as camouflage from 15–40 m; small and faint they read as thin turf.
+ */
+const SPECK_SHARE = 0.14;
+/** Share of the specks taken out from about 18 m on, with the turf grain that hid them. */
+const SPECK_CALM = 0.6;
 const MICRO = 0.5;
 const NANO = 0.25;
 /** Blade-scale grain: what keeps turf crisp a few meters from a street-level camera. */
@@ -49,14 +56,40 @@ const FRINGE = 2;
 const TUFT = 0.5;
 /** Mottling's share of brightness at full strength (value noise is mostly within ±0.3). */
 const MOTTLE = 0.34;
+/**
+ * Share of the 2 m clump and 1 m grain layers taken out on turf (and of the 4 m layer, below).
+ * At full weight they made blobs a meter or two across that read as camouflage from 15–40 m;
+ * the half-meter grain keeps it grassy.
+ */
+const CALM_CLUMP = 0.65;
+const CALM_GRAIN = 0.8;
+/** Share of turf mottle taken out between 40 and 160 m from the camera. */
+const LAWN_DISTANCE_CALM = 0.55;
+/**
+ * Half-meter grain taken out on turf, and quarter-meter grain added. Strong half-meter cells
+ * read as blobs a meter across from 10–30 m (camouflage); quarter-meter grain reads as sward.
+ */
+const CALM_MICRO = 0.35;
+const NANO_GAIN = 0.4;
+/**
+ * Share of the 4 m-to-quarter-meter turf layers taken out from about 18 m on. Up close they
+ * are grass; from a rooftop or across a street at full weight they swung turf brightness ±20%
+ * in blobs a meter across, which read as camouflage rather than lawn.
+ */
+const TURF_CALM = 0.5;
+/** How strongly turf brightness drives its cool/warm cast. */
+const SHADE_GAIN = 1.5;
 /** Straw-colored dry areas and darker, bluer lush areas on green ground. */
 const DRY: [number, number, number] = [1.28, 1.08, 0.6];
 const LUSH: [number, number, number] = [0.78, 0.96, 0.84];
+/** Hue of turf mottled darker (lusher) and lighter (drier) than its average. */
+const SHADE_COOL: [number, number, number] = [0.95, 1.0, 1.06];
+const SHADE_WARM: [number, number, number] = [1.02, 1.0, 0.94];
 /** Yellow-green and blue-green ends of the hue drift. */
 const WARM: [number, number, number] = [1.03, 1.02, 0.93];
 const COOL: [number, number, number] = [0.94, 1.0, 1.06];
 /** Share of green ground's saturation taken out, so sunlit turf is grass, not lime. */
-const MUTE = 0.08;
+const MUTE = 0.16;
 /** Linear color of bare soil showing through turf. */
 const SOIL: [number, number, number] = [0.2, 0.15, 0.09];
 /** Relief amplitude in meters per noise layer (clumps, tufts, close grain). */
@@ -102,12 +135,18 @@ const GLSL = /* glsl */ `
     // Up close, half-meter tufts and then blade-scale specks break the contour, so one class
     // thins into the other rather than ending on a smooth blob outline or in blob islands.
     float footprint = max(max(length(dFdx(p)), length(dFdy(p))), 0.0001);
-    float tuft = 1.0 - smoothstep(0.25, 0.6, footprint / ${TUFT.toFixed(1)});
-    float blade = 1.0 - smoothstep(0.25, 0.6, footprint / ${(BLADE * 2).toFixed(3)});
+    // Within the last few meters the tufts and specks grow to dozens of pixels and read as torn
+    // paper, so there the edge keeps only its broad wander.
+    float underfoot = smoothstep(0.004, 0.016, footprint);
+    float tuft = (1.0 - smoothstep(0.25, 0.6, footprint / ${TUFT.toFixed(1)})) * underfoot;
+    float blade = (1.0 - smoothstep(0.25, 0.6, footprint / ${(BLADE * 2).toFixed(3)})) * underfoot;
+    // Inside a class (no neighbor in reach, so the weight is 0 or 1) there is no edge to draw:
+    // most landcover skips all four lookups, and the finest two wherever they have faded.
+    if (weight <= 0.0 || weight >= 1.0) return weight;
     float n = terrainGroundNoise(p + vec2(57.0, 211.0), ${EDGE.toFixed(1)}) * 0.66 +
       terrainGroundNoise(p + vec2(13.0, 97.0), ${FRINGE.toFixed(1)}) * 0.24 +
-      mix(0.5, terrainGroundNoise(p + vec2(31.0, 5.0), ${TUFT.toFixed(1)}), tuft) * 0.04 +
-      mix(0.5, terrainGroundNoise(p + vec2(19.0, 7.0), ${(BLADE * 2).toFixed(3)}), blade) * 0.06;
+      (tuft > 0.0 ? mix(0.5, terrainGroundNoise(p + vec2(31.0, 5.0), ${TUFT.toFixed(1)}), tuft) : 0.5) * 0.04 +
+      (blade > 0.0 ? mix(0.5, terrainGroundNoise(p + vec2(19.0, 7.0), ${(BLADE * 2).toFixed(3)}), blade) : 0.5) * 0.06;
     n = clamp((n - 0.5) * 1.7 + 0.5, 0.0, 1.0);
     float edge = weight * 1.24 - 0.12;
     float organic = 1.0 - smoothstep(edge - 0.16, edge + 0.16, n);
@@ -159,26 +198,41 @@ const GLSL = /* glsl */ `
     // Only green ground dries out, grows lush, drifts in hue or shows soil; paving, sand and
     // rock keep their hue.
     float green = clamp((base.g - max(base.r, base.b)) * 10.0, 0.0, 1.0);
-    float turf = 0.45 + 0.55 * green;
+    float calm = 1.0 - ${TURF_CALM.toFixed(2)} * green * smoothstep(6.0, 18.0, distance);
+    float turf = (0.45 + 0.55 * green) * calm;
     float mottle =
       (terrainGroundNoise(p, ${BROAD.toFixed(1)}) - 0.5) * 0.55 * broad +
-      (terrainGroundNoise(p, ${MID.toFixed(1)}) - 0.5) * 0.35 * mid +
-      (nFine - 0.5) * 0.35 * fine +
-      (nClump - 0.5) * 0.55 * clump * turf +
-      (nGrain - 0.5) * 0.9 * grain * turf +
-      (nMicro - 0.5) * 0.8 * micro * turf +
-      (nNano - 0.5) * 0.7 * nano * turf;
+      (terrainGroundNoise(p, ${MID.toFixed(1)}) - 0.5) * 0.25 * (1.0 - 0.4 * green) * mid +
+      (nFine - 0.5) * 0.22 * (1.0 - 0.6 * green) * fine * calm +
+      (nClump - 0.5) * 0.24 * (1.0 - ${CALM_CLUMP.toFixed(2)} * green) * clump * turf +
+      (nGrain - 0.5) * 0.9 * (1.0 - ${CALM_GRAIN.toFixed(2)} * green) * grain * turf +
+      (nMicro - 0.5) * 0.8 * (1.0 - ${CALM_MICRO.toFixed(2)} * green) * micro * turf +
+      (nNano - 0.5) * 0.7 * (1.0 + ${NANO_GAIN.toFixed(2)} * green) * nano * turf;
+    // A lawn seen from 50–200 m reads as an even sward; full mottle there was a busy camouflage.
+    mottle *= 1.0 - ${LAWN_DISTANCE_CALM.toFixed(2)} * green * smoothstep(40.0, 160.0, distance);
     float lum = 1.0 + mottle * ${MOTTLE.toFixed(3)} * terrainGroundStrength;
-    float area = terrainGroundNoise(p + vec2(311.0, 173.0), ${PATCH.toFixed(1)});
+    // Darker turf is lusher and bluer, lighter turf drier and yellower: shade alone on a
+    // yellow-green reads as olive camouflage.
+    float turfShade = clamp((lum - 1.0) * ${SHADE_GAIN.toFixed(1)}, -1.0, 1.0);
+    vec3 turfCast = turfShade < 0.0 ? ${glslVec3(SHADE_COOL)} : ${glslVec3(SHADE_WARM)};
+    // Dry and lush patches, hue drift and bare specks only tint green ground: skip their
+    // lookups elsewhere (paving, sand, rock), and the specks wherever they have faded.
+    float area = 0.5, hue = 0.5, speck = 0.0;
+    if (green > 0.0) {
+      area = terrainGroundNoise(p + vec2(311.0, 173.0), ${PATCH.toFixed(1)});
+      hue = terrainGroundNoise(p + vec2(71.0, 29.0), ${HUE.toFixed(1)});
+      if (specks > 0.0)
+        speck = smoothstep(0.68, 0.82, terrainGroundNoise(p + vec2(5.0, 143.0), ${SPECK.toFixed(1)}));
+    }
     float dry = clamp(smoothstep(0.5, 0.78, area) * green * broad * 0.3 * terrainGroundStrength, 0.0, 1.0);
     float lush = clamp((1.0 - smoothstep(0.22, 0.45, area)) * green * broad * 0.35 * terrainGroundStrength, 0.0, 1.0);
     vec3 tint = mix(vec3(1.0), ${glslVec3(DRY)}, dry) * mix(vec3(1.0), ${glslVec3(LUSH)}, lush);
-    float hue = terrainGroundNoise(p + vec2(71.0, 29.0), ${HUE.toFixed(1)});
     tint *= mix(vec3(1.0), mix(${glslVec3(WARM)}, ${glslVec3(COOL)}, hue),
-      clamp(green * mid * 0.6 * terrainGroundStrength, 0.0, 1.0));
-    float speck = smoothstep(0.68, 0.82, terrainGroundNoise(p + vec2(5.0, 143.0), ${SPECK.toFixed(1)}));
-    speck = clamp(speck * green * specks * 0.22 * terrainGroundStrength, 0.0, 1.0);
+      clamp(green * mid * 0.35 * terrainGroundStrength, 0.0, 1.0));
+    speck = clamp(speck * green * specks * ${SPECK_SHARE.toFixed(2)} * terrainGroundStrength *
+      (1.0 - ${SPECK_CALM.toFixed(2)} * smoothstep(6.0, 18.0, distance)), 0.0, 1.0);
     tint *= mix(vec3(1.0), ${glslVec3(SOIL)} / max(base, vec3(0.001)), speck);
+    tint *= mix(vec3(1.0), turfCast, abs(turfShade) * green * 0.6 * terrainGroundStrength);
     // Sunlit turf reads lime when a palette green is lit at full strength; mute it a little.
     vec3 muted = mix(vec3(dot(base, vec3(0.2126, 0.7152, 0.0722))), base, ${(1 - MUTE).toFixed(2)});
     tint *= mix(vec3(1.0), muted / max(base, vec3(0.001)), clamp(green * terrainGroundStrength, 0.0, 1.0));
@@ -302,7 +356,7 @@ export function createTerrainGroundMaterial(
       );
   };
   material.customProgramCacheKey = (): string =>
-    `terrain-ground@13:${options.agriculture === true}`;
+    `terrain-ground@28:${options.agriculture === true}`;
   states.set(material, state);
   return material;
 }
@@ -326,6 +380,7 @@ export async function createTerrainGroundMaterialAsync(
     Fn,
     fract,
     If,
+    and,
     materialColor,
     max,
     mix,
@@ -425,21 +480,45 @@ export async function createTerrainGroundMaterialAsync(
   // so everything below is a factor over it; `base` is the color that factor is judged against.
   let base: V3 = vertex as unknown as V3;
   let factor: V3 = vec3(1) as unknown as V3;
-  const tuft = fade(TUFT);
-  const speckle = fade(BLADE * 2);
+  // Within the last few meters the tufts and specks grow to dozens of pixels and read as torn
+  // paper, so there the land-class edge keeps only its broad wander.
+  const underfoot = smoothstep(0.004, 0.016, footprint);
+  const tuft = fade(TUFT).mul(underfoot) as unknown as F;
+  const speckle = fade(BLADE * 2).mul(underfoot) as unknown as F;
   if (options.agriculture) {
     const blend = varying(attribute('landcoverBlend', 'vec4')) as unknown as Node<'vec4'>;
     // Up close, half-meter tufts and then blade-scale specks break the contour, so one class
     // thins into the other rather than ending on a smooth blob outline or in blob islands.
-    let n = noise(p.add(vec2(57, 211)), EDGE)
-      .mul(0.66)
-      .add(noise(p.add(vec2(13, 97)), FRINGE).mul(0.24))
-      .add(mix(0.5, noise(p.add(vec2(31, 5)), TUFT), tuft).mul(0.04))
-      .add(mix(0.5, noise(p.add(vec2(19, 7)), BLADE * 2), speckle).mul(0.06));
-    n = clamp(n.sub(0.5).mul(1.7).add(0.5), 0, 1) as unknown as F;
-    const edge = blend.x.mul(1.24).sub(0.12);
-    const organic = smoothstep(edge.sub(0.16), edge.add(0.16), n).oneMinus();
-    const cover = mix(blend.x, organic, smoothstep(200, 700, distance).oneMinus());
+    // Inside a class (no neighbor in reach, so the weight is 0 or 1) there is no edge to draw:
+    // most landcover skips all four lookups, and the finest two wherever they have faded.
+    const cover = Fn(() => {
+      const result = blend.x.toVar();
+      If(and(blend.x.greaterThan(0), blend.x.lessThan(1)), () => {
+        const fine = vec2(0.5, 0.5).toVar();
+        If(tuft.greaterThan(0), () => {
+          fine.x.assign(noise(p.add(vec2(31, 5)) as unknown as V2, TUFT));
+        });
+        If(speckle.greaterThan(0), () => {
+          fine.y.assign(noise(p.add(vec2(19, 7)) as unknown as V2, BLADE * 2));
+        });
+        const n = clamp(
+          noise(p.add(vec2(57, 211)) as unknown as V2, EDGE)
+            .mul(0.66)
+            .add(noise(p.add(vec2(13, 97)) as unknown as V2, FRINGE).mul(0.24))
+            .add(mix(0.5, fine.x, tuft).mul(0.04))
+            .add(mix(0.5, fine.y, speckle).mul(0.06))
+            .sub(0.5)
+            .mul(1.7)
+            .add(0.5),
+          0,
+          1,
+        );
+        const edge = blend.x.mul(1.24).sub(0.12);
+        const organic = smoothstep(edge.sub(0.16), edge.add(0.16), n).oneMinus();
+        result.assign(mix(blend.x, organic, smoothstep(200, 700, distance).oneMinus()));
+      });
+      return result;
+    })();
     const blended = mix(base, blend.yzw, cover).toVar() as unknown as V3;
     factor = factor.mul(blended.div(max(base, vec3(0.001)))) as unknown as V3;
     base = blended;
@@ -464,37 +543,66 @@ export async function createTerrainGroundMaterialAsync(
     base = planted;
   }
   const green = clamp(base.g.sub(max(base.r, base.b)).mul(10), 0, 1).toVar();
-  const turf = green.mul(0.55).add(0.45);
+  const calm = green.mul(smoothstep(6, 18, distance)).mul(-TURF_CALM).add(1).toVar();
+  const turf = green.mul(0.55).add(0.45).mul(calm);
   const mottle = noise(p, BROAD)
     .sub(0.5)
     .mul(0.55)
     .mul(broad)
-    .add(noise(p, MID).sub(0.5).mul(0.35).mul(mid))
-    .add(nFine.sub(0.5).mul(0.35).mul(fine))
-    .add(nClump.sub(0.5).mul(0.55).mul(clump).mul(turf))
-    .add(nGrain.sub(0.5).mul(0.9).mul(grain).mul(turf))
-    .add(nMicro.sub(0.5).mul(0.8).mul(micro).mul(turf))
-    .add(nNano.sub(0.5).mul(0.7).mul(nano).mul(turf));
-  const lum = mottle.mul(MOTTLE).mul(amount).add(1);
-  const area = noise(p.add(vec2(311, 173)), PATCH);
+    .add(noise(p, MID).sub(0.5).mul(green.mul(-0.4).add(1).mul(0.25)).mul(mid))
+    .add(nFine.sub(0.5).mul(green.mul(-0.6).add(1).mul(0.22)).mul(fine).mul(calm))
+    .add(nClump.sub(0.5).mul(green.mul(-CALM_CLUMP).add(1).mul(0.24)).mul(clump).mul(turf))
+    .add(nGrain.sub(0.5).mul(green.mul(-CALM_GRAIN).add(1).mul(0.9)).mul(grain).mul(turf))
+    .add(nMicro.sub(0.5).mul(green.mul(-CALM_MICRO).add(1).mul(0.8)).mul(micro).mul(turf))
+    .add(nNano.sub(0.5).mul(green.mul(NANO_GAIN).add(1).mul(0.7)).mul(nano).mul(turf));
+  // A lawn seen from 50–200 m reads as an even sward; full mottle there was a busy camouflage.
+  const lum = mottle
+    .mul(
+      green
+        .mul(smoothstep(40, 160, distance))
+        .mul(-LAWN_DISTANCE_CALM)
+        .add(1),
+    )
+    .mul(MOTTLE)
+    .mul(amount)
+    .add(1);
+  // Darker turf is lusher and bluer, lighter turf drier and yellower: shade alone on a
+  // yellow-green reads as olive camouflage.
+  const shade = clamp(lum.sub(1).mul(SHADE_GAIN), -1, 1);
+  const cast = mix(vec3(...SHADE_WARM), vec3(...SHADE_COOL), step(shade, 0));
+  // Dry and lush patches, hue drift and bare specks only tint green ground: skip their lookups
+  // elsewhere (paving, sand, rock), and the specks wherever they have faded.
+  const greenNoise = Fn(() => {
+    const result = vec3(0.5, 0.5, 0).toVar();
+    If(green.greaterThan(0), () => {
+      result.x.assign(noise(p.add(vec2(311, 173)) as unknown as V2, PATCH));
+      result.y.assign(noise(p.add(vec2(71, 29)) as unknown as V2, HUE));
+      If(specks.greaterThan(0), () => {
+        result.z.assign(smoothstep(0.68, 0.82, noise(p.add(vec2(5, 143)) as unknown as V2, SPECK)));
+      });
+    });
+    return result;
+  })().toVar() as unknown as V3;
+  const area = greenNoise.x;
   const dry = clamp(smoothstep(0.5, 0.78, area).mul(green).mul(broad).mul(0.3).mul(amount), 0, 1);
   const lush = clamp(
     smoothstep(0.22, 0.45, area).oneMinus().mul(green).mul(broad).mul(0.35).mul(amount),
     0,
     1,
   );
-  const hue = noise(p.add(vec2(71, 29)), HUE);
+  const hue = greenNoise.y;
   const drift = mix(
     vec3(1),
     mix(vec3(...WARM), vec3(...COOL), hue),
-    clamp(green.mul(mid).mul(0.6).mul(amount), 0, 1),
+    clamp(green.mul(mid).mul(0.35).mul(amount), 0, 1),
   );
   const speck = clamp(
-    smoothstep(0.68, 0.82, noise(p.add(vec2(5, 143)), SPECK))
+    greenNoise.z
       .mul(green)
       .mul(specks)
-      .mul(0.22)
-      .mul(amount),
+      .mul(SPECK_SHARE)
+      .mul(amount)
+      .mul(smoothstep(6, 18, distance).mul(-SPECK_CALM).add(1)),
     0,
     1,
   );
@@ -507,6 +615,7 @@ export async function createTerrainGroundMaterialAsync(
     .mul(mix(vec3(1), vec3(...LUSH), lush))
     .mul(drift)
     .mul(bare)
+    .mul(mix(vec3(1), cast, abs(shade).mul(green).mul(0.6).mul(amount)))
     .mul(mix(vec3(1), muted, clamp(green.mul(amount), 0, 1)));
   factor = factor.mul(tint.mul(lum)) as unknown as V3;
   const relief = nFine
@@ -559,6 +668,15 @@ export interface TerrainPavementMaterialOptions {
 /** Widest ragged margin where a paved band, or a loose one (dirt, gravel), meets the ground. */
 const FRAY = 0.03;
 const LOOSE_FRAY = 0.06;
+/** Tint of the soil margin where paving meets the ground (a factor over the paving color). */
+const VERGE: [number, number, number] = [0.66, 0.6, 0.46];
+/** Asphalt aggregate: chip size in meters, and how much pale chips lighten and pits darken. */
+const STONE = 0.03125;
+const STONE_LIGHT = 0.28;
+const STONE_DARK = 0.22;
+/** How far tufts of lawn creep over cast paving, and the size of a tuft, meters. */
+const CREEP = 0.1;
+const CREEP_TUFT = 0.35;
 
 /**
  * `surfaceDetail` kinds written by draped road bands and areas (see `TERRAIN_SURFACE_KIND`). The
@@ -593,13 +711,30 @@ const PAVEMENT_GLSL = /* glsl */ `
     float close = 1.0 - smoothstep(0.25, 0.6, footprint / 0.25);
     float near = 1.0 - smoothstep(0.25, 0.6, footprint / 1.0);
     float mid = 1.0 - smoothstep(0.25, 0.6, footprint / 4.0);
+    // Each layer only where it still shows: past its fade every term it feeds is zero, so a
+    // distant view skips those noise lookups. Derivatives stay outside the branches, where
+    // they are defined; a branch's boundary lies where its terms have already faded out.
     // Aggregate a few centimeters across at eye level, then quarter-meter and meter grain.
     float pebble = 1.0 - smoothstep(0.25, 0.6, footprint / 0.0625);
-    float grain = (terrainGroundNoise(p, 0.0625) - 0.5) * 0.8 * pebble +
-      (terrainGroundNoise(p, 0.25) - 0.5) * close +
-      (terrainGroundNoise(p, 1.0) - 0.5) * 0.7 * near;
-    float blotch = (terrainGroundNoise(p, 4.0) - 0.5) * mid +
-      (terrainGroundNoise(p, 16.0) - 0.5) * 0.8;
+    float chip = 1.0 - smoothstep(0.25, 0.6, footprint / ${STONE.toFixed(5)});
+    float grain = 0.0;
+    float stones = 0.0;
+    if (near > 0.0) {
+      grain = (terrainGroundNoise(p, 1.0) - 0.5) * 0.7 * near;
+      if (close > 0.0) {
+        grain += (terrainGroundNoise(p, 0.25) - 0.5) * close;
+        if (pebble > 0.0) {
+          grain += (terrainGroundNoise(p, 0.0625) - 0.5) * 0.8 * pebble;
+          // Stones in the binder: pale chips and dark pits, crisp rather than a soft grain.
+          if (chip > 0.0) stones = (smoothstep(0.7, 0.78,
+            terrainGroundNoise(p + vec2(0.37, 0.11), ${STONE.toFixed(5)})) * ${STONE_LIGHT.toFixed(2)} -
+            smoothstep(0.72, 0.8, terrainGroundNoise(p + vec2(0.71, 0.53), ${STONE.toFixed(5)})) *
+            ${STONE_DARK.toFixed(2)}) * chip;
+        }
+      }
+    }
+    float blotch = (terrainGroundNoise(p, 16.0) - 0.5) * 0.8;
+    if (mid > 0.0) blotch += (terrainGroundNoise(p, 4.0) - 0.5) * mid;
     float isRoad = 1.0 - step(0.5, abs(kind - 1.0));
     float isSidewalk = 1.0 - step(0.5, abs(kind - 2.0));
     float isCurb = 1.0 - step(0.5, abs(kind - 3.0));
@@ -612,35 +747,50 @@ const PAVEMENT_GLSL = /* glsl */ `
     float aa = max(fwidth(along), 0.0001);
     // Asphalt: aggregate and patchy wear, polished wheel tracks, an oil line down each lane and
     // the odd darker repaired section, all fading to the plain swatch with distance.
-    float q = fract(across / max(lane, 0.5));
-    float tracks = exp(-pow((q - 0.27) / 0.075, 2.0)) + exp(-pow((q - 0.73) / 0.075, 2.0));
-    float drip = exp(-pow((q - 0.5) / 0.06, 2.0)) *
-      smoothstep(0.35, 0.75, terrainGroundNoise(p + vec2(41.0, 9.0), 2.0));
-    vec2 patchCell = vec2(floor(along / 9.0), floor(across / max(lane, 0.5)));
-    float patchPick = terrainGroundHash(patchCell + vec2(17.0, 5.0), 65536.0);
-    vec2 patchLocal = vec2(along - patchCell.x * 9.0, across - patchCell.y * max(lane, 0.5));
-    float repair = step(0.8, patchPick) * terrainPavementBox(patchLocal,
-      vec2(1.0 + patchPick * 2.0, 0.3), vec2(6.5 + patchPick * 2.0, max(lane, 0.5) - 0.3), aa);
-    float wear = isRoad * step(0.5, lane) * mid * (0.16 * tracks + 0.12 * drip + 0.06 * repair);
+    float wear = isRoad * step(0.5, lane) * mid;
+    if (wear > 0.0) {
+      float q = fract(across / max(lane, 0.5));
+      float tracks = exp(-pow((q - 0.27) / 0.075, 2.0)) + exp(-pow((q - 0.73) / 0.075, 2.0));
+      float drip = exp(-pow((q - 0.5) / 0.06, 2.0)) *
+        smoothstep(0.35, 0.75, terrainGroundNoise(p + vec2(41.0, 9.0), 2.0));
+      vec2 patchCell = vec2(floor(along / 9.0), floor(across / max(lane, 0.5)));
+      float patchPick = terrainGroundHash(patchCell + vec2(17.0, 5.0), 65536.0);
+      vec2 patchLocal = vec2(along - patchCell.x * 9.0, across - patchCell.y * max(lane, 0.5));
+      float repair = step(0.8, patchPick) * terrainPavementBox(patchLocal,
+        vec2(1.0 + patchPick * 2.0, 0.3), vec2(6.5 + patchPick * 2.0, max(lane, 0.5) - 0.3), aa);
+      wear *= 0.16 * tracks + 0.12 * drip + 0.06 * repair;
+    }
     // Grit and oil collect along a road's edges, in the gutters.
     float width = code - kind * 128.0;
     float gutter = isRoad * mid * (1.0 - smoothstep(0.0, 0.6, min(across, width - across)));
-    float stains = isParking * mid * 0.24 * smoothstep(0.62, 0.86,
+    float stains = isParking * mid * 0.24;
+    if (stains > 0.0) stains *= smoothstep(0.62, 0.86,
       terrainGroundNoise(p + vec2(31.0, 7.0), 2.0) * 0.6 + terrainGroundNoise(p + vec2(9.0, 47.0), 1.0) * 0.4);
-    float asphalt = (1.0 + grain * 0.24 + blotch * 0.26) * (1.0 - wear) * (1.0 - stains) *
-      (1.0 - 0.22 * gutter);
+    float asphalt = (1.0 + grain * 0.24 + blotch * 0.26) * (1.0 + stones) * (1.0 - wear) *
+      (1.0 - stains) * (1.0 - 0.22 * gutter);
     // Concrete: slabs with saw-cut joints (1.5 m sidewalk, 3 m curb), each slab its own tone.
     float slab = isSidewalk * 1.5 + isCurb * 3.0 + (1.0 - isConcrete) * 1.5;
     float joint = terrainPavementLine(along, slab, 0.009);
     float slabTone = terrainGroundHash(vec2(floor(along / slab), 3.0 + isCurb), 65536.0);
     float concrete = (0.95 + slabTone * 0.09) * (1.0 + grain * 0.12 + blotch * 0.1) *
       (1.0 - 0.34 * joint);
+    // Concrete weathers: darker water and grime stains a meter or two across from mid distance,
+    // and close up the odd dark spot of gum or oil, so a sidewalk is not new-poured.
+    float weather = isConcrete * mid;
+    if (weather > 0.0) {
+      weather *= smoothstep(0.45, 0.95, terrainGroundNoise(p + vec2(37.0, 19.0), 2.0) * 0.6 +
+        terrainGroundNoise(p + vec2(13.0, 59.0), 0.5) * 0.4) * 0.11;
+      if (pebble > 0.0) weather += isConcrete * pebble * 0.18 *
+        smoothstep(0.84, 0.92, terrainGroundNoise(p + vec2(71.0, 3.0), 0.125));
+    }
+    concrete *= 1.0 - weather;
     // Pavers: a half-meter grid in world space.
     float pavers = max(terrainPavementLine(p.x, 0.5, 0.006), terrainPavementLine(p.y, 0.5, 0.006));
     float paverTone = terrainGroundHash(floor(p / 0.5), 8192.0);
     float plaza = (0.94 + paverTone * 0.1) * (1.0 - 0.3 * pavers) * (1.0 + grain * 0.1);
     // Paint wears through to the asphalt beneath in patches.
-    float worn = smoothstep(0.52, 0.8, terrainGroundNoise(p, 0.5) * 0.6 +
+    float worn = isPaint * near;
+    if (worn > 0.0) worn = smoothstep(0.52, 0.8, terrainGroundNoise(p, 0.5) * 0.6 +
       terrainGroundNoise(p + vec2(3.0, 61.0), 0.25) * 0.4) * 0.6 * near;
     vec3 paint = mix(vec3(1.0), vec3(0.032, 0.036, 0.04) / max(base, vec3(0.001)), worn) *
       (0.97 + grain * 0.08);
@@ -649,10 +799,14 @@ const PAVEMENT_GLSL = /* glsl */ `
     float isPlain = 1.0 - clamp(isAsphalt + isConcrete + isPaint + isPlaza + isLoose, 0.0, 1.0);
     // Lived-in detail: hairline cracks in asphalt and concrete, a manhole cover in a lane on most
     // 45 m stretches of road, and storm-drain grates along the gutters.
-    float crackField = terrainGroundNoise(p + vec2(23.0, 11.0), 2.0);
+    float crackField = 0.5;
+    float crackMask = 0.0;
+    if (near > 0.0) {
+      crackField = terrainGroundNoise(p + vec2(23.0, 11.0), 2.0);
+      crackMask = smoothstep(0.62, 0.8, terrainGroundNoise(p + vec2(5.0, 71.0), 8.0));
+    }
     float crackWidth = max(fwidth(crackField) * 1.5, 0.002);
-    float crack = (1.0 - smoothstep(0.0, crackWidth, abs(crackField - 0.5))) *
-      smoothstep(0.62, 0.8, terrainGroundNoise(p + vec2(5.0, 71.0), 8.0)) * near *
+    float crack = (1.0 - smoothstep(0.0, crackWidth, abs(crackField - 0.5))) * crackMask * near *
       (isAsphalt + isConcrete);
     float laneMeters = max(lane, 0.5);
     float lanes = max(1.0, floor(width / laneMeters + 0.5));
@@ -686,23 +840,45 @@ const PAVEMENT_GLSL = /* glsl */ `
     float coarse = 1.0 - smoothstep(0.25, 0.6, footprint / 0.8);
     float fine = 1.0 - smoothstep(0.25, 0.6, footprint / 0.2);
     float blade = 1.0 - smoothstep(0.25, 0.6, footprint / 0.05);
-    float clump = terrainGroundNoise(p + vec2(13.0, 2.0), 0.2) - 0.5;
-    float blades = (terrainGroundNoise(p + vec2(3.0, 31.0), 0.05) - 0.5) * blade;
-    float tatter = 0.5 + mix(clump * 0.3 + blades * 1.4,
-      (terrainGroundNoise(p + vec2(7.0, 23.0), 0.8) - 0.5) * 0.35 + clump * 0.2 + blades * 1.3,
-      isLoose);
-    // Farther off, a loose edge wanders over a few meters, by about three pixels (at most half
-    // the band), so a dirt track or gravel shoulder never ends on a ruled line at any distance.
-    float wander = isLoose * min(clamp(footprint * 2.5, 0.0, 0.6), width * 0.5) *
-      (1.0 - smoothstep(0.25, 0.6, footprint / 3.0)) * terrainGroundNoise(p + vec2(29.0, 11.0), 3.0);
     // Underfoot (the last few meters) the margin's cells grow to dozens of pixels and read as
     // torn paper, so it closes back to the band's formed edge there.
-    float underfoot = smoothstep(0.002, 0.008, footprint);
-    float fray = (clamp(tatter, 0.0, 1.0) * mix(${FRAY.toFixed(2)}, ${LOOSE_FRAY.toFixed(2)}, isLoose) *
-      mix(fine, coarse, isLoose) * underfoot + wander) * min(terrainGroundStrength, 1.0);
-    float grime = (1.0 - smoothstep(0.0, 0.6, edge - fray)) * step(edge, 63.0) * 0.45;
+    float underfoot = smoothstep(0.004, 0.016, footprint);
+    // Lawn grows over the one frayed edge of a street sidewalk or a parking lot (its lawn side) in
+    // tufts a hand's width wide, read from mid distance down. Not over footpaths or plazas: those
+    // often abut other paving, where tufts would cut a ragged seam between two slabs.
+    float lawnSide = (isSidewalk + isParking) * step(0.5, soft) * (1.0 - step(2.5, soft));
+    // The margin reaches under a meter into the band, so only fragments within 2 m of a frayed
+    // edge pay for its noise.
+    float fray = 0.0;
+    float spill = 0.5;
+    if (edge < 2.0) {
+      spill = terrainGroundNoise(p + vec2(43.0, 17.0), 0.5);
+      float ragged = mix(fine, coarse, isLoose);
+      if (ragged > 0.0) {
+        float clump = terrainGroundNoise(p + vec2(13.0, 2.0), 0.2) - 0.5;
+        float blades = blade > 0.0 ? (terrainGroundNoise(p + vec2(3.0, 31.0), 0.05) - 0.5) * blade : 0.0;
+        float tatter = 0.5 + clump * 0.3 + blades * 1.4;
+        if (isLoose > 0.0) tatter = 0.5 +
+          (terrainGroundNoise(p + vec2(7.0, 23.0), 0.8) - 0.5) * 0.35 + clump * 0.2 + blades * 1.3;
+        fray = clamp(tatter, 0.0, 1.0) * mix(${FRAY.toFixed(2)}, ${LOOSE_FRAY.toFixed(2)}, isLoose) * ragged;
+      }
+      float creep = lawnSide * (1.0 - smoothstep(0.25, 0.6, footprint / 0.5));
+      if (creep > 0.0) creep *= clamp(terrainGroundNoise(p + vec2(19.0, 7.0), ${CREEP_TUFT.toFixed(2)}) - 0.35, 0.0, 0.5) *
+        2.0 * ${CREEP.toFixed(2)};
+      fray = (fray + creep) * underfoot;
+      // Farther off, a loose edge wanders over a few meters, by about three pixels (at most half
+      // the band), so a dirt track or gravel shoulder never ends on a ruled line at any distance.
+      float wander = isLoose * min(clamp(footprint * 2.5, 0.0, 0.6), width * 0.5) *
+        (1.0 - smoothstep(0.25, 0.6, footprint / 3.0));
+      if (wander > 0.0) fray += wander * terrainGroundNoise(p + vec2(29.0, 11.0), 3.0);
+      fray *= min(terrainGroundStrength, 1.0);
+    }
+    // Soil washes and is tracked onto paving where it meets the ground: a patchy brown margin
+    // about a third of a meter wide, so a lawn edge reads as worn rather than ruled.
+    float grime = (1.0 - smoothstep(0.0, 0.35, edge - fray)) * step(edge, 63.0) *
+      (0.35 + 0.65 * smoothstep(0.3, 0.7, spill)) * 0.45;
     vec3 factor = mix(vec3(1.0), (isPaint > 0.5 ? paint : vec3(1.0)) * scalar *
-      mix(vec3(1.0), vec3(0.78, 0.82, 0.7), grime), terrainGroundStrength);
+      mix(vec3(1.0), ${glslVec3(VERGE)}, grime), terrainGroundStrength);
     return vec4(factor, edge - fray);
   }
 `;
@@ -760,7 +936,7 @@ export function createTerrainPavementMaterial(
        diffuseColor.rgb *= terrainPavement.rgb;`,
     );
   };
-  material.customProgramCacheKey = (): string => 'terrain-pavement@14';
+  material.customProgramCacheKey = (): string => 'terrain-pavement@27';
   states.set(material, state);
   return material;
 }
@@ -780,8 +956,11 @@ export async function createTerrainPavementMaterialAsync(
     attribute,
     clamp,
     exp,
+    float,
     floor,
     fract,
+    Fn,
+    If,
     dFdx,
     dFdy,
     fwidth,
@@ -808,235 +987,350 @@ export async function createTerrainPavementMaterialAsync(
   const detail = varying(attribute('surfaceDetail', 'vec4')).toVar() as unknown as Node<'vec4'>;
   const p = positionWorld.xz.add(origin).toVar() as unknown as V2;
   const base = vertexColor().rgb;
-  const kind = floor(detail.z.div(128).add(0.001)).toVar() as unknown as F;
-  const along = detail.x.toVar() as unknown as F;
-  const across = detail.y;
-  const lane = detail.w;
-  const footprint = max(max(dFdx(p).length(), dFdy(p).length()), 0.0001).toVar();
-  const close = smoothstep(0.25, 0.6, footprint.div(0.25)).oneMinus();
-  const near = smoothstep(0.25, 0.6, footprint.div(1)).oneMinus();
-  const mid = smoothstep(0.25, 0.6, footprint.div(4)).oneMinus();
-  // Aggregate a few centimeters across at eye level, then quarter-meter and meter grain.
-  const pebble = smoothstep(0.25, 0.6, footprint.div(0.0625)).oneMinus();
-  const grain = noise(p, 0.0625)
-    .sub(0.5)
-    .mul(0.8)
-    .mul(pebble)
-    .add(noise(p, 0.25).sub(0.5).mul(close))
-    .add(noise(p, 1).sub(0.5).mul(0.7).mul(near))
-    .toVar() as unknown as F;
-  const blotch = noise(p, 4)
-    .sub(0.5)
-    .mul(mid)
-    .add(noise(p, 16).sub(0.5).mul(0.8))
-    .toVar() as unknown as F;
-  const is = (k: number): F => step(0.5, abs(kind.sub(k))).oneMinus() as unknown as F;
-  const isRoad = is(1);
-  const isSidewalk = is(2);
-  const isCurb = is(3);
-  const isPaint = is(4);
-  const isParking = is(5);
-  const isPlaza = is(6);
-  const isLoose = step(6.5, kind);
-  const isAsphalt = isRoad.add(isParking);
-  const isConcrete = isSidewalk.add(isCurb);
-  const aa = max(fwidth(along), 0.0001);
-  const line = (coord: F, spacing: number | F, half: number): F => {
-    const d = abs(fract(coord.div(spacing).add(0.5)).sub(0.5)).mul(spacing);
-    const w = max(fwidth(coord), 0.0001);
-    return smoothstep(half, w.add(half), d)
-      .oneMinus()
-      .mul(smoothstep(0.03, 0.12, w).oneMinus()) as unknown as F;
-  };
-  const laneWidth = max(lane, 0.5);
-  const q = fract(across.div(laneWidth));
-  const bump = (x: F, at: number, width: number): F =>
-    exp(pow(x.sub(at).div(width), 2).negate()) as unknown as F;
-  const tracks = bump(q as unknown as F, 0.27, 0.075).add(bump(q as unknown as F, 0.73, 0.075));
-  const drip = bump(q as unknown as F, 0.5, 0.06).mul(
-    smoothstep(0.35, 0.75, noise(p.add(vec2(41, 9)) as unknown as V2, 2)),
-  );
-  const patchCell = vec2(floor(along.div(9)), floor(across.div(laneWidth)));
-  const patchPick = hash(patchCell.add(vec2(17, 5)) as unknown as V2, 65536);
-  const patchLocal = vec2(along.sub(patchCell.x.mul(9)), across.sub(patchCell.y.mul(laneWidth)));
-  const low = vec2(patchPick.mul(2).add(1), 0.3);
-  const high = vec2(patchPick.mul(2).add(6.5), laneWidth.sub(0.3));
-  const inside = clamp(patchLocal.sub(low).div(aa).add(0.5), 0, 1).mul(
-    clamp(high.sub(patchLocal).div(aa).add(0.5), 0, 1),
-  );
-  const repair = step(0.8, patchPick).mul(inside.x).mul(inside.y);
-  const wear = isRoad
-    .mul(step(0.5, lane))
-    .mul(mid)
-    .mul(tracks.mul(0.16).add(drip.mul(0.12)).add(repair.mul(0.06)));
-  // Grit and oil collect along a road's edges, in the gutters.
-  const width = detail.z.sub(kind.mul(128)).toVar() as unknown as F;
-  const gutter = isRoad.mul(mid).mul(smoothstep(0, 0.6, min(across, width.sub(across))).oneMinus());
-  const stains = isParking
-    .mul(mid)
-    .mul(0.24)
-    .mul(
-      smoothstep(
-        0.62,
-        0.86,
-        noise(p.add(vec2(31, 7)) as unknown as V2, 2)
-          .mul(0.6)
-          .add(noise(p.add(vec2(9, 47)) as unknown as V2, 1).mul(0.4)),
-      ),
+  // rgb: the detail factor; a: the frayed edge's coverage in pixels (below -0.5 is ground).
+  const pavement = Fn(() => {
+    const kind = floor(detail.z.div(128).add(0.001)).toVar() as unknown as F;
+    const along = detail.x.toVar() as unknown as F;
+    const across = detail.y;
+    const lane = detail.w;
+    // Derivatives first, in uniform control flow. Each layer below then runs only where it
+    // still shows: past its fade every term it feeds is zero, so a distant view skips those
+    // noise lookups, and a branch's boundary lies where its terms have already faded out.
+    const footprint = max(max(dFdx(p).length(), dFdy(p).length()), 0.0001).toVar();
+    const aa = max(fwidth(along), 0.0001).toVar() as unknown as F;
+    const close = smoothstep(0.25, 0.6, footprint.div(0.25)).oneMinus().toVar();
+    const near = smoothstep(0.25, 0.6, footprint.div(1)).oneMinus().toVar();
+    const mid = smoothstep(0.25, 0.6, footprint.div(4)).oneMinus().toVar();
+    // Aggregate a few centimeters across at eye level, then quarter-meter and meter grain.
+    const pebble = smoothstep(0.25, 0.6, footprint.div(0.0625)).oneMinus().toVar();
+    const chip = smoothstep(0.25, 0.6, footprint.div(STONE)).oneMinus().toVar();
+    const grain = float(0).toVar();
+    const stones = float(0).toVar();
+    If(near.greaterThan(0), () => {
+      grain.assign(noise(p, 1).sub(0.5).mul(0.7).mul(near));
+      If(close.greaterThan(0), () => {
+        grain.addAssign(noise(p, 0.25).sub(0.5).mul(close));
+        If(pebble.greaterThan(0), () => {
+          grain.addAssign(noise(p, 0.0625).sub(0.5).mul(0.8).mul(pebble));
+          // Stones in the binder: pale chips and dark pits, crisp rather than a soft grain.
+          If(chip.greaterThan(0), () => {
+            stones.assign(
+              smoothstep(0.7, 0.78, noise(p.add(vec2(0.37, 0.11)) as unknown as V2, STONE))
+                .mul(STONE_LIGHT)
+                .sub(
+                  smoothstep(0.72, 0.8, noise(p.add(vec2(0.71, 0.53)) as unknown as V2, STONE)).mul(
+                    STONE_DARK,
+                  ),
+                )
+                .mul(chip),
+            );
+          });
+        });
+      });
+    });
+    const blotch = noise(p, 16).sub(0.5).mul(0.8).toVar();
+    If(mid.greaterThan(0), () => {
+      blotch.addAssign(noise(p, 4).sub(0.5).mul(mid));
+    });
+    // Variables, not expressions: an expression used both inside a branch and after it would
+    // be assigned only where it was first built.
+    const is = (k: number): F =>
+      step(0.5, abs(kind.sub(k)))
+        .oneMinus()
+        .toVar() as unknown as F;
+    const isRoad = is(1);
+    const isSidewalk = is(2);
+    const isCurb = is(3);
+    const isPaint = is(4);
+    const isParking = is(5);
+    const isPlaza = is(6);
+    const isLoose = step(6.5, kind).toVar() as unknown as F;
+    const isAsphalt = isRoad.add(isParking);
+    const isConcrete = isSidewalk.add(isCurb);
+    const line = (coord: F, spacing: number | F, half: number): F => {
+      const d = abs(fract(coord.div(spacing).add(0.5)).sub(0.5)).mul(spacing);
+      const w = max(fwidth(coord), 0.0001);
+      return smoothstep(half, w.add(half), d)
+        .oneMinus()
+        .mul(smoothstep(0.03, 0.12, w).oneMinus()) as unknown as F;
+    };
+    const laneWidth = max(lane, 0.5);
+    const width = detail.z.sub(kind.mul(128)).toVar() as unknown as F;
+    // Derivative-based terms, still outside any branch: joints, pavers, grate slats, covers.
+    const slab = isSidewalk.mul(1.5).add(isCurb.mul(3)).add(isConcrete.oneMinus().mul(1.5));
+    const joint = line(along, slab as unknown as F, 0.009).toVar();
+    const pavers = max(
+      line(p.x as unknown as F, 0.5, 0.006),
+      line(p.y as unknown as F, 0.5, 0.006),
+    ).toVar();
+    const slats = line(along, 0.09, 0.022).toVar();
+    const lanes = max(1, floor(width.div(laneWidth).add(0.5)));
+    const coverCell = floor(along.div(45));
+    const coverPick = hash(vec2(coverCell, 41) as unknown as V2, 65536);
+    const coverCentre = vec2(
+      coverCell.mul(45).add(8).add(coverPick.mul(29)),
+      floor(hash(vec2(coverCell, 43) as unknown as V2, 65536).mul(lanes))
+        .add(0.5)
+        .mul(laneWidth),
     );
-  const asphalt = grain
-    .mul(0.24)
-    .add(blotch.mul(0.26))
-    .add(1)
-    .mul(wear.oneMinus())
-    .mul(stains.oneMinus())
-    .mul(gutter.mul(0.22).oneMinus());
-  const slab = isSidewalk.mul(1.5).add(isCurb.mul(3)).add(isConcrete.oneMinus().mul(1.5));
-  const joint = line(along, slab as unknown as F, 0.009);
-  const slabTone = hash(vec2(floor(along.div(slab)), isCurb.add(3)) as unknown as V2, 65536);
-  const concrete = slabTone
-    .mul(0.09)
-    .add(0.95)
-    .mul(grain.mul(0.12).add(blotch.mul(0.1)).add(1))
-    .mul(joint.mul(0.34).oneMinus());
-  const pavers = max(line(p.x as unknown as F, 0.5, 0.006), line(p.y as unknown as F, 0.5, 0.006));
-  const paverTone = hash(floor(p.div(0.5)) as unknown as V2, 8192);
-  const plaza = paverTone
-    .mul(0.1)
-    .add(0.94)
-    .mul(pavers.mul(0.3).oneMinus())
-    .mul(grain.mul(0.1).add(1));
-  const worn = smoothstep(
-    0.52,
-    0.8,
-    noise(p, 0.5)
-      .mul(0.6)
-      .add(noise(p.add(vec2(3, 61)) as unknown as V2, 0.25).mul(0.4)),
-  )
-    .mul(0.6)
-    .mul(near);
-  const paint = mix(vec3(1), vec3(0.032, 0.036, 0.04).div(max(base, vec3(0.001))), worn).mul(
-    grain.mul(0.08).add(0.97),
-  );
-  const loose = grain.mul(0.35).add(blotch.mul(0.2)).add(1);
-  const plain = blotch.mul(0.08).add(1);
-  const isPlain = clamp(
-    isAsphalt.add(isConcrete).add(isPaint).add(isPlaza).add(isLoose),
-    0,
-    1,
-  ).oneMinus();
-  // Lived-in detail: hairline cracks in asphalt and concrete, a manhole cover in a lane on most
-  // 45 m stretches of road, and storm-drain grates along the gutters.
-  const crackField = noise(p.add(vec2(23, 11)) as unknown as V2, 2).toVar() as unknown as F;
-  const crackWidth = max(fwidth(crackField).mul(1.5), 0.002);
-  const crack = smoothstep(0, crackWidth, abs(crackField.sub(0.5)))
-    .oneMinus()
-    .mul(smoothstep(0.62, 0.8, noise(p.add(vec2(5, 71)) as unknown as V2, 8)))
-    .mul(near)
-    .mul(isAsphalt.add(isConcrete));
-  const lanes = max(1, floor(width.div(laneWidth).add(0.5)));
-  const coverCell = floor(along.div(45));
-  const coverPick = hash(vec2(coverCell, 41) as unknown as V2, 65536);
-  const coverCentre = vec2(
-    coverCell.mul(45).add(8).add(coverPick.mul(29)),
-    floor(hash(vec2(coverCell, 43) as unknown as V2, 65536).mul(lanes))
-      .add(0.5)
-      .mul(laneWidth),
-  );
-  const coverR = vec2(along, across).sub(coverCentre).length().toVar() as unknown as F;
-  const coverAa = max(fwidth(coverR), 0.004);
-  const cover = isRoad
-    .mul(step(0.5, lane))
-    .mul(step(coverPick, 0.7))
-    .mul(near)
-    .mul(smoothstep(coverAa.negate().add(0.34), coverAa.add(0.34), coverR).oneMinus());
-  const coverRim = cover.mul(smoothstep(0.27, 0.3, coverR));
-  const drainCell = floor(along.div(32));
-  const drainPick = hash(vec2(drainCell, 57) as unknown as V2, 65536);
-  const drainLocal = vec2(
-    along.sub(drainCell.mul(32).add(6).add(drainPick.mul(20))),
-    min(across, width.sub(across)),
-  );
-  const drainInside = clamp(drainLocal.sub(vec2(-0.45, 0.05)).div(aa).add(0.5), 0, 1).mul(
-    clamp(vec2(0.45, 0.42).sub(drainLocal).div(aa).add(0.5), 0, 1),
-  );
-  const drain = isRoad
-    .mul(step(0.5, lane))
-    .mul(step(drainPick, 0.8))
-    .mul(near)
-    .mul(drainInside.x)
-    .mul(drainInside.y);
-  const slats = line(along, 0.09, 0.022);
-  const lived = crack
-    .mul(0.2)
-    .oneMinus()
-    .mul(mix(1, coverRim.mul(0.12).add(grain.mul(0.06)).add(0.58), cover))
-    .mul(mix(1, slats.mul(-0.3).add(0.5), drain));
-  const scalar = isAsphalt
-    .mul(asphalt)
-    .add(isConcrete.mul(concrete))
-    .add(isPlaza.mul(plaza))
-    .add(isLoose.mul(loose))
-    .add(isPlain.mul(plain))
-    .add(isPaint)
-    .mul(lived);
-  // Frayed edges: where a band meets the ground (a sidewalk's lawn side, a footpath, a shoulder
-  // or a dirt track) the ground shows through a ragged margin and dirt collects inside it.
-  // Loose surfaces break up in clumps; cast paving keeps its formed edge, and only grass
-  // blades creep over it. The margin shrinks away as its noise falls below a pixel, leaving
-  // the band's own antialiased edge.
-  const soft = lane.mul(isRoad.oneMinus());
-  const edge = min(
-    mix(64, across, soft.mod(2)),
-    mix(64, width.sub(across), step(1.5, soft)),
-  ).toVar() as unknown as F;
-  const coarse = smoothstep(0.25, 0.6, footprint.div(0.8)).oneMinus();
-  const fine = smoothstep(0.25, 0.6, footprint.div(0.2)).oneMinus();
-  const blade = smoothstep(0.25, 0.6, footprint.div(0.05)).oneMinus();
-  const clump = noise(p.add(vec2(13, 2)) as unknown as V2, 0.2).sub(0.5);
-  const blades = noise(p.add(vec2(3, 31)) as unknown as V2, 0.05)
-    .sub(0.5)
-    .mul(blade);
-  const tatter = mix(
-    clump.mul(0.3).add(blades.mul(1.4)),
-    noise(p.add(vec2(7, 23)) as unknown as V2, 0.8)
-      .sub(0.5)
-      .mul(0.35)
-      .add(clump.mul(0.2))
-      .add(blades.mul(1.3)),
-    isLoose,
-  ).add(0.5);
-  // Farther off, a loose edge wanders over a few meters, by about three pixels (at most half
-  // the band), so a dirt track or gravel shoulder never ends on a ruled line at any distance.
-  const wander = isLoose
-    .mul(min(clamp(footprint.mul(2.5), 0, 0.6), width.mul(0.5)))
-    .mul(smoothstep(0.25, 0.6, footprint.div(3)).oneMinus())
-    .mul(noise(p.add(vec2(29, 11)) as unknown as V2, 3));
-  // Underfoot (the last few meters) the margin's cells grow to dozens of pixels and read as
-  // torn paper, so it closes back to the band's formed edge there.
-  const fray = clamp(tatter, 0, 1)
-    .mul(mix(FRAY, LOOSE_FRAY, isLoose))
-    .mul(mix(fine, coarse, isLoose))
-    .mul(smoothstep(0.002, 0.008, footprint))
-    .add(wander)
-    .mul(min(amount, 1))
-    .toVar() as unknown as F;
-  const grime = smoothstep(0, 0.6, edge.sub(fray)).oneMinus().mul(step(edge, 63)).mul(0.45);
-  const factor = mix(
-    vec3(1),
-    mix(vec3(1), paint, isPaint)
-      .mul(scalar)
-      .mul(mix(vec3(1), vec3(0.78, 0.82, 0.7), grime)),
-    amount,
-  );
+    const coverR = vec2(along, across).sub(coverCentre).length().toVar() as unknown as F;
+    const coverAa = max(fwidth(coverR), 0.004).toVar();
+    const bump = (x: F, at: number, width: number): F =>
+      exp(pow(x.sub(at).div(width), 2).negate()) as unknown as F;
+    // Asphalt: polished wheel tracks, an oil line down each lane and the odd darker repaired
+    // section, on lanes at mid distance and closer.
+    const wear = isRoad.mul(step(0.5, lane)).mul(mid).toVar();
+    If(wear.greaterThan(0), () => {
+      const q = fract(across.div(laneWidth)) as unknown as F;
+      const tracks = bump(q, 0.27, 0.075).add(bump(q, 0.73, 0.075));
+      const drip = bump(q, 0.5, 0.06).mul(
+        smoothstep(0.35, 0.75, noise(p.add(vec2(41, 9)) as unknown as V2, 2)),
+      );
+      const patchCell = vec2(floor(along.div(9)), floor(across.div(laneWidth)));
+      const patchPick = hash(patchCell.add(vec2(17, 5)) as unknown as V2, 65536);
+      const patchLocal = vec2(
+        along.sub(patchCell.x.mul(9)),
+        across.sub(patchCell.y.mul(laneWidth)),
+      );
+      const low = vec2(patchPick.mul(2).add(1), 0.3);
+      const high = vec2(patchPick.mul(2).add(6.5), laneWidth.sub(0.3));
+      const inside = clamp(patchLocal.sub(low).div(aa).add(0.5), 0, 1).mul(
+        clamp(high.sub(patchLocal).div(aa).add(0.5), 0, 1),
+      );
+      const repair = step(0.8, patchPick).mul(inside.x).mul(inside.y);
+      wear.mulAssign(tracks.mul(0.16).add(drip.mul(0.12)).add(repair.mul(0.06)));
+    });
+    // Grit and oil collect along a road's edges, in the gutters.
+    const gutter = isRoad
+      .mul(mid)
+      .mul(smoothstep(0, 0.6, min(across, width.sub(across))).oneMinus());
+    const stains = isParking.mul(mid).mul(0.24).toVar();
+    If(stains.greaterThan(0), () => {
+      stains.mulAssign(
+        smoothstep(
+          0.62,
+          0.86,
+          noise(p.add(vec2(31, 7)) as unknown as V2, 2)
+            .mul(0.6)
+            .add(noise(p.add(vec2(9, 47)) as unknown as V2, 1).mul(0.4)),
+        ),
+      );
+    });
+    const asphalt = grain
+      .mul(0.24)
+      .add(blotch.mul(0.26))
+      .add(1)
+      .mul(stones.add(1))
+      .mul(wear.oneMinus())
+      .mul(stains.oneMinus())
+      .mul(gutter.mul(0.22).oneMinus());
+    const slabTone = hash(vec2(floor(along.div(slab)), isCurb.add(3)) as unknown as V2, 65536);
+    // Concrete weathers: darker water and grime stains a meter or two across from mid distance,
+    // and close up the odd dark spot of gum or oil, so a sidewalk is not new-poured.
+    const weather = isConcrete.mul(mid).toVar();
+    If(weather.greaterThan(0), () => {
+      weather.mulAssign(
+        smoothstep(
+          0.45,
+          0.95,
+          noise(p.add(vec2(37, 19)) as unknown as V2, 2)
+            .mul(0.6)
+            .add(noise(p.add(vec2(13, 59)) as unknown as V2, 0.5).mul(0.4)),
+        ).mul(0.11),
+      );
+      If(pebble.greaterThan(0), () => {
+        weather.addAssign(
+          isConcrete
+            .mul(pebble)
+            .mul(0.18)
+            .mul(smoothstep(0.84, 0.92, noise(p.add(vec2(71, 3)) as unknown as V2, 0.125))),
+        );
+      });
+    });
+    const concrete = slabTone
+      .mul(0.09)
+      .add(0.95)
+      .mul(grain.mul(0.12).add(blotch.mul(0.1)).add(1))
+      .mul(joint.mul(0.34).oneMinus())
+      .mul(weather.oneMinus());
+    const paverTone = hash(floor(p.div(0.5)) as unknown as V2, 8192);
+    const plaza = paverTone
+      .mul(0.1)
+      .add(0.94)
+      .mul(pavers.mul(0.3).oneMinus())
+      .mul(grain.mul(0.1).add(1));
+    // Paint wears through to the asphalt beneath in patches.
+    const worn = isPaint.mul(near).toVar();
+    If(worn.greaterThan(0), () => {
+      worn.assign(
+        smoothstep(
+          0.52,
+          0.8,
+          noise(p, 0.5)
+            .mul(0.6)
+            .add(noise(p.add(vec2(3, 61)) as unknown as V2, 0.25).mul(0.4)),
+        )
+          .mul(0.6)
+          .mul(near),
+      );
+    });
+    const paint = mix(vec3(1), vec3(0.032, 0.036, 0.04).div(max(base, vec3(0.001))), worn).mul(
+      grain.mul(0.08).add(0.97),
+    );
+    const loose = grain.mul(0.35).add(blotch.mul(0.2)).add(1);
+    const plain = blotch.mul(0.08).add(1);
+    const isPlain = clamp(
+      isAsphalt.add(isConcrete).add(isPaint).add(isPlaza).add(isLoose),
+      0,
+      1,
+    ).oneMinus();
+    // Lived-in detail: hairline cracks in asphalt and concrete, a manhole cover in a lane on most
+    // 45 m stretches of road, and storm-drain grates along the gutters.
+    const crackField = float(0.5).toVar();
+    const crackMask = float(0).toVar();
+    If(near.greaterThan(0), () => {
+      crackField.assign(noise(p.add(vec2(23, 11)) as unknown as V2, 2));
+      crackMask.assign(smoothstep(0.62, 0.8, noise(p.add(vec2(5, 71)) as unknown as V2, 8)));
+    });
+    const crackWidth = max(fwidth(crackField).mul(1.5), 0.002);
+    const crack = smoothstep(0, crackWidth, abs(crackField.sub(0.5)))
+      .oneMinus()
+      .mul(crackMask)
+      .mul(near)
+      .mul(isAsphalt.add(isConcrete));
+    const cover = isRoad
+      .mul(step(0.5, lane))
+      .mul(step(coverPick, 0.7))
+      .mul(near)
+      .mul(smoothstep(coverAa.negate().add(0.34), coverAa.add(0.34), coverR).oneMinus());
+    const coverRim = cover.mul(smoothstep(0.27, 0.3, coverR));
+    const drainCell = floor(along.div(32));
+    const drainPick = hash(vec2(drainCell, 57) as unknown as V2, 65536);
+    const drainLocal = vec2(
+      along.sub(drainCell.mul(32).add(6).add(drainPick.mul(20))),
+      min(across, width.sub(across)),
+    );
+    const drainInside = clamp(drainLocal.sub(vec2(-0.45, 0.05)).div(aa).add(0.5), 0, 1).mul(
+      clamp(vec2(0.45, 0.42).sub(drainLocal).div(aa).add(0.5), 0, 1),
+    );
+    const drain = isRoad
+      .mul(step(0.5, lane))
+      .mul(step(drainPick, 0.8))
+      .mul(near)
+      .mul(drainInside.x)
+      .mul(drainInside.y);
+    const lived = crack
+      .mul(0.2)
+      .oneMinus()
+      .mul(mix(1, coverRim.mul(0.12).add(grain.mul(0.06)).add(0.58), cover))
+      .mul(mix(1, slats.mul(-0.3).add(0.5), drain));
+    const scalar = isAsphalt
+      .mul(asphalt)
+      .add(isConcrete.mul(concrete))
+      .add(isPlaza.mul(plaza))
+      .add(isLoose.mul(loose))
+      .add(isPlain.mul(plain))
+      .add(isPaint)
+      .mul(lived);
+    // Frayed edges: where a band meets the ground (a sidewalk's lawn side, a footpath, a shoulder
+    // or a dirt track) the ground shows through a ragged margin and dirt collects inside it.
+    // Loose surfaces break up in clumps; cast paving keeps its formed edge, and only grass
+    // blades creep over it. The margin shrinks away as its noise falls below a pixel, leaving
+    // the band's own antialiased edge.
+    const soft = lane.mul(isRoad.oneMinus());
+    const edge = min(
+      mix(64, across, soft.mod(2)),
+      mix(64, width.sub(across), step(1.5, soft)),
+    ).toVar() as unknown as F;
+    const coarse = smoothstep(0.25, 0.6, footprint.div(0.8)).oneMinus();
+    const fine = smoothstep(0.25, 0.6, footprint.div(0.2)).oneMinus();
+    const blade = smoothstep(0.25, 0.6, footprint.div(0.05)).oneMinus();
+    // Underfoot (the last few meters) the margin's cells grow to dozens of pixels and read as
+    // torn paper, so it closes back to the band's formed edge there.
+    // Lawn grows over the one frayed edge of a street sidewalk or a parking lot (its lawn side) in
+    // tufts a hand's width wide, read from mid distance down. Not over footpaths or plazas: those
+    // often abut other paving, where tufts would cut a ragged seam between two slabs.
+    const lawnSide = isSidewalk.add(isParking).mul(step(0.5, soft)).mul(step(2.5, soft).oneMinus());
+    // The margin reaches under a meter into the band, so only fragments within 2 m of a frayed
+    // edge pay for its noise.
+    const fray = float(0).toVar();
+    const spill = float(0.5).toVar();
+    If(edge.lessThan(2), () => {
+      spill.assign(noise(p.add(vec2(43, 17)) as unknown as V2, 0.5));
+      const ragged = mix(fine, coarse, isLoose).toVar();
+      If(ragged.greaterThan(0), () => {
+        const clump = noise(p.add(vec2(13, 2)) as unknown as V2, 0.2)
+          .sub(0.5)
+          .toVar();
+        const blades = float(0).toVar();
+        If(blade.greaterThan(0), () => {
+          blades.assign(
+            noise(p.add(vec2(3, 31)) as unknown as V2, 0.05)
+              .sub(0.5)
+              .mul(blade),
+          );
+        });
+        const tatter = clump.mul(0.3).add(blades.mul(1.4)).add(0.5).toVar();
+        If(isLoose.greaterThan(0), () => {
+          tatter.assign(
+            noise(p.add(vec2(7, 23)) as unknown as V2, 0.8)
+              .sub(0.5)
+              .mul(0.35)
+              .add(clump.mul(0.2))
+              .add(blades.mul(1.3))
+              .add(0.5),
+          );
+        });
+        fray.assign(
+          clamp(tatter, 0, 1)
+            .mul(mix(FRAY, LOOSE_FRAY, isLoose))
+            .mul(ragged),
+        );
+      });
+      const creep = lawnSide.mul(smoothstep(0.25, 0.6, footprint.div(0.5)).oneMinus()).toVar();
+      If(creep.greaterThan(0), () => {
+        creep.mulAssign(
+          clamp(noise(p.add(vec2(19, 7)) as unknown as V2, CREEP_TUFT).sub(0.35), 0, 0.5).mul(
+            2 * CREEP,
+          ),
+        );
+      });
+      fray.assign(fray.add(creep).mul(smoothstep(0.004, 0.016, footprint)));
+      // Farther off, a loose edge wanders over a few meters, by about three pixels (at most half
+      // the band), so a dirt track or gravel shoulder never ends on a ruled line at any distance.
+      const wander = isLoose
+        .mul(min(clamp(footprint.mul(2.5), 0, 0.6), width.mul(0.5)))
+        .mul(smoothstep(0.25, 0.6, footprint.div(3)).oneMinus())
+        .toVar();
+      If(wander.greaterThan(0), () => {
+        fray.addAssign(wander.mul(noise(p.add(vec2(29, 11)) as unknown as V2, 3)));
+      });
+      fray.mulAssign(min(amount, 1));
+    });
+    // Soil washes and is tracked onto paving where it meets the ground: a patchy brown margin
+    // about a third of a meter wide, so a lawn edge reads as worn rather than ruled.
+    const grime = smoothstep(0, 0.35, edge.sub(fray))
+      .oneMinus()
+      .mul(step(edge, 63))
+      .mul(smoothstep(0.3, 0.7, spill).mul(0.65).add(0.35))
+      .mul(0.45);
+    const factor = mix(
+      vec3(1),
+      mix(vec3(1), paint, isPaint)
+        .mul(scalar)
+        .mul(mix(vec3(1), vec3(...VERGE), grime)),
+      amount,
+    );
+    // Coverage ramps across about a pixel at the frayed edge, so with multisampling alpha to
+    // coverage antialiases the ragged margin instead of stair-stepping it.
+    const margin = edge.sub(fray).toVar() as unknown as F;
+    return vec4(factor, margin.div(max(fwidth(margin), 0.0001)));
+  })().toVar() as unknown as Node<'vec4'>;
   const material = new MeshStandardNodeMaterial(pavementParameters(options));
   material.name = 'terrain-pavement';
   const color = materialColor as unknown as Node<'vec4'>;
-  material.colorNode = vec4(color.rgb.mul(factor), color.a);
-  // Coverage ramps across about a pixel at the frayed edge, so with multisampling alpha to
-  // coverage antialiases the ragged margin instead of stair-stepping it.
-  const margin = edge.sub(fray).toVar() as unknown as F;
-  const coverage = margin.div(max(fwidth(margin), 0.0001)).toVar() as unknown as F;
+  material.colorNode = vec4(color.rgb.mul(pavement.rgb), color.a);
+  const coverage = pavement.a;
   material.maskNode = coverage.greaterThan(-0.5);
   material.opacityNode = clamp(coverage.add(0.5), 0, 1);
   states.set(material, { origin, strength: amount });

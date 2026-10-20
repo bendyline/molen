@@ -54,6 +54,15 @@ export interface SurfaceJunction {
   }[];
 }
 
+/** An asphalt turning circle at a dead end, inside its mapped footway ring. */
+export interface SurfaceTurningCircle {
+  road: SurfaceRoad;
+  center: TerrainSemanticPoint;
+  radius: number;
+  /** Convex outline, counterclockwise. */
+  outline: TerrainSemanticPoint[];
+}
+
 export function isSurfaceLink(road: SurfaceRoad): boolean {
   return isTransportLink(road.feature);
 }
@@ -97,6 +106,7 @@ function subtractFootprint(
 export class SurfaceNetwork {
   readonly roads: SurfaceRoad[] = [];
   readonly junctions: SurfaceJunction[] = [];
+  readonly turningCircles: SurfaceTurningCircle[] = [];
   private readonly cells = new Map<string, Segment[]>();
   private readonly cellSize = 32;
   private readonly footprints = new WeakMap<Segment, TerrainSemanticPoint[]>();
@@ -159,17 +169,120 @@ export class SurfaceNetwork {
     }
   }
 
-  occupied(x: number, z: number, padding = 0, except?: SurfaceRoad): boolean {
+  /** Whether a road's paving reaches within `padding` of a point; mapped paths only if `paths`. */
+  occupied(x: number, z: number, padding = 0, except?: SurfaceRoad, paths = false): boolean {
     return (
-      this.cells.get(`${Math.floor(x / this.cellSize)}/${Math.floor(z / this.cellSize)}`) ?? []
-    ).some(
-      (s) =>
-        s.road !== except &&
-        s.road.kind !== 'path' &&
-        s.road.kind !== 'rail' &&
-        !s.road.feature.bridge &&
-        distanceToSegment(x, z, s) < s.road.width / 2 + padding,
+      (
+        this.cells.get(`${Math.floor(x / this.cellSize)}/${Math.floor(z / this.cellSize)}`) ?? []
+      ).some(
+        (s) =>
+          s.road !== except &&
+          (paths || s.road.kind !== 'path') &&
+          s.road.kind !== 'rail' &&
+          !s.road.feature.bridge &&
+          distanceToSegment(x, z, s) < s.road.width / 2 + padding,
+      ) ||
+      this.turningCircles.some(
+        (c) =>
+          c.road !== except && Math.hypot(x - c.center[0], z - c.center[1]) < c.radius + padding,
+      )
     );
+  }
+
+  /**
+   * Turning circles. Maps often end a cul-de-sac street at the bulb's near edge, or simply stop
+   * it, and trace only the sidewalk wrapping round the end, which left the street stopping on a
+   * ruled line before a notch of lawn and a concrete pad. Where a street dead-ends and a mapped
+   * footway rings most of a circle about its end (all but the mouth the street enters by), the
+   * circle inside that ring is asphalt: a bulb, or for a tight wrap a rounded end. A ring is
+   * required, so a disc never spills past the footway onto lawns.
+   */
+  findTurningCircles(maximum = 64): void {
+    this.turningCircles.length = 0;
+    const near = (x: number, z: number, reach: number, test: (s: Segment) => boolean): boolean => {
+      for (
+        let cx = Math.floor((x - reach) / this.cellSize);
+        cx <= Math.floor((x + reach) / this.cellSize);
+        cx++
+      )
+        for (
+          let cz = Math.floor((z - reach) / this.cellSize);
+          cz <= Math.floor((z + reach) / this.cellSize);
+          cz++
+        )
+          for (const s of this.cells.get(`${cx}/${cz}`) ?? [])
+            if (test(s) && (reach <= 0 || distanceToSegment(x, z, s) < reach)) return true;
+      return false;
+    };
+    for (const road of this.roads) {
+      if (this.turningCircles.length >= maximum) break;
+      if (road.kind !== 'street' || road.feature.bridge || road.unpaved) continue;
+      const points = road.path.points;
+      if (points.length < 2) continue;
+      for (const [end, previous] of [
+        [points[0], points[1]],
+        [points.at(-1), points.at(-2)],
+      ] as [TerrainSemanticPoint, TerrainSemanticPoint][]) {
+        const [ex, ez] = end;
+        const length = Math.hypot(ex - previous[0], ez - previous[1]) || 1;
+        const dx = (ex - previous[0]) / length;
+        const dz = (ez - previous[1]) / length;
+        // A dead end: no other carriageway within a few meters of the end.
+        if (
+          near(
+            ex,
+            ez,
+            3,
+            (s) => s.road !== road && s.road.kind !== 'path' && s.road.kind !== 'rail',
+          )
+        )
+          continue;
+        // Rays from candidate centers beyond the end: each stops where it meets a footway's inner
+        // edge. Most must hit, at similar distances (a ring, not a lone path), and the circle
+        // ends at the nearest hit, so it never runs under the footway or past it.
+        let found: { center: TerrainSemanticPoint; radius: number; spread: number } | undefined;
+        for (let reach = -2; reach <= 12; reach++) {
+          const center: TerrainSemanticPoint = [ex + dx * reach, ez + dz * reach];
+          const hits: number[] = [];
+          let rays = 0;
+          for (let i = 0; i < 12; i++) {
+            const angle = (i * Math.PI) / 6;
+            const ux = Math.cos(angle);
+            const uz = Math.sin(angle);
+            // The mouth, where the street comes in.
+            if (ux * dx + uz * dz < -0.5) continue;
+            rays++;
+            for (let t = 1; t <= 16; t += 0.5)
+              if (
+                near(center[0] + ux * t, center[1] + uz * t, 0, (s) => {
+                  // Footways that reach the street's end connect to it; they are not the ring.
+                  if (s.road.kind !== 'path' || distanceToSegment(ex, ez, s) < road.width / 2 + 0.5)
+                    return false;
+                  const d = distanceToSegment(center[0] + ux * t, center[1] + uz * t, s);
+                  return d < s.road.width / 2;
+                })
+              ) {
+                hits.push(t);
+                break;
+              }
+          }
+          if (rays === 0 || hits.length / rays < 0.75) continue;
+          const nearest = Math.min(...hits);
+          const spread = Math.max(...hits) - nearest;
+          if (spread > 4 || nearest < Math.max(1.6, road.width * 0.25)) continue;
+          if (!found || spread < found.spread) found = { center, radius: nearest - 0.1, spread };
+        }
+        if (!found) continue;
+        const outline = Array.from({ length: 20 }, (_, i): TerrainSemanticPoint => {
+          const angle = (i * Math.PI) / 10;
+          return [
+            found.center[0] + Math.cos(angle) * found.radius,
+            found.center[1] + Math.sin(angle) * found.radius,
+          ];
+        });
+        this.turningCircles.push({ road, center: found.center, radius: found.radius, outline });
+      }
+    }
   }
 
   /** Mapped paths stop at the exact carriageway edge, including mitered curves.
@@ -200,6 +313,17 @@ export class SurfaceNetwork {
           )
             candidates.add(segment);
         }
+    for (const circle of this.turningCircles) {
+      if (
+        circle.center[0] - circle.radius >= bounds[2] ||
+        circle.center[0] + circle.radius <= bounds[0] ||
+        circle.center[1] - circle.radius >= bounds[3] ||
+        circle.center[1] + circle.radius <= bounds[1]
+      )
+        continue;
+      pieces = pieces.flatMap((piece) => subtractFootprint(piece, circle.outline));
+      if (!pieces.length) return pieces;
+    }
     for (const segment of candidates) {
       const road = segment.road;
       let footprint = this.footprints.get(segment);

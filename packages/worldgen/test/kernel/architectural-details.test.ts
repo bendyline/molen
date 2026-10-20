@@ -204,14 +204,41 @@ describe('adaptive architectural details', () => {
     const mesh = shuttered('window');
     soundMesh(mesh);
     const x = mesh.positions.filter((_, i) => i % 3 === 0);
-    // One leaf each side of the opening, clear of it.
+    // One leaf each side of the opening, against its 10 cm trim and clear of it.
     expect(Math.min(...x)).toBeLessThan(6);
     expect(Math.max(...x)).toBeGreaterThan(7.6);
-    expect(x.every((value) => value <= 5.861 || value >= 7.739)).toBe(true);
+    expect(x.every((value) => value <= 5.901 || value >= 7.699)).toBe(true);
+    expect(x.some((value) => Math.abs(value - 5.9) < 0.001)).toBe(true);
     // Vertex colors are bytes: the trim's red channel, darkened.
     expect(mesh.colors[0]).toBe(Math.round(0.3 * 0.42 * 255));
     expect(shuttered('door').vertexCount).toBe(0);
     expect(shuttered('window', 1).vertexCount).toBe(0);
+  });
+
+  it('cases both ends of an outside wall with a trim board, standing just proud of the siding', () => {
+    const mesh = details(EDGE, { ...INPUT, details: { cornerBoards: true } }, []);
+    soundMesh(mesh);
+    // One face per board, at each end of the wall, the full wall height, in the trim color.
+    expect(mesh.vertexCount).toBe(8);
+    const x = mesh.positions.filter((_, i) => i % 3 === 0);
+    expect(x.filter((value) => value < 0.2)).toHaveLength(4);
+    expect(x.filter((value) => value > 14.8)).toHaveLength(4);
+    const y = mesh.positions.filter((_, i) => i % 3 === 1);
+    expect(Math.min(...y)).toBe(0);
+    expect(Math.max(...y)).toBe(9);
+    // The edge normal points to -z: the boards sit a couple of centimeters out from the wall.
+    const z = mesh.positions.filter((_, i) => i % 3 === 2);
+    expect(z.every((value) => value < 0 && value > -0.05)).toBe(true);
+    expect(mesh.colors[0]).toBe(Math.round(0.3 * 255));
+    // Never on courtyard projections, or where a window reaches the corner.
+    expect(
+      details({ ...EDGE, key: 4096 }, { ...INPUT, details: { cornerBoards: true } }).vertexCount,
+    ).toBe(0);
+    expect(
+      details(EDGE, { ...INPUT, details: { cornerBoards: true } }, [
+        { s0: 0.05, s1: 1.2, y0: 0.9, y1: 2.1, floor: 0, bay: 0 },
+      ]).vertexCount,
+    ).toBe(4);
   });
 
   it('omits ground verandas on raised parts and projections into courtyard holes', () => {

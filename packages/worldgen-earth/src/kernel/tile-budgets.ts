@@ -101,16 +101,16 @@ export function worldgenTileBudgetForQuality(
       return {
         maxBuildings: finest ? 6000 : 40_000,
         // Houses with shutters, dormers and chimneys run about twice the vertices of a plain box;
-        // this keeps a dense suburban block fully detailed near the camera. Compact keeps about
+        // this keeps a dense suburban block fully detailed near the camera. Compact keeps under
         // half, for renderers that pay full price for every building in both the shadow and
         // main passes (WebGL), where the larger budget costs a quarter of the frame rate.
         maxBuildingVertices:
           options.compactBuildings === true
             ? finest
-              ? 420_000
-              : 140_000
+              ? 320_000
+              : 120_000
             : finest
-              ? 850_000
+              ? 900_000
               : 200_000,
         detailedCount: finest ? 900 : 1200,
         ...scatter,

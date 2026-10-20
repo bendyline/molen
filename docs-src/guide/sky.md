@@ -109,8 +109,9 @@ scene, then the world, which also writes view normals); occlusion is computed fr
 depth and normals at half resolution, denoised, and multiplied into the image, with tone mapping
 applied once at the end. `radius` (default 3 m) is the world-space reach and
 `strength` (0–1, default 0.85) the share applied, since the multiply also dims direct light.
-Frames draw directly while the pipeline compiles. The World Explorer turns it on; `?ao=0` turns
-it off for comparison.
+Frames draw directly while the pipeline compiles. The World Explorer turns it on below 120 m
+over the ground and off above 180 m, where its creases fall below a pixel but its passes still
+cost a full-screen share of each frame; `?ao=0` turns it off for comparison.
 
 ## Reflections
 

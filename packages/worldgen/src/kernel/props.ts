@@ -2,7 +2,8 @@
  * Attached props: instances of pack or builtin models placed on a building from the recipe's
  * prop list. Anchors: `roof-ridge` (along pitched ridges, dominant wing first), `roof-flat`
  * (jittered grid inside the outline, margin from every edge), `roof-edge` (along outer edges at
- * the eave or parapet). `wall-any` and `ground-any` are reserved and place nothing yet.
+ * the eave or parapet), `ground-any` (on the ground along the outer walls, set out to clear
+ * them: foundation plantings). `wall-any` is reserved and places nothing yet.
  */
 
 import { dmath } from '@bendyline/molen-kernel/determinism';
@@ -42,6 +43,13 @@ export interface PropContext {
   /** Yaw of the footprint frame (models on flat roofs align with it). */
   frameYaw: number;
   salt: number;
+  /** Ground height under a point, for `ground-any`. */
+  ground?: (x: number, z: number) => number;
+  /**
+   * Stretches of outer-ring edges that ground props keep clear (entrances): the edge index and
+   * meters along it from its first vertex.
+   */
+  clear?: readonly { edge: number; start: number; end: number }[];
 }
 
 /** Yaw (three.js rotation about +y) that maps a model's +x to the direction (dx, dz). */
@@ -186,6 +194,76 @@ function placeOnEdges(
   return count;
 }
 
+/**
+ * Foundation plantings and the like: spots `spacing` apart along each outer wall, `margin` from
+ * its corners, set out so a shrub-sized model (about 1.7 m across at scale 1) clears the wall,
+ * on the ground there. Entrances stay clear. The chosen spots spread evenly round the building:
+ * a house's street side is unknown, and any side may be the one in view.
+ */
+function placeOnGround(
+  prop: RecipeProp,
+  context: PropContext,
+  propIndex: number,
+  out: PropPlacement[],
+): number {
+  const ring = context.outline;
+  const spacing = Math.max(prop.spacing, 0.5);
+  const setback = 0.8 * prop.scale + 0.1;
+  const spots: Array<{ point: Vec2; yaw: number }> = [];
+  for (let index = 0; index < ring.length; index++) {
+    const a = ring[index] as Vec2;
+    const b = ring[(index + 1) % ring.length] as Vec2;
+    const length = Math.hypot(b[0] - a[0], b[1] - a[1]);
+    if (length < 2 * prop.margin + spacing * 0.5) continue;
+    const ux = (b[0] - a[0]) / length;
+    const uz = (b[1] - a[1]) / length;
+    // Outward is the side of the wall away from the footprint, whatever the ring's winding.
+    const mid: Vec2 = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+    const side = pointInPolygon([mid[0] + uz * 0.05, mid[1] - ux * 0.05], ring) ? -1 : 1;
+    const nx = uz * side;
+    const nz = -ux * side;
+    const slots = Math.max(1, Math.floor((length - 2 * prop.margin) / spacing));
+    const step = (length - 2 * prop.margin) / slots;
+    for (let slot = 0; slot < slots; slot++) {
+      const along = prop.margin + (slot + 0.5) * step;
+      const reach = setback + 0.25;
+      if (
+        context.clear?.some(
+          (range) =>
+            range.edge === index && along > range.start - reach && along < range.end + reach,
+        )
+      )
+        continue;
+      const point: Vec2 = [a[0] + ux * along + nx * setback, a[1] + uz * along + nz * setback];
+      // A reflex corner can fold the set-out spot back into the footprint or another wing.
+      if (pointInPolygon(point, ring, context.holes)) continue;
+      if (distancePointToRing(point, ring) < setback * 0.8) continue;
+      spots.push({ point, yaw: yawForDirection(nx, nz) });
+    }
+  }
+  const count = Math.min(prop.count, spots.length);
+  // Start the even spread at a seeded spot, so neighbouring houses do not all plant one corner.
+  const offset = Math.floor(unit01(hashCoord(propIndex, 0, context.salt), 5) * spots.length);
+  for (let index = 0; index < count; index++) {
+    const spot = spots[(offset + Math.floor((index * spots.length) / count)) % spots.length] as {
+      point: Vec2;
+      yaw: number;
+    };
+    const hash = hashCoord(propIndex, index, context.salt);
+    out.push({
+      model: prop.model,
+      x: spot.point[0],
+      // Sunk a little, so a slope never shows daylight under the model's base.
+      y: (context.ground?.(spot.point[0], spot.point[1]) ?? 0) - 0.08,
+      z: spot.point[1],
+      yaw: yawFor(prop, spot.yaw, hash, 3),
+      scale: prop.scale * (0.85 + unit01(hash, 4) * 0.3),
+      color: prop.color,
+    });
+  }
+  return count;
+}
+
 /** Place every visible prop of a recipe; returns the number of instances added to `out`. */
 export function placeProps(
   props: readonly RecipeProp[],
@@ -204,6 +282,9 @@ export function placeProps(
         break;
       case 'roof-edge':
         placed += placeOnEdges(prop, context, index, out);
+        break;
+      case 'ground-any':
+        placed += placeOnGround(prop, context, index, out);
         break;
       default:
         break;

@@ -23,7 +23,7 @@ describe('tile budgets', () => {
     );
   });
 
-  it('holds High building geometry to about half when asked for compact buildings', () => {
+  it('holds High building geometry under half when asked for compact buildings', () => {
     for (const level of [0, 1]) {
       const full = worldgenTileBudgetForQuality('high', level);
       const compact = worldgenTileBudgetForQuality('high', level, { compactBuildings: true });

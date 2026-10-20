@@ -145,7 +145,10 @@ and failures.
 Structure, furnishings and glass share materials across interiors. Four shared 256² detail maps
 supply wood grain/boards, ceramic grout, fabric weave and plaster grain, using metric UVs and
 mipmaps. These neutral maps combine with household vertex colors; no texture is allocated per
-building. Their fixed shared memory is separate from the resident geometry counter. Furniture is merged instead
+building. Their fixed shared memory is separate from the resident geometry counter. Room surfaces
+return under half the daylight that reaches them (a room sees only the sky its windows frame),
+so from outside they read dimmer than the day, as real rooms do, not as pale smudges behind
+the glass. Furniture is merged instead
 of spawning one scene object per shelf product. Ceilings use simple bright fixture geometry;
 there are no per-building dynamic lights or additional shadow maps. The walking octree uses
 the same published geometry, except that visible stair steps are skipped (`walkIgnore`) and

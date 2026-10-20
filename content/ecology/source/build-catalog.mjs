@@ -64,17 +64,22 @@ const plant = (name, title, family, form, height, width, foliage, extra = {}) =>
     ? {
         phenology: {
           spring: '#9baa62',
-          autumn:
-            name === 'maple'
-              ? '#b27648'
-              : name === 'larch' || name === 'birch'
-                ? '#b5a755'
-                : '#a58d58',
+          // Each species turns its own way: maples orange-red, birch and larch gold, beech
+          // copper, oak russet, while alders barely color before they drop.
+          autumn: AUTUMN[name] ?? '#a58d58',
         },
       }
     : {}),
   ...extra,
 });
+const AUTUMN = {
+  maple: '#bd6a36',
+  birch: '#c2a744',
+  larch: '#c2a744',
+  beech: '#ad7b3f',
+  oak: '#946a40',
+  alder: '#9fa04f',
+};
 const plants = [
   plant('oak', 'Spreading temperate oak form', 'broadleaf', 'round', 13, 12, '#688647'),
   plant('beech', 'Temperate beech form', 'broadleaf', 'round', 18, 11, '#73934e'),
@@ -479,6 +484,8 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
   // a few groves of the park trees, broken up by clustering so most of it still reads as open.
   add('open_trees', ['open_ground'], parkTrees, openTrees, 'canopy', {
     clustering: { scale: 70, threshold: 0.22, contrast: 2.4, seedOffset: 13 },
+    // A grown park tree's crown reaches 5–6 m; keep it clear of walls and roofs.
+    avoid: { buildings: 7 },
   });
   add('orchard', ['orchard'], orchard, 156.25, 'canopy', {
     rows: { spacing: 8, interval: 8, angle: 0, jitter: 0.04 },

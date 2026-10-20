@@ -92,6 +92,20 @@ for (const family of architectureFamilies) {
       for (const prop of style.props)
         if (prop.id === 'hvac')
           Object.assign(prop, { count: range(2, 14), perAreaM2: 150, scale: range(1.1, 1.7) });
+    // Foundation plantings: a few shrubs along a house's walls, flanking its door first.
+    if (home)
+      style.props.push({
+        id: 'foundation-shrubs',
+        model: 'builtin:shrub',
+        anchor: 'ground-any',
+        probability: 0.8,
+        count: type === 'detached' ? range(4, 8) : range(3, 6),
+        spacing: 1.7,
+        margin: 1.1,
+        scale: range(0.5, 0.75),
+        yaw: 'random',
+        lodTier: 0,
+      });
     style.facade.details = {};
     style.facade.details.entrance = shed
       ? { width: type === 'industrial' ? 3.4 : 2.8, height: 3.1, style: 'service' }
@@ -172,6 +186,8 @@ for (const family of architectureFamilies) {
       style.facade.windows.sill = range(2.5, 2.9);
     }
     if (family.shutters && home) style.facade.details.shutters = true;
+    // Lap-sided houses case their outside corners with trim boards.
+    if (home && family.wall === 'siding_lap') style.facade.details.cornerBoards = true;
     if (family.balcony && type === 'apartments')
       style.facade.details.balconies = { depth: family.balcony, railing: 'open', every: 2 };
     if (family.awning && !shed) style.facade.details.awnings = { depth: family.awning };

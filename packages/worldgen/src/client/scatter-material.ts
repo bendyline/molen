@@ -1,11 +1,13 @@
 // Shared material for instanced scatter (trees, shrubs, ground cover) and props: vertex and
 // instance colors, plus leaf-scale speckle so a crown is no longer one flat tone per facet, and
-// a little occlusion low in each plant so trunks and lower crowns sit in their own shade. All in
-// the shader, from model-space positions and a per-vertex canopy height: no textures, uploads or
-// floating-origin state, and the same program for every level of detail.
+// a little occlusion low in each plant so trunks and lower crowns sit in their own shade. The
+// detail is in the shader, from model-space positions and a per-vertex canopy height. One small
+// generated atlas cuts leaf cards out along a clump of leaves; every other surface samples its
+// opaque white block, so all levels of detail and every prop still share one program.
 
 import * as THREE from 'three';
 import type { MeshStandardNodeMaterial, Node } from 'three/webgpu';
+import { unit01 } from '../kernel/seed';
 
 /** Scatter material for either the legacy WebGL renderer or the WebGPU node renderer. */
 export type ScatterMaterial = THREE.MeshStandardMaterial | MeshStandardNodeMaterial;
@@ -21,9 +23,269 @@ const LEAF = 0.35;
 const CLUMP = 2.2;
 const TIER = 1.5;
 
+/**
+ * Leaf-card atlas, texels: a leaf sprig in the left square, a fir spray beside it, and an opaque
+ * white block at the right, each with clear margins so mip levels do not bleed between them.
+ */
+const ATLAS_WIDTH = 512;
+const ATLAS_HEIGHT = 256;
+const SPRAY_FROM = 264;
+const SPRAY_TO = 440;
+const SOLID_FROM = 480;
+/** Twigs fan out about a golden angle apart. */
+const TWIG_TURN = 2.39996;
+
+/** Atlas coordinates of a leaf card's corners, counterclockwise from its lower left. */
+export const SCATTER_CARD_UVS: readonly (readonly [number, number])[] = [
+  [0, 0],
+  [ATLAS_HEIGHT / ATLAS_WIDTH, 0],
+  [ATLAS_HEIGHT / ATLAS_WIDTH, 1],
+  [0, 1],
+];
+
+/** Atlas coordinates of a bough card's corners: the spray's root along the lower edge. */
+export const SCATTER_SPRAY_UVS: readonly (readonly [number, number])[] = [
+  [SPRAY_FROM / ATLAS_WIDTH, 0],
+  [SPRAY_TO / ATLAS_WIDTH, 0],
+  [SPRAY_TO / ATLAS_WIDTH, 1],
+  [SPRAY_FROM / ATLAS_WIDTH, 1],
+];
+
+/** Share of a leaf card's half extent that its sprig of leaves reaches; the corners are clear. */
+export const SCATTER_CARD_FILL = 0.92;
+
+/**
+ * Atlas coordinates of its opaque white block, for every surface that is not a leaf card (bark,
+ * fronds, props). A constant coordinate has no screen derivatives, so it always samples the
+ * block at full resolution and leaves the vertex color unchanged at any distance.
+ */
+export const SCATTER_SOLID_UV: readonly [number, number] = [0.97, 0.5];
+
+let atlas: THREE.DataTexture | undefined;
+
+/**
+ * The shared leaf atlas, generated once. Each mip level rescales its alpha so as many texels
+ * pass the alpha test as at full size: distant cards keep their leafy mass instead of thinning
+ * to nothing as coverage averages away.
+ */
+function leafAtlas(): THREE.DataTexture {
+  if (atlas !== undefined) return atlas;
+  const tone = new Float32Array(ATLAS_WIDTH * ATLAS_HEIGHT).fill(0.8);
+  const alpha = new Float32Array(ATLAS_WIDTH * ATLAS_HEIGHT);
+  /** One stroke in texels, kept within the columns `[left, right)` of its region. */
+  const paint = (
+    from: readonly [number, number],
+    direction: number,
+    length: number,
+    width: number,
+    shade: number,
+    leaf: boolean,
+    [left, right]: readonly [number, number],
+  ): void => {
+    const dx = Math.cos(direction),
+      dy = Math.sin(direction);
+    const reach = length + width;
+    const x0 = Math.max(left, Math.floor(from[0] - reach)),
+      x1 = Math.min(right - 1, Math.ceil(from[0] + reach));
+    const y0 = Math.max(0, Math.floor(from[1] - reach)),
+      y1 = Math.min(ATLAS_HEIGHT - 1, Math.ceil(from[1] + reach));
+    for (let y = y0; y <= y1; y++)
+      for (let x = x0; x <= x1; x++) {
+        const px = x + 0.5 - from[0],
+          py = y + 0.5 - from[1];
+        const along = (px * dx + py * dy) / length;
+        const across = -px * dy + py * dx;
+        if (along < 0 || along > 1) continue;
+        // A pointed blade, widest a little below its middle; a twig or needle is a tapering
+        // stroke.
+        const half = leaf
+          ? (width / 2) * Math.sin(Math.PI * along ** 0.8) ** 0.8
+          : (width / 2) * (1 - 0.6 * along);
+        const cover = Math.min(1, Math.max(0, half - Math.abs(across) + 0.5));
+        if (cover <= 0) continue;
+        // Darker at the stalk and along the midrib, one half of each blade a little lighter.
+        const rib = Math.max(0, 1 - Math.abs(across));
+        const value = leaf
+          ? shade * (0.84 + 0.16 * along) * (1 - 0.2 * rib) * (across > 0 ? 1.05 : 0.97)
+          : shade;
+        const i = y * ATLAS_WIDTH + x;
+        tone[i] = (tone[i] as number) + (value - (tone[i] as number)) * cover;
+        alpha[i] = cover + (alpha[i] as number) * (1 - cover);
+      }
+  };
+  const size = ATLAS_HEIGHT;
+  const sprig: [number, number] = [0, size];
+  // Twigs from the sprig's middle, under the leaves, show through the gaps between them.
+  for (let i = 0; i < 6; i++)
+    paint(
+      [size / 2, size / 2],
+      (i * TWIG_TURN) % (Math.PI * 2),
+      0.36 * size,
+      0.012 * size,
+      0.42,
+      false,
+      sprig,
+    );
+  const leaves = Array.from({ length: 180 }, (_, i) => {
+    const length = 0.075 + 0.05 * unit01(7, i * 5);
+    const radius = (0.46 - length) * unit01(7, i * 5 + 1) ** 0.6;
+    const angle = Math.PI * 2 * unit01(7, i * 5 + 2);
+    return {
+      from: [size * (0.5 + Math.cos(angle) * radius), size * (0.5 + Math.sin(angle) * radius)] as [
+        number,
+        number,
+      ],
+      // Leaves point outward from the sprig, give or take; inner leaves sit in its shade.
+      direction: angle + (unit01(7, i * 5 + 3) - 0.5) * 1.6,
+      length: length * size,
+      width: length * size * (0.44 + 0.16 * unit01(7, i * 5 + 4)),
+      shade: (0.66 + 0.34 * unit01(7, i * 5 + 5)) * (0.8 + (0.2 * radius) / 0.38),
+    };
+  });
+  // Brighter leaves draw last, on top, so the sprig has depth.
+  leaves.sort((a, b) => a.shade - b.shade);
+  for (const leaf of leaves)
+    paint(leaf.from, leaf.direction, leaf.length, leaf.width, leaf.shade, true, sprig);
+  // The fir spray: a stem from its root (row 0) to its tip, branchlets alternating forward along
+  // it, widest a third of the way up, each fringed with needles that lighten toward its tip.
+  const spray: [number, number] = [SPRAY_FROM, SPRAY_TO];
+  const middle = (SPRAY_FROM + SPRAY_TO) / 2,
+    spread = (SPRAY_TO - SPRAY_FROM) / 2 - 4;
+  const stem = ATLAS_HEIGHT - 10;
+  paint([middle, 4], Math.PI / 2, stem, 3.2, 0.48, false, spray);
+  /** A branchlet fringed with needles both ways, lightening toward its tip. */
+  const branchlet = (
+    root: readonly [number, number],
+    direction: number,
+    length: number,
+    stream: number,
+  ): void => {
+    paint(root, direction, length, 2, 0.5, false, spray);
+    for (let s = 2, n = 0; s < length; s += 1.9, n++)
+      for (const turn of [-0.75, 0.75]) {
+        const at = s / length;
+        const jitter = unit01(11, stream + n * 2 + (turn > 0 ? 1 : 0));
+        paint(
+          [root[0] + Math.cos(direction) * s, root[1] + Math.sin(direction) * s],
+          direction + turn + (jitter - 0.5) * 0.4,
+          (9 - 4 * at) * (0.8 + 0.4 * jitter),
+          2,
+          (0.58 + 0.34 * at) * (0.86 + 0.24 * jitter),
+          false,
+          spray,
+        );
+      }
+  };
+  for (let k = 0; k < 30; k++) {
+    const t = Math.min(0.97, 0.04 + (0.92 * (k + 0.6 * unit01(12, k))) / 30);
+    const side = k % 2 === 0 ? -1 : 1;
+    const forward = 0.9 + 0.2 * unit01(12, k + 100);
+    const envelope = Math.sin(Math.PI * t ** 0.75) ** 0.8;
+    const length = (spread * (0.12 + 0.88 * envelope)) / Math.sin(forward);
+    const root: [number, number] = [middle, 4 + t * stem];
+    const direction = Math.atan2(Math.cos(forward), side * Math.sin(forward));
+    branchlet(root, direction, length, k * 1000);
+    // Shorter side shoots fill the gaps between branchlets.
+    for (const [at, n] of [
+      [0.35, 1],
+      [0.65, 2],
+    ] as const)
+      if (length > 24)
+        branchlet(
+          [
+            root[0] + Math.cos(direction) * length * at,
+            root[1] + Math.sin(direction) * length * at,
+          ],
+          direction + side * 0.55,
+          length * 0.34,
+          k * 1000 + n * 300,
+        );
+  }
+  let width = ATLAS_WIDTH,
+    height = ATLAS_HEIGHT;
+  const level0 = new Uint8Array(width * height * 4);
+  for (let i = 0; i < width * height; i++) {
+    const solid = i % width >= SOLID_FROM;
+    level0[i * 4] =
+      level0[i * 4 + 1] =
+      level0[i * 4 + 2] =
+        Math.round(Math.min(1, solid ? 1 : (tone[i] as number)) * 255);
+    level0[i * 4 + 3] = solid ? 255 : Math.round((alpha[i] as number) * 255);
+  }
+  const coverage = (data: Uint8Array, w: number, h: number, scale: number): number => {
+    let passed = 0;
+    // The leaf and spray regions, left of the solid block.
+    const span = Math.max(1, (w * SOLID_FROM) / ATLAS_WIDTH);
+    for (let y = 0; y < h; y++)
+      for (let x = 0; x < span; x++)
+        if ((data[(y * w + x) * 4 + 3] as number) * scale > 127.5) passed++;
+    return passed / (span * h);
+  };
+  const target = coverage(level0, width, height, 1);
+  const mipmaps = [{ data: level0, width, height }];
+  while (width > 1 || height > 1) {
+    const previous = mipmaps[mipmaps.length - 1] as {
+      data: Uint8Array;
+      width: number;
+      height: number;
+    };
+    const w = Math.max(1, width >> 1),
+      h = Math.max(1, height >> 1);
+    const data = new Uint8Array(w * h * 4);
+    for (let y = 0; y < h; y++)
+      for (let x = 0; x < w; x++) {
+        let r = 0,
+          a = 0,
+          plain = 0;
+        for (const [sx, sy] of [
+          [0, 0],
+          [1, 0],
+          [0, 1],
+          [1, 1],
+        ] as const) {
+          const o =
+            (Math.min(height - 1, y * 2 + sy) * width + Math.min(width - 1, x * 2 + sx)) * 4;
+          const weight = previous.data[o + 3] as number;
+          r += (previous.data[o] as number) * weight;
+          a += weight;
+          plain += previous.data[o] as number;
+        }
+        const o = (y * w + x) * 4;
+        data[o] = data[o + 1] = data[o + 2] = Math.round(a > 0 ? r / a : plain / 4);
+        data[o + 3] = Math.round(a / 4);
+      }
+    // The alpha scale that keeps the cards' coverage at its full-size share.
+    let low = 1,
+      high = 4;
+    for (let step = 0; step < 16; step++) {
+      const middle = (low + high) / 2;
+      if (coverage(data, w, h, middle) < target) low = middle;
+      else high = middle;
+    }
+    for (let i = 3; i < data.length; i += 4)
+      data[i] = Math.min(255, Math.round((data[i] as number) * high));
+    mipmaps.push({ data, width: w, height: h });
+    width = w;
+    height = h;
+  }
+  atlas = new THREE.DataTexture(level0, ATLAS_WIDTH, ATLAS_HEIGHT, THREE.RGBAFormat);
+  atlas.name = 'worldgen:leaf-atlas';
+  atlas.mipmaps = mipmaps as unknown as THREE.DataTexture['mipmaps'];
+  atlas.generateMipmaps = false;
+  atlas.minFilter = THREE.LinearMipmapLinearFilter;
+  atlas.magFilter = THREE.LinearFilter;
+  atlas.needsUpdate = true;
+  return atlas;
+}
+
 const parameters = (): THREE.MeshStandardMaterialParameters => ({
   vertexColors: true,
   roughness: 0.92,
+  map: leafAtlas(),
+  // Leaf cards cut out along the atlas's leaf edges; with multisampling, alpha to coverage
+  // antialiases the cut instead of stair-stepping it.
+  alphaTest: 0.5,
+  alphaToCoverage: true,
 });
 
 const GLSL = /* glsl */ `
@@ -50,17 +312,23 @@ const GLSL = /* glsl */ `
     vec2 p = q.xz + q.y * vec2(0.71, -0.53);
     float footprint = max(length(fwidth(q)), 0.0001);
     float plant = step(0.5, vScatterCanopy);
-    float leaf = (scatterNoise(p / ${LEAF.toFixed(2)}) - 0.5) *
-        (1.0 - smoothstep(0.25, 0.6, footprint / ${LEAF.toFixed(2)})) +
-      (scatterNoise(p / ${CLUMP.toFixed(2)} + 17.0) - 0.5) * 0.7 *
-        (1.0 - smoothstep(0.25, 0.6, footprint / ${CLUMP.toFixed(2)}));
+    // Each layer only where it still shows, so distant canopy skips its noise.
+    float leafFade = 1.0 - smoothstep(0.25, 0.6, footprint / ${LEAF.toFixed(2)});
+    float clumpFade = 1.0 - smoothstep(0.25, 0.6, footprint / ${CLUMP.toFixed(2)});
+    float leaf = 0.0;
+    if (leafFade > 0.0) leaf = (scatterNoise(p / ${LEAF.toFixed(2)}) - 0.5) * leafFade;
+    if (clumpFade > 0.0)
+      leaf += (scatterNoise(p / ${CLUMP.toFixed(2)} + 17.0) - 0.5) * 0.7 * clumpFade;
     float height = clamp(vScatterCanopy - 1.0, 0.0, 1.0);
     // Boughs: a darker band between tiers, so a crown reads as layered rather than smooth.
     float tierFade = 1.0 - smoothstep(0.25, 0.6, footprint / ${TIER.toFixed(1)});
-    // The clump noise wobbles each tier so no crown carries regular stripes.
-    float wobble = scatterNoise(p / ${CLUMP.toFixed(2)} + 41.0) - 0.5;
-    float tier = pow(0.5 + 0.5 * cos(6.2831853 * (q.y / ${TIER.toFixed(1)} + wobble * 0.8)), 3.0) *
-      tierFade;
+    float tier = 0.0;
+    if (tierFade > 0.0) {
+      // The clump noise wobbles each tier so no crown carries regular stripes.
+      float wobble = scatterNoise(p / ${CLUMP.toFixed(2)} + 41.0) - 0.5;
+      tier = pow(0.5 + 0.5 * cos(6.2831853 * (q.y / ${TIER.toFixed(1)} + wobble * 0.8)), 3.0) *
+        tierFade;
+    }
     float occlusion = mix(1.0, mix(0.5, 1.08, smoothstep(0.0, 0.95, height)) * (1.0 - 0.16 * tier),
       plant);
     return (1.0 + leaf * mix(0.12, 0.4, plant)) * occlusion;
@@ -89,7 +357,7 @@ export function createScatterMaterial(): THREE.MeshStandardMaterial {
        diffuseColor.rgb *= scatterFactor();`,
     );
   };
-  material.customProgramCacheKey = (): string => 'worldgen-scatter@1';
+  material.customProgramCacheKey = (): string => 'worldgen-scatter@3';
   return material;
 }
 
@@ -103,9 +371,12 @@ export async function createScatterMaterialAsync(
     {
       attribute,
       dot,
+      float,
       floor,
+      Fn,
       fract,
       fwidth,
+      If,
       materialColor,
       max,
       mix,
@@ -142,42 +413,60 @@ export async function createScatterMaterialAsync(
   const q = varying(positionGeometry).toVar() as unknown as V3;
   const canopy = varying(attribute(SCATTER_CANOPY_ATTRIBUTE, 'float')) as unknown as F;
   const p = q.xz.add(vec2(0.71, -0.53).mul(q.y)).toVar() as unknown as V2;
-  const footprint = max(fwidth(q).length(), 0.0001);
-  const plant = step(0.5, canopy);
-  const leaf = noise(p.div(LEAF) as unknown as V2)
-    .sub(0.5)
-    .mul(smoothstep(0.25, 0.6, footprint.div(LEAF)).oneMinus())
-    .add(
-      noise(p.div(CLUMP).add(17) as unknown as V2)
-        .sub(0.5)
-        .mul(0.7)
-        .mul(smoothstep(0.25, 0.6, footprint.div(CLUMP)).oneMinus()),
+  // Each layer only where it still shows, so distant canopy skips its noise. The derivative
+  // comes first, outside the branches.
+  const factor = Fn(() => {
+    const footprint = max(fwidth(q).length(), 0.0001).toVar();
+    const plant = step(0.5, canopy).toVar();
+    const leafFade = smoothstep(0.25, 0.6, footprint.div(LEAF)).oneMinus().toVar();
+    const clumpFade = smoothstep(0.25, 0.6, footprint.div(CLUMP)).oneMinus().toVar();
+    const leaf = float(0).toVar();
+    If(leafFade.greaterThan(0), () => {
+      leaf.assign(
+        noise(p.div(LEAF) as unknown as V2)
+          .sub(0.5)
+          .mul(leafFade),
+      );
+    });
+    If(clumpFade.greaterThan(0), () => {
+      leaf.addAssign(
+        noise(p.div(CLUMP).add(17) as unknown as V2)
+          .sub(0.5)
+          .mul(0.7)
+          .mul(clumpFade),
+      );
+    });
+    const height = clamp(canopy.sub(1), 0, 1);
+    // Boughs: a darker band between tiers, so a crown reads as layered rather than smooth.
+    const tierFade = smoothstep(0.25, 0.6, footprint.div(TIER)).oneMinus().toVar();
+    const tier = float(0).toVar();
+    If(tierFade.greaterThan(0), () => {
+      // The clump noise wobbles each tier so no crown carries regular stripes.
+      const wobble = noise(p.div(CLUMP).add(41) as unknown as V2).sub(0.5);
+      tier.assign(
+        pow(
+          cos(
+            q.y
+              .div(TIER)
+              .add(wobble.mul(0.8))
+              .mul(2 * Math.PI),
+          )
+            .mul(0.5)
+            .add(0.5),
+          3,
+        ).mul(tierFade),
+      );
+    });
+    const occlusion = mix(
+      1,
+      mix(0.5, 1.08, smoothstep(0, 0.95, height)).mul(tier.mul(0.16).oneMinus()),
+      plant,
     );
-  const height = clamp(canopy.sub(1), 0, 1);
-  // Boughs: a darker band between tiers, so a crown reads as layered rather than smooth.
-  const tierFade = smoothstep(0.25, 0.6, footprint.div(TIER)).oneMinus();
-  // The clump noise wobbles each tier so no crown carries regular stripes.
-  const wobble = noise(p.div(CLUMP).add(41) as unknown as V2).sub(0.5);
-  const tier = pow(
-    cos(
-      q.y
-        .div(TIER)
-        .add(wobble.mul(0.8))
-        .mul(2 * Math.PI),
-    )
-      .mul(0.5)
-      .add(0.5),
-    3,
-  ).mul(tierFade);
-  const occlusion = mix(
-    1,
-    mix(0.5, 1.08, smoothstep(0, 0.95, height)).mul(tier.mul(0.16).oneMinus()),
-    plant,
-  );
-  const factor = leaf
-    .mul(mix(0.12, 0.4, plant))
-    .add(1)
-    .mul(occlusion);
+    return leaf
+      .mul(mix(0.12, 0.4, plant))
+      .add(1)
+      .mul(occlusion);
+  })().toVar() as unknown as F;
   const material = new MeshStandardNodeMaterial(parameters());
   material.name = 'worldgen:models';
   const color = materialColor as unknown as Node<'vec4'>;
@@ -188,10 +477,19 @@ export async function createScatterMaterialAsync(
 /**
  * Write the `canopy` attribute: relative height for plants (1 at the base to 2 at the top), 0 for
  * everything else. Every geometry the scatter material draws carries it, so all share a program.
+ * A geometry without atlas coordinates also gets the solid `uv` (see `SCATTER_SOLID_UV`).
  */
 export function setScatterCanopy(geometry: THREE.BufferGeometry, plant: boolean): void {
-  if (geometry.getAttribute(SCATTER_CANOPY_ATTRIBUTE) !== undefined) return;
   const position = geometry.getAttribute('position');
+  if (geometry.getAttribute('uv') === undefined) {
+    const uvs = new Float32Array((position?.count ?? 0) * 2);
+    for (let i = 0; i < uvs.length; i += 2) {
+      uvs[i] = SCATTER_SOLID_UV[0];
+      uvs[i + 1] = SCATTER_SOLID_UV[1];
+    }
+    geometry.setAttribute('uv', new THREE.BufferAttribute(uvs, 2));
+  }
+  if (geometry.getAttribute(SCATTER_CANOPY_ATTRIBUTE) !== undefined) return;
   const values = new Float32Array(position?.count ?? 0);
   if (plant && position !== undefined && position.count > 0) {
     if (geometry.boundingBox === null) geometry.computeBoundingBox();

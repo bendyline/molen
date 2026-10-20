@@ -717,9 +717,13 @@ async function main(): Promise<void> {
   let performanceLevel = automaticQuality ? 3 : earthQualityLevel(quality);
   const qualityController = new AdaptiveQualityController({ initialLevel: performanceLevel });
   const memoryBudget = earthMemoryBudget();
+  // The tier's object error; the frame loop scales it with height above the ground.
+  let objectPixelError = automaticQuality
+    ? earthPerformanceTier(performanceLevel).objectPixelError
+    : 2;
   const lodPolicy: ScreenSpaceLodPolicy = {
     viewportHeight: window.innerHeight,
-    maxPixelError: automaticQuality ? earthPerformanceTier(performanceLevel).objectPixelError : 2,
+    maxPixelError: objectPixelError,
   };
   const content = await contentLoad;
   const surfaceRenderer = createSurfaceControls(quality, content.parkedVehicles);
@@ -776,7 +780,9 @@ async function main(): Promise<void> {
   startupStage('renderer');
   // Ambient occlusion (WebGPU): creases, corners and the ground at building and tree bases darken
   // a little. `?ao=0` turns it off for comparison.
-  viewer.renderer.setAmbientOcclusion(params.get('ao') !== '0');
+  const occlusionWanted = params.get('ao') !== '0';
+  viewer.renderer.setAmbientOcclusion(occlusionWanted);
+  let occlusionOn = occlusionWanted;
   const waterMaterial = await createTerrainWaterMaterialAsync(
     {
       color: EARTH_WATER_COLOR,
@@ -790,6 +796,8 @@ async function main(): Promise<void> {
   startupStage('water-material');
   // One ground material for terrain and landcover, with world-space variation; `?ground=flat`
   // keeps the solid vertex colors for comparison.
+  // TEMP(gfx-pass): ?gfxOff=ground,pave,scatter,weather splits ?ground=flat for benchmarks.
+  const gfxOff = new Set((params.get('gfxOff') ?? '').split(','));
   const groundMaterial =
     params.get('ground') === 'flat'
       ? undefined
@@ -802,15 +810,17 @@ async function main(): Promise<void> {
   const pavementMaterial = groundMaterial
     ? await createTerrainPavementMaterialAsync({}, viewer.renderer.backend)
     : undefined;
-  surfaceRenderer.setMaterial(pavementMaterial);
+  surfaceRenderer.setMaterial(gfxOff.has('pave') ? undefined : pavementMaterial);
   // Trees, shrubs and props: leaf speckle and crown occlusion (also off with `?ground=flat`).
-  const scatterMaterial = groundMaterial
-    ? await createScatterMaterialAsync(viewer.renderer.backend)
-    : undefined;
+  const scatterMaterial =
+    groundMaterial && !gfxOff.has('scatter')
+      ? await createScatterMaterialAsync(viewer.renderer.backend)
+      : undefined;
   // Buildings: facade tone drift, rain streaks and weathered roofs (also off with `?ground=flat`).
-  const buildingDecorator = groundMaterial
-    ? await createBuildingWeatheringAsync(viewer.renderer.backend)
-    : undefined;
+  const buildingDecorator =
+    groundMaterial && !gfxOff.has('weather')
+      ? await createBuildingWeatheringAsync(viewer.renderer.backend)
+      : undefined;
   performanceStatus.dataset.backend = viewer.renderer.backend;
   performanceStatus.dataset.fallbackReason = viewer.renderer.fallbackReason ?? '';
   const semanticDemo = loaded.synthetic;
@@ -845,7 +855,7 @@ async function main(): Promise<void> {
         // WebGL pays full price for every building and plant draw, so it keeps a compact scene.
         compact: viewer.renderer.backend === 'webgl',
         worker: useWorker,
-        ...(fieldMaterial ? { groundMaterial: fieldMaterial } : {}),
+        ...(fieldMaterial && !gfxOff.has('ground') ? { groundMaterial: fieldMaterial } : {}),
         ...(scatterMaterial ? { modelMaterial: scatterMaterial } : {}),
         ...(buildingDecorator ? { buildingDecorator } : {}),
         lodPolicy,
@@ -1113,7 +1123,7 @@ async function main(): Promise<void> {
           : {}),
         createTileGroup: () => viewer.renderer.createRenderGroup(),
         morphMilliseconds: params.has('freeze') ? 0 : 180,
-        ...(groundMaterial ? { material: groundMaterial } : {}),
+        ...(groundMaterial && !gfxOff.has('ground') ? { material: groundMaterial } : {}),
         // Ground, roads and buildings receive sun shadows; tall layer parts cast them.
         shadows: shadowsWanted,
         shadowCasterHeight: EARTH_SHADOW_CASTER_HEIGHT,
@@ -1216,7 +1226,8 @@ async function main(): Promise<void> {
   const applyPerformanceLevel = (): void => {
     const tier = earthPerformanceTier(performanceLevel);
     if (automaticQuality) quality = tier.quality;
-    lodPolicy.maxPixelError = automaticQuality ? tier.objectPixelError : 2;
+    objectPixelError = automaticQuality ? tier.objectPixelError : 2;
+    lodPolicy.maxPixelError = objectPixelError;
     const budget = automaticQuality ? tier.terrain : terrainPyramidBudgetForQuality(quality);
     // Explicit undefined clears the automatic byte cap when the user takes manual control.
     pyramidEarth?.stream.setBudget({ ...budget, maxResidentBytes: budget.maxResidentBytes });
@@ -1330,6 +1341,9 @@ async function main(): Promise<void> {
     sampleTerrainTunnel(stream.object, x, camera.pos[1], z)?.floor ??
     aircraft?.groundHeight(x, z) ??
     stream.sampleHeight(x, z);
+  // TEMP(gfx-pass): capture harness access; remove before hand-off.
+  if (params.has('debugScene'))
+    (globalThis as Record<string, unknown>).__explorer = { viewer, camera, sampleHeight };
   // Cars and aircraft: definitions from the entities pack's types, models read from the same pack
   // the first time each is shown.
   const loadEntityModel = async (id: string): Promise<THREE.Object3D> =>
@@ -1995,6 +2009,21 @@ async function main(): Promise<void> {
           sampleHeight(camera.pos[0], camera.pos[2]) ?? 0,
         ),
       );
+    }
+    const above = camera.pos[1] - (sampleHeight(camera.pos[0], camera.pos[2]) ?? 0);
+    // From high up a two-pixel error budget buys detail nobody can see, paid for on the GPU. Above
+    // 100 m over the ground the budget grows with height (up to four times), so the trees and
+    // buildings below hand over to their coarser levels sooner; street and rooftop views keep it.
+    lodPolicy.maxPixelError = objectPixelError * Math.min(4, Math.max(1, above / 100));
+    // Ambient occlusion darkens creases a meter or two across: below a pixel from high up, where
+    // its passes still cost a full-screen share of the frame. Off above 180 m over the ground,
+    // back on below 120 m.
+    if (occlusionWanted) {
+      const on = occlusionOn ? above < 180 : above < 120;
+      if (on !== occlusionOn) {
+        viewer.renderer.setAmbientOcclusion(on);
+        occlusionOn = on;
+      }
     }
     if (firstFrame) startupStage('sky');
     const fog = viewer.renderer.scene.fog;

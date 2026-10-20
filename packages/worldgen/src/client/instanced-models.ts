@@ -14,6 +14,27 @@ import { createPlantGeometry } from './plant-geometry';
 import { createScatterMaterial, setScatterCanopy } from './scatter-material';
 import { createVegetationGeometry } from './vegetation';
 
+/**
+ * Builtins drawn with the procedural plant generator: a garden shrub, about 1.9 m and 2.6 m
+ * across at scale 1, gets leaf clusters and leaf cards like the trees rather than three lumps.
+ */
+const BUILTIN_PLANTS: Readonly<Record<string, PlantPreset>> = {
+  'builtin:shrub': {
+    id: 'molen.builtin.shrub',
+    version: 1,
+    title: 'Garden shrub',
+    family: 'broadleaf',
+    form: 'round',
+    height: 1.9,
+    width: 2.6,
+    crownBase: 0.08,
+    stemRadius: 0.05,
+    lean: 0,
+    foliage: '#628247',
+    bark: '#5b4a39',
+  },
+};
+
 export interface PreparedModel {
   ref: string;
   geometry: THREE.BufferGeometry;
@@ -264,7 +285,7 @@ export class ModelLibrary {
   }
 
   private async load(ref: string, coarse: boolean | 'distant'): Promise<PreparedModel> {
-    const plant = this.plants[ref];
+    const plant = this.plants[ref] ?? BUILTIN_PLANTS[ref];
     if (plant !== undefined) {
       const geometry = createPlantGeometry(plant, coarse);
       setScatterCanopy(geometry, true);
@@ -273,12 +294,14 @@ export class ModelLibrary {
         geometry,
         material: this.material,
         bounds: geometry.boundingBox ?? new THREE.Box3(),
-        builtin: false,
+        builtin: ref.startsWith('builtin:'),
       };
     }
     if (ref.startsWith('builtin:')) {
       const geometry = builtinGeometry(ref.slice('builtin:'.length), coarse, this.landmarks);
       if (geometry === undefined) throw new Error(`unknown builtin model "${ref}"`);
+      // Primitive texture coordinates would sample the leaf atlas; builtins draw solid.
+      geometry.deleteAttribute('uv');
       geometry.computeBoundingBox();
       setScatterCanopy(geometry, /^(tree|shrub|bush|hedge)/.test(ref.slice('builtin:'.length)));
       return {

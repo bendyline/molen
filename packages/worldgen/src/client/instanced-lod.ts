@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { PLACEMENT_STRIDE, type PlacementSet } from '../kernel/types';
 import { createInstancedPlacements } from './instanced-box';
 import type { PreparedModel } from './instanced-models';
+import { SCATTER_SOLID_UV } from './scatter-material';
 import { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './screen-space-lod';
 
 export interface InstancedPlacementLodOptions {
@@ -14,12 +15,64 @@ export interface InstancedPlacementLodOptions {
   screenSpace?: ScreenSpaceLodPolicy;
 }
 
+const cardFree = new WeakMap<THREE.BufferGeometry, boolean>();
+const opaqueTwins = new WeakMap<THREE.Material, THREE.Material>();
+
+/** True when no vertex samples the leaf atlas: every face takes the solid block (or has no UV). */
+function withoutCards(geometry: THREE.BufferGeometry): boolean {
+  let free = cardFree.get(geometry);
+  if (free === undefined) {
+    const uv = geometry.getAttribute('uv');
+    free = true;
+    // Atlas cards sit left of the solid block, which every closed surface samples.
+    const solid = SCATTER_SOLID_UV[0] - 0.02;
+    if (uv !== undefined)
+      for (let i = 0; i < uv.count; i++)
+        if (uv.getX(i) < solid) {
+          free = false;
+          break;
+        }
+    cardFree.set(geometry, free);
+  }
+  return free;
+}
+
+/**
+ * The material for a level: an alpha-tested material's opaque twin when the level has no cards.
+ * A shader that can discard (alpha test, alpha to coverage) switches off hidden-surface removal
+ * on tile-based GPUs, so a distant forest drawn with the card material shaded every layer of
+ * crowns behind the first: on an Apple M2 that was half of a residential view's frame time.
+ * The twin keeps the shader hooks and shares one program across batches.
+ */
+function levelMaterial(material: THREE.Material, geometry: THREE.BufferGeometry): THREE.Material {
+  if (!(material.alphaTest > 0 || material.alphaToCoverage) || !withoutCards(geometry))
+    return material;
+  let twin = opaqueTwins.get(material);
+  if (twin === undefined) {
+    const opaque = material.clone();
+    opaque.onBeforeCompile = material.onBeforeCompile;
+    opaque.customProgramCacheKey = material.customProgramCacheKey;
+    opaque.alphaTest = 0;
+    opaque.alphaToCoverage = false;
+    opaque.name = `${material.name}:opaque`;
+    material.addEventListener('dispose', () => opaque.dispose());
+    opaqueTwins.set(material, opaque);
+    twin = opaque;
+  }
+  return twin;
+}
+
 /**
  * One instanced mesh whose shared geometry follows a projected-error LOD choice. WebGPU builds a
  * node program per InstancedMesh (Three keys instanced render objects by object), so a set drawn
  * as three level meshes paid three builds, about 10 ms of main thread each, for one visible draw.
- * Levels here share the material and attribute layout, so swapping the geometry keeps the
- * program; a level without geometry hides the mesh. The distant level never casts shadows.
+ * Levels here share the attribute layout, so swapping the geometry keeps the program; a level
+ * without leaf cards swaps to the material's opaque twin (one more program, built when a batch
+ * first draws that level); a level without geometry hides the mesh. The distant level never
+ * casts shadows.
+ * Distance is measured to the batch's bounds, not its bounding sphere: a kilometer-wide batch's
+ * sphere reaches hundreds of meters above the canopy, so an aerial camera stayed inside it and drew
+ * every plant in the batch at near detail.
  */
 class InstancedDetailSwitch extends THREE.LOD {
   private selected = 0;
@@ -27,10 +80,11 @@ class InstancedDetailSwitch extends THREE.LOD {
   private castsShadow: boolean | undefined;
   constructor(
     readonly policy: ScreenSpaceLodPolicy,
-    readonly radius: number,
+    readonly bounds: THREE.Box3,
     readonly mesh: THREE.InstancedMesh,
     private readonly geometries: readonly (THREE.BufferGeometry | undefined)[],
     private readonly errors: readonly number[],
+    private readonly materials: readonly THREE.Material[] = [],
   ) {
     super();
     this.add(mesh);
@@ -54,12 +108,10 @@ class InstancedDetailSwitch extends THREE.LOD {
     let level = 0;
     if (perspective.isPerspectiveCamera) {
       const focal = height / (2 * Math.tan((perspective.fov * Math.PI) / 360));
-      const distance =
-        camera.getWorldPosition(cameraPosition).distanceTo(this.getWorldPosition(lodPosition)) /
-        perspective.zoom;
+      const local = this.worldToLocal(camera.getWorldPosition(cameraPosition));
+      const distance = (this.bounds.distanceToPoint(local) * scale) / perspective.zoom;
       for (let i = 1; i < this.geometries.length; i++) {
-        const threshold =
-          scale * (this.radius / perspective.zoom + ((this.errors[i] ?? 0) * focal) / error);
+        const threshold = (scale * (this.errors[i] ?? 0) * focal) / error;
         // 15% hysteresis toward the level already shown, as THREE.LOD does.
         if (distance >= (this.selected >= i ? threshold * 0.85 : threshold)) level = i;
         else break;
@@ -79,11 +131,12 @@ class InstancedDetailSwitch extends THREE.LOD {
     const geometry = this.geometries[level];
     this.mesh.visible = geometry !== undefined;
     if (geometry !== undefined && this.mesh.geometry !== geometry) this.mesh.geometry = geometry;
+    const material = this.materials[level];
+    if (material !== undefined && this.mesh.material !== material) this.mesh.material = material;
     this.mesh.castShadow = level < this.geometries.length - 1 && this.castsShadow;
   }
 }
 const cameraPosition = new THREE.Vector3();
-const lodPosition = new THREE.Vector3();
 
 /** No per-frame instance uploads: LOD switches shared models, with 15% transition hysteresis. */
 export function createInstancedPlacementLod(
@@ -158,15 +211,26 @@ export function createInstancedPlacementLod(
     }
     if (options.screenSpace) {
       const geometries: (THREE.BufferGeometry | undefined)[] = [models[0].geometry];
+      const materials = [levelMaterial(models[0].material, models[0].geometry)];
       const errors = [0];
       for (let level = 1; level < models.length; level++) {
         const model = models[level] as PreparedModel;
         if (model.geometry === models[level - 1]?.geometry) continue;
         geometries.push(drawn(model) ? model.geometry : undefined);
+        materials.push(levelMaterial(model.material, model.geometry));
         errors.push(([0.45, 2][level - 1] as number) * largestScale);
         if (!drawn(model)) break;
       }
-      const lod = new InstancedDetailSwitch(options.screenSpace, radius, first, geometries, errors);
+      first.material = materials[0] as THREE.Material;
+      const bounds = (first.boundingBox as THREE.Box3).clone();
+      const lod = new InstancedDetailSwitch(
+        options.screenSpace,
+        bounds,
+        first,
+        geometries,
+        errors,
+        materials,
+      );
       lod.name = `${name}:${key}`;
       lod.position.copy(center);
       group.add(lod);
@@ -197,7 +261,11 @@ export function createInstancedPlacementLod(
         else lod.addLevel(nothing, (distances[level - 1] as number) + radius, 0.15);
         break;
       }
-      const mesh = new THREE.InstancedMesh(model.geometry, model.material, 0);
+      const mesh = new THREE.InstancedMesh(
+        model.geometry,
+        levelMaterial(model.material, model.geometry),
+        0,
+      );
       mesh.count = first.count;
       mesh.instanceMatrix = first.instanceMatrix;
       mesh.instanceColor = first.instanceColor;

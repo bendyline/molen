@@ -16,7 +16,7 @@ import {
 } from './footprint';
 import { distancePointToSegment, ringBounds } from './geometry2d';
 import { createInteriorSite } from './interior-site';
-import type { InteriorCatalogDoc } from './interior-types';
+import type { BuildingOpening, InteriorCatalogDoc } from './interior-types';
 import type { MeshBufferBuilder } from './mesh-buffers';
 import { type PropPlacement, placeProps, type RidgeLine, yawForDirection } from './props';
 import { type BuildingRecipe, resolveBuildingRecipe, visibleProps } from './recipe';
@@ -598,6 +598,14 @@ export function generateBuilding(
         ridges,
         frameYaw: -dmath.atan2(analysis.frame.s, analysis.frame.c),
         salt: aspectSeed(recipe.seed, 'props'),
+        ground: (x, z) => input.ground.sampleHeight(x, z),
+        clear: entranceClearance(
+          outline,
+          site?.openings,
+          recipe.facade.details?.entrance?.width,
+          seams,
+          wallBase + recipe.groundFloorHeight,
+        ),
       },
       props,
     );
@@ -632,4 +640,39 @@ export function generateBuilding(
     }
   }
   return { analysis, recipe, record, props, ...(facade !== undefined ? { facade } : {}) };
+}
+
+/**
+ * Outer-ring stretches that ground props keep clear: the interior's ground-floor doors, or else
+ * the facade's fallback entrance, centred on the longest wall that is not a cut seam.
+ */
+function entranceClearance(
+  outline: readonly Vec2[],
+  openings: readonly BuildingOpening[] | undefined,
+  entranceWidth: number | undefined,
+  seams: ReadonlySet<number> | undefined,
+  groundTop: number,
+): { edge: number; start: number; end: number }[] {
+  const doors = (openings ?? []).filter(
+    (opening) => opening.kind === 'door' && opening.bottom < groundTop,
+  );
+  if (doors.length > 0) return doors.map(({ edge, start, end }) => ({ edge, start, end }));
+  if (entranceWidth === undefined) return [];
+  let longest: { edge: number; length: number } | undefined;
+  for (let edge = 0; edge < outline.length; edge++) {
+    if (seams?.has(edge)) continue;
+    const a = outline[edge] as Vec2;
+    const b = outline[(edge + 1) % outline.length] as Vec2;
+    const length = Math.hypot(b[0] - a[0], b[1] - a[1]);
+    if (longest === undefined || length > longest.length) longest = { edge, length };
+  }
+  return longest === undefined
+    ? []
+    : [
+        {
+          edge: longest.edge,
+          start: (longest.length - entranceWidth) / 2,
+          end: (longest.length + entranceWidth) / 2,
+        },
+      ];
 }

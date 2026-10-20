@@ -130,6 +130,46 @@ describe('pavement surface detail', () => {
     road?.geometry.dispose();
   });
 
+  it('stops fraying where a band edge lies over other paving', () => {
+    const path = terrainLinePath(
+      [
+        [0.1, 0.5],
+        [0.9, 0.5],
+      ],
+      100,
+    );
+    const builder = new TerrainSurfaceMeshBuilder(context());
+    appendTerrainLineBand(builder, path, {
+      width: 2,
+      offset: -5,
+      color: '#c0c0c0',
+      surface: TERRAIN_SURFACE_KIND.sidewalk,
+      fray: 'outer',
+    });
+    // A driveway crosses the band's middle third.
+    builder.unfraySince(0, (x) => x < 35 || x > 65);
+    const detail = builder.mesh('sidewalk')?.geometry.getAttribute('surfaceDetail');
+    const position = builder.mesh('sidewalk')?.geometry.getAttribute('position');
+    if (!detail || !position) throw new Error('expected a sidewalk mesh');
+    let kept = 0,
+      cleared = 0;
+    for (let t = 0; t < detail.count; t += 3) {
+      const flags = [t, t + 1, t + 2].map((i) => detail.getW(i));
+      const xs = [t, t + 1, t + 2].map((i) => position.getX(i));
+      // Each triangle keeps one flag, so interpolation never blends two.
+      expect(new Set(flags).size).toBe(1);
+      if (xs.some((x) => x >= 35 && x <= 65)) {
+        expect(flags[0]).toBe(0);
+        cleared++;
+      } else {
+        expect(flags[0]).toBe(1);
+        kept++;
+      }
+    }
+    expect(kept).toBeGreaterThan(0);
+    expect(cleared).toBeGreaterThan(0);
+  });
+
   it('drops a curb face from the inner band edge to the road, facing the line', () => {
     const path = terrainLinePath(
       [

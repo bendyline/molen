@@ -36,9 +36,10 @@ Three constraints decide the style, and every rule below follows from one of the
 3. **Fit any footprint.** Procedural buildings are generated from whatever outline the map
    supplies: L-shapes, courtyards, slivers and curves. A style has to stay coherent on all of
    them, so it is built from simple, rule-driven parts.
-4. **Low-poly with levels of detail.** Cars are a little chunky, trees show their facets, and
-   buildings carry few adornments. LODs add detail as the camera approaches. High-priority
-   entities, such as the vehicle the player is in, earn more polygons than ambient copies.
+4. **Low-poly with levels of detail.** Cars are a little chunky, trunks and distant trees show
+   their facets, and buildings carry few adornments. LODs add detail as the camera approaches.
+   High-priority entities, such as the vehicle the player is in, earn more polygons than ambient
+   copies.
 5. **Three rendering modes.** Economy, Medium and High (see
    [Rendering modes](#rendering-modes)) change resolution, shadows and level of detail. They
    never change the palette or the style, so every mode looks like the same world.
@@ -268,15 +269,23 @@ gets variation from cheap sources rather than from per-polygon textures:
   16 m patches, 4 m and 2 m clumps, 1 m grain, half-meter grain and, within a few meters of a
   street-level camera, blade-scale grain about 9 cm across, plus
   straw-colored dry areas, darker lush ones, a gentle drift between yellower and bluer greens
-  and the odd speck of bare soil, on green ground only, so paving, sand and rock keep their hue.
-  Green ground also loses a twelfth of its saturation, so sunlit turf reads as grass, not lime.
+  and small, faint specks of bare soil, on green ground only, so paving, sand and rock keep their
+  hue. Turf mottled darker turns slightly bluer, lighter turf slightly yellower, and on turf the
+  4 m, 2 m, 1 m and half-meter layers are calmed in favor of quarter-meter grain: blotches from
+  half a meter to a few meters across, and a strong blue/yellow split between them, read as
+  camouflage from 10–40 m. Past about 18 m the layers from 4 m patches down to quarter-meter grain
+  ease by half and the soil specks by more (up close they read as grass, from a rooftop as
+  blobs), and turf mottle eases by a further 55% between 40 and 160 m away, where a lawn reads
+  as an even sward.
+  Green ground also loses a sixth of its saturation, so sunlit turf reads as grass, not lime.
   The same noise raises a few centimeters of relief that catches the sun. Finer layers fade out
   before they fall below a pixel. It costs no geometry, texture or upload. The Earth view uses
   it by default; the World Explorer's `?ground=flat` turns it off for comparison.
 - **Soft class boundaries.** Neighboring land classes interpenetrate over about 9 m along a
   ragged, noise-driven edge instead of meeting along a straight polygon edge, broken into
-  half-meter tufts and then blade-scale specks close to the camera; mapped fields keep their
-  crisp edges. Landcover meshes carry the pair of classes and the blend weight per vertex.
+  half-meter tufts and then blade-scale specks close to the camera; within the last few meters
+  the edge keeps only its broad wander, where tufts would read as torn paper. Mapped fields keep
+  their crisp edges. Landcover meshes carry the pair of classes and the blend weight per vertex.
 - **Ground cover.** Knee-high tussocks, ferns, small shrubs and stones from scatter rules on the
   `groundcover` layer (see [worldgen](worldgen.md)). They draw near the camera only, under 70
   triangles each, from their own budget so they never thin the trees, and not at Economy quality.
@@ -290,8 +299,8 @@ roads, oil stains in lots, saw-cut slabs on sidewalks and curbs, a paver grid on
 markings worn through to the asphalt. It reads coordinates the surface builder stores along each
 band, so the detail follows the road instead of the world grid. Where paving meets bare ground (a
 sidewalk's lawn side, a footpath, a shoulder, the rim of a lot) its edge frays into the ground
-instead of ending on a ruled line: grass blades over cast paving, a wavier 10 cm edge on dirt
-and gravel. See
+instead of ending on a ruled line: grass blades and tufts of lawn over cast paving, a wavier
+10 cm edge on dirt and gravel. See
 [surface rendering](surface-rendering.md).
 
 ## Vehicles, aircraft, trees and figures
@@ -302,19 +311,30 @@ and gravel. See
 - **Vehicles are chunky but true.** Wheel arches, glasshouse and stance carry the type. Paint is
   one shared material with per-instance color from a palette of real car colors. Glass is one
   dark material.
-- **Trees are faceted.** Use conifers of 5–14 sides by detail level and icosahedral crowns with
-  flat shading, a slightly darker base, and varied heights. Generated conifers stack drooping bough tiers, each
-  skirt flaring over the narrower top of the one below, so they read as firs and cedars rather
-  than smooth cones. Never use alpha-card foliage. The shared scatter
-  material (`createScatterMaterialAsync` from `@bendyline/molen-worldgen/client`) adds the rest
-  in the shader: leaf speckle and clumps, irregular bough tiers, and occlusion from the base of
-  the crown to a lighter tip, read from a per-vertex `canopy` height the model library writes.
+- **Trees are faceted, with leaf-card crowns.** Use conifers of 5–12 sides by detail level,
+  with flat shading, a slightly darker base, and varied heights. Generated conifers stack
+  drooping bough tiers, each skirt flaring over the narrower top of the one below, so they read
+  as firs and cedars rather than smooth cones; up close and at medium distance, fir-spray bough
+  cards lie along each skirt from its neck to just past its rim (thirty-seven up close, ten at
+  medium distance), so the skirts show needles and their edges are feathered rather than cut in
+  facets. Broadleaf crowns up close and at medium distance are leaf cards: small double-sided
+  quads that the alpha test cuts out along a sprig of leaves, crossed in clusters over the
+  crown's shell (twenty clusters of four cards up close, six of three at medium distance) around
+  a solid core in the crown's own shade, so the outline breaks into sprigs of leaves and the gaps
+  show foliage rather than sky. Plants are sized by their foliage, not by the cards' clear
+  corners. A distant crown is one faceted volume. Cards are for tree crowns only, and only
+  through the shared scatter material: no alpha blending, no per-species textures, no cards on
+  buildings, fences or ground cover. That material (`createScatterMaterialAsync` from
+  `@bendyline/molen-worldgen/client`) carries the one foliage atlas, generated at startup
+  (512×256: a sprig of leaves, a fir spray, and an opaque white block that every other surface
+  samples), cuts the cards at half alpha with alpha to coverage, and keeps the share of texels
+  that pass at every mip level, so distant cards do not thin out. It adds the
+  rest in the shader: leaf speckle and clumps, irregular bough tiers, and occlusion from the base
+  of the crown to a lighter tip, read from a per-vertex `canopy` height the model library writes.
   Generated crowns bend their foliage normals toward the crown's rounded volume, so a crown
-  shades as one soft mass with a hint of its facets. A broadleaf crown is built from many small
-  leaf clusters spread over its shell (twenty small, lumpy clusters up close, five at medium
-  distance), so its outline reads as clumped foliage rather than a few balls on sticks. Each
-  cluster shades smoothly from its underside to its top rather than in flat bands, catches the
-  light a little differently from its neighbors, and the core cluster sits in the crown's shade. Each scattered plant drifts a little in hue,
+  shades as one soft mass. Each cluster catches the light a little differently from its
+  neighbors, its cards darken toward their lower edge, and the core sits in the crown's shade.
+  Cards cast leafy shadows through the same alpha test. Each scattered plant drifts a little in hue,
   warmth and shade, so an autumn stand ranges from yellow to russet rather than one swatch.
 - **Generated buildings weather in the shader.** The shared facade and roof textures repeat on
   every house, so `createBuildingWeatheringAsync` (`@bendyline/molen-worldgen/client`, passed as
@@ -322,11 +342,13 @@ and gravel. See
   rain streaks down walls and lays weathered patches with a touch of lichen on roofs. Do not bake
   that grime into the shared textures; authored landmark models carry their own.
 - **Houses carry their own details.** North American homes have dark shutters, the odd dormer
-  and a chimney, all in the shared trim and roof materials, so they cost vertices but no draws.
-  The High tier's finest tiles budget 850,000 building vertices so a dense suburban block stays
+  and a chimney, and lap-sided homes case their outside corners with trim boards
+  (`cornerBoards`), all in the shared trim and roof materials, so they cost vertices but no draws.
+  The High tier's finest tiles budget 900,000 building vertices so a dense suburban block stays
   fully detailed near the camera instead of dropping to simplified stand-ins. On WebGL, which
-  draws every building at full cost in both the shadow and main passes, the Earth view keeps
-  the compact 420,000 (`compactBuildings`). The regional shop
+  pays full price for every building and plant draw, the Earth view and the explorer ask for a
+  compact scene (`compact` on the semantic renderers): 320,000 building vertices and half the
+  plant scatter. The regional shop
   and civic styles put a full-size rooftop unit on about every 150 m² of flat roof (2–14 a roof).
 - **Figures stay stylized.** Mitten hands, disc eyes and block shoes keep them out of the uncanny
   valley; see [figures](figures.md).

@@ -35,6 +35,8 @@ export interface WorldgenGenerateRequest {
   budgets?: Partial<WorldgenBudgets>;
   features?: { buildings?: boolean; scatter?: boolean; interiors?: boolean };
   tierOffset?: number;
+  /** Extra keep multiplier on the plant scatter (default 1). */
+  keep?: number;
 }
 
 /** Produces tile output somewhere: in a worker, in-thread, or from a cache in front of either. */
@@ -131,6 +133,7 @@ export function createWorldgenWorkerBridge(
         ...(request.budgets !== undefined ? { budgets: request.budgets } : {}),
         ...(request.features !== undefined ? { features: request.features } : {}),
         ...(request.tierOffset !== undefined ? { tierOffset: request.tierOffset } : {}),
+        ...(request.keep !== undefined ? { keep: request.keep } : {}),
       };
       return new Promise((resolve, reject) => {
         const onAbort = (): void => {

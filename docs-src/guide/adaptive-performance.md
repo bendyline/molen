@@ -63,7 +63,10 @@ to preserve drape alignment; newly admitted terrain uses the current cap.
 viewport height, camera field of view/zoom, conservative spatial bounds and a configurable pixel
 error. The same mutable policy updates resident objects without generation or instance uploads.
 Perspective and orthographic cameras are supported, including parent scale and floating origins.
-Transitions have 15% hysteresis.
+Transitions have 15% hysteresis. World Explorer scales the tier's pixel error with height above
+the ground, from 100 m up (three times the budget at 300 m, at most four), so a flying camera
+spends no GPU time on tree and building detail below a pixel; street and rooftop views keep the
+tier's budget.
 
 Builtin vegetation uses three shared models in spatial cells; the far fir/conifer is 12 triangles
 and the far broadleaf crown is 20. Building cells use authored materials nearby, a single

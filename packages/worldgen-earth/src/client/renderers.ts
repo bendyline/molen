@@ -87,7 +87,7 @@ import type { WorldgenGenerator } from './worker-bridge';
  */
 const FOOTPRINT_SIZE_RATIO = 1.6;
 /** Share of the plant scatter a compact scene keeps (see `compact`). */
-const COMPACT_SCATTER_KEEP = 0.7;
+const COMPACT_SCATTER_KEEP = 0.5;
 const FOOTPRINT_SLACK = 12;
 
 export interface WorldgenRendererOptions {
@@ -122,7 +122,7 @@ export interface WorldgenRendererOptions {
   quality?: WorldgenQualityPreset;
   /**
    * A compact scene for renderers without the WebGPU path's draw optimizations, such as WebGL:
-   * High's building geometry at its compact budget (about half) and 70% of the plant scatter.
+   * High's building geometry at its compact budget (under half) and half the plant scatter.
    */
   compact?: boolean;
   budgets?: Partial<WorldgenBudgets>;

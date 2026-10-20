@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { createInstancedPlacementLod } from '../../src/client/instanced-lod';
-import { ModelLibrary } from '../../src/client/instanced-models';
+import { ModelLibrary, type PreparedModel } from '../../src/client/instanced-models';
 import { disposeWorldgenObject } from '../../src/client/upload';
 import { PLACEMENT_STRIDE, type PlacementSet } from '../../src/kernel/types';
 
@@ -169,5 +169,93 @@ describe('camera-distance instance LOD', () => {
     expect(mesh.castShadow).toBe(true);
     disposeWorldgenObject(root);
     library.dispose();
+  });
+
+  it('measures detail distance to a wide batch from its bounds, not its bounding sphere', async () => {
+    const library = new ModelLibrary();
+    const ref = 'builtin:tree.deciduous.oak';
+    const models = [
+      await library.prepare(ref),
+      await library.prepare(ref, true),
+      await library.prepare(ref, 'distant'),
+    ] as const;
+    // Two trees 1.2 km apart: the batch's sphere reaches about 600 m above the ground.
+    const set: PlacementSet = {
+      setId: 'forest',
+      modelRef: ref,
+      count: 2,
+      data: new Float32Array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1200, 0, 0, 0, 1, 1, 1, 1, 1, 1]),
+    };
+    const root = createInstancedPlacementLod(set, models, {
+      cellSize: Number.POSITIVE_INFINITY,
+      screenSpace: { viewportHeight: 900, maxPixelError: 2 },
+    });
+    const lod = root.children[0] as THREE.LOD;
+    root.updateMatrixWorld(true);
+    const camera = new THREE.PerspectiveCamera(60, 16 / 9, 0.1, 100_000);
+    // Standing among the trees keeps near detail across the whole batch.
+    camera.position.copy(lod.position).add(new THREE.Vector3(0, 2, 0));
+    camera.updateMatrixWorld();
+    lod.update(camera);
+    expect(lod.getCurrentLevel()).toBe(0);
+    // 400 m overhead is inside the sphere but far above every tree.
+    camera.position.copy(lod.position).add(new THREE.Vector3(0, 400, 0));
+    camera.updateMatrixWorld();
+    lod.update(camera);
+    expect(lod.getCurrentLevel()).toBe(1);
+    disposeWorldgenObject(root);
+    library.dispose();
+  });
+
+  it('draws a level without leaf cards with an opaque twin of an alpha-tested material', () => {
+    const material = new THREE.MeshStandardMaterial({ alphaTest: 0.5, alphaToCoverage: true });
+    const model = (u: number, size: number): PreparedModel => {
+      const geometry = new THREE.BoxGeometry(size, size, size);
+      const uv = geometry.getAttribute('uv') as THREE.BufferAttribute;
+      for (let i = 0; i < uv.count; i++) uv.setXY(i, i === 0 ? u : 0.97, 0.5);
+      return {
+        ref: 'plant',
+        geometry,
+        material,
+        bounds: new THREE.Box3(new THREE.Vector3(-1, 0, -1), new THREE.Vector3(1, 2, 1)),
+        builtin: false,
+      };
+    };
+    // Near and medium carry a card (a vertex left of the atlas's solid block); far does not.
+    const models = [model(0.2, 2), model(0.2, 1.5), model(0.97, 1)] as const;
+    const set: PlacementSet = {
+      setId: 'forest',
+      modelRef: 'plant',
+      count: 1,
+      data: new Float32Array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1]),
+    };
+    const root = createInstancedPlacementLod(set, models, {
+      cellSize: Number.POSITIVE_INFINITY,
+      screenSpace: { viewportHeight: 900, maxPixelError: 2 },
+    });
+    const lod = root.children[0] as THREE.LOD;
+    const mesh = lod.children[0] as THREE.InstancedMesh;
+    root.updateMatrixWorld(true);
+    const camera = new THREE.PerspectiveCamera(60, 16 / 9, 0.1, 100_000);
+    camera.position.set(0, 2, 10);
+    camera.updateMatrixWorld();
+    lod.update(camera);
+    expect(lod.getCurrentLevel()).toBe(0);
+    expect(mesh.material).toBe(material);
+    camera.position.set(0, 2, 20_000);
+    camera.updateMatrixWorld();
+    lod.update(camera);
+    expect(lod.getCurrentLevel()).toBe(2);
+    const opaque = mesh.material as THREE.MeshStandardMaterial;
+    expect(opaque).not.toBe(material);
+    expect(opaque.alphaTest).toBe(0);
+    expect(opaque.alphaToCoverage).toBe(false);
+    // Coming back restores the card material.
+    camera.position.set(0, 2, 10);
+    camera.updateMatrixWorld();
+    lod.update(camera);
+    expect(mesh.material).toBe(material);
+    disposeWorldgenObject(root);
+    material.dispose();
   });
 });

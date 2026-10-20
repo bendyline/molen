@@ -150,6 +150,23 @@ export class TerrainSurfaceMeshBuilder {
     this.attributes.set('surfaceDetail', entry);
   }
 
+  /**
+   * Stop everything appended since `start` fraying wherever `ground` rejects a vertex: there the
+   * band's edge lies over other paving, not bare ground, and a ragged margin would show a seam.
+   * Whole triangles at a time: the fray flag is interpolated, and a triangle blending two flags
+   * would decode a third (2 and 0 pass through 1, the other edge) and cut holes in the band.
+   */
+  unfraySince(start: number, ground: (x: number, z: number) => boolean): void {
+    const entry = this.attributes.get('surfaceDetail');
+    if (entry === undefined) return;
+    for (let t = start; t + 2 < this.vertexCount; t += 3) {
+      let paved = false;
+      for (let i = t; i < t + 3 && !paved; i++)
+        paved = !ground(this.positions[i * 3] ?? 0, this.positions[i * 3 + 2] ?? 0);
+      if (paved) for (let i = t; i < t + 3; i++) entry.values[i * 4 + 3] = 0;
+    }
+  }
+
   /** Decorate a just-appended feature without coupling the draper to its semantic meaning. */
   attributeSince(
     name: string,

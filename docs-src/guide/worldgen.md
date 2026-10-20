@@ -174,7 +174,10 @@ geometry budget. Shared linear-filtered worldgen textures use mipmaps and anisot
 
 `props` attach pack or builtin models: `roof-ridge` walks the ridge of the dominant wing
 (chimneys), `roof-flat` fills a flat roof with `margin` from every edge (rooftop units),
-`roof-edge` lines the outer edges at the parapet (canales). Prop models are pack assets
+`roof-edge` lines the outer edges at the parapet (canales), and `ground-any` sets models on the
+ground just out from the outer walls, `spacing` apart and `margin` from the corners, spread
+evenly round the building and clear of its entrance (foundation shrubs on regional houses).
+Prop models are pack assets
 (`assets` map, a `molen/asset@1` sidecar next to `model.glb`); the default pack generates its
 materials and prop models from `scripts/generate-pack.mjs` and the build checks they are current.
 Placements come out of the batch as `props:<model>` placement sets, instanced like scatter.
@@ -449,7 +452,13 @@ also uses a dedicated surface worker in the explorer. Archive decoding, scene as
 uploads still happen on the main thread.
 
 A shared `lodPolicy: ScreenSpaceLodPolicy` enables projected-screen-size LOD for vegetation and
-buildings. Buildings retain their structural faces while distant materials and facade details
+buildings. Instanced vegetation measures the camera's distance to each batch's bounds, not to its
+bounding sphere: a tile-wide batch's sphere reaches hundreds of meters above the canopy, so an
+aerial camera would otherwise draw every plant in the tiles below at near detail. A level with no
+leaf cards (a tree's distant level, rocks and props) draws with an opaque twin of the alpha-tested
+scatter material: a shader that can discard switches off hidden-surface removal on tile-based
+GPUs, so a distant forest drawn with the card material shaded every layer of crowns behind the
+first. Buildings retain their structural faces while distant materials and facade details
 simplify; geometry attributes are shared across spatial cells and levels. `setQuality(preset)`
 changes future generation and queues resident architecture for replacement, one building batch
 at a time. The previous buildings stay visible until their replacements are ready; roads remain
@@ -478,7 +487,8 @@ changes and disposing when the entity goes away.
   one archive (the Sammamish package does).
 - Roofs of clipped tile-edge pieces are flat; secondary wings share the main eave height.
 - Windows are surface quads, not openings; dormers and setbacks are declared in the format but not
-  built yet; `wall-any` and `ground-any` prop anchors place nothing yet.
+  built yet; the `wall-any` prop anchor places nothing yet. `ground-any` props do not know where
+  driveways and paths run, so on a lot that is paved to the wall one can stand on the paving.
 - Builtin vegetation uses spatially batched distance or screen-space LOD. Custom GLBs retain their authored
   geometry; they need authored LOD assets or simplification before the same reduction is possible.
 - Baked assets hold the building mesh only; props and scatter stay instanced placements.

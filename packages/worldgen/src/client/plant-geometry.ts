@@ -1,8 +1,17 @@
-/** Opaque, faceted plant families with bounded geometry and independent near/medium/far meshes. */
+/**
+ * Faceted plant families with bounded geometry and independent near/medium/far meshes. Broadleaf
+ * crowns are leaf cards around a solid core up close; everything else is closed and opaque.
+ */
 import * as THREE from 'three';
 import type { PlantPreset } from '../kernel/plant-types';
 import { unit01 } from '../kernel/seed';
 import { addBrushGeometry, addClimberGeometry } from './brush-geometry';
+import {
+  SCATTER_CARD_FILL,
+  SCATTER_CARD_UVS,
+  SCATTER_SOLID_UV,
+  SCATTER_SPRAY_UVS,
+} from './scatter-material';
 
 type Point = [number, number, number];
 type Detail = boolean | 'distant';
@@ -11,10 +20,18 @@ const TAU = Math.PI * 2;
 /** Share of a foliage normal taken from its volume's rounded surface rather than its facet. */
 const FOLIAGE_BEND = 0.65;
 
+const SCRATCH = new THREE.Vector3();
+
+/** Leaf cards' color gain, offsetting the leaf atlas's average tone below white. */
+const CARD_GAIN = 1.24;
+
 class PlantMesh {
   constructor(private readonly seed = 0) {}
   readonly positions: number[] = [];
   readonly colors: number[] = [];
+  readonly uvs: number[] = [];
+  /** What can be seen of the plant: every solid point, and each card's leaves but not its corners. */
+  readonly extent = new THREE.Box3();
   private readonly colorCache = new Map<string, THREE.Color>();
   /** Foliage vertex ranges, each shaded as one rounded volume (an ellipsoid) over its facets. */
   private readonly volumes: {
@@ -44,6 +61,15 @@ class PlantMesh {
     for (const [start, end] of ranges) this.volumes.push({ start, end, center, size, bend });
   }
 
+  private color(hex: string): THREE.Color {
+    let color = this.colorCache.get(hex);
+    if (color === undefined) {
+      color = new THREE.Color(hex);
+      this.colorCache.set(hex, color);
+    }
+    return color;
+  }
+
   /** One triangle; `shade` is one value for the face or one per vertex. */
   triangle(
     a: Point,
@@ -52,15 +78,59 @@ class PlantMesh {
     hex: string,
     shade: number | readonly [number, number, number] = 1,
   ): void {
-    let color = this.colorCache.get(hex);
-    if (color === undefined) {
-      color = new THREE.Color(hex);
-      this.colorCache.set(hex, color);
-    }
+    const color = this.color(hex);
     for (const [i, point] of [a, b, c].entries()) {
       const k = typeof shade === 'number' ? shade : (shade[i] as number);
       this.positions.push(...point);
       this.colors.push(color.r * k, color.g * k, color.b * k);
+      this.uvs.push(...SCATTER_SOLID_UV);
+      this.extent.expandByPoint(SCRATCH.set(...point));
+    }
+  }
+
+  /**
+   * A leaf card: a quad the atlas cuts out along a sprig of leaves, with a face either way so
+   * back-face culling keeps the one toward the camera. `across` and `up` are its half extents;
+   * `turn` quarter-turns the sprig so neighboring cards do not repeat it. Its lower edge takes
+   * `shade[0]` and its upper edge `shade[1]`. A bough card passes the fir spray's `uvs`, root
+   * along its lower edge, and the share of the card the spray `fill`s.
+   */
+  card(
+    center: Point,
+    across: Point,
+    up: Point,
+    hex: string,
+    shade: readonly [number, number],
+    turn: number,
+    uvs: readonly (readonly [number, number])[] = SCATTER_CARD_UVS,
+    fill = SCATTER_CARD_FILL,
+  ): void {
+    const color = this.color(hex);
+    // The sprig is a disc in the card's plane; along each axis it reaches this far.
+    const reach = new THREE.Vector3(
+      Math.hypot(across[0], up[0]),
+      Math.hypot(across[1], up[1]),
+      Math.hypot(across[2], up[2]),
+    ).multiplyScalar(fill);
+    const middle = new THREE.Vector3(...center);
+    this.extent.expandByPoint(middle.clone().sub(reach)).expandByPoint(middle.add(reach));
+    const corners = [
+      [-1, -1],
+      [1, -1],
+      [1, 1],
+      [-1, 1],
+    ].map(
+      ([a = 0, b = 0]): Point => [
+        center[0] + across[0] * a + up[0] * b,
+        center[1] + across[1] * a + up[1] * b,
+        center[2] + across[2] * a + up[2] * b,
+      ],
+    );
+    for (const corner of [0, 1, 2, 0, 2, 3, 0, 2, 1, 0, 3, 2]) {
+      const k = (corner < 2 ? shade[0] : shade[1]) * CARD_GAIN;
+      this.positions.push(...(corners[corner] as Point));
+      this.colors.push(color.r * k, color.g * k, color.b * k);
+      this.uvs.push(...(uvs[(corner + turn) % 4] as readonly [number, number]));
     }
   }
 
@@ -309,6 +379,7 @@ class PlantMesh {
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(this.positions, 3));
     geometry.setAttribute('color', new THREE.Float32BufferAttribute(this.colors, 3));
+    geometry.setAttribute('uv', new THREE.Float32BufferAttribute(this.uvs, 2));
     geometry.computeVertexNormals();
     // Foliage facets catch the sun like cut gems; bend their normals toward the rounded volume
     // they belong to, so a crown shades as one soft mass with a hint of its facets left.
@@ -356,11 +427,11 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
   // over, yet drew one batch per species in every distant batch; the ground color carries them.
   if (far && h < 2.5) return mesh.finish();
   const trunkTop: Point = [p.lean * h, base, 0];
-  const trunk = (top = trunkTop, radius = p.stemRadius): void => {
+  const trunk = (top = trunkTop, radius = p.stemRadius, sides = far ? 3 : medium ? 4 : 6): void => {
     mesh.tube(
       far ? [[0, 0, 0], top] : [[0, 0, 0], [top[0] * 0.3, top[1] * 0.5, 0], top],
       far ? [radius, radius * 0.42] : [radius, radius * 0.76, radius * 0.42],
-      far ? 3 : medium ? 4 : 6,
+      sides,
       p.bark,
     );
   };
@@ -654,39 +725,100 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
         );
       }
   } else if (p.family === 'conifer') {
-    if (!far) trunk([p.lean * h * 0.5, h * 0.55, 0]);
+    // A medium tree's trunk mostly hides under its skirts; its triangles go to boughs instead.
+    if (!far) trunk([p.lean * h * 0.5, h * 0.55, 0], p.stemRadius, medium ? 3 : 6);
+    const span = h - base;
+    // Stacked, drooping bough tiers: each skirt flares out over the narrower top of the one
+    // below, so the tree reads as a fir or cedar rather than a smooth cone. The medium tree
+    // keeps all but the small top skirt.
+    const skirts = [
+      [0.08, 1],
+      [0.27, 0.84],
+      [0.48, 0.66],
+      [0.68, 0.48],
+      [0.86, 0.28],
+    ].slice(0, medium ? 4 : 5) as [number, number][];
+    // The narrow neck above each skirt; the top skirt's is the tree's tip.
+    const necks = [
+      [0.22, 0.62],
+      [0.43, 0.48],
+      [0.63, 0.34],
+      [0.82, 0.2],
+      [1, 0],
+    ];
     const profile = far
       ? [
           [base, r],
           [h, 0.005],
         ]
-      : // Stacked, drooping bough tiers: each skirt flares out over the narrower top of the
-        // one below, so the tree reads as a fir or cedar rather than a smooth cone. The medium
-        // tree keeps all but the small top skirt.
-        [
+      : [
           [base, r * 0.55],
-          [base + (h - base) * 0.08, r],
-          [base + (h - base) * 0.22, r * 0.62],
-          [base + (h - base) * 0.27, r * 0.84],
-          [base + (h - base) * 0.43, r * 0.48],
-          [base + (h - base) * 0.48, r * 0.66],
-          [base + (h - base) * 0.63, r * 0.34],
-          [base + (h - base) * 0.68, r * 0.48],
-          [base + (h - base) * 0.82, r * 0.2],
-          ...(medium ? [] : [[base + (h - base) * 0.86, r * 0.28]]),
+          ...skirts.flatMap(([at, radius], i) => {
+            const [neck = 0, narrow = 0] = necks[i - 1] ?? [];
+            return [
+              ...(i > 0 ? [[base + span * neck, r * narrow]] : []),
+              [base + span * at, r * radius],
+            ];
+          }),
           [h, 0.005],
         ];
     const start = mesh.vertexCount;
     mesh.tube(
       profile.map(([y = 0]): Point => [p.lean * y, y, 0]),
       profile.map(([, radius = 0]) => radius),
-      far ? 5 : medium ? 6 : 14,
-      p.foliage,
+      far ? 5 : medium ? 5 : 12,
+      far ? p.foliage : `#${new THREE.Color(p.foliage).multiplyScalar(0.86).getHexString()}`,
       far ? 0 : 0.12,
     );
+    // Bough cards: fir sprays laid along each skirt from its neck down past its rim, so the
+    // skirt shows needles and its edge is feathered rather than cut in facets.
+    if (!far)
+      for (const [j, [at, radius]] of skirts.entries()) {
+        const count = medium ? (j < 2 ? 3 : 2) : ([10, 9, 8, 6, 4][j] as number);
+        const [neck = 0, narrow = 0] = necks[j] ?? [];
+        const rim = r * radius,
+          inner = r * narrow * 0.9;
+        const rimY = base + span * at,
+          neckY = base + span * neck;
+        for (let i = 0; i < count; i++) {
+          const angle = angleFor(((i + 0.5 * j) * Math.PI * 2) / count, j * 9 + i + 20);
+          const c = Math.cos(angle),
+            sn = Math.sin(angle);
+          // Along the skirt's slope, from just under its neck to a fifth past its rim, and a
+          // little proud of it.
+          const outward = 0.05 * rim;
+          const at0 = (radius: number, y: number): Point => [
+            p.lean * y + c * (radius + outward),
+            y,
+            sn * (radius + outward),
+          ];
+          const root = at0(inner, neckY - 0.1 * (neckY - rimY));
+          const tip = at0(rim + 0.22 * (rim - inner), rimY - 0.22 * (neckY - rimY));
+          const half: Point = [
+            (tip[0] - root[0]) / 2,
+            (tip[1] - root[1]) / 2,
+            (tip[2] - root[2]) / 2,
+          ];
+          const width = Math.max(
+            Math.hypot(...half) * 1.4,
+            ((Math.PI * 2 * (rim + inner)) / 2 / count) * 1.35,
+          );
+          const tone = 0.92 + 0.18 * (seed ? unit01(seed, 300 + j * 9 + i) : (i * 0.618) % 1);
+          mesh.card(
+            [(root[0] + tip[0]) / 2, (root[1] + tip[1]) / 2, (root[2] + tip[2]) / 2],
+            [(-sn * width) / 2, 0, (c * width) / 2],
+            half,
+            p.foliage,
+            [tone * 0.72, tone],
+            0,
+            SCATTER_SPRAY_UVS,
+            0.95,
+          );
+        }
+      }
     // Centered low in the cone, so its upper boughs face the sky and its skirt the ground.
-    const middle = base + (h - base) * 0.3;
-    mesh.volume(start, [p.lean * middle, middle, 0], [r, (h - base) * 0.7, r]);
+    const middle = base + span * 0.3;
+    mesh.volume(start, [p.lean * middle, middle, 0], [r, span * 0.7, r]);
   } else {
     const canopyHeight = h - base;
     if (far)
@@ -699,26 +831,35 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
       );
     else {
       trunk();
-      // Mangroves spend their medium budget on prop roots, so they keep three lobes there.
-      // Many small leaf clusters spread over the canopy's shell, plus a few inside, rather than
-      // a handful of big lobes: the silhouette reads as clumped foliage instead of balls on
-      // sticks. Their normals bend mostly toward the shared canopy, so it shades as one mass.
-      const clusters = medium ? (p.family === 'mangrove' ? 3 : 5) : p.climber ? 14 : 20;
+      // Leaf clusters spread over the canopy's shell, each a few crossed leaf cards around one
+      // point, so the silhouette breaks into sprigs of leaves; mangroves spend their medium
+      // budget on prop roots and keep three clusters there. A solid core in the crown's own
+      // shade keeps the crown from reading as see-through. The normals bend mostly toward the
+      // shared canopy, so it shades as one mass.
+      const ranges: [number, number][] = [
+        mesh.crown(
+          [p.lean * h, base + canopyHeight * 0.5, 0],
+          [r * 0.56, canopyHeight * 0.66, r * 0.54],
+          p.foliage,
+          medium ? 5 : 6,
+          0,
+          0.7,
+          0.66,
+        ),
+      ];
+      const clusters = medium ? (p.family === 'mangrove' ? 3 : 6) : p.climber ? 14 : 20;
       const limbs = medium ? 2 : 5;
-      const ranges: [number, number][] = [];
+      const random = (stream: number, fallback: number): number =>
+        seed ? unit01(seed, stream) : fallback % 1;
       for (let i = 0; i < clusters; i++) {
-        // A golden-angle spiral from the crown top down its sides, the last cluster at the core.
+        // A golden-angle spiral from the crown top down its sides.
         const t = clusters > 1 ? i / (clusters - 1) : 0;
-        const core = i === clusters - 1;
-        const height = core ? 0.5 : 0.92 - 0.6 * t;
-        const shell = core
-          ? 0
-          : Math.sin(Math.PI * Math.min(0.95, 0.22 + 0.78 * t)) * (medium ? 0.62 : 0.7);
+        const height = 0.9 - 0.58 * t;
+        const shell = Math.sin(Math.PI * Math.min(0.95, 0.22 + 0.78 * t)) * (medium ? 0.55 : 0.64);
         const angle = angleFor(i * 2.39996, i),
           x = p.lean * h + Math.cos(angle) * r * shell,
           z = Math.sin(angle) * r * shell;
         const y = base + vary(canopyHeight * height, 0.08, i);
-        const size = core ? 0.62 : (medium ? 0.5 : 0.3) + 0.08 * ((i * 0.43) % 1);
         if (i < limbs) {
           const branchBase = base * (0.55 + (i % 3) * 0.06);
           mesh.tube(
@@ -731,24 +872,40 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
             p.bark,
           );
         }
-        // Each cluster catches the light a little differently, and the core sits in the
-        // crown's own shade, so the canopy reads as clumps of leaves rather than one swatch.
-        const tone =
-          (core ? 0.9 : 1) * (0.86 + 0.22 * (seed ? unit01(seed, 70 + i) : (i * 0.618) % 1));
-        ranges.push(
-          mesh.crown(
+        // Each cluster catches the light a little differently, so the canopy reads as clumps
+        // of leaves rather than one swatch.
+        const tone = 0.86 + 0.22 * random(70 + i, i * 0.618);
+        const reach = r * (medium ? 0.62 : 0.46 + 0.08 * ((i * 0.43) % 1));
+        const tall = Math.min(reach * 1.15, Math.max(reach * 0.8, canopyHeight * 0.3));
+        const start = mesh.vertexCount;
+        const yaw = angle + random(100 + i, i * 0.37) * Math.PI;
+        const upright = medium ? 2 : 3;
+        for (let k = 0; k <= upright; k++) {
+          const turn = k === upright ? 0.5 : (k * Math.PI) / upright;
+          const a = yaw + turn;
+          // The last card lies nearly flat, so the cluster has leaves seen from above too.
+          const tilt =
+            k === upright
+              ? 1.25 + 0.2 * random(110 + i, i * 0.29)
+              : (random(120 + i * 4 + k, i * 0.37 + k * 0.29) - 0.5) * 0.6;
+          mesh.card(
             [x, y, z],
-            [r * size, canopyHeight * size * 0.95, r * size * 0.97],
+            [Math.cos(a) * reach, 0, Math.sin(a) * reach],
+            [
+              -Math.sin(a) * Math.sin(tilt) * tall,
+              Math.cos(tilt) * tall,
+              Math.cos(a) * Math.sin(tilt) * tall,
+            ],
             p.foliage,
-            medium ? 5 : 6,
-            i,
-            0.7,
-            tone,
-          ),
-        );
+            [tone * 0.8, tone],
+            (i + k) % 4,
+          );
+        }
+        mesh.volume(start, [x, y, z], [reach, tall, reach], 0.5);
+        ranges.push([start, mesh.vertexCount]);
       }
       const middle = base + canopyHeight * 0.55;
-      mesh.canopy(ranges, [p.lean * h, middle, 0], [r, canopyHeight * 0.6, r], 0.55);
+      mesh.canopy(ranges, [p.lean * h, middle, 0], [r, canopyHeight * 0.6, r], 0.6);
       if (p.family === 'mangrove')
         for (let i = 0; i < (medium ? 3 : 5); i++) {
           const angle = angleFor(i * 2.4, i);
@@ -766,7 +923,8 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
   }
   if (!far && !medium && !p.leafless) addClimberGeometry(mesh, p);
   const geometry = mesh.finish();
-  const box = geometry.boundingBox as THREE.Box3;
+  // Sized by what can be seen, so a card's clear corners do not shrink the crown.
+  const box = mesh.extent;
   const size = box.getSize(new THREE.Vector3());
   geometry.translate(0, -box.min.y, 0);
   geometry.scale(
