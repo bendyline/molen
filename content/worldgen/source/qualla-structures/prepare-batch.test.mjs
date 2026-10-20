@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
+import { PUBLIC_DOMAIN_POLICY } from './imagery-policy.mjs';
 import { collectReferences, prepareBatch, sourceFamily } from './prepare-batch.mjs';
 
 function fixture(t) {
@@ -85,6 +86,31 @@ test('authoritative gallery paths recover originals absent from merged article',
   assert.ok(r.candidates.every((r) => r.metadataOrigin.endsWith('metadata.json')));
   assert.ok(!r.candidates.some((r) => r.path.endsWith('old.jpg')));
 });
+test('public-domain policy rejects uncertain manual choices before writing and selects published eligible originals', (t) => {
+  const f = fixture(t);
+  f.batch.policy = { imagery: { id: PUBLIC_DOMAIN_POLICY } };
+  f.put('batch.json', f.batch);
+  assert.throws(() => f.run(), /Public-domain Qualla references required/);
+  assert.equal(fs.existsSync(path.join(f.dir, 'references/QS-test.json')), false);
+  const metadata = JSON.parse(fs.readFileSync(path.join(f.dir, '_m/a/b/c/d/test/metadata.json')));
+  Object.assign(metadata.gallery[0], {
+    license: 'CC0',
+    artist: 'Photographer',
+    categories: ['CC-Zero'],
+  });
+  f.put('_m/a/b/c/d/test/metadata.json', metadata);
+  f.put(f.structure.stories[0].sourcePath, {
+    media: { images: [{ ...metadata.gallery[0], path: '_m/a/b/c/d/test/front.jpg' }] },
+  });
+  f.entry.references = [];
+  f.put('batch.json', f.batch);
+  f.run();
+  assert.deepEqual(
+    f.record().references.map((r) => r.path),
+    ['_m/a/b/c/d/test/front.jpg'],
+  );
+  assert.equal(f.record().review.state, 'pending');
+});
 test('source families collapse Commons URL spellings and resized copies', (t) => {
   const f = fixture(t);
   assert.equal(
@@ -115,6 +141,30 @@ test('source families collapse Commons URL spellings and resized copies', (t) =>
       c.path.endsWith('copy.jpg'),
     ),
   );
+});
+test('targeted preparation preserves unselected evidence and still rejects unknown identities', (t) => {
+  const f = fixture(t);
+  f.run();
+  const other = {
+    ...f.entry,
+    structureId: 'QS-other',
+    modelIdentity: 'second',
+    references: ['_m/a/b/c/d/test/unavailable.jpg'],
+  };
+  f.entry.modelIdentity = 'first';
+  f.batch.entries.push(other);
+  f.batch.targetCount = 2;
+  f.put(
+    'structures.jsonl',
+    `${JSON.stringify(f.structure)}\n${JSON.stringify({ ...f.structure, id: other.structureId })}\n`,
+  );
+  f.put('references/QS-other.json', { ...f.record(), structureId: other.structureId });
+  f.put('batch.json', f.batch);
+  const before = fs.readFileSync(path.join(f.dir, 'references/QS-other.json'));
+  f.run({ ids: ['first'] });
+  assert.ok(before.equals(fs.readFileSync(path.join(f.dir, 'references/QS-other.json'))));
+  assert.equal(f.run({ ids: ['first'], check: true }).filesChanged, 0);
+  assert.throws(() => f.run({ ids: ['not-in-batch'] }), /fixed batch/);
 });
 test('acceptance invalidates when selected bytes, story, scope or attribution change', (t) => {
   const f = fixture(t);

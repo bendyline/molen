@@ -1,0 +1,385 @@
+{
+  "planId": "graumans_chinese_theatre",
+  "id": "graumans_chinese_theatre",
+  "assetId": "molen.worldgen.structure.graumans_chinese_theatre",
+  "title": "Grauman’s Chinese Theatre",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -118.34097012877464,
+    "latitude": 34.1018484773594
+  },
+  "size": [
+    44.19499969482422,
+    30.43199920654297,
+    77.1761589050293
+  ],
+  "actualBounds": {
+    "min": [
+      -21.475000381469727,
+      -3,
+      -58.101158142089844
+    ],
+    "max": [
+      22.719999313354492,
+      27.43199920654297,
+      19.075000762939453
+    ]
+  },
+  "visualBrief": "Dated2012–2014Chinese Theatre: retained native rear auditorium/curved open forecourt with paired south street gateway blocks/faceted bronze spires and CHINESEblades. One swept hipped green-bronze pagoda roof/short ridge/trident finials/upturned bladed corners; tall coral square posts with original geometric open-mouth wrought masks/tusks/looped whiskers. Stepped pale corbels/coral gold panels, deep grid-ceiling portico/round gong/stone dragon panel/separate small canopy/sun disk, golden paired doors with tiny pagoda slot frames and pale seated guardian lions. Lower grid-window wings/curved red band, court piers/niches/abstract flame+bell plaques; neutral blank marquees. Native ground unchanged/graded paving, no handprint microdetail/ad artwork/photo pixels/modern neighbors/interior.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.loc.gov/item/2006675247/"
+  ],
+  "stories": [
+    {
+      "id": "grauman-s-chinese-theatre-wp",
+      "url": "https://qualla.com/grauman-s-chinese-theatre/"
+    }
+  ],
+  "referenceInputHash": "sha256:2e0bc5086a76d86773507fdaa0f0aaa4c88f51dc5e1d50c700612a64c5ee4ddd",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-graumans-chinese-theatre.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-graumans-chinese-theatre.mjs",
+    "level": "skyline",
+    "export": "graumansChineseTheatreSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.2
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.25,
+        "doubleSided": true
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0.1
+      },
+      "accent": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "graumansChineseTheatreDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.2
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.25,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.1
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "graumansChineseTheatreStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.2
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.25,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.1
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "cameraYaw": 0,
+    "groundY": -3
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "One unmodified original Terrariumtile/2mgrid. Dry south sidewalk[0,19.5] datum118.5639m; buried foundation-3m, court paving follows independently sampled broad grade+.08m. Exact threshold/floor engineering not surveyed; no terrain flattening/model-fitting.",
+    "anchor": [
+      -118.34097012877464,
+      34.1018484773594
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -118.34097012877464,
+        34.101673306680276
+      ],
+      "modelHeight": 0,
+      "basis": "Dry south sidewalk at center of open forecourt mouth, outside auditorium/gateway masses and clear of road."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184796194740"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5317a8b41c6f2b322d3c93a2f262b1a0510be545bd87fa17f1da6e4759e274ec"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Explicit2012–2014exterior with2008mask/2010guardian details. Current temporary display/signage/restoration finishes not claimed.",
+    "Native own44vertexfootprint and south forecourt indent retained. Nominal27.432mtop from preservation record; all other heights/roof sweep/ornament/hidden rear surfaces are proportional estimates, not drawings.",
+    "Original abstract geometric dragon/mask/lion/foliage shapes approximate observed relief. No handprint or incised landscape microdetail, photographs, advertisements, people, vegetation, vehicles or neighboring structures.",
+    "Independent terrain acquired before floor/foundation design; no flattening/model-fitted elevation.",
+    "Native auditorium18.1m and nominal27.432mpagoda top; roof curvature/court wall11.15m/gateway and spire heights/fine relief are unmeasured proportional estimates. Roof services generalized from aerial, not architectural survey.",
+    "Court paving follows broad independent urban elevation; actual handprint panels and door threshold/interior floor relationships omitted or estimated. Guardian/mask/dragon/niche relief is original simplified geometric interpretation, not a replica of every sculptural detail. Opaque glazing and neutral display panels; no temporary ad content."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        16,
+        57
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "pagoda-detail",
+      "position": [
+        16,
+        27,
+        31
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "mask-detail",
+      "position": [
+        11,
+        16,
+        12
+      ],
+      "lookAt": [
+        6.6,
+        15.2,
+        4.8
+      ]
+    },
+    {
+      "name": "entrance-detail",
+      "position": [
+        0,
+        7.8,
+        14
+      ],
+      "lookAt": [
+        0,
+        6.9,
+        0
+      ]
+    },
+    {
+      "name": "gateway-detail",
+      "position": [
+        30,
+        13,
+        38
+      ],
+      "lookAt": [
+        16,
+        11,
+        18
+      ]
+    },
+    {
+      "name": "court-detail",
+      "position": [
+        -4,
+        8,
+        12
+      ],
+      "lookAt": [
+        -19,
+        7,
+        6
+      ]
+    },
+    {
+      "name": "roof-detail",
+      "position": [
+        -40,
+        39,
+        -17
+      ],
+      "lookAt": [
+        0,
+        19,
+        -26
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -43,
+        32,
+        -84
+      ],
+      "lookAt": [
+        0,
+        11,
+        -42
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 35706,
+    "vertices": 107118,
+    "materials": 7,
+    "bytes": 4288668,
+    "sha256": "sha256:0be7e4d30e0bbe86a0dfc81ae6ed7697bdc58ecd94df68dbf32eae530b64605d"
+  }
+}

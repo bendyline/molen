@@ -38,8 +38,8 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:Berlin-Brandenburg_Gate_overview.jpg",
-    "https://commons.wikimedia.org/wiki/File:00_2486_Quadriga_-_Brandenburger_Tor_(Berlin).jpg"
+    "https://commons.wikimedia.org/wiki/File:View_of_Brandenburger_Tor_from_the_Reichstag_roof_terrace,_Berlin,_2017.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ukraine_solidarity_protest_Berlin_Pariser_Platz_with_lighted_Brandenburg_Gate_2022-02-24_07.jpg"
   ],
   "stories": [
     {
@@ -47,7 +47,7 @@
       "url": "https://qualla.com/brandenburg-gate/"
     }
   ],
-  "referenceInputHash": "1c79b048d147d085cebc6f07556e538729e235d0e3668c63d753226525d784e6",
+  "referenceInputHash": "9577b8144502075cd1573dda110ed2eb647c6f85cb3929929166786fd253b8ce",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-brandenburg-gate.mjs"
   },
@@ -61,12 +61,51 @@
     "level": "skyline",
     "export": "brandenburgSkyline",
     "errorMeters": 0.6,
-    "caps": {
+    "authoredLevels": {
       "district": {
-        "triangles": 4000,
-        "errorMeters": 0.3,
-        "prune": true
-      },
+        "export": "brandenburgDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    },
+    "caps": {
       "street": {
         "triangles": 16000,
         "errorMeters": 0.16,
@@ -176,6 +215,6 @@
     "vertices": 61344,
     "materials": 3,
     "bytes": 2456068,
-    "sha256": "sha256:d84942a49a54992e85e61015ff04305e1e050eaf79c9d0e8fb2c610a90a3fd2c"
+    "sha256": "sha256:79d69545d2239128715fcd3e5c4523551ccbdbd1fd20587a5496a177c3d85867"
   }
 }

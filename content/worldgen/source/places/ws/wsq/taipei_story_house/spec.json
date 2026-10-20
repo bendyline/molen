@@ -1,0 +1,475 @@
+{
+  "planId": "taipei_story_house",
+  "id": "taipei_story_house",
+  "assetId": "molen.worldgen.structure.taipei_story_house",
+  "title": "Taipei Story House",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 121.52462,
+    "latitude": 25.07313
+  },
+  "size": [
+    15.84000015258789,
+    15.499999761581421,
+    16.750000476837158
+  ],
+  "actualBounds": {
+    "min": [
+      -8.890000343322754,
+      -1.2999999523162842,
+      -7.900000095367432
+    ],
+    "max": [
+      6.949999809265137,
+      14.199999809265137,
+      8.850000381469727
+    ]
+  },
+  "visualBrief": "Small Tudor-style villa with red-brick lower floor, yellow upper plaster/red branching timber pattern, dark divided windows, steep copper main/cross gables, spired square attic with coloured glass and louvred rooflets, and semicircular Ionic balcony/round entrance steps, four closed turned columns with low moulded bases/diagonal scroll capitals, profiled porch edge and physical ceiling mouldings. Detached cafe and modern access enclosure excluded.",
+  "nativeAxes": {
+    "x": "south-southeast along the entrance facade",
+    "y": "up",
+    "z": "west-southwest toward entrance garden"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Entrance_of_Taipei_Story_House.jpg",
+    "https://www.publicdomainpictures.net/en/view-image.php?image=433576&picture=taipei-city-scenes-06"
+  ],
+  "stories": [
+    {
+      "id": "taipei-story-house-wp",
+      "url": "https://qualla.com/taipei-story-house/"
+    }
+  ],
+  "referenceInputHash": "sha256:a5565db22f98769d5d48c3f278e00260338f85ddfe16f21bc969012bc38f98cc",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-taipei-story-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-taipei-story-house.mjs",
+    "level": "skyline",
+    "export": "taipeiStoryHouseSkyline",
+    "errorMeters": 0.45,
+    "surfaces": {
+      "ionicColumn": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "ionicCapital": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "ionicVolute": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "ionicSpiral": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "porchProfile": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "ceilingMoulding": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.8,
+        "metallic": 0.35
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "taipeiStoryHouseDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "ionicColumn": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "ionicCapital": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "ionicVolute": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "ionicSpiral": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "porchProfile": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "ceilingMoulding": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.35
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "taipeiStoryHouseStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "ionicColumn": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "ionicCapital": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "ionicVolute": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "ionicSpiral": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "porchProfile": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "ceilingMoulding": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.35
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.35
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Dry entrance path[-2.2,10.8] gives datum8.8924m in unchanged Terrarium. Mapped ground falls roughly0.1–0.9m below this reference; shallow semicircular steps meet the front while structural foundations continue below the rear fall. Source contact is a bounded preview with coarse urban elevation and unseen rear foundation limits; generic-footprint replacement disabled.",
+    "anchor": [
+      121.52462,
+      25.07313
+    ],
+    "heading": -1.17,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        121.52451286487697,
+        25.073110345069388
+      ],
+      "modelHeight": 0,
+      "basis": "Dry entrance garden path beyond the semicircular steps; independent host-ground reference."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184813191561"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f9bcc267484d3786c82a348b41bbaee1d81e018c8128232534fdcb969fca5076",
+    "notes": "Main mapped envelope about15m by16m including own entrance balcony. Two-storey red-brick/yellow timber house, steep copper roofs, branching timber patterns, Ionic entry balcony and spired square attic. Heights, secondary curved roof gables and unseen rear openings remain estimates. Nearest footprint to article point is a police station and is NOT this source."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Current entrance construction uses exact native photographer PD-self2017original after Qualla-first44paths; first same-creator revision695073380/sole native upload/exacttimestamp/bytes bound. Four turned columns/low moulded bases/diagonal Ionic scroll capitals and curved porch/ceiling craft built. Earlier attribution/private/aerial controls excluded. Full fixed Tudor house/steep roofs/turret/verandas/rear brick return retained pending broader fidelity evidence. Dimensions, profiles, scroll pitch, ceiling geometry and present condition are medium-fi estimates, not measured elevations.",
+    "Only the historic villa and its own entrance balcony/steps and rear brick return are included. Detached cafe, park structures, modern glazed access enclosure, signage, interiors and trees excluded.",
+    "Photo pixels are not redistributed. Close entrance has physical closed capitals/spiral relief/turned bases and layered curved porch underside with matte lime-plaster finish matching the native photograph; inherited limestone masonry joints were excluded from these painted stocks. Three original lower geometry streams/all outside attributes retained; conservative LODerror estimates.45/.35/.25m updated without measured geometric-error certification. Fine copper courses, balusters, timber and stained-glass frames remain original estimates pending broader evidence. Source ground remains independent and current geographic review is required; footprint replacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        11,
+        34
+      ],
+      "lookAt": [
+        -1,
+        5.5,
+        3
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -12,
+        8,
+        22
+      ],
+      "lookAt": [
+        -2.2,
+        5.8,
+        5.5
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        24,
+        16,
+        -26
+      ],
+      "lookAt": [
+        0,
+        5,
+        -1
+      ]
+    },
+    {
+      "name": "ionic-capitals",
+      "position": [
+        -0.1,
+        3.3,
+        9.7
+      ],
+      "lookAt": [
+        -1.5,
+        3.68,
+        7.83
+      ]
+    },
+    {
+      "name": "porch-soffit-and-bases",
+      "position": [
+        -3.2,
+        1.18,
+        9
+      ],
+      "lookAt": [
+        -2.2,
+        2.85,
+        6.6
+      ]
+    },
+    {
+      "name": "turned-column-bases",
+      "position": [
+        -3.8,
+        1.35,
+        10.2
+      ],
+      "lookAt": [
+        -2.9,
+        1.03,
+        7.83
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 36756,
+    "vertices": 110268,
+    "materials": 6,
+    "bytes": 4414416,
+    "sha256": "sha256:36df3324c8698919786b646967e4f8550d20819684872720bd4e02297edaab3b"
+  }
+}

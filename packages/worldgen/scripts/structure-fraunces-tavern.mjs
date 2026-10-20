@@ -1,4 +1,4 @@
-/** Fraunces Tavern: restored 54 Pearl Street corner block from local Qualla photographs. */
+/** Fraunces Tavern: restored corner tavern; stair rails from a verified public-domain exterior. */
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
@@ -278,10 +278,34 @@ function dormer(o, x, d) {
   quad(o, 'roof', rp, upNormal(rp), tile);
   if (d > 0) sash(o, x, 12.08, -0.64, 0.92, 0.99, d, { lintel: false });
 }
+function stairHandrails(o, d) {
+  if (d === 0) return;
+  const railY = (z) => 0.95 + ((2.2 - z) * 0.87) / 0.97,
+    posts = [
+      [2.11, 0.2],
+      [1.83, 0.4],
+      [1.55, 0.6],
+      [1.39, 0.8],
+      [1.23, 0.97],
+      [0.7, 0.97],
+    ];
+  for (const x of [-1.43, 1.43]) {
+    // Photograph resolves a slim descending rail and a level return beside the landing.
+    // Heights, bar sections and concealed joints remain fixed photographic estimates.
+    beam(o, 'metal', [x, 0.95, 2.2], [x, 1.82, 1.23], 0.045, 0.045, iron);
+    beam(o, 'metal', [x, 1.82, 1.23], [x, 1.82, 0.65], 0.045, 0.045, iron);
+    for (const [i, [z, baseY]] of posts.entries()) {
+      if (d === 1 && ![0, 4, 5].includes(i)) continue;
+      const top = z > 1.23 ? railY(z) : 1.82;
+      B(o, 'metal', x, baseY - 0.01, z, 0.035, top - baseY + 0.01, 0.035, iron);
+    }
+  }
+}
 function porch(o, d) {
   for (let i = 0; i < 4; i++)
     B(o, 'stone', 0, i * 0.2, 1.25 - i * 0.14, 3.1, 0.2, 2.0 - i * 0.28, stone);
   B(o, 'stone', 0, 0.8, 0.5, 3.05, 0.17, 1.75, stone);
+  stairHandrails(o, d);
   B(o, 'wood', 0, 3.42, 0.62, 3.65, 0.18, 1.95, cream);
   B(o, 'wood', 0, 3.6, 0.67, 3.85, 0.24, 2.05, cream);
   B(o, 'stone', 0, 3.84, 0.67, 3.92, 0.13, 2.12, stone);
@@ -374,7 +398,7 @@ function sign(o, d) {
     }
   }
 }
-function tavern(o, frame, d = 3) {
+export function tavern(o, frame, d = 3) {
   frame ??= JSON.parse(fs.readFileSync(new URL('map-frame.json', base)));
   const r = cleanRing(frame.geometry.outline),
     upper = r.map((p) => p.map((v) => v * 0.64));
@@ -488,6 +512,8 @@ export const frauncesModel = {
   qaCameras: [
     { name: 'front', position: [14, 10, 40], lookAt: [0, 7, 0] },
     { name: 'back', position: [-28, 23, -31], lookAt: [0, 7, 0] },
+    { name: 'entrance-rails', position: [-17.36, 4.5, 3.31], lookAt: [-9.84, 1.25, -0.35] },
+    { name: 'stair-profile', position: [-12.92, 2.5, -3.99], lookAt: [-10.14, 1.1, -0.41] },
   ],
   build: tavern,
   surfaces,
@@ -508,10 +534,11 @@ export const frauncesModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior of the restored 54 Pearl Street corner building, informed by individually inspected Qualla 2010/2014 photographs and supplemental details plus official city architectural descriptions. Not a survey or exact 1783 reconstruction.',
+    'Current exterior/entrance construction uses an individually inspected native Jim Henderson 2008 own-work public-domain exterior, after checking cleared Qualla images first. Earlier attribution-licensed photos are excluded as current controls; official factual city architectural descriptions retained. Not a survey or exact 1783 reconstruction.',
     '101 Broad Street, 58 Pearl Street, other museum buildings, interiors and the narrow mapped rear connector are excluded. Scope clipping is an explicit authoring boundary.',
     'Mapped 14.6 m height is only an approximate roof/balustrade control; chimneys rise above it. Vertical dimensions, hidden roof surfaces and service-side windows remain interpretations.',
     'Twelve-over-twelve sash, jack arches, paneled cornice and roof balusters are simplified geometry. The standard shared brick surface approximates the photographed Flemish bond without the pronounced repeat seam of the current Flemish graph. Sign portrait and lettering, flags, interior details and photograph pixels are not reproduced.',
     'Independent terrain remains unchanged with foundation below the sidewalk datum. Exact contact can differ with another host DEM.',
+    'Added actual slim stair handrails, vertical posts and level landing returns. Original steps retained. Rail heights, sections, post spacing, concealed connections and current condition remain fixed photographic estimates; the 2008 image does not measure later alterations.',
   ],
 };

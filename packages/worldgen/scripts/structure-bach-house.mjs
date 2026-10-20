@@ -1,5 +1,6 @@
 /** Bach House in Eisenach: plastered historic house, distinct front and garden elevations. */
 import './install-deterministic-math.mjs';
+import fs from 'node:fs';
 import earcut from 'earcut';
 import { beam, normalFor } from './authored-structure-mesh.mjs';
 import { B, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
@@ -132,6 +133,13 @@ function window(
   }
   if (shutters) {
     for (const s of [-1, 1]) {
+      if (
+        d > 2 &&
+        ((x === 1.9 && y === 1.85 && s === 1) ||
+          (x === 7.6 && y === 1.65 && s === -1) ||
+          (y === 3.9 && [6.4, 7.85, 9.3].includes(x)))
+      )
+        continue;
       const xx = x + s * (w / 2 + w / (2 * n) + 0.11);
       B(o, 'wood', xx, y, 0, w / n - 0.08, h, 0.1, iron);
       if (d > 2)
@@ -218,43 +226,339 @@ function portal(o, d) {
       );
     }
   };
-  polygon(boundary(0.18, 0.05), 'wood', red);
-  polygon(boundary(0, 0.09), 'wood', wood);
-  if (!d) return;
-  B(o, 'wood', x, base, 0.15, 0.06, h - 0.1, 0.1, lightwood);
-  if (d > 1) {
-    for (const sign of [-1, 1]) {
-      const cx = x + (sign * w) / 4;
-      outline(o, cx, base + 0.15, w * 0.39, 0.67, 0.18, 'wood', lightwood);
-      const p = [
-        [x + sign * 0.12, base + 1.0, 0.2],
-        [x + sign * (w / 2 - 0.15), base + 1.0, 0.2],
-        [x + sign * (w / 2 - 0.15), base + 2.39, 0.2],
-        [x + sign * 0.12, base + 2.45, 0.2],
-      ];
-      for (let i = 0; i < 3; i++) line(o, 'wood', p[i], p[i + 1], 0.045, lightwood);
-      const ys = Array.from({ length: 13 }, (_, i) => [
-        x + sign * (0.12 + ((w / 2 - 0.27) * i) / 12),
-        base + 1.84 - 0.29 * Math.sin((i * Math.PI) / 24),
-        0.22,
-      ]);
-      curved(o, 'wood', ys, 0.07, lightwood);
-      line(
-        o,
-        'wood',
-        [cx - w * 0.19, base + 0.88, 0.22],
-        [cx + w * 0.19, base + 0.88, 0.22],
-        0.07,
-        wood,
-      );
+  if (d < 3) {
+    polygon(boundary(0.18, 0.05), 'wood', red);
+    polygon(boundary(0, 0.09), 'wood', wood);
+    if (!d) return;
+    B(o, 'wood', x, base, 0.15, 0.06, h - 0.1, 0.1, lightwood);
+    if (d > 1) {
+      for (const sign of [-1, 1]) {
+        const cx = x + (sign * w) / 4;
+        outline(o, cx, base + 0.15, w * 0.39, 0.67, 0.18, 'wood', lightwood);
+        const p = [
+          [x + sign * 0.12, base + 1.0, 0.2],
+          [x + sign * (w / 2 - 0.15), base + 1.0, 0.2],
+          [x + sign * (w / 2 - 0.15), base + 2.39, 0.2],
+          [x + sign * 0.12, base + 2.45, 0.2],
+        ];
+        for (let i = 0; i < 3; i++) line(o, 'wood', p[i], p[i + 1], 0.045, lightwood);
+        const ys = Array.from({ length: 13 }, (_, i) => [
+          x + sign * (0.12 + ((w / 2 - 0.27) * i) / 12),
+          base + 1.84 - 0.29 * Math.sin((i * Math.PI) / 24),
+          0.22,
+        ]);
+        curved(o, 'wood', ys, 0.07, lightwood);
+        line(
+          o,
+          'wood',
+          [cx - w * 0.19, base + 0.88, 0.22],
+          [cx + w * 0.19, base + 0.88, 0.22],
+          0.07,
+          wood,
+        );
+      }
+      B(o, 'metal', x + 0.14, base + 1.3, 0.24, 0.065, 0.2, 0.06, iron);
+      line(o, 'metal', [x + 0.13, base + 1.43, 0.3], [x + 0.34, base + 1.47, 0.3], 0.045, iron);
     }
-    B(o, 'metal', x + 0.14, base + 1.3, 0.24, 0.065, 0.2, 0.06, iron);
-    line(o, 'metal', [x + 0.13, base + 1.43, 0.3], [x + 0.34, base + 1.47, 0.3], 0.045, iron);
   }
   B(o, 'metal', x, 4.18, 0.07, 1.1, 0.52, 0.045, stone);
   if (d > 2)
     for (const xx of [x - 0.48, x + 0.48])
       for (const yy of [4.23, 4.62]) B(o, 'metal', xx, yy, 0.105, 0.035, 0.035, 0.025, iron);
+}
+/** Source-backed solid facade: rounded bay, true portal opening and carved paired door. */
+function facadeConstruction(o) {
+  const c = JSON.parse(
+      fs.readFileSync(
+        new URL(
+          '../../../content/worldgen/source/places/u1/u1p/bach_house/facade-construction-controls.json',
+          import.meta.url,
+        ),
+      ),
+    ),
+    uv = (p, n) => {
+      const axis = n.map(Math.abs).indexOf(Math.max(...n.map(Math.abs)));
+      return p.map((v) => v.filter((_, i) => i !== axis));
+    },
+    metric = {
+      addTriangle: (s, r, p, n, _u, col) => o.addTriangle(s, r, p, n, uv(p, n), col),
+      addQuad: (s, r, p, n, _u, col) => o.addQuad(s, r, p, n, uv(p, n), col),
+      addConvexPolygon: (s, r, p, n, _u, col) => {
+        const u = uv(p, n);
+        return o.addConvexPolygon(s, r, p, n, (v) => u[p.indexOf(v)], col);
+      },
+    },
+    Q = (s, p, n, col) => metric.addQuad(s, ref, p, n, null, col),
+    polygon = (s, p, n, col) => {
+      const u = uv(p, n),
+        ids = earcut(u.flat());
+      for (let i = 0; i < ids.length; i += 3)
+        metric.addTriangle(
+          s,
+          ref,
+          ids.slice(i, i + 3).map((k) => p[k]),
+          n,
+          null,
+          col,
+        );
+    },
+    boundary = (pad = 0) => {
+      const p = c.portal,
+        l = p.x - p.width / 2 - pad,
+        r = p.x + p.width / 2 + pad,
+        lo = p.bottom - pad,
+        top = p.bottom + p.height + pad,
+        rr = p.cornerRadius + pad,
+        pts = [
+          [l, lo],
+          [r, lo],
+          [r, top - rr],
+        ];
+      for (let i = 1; i <= p.cornerSegments; i++) {
+        const a = (i * Math.PI) / (2 * p.cornerSegments);
+        pts.push([r - rr + rr * Math.cos(a), top - rr + rr * Math.sin(a)]);
+      }
+      pts.push([l + rr, top]);
+      for (let i = 1; i <= p.cornerSegments; i++) {
+        const a = Math.PI / 2 + (i * Math.PI) / (2 * p.cornerSegments);
+        pts.push([l + rr + rr * Math.cos(a), top - rr + rr * Math.sin(a)]);
+      }
+      return pts;
+    },
+    extrude = (s, points, back, front, col) => {
+      let p = points.slice();
+      if (
+        p.reduce(
+          (sum, v, i) => sum + v[0] * p[(i + 1) % p.length][1] - p[(i + 1) % p.length][0] * v[1],
+          0,
+        ) < 0
+      )
+        p.reverse();
+      polygon(
+        s,
+        p.map((v) => [...v, front]),
+        [0, 0, 1],
+        col,
+      );
+      polygon(
+        s,
+        p.map((v) => [...v, back]),
+        [0, 0, -1],
+        col,
+      );
+      for (let i = 0; i < p.length; i++) {
+        const j = (i + 1) % p.length,
+          q = [
+            [...p[i], back],
+            [...p[j], back],
+            [...p[j], front],
+            [...p[i], front],
+          ];
+        Q(s, q, normalFor(...q), col);
+      }
+    },
+    annulus = (s, outer, inner, back, front, col) => {
+      for (let i = 0; i < outer.length; i++) {
+        const j = (i + 1) % outer.length;
+        Q(
+          s,
+          [
+            [...outer[i], front],
+            [...outer[j], front],
+            [...inner[j], front],
+            [...inner[i], front],
+          ],
+          [0, 0, 1],
+          col,
+        );
+        Q(
+          s,
+          [
+            [...outer[i], back],
+            [...outer[j], back],
+            [...inner[j], back],
+            [...inner[i], back],
+          ],
+          [0, 0, -1],
+          col,
+        );
+        for (const [a, b] of [
+          [outer[i], outer[j]],
+          [inner[j], inner[i]],
+        ]) {
+          const q = [
+            [...a, back],
+            [...b, back],
+            [...b, front],
+            [...a, front],
+          ];
+          Q(s, q, normalFor(...q), col);
+        }
+      }
+    },
+    strip = (s, points, width, back, front, col) => {
+      const side = (sign) =>
+        points.map((p, i) => {
+          const a = points[Math.max(0, i - 1)],
+            b = points[Math.min(points.length - 1, i + 1)],
+            dx = b[0] - a[0],
+            dy = b[1] - a[1],
+            len = Math.hypot(dx, dy);
+          return [p[0] - (sign * dy * width) / (2 * len), p[1] + (sign * dx * width) / (2 * len)];
+        });
+      extrude(s, [...side(1), ...side(-1).reverse()], back, front, col);
+    };
+  const b = c.bay,
+    section = Array.from({ length: b.segments + 1 }, (_, i) => {
+      const a = (i * Math.PI) / (2 * b.segments);
+      return [b.backZ + b.radius * Math.sin(a), b.bottom + b.radius * (1 - Math.cos(a))];
+    });
+  section.push([b.frontZ, b.top], [b.backZ, b.top]);
+  for (let i = 0; i < section.length; i++) {
+    const j = (i + 1) % section.length,
+      p = [
+        [b.left, section[i][1], section[i][0]],
+        [b.right, section[i][1], section[i][0]],
+        [b.right, section[j][1], section[j][0]],
+        [b.left, section[j][1], section[j][0]],
+      ];
+    Q('facadeStucco', p, normalFor(...p), plaster);
+  }
+  polygon(
+    'facadeStucco',
+    section.map((v) => [b.left, v[1], v[0]]),
+    [-1, 0, 0],
+    plaster,
+  );
+  const shutters = c.bayShutters,
+    sf = facing(metric, 0, 0, shutters.frontPlaneZ);
+  for (const x of shutters.centers)
+    for (const sign of [-1, 1]) {
+      const xx = x + sign * (shutters.windowWidth / 2 + shutters.leafWidth / 2 + shutters.hingeGap);
+      B(
+        sf,
+        'facadeShutters',
+        xx,
+        shutters.bottom,
+        0,
+        shutters.leafWidth,
+        shutters.height,
+        shutters.depth,
+        iron,
+      );
+      for (let i = 0; i < 5; i++)
+        face(
+          sf,
+          'facadeShutters',
+          xx - shutters.leafWidth / 2 + ((i + 0.5) * shutters.leafWidth) / 5,
+          shutters.bottom + 0.03,
+          0.06,
+          0.006,
+          shutters.height - 0.06,
+          iron.map((v) => v * 0.95),
+        );
+    }
+  polygon(
+    'facadeStucco',
+    section.map((v) => [b.right, v[1], v[0]]),
+    [1, 0, 0],
+    plaster,
+  );
+  const w = c.wall,
+    p = c.portal,
+    hole = boundary(),
+    outline = [[w.left, w.bottom], [w.right, w.bottom], [w.right, w.top], [w.left, w.top], ...hole],
+    ids = earcut(outline.flat(), [4]);
+  for (let i = 0; i < ids.length; i += 3)
+    metric.addTriangle(
+      'facadeStucco',
+      ref,
+      ids.slice(i, i + 3).map((k) => [...outline[k], w.frontZ]),
+      [0, 0, 1],
+      null,
+      plaster,
+    );
+  annulus('portalStone', boundary(p.framePadding), hole, p.frameBackZ, p.frameFrontZ, red);
+  for (let i = 0; i < hole.length; i++) {
+    const j = (i + 1) % hole.length,
+      q = [
+        [...hole[j], w.frontZ - p.recess],
+        [...hole[i], w.frontZ - p.recess],
+        [...hole[i], p.frameFrontZ],
+        [...hole[j], p.frameFrontZ],
+      ];
+    Q('portalStone', q, normalFor(...q), red);
+  }
+  const leaf = boundary(-p.leafInset),
+    clip = (points, limit, left) => {
+      const out = [];
+      for (let i = 0; i < points.length; i++) {
+        const a = points[i],
+          b = points[(i + 1) % points.length],
+          aa = left ? a[0] <= limit : a[0] >= limit,
+          bb = left ? b[0] <= limit : b[0] >= limit;
+        if (aa) out.push(a);
+        if (aa !== bb) {
+          const t = (limit - a[0]) / (b[0] - a[0]);
+          out.push([limit, a[1] + (b[1] - a[1]) * t]);
+        }
+      }
+      return out;
+    };
+  for (const sign of [-1, 1])
+    extrude(
+      'portalWood',
+      clip(leaf, p.x + (sign * p.leafGap) / 2, sign < 0),
+      p.doorBackZ,
+      p.doorFrontZ,
+      wood,
+    );
+  annulus('portalWood', boundary(-0.035), boundary(-0.1), p.woodBackZ, p.woodFaceZ, lightwood);
+  for (const sign of [-1, 1]) {
+    B(
+      metric,
+      'portalWood',
+      p.x + sign * 0.04,
+      p.bottom + 0.02,
+      4.1875,
+      0.045,
+      p.height - 0.06,
+      0.075,
+      lightwood,
+    );
+    const cx = p.x + (sign * p.width) / 4,
+      lo = p.bottom + 0.15,
+      hi = p.bottom + 0.82,
+      pw = p.width * 0.39;
+    for (const xx of [cx - pw / 2, cx + pw / 2])
+      B(metric, 'portalWood', xx, lo, 4.195, 0.04, hi - lo, 0.07, lightwood);
+    for (const yy of [lo, hi]) B(metric, 'portalWood', cx, yy, 4.195, pw, 0.04, 0.07, lightwood);
+    const upper = [
+      [p.x + sign * 0.12, p.bottom + 1],
+      [p.x + sign * (p.width / 2 - 0.15), p.bottom + 1],
+      [p.x + sign * (p.width / 2 - 0.15), p.bottom + 2.39],
+      [p.x + sign * 0.12, p.bottom + 2.45],
+    ];
+    strip('portalWood', upper, 0.045, 4.155, 4.21, lightwood);
+    const waist = Array.from({ length: 13 }, (_, i) => [
+      p.x + sign * (0.12 + ((p.width / 2 - 0.27) * i) / 12),
+      p.bottom + 1.84 - 0.29 * Math.sin((i * Math.PI) / 24),
+    ]);
+    strip('portalWood', waist, 0.07, 4.155, 4.23, lightwood);
+  }
+  const kx = p.x - 0.32,
+    ky = p.bottom + 1.28;
+  B(metric, 'portalMetal', kx, ky - 0.09, 4.1875, 0.1, 0.2, 0.055, iron);
+  const outer = Array.from({ length: 12 }, (_, i) => [
+      kx + 0.07 * Math.cos((i * Math.PI) / 6),
+      ky + 0.07 * Math.sin((i * Math.PI) / 6),
+    ]),
+    inner = Array.from({ length: 12 }, (_, i) => [
+      kx + 0.042 * Math.cos((i * Math.PI) / 6),
+      ky + 0.042 * Math.sin((i * Math.PI) / 6),
+    ]);
+  annulus('portalMetal', outer, inner, 4.195, 4.25, iron);
+  B(metric, 'portalMetal', p.x + 0.12, p.bottom + 1.22, 4.1875, 0.045, 0.14, 0.055, iron);
 }
 function roofY(z) {
   const a = Math.abs(z);
@@ -516,10 +820,28 @@ function rear(o, d) {
     );
 }
 export function bach(o, _frame, d = 3) {
-  rect(o, -10.1, -4.75, 10.1, 4.4, -1.8, 6.6, 'wall', plaster);
+  rect(
+    d > 2
+      ? {
+          addQuad: (s, r, p, n, u, c) =>
+            p.every((v) => Math.abs(v[2] - 4.4) < 0.000001)
+              ? undefined
+              : o.addQuad(s, r, p, n, u, c),
+        }
+      : o,
+    -10.1,
+    -4.75,
+    10.1,
+    4.4,
+    -1.8,
+    6.6,
+    'wall',
+    plaster,
+  );
   rect(o, -10.12, -4.77, 10.12, 4.42, -1.81, 1.0, 'stone', stone);
   // Projecting western room at first-floor level; lower wall remains recessed.
-  rect(o, 5.65, 4.38, 10.1, 4.88, 2.65, 6.55, 'wall', plaster);
+  if (d < 3) rect(o, 5.65, 4.38, 10.1, 4.88, 2.65, 6.55, 'wall', plaster);
+  else facadeConstruction(o);
   roof(o, d);
   const f = facing(o, 0, 0, 4.43);
   for (const [x, y, w, h, n] of [
@@ -590,6 +912,11 @@ const surfaces = {
   roof: { slot: 'roof', graph: 'tile_flat', roughness: 0.94, metallic: 0 },
   metal: { slot: 'trim', graph: 'metal_painted', roughness: 0.65, metallic: 0.28 },
   glass: { ...landmarkSurfaces.glass, localRef: ref },
+  facadeStucco: { slot: 'wall', graph: 'stucco', roughness: 0.92, metallic: 0 },
+  portalStone: { slot: 'trim', graph: 'concrete_plain', roughness: 0.9, metallic: 0 },
+  portalWood: { slot: 'trim', graph: 'wood_plain', roughness: 0.85, metallic: 0 },
+  portalMetal: { slot: 'trim', graph: 'metal_painted', roughness: 0.65, metallic: 0.28 },
+  facadeShutters: { slot: 'trim', graph: 'wood_plain', roughness: 0.85, metallic: 0 },
 };
 export const bachModel = {
   id: 'bach_house',
@@ -604,6 +931,8 @@ export const bachModel = {
   qaCameras: [
     { name: 'front', position: [5, 8, 31], lookAt: [0, 5, 0] },
     { name: 'back', position: [-8, 15, -29], lookAt: [0, 5, 0] },
+    { name: 'bay-cove', position: [10.1, 2.25, 10], lookAt: [8, 3, 4.65] },
+    { name: 'carved-entry', position: [1.5, 3.4, 10.3], lookAt: [3.75, 2.7, 4.3] },
   ],
   build: bach,
   surfaces,
@@ -624,7 +953,7 @@ export const bachModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior from two primary and three supplemental individually inspected Qualla originals, official museum history and aerial/map control. Hidden ends, exact dimensions and the small rear projection remain photographic estimates; no surveyed plan.',
+    'New rounded bay cove and actual recessed portal/solid paired carved door from native cleared Qualla public-domain plaque and exact native photographer-PD-self front exterior/detail. Two unsupported lower shutter leaves removed and six upper bay leaves narrowed to source-supported paired half-widths, preventing doorway/adjacent shutter intersections. Three original lower levels and every original attribute outside324replaced facade/shutter triangles retained. Original full historic house/steps/rear projection scope retained; contemporary extension remains separately scoped future structure. Earlier attribution/private/aerial imagery excluded as current controls. Wider rear/hidden roof review pending; cove radius/recess depths/door craft/hardware/shutter hinge spacing, dimensions, hidden ends and rear projection remain medium-fi estimates, not survey data.',
     'Surviving historic house only. The timber frame is plastered, so no exposed frame grid is invented. Contemporary museum extension, neighboring buildings, garden landscaping, interiors and photo pixels excluded.',
     'Roof weathering, curved tile profiles, leaded glass, door carving and iron grilles are authored approximations. Small ornament is simplified with distance; no exact lettering reproduced.',
     'Independent unmodified Terrarium ground retained; urban interpolation is not survey accuracy and host terrain may differ. Footprint replacement disabled. No physical-device performance measurement claimed.',

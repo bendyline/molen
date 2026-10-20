@@ -166,11 +166,11 @@ function archShape(o, x, y, z, w, h, d, col = glass, slot = 'glass') {
   }
   o.addConvexPolygon(slot, ref, p, [0, 0, 1], (p) => [p[0], p[1]], col);
 }
-function archBand(o, x, y, z, w, h, d, t = 0.3) {
+function archBand(o, x, y, z, w, h, d, t = 0.3, { legs = true } = {}) {
   const r = w / 2,
     sy = y + h - r,
     n = d > 2 ? 12 : 3;
-  for (const u of [-1, 1]) face(o, 'brick', x + u * (r + t / 2), y, z, t, h - r, brick);
+  if (legs) for (const u of [-1, 1]) face(o, 'brick', x + u * (r + t / 2), y, z, t, h - r, brick);
   for (let i = 0; i < n; i++) {
     const a = (i * Math.PI) / n,
       b = ((i + 1) * Math.PI) / n;
@@ -361,6 +361,122 @@ function dormer(o, x, y, z, w, d) {
   ];
   quad(o, 'roof', p, upNormal(p), roof);
 }
+// Original simplified six-flute shaft. A complete turn supplies physical spiral
+// relief; the photograph does not establish exact historic pitch or carving.
+function spiralShaft(
+  o,
+  x,
+  {
+    bottom = 31.62,
+    height = 3.73,
+    radius = 0.14,
+    valley = 0.105,
+    levels = 16,
+    sides = 12,
+    turns = 1,
+    z = 0,
+  } = {},
+) {
+  const rings = Array.from({ length: levels }, (_, j) => {
+    const t = j / (levels - 1);
+    return Array.from({ length: sides }, (_, i) => {
+      const a = (t * turns - i / sides) * Math.PI * 2,
+        r = i % 2 ? valley : radius;
+      return [x + Math.cos(a) * r, bottom + t * height, z + Math.sin(a) * r];
+    });
+  });
+  for (let j = 1; j < rings.length; j++)
+    for (let i = 0; i < sides; i++) {
+      const k = (i + 1) % sides;
+      for (const p of [
+        [rings[j - 1][i], rings[j - 1][k], rings[j][k]],
+        [rings[j - 1][i], rings[j][k], rings[j][i]],
+      ])
+        o.addTriangle(
+          'brick',
+          ref,
+          p,
+          normalFor(...p),
+          p.map((v) => [v[0], v[1]]),
+          brick,
+        );
+    }
+  for (const [ring, normal] of [
+    [rings[0], [0, -1, 0]],
+    [rings.at(-1), [0, 1, 0]],
+  ]) {
+    const ids = earcut(ring.flatMap((p) => [p[0], p[2]]));
+    for (let i = 0; i < ids.length; i += 3) {
+      const p = ids.slice(i, i + 3).map((j) => ring[j]);
+      o.addTriangle(
+        'brick',
+        ref,
+        p,
+        normal,
+        p.map((v) => [v[0], v[2]]),
+        brick,
+      );
+    }
+  }
+}
+function towerLoggiaFace(o, d) {
+  const L = 7.7,
+    count = 5,
+    step = L / count,
+    w = step - 0.38,
+    r = w / 2,
+    y = 31.35,
+    h = 4.8,
+    spring = y + h - r;
+  B(o, 'wall', 0, y - 0.25, -0.4, L, 0.25, 1.15, wall);
+  for (let i = 1; i < count; i++) {
+    const x = -L / 2 + i * step;
+    if (d === 2) B(o, 'brick', x, y, -0.2, 0.34, spring - y, 0.7, brick);
+    else {
+      spiralShaft(o, x);
+      B(o, 'brick', x, y, 0, 0.34, 0.17, 0.34, brick);
+      B(o, 'brick', x, 31.52, 0, 0.31, 0.1, 0.31, brick);
+      B(o, 'brick', x, 35.35, 0, 0.42, 0.15, 0.42, brick);
+      B(o, 'brick', x, 35.5, 0, 0.53, 0.15, 0.53, brick);
+    }
+  }
+  for (let i = 0; i < count; i++) {
+    const x = -L / 2 + (i + 0.5) * step,
+      n = d > 2 ? 8 : 3;
+    for (let j = 0; j < n; j++) {
+      const a = (j * Math.PI) / n,
+        b = ((j + 1) * Math.PI) / n,
+        xx = [x + r * Math.cos(a), x + r * Math.cos(b)],
+        yy = [spring + r * Math.sin(a), spring + r * Math.sin(b)];
+      for (const z of [0.15, -0.55])
+        quad(
+          o,
+          'wall',
+          [
+            [xx[0], yy[0], z],
+            [xx[1], yy[1], z],
+            [xx[1], y + h + 0.1, z],
+            [xx[0], y + h + 0.1, z],
+          ],
+          [0, 0, z > 0 ? 1 : -1],
+          wall,
+        );
+      quad(
+        o,
+        'wall',
+        [
+          [xx[0], yy[0], -0.55],
+          [xx[1], yy[1], -0.55],
+          [xx[1], yy[1], 0.15],
+          [xx[0], yy[0], 0.15],
+        ],
+        [-Math.cos((a + b) / 2), -Math.sin((a + b) / 2), 0],
+        wall,
+      );
+    }
+    archBand(o, x, y, 0.17, w, h, d, 0.28, { legs: false });
+  }
+}
 function tower(o, x, z, d) {
   B(o, 'wall', x, -2, z, 7.4, 33.2, 7.4, wall);
   B(o, 'brick', x, 31.0, z, 8, 0.35, 8, brick);
@@ -388,9 +504,45 @@ function tower(o, x, z, d) {
       x + Math.sin((k * Math.PI) / 2) * 3.85,
       z + Math.cos((k * Math.PI) / 2) * 3.85,
     );
-    arcade(g, 7.7, 4, 31.35, 4.8, d, { depth: 0.8, columns: true });
+    if (d < 2) arcade(g, 7.7, 5, 31.35, 4.8, d, { depth: 0.8, columns: true });
+    else towerLoggiaFace(g, d);
     if (d > 1) rail(g, 0, 31.5, 0.15, 7.7, d, 'brick');
   }
+  // One column at each real corner, shared by both adjoining five-bay faces.
+  if (d > 1)
+    for (const u of [-3.85, 3.85])
+      for (const v of [-3.85, 3.85]) {
+        if (d === 2)
+          loft(
+            o,
+            'brick',
+            [31.35, 35.57].map((y) => radialRing(y, 0.28, 0.28, 3, [x + u, z + v], Math.PI / 6)),
+            brick,
+          );
+        else
+          loft(
+            o,
+            'brick',
+            [
+              [31.35, 0.32],
+              [31.52, 0.32],
+              [31.65, 0.25],
+              [35.31, 0.25],
+              [35.45, 0.31],
+              [35.65, 0.32],
+            ].map(([y, r]) => radialRing(y, r, r, 8, [x + u, z + v])),
+            brick,
+          );
+      }
+  // The partly obscured white enclosure is visible behind the colonnade. Its
+  // hidden section is a cylindrical estimate, with a hexagonal distant version.
+  if (d > 1)
+    loft(
+      o,
+      'wall',
+      [31.2, 36.2].map((y) => radialRing(y, 2.4, 2.4, d > 2 ? 16 : 6, [x, z])),
+      wall,
+    );
   B(o, 'brick', x, 36.2, z, 8.3, 0.45, 8.3, brick);
   if (d > 1)
     for (let k = 0; k < 4; k++) {
@@ -453,6 +605,103 @@ function mirador(o, x, z, d) {
     window(f, 0, 17.6, 0.025, 3.2, 2.8, d, true);
     if (d > 2) for (const u of [-2.3, 2.3]) B(f, 'wood', u, 17.4, 0.1, 0.22, 3.3, 0.25, wood);
   }
+}
+function centralUpperGallery(o) {
+  // Keep the old outer envelope. Recess the room behind a pierced front wall.
+  B(o, 'wall', 0, 23.4, -11.375, 19.2, 5.3, 18.55, wall);
+  for (let i = 0; i < 9; i++) {
+    const x = -6.1 + (i * 12.2) / 8;
+    archShape(o, x, 24, -2.095, 1.35, 3.5, 3);
+    B(o, 'wood', x, 24, -2.07, 0.035, 2.65, 0.03, wood);
+    for (const sg of [-1, 1])
+      beam(o, 'wood', [x, 26.3, -2.055], [x + sg * 0.5, 26.85, -2.055], 0.025, 0.025, wood);
+    if (i < 8) {
+      const c = x + 12.2 / 16;
+      spiralShaft(o, c, {
+        bottom: 24.1,
+        height: 2.725,
+        radius: 0.075,
+        valley: 0.055,
+        levels: 7,
+        sides: 10,
+        turns: 0.5,
+        z: -0.85,
+      });
+      B(o, 'brick', c, 26.825, -0.85, 0.2, 0.12, 0.2, brick);
+    }
+  }
+  const outer = [
+      [-9.6, 23.4],
+      [9.6, 23.4],
+      [9.6, 28.7],
+      [-9.6, 28.7],
+    ],
+    openings = Array.from({ length: 9 }, (_, i) => {
+      const x = -6.1 + (i * 12.2) / 8,
+        r = 0.675,
+        stem = 24 + 3.5 - r,
+        p = [
+          [x - r, 24],
+          [x + r, 24],
+          [x + r, stem],
+        ];
+      for (let j = 1; j <= 12; j++) {
+        const a = (j * Math.PI) / 12;
+        p.push([x + Math.cos(a) * r, stem + Math.sin(a) * r]);
+      }
+      return p;
+    }),
+    rings = [outer, ...openings],
+    points = rings.flat(),
+    holes = [];
+  let count = outer.length;
+  for (const p of openings) {
+    holes.push(count);
+    count += p.length;
+  }
+  const ids = earcut(points.flat(), holes);
+  for (const [z, normal] of [
+    [-0.95, [0, 0, 1]],
+    [-2.1, [0, 0, -1]],
+  ])
+    for (let i = 0; i < ids.length; i += 3) {
+      const p = ids.slice(i, i + 3).map((j) => [...points[j], z]);
+      o.addTriangle(
+        'wall',
+        ref,
+        p,
+        normal,
+        p.map((v) => [v[0], v[1]]),
+        wall,
+      );
+    }
+  for (const [ringIndex, ring] of rings.entries())
+    for (let i = 0; i < ring.length; i++) {
+      const a = ring[i],
+        b = ring[(i + 1) % ring.length],
+        p = ringIndex
+          ? [
+              [...a, -0.95],
+              [...b, -0.95],
+              [...b, -2.1],
+              [...a, -2.1],
+            ]
+          : [
+              [...a, -0.95],
+              [...a, -2.1],
+              [...b, -2.1],
+              [...b, -0.95],
+            ],
+        normal = normalFor(p[0], p[1], p[2]);
+      o.addQuad(
+        'wall',
+        ref,
+        p,
+        normal,
+        p.map((v) => (Math.abs(normal[1]) > 0.5 ? [v[0], v[2]] : [v[2], v[1]])),
+        wall,
+      );
+    }
 }
 function main(o, d) {
   // Side-room cores are set back behind open courtyard loggias and third-floor timber galleries.
@@ -583,7 +832,8 @@ function main(o, d) {
           );
         }
     }
-  B(o, 'wall', 0, 23.4, -10.8, 19.2, 5.3, 19.7, wall);
+  if (d > 2) centralUpperGallery(o);
+  else B(o, 'wall', 0, 23.4, -10.8, 19.2, 5.3, 19.7, wall);
   hip(o, 0, -10.8, 21.4, 21.4, 28.7, 1.6);
   if (d)
     for (let k = 0; k < 4; k++) {
@@ -593,7 +843,12 @@ function main(o, d) {
         Math.sin((k * Math.PI) / 2) * 9.62,
         -10.8 + Math.cos((k * Math.PI) / 2) * 9.9,
       );
-      for (let i = 0; i < 8; i++) window(f, -6.1 + i * 1.75, 24.0, 0.03, 1.35, 3.5, d, true);
+      const count = k === 0 ? 9 : 8;
+      for (let i = 0; i < count; i++) {
+        const x = k === 0 ? -6.1 + (i * 12.2) / 8 : -6.1 + i * 1.75;
+        if (k === 0 && d > 2) archBand(f, x, 24.0, 0.055, 1.35, 3.5, d, 0.22, { legs: false });
+        else window(f, x, 24.0, 0.03, 1.35, 3.5, d, true);
+      }
       if (d > 1) rail(f, 0, 24.0, 0.08, 14.1, d, 'brick');
     }
   const n = d > 1 ? 24 : 8;
@@ -786,7 +1041,7 @@ function dining(o, frame, d) {
     }
   if (d) for (const x of [-27, 23]) for (const z of [-81, -68]) chimney(o, x, z, 24, d);
 }
-function ponce(o, _frame, d = 3) {
+export function ponce(o, _frame, d = 3) {
   const frame = _frame ?? JSON.parse(fs.readFileSync(new URL('map-frame.json', base)));
   main(o, d);
   entrance(o, d);
@@ -901,6 +1156,9 @@ export const ponceModel = {
   qaCameras: [
     { name: 'front', position: [78, 51, 151], lookAt: [-1, 17, 8] },
     { name: 'back', position: [-122, 75, -166], lookAt: [-1, 13, -43] },
+    { name: 'tower-five-bays', position: [22.3, 34.4, 16], lookAt: [22.3, 34, -0.75] },
+    { name: 'tower-spiral-shafts', position: [24, 33.7, 6.4], lookAt: [23.07, 33.6, 3.1] },
+    { name: 'central-upper-gallery', position: [0, 26.1, 12], lookAt: [0, 25.8, -0.95] },
   ],
   build: ponce,
   surfaces,
@@ -921,7 +1179,11 @@ export const ponceModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior based on six individually inspected local Qualla originals, NPS architectural description and mapped component footprints.',
+    'New tower loggias use exact primary Highsmith public-domain exterior photographs after starting with cleared Qualla candidates. Five bays on each of eight faces; physical simplified spiral shafts and single shared corner columns at close range.',
+    'Six flutes and one shaft turn are original medium-fi simplifications, not exact historic carving or measured pitch. Native photographic dimensions, column profiles and concealed elevations remain estimates.',
+    'Central upper gallery corrected to nine front arches; close range has actual recessed openings,1.15m-deep reveals and a closed rear room wall. Depth is an authoring estimate; lower levels use opaque opening silhouettes.',
+    'Central gallery includes recessed glazing, simple physical lead frames and eight five-flute half-turn shaft reliefs. These are original simplified profiles; precise decorative glazing and historic carving are not reproduced.',
+    'Recessed white tower-core enclosures follow the visible native photograph;2.4m radius and hidden cylindrical section are estimates. Street uses closed triangular corner-column profiles and hexagonal cores.',
     'NPS 165-foot tower height governs overall skyline; inconsistent lower map height tags are retained as source evidence. Other vertical dimensions, roof joins and hidden elevations remain estimates.',
     'Main hotel, dining oval and connected original service block included. Separate boiler house/chimney, Artists Studios, later college facilities, interior decoration, fine sculpture and exact inscriptions excluded.',
     'Dated local photographs govern finishes; temporary roof-restoration works visible in current satellite context are excluded. Independent terrain remains unflattened and host-dependent.',

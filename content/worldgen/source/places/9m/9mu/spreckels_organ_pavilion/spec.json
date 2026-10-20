@@ -1,0 +1,387 @@
+{
+  "planId": "spreckels_organ_pavilion",
+  "id": "spreckels_organ_pavilion",
+  "assetId": "molen.worldgen.structure.spreckels_organ_pavilion",
+  "title": "Spreckels Organ Pavilion",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -117.15042740106583,
+    "latitude": 32.72944241537526
+  },
+  "size": [
+    83.14001846313477,
+    27,
+    35.86140060424805
+  ],
+  "actualBounds": {
+    "min": [
+      -41.69559860229492,
+      -4,
+      -12.105400085449219
+    ],
+    "max": [
+      41.444419860839844,
+      23,
+      23.756000518798828
+    ]
+  },
+  "visualBrief": "Closed-shutter Spreckels Organ Pavilion: native central rectangular organ house and U-shaped paired-row Corinthian colonnades/terminal portals. Giant round arch with true pierced original floral rosettes/petal tracery and raised moldings, inset ribbed shutter, decorated lower pilasters/plain inset plaques/door+transom bays and shell pediments. Curved triangular central parapet/shell cornice/urns, twin side window recesses/round louver/curved crest and lower barred side entry. Open colonnade bays/coffered ceiling/turned-baluster parapets/urn piers; free terminal columns/flanking relief piers/segmental portal crest/urns and north stairs. Stage apron/paired side stair flights retain independent ground, no plaza seating/fountain/neighbors/interior/organ pipes/flags/art text.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Spreckels_Pavilion_WideShot.jpg"
+  ],
+  "stories": [
+    {
+      "id": "spreckels-organ-pavilion-wp",
+      "url": "https://qualla.com/spreckels-organ-pavilion/"
+    }
+  ],
+  "referenceInputHash": "1ecb47c0dd1cd9b4b152934811f7602cc279ca9b019e99a9e8b971b611a58065",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-spreckels-organ-pavilion.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-spreckels-organ-pavilion.mjs",
+    "level": "skyline",
+    "export": "spreckelsOrganPavilionSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "relief": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.35,
+        "metallic": 0.1
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.2,
+        "doubleSided": true
+      },
+      "shutter": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.78,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "spreckelsOrganPavilionDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.1
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.2,
+            "doubleSided": true
+          },
+          "shutter": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "spreckelsOrganPavilionStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.1
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.2,
+            "doubleSided": true
+          },
+          "shutter": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "cameraYaw": 0,
+    "groundY": -4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged original Terrariumtile/independent review grid; dry audience approach[0,4] datum80.7054m. Main/colonnade floor+.55m, buried-4m foundation and separate stairs follow photographed raised walkway. Urban elevation/actual threshold engineering and host terrain compatibility unmeasured. No terrain flattening/model-fitting.",
+    "anchor": [
+      -117.15042740106583,
+      32.72944241537526
+    ],
+    "heading": 3.141592653589793,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -117.15042740106583,
+        32.72947834782226
+      ],
+      "modelHeight": 0,
+      "basis": "Dry central audience approach clear of projecting stage, fountain, planted beds and carriageway."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184403329355",
+      "buildings/35185883143324"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0c03a297bb791d9f395a09b7c24460bd7bbfa7b8c7feade50bea49afb4c9615b"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Closed-shutter mode confirmed by verified creator-CC02024 oblique; cleared Qualla2024/2026 wide views and creator-CC02012 arch detail control the main exterior comparison. Temporary performance setup/organ interior, seating/fountain and surface patina are excluded.",
+    "Native combined U65vertexoutline and own rectangular23mheightpart retained.13baywingcolumn rhythm/roof heights/steps/fine ornament/rear openings are proportional estimates, not a measured elevation.",
+    "Native main23.109×11.805m/overall83.14mwidth controls placement. Former City schematic imagery is excluded; its nominal stage/plaza comparisons are not current authoring or approval evidence.",
+    "Original geometric floral/shell/Corinthian relief approximates photographed rhythm; no fine plaque text/figurative sculpture, organ-pipe interior, seats/plaza/fountain/landscape/flags/streetlights/neighbors.",
+    "Independent terrain acquired before geometry; no flattening/model-fitted heights.",
+    "13baywing rhythm with12free columns per row is photo-counted approximation; actual irregular native outline controls floor/roof strip. Native23mcentralpart/top used nominally; facade profile/cornice/column7.05m/roof7.65m/balustrade8.75m/steps and relief are not surveyed.",
+    "Chosen closed shutter omits performance interior/organ pipes; inset plain plaques omit actual text. Fine Corinthian/shell/flower forms are original abstractions. Closed-shutter/side appearance follows the verified creator-CC0 oblique; hidden rear facade and roof service details remain conservative interpretations of native mapped massing, not photographic replicas. Earlier CC/aerial/plan/report imagery is excluded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        12,
+        50
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "arch-detail",
+      "position": [
+        13,
+        12,
+        23
+      ],
+      "lookAt": [
+        0,
+        10,
+        0.1
+      ]
+    },
+    {
+      "name": "plaque-detail",
+      "position": [
+        14,
+        4,
+        10
+      ],
+      "lookAt": [
+        9.6,
+        3.2,
+        0.2
+      ]
+    },
+    {
+      "name": "colonnade-detail",
+      "position": [
+        23,
+        4,
+        15
+      ],
+      "lookAt": [
+        25,
+        4,
+        -2
+      ]
+    },
+    {
+      "name": "terminal-detail",
+      "position": [
+        52,
+        7,
+        35
+      ],
+      "lookAt": [
+        38,
+        5,
+        18
+      ]
+    },
+    {
+      "name": "side-detail",
+      "position": [
+        28,
+        13,
+        -3
+      ],
+      "lookAt": [
+        11.5543,
+        12,
+        -5.9027
+      ]
+    },
+    {
+      "name": "roof-detail",
+      "position": [
+        -36,
+        32,
+        -22
+      ],
+      "lookAt": [
+        0,
+        13,
+        -6
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        24,
+        23,
+        -38
+      ],
+      "lookAt": [
+        0,
+        9,
+        -8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 57983,
+    "vertices": 173949,
+    "materials": 7,
+    "bytes": 6961888,
+    "sha256": "sha256:ad19c450a48e69640e9b43d3548d868c386f6fe8251aee473037edd799458c82"
+  }
+}

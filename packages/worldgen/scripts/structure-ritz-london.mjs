@@ -1,4 +1,4 @@
-/** Ritz London: dated main-hotel exterior from local photographs, plans and the 2021 survey. */
+/** Ritz London: historic main hotel; new arcade joints follow cleared1907elevations. */
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
@@ -262,6 +262,45 @@ function archPanel(o, x, y, z, w, stem, rise, d, col = glass) {
     face(o, 'stone', x, y + stem, z + 0.04, w, 0.09, white);
   }
 }
+// One closed concave extrusion per pier: real recessed joints, no stacked boxes
+// or painted shadow strips. Depths are authoring estimates from the old plate.
+function channelledPier(o, left, right, z, depth) {
+  const profile = [[-2.4, z]];
+  for (let k = 0; k < 7; k++) {
+    const y = 0.5 + k * 0.48;
+    profile.push([y, z], [y, z - 0.025], [y + 0.018, z - 0.025], [y + 0.018, z]);
+  }
+  profile.push([6.5, z], [6.5, z - depth], [-2.4, z - depth]);
+  const indices = earcut(profile.flat());
+  for (const [x, normal] of [
+    [left, [-1, 0, 0]],
+    [right, [1, 0, 0]],
+  ])
+    for (let i = 0; i < indices.length; i += 3) {
+      const p = indices.slice(i, i + 3).map((j) => [x, ...profile[j]]);
+      o.addTriangle(
+        'granite',
+        ref,
+        p,
+        normal,
+        p.map((v) => [v[2], v[1]]),
+        granite,
+      );
+    }
+  for (let i = 0; i < profile.length; i++) {
+    const a = profile[i],
+      b = profile[(i + 1) % profile.length],
+      p = [
+        [left, ...a],
+        [right, ...a],
+        [right, ...b],
+        [left, ...b],
+      ],
+      normal = normalFor(p[0], p[1], p[2]),
+      uv = p.map((v) => (Math.abs(normal[1]) > 0.5 ? [v[0], v[2]] : [v[0], v[1]]));
+    o.addQuad('granite', ref, p, normal, uv, granite);
+  }
+}
 function arcade(o, centers, z, depth, d) {
   const left = -35.13,
     right = 36.568,
@@ -272,17 +311,19 @@ function arcade(o, centers, z, depth, d) {
   for (const x of centers) {
     const start = x - r,
       end = x + r;
-    B(
-      o,
-      'granite',
-      (last + start) / 2,
-      -2.4,
-      z - depth / 2,
-      start - last,
-      top + 2.4,
-      depth,
-      granite,
-    );
+    if (d > 2) channelledPier(o, last, start, z, depth);
+    else
+      B(
+        o,
+        'granite',
+        (last + start) / 2,
+        -2.4,
+        z - depth / 2,
+        start - last,
+        top + 2.4,
+        depth,
+        granite,
+      );
     const n = d > 2 ? 16 : d > 1 ? 12 : 4;
     for (let j = 0; j < n; j++) {
       const a = (j * Math.PI) / n,
@@ -322,7 +363,7 @@ function arcade(o, centers, z, depth, d) {
       B(o, 'stone', x, 5.45, z + 0.08, 0.35, 0.57, 0.22, pale);
       archPanel(o, x, 0.3, z - depth + 0.02, 3.6, 3.6, 1.4, d);
     }
-    if (d > 1)
+    if (d === 2)
       for (let y = 0.5; y < 3.5; y += 0.48) {
         const w = start - last;
         if (w > 0.1) face(o, 'iron', (last + start) / 2, y, z + 0.01, w, 0.018, rgb('858b83'));
@@ -333,7 +374,19 @@ function arcade(o, centers, z, depth, d) {
     }
     last = end;
   }
-  B(o, 'granite', (last + right) / 2, -2.4, z - depth / 2, right - last, top + 2.4, depth, granite);
+  if (d > 2) channelledPier(o, last, right, z, depth);
+  else
+    B(
+      o,
+      'granite',
+      (last + right) / 2,
+      -2.4,
+      z - depth / 2,
+      right - last,
+      top + 2.4,
+      depth,
+      granite,
+    );
   B(o, 'stone', (left + right) / 2, 6.38, z - 0.2, right - left + 0.4, 0.25, 0.85, pale);
 }
 function facade(o, positions, z, d, { high = true, end = false } = {}) {
@@ -507,7 +560,7 @@ function canopy(o, x, z, d) {
   }
   B(o, 'iron', x, 3.15, z + 1.1, 3.5, 0.12, 0.1, gold);
 }
-function ritz(o, frame, d = 3) {
+export function ritz(o, frame, d = 3) {
   frame ??= JSON.parse(fs.readFileSync(new URL('map-frame.json', base)));
   const r = cleanRing(frame.features[0].rings[0]);
   const full = [
@@ -709,6 +762,8 @@ export const ritzModel = {
   qaCameras: [
     { name: 'front', position: [0, 26, 140], lookAt: [0, 17, 8] },
     { name: 'back', position: [-83, 65, -102], lookAt: [0, 14, 3] },
+    { name: 'arcade-joints', position: [-27, 2.2, 29], lookAt: [-29, 2, 24.13] },
+    { name: 'arcade-depth', position: [-29, 3, 27.8], lookAt: [-26, 2.8, 22.4] },
   ],
   build: ritz,
   surfaces,
@@ -728,7 +783,9 @@ export const ritzModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior of the historic main Ritz hotel, based on individually inspected local 2015–2017 photographs, original plans/elevations and Purcell 2021 condition survey. Later 22 Arlington extension and William Kent House are excluded.',
+    'Historic main Ritz hotel. New close-range arcade rustication follows the cleared Qualla1907Piccadilly/GreenPark elevations; seven recessed joints on all16piers. Later22Arlington extension and William Kent House remain excluded.',
+    'Earlier massing, canopy and roof details inherited from prior work. Modern attribution photographs and private2021survey imagery are excluded as current controls. Full historic-main-hotel fidelity remains pending adequate public-domain review of all retained details.',
+    'Joint spacing follows the existing course rhythm;18mm height and25mm depth are authoring estimates. The1907plate does not establish current condition or exact profiles. Close-only construction keeps the three lower geometry levels unchanged.',
     'Dated model scope does not claim to reproduce all current roof/construction changes. No temporary scaffolding, crowds, Christmas decorations or interiors.',
     'Footprint is mapped; vertical dimensions, upper court geometry, rear windows, equipment and fine sculptural profiles are approximations. Main arcade remains open and rear court is not filled to full height.',
     'Original simplified ironwork, stone balustrades and roof ornament; no copied photograph textures, hotel crest or exact lettering.',

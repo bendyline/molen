@@ -3,7 +3,7 @@ import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
 import { beam } from './authored-structure-mesh.mjs';
-import { B, c, cleanRing, landmarkSurfaces } from './landmark-model-helpers.mjs';
+import { B, c, landmarkSurfaces } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
 
 const framePath = new URL(
@@ -20,24 +20,48 @@ const roles = {
   35184818078648: ['west-residence', 13],
 };
 function ringFor(points, tolerance = 0.03) {
-  const r = cleanRing(points);
+  const original = points.filter(
+    (p, i) => !i || Math.hypot(p[0] - points[i - 1][0], p[1] - points[i - 1][1]) > 1e-7,
+  );
+  if (
+    original.length > 1 &&
+    Math.hypot(original[0][0] - original.at(-1)[0], original[0][1] - original.at(-1)[1]) < 1e-7
+  )
+    original.pop();
+  const retained = original.map((_, i) => i);
+  // Bound each replacement against the original arc, so repeated removals cannot
+  // accumulate an outline error larger than the declared detail tolerance.
+  function arcFits(start, end) {
+    const a = original[start],
+      b = original[end],
+      dx = b[0] - a[0],
+      dz = b[1] - a[1],
+      lengthSquared = dx * dx + dz * dz;
+    if (!lengthSquared) return false;
+    for (let j = (start + 1) % original.length; j !== end; j = (j + 1) % original.length) {
+      const p = original[j],
+        t = Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dz) / lengthSquared));
+      if (Math.hypot(p[0] - a[0] - t * dx, p[1] - a[1] - t * dz) >= tolerance) return false;
+    }
+    return true;
+  }
   let changed = true;
-  while (changed && r.length > 5) {
+  while (changed && retained.length > 5) {
     changed = false;
-    for (let i = 0; i < r.length; i++) {
-      const a = r[(i + r.length - 1) % r.length],
-        b = r[i],
-        d = r[(i + 1) % r.length],
-        dx = d[0] - a[0],
-        dz = d[1] - a[1],
-        len = Math.hypot(dx, dz);
-      if (len && Math.abs((b[0] - a[0]) * dz - (b[1] - a[1]) * dx) / len < tolerance) {
-        r.splice(i, 1);
+    for (let i = 0; i < retained.length; i++) {
+      if (
+        arcFits(
+          retained[(i + retained.length - 1) % retained.length],
+          retained[(i + 1) % retained.length],
+        )
+      ) {
+        retained.splice(i, 1);
         changed = true;
         break;
       }
     }
   }
+  const r = retained.map((i) => original[i]);
   if (
     r.reduce(
       (sum, a, i) => sum + a[0] * r[(i + 1) % r.length][1] - r[(i + 1) % r.length][0] * a[1],

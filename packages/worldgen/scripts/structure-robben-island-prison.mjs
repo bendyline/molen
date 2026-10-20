@@ -92,17 +92,45 @@ function face(o, s, x, y, z, w, h, c, n = 1) {
     c,
   );
 }
-function window(o, x, z, y, w, h, d, frame = white) {
+function windowSill(o, x, z, y, w) {
+  const p = [
+      [x - w / 2, y - 0.02, z - 0.08],
+      [x + w / 2, y - 0.02, z - 0.08],
+      [x + w / 2, y - 0.12, z + 0.28],
+      [x - w / 2, y - 0.12, z + 0.28],
+    ],
+    b = p.map((v) => [v[0], v[1] - 0.08, v[2]]);
+  quad(o, 'metal', p, [0, 0.36, 0.1], red);
+  quad(o, 'metal', b, [0, -0.36, -0.1], red);
+  for (let i = 0; i < 4; i++) {
+    const j = (i + 1) % 4,
+      n = [
+        [0, 0, -1],
+        [1, 0, 0],
+        [0, 0, 1],
+        [-1, 0, 0],
+      ][i];
+    quad(o, 'metal', [p[i], p[j], b[j], b[i]], n, red);
+  }
+}
+function window(o, x, z, y, w, h, d, frame = white, physicalBars = false) {
   face(o, 'glass', x, y, z, w, h, dark);
   if (!d) return;
   face(o, 'metal', x - w / 2 - 0.035, y - 0.04, z + 0.025, 0.07, h + 0.08, frame);
   face(o, 'metal', x + w / 2 + 0.035, y - 0.04, z + 0.025, 0.07, h + 0.08, frame);
   face(o, 'metal', x, y + h, z + 0.026, w + 0.14, 0.07, frame);
-  face(o, 'metal', x, y - 0.08, z + 0.03, w + 0.18, 0.09, red);
-  if (d > 2) {
-    for (let i = 1; i <= 4; i++)
-      face(o, 'metal', x - w / 2 + (w * i) / 5, y, z + 0.045, 0.035, h, frame);
-    for (const v of [0.34, 0.68]) face(o, 'metal', x, y + h * v, z + 0.046, w, 0.03, frame);
+  if (physicalBars) windowSill(o, x, z, y, w + 0.18);
+  else face(o, 'metal', x, y - 0.08, z + 0.03, w + 0.18, 0.09, red);
+  if (d > 2 || physicalBars) {
+    for (let i = 1; i <= 4; i++) {
+      const xx = x - w / 2 + (w * i) / 5;
+      if (physicalBars && d > 2) B(o, 'metal', xx, y, z + 0.08, 0.035, h, 0.08, frame);
+      else face(o, 'metal', xx, y, z + 0.045, 0.035, h, frame);
+    }
+    for (const v of physicalBars && d === 1 ? [0.5] : [0.34, 0.68]) {
+      if (physicalBars && d > 2) B(o, 'metal', x, y + h * v, z + 0.08, w, 0.03, 0.08, frame);
+      else face(o, 'metal', x, y + h * v, z + 0.046, w, 0.03, frame);
+    }
   }
 }
 function masonry(o, w, h, z, d) {
@@ -216,6 +244,7 @@ function block(
     back = true,
     end = true,
     entrance = false,
+    barredFront = false,
     y = 0,
     base = terrainBase(x, z),
   } = {},
@@ -241,8 +270,9 @@ function block(
         1.45 + y,
         whiteTop ? 0.8 : 1.35,
         whiteTop ? 1.05 : 1.35,
-        d > 1 ? d : 0,
+        barredFront && sign === 1 ? d : d > 1 ? d : 0,
         entrance ? red : white,
+        barredFront && sign === 1,
       );
     }
     if (d > 1)
@@ -353,7 +383,7 @@ function fence(o, a, b, d, offset = 0) {
       beam(o, 'metal', p((i + 0.1) / bays, 3.05), p((i + 0.9) / bays, 0.4), 0.018, 0.018, iron);
     }
 }
-function prison(o, _frame, d = 3) {
+export function prison(o, _frame, d = 3) {
   for (const [x, z] of [
     [10, -18.3],
     [-35, 20.4],
@@ -365,7 +395,9 @@ function prison(o, _frame, d = 3) {
   block(o, -54.7, 95.2, 139, 9.6, d, { whiteTop: true });
   block(o, 10, 111.4, 32.2, 9.6, d, { a: Math.PI / 2, whiteTop: true });
   block(o, -91.3, 111, 32, 9.7, d, { a: Math.PI / 2, whiteTop: true });
-  block(o, -37.7, 111.3, 32, 6.3, d, { a: Math.PI / 2, whiteTop: true });
+  // Apply the cleared B-section photograph's window treatment to one retained
+  // mapped courtyard facade. Exact photo-to-court identification is unresolved.
+  block(o, -37.7, 111.3, 32, 6.3, d, { a: Math.PI / 2, whiteTop: true, barredFront: true });
   block(o, -10.8, 111.5, 32, 10.6, d, { a: Math.PI / 2, whiteTop: true });
   block(o, -40.7, 127.2, 110.6, 9.5, d, { whiteTop: true });
   // The separately projecting reception has the eleven red-framed windows in the dated entrance image.
@@ -479,6 +511,8 @@ export const robbenPrisonModel = {
   qaCameras: [
     { name: 'front', position: [-30, 30, 250], lookAt: [-30, 3, 110] },
     { name: 'back', position: [-220, 120, -240], lookAt: [0, 0, 10] },
+    { name: 'courtyard-windows', position: [-24, 3.6, 116], lookAt: [-34.55, 2.6, 111.3] },
+    { name: 'window-sill', position: [-25, 2.6, 104], lookAt: [-34.55, 2.6, 105] },
   ],
   build: prison,
   surfaces,
@@ -500,7 +534,8 @@ export const robbenPrisonModel = {
     },
   },
   limitations: [
-    'Original medium-fi surviving museum exterior, based on individually inspected 2010–2018 Qualla photographs and mapped footprints; not a site survey.',
+    'Original medium-fi surviving compound exterior. Current window construction uses the exact2009 B-section native original already cleared as public domain in Qualla, with the named creator release and original upload log verified. Earlier attribution-licensed imagery is excluded as current control; other compound elevations remain inherited mapped approximations.',
+    'Nine windows on one retained mapped courtyard facade now have solid security bars at close range and physical sloping red sills from district onward. The B-section photograph controls visible treatment; exact photo-to-court/window identity, metric sections, spacing and present condition remain estimates. Other facades retain generalized window geometry.',
     'Four H-blocks, main open courtyards, service buildings and five watchtowers retain their mapped layout. Main roof segmentation, smaller courtyard walls and hidden facade details are interpretations.',
     'Heights, window spacing beyond the photographed entrance and B-section, fence bays and rooftop equipment are photographic estimates. Irregular blue-stone cladding is generalized using authored polygons and shared basalt.',
     'Roof uses a matte corrugated shared surface to represent the observed pale cement sheets; it is not evidence that the original roof is metal.',

@@ -1,12 +1,17 @@
 /** Hollyhock House: battered stucco masses, open garden court and east upper bridge. */
 import './install-deterministic-math.mjs';
+import fs from 'node:fs';
 import earcut from 'earcut';
-import { loft, normalFor } from './authored-structure-mesh.mjs';
+import { beam, loft, normalFor } from './authored-structure-mesh.mjs';
 import { B, cleanRing, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
 
 const ref = 'palette:#ffffff',
   floor = 1.7;
+const base = new URL(
+  '../../../content/worldgen/source/places/9q/9q5/hollyhock_house/',
+  import.meta.url,
+);
 const stucco = rgb('d4cbb4'),
   concrete = rgb('c4b698'),
   edge = rgb('dbd0b7'),
@@ -170,8 +175,9 @@ function motif(o, x, y, h, d, short = false) {
     quad(o, 'stone', p, [-1, 0, 0], shade);
   }
 }
-function frieze(o, w, y, d, { full = false } = {}) {
+function frieze(o, w, y, d, { full = false, replaceWest = false } = {}) {
   B(o, 'stone', 0, y - 0.2, 0.06, w + 0.16, 0.22, 0.3, concrete);
+  if (d > 2 && replaceWest) return;
   if (!d) return;
   const h = full ? 1.12 : 0.42,
     spacing = full ? 0.5 : 0.4,
@@ -210,7 +216,16 @@ function mass(
   d,
   { lo = -2, belt = floor + 2.05, full = false, faces = [0, 1, 2, 3] } = {},
 ) {
-  B(o, 'wall', x, lo, z, w, belt - lo, dep, stucco);
+  const lower =
+    d > 2 && x === -13.4 && z === -0.25
+      ? {
+          addQuad: (s, r, p, n, u, col) =>
+            p.every((v) => Math.abs(v[0] + 20.8) < 0.000001)
+              ? undefined
+              : o.addQuad(s, r, p, n, u, col),
+        }
+      : o;
+  B(lower, 'wall', x, lo, z, w, belt - lo, dep, stucco);
   battered(o, x, z, w, dep, belt, hi, d);
   if (d) B(o, 'stone', x, floor - 0.25, z, w + 0.12, 0.18, dep + 0.12, concrete);
   const sides = [
@@ -221,7 +236,10 @@ function mass(
   ];
   for (const j of d ? faces : []) {
     const [a, xx, zz, span] = sides[j];
-    frieze(facing(o, a, xx, zz), span, belt, d, { full });
+    frieze(facing(o, a, xx, zz), span, belt, d, {
+      full,
+      replaceWest: x === -13.4 && z === -0.25 && j === 3,
+    });
   }
 }
 function wall(o, x, z, w, dep, top, d) {
@@ -269,6 +287,162 @@ function finial(o, x, z, y, d) {
       );
   }
   if (d) B(o, 'roof', x, y + 0.66, z, 0.53, 0.035, 0.53, rgb('676354'));
+}
+/** Solid reliefs and five real west-window pockets, with surface-aligned meter UVs. */
+function westConstruction(o) {
+  const c = JSON.parse(fs.readFileSync(new URL('west-construction-controls.json', base))),
+    f = facing(o, c.westFrame.angle, ...c.westFrame.origin),
+    uv = (p, n) => {
+      const axis = n.map(Math.abs).indexOf(Math.max(...n.map(Math.abs)));
+      return p.map((v) => v.filter((_, i) => i !== axis));
+    },
+    metric = {
+      addQuad: (s, r, p, n, _u, col) => f.addQuad(s, r, p, n, uv(p, n), col),
+      addConvexPolygon: (s, r, p, n, _u, col) => {
+        const u = uv(p, n);
+        return f.addConvexPolygon(s, r, p, n, (v) => u[p.indexOf(v)], col);
+      },
+    },
+    Q = (s, p, n, col) => metric.addQuad(s, ref, p, n, null, col),
+    front = (left, right, lo, hi) => {
+      if (right - left < 0.0001 || hi - lo < 0.0001) return;
+      Q(
+        'reveal',
+        [
+          [left, lo, 0],
+          [right, lo, 0],
+          [right, hi, 0],
+          [left, hi, 0],
+        ],
+        [0, 0, 1],
+        stucco,
+      );
+    },
+    w = c.wall,
+    lo = w.openingBottom,
+    hi = w.openingTop,
+    holes = c.openings
+      .map((v) => ({ ...v, left: v.x - v.width / 2, right: v.x + v.width / 2 }))
+      .sort((a, b) => a.left - b.left),
+    frameColor = rgb('8b7858');
+  front(-w.width / 2, w.width / 2, w.bottom, lo);
+  front(-w.width / 2, w.width / 2, hi, w.top);
+  let cursor = -w.width / 2;
+  for (const v of holes) {
+    front(cursor, v.left, lo, hi);
+    cursor = v.right;
+    for (const x of [v.left, v.right])
+      Q(
+        'reveal',
+        [
+          [x, lo, 0],
+          [x, lo, -w.recess],
+          [x, hi, -w.recess],
+          [x, hi, 0],
+        ],
+        [x === v.left ? 1 : -1, 0, 0],
+        stucco,
+      );
+    for (const y of [lo, hi])
+      Q(
+        'reveal',
+        [
+          [v.left, y, 0],
+          [v.right, y, 0],
+          [v.right, y, -w.recess],
+          [v.left, y, -w.recess],
+        ],
+        [0, y === lo ? 1 : -1, 0],
+        stucco,
+      );
+    Q(
+      'recessGlass',
+      [
+        [v.left, lo, -0.395],
+        [v.right, lo, -0.395],
+        [v.right, hi, -0.395],
+        [v.left, hi, -0.395],
+      ],
+      [0, 0, 1],
+      glass,
+    );
+    for (const x of [v.left + 0.035, v.right - 0.035])
+      B(metric, 'recessWood', x, lo, -0.34, 0.07, hi - lo, 0.1, frameColor);
+    for (const y of [lo, hi - 0.06])
+      B(metric, 'recessWood', v.x, y, -0.34, v.width, 0.06, 0.1, frameColor);
+    for (let i = 1; i <= v.bars; i++)
+      B(
+        metric,
+        'recessWood',
+        v.left + (v.width * i) / (v.bars + 1),
+        lo,
+        -0.34,
+        0.055,
+        hi - lo,
+        0.1,
+        frameColor,
+      );
+    if (v.leaded) {
+      const rod = (a, b) =>
+        beam(
+          metric,
+          'recessWood',
+          [a[0], a[1], -0.375],
+          [b[0], b[1], -0.375],
+          0.025,
+          0.012,
+          frameColor,
+        );
+      for (let i = 1; i <= 6; i++) {
+        const y = lo + ((hi - lo) * i) / 7;
+        rod([v.left + 0.07, y], [v.right - 0.07, y]);
+      }
+      for (let i = 0; i < 4; i++) {
+        const y = lo + 0.15 + i * 0.37;
+        rod([v.left + 0.07, y], [v.right - 0.07, y + 0.22]);
+      }
+    }
+  }
+  front(cursor, w.width / 2, lo, hi);
+  const solidMotif = (x, y, h, back, stemFront) => {
+    const s = h / 1.12,
+      box = (xx, yy, ww, hh, z, depth) =>
+        B(metric, 'relief', x + xx * s, y + yy * s, z, ww * s, hh * s, depth, edge);
+    // Deep narrow backing fins actually meet the receding battered wall.
+    box(0, 0, 0.065, 1.12, (back + stemFront) / 2, stemFront - back);
+    box(0, 0.035, 0.035, 1.04, stemFront + 0.018, 0.036);
+    for (let i = 0; i < 6; i++) {
+      const yy = 0.16 + i * 0.08,
+        ww = i < 3 ? 0.32 : 0.27;
+      box(0, yy, ww, 0.035, stemFront + 0.05, 0.065);
+      for (const sign of [-1, 1]) {
+        box(sign * (ww / 2 - 0.018), yy - 0.055, 0.036, 0.09, stemFront + 0.045, 0.055);
+        box(sign * (ww / 2 - 0.047), yy - 0.055, 0.09, 0.025, stemFront + 0.045, 0.055);
+      }
+    }
+    box(0, 0.61, 0.055, 0.51, stemFront + 0.045, 0.055);
+    for (let i = 0; i < 12; i++)
+      for (const sign of [-1, 1])
+        box(sign * 0.039, 0.64 + i * 0.038, 0.025, 0.017, stemFront + 0.045, 0.055);
+    for (const sign of [-1, 1]) {
+      box(sign * 0.066, 0.015, 0.025, 0.125, stemFront + 0.04, 0.05);
+      box(sign * 0.04, 0.015, 0.075, 0.025, stemFront + 0.04, 0.05);
+    }
+  };
+  const fr = c.frieze;
+  for (let i = 0; i < fr.count; i++)
+    solidMotif(
+      -fr.width / 2 + ((i + 0.5) * fr.width) / fr.count,
+      fr.bottom,
+      fr.height,
+      fr.back,
+      fr.front,
+    );
+  const p = c.piers;
+  for (const x of p.centers) {
+    B(metric, 'relief', x, p.bottom, p.centerZ, p.width, p.height, p.depth, edge);
+    solidMotif(x, p.reliefBottom, p.reliefHeight, p.reliefBack, p.reliefFront);
+  }
 }
 function hollyhock(o, _frame, d = 3) {
   // Plan controls: living projection west, music/study flanks, two low ranges around an open court.
@@ -318,11 +492,13 @@ function hollyhock(o, _frame, d = 3) {
     windows(o, -Math.PI / 2, 12.28, 9.9, 8.3, floor + 0.2, 2.45, 5, d);
   }
   // West living French doors with slender patterned piers; music/study are lower and recess behind it.
-  const west = facing(o, -Math.PI / 2, -20.82, -0.25);
-  win(west, 0, floor, 2.8, 2.05, d, { bars: 1 });
-  for (const sign of [-1, 1]) {
-    win(west, sign * 1.72, floor, 0.45, 2.05, d, { bars: 0 });
-    win(west, sign * 2.66, floor, 0.66, 2.05, d, { bars: 0, lead: true });
+  if (d < 3) {
+    const west = facing(o, -Math.PI / 2, -20.82, -0.25);
+    win(west, 0, floor, 2.8, 2.05, d, { bars: 1 });
+    for (const sign of [-1, 1]) {
+      win(west, sign * 1.72, floor, 0.45, 2.05, d, { bars: 0 });
+      win(west, sign * 2.66, floor, 0.66, 2.05, d, { bars: 0, lead: true });
+    }
   }
   windows(o, -Math.PI / 2, -12.02, -9.4, 4.2, floor + 0.55, 1.4, 3, d);
   windows(o, -Math.PI / 2, -12.02, 9.0, 4.2, floor + 0.55, 1.4, 3, d);
@@ -332,7 +508,7 @@ function hollyhock(o, _frame, d = 3) {
   windows(o, Math.PI, 5.5, -11.27, 7.0, floor + 0.6, 1.35, 5, d);
   windows(o, Math.PI, -1.1, -12.87, 4.3, floor + 0.1, 1.9, 4, d);
   windows(o, 0, -4.4, 14.97, 2.7, floor + 0.1, 1.9, 2, d);
-  if (d > 1) {
+  if (d > 1 && d < 3) {
     const f = facing(o, -Math.PI / 2, -20.85, -0.25);
     for (const xx of [-2.13, 2.13]) {
       B(f, 'stone', xx, floor, 0.1, 0.34, 2.05, 0.22, edge);
@@ -482,6 +658,7 @@ function hollyhock(o, _frame, d = 3) {
     for (const x of [-14, -11.4])
       face(facing(o, 0, x, 3.32), 'wood', 0, 6.8, 0.02, 0.9, 0.25, wood);
   }
+  if (d > 2) westConstruction(o);
 }
 export function hollyhockSkyline(o) {
   hollyhock(o, undefined, 0);
@@ -499,6 +676,10 @@ const surfaces = {
   roof: { slot: 'roof', graph: 'membrane', roughness: 0.93, metallic: 0 },
   glass: { ...landmarkSurfaces.glass, localRef: ref },
   pool: { slot: 'window', roughness: 0.23, metallic: 0.12, localRef: 'palette:#feffff' },
+  relief: { slot: 'trim', graph: 'concrete_plain', roughness: 0.9, metallic: 0 },
+  reveal: { slot: 'wall', graph: 'stucco', roughness: 0.92, metallic: 0 },
+  recessWood: { slot: 'trim', graph: 'wood_plain', roughness: 0.85, metallic: 0 },
+  recessGlass: { ...landmarkSurfaces.glass, localRef: ref },
 };
 export const hollyhockModel = {
   id: 'hollyhock_house',
@@ -513,6 +694,8 @@ export const hollyhockModel = {
   qaCameras: [
     { name: 'front', position: [-70, 19, 44], lookAt: [-5, 3, 0] },
     { name: 'back', position: [65, 25, -45], lookAt: [2, 3, -2] },
+    { name: 'west-reliefs', position: [-25.5, 4.65, 1.3], lookAt: [-20.8, 4.25, -0.25] },
+    { name: 'west-windows', position: [-26, 2.9, -1.4], lookAt: [-20.8, 2.65, -0.25] },
   ],
   build: hollyhock,
   surfaces,
@@ -533,6 +716,7 @@ export const hollyhockModel = {
     },
   },
   limitations: [
+    'New close-only18solid west frieze reliefs/two decorated piers and five physical west-window recesses use two exact native Highsmith public-domain exteriors after a cleared Qualla-first search. Original three lower levels and geometry outside bounded western replacements retained. Relief count follows inspected native2013frieze; .40mrecess, rods/serrations/profiles and frame craft are medium-fi interpretations. Earlier attribution/private guide/satellite imagery excluded as current controls. Full fixed house/court/eastbridge/roof/northgallery/attached terraces/pools retained; wider review pending.',
     'Original medium-fi exterior from individually inspected Qualla photographs, HABS CA-356 description, official 2024 museum floor plan and aerial roof context. Dimensions, hidden joins and relief are interpretations, not surveyed measurements.',
     'Main house, north entrance gallery, attached terraces and basins included. Long northern pet pergola, other park buildings, interiors, vegetation, visitors, furniture, pool sculpture, temporary construction coverings and reference-photo pixels excluded.',
     'Independent USGS CA_LosAngeles_B23 ground preserved unmodified. Ground under buildings is source-interpolated; host terrain may differ. Preview placement retains footprint replacement disabled.',

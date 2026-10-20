@@ -1,7 +1,7 @@
 {
   "format": "molen/qualla-model-references@1",
   "batchId": "qualla-batch-001",
-  "structureId": "jefferson_memorial",
+  "structureId": "QS-e497fa456248",
   "name": "Jefferson Memorial",
   "scope": "Circular colonnade, dome, pedimented portico and terrace steps; approximate the central statue without sculptural microdetail.",
   "era": "surviving exterior represented by selected dated references",
@@ -15,8 +15,44 @@
       "contentHash": "8b9a7337b804b3adcbf211627073de593caaa8a1822ffb1db6a90358b46a5353"
     }
   ],
-  "existing": [],
-  "backlogState": "new",
+  "existing": [
+    {
+      "basis": "name-and-coordinate",
+      "distanceKm": 0.01,
+      "candidateId": "jefferson_memorial",
+      "assetId": "molen.worldgen.structure.jefferson_memorial",
+      "title": "Jefferson Memorial",
+      "sourcePath": "content/worldgen/source/places/dq/dqc/jefferson_memorial",
+      "coordinate": [
+        -77.03655391931534,
+        38.88138293998067
+      ],
+      "sourceModelReported": true,
+      "names": [
+        "Jefferson Memorial"
+      ],
+      "placements": [
+        {
+          "id": "jefferson-memorial",
+          "title": "Jefferson Memorial",
+          "status": "preview",
+          "note": "Structure preview: Jefferson Memorial circular colonnade, dome, portico, stairs, immediate raised terrace and simplified statue. Wider gardens and Tidal Basin excluded. Current source qa.json records completed review when available.",
+          "anchor": [
+            -77.03655391931534,
+            38.88138293998067
+          ]
+        }
+      ],
+      "registered": true,
+      "readiness": {
+        "status": "ready",
+        "blockers": [],
+        "activePlacement": "jefferson-memorial",
+        "fidelity": "medium-fi"
+      }
+    }
+  ],
+  "backlogState": "existing-ready",
   "candidateCount": 25,
   "metadataConflicts": [
     {
@@ -28,24 +64,6 @@
   ],
   "references": [
     {
-      "path": "_m/d/q/c/j/jefferson-memorial-wp/thomas-jefferson-memor.jpg",
-      "filename": "Thomas-jefferson-memorial-front-view.jpg",
-      "caption": "Thomas Jefferson Memorial front view",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Thomas-jefferson-memorial-front-view.jpg",
-      "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Thomas-jefferson-memorial-front-view.jpg",
-      "artist": "Jamieadams99",
-      "license": "CC BY-SA 3.0",
-      "dateCreated": "2011-11-10",
-      "width": 4752,
-      "height": 3168,
-      "sourceType": "core",
-      "metadataOrigin": "_m/d/q/c/j/jefferson-memorial-wp/metadata.json",
-      "reviewRecords": [],
-      "sourceFamily": "commons:thomas-jefferson-memorial-front-view.jpg",
-      "selectionScore": 31,
-      "sha256": "3c81da6162addae6f42a88ab19c264d97b2bd17683bf95f6abd797bc5cc40da4"
-    },
-    {
       "path": "_m/d/q/c/j/jefferson-memorial-wp/jefferson-memorial-loo-1.jpg",
       "filename": "JeffersonMemorialNorth.jpg",
       "caption": "Jefferson Memorial Looking North",
@@ -53,7 +71,7 @@
       "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/JeffersonMemorialNorth.jpg",
       "artist": "Duane Lempke",
       "license": "CC0",
-      "dateCreated": "Taken on\u00a023 October 2015, 02:57:21",
+      "dateCreated": "Taken on 23 October 2015, 02:57:21",
       "width": 1250,
       "height": 749,
       "sourceType": "core",
@@ -62,16 +80,34 @@
       "sourceFamily": "commons:jeffersonmemorialnorth.jpg",
       "selectionScore": 26,
       "sha256": "0e81d973becf60cdae5dc358f951a892c718c360247893b51b3df98b22da1908"
+    },
+    {
+      "path": "_m/d/q/c/j/jefferson-memorial-wp/jefferson-memorial-loo.jpg",
+      "filename": "JeffersonMemorialNE.jpg",
+      "caption": "Jefferson Memorial Looking NE",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:JeffersonMemorialNE.jpg",
+      "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/b/be/JeffersonMemorialNE.jpg",
+      "artist": "Duane Lempke",
+      "license": "CC0",
+      "dateCreated": "Taken on 26 July 2016, 02:04:21",
+      "width": 1250,
+      "height": 838,
+      "sourceType": "core",
+      "metadataOrigin": "_m/d/q/c/j/jefferson-memorial-wp/metadata.json",
+      "reviewRecords": [],
+      "sourceFamily": "commons:jeffersonmemorialne.jpg",
+      "selectionScore": 26,
+      "sha256": "0c9f8dfc5677c9e7c7ac3ef5001bb4f2092d8d039c5a04ffb3bb686a64a6aef2"
     }
   ],
-  "inputHash": "912b29ea671eeb07e02af6cdcacb7a36f3441ebf2587d22d1a110aacd09e589d",
+  "inputHash": "0d15e26b49ceb95883da8a4145eb17a37398c22f49c030db087119a46bd2d872",
   "review": {
-    "inputHash": "912b29ea671eeb07e02af6cdcacb7a36f3441ebf2587d22d1a110aacd09e589d",
+    "inputHash": "0d15e26b49ceb95883da8a4145eb17a37398c22f49c030db087119a46bd2d872",
     "state": "accepted",
-    "reviewedBy": "Codex",
-    "reviewedAt": "2026-10-15",
-    "method": "Individually inspected full local portico and south aerial originals; supplemental capitals, statue, northeast aerial and HABS drawings.",
-    "notes": "Exact column counts and dome/portico proportions use primary photographs and HABS controls; fine sculpture and inscriptions remain approximations."
+    "reviewedBy": "codex",
+    "reviewedAt": "2026-10-17",
+    "method": "Actually inspected all three eligible cleared Qualla CC0 aerials first. A verified creator-CC0 front photo, explicit NPS public-domain dome photo and two original HABS measured sheets with native title-block inspection fill remaining coverage; model approval separately pending.",
+    "notes": "Public domain only. Inspected three cleared published Duane Lempke CC0 Qualla aerials first. Verified creator-CC0 Don McCulley front and explicitly public-domain NPS cleaned-dome original supply front/detail coverage. Native original HABS1994 sheets12/16, including all title-block drawing credits, supply measured controls and simplified central-figure silhouette. Earlier CC photos excluded. Section-based overall height retained with the slightly different elevation-chain total documented; no survey-accuracy claim."
   },
   "candidates": [
     {
@@ -133,7 +169,7 @@
       "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/JeffersonMemorialNorth.jpg",
       "artist": "Duane Lempke",
       "license": "CC0",
-      "dateCreated": "Taken on\u00a023 October 2015, 02:57:21",
+      "dateCreated": "Taken on 23 October 2015, 02:57:21",
       "width": 1250,
       "height": 749,
       "sourceType": "core",
@@ -150,7 +186,7 @@
       "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/b/be/JeffersonMemorialNE.jpg",
       "artist": "Duane Lempke",
       "license": "CC0",
-      "dateCreated": "Taken on\u00a026 July 2016, 02:04:21",
+      "dateCreated": "Taken on 26 July 2016, 02:04:21",
       "width": 1250,
       "height": 838,
       "sourceType": "core",
@@ -167,7 +203,7 @@
       "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/JeffersonMemorialNight.jpg",
       "artist": "Duane Lempke",
       "license": "CC0",
-      "dateCreated": "Taken on\u00a07 August 2016, 11:24:50",
+      "dateCreated": "Taken on 7 August 2016, 11:24:50",
       "width": 1250,
       "height": 886,
       "sourceType": "core",
@@ -388,7 +424,7 @@
       "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Clouds_over_the_Jefferson_Memorial_and_the_Tidal_Basin%2C_March_2016.jpg",
       "artist": "123home123",
       "license": "CC BY-SA 4.0",
-      "dateCreated": "Taken on\u00a016 March 2016",
+      "dateCreated": "Taken on 16 March 2016",
       "width": 2048,
       "height": 1152,
       "sourceType": "core",
@@ -439,7 +475,7 @@
       "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Thomas_Jefferson_in_Jefferson_Memorial.jpg",
       "artist": "Graysick",
       "license": "CC BY-SA 4.0",
-      "dateCreated": "Taken on\u00a029 January 2013, 20:47:30",
+      "dateCreated": "Taken on 29 January 2013, 20:47:30",
       "width": 7360,
       "height": 4912,
       "sourceType": "core",
@@ -456,7 +492,7 @@
       "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/0/06/The_Thomas_Jefferson_Memorial_is_along_the_Tidal_Basin_with_an_excellent_view_of_many_other_prominent_D.C._memorials_and_the_%28b946dcc4-a67e-4d25-a8aa-765ca26d3e0f%29.JPG",
       "artist": "NPS Photo",
       "license": "Public domain",
-      "dateCreated": "Taken on\u00a015 January 2021",
+      "dateCreated": "Taken on 15 January 2021",
       "width": 6720,
       "height": 3360,
       "sourceType": "commons-category",

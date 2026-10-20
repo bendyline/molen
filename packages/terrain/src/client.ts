@@ -2,6 +2,7 @@ export {
   markTerrainGroundSurface,
   markTerrainWaterSurface,
   setTerrainGroundCutout,
+  setTerrainGroundCutouts,
   setTerrainWaterCutout,
   subtractTerrainGroundGeometry,
   TerrainGroundCutoutController,

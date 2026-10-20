@@ -91,6 +91,15 @@ export function loadCatalog(repository) {
     files.push(localReadinessPath);
     documents.push(localReadiness);
   }
+  const batchDirectory = path.dirname(localReadinessFile);
+  for (const name of fs.existsSync(batchDirectory) ? fs.readdirSync(batchDirectory).sort() : []) {
+    if (!/^qualla-\d{3}\.readiness\.json$/.test(name)) continue;
+    const relative = `content/worldgen/source/qualla-structures/batches/${name}`;
+    const document = read(path.join(repository, relative));
+    files.push(relative);
+    documents.push(document);
+    localReadiness.candidates.push(...document.candidates);
+  }
   const models = new Map();
   const add = (value) => {
     const key = value.assetId || value.candidateId;

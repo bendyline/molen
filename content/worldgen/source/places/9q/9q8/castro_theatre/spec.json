@@ -1,0 +1,417 @@
+{
+  "planId": "castro_theatre",
+  "id": "castro_theatre",
+  "assetId": "molen.worldgen.structure.castro_theatre",
+  "title": "Castro Theatre",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -122.43499204516411,
+    "latitude": 37.76199383795087
+  },
+  "size": [
+    31.149999618530273,
+    25.69997787475586,
+    50.72701692581177
+  ],
+  "actualBounds": {
+    "min": [
+      -15.574999809265137,
+      -5,
+      -46.54893112182617
+    ],
+    "max": [
+      15.574999809265137,
+      20.69997787475586,
+      4.178085803985596
+    ]
+  },
+  "visualBrief": "Dated2008–2016Castro Theatre, with2022exterior arcade layout: broad native concrete front/narrow rear auditorium/shallow roof, three-part white/buff Spanish Colonial facade with tall arched gridded light, scroll parapet/shell niche/oval/relief cartouches/abstract foliage, small flanking windows/balconies and blind pink panels. Native trapezoid1937marquee with red-gold-blue zigzags/hexagons/curved CASTROcrest/static pale boards and bulb soffit. Red double-sided CASTROblade, white channel letters/gold tube strokes/blue edge scrolls/crown/diamond, open attachment brackets. Deep tiled arcade, five glazed oak door pairs/three plain northwall poster recesses/faceted island booth; same-building shop glazing/blue north and dark south awnings. Sloping frontage/unchanged terrain, no neighboring structures or actual ads/artwork/interior.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.loc.gov/item/2013630345/",
+    "https://www.loc.gov/item/2011630093/"
+  ],
+  "stories": [
+    {
+      "id": "castro-theatre-wp",
+      "url": "https://qualla.com/castro-theatre/"
+    }
+  ],
+  "referenceInputHash": "sha256:0bba11b38ce162ebc92771a5c20a32b12d8714a0d988863226477332c911aa59",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-castro-theatre.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-castro-theatre.mjs",
+    "level": "skyline",
+    "export": "castroTheatreSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.15,
+        "doubleSided": true
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.32,
+        "metallic": 0.1
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "tiles": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.65,
+        "metallic": 0
+      },
+      "sign": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.52,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "castroTheatreDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.32,
+            "metallic": 0.1
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "tiles": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "sign": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "castroTheatreStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.32,
+            "metallic": 0.1
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "tiles": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "sign": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "cameraYaw": 0,
+    "groundY": -5
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Two unchanged original Terrariumtiles/2m review grid. Dry northern sidewalk[-12,2.8] datum43.5497m; foundation-5m, arcade walkway and separate storefront thresholds follow independently sampled broad street slope with.075m paving allowance. Exact threshold/interior engineering not surveyed; no terrain flattening or model-fitting. Bounded preview.",
+    "anchor": [
+      -122.43499204516411,
+      37.76199383795087
+    ],
+    "heading": -1.5005993557228592,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -122.43503334695382,
+        37.76209960561448
+      ],
+      "modelHeight": 0,
+      "basis": "Dry CastroStreet sidewalk outside north/left same-building coffee frontage, clear of trapezoid canopy footprint/entry/roadway."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185578305056",
+      "buildings/35185609137150",
+      "buildings/35185609137151",
+      "buildings/35184471865109",
+      "buildings/35185578305055"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1b03cb8c6297238e4813deeef1cfa18177384d5861fd7977c3072637d1a3c6ed"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Dated2008–2016 exterior/sign/marquee from local corpus. Post-renovation2026 interior/finish changes not claimed; official current calendar only confirms operating identity.",
+    "Native generalized five building/part contours retained independently, including actual trapezoid marquee and blade projection. Heights/roof crown/fine ornament/hidden thresholds are proportional estimates with primary nominal sign/marquee dimensions, not engineering drawings.",
+    "No neighboring buildings/coffee brand lettering or event ads/poster artwork/roof graffiti/interior/patrons/vehicles/trees/flag/streetlamps or photo pixels. Same-building shop openings/awnings remain part of envelope.",
+    "Independent terrain acquisition precedes floor/foundation geometry; no terrain flattening or model-fitted heights.",
+    "Facade17m/raised center20.6m/shallow roof16.65–17.1m are proportional map/photo estimates. Blade12.2m tall/canopy3mabovedatum(~3.66mabovefrontgrade) and4mprojection/9mfront use primary nominal measurements plus native plan. Fine sculpture represented by original abstract cartouches/leaves rather than copied artwork.",
+    "Arcade walkway/door thresholds reflect independently sampled broad terrain slope, not a threshold survey; smooth actual paving/interior floor relationship remains approximate. Five door-pair bottoms follow local grade while upper fanlights form one cornice line. Glazing opaque for library, tube colors do not simulate flashing neon.2022foyer photographs supplement2008–2016exterior; post-renovation2026changes not claimed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -28,
+        17,
+        37
+      ],
+      "lookAt": [
+        0,
+        10,
+        0.3
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        8,
+        16,
+        27
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "entry-detail",
+      "position": [
+        3,
+        1,
+        8
+      ],
+      "lookAt": [
+        0,
+        1,
+        -1.7
+      ]
+    },
+    {
+      "name": "marquee-detail",
+      "position": [
+        11,
+        6,
+        10
+      ],
+      "lookAt": [
+        0,
+        4,
+        3
+      ]
+    },
+    {
+      "name": "sign-north-detail",
+      "position": [
+        -19,
+        13,
+        8
+      ],
+      "lookAt": [
+        -7.3,
+        12,
+        1.2
+      ]
+    },
+    {
+      "name": "sign-south-detail",
+      "position": [
+        6,
+        13,
+        7
+      ],
+      "lookAt": [
+        -7.3,
+        12,
+        1.2
+      ]
+    },
+    {
+      "name": "roof-detail",
+      "position": [
+        -32,
+        35,
+        -9
+      ],
+      "lookAt": [
+        0,
+        16,
+        -21
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        33,
+        24,
+        -63
+      ],
+      "lookAt": [
+        0,
+        9,
+        -32
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 31920,
+    "vertices": 95760,
+    "materials": 8,
+    "bytes": 3834788,
+    "sha256": "sha256:369ee1adb10e3dc1c5f8795b282296ba32297d3c2348ca2042a4fd5a43a9669f"
+  }
+}

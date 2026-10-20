@@ -1,0 +1,159 @@
+{
+  "format": "molen/terrain-source-evidence@1",
+  "dataset": "GeoSN DGM1 GeoTIFF",
+  "acquiredOn": "2026-10-16",
+  "sourceEpoch": "2024-11-30",
+  "url": "https://geocloud.landesvermessung.sachsen.de/public.php/dav/files/JCcXyifaNdLDnxZ/dgm1_33410_5656_2_sn_tiff.zip",
+  "downloadDocumentation": "https://www.geodaten.sachsen.de/downloadbereich-digitale-hoehenmodelle-4851.html",
+  "license": "Datenlizenz Deutschland – Namensnennung – Version2.0 (dl-de/by-2-0)",
+  "attribution": "GeoSN / Landesamt für Geobasisinformation Sachsen",
+  "licenseEvidence": "https://www.geodaten.sachsen.de/rechtsgrundlagen-und-nutzungsbedingungen-4509.html",
+  "nativePixelSpacingMeters": 1,
+  "reviewStepMeters": 2,
+  "horizontalCRS": "EPSG:25833; GRS80 UTM33N",
+  "verticalCRS": "DHHN2016 EPSG:7837",
+  "originalZipHash": "sha256:497a329bbaf7b3eb5a0f7f7a7f50c373798b4baa47b466a584689eafc2754057",
+  "originalZipBytes": 13351718,
+  "originalFiles": [
+    {
+      "path": "terrain-sources/dgm1_33410_5656_2_sn.tfw",
+      "sha256": "sha256:9b098ddd48fa001d2b2dcff80f1e479b3cecb89643edf1cb7a2a401ff21288d2"
+    },
+    {
+      "path": "terrain-sources/dgm1_33410_5656_2_sn.tif",
+      "sha256": "sha256:2bd775c448208b9ffaf95fc775ec543b7975155324b56a1bb895b4ed85cef756"
+    },
+    {
+      "path": "terrain-sources/dgm1_33410_5656_2_sn.tif.aux.xml",
+      "sha256": "sha256:ce9f5dfa295e0f9b8987fb728a968aab829d321d8fcb09f42dfea1194a077cce"
+    },
+    {
+      "path": "terrain-sources/dgm1_33410_5656_2_sn_akt.csv",
+      "sha256": "sha256:11ed7496a59a74d881244677efbf0d4403ac4b094633ccda7305019f8e8b6c45"
+    }
+  ],
+  "originalRasterDimensions": [
+    2000,
+    2000
+  ],
+  "rasterOuterExtent": [
+    410000,
+    5656000,
+    412000,
+    5658000
+  ],
+  "sampleCellCentres": true,
+  "nodata": -9999,
+  "sourceValuesChanged": 0,
+  "reviewSamples": 50625,
+  "terrainFittedOrFlattened": false,
+  "projectionControl": {
+    "anchorLonLat": [
+      13.737045526504517,
+      51.053023782145104
+    ],
+    "anchorUTM": [
+      411481.5347094549,
+      5656480.162073173
+    ],
+    "method": "GRS80 UTM33 standard transverse-Mercator series through A6; model signed inverse planar frame uses111320m/degree and cos(anchor latitude). WGS84/ETRS89 epoch shifts not corrected."
+  },
+  "originalRasterProbes": [
+    {
+      "local": [
+        30,
+        0
+      ],
+      "heightMeters": 112.32385637621564,
+      "relativeMeters": -0.000043623784350188544
+    },
+    {
+      "local": [
+        0,
+        0
+      ],
+      "heightMeters": 112.32378426376162,
+      "relativeMeters": -0.00011573623837080049
+    },
+    {
+      "local": [
+        120,
+        -12
+      ],
+      "heightMeters": 111.7745761561024,
+      "relativeMeters": -0.5493238438975965
+    },
+    {
+      "local": [
+        73,
+        -10
+      ],
+      "heightMeters": 112.71013588404837,
+      "relativeMeters": 0.38623588404837506
+    },
+    {
+      "local": [
+        94,
+        -15
+      ],
+      "heightMeters": 112.31915552465401,
+      "relativeMeters": -0.004744475345987098
+    },
+    {
+      "local": [
+        -20,
+        -70
+      ],
+      "heightMeters": 111.92500172463824,
+      "relativeMeters": -0.39889827536175915
+    },
+    {
+      "local": [
+        30,
+        -150
+      ],
+      "heightMeters": 112.57721705091463,
+      "relativeMeters": 0.25331705091463164
+    },
+    {
+      "local": [
+        30,
+        60
+      ],
+      "heightMeters": 112.03297344280531,
+      "relativeMeters": -0.2909265571946804
+    },
+    {
+      "local": [
+        65,
+        -130
+      ],
+      "heightMeters": 112.60787990889034,
+      "relativeMeters": 0.28397990889034475
+    }
+  ],
+  "contact": {
+    "local": [
+      30,
+      0
+    ],
+    "modelY": 0,
+    "basis": "Dry central Great Courtyard, open to sky and separate from roof/interior returns. Independent original GeoSN ground controls this datum before geometry."
+  },
+  "modelDatumElevationMeters": 112.3239,
+  "ownNativeOutlineRelativeRangeMeters": [
+    -0.9877964971407636,
+    0.7115910496266764
+  ],
+  "rejectedBaseline": {
+    "gridPath": "terrain-sources/rejected-baseline-terrain-grid.json",
+    "hash": "sha256:d24cbc4b1e2e27bf45e096e69533a90146c84b00182e7fcae2dd779b1ee97f84",
+    "reason": "Baseline dry-court datum121.8257m is about9.50m above the official DGM at the same point. Original baseline tiles/grid/descriptor/PNG are retained; independent DGM is used unchanged."
+  },
+  "limitations": [
+    "DGM ground beneath buildings is interpolated; source epoch2024-11-30. Review is not an engineering survey.",
+    "WGS84/ETRS89 frame differences, approximate local111320m/degree conversion and source interpolation limit positional accuracy.",
+    "Compatible host terrain is required; default coarse Terrarium is not certified."
+  ],
+  "maxPngEncodingErrorMeters": 0.00009956407546951596
+}

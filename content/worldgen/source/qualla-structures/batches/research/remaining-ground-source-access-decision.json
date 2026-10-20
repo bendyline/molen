@@ -1,0 +1,35 @@
+{
+  "reviewedOn": "2026-10-19",
+  "models": [
+    "humayuns_tomb",
+    "taj_mahal_palace_hotel"
+  ],
+  "status": "no-new-ground-data-adopted",
+  "sources": [
+    {
+      "url": "https://global-hydrodynamics.github.io/MERIT_DEM/",
+      "finding": "Primary producer describes a90merror/tree-bias-correctedDEM, EGM96 heights, and dualCC-BY-NC4/ODbL1.0terms. Download now requires registration, licence agreement and a password issued by email. No registration, contact, account change or data download performed. An unverified third-party mirror that calls the licenceCC-BY4was not used."
+    },
+    {
+      "url": "https://developers.google.cn/earth-engine/datasets/catalog/MERIT_DEM_v1_0_3?hl=en",
+      "finding": "Official catalog lists the same product and dual terms; EarthEngine access requires a registered account/project. Catalog presence is not a retrieved local terrain field."
+    },
+    {
+      "url": "https://a.geoservice.dlr.de/web/dataguide/tdm90/",
+      "finding": "DLR90mproduct requires registration and its cited user licence is scientific-use-only. Not adopted as a general distributable model terrain source."
+    }
+  ],
+  "existingNeighborCoverage": {
+    "model": "gateway_of_india",
+    "purpose": "Read terrain provenance for possible reuse; accepted model not rebuilt or revalidated.",
+    "sharedOriginalTerrainHashes": [
+      "sha256:c30a025d8b97d51731baa6a135d009fc85ee78c1ffc2c98e2c3c201140ae5393"
+    ],
+    "decision": "Neighbor source is the same unmodified coastalTerrariumcomposite, not an independent bare-earth surface. Its physical quay/sea-stair construction does not supply hotel ground data. No copied review field or substituted datum."
+  },
+  "modelGeometryChanged": false,
+  "groundFilesChanged": false,
+  "placementChanged": false,
+  "storyChanged": false,
+  "nextAction": "Keep the two placements held. Resume with actual accessible suitable ground data; do not repeat the old surface-field, bounded-mask or municipal endpoint probes."
+}

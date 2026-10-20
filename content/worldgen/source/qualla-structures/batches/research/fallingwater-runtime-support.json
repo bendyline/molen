@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-18",
+  "change": "Backward-compatible support for multiple physical ground openings per structure.",
+  "targetedTests": {
+    "terrainAndTunnels": 13,
+    "geographicPlacements": 6,
+    "status": "passed",
+    "includes": [
+      "Multiple disjoint openings preserve intervening ground",
+      "Invalid replacement is atomic",
+      "Owner transforms and bounded/unbounded placement",
+      "Hide/detach/unload restoration",
+      "Legacy tunnel ceiling support"
+    ]
+  },
+  "typecheck": "passed",
+  "packedInstallSmoke": "passed:17tarballs and7templates",
+  "docsSiteCheck": "passed",
+  "golden": "passed",
+  "verify": {
+    "status": "stopped-at-asset-lock",
+    "reason": "Installed batch GLBs are pinned to older aggregate inputs; the model batch lock has not been refreshed."
+  },
+  "lint": {
+    "status": "failed-outside-changed-files",
+    "reason": "Import ordering in existing worldgen model registries. Changed terrain, Earth, fixture and model files pass their targeted Biome check."
+  },
+  "unit": {
+    "status": "29packages-passed-tooling-file-watch-timeout",
+    "rerun": "Worldgen operations and Riga runtime-LOD files pass after package builds finish; the atomic replacement watch test still times out. No watcher code was changed."
+  },
+  "sourceCheck": {
+    "status": "failed-outside-local-batch",
+    "reason": "Missing qa.json in source/places/u2/u2d/n0392_new_cathedral_linz, owned by the next1000workstream. Left untouched."
+  },
+  "logs": ".artifacts/fallingwater/multiple-openings-*.log",
+  "noOtherModelsRegenerated": true
+}

@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-supplementary-reference-review@1",
   "reviewedOn": "2026-10-15",
-  "status": "inspected",
+  "status": "historical-imagery-controls-excluded",
   "references": [],
   "sources": [
     {
@@ -15,12 +15,14 @@
       "facts": "West portal is the main visitor entrance; east portal is mainly used by members. Four corner towers, roof terrace and glass dome are part of the current building. This page gives an 8 m top opening while the dome page gives 10 m; model uses 10 m as an approximation."
     }
   ],
-  "notes": "Both primary local originals were inspected individually: 2014 west facade at night and 2017 northeast daylight. Additional old snow photograph was inspected but rejected for current dome geometry because it shows the earlier domeless building. Photography is not embedded or redistributed; roof interiors and unseen facade details remain generalized.",
+  "notes": "Older attribution-licensed imagery is excluded as current control. Historical textual/map/terrain/dome-dimension records retained as provenance; new imagery uses two exact own-work CC0 west originals.",
   "terrainComparison": {
     "replacement": "Public Berlin ATKIS DGM1 sampled unchanged; exact URLs, source ZIP hashes and 65×65 sample matrix retained in terrain-grid.json.",
     "rejectedTerrarium": "Coarse Terrarium at the first contact [1.6,64] gave datum 38.8966 and an implausible 0.5–6.9 m footprint ramp. Replaced by independent bare-earth DGM1.",
     "contactCorrection": "DGM1 reveals [1.6,64] was on the entrance landing at 37.9 m. Forecourt reference moved to [1.6,84] at 34.7814 m; model approach now extends to Z=80, with a 3.4 m landing at the west portal.",
     "horizontalConversion": "pyproj Transformer EPSG:4326 to EPSG:25833, always_xy; XYZ sample centers at half-meter coordinates.",
     "officialDocumentation": "https://gdi.berlin.de/data/dgm1/docs/dgm1.pdf"
-  }
+  },
+  "historical": true,
+  "supersededBy": "imagery-evidence.json"
 }

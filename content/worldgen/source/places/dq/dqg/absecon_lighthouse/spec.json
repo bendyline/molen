@@ -1,0 +1,389 @@
+{
+  "planId": "absecon_lighthouse",
+  "id": "absecon_lighthouse",
+  "assetId": "molen.worldgen.structure.absecon_lighthouse",
+  "title": "Absecon Lighthouse",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -74.41415302455425,
+    "latitude": 39.36633203491039
+  },
+  "size": [
+    19.59298324584961,
+    53.050801038742065,
+    34.86177158355713
+  ],
+  "actualBounds": {
+    "min": [
+      -8.19398307800293,
+      -1.0499999523162842,
+      -4.199999809265137
+    ],
+    "max": [
+      11.39900016784668,
+      52.00080108642578,
+      30.661771774291992
+    ]
+  },
+  "visualBrief": "Present cream-black-cream tapering painted-brick lighthouse, sparse deeply recessed sash lights, flared pale neck and ten-sided projecting corbelled gallery, open pale/gold iron rail, tall gridded decagonal lantern with guard hoops, shallow pyramidal roof/ventilator. Native reconstructed two-storey keeper house with red standing-seam hip roof, small dormer, white chimney, bracketed cornice, five upper front sashes/two round lower lights, central entrance/stairs and open paired-column wraparound porch/balustrade, lower rear rooms and low tower link. Detached oil house/former assistant quarters, gardens and nearby buildings excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.loc.gov/item/2011633533/",
+    "https://www.dvidshub.net/image/5154899/coast-guard-members-lay-wreaths-honor-historic-maritime-tragedy"
+  ],
+  "stories": [
+    {
+      "id": "absecon-lighthouse-wp",
+      "url": "https://qualla.com/absecon-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "sha256:2289daa0514e053f754847d92ed57a404a6a5e4e46e9f635930c54e8c14eb2a6",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-absecon-lighthouse.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-absecon-lighthouse.mjs",
+    "level": "skyline",
+    "export": "abseconLighthouseSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.12
+      },
+      "floor": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.36,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "abseconLighthouseDistrict",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.12
+          },
+          "floor": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "abseconLighthouseStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.12
+          },
+          "floor": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.9
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native tower centroid and signed mapped keeper-house front frame. External dry front-right footway12.054,32.437 defines2.2735m provider datum; original source-specific USGS NJ_South_Jersey_Lidar_2018_B18 raster130843/2019acquisition resampled before geometry. Source heights unchanged. Native tower ring only is clipped beneath physical shaft/footing; original ground beneath raised house/porch remains. Exact current paving/foundations are not surveyed.",
+    "anchor": [
+      -74.41415302455425,
+      39.36633203491039
+    ],
+    "heading": -1.1124962603723791,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -74.41442906730266,
+        39.36610600994946
+      ],
+      "modelHeight": 0,
+      "basis": "Native dry front-right keeper-house footway corner, outside every extracted building, chosen before model geometry. Original source-specific USGS ground defines provider-relative datum; no flattening/fitting."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -2.3542194573463706,
+          2.163305332016048
+        ],
+        [
+          -2.9780242859792687,
+          1.3407662206081752
+        ],
+        [
+          -3.196079958209905,
+          -0.8259894936956408
+        ],
+        [
+          -1.8629041503481558,
+          -2.4848687090568737
+        ],
+        [
+          -0.8333501590544472,
+          -3.0065461984958817
+        ],
+        [
+          0.7151211206033897,
+          -3.0148267943594877
+        ],
+        [
+          2.1642252604439447,
+          -2.2999354186492074
+        ],
+        [
+          2.7880300911593134,
+          -1.4773963072524707
+        ],
+        [
+          3.0060857604722635,
+          0.6893594066504416
+        ],
+        [
+          2.086939706134774,
+          2.5524933004328636
+        ],
+        [
+          0.7482435020031835,
+          3.1790583294891737
+        ],
+        [
+          -0.2840706868018188,
+          3.1845787255641316
+        ]
+      ],
+      "basis": "Original quantized native tower ring only, fully covered by actual wider brick shaft/own narrow footing. Raised keeper-house/porch and connecting approach retain their original source ground. No garden, plaza or fitted platform."
+    },
+    "featureIds": [
+      "buildings/35184602125682",
+      "buildings/35184602125667"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:de129be93be7908199caa046359b0feab3033068c8fc5c71bdab9fcc2d86eff5"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "limitations": [
+    "Operator171ft supplies approximate52.1208m full tower height; model baseY-.12 is relative to separate external dry-footway datum, not sea level. HABS1964 graphic-scale interpretation controls approximately8.2m base/6.3m gallery and historic lantern structure, with explicit original standards caveat. Native ring is narrower/quantized and remains geographic control, not a surveyed present brick edge.",
+    "Five full local exterior photos plus local1964 lantern drawing,30 thumbnails and three official original HABS sheets inspected. Current black-band proportions use distant photograph10 rather than historic paint depiction. Unseen rear sash positions, modern guard hoops, restored house wall/roof elevations, low link and architectural details remain photographic estimates.",
+    "Reconstructed keeper-house museum opened2001 per operator. Historic drawings do not measure this present house. Modern buildings, detached oil house, former assistant quarters, gardens/fences/lamps and navigable interiors excluded. No reference pixels used as textures.",
+    "Original USGS one-metre field remains unchanged;66049derived values and203401original pixels verified. Source classification/interpolation at hidden foundations/paving remains uncertain; default coarse Earth ground and whole neighborhood compatibility are not certified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-site",
+      "position": [
+        60,
+        28,
+        70
+      ],
+      "lookAt": [
+        0,
+        25,
+        10
+      ]
+    },
+    {
+      "name": "keeper-house-front",
+      "position": [
+        30,
+        12,
+        57
+      ],
+      "lookAt": [
+        1.65,
+        4.4,
+        22
+      ]
+    },
+    {
+      "name": "porch-and-entrance",
+      "position": [
+        12,
+        4,
+        41
+      ],
+      "lookAt": [
+        1.65,
+        2,
+        26
+      ]
+    },
+    {
+      "name": "house-rear-and-link",
+      "position": [
+        26,
+        10,
+        -10
+      ],
+      "lookAt": [
+        1.5,
+        3.5,
+        14
+      ]
+    },
+    {
+      "name": "tower-base-and-sash",
+      "position": [
+        -14,
+        8,
+        -19
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "gallery-and-lantern",
+      "position": [
+        12,
+        51,
+        15
+      ],
+      "lookAt": [
+        0,
+        47.4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 25318,
+    "vertices": 75954,
+    "materials": 5,
+    "bytes": 3041392,
+    "sha256": "sha256:310cc010e3941ce34f7514e86f148d4c93687a2be0fcfdce802eaa493b9186cb"
+  }
+}

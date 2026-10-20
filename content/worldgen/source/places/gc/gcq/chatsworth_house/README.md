@@ -8,7 +8,7 @@ Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.js
 
 - [Chatsworth House](https://qualla.com/chatsworth-house/)
 
-Original medium-fi exterior from six individually inspected local Qualla photographs, four-page official visitor plan, Historic England architectural description and aerial/map context. Dimensions, hidden roof joins and fine ornament remain estimates; visitor plan is not a measured survey.
+Current construction uses exact native photographer-CC0 south front after Qualla-first search, replacing twelve south-end windows with real pockets and closed stone/wood joinery. Earlier attribution/private-plan/aerial controls are historical and excluded. Full main house/connected north wing scope retained pending broader cleared exterior review. Dimensions, recess depths, molding profiles, hidden roof joins and current condition remain estimates.
 
 Main house, courtyard, attached north wing, orangery, belvedere and west-return gateway only. Separate stables, gardens, sculpture, interiors, furnishings, vegetation and photographic pixels excluded.
 
@@ -16,4 +16,4 @@ Independent unmodified Terrarium elevations retained. Elevations beneath structu
 
 Carved capitals, pediment relief, urn ornament, window surrounds and balusters are simplified progressively with distance; no physical-device performance measurement claimed.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=chatsworth_house`. Add `--check` to verify exact regeneration. 62060 triangles; 4 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=chatsworth_house`. Add `--check` to verify exact regeneration. 63988 triangles; 5 materials; no embedded photographs.

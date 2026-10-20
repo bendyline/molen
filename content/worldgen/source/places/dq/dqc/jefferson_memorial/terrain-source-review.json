@@ -1,0 +1,30 @@
+{
+  "format": "molen/structure-terrain-source-review@1",
+  "source": "Retained independent Terrarium composite pixels; no photographic imagery used.",
+  "nativeTiles": [
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/15/9371/12537.png",
+      "sha256": "sha256:db6774846ae9afc7b92bd10951fc9fc5bc2937cab78bf6ab0516a1ae003cf597",
+      "zoom": 15,
+      "x": 9371,
+      "y": 12537,
+      "path": "terrain-sources/terrarium-15-9371-12537.png"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/15/9372/12537.png",
+      "sha256": "sha256:d3ab307468ee8911c0335535253126166a9e1252f3a360b84000580a9802841d",
+      "zoom": 15,
+      "x": 9372,
+      "y": 12537,
+      "path": "terrain-sources/terrarium-15-9372-12537.png"
+    }
+  ],
+  "sourceValuesChanged": false,
+  "terrainFittedOrFlattened": false,
+  "method": "Unmodified Terrarium pixels bilinearly sampled at pixel centers in the signed local model frame. Heights are not flattened or fitted to the building.",
+  "modelDatumElevationMeters": 3.4627,
+  "limitations": [
+    "Pixel spacing is not native DEM resolution or vertical accuracy. Building/vegetation returns and urban interpolation may be present.",
+    "Terrain-contact runtime placement samples the host at the declared reference point. Compatibility with other terrain datasets remains host-dependent."
+  ]
+}

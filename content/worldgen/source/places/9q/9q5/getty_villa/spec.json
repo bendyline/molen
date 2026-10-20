@@ -38,8 +38,9 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:060807-002-GettyVilla001.jpg",
-    "https://commons.wikimedia.org/wiki/File:Getty_Villa_Museum_Entrance.jpg"
+    "https://commons.wikimedia.org/wiki/File:Pacific-Palisades-getty-villa-Aerial-from-west-August-2014.jpg",
+    "https://www.loc.gov/item/2013634969/",
+    "https://www.loc.gov/item/2013634988/"
   ],
   "stories": [
     {
@@ -47,7 +48,7 @@
       "url": "https://qualla.com/getty-villa/"
     }
   ],
-  "referenceInputHash": "0020f23902d90aec57fff999291f96e693f06195d58cf7ddb9a20f77a5cf161c",
+  "referenceInputHash": "sha256:395a6fd3b4ab9b523972523ff3497cd51d1b1ea6a089e11266d03ad9a493fc3b",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-getty-villa.mjs"
   },
@@ -97,6 +98,12 @@
         "localRef": "palette:#feffff",
         "roughness": 0.2,
         "metallic": 0.12
+      },
+      "poolStone": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.87,
+        "metallic": 0
       }
     },
     "authoredLevels": {
@@ -139,6 +146,12 @@
             "localRef": "palette:#feffff",
             "roughness": 0.2,
             "metallic": 0.12
+          },
+          "poolStone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.87,
+            "metallic": 0
           }
         }
       },
@@ -181,6 +194,12 @@
             "localRef": "palette:#feffff",
             "roughness": 0.2,
             "metallic": 0.12
+          },
+          "poolStone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.87,
+            "metallic": 0
           }
         }
       }
@@ -241,6 +260,15 @@
       ]
     },
     {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
       "ref": "matgraph:molen.worldgen.material.stucco",
       "slot": "wall",
       "uv": "repeats",
@@ -260,7 +288,7 @@
     }
   ],
   "limitations": [
-    "Original medium-fi exterior from six individually inspected local Qualla photographs, official Getty visitor plans/axonometric and aerial roof context. Hidden joins, gallery depths, heights and fine ornament are estimates, not surveyed geometry.",
+    "New outer-pool broad beveled coping and24jointed curved-end panels from native cleared Qualla CC0aerial and two exact native Highsmith photographer-public-domain pool views/detail. Original basin footprint/water/inner walls/straight sides and all other original geometry retained; three lower levels exact. Full fixed museum/both peristyles/roofs/pools/attached terrace retained pending broader cleared exterior review. Earlier attribution/private visitor-plan/satellite controls excluded; hidden joins, gallery depths, heights, stone profiles/panel dimensions and fine ornament remain medium-fi estimates, not surveyed geometry.",
     "Main villa, peristyles, pools and attached viewing terrace only. Modern theater, entry pavilion, cafe, auditorium, parking and separate campus buildings excluded. No artworks, vegetation, people, interiors or photographic pixels copied.",
     "Independent unmodified USGS CA_LosAngeles_B23 raster 114605 retained. Bare-earth ground under structures is interpolated by the source; host terrain may differ. Footprint replacement remains disabled.",
     "Column capitals/fluting, painted wall panels, roof tiles, balusters and brick arcade details are simplified progressively with distance. No physical-device frame-rate measurement claimed."
@@ -292,16 +320,42 @@
         5,
         -26
       ]
+    },
+    {
+      "name": "pool-coping",
+      "position": [
+        -1.2,
+        3.8,
+        -11
+      ],
+      "lookAt": [
+        -1.2,
+        1.3,
+        -4.5
+      ]
+    },
+    {
+      "name": "pool-profile",
+      "position": [
+        -7.8,
+        2.6,
+        -8.8
+      ],
+      "lookAt": [
+        -2.3,
+        1.2,
+        -4.8
+      ]
     }
   ],
   "importOptions": {
     "optimize": false
   },
   "mesh": {
-    "triangles": 63477,
-    "vertices": 190431,
-    "materials": 6,
-    "bytes": 7620788,
-    "sha256": "sha256:2901d070218f4e76f6929327acb53c8211a8220041be58e5b258755514078fbd"
+    "triangles": 63705,
+    "vertices": 191115,
+    "materials": 7,
+    "bytes": 7648612,
+    "sha256": "sha256:fb2f7233b8c3034ddd48608668fd37c29e896861166b53946657ab2d6516e91e"
   }
 }

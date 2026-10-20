@@ -1,0 +1,440 @@
+{
+  "planId": "chateau_de_chenonceau",
+  "id": "chateau_de_chenonceau",
+  "assetId": "molen.worldgen.structure.chateau_de_chenonceau",
+  "title": "Château de Chenonceau",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 1.070319,
+    "latitude": 47.324875
+  },
+  "size": [
+    49.77677536010742,
+    37,
+    162.43893432617188
+  ],
+  "actualBounds": {
+    "min": [
+      -27.679359436035156,
+      -12,
+      -78.20500183105469
+    ],
+    "max": [
+      22.097415924072266,
+      25,
+      84.23393249511719
+    ]
+  },
+  "visualBrief": "River château with five actual gallery arch voids, independent old-mill boat passage, pointed chapel glazing and polygonal study. Nine gallery windows/oculus dormers per long face, pale limestone and steep slate roof, cutwaters and upper lookouts. Three-bay north entrance with supported open balcony, crossed mullions, elaborate original dormer relief, four conical corner turrets, tall chimneys and open clock lantern. Detached corbelled Marques Tower with conical roof, stair turret, divided dormer, chimney and open cupola; immediate retaining terrace and arched entry bridge. Separate gardens, service houses, interiors, people and photographic textures excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:2022.10.27.105208_Château_de_Chenonceau_France.jpg",
+    "https://commons.wikimedia.org/wiki/File:2022.10.27.105625_Château_de_Chenonceau_France.jpg",
+    "https://commons.wikimedia.org/wiki/File:2022.10.27.110810_Château_de_Chenonceau_France.jpg"
+  ],
+  "stories": [
+    {
+      "id": "chateau-de-chenonceau-wp",
+      "url": "https://qualla.com/chateau-de-chenonceau/"
+    }
+  ],
+  "referenceInputHash": "sha256:2e737f0535d205fadb8531b010ab80c477396047c202df2d3d45d8d09dc9fe6d",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-chateau-de-chenonceau.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-chateau-de-chenonceau.mjs",
+    "level": "skyline",
+    "export": "chenonceauSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0.08
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.4
+      },
+      "wood": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "chenonceauDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.4
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "chenonceauStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.4
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.3,
+    "cameraYaw": 0,
+    "groundY": -7
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent official IGN RGE ALTI responses before authoring: 25921 unchanged provider samples, 2m grid, terrace datum 60.84m, river surface around −6.52m; original baseline Terrarium retained and rejected because it does not resolve the raised terrace/channel. Native resolution and vertical accuracy are unspecified by API metadata. Source-epoch water surface is not bathymetry or live level. Own retaining walls/supports extend to −12m; host must provide compatible terrain. Footprint replacement disabled.",
+    "anchor": [
+      1.070319,
+      47.324875
+    ],
+    "heading": -2.7017453708924126,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        1.069952208223833,
+        47.32540332451998
+      ],
+      "modelHeight": 0,
+      "basis": "Dry north approach terrace inside the native island outline, away from gallery water and building returns."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184676378228",
+      "buildings/35184676378241",
+      "buildings/35184676378255",
+      "buildings/35185066300322",
+      "buildings/35184676378258",
+      "buildings/35184676378263",
+      "buildings/35184676381118",
+      "buildings/35185780628683",
+      "buildings/35184676378249",
+      "buildings/35184676378267",
+      "buildings/35184676378265",
+      "buildings/35184676378262",
+      "buildings/35184676378254",
+      "buildings/35184676378266",
+      "buildings/35184676378253",
+      "buildings/35184594557535",
+      "buildings/35184676378240",
+      "buildings/35184676750477",
+      "buildings/35184676378250",
+      "buildings/35184676378264",
+      "buildings/35184676750469",
+      "buildings/35184594557811",
+      "buildings/35185752411791",
+      "buildings/35184594557866",
+      "buildings/35184594557525",
+      "buildings/35184594558032",
+      "buildings/35184594557896",
+      "buildings/35185752411792",
+      "buildings/35184594557872",
+      "buildings/35184594557917",
+      "buildings/35184594557859"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f75474b585c8144480e5351a82e36acd210d254326937d17b5b617a45909f422"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Seven local originals individually inspected and all 61 candidate contacts reviewed. Many other candidates are interiors, other Loire châteaux, historical illustrations or an unbuilt grand proposal; they do not control current exterior geometry.",
+    "Main house, river gallery/five principal arches, mill foundation/boat arch, chapel, detached Marques Tower, immediate raised terrace and short approach bridge only. Gardens, Chancellerie, orangery, separate south service annex, landscape, people, interiors, heraldic inscriptions and photo textures excluded.",
+    "Native generalized map part heights are massing hints, not surveys. Owner gallery dimensions are internal. Fine carving, unobserved details, roof engineering, thresholds and vertical levels are conservative photo-based estimates.",
+    "Terrain acquisition precedes geometry. Original source pixels and sampled relief must remain unchanged. River DEM is a composite water/terrain surface and supplies no reliable bathymetry or current water level; no surveyed riverbed compatibility is claimed.",
+    "Gallery five principal arches and separate mill/entry bridge openings must remain actual voids in all four LODs. Nine gallery windows and nine oculus dormers per long face derive from the photographs and the owner’s 18-window total."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        3,
+        15,
+        74
+      ],
+      "lookAt": [
+        2,
+        8,
+        12
+      ]
+    },
+    {
+      "name": "entrance-detail",
+      "position": [
+        14,
+        12,
+        36
+      ],
+      "lookAt": [
+        2.4,
+        5.5,
+        13
+      ]
+    },
+    {
+      "name": "gallery-west",
+      "position": [
+        70,
+        15,
+        -43
+      ],
+      "lookAt": [
+        5,
+        4,
+        -43
+      ]
+    },
+    {
+      "name": "five-arches",
+      "position": [
+        64,
+        -1,
+        -47
+      ],
+      "lookAt": [
+        4,
+        -3,
+        -47
+      ]
+    },
+    {
+      "name": "chapel-east",
+      "position": [
+        -47,
+        14,
+        19
+      ],
+      "lookAt": [
+        -13,
+        7,
+        6
+      ]
+    },
+    {
+      "name": "mill-arch",
+      "position": [
+        -43,
+        -1,
+        3
+      ],
+      "lookAt": [
+        0,
+        -3,
+        2.4
+      ]
+    },
+    {
+      "name": "marques-tower",
+      "position": [
+        48,
+        18,
+        72
+      ],
+      "lookAt": [
+        16,
+        11,
+        43
+      ]
+    },
+    {
+      "name": "roof-valley",
+      "position": [
+        42,
+        51,
+        36
+      ],
+      "lookAt": [
+        2,
+        14,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 58112,
+    "vertices": 174336,
+    "materials": 7,
+    "bytes": 6977500,
+    "sha256": "sha256:f8016009915cbd47449ee98799b6f26ff910bb96b6cdafe3040f73084d3f843e"
+  }
+}

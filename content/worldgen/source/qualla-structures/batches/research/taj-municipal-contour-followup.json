@@ -1,0 +1,21 @@
+{
+  "model": "taj_mahal_palace_hotel",
+  "reviewedOn": "2026-10-19",
+  "status": "catalog-lead-inaccessible-no-data-adopted",
+  "sourceUrl": "https://prsrvgisapp.mcgm.gov.in/server/rest/services/mcgm/MCGMGIS_Departments_Master_All_Layers/MapServer",
+  "identifiedLayers": {
+    "300": "Contours group",
+    "301": "Contour_20CM",
+    "217": "MumbaiContour"
+  },
+  "sourceCrs": "EPSG32643",
+  "catalogCoverage": "Cached root extent includes Colaba; actual hotel contour coverage, height semantics and datum remain unverified.",
+  "attempts": [
+    "MCGMgroup300andlayer217direct25\u201335second connection attempts timed out; all sessions terminal.",
+    "NICsurveyservice https://umd.nic.in/sramap/rest/services/mcgm/srmcgm/MapServer?f=pjson timed out; session terminal.",
+    "ArcGISpublic catalog search found only an unrelated story map, no data mirror.",
+    "MMRDAGISMapDatapage returned502; MumbaiCityGISpage only categorical map embeds, no ground contours."
+  ],
+  "decision": "No contour payload, ground data, vertical datum or usage terms obtained. Do not treat cached layer names as actual terrain evidence or retry unchanged timed-out endpoints repeatedly. No ground fitting, placement or model changes.",
+  "nextAction": "Resume only with accessible actual contour/ground data and verified coverage/datum, or a distinct credible ground source."
+}

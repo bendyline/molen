@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.palace_hotel",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-19",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:bd721cb642321de4460fed3a9c5a096156725f701cfa9df297e035f968f19572",
-  "sourceHash": "sha256:f60c9517012a62678fbb12dd7e180095d0d2b75ef048c5183c5a519bf77ff6f9",
-  "runtimeHash": "sha256:240393cc0f663443e55a13b44aa3d518d3a612c8f80246d8203f1cca4e7097c5",
-  "captureReportHash": "sha256:37a6fa8f22e1aeae13f39aedb20c2354d508f95d94abbb8b5222955b5b6da8f4",
+  "inputHash": "sha256:13db7b5356f019e21c0a21bbf9f6f57b3c89153155dea0e4371d9b267cb86c73",
+  "sourceHash": "sha256:3432c77639ad098f1defad875b7185c7f3a13deeed46b29e82e0d1dd2e4f5370",
+  "runtimeHash": "sha256:93a656c59aa76eaea545f0b03559b42b46b0acc063493ca338b523d88ca2571b",
+  "captureReportHash": "sha256:8db09ae868054e88fd645e80ead4d073aee672ed0244c54b28ce450345f111a5",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:8db09ae868054e88fd645e80ead4d073aee672ed0244c54b28ce450345f111a5",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/entrance-portals.png",
+      "shots/curved-door-frame.png"
     ],
-    "notes": "Inspected all seven final portable views against five individually viewed Qualla originals and city roof/elevation/aerial evidence. Rounded Market corners, eight-storey window rhythm, triple curved canopies, roof lightwell, open-frame sign and lower court/pool roofs remain distinct. Review corrected the primary skylight axis and shallow hipped roof shape."
+    "notes": "All9final current portable views inspected, plus native entrance-portals/curved-door-frame frames. New recess jambs, shaded curved soffits, rear glazing and physical paired-leaf/transom bars visible under retained canopies. Original foundation floor supports entrances. Existing outer hotel/roof structures retained. This is a portal construction review; full exterior likeness remains pending."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:e710fbbb1c82a7a02e8a333a02f32227428bec8ca5859d02087486b99b00633c",
+    "captureReportHash": "sha256:1ade9c8f2ee35fcdbe3bc50377dbc9b4355ee97bdb24e63b49aeaf17e9eb49a6",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,33 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/entrance-portals.png",
+      "shots/shared/curved-door-frame.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven final shared-material views including the map overlay, and full front/street images of the preceding roof iteration. Brick, limestone, concrete roof and painted iron use shared metric surfaces; glass remains local. Flat ground is a material fixture; portable views retain independent terrain."
+    "notes": "All9final shared-material views inspected, including native curved door detail and mapped placement. Limestone cavity edges, painted metal frames, canopy glazing and wall remain distinct. Original placement transform/hash and mapped outline retained; unload passes with zero live model geometries. Shared fixture uses flat geographic terrain; portable source ground gives original contact context.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:4b086dc1b8d30cf7f447a01c82e0a17f58770826e023868a6452c106d38d84ec",
+    "captureReportHash": "sha256:f31d561eb5d55e886f4a2d23f4b8bfb01caff2eccc149de0f9b55333253091b2",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +76,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/entrance-portals.png",
+      "medium-fi/curved-door-frame.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final lighting, quality and forced-detail views. Skyline retains the U-shaped upper mass, lower roofs, lightwell and sign framework; district restores openings; street and closeup restore cornices, arches and ironwork within all hard budgets. Synthetic neighbors are style fixtures; no physical-device performance measurement is claimed."
+    "notes": "All21final version2frames inspected: noon/late light, economy/high, front/back, source ground, two detail cameras and forced four levels. Close portals have actual shaded depth; original skyline/district/street geometry remains exact. Synthetic neighbors provide style context only. Full exterior still awaits wider cleared reference."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +102,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.00006879100799572768
     },
-    "notes": "Mapped main shell, narrow roof lightwell and lower court/pool parts retained. Anchor [-122.40194455,37.78796904], heading -2.35619449: +X southwest along Market, +Z northwest toward Market. Independent unmodified Terrarium datum 9.7975 m uses New Montgomery sidewalk [-41,0]; foundations extend to -5 m. Street slope remains visible. Footprint suppression remains off."
+    "notes": "Original anchor[-122.40194455,37.78796904],heading-2.35619449,datum9.7975m at NewMontgomery sidewalk[-41,0] retained. All four map/terrain files and placement byte/hash-identical. Original foundation-5m and floor0 retained; no new pad, terrain fitting, flattening or footprint suppression. Current portable native-ground doorway views show supported existing threshold floors. Another host DEM and survey levels outside this review."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Surviving 1909 Palace Hotel exterior, rounded corners, cornices, roof lightwell, lower court/pool roofs and roof sign.",
-    "notes": "Five individually inspected local Qualla originals and city landmark report roof plan, four elevations and aerial control the exterior. Existing roof 124 ft 2 in and parapet 127 ft 1 in govern principal heights; lower roof heights, floor spacing, hidden joins and fine ornament remain interpretations. Coarse map height tags conflict with city drawings and are retained as evidence only. No 1875 hotel, interiors or proposed antenna equipment. Later rooftop changes remain unverified. No photo pixels copied."
+    "scope": "Surviving1909hotel exterior, rounded corners, cornices, roof lightwell, low court roofs, attached southwest pool annex and roof sign; no1875reconstruction or interiors.",
+    "notes": "Two exact cleared originals cover the fixed surviving1909hotel together: the published Qualla1911PalaceHotelCompany advertisement supplies the whole eight-storey corner block, repeated window hierarchy, rounded corners and strong upper cornice; the exact Highsmith2012entrance original supplies contemporary curved door/transom/portal treatment under explicit photographer public-domain dedication. Current model retains those identifying relationships plus its native mapped full-block/lightwell/court/annex envelope. Roof service boxes, modern roof sign and attached southwest pool annex are conservative map-led exterior approximations; the1911photo does not certify those additions. Fine cornice sculpture, concealed roof joins and exact current restoration remain simplified. Original map/ground/placement and all portal geometry remain unchanged. Full fixed exterior accepted at approximate medium-fi scope; no1875reconstruction or navigable interior. Accepted at the agreed approximate medium-fi exterior scope. No reference pixels are embedded. Previously used attribution/private imagery is excluded from this current review."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:9fe1059aec7febba9152203631453ac7b518d315b0525d85111fc5691d1d6e6e",
+    "recipeHash": "sha256:87a82d002cd78bd55241bebda88678a74340a8ca7dc380b1e367e0ca02ac38cc",
     "levels": [
       {
         "name": "skyline",
@@ -128,32 +153,79 @@
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:579a9a2fb1fef2cc0bcee1bdfa4a0798d499f3de3cae51c3b25fb73cf91f38e5",
-        "bytes": 6978960,
-        "gzipBytes": 1174922,
-        "triangles": 58133,
-        "cpuBytes": 6975960,
-        "gpuBytes": 6975960,
+        "hash": "sha256:b87019d08c771ee4a5f8f594224fde7f34d5188a3e882d142cdcec189354ace9",
+        "bytes": 7167960,
+        "gzipBytes": 1209008,
+        "triangles": 59708,
+        "cpuBytes": 7164960,
+        "gpuBytes": 7164960,
         "errorMeters": 0,
         "drawCalls": 5
       }
     ],
-    "notes": "All four current levels were visually inspected and pass budgets; exact triangle and byte counts are recorded in levels. Error values are authoring budgets, not measured deviations."
+    "notes": "881/2928/14571/59708triangles,1/5/5/5draws pass strict limits. Three lower levels are exact; close adds1575triangles. Every original source attribute outside the front ground-floor wall plane/three entrance region retained. Close openings use16segments; lower levels retain original flat arch forms. Error figures remain authoring estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 58133,
+    "sourceTriangles": 59708,
     "sourceMaterials": 5,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 881,
+        "drawCalls": 1,
+        "addedTriangles": 0,
+        "retainedTriangles": 881,
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "district",
+        "triangles": 2928,
+        "drawCalls": 5,
+        "addedTriangles": 0,
+        "retainedTriangles": 2928,
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "street",
+        "triangles": 14571,
+        "drawCalls": 5,
+        "addedTriangles": 0,
+        "retainedTriangles": 14571,
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "closeup",
+        "triangles": 59708,
+        "drawCalls": 5,
+        "addedTriangles": 1575,
+        "retainedTriangles": 55072,
+        "controls": 44,
+        "failed": 0
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; independent terrain PNG encoding error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/9q/9q8/palace_hotel/verify-entrance-portals.mjs"
+    ],
+    "notes": "Actual imported1/1/1/44controls pass: three structural front-wall voids, rear glazing, projecting central door posts, both stone jambs per opening, actual curved soffits, original supporting floor, closed curved outer/transom frame sections and remaining ground-floor wall. Source/import normals/winding/UVs/counts/hashes, exact source regeneration and strict material/LOD budgets pass. Immutable pre-edit baseline and original map/ground preserved."
   },
   "limitations": [
-    "Original medium-fi exterior based on five individually inspected local Qualla photographs and the city landmark report roof plan, four elevations and aerial.",
+    "New actual entrance portals and physical curved double-door/transom framing use the exact native primary Highsmith entrance photograph under explicit photographer public-domain dedication, after a cleared Qualla imagery search. Earlier attribution/private report/satellite imagery is excluded as current construction control. Wider exterior review remains pending.",
+    "Three portals now cut into the actual close-level front wall, with stone jambs/arched soffits, recessed glazing and closed metal frames. Existing widths/heights/canopies retained; .72m recess, .14m frame depth and .65m transom spacing are medium-fi estimates. Exact gilded sculpture/face/monogram is not copied.",
     "Existing city roof/parapet labels control principal heights; low-roof heights, floor spacing, hidden joins and fine terracotta ornament remain interpretations. Coarse map part heights conflict with the city elevations and are retained as evidence only.",
     "Surviving 1909 exterior and attached lower pool/court roofs included. No 1875 reconstruction, interiors or proposed telecommunications equipment. Later rooftop changes are unverified.",
     "Independent terrain remains unflattened; footprint suppression stays disabled. No photo pixels copied."
@@ -161,6 +233,164 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:0edc47759cab3757b3522d9520ee294cee3c494388e262e281ae24d16d36e6e7",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:13db7b5356f019e21c0a21bbf9f6f57b3c89153155dea0e4371d9b267cb86c73",
+    "referenceInputHash": "sha256:e31e9be79c479c2a1dd2e8c17a6942f075689ef05a98e89f25f45eba9b9f44da",
+    "acceptedReferencePaths": [
+      "_m/9/q/8/y/palace-hotel-san-francisco-wp/ph-advert-1911.jpg"
+    ],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/entrance-21413.jp2"
+    ],
+    "imageryEvidenceHash": "sha256:0fe1ec6126de8c4ac83fbd9c9c2f8103a1443857e6357f02241faa823a75348d",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/9/q/8/y/palace-hotel-san-francisco-wp/palace-hotel-from-across-marke.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Palace_Hotel_from_across_Market_on_Montgomery_St.JPG",
+        "reason": "Earlier attribution or private report/satellite imagery excluded as current portal-construction control; original fixed scope and mapped geometry retained."
+      },
+      {
+        "path": "_m/9/q/8/y/lotta-s-fountain-wp/palace-hotel-san-franciso01.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Palace_Hotel,_San_Franciso01.jpg",
+        "reason": "Earlier attribution or private report/satellite imagery excluded as current portal-construction control; original fixed scope and mapped geometry retained."
+      },
+      {
+        "path": "_m/9/q/8/y/san-francisco-soma-wk/palace-hotel-from-1-montgomery.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Palace_Hotel_from_1_Montgomery_St._roof_garden.JPG",
+        "reason": "Earlier attribution or private report/satellite imagery excluded as current portal-construction control; original fixed scope and mapped geometry retained."
+      },
+      {
+        "path": "_m/9/q/8/y/palace-hotel-san-francisco-wp/palace-hotel-sf-main-entrance.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Palace_Hotel_SF_main_entrance.JPG",
+        "reason": "Earlier attribution or private report/satellite imagery excluded as current portal-construction control; original fixed scope and mapped geometry retained."
+      },
+      {
+        "path": "_m/9/q/8/y/palace-hotel-san-francisco-wp/palace-hotel-san-franciso02.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Palace_Hotel,_San_Franciso02.jpg",
+        "reason": "Earlier attribution or private report/satellite imagery excluded as current portal-construction control; original fixed scope and mapped geometry retained."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Two exact cleared originals cover the fixed surviving1909hotel together: the published Qualla1911PalaceHotelCompany advertisement supplies the whole eight-storey corner block, repeated window hierarchy, rounded corners and strong upper cornice; the exact Highsmith2012entrance original supplies contemporary curved door/transom/portal treatment under explicit photographer public-domain dedication. Current model retains those identifying relationships plus its native mapped full-block/lightwell/court/annex envelope. Roof service boxes, modern roof sign and attached southwest pool annex are conservative map-led exterior approximations; the1911photo does not certify those additions. Fine cornice sculpture, concealed roof joins and exact current restoration remain simplified. Original map/ground/placement and all portal geometry remain unchanged. Full fixed exterior accepted at approximate medium-fi scope; no1875reconstruction or navigable interior. Exact published Qualla paths, metadata, public-domain/CC0 attribution and bytes agree. No supplemental imagery was needed."
+  },
+  "constructionReview": {
+    "status": "portals-completed-full-exterior-awaiting-reference",
+    "model": "palace_hotel",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:325787b685fe6fdd25f89a911b43fe31e5c85d07f4c4a88240373b20c3694c94",
+    "sourceHash": "sha256:3432c77639ad098f1defad875b7185c7f3a13deeed46b29e82e0d1dd2e4f5370",
+    "runtimeHash": "sha256:93a656c59aa76eaea545f0b03559b42b46b0acc063493ca338b523d88ca2571b",
+    "built": [
+      "Three actual close-level entrance recesses cut into structural wall",
+      "Physical stone jambs and curved soffits",
+      "Recessed rear glazing",
+      "Closed curved outer/transom frames and physical paired-leaf metal bars"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      881,
+      2928,
+      14571,
+      59708
+    ],
+    "drawCalls": [
+      1,
+      5,
+      5,
+      5
+    ],
+    "limits": "Fixed surviving1909hotel, rounded corners/cornices, roof lightwell, low court roofs, southwest pool annex and roof sign retained. New close-level portals are actual cuts through the front structural wall, with stone jambs/curved soffits, recessed glazing and closed curved door/transom frames. Exact native Highsmith entrance photograph under explicit photographer public-domain dedication controls new work after cleared Qualla historic imagery search. Existing three-entry widths/heights/canopies remain; .72m recess/.14m frame/.65m transom spacing and paired-leaf subdivisions are medium-fi estimates. Photo establishes upper curved metal treatment, not survey measurements or all three complete doors. Exact gilded sculptures, face, monogram and scrollwork are omitted. Three lower levels and every other original attribute outside bounded front wall/entrance region are exact; source map/ground/placement unchanged. Full main hotel/lightwell/annex/sign review remains pending wider cleared public-domain exterior evidence; original scope is not reduced.",
+    "publicDomainPrimaryOriginals": 1,
+    "actualPortalRecesses": 3,
+    "exactThreeOriginalLowerLevels": true,
+    "retainedFixedMainLightwellAnnexAndSignScope": true,
+    "fullExteriorPending": true,
+    "storyState": "needs-review",
+    "completedStorySync": {
+      "writtenArticles": 1,
+      "repeatChanges": 0,
+      "unselectedModelLinksPreserved": true
+    }
+  },
+  "status": "completed",
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:13db7b5356f019e21c0a21bbf9f6f57b3c89153155dea0e4371d9b267cb86c73",
+    "sourceHash": "sha256:3432c77639ad098f1defad875b7185c7f3a13deeed46b29e82e0d1dd2e4f5370",
+    "runtimeHash": "sha256:93a656c59aa76eaea545f0b03559b42b46b0acc063493ca338b523d88ca2571b",
+    "notes": "Two exact cleared originals cover the fixed surviving1909hotel together: the published Qualla1911PalaceHotelCompany advertisement supplies the whole eight-storey corner block, repeated window hierarchy, rounded corners and strong upper cornice; the exact Highsmith2012entrance original supplies contemporary curved door/transom/portal treatment under explicit photographer public-domain dedication. Current model retains those identifying relationships plus its native mapped full-block/lightwell/court/annex envelope. Roof service boxes, modern roof sign and attached southwest pool annex are conservative map-led exterior approximations; the1911photo does not certify those additions. Fine cornice sculpture, concealed roof joins and exact current restoration remain simplified. Original map/ground/placement and all portal geometry remain unchanged. Full fixed exterior accepted at approximate medium-fi scope; no1875reconstruction or navigable interior.",
+    "renderReuse": {
+      "reason": "Only reference selection, inventory and historical-source annotations changed. Graphics specification (apart from reference URLs/fingerprint), source/runtime/LOD bytes, scene, map, terrain, placement, material bindings, cameras and every image byte are unchanged. Retain the original inspected renders; no fresh capture is claimed.",
+      "originalInputHash": "sha256:325787b685fe6fdd25f89a911b43fe31e5c85d07f4c4a88240373b20c3694c94",
+      "reviewInputHash": "sha256:13db7b5356f019e21c0a21bbf9f6f57b3c89153155dea0e4371d9b267cb86c73",
+      "sourceHash": "sha256:3432c77639ad098f1defad875b7185c7f3a13deeed46b29e82e0d1dd2e4f5370",
+      "runtimeHash": "sha256:93a656c59aa76eaea545f0b03559b42b46b0acc063493ca338b523d88ca2571b",
+      "originalCaptureReports": {
+        "capture-report.json": "sha256:8b1a8c3318febce71bb736fc84bb136380dcb4839d579e5a9b4afd7538965f2f",
+        "shared-capture-report.json": "sha256:c2eb8a54712d71e46031df2d75999fa82718977ef3f0518ee4bd98451c31a2f3",
+        "medium-fi-report.json": "sha256:6eff7f3bece105e497094d77ccced989ea15b332147cebe0204455712cd1a15e"
+      }
+    },
+    "previousImageryReview": {
+      "policy": "qualla-public-domain-imagery@1",
+      "status": "passed",
+      "scope": "all-model-reference-imagery",
+      "reviewedOn": "2026-10-18",
+      "inputHash": "sha256:325787b685fe6fdd25f89a911b43fe31e5c85d07f4c4a88240373b20c3694c94",
+      "referenceInputHash": "sha256:1c6211e35eb76cdf0814bd1a2b26aeb3f6a2bc3ad3f73b7da9b88bf20ec273a3",
+      "acceptedReferencePaths": [],
+      "auxiliaryReferencePaths": [
+        ".artifacts/reference-photos/entrance-21413.jp2"
+      ],
+      "imageryEvidenceHash": "sha256:77ab4ca5fc9e44bdde85e9cd36aea3fc44a7389864f0e36125d4911694a658e4",
+      "excludedHistoricalImagery": [
+        {
+          "path": "_m/9/q/8/y/palace-hotel-san-francisco-wp/palace-hotel-from-across-marke.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Palace_Hotel_from_across_Market_on_Montgomery_St.JPG",
+          "reason": "Earlier attribution or private report/satellite imagery excluded as current portal-construction control; original fixed scope and mapped geometry retained."
+        },
+        {
+          "path": "_m/9/q/8/y/lotta-s-fountain-wp/palace-hotel-san-franciso01.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Palace_Hotel,_San_Franciso01.jpg",
+          "reason": "Earlier attribution or private report/satellite imagery excluded as current portal-construction control; original fixed scope and mapped geometry retained."
+        },
+        {
+          "path": "_m/9/q/8/y/san-francisco-soma-wk/palace-hotel-from-1-montgomery.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Palace_Hotel_from_1_Montgomery_St._roof_garden.JPG",
+          "reason": "Earlier attribution or private report/satellite imagery excluded as current portal-construction control; original fixed scope and mapped geometry retained."
+        },
+        {
+          "path": "_m/9/q/8/y/palace-hotel-san-francisco-wp/palace-hotel-sf-main-entrance.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Palace_Hotel_SF_main_entrance.JPG",
+          "reason": "Earlier attribution or private report/satellite imagery excluded as current portal-construction control; original fixed scope and mapped geometry retained."
+        },
+        {
+          "path": "_m/9/q/8/y/palace-hotel-san-francisco-wp/palace-hotel-san-franciso02.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Palace_Hotel,_San_Franciso02.jpg",
+          "reason": "Earlier attribution or private report/satellite imagery excluded as current portal-construction control; original fixed scope and mapped geometry retained."
+        }
+      ],
+      "inventoryStatus": "passed",
+      "notes": "Qualla first: native1911advertisement,1920vignette and1922rate card inspected, but insufficient for current entrance or whole exterior. Earlier attribution/private report/satellite imagery excluded as current controls. Five exact Highsmith native originals inspected under explicit photographer public-domain dedication; four are interiors and not adopted. Only exact6144x4096entrance original controls new construction, with primary catalog URL/native URL/hashes and dedication bound. Native curved metal detail inspected. Wider exterior evidence remains pending; no questionable source or copied photo texture adopted."
+    }
+  },
+  "validation": {
+    "completed": true,
+    "storyAnnotation": true
   }
 }

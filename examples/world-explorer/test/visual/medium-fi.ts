@@ -7,7 +7,13 @@ import {
 } from '@bendyline/molen-client';
 import { createMaterialBakeWorkerPool } from '@bendyline/molen-materials';
 import { validateByKind } from '@bendyline/molen-schema';
-import { createTerrainObject } from '@bendyline/molen-terrain/client';
+import {
+  createTerrainObject,
+  markTerrainGroundSurface,
+  setTerrainGroundCutouts,
+  TerrainGroundCutoutController,
+  terrainGroundSourceGeometry,
+} from '@bendyline/molen-terrain/client';
 import { heightfieldFromPng, type TerrainDescriptor } from '@bendyline/molen-terrain/kernel';
 import {
   buffersToObject3D,
@@ -29,6 +35,7 @@ import {
   EARTH_SKY_PALETTE,
   EARTH_TONE_MAPPING,
 } from '../../../../packages/earth/src/client/look';
+import { mediumFiAsset } from './medium-fi-asset.mjs';
 
 declare const __REVIEW_ROOT__: string;
 const base = `/@fs/${__REVIEW_ROOT__}/`;
@@ -39,6 +46,36 @@ const read = async (path: string) => {
 };
 const id = new URLSearchParams(location.search).get('id');
 const contextOptions = new URLSearchParams(location.search);
+const groundOpening = JSON.parse(contextOptions.get('groundOpening') ?? 'null') as
+  | [number, number][]
+  | null;
+const groundOutlines = groundOpening
+  ? [
+      groundOpening,
+      ...(JSON.parse(contextOptions.get('additionalGroundOpenings') ?? '[]') as [
+        number,
+        number,
+      ][][]),
+    ]
+  : [];
+if (
+  groundOpening &&
+  (groundOutlines.length > 64 ||
+    groundOutlines.some(
+      (outline) =>
+        !Array.isArray(outline) ||
+        outline.length < 3 ||
+        outline.length > 512 ||
+        !outline.every((p) => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite)),
+    ))
+)
+  throw new Error('Invalid model-owned review ground opening');
+const groundCutouts = groundOpening ? new TerrainGroundCutoutController() : undefined;
+const openingSurfaces: Array<{
+  mesh: THREE.Mesh;
+  source: THREE.BufferGeometry;
+  positions: number[];
+}> = [];
 const contextScale = Number(contextOptions.get('scale') ?? 1);
 // Rotate the standard review cameras around steep or one-sided terrain fixtures.
 const cameraYaw = Number(contextOptions.get('cameraYaw') ?? 0);
@@ -46,12 +83,10 @@ const neighborStyle = contextOptions.get('neighborStyle') ?? 'molen.worldgen.cat
 if (!Number.isFinite(contextScale) || contextScale <= 0) throw new Error('Invalid context scale');
 if (!Number.isFinite(cameraYaw)) throw new Error('Invalid review camera yaw');
 const pack = await read('content/worldgen/stylepack.json');
-const match = Object.entries(pack.assets as Record<string, string>).find(([key]) =>
-  key.endsWith(id ?? ''),
-);
-if (!id || !match) throw new Error(`Unknown asset ${id}`);
-const path = `content/worldgen/${match[1]}`,
+const match = mediumFiAsset(pack.assets, id);
+const path = `content/worldgen/${match.path}`,
   sidecar = await read(path);
+if (sidecar.id !== match.assetId) throw new Error('Review sidecar identity mismatch');
 const pool = createMaterialBakeWorkerPool(
   Array.from(
     { length: 2 },
@@ -146,6 +181,15 @@ if (terrainDescriptor || terrainHeightmap) {
     if ((o as THREE.Mesh).isMesh) {
       o.castShadow = true;
       o.receiveShadow = true;
+      if (groundOpening) {
+        const mesh = o as THREE.Mesh;
+        markTerrainGroundSurface(mesh);
+        openingSurfaces.push({
+          mesh,
+          source: mesh.geometry,
+          positions: Array.from(mesh.geometry.getAttribute('position').array),
+        });
+      }
     }
   });
   scene.add(hill);
@@ -186,10 +230,9 @@ sun.shadow.camera.far = 650 * contextScale;
 scene.add(sun, sun.target);
 sun.target.position.set(reviewCenter[0], reviewCenter[1], reviewCenter[2]);
 const ground = new THREE.Mesh(
-  new THREE.PlaneGeometry(2200, 2200),
+  new THREE.PlaneGeometry(2200, 2200).rotateX(-Math.PI / 2),
   new THREE.MeshStandardMaterial({ color: '#aaa59a', roughness: 1 }),
 );
-ground.rotation.x = -Math.PI / 2;
 ground.position.y = groundY - 0.02;
 ground.receiveShadow = true;
 scene.add(ground);
@@ -235,6 +278,7 @@ const models: Record<string, THREE.Object3D> = {};
 for (const level of ['skyline', 'district', 'street', 'closeup']) {
   const model = await library.acquire(sidecar.files.variants[level]);
   const object = library.instantiate(model);
+  if (groundOpening) setTerrainGroundCutouts(object, groundOutlines);
   object.visible = false;
   models[level] = object;
   scene.add(object);
@@ -245,7 +289,24 @@ for (const level of ['skyline', 'district', 'street', 'closeup']) {
     }
   });
 }
+// Keep the backdrop beneath a finite terrain tile unless the authored model
+// extends below it. Cutting a deeper backdrop otherwise exposes sky through
+// the underside of the finite tile when viewed from a distant camera.
+if (
+  groundOpening &&
+  Object.values(models).some(
+    (object) => new THREE.Box3().setFromObject(object).min.y < ground.position.y,
+  )
+) {
+  markTerrainGroundSurface(ground);
+  openingSurfaces.push({
+    mesh: ground,
+    source: ground.geometry,
+    positions: Array.from(ground.geometry.getAttribute('position').array),
+  });
+}
 const silhouette = models.skyline.clone(true);
+if (groundOpening) setTerrainGroundCutouts(silhouette, groundOutlines);
 silhouette.traverse((o) => {
   const m = o as THREE.Mesh;
   if (m.isMesh)
@@ -289,6 +350,37 @@ type View = {
   position?: number[];
   lookAt?: number[];
 };
+const openingProbePoints: number[][] = [];
+for (const opening of groundOutlines) {
+  const xs = opening.map((p) => p[0]),
+    zs = opening.map((p) => p[1]);
+  const [x0, x1, z0, z1] = [Math.min(...xs), Math.max(...xs), Math.min(...zs), Math.max(...zs)];
+  for (const fx of [0.25, 0.5, 0.75])
+    for (const fz of [0.25, 0.5, 0.75]) {
+      const p = [x0 + (x1 - x0) * fx, z0 + (z1 - z0) * fz];
+      let inside = false;
+      for (let i = 0, j = opening.length - 1; i < opening.length; j = i++) {
+        const a = opening[i],
+          b = opening[j];
+        if (
+          a[1] > p[1] !== b[1] > p[1] &&
+          p[0] < ((b[0] - a[0]) * (p[1] - a[1])) / (b[1] - a[1]) + a[0]
+        )
+          inside = !inside;
+      }
+      if (inside) openingProbePoints.push(p);
+    }
+}
+function groundOpeningCoverage() {
+  const ray = new THREE.Raycaster(),
+    groundMeshes = openingSurfaces.map(({ mesh }) => mesh);
+  let covered = 0;
+  for (const [x, z] of openingProbePoints) {
+    ray.set(new THREE.Vector3(x, 10000, z), new THREE.Vector3(0, -1, 0));
+    if (ray.intersectObjects(groundMeshes, false).length) covered++;
+  }
+  return { probes: openingProbePoints.length, covered };
+}
 function view(options: View = {}) {
   const { distance = 'street', mode = 'high', time = 'noon' } = options;
   const level =
@@ -330,11 +422,15 @@ function view(options: View = {}) {
     // PMREM now supplies sky irradiance; avoid adding it again through hemisphere light.
     hemisphere.intensity = 0;
   }
+  groundCutouts?.update(scene);
   renderer.render(scene, camera);
   const label = document.querySelector('#label');
   if (label)
     label.textContent = `${sidecar.id.split('.').at(-1)} · ${level}\n${distance} · ${time === 'late' ? 'late afternoon' : 'noon'} · ${mode}${options.silhouette ? ' · untextured silhouette' : ''}\nSynthetic procedural context; geographic placement unverified`;
   return {
+    assetId: sidecar.id,
+    runtimeHash: sidecar.hash,
+    lodHash: sidecar.runtimeLods.levels.find((entry) => entry.name === level)?.hash,
     level,
     distance,
     time,
@@ -352,6 +448,24 @@ function view(options: View = {}) {
     contextScale,
     cameraYaw,
     reflections: reflections ? 'sky-pmrem' : 'none',
+    ...(groundOpening
+      ? {
+          groundOpening: {
+            points: groundOutlines.reduce((sum, outline) => sum + outline.length, 0),
+            outlines: groundOutlines.length,
+            surfaces: openingSurfaces.length,
+            coverage: groundOpeningCoverage(),
+            active:
+              openingSurfaces.length > 0 &&
+              openingSurfaces.every(({ mesh, source }) => mesh.geometry !== source),
+            sourceValuesUnchanged: openingSurfaces.every(
+              ({ mesh, source, positions }) =>
+                terrainGroundSourceGeometry(mesh) === source &&
+                positions.every((v, i) => v === source.getAttribute('position').array[i]),
+            ),
+          },
+        }
+      : {}),
   };
 }
 Object.assign(window, {

@@ -1,0 +1,56 @@
+{
+  "sourceUrl": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N28_00_E077_00_DEM/Copernicus_DSM_COG_10_N28_00_E077_00_DEM.tif",
+  "originalRasterSize": [
+    3600,
+    3600
+  ],
+  "block": 4,
+  "tileSize": [
+    1024,
+    1024
+  ],
+  "originalByteRanges": [
+    {
+      "path": "terrain-sources/original-header.bin",
+      "start": 0,
+      "end": 16383,
+      "sha256": "sha256:bb6e84c7628527b7704ca89cb3fbc2f708f5ae84ba2a32126389d19ea06a4a55"
+    },
+    {
+      "path": "terrain-sources/original-block-4.deflate",
+      "start": 19308729,
+      "end": 21998352,
+      "sha256": "sha256:0610b0a0d0452a78f1bb2d7ef89f59f8bcf9f4dde217044435a30f252534e43b"
+    }
+  ],
+  "datum": 212.27887977208695,
+  "perimeterRelativeRange": [
+    -2.148016526924664,
+    5.015418454640496
+  ],
+  "georeference": {
+    "tie": [
+      0.0,
+      0.0,
+      0.0,
+      77.0,
+      29.0,
+      0.0
+    ],
+    "scale": [
+      0.0002777777777777778,
+      0.0002777777777777778,
+      0.0
+    ],
+    "pixelIsPoint": true
+  },
+  "state": "rejected-before-geometry",
+  "reason": "Surface DEM intrudes into photo-directed terrace by up to5m and leaves other perimeter points more than2m below datum; do not alter source ground or thicken architectural foundations to fit.",
+  "retainedRuntimeReviewSource": "Original Terrarium field, also rejected for geographic completion: perimeter-.204044..+9.6515m. Retained negative-control evidence only.",
+  "independentDecoderCheck": {
+    "originalCOGBlockPixelsIndependentlyCompared": 1048576,
+    "maximumDifferenceMeters": 0,
+    "decoder": "Stdlib zlib/floating-point-predictor3 versus Pillow/libtiff, all original block pixels. A minimal TIFF container wraps unchanged compressed block bytes; no pixel transformation.",
+    "use": "Exploratory ground-source rejection, not accepted bare-earth terrain."
+  }
+}

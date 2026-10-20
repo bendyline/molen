@@ -1,0 +1,581 @@
+{
+  "planId": "clevedon_pier",
+  "id": "clevedon_pier",
+  "assetId": "molen.worldgen.structure.clevedon_pier",
+  "title": "Clevedon Pier",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -2.8633251786231995,
+    "latitude": 51.44322929108546
+  },
+  "size": [
+    312.9497375488281,
+    36.52000045776367,
+    33.310394287109375
+  ],
+  "actualBounds": {
+    "min": [
+      -149.10464477539062,
+      -25.100000381469727,
+      -14.584455490112305
+    ],
+    "max": [
+      163.8450927734375,
+      11.420000076293945,
+      18.72593879699707
+    ]
+  },
+  "visualBrief": "Selected2007–2013 slender iron pier: eight real open arched spans/radiating struts, paired raked trestles/ties, grey timber deck/continuous benches, teal side girders/globe lamps, angled column-supported head with two low glazed shelters and raised central pagoda/white balcony/external stair, open landing stairs/lower concrete stage and narrow castellated sandstone tollhouse. Neighboring hotel, later Glass Box and Bell Room infill excluded.",
+  "nativeAxes": {
+    "x": "northwest seaward along neck",
+    "y": "up",
+    "z": "northeast across pier"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Clevedon_Pier_pavilion.JPG",
+    "https://commons.wikimedia.org/wiki/File:Clevedon_bristol_pier.jpg",
+    "https://commons.wikimedia.org/wiki/File:Clevedon_Victorian_pier.jpg",
+    "https://commons.wikimedia.org/wiki/File:Clevedon_pier_3.jpg"
+  ],
+  "stories": [
+    {
+      "id": "clevedon-pier-wp",
+      "url": "https://qualla.com/clevedon-pier/"
+    }
+  ],
+  "referenceInputHash": "sha256:bbb15716d11a345668564cdf64919eb7f4c3fd68c427d9255c83586330d515ad",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-clevedon-pier.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-clevedon-pier.mjs",
+    "level": "skyline",
+    "export": "clevedonPierSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "balconyIron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.15
+      },
+      "crestIron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.15
+      },
+      "spanTies": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.2,
+        "doubleSided": true
+      },
+      "spanNodes": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.2,
+        "doubleSided": true
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.2,
+        "doubleSided": true
+      },
+      "green": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.15,
+        "doubleSided": true
+      },
+      "wood": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.2
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "brass": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.4
+      },
+      "light": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.75,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0.08
+      },
+      "amber": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.5,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "clevedonPierDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "balconyIron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "crestIron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "spanTies": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2,
+            "doubleSided": true
+          },
+          "spanNodes": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2,
+            "doubleSided": true
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2,
+            "doubleSided": true
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15,
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.2
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "brass": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.4
+          },
+          "light": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.08
+          },
+          "amber": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "clevedonPierStreet",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "balconyIron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "crestIron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15
+          },
+          "spanTies": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2,
+            "doubleSided": true
+          },
+          "spanNodes": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2,
+            "doubleSided": true
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2,
+            "doubleSided": true
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.15,
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.2
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "brass": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.4
+          },
+          "light": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.08
+          },
+          "amber": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3,
+    "cameraYaw": 0
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Dry shore entrance[-147,1.8] establishes native unchanged Terrarium datum15.8501m. Deck top.55m clears sampled shore approach; separate rock-faced own footing continues below tollhouse. Marine terrain is composite bathymetric/coastal evidence, not tide or seabed survey; fixed support/pile depths and landing/stair levels remain bounded visual estimates. Footprint replacement disabled.",
+    "anchor": [
+      -2.8633251786231995,
+      51.44322929108546
+    ],
+    "heading": 2.725189076913783,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -2.8613770979477677,
+        51.442709964061706
+      ],
+      "modelHeight": 0,
+      "basis": "Dry shore-side entrance pavement immediately landward of the pier threshold and north of the tollhouse, avoiding elevated deck, water and neighboring hotel."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "landuse/35184399630786",
+      "landuse/35184560533928",
+      "buildings/35184737936895",
+      "buildings/35184560533795",
+      "buildings/35184560533794",
+      "buildings/35184560533927"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4d239fd54c8ac60b8a458ccd777b3b5219a14921e1b7e6ac2f871b26b0e3f3b8",
+    "notes": "Mapped actual pier/head/landing controls are authoritative for this approximate footprint; nominal published span/overall dimensions conflict and remain explicit. Native independent ground/water evidence is not a tide/seabed survey."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "New close white quatrefoil balcony tracery and rectangular perforated green crest plus street/close crossed iron span ties use four exact named Ownwork/PD-self/CC0originals,starting with two cleared local Qualla natives. Full fixed eight-span pier/head/pagoda/two shelters/landing/tollhouse scope retained. Exact ornament/counts,profile dimensions,hidden surfaces and current condition remain estimates; cleared tollhouse coverage still missing. Earlier attribution/private image controls are historical and excluded.",
+    "Selected2007–2013 exterior predates2016 Glass Box and later Bell Room infill. Eight equal estimated station intervals follow independent280.21m mapped neck; nominal published100ft spans/historical842ft dimensions conflict with mapped/story overall length. Exact chainages and elevations remain estimates.",
+    "All source images inspected as recorded; original approximate iron profiles/curved roofs/ornaments and unseen tollhouse walls/windows are not scans or construction drawings. Integral benches and lamps retained; tiny plaque marks have no copied names. No photographic pixels embedded.",
+    "Fixed landing/stair pose and pile depths are estimates, not tidal/structural engineering. Source independent terrain retained unchanged; native composite marine returns are not measured water surface or seabed. Current terrain contact requires separate visual review and host compatibility remains limited. Footprint replacement disabled.",
+    "Neighboring Royal Pier Hotel, shore Glass Box/streets/landscape/rock/sea/boats, temporary flags and visitors, nonintegral sculptures/furniture and interiors excluded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "balcony-tracery",
+      "position": [
+        138.925,
+        4.9,
+        0.404
+      ],
+      "lookAt": [
+        142.536,
+        4.32,
+        1.742
+      ]
+    },
+    {
+      "name": "pier-crest",
+      "position": [
+        137.307,
+        11.5,
+        3.962
+      ],
+      "lookAt": [
+        147.8305,
+        9.1,
+        1.45
+      ]
+    },
+    {
+      "name": "front",
+      "position": [
+        15,
+        35,
+        -240
+      ],
+      "lookAt": [
+        5,
+        -5,
+        0
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        122,
+        19,
+        -22
+      ],
+      "lookAt": [
+        148,
+        4,
+        1.5
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -15,
+        55,
+        245
+      ],
+      "lookAt": [
+        5,
+        -4,
+        0
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        -120,
+        8,
+        -26
+      ],
+      "lookAt": [
+        -140,
+        3,
+        -5
+      ]
+    },
+    {
+      "name": "iron-detail",
+      "position": [
+        -65,
+        -5,
+        -32
+      ],
+      "lookAt": [
+        -87,
+        -7,
+        0
+      ]
+    },
+    {
+      "name": "head-detail",
+      "position": [
+        180,
+        13,
+        28
+      ],
+      "lookAt": [
+        150,
+        0,
+        1.5
+      ]
+    },
+    {
+      "name": "deck-detail",
+      "position": [
+        105,
+        7,
+        0
+      ],
+      "lookAt": [
+        149,
+        5,
+        1.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63612,
+    "vertices": 190836,
+    "materials": 7,
+    "bytes": 7637640,
+    "sha256": "sha256:a6b367a3682c5df07148bb333645724ac61c21170531ff4333d5ead9aa85cb16"
+  }
+}

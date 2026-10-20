@@ -8,7 +8,11 @@ Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.js
 
 - [The Ritz Hotel, London](https://qualla.com/the-ritz-hotel-london/)
 
-Original medium-fi exterior of the historic main Ritz hotel, based on individually inspected local 2015–2017 photographs, original plans/elevations and Purcell 2021 condition survey. Later 22 Arlington extension and William Kent House are excluded.
+Historic main Ritz hotel. New close-range arcade rustication follows the cleared Qualla1907Piccadilly/GreenPark elevations; seven recessed joints on all16piers. Later22Arlington extension and William Kent House remain excluded.
+
+Earlier massing, canopy and roof details inherited from prior work. Modern attribution photographs and private2021survey imagery are excluded as current controls. Full historic-main-hotel fidelity remains pending adequate public-domain review of all retained details.
+
+Joint spacing follows the existing course rhythm;18mm height and25mm depth are authoring estimates. The1907plate does not establish current condition or exact profiles. Close-only construction keeps the three lower geometry levels unchanged.
 
 Dated model scope does not claim to reproduce all current roof/construction changes. No temporary scaffolding, crowds, Christmas decorations or interiors.
 
@@ -18,4 +22,4 @@ Original simplified ironwork, stone balustrades and roof ornament; no copied pho
 
 Independent terrain is unchanged. Deep foundation accommodates the rearward slope; exact contact can differ on another host DEM.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=ritz_london`. Add `--check` to verify exact regeneration. 54267 triangles; 7 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=ritz_london`. Add `--check` to verify exact regeneration. 55849 triangles; 7 materials; no embedded photographs.

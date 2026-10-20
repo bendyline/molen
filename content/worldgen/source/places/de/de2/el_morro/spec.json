@@ -1,0 +1,541 @@
+{
+  "planId": "el_morro",
+  "id": "el_morro",
+  "assetId": "molen.worldgen.structure.el_morro",
+  "title": "El Morro",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -66.1242,
+    "latitude": 18.471
+  },
+  "size": [
+    200.07018280029297,
+    51.050100326538086,
+    206.8838348388672
+  ],
+  "actualBounds": {
+    "min": [
+      -69.92070770263672,
+      -29,
+      -74.74549865722656
+    ],
+    "max": [
+      130.14947509765625,
+      22.050100326538086,
+      132.13833618164062
+    ]
+  },
+  "visualBrief": "San Juan coastal fort with separate battered landfront bastions, six-arch entrance bridge and pedimented through sallyport, measured dry moat and counterscarp, open elongated parade and wraparound ochre/white arcade, high Caballero wall, stepped lower court and gun batteries with real ramps, corbelled garitas and blue-gray octagonal/square lighthouse with black helical lantern. Registered historical component plans checked against dated current photos; no monolithic8m map extrusion.",
+  "nativeAxes": "+X east; +Z south; +Y up from independent provider-relative dry esplanade contact datum. Main gate and bridge point southeast.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.loc.gov/item/pr0076/"
+  ],
+  "stories": [
+    {
+      "id": "castillo-san-felipe-del-morro-wp",
+      "url": "https://qualla.com/castillo-san-felipe-del-morro/"
+    },
+    {
+      "id": "old-san-juan-el-morro-wk",
+      "url": "https://qualla.com/old-san-juan-el-morro/"
+    }
+  ],
+  "referenceInputHash": "sha256:26f1ed2c6e361599bf9fa385f488cde8b86025ffa137a63d203a30ab7851a28d",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-el-morro.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-el-morro.mjs",
+    "level": "skyline",
+    "export": "elMorroSkyline",
+    "errorMeters": 6.6,
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.66,
+        "metallic": 0.12
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "lawn": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "elMorroDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.12
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "lawn": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "elMorroStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.12
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "lawn": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -31,
+    "terrain": {
+      "descriptor": "terrain-site-review.terrain.json",
+      "heightmap": "terrain-site-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Frozen source-specific USGS3DEP D24 raster34494, independent1m257² baseline and281² whole-site review grids. Provider-relative34.8123m dry esplanade contact; entry floor approximately1.135m above model datum. Terrain reference uses explicit external approach contact, not terrain at the model anchor. Current geometry/visual clearance approval remains in qa.json.",
+    "anchor": [
+      -66.1242,
+      18.471
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -66.12346887922936,
+        18.470300658041477
+      ],
+      "modelHeight": 0,
+      "basis": "Native Calle del Morro approach path at southeast esplanade, outside the moat bridge and fort roofs. Full local256m square fixed before geometry; exported raw600m square retained including untouched empty offshore raster blocks."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -58.43488793613164,
+          -73.96943744131397
+        ],
+        [
+          -51.15560180359893,
+          -67.8080619746899
+        ],
+        [
+          -48.12133530113825,
+          -69.77072887257273
+        ],
+        [
+          -3.6628515107375748,
+          -40.378009722098085
+        ],
+        [
+          20.874412505520915,
+          -46.65742513728017
+        ],
+        [
+          30.74917065789713,
+          -30.747594734913235
+        ],
+        [
+          34.56450743413894,
+          -29.577717269596207
+        ],
+        [
+          80.6459274133934,
+          -28.056514832190942
+        ],
+        [
+          82.2612283558424,
+          -7.741680489146859
+        ],
+        [
+          106.43742774955524,
+          12.03517070196645
+        ],
+        [
+          129.76082798225968,
+          15.300522380588944
+        ],
+        [
+          127.54392037754957,
+          24.408191713199727
+        ],
+        [
+          60.39779424116947,
+          57.50643796398063
+        ],
+        [
+          55.99681176500942,
+          62.70592805864686
+        ],
+        [
+          32.81636618081448,
+          128.21230868311866
+        ],
+        [
+          25.67708193202693,
+          131.78053687299305
+        ],
+        [
+          -3.9828531274006664,
+          114.91369092389701
+        ],
+        [
+          -12.763138931437531,
+          105.01040428968165
+        ],
+        [
+          -16.741067548282153,
+          81.32276633062608
+        ],
+        [
+          -23.330994721120923,
+          74.50916888898914
+        ],
+        [
+          -26.80638044929257,
+          64.0159323034346
+        ],
+        [
+          -26.252153548115054,
+          61.739014970281886
+        ],
+        [
+          -36.926833253516826,
+          45.15211034081341
+        ],
+        [
+          -31.324554513299013,
+          32.04483324307475
+        ],
+        [
+          -35.81555158212297,
+          22.75147898705856
+        ],
+        [
+          -47.40326051601691,
+          20.22032094707862
+        ],
+        [
+          -37.90395612283141,
+          -2.3574492751024536
+        ],
+        [
+          -45.62323033345955,
+          -28.113446900143714
+        ],
+        [
+          -60.14466561384389,
+          -41.77777876809867
+        ],
+        [
+          -68.29814726876435,
+          -45.93306659241068
+        ],
+        [
+          -69.31234467489725,
+          -53.656582606597055
+        ],
+        [
+          -67.7110876343267,
+          -61.2258324961187
+        ],
+        [
+          -63.49437614705269,
+          -68.64081626097558
+        ]
+      ],
+      "basis": "Registered HABS immediate fort, masonry courts/batteries, dry moat and counterscarp; ground removed only while model is loaded and visible. Original provider heights remain available for anchoring and restore when model hides. Model-owned architectural floors and battered-wall bases must close all rendered openings."
+    },
+    "featureIds": [
+      "buildings/35184933723369"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6450184152c384d961b6186f0cfe8733ed3cd860addcc2adc918dbbd0b2d4a2b"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Outer native footprint is an approximate low-zoom mapped fort perimeter, not each tier or a construction survey.8m map tag must not become a uniform extrusion.",
+    "Local plan uses east/south signed axes. Lighthouse POI is an approximate horizontal control; actual base outline comes from inspected HABS/current photo evidence.",
+    "Independent current USGS D24 catalog labels vertical datum NAVD88; source-specific vertical metadata remains unverified. No datum transformation or absolute-level survey claim.",
+    "Original F32 export has empty sparse offshore blocks beyond the fixed256m review square; no source value is substituted/filled. All256m square samples must lie in nonempty original blocks.",
+    "Fine current materials/alterations and historical drawing dates must be distinguished.",
+    "Wall-top and toe registration differ by metres in the source maps; no cadastral claim.",
+    "Fine original curvature, concealed rooms, machinery and individual masonry weathering are simplified.",
+    "The frozen provider field retains existing roof/bridge/fort classification and may occlude voids in its review fixture; source geometry must still contain real openings.",
+    "Current trees/temporary scaffolding/visitors/flags/adjacent city works excluded.",
+    "Four terrace heights and individual minor alterations are photo/provider interpretations. Physical model-owned ground opening exposes the true bridge arches and galleries while preserving original provider samples for anchoring and restoring the terrain when the model hides. No hidden-room, safety, navigation or construction-survey claim.",
+    "Bulk photographs and measured drawing TIFFs remain in local evidence; original geometry/palette only, no copied photographic pixels. Review captures and source/runtime validation must be current before completion annotations."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "landfront",
+      "position": [
+        160,
+        36,
+        175
+      ],
+      "lookAt": [
+        41,
+        5,
+        55
+      ]
+    },
+    {
+      "name": "seaward-tiers",
+      "position": [
+        -205,
+        68,
+        -170
+      ],
+      "lookAt": [
+        -20,
+        -4,
+        -15
+      ]
+    },
+    {
+      "name": "open-parade",
+      "position": [
+        -24,
+        63,
+        70
+      ],
+      "lookAt": [
+        13,
+        3,
+        15
+      ]
+    },
+    {
+      "name": "arcade",
+      "position": [
+        -10,
+        6,
+        16
+      ],
+      "lookAt": [
+        15,
+        3,
+        23
+      ]
+    },
+    {
+      "name": "gate-and-bridge",
+      "position": [
+        65,
+        10,
+        91
+      ],
+      "lookAt": [
+        35,
+        4,
+        42
+      ]
+    },
+    {
+      "name": "lighthouse",
+      "position": [
+        90,
+        29,
+        27
+      ],
+      "lookAt": [
+        64,
+        15,
+        1
+      ]
+    },
+    {
+      "name": "lower-battery",
+      "position": [
+        -67,
+        -3,
+        -28
+      ],
+      "lookAt": [
+        -15,
+        -9,
+        -17
+      ]
+    },
+    {
+      "name": "overhead",
+      "position": [
+        5,
+        345,
+        13
+      ],
+      "lookAt": [
+        5,
+        -4,
+        12
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 29200,
+    "vertices": 87600,
+    "materials": 6,
+    "bytes": 3507712,
+    "sha256": "sha256:d20c4b6e21249449ab0d0fa01b99f4163b58e74c21d7795fae7746e39b075e57"
+  }
+}

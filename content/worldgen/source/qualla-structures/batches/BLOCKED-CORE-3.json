@@ -1,0 +1,92 @@
+{
+  "format": "molen/structure-batch-blocked-audit@1",
+  "reviewedOn": "2026-10-19",
+  "goalStatus": "complete",
+  "fixedTarget": 100,
+  "ready": 100,
+  "authored": 100,
+  "lastCompletedModel": "winchester_mystery_house",
+  "sameConditionConsecutiveTurns": 3,
+  "turns": [
+    {
+      "kind": "workflow-question",
+      "classification": "no progress",
+      "state": "97ready;oneentrancereferencegapandtwogroundgaps"
+    },
+    {
+      "kind": "new-source-tests",
+      "classification": "progress",
+      "state": "Same3holds;nativeGEDTMcomparisonsfail,NAIPpartialonly"
+    },
+    {
+      "kind": "current-focused-plan-check",
+      "classification": "progress",
+      "state": "Same3holds;planalignmentconfirmed,requiredentrancedetailstillunresolved"
+    }
+  ],
+  "externalJobsOrCommandsPending": [],
+  "retainedModelChecks": [
+    {
+      "model": "hangar_37",
+      "sourceAndRuntimeIdentitiesUnchanged": true,
+      "geographicStatus": "passed"
+    },
+    {
+      "model": "humayuns_tomb",
+      "sourceAndRuntimeIdentitiesUnchanged": true,
+      "geographicStatus": "held"
+    },
+    {
+      "model": "taj_mahal_palace_hotel",
+      "sourceAndRuntimeIdentitiesUnchanged": true,
+      "geographicStatus": "held"
+    }
+  ],
+  "sourceSearchPolicy": "Do not repeat unchanged rejected sources/endpoints. No questionable imagery,no sourcepermissionquestion,no contacting publishers. Resume when new usable eligible entrance evidence or independent site-ground data becomes available.",
+  "unchangedScope": "Fixedfirst100retained;no replacementmodels,next300selection,ready-statewaiver,completed-storywriteorGitoperation.",
+  "completedThisAudit": 0,
+  "resolvedOn": "2026-10-19",
+  "resolution": {
+    "id": "owner-acceptance-2026-10-19",
+    "models": [
+      "hangar_37",
+      "humayuns_tomb",
+      "taj_mahal_palace_hotel"
+    ],
+    "decision": "Owner explicitly accepted the remaining approximate entrance and geographic ground-contact limitations on 2026-10-19. Public-domain-only imagery policy retained. No geometry or ground-fit changes.",
+    "storySync": {
+      "modelsChecked": 3,
+      "linkedStories": 3,
+      "articlesChanged": 3,
+      "repeatChanges": 0
+    },
+    "validation": {
+      "fixedCoreSources": 100,
+      "exactSourceRegeneration": true,
+      "currentReadiness": 100,
+      "storyRepeatChanges": 0,
+      "proof": ".artifacts/qualla-batch/owner-accept-core/core-source-reproduction.txt"
+    }
+  },
+  "outstandingRequirements": [],
+  "historicalUnprovenRequirements": [
+    {
+      "model": "hangar_37",
+      "requirement": "Full modern museum exterior including permanent entrance supported by eligible imagery or independently authored architectural facts.",
+      "evidence": "research/hangar-naip-entrance-review.json",
+      "unavailable": "ExaminedQuallamedia/currentmuseum/architectimagesareattribution-onlyorprivate;historicNavyimagepredatesentrance;2015Navyshadeunidentified;NAIPdoesnotresolveverticalentrancedetails."
+    },
+    {
+      "model": "humayuns_tomb",
+      "requirement": "Independent usable ground with compatible actual plinth and approach contact before activating placement and completed story annotation.",
+      "evidence": "research/remaining-ground-gedtm30-decision.json",
+      "unavailable": "OriginalsurfaceDEMs intrude throughterrace. DocumentedfilteredGEDTMstillleaves0.7891munderexistinglowerplinthfoot;Float32versionhasconflictingheightscale. No sourceorarchitecturefittedtoforceacceptance."
+    },
+    {
+      "model": "taj_mahal_palace_hotel",
+      "requirement": "Independent usable coastal ground with compatible historic Palace perimeter and pavement contact before activating placement and completed story annotation.",
+      "evidence": "research/remaining-ground-gedtm30-decision.json",
+      "unavailable": "Originalsurfacefieldfailscontact;DeltaDTMsiteNODATA;filteredGEDTMstillrises9.9677mabovethefixedwaterfrontreference;municipalcontourdata/datumunretrieved."
+    }
+  ]
+}

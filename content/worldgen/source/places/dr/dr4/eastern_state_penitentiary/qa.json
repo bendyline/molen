@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.eastern_state_penitentiary",
-  "reviewedOn": "2026-10-14",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:cd879d7bd91920eb6ce2a9316b67538542e0f7f1c9ac5a3ad3aa0f98048f1e67",
-  "sourceHash": "sha256:949806ec27a97d0ba5bcad5721cffe79bf529cc10bacfcb658005efcfe3e9c27",
-  "runtimeHash": "sha256:f146d9e9f99c5a8dd6a5b440975dcb0885b263cbd3158be25015627c64786067",
-  "captureReportHash": "sha256:1dd9cd0f09e984857347c1b8163590d083c82673e921233dfad97ebc67b3a188",
+  "inputHash": "sha256:62d0ced59064732b0031ea9c0339e86806d6992564df96f3f398d8e610c1e561",
+  "sourceHash": "sha256:18cb0e4ebdb452bee828cf722f76176ccd0b98494c95189c9f459b80d5443424",
+  "runtimeHash": "sha256:e1f6a4373b9c39e40eb6d9c4fe28e4496268aee9072821b8b43c51f6e55d2b4b",
+  "captureReportHash": "sha256:6b512beb78cf6fb46a4384a282dcefb33a382f53194309ce6bc35924c19fd5e4",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:6b512beb78cf6fb46a4384a282dcefb33a382f53194309ce6bc35924c19fd5e4",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,16 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/barbican-entry.png",
+      "shots/entrance-depth.png",
+      "shots/portcullis-surround.png"
     ],
-    "notes": "Inspected seven final portable frames, full shared aerial and the local reference originals. Seven original radial cellblock roofs, later infill wings, low hub, separate crenellated gatehouse and enclosing perimeter remain distinct. Skylights, slit-window rhythm, low entrance barbican, gatehouse tower and four watch boxes establish the surviving exterior. Roof normals and occluded gatehouse windows were corrected before final captures. Fine decay, exact infill roofs and interior cells remain outside the stated scope."
+    "notes": "All10current portable views inspected. Built real barbican entrance air,stone floor,chamfered lintel,barred gate,recessed faux-portcullis backing/stone reveals,vents and side hatch. Source-native ground remains unmodified. Whole front/back and new close-ups retain the existing surviving prison exterior."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:ae304f2bfa4f4de3b8ec24ffa8769867fa759ff3ca84811461cf97e7a24dcdad",
+    "captureReportHash": "sha256:eb06bfca1dfc9ceb47c4016a5c6626f1c6cba261375835a438066d9d1955ae45",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +34,38 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/barbican-entry.png",
+      "shots/shared/entrance-depth.png",
+      "shots/shared/portcullis-surround.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven final shared-material views, including the north-up map overlay. Shared masonry/slate/concrete/metal graphs use metric UVs; dark windows remain portable. The connected source outline retains mapped courtyard holes and later additions, while individual roof bodies are generalized within that layout. Three mapped corner controls and the interpreted northeast continuation bound the perimeter. Fixed geographic transform, terrain-reference sampling and unload assertions pass."
+    "notes": "All10current shared-material/geographic views inspected,including north-up mapped footprint overlay and three new entrance close-ups. Stone/slate/concrete/metal bindings retained. Entrance has depth between actual iron bars and inner opaque boundary. Fixed map transform and unload pass;flat fixture is transform/material evidence,not independent terrain-data accuracy.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.slate": {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_sandstone": {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:6ed88f96cba23b05cb86fb17dcd355bb08f2edd48823c0b45ced07e9da7fd5b3",
+    "captureReportHash": "sha256:af2d47301532ea04d195925d5371250fe276e316f3fd02588d0ad958e7b52b67",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +82,15 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/barbican-entry.png",
+      "medium-fi/entrance-depth.png",
+      "medium-fi/portcullis-surround.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final medium-fi frames across light, distance and quality settings, front/back, silhouette and four forced levels. Initial pale skyline and missing later cellblocks were rejected; final skyline keeps infill wings and darkens its plain palette toward the shared material appearance. Source terrain remains unmodified. Synthetic context blocks test style and distance; they are not the Philadelphia neighborhood. No physical-device frame rate is claimed."
+    "notes": "All22current version2frames inspected across lighting/quality,front/back,three entrance details and four forced levels. Actual air,chamfer/floor/recess survive distance simplification. Existing seven radial roofs,later infill,hub,gatehouse and perimeter retained. Synthetic neighbors are style context;native source-ground values remain unchanged."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,91 +109,602 @@
       ],
       "maxPngEncodingErrorMeters": 0.00007658500671325896
     },
-    "notes": "Mapped connected prison 52776577410325 and gatehouse 35184422281912 agree with the museum visitor map and archival north-facing aerial. Anchor [-75.1727,39.9683], heading zero, +X east and +Z south retain the Fairmount Avenue entrance. Reference [0,99] defines the 27.45 m host datum. Preserved Terrarium samples span -1.512113..3.535385 m across the mapped footprint; lower closures extend to -3 m. The northern host relief is coarse, not surveyed prison-floor elevation. Three mapped corner towers control the perimeter, with the northeast closure interpreted from the aerial; footprint suppression stays off."
+    "notes": "Bounded approximate exterior fit retained in standard mapped frame:connected prison52776577410325andgatehouse35184422281912alignwiththeoriginal2003governmentaerial. Anchor[-75.1727,39.9683],heading0,+Xeast/+Zsouth,andoriginalFairmountAvenue[0,99]reference retained. Source map and all three original ground files retain byte hashes in site-construction-controls.json. Original27.45mprovider-relative datum/coarse relief-1.512..3.535m and fixed-3mlower closures are unchanged;not surveyed paving/floor elevations. New entrance recess occupies its existing model-owned barbican footprint. Current geographic-flat-terrain overlay/transform and source-native detail views inspected. Another live host field,exact civil levels and precise2026condition are not certified;no fitting,flattening or new cutout."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Surviving radial prison exterior, later cellblocks, central hub, Fairmount Avenue gatehouse and perimeter; detailed ruin fabric and interiors excluded.",
-    "notes": "Accepted original medium-fi surviving prison exterior. The local 1855 lithograph misleadingly named aerial was excluded from current form evidence. Inspected Qualla watchtower/masonry and courtyard photographs, museum visitor plan, HABS roof/gatehouse views and overhead aerial establish the exterior relationships. Roof heights, narrow cell openings, skylight rhythm, service wings, northeast corner and weathering are generalized; archival views do not establish a precise 2026 condition inventory. Interiors, yard fixtures and surrounding city are omitted. Research images are not embedded or redistributed."
+    "scope": "Surviving prison exterior,radial/later cellblock masses,hub,castellated gatehouse/perimeter and physical1937barbican entrance recess. Cell interiors,city surroundings and navigable passage excluded.",
+    "notes": "Four individually inspected exact original HABS government photographs replace old CC photos and unverified visitor-map imagery:JackE.Boucher1998whole facade/barbican/reverse gate and2003aerial. Actual film borders,original captions and government photographer role are bound. New physical recess has floor,jambs,chamfered lintel,iron bars,side hatch and vents;faux portcullis now has backing behind real stone reveals and grid. It ends at an opaque inner boundary;no interior rooms or navigable prison corridor are claimed. Original footprint,levels,seven radial roofs,later infill,hub,watch boxes and placement retained. Exact recess depth,bar spacing,decay,roof junctions,unseen details,material color and2026condition remain estimates;monochrome originals do not establish color. All42current renders inspected;no source pixels embedded."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:a9bd42c3aa80b9da2d982b9c2e51113c3c1fb8a95ed3d0142702849ce2b371a9",
+    "recipeHash": "sha256:67c80b9024966852701714671f2920e169f167c8cd887d9229fffc0b111da19a",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:d18b4d6da447a3c7e4e3cb77c5a726e0176593b7e2aa4a2418ed2168e726347a",
-        "bytes": 44616,
-        "gzipBytes": 9432,
-        "triangles": 556,
-        "cpuBytes": 43224,
-        "gpuBytes": 43224,
+        "hash": "sha256:8e56e5aff8571ad5ccc04859feaba1a0776185152f939da5cc571e9d65ffacfb",
+        "bytes": 49908,
+        "gzipBytes": 10143,
+        "triangles": 622,
+        "cpuBytes": 48516,
+        "gpuBytes": 48516,
         "errorMeters": 4,
         "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:4e9762087464b4ef753f352022ff4a0e1ab9aeb07a1a2255c75dd3dd05c0120d",
-        "bytes": 281800,
-        "gzipBytes": 63739,
-        "triangles": 3749,
-        "cpuBytes": 274604,
-        "gpuBytes": 274604,
+        "hash": "sha256:0ffcd6a23ef17238b9c222aca4d575b565dca4d314d63691f9b6cf467897b20f",
+        "bytes": 286668,
+        "gzipBytes": 64599,
+        "triangles": 3815,
+        "cpuBytes": 279464,
+        "gpuBytes": 279464,
         "errorMeters": 1.4,
         "drawCalls": 6
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:674cb924066682a77825606f589a647ad42e336914324788db0f4eaf26a96be2",
-        "bytes": 711192,
-        "gzipBytes": 139845,
-        "triangles": 9253,
-        "cpuBytes": 703916,
-        "gpuBytes": 703916,
+        "hash": "sha256:b76284bc7702ca678cdf6f9cca60f753c88e48471e131170883cb31666840fd8",
+        "bytes": 749416,
+        "gzipBytes": 145480,
+        "triangles": 9747,
+        "cpuBytes": 742160,
+        "gpuBytes": 742160,
         "errorMeters": 0.4,
         "drawCalls": 6
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:1fafbbeeb5ab4f8896d214b0563fa830d250b25990b3580a4069fba74b46eee3",
-        "bytes": 2991476,
-        "gzipBytes": 491371,
-        "triangles": 24901,
-        "cpuBytes": 2988120,
-        "gpuBytes": 2988120,
+        "hash": "sha256:c02a4b8a8ac5146d9e6d8b27880e037ad8e60db73368ee9474d9822bfa532001",
+        "bytes": 3050756,
+        "gzipBytes": 500671,
+        "triangles": 25395,
+        "cpuBytes": 3047400,
+        "gpuBytes": 3047400,
         "errorMeters": 0,
         "drawCalls": 6
       }
     ],
-    "notes": "Four current hash-bound levels pass strict triangle/material/download budgets and were inspected: skyline 556, district 3749, street 9253 and closeup 24901 triangles. All distant versions are explicitly authored; later infill roofs persist in skyline. Declared authoring error budgets are not independent measured mesh distances."
+    "notes": "622/3815/9747/25395triangles and1/6/6/6draws pass strict limits. Four levels retain actual entrance opening/floor/chamfer;nearer levels add physical bars,reveals,hatch and vents. Existing radial/infill silhouette and materials retained. Declared error budgets are authoring bounds,not a measured global error certificate."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 24901,
+    "sourceTriangles": 25395,
     "sourceMaterials": 6,
     "runtimeLodsVerified": 4,
+    "actualImportedEntranceChecks": [
+      {
+        "level": "skyline",
+        "triangles": 622,
+        "drawCalls": 1,
+        "controls": 16,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "entrance has real air in front of barred gate",
+            "pass": true,
+            "dx": -0.55
+          },
+          {
+            "name": "entrance has real air in front of barred gate",
+            "pass": true,
+            "dx": 0.11
+          },
+          {
+            "name": "entrance has real air in front of barred gate",
+            "pass": true,
+            "dx": 0.55
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": -0.6,
+            "z": 98.6,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": -0.6,
+            "z": 99.5,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": -0.6,
+            "z": 101.3,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": 0.6,
+            "z": 98.6,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": 0.6,
+            "z": 99.5,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": 0.6,
+            "z": 101.3,
+            "y": 0
+          },
+          {
+            "name": "chamfer preserves central headroom",
+            "pass": true
+          },
+          {
+            "name": "upper corner is actual sloping stone",
+            "pass": true
+          },
+          {
+            "name": "air continues behind bars toward inner boundary",
+            "pass": true
+          },
+          {
+            "name": "opaque inner boundary avoids invented prison interiors",
+            "pass": true,
+            "z": 98.13999938964844
+          },
+          {
+            "name": "retained high perimeter walls",
+            "pass": true,
+            "x": -94.15,
+            "z": -6.55
+          },
+          {
+            "name": "retained high perimeter walls",
+            "pass": true,
+            "x": 101.9,
+            "z": -2.45
+          },
+          {
+            "name": "retained high perimeter walls",
+            "pass": true,
+            "x": 6.4,
+            "z": -102.7
+          }
+        ]
+      },
+      {
+        "level": "district",
+        "triangles": 3815,
+        "drawCalls": 6,
+        "controls": 18,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "entrance has real air in front of barred gate",
+            "pass": true,
+            "dx": -0.55
+          },
+          {
+            "name": "entrance has real air in front of barred gate",
+            "pass": true,
+            "dx": 0.11
+          },
+          {
+            "name": "entrance has real air in front of barred gate",
+            "pass": true,
+            "dx": 0.55
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": -0.6,
+            "z": 98.6,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": -0.6,
+            "z": 99.5,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": -0.6,
+            "z": 101.3,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": 0.6,
+            "z": 98.6,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": 0.6,
+            "z": 99.5,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": 0.6,
+            "z": 101.3,
+            "y": 0
+          },
+          {
+            "name": "chamfer preserves central headroom",
+            "pass": true
+          },
+          {
+            "name": "upper corner is actual sloping stone",
+            "pass": true
+          },
+          {
+            "name": "air continues behind bars toward inner boundary",
+            "pass": true
+          },
+          {
+            "name": "opaque inner boundary avoids invented prison interiors",
+            "pass": true,
+            "z": 98.13999938964844
+          },
+          {
+            "name": "actual recessed iron bars",
+            "pass": true
+          },
+          {
+            "name": "pointed faux-portcullis surround has actual depth",
+            "pass": true
+          },
+          {
+            "name": "retained high perimeter walls",
+            "pass": true,
+            "x": -94.15,
+            "z": -6.55
+          },
+          {
+            "name": "retained high perimeter walls",
+            "pass": true,
+            "x": 101.9,
+            "z": -2.45
+          },
+          {
+            "name": "retained high perimeter walls",
+            "pass": true,
+            "x": 6.4,
+            "z": -102.7
+          }
+        ]
+      },
+      {
+        "level": "street",
+        "triangles": 9747,
+        "drawCalls": 6,
+        "controls": 18,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "entrance has real air in front of barred gate",
+            "pass": true,
+            "dx": -0.55
+          },
+          {
+            "name": "entrance has real air in front of barred gate",
+            "pass": true,
+            "dx": 0.11
+          },
+          {
+            "name": "entrance has real air in front of barred gate",
+            "pass": true,
+            "dx": 0.55
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": -0.6,
+            "z": 98.6,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": -0.6,
+            "z": 99.5,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": -0.6,
+            "z": 101.3,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": 0.6,
+            "z": 98.6,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": 0.6,
+            "z": 99.5,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": 0.6,
+            "z": 101.3,
+            "y": 0
+          },
+          {
+            "name": "chamfer preserves central headroom",
+            "pass": true
+          },
+          {
+            "name": "upper corner is actual sloping stone",
+            "pass": true
+          },
+          {
+            "name": "air continues behind bars toward inner boundary",
+            "pass": true
+          },
+          {
+            "name": "opaque inner boundary avoids invented prison interiors",
+            "pass": true,
+            "z": 98.13999938964844
+          },
+          {
+            "name": "actual recessed iron bars",
+            "pass": true
+          },
+          {
+            "name": "pointed faux-portcullis surround has actual depth",
+            "pass": true
+          },
+          {
+            "name": "retained high perimeter walls",
+            "pass": true,
+            "x": -94.15,
+            "z": -6.55
+          },
+          {
+            "name": "retained high perimeter walls",
+            "pass": true,
+            "x": 101.9,
+            "z": -2.45
+          },
+          {
+            "name": "retained high perimeter walls",
+            "pass": true,
+            "x": 6.4,
+            "z": -102.7
+          }
+        ]
+      },
+      {
+        "level": "closeup",
+        "triangles": 25395,
+        "drawCalls": 6,
+        "controls": 18,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "entrance has real air in front of barred gate",
+            "pass": true,
+            "dx": -0.55
+          },
+          {
+            "name": "entrance has real air in front of barred gate",
+            "pass": true,
+            "dx": 0.11
+          },
+          {
+            "name": "entrance has real air in front of barred gate",
+            "pass": true,
+            "dx": 0.55
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": -0.6,
+            "z": 98.6,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": -0.6,
+            "z": 99.5,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": -0.6,
+            "z": 101.3,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": 0.6,
+            "z": 98.6,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": 0.6,
+            "z": 99.5,
+            "y": 0
+          },
+          {
+            "name": "continuous physical entrance floor",
+            "pass": true,
+            "dx": 0.6,
+            "z": 101.3,
+            "y": 0
+          },
+          {
+            "name": "chamfer preserves central headroom",
+            "pass": true
+          },
+          {
+            "name": "upper corner is actual sloping stone",
+            "pass": true
+          },
+          {
+            "name": "air continues behind bars toward inner boundary",
+            "pass": true
+          },
+          {
+            "name": "opaque inner boundary avoids invented prison interiors",
+            "pass": true,
+            "z": 98.13999938964844
+          },
+          {
+            "name": "actual recessed iron bars",
+            "pass": true
+          },
+          {
+            "name": "pointed faux-portcullis surround has actual depth",
+            "pass": true
+          },
+          {
+            "name": "retained high perimeter walls",
+            "pass": true,
+            "x": -94.15,
+            "z": -6.55
+          },
+          {
+            "name": "retained high perimeter walls",
+            "pass": true,
+            "x": 101.9,
+            "z": -2.45
+          },
+          {
+            "name": "retained high perimeter walls",
+            "pass": true,
+            "x": 6.4,
+            "z": -102.7
+          }
+        ]
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass. Terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/dr/dr4/eastern_state_penitentiary/verify-entrance.mjs"
+    ],
+    "notes": "Targeted generation/import/exact regeneration,asset integrity,strict LOD/material budgets,actual source/imported Float32 normals/winding/UVs and entrance air/floor/chamfer/backing controls pass. Five targeted HABS source-policy tests pass;the only eligibility adjustment permits the same named government photographer with an omitted final initial period. Different names,private-source credits,unbound files and missing grants are rejected. No unchanged model was regenerated or revalidated."
   },
   "limitations": [
-    "Original medium-fi surviving exterior from local Qualla masonry/courtyard photographs, generalized current footprints, museum map and inspected archival HABS exterior views; not a measured survey or an exact 2026 condition inventory.",
+    "Original medium-fi surviving exterior now controlled by four individually inspected original HABS government photographs:1998front/barbican/reverse gate and2003aerial. Earlier CC photographs,museum visitor map and lithograph are excluded as current imagery controls. Not a measured survey or exact2026condition inventory.",
     "Seven original radial wings, later infill and separate gatehouse are differentiated. Detailed decay, exact skylight counts, hidden roof joins, smaller yard partitions and service fixtures are generalized.",
     "The 1855 hero lithograph is rejected as current form evidence; its historic central turret and rows of separate exercise yards are not restored.",
     "Three mapped corner controls establish the perimeter; northeast corner closure, roof heights and unseen rear details remain photographic interpretations. Ground contact uses coarse host terrain, not surveyed pavement levels.",
-    "No interiors, surrounding streets, temporary visitor attractions or reference-photo textures are included. Research images remain local and are not embedded in runtime packs."
+    "No interiors, surrounding streets, temporary visitor attractions or reference-photo textures are included. Research images remain local and are not embedded in runtime packs.",
+    "The barbican has real floor,jambs,chamfered lintel,recess and barred gate. It terminates at an opaque inner boundary;cell interiors and a navigable prison passage are excluded. Existing footprint/levels are retained;recess depth,bar spacing,vent/hatch proportions and unseen details are estimates. Monochrome originals do not establish material color."
   ],
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:b8788ff75127447293ff64f1f20eea2df698ea59119ef7fcc5a3db70793f9e90",
     "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:62d0ced59064732b0031ea9c0339e86806d6992564df96f3f398d8e610c1e561",
+    "referenceInputHash": "6ebb91743f57ddb915e85b4adbfca02a272b55dd8257db4fc0052992e05aacc6",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/habs-front.tif",
+      ".artifacts/reference-photos/habs-barbican.tif",
+      ".artifacts/reference-photos/habs-reverse-gate.tif",
+      ".artifacts/reference-photos/habs-aerial.tif"
+    ],
+    "imageryEvidenceHash": "sha256:dcf51864902f963c8d124f02a44aa77c6b56e446dbefa75da9da193f186b93f4",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/d/r/4/e/eastern-state-penitentiary-solitary-wk/eastern-state-peniteniary-11-1.jpg",
+        "reason": "Earlier attribution-licensed reference excluded from current construction."
+      },
+      {
+        "path": "_m/d/r/4/e/eastern-state-penitentiary-solitary-wk/eastern-state-in-the-rain.jpg",
+        "reason": "Earlier attribution-licensed reference excluded from current construction."
+      },
+      {
+        "reason": "Earlier museum visitor map,historic lithograph and unverified supplemental images excluded as current imagery controls. OSM vectors remain factual map evidence;original HABS aerial now controls surviving broad layout."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Started with local Qualla story and32candidate records. Current published media list is empty;public-domain dog/interior/1836plan candidates do not show the surviving entrance. Old relevant selected photos require attribution and are excluded. Four exact original government HABS TIFFs were then individually inspected. Saved primary catalog,native bytes,caption index,explicit original-government public-domain grant and Boucher government role prove these actual originals;collection labels alone are insufficient. No questionable source or embedded image used."
+  },
+  "constructionReview": {
+    "status": "completed-for-bounded-medium-fi-exterior",
+    "model": "eastern_state_penitentiary",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:62d0ced59064732b0031ea9c0339e86806d6992564df96f3f398d8e610c1e561",
+    "sourceHash": "sha256:18cb0e4ebdb452bee828cf722f76176ccd0b98494c95189c9f459b80d5443424",
+    "runtimeHash": "sha256:e1f6a4373b9c39e40eb6d9c4fe28e4496268aee9072821b8b43c51f6e55d2b4b",
+    "built": [
+      "Physical deep entrance in1937barbican replacing solid block/dark panel",
+      "Stone floor,jambs and actual chamfered lintel",
+      "Recessed iron gate with air between bars",
+      "Stone reveals and iron grid in faux-portcullis surround",
+      "Small barred side hatch and two vents"
+    ],
+    "framesInspected": 42,
+    "portableFrames": 10,
+    "sharedFrames": 10,
+    "mediumFiV2Frames": 22,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      622,
+      3815,
+      9747,
+      25395
+    ],
+    "drawCalls": [
+      1,
+      6,
+      6,
+      6
+    ],
+    "limits": "Four individually inspected exact original HABS government photographs replace old CC photos and unverified visitor-map imagery:JackE.Boucher1998whole facade/barbican/reverse gate and2003aerial. Actual film borders,original captions and government photographer role are bound. New physical recess has floor,jambs,chamfered lintel,iron bars,side hatch and vents;faux portcullis now has backing behind real stone reveals and grid. It ends at an opaque inner boundary;no interior rooms or navigable prison corridor are claimed. Original footprint,levels,seven radial roofs,later infill,hub,watch boxes and placement retained. Exact recess depth,bar spacing,decay,roof junctions,unseen details,material color and2026condition remain estimates;monochrome originals do not establish color. All42current renders inspected;no source pixels embedded.",
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
   }
 }

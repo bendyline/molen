@@ -285,7 +285,87 @@ function statue(o, d) {
     }
   }
 }
-function memorial(o, _frame, d = 3) {
+function rooflight(o, x, width, d) {
+  // The original Highsmith aerial shows three pitched rooflights, with the
+  // central field wider than its neighbors. These are opaque exterior panes;
+  // glazing thickness and the fixed 1.8 m rise are photographic estimates.
+  const eave = 27.4,
+    ridge = 29.2,
+    half = width / 2,
+    length = 22;
+  const at = (dx, z) => [x + dx, ridge - (Math.abs(dx) * (ridge - eave)) / half, z];
+  for (const sign of [-1, 1]) {
+    const ps = [
+      at(0, -length / 2),
+      at(sign * half, -length / 2),
+      at(sign * half, length / 2),
+      at(0, length / 2),
+    ];
+    quad(o, 'glass', ps, [sign * (ridge - eave), half, 0], rgb('84999e'));
+    if (d > 1) {
+      for (let z = -10; z <= 10; z += d > 2 ? 0.55 : 2) {
+        const a = at(0, z),
+          b = at(sign * half, z),
+          dz = d > 2 ? 0.035 : 0.065;
+        quad(
+          o,
+          'metal',
+          [
+            [a[0], a[1] + 0.025, z - dz],
+            [b[0], b[1] + 0.025, z - dz],
+            [b[0], b[1] + 0.025, z + dz],
+            [a[0], a[1] + 0.025, z + dz],
+          ],
+          [sign * (ridge - eave), half, 0],
+          metal,
+        );
+      }
+      for (const f of [0.33, 0.66, 1]) {
+        const a = at(sign * half * f - 0.025, -length / 2),
+          b = at(sign * half * f + 0.025, -length / 2),
+          c = at(sign * half * f + 0.025, length / 2),
+          e = at(sign * half * f - 0.025, length / 2);
+        quad(
+          o,
+          'metal',
+          [a, b, c, e].map((p) => [p[0], p[1] + 0.03, p[2]]),
+          [sign * (ridge - eave), half, 0],
+          metal,
+        );
+      }
+    }
+  }
+  // Both ends and the base close the original roof volume; no interior glass room.
+  for (const sign of [-1, 1]) {
+    const z = (sign * length) / 2,
+      p = [
+        [x - half, eave, z],
+        [x + half, eave, z],
+        [x, ridge, z],
+      ];
+    o.addTriangle(
+      'roof',
+      ref,
+      p,
+      [0, 0, sign],
+      p.map((p) => [p[0], p[1]]),
+      dark,
+    );
+  }
+  quad(
+    o,
+    'roof',
+    [
+      [x - half, eave, -length / 2],
+      [x + half, eave, -length / 2],
+      [x + half, eave, length / 2],
+      [x - half, eave, length / 2],
+    ],
+    [0, -1, 0],
+    dark,
+  );
+}
+export function memorial(o, _frame, d = 3) {
   // Retaining walls and shallow grassy slope around the three marble platform courses.
   for (const s of [-1, 1]) {
     B(o, 'granite', s * 39, -1.3, 0, 0.65, 5.6, 57, granite);
@@ -366,10 +446,11 @@ function memorial(o, _frame, d = 3) {
     for (let i = 1; i < 7; i++) column(o, s * cx, -cz + (i * cz * 2) / 7, d);
     column(o, s * 2.5, 12.5, d, true);
   }
-  // Four connected entablature beams allow light through the colonnade.
+  // Continuous covered peristyle joins the cella to the outer entablature.
+  // Original plan, columns, floor, exterior cornice and total height remain fixed.
   for (const s of [-1, 1]) {
-    B(o, 'marble', 0, 20.11, s * cz, 58.6, 3.35, 3.3, white);
-    B(o, 'marble', s * cx, 20.11, 0, 3.3, 3.35, 32, white);
+    B(o, 'marble', 0, 20.11, s * 15.865, 58.6, 3.35, 5.43, white);
+    B(o, 'marble', s * 25.6, 20.11, 0, 7.2, 3.35, 32, white);
     B(o, 'marble', 0, 23.46, s * cz, 59.8, 0.42, 4.2, pale);
     B(o, 'marble', s * cx, 23.46, 0, 4.2, 0.42, 34.1, pale);
   }
@@ -385,14 +466,13 @@ function memorial(o, _frame, d = 3) {
       B(o, 'marble', 0, 29.75, s * 13.25, 46, 0.35, 1.3, pale);
       B(o, 'marble', s * 22.35, 29.75, 0, 1.3, 0.35, 25.8, pale);
     }
-    B(o, 'roof', 0, 29.3, 0, 44, 0.06, 25.6, dark);
-    for (const x of [-14, 0, 14]) {
-      B(o, 'marble', x, 29.38, 0, 11, 0.06, 22, pale);
-      if (d > 1) {
-        for (let z = -10; z <= 10; z += 2) B(o, 'metal', x, 29.44, z, 11, 0.06, 0.09, metal);
-        for (const dx of [-5.5, 0, 5.5]) B(o, 'metal', x + dx, 29.44, 0, 0.09, 0.06, 22, metal);
-      }
-    }
+    B(o, 'roof', 0, 27.3, 0, 44, 0.06, 25.6, dark);
+    for (const [x, w] of [
+      [-15, 10.4],
+      [0, 18.3],
+      [15, 10.4],
+    ])
+      rooflight(o, x, w, d);
   }
   statue(o, d);
   // Low-relief banding and discrete ashlar joints visible through the open columns.
@@ -433,6 +513,7 @@ const surfaces = {
   metal: { ...landmarkSurfaces.metal },
   roof: { ...landmarkSurfaces.roof, graph: 'membrane' },
   ground: { slot: 'trim', localRef: ref, roughness: 1, metallic: 0 },
+  glass: { ...landmarkSurfaces.glass, localRef: ref },
 };
 export const lincolnModel = {
   id: 'lincoln_memorial',
@@ -447,6 +528,8 @@ export const lincolnModel = {
   qaCameras: [
     { name: 'front', position: [0, 17, 98], lookAt: [0, 14, 0] },
     { name: 'back', position: [-75, 45, -85], lookAt: [0, 12, 0] },
+    { name: 'covered-colonnade', position: [25, 9, 27], lookAt: [25, 18, 0] },
+    { name: 'pitched-rooflights', position: [45, 70, 65], lookAt: [0, 27, 0] },
   ],
   build: memorial,
   surfaces,
@@ -467,7 +550,8 @@ export const lincolnModel = {
     },
   },
   limitations: [
-    'Original medium-fi temple exterior based on individually inspected local Qualla photos, mapped parts and NPS statistics/2008 plan and elevation; not a measured survey.',
+    'Original medium-fi temple exterior. Current controls are the exact native Sean Dudley public-domain photograph already cleared in Qualla and the original Carol M. Highsmith aerial behind its cleared edited aerial, with the photographer primary public-domain dedication. Earlier attribution images are excluded as current controls. NPS dimensions and mapped parts retained; not a measured survey.',
+    'Covered peristyle joins the original cella and entablature, replacing unintended roof gaps. Three pitched opaque rooflight volumes replace flat panels; the center field is wider. Rooflight widths10.4/18.3/10.4m and fixed27.4m eave/29.2m ridge are photographic estimates within the unchanged attic. Fine framing, concealed supports and current roof condition are approximate.',
     'NPS dimensions control the column count, spacing, height and major massing. Fine carvings, inscription strokes, statue likeness, optical corrections and exact roof panels are simplified; inscriptions are not claimed readable.',
     'Seated statue is an original simplified silhouette visible through the portal, not a portrait-quality replica. Side chamber murals, inscriptions, undercroft and detailed interiors are excluded.',
     'Upper terrace and main granite/marble stair flights are included. Reflecting pool, lower pool steps, distant approachway, temporary construction and surrounding gardens are excluded.',

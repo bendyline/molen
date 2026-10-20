@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.hearst_castle",
-  "reviewedOn": "2026-10-14",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:618dab7e662304a67c0605345f0b4ad3c0fb935c2e0ae004259f23151055a76c",
-  "sourceHash": "sha256:6eef20ad92c594c54843956509dc7a5a32e6f6bd71546be9a4d72599b5557738",
-  "runtimeHash": "sha256:aaaac3668babd1188af74032ec5516d7734fd95dbe1b1359094c29f840829737",
-  "captureReportHash": "sha256:6ff04a0193745bf0785227dd6e0347ac61b40bdb12f176c4022bd637b963a66d",
+  "inputHash": "sha256:f51bdf6665c33f245bf26c71fc8e12ff27681dc691342e6d9144d6af0fcbc7bf",
+  "sourceHash": "sha256:383ac413699f8fde0cb0216462207ec9503fb1a26b5e8b5f924d91c12a26e720",
+  "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+  "captureReportHash": "sha256:e76541c97af8288bba08459bc353bf7d73defe44d627c09e0fac121f329137a1",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:e76541c97af8288bba08459bc353bf7d73defe44d627c09e0fac121f329137a1",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/entrance-portal.png",
+      "shots/entrance-reveals.png"
     ],
-    "notes": "Inspected all seven final portable views and full Casa Grande facade frame against the local Qualla front/side originals. Twin tiled octagonal bell towers, lower blind arches, gold fanlight gate, raised timber balcony, roof soffit, rear wings, detached guest-house plans, pool colonnades and temple remain distinct. Initial envelope occlusion and open roof backdrop were corrected. Additional pool and Casa del Sol close views resolved buried columns, overlapping windows and stair-ground joins."
+    "notes": "All nine current portable views inspected, including two new portal close-ups. Rectangular stone aperture, physical reveals, threshold steps and inset arched metal grille replace the solid block/painted fill. Existing carved accents remain generalized. Whole compound is visible on original source-native hill; roofs, towers, guest houses and pool retained."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:5adeb96d7745b6d894d5621bc915838f399de70390f6dc2b3cf1158c42213eb9",
+    "captureReportHash": "sha256:29d423a4eaebeef22e26a90c0d9113a571e605f7a0e57011366cacadb02a5d01",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,29 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/entrance-portal.png",
+      "shots/shared/entrance-reveals.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven final shared-material views including north-up placement overlay. Plain concrete, painted metal and roof graph retain metric UV bindings with portable glazing. Transform, reference-point sampling, unload and graph reads pass. The flat shared fixture hides parts below its plane, including the lower guest houses and pools; it establishes materials and transforms only. Preserved local-terrain portable and medium-fi views establish site ground contact."
+    "notes": "All nine current shared-material views inspected, including portal details and mapped overlay. Stone/metal surfaces bind consistently and real recess casts shade. Original placement/transform and unload pass. The flat shared fixture clips lower compound volumes below its zero plane; original source-ground portable/medium-fi views carry the vertical site context. Flat fixture does not certify ground levels.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.slate": {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:6542dd940edb173bc5be4f93a5f72b3a0fcf1d87dfd1a617f25d8e4c43960955",
+    "captureReportHash": "sha256:ef428d2361824b753374736cd4016bf3e002d922548747e0e3f356bff32efdcc",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +72,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/entrance-portal.png",
+      "medium-fi/entrance-reveals.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final medium-fi frames across lights, quality settings, front/back, silhouette and four forced detail levels. Whole hilltop site fits the context views at scale 3. Paired towers, rear wing silhouette, three detached guest houses and pool remain identifiable. Skyline/district simplify roofs and omit tiny ornament; middle distance omits bell hardware. Neighboring blocks are a synthetic style fixture, not the estate. No physical-device performance claim."
+    "notes": "All 21 current version-2 frames inspected across light/quality, source-native hill context, front/back, portal details and four forced levels. Actual rectangular recess/threshold survives all levels; street/close include physical grille bars and arched fan. Existing compound silhouette and stepped masses retained. Synthetic neighbors are style evidence."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,83 +98,1054 @@
       ],
       "maxPngEncodingErrorMeters": 0.0007197767257594023
     },
-    "notes": "Mapped Casa Grande, Casa del Monte, Casa del Mar, Casa del Sol and Roman Pool footprints establish placement with Neptune pool POI and terrace controls. Anchor [-121.16806000471115,35.685240350260685], heading -1.3197933216173452; +X south-southeast, +Z west-southwest. Independent ground reference [0,3] has datum 492.9056 m. Unmodified terrain ranges -18.29635..0.94839 m at control vertices. Raised forecourt 0.8 m, entrance landing 3.8 m, Neptune deck -13.2 m and Casa del Sol roof/terrace -6/-14.6 m are inferred architectural levels that avoid burying visible elements; not surveyed heights. Foundations and retaining walls enter the preserved hill. Shared flat fixture cannot establish these vertical relations. Footprint suppression remains off."
+    "notes": "Original mapped Casa Grande, three guest houses, Roman Pool and Neptune controls retained. Anchor [-121.16806000471115,35.685240350260685], heading -1.3197933216173452 and original reference [0,3] unchanged. Provider-relative datum 492.9056 m, source range -18.29635..0.94839 m and original stepped levels retained byte-for-byte; no ground fitting, flattening or new cutout. New portal uses the existing +3.8 m main-house offset and original opening proportions. Source-native hill views inspected; shared flat fixture establishes transform/overlay but clips lower compound and cannot establish vertical fit. Approximate source-relative exterior placement, not surveyed paving/foundation levels or certification of another live host field."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Casa Grande, three named guest houses, Neptune pool architectural setting, Roman Pool exterior and immediate terraces; broader estate and interiors excluded.",
-    "notes": "Accepted original coordinated medium-fi exterior from two primary Qualla photographs and six individually inspected supplementary local references. Resolved incorrect Casa del Sol hero attribution against the original Commons display. Historical 1941 aerial supplies layout only. Main facade, towers, guest-house roof directions, pool temple/curved colonnades and terraced site are retained. Sculptures, ornament, pool perimeter, retaining joins, hidden windows and vertical levels remain generalized; straight stair flights approximate the curved Casa del Sol arrangement. Interiors, broad gardens, estate service buildings and vegetation are excluded. No reference photos are embedded or redistributed."
+    "scope": "Coordinated mapped castle compound exterior with visible Casa Grande facade/towers, Neptune temple and newly physical entrance portal; hidden sides and garden ornament simplified.",
+    "notes": "Started with cleared Qualla corpus and inspected local Daderot grounds original; that photo does not show the portal. Two exact native Daderot own-work CC0 originals then inspected: full Casa Grande facade and Neptune temple. Primary creator grants/revisions and original SHA-1/SHA-256 bound. Prior CC exteriors and uncertain historical aerial excluded as current controls. New rectangular portal has real stone jamb/head depth, threshold steps, inset metal grille/arched fan and opaque inner boundary. It replaces the solid block and filled arch overlay. Existing body/towers/roofs, mapped compound footprint and source levels retained. The 0.55 m recess, width/heights, threshold rise, fine carvings, tile details, hidden facades, guest-house roofs and exact modern condition are photographic/conservative approximations. Pool temple is broadly supported by the second original; unseen compound details are not newly measured. No navigable interior, civil survey or embedded source pixels."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:d1fdb7120227a1da043de6c000c2b687ccff7779b98ac107e05ab9cfcad169c5",
+    "recipeHash": "sha256:e3c3a3e01a3c313ba1fc5dd16ce22940da613303e74586e8489a8ac9f7dcd68f",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:422278c264b68b049da015c49b2f4bf83d319462582522ab2e340c23267749c9",
-        "bytes": 47804,
-        "gzipBytes": 8355,
-        "triangles": 609,
-        "cpuBytes": 46388,
-        "gpuBytes": 46388,
+        "hash": "sha256:4cc73fe6766834a0f98eb268f11ce858f7935f2733f20e3f3d0a7f0d36efd17e",
+        "bytes": 53580,
+        "gzipBytes": 9132,
+        "triangles": 683,
+        "cpuBytes": 52160,
+        "gpuBytes": 52160,
         "errorMeters": 5,
         "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:5803c294ed790c84859eb96822cefa4ca36b6893f0a25023e0cc19d340f5f1e6",
-        "bytes": 195916,
-        "gzipBytes": 45396,
-        "triangles": 2603,
-        "cpuBytes": 190976,
-        "gpuBytes": 190976,
+        "hash": "sha256:799e32201d4e31466e935fd6aea4ac8c8449c6efd181ab4fa5e7ebd45796fcd8",
+        "bytes": 201248,
+        "gzipBytes": 46293,
+        "triangles": 2675,
+        "cpuBytes": 196304,
+        "gpuBytes": 196304,
         "errorMeters": 0.8,
         "drawCalls": 4
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:5a70c2740057e86042d0e2a4861e72be9fc6fa8a540ed6466d8c0eac31e204dc",
-        "bytes": 1101936,
-        "gzipBytes": 251308,
-        "triangles": 15472,
-        "cpuBytes": 1096948,
-        "gpuBytes": 1096948,
+        "hash": "sha256:19abfa53c85bbb51c974a9fd2e5b8d4997ed35ce043ba8a39dd0d3a8b093e056",
+        "bytes": 1123716,
+        "gzipBytes": 253498,
+        "triangles": 15747,
+        "cpuBytes": 1118724,
+        "gpuBytes": 1118724,
         "errorMeters": 0.3,
         "drawCalls": 4
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:0e550986f499f76d3684130f33240057dd27ed40d79505652f96ba83440dff36",
-        "bytes": 3023720,
-        "gzipBytes": 558679,
-        "triangles": 25176,
-        "cpuBytes": 3021120,
-        "gpuBytes": 3021120,
+        "hash": "sha256:d7285569b7e30630f5b2a4469e12c244f3d324b90a1ce373f24ca6836f9f90fd",
+        "bytes": 3053840,
+        "gzipBytes": 563228,
+        "triangles": 25427,
+        "cpuBytes": 3051240,
+        "gpuBytes": 3051240,
         "errorMeters": 0,
         "drawCalls": 4
       }
     ],
-    "notes": "All four current hash-bound detail levels pass strict budgets and were inspected. Skyline, district and street are authored from the same researched site; middle-distance bell hardware and fine window moldings are omitted to meet budgets. Error values are authoring limits, not independently measured mesh distances."
+    "notes": "683/2675/15747/25427 triangles, 1/4/4/4 draws pass strict budgets. All levels have actual rectangular recess/threshold; street/close retain physical gate bars and metal fan. Existing compound silhouettes retained. Error bounds are authoring estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 25176,
+    "sourceTriangles": 25427,
     "sourceMaterials": 4,
     "runtimeLodsVerified": 4,
+    "actualImportedPortalChecks": [
+      {
+        "level": "skyline",
+        "triangles": 683,
+        "drawCalls": 1,
+        "controls": 36,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "stone base band does not obstruct entrance at threshold",
+            "pass": true,
+            "x": -1.5
+          },
+          {
+            "name": "stone base band does not obstruct entrance at threshold",
+            "pass": true,
+            "x": 0.13
+          },
+          {
+            "name": "stone base band does not obstruct entrance at threshold",
+            "pass": true,
+            "x": 1.5
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": -1.5,
+            "y": 1.8
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": -1.5,
+            "y": 1.8,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": -1.5,
+            "y": 3.2
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": -1.5,
+            "y": 3.2,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": -1.5,
+            "y": 5.5
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": -1.5,
+            "y": 5.5,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 0.13,
+            "y": 1.8
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 0.13,
+            "y": 1.8,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 0.13,
+            "y": 3.2
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 0.13,
+            "y": 3.2,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 0.13,
+            "y": 5.5
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 0.13,
+            "y": 5.5,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 1.5,
+            "y": 1.8
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 1.5,
+            "y": 1.8,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 1.5,
+            "y": 3.2
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 1.5,
+            "y": 3.2,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 1.5,
+            "y": 5.5
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 1.5,
+            "y": 5.5,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": -1.7,
+            "z": 1,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": -1.7,
+            "z": 1.35,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": -1.7,
+            "z": 1.65,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 0,
+            "z": 1,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 0,
+            "z": 1.35,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 0,
+            "z": 1.65,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 1.7,
+            "z": 1,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 1.7,
+            "z": 1.35,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 1.7,
+            "z": 1.65,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "physical entrance threshold steps",
+            "pass": true,
+            "z": 2.15,
+            "y": 0.175,
+            "actualY": 3.9749999046325684
+          },
+          {
+            "name": "physical entrance threshold steps",
+            "pass": true,
+            "z": 1.8,
+            "y": 0.35,
+            "actualY": 4.150000095367432
+          },
+          {
+            "name": "inward-facing stone jamb",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "inward-facing stone jamb",
+            "pass": true,
+            "sign": 1
+          },
+          {
+            "name": "rectangular stone lintel underside",
+            "pass": true
+          },
+          {
+            "name": "retained main roof",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "level": "district",
+        "triangles": 2675,
+        "drawCalls": 4,
+        "controls": 36,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "stone base band does not obstruct entrance at threshold",
+            "pass": true,
+            "x": -1.5
+          },
+          {
+            "name": "stone base band does not obstruct entrance at threshold",
+            "pass": true,
+            "x": 0.13
+          },
+          {
+            "name": "stone base band does not obstruct entrance at threshold",
+            "pass": true,
+            "x": 1.5
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": -1.5,
+            "y": 1.8
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": -1.5,
+            "y": 1.8,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": -1.5,
+            "y": 3.2
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": -1.5,
+            "y": 3.2,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": -1.5,
+            "y": 5.5
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": -1.5,
+            "y": 5.5,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 0.13,
+            "y": 1.8
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 0.13,
+            "y": 1.8,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 0.13,
+            "y": 3.2
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 0.13,
+            "y": 3.2,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 0.13,
+            "y": 5.5
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 0.13,
+            "y": 5.5,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 1.5,
+            "y": 1.8
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 1.5,
+            "y": 1.8,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 1.5,
+            "y": 3.2
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 1.5,
+            "y": 3.2,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 1.5,
+            "y": 5.5
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 1.5,
+            "y": 5.5,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": -1.7,
+            "z": 1,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": -1.7,
+            "z": 1.35,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": -1.7,
+            "z": 1.65,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 0,
+            "z": 1,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 0,
+            "z": 1.35,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 0,
+            "z": 1.65,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 1.7,
+            "z": 1,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 1.7,
+            "z": 1.35,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 1.7,
+            "z": 1.65,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "physical entrance threshold steps",
+            "pass": true,
+            "z": 2.15,
+            "y": 0.175,
+            "actualY": 3.9749999046325684
+          },
+          {
+            "name": "physical entrance threshold steps",
+            "pass": true,
+            "z": 1.8,
+            "y": 0.35,
+            "actualY": 4.150000095367432
+          },
+          {
+            "name": "inward-facing stone jamb",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "inward-facing stone jamb",
+            "pass": true,
+            "sign": 1
+          },
+          {
+            "name": "rectangular stone lintel underside",
+            "pass": true
+          },
+          {
+            "name": "retained main roof",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "level": "street",
+        "triangles": 15747,
+        "drawCalls": 4,
+        "controls": 38,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "stone base band does not obstruct entrance at threshold",
+            "pass": true,
+            "x": -1.5
+          },
+          {
+            "name": "stone base band does not obstruct entrance at threshold",
+            "pass": true,
+            "x": 0.13
+          },
+          {
+            "name": "stone base band does not obstruct entrance at threshold",
+            "pass": true,
+            "x": 1.5
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": -1.5,
+            "y": 1.8
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": -1.5,
+            "y": 1.8,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": -1.5,
+            "y": 3.2
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": -1.5,
+            "y": 3.2,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": -1.5,
+            "y": 5.5
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": -1.5,
+            "y": 5.5,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 0.13,
+            "y": 1.8
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 0.13,
+            "y": 1.8,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 0.13,
+            "y": 3.2
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 0.13,
+            "y": 3.2,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 0.13,
+            "y": 5.5
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 0.13,
+            "y": 5.5,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 1.5,
+            "y": 1.8
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 1.5,
+            "y": 1.8,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 1.5,
+            "y": 3.2
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 1.5,
+            "y": 3.2,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 1.5,
+            "y": 5.5
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 1.5,
+            "y": 5.5,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": -1.7,
+            "z": 1,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": -1.7,
+            "z": 1.35,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": -1.7,
+            "z": 1.65,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 0,
+            "z": 1,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 0,
+            "z": 1.35,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 0,
+            "z": 1.65,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 1.7,
+            "z": 1,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 1.7,
+            "z": 1.35,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 1.7,
+            "z": 1.65,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "physical entrance threshold steps",
+            "pass": true,
+            "z": 2.15,
+            "y": 0.175,
+            "actualY": 3.9749999046325684
+          },
+          {
+            "name": "physical entrance threshold steps",
+            "pass": true,
+            "z": 1.8,
+            "y": 0.35,
+            "actualY": 4.150000095367432
+          },
+          {
+            "name": "inward-facing stone jamb",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "inward-facing stone jamb",
+            "pass": true,
+            "sign": 1
+          },
+          {
+            "name": "rectangular stone lintel underside",
+            "pass": true
+          },
+          {
+            "name": "actual inset metal gate bar",
+            "pass": true
+          },
+          {
+            "name": "real air between gate bars",
+            "pass": true
+          },
+          {
+            "name": "retained main roof",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "level": "closeup",
+        "triangles": 25427,
+        "drawCalls": 4,
+        "controls": 38,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "stone base band does not obstruct entrance at threshold",
+            "pass": true,
+            "x": -1.5
+          },
+          {
+            "name": "stone base band does not obstruct entrance at threshold",
+            "pass": true,
+            "x": 0.13
+          },
+          {
+            "name": "stone base band does not obstruct entrance at threshold",
+            "pass": true,
+            "x": 1.5
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": -1.5,
+            "y": 1.8
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": -1.5,
+            "y": 1.8,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": -1.5,
+            "y": 3.2
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": -1.5,
+            "y": 3.2,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": -1.5,
+            "y": 5.5
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": -1.5,
+            "y": 5.5,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 0.13,
+            "y": 1.8
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 0.13,
+            "y": 1.8,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 0.13,
+            "y": 3.2
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 0.13,
+            "y": 3.2,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 0.13,
+            "y": 5.5
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 0.13,
+            "y": 5.5,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 1.5,
+            "y": 1.8
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 1.5,
+            "y": 1.8,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 1.5,
+            "y": 3.2
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 1.5,
+            "y": 3.2,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "actual entrance recess air ahead of grille",
+            "pass": true,
+            "x": 1.5,
+            "y": 5.5
+          },
+          {
+            "name": "opaque inner boundary at fixed depth",
+            "pass": true,
+            "x": 1.5,
+            "y": 5.5,
+            "z": 0.8999999761581421
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": -1.7,
+            "z": 1,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": -1.7,
+            "z": 1.35,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": -1.7,
+            "z": 1.65,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 0,
+            "z": 1,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 0,
+            "z": 1.35,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 0,
+            "z": 1.65,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 1.7,
+            "z": 1,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 1.7,
+            "z": 1.35,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "continuous physical stone threshold",
+            "pass": true,
+            "x": 1.7,
+            "z": 1.65,
+            "y": 4.150000095367432
+          },
+          {
+            "name": "physical entrance threshold steps",
+            "pass": true,
+            "z": 2.15,
+            "y": 0.175,
+            "actualY": 3.9749999046325684
+          },
+          {
+            "name": "physical entrance threshold steps",
+            "pass": true,
+            "z": 1.8,
+            "y": 0.35,
+            "actualY": 4.150000095367432
+          },
+          {
+            "name": "inward-facing stone jamb",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "inward-facing stone jamb",
+            "pass": true,
+            "sign": 1
+          },
+          {
+            "name": "rectangular stone lintel underside",
+            "pass": true
+          },
+          {
+            "name": "actual inset metal gate bar",
+            "pass": true
+          },
+          {
+            "name": "real air between gate bars",
+            "pass": true
+          },
+          {
+            "name": "retained main roof",
+            "pass": true
+          }
+        ]
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/9q/9q3/hearst_castle/verify-portal.mjs"
+    ],
+    "notes": "Targeted generation/import/exact regeneration, asset integrity, strict LOD/material budgets and source/imported normals/winding/UVs pass. Actual entrance air/backing, threshold coverage/steps, stone jamb/lintel and grille bar/gap controls pass. Low facade band was split around the opening before final captures so it does not cross the threshold. Original unrelated geometry and source ground retained."
   },
   "limitations": [
-    "Original medium-fi coordinated exterior from inspected Qualla photographs and map/terrain controls; not an architectural or land survey.",
+    "Qualla public-domain corpus searched first. New portal construction follows the inspected original Daderot CC0 Casa Grande facade photograph; prior attribution-licensed imagery is excluded as a current control. Map/site layout and source ground retained; not an architectural or land survey.",
+    "The rectangular stone entrance has actual jamb/head reveals, threshold steps, recessed metal grille with arched fan and opaque inner boundary. Width, 0.55 m depth, levels and ornament are photographic estimates; interiors are not modeled.",
     "Main facade and twin towers, rear wing layout, three guest-house footprints, pool temple/colonnades and terraced setting are retained. Fine carved figures, tile motifs, unseen window rhythms, interiors and complete garden ornament are generalized or omitted.",
     "The 1941 aerial is supplementary layout evidence only. Modern exterior photographs control visible fabric; exact current roof services and restoration details remain uncertain.",
     "Neptune pool center is mapped; basin dimensions come from California State Parks. Detailed curved perimeter, retaining joins and vertical terrace levels are interpretations, with unmodified host terrain retained for review.",
@@ -162,6 +1154,114 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:96c79eff41d467f7a8895b878bb9b8865733df2ad229b694bd7264991db534b6",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "branchIntegrationReview": {
+    "date": "2026-10-15",
+    "reviewer": "Codex",
+    "priorInputHash": "sha256:618dab7e662304a67c0605345f0b4ad3c0fb935c2e0ae004259f23151055a76c",
+    "inputHash": "sha256:fd273446c1efac1d2c7ecd6a8c18baaa78841381f1ea727dc38d2df983b89aaa",
+    "sourceRegeneration": "exact-byte-match",
+    "freshlyInspectedFrames": 33,
+    "reason": "Recipe fingerprints changed in the merged branch; all current capture chains were regenerated and inspected rather than carrying stale approval."
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:f51bdf6665c33f245bf26c71fc8e12ff27681dc691342e6d9144d6af0fcbc7bf",
+    "referenceInputHash": "b32e313f4e9b3a9e2ffafb021f18a82b0f9b46b9de2e8043dc2299ccf1e6a712",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/DSC06479.jpg",
+      ".artifacts/reference-photos/DSC06592.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:866ec082598bba24de401814f51b4cfef01ea50fa5d5de2cb24c0a629af52937",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/9/q/3/g/hearst-castle-wk/photo-place-building-l.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Hearst_Castle_Casa_Grande_September_2012_panorama_2.jpg",
+        "reason": "Earlier attribution-licensed photograph excluded."
+      },
+      {
+        "path": "_m/9/q/3/g/hearst-castle-wk/entry-terrace-wellhead.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Hearst_Castle.jpg",
+        "reason": "Earlier attribution-licensed photograph excluded."
+      },
+      {
+        "path": "_m/9/q/3/g/hearst-castle-wk/view-hearst-castle-sou.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Hearst_Castle_panorama.jpg",
+        "reason": "Earlier attribution-licensed photograph excluded."
+      },
+      {
+        "path": "_m/tpc/he/ar/st/-c/hearst-castle/neptune-pool-hearst-castle-556.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Neptune_Pool,_Hearst_Castle_(5569577705).jpg",
+        "reason": "Earlier attribution-licensed photograph excluded."
+      },
+      {
+        "path": "_m/9/q/3/g/hearst-castle-wk/hero.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Hearst_Castle_Casa_del_Sol_September_2012.jpg",
+        "reason": "Earlier attribution-licensed photograph excluded."
+      },
+      {
+        "path": "_m/tpc/he/ar/st/-c/hearst-castle/hearst-castle-casa-grande1.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Hearst_Castle_Casa_Grande1.jpg",
+        "reason": "Earlier attribution-licensed photograph excluded."
+      },
+      {
+        "path": "_m/9/q/3/g/hearst-castle-wk/cottage.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Casa_del_Monte_-_Dionysus_with_Talaria.jpg",
+        "reason": "Earlier attribution-licensed photograph excluded."
+      },
+      {
+        "path": "_m/9/q/3/g/hearst-castle-wk/california-sam-simeon-nara-239.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:California_-_Sam_Simeon_-_NARA_-_23935259.jpg",
+        "reason": "Historic archival image excluded: exact creator/primary public-domain basis not bound."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Qualla-first published media/candidate search and local cleared CC0 grounds inspection preceded supplemental acquisition. Two native original Daderot own-work CC0 exteriors inspected; creator primary grants/revisions, no-attribution/no-restrictions metadata and exact original SHA-1/SHA-256 verified. Prior CC/private or uncertain archival sources excluded. Additional unused detail request returned HTTP429; the already acquired full facade resolves entrance geometry."
+  },
+  "constructionReview": {
+    "status": "completed-for-bounded-medium-fi-exterior",
+    "model": "hearst_castle",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:f51bdf6665c33f245bf26c71fc8e12ff27681dc691342e6d9144d6af0fcbc7bf",
+    "sourceHash": "sha256:383ac413699f8fde0cb0216462207ec9503fb1a26b5e8b5f924d91c12a26e720",
+    "runtimeHash": "sha256:3088d772ca67b7457ee68fda0961cd9f8510e4d0480995d2683c2e2fbb5706f4",
+    "built": [
+      "Actual rectangular stone entrance recess replacing solid portal block",
+      "Physical jamb/head reveals and threshold steps",
+      "Inset metal grille bars and arched fanlight",
+      "Low stone base band split around the doorway"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      683,
+      2675,
+      15747,
+      25427
+    ],
+    "drawCalls": [
+      1,
+      4,
+      4,
+      4
+    ],
+    "limits": "Started with cleared Qualla corpus and inspected local Daderot grounds original; that photo does not show the portal. Two exact native Daderot own-work CC0 originals then inspected: full Casa Grande facade and Neptune temple. Primary creator grants/revisions and original SHA-1/SHA-256 bound. Prior CC exteriors and uncertain historical aerial excluded as current controls. New rectangular portal has real stone jamb/head depth, threshold steps, inset metal grille/arched fan and opaque inner boundary. It replaces the solid block and filled arch overlay. Existing body/towers/roofs, mapped compound footprint and source levels retained. The 0.55 m recess, width/heights, threshold rise, fine carvings, tile details, hidden facades, guest-house roofs and exact modern condition are photographic/conservative approximations. Pool temple is broadly supported by the second original; unseen compound details are not newly measured. No navigable interior, civil survey or embedded source pixels.",
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
   }
 }

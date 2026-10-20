@@ -7,13 +7,14 @@ import { quad } from './structure-mesh.mjs';
 const cx = 2.69,
   width = 5.88,
   front = 16.7;
-function glazing(o, x, y, z, w, h, facing = 1, detail = true) {
+function glazing(o, x, y, z, w, h, facing = 1, detail = true, columns = 2, rows = 3) {
   B(o, 'metal', x, y - 0.09, z, w + 0.22, h + 0.18, 0.14, 'cream');
   B(o, 'glass', x, y, z + facing * 0.09, w, h, 0.035, 'glass');
   if (detail) {
-    B(o, 'metal', x, y, z + facing * 0.12, 0.045, h, 0.035, 'dark');
-    for (const ratio of [0.36, 0.68])
-      B(o, 'metal', x, y + h * ratio, z + facing * 0.12, w, 0.045, 0.035, 'dark');
+    for (let i = 1; i < columns; i++)
+      B(o, 'metal', x + w * (i / columns - 0.5), y, z + facing * 0.12, 0.045, h, 0.035, 'cream');
+    for (let i = 1; i < rows; i++)
+      B(o, 'metal', x, y + (h * i) / rows, z + facing * 0.12, w, 0.045, 0.035, 'cream');
     B(o, 'metal', x, y - 0.13, z + facing * 0.07, w + 0.3, 0.12, 0.25, 'cream');
   }
 }
@@ -46,6 +47,42 @@ function transverseRoof(o) {
     for (const z of [-7.4, -0.1])
       beam(o, 'metal', [x, 13.3, z], [x, 16.9, -3.75], 0.16, 0.16, c.cream);
   }
+  // The archive's CC0 rear exterior shows a central flat-topped dormer.
+  B(o, 'brick', cx, 13.4, -6.25, 1.65, 1.85, 1.9, 'brick');
+  B(o, 'roof', cx, 15.25, -6.25, 1.9, 0.16, 2.05, 'roof');
+  glazing(o, cx, 13.55, -7.23, 1.25, 1.5, -1, false);
+}
+function court(o, detail) {
+  // Photographed through the front house: a low glazed roof and narrow side link.
+  const mid = cx + 0.8;
+  for (const sign of [-1, 1]) {
+    const points = [
+      [mid + sign * 1.4, 3.3, 0.2],
+      [mid + sign * 1.4, 3.3, 3],
+      [mid, 3.85, 3],
+      [mid, 3.85, 0.2],
+    ];
+    if (sign > 0) points.reverse();
+    quad(o, 'glass', points, normalFor(...points), c.glass);
+  }
+  if (!detail) return;
+  beam(o, 'metal', [mid, 3.85, 0.2], [mid, 3.85, 3], 0.08, 0.08, c.cream);
+  for (const z of [0.2, 1.6, 3])
+    for (const sign of [-1, 1])
+      beam(o, 'metal', [mid, 3.85, z], [mid + sign * 1.4, 3.3, z], 0.07, 0.07, c.cream);
+  // One lower and two upper windows on the annex face toward the light court.
+  glazing(o, cx + 0.65, 3.65, -0.04, 1.2, 2.5, 1, true);
+  for (const dx of [-0.5, 1.6]) glazing(o, cx + dx, 7.4, -0.04, 1.35, 2.4, 1, true);
+  for (let i = 0; i < 10; i++)
+    B(o, 'metal', cx + 0.45, 10.45 + i * 0.27, 0.05, 4.25, 0.1, 0.42, 'dark');
+  const x = cx - width / 2 + 1.63;
+  for (const y of [3.65, 7.3])
+    for (const z of [0.65, 2.25]) {
+      B(o, 'metal', x, y - 0.08, z, 0.12, 2.65, 1.35, 'cream');
+      B(o, 'glass', x + 0.08, y, z, 0.035, 2.45, 1.1, 'glass');
+      B(o, 'metal', x + 0.11, y, z, 0.035, 2.45, 0.045, 'cream');
+      for (const dy of [0.82, 1.64]) B(o, 'metal', x + 0.11, y + dy, z, 0.035, 0.045, 1.1, 'cream');
+    }
 }
 function massing(o) {
   B(o, 'brick', cx, -1, 10, width, 15.6, 13.4, 'brick');
@@ -99,6 +136,7 @@ function massing(o) {
   B(o, 'metal', cx, 0, front + 0.04, width, 3.12, 0.18, 'dark');
   for (const [x, z, y] of [
     [cx - 2.45, 6, 14.6],
+    [cx - 2.45, -3.75, 15.5],
     [cx + 2.45, -3.75, 15.5],
   ]) {
     B(o, 'brick', x, y, z, 0.55, 2.1, 0.65, 'brick');
@@ -121,13 +159,34 @@ function facade(o, detail) {
       }
       B(o, 'metal', x, 3.16, front + 0.13, 1.55, 0.16, 0.33, 'dark');
       B(o, 'metal', x, 0.18, front + 0.17, 1.45, 2.72, 0.08, 'dark');
-      B(o, 'glass', x, 1.1, front + 0.23, 1.16, 1.52, 0.03, 'glass');
+      if (i === 0) {
+        // The inspected creator-CC0 close-up shows two solid doors, not glazing.
+        for (const dx of [-0.29, 0.29]) {
+          B(o, 'metal', x + dx, 0.45, front + 0.27, 0.49, 1.55, 0.06, 'dark');
+          B(o, 'metal', x + dx, 0.12, front + 0.27, 0.49, 0.25, 0.06, 'dark');
+          B(o, 'metal', x + dx * 0.2, 0.92, front + 0.32, 0.055, 0.07, 0.035, 'cream');
+        }
+        B(o, 'metal', x, 0.15, front + 0.3, 0.04, 2.1, 0.035, 'dark');
+        B(o, 'glass', x, 2.28, front + 0.23, 1.16, 0.53, 0.03, 'glass');
+        for (const dx of [-0.29, 0, 0.29])
+          B(o, 'metal', x + dx, 2.28, front + 0.27, 0.035, 0.53, 0.03, 'dark');
+      } else B(o, 'glass', x, 0.68, front + 0.23, 1.16, 2.12, 0.03, 'glass');
       for (const dx of [-0.63, 0.63])
         B(o, 'metal', x + dx, 0.2, front + 0.26, 0.09, 2.7, 0.07, 'dark');
       B(o, 'metal', x, 2.15, front + 0.27, 1.2, 0.065, 0.06, 'dark');
       B(o, 'metal', x, 0.35, front + 0.27, 1.15, 0.62, 0.05, 'dark');
-      if (i !== 2) B(o, 'metal', x + 0.43, 0.95, front + 0.3, 0.035, 0.22, 0.04, 'cream');
-    } else B(o, 'glass', x, 0.65, front + 0.16, 1.2, 1.9, 0.02, 'glass');
+    } else
+      B(
+        o,
+        'glass',
+        x,
+        i === 0 ? 2.28 : 0.65,
+        front + 0.16,
+        1.2,
+        i === 0 ? 0.53 : 1.9,
+        0.02,
+        'glass',
+      );
   }
   if (detail) {
     for (let i = 0; i < 15; i++)
@@ -150,8 +209,13 @@ function facade(o, detail) {
         0.75 - step * 0.32,
         'dark',
       );
-    for (const y of [3.7, 7.05, 10.35])
-      for (const dx of [-1.45, 1.45]) glazing(o, cx + dx, y, -7.43, 1.2, 2.05, -1, true);
+    for (const [y, h, columns, rows] of [
+      [3.3, 2.55, 3, 4],
+      [7, 2.1, 2, 1],
+      [10.35, 1.8, 2, 1],
+    ])
+      for (const dx of [-1.45, 1.45])
+        glazing(o, cx + dx, y, -7.43, 1.2, h, -1, true, columns, rows);
     for (const y of [3.6, 7.4, 11.2])
       for (const dx of [-1.45, 1.45]) glazing(o, cx + dx, y, 3.27, 1.1, 2.1, -1, true);
     B(o, 'metal', cx, 13.27, -7.48, width + 0.2, 0.16, 0.26, 'cream');
@@ -159,10 +223,12 @@ function facade(o, detail) {
 }
 export function anne(o) {
   massing(o);
+  court(o, true);
   facade(o, true);
 }
 export function anneSkyline(o) {
   massing(o);
+  court(o, false);
   facade(o, false);
 }
 export const anneModel = {
@@ -187,9 +253,9 @@ export const anneModel = {
     errorMeters: 0.5,
   },
   limitations: [
-    'Original medium-fi exterior, not a measured reconstruction. Facade follows local Qualla photos; the hidden courtyard/annex arrangement follows the museum historical cutaway and the local model photograph.',
+    'Original medium-fi exterior, not a measured reconstruction. Started with the cleared public-domain Qualla streetscape; independently verified CC0 archive exteriors and creator-released courtyard/door photos supply the missing views. Earlier CC photos, museum cutaway and model photograph are excluded from current imagery approval.',
     'The zoom-15 map supplies a generalized 5.88 by 24.1 m envelope. Front/connector/annex partition and window/roof dimensions are estimates; small modern alterations and interiors are omitted.',
     'Adjacent 261, 265 and the modern museum block are excluded. The former draft rear polygon was a neighboring property and has been removed.',
-    'Ground contact is reviewed against independently preserved coarse host-terrain samples; this is not elevation survey data. Reference images remain in Qualla and are not embedded in the asset.',
+    'Ground contact is reviewed against independently preserved coarse host-terrain samples; this is not elevation survey data. Photographs remain local comparison inputs and are not embedded. The archival rear, courtyard partitions, louver spacing, dormer depth and fine trim are generalized; small modern changes are omitted.',
   ],
 };

@@ -1,15 +1,15 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.chateau_laurier",
-  "inputHash": "sha256:ed124e1ba2e66de6b1c19c5822103e0215498a746bf99728def823af4b084d09",
-  "sourceHash": "sha256:c79935600a563608dddebc2d5e8e814748d32bd9190ce31dc20ab254a6655559",
-  "runtimeHash": "sha256:35b9c801a816329ad3f438d5f68a724acf9a6e9737e5413966851508c75112c2",
+  "inputHash": "sha256:fc738cee11a59b82a326008c2b087ff51032930e4965e7ae11bf714787332cf6",
+  "sourceHash": "sha256:be3a1e56419822c672374d5cb92b91ca784c03431c0d2a3942643b2f7db21da6",
+  "runtimeHash": "sha256:8b0c0ae390daa236ba6a2d5d6980798bf00909c9e133780315a90c9792071efe",
   "reviewGroundY": null,
-  "fixtureHash": "sha256:3a145293930bdf1262b201ee4d813201b0bba43b68023c0e04ac1edbc1897a8e",
+  "fixtureHash": "sha256:3d4e062a0d69434f9993eeb088d730adfac8f59898924a503c68798bd8cf5ea1",
   "footprintEvidenceHash": "sha256:d5a7a55e7010c671643a8a6d12f51b56bfc4a7c526703665f04914e089607745",
   "footprintLabel": "Combined hotel, roof facets, low central halls and entrance porticos; neighboring canal-side structure excluded.",
-  "reflectionMode": "sky-pmrem",
-  "clippingMode": "bounds",
+  "reflectionMode": "none",
+  "clippingMode": "legacy",
   "placementHash": "sha256:31cb6fd4ee37ef6f59e0928d8934fd8d492f0a339bbd7e1dd7214a752b5d0865",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stone_limestone": {
@@ -19,12 +19,16 @@
     "matgraph:molen.worldgen.material.metal_standing_seam": {
       "path": "materials/metal_standing_seam.matgraph.json",
       "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "matgraph:molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:62993dac1e860b70e2f506301986efe74acffc0adf7e800eaf7e39b5c74fd8a1",
+      "hash": "sha256:d916fbbd8cbac31b2e0e21f4c7852c3deff1335c89a32ea08c061ef213d5a7e7",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -39,8 +43,8 @@
           0
         ],
         "heading": 0.55,
-        "meshes": 3,
-        "triangles": 53105,
+        "meshes": 4,
+        "triangles": 57751,
         "bounds": {
           "min": [
             -90.02734665271541,
@@ -55,8 +59,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "b03abef4-58c7-4bae-8059-eaff6648d1a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "86827eef-7102-4c5c-819a-24b1f500629c"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9c7e29ce-05d3-45e7-b828-108ce5354c29",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "84db3e5a-e52d-4bbf-8acd-3e23c5fa995a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "dbcb43af-d5b0-4c94-ba4e-46cf2cdc1592"
         },
         "loads": [
           "molen.worldgen.structure.chateau_laurier"
@@ -82,17 +87,19 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_standing_seam": 1
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 53107
+        "draws": 5,
+        "renderedTriangles": 57753
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:1753d85f3fe89c419a8d2346b99eea1774f6a95b8d84593fcd3d78d296cedbde",
+      "hash": "sha256:e3f7a4416501f556b6c393d74e850cb4c978ad434c71f15b11867852d4b246f0",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -107,8 +114,8 @@
           0
         ],
         "heading": 0.55,
-        "meshes": 3,
-        "triangles": 53105,
+        "meshes": 4,
+        "triangles": 57751,
         "bounds": {
           "min": [
             -90.02734665271541,
@@ -123,8 +130,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "b03abef4-58c7-4bae-8059-eaff6648d1a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "86827eef-7102-4c5c-819a-24b1f500629c"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9c7e29ce-05d3-45e7-b828-108ce5354c29",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "84db3e5a-e52d-4bbf-8acd-3e23c5fa995a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "dbcb43af-d5b0-4c94-ba4e-46cf2cdc1592"
         },
         "loads": [
           "molen.worldgen.structure.chateau_laurier"
@@ -150,17 +158,19 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_standing_seam": 1
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 53107
+        "draws": 5,
+        "renderedTriangles": 57753
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:575709e5589a89fd58e2e64ca4dcba501dbec1759840d4b33146dd360572d183",
+      "hash": "sha256:cdfa6de5a8767e4f21826af6f370d3f71d8386873096d1abfec2fe19a0d336d8",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -175,8 +185,8 @@
           0
         ],
         "heading": 0.55,
-        "meshes": 3,
-        "triangles": 53105,
+        "meshes": 4,
+        "triangles": 57751,
         "bounds": {
           "min": [
             -90.02734665271541,
@@ -191,8 +201,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "b03abef4-58c7-4bae-8059-eaff6648d1a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "86827eef-7102-4c5c-819a-24b1f500629c"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9c7e29ce-05d3-45e7-b828-108ce5354c29",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "84db3e5a-e52d-4bbf-8acd-3e23c5fa995a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "dbcb43af-d5b0-4c94-ba4e-46cf2cdc1592"
         },
         "loads": [
           "molen.worldgen.structure.chateau_laurier"
@@ -218,17 +229,19 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_standing_seam": 1
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 53107
+        "draws": 5,
+        "renderedTriangles": 57753
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:26aeae15073de376572fbd944b49efe645f7c95f3e585932e4c27fe092d8d7cc",
+      "hash": "sha256:d85c4be3aed1a7fc474d65b737ea2521ac34a97cf9a06ecc334820c85529f1e3",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -243,8 +256,8 @@
           0
         ],
         "heading": 0.55,
-        "meshes": 3,
-        "triangles": 53105,
+        "meshes": 4,
+        "triangles": 57751,
         "bounds": {
           "min": [
             -90.02734665271541,
@@ -259,8 +272,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "b03abef4-58c7-4bae-8059-eaff6648d1a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "86827eef-7102-4c5c-819a-24b1f500629c"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9c7e29ce-05d3-45e7-b828-108ce5354c29",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "84db3e5a-e52d-4bbf-8acd-3e23c5fa995a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "dbcb43af-d5b0-4c94-ba4e-46cf2cdc1592"
         },
         "loads": [
           "molen.worldgen.structure.chateau_laurier"
@@ -286,17 +300,19 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_standing_seam": 1
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 53107
+        "draws": 5,
+        "renderedTriangles": 57753
       }
     },
     {
       "path": "shots/shared/front.png",
-      "hash": "sha256:bac6e1a5e23a669ab572bff76f5177e88761eb8f30cffb4276de0da3602c3679",
+      "hash": "sha256:bc6b9c9de8455449e3c0415d651ae97fb8c77eaf64836dd6565b8c784d467076",
       "camera": {
         "name": "front",
         "position": [
@@ -320,8 +336,8 @@
           0
         ],
         "heading": 0.55,
-        "meshes": 3,
-        "triangles": 53105,
+        "meshes": 4,
+        "triangles": 57751,
         "bounds": {
           "min": [
             -90.02734665271541,
@@ -336,8 +352,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "b03abef4-58c7-4bae-8059-eaff6648d1a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "86827eef-7102-4c5c-819a-24b1f500629c"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9c7e29ce-05d3-45e7-b828-108ce5354c29",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "84db3e5a-e52d-4bbf-8acd-3e23c5fa995a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "dbcb43af-d5b0-4c94-ba4e-46cf2cdc1592"
         },
         "loads": [
           "molen.worldgen.structure.chateau_laurier"
@@ -363,17 +380,19 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_standing_seam": 1
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 53107
+        "draws": 5,
+        "renderedTriangles": 57753
       }
     },
     {
       "path": "shots/shared/back.png",
-      "hash": "sha256:eeafb2896c3b65214b54d969a5c6ebb9e1f88b6bee61991a10088dfd84e118a4",
+      "hash": "sha256:0ac38d3a5ce978a01975f8814121ee8747b68d5f2e6f354834a827af1fef9a27",
       "camera": {
         "name": "back",
         "position": [
@@ -397,8 +416,8 @@
           0
         ],
         "heading": 0.55,
-        "meshes": 3,
-        "triangles": 53105,
+        "meshes": 4,
+        "triangles": 57751,
         "bounds": {
           "min": [
             -90.02734665271541,
@@ -413,8 +432,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "b03abef4-58c7-4bae-8059-eaff6648d1a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "86827eef-7102-4c5c-819a-24b1f500629c"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9c7e29ce-05d3-45e7-b828-108ce5354c29",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "84db3e5a-e52d-4bbf-8acd-3e23c5fa995a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "dbcb43af-d5b0-4c94-ba4e-46cf2cdc1592"
         },
         "loads": [
           "molen.worldgen.structure.chateau_laurier"
@@ -440,17 +460,179 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_standing_seam": 1
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 4,
-        "renderedTriangles": 53107
+        "draws": 5,
+        "renderedTriangles": 57753
+      }
+    },
+    {
+      "path": "shots/shared/pendant-bases.png",
+      "hash": "sha256:c374cd0e774df54aeaea1cc4bae6d2abafa8b8b02929027106bf51f541b18174",
+      "camera": {
+        "name": "pendant-bases",
+        "position": [
+          -34,
+          20,
+          6
+        ],
+        "lookAt": [
+          -32.3,
+          20.5,
+          21.6
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.chateau_laurier",
+        "mode": "geographic-flat-terrain",
+        "placementId": "chateau-laurier",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.55,
+        "meshes": 4,
+        "triangles": 57751,
+        "bounds": {
+          "min": [
+            -90.02734665271541,
+            -9,
+            -77.91351401159791
+          ],
+          "max": [
+            68.3880341069871,
+            64,
+            88.44860344426704
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9c7e29ce-05d3-45e7-b828-108ce5354c29",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "84db3e5a-e52d-4bbf-8acd-3e23c5fa995a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "dbcb43af-d5b0-4c94-ba4e-46cf2cdc1592"
+        },
+        "loads": [
+          "molen.worldgen.structure.chateau_laurier"
+        ],
+        "selectionBounds": [
+          -75.696746671598,
+          45.424416811392426,
+          -75.69346999506865,
+          45.426716498519774
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "chateau-laurier",
+            "coordinate": [
+              -75.694738947051,
+              45.42504070352161
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "chateau-laurier"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "draws": 5,
+        "renderedTriangles": 57753
+      }
+    },
+    {
+      "path": "shots/shared/tower-corbels.png",
+      "hash": "sha256:856e7f551e2f5292c662eb358d7eaeec9944fc5854c1edefe07097edb643a0a3",
+      "camera": {
+        "name": "tower-corbels",
+        "position": [
+          -42,
+          37.2,
+          61
+        ],
+        "lookAt": [
+          -24.9,
+          38.5,
+          43.6
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.chateau_laurier",
+        "mode": "geographic-flat-terrain",
+        "placementId": "chateau-laurier",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.55,
+        "meshes": 4,
+        "triangles": 57751,
+        "bounds": {
+          "min": [
+            -90.02734665271541,
+            -9,
+            -77.91351401159791
+          ],
+          "max": [
+            68.3880341069871,
+            64,
+            88.44860344426704
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9c7e29ce-05d3-45e7-b828-108ce5354c29",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "84db3e5a-e52d-4bbf-8acd-3e23c5fa995a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "dbcb43af-d5b0-4c94-ba4e-46cf2cdc1592"
+        },
+        "loads": [
+          "molen.worldgen.structure.chateau_laurier"
+        ],
+        "selectionBounds": [
+          -75.696746671598,
+          45.424416811392426,
+          -75.69346999506865,
+          45.426716498519774
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "chateau-laurier",
+            "coordinate": [
+              -75.694738947051,
+              45.42504070352161
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "chateau-laurier"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "draws": 5,
+        "renderedTriangles": 57753
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:f9cdd6316d169f546710049662b887e3119a4acb731bc3fdac8da130f7c00036",
+      "hash": "sha256:8ff2655ffb29bb55ef578b906c6d681f19be38f12ff479f0a767cd4e1cfed958",
       "camera": {
         "name": "placement",
         "placement": true
@@ -465,8 +647,8 @@
           0
         ],
         "heading": 0.55,
-        "meshes": 3,
-        "triangles": 53105,
+        "meshes": 4,
+        "triangles": 57751,
         "bounds": {
           "min": [
             -90.02734665271541,
@@ -481,8 +663,9 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "b03abef4-58c7-4bae-8059-eaff6648d1a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "86827eef-7102-4c5c-819a-24b1f500629c"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9c7e29ce-05d3-45e7-b828-108ce5354c29",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "84db3e5a-e52d-4bbf-8acd-3e23c5fa995a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "dbcb43af-d5b0-4c94-ba4e-46cf2cdc1592"
         },
         "loads": [
           "molen.worldgen.structure.chateau_laurier"
@@ -508,12 +691,14 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_standing_seam": 1
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
         },
-        "draws": 5,
-        "renderedTriangles": 53107
+        "draws": 6,
+        "renderedTriangles": 57753
       }
     }
   ],
@@ -527,11 +712,5 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
-  "identityMigration": {
-    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
-    "previousInputHash": "sha256:de86852291f25e3629dfe78a7e5e602fb072fb7200fc13eaa1ac1db43ffa4971",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
-    "previousReportHash": "sha256:1723b8c9f5c9cb7c9446cffe426e472c530851e431222e66b157a588fd062ee1"
-  }
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
 }

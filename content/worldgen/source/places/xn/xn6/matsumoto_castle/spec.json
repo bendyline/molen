@@ -1,0 +1,398 @@
+{
+  "planId": "matsumoto_castle",
+  "id": "matsumoto_castle",
+  "assetId": "molen.worldgen.structure.matsumoto_castle",
+  "title": "Matsumoto Castle",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 137.96887144446373,
+    "latitude": 36.23861401874944
+  },
+  "size": [
+    36.250125885009766,
+    34.39999961853027,
+    42.028380393981934
+  ],
+  "actualBounds": {
+    "min": [
+      -12.465621948242188,
+      -5,
+      -26.070720672607422
+    ],
+    "max": [
+      23.784503936767578,
+      29.399999618530273,
+      15.957659721374512
+    ]
+  },
+  "visualBrief": "Five connected historic structures: black lower weatherboards and pale upper plaster, five main gray tiled roof tiers with broad white-edged triangular/curved gables and gray ridge creatures, three-tier northwest Inui with cusp-headed windows, two-story roofed Watari with recessed stone entrance, southeast Tatsumi wing and genuinely open three-sided red-railed Moon room. Irregular natural-stone bases, projected stone-drop shutters, grouped warrior windows and own entry steps. Detached gates, red moat bridge, town, vegetation and interiors excluded.",
+  "nativeAxes": {
+    "x": "east toward Honmaru court and Moon wing",
+    "y": "up from independent dry-court reference",
+    "z": "south along main keep ridge"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:20190706_Matsumoto_Castle-8.jpg",
+    "https://commons.wikimedia.org/wiki/File:Matsumoto_Castle_2024.jpg"
+  ],
+  "stories": [
+    {
+      "id": "matsumoto-castle-wp",
+      "url": "https://qualla.com/matsumoto-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:eb0eb1c430e9b80f71fdaf72851606b2dc25e2242c52b51e4449982248de8853",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-matsumoto-castle.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-matsumoto-castle.mjs",
+    "level": "skyline",
+    "export": "matsumotoCastleSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.83,
+        "metallic": 0.03
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_weatherboard",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.04
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0.02
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "matsumotoCastleDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.83,
+            "metallic": 0.03
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_weatherboard",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.04
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "matsumotoCastleStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.83,
+            "metallic": 0.03
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_weatherboard",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.04
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.5
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original GSI source field frozen before geometry:16641 samples on128m review grid,590.06m dry east Honmaru court[18,-6].8394 samples1A,57 samples5A,8190 coarser10m fallback where finer NoData, including moat. Own structural floor/threshold contact requires runtime review; source terrain is never fitted or flattened. Host terrain remains conditional.",
+    "anchor": [
+      137.96887144446373,
+      36.23861401874944
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        137.96907192005324,
+        36.23866791741994
+      ],
+      "modelHeight": 0,
+      "basis": "Dry Honmaru courtyard east of main keep and north of Tatsumi/Moon wings; unchanged original GSI1A provider590.06m reference[18,-6], outside the stone base/roof/inner moat."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184672166704"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9e9efbeb84171550ea321964d01f377190d1d725318884a8858156e04687c98e",
+    "notes": "Native whole polygon is partitioned without changing its external coordinates; internal divisions between main/Inui/Watari/Tatsumi/Moon components are interpreted from actual photographs and operator guide, not surveyed building-part polygons. Native17m root height is not used to extrude all five structures. Roof eaves, battered lower stone toe and red Moon veranda extend beyond cartographic cap controls as bounded exterior interpretation."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Unified native outline is a cartographic control, not a measured stone toe, roof eave or individual building-part plan. Component partitions and unseen junctions need photographic/owner-guide interpretation.",
+    "Native17m must not be extruded across entire root. Operator visitor-guide approximate main29.4/Inui16.8/Watari12.0/Tatsumi14.7/Tsukimi11.1m labels control relative silhouettes, but vertical endpoints require review.",
+    "The first accepted original has snow that obscures tile colours. Current daylight supplements control gray tile/black board/white plaster palette; snow, trees, external red bridge, detached gates, office, town and interiors excluded.",
+    "Independent original terrain must be preserved before geometry; no fitting or flattening, and moat source height must not be represented as a surveyed bed or water level.",
+    "Operator29.4/16.8/12/14.7/11.1m labels are interpreted as approximate silhouette controls relative to the dry court; precise datum endpoints/individual floor levels are unspecified. Gray shachi heights and ornament are authored estimates, not Nagoya gold measurements.",
+    "Approximate owner-guide29.4/16.8/12.0/14.7/11.1m heights interpreted as relative exterior silhouette controls from the dry court. Native whole17m height is not applied to every component. Precise vertical endpoints, floor levels, small gable/ornament geometry, panel counts, inferred toe and stair engineering are estimates. No reconstructed interiors, copied heraldry or photographic pixels.",
+    "Six individually inspected local2013–2019 originals and30 contact thumbnails plus both actual operator2018 guide pages constrain exterior. Snow in accepted original is not roof colour. Current repair finishes, hidden interiors and unseen junction details are not surveyed. Gray tile shachi are original simplified forms; south male/north female main pair, with no Nagoya gold dimensions.",
+    "Independent original GSI tiles and derived field held unchanged. Roughly half the review grid needs coarser fallback, frequently in/near moat. It is not a surveyed water surface or moat bed; encoding and output spacing are not survey accuracy. Compatible host field required; default coarse Earth terrain and precise ground classification are not certified. Footprint replacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        65,
+        24,
+        -3
+      ],
+      "lookAt": [
+        2,
+        13,
+        -4
+      ]
+    },
+    {
+      "name": "main-west",
+      "position": [
+        -39,
+        20,
+        18
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -36,
+        27,
+        -42
+      ],
+      "lookAt": [
+        -2,
+        12,
+        -8
+      ]
+    },
+    {
+      "name": "moon-room",
+      "position": [
+        35,
+        10,
+        22
+      ],
+      "lookAt": [
+        17.5,
+        6.4,
+        9.6
+      ]
+    },
+    {
+      "name": "entrance",
+      "position": [
+        19,
+        5,
+        -8
+      ],
+      "lookAt": [
+        2,
+        2.5,
+        -12
+      ]
+    },
+    {
+      "name": "roof-and-ridge",
+      "position": [
+        25,
+        34,
+        26
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "inui-cusp",
+      "position": [
+        -19,
+        17,
+        -32
+      ],
+      "lookAt": [
+        -3.25,
+        12.5,
+        -19.4
+      ]
+    },
+    {
+      "name": "overhead",
+      "position": [
+        45,
+        76,
+        54
+      ],
+      "lookAt": [
+        2,
+        4,
+        -5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 54286,
+    "vertices": 162858,
+    "materials": 6,
+    "bytes": 6518048,
+    "sha256": "sha256:60918fe056f7270fbb382a453f00002ff8542e0bf51c081ad7f4054c3f768251"
+  }
+}

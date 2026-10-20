@@ -1,9 +1,14 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.ennis_house",
-  "sourceHash": "sha256:fa7b28b9a6b7206756ff505a32057ff9152cb32b276397775b60aa022384f0eb",
-  "runtimeHash": "sha256:9d70eb5c0e48c914b0c6f72c6e2410a50293e03f5cb86741435caf4cefbff80b",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.ennis_house",
+    "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e"
+  },
+  "sourceHash": "sha256:cc95f51402fd150a43b2b654a2217284901ff4ff30b434e7dd49f07a0b0ac996",
+  "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+  "fixtureHash": "sha256:10fa6f88913799edc5a4d6d7a36839b9bbc033d413db70980003ffd0559addc5",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -28,48 +33,48 @@
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:c13ed4b254423a59dc80a3bc90b82e359f3289e002d1ef1b7c279a5be9ea8158",
-      "bytes": 69380,
-      "gzipBytes": 10343,
-      "triangles": 878,
-      "cpuBytes": 67980,
-      "gpuBytes": 67980,
+      "hash": "sha256:91e1d7ac158d488d2390b9402fa6f363a10cb1f48efbf4cb7983275a8eb75f89",
+      "bytes": 71096,
+      "gzipBytes": 10631,
+      "triangles": 900,
+      "cpuBytes": 69696,
+      "gpuBytes": 69696,
       "errorMeters": 0.45,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:8f3b75a060003a4315e809f3f3a1600c9c4e7c58eb5c91c540deacc9a1eda7d5",
-      "bytes": 156872,
-      "gzipBytes": 30875,
-      "triangles": 2064,
-      "cpuBytes": 150840,
-      "gpuBytes": 150840,
+      "hash": "sha256:fd5285ef1eda73af6e27d509a711d647dc2bc7c692c36e4b2e615a5c29061495",
+      "bytes": 158300,
+      "gzipBytes": 31360,
+      "triangles": 2086,
+      "cpuBytes": 152268,
+      "gpuBytes": 152268,
       "errorMeters": 0.2,
       "drawCalls": 5
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:a684e4e56d9b47bc8c1e73d18d59aa12a329811be44270fbe7168a7cc83136e2",
-      "bytes": 972948,
-      "gzipBytes": 205704,
-      "triangles": 12526,
-      "cpuBytes": 966876,
-      "gpuBytes": 966876,
+      "hash": "sha256:d41624ddf28ff15000bf8f6fb57c3ad80b00d4bcb1d2f386f27349e1aa2c7ac4",
+      "bytes": 884520,
+      "gzipBytes": 189091,
+      "triangles": 11396,
+      "cpuBytes": 878448,
+      "gpuBytes": 878448,
       "errorMeters": 0.07,
       "drawCalls": 5
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:fb12dd8b4fbdffbc0d80f854db4c0491fc0bd03a06d49f04b50063deeca02d50",
-      "bytes": 7300816,
-      "gzipBytes": 1346887,
-      "triangles": 60816,
-      "cpuBytes": 7297920,
-      "gpuBytes": 7297920,
+      "hash": "sha256:e83e148655acd917a2629571f8b65aa7db62774283e0e4a08ab270b5b8d9f41d",
+      "bytes": 7034636,
+      "gzipBytes": 1283005,
+      "triangles": 58598,
+      "cpuBytes": 7031760,
+      "gpuBytes": 7031760,
       "errorMeters": 0,
       "drawCalls": 5
     }
@@ -90,14 +95,17 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:26b08b359b878967dd0788e3b52473fe394f4492e2f7f9cd5ee673bde8d5630d",
+      "hash": "sha256:405b9fc5987b8679b9666643674747e9149940b1ef7dd641390f5c3a8182157b",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:e83e148655acd917a2629571f8b65aa7db62774283e0e4a08ab270b5b8d9f41d",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 11,
-        "triangles": 75250,
+        "triangles": 73040,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -123,19 +131,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:9e0908bcd311b27724f9d4512a452c6bb60945675e563ae050d817ac0358400b",
+      "hash": "sha256:2a251b09b11a12e27771bfee21f9703c33de63daa2afa6c14307cf9650c79eb2",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:e83e148655acd917a2629571f8b65aa7db62774283e0e4a08ab270b5b8d9f41d",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 75250,
+        "triangles": 73040,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -161,19 +184,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:dbb7ae18e4c5d3169213cd56c5d1555234f7dfea91ea36c4f7dbc353ed923661",
+      "hash": "sha256:aabd0a96d6a7f032803566b580a6655026be5dfa5de64c7d06b12a6772834edb",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:e83e148655acd917a2629571f8b65aa7db62774283e0e4a08ab270b5b8d9f41d",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 11,
-        "triangles": 75250,
+        "triangles": 73040,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -199,19 +237,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:58827a99d7a27f8622dd343306f7fcbed095bd8d39e122ed25cb663c68508e6a",
+      "hash": "sha256:c8832aed090b6bf6d6541f204016990740b16767648a0f0b33eda95208d5370c",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:e83e148655acd917a2629571f8b65aa7db62774283e0e4a08ab270b5b8d9f41d",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 75250,
+        "triangles": 73040,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -237,19 +290,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:2964ce5398a4cfd328cf8c5e1cc1d89af3c0635a81dcc42d050c58428820c882",
+      "hash": "sha256:aaaba8263f90fc0c1f9894909fca12845b18206e4ec57a659522bbb81568b455",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:fd5285ef1eda73af6e27d509a711d647dc2bc7c692c36e4b2e615a5c29061495",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 11,
-        "triangles": 16498,
+        "triangles": 16528,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -275,19 +343,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:255d739bfedc655c2f554bba8354e852087ec2d0e49cf87b9e0ee859acdbd221",
+      "hash": "sha256:b81400a5797342769da145c93ac2dd896341245f30be431b3ccf4d1b302efaba",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:fd5285ef1eda73af6e27d509a711d647dc2bc7c692c36e4b2e615a5c29061495",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 16498,
+        "triangles": 16528,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -313,19 +396,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:4a5501137b6b803eb393dbbf84d38e16dd9c7c7e87d2fd8fa1b8768f43871548",
+      "hash": "sha256:de3e9981a18829bab8bfdf74c7dc22c204aef79bde4189683f6193b0e3c68748",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:fd5285ef1eda73af6e27d509a711d647dc2bc7c692c36e4b2e615a5c29061495",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
         "drawCalls": 11,
-        "triangles": 16498,
+        "triangles": 16528,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -351,19 +449,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:537c518edbf58d587fb3e9d36f1b2742ad2decd07e34c6038b483b85917b8a2c",
+      "hash": "sha256:7c81484b27768b94a5a0a79762e47e9e0edbdba9de2d49ba3cbdd073cc431a0d",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:fd5285ef1eda73af6e27d509a711d647dc2bc7c692c36e4b2e615a5c29061495",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 16498,
+        "triangles": 16528,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -389,19 +502,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:d24a88e551cd955b725108e2a199b8a5c378913a66042dc0cbfb3990dafb98c1",
+      "hash": "sha256:cf1d3947beef3cd337da83f3fcd723e1926c85f26f9e5af3fadfaaee80f00768",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:91e1d7ac158d488d2390b9402fa6f363a10cb1f48efbf4cb7983275a8eb75f89",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 15312,
+        "triangles": 15342,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -427,19 +555,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:13fbdf316eae50811a377d7469789e0a026478d77bf6efd3633cd2b735fd9b2f",
+      "hash": "sha256:5cce22f84a50f5f0d71ab28751c59717e0ddfdb44e3965b5f70c6aa8ed5d446e",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:91e1d7ac158d488d2390b9402fa6f363a10cb1f48efbf4cb7983275a8eb75f89",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 15312,
+        "triangles": 15342,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -465,19 +608,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:7d8913e53f6001c032a1988789d8496c3c126e0ca80d6d2a7c84afa31830a477",
+      "hash": "sha256:9d26697e1e2ac08fcbd45d540cbc337af82897af77db6230da901fde3b9e06ff",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:91e1d7ac158d488d2390b9402fa6f363a10cb1f48efbf4cb7983275a8eb75f89",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 15312,
+        "triangles": 15342,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -503,19 +661,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:4a46551ffe13c203c960d5945010642f3ed38f5e93749a43891e4e80cd9e07da",
+      "hash": "sha256:fab9e5677d1fbb43b3546d6aadfc510cc9191dc1241beae690b7c196897f8c5f",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:91e1d7ac158d488d2390b9402fa6f363a10cb1f48efbf4cb7983275a8eb75f89",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 15312,
+        "triangles": 15342,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -541,19 +714,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:c07e40cffa3f56d0f255f8b7edeb2c8b7a66cfc4c160045ead53b97424ef52d2",
+      "hash": "sha256:f8c388f98615a75fc029306b84879078e8db46995959721c08bfd9d0b8dc607c",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:91e1d7ac158d488d2390b9402fa6f363a10cb1f48efbf4cb7983275a8eb75f89",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 3,
-        "triangles": 9072,
+        "triangles": 9102,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -579,19 +767,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/front.png",
-      "hash": "sha256:2e240ec95112d2dca1582706b0334b312088d9914767d01213f2546463a6d61f",
+      "hash": "sha256:378ff8f74c8f3a8dfab968a6f55b46c90821a97f6b19872843bff8fe579d2d89",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:e83e148655acd917a2629571f8b65aa7db62774283e0e4a08ab270b5b8d9f41d",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 75250,
+        "triangles": 73040,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -617,19 +820,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/back.png",
-      "hash": "sha256:a40aa183526fd4d8aa6e00f882b6ee772fa831a00c3e7442a751b36f5b551667",
+      "hash": "sha256:779667dbe68fb044dfec30ae65768ce191cf6cf453ba5abbd1ae3555b0d5e537",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:e83e148655acd917a2629571f8b65aa7db62774283e0e4a08ab270b5b8d9f41d",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 75250,
+        "triangles": 73040,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -655,19 +873,140 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/gate-ironwork.png",
+      "hash": "sha256:5a9f9c03949f4e75230517228d5e1aca4f4a490001f87765b6276b62cc4da570",
+      "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:e83e148655acd917a2629571f8b65aa7db62774283e0e4a08ab270b5b8d9f41d",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 73040,
+        "groundY": -30,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.height.png"
+        },
+        "position": [
+          -20.8,
+          3,
+          -17.5
+        ],
+        "lookAt": [
+          -19.8,
+          2.6,
+          -10.25
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/service-gate.png",
+      "hash": "sha256:9d68cf3131d96f6542c7f120c508660ccc8a53a3367d1e5e5cd2a9b6cbf13975",
+      "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:e83e148655acd917a2629571f8b65aa7db62774283e0e4a08ab270b5b8d9f41d",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 73040,
+        "groundY": -30,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.height.png"
+        },
+        "position": [
+          -16.1,
+          2.65,
+          -13.25
+        ],
+        "lookAt": [
+          -16.55,
+          2.4,
+          -10.25
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:583300b8ed0451ff3445a28507cc63f7e1a91ffe461efa759159cca48ff13474",
+      "hash": "sha256:7655a906915cd388362d1ed4c445ece9dd57938ea81daba80f21aed843454046",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:91e1d7ac158d488d2390b9402fa6f363a10cb1f48efbf4cb7983275a8eb75f89",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 15312,
+        "triangles": 15342,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -693,19 +1032,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:255d739bfedc655c2f554bba8354e852087ec2d0e49cf87b9e0ee859acdbd221",
+      "hash": "sha256:b81400a5797342769da145c93ac2dd896341245f30be431b3ccf4d1b302efaba",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:fd5285ef1eda73af6e27d509a711d647dc2bc7c692c36e4b2e615a5c29061495",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 16498,
+        "triangles": 16528,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -731,19 +1085,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:2721367735cc20dc0a2a3de3010b5a2dd173874218bad52b5a900b6003313a4d",
+      "hash": "sha256:bb62e98bdbe85e2e72433a962270541bfbf91eb213f97410cb8d7f5b3f16e6da",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:d41624ddf28ff15000bf8f6fb57c3ad80b00d4bcb1d2f386f27349e1aa2c7ac4",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 26960,
+        "triangles": 25838,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -769,19 +1138,34 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:695cd665dce4476ed1ea79e6b6046be63b9bb682ca01809804a24f726907f2c8",
+      "hash": "sha256:96595f527987da55258b445fe0f1fe359b3531ad033468276ba06233fb2ad9b6",
       "state": {
+        "assetId": "molen.worldgen.structure.ennis_house",
+        "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+        "lodHash": "sha256:e83e148655acd917a2629571f8b65aa7db62774283e0e4a08ab270b5b8d9f41d",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 75250,
+        "triangles": 73040,
         "groundY": -30,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/ennis_house/terrain-review.terrain.json",
@@ -807,15 +1191,21 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none",
+        "groundOpening": {
+          "points": 4,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
       }
     }
   ],
-  "errors": [],
-  "identityMigration": {
-    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
-    "previousInputHash": "sha256:dbd038d65270c7c7a764b9349853981db5293aa06f78c692fc115946acf27669",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
-    "previousReportHash": "sha256:8ea97e66a1d852c3d989a0b729d93ffd37d06a02120a3e78513e9eafa19cac36"
-  }
+  "errors": []
 }

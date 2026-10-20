@@ -1,0 +1,516 @@
+{
+  "planId": "santa_monica_pier",
+  "id": "santa_monica_pier",
+  "assetId": "molen.worldgen.structure.santa_monica_pier",
+  "title": "Santa Monica Pier",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -118.49861111111,
+    "latitude": 34.008611111111
+  },
+  "size": [
+    503.91786193847656,
+    38.36000061035156,
+    127.8999080657959
+  ],
+  "actualBounds": {
+    "min": [
+      -320.3456726074219,
+      -10,
+      -105.64744567871094
+    ],
+    "max": [
+      183.5721893310547,
+      28.360000610351562,
+      22.25246238708496
+    ]
+  },
+  "visualBrief": "Combined mapped timber pier and open pile frames/teal rails, broad shore platform and narrow municipal neck/wide head. Peach/blue Looff Hippodrome with seven arched bays, paired upper windows/three octagonal towers, swept tent roof and ventilated cupola. Static white Pacific Wheel with20 red/yellow open gondolas, yellow twin-helix West Coaster, integral roof masses and yellow-roof head restaurant/harbor office. No ride animation or city.",
+  "nativeAxes": {
+    "x": "southwest seaward",
+    "y": "up",
+    "z": "northwest across pier"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Aerial_Photo_of_Santa_Monica_Pier.jpg",
+    "https://commons.wikimedia.org/wiki/File:Anglers_on_the_Santa_Monica_Pier.jpg",
+    "https://commons.wikimedia.org/wiki/File:Santa_Monica_Pier_view_over_the_park.jpg",
+    "https://commons.wikimedia.org/wiki/File:Santa_Monica_Pier_&_parking_(July_2024).JPG"
+  ],
+  "stories": [
+    {
+      "id": "santa-monica-pier-wp",
+      "url": "https://qualla.com/santa-monica-pier/"
+    }
+  ],
+  "referenceInputHash": "sha256:37c930353b7693a0fe3d5f8623a63cf7320aac88f743e5b70f16540d01be83b0",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-santa-monica-pier.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-santa-monica-pier.mjs",
+    "level": "skyline",
+    "export": "santaMonicaPierSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "lampMetal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.12
+      },
+      "lampGlass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.65,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0,
+        "doubleSided": true
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.12,
+        "doubleSided": true
+      },
+      "paint": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.06,
+        "doubleSided": true
+      },
+      "stucco": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.1
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "santaMonicaPierDistrict",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "lampMetal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.12
+          },
+          "lampGlass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.12,
+            "doubleSided": true
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.06,
+            "doubleSided": true
+          },
+          "stucco": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "santaMonicaPierStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "lampMetal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.12
+          },
+          "lampGlass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.12,
+            "doubleSided": true
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.06,
+            "doubleSided": true
+          },
+          "stucco": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "cameraYaw": 0,
+    "groundY": -10
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Four original Terrarium tiles unchanged; dry beach path reference[-298.77213,-92.35321] datum5.706m. Deck3m relative to dry grade, fixed pile bottom-10m. Sampled entire native outline below deck. Marine grade/tide/embedment and exact elevated shore approach remain estimates; bounded preview, no footprint replacement.",
+    "anchor": [
+      -118.49861111111,
+      34.008611111111
+    ],
+    "heading": -2.365144559669994,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -118.49560000001324,
+        34.00989999997136
+      ],
+      "modelHeight": 0,
+      "basis": "Dry beach pedestrian path immediately southeast of carousel/pier platform, outside raised deck and roofs."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "landuse/35184394817685",
+      "buildings/35184812946913",
+      "buildings/35185114133808",
+      "buildings/35185114133810",
+      "buildings/35184708978475",
+      "buildings/35184708978477",
+      "buildings/35185114134899",
+      "buildings/35184708978478",
+      "buildings/52776568397134",
+      "buildings/35185114461346",
+      "buildings/35185114461803",
+      "buildings/35185114461802",
+      "buildings/35185114462943",
+      "buildings/35185114462840",
+      "buildings/35185114462944",
+      "buildings/35185114132965",
+      "buildings/35185114465980",
+      "buildings/35184708646407",
+      "buildings/35185114134898",
+      "buildings/35185114465983",
+      "buildings/35185114462843",
+      "buildings/35184708978469",
+      "buildings/35185114461805",
+      "buildings/35184432535996",
+      "buildings/35185114467700",
+      "buildings/35184432535998",
+      "buildings/35185114463110",
+      "buildings/35184708978474",
+      "buildings/35184724040513",
+      "buildings/35184724040514",
+      "buildings/35184724040515",
+      "buildings/35185114420994",
+      "buildings/35185114132524",
+      "buildings/35185114467233",
+      "buildings/35184708978470",
+      "buildings/35185114462677",
+      "buildings/35185114446200",
+      "buildings/35184708978467",
+      "buildings/35184708978468"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a3b069ca52cfeba73f85efaac90ee56009780db81ae99b38528573e75a85ab91"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Selected surviving2005–2025 exterior; current post2008 wheel and2021 stripped carousel roof control era. No original onion dome/crenellations/lost attractions, ride simulation, people/cars/boats, beach or surrounding city.",
+    "Native map footprint/orientation retained. Pile stations, fine facades/hidden sides/roof profiles and coaster chainages/heights are original proportional estimates, not a scan or engineering model. Minor park kiosks and rides simplified into main roof masses.",
+    "Independent coastal terrain remains unchanged.17m review grid/approximately4m source pixels are not surveyed marine levels. Dry reference5.706m and deck3m are bounded authoring pose; full pier bridge/raised road approach beyond own deck excluded.",
+    "Operator85ft size used for approximately26m overall wheel; conflicting130ft marketing phrase not interpreted as wheel diameter or tall pedestal. Twenty gondolas and open truss frame modeled statically without LED pixel fixtures.",
+    "No reference photograph pixels or generated bitmap textures embedded. Shared metric material graphs and native palette colors only; no interior carousel machinery."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -327,
+        23,
+        4
+      ],
+      "lookAt": [
+        -277,
+        10,
+        -42
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -286,
+        9,
+        -13
+      ],
+      "lookAt": [
+        -277,
+        8,
+        -31
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -239,
+        21,
+        -85
+      ],
+      "lookAt": [
+        -277,
+        11,
+        -45
+      ]
+    },
+    {
+      "name": "roof-detail",
+      "position": [
+        -254,
+        43,
+        -7
+      ],
+      "lookAt": [
+        -277,
+        17,
+        -43
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        37,
+        -2,
+        12
+      ],
+      "lookAt": [
+        23,
+        -0.4,
+        -15
+      ]
+    },
+    {
+      "name": "wheel-detail",
+      "position": [
+        16,
+        20,
+        -48
+      ],
+      "lookAt": [
+        -21,
+        15,
+        -81
+      ]
+    },
+    {
+      "name": "head-detail",
+      "position": [
+        207,
+        29,
+        43
+      ],
+      "lookAt": [
+        147,
+        7,
+        -5
+      ]
+    },
+    {
+      "name": "park-detail",
+      "position": [
+        -115,
+        34,
+        -131
+      ],
+      "lookAt": [
+        -64,
+        8,
+        -70
+      ]
+    },
+    {
+      "name": "lamp-detail",
+      "position": [
+        166,
+        10,
+        -5
+      ],
+      "lookAt": [
+        162,
+        8,
+        -10
+      ]
+    },
+    {
+      "name": "lamp-base-detail",
+      "position": [
+        164,
+        4.4,
+        -7
+      ],
+      "lookAt": [
+        161,
+        3.3,
+        -10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63947,
+    "vertices": 191841,
+    "materials": 6,
+    "bytes": 7677340,
+    "sha256": "sha256:338704a2583c4efe5c6e5a28394536e2013c59e8e02b67cde9e91b413e16ffc8"
+  }
+}

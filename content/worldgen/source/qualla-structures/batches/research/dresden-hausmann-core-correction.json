@@ -1,0 +1,37 @@
+{
+  "format": "molen/structure-observed-gap@1",
+  "reviewedOn": "2026-10-19",
+  "model": "dresden_castle",
+  "status": "corrected-and-validated",
+  "referencesInspected": [
+    {
+      "title": "File:Dresden-Schloss01.jpg",
+      "primarySnapshot": ".artifacts/qualla-batch/core-finalization/primary-search/dresden-self.json",
+      "native": ".artifacts/qualla-batch/core-finalization/primary-search/16120408-native.jpg",
+      "creator": "Nikater",
+      "release": "Own work, all rights released (Public domain); PD-self"
+    },
+    {
+      "title": "File:Dresden-Frauenkirche-View.from.top.10-redux.JPG",
+      "primarySnapshot": ".artifacts/qualla-batch/core-finalization/primary-search/dresden-self.json",
+      "native": ".artifacts/qualla-batch/core-finalization/primary-search/305066-native.jpg",
+      "creator": "Ingersoll",
+      "release": "Self-photographed; PD-self"
+    }
+  ],
+  "observation": "Current Hausmann recipe uses a tall27.5m upper stone drum with three stacked arched-window tiers, then a short tapered lead roof. Both inspected released photographs instead show a shorter single main arched-window tier with small round upper lights, a more substantial rounded lead roof/bulb, open lantern and slender upper needle. A large red/blue clock below the platform is absent from the current model. Existing passed fidelity notes do not prove this geometry correct.",
+  "currentRecipe": "packages/worldgen/scripts/structure-dresden-castle.mjs",
+  "focus": "hausmann() and skyline() profiles; keep total100.27m and documented39m platform separate from unmeasured intermediate proportions. Correct main/drum/roof/window/clock hierarchy, regenerate/import all four authored levels and inspect affected current captures.",
+  "scopeUnchanged": true,
+  "sourceOrGeometryChanged": true,
+  "guards": "Assert work ownership and preserve immutable before snapshots before editing; retain original native plan, terrain and placement.",
+  "resolution": {
+    "completedOn": "2026-10-19",
+    "sourceHash": "sha256:c6341b53aae32af7bc15cdc6159b7bfd5d0ab114bb7364808834fa4088c315d4",
+    "runtimeHash": "sha256:d032e7dfe8ca17b5882c4bba50df9fcf7caead04af2bc6cc6eaff6cc86601f98",
+    "framesInspected": 57,
+    "geometryControlsPassed": 385,
+    "terrainAndPlacementUnchanged": true,
+    "notes": "Three individually inspected Nikater/Ingersoll Ownwork/PD-self original photographs establish the pale western facade, paired corner crowns, red roofs, Great Court and Hausmann hierarchy. Qualla imagery was checked first; all earlier private/attribution and assumed-author sources are excluded from this current review. Corrected the tall three-tier drum to one main arched-window tier with small upper round lights, a fuller rounded lead roof, open lantern, upper bulb and needle; added two red-ring/blue-field clocks below the39m platform. Total100.27m and platform39m are published controls; intermediate tower/clock dimensions remain photographic estimates. Retained mapped full castle, Georgenbau, stable wings and separate Langer Gang. Later glass court roof/hidden rooms follow retained mapped and architectural reconstruction;2005photos do not certify current restoration finish. Fine sculpture, literal clock numerals, paintings, heraldry and construction engineering are outside approximate medium-fi exterior scope."
+  }
+}

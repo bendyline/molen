@@ -1,0 +1,44 @@
+{
+  "format": "molen/terrain-download-review@1",
+  "date": "2026-10-17",
+  "state": "published-third-party-bare-ground-derivative-acquired-original-official-raster-unavailable",
+  "publicDataset": "https://data.gov.tw/en/datasets/176927",
+  "publicIndexRetrieved": true,
+  "indexFile": "terrain-sources/moi-2025-index.csv",
+  "indexEntry": "\u5206\u5e45_\u81fa\u5317\u5e0220MDEM(2025),\u822a\u7a7a\u651d\u5f71\u6e2c\u91cf,\u6578\u503c\u9ad8\u7a0b\u6a21\u578b\u8cc7\u6599,TWD97(N\u3001E\u3001H),2025\u5e74,https://www.tgos.tw:443/MDE/VirtualDir_TC/Product/60e634ea-7c59-47a4-a967-ac33694e0d05/\u5206\u5e45_\u81fa\u5317\u5e0220MDEM(2025).zip",
+  "attempts": [
+    {
+      "resource": "2025officialTaipei20MDEM.zip",
+      "result": "HTTP403; no original data"
+    },
+    {
+      "resource": "2019officialTaipei20MDEM.zip",
+      "result": "HTTP403; no original data"
+    },
+    {
+      "resource": "https://www.tgos.tw/",
+      "result": "Browser actual visible403Forbidden; temporary tab closed"
+    }
+  ],
+  "apiDocumentation": "https://dtm-openapi.colife.org.tw/swagger/index.html",
+  "apiStatus": "Published requests require service-issued api_key; no key obtained or used.20m product is open;1m product is restricted and is not sought.",
+  "fallbackPreserved": "Original Terrarium PNG and all66049 derived values frozen before geometry; geometric source grade rejected, not altered.",
+  "next": "Reproduce every interpolated value from the retained published tile using independent decoder; inspect current source-field context and exact geographic transform. Approve bounded source preview only if physical contact and fidelity pass.",
+  "replacement": {
+    "url": "https://tiles.itsmigu.com/13/6861/3507.png",
+    "path": "terrain-sources/nlsc-claimed-2024-13-6861-3507.png",
+    "sha256": "sha256:08e392001893417da63a6fa6e393846c6db89f82037db50d82f1bbac802f422b",
+    "publisher": "ianlkl11234s/mini-taiwan-terrain",
+    "provenanceUrl": "https://github.com/ianlkl11234s/mini-taiwan-terrain",
+    "encoding": "Terrarium RGB24 XYZ z13,256square, no transparent samples",
+    "publisherClaim": "NLSC2024 20mDTM reencoded by author; third-party derivative, not original official raster.",
+    "license": "NLSC2024 20m gridDTM under Taiwan Open Government Data License1.0, as attributed by publisher; https://data.gov.tw/license",
+    "privatePipeline": "taipei-gis-analytics/pipelines/base_map/terrain_rgb/01_encode_terrarium_tiles.py named in public BACKLOG; separate repo returned404. Original input raster, CRS conversion and publisher encoding could not be independently verified.",
+    "acquiredAfterGeometry": true,
+    "modelGeometryAdjusted": false,
+    "retainedOriginalFrameAndDryDatum": true,
+    "nativeGridHash": "sha256:1c403c80b29bf732cff657e2c583798384ae07bcfa7580060a556d0a41e68fcf",
+    "maximumInterpolationGridResolutionClaim": "Output17.313m pixel spacing;1m review samples are interpolation only, not survey accuracy."
+  },
+  "rejectedSourceArchive": "terrain-sources/rejected-composite/"
+}

@@ -3,7 +3,7 @@ import * as THREE from 'three';
 
 type Point = readonly [number, number];
 export type TerrainGroundOutline = readonly Point[];
-const owners = new WeakMap<THREE.Object3D, TerrainGroundOutline>();
+const owners = new WeakMap<THREE.Object3D, readonly TerrainGroundOutline[]>();
 const ceilings = new WeakMap<THREE.Object3D, number>();
 const surfaces = new WeakSet<THREE.Mesh>();
 const waterSurfaces = new WeakSet<THREE.Mesh>();
@@ -39,19 +39,34 @@ export function setTerrainGroundCutout(
   outline: TerrainGroundOutline,
   maxHeight?: number,
 ): void {
+  setTerrainGroundCutouts(object, [outline], maxHeight);
+}
+
+/** Separate model-local openings preserve ground between river channels, stairs and basements.
+ * Replaces this owner's previous openings. The optional ceiling applies to every outline. */
+export function setTerrainGroundCutouts(
+  object: THREE.Object3D,
+  outlines: readonly TerrainGroundOutline[],
+  maxHeight?: number,
+): void {
   if (maxHeight !== undefined && !Number.isFinite(maxHeight))
     throw new Error('Ground cutout ceiling must be finite');
-  const points = outline.map(([x, z]) => [x, z] as Point);
-  if (
-    points.length > 3 &&
-    points[0]?.[0] === points.at(-1)?.[0] &&
-    points[0]?.[1] === points.at(-1)?.[1]
-  )
-    points.pop();
-  if (points.length < 3 || points.length > 512 || points.some((p) => !p.every(Number.isFinite)))
-    throw new Error('Ground cutout requires 3–512 finite X/Z vertices');
+  if (!outlines.length || outlines.length > 64)
+    throw new Error('Ground cutouts require 1–64 outlines');
+  const polygons = outlines.map((outline) => {
+    const points = outline.map(([x, z]) => [x, z] as Point);
+    if (
+      points.length > 3 &&
+      points[0]?.[0] === points.at(-1)?.[0] &&
+      points[0]?.[1] === points.at(-1)?.[1]
+    )
+      points.pop();
+    if (points.length < 3 || points.length > 512 || points.some((p) => !p.every(Number.isFinite)))
+      throw new Error('Ground cutout requires 3–512 finite X/Z vertices');
+    return points;
+  });
   if (!owners.has(object)) ownerRefs.add(new WeakRef(object));
-  owners.set(object, points);
+  owners.set(object, polygons);
   waterOwners.delete(object);
   if (maxHeight !== undefined) {
     ceilings.set(object, maxHeight);
@@ -298,18 +313,20 @@ export class TerrainGroundCutoutController {
       }
       if (!visibleWithin(object)) continue;
       object.updateWorldMatrix(true, false);
-      const points = (owners.get(object) ?? []).map(([x, z]) =>
-        new THREE.Vector3(x, 0, z).applyMatrix4(object.matrixWorld),
-      );
       const ceiling = ceilings.get(object);
-      cutters.push({
-        points,
-        water: waterOwners.has(object),
-        bounds: bounds(points.map((p) => [p.x, p.z])),
-        ...(ceiling !== undefined
-          ? { maxHeight: new THREE.Vector3(0, ceiling, 0).applyMatrix4(object.matrixWorld).y }
-          : {}),
-      });
+      for (const outline of owners.get(object) ?? []) {
+        const points = outline.map(([x, z]) =>
+          new THREE.Vector3(x, 0, z).applyMatrix4(object.matrixWorld),
+        );
+        cutters.push({
+          points,
+          water: waterOwners.has(object),
+          bounds: bounds(points.map((p) => [p.x, p.z])),
+          ...(ceiling !== undefined
+            ? { maxHeight: new THREE.Vector3(0, ceiling, 0).applyMatrix4(object.matrixWorld).y }
+            : {}),
+        });
+      }
     }
     if (!cutters.length && !this.active.size) return false;
     const targets: THREE.Mesh[] = [];

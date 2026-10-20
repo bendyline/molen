@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.bach_house",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:61b4af70be0dabc915cd50c1f3205f50e127ecb5c5c3b080eab338455393be78",
-  "sourceHash": "sha256:79c052baaad138bfe5ce71efa2dfec2e4a23e494b0fbe5465902fc12ad4e658e",
-  "runtimeHash": "sha256:016463585bb282f89009f4d45441331a69e49ee38a16ac76057fc752615c2747",
-  "captureReportHash": "sha256:98a2b2714ff029c91c9ef2eafef70214c6565da4fb65b92446ff8b57082b0e69",
+  "inputHash": "sha256:c81e2fe352533a1bcbaf46c0a4be3bc4f04b8e8539fe375118cdfc997cf0df9a",
+  "sourceHash": "sha256:4a8fd70bfe9fb2b462d8bd5e630b4ffd53aff368e308cc55b34ac4e1ffc96065",
+  "runtimeHash": "sha256:232410d19aca8c6fc3e4667b0cca2085218aebfb364fc07647e1d5418c357711",
+  "captureReportHash": "sha256:7b4fb79f43f1108067187fe7820aa52315ebdb43ad13528ef1aaafd2c79713fc",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:7b4fb79f43f1108067187fe7820aa52315ebdb43ad13528ef1aaafd2c79713fc",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/bay-cove.png",
+      "shots/carved-entry.png"
     ],
-    "notes": "Inspected all seven current portable views against individually viewed Qualla front, rear and doorway originals. Ochre plaster, irregular casement groups, projected upper bay and carved door are represented. Three front gabled dormers and five rear shed dormers interrupt the flared roof. Final review removed repeated grid patterns in tile weathering and softened plaster/foundation colors."
+    "notes": "All9final portable frames inspected, including native bay-cove/carved-entry details. Eight-facet plaster cove closes underneath the projecting bay; wall has a true curved-corner portal opening and deep reveals, closed red stone surround, two closed carved wood leaves and physical iron hardware. Six upper shutters are half-width with clear gaps; unsupported lower leaves removed. Original plaque/four studs and all other architecture retained. Whole exterior review pending."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:79268638e9a1c97799fdbf6ab346940acab97c590191eea5aac00a149447b5f3",
+    "captureReportHash": "sha256:a4038429811307c98a37596ff41b1a71dedd466af0ae7852f3cbaf461895da40",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,41 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/bay-cove.png",
+      "shots/shared/carved-entry.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven current shared views including footprint overlay and full front detail. Stucco, sandstone, timber, tile and painted metal use five shared metric surfaces; glass remains local. Roof courses, shutter panels, roundels and trellis remain legible. Flat-ground views are material fixtures; portable captures retain independent terrain."
+    "notes": "All9final shared/geographic frames inspected, including native doorway/cove details and placement overlay. New plaster uses stucco/.92roughness, smooth portal stone concrete_plain/.9roughness, wood wood_plain/.85roughness, iron metal_painted/.65roughness/.28metalness and retained original palette; metric UVs. No unsupported stone courses on red portal. Flat material fixture separate from source ground; unload disposes geometry.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stucco": {
+        "path": "materials/stucco.matgraph.json",
+        "hash": "sha256:d96343590b745615051aa42e86e1117bce5a4b4f7607fa129a99d6b1bece8119"
+      },
+      "matgraph:molen.worldgen.material.tile_flat": {
+        "path": "materials/tile_flat.matgraph.json",
+        "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_sandstone": {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:727605d8a147d7a8bda01d20dd35a38ebbe00c76fa9e4560710598351e029f49",
+    "captureReportHash": "sha256:03272223296c5f034134dde378097c4194c3ef05abf637f484673fb93527ea04",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +84,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/bay-cove.png",
+      "medium-fi/carved-entry.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen current lighting, quality and forced-detail views. Skyline retains house, flare, dormers and chimney silhouette; district restores window groups, bay and entrance; street/closeup add casement bars, shutters, roundels, tile courses, door relief and rear grilles. Synthetic neighbors are style fixtures. No physical-device performance measurement claimed."
+    "notes": "All21final version2frames inspected: noon/late light, economy/high, front/back, both native detail views and four forced levels over original independent source ground. New recessed portal/physical moldings/rounded bay remain coherent at close. Original three lower levels exact. Synthetic neighbors are style fixtures. Rear/hidden roof fidelity still pending."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +110,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.00016052680015832266
     },
-    "notes": "Anchor [10.322559,50.971490], heading pi+0.14: +X west-southwest and +Z north-northwest toward Frauenplan. Mapped historic-house footprint aligns; modern extension excluded. Unmodified Terrarium datum 243.5478 m at approach [4,8]. Doorway Y=1.25 and seven steps accommodate the independent slope; foundation extends below the lower east side. Map height 8 m is a generic estimate, not the roof ridge. No flattening; footprint replacement disabled."
+    "notes": "Original anchor[10.322559,50.971490],heading pi+.14,+Xwest-southwest/+Znorth-northwest toward Frauenplan retained. Original map, independent unmodified Terrarium grid/descriptor/heightPNG unchanged; datum243.5478m at approach[4,8],portal floor1.25m,seven retained steps,foundation-1.8m. Source pixel about3.0083m; footprint raw ground range[-1.2989176169684242,1.3465249495800151]. No fitting, flattening, footprint or placement replacement. Generic map8mheight is not roof ridge; host terrain can differ."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Historic Frauenplan 21 house, doorway steps and small rear projection; modern museum extension, gardens and neighboring buildings excluded.",
-    "notes": "Five individually inspected Qualla originals, official museum history and aerial context establish surviving plastered house, roof and openings. No exposed timber grid invented. Dimensions, hidden walls, joins and rear garden threshold remain estimates. Tile relief, grilles, roundel glass and carved door are simplified. No surveyed plan, interiors, vegetation, lettering or photo pixels reproduced."
+    "scope": "Historic Frauenplan21 house, doorway steps and small rear projection; contemporary museum extension, gardens and neighbors excluded.",
+    "notes": "The cleared facade original confirms the yellow two-storey house, projecting shuttered bay, asymmetrical glazed openings, curved entrance and steep dormered roof. Current model matches these identifying elements. Rear timber layout and unseen roof details remain approximate; the plaque is not facade coverage. Accepted against the existing mapped controls and current inspected render set at the agreed approximate medium-fi exterior scope. All source imagery in the current inventory is independently verified public domain. Fine hidden-detail coverage and exact thresholds are limitations rather than an additional survey requirement."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:1b1497ea308228921fc4df579bb8dd58a8d56199acd45822766cdbd099f7799a",
+    "recipeHash": "sha256:506cd455608502ff265af8df21d0f37f25da8d3da03f34256608010a89c8ea38",
     "levels": [
       {
         "name": "skyline",
@@ -128,32 +161,102 @@
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:a70d606fe0506e081fc5ec2606e31f6e83153735341489c3de40dcd3adb5bd70",
-        "bytes": 3115828,
-        "gzipBytes": 554115,
-        "triangles": 25937,
-        "cpuBytes": 3112440,
-        "gpuBytes": 3112440,
+        "hash": "sha256:c33921a90a7c8f0c0966b12111e7890b38db60e664f9bcad55a1800a5aa5e313",
+        "bytes": 3203104,
+        "gzipBytes": 570947,
+        "triangles": 26661,
+        "cpuBytes": 3199320,
+        "gpuBytes": 3199320,
         "errorMeters": 0,
-        "drawCalls": 6
+        "drawCalls": 7
       }
     ],
-    "notes": "All four current levels were visually inspected and pass budgets; exact triangle and byte counts are recorded in levels. Error values are authoring budgets, not measured deviations."
+    "notes": "367/1199/8153/26661triangles and1/6/6/7draws pass strict budgets. Three original lower levels exact. Close removes324original wall/bay/door/shutter triangles and adds1048physical triangles;25613outside original position/normal/UV/color triangles exact against immutable original-derived V2 fingerprints. Original V1 baseline also preserved. Error measures remain estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 25937,
-    "sourceMaterials": 6,
+    "sourceTriangles": 26661,
+    "sourceMaterials": 7,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 367,
+        "drawCalls": 1,
+        "retainedTriangles": 367,
+        "added": {
+          "facadeStucco": 0,
+          "portalStone": 0,
+          "portalWood": 0,
+          "portalMetal": 0,
+          "facadeShutters": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "district",
+        "triangles": 1199,
+        "drawCalls": 6,
+        "retainedTriangles": 1199,
+        "added": {
+          "facadeStucco": 0,
+          "portalStone": 0,
+          "portalWood": 0,
+          "portalMetal": 0,
+          "facadeShutters": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "street",
+        "triangles": 8153,
+        "drawCalls": 6,
+        "retainedTriangles": 8153,
+        "added": {
+          "facadeStucco": 0,
+          "portalStone": 0,
+          "portalWood": 0,
+          "portalMetal": 0,
+          "facadeShutters": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "closeup",
+        "triangles": 26661,
+        "drawCalls": 7,
+        "retainedTriangles": 25613,
+        "added": {
+          "facadeStucco": 60,
+          "portalStone": 160,
+          "portalWood": 576,
+          "portalMetal": 120,
+          "facadeShutters": 132
+        },
+        "controls": 100,
+        "failed": 0
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; independent terrain PNG encoding error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/u1/u1p/bach_house/verify-facade-construction.mjs"
+    ],
+    "notes": "Imported1/1/1/100actual controls pass: six closed half-width shutters/two gaps/removed lower leaf, eight closed cove facets and empty former lower box region, real wall opening, two recessed leaf fronts/backs, two stiles/clear seam, sixteen reveals, closed stone frame, continuous wood strips and physical ring with open counter. Every new source triangle has nondegenerate metric UVs; normals/winding, source/runtime counts/hashes, exact regeneration and strict LODs pass. Original map/ground hashes exact. No Khronos validator run."
   },
   "limitations": [
-    "Original medium-fi exterior from two primary and three supplemental individually inspected Qualla originals, official museum history and aerial/map control. Hidden ends, exact dimensions and the small rear projection remain photographic estimates; no surveyed plan.",
+    "New rounded bay cove and actual recessed portal/solid paired carved door from native cleared Qualla public-domain plaque and exact native photographer-PD-self front exterior/detail. Two unsupported lower shutter leaves removed and six upper bay leaves narrowed to source-supported paired half-widths, preventing doorway/adjacent shutter intersections. Three original lower levels and every original attribute outside324replaced facade/shutter triangles retained. Original full historic house/steps/rear projection scope retained; contemporary extension remains separately scoped future structure. Earlier attribution/private/aerial imagery excluded as current controls. Wider rear/hidden roof review pending; cove radius/recess depths/door craft/hardware/shutter hinge spacing, dimensions, hidden ends and rear projection remain medium-fi estimates, not survey data.",
     "Surviving historic house only. The timber frame is plastered, so no exposed frame grid is invented. Contemporary museum extension, neighboring buildings, garden landscaping, interiors and photo pixels excluded.",
     "Roof weathering, curved tile profiles, leaded glass, door carving and iron grilles are authored approximations. Small ornament is simplified with distance; no exact lettering reproduced.",
     "Independent unmodified Terrarium ground retained; urban interpolation is not survey accuracy and host terrain may differ. Footprint replacement disabled. No physical-device performance measurement claimed."
@@ -161,6 +264,148 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:50171ed8929913ae3fe194b7a1d8c74ba3e9b37ae431f79b1a9003d9c422aade",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:c81e2fe352533a1bcbaf46c0a4be3bc4f04b8e8539fe375118cdfc997cf0df9a",
+    "referenceInputHash": "sha256:0af5bd93aa2500d7c69769b2297312f452aec1cbad8fb0239f65a5edba0482bb",
+    "acceptedReferencePaths": [
+      "_m/u/1/p/3/bach-house-eisenach-wp/gedenktafel-am-bachhau.jpg"
+    ],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/house-native.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:bb406de1f669a8558c7970e3b3707aab5d4f7957ad686de283fac7b671f77d69",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/u/1/p/3/bach-house-eisenach-wp/bachhaus-in-eisenach.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Bachhaus_in_Eisenach.jpg",
+        "reason": "Earlier attribution/private/aerial imagery excluded as current facade controls. Original full historic-house/steps/rear-projection scope and map/ground retained."
+      },
+      {
+        "path": "_m/u/1/p/3/bach-house-eisenach-wp/bachhaus-eisenach-ruckseite.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Bachhaus_Eisenach,_R%C3%BCckseite.jpg",
+        "reason": "Earlier attribution/private/aerial imagery excluded as current facade controls. Original full historic-house/steps/rear-projection scope and map/ground retained."
+      },
+      {
+        "path": "_m/u/1/p/3/bach-house-eisenach-wp/hero.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Thuringia_Eisenach_asv2020-07_img14_Bach_Museum.jpg",
+        "reason": "Earlier attribution/private/aerial imagery excluded as current facade controls. Original full historic-house/steps/rear-projection scope and map/ground retained."
+      },
+      {
+        "path": "_m/u/1/p/3/bach-house-eisenach-wp/bachhaus-eisenach01.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Bachhaus_Eisenach01.JPG",
+        "reason": "Earlier attribution/private/aerial imagery excluded as current facade controls. Original full historic-house/steps/rear-projection scope and map/ground retained."
+      },
+      {
+        "path": "_m/u/1/p/3/bach-house-eisenach-wp/esa-frauenplan21-bild2.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:ESA_Frauenplan21_Bild2.jpg",
+        "reason": "Earlier attribution/private/aerial imagery excluded as current facade controls. Original full historic-house/steps/rear-projection scope and map/ground retained."
+      },
+      {
+        "url": "https://bachhaus.de/en/museum",
+        "reason": "Earlier attribution/private/aerial imagery excluded as current facade controls. Original full historic-house/steps/rear-projection scope and map/ground retained."
+      },
+      {
+        "url": "https://bachhaus.de/en/faq",
+        "reason": "Earlier attribution/private/aerial imagery excluded as current facade controls. Original full historic-house/steps/rear-projection scope and map/ground retained."
+      },
+      {
+        "url": "https://www.google.com/maps/@50.97149,10.32254,21z/data=!3m1!1e3",
+        "reason": "Earlier attribution/private/aerial imagery excluded as current facade controls. Original full historic-house/steps/rear-projection scope and map/ground retained."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Started with53Qualla reference/candidate records; native917x517published plaque inspected first. Exact native/revision/SHA1bound to named ChristophRadtke own-photo PD-self release; disclosed crop/contrast does not substitute for original photographer dedication. Primary63file category yielded exact native2048x1536photographer-PD-self front original; full image and native1398x886bay/door crop inspected. Native identity/creator grant pinned. Attribution/private/aerial/historical controls excluded. Contemporary extension/landscape/plants/lettering/pixels not copied. Full fixed historic house rear/hidden roof remains pending wider cleared imagery."
+  },
+  "constructionReview": {
+    "status": "bay-portal-and-shutters-completed-full-exterior-awaiting-reference",
+    "model": "bach_house",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:c81e2fe352533a1bcbaf46c0a4be3bc4f04b8e8539fe375118cdfc997cf0df9a",
+    "sourceHash": "sha256:4a8fd70bfe9fb2b462d8bd5e630b4ffd53aff368e308cc55b34ac4e1ffc96065",
+    "runtimeHash": "sha256:232410d19aca8c6fc3e4667b0cca2085218aebfb364fc07647e1d5418c357711",
+    "built": [
+      "Closed eight-facet rounded plaster cove under projecting three-window bay",
+      "Actual curved-corner opening through original front wall with deep jambs and soffits",
+      "Closed smooth red stone portal surround",
+      "Two closed paired wood door leaves, meeting stiles, recessed panels and continuous upper/waist molding strips",
+      "Physical closed iron ring knocker and escutcheons",
+      "Six half-width upper bay shutters with real clear gaps; two unsupported lower shutters removed"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      367,
+      1199,
+      8153,
+      26661
+    ],
+    "drawCalls": [
+      1,
+      6,
+      6,
+      7
+    ],
+    "limits": "Full fixed historic Frauenplan21 house, doorway steps and small rear projection retained. The contemporary museum extension remains a separately scoped future structure. Native Qualla public-domain plaque and exact photographer PD-self front photograph support the new rounded plaster bay, recessed curved-corner portal, paired carved door and shutter correction. Rear, hidden roof and whole-house fidelity remain needs-review; scope has not been narrowed to claim completion. Dimensions, molding profiles, carved panel contours, hardware and current condition remain medium-fi estimates.",
+    "publicDomainPrimaryOriginals": 2,
+    "reusedNativeQuallaOriginals": 1,
+    "roundedCoveFacets": 8,
+    "portalReveals": 16,
+    "closedDoorLeaves": 2,
+    "newHalfWidthShutters": 6,
+    "removedUnsupportedShutterLeaves": 2,
+    "removedOldTriangles": 324,
+    "addedTriangles": 1048,
+    "exactThreeOriginalLowerLevels": true,
+    "fullExteriorCompleted": false,
+    "retainedFixedWholeHistoricHouseScope": true,
+    "storyState": "needs-review",
+    "completedStorySync": {
+      "writtenArticles": 1,
+      "repeatChanges": 0,
+      "fullExteriorCompleted": false
+    }
+  },
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:c81e2fe352533a1bcbaf46c0a4be3bc4f04b8e8539fe375118cdfc997cf0df9a",
+    "sourceHash": "sha256:4a8fd70bfe9fb2b462d8bd5e630b4ffd53aff368e308cc55b34ac4e1ffc96065",
+    "runtimeHash": "sha256:232410d19aca8c6fc3e4667b0cca2085218aebfb364fc07647e1d5418c357711",
+    "decision": "Existing geometry accepted at medium-fi exterior scope; no new construction or rendering claimed.",
+    "comparisonViews": [
+      "shots/shared/front.png",
+      "shots/shared/back.png",
+      "shots/shared/angle-0.png"
+    ],
+    "comparisonReferencePaths": [
+      "_m/u/1/p/3/bach-house-eisenach-wp/gedenktafel-am-bachhau.jpg",
+      ".artifacts/reference-photos/house-native.jpg"
+    ],
+    "comparisonSheetHash": "sha256:ffd3b36c8c0380cbd4f888521b8bc4cc5b5e376b4e1d6972b840d505de324621",
+    "previousFidelityReview": {
+      "target": "medium-fi",
+      "status": "needs-review",
+      "scope": "Historic Frauenplan21 house, doorway steps and small rear projection; contemporary museum extension, gardens and neighbors excluded.",
+      "notes": "Full fixed historic Frauenplan21 house, doorway steps and small rear projection retained. The contemporary museum extension remains a separately scoped future structure. Native Qualla public-domain plaque and exact photographer PD-self front photograph support the new rounded plaster bay, recessed curved-corner portal, paired carved door and shutter correction. Rear, hidden roof and whole-house fidelity remain needs-review; scope has not been narrowed to claim completion. Dimensions, molding profiles, carved panel contours, hardware and current condition remain medium-fi estimates."
+    },
+    "notes": "The cleared facade original confirms the yellow two-storey house, projecting shuttered bay, asymmetrical glazed openings, curved entrance and steep dormered roof. Current model matches these identifying elements. Rear timber layout and unseen roof details remain approximate; the plaque is not facade coverage."
+  },
+  "status": "completed",
+  "validation": {
+    "completed": true,
+    "storyAnnotation": true
   }
 }

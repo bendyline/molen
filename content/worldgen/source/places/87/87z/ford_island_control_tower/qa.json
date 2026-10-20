@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.ford_island_control_tower",
-  "reviewedOn": "2026-10-14",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:49b25816ef7c75ce9e5afd51865f2ea4379e90674cb9ef327fd7b6b5ea643af4",
-  "sourceHash": "sha256:6d99a3f58fdb06068940d93d5ef63808033770e851195d64ad92fae857cb41d1",
-  "runtimeHash": "sha256:5c9d8b2f3da3db49a8d0815fe0cf9a8dbde7786f27bad7e1bc86e5565ff74ee1",
-  "captureReportHash": "sha256:6d7e864796714428b428a274c143f3b4f3a5c22bea31a40f4ddc77cdbb172790",
+  "inputHash": "sha256:725956518f20e5f219d319d143de4b09ac9cf20c910f39e003cb64d1b6015527",
+  "sourceHash": "sha256:007d90a8ee1ed8f68d284a5a9c9ed364e55a84df075c1e39ef6f44164a71446a",
+  "runtimeHash": "sha256:09ee5f8a38cf013b42846915e70fe12bd5734a0964b733423d380a1e35fbaf4f",
+  "captureReportHash": "sha256:335148cadbaaf442842e50fd26a47f1e9162ce0e2bc2823f7664d267f3f78f89",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:335148cadbaaf442842e50fd26a47f1e9162ce0e2bc2823f7664d267f3f78f89",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/switchback-stair.png",
+      "shots/stair-upper-landing.png"
     ],
-    "notes": "Inspected all seven final portable views and the full front frame against the local Qualla museum aerial and inspected supplemental museum front/Warren LeMay side photographs. Restored orange/white shaft, rectangular elevator spine, left spiral stair, three circular balconies and octagonal upper cab remain distinct. Attached two-storey operations block retains two garage bays, horizontal canopies, rounded front bay, outside end stair and separate small aerological cab. Fine tread counts and hidden elevations are generalized."
+    "notes": "All nine current portable views inspected, including two new stair details. Actual two-flight switchback replaces the single flight. Intermediate and upper-storey landings, supports, stringers, treads and rails are visible. Tower, main operations volumes, source frame and ground retained."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:d3df1e5c7d2f933345acc55b7a05bd93b90893b48e168ad6cb40f5e429c0bb57",
+    "captureReportHash": "sha256:9fcaeb0b16f4f848d2bf981559b4d64a5cf42a4d80436db4a0402ce78669fc4f",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,25 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/switchback-stair.png",
+      "shots/shared/stair-upper-landing.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven final shared views including the north-up placement overlay. Painted metal and plain concrete retain metric UVs; glazing stays portable. Model main frontage and two separate cab outlines agree with generalized map controls. Source/runtime transform, reference-point sampling, unload and material-graph reads pass. Flat shared fixture tests materials/transforms; independent preserved terrain validates ground contact."
+    "notes": "All nine current shared-material views inspected, including mapped footprint overlay and stair details. Cream painted metal stairs match the operations exterior; openings beneath the flights remain real. Current placement/transform and unload pass. Flat fixture is alignment/material evidence, not independent ground accuracy.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:93f03bb838de0ae3793e35d43d055682dc4fd1affd8431a36316f07ae693e8bc",
+    "captureReportHash": "sha256:0bb66f3e09837f6e742b2846e77a6ac08dc60b6e115aef03a063251cb89574b7",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +68,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/switchback-stair.png",
+      "medium-fi/stair-upper-landing.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final medium-fi frames across lights, quality modes, front/back, silhouette and forced levels. Initial street framing cut off the operations block; final context scale 1.6 includes the entire structure. Orange/white rhythm, upper cabin and attached operations remain legible. Skyline omits tiny stair and balcony railings; district retains a simplified spiral ribbon. Synthetic neighboring buildings are a style fixture, not Ford Island. No physical-device performance claim."
+    "notes": "All 21 current version-2 frames inspected across lighting/quality, front/back, stair close-ups and four forced detail levels. Switchback/landings persist at distance; skyline uses bounded sloped flights and six-sided distant shaft/bay to retain the new exterior work within budget. Synthetic neighbors are style context."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,83 +94,3074 @@
       ],
       "maxPngEncodingErrorMeters": 0.00003052368164047081
     },
-    "notes": "Tower polygon 35184729299344, small aerological cab 35185639524528 and operations frontage 35184564459484 establish placement. Anchor [-157.96147719025612,21.36059366963048], heading -2.1183586883302734; +X southwest, +Z northwest toward airstrip. Front entrance [-3.25,21] defines datum 3.9986 m. Unmodified terrain spans -0.005436..0.0014 m across mapped control vertices; foundation closes to -0.7 m. Rear connecting block is inferred from the side photo and absent from map outline. Footprint suppression remains off."
+    "notes": "Original tower, low cab and operations mapped controls retained. Anchor [-157.96147719025612,21.36059366963048], heading -2.1183586883302734, +X southwest/+Z northwest toward airstrip unchanged. Original front entrance [-3.25,21], provider-relative datum 3.9986 m, source relief -0.005436..0.0014 m and -0.7 m foundation retained. The exterior stair now occupies its photograph-supported side extent. Source frame and all three ground files retain exact byte hashes; no fitting, flattening or new cutout. Current mapped overlay/transform and source-native stair details inspected. Approximate exterior placement, not surveyed paving levels or certification of another host field."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Restored Ford Island control/water tower, attached operations building and small aerological cab; hangars, aircraft and interiors excluded.",
-    "notes": "Accepted original medium-fi restored control tower with connected operations block and small aerological cab. Local Qualla aerial supplies site context only; inspected museum front and Warren LeMay 2022 side photograph supply architectural evidence. Supplementary review records attribution and URLs. Published 158 ft and 168 ft descriptions are inconsistent; approximately 48.2 m shaft transition and 51.2 m upper deck are an interpretation, not a survey. Hidden windows, detailed rail/tread counts, equipment, interiors and neighboring hangars are excluded or simplified. Photography is not redistributed."
+    "scope": "Restored orange/white tower and connected operations exterior, with newly built two-flight switchback stair; interiors, aircraft, other buildings and vegetation excluded.",
+    "notes": "The native 2013 Bernard Spragg original was individually inspected, including enlarged stair detail. Exact primary photographer CC0 dedication, creator/account/photo ID, Commons reviewed transfer and original image bytes are bound. Prior private museum/CC imagery is excluded after Qualla-first search. Two actual opposite flights, intermediate/upper-storey landings, stringers, support posts and railings follow the public-domain original. Fixed 0/2/4 m levels, widths, tread counts, rail spacing, hidden facades and other later restoration details remain photographic estimates. Existing tower/operations dimensions, source frame, ground and placement retained. No navigable interior or exact 2026 condition claimed; no source pixels embedded."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:1a45d264ed8f1d135387e27faac9b3b9b39d60306e024261ca1944104ff74738",
+    "recipeHash": "sha256:c017f0131b0144dc51f7e641595fb7d76db4b508c3bd48d22ee727562d1a1b6a",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:7f3e2e4ceb82a4bbb79ea3e4e727d7397c986ba83b9549cb635159f575847dc0",
-        "bytes": 70444,
-        "gzipBytes": 11295,
-        "triangles": 992,
-        "cpuBytes": 69024,
-        "gpuBytes": 69024,
+        "hash": "sha256:f0fc10df2ba31cb7215ea209ffb6c6e1041068545854aceaffa2363e853a9847",
+        "bytes": 71500,
+        "gzipBytes": 11920,
+        "triangles": 976,
+        "cpuBytes": 70080,
+        "gpuBytes": 70080,
         "errorMeters": 1.2,
         "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:e8939460d66cc3cb9c552766e58e60e2c8061473cf6d2b6ed4134663682d124d",
-        "bytes": 243328,
-        "gzipBytes": 44548,
-        "triangles": 3338,
-        "cpuBytes": 239556,
-        "gpuBytes": 239556,
+        "hash": "sha256:28cad9a150f334e83f4f7152437e4205495fa735ef29a9406d362d3cdd698719",
+        "bytes": 281004,
+        "gzipBytes": 51560,
+        "triangles": 3854,
+        "cpuBytes": 277212,
+        "gpuBytes": 277212,
         "errorMeters": 0.35,
         "drawCalls": 3
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:69d8262abd9ace959e3b87e5e74686f7dbf4fc2febe301e9639b7dbc4c86cd6b",
-        "bytes": 1059204,
-        "gzipBytes": 203553,
-        "triangles": 13878,
-        "cpuBytes": 1055412,
-        "gpuBytes": 1055412,
+        "hash": "sha256:5df9aaf2b271d9c665c241de53e0063e68a692d0822c132688d7e861f0e8797b",
+        "bytes": 1118408,
+        "gzipBytes": 214334,
+        "triangles": 14670,
+        "cpuBytes": 1114596,
+        "gpuBytes": 1114596,
         "errorMeters": 0.15,
         "drawCalls": 3
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:731debd7998a3860e808a6202bec9bd8a1698a735b8804238c39cb427a07084d",
-        "bytes": 2002144,
-        "gzipBytes": 335035,
-        "triangles": 16666,
-        "cpuBytes": 1999920,
-        "gpuBytes": 1999920,
+        "hash": "sha256:562c6c1439b77d719cf6325f5d4a6aec56fc1d0067f006a921f8d7c333fcdac1",
+        "bytes": 2097184,
+        "gzipBytes": 349127,
+        "triangles": 17458,
+        "cpuBytes": 2094960,
+        "gpuBytes": 2094960,
         "errorMeters": 0,
         "drawCalls": 3
       }
     ],
-    "notes": "All four current hash-bound levels pass strict budgets and were visually inspected: skyline 992, district 3338, street 13878, closeup 16666 triangles. Skyline/district/street are authored. The initial skyline exceeded 1000 by four triangles; small canopy/parapet simplification brought it under budget while retaining the antenna. Error limits are declared authoring budgets, not independent mesh-distance measurements."
+    "notes": "976/3854/14670/17458 triangles, 1/3/3/3 draws pass strict budgets. Skyline retains real sloping flight surfaces, both landings and supports; district/street/close retain 20 individual treads and railings. Distant shaft and curved bay simplify to six sides. Error bounds are authoring estimates, not independent surface-distance certificates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 16666,
+    "sourceTriangles": 17458,
     "sourceMaterials": 3,
     "runtimeLodsVerified": 4,
+    "actualImportedStairChecks": [
+      {
+        "level": "skyline",
+        "triangles": 976,
+        "drawCalls": 1,
+        "controls": 82,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 0,
+            "dx": -0.4,
+            "actualY": 0.2900004605948913,
+            "expectedY": 0.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 0,
+            "dx": 0,
+            "actualY": 0.2900004605948913,
+            "expectedY": 0.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 0,
+            "dx": 0.4,
+            "actualY": 0.2900004605948913,
+            "expectedY": 0.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 1,
+            "dx": -0.4,
+            "actualY": 0.47000046029686854,
+            "expectedY": 0.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 1,
+            "dx": 0,
+            "actualY": 0.47000046029686854,
+            "expectedY": 0.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 1,
+            "dx": 0.4,
+            "actualY": 0.47000046029686854,
+            "expectedY": 0.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 2,
+            "dx": -0.4,
+            "actualY": 0.6500004599988457,
+            "expectedY": 0.6000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 2,
+            "dx": 0,
+            "actualY": 0.6500004599988457,
+            "expectedY": 0.6000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 2,
+            "dx": 0.4,
+            "actualY": 0.6500004599988457,
+            "expectedY": 0.6000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 3,
+            "dx": -0.4,
+            "actualY": 0.8300004597008208,
+            "expectedY": 0.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 3,
+            "dx": 0,
+            "actualY": 0.8300004597008208,
+            "expectedY": 0.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 3,
+            "dx": 0.4,
+            "actualY": 0.8300004597008208,
+            "expectedY": 0.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 4,
+            "dx": -0.4,
+            "actualY": 1.010000459402798,
+            "expectedY": 1
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 4,
+            "dx": 0,
+            "actualY": 1.010000459402798,
+            "expectedY": 1
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 4,
+            "dx": 0.4,
+            "actualY": 1.010000459402798,
+            "expectedY": 1
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 5,
+            "dx": -0.4,
+            "actualY": 1.1900004591047755,
+            "expectedY": 1.2000000000000002
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 5,
+            "dx": 0,
+            "actualY": 1.1900004591047755,
+            "expectedY": 1.2000000000000002
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 5,
+            "dx": 0.4,
+            "actualY": 1.1900004591047755,
+            "expectedY": 1.2000000000000002
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 6,
+            "dx": -0.4,
+            "actualY": 1.3700004588067525,
+            "expectedY": 1.4000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 6,
+            "dx": 0,
+            "actualY": 1.3700004588067525,
+            "expectedY": 1.4000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 6,
+            "dx": 0.4,
+            "actualY": 1.3700004588067525,
+            "expectedY": 1.4000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 7,
+            "dx": -0.4,
+            "actualY": 1.5500004585087295,
+            "expectedY": 1.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 7,
+            "dx": 0,
+            "actualY": 1.5500004585087295,
+            "expectedY": 1.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 7,
+            "dx": 0.4,
+            "actualY": 1.5500004585087295,
+            "expectedY": 1.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 8,
+            "dx": -0.4,
+            "actualY": 1.7300004582107047,
+            "expectedY": 1.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 8,
+            "dx": 0,
+            "actualY": 1.7300004582107047,
+            "expectedY": 1.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 8,
+            "dx": 0.4,
+            "actualY": 1.7300004582107047,
+            "expectedY": 1.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 9,
+            "dx": -0.4,
+            "actualY": 1.9100004579126821,
+            "expectedY": 2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 9,
+            "dx": 0,
+            "actualY": 1.9100004579126821,
+            "expectedY": 2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 9,
+            "dx": 0.4,
+            "actualY": 1.9100004579126821,
+            "expectedY": 2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 0,
+            "dx": -0.4,
+            "actualY": 2.2899995875358714,
+            "expectedY": 2.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 0,
+            "dx": 0,
+            "actualY": 2.2899995875358714,
+            "expectedY": 2.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 0,
+            "dx": 0.4,
+            "actualY": 2.2899995875358714,
+            "expectedY": 2.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 1,
+            "dx": -0.4,
+            "actualY": 2.4699995827675,
+            "expectedY": 2.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 1,
+            "dx": 0,
+            "actualY": 2.4699995827675,
+            "expectedY": 2.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 1,
+            "dx": 0.4,
+            "actualY": 2.4699995827675,
+            "expectedY": 2.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 2,
+            "dx": -0.4,
+            "actualY": 2.6499995779991288,
+            "expectedY": 2.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 2,
+            "dx": 0,
+            "actualY": 2.6499995779991288,
+            "expectedY": 2.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 2,
+            "dx": 0.4,
+            "actualY": 2.6499995779991288,
+            "expectedY": 2.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 3,
+            "dx": -0.4,
+            "actualY": 2.8299995732307557,
+            "expectedY": 2.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 3,
+            "dx": 0,
+            "actualY": 2.8299995732307557,
+            "expectedY": 2.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 3,
+            "dx": 0.4,
+            "actualY": 2.8299995732307557,
+            "expectedY": 2.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 4,
+            "dx": -0.4,
+            "actualY": 3.0099995684623844,
+            "expectedY": 3
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 4,
+            "dx": 0,
+            "actualY": 3.0099995684623844,
+            "expectedY": 3
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 4,
+            "dx": 0.4,
+            "actualY": 3.0099995684623844,
+            "expectedY": 3
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 5,
+            "dx": -0.4,
+            "actualY": 3.189999563694013,
+            "expectedY": 3.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 5,
+            "dx": 0,
+            "actualY": 3.189999563694013,
+            "expectedY": 3.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 5,
+            "dx": 0.4,
+            "actualY": 3.189999563694013,
+            "expectedY": 3.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 6,
+            "dx": -0.4,
+            "actualY": 3.369999558925642,
+            "expectedY": 3.4000000000000004
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 6,
+            "dx": 0,
+            "actualY": 3.369999558925642,
+            "expectedY": 3.4000000000000004
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 6,
+            "dx": 0.4,
+            "actualY": 3.369999558925642,
+            "expectedY": 3.4000000000000004
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 7,
+            "dx": -0.4,
+            "actualY": 3.549999554157271,
+            "expectedY": 3.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 7,
+            "dx": 0,
+            "actualY": 3.549999554157271,
+            "expectedY": 3.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 7,
+            "dx": 0.4,
+            "actualY": 3.549999554157271,
+            "expectedY": 3.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 8,
+            "dx": -0.4,
+            "actualY": 3.7299995493888978,
+            "expectedY": 3.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 8,
+            "dx": 0,
+            "actualY": 3.7299995493888978,
+            "expectedY": 3.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 8,
+            "dx": 0.4,
+            "actualY": 3.7299995493888978,
+            "expectedY": 3.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 9,
+            "dx": -0.4,
+            "actualY": 4,
+            "expectedY": 4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 9,
+            "dx": 0,
+            "actualY": 4,
+            "expectedY": 4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 9,
+            "dx": 0.4,
+            "actualY": 4,
+            "expectedY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": -0.9149999999999999,
+            "dz": -0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": -0.9149999999999999,
+            "dz": 0,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": -0.9149999999999999,
+            "dz": 0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0,
+            "dz": -0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0,
+            "dz": 0,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0,
+            "dz": 0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0.9149999999999999,
+            "dz": -0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0.9149999999999999,
+            "dz": 0,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0.9149999999999999,
+            "dz": 0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": -0.51,
+            "dz": -0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": -0.51,
+            "dz": 0,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": -0.51,
+            "dz": 0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0,
+            "dz": -0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0,
+            "dz": 0,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0,
+            "dz": 0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0.51,
+            "dz": -0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0.51,
+            "dz": 0,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0.51,
+            "dz": 0.33,
+            "actualY": 4
+          },
+          {
+            "name": "lower stair remains open beneath treads",
+            "pass": true
+          },
+          {
+            "name": "upper stair remains open beneath treads",
+            "pass": true
+          },
+          {
+            "name": "operations roof retained",
+            "pass": true
+          },
+          {
+            "name": "upper tower cab retained",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "level": "district",
+        "triangles": 3854,
+        "drawCalls": 3,
+        "controls": 82,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 0,
+            "dx": -0.4,
+            "actualY": 0.20000000298023224,
+            "expectedY": 0.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 0,
+            "dx": 0,
+            "actualY": 0.20000000298023224,
+            "expectedY": 0.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 0,
+            "dx": 0.4,
+            "actualY": 0.20000000298023224,
+            "expectedY": 0.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 1,
+            "dx": -0.4,
+            "actualY": 0.4000000059604645,
+            "expectedY": 0.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 1,
+            "dx": 0,
+            "actualY": 0.4000000059604645,
+            "expectedY": 0.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 1,
+            "dx": 0.4,
+            "actualY": 0.4000000059604645,
+            "expectedY": 0.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 2,
+            "dx": -0.4,
+            "actualY": 0.6000000238418579,
+            "expectedY": 0.6000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 2,
+            "dx": 0,
+            "actualY": 0.6000000238418579,
+            "expectedY": 0.6000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 2,
+            "dx": 0.4,
+            "actualY": 0.6000000238418579,
+            "expectedY": 0.6000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 3,
+            "dx": -0.4,
+            "actualY": 0.800000011920929,
+            "expectedY": 0.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 3,
+            "dx": 0,
+            "actualY": 0.800000011920929,
+            "expectedY": 0.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 3,
+            "dx": 0.4,
+            "actualY": 0.800000011920929,
+            "expectedY": 0.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 4,
+            "dx": -0.4,
+            "actualY": 1,
+            "expectedY": 1
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 4,
+            "dx": 0,
+            "actualY": 1,
+            "expectedY": 1
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 4,
+            "dx": 0.4,
+            "actualY": 1,
+            "expectedY": 1
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 5,
+            "dx": -0.4,
+            "actualY": 1.2000000476837158,
+            "expectedY": 1.2000000000000002
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 5,
+            "dx": 0,
+            "actualY": 1.2000000476837158,
+            "expectedY": 1.2000000000000002
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 5,
+            "dx": 0.4,
+            "actualY": 1.2000000476837158,
+            "expectedY": 1.2000000000000002
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 6,
+            "dx": -0.4,
+            "actualY": 1.399999976158142,
+            "expectedY": 1.4000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 6,
+            "dx": 0,
+            "actualY": 1.399999976158142,
+            "expectedY": 1.4000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 6,
+            "dx": 0.4,
+            "actualY": 1.399999976158142,
+            "expectedY": 1.4000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 7,
+            "dx": -0.4,
+            "actualY": 1.600000023841858,
+            "expectedY": 1.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 7,
+            "dx": 0,
+            "actualY": 1.600000023841858,
+            "expectedY": 1.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 7,
+            "dx": 0.4,
+            "actualY": 1.600000023841858,
+            "expectedY": 1.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 8,
+            "dx": -0.4,
+            "actualY": 1.7999999523162842,
+            "expectedY": 1.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 8,
+            "dx": 0,
+            "actualY": 1.7999999523162842,
+            "expectedY": 1.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 8,
+            "dx": 0.4,
+            "actualY": 1.7999999523162842,
+            "expectedY": 1.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 9,
+            "dx": -0.4,
+            "actualY": 2,
+            "expectedY": 2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 9,
+            "dx": 0,
+            "actualY": 2,
+            "expectedY": 2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 9,
+            "dx": 0.4,
+            "actualY": 2,
+            "expectedY": 2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 0,
+            "dx": -0.4,
+            "actualY": 2.200000047683716,
+            "expectedY": 2.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 0,
+            "dx": 0,
+            "actualY": 2.200000047683716,
+            "expectedY": 2.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 0,
+            "dx": 0.4,
+            "actualY": 2.200000047683716,
+            "expectedY": 2.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 1,
+            "dx": -0.4,
+            "actualY": 2.4000000953674316,
+            "expectedY": 2.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 1,
+            "dx": 0,
+            "actualY": 2.4000000953674316,
+            "expectedY": 2.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 1,
+            "dx": 0.4,
+            "actualY": 2.4000000953674316,
+            "expectedY": 2.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 2,
+            "dx": -0.4,
+            "actualY": 2.5999999046325684,
+            "expectedY": 2.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 2,
+            "dx": 0,
+            "actualY": 2.5999999046325684,
+            "expectedY": 2.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 2,
+            "dx": 0.4,
+            "actualY": 2.5999999046325684,
+            "expectedY": 2.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 3,
+            "dx": -0.4,
+            "actualY": 2.799999952316284,
+            "expectedY": 2.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 3,
+            "dx": 0,
+            "actualY": 2.799999952316284,
+            "expectedY": 2.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 3,
+            "dx": 0.4,
+            "actualY": 2.799999952316284,
+            "expectedY": 2.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 4,
+            "dx": -0.4,
+            "actualY": 3,
+            "expectedY": 3
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 4,
+            "dx": 0,
+            "actualY": 3,
+            "expectedY": 3
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 4,
+            "dx": 0.4,
+            "actualY": 3,
+            "expectedY": 3
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 5,
+            "dx": -0.4,
+            "actualY": 3.200000047683716,
+            "expectedY": 3.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 5,
+            "dx": 0,
+            "actualY": 3.200000047683716,
+            "expectedY": 3.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 5,
+            "dx": 0.4,
+            "actualY": 3.200000047683716,
+            "expectedY": 3.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 6,
+            "dx": -0.4,
+            "actualY": 3.4000000953674316,
+            "expectedY": 3.4000000000000004
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 6,
+            "dx": 0,
+            "actualY": 3.4000000953674316,
+            "expectedY": 3.4000000000000004
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 6,
+            "dx": 0.4,
+            "actualY": 3.4000000953674316,
+            "expectedY": 3.4000000000000004
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 7,
+            "dx": -0.4,
+            "actualY": 3.5999999046325684,
+            "expectedY": 3.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 7,
+            "dx": 0,
+            "actualY": 3.5999999046325684,
+            "expectedY": 3.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 7,
+            "dx": 0.4,
+            "actualY": 3.5999999046325684,
+            "expectedY": 3.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 8,
+            "dx": -0.4,
+            "actualY": 3.799999952316284,
+            "expectedY": 3.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 8,
+            "dx": 0,
+            "actualY": 3.799999952316284,
+            "expectedY": 3.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 8,
+            "dx": 0.4,
+            "actualY": 3.799999952316284,
+            "expectedY": 3.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 9,
+            "dx": -0.4,
+            "actualY": 4,
+            "expectedY": 4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 9,
+            "dx": 0,
+            "actualY": 4,
+            "expectedY": 4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 9,
+            "dx": 0.4,
+            "actualY": 4,
+            "expectedY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": -0.9149999999999999,
+            "dz": -0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": -0.9149999999999999,
+            "dz": 0,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": -0.9149999999999999,
+            "dz": 0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0,
+            "dz": -0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0,
+            "dz": 0,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0,
+            "dz": 0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0.9149999999999999,
+            "dz": -0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0.9149999999999999,
+            "dz": 0,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0.9149999999999999,
+            "dz": 0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": -0.51,
+            "dz": -0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": -0.51,
+            "dz": 0,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": -0.51,
+            "dz": 0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0,
+            "dz": -0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0,
+            "dz": 0,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0,
+            "dz": 0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0.51,
+            "dz": -0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0.51,
+            "dz": 0,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0.51,
+            "dz": 0.33,
+            "actualY": 4
+          },
+          {
+            "name": "lower stair remains open beneath treads",
+            "pass": true
+          },
+          {
+            "name": "upper stair remains open beneath treads",
+            "pass": true
+          },
+          {
+            "name": "operations roof retained",
+            "pass": true
+          },
+          {
+            "name": "upper tower cab retained",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "level": "street",
+        "triangles": 14670,
+        "drawCalls": 3,
+        "controls": 82,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 0,
+            "dx": -0.4,
+            "actualY": 0.20000000298023224,
+            "expectedY": 0.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 0,
+            "dx": 0,
+            "actualY": 0.20000000298023224,
+            "expectedY": 0.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 0,
+            "dx": 0.4,
+            "actualY": 0.20000000298023224,
+            "expectedY": 0.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 1,
+            "dx": -0.4,
+            "actualY": 0.4000000059604645,
+            "expectedY": 0.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 1,
+            "dx": 0,
+            "actualY": 0.4000000059604645,
+            "expectedY": 0.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 1,
+            "dx": 0.4,
+            "actualY": 0.4000000059604645,
+            "expectedY": 0.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 2,
+            "dx": -0.4,
+            "actualY": 0.6000000238418579,
+            "expectedY": 0.6000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 2,
+            "dx": 0,
+            "actualY": 0.6000000238418579,
+            "expectedY": 0.6000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 2,
+            "dx": 0.4,
+            "actualY": 0.6000000238418579,
+            "expectedY": 0.6000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 3,
+            "dx": -0.4,
+            "actualY": 0.800000011920929,
+            "expectedY": 0.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 3,
+            "dx": 0,
+            "actualY": 0.800000011920929,
+            "expectedY": 0.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 3,
+            "dx": 0.4,
+            "actualY": 0.800000011920929,
+            "expectedY": 0.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 4,
+            "dx": -0.4,
+            "actualY": 1,
+            "expectedY": 1
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 4,
+            "dx": 0,
+            "actualY": 1,
+            "expectedY": 1
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 4,
+            "dx": 0.4,
+            "actualY": 1,
+            "expectedY": 1
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 5,
+            "dx": -0.4,
+            "actualY": 1.2000000476837158,
+            "expectedY": 1.2000000000000002
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 5,
+            "dx": 0,
+            "actualY": 1.2000000476837158,
+            "expectedY": 1.2000000000000002
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 5,
+            "dx": 0.4,
+            "actualY": 1.2000000476837158,
+            "expectedY": 1.2000000000000002
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 6,
+            "dx": -0.4,
+            "actualY": 1.399999976158142,
+            "expectedY": 1.4000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 6,
+            "dx": 0,
+            "actualY": 1.399999976158142,
+            "expectedY": 1.4000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 6,
+            "dx": 0.4,
+            "actualY": 1.399999976158142,
+            "expectedY": 1.4000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 7,
+            "dx": -0.4,
+            "actualY": 1.600000023841858,
+            "expectedY": 1.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 7,
+            "dx": 0,
+            "actualY": 1.600000023841858,
+            "expectedY": 1.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 7,
+            "dx": 0.4,
+            "actualY": 1.600000023841858,
+            "expectedY": 1.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 8,
+            "dx": -0.4,
+            "actualY": 1.7999999523162842,
+            "expectedY": 1.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 8,
+            "dx": 0,
+            "actualY": 1.7999999523162842,
+            "expectedY": 1.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 8,
+            "dx": 0.4,
+            "actualY": 1.7999999523162842,
+            "expectedY": 1.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 9,
+            "dx": -0.4,
+            "actualY": 2,
+            "expectedY": 2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 9,
+            "dx": 0,
+            "actualY": 2,
+            "expectedY": 2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 9,
+            "dx": 0.4,
+            "actualY": 2,
+            "expectedY": 2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 0,
+            "dx": -0.4,
+            "actualY": 2.200000047683716,
+            "expectedY": 2.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 0,
+            "dx": 0,
+            "actualY": 2.200000047683716,
+            "expectedY": 2.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 0,
+            "dx": 0.4,
+            "actualY": 2.200000047683716,
+            "expectedY": 2.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 1,
+            "dx": -0.4,
+            "actualY": 2.4000000953674316,
+            "expectedY": 2.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 1,
+            "dx": 0,
+            "actualY": 2.4000000953674316,
+            "expectedY": 2.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 1,
+            "dx": 0.4,
+            "actualY": 2.4000000953674316,
+            "expectedY": 2.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 2,
+            "dx": -0.4,
+            "actualY": 2.5999999046325684,
+            "expectedY": 2.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 2,
+            "dx": 0,
+            "actualY": 2.5999999046325684,
+            "expectedY": 2.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 2,
+            "dx": 0.4,
+            "actualY": 2.5999999046325684,
+            "expectedY": 2.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 3,
+            "dx": -0.4,
+            "actualY": 2.799999952316284,
+            "expectedY": 2.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 3,
+            "dx": 0,
+            "actualY": 2.799999952316284,
+            "expectedY": 2.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 3,
+            "dx": 0.4,
+            "actualY": 2.799999952316284,
+            "expectedY": 2.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 4,
+            "dx": -0.4,
+            "actualY": 3,
+            "expectedY": 3
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 4,
+            "dx": 0,
+            "actualY": 3,
+            "expectedY": 3
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 4,
+            "dx": 0.4,
+            "actualY": 3,
+            "expectedY": 3
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 5,
+            "dx": -0.4,
+            "actualY": 3.200000047683716,
+            "expectedY": 3.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 5,
+            "dx": 0,
+            "actualY": 3.200000047683716,
+            "expectedY": 3.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 5,
+            "dx": 0.4,
+            "actualY": 3.200000047683716,
+            "expectedY": 3.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 6,
+            "dx": -0.4,
+            "actualY": 3.4000000953674316,
+            "expectedY": 3.4000000000000004
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 6,
+            "dx": 0,
+            "actualY": 3.4000000953674316,
+            "expectedY": 3.4000000000000004
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 6,
+            "dx": 0.4,
+            "actualY": 3.4000000953674316,
+            "expectedY": 3.4000000000000004
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 7,
+            "dx": -0.4,
+            "actualY": 3.5999999046325684,
+            "expectedY": 3.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 7,
+            "dx": 0,
+            "actualY": 3.5999999046325684,
+            "expectedY": 3.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 7,
+            "dx": 0.4,
+            "actualY": 3.5999999046325684,
+            "expectedY": 3.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 8,
+            "dx": -0.4,
+            "actualY": 3.799999952316284,
+            "expectedY": 3.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 8,
+            "dx": 0,
+            "actualY": 3.799999952316284,
+            "expectedY": 3.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 8,
+            "dx": 0.4,
+            "actualY": 3.799999952316284,
+            "expectedY": 3.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 9,
+            "dx": -0.4,
+            "actualY": 4,
+            "expectedY": 4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 9,
+            "dx": 0,
+            "actualY": 4,
+            "expectedY": 4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 9,
+            "dx": 0.4,
+            "actualY": 4,
+            "expectedY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": -0.9149999999999999,
+            "dz": -0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": -0.9149999999999999,
+            "dz": 0,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": -0.9149999999999999,
+            "dz": 0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0,
+            "dz": -0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0,
+            "dz": 0,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0,
+            "dz": 0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0.9149999999999999,
+            "dz": -0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0.9149999999999999,
+            "dz": 0,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0.9149999999999999,
+            "dz": 0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": -0.51,
+            "dz": -0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": -0.51,
+            "dz": 0,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": -0.51,
+            "dz": 0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0,
+            "dz": -0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0,
+            "dz": 0,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0,
+            "dz": 0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0.51,
+            "dz": -0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0.51,
+            "dz": 0,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0.51,
+            "dz": 0.33,
+            "actualY": 4
+          },
+          {
+            "name": "lower stair remains open beneath treads",
+            "pass": true
+          },
+          {
+            "name": "upper stair remains open beneath treads",
+            "pass": true
+          },
+          {
+            "name": "operations roof retained",
+            "pass": true
+          },
+          {
+            "name": "upper tower cab retained",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "level": "closeup",
+        "triangles": 17458,
+        "drawCalls": 3,
+        "controls": 82,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 0,
+            "dx": -0.4,
+            "actualY": 0.20000000298023224,
+            "expectedY": 0.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 0,
+            "dx": 0,
+            "actualY": 0.20000000298023224,
+            "expectedY": 0.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 0,
+            "dx": 0.4,
+            "actualY": 0.20000000298023224,
+            "expectedY": 0.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 1,
+            "dx": -0.4,
+            "actualY": 0.4000000059604645,
+            "expectedY": 0.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 1,
+            "dx": 0,
+            "actualY": 0.4000000059604645,
+            "expectedY": 0.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 1,
+            "dx": 0.4,
+            "actualY": 0.4000000059604645,
+            "expectedY": 0.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 2,
+            "dx": -0.4,
+            "actualY": 0.6000000238418579,
+            "expectedY": 0.6000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 2,
+            "dx": 0,
+            "actualY": 0.6000000238418579,
+            "expectedY": 0.6000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 2,
+            "dx": 0.4,
+            "actualY": 0.6000000238418579,
+            "expectedY": 0.6000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 3,
+            "dx": -0.4,
+            "actualY": 0.800000011920929,
+            "expectedY": 0.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 3,
+            "dx": 0,
+            "actualY": 0.800000011920929,
+            "expectedY": 0.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 3,
+            "dx": 0.4,
+            "actualY": 0.800000011920929,
+            "expectedY": 0.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 4,
+            "dx": -0.4,
+            "actualY": 1,
+            "expectedY": 1
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 4,
+            "dx": 0,
+            "actualY": 1,
+            "expectedY": 1
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 4,
+            "dx": 0.4,
+            "actualY": 1,
+            "expectedY": 1
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 5,
+            "dx": -0.4,
+            "actualY": 1.2000000476837158,
+            "expectedY": 1.2000000000000002
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 5,
+            "dx": 0,
+            "actualY": 1.2000000476837158,
+            "expectedY": 1.2000000000000002
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 5,
+            "dx": 0.4,
+            "actualY": 1.2000000476837158,
+            "expectedY": 1.2000000000000002
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 6,
+            "dx": -0.4,
+            "actualY": 1.399999976158142,
+            "expectedY": 1.4000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 6,
+            "dx": 0,
+            "actualY": 1.399999976158142,
+            "expectedY": 1.4000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 6,
+            "dx": 0.4,
+            "actualY": 1.399999976158142,
+            "expectedY": 1.4000000000000001
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 7,
+            "dx": -0.4,
+            "actualY": 1.600000023841858,
+            "expectedY": 1.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 7,
+            "dx": 0,
+            "actualY": 1.600000023841858,
+            "expectedY": 1.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 7,
+            "dx": 0.4,
+            "actualY": 1.600000023841858,
+            "expectedY": 1.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 8,
+            "dx": -0.4,
+            "actualY": 1.7999999523162842,
+            "expectedY": 1.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 8,
+            "dx": 0,
+            "actualY": 1.7999999523162842,
+            "expectedY": 1.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 8,
+            "dx": 0.4,
+            "actualY": 1.7999999523162842,
+            "expectedY": 1.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 9,
+            "dx": -0.4,
+            "actualY": 2,
+            "expectedY": 2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 9,
+            "dx": 0,
+            "actualY": 2,
+            "expectedY": 2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 0,
+            "i": 9,
+            "dx": 0.4,
+            "actualY": 2,
+            "expectedY": 2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 0,
+            "dx": -0.4,
+            "actualY": 2.200000047683716,
+            "expectedY": 2.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 0,
+            "dx": 0,
+            "actualY": 2.200000047683716,
+            "expectedY": 2.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 0,
+            "dx": 0.4,
+            "actualY": 2.200000047683716,
+            "expectedY": 2.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 1,
+            "dx": -0.4,
+            "actualY": 2.4000000953674316,
+            "expectedY": 2.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 1,
+            "dx": 0,
+            "actualY": 2.4000000953674316,
+            "expectedY": 2.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 1,
+            "dx": 0.4,
+            "actualY": 2.4000000953674316,
+            "expectedY": 2.4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 2,
+            "dx": -0.4,
+            "actualY": 2.5999999046325684,
+            "expectedY": 2.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 2,
+            "dx": 0,
+            "actualY": 2.5999999046325684,
+            "expectedY": 2.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 2,
+            "dx": 0.4,
+            "actualY": 2.5999999046325684,
+            "expectedY": 2.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 3,
+            "dx": -0.4,
+            "actualY": 2.799999952316284,
+            "expectedY": 2.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 3,
+            "dx": 0,
+            "actualY": 2.799999952316284,
+            "expectedY": 2.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 3,
+            "dx": 0.4,
+            "actualY": 2.799999952316284,
+            "expectedY": 2.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 4,
+            "dx": -0.4,
+            "actualY": 3,
+            "expectedY": 3
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 4,
+            "dx": 0,
+            "actualY": 3,
+            "expectedY": 3
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 4,
+            "dx": 0.4,
+            "actualY": 3,
+            "expectedY": 3
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 5,
+            "dx": -0.4,
+            "actualY": 3.200000047683716,
+            "expectedY": 3.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 5,
+            "dx": 0,
+            "actualY": 3.200000047683716,
+            "expectedY": 3.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 5,
+            "dx": 0.4,
+            "actualY": 3.200000047683716,
+            "expectedY": 3.2
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 6,
+            "dx": -0.4,
+            "actualY": 3.4000000953674316,
+            "expectedY": 3.4000000000000004
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 6,
+            "dx": 0,
+            "actualY": 3.4000000953674316,
+            "expectedY": 3.4000000000000004
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 6,
+            "dx": 0.4,
+            "actualY": 3.4000000953674316,
+            "expectedY": 3.4000000000000004
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 7,
+            "dx": -0.4,
+            "actualY": 3.5999999046325684,
+            "expectedY": 3.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 7,
+            "dx": 0,
+            "actualY": 3.5999999046325684,
+            "expectedY": 3.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 7,
+            "dx": 0.4,
+            "actualY": 3.5999999046325684,
+            "expectedY": 3.6
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 8,
+            "dx": -0.4,
+            "actualY": 3.799999952316284,
+            "expectedY": 3.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 8,
+            "dx": 0,
+            "actualY": 3.799999952316284,
+            "expectedY": 3.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 8,
+            "dx": 0.4,
+            "actualY": 3.799999952316284,
+            "expectedY": 3.8
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 9,
+            "dx": -0.4,
+            "actualY": 4,
+            "expectedY": 4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 9,
+            "dx": 0,
+            "actualY": 4,
+            "expectedY": 4
+          },
+          {
+            "name": "both flights have upward-facing physical tread or bounded coarse ramp",
+            "pass": true,
+            "flight": 1,
+            "i": 9,
+            "dx": 0.4,
+            "actualY": 4,
+            "expectedY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": -0.9149999999999999,
+            "dz": -0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": -0.9149999999999999,
+            "dz": 0,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": -0.9149999999999999,
+            "dz": 0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0,
+            "dz": -0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0,
+            "dz": 0,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0,
+            "dz": 0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0.9149999999999999,
+            "dz": -0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0.9149999999999999,
+            "dz": 0,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 15.4,
+            "y": 2,
+            "z": 16.45,
+            "dx": 0.9149999999999999,
+            "dz": 0.33,
+            "actualY": 2
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": -0.51,
+            "dz": -0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": -0.51,
+            "dz": 0,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": -0.51,
+            "dz": 0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0,
+            "dz": -0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0,
+            "dz": 0,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0,
+            "dz": 0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0.51,
+            "dz": -0.33,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0.51,
+            "dz": 0,
+            "actualY": 4
+          },
+          {
+            "name": "continuous intermediate and upper landing floor",
+            "pass": true,
+            "x": 14.65,
+            "y": 4,
+            "z": 20.35,
+            "dx": 0.51,
+            "dz": 0.33,
+            "actualY": 4
+          },
+          {
+            "name": "lower stair remains open beneath treads",
+            "pass": true
+          },
+          {
+            "name": "upper stair remains open beneath treads",
+            "pass": true
+          },
+          {
+            "name": "operations roof retained",
+            "pass": true
+          },
+          {
+            "name": "upper tower cab retained",
+            "pass": true
+          }
+        ]
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/87/87z/ford_island_control_tower/verify-stair.mjs"
+    ],
+    "notes": "Targeted generation/import/exact regeneration, asset integrity, strict budgets and source/imported normals/winding/UVs pass. Each imported level passes 82 controls covering both flight surfaces, landing coverage, beneath-flight air and retained roof/cab. One focused CC0 policy test accepts the same exact photographer/photo dedication and rejects attribution-only license, wrong creator, wrong photo, restrictions or missing transfer review."
   },
   "limitations": [
-    "Original medium-fi restored exterior, using inspected local Qualla aerial for site context and museum/Warren LeMay supplemental front and side photographs for architectural evidence; not a measured survey.",
+    "Qualla corpus searched first. New stair construction uses the inspected original 2013 Bernard Spragg photograph with the photographer’s explicit primary CC0 dedication. Prior private museum and attribution-licensed imagery is excluded; mapped operations/tower frame retained. Not a measured survey.",
+    "Two physical switchback flights, intermediate landing, upper-storey landing, stringers, support posts and railings follow the public-domain photograph. Flight widths, tread counts and 0/2/4 m levels are photographic estimates. The 2013 reference does not certify every detail of the later restoration.",
     "Museum sources describe 158 ft tower height and 168 ft observation access differently. The recipe approximates a 48.2 m shaft/tank transition and 51.2 m upper deck; individual levels, cabin roof and antenna heights are estimates.",
     "Orange/white restored exterior represents the modern tower, not the incomplete camouflage-era 1941 structure. Spiral tread count, hidden rear windows, rail subdivisions, doors and rooftop equipment are simplified.",
     "Includes the attached operations building and small aerological cab. Hangars, museum aircraft, interiors, vegetation and other site structures are excluded.",
@@ -162,6 +3170,76 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:a2ea2e827b92b7c2039e2167510390f1b591bde01f042cab685113e721398acf",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:725956518f20e5f219d319d143de4b09ac9cf20c910f39e003cb64d1b6015527",
+    "referenceInputHash": "ab4a94afe9addc454d126d0ebdc753bbbc155eb9b9341bf765189fe9faaeec9b",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/spragg-tower-2013.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:e608825d3828dc9261b74c824aea5ff8e74986c8a84fa6ac3af774497da09a1c",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/8/7/z/9/ford-island-wp/2-11-aerial-2-8101025775.jpg",
+        "reason": "Earlier attribution-licensed aerial excluded."
+      },
+      {
+        "url": "https://www.pearlharboraviationmuseum.org/news/blog-archives/restoration-of-ford-island-control-tower/",
+        "reason": "Private museum photograph excluded; no public-domain grant."
+      },
+      {
+        "url": "https://commons.wikimedia.org/wiki/File:Ford_Island_Control_Tower_and_Ford_Island_Operations_Building,_Ford_Island,_Pearl_Harbor,_Honolulu,_HI_-_52268712575.jpg",
+        "reason": "Earlier CC BY-SA photograph excluded."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Started with local aviation-museum published media, Ford Island corpus and 46 candidate records. Relevant historic military aerials do not resolve restored external stairs. Former CC aerial/private museum/CC side photos excluded. Then exact native 2013 photographer-released CC0 original inspected individually. Primary dedication and exact reviewed Commons transfer both bound to creator/photo ID and original SHA-1/SHA-256; generic public-domain labels alone do not qualify."
+  },
+  "constructionReview": {
+    "status": "completed-for-bounded-medium-fi-exterior",
+    "model": "ford_island_control_tower",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:725956518f20e5f219d319d143de4b09ac9cf20c910f39e003cb64d1b6015527",
+    "sourceHash": "sha256:007d90a8ee1ed8f68d284a5a9c9ed364e55a84df075c1e39ef6f44164a71446a",
+    "runtimeHash": "sha256:09ee5f8a38cf013b42846915e70fe12bd5734a0964b733423d380a1e35fbaf4f",
+    "built": [
+      "Two opposite external stair flights replacing the single flight",
+      "Intermediate and upper-storey landings",
+      "Physical treads, sloped stringers and support posts",
+      "Flight and landing railings with real air beneath stairs"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      976,
+      3854,
+      14670,
+      17458
+    ],
+    "drawCalls": [
+      1,
+      3,
+      3,
+      3
+    ],
+    "limits": "The native 2013 Bernard Spragg original was individually inspected, including enlarged stair detail. Exact primary photographer CC0 dedication, creator/account/photo ID, Commons reviewed transfer and original image bytes are bound. Prior private museum/CC imagery is excluded after Qualla-first search. Two actual opposite flights, intermediate/upper-storey landings, stringers, support posts and railings follow the public-domain original. Fixed 0/2/4 m levels, widths, tread counts, rail spacing, hidden facades and other later restoration details remain photographic estimates. Existing tower/operations dimensions, source frame, ground and placement retained. No navigable interior or exact 2026 condition claimed; no source pixels embedded.",
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
   }
 }

@@ -8,7 +8,7 @@ Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.js
 
 - [Pearl Harbor Aviation Museum](https://qualla.com/pearl-harbor-aviation-museum/)
 
-Original medium-fi exterior from a local Qualla aerial plus individually inspected museum and architect front photographs; no survey accuracy claimed.
+Owner accepted this medium-fi exterior on 2026-10-19. Active imagery is the public-domain Navy80-G-32480historic reference; current entrance details remain approximate. Earlier private imagery is excluded.
 
 Mapped approximately 68.7 by 47.7 m footprint and northeast entrance are retained. Architect project floor area is not assumed to equal the mapped footprint.
 

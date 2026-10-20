@@ -1,0 +1,397 @@
+{
+  "planId": "taj_mahal_palace_hotel",
+  "id": "taj_mahal_palace_hotel",
+  "assetId": "molen.worldgen.structure.taj_mahal_palace_hotel",
+  "title": "Taj Mahal Palace Hotel",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 72.83307341316541,
+    "latitude": 18.921674675103407
+  },
+  "size": [
+    121.36891555786133,
+    73.80200040340424,
+    85.01146697998047
+  ],
+  "actualBounds": {
+    "min": [
+      -58.01970291137695,
+      -0.6499999761581421,
+      -51.49335861206055
+    ],
+    "max": [
+      63.349212646484375,
+      73.1520004272461,
+      33.51810836791992
+    ]
+  },
+  "visualBrief": "Historic Palace U around open courtyard: dark basalt and cream trim,continuous stone floor inside19recessed waterfront ground bays with3central entrance doors,12three-level projecting oriel stacks,round corner towers and onion roofs,white roof gables and attic strip,hipped tiled roofs,octagonal main drum and ribbed red dome with open lantern. Low courtyard terrace retained; modern Tower and connector wings,public road/quay,Gateway,harbor,pool/garden/furnishings and interiors excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Taj_Mahal_Palace_Hotel_from_Jetty_2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Taj_Mahal_Palace_Hotel_in_Mumbai2025.jpg"
+  ],
+  "stories": [
+    {
+      "id": "taj-mahal-palace-hotel-wp",
+      "url": "https://qualla.com/taj-mahal-palace-hotel/"
+    }
+  ],
+  "referenceInputHash": "367ed31cf1b82859aebef2b17c50042861a755fb45f5c122e5664e0615e8f581",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-taj-mahal-palace-hotel.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-taj-mahal-palace-hotel.mjs",
+    "level": "skyline",
+    "export": "tajMahalPalaceHotelSkyline",
+    "errorMeters": 3.2,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_basalt",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "dome": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0.04
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.6,
+        "metallic": 0.4
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "tajMahalPalaceHotelDistrict",
+        "errorMeters": 1.6,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.4
+          }
+        }
+      },
+      "street": {
+        "export": "tajMahalPalaceHotelStreet",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.4
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "owner-accepted-medium-fi-preview",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      72.83307341316541,
+      18.921674675103407
+    ],
+    "heading": 1.1602651177469414,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        72.83334696997437,
+        18.921587906325577
+      ],
+      "modelHeight": 0,
+      "basis": "Dry public pavement1.5m seaward of the middle of the historic waterfront facade, outside native building. Fixed before source ground and geometry. No harbor water or terrace roof used as datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184400935349"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:028bd5a4ec1045012a87c122012677615bdcb417f3759da8989a18b869bef4cd"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Photographic medium-fi surviving Palace exterior, not a scan or navigable interior. Fine tracery,balustrades,carving,roof junctions and unseen rear details are estimates.",
+    "Native parent combines Palace/Tower. Historic5243.7m²U uses retained parent vertices and explicit inferred northern interface;low courtyard terrace and projecting upper bays/turrets are photo-directed extensions. Courtyard remains open; no whole-parent replacement.",
+    "Published Tata240ft dome description interpreted as approximate73.152m overall finial envelope. Exact crown/ground datum and floor heights are not surveyed;39.5m main eave and52.25m red-dome base follow photographic massing estimates. Generic20m map height retained as a conflicting tag.",
+    "Owner accepted the geographic preview on 2026-10-19 with known coastal/urban host-terrain contact artifacts. Source ground and model geometry are unmodified; activation and completed story coverage use this explicit acceptance.",
+    "Modern76mTowerpart,connector wings,neighboring buildings,Gateway of India,pool,garden,furniture,harbor scenery and interiors excluded. Original photo pixels are inspection controls, not redistributed textures; ordinary shared material graphs."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "waterfront-whole",
+      "position": [
+        3,
+        30,
+        165
+      ],
+      "lookAt": [
+        3,
+        31,
+        15
+      ]
+    },
+    {
+      "name": "waterfront-oriels",
+      "position": [
+        -27,
+        21,
+        54
+      ],
+      "lookAt": [
+        -24,
+        20,
+        29
+      ]
+    },
+    {
+      "name": "ground-arcade",
+      "position": [
+        -22,
+        4.5,
+        46
+      ],
+      "lookAt": [
+        -22,
+        4,
+        28.8
+      ]
+    },
+    {
+      "name": "arcade-floor",
+      "position": [
+        -22,
+        1.7,
+        33
+      ],
+      "lookAt": [
+        -22,
+        0.15,
+        27.5
+      ]
+    },
+    {
+      "name": "north-corner",
+      "position": [
+        90,
+        25,
+        65
+      ],
+      "lookAt": [
+        52,
+        24,
+        20
+      ]
+    },
+    {
+      "name": "main-dome-lantern",
+      "position": [
+        35,
+        72,
+        61
+      ],
+      "lookAt": [
+        3,
+        55,
+        15
+      ]
+    },
+    {
+      "name": "open-courtyard",
+      "position": [
+        3,
+        48,
+        -70
+      ],
+      "lookAt": [
+        3,
+        17,
+        -10
+      ]
+    },
+    {
+      "name": "courtyard-terrace",
+      "position": [
+        -9,
+        23,
+        -33
+      ],
+      "lookAt": [
+        3,
+        12,
+        -4
+      ]
+    },
+    {
+      "name": "roof-and-excluded-tower",
+      "position": [
+        112,
+        96,
+        -90
+      ],
+      "lookAt": [
+        10,
+        30,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 61729,
+    "vertices": 185187,
+    "materials": 6,
+    "bytes": 7411216,
+    "sha256": "sha256:2775f32cc4e92c999ef7db135018773283cb132f2c605b1502e99633b5c8ef62"
+  }
+}

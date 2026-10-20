@@ -8,9 +8,9 @@ Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.js
 
 - [Robben Island](https://qualla.com/robben-island/)
 
-Original medium-fi surviving tower exterior, based on an individually inspected 2012 Qualla image and the architect's 2019 northeast photograph; not a surveyed reconstruction.
+Full surviving tower reviewed using a dated public-domain Walsh photographic postcard circulated by1911, reproduced in1987, and independent museum/firsthand architectural text. No private modern photograph is an active reference; not a surveyed reconstruction.
 
-Published 21.25 m base circumference controls the base diameter. Approximately 18 m tower height excludes the small interpreted weather vane. Other heights, window levels, ladder orientation and ornament are photographic estimates; upper proportions were adjusted against the long-lens Qualla photograph.
+Published 21.25 m base circumference controls the base diameter. Approximately 18 m tower height excludes the small interpreted weather vane. Other heights, window levels, ladder orientation and ornament remain bounded medium-fi estimates checked against the historic card and architect’s detailed written site description. Current white/black/red paint hierarchy follows factual text, not grayscale colour inference.
 
 Map circle controls the actual Minto Hill location, independently of the island story point. Published coordinates and focal-plane heights differ and are not treated as precise geometry.
 

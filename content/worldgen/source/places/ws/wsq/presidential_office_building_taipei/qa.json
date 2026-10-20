@@ -1,0 +1,317 @@
+{
+  "format": "molen/structure-qa@1",
+  "status": "completed",
+  "date": "2026-10-17",
+  "assetId": "molen.worldgen.structure.presidential_office_building_taipei",
+  "inputHash": "sha256:ef159ed9bfa4535a1b79ab82f905774127b5e09b6bb41727638da512fbb1ceb0",
+  "sourceHash": "sha256:1f7120eab1550bb5069f37c3cac21bf0e8b75637a0dce4b1d88d0310c6b8d479",
+  "runtimeHash": "sha256:f82fe882e811f2487e70d8b468e4214ff60e9c8a6bf0380fc25f5acd32bb83c8",
+  "captureReportHash": "sha256:a06147347c48741c1c5cdd95ec209dc40ddf6afc3e3758858e3ee00b9ae02bf4",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/front-facade.png",
+      "shots/two-open-courts.png",
+      "shots/south-arcade.png",
+      "shots/north-no-portico.png",
+      "shots/central-crown.png",
+      "shots/courtyard-and-hall.png"
+    ],
+    "notes": "51original candidate thumbnails/five full local originals and official architectural descriptions control this bounded surviving exterior. All45current frames actually inspected, including full-resolution front/side on replacement ground. Two open courts, lower central hall, native cruciform shaft/recesses and arched crown, four green hipped corner towers, paired flat guard towers/current entrance porches, curved corner porticos and differentiated three-sided arcades retained. North facade has no portico. Facade/roof dimensions, hidden foundations and fine ornamental sculpture remain photographic approximations; no interior survey or photogrammetry claim.",
+    "captureReportHash": "sha256:a06147347c48741c1c5cdd95ec209dc40ddf6afc3e3758858e3ee00b9ae02bf4"
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:12144cf941b2121a9d1174b6781b1001d8372f07a4b96eeba7d5123c60144faf",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/front-facade.png",
+      "shots/shared/two-open-courts.png",
+      "shots/shared/south-arcade.png",
+      "shots/shared/north-no-portico.png",
+      "shots/shared/central-crown.png",
+      "shots/shared/courtyard-and-hall.png",
+      "shots/shared/placement.png"
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    },
+    "notes": "All11current shared renders inspected, including signed native footprint overlay and geographic preview. Four shared graphs actually read; source glasses/flag stay local opaque materials. Disposal/livegeometries0/ground-restored pass. Shared fixture is flat and certifies placement transforms/material loading; retained-field context separately certifies source-relative visible contact."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:d0639f6b59bbed0063e012cac4274a6796c24a41dbc169bc3592ff3aaae8bf88",
+    "levels": [
+      {
+        "name": "skyline",
+        "triangles": 994,
+        "drawCalls": 1,
+        "hash": "sha256:d384186bb326ee82674828d8e331ff6a33005af23d892dd5e59dfad3ebda64f6",
+        "controls": 62,
+        "failures": 0,
+        "openCourtProbes": 60
+      },
+      {
+        "name": "district",
+        "triangles": 2626,
+        "drawCalls": 4,
+        "hash": "sha256:95e190110fa3afe46321f667e0c8fe732f7c7c6efdbd138c9e8d1d314dd63452",
+        "controls": 62,
+        "failures": 0,
+        "openCourtProbes": 60
+      },
+      {
+        "name": "street",
+        "triangles": 15416,
+        "drawCalls": 5,
+        "hash": "sha256:3695f67e84c749be3250d2841d7f9921b5ce8c284b1ab449c142c5c178fc525f",
+        "controls": 206,
+        "failures": 0,
+        "openCourtProbes": 60
+      },
+      {
+        "name": "closeup",
+        "triangles": 59007,
+        "drawCalls": 7,
+        "hash": "sha256:3923e14c33c043280916dcddbc178a3c05d7a65783a199fc168a8072f2d46825",
+        "controls": 206,
+        "failures": 0,
+        "openCourtProbes": 60
+      }
+    ],
+    "notes": "All four current source/imported versions pass Float32 normals/winding/UV/budgets and independent native controls,60court downward rays perLOD, lowerhall/towerheight. Street/closeup retain real shaft recess/glazing and48frontarcade clear/backing controls. Coarse facade simplification explicitly allowed at distance; all four actually rendered and inspected."
+  },
+  "geometryValidation": {
+    "script": "verify-geometry.mjs",
+    "reportHash": "sha256:aa435f0a48d76d7061fb21921844e32f829df0fdde9815402bf4f6697ce7534a",
+    "failures": 0,
+    "controls": [
+      {
+        "level": "skyline",
+        "count": 62,
+        "failed": 0
+      },
+      {
+        "level": "district",
+        "count": 62,
+        "failed": 0
+      },
+      {
+        "level": "street",
+        "count": 206,
+        "failed": 0
+      },
+      {
+        "level": "closeup",
+        "count": 206,
+        "failed": 0
+      }
+    ],
+    "allFourLevelsChecked": true,
+    "status": "passed"
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Main surviving red-brick presidential office quadrangle with central60m tower, four corner towers, two flat guard towers, paired open courts, central hall and current entrance porches. Detached service/security buildings and precinct landscaping excluded.",
+    "notes": "The exact Jiang2005public-domain original confirms the long symmetrical red-brick and pale-banded front, taller central red shaft/pale arched crown/hip roof, green hipped outer corner towers, paired flat guard masses, central projecting pale entrance porch and three arcade levels. Current full-front, crown, side-arcade, whole-roof/courts and back renders preserve these identifying forms at approximate medium-fi scope. Native plan and retained architectural controls establish the full two-court connected perimeter and central hall; hidden courtyard/rear bay rhythms and intermediate heights remain estimates. Fine sculpture, exact brick/stone joints and current finish/security fittings are not certified by this2005photo. Street barriers, vehicles, people, landscaping and distant neighbors are excluded. No reference pixels are embedded. Accepted at the agreed approximate medium-fi exterior scope. No reference pixels are embedded. Previously used attribution/private imagery is excluded from this current review."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:fdbc0289cbe14d478619d283a2323c7865e0314d7a594516332b0bfd9fa997f5",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/front-facade.png",
+      "medium-fi/two-open-courts.png",
+      "medium-fi/south-arcade.png",
+      "medium-fi/north-no-portico.png",
+      "medium-fi/central-crown.png",
+      "medium-fi/courtyard-and-hall.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All23current version2exact-asset/LOD-identified noon/afternoon/quality/silhouette/forced versions and own facade details actually inspected. Current ground is the retained independent third-party published bare-ground derivative, not synthetic flat replacement. Footprint base/control range-.2983..+.0796m is within existing-.35m foundation skirt; court ground+.12..+.27m remains open; front and corner stairs intersect grade without stretching geometry. Synthetic neighbors and relative-source evidence do not certify another host DEM or physical-device performance."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:d197324fbfbe1660f896f1685287b82d9a829e71ca718f2515d8ea0e33617203",
+    "mapGeometryHash": "sha256:9384d5cdbee7cbd12a774fe0792072a7bb314a6fd8a74945ab00ab43b68a03fc",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:1c403c80b29bf732cff657e2c583798384ae07bcfa7580060a556d0a41e68fcf",
+      "descriptorHash": "sha256:7f28ceca75346deed160b9adf357d43b743c6295cd8aada53955f24d2360636e",
+      "heightfieldHash": "sha256:92eefa416b8343d8c64330f2d0c8467d5c504200cc129d7a4e16c5a7e22d6e60",
+      "modelDatumElevationMeters": 5.1845,
+      "sourcePixelGroundSpacing": 17.31322671986963,
+      "footprintRelativeRangeMeters": [
+        -0.29820700379438936,
+        0.07954132226165456
+      ],
+      "sourceFilesVerified": 1,
+      "reviewValuesVerified": 66049,
+      "sourceHeightsUnchanged": true,
+      "state": "bounded-source-preview-accepted-third-party-derivative",
+      "acquiredAfterGeometry": true,
+      "modelGeometryUnchanged": true,
+      "originalOfficialRasterCompared": false,
+      "originalRejectedCompositePreservedAndReverified": true
+    },
+    "notes": "Native map main outline/two holes/fifteen parts and signed +XnorthNNE/+ZeastESE front frame match inspected original aerial. Ordinary preview placement at121.51197787374258,25.03999640000729 heading1.486803; footprint replacementdisabled. Unchanged dryforecourt[0,55] datum5.1845m. Third-party publisher claims2024NLSC20mDTM, independently decoded from retained published PNG; original official raster/private conversion pipeline unavailable.17.3m pixels are interpolated at1m, not1m accuracy. Prior rejected composite archived unchanged. Only source-relative exterior contact accepted; other DEMs and survey datum require their own review."
+  },
+  "validation": {
+    "schemas": [
+      "source.json",
+      "scene.json",
+      "terrain-review.terrain.json"
+    ],
+    "assetIntegrity": true,
+    "sourceHash": "sha256:1f7120eab1550bb5069f37c3cac21bf0e8b75637a0dce4b1d88d0310c6b8d479",
+    "runtimeHash": "sha256:f82fe882e811f2487e70d8b468e4214ff60e9c8a6bf0380fc25f5acd32bb83c8",
+    "runtimePackFiles": 6,
+    "repeatTicks": 30,
+    "stateHash": "sha256:bec2aabbee8a3451c0e053991ec3e8ae0fcb31e6aec6c356293fd0eb29880e66",
+    "activePlacement": "presidential-office-building-taipei",
+    "geographicAcceptance": "source-preview-only",
+    "storyAnnotation": true,
+    "status": "passed",
+    "exactSourceRegeneration": true,
+    "sourceAndRuntimeHashesVerified": true,
+    "lodBudgetCheck": true,
+    "independentReplacementGroundValuesVerified": 66049,
+    "originalRejectedGroundValuesVerified": 66049,
+    "targetedAuthoringLint": true,
+    "khronosValidated": false,
+    "inspectedCurrentFrames": 45,
+    "completed": true
+  },
+  "limitations": [
+    "Bounded exterior preview; see current hash-bound QA. Geometry, hidden foundations and fine ornament are approximate, not surveyed.",
+    "Official approximately140m×85m overall plan and60m tower are approximate references. Native main outline is quantized; photo-directed roof levels, arcade bays and hidden foundations are not surveyed.",
+    "North exterior lacks portico per official description; central hall and courtyard chambers generalized. Interior rooms and security/service annexes omitted.",
+    "Original rejected composite is preserved separately. Replacement is an independently decoded published third-party reencoding claimed as2024NLSC20mDTM; original official raster and publisher conversion pipeline unavailable. Zoom13 pixels17.3m;1m review grid interpolates, not1m accuracy. Preview accepts only retained source relative ground; other DEMs require independent contact review.",
+    "Reference imagery remains local provenance; no photograph used as facade texture."
+  ],
+  "reviewedOn": "2026-10-19",
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:ef159ed9bfa4535a1b79ab82f905774127b5e09b6bb41727638da512fbb1ceb0",
+    "referenceInputHash": "sha256:444bdaa91c999df072df1d56f5e6c00d9254cd6f97cba3ad1bae66a6bb9b52a3",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/755142-native.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:3cbc3ccd8be152bbf8ebed5a95293cf7f5427e4b55e4c0c83f215fa5ec09fc4c",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/w/s/q/q/presidential-office-building-taipei-wp/presidential-building.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:View_of_Presidential_Office_Building,_Taiwan.jpg",
+        "reason": "Historical attribution/private/unverified imagery excluded from current public-domain exterior review."
+      },
+      {
+        "path": "_m/w/s/q/q/presidential-office-building-taipei-wp/roc-presidential-offic.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:TaipeiROCPresidentialOfficeBuilding.jpg",
+        "reason": "Historical attribution/private/unverified imagery excluded from current public-domain exterior review."
+      },
+      {
+        "path": "_m/w/s/q/q/presidential-office-building-taipei-wp/presidential-building.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:View_of_Presidential_Office_Building,_Taiwan.jpg",
+        "reason": "Historical attribution/private/unverified imagery excluded from current public-domain exterior review."
+      },
+      {
+        "path": "_m/w/s/q/q/presidential-office-building-taipei-wp/roc-presidential-offic.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:TaipeiROCPresidentialOfficeBuilding.jpg",
+        "reason": "Historical attribution/private/unverified imagery excluded from current public-domain exterior review."
+      },
+      {
+        "path": "_m/w/s/q/q/presidential-office-building-taipei-wp/taipei-taiwan-presiden.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Taipei_Taiwan_Presidential-Office-Building-01.jpg",
+        "reason": "Historical attribution/private/unverified imagery excluded from current public-domain exterior review."
+      },
+      {
+        "path": "_m/w/s/q/q/presidential-office-building-taipei-wp/07-12-35067590283.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:07.12_%E5%BA%9C%E5%93%A1%E5%B7%A5%E8%A7%80%E8%B3%9E%E3%80%8C%E8%BB%8D%E7%A6%AE%E6%AD%A1%E8%BF%8E%E5%B7%B4%E6%8B%89%E5%9C%AD%E5%85%B1%E5%92%8C%E5%9C%8B%E5%8D%A1%E6%8F%90%E6%96%AF%E7%B8%BD%E7%B5%B1%E5%84%80%E5%BC%8F%E3%80%8D_(35067590283).jpg",
+        "reason": "Historical attribution/private/unverified imagery excluded from current public-domain exterior review."
+      },
+      {
+        "path": "_m/w/s/q/q/presidential-office-building-taipei-wp/president-house-tp2.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:President_house_tp2.JPG",
+        "reason": "Historical attribution/private/unverified imagery excluded from current public-domain exterior review."
+      },
+      {
+        "url": "https://www.president.gov.tw/qrcode/06e",
+        "reason": "Historical attribution/private/unverified imagery excluded from current public-domain exterior review."
+      },
+      {
+        "url": "https://english.president.gov.tw/Page/91",
+        "reason": "Historical attribution/private/unverified imagery excluded from current public-domain exterior review."
+      },
+      {
+        "url": "https://data.gov.tw/en/datasets/176927",
+        "reason": "Historical attribution/private/unverified imagery excluded from current public-domain exterior review."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "The exact Jiang2005public-domain original confirms the long symmetrical red-brick and pale-banded front, taller central red shaft/pale arched crown/hip roof, green hipped outer corner towers, paired flat guard masses, central projecting pale entrance porch and three arcade levels. Current full-front, crown, side-arcade, whole-roof/courts and back renders preserve these identifying forms at approximate medium-fi scope. Native plan and retained architectural controls establish the full two-court connected perimeter and central hall; hidden courtyard/rear bay rhythms and intermediate heights remain estimates. Fine sculpture, exact brick/stone joints and current finish/security fittings are not certified by this2005photo. Street barriers, vehicles, people, landscaping and distant neighbors are excluded. No reference pixels are embedded. Qualla-first search precedes the exact independently cleared supplemental original; primary dedication and native catalog identity agree."
+  },
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:ef159ed9bfa4535a1b79ab82f905774127b5e09b6bb41727638da512fbb1ceb0",
+    "sourceHash": "sha256:1f7120eab1550bb5069f37c3cac21bf0e8b75637a0dce4b1d88d0310c6b8d479",
+    "runtimeHash": "sha256:f82fe882e811f2487e70d8b468e4214ff60e9c8a6bf0380fc25f5acd32bb83c8",
+    "notes": "The exact Jiang2005public-domain original confirms the long symmetrical red-brick and pale-banded front, taller central red shaft/pale arched crown/hip roof, green hipped outer corner towers, paired flat guard masses, central projecting pale entrance porch and three arcade levels. Current full-front, crown, side-arcade, whole-roof/courts and back renders preserve these identifying forms at approximate medium-fi scope. Native plan and retained architectural controls establish the full two-court connected perimeter and central hall; hidden courtyard/rear bay rhythms and intermediate heights remain estimates. Fine sculpture, exact brick/stone joints and current finish/security fittings are not certified by this2005photo. Street barriers, vehicles, people, landscaping and distant neighbors are excluded. No reference pixels are embedded.",
+    "renderReuse": {
+      "reason": "Only reference selection, inventory and historical-source annotations changed. Graphics specification (apart from reference URLs/fingerprint), source/runtime/LOD bytes, scene, map, terrain, placement, material bindings, cameras and every image byte are unchanged. Retain the original inspected renders; no fresh capture is claimed.",
+      "originalInputHash": "sha256:f59e228b50c07d3e828f61098df8c67be5fca1f76d51a8e79c08c56334ed3ada",
+      "reviewInputHash": "sha256:ef159ed9bfa4535a1b79ab82f905774127b5e09b6bb41727638da512fbb1ceb0",
+      "sourceHash": "sha256:1f7120eab1550bb5069f37c3cac21bf0e8b75637a0dce4b1d88d0310c6b8d479",
+      "runtimeHash": "sha256:f82fe882e811f2487e70d8b468e4214ff60e9c8a6bf0380fc25f5acd32bb83c8",
+      "originalCaptureReports": {
+        "capture-report.json": "sha256:f5407e9ee1303ceb8aef9c0db820274e81c64cf4c24932ff0942b75b045ef1d9",
+        "shared-capture-report.json": "sha256:6d42065badff608891d87f6a77990d042e779f7b03448f55ecf1787d8bf6aaa0",
+        "medium-fi-report.json": "sha256:94a08ac2f24db7e5de7a8fa621f51b13e62f32d7266c3076a0efb9f725fb1c56"
+      }
+    },
+    "previousImageryReview": null
+  }
+}

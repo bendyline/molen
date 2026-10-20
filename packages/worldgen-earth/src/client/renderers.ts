@@ -10,7 +10,7 @@ import type { JsonValue } from '@bendyline/molen-schema';
 import {
   createTerrainSemanticObject,
   disposeTerrainSemanticObject,
-  setTerrainGroundCutout,
+  setTerrainGroundCutouts,
   setTerrainWaterCutout,
   type TerrainLandcoverGenerator,
   type TerrainPyramidTileLayerContext,
@@ -644,19 +644,15 @@ export function createWorldgenSemanticRenderers(
           const clipToTile = entry.bounds !== undefined && entry.groundCutout === undefined;
           const placed = clipToTile ? clipStructureObject(mesh, context.tileSize) : mesh;
           if (entry.groundCutout) {
-            const nativeOutlines = entry.groundCutout.outlines ?? [entry.groundCutout.outline];
+            const nativeOutlines = entry.groundCutout.outlines ?? [
+              entry.groundCutout.outline,
+              ...(entry.groundCutout.additionalOutlines ?? []),
+            ];
             mesh.updateMatrix();
             const outlines = clipToTile
               ? clipStructureGroundOutlines(nativeOutlines, mesh.matrix, context.tileSize)
               : nativeOutlines;
-            for (const [i, outline] of outlines.entries()) {
-              const owner = outlines.length === 1 ? placed : new THREE.Group();
-              if (owner !== placed) {
-                owner.name = `structure-ground-cutout:${i}`;
-                placed.add(owner);
-              }
-              setTerrainGroundCutout(owner, outline);
-            }
+            setTerrainGroundCutouts(placed, outlines);
           }
           if (entry.waterCutout) {
             mesh.updateMatrix();

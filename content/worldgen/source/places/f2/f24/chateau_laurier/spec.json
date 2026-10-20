@@ -38,8 +38,11 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:Hotel_Ch%C3%A2teau_Laurier_in_Ottawa.jpg",
-    "https://commons.wikimedia.org/wiki/File:Chateau_laurier.JPG"
+    "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_Laurier_Ottawa.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_Laurier_at_night,_2009.jpg",
+    "https://commons.wikimedia.org/wiki/File:Downtown_Ottawa.jpg",
+    "https://commons.wikimedia.org/wiki/File:Fairmont_Chateau_Laurier_Hotel_(6576999193).jpg",
+    "https://commons.wikimedia.org/wiki/File:Fairmont_Chateau_Laurier_Hotel_(8129704477).jpg"
   ],
   "stories": [
     {
@@ -47,7 +50,7 @@
       "url": "https://qualla.com/ch-teau-laurier/"
     }
   ],
-  "referenceInputHash": "0746f6545c2e2061d0e5f1a1ff7ab752e0de2693287ce44c7f360ff41d3b2bf2",
+  "referenceInputHash": "sha256:6495e1ef516b34b3fa8547ca92e093ce59639e64f2333f21c1d0a0eadbe2933f",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-chateau-laurier.mjs"
   },
@@ -85,6 +88,12 @@
         "roughness": 0.3,
         "metallic": 0.12,
         "localRef": "palette:#ffffff"
+      },
+      "corbel": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.9,
+        "metallic": 0
       }
     },
     "authoredLevels": {
@@ -115,6 +124,12 @@
             "roughness": 0.3,
             "metallic": 0.12,
             "localRef": "palette:#ffffff"
+          },
+          "corbel": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
           }
         }
       },
@@ -145,6 +160,12 @@
             "roughness": 0.3,
             "metallic": 0.12,
             "localRef": "palette:#ffffff"
+          },
+          "corbel": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
           }
         }
       }
@@ -258,6 +279,15 @@
   },
   "sharedSurfaces": [
     {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
       "ref": "matgraph:molen.worldgen.material.stone_limestone",
       "slot": "wall",
       "uv": "repeats",
@@ -277,8 +307,9 @@
     }
   ],
   "limitations": [
-    "Historic 1912/1929 exterior interpreted from individually inspected Qualla 2008/2012 front and canal photographs, NCC phase/aerial study, existing west elevation in the 2020 heritage-impact report, mapped roof facets and satellite context.",
-    "Mapped ridge heights of 39/45 m and 64 m main tower are approximate and agree with the existing hotel depiction beside dimensioned proposed buildings. The drawing does not provide a measured hotel survey.",
+    "Four moulded pendant bases and64individual circular-tower supports use five exact native named photographer public-domain/CC0 exteriors after a cleared Qualla search. Earlier attribution/private report/satellite imagery excluded as current construction controls. Full fixed historic hotel, entrances, central halls, connected wings and terrace remain in scope.",
+    "Three original lower levels and close geometry outside16interfering circular-shaft windows and16old box ornaments plus seven windows behind pendant bases retained. New close-only closed stone profiles use continuous raw limestone and meter UVs; ring dimensions, support spacing/counts and hidden matching faces are medium-fi estimates. No heraldic sculpture or lighting scheme copied.",
+    "Retained mapped ridge heights of39/45m and64m main tower are approximate. Current photographer-public-domain exterior views support silhouette, not surveyed dimensions.",
     "Fine heraldic carving, exact room-by-room openings, hidden service elevations, roof intersections and terrace limits remain simplified. Lower central halls are retained; no interiors or proposed modern addition, removed garage, separate canal buildings or landscaping.",
     "Unmodified independent NRCan ground data retains the canal drop; host runtime terrain may differ. Footprint suppression remains disabled.",
     "Photo pixels are not embedded. Copper tone follows the dated daylight images; weathering may differ today."
@@ -310,16 +341,42 @@
         23,
         -5
       ]
+    },
+    {
+      "name": "pendant-bases",
+      "position": [
+        -34,
+        20,
+        6
+      ],
+      "lookAt": [
+        -32.3,
+        20.5,
+        21.6
+      ]
+    },
+    {
+      "name": "tower-corbels",
+      "position": [
+        -42,
+        37.2,
+        61
+      ],
+      "lookAt": [
+        -24.9,
+        38.5,
+        43.6
+      ]
     }
   ],
   "importOptions": {
     "optimize": false
   },
   "mesh": {
-    "triangles": 53105,
-    "vertices": 159315,
-    "materials": 3,
-    "bytes": 6374928,
-    "sha256": "sha256:c79935600a563608dddebc2d5e8e814748d32bd9190ce31dc20ab254a6655559"
+    "triangles": 57751,
+    "vertices": 173253,
+    "materials": 4,
+    "bytes": 6932920,
+    "sha256": "sha256:be3a1e56419822c672374d5cb92b91ca784c03431c0d2a3942643b2f7db21da6"
   }
 }

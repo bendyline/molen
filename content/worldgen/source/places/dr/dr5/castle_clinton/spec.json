@@ -1,0 +1,416 @@
+{
+  "planId": "castle_clinton",
+  "id": "castle_clinton",
+  "assetId": "molen.worldgen.structure.castle_clinton",
+  "title": "Castle Clinton",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -74.01677146553993,
+    "latitude": 40.7034593847321
+  },
+  "size": [
+    62.38270568847656,
+    9.289999961853027,
+    55.056406021118164
+  ],
+  "actualBounds": {
+    "min": [
+      -31.37958335876465,
+      -2,
+      -30.453649520874023
+    ],
+    "max": [
+      31.003122329711914,
+      7.289999961853027,
+      24.60275650024414
+    ]
+  },
+  "visualBrief": "Current hollow D-shaped varied brownstone fort with thick separate outer wall, real front/rear passageways and28 interpreted barred gunports, broad gray-shingle covered perimeter walks, curved brick-pier porch and straight pale-wood colonnade/restored quarters. Filled upper gateway arch, rusticated four-pilaster surround, layered cornice/two chimneys and two dark polygonal wood kiosks. Open courtyard and mapped roof opening remain distinct from wall thickness; no aquarium dome.",
+  "nativeAxes": {
+    "x": "north-northwest along the straight gorge",
+    "y": "up from independent open-court USGS datum",
+    "z": "east-northeast outward through main gateway toward Manhattan"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://npgallery.nps.gov/AssetDetail/2a73df6d-dfe9-4ec3-91d6-6697fe1d6cb6",
+    "https://npgallery.nps.gov/AssetDetail/174f42b1-d4db-4eb7-a34c-6db5fe953dbf",
+    "https://npgallery.nps.gov/AssetDetail/cadcbfeb-919b-4faa-8e7e-40c7cbc84add"
+  ],
+  "stories": [
+    {
+      "id": "castle-clinton-wp",
+      "url": "https://qualla.com/castle-clinton/"
+    }
+  ],
+  "referenceInputHash": "sha256:4389541b0baa001d8e846f2417180349da4390e028bbc2a3d67353ee3c21cec8",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-castle-clinton.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-castle-clinton.mjs",
+    "level": "skyline",
+    "export": "castleClintonSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_vertical",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "shingle_cedar",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.12
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.3,
+        "metallic": 0.04
+      },
+      "ground": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "castleClintonDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.04
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "castleClintonStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_vertical",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.04
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original locked USGS NY_CMPG_2013 F32 bare-earth export and4 metadata files preserved before geometry;66049 unchanged values,2.5969m dry-court provider datum. Own thin paving is sampled from that independent field; no source heights fitted or flattened. Full runtime/visual/placement review remains separate.",
+    "anchor": [
+      -74.01677146553993,
+      40.7034593847321
+    ],
+    "heading": 2.0222499696347787,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -74.01677146553993,
+        40.7034593847321
+      ],
+      "modelHeight": 0,
+      "basis": "Dry open courtyard between the two mapped interior kiosks, outside covered perimeter roofs. Source-specific USGS NY_CMPG_2013 one-metre bare-earth export, locked dataset30939,2.5969m provider-relative datum, frozen before geometry."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776561829003",
+      "buildings/35184585901103",
+      "buildings/35184585901105"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:536fdb98b67b26a699852771a2289adb6f756f2764ac9b2ff893b2a0160cdbdf",
+    "notes": "Native D-shaped outer ring and open-court roof boundary preserved separately. Convex main-body inset uses approximate NPS8ft masonry thickness, with native small front projections retained. Main entry is toward Manhattan and opposite rear passage follows actual native tunnel footway. The broad roof ring is covered portico/restored quarters, not solid masonry; two mapped court kiosks retained. Own thin paving/plank deck derives from original independent bare-earth grade without editing heights; full visual/geographic approval remains separate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.75
+      ]
+    }
+  ],
+  "limitations": [
+    "Native7.8m root height is not a uniform ring extrusion. Outer wall and current portal/casemate/quarter heights must be reconciled individually against photographs.",
+    "Native court hole follows roof/open-court boundary; it is not the full depth of8ft-thick masonry. Outer plan/roof controls remain distinct from own wall inset and porch supports.",
+    "NPS92ft inner radius and8ft wall are approximate structural controls; exact endpoint interpretation must be reconciled with native outer diameter~61m.11ft historic sally-port door does not mean the entire ornamental gateway is11ft tall.",
+    "Accepted hero aerial is dated1959–1967 and lacks later restored portico/quarters/kiosks. Use only as historical outer-plan comparison; date2004 is not acquisition date.",
+    "Independent original USGS F32 export and all66049 values verified before geometry;2.5969m dry court datum. No terrain fitting/flattening or survey-datum transformation. Resampled1m spacing is not survey accuracy; hidden foundations and default host compatibility remain unverified.",
+    "Current6m wall,7.18m portal/7.29m chimneys,3.55..5.25m attached gray roofs and4.7m kiosk roofs are photographic estimates, not measured endpoints. Inner main-body inset follows primary8ft control; native court hole marks roof edge, not masonry thickness.28 historical gunport positions are evenly interpreted along the surviving curved ring, with small adjustments near the mapped rear gate; exact present count/positions, inner buttress spacing and individual infills remain approximate.",
+    "Native outer/roof opening and kiosk plans are retained. Main and rear passages follow actual mapped tunnel paths; portal upper semicircle is filled stone above actual rectangular opening. Fine lettering/plaques and fixtures are simplified without copied text/heraldry.",
+    "Own courtyard paving follows held-fixed independent bare-earth grade with a thin clearance, without changing original field. Coarse detail levels approximate floor grade; hidden wall-ground interpolation, source2013 project vs later paving changes, exact thresholds and default coarse Earth host compatibility remain unverified.",
+    "Eleven actual local originals constrain exterior. Historical1959–1967 aerial supplies comparison only; current restored portico/quarters/kiosks follow2010–2019 photos. City, vegetation, people, portable signs/barriers, cannon displays, flag and interiors excluded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "main-gateway",
+      "position": [
+        4,
+        5,
+        45
+      ],
+      "lookAt": [
+        1,
+        3.5,
+        22
+      ]
+    },
+    {
+      "name": "open-court",
+      "position": [
+        0,
+        18,
+        14
+      ],
+      "lookAt": [
+        0,
+        2,
+        -8
+      ]
+    },
+    {
+      "name": "front-quarters",
+      "position": [
+        0,
+        4,
+        -2
+      ],
+      "lookAt": [
+        1,
+        2,
+        14
+      ]
+    },
+    {
+      "name": "curved-casemates",
+      "position": [
+        13,
+        3,
+        -6
+      ],
+      "lookAt": [
+        23,
+        2,
+        -9
+      ]
+    },
+    {
+      "name": "rear-gate",
+      "position": [
+        2,
+        4,
+        -45
+      ],
+      "lookAt": [
+        -0.2,
+        2,
+        -29
+      ]
+    },
+    {
+      "name": "kiosks",
+      "position": [
+        0,
+        12,
+        13
+      ],
+      "lookAt": [
+        0,
+        2,
+        -9
+      ]
+    },
+    {
+      "name": "overhead",
+      "position": [
+        0,
+        95,
+        25
+      ],
+      "lookAt": [
+        0,
+        0,
+        -3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 37203,
+    "vertices": 111609,
+    "materials": 7,
+    "bytes": 4468524,
+    "sha256": "sha256:b7304a0540f100e7b77c1eebc832a812407ff68e7152d9ff4946c2aec91bdf06"
+  }
+}

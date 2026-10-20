@@ -1,0 +1,571 @@
+{
+  "format": "molen/terrain-source-evidence@1",
+  "dataset": "Welsh Government1m LiDAR2020\u20132023",
+  "surveyDate": "2022-04-01",
+  "sourcePixelSpacing": 1,
+  "sources": [
+    {
+      "kind": "dtm",
+      "path": "terrain-sources/wg_del_31_318171_20220401dtm.tif",
+      "sha256": "sha256:7a8586f8d2b5f1285996a54cf8b94cce403f39d0b67efe8bb3f0127d3aff897b",
+      "originalUrl": "https://dmwproductionblob.blob.core.windows.net/lidar-zips/2020-22/dtm/wg_del_31_318171_20220401dtm.tif",
+      "originalSha256": "sha256:d2043072c0e314f70b44e08cf65e138d18cfe0be814628a7f6a5b0dcff7fcc14",
+      "nativeWindow": [
+        724,
+        421,
+        1000,
+        909
+      ],
+      "nativeTiepoint": [
+        0.0,
+        0.0,
+        0.0,
+        318724.0,
+        171579.0,
+        0.0
+      ],
+      "surveyDate": "2022-04-01",
+      "surveyTime": [
+        "01:00:17",
+        "01:03:38"
+      ],
+      "nativePixelSpacing": 1,
+      "method": "Lossless native Float32 crop; original cells and no-data values retained."
+    },
+    {
+      "kind": "dtm",
+      "path": "terrain-sources/wg_del_31_319171_20220401dtm.tif",
+      "sha256": "sha256:116ac32eb57b7b1d189c7fcea22404bb8b7ff7aa61a68af9410276dade15659e",
+      "originalUrl": "https://dmwproductionblob.blob.core.windows.net/lidar-zips/2020-22/dtm/wg_del_31_319171_20220401dtm.tif",
+      "originalSha256": "sha256:d8dc3288a1aa54ff1c1988e373096569809e0c066ade0073d405177ee8fb156c",
+      "nativeWindow": [
+        0,
+        421,
+        214,
+        909
+      ],
+      "nativeTiepoint": [
+        0.0,
+        0.0,
+        0.0,
+        319000.0,
+        171579.0,
+        0.0
+      ],
+      "surveyDate": "2022-04-01",
+      "surveyTime": [
+        "01:09:06",
+        "01:13:38"
+      ],
+      "nativePixelSpacing": 1,
+      "method": "Lossless native Float32 crop; original cells and no-data values retained."
+    },
+    {
+      "kind": "dsm",
+      "path": "terrain-sources/wg_del_31_318171_20220401dsm.tif",
+      "sha256": "sha256:efd12f867d3be4d57b1db02eb7c670728f6bc01ae28953e5075080d1fefbd969",
+      "originalUrl": "https://dmwproductionblob.blob.core.windows.net/lidar-zips/2020-22/dsm/wg_del_31_318171_20220401dsm.tif",
+      "originalSha256": "sha256:8e7c3dcad14a47b24fd855a512e397ac3cee5372a9f151c60df829c73ffe4d12",
+      "nativeWindow": [
+        724,
+        421,
+        1000,
+        909
+      ],
+      "nativeTiepoint": [
+        0.0,
+        0.0,
+        0.0,
+        318724.0,
+        171579.0,
+        0.0
+      ],
+      "surveyDate": "2022-04-01",
+      "surveyTime": [
+        "01:00:17",
+        "01:03:38"
+      ],
+      "nativePixelSpacing": 1,
+      "method": "Lossless native Float32 crop; original cells and no-data values retained."
+    },
+    {
+      "kind": "dsm",
+      "path": "terrain-sources/wg_del_31_319171_20220401dsm.tif",
+      "sha256": "sha256:f270f4870d63bbbc81198e7a475e35f02bf920c21c60810c2ab55dfb0941b5b7",
+      "originalUrl": "https://dmwproductionblob.blob.core.windows.net/lidar-zips/2020-22/dsm/wg_del_31_319171_20220401dsm.tif",
+      "originalSha256": "sha256:706d5775bcc75305fa043a376b815503a63968b95da7e84e4155b7ff2d3824f7",
+      "nativeWindow": [
+        0,
+        421,
+        214,
+        909
+      ],
+      "nativeTiepoint": [
+        0.0,
+        0.0,
+        0.0,
+        319000.0,
+        171579.0,
+        0.0
+      ],
+      "surveyDate": "2022-04-01",
+      "surveyTime": [
+        "01:09:06",
+        "01:13:38"
+      ],
+      "nativePixelSpacing": 1,
+      "method": "Lossless native Float32 crop; original cells and no-data values retained."
+    }
+  ],
+  "horizontalTransform": {
+    "description": "Inverse of OSGB36 to WGS 84 (9) + British National Grid (with axis order normalized for visualization)",
+    "declaredAccuracyMeters": 1.0,
+    "grid": {
+      "url": "https://cdn.proj.org/uk_os_OSTN15_NTv2_OSGBtoETRS.tif",
+      "sha256": "sha256:5d6ed64d2119952c4c559fa1fccbc594b6520fc3ec3ef2fc10be13202c4384fa"
+    }
+  },
+  "catalogue": {
+    "path": "terrain-sources/survey-catalogue.json",
+    "sha256": "sha256:4ff916de7f405b0a2fb53e014039c4c6cbaa4c1653898e0147d0b14afaf8fb58"
+  },
+  "dryReference": {
+    "local": [
+      -25,
+      0
+    ],
+    "nativeDtm": 8.427077254682617,
+    "modelY": 0,
+    "roundedModelDatum": 8.4271
+  },
+  "dsmDeckSamples": [
+    {
+      "local": [
+        30,
+        0
+      ],
+      "nativeDsm": 8.95105044748566
+    },
+    {
+      "local": [
+        35,
+        0
+      ],
+      "nativeDsm": 9.021726150421303
+    },
+    {
+      "local": [
+        40,
+        0
+      ],
+      "nativeDsm": 9.008668691622995
+    },
+    {
+      "local": [
+        45,
+        0
+      ],
+      "nativeDsm": 9.029579697240242
+    },
+    {
+      "local": [
+        50,
+        0
+      ],
+      "nativeDsm": 9.033028913246286
+    },
+    {
+      "local": [
+        55,
+        0
+      ],
+      "nativeDsm": 9.338988241906396
+    },
+    {
+      "local": [
+        60,
+        0
+      ],
+      "nativeDsm": 9.02002008404136
+    },
+    {
+      "local": [
+        65,
+        0
+      ],
+      "nativeDsm": 9.026562551104155
+    },
+    {
+      "local": [
+        70,
+        0
+      ],
+      "nativeDsm": 9.07184870092333
+    },
+    {
+      "local": [
+        75,
+        0
+      ],
+      "nativeDsm": 9.027422050834355
+    },
+    {
+      "local": [
+        80,
+        0
+      ],
+      "nativeDsm": 9.027060861574501
+    },
+    {
+      "local": [
+        85,
+        0
+      ],
+      "nativeDsm": 9.03033738670053
+    },
+    {
+      "local": [
+        90,
+        0
+      ],
+      "nativeDsm": 9.031611964338714
+    },
+    {
+      "local": [
+        95,
+        0
+      ],
+      "nativeDsm": 9.017430332595914
+    },
+    {
+      "local": [
+        100,
+        0
+      ],
+      "nativeDsm": 8.985705974046263
+    },
+    {
+      "local": [
+        105,
+        0
+      ],
+      "nativeDsm": 8.989885375929205
+    },
+    {
+      "local": [
+        110,
+        0
+      ],
+      "nativeDsm": 8.998269250403045
+    },
+    {
+      "local": [
+        115,
+        0
+      ],
+      "nativeDsm": 9.246487116736862
+    },
+    {
+      "local": [
+        120,
+        0
+      ],
+      "nativeDsm": 9.015868093310143
+    },
+    {
+      "local": [
+        125,
+        0
+      ],
+      "nativeDsm": 8.994850486627856
+    },
+    {
+      "local": [
+        130,
+        0
+      ],
+      "nativeDsm": 8.99032989686962
+    },
+    {
+      "local": [
+        135,
+        0
+      ],
+      "nativeDsm": 8.986416443037877
+    },
+    {
+      "local": [
+        140,
+        0
+      ],
+      "nativeDsm": 8.991009388224128
+    },
+    {
+      "local": [
+        145,
+        0
+      ],
+      "nativeDsm": 8.985579084796244
+    },
+    {
+      "local": [
+        150,
+        0
+      ],
+      "nativeDsm": 9.005011035902015
+    },
+    {
+      "local": [
+        165,
+        0
+      ],
+      "nativeDsm": 9.066928782939542
+    },
+    {
+      "local": [
+        170,
+        0
+      ],
+      "nativeDsm": 9.023538785340856
+    }
+  ],
+  "ridgeSamples": [
+    {
+      "local": [
+        -10,
+        0
+      ],
+      "nativeDsm": 19.238890134542544
+    },
+    {
+      "local": [
+        -9,
+        0
+      ],
+      "nativeDsm": 19.233490286784306
+    },
+    {
+      "local": [
+        -8,
+        0
+      ],
+      "nativeDsm": 19.260045678235286
+    },
+    {
+      "local": [
+        -7,
+        0
+      ],
+      "nativeDsm": 19.250079731580346
+    },
+    {
+      "local": [
+        -6,
+        0
+      ],
+      "nativeDsm": 19.217088464567077
+    },
+    {
+      "local": [
+        -5,
+        0
+      ],
+      "nativeDsm": 19.233055199027792
+    },
+    {
+      "local": [
+        -4,
+        0
+      ],
+      "nativeDsm": 19.22666317525921
+    },
+    {
+      "local": [
+        -3,
+        0
+      ],
+      "nativeDsm": 19.208832265219513
+    },
+    {
+      "local": [
+        -2,
+        0
+      ],
+      "nativeDsm": 19.211499376015208
+    },
+    {
+      "local": [
+        -1,
+        0
+      ],
+      "nativeDsm": 19.225191482327208
+    },
+    {
+      "local": [
+        0,
+        0
+      ],
+      "nativeDsm": 19.219746666717775
+    },
+    {
+      "local": [
+        1,
+        0
+      ],
+      "nativeDsm": 19.206622100531465
+    },
+    {
+      "local": [
+        2,
+        0
+      ],
+      "nativeDsm": 19.199578795425698
+    },
+    {
+      "local": [
+        3,
+        0
+      ],
+      "nativeDsm": 19.21917026118022
+    },
+    {
+      "local": [
+        4,
+        0
+      ],
+      "nativeDsm": 19.2104177075619
+    },
+    {
+      "local": [
+        5,
+        0
+      ],
+      "nativeDsm": 19.184303176410086
+    },
+    {
+      "local": [
+        6,
+        0
+      ],
+      "nativeDsm": 19.210190689057054
+    },
+    {
+      "local": [
+        7,
+        0
+      ],
+      "nativeDsm": 19.186192495520736
+    },
+    {
+      "local": [
+        8,
+        0
+      ],
+      "nativeDsm": 19.174394616816457
+    },
+    {
+      "local": [
+        9,
+        0
+      ],
+      "nativeDsm": 19.19005854369146
+    },
+    {
+      "local": [
+        10,
+        0
+      ],
+      "nativeDsm": 19.25053739819967
+    }
+  ],
+  "towerControls": [
+    {
+      "center": [
+        -14.8465,
+        -5.4694
+      ],
+      "nativeDsmAtCenter": 22.367866572945744,
+      "nativeLocalQuantiles": [
+        14.732620071596726,
+        19.210953768766803,
+        20.694325426104594,
+        22.045361388121037,
+        22.388165473810798
+      ],
+      "nativeLocalQuantileProbabilities": [
+        0,
+        0.1,
+        0.5,
+        0.9,
+        1
+      ]
+    },
+    {
+      "center": [
+        -14.3411,
+        5.25764
+      ],
+      "nativeDsmAtCenter": 22.236426981438875,
+      "nativeLocalQuantiles": [
+        19.317762497973316,
+        19.58465703480248,
+        20.574159780970632,
+        22.023515762498747,
+        22.336421392069266
+      ],
+      "nativeLocalQuantileProbabilities": [
+        0,
+        0.1,
+        0.5,
+        0.9,
+        1
+      ]
+    },
+    {
+      "center": [
+        14.6423,
+        -5.66491
+      ],
+      "nativeDsmAtCenter": 22.05142062002456,
+      "nativeLocalQuantiles": [
+        14.364979815071784,
+        18.83149714190714,
+        20.659539536260294,
+        21.99517162892644,
+        22.411580937468326
+      ],
+      "nativeLocalQuantileProbabilities": [
+        0,
+        0.1,
+        0.5,
+        0.9,
+        1
+      ]
+    },
+    {
+      "center": [
+        14.5453,
+        5.87667
+      ],
+      "nativeDsmAtCenter": 22.25532449095443,
+      "nativeLocalQuantiles": [
+        16.13406159652483,
+        19.485427886443617,
+        20.533135025989843,
+        21.99485662106925,
+        22.326568450296424
+      ],
+      "nativeLocalQuantileProbabilities": [
+        0,
+        0.1,
+        0.5,
+        0.9,
+        1
+      ]
+    }
+  ],
+  "limitations": [
+    "DSM is independent surface evidence and is not used as ground. Narrow finials may be missed by1m cells. Roof geometry remains an estimate, not a photogrammetric reconstruction.",
+    "Rejected Terrarium ocean plateau16m absolute would bury pier, baseline retained unchanged. Native DTM has no no-data cells in the reviewed384m square."
+  ]
+}

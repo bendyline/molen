@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.ritz_london",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-19",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:a028f547beb9407b0792e26e1178f6750929f04a578d5375a963079242964d1b",
-  "sourceHash": "sha256:2cfffb531492dd64b2cff8710749e22438c76cafa82671b569f49e4366a44d27",
-  "runtimeHash": "sha256:ad30f0f28c73fb376f773add84ff530518e1e402de0e68391c2740c269b92493",
-  "captureReportHash": "sha256:c41f377e70b658d408ba3a8dba673e580df70fff9a8f428daed7bd738976e757",
+  "inputHash": "sha256:da48461a955023ef27862ffcbfae6f760b779789e1ade54e456d8bc9c0dfd537",
+  "sourceHash": "sha256:d4f0b28453cc0cdc32a6f6b8f693a1ebd18dc34947efed08f0d1fa5ef3105754",
+  "runtimeHash": "sha256:90526523e6770a2abe111da76ab3894258c4304c7030a93e667aac17170127f9",
+  "captureReportHash": "sha256:052b3370b71b1f46700e7310bee10ee61f3b705320bb1dff94fadd65a9e5aa2b",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:052b3370b71b1f46700e7310bee10ee61f3b705320bb1dff94fadd65a9e5aa2b",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/arcade-joints.png",
+      "shots/arcade-depth.png"
     ],
-    "notes": "Inspected all seven final portable views against individually viewed local Green Park, Piccadilly arcade and Arlington entrance photographs, original floor plans/elevations and the 2021 condition survey. The open arcade, three mansard pavilions, five-bay end, lower entrance wing and rear court remain distinct. Review corrected roof continuity, chimney connections/positions, two-level pediment dormers and ground-floor window occlusion."
+    "notes": "All nine current portable views inspected, including native arcade-joints closeup. Recessed horizontal channels have physical ledges and directional highlights. Original arch passages, recessed shopfront glazing, soffits and floor remain open/continuous; overall hotel silhouette and rear court retained."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:cd21c46ebaa88eb36ca54bfc81cc19a3a908d1438205adc1e65aff9db502c54d",
+    "captureReportHash": "sha256:9b297b49e1e59b08b5becd89d3e433402f13eac5bb68f19f2ff1a3d5ff4ade93",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,41 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/arcade-joints.png",
+      "shots/shared/arcade-depth.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven final shared-material views, including the mapped footprint overlay, and full front/back/end views during correction. Limestone, granite, slate, membrane, copper and painted metal use metric shared bindings; glass is local. Flat terrain here is a material fixture; independent terrain remains in the portable scene."
+    "notes": "All nine current shared-material views inspected, including native arcade-depth closeup and mapped overlay. Granite keeps continuous grain and real modeled joints. Limestone arch stones, glazing and copper remain distinct. Original placement hash and unloading pass; flat fixture establishes material/transform behavior.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_granite": {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.slate": {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      "matgraph:molen.worldgen.material.metal_copper": {
+        "path": "materials/metal_copper.matgraph.json",
+        "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:9364b0ed154361c33b0579ef6a369102fadea36e258d33284d101b4b7a568125",
+    "captureReportHash": "sha256:4314aee45691556c61244746a4ebde4a83b9b924a8fc8130cfbf1783ca78a816",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +84,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/arcade-joints.png",
+      "medium-fi/arcade-depth.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final lighting, quality and forced-detail frames. Skyline preserves the arcade openings, three roof pavilions and chimney rhythm; district adds major windows and pediments; street and closeup restore mouldings and balcony detail. Synthetic neighbors are style fixtures. No physical-device frame-rate measurement is claimed."
+    "notes": "All21current version2frames inspected: noon/late light, economy/high quality, source ground, front/back, two new close detail cameras and all four forced levels. Fine physical joints resolve close; the three lower levels retain their exact original geometry. Synthetic neighbors provide style context only."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +110,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.00007654762267961246
     },
-    "notes": "Main mapped Ritz footprint, excluding William Kent House and the later 22 Arlington extension. Anchor [-0.14151513576507568,51.50700931620103], heading -2.4996485399285313: +X southwest along Piccadilly, +Z northwest toward the street. Independent Terrarium terrain remains unchanged, datum 18.8932 m at [0,24.8]. Foundation reaches -2.4 m. The map supplies no measured height; dated elevation and photographic proportions control approximate heights. Footprint suppression remains off; another host DEM can differ."
+    "notes": "Original anchor[-0.14151513576507568,51.50700931620103],heading-2.4996485399285313 retained: +X southwest along Piccadilly,+Z northwest toward street. Original main mapped footprint, rear court and foundation retained. Map/three terrain files byte-identical; original Terrarium datum18.8932m at[0,24.8], relative footprint ground range-2.0478..0.2191m and foundation-2.4m retained. No terrain fitting/new pads. Exact surveyed heights and another host DEM remain outside this construction review."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Dated historic main Ritz London exterior, Piccadilly arcade, Green Park end and Arlington entrance wing; William Kent House, later extension and interiors excluded.",
-    "notes": "Individually inspected local 2015–2017 photographs, original ground and third-floor plans/elevations and the 2021 Purcell condition survey. Model represents the dated historic main hotel; subsequent roof and Arlington extension changes are explicitly outside scope. Upper court geometry, hidden service elevations, vertical dimensions and fine sculpture remain approximations. Original simplified balustrades, ironwork and canopy geometry do not copy photo pixels or the hotel crest."
+    "scope": "Historic main Ritz hotel exterior, Piccadilly arcade, Green Park end and lower Arlington entrance wing. Later22Arlington extension, William Kent House and interiors remain excluded. New work:112physical joints on16arcade piers.",
+    "notes": "The two exact published Qualla public-domain originals establish the full historic main hotel:1907Piccadilly/GreenPark elevations show the15front axes, three mansard pavilions, five-bay end, stone tiers, balconies, dormers/chimneys and open channelled arcade;1914dated exterior/plan/west-terrace images corroborate massing and the Arlington return. Native scans, publisher/date/copyright imprints and explicitPD-US/Pre-1923source records agree. Current geometry retains that identifying hierarchy and its112physical close arcade joints. Later entrance canopy, concealed courtyard faces, roof joins, fine sculpture and exact current restoration are medium-fi approximations; the dated publications do not certify modern fitout. Native map/terrain/placement remain unchanged. Full fixed historic-main-hotel exterior accepted at approximate medium-fi scope; separate WilliamKentHouse/interiors excluded as before. Accepted at the agreed approximate medium-fi exterior scope. No reference pixels are embedded. Previously used attribution/private imagery is excluded from this current review."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:047988bbf7fa3bc4e04c1b9eb12f1f8143d3941617399610215f3189c1cfe279",
+    "recipeHash": "sha256:578263e0d77d548ab9bde1a92919b0d93785739c336455ccc6874e9ec203664e",
     "levels": [
       {
         "name": "skyline",
@@ -128,32 +161,88 @@
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:654f242c910b556d21be46bf7b03f5752db922543d7f771f14c4b20c893e4bae",
-        "bytes": 6515836,
-        "gzipBytes": 1198818,
-        "triangles": 54267,
-        "cpuBytes": 6512040,
-        "gpuBytes": 6512040,
+        "hash": "sha256:261c3ff3e9677931a58ce0201d7cc727fb754bc98eb3276dcefdd3c1180fc664",
+        "bytes": 6705676,
+        "gzipBytes": 1221033,
+        "triangles": 55849,
+        "cpuBytes": 6701880,
+        "gpuBytes": 6701880,
         "errorMeters": 0,
         "drawCalls": 7
       }
     ],
-    "notes": "All four current levels were visually inspected and pass budgets; exact triangle and byte counts are recorded in levels. Simplified mouldings and roof windows reduce distant detail while retaining the arcade and roof pavilion silhouettes. Error values are authoring budgets, not measured mesh deviations."
+    "notes": "876/3331/15535/55849triangles and1/6/7/7draws meet strict budgets. All source attributes of skyline/district/street retained exactly; all close triangles outside16pier prisms/old painted bands retained exactly. New close geometry adds1582triangles. Declared error distances remain estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 54267,
+    "sourceTriangles": 55849,
     "sourceMaterials": 7,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 876,
+        "drawCalls": 1,
+        "addedTriangles": 0,
+        "retainedTriangles": 876,
+        "jointShelfTriangles": 0,
+        "jointBackTriangles": 0,
+        "controls": 46,
+        "failed": 0
+      },
+      {
+        "level": "district",
+        "triangles": 3331,
+        "drawCalls": 6,
+        "addedTriangles": 0,
+        "retainedTriangles": 3331,
+        "jointShelfTriangles": 0,
+        "jointBackTriangles": 0,
+        "controls": 46,
+        "failed": 0
+      },
+      {
+        "level": "street",
+        "triangles": 15535,
+        "drawCalls": 7,
+        "addedTriangles": 0,
+        "retainedTriangles": 15535,
+        "jointShelfTriangles": 0,
+        "jointBackTriangles": 0,
+        "controls": 46,
+        "failed": 0
+      },
+      {
+        "level": "closeup",
+        "triangles": 55849,
+        "drawCalls": 7,
+        "addedTriangles": 1582,
+        "retainedTriangles": 53865,
+        "jointShelfTriangles": 448,
+        "jointBackTriangles": 224,
+        "controls": 496,
+        "failed": 0
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.height.png",
+      "terrain-review.terrain.json"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; independent terrain PNG encoding error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/gc/gcp/ritz_london/verify-arcade-joints.mjs"
+    ],
+    "notes": "Targeted generation/import/exact regeneration, asset integrity, normals/winding/UVs, strict LOD and medium-fi material checks pass. Actual imported46/46/46/496controls pass:112recessed backs,224physical ledges, front course planes, all15original passage/floor/covered soffit controls and retained attribute fingerprints. First baseline Float32 tolerance was corrected in a separate V2 file before any geometry edit; original baseline remains hash guarded."
   },
   "limitations": [
-    "Original medium-fi exterior of the historic main Ritz hotel, based on individually inspected local 2015–2017 photographs, original plans/elevations and Purcell 2021 condition survey. Later 22 Arlington extension and William Kent House are excluded.",
+    "Historic main Ritz hotel. New close-range arcade rustication follows the cleared Qualla1907Piccadilly/GreenPark elevations; seven recessed joints on all16piers. Later22Arlington extension and William Kent House remain excluded.",
+    "Earlier massing, canopy and roof details inherited from prior work. Modern attribution photographs and private2021survey imagery are excluded as current controls. Full historic-main-hotel fidelity remains pending adequate public-domain review of all retained details.",
+    "Joint spacing follows the existing course rhythm;18mm height and25mm depth are authoring estimates. The1907plate does not establish current condition or exact profiles. Close-only construction keeps the three lower geometry levels unchanged.",
     "Dated model scope does not claim to reproduce all current roof/construction changes. No temporary scaffolding, crowds, Christmas decorations or interiors.",
     "Footprint is mapped; vertical dimensions, upper court geometry, rear windows, equipment and fine sculptural profiles are approximations. Main arcade remains open and rear court is not filled to full height.",
     "Original simplified ironwork, stone balustrades and roof ornament; no copied photograph textures, hotel crest or exact lettering.",
@@ -162,6 +251,209 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:a284111912c830574ad73a5c86a0dfccf5d7e8c4ed3aabc6bb0abbc069d06d79",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:da48461a955023ef27862ffcbfae6f760b779789e1ade54e456d8bc9c0dfd537",
+    "referenceInputHash": "sha256:5b54f679e53326a19a95afa97e2244f735591999c8a821b2cd5ae758e9cade8d",
+    "acceptedReferencePaths": [
+      "_m/g/c/p/v/the-ritz-hotel-london-wp/elevation-illustration.jpg",
+      "_m/g/c/p/v/the-ritz-hotel-london-wp/ritz-london-architectural-reco.jpg"
+    ],
+    "auxiliaryReferencePaths": [],
+    "imageryEvidenceHash": "sha256:cd77664bef6e5be804e1ac50a12a25673ec03f36f6994a321b4540eb032a3aa4",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/g/c/p/v/the-ritz-hotel-london-wp/facade-ritz-londres.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Fa%C3%A7ade_Ritz_Londres.jpg",
+        "reason": "Earlier imagery excluded as current construction control; retained details are not reapproved from this source."
+      },
+      {
+        "path": "_m/g/c/p/v/the-ritz-hotel-london-wp/2017-the-ritz-london.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:2017_The_Ritz_London.jpg",
+        "reason": "Earlier imagery excluded as current construction control; retained details are not reapproved from this source."
+      },
+      {
+        "path": "_m/g/c/p/v/the-ritz-hotel-london-wp/the-ritz-on-piccadilly.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:The_Ritz_on_Piccadilly.jpg",
+        "reason": "Earlier imagery excluded as current construction control; retained details are not reapproved from this source."
+      },
+      {
+        "path": "_m/g/c/p/v/the-ritz-hotel-london-wp/ritz-hotel-december-2015-05.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Ritz_Hotel,_December_2015_05.jpg",
+        "reason": "Earlier imagery excluded as current construction control; retained details are not reapproved from this source."
+      },
+      {
+        "path": "_m/g/c/p/v/the-ritz-hotel-london-wp/ritz-london-ground-floor-plan-.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Ritz_London_ground_floor_plan,_1906_-_reprinted_in_Grand_Hotels,_Reality_and_Illusion_by_Elaine_Denby_-_DSC03860.jpg",
+        "reason": "Earlier imagery excluded as current construction control; retained details are not reapproved from this source."
+      },
+      {
+        "path": "_m/g/c/p/v/the-ritz-hotel-london-wp/original-caption-typic.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Ritz_London_floor_plan.jpg",
+        "reason": "Earlier imagery excluded as current construction control; retained details are not reapproved from this source."
+      },
+      {
+        "url": "https://docs.planning.org.uk/20251021/115/T49XK2RPH4M00/n1loivqeq8eycwxi.pdf",
+        "reason": "Private2021condition-survey imagery excluded from current controls."
+      },
+      {
+        "url": "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/ad967804-d0b4-102d-bcf8-003048976d84",
+        "reason": "Skipped before native download/use: anonymous1940photo; primary rights metadata does not provide the archive explicit CC0 grant required by the existing checker."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "The two exact published Qualla public-domain originals establish the full historic main hotel:1907Piccadilly/GreenPark elevations show the15front axes, three mansard pavilions, five-bay end, stone tiers, balconies, dormers/chimneys and open channelled arcade;1914dated exterior/plan/west-terrace images corroborate massing and the Arlington return. Native scans, publisher/date/copyright imprints and explicitPD-US/Pre-1923source records agree. Current geometry retains that identifying hierarchy and its112physical close arcade joints. Later entrance canopy, concealed courtyard faces, roof joins, fine sculpture and exact current restoration are medium-fi approximations; the dated publications do not certify modern fitout. Native map/terrain/placement remain unchanged. Full fixed historic-main-hotel exterior accepted at approximate medium-fi scope; separate WilliamKentHouse/interiors excluded as before. Exact published Qualla paths, metadata, public-domain/CC0 attribution and bytes agree. No supplemental imagery was needed."
+  },
+  "constructionReview": {
+    "status": "arcade-joints-completed-full-exterior-awaiting-reference",
+    "model": "ritz_london",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:4319b205d6684b878e0e03dd902989ac628451fba906e909c2966d9f230a71bb",
+    "sourceHash": "sha256:d4f0b28453cc0cdc32a6f6b8f693a1ebd18dc34947efed08f0d1fa5ef3105754",
+    "runtimeHash": "sha256:90526523e6770a2abe111da76ab3894258c4304c7030a93e667aac17170127f9",
+    "built": [
+      "16closed channelled arcade pier extrusions",
+      "112physical recessed horizontal joints",
+      "224upper/lower joint ledges and112recessed back faces",
+      "Removed close-range painted joint strips"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      876,
+      3331,
+      15535,
+      55849
+    ],
+    "drawCalls": [
+      1,
+      6,
+      7,
+      7
+    ],
+    "limits": "Built 112 physical recessed joints across all 16 Piccadilly arcade piers, using the exact cleared Qualla 1907 elevation and retaining the existing course rhythm. One closed concave extrusion per pier; the joints have real backs, lower and upper ledges and end caps. Replaces old painted lines only at close range. The exact cleared 1914 publication and native exterior crop were also inspected for historical context. Both native originals match primary Commons SHA1/dimensions and explicit PD-US/Pre-1923 records. No new photo downloaded. Anonymous 1940 archive photo, attribution exteriors, later plan reprint and private 2021 survey excluded from current controls. Joint height18mm and depth25mm are estimates. All three lower levels and every close triangle outside piers/old painted bands retained exactly. Original frame, terrain and placement retained. Whole historic main-hotel scope remains intact: inherited Arlington canopy, hidden/rear details and current condition have not been reapproved from adequate public-domain evidence. Qualla local media metadata omits the PD basis category; exact primary publication proof retained without silently editing sibling media metadata or weakening its checker. No whole-model completion claim.",
+    "reusedNativeQuallaOriginals": 2,
+    "publicDomainPrimaryPublicationRecords": 2,
+    "changedPiers": 16,
+    "recessedJoints": 112,
+    "physicalJointShelfTriangles": 448,
+    "physicalJointBackTriangles": 224,
+    "exactOriginalLevels": [
+      "skyline",
+      "district",
+      "street"
+    ],
+    "fullExteriorCompleted": false,
+    "storyState": "needs-review",
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
+  },
+  "status": "completed",
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:da48461a955023ef27862ffcbfae6f760b779789e1ade54e456d8bc9c0dfd537",
+    "sourceHash": "sha256:d4f0b28453cc0cdc32a6f6b8f693a1ebd18dc34947efed08f0d1fa5ef3105754",
+    "runtimeHash": "sha256:90526523e6770a2abe111da76ab3894258c4304c7030a93e667aac17170127f9",
+    "notes": "The two exact published Qualla public-domain originals establish the full historic main hotel:1907Piccadilly/GreenPark elevations show the15front axes, three mansard pavilions, five-bay end, stone tiers, balconies, dormers/chimneys and open channelled arcade;1914dated exterior/plan/west-terrace images corroborate massing and the Arlington return. Native scans, publisher/date/copyright imprints and explicitPD-US/Pre-1923source records agree. Current geometry retains that identifying hierarchy and its112physical close arcade joints. Later entrance canopy, concealed courtyard faces, roof joins, fine sculpture and exact current restoration are medium-fi approximations; the dated publications do not certify modern fitout. Native map/terrain/placement remain unchanged. Full fixed historic-main-hotel exterior accepted at approximate medium-fi scope; separate WilliamKentHouse/interiors excluded as before.",
+    "renderReuse": {
+      "reason": "Only reference selection, inventory and historical-source annotations changed. Graphics specification (apart from reference URLs/fingerprint), source/runtime/LOD bytes, scene, map, terrain, placement, material bindings, cameras and every image byte are unchanged. Retain the original inspected renders; no fresh capture is claimed.",
+      "originalInputHash": "sha256:4319b205d6684b878e0e03dd902989ac628451fba906e909c2966d9f230a71bb",
+      "reviewInputHash": "sha256:da48461a955023ef27862ffcbfae6f760b779789e1ade54e456d8bc9c0dfd537",
+      "sourceHash": "sha256:d4f0b28453cc0cdc32a6f6b8f693a1ebd18dc34947efed08f0d1fa5ef3105754",
+      "runtimeHash": "sha256:90526523e6770a2abe111da76ab3894258c4304c7030a93e667aac17170127f9",
+      "originalCaptureReports": {
+        "capture-report.json": "sha256:ad65450088fb6eb5e0f65a38e64279dabb28c615a8c52dc37f3cee4d77b147c9",
+        "shared-capture-report.json": "sha256:43c2e70ddef2e3d382e77b581e05576d34b264a52605204ad19c509e104a0010",
+        "medium-fi-report.json": "sha256:966b8cadaa1fd07a8a15f46512d3a5bc34299e3068fcafa24fddc5a43bc08739"
+      }
+    },
+    "previousImageryReview": {
+      "policy": "qualla-public-domain-imagery@1",
+      "status": "needs-review",
+      "scope": "all-model-reference-imagery",
+      "reviewedOn": "2026-10-18",
+      "inputHash": "sha256:4319b205d6684b878e0e03dd902989ac628451fba906e909c2966d9f230a71bb",
+      "referenceInputHash": "bacad7ca48d21909df6bf35c122540b2c15329409ed4bcaa498ce8ffbebe4a72",
+      "acceptedReferencePaths": [
+        "_m/g/c/p/v/the-ritz-hotel-london-wp/elevation-illustration.jpg",
+        "_m/g/c/p/v/the-ritz-hotel-london-wp/ritz-london-architectural-reco.jpg"
+      ],
+      "auxiliaryReferencePaths": [],
+      "imageryEvidenceHash": "sha256:82329ef00f456a84eebd72a34c9a65dcaf6e26c650f5f22fb03167fcacfbf127",
+      "excludedHistoricalImagery": [
+        {
+          "path": "_m/g/c/p/v/the-ritz-hotel-london-wp/facade-ritz-londres.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Fa%C3%A7ade_Ritz_Londres.jpg",
+          "reason": "Earlier imagery excluded as current construction control; retained details are not reapproved from this source."
+        },
+        {
+          "path": "_m/g/c/p/v/the-ritz-hotel-london-wp/2017-the-ritz-london.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:2017_The_Ritz_London.jpg",
+          "reason": "Earlier imagery excluded as current construction control; retained details are not reapproved from this source."
+        },
+        {
+          "path": "_m/g/c/p/v/the-ritz-hotel-london-wp/the-ritz-on-piccadilly.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:The_Ritz_on_Piccadilly.jpg",
+          "reason": "Earlier imagery excluded as current construction control; retained details are not reapproved from this source."
+        },
+        {
+          "path": "_m/g/c/p/v/the-ritz-hotel-london-wp/ritz-hotel-december-2015-05.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Ritz_Hotel,_December_2015_05.jpg",
+          "reason": "Earlier imagery excluded as current construction control; retained details are not reapproved from this source."
+        },
+        {
+          "path": "_m/g/c/p/v/the-ritz-hotel-london-wp/ritz-london-ground-floor-plan-.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Ritz_London_ground_floor_plan,_1906_-_reprinted_in_Grand_Hotels,_Reality_and_Illusion_by_Elaine_Denby_-_DSC03860.jpg",
+          "reason": "Earlier imagery excluded as current construction control; retained details are not reapproved from this source."
+        },
+        {
+          "path": "_m/g/c/p/v/the-ritz-hotel-london-wp/original-caption-typic.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Ritz_London_floor_plan.jpg",
+          "reason": "Earlier imagery excluded as current construction control; retained details are not reapproved from this source."
+        },
+        {
+          "url": "https://docs.planning.org.uk/20251021/115/T49XK2RPH4M00/n1loivqeq8eycwxi.pdf",
+          "reason": "Private2021condition-survey imagery excluded from current controls."
+        },
+        {
+          "url": "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/ad967804-d0b4-102d-bcf8-003048976d84",
+          "reason": "Skipped before native download/use: anonymous1940photo; primary rights metadata does not provide the archive explicit CC0 grant required by the existing checker."
+        }
+      ],
+      "inventoryStatus": "needs-review",
+      "inventoryBlockers": [
+        "inventory-qualla-provenance-failed"
+      ],
+      "primaryPublicationProof": {
+        "status": "passed",
+        "records": 2,
+        "nativeOriginalsReused": 2,
+        "explicitTemplate": "PD-US",
+        "explicitPermission": "Pre-1923",
+        "nativeSha1Matched": true,
+        "nativeDimensionsMatched": true
+      },
+      "notes": "Cleared Qualla originals first: exact native1907elevation and1914publication reused; primary explicit PD-US/Pre-1923release records and SHA1/dimensions verified. Full/native architectural detail inspected, interiors unused. Anonymous1940archive photo skipped before download; modern attribution/private imagery excluded. Missing local metadata PD category still reported by original strict checker; primary proof retained, full exterior review pending."
+    }
+  },
+  "validation": {
+    "completed": true,
+    "storyAnnotation": true
   }
 }

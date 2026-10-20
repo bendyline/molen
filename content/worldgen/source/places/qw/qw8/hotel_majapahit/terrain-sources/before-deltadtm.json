@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-17",
+  "phase": "post-existing-geometry-independent-ground-replacement",
+  "snapshot": {
+    "key": "hotel_majapahit",
+    "structureId": "QS-972acd37ed82",
+    "sourcePath": "content/worldgen/source/places/qw/qw8/hotel_majapahit",
+    "inputHash": "sha256:32bf6005681b83381ca9007abf98081c5ff941d24d2ebf5fbd4d365d5ed87a77",
+    "sourceHash": "sha256:2294d609457f9a47bdb801af508a5de2bdf82e181312bd58f4b7b1043f8b4670",
+    "runtimeHash": "sha256:eb73ba09de9e6ae5a41f992c87ea777fd95bd89392900c5c790ec2b2d954a1fd",
+    "lods": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:4f673a8a4098d95bf548e7e5d66120dd657837d491b32348ac47b48820c866b6",
+        "bytes": 76136,
+        "gzipBytes": 12902,
+        "triangles": 967,
+        "cpuBytes": 74744,
+        "gpuBytes": 74744,
+        "errorMeters": 1.2,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:a77c4c63b095d235e760296594149080706526478e42ac988b4f4180cb0a85a0",
+        "bytes": 294552,
+        "gzipBytes": 59983,
+        "triangles": 3987,
+        "cpuBytes": 288488,
+        "gpuBytes": 288488,
+        "errorMeters": 0.5,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:7bab4b3b66e48ba2c86b54f6de23efcc4ea862f7dc955ec2582b61a8dffaf7c4",
+        "bytes": 1122128,
+        "gzipBytes": 220203,
+        "triangles": 15457,
+        "cpuBytes": 1116044,
+        "gpuBytes": 1116044,
+        "errorMeters": 0.2,
+        "drawCalls": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:8daed2f862dbd2ad729a8a8f40512acc69c2d3b5e2acc1a23118db075a083d4a",
+        "bytes": 6008352,
+        "gzipBytes": 903402,
+        "triangles": 50045,
+        "cpuBytes": 6005400,
+        "gpuBytes": 6005400,
+        "errorMeters": 0,
+        "drawCalls": 5
+      }
+    ],
+    "anchor": [
+      112.7401,
+      -7.25975
+    ],
+    "heading": -0.7380960723288366,
+    "terrainContact": {
+      "local": [
+        -7,
+        80
+      ],
+      "modelY": 0,
+      "basis": "Street approach outside main entrance canopy."
+    },
+    "files": {
+      "spec.json": "sha256:b0325a787fdcf3b9672de53bdb1f81ad7afcabb0fb208c2d4946e59e86abf8c4",
+      "map-frame.json": "sha256:aba93126e592e4a60330bccfc85b2ae9967acdb51d650364557b2b147727f888",
+      "reference-images.json": "sha256:2b19fdf364cbe9251c6329d6a11f1e52426e1a04ec62b52b8a44e4997f9a575c",
+      "terrain-grid.json": "sha256:af216091a46295facfe0b7a9a930b65f94e3d12d7e0607ca841731070581dc2e",
+      "terrain-review.terrain.json": "sha256:82b3805db08e9ea94d786ecf8d0a8f947c877bb19424c340ec0885e115ce72ed",
+      "terrain-review.height.png": "sha256:1b8f62595abbc84425f0564bdfb8ce7f1aa714ecdce4bf242cd99610d1f00d1c"
+    }
+  },
+  "rejectedGeographicReview": {
+    "status": "needs-review",
+    "placementHash": "sha256:3b1f5ee11c8b40c82b9955c6164751a2376b84cad2f4f75d0a701ccbf467c5f2",
+    "mapGeometryHash": "sha256:aba93126e592e4a60330bccfc85b2ae9967acdb51d650364557b2b147727f888",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:af216091a46295facfe0b7a9a930b65f94e3d12d7e0607ca841731070581dc2e",
+      "descriptorHash": "sha256:82b3805db08e9ea94d786ecf8d0a8f947c877bb19424c340ec0885e115ce72ed",
+      "heightfieldHash": "sha256:1b8f62595abbc84425f0564bdfb8ce7f1aa714ecdce4bf242cd99610d1f00d1c",
+      "modelDatumElevationMeters": 7.9889,
+      "sourcePixelGroundSpacing": 4.739016737325117,
+      "footprintRelativeRangeMeters": [
+        -4.0250561054,
+        4.9231818895999995
+      ],
+      "maxPngEncodingErrorMeters": 0.00011482896804881904
+    },
+    "notes": "Mapped horizontal placement and historic scope cut were reviewed: anchor [112.7401,-7.25975], heading -0.7380960723288366, +X southeast across wings and +Z southwest toward Jalan Tunjungan. Coarse unmodified Terrarium data varies by several metres over the compound and visibly obscures lower arcades. Geographic review is NOT accepted. Official BIG DEMNAS service was researched but direct acquisition timed out; resolve with suitable independent ground data or an explicitly reviewed host terrain policy before completing this model. No terrain was flattened to make the model pass. Integration audit 2026-10-15: placement held as draft, excluded from default world queries until the terrain issue is resolved. Previous shared placement images are research evidence, not approval of the draft site."
+  },
+  "changes": "No architecture/frame/dry reference/foot depth changed. Existing320m review extent and5m grid retained; original one arcsecond source resampled without filling or fitting."
+}

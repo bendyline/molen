@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.chateau_laurier",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:ed124e1ba2e66de6b1c19c5822103e0215498a746bf99728def823af4b084d09",
-  "sourceHash": "sha256:c79935600a563608dddebc2d5e8e814748d32bd9190ce31dc20ab254a6655559",
-  "runtimeHash": "sha256:35b9c801a816329ad3f438d5f68a724acf9a6e9737e5413966851508c75112c2",
-  "captureReportHash": "sha256:51751602d4c103844d5491c28fc8fef701e06ed92cba95ff19bea3a66dcaab62",
+  "inputHash": "sha256:fc738cee11a59b82a326008c2b087ff51032930e4965e7ae11bf714787332cf6",
+  "sourceHash": "sha256:be3a1e56419822c672374d5cb92b91ca784c03431c0d2a3942643b2f7db21da6",
+  "runtimeHash": "sha256:8b0c0ae390daa236ba6a2d5d6980798bf00909c9e133780315a90c9792071efe",
+  "captureReportHash": "sha256:47d171217965edabeb8f8c7d0a334be16e8ba5bae8f84a79121cb9507005a235",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:47d171217965edabeb8f8c7d0a334be16e8ba5bae8f84a79121cb9507005a235",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/pendant-bases.png",
+      "shots/tower-corbels.png"
     ],
-    "notes": "Inspected all seven current portable views and full terrain-front image against the individually inspected local 2012 Rideau facade and 2008 canal elevation. Review refined the paired entrance gables, closed roof junctions by sharing ridge/eave controls, differentiated copper tones and separated window surfaces to remove depth artifacts. Open carriage arches, oriels, octagonal pavilions, inset round towers, low central halls and canal terrace remain distinct."
+    "notes": "All9final portable views inspected after neck/background-window fixes. Four physical moulded pendant bases and64stepped circular corbels retain solid profiles and clean exposed faces. Corrected pendant camera looks toward exposed side. Whole hotel/roofscape/halls, two entrance porticoes, low canal terrace and source ground retained. Fine carving and individual opening placement remain simplified."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:13cf822826343aa050b2da83e8f588777ee80d44c8702906415403817a50866f",
+    "captureReportHash": "sha256:e220056cc2bba80a4b95c84a5d2a36716f5dd4b23333a22bca4303085940778b",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,29 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/pendant-bases.png",
+      "shots/shared/tower-corbels.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven current shared-material views, including full front facade. Limestone and standing-seam copper use two shared metric surfaces; glass is local. Roof facets and perimeter align with the mapped hotel in the placement overlay. Flat ground is a material fixture; portable evidence uses independent terrain."
+    "notes": "All9final shared-material views inspected, including native pendant/corbel details and geographic overlay. New individually modeled stone uses continuous raw limestone, old walls keep coursed limestone and roof remains standing-seam copper. Neck facet intersections and background windows corrected. Original placement hash/map overlay retained; unload disposes all model geometry. Shared fixture uses flat terrain; independent canal slope remains in portable/medium captures.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:48193aa8ed881415b823ec643417c7abedf655a25f65f936756f45a9bb22ea76",
+    "captureReportHash": "sha256:299c48488f231e67dfa41063a7c6aa63b5633918a401c6fc05498a1f4ef8daf6",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +72,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/pendant-bases.png",
+      "medium-fi/tower-corbels.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected nineteen current lighting, quality and forced-detail frames. All four levels retain the historic U, lower central halls, entrance pavilions, tall octagonal roof and round turrets. Detail simplifies within all hard geometry budgets. Synthetic surrounding buildings are style fixtures; no physical-device performance claim."
+    "notes": "All21final version2frames inspected: noon/late light, economy/high, two facade views, native new detail views, source terrain and four forced levels. Closed supports/profiles resolve at close; exact lower levels preserve hotel/tower/wing/hall/terrace silhouette. Synthetic neighboring structures are style fixtures only."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +98,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.0003059562683063177
     },
-    "notes": "Anchor [-75.69510833333334,45.42556666666666], heading 0.55, +X northeast, +Z southeast. Independent NRCan HRDEM Mosaic DTM retained unchanged, raw GeoTIFF hash checked. Rideau sidewalk [-6,65] defines 72.0103 m CGVD2013 datum. Canal footprint descends approximately six metres and is accommodated by exposed foundations and the lower arched terrace. No terrain flattening or model fitting; footprint suppression remains off."
+    "notes": "Original anchor[-75.69510833333334,45.42556666666666],heading0.55,+X northeast/+Z southeast retained. Independent NRCan HRDEM Mosaic DTM/CGVD2013datum72.0103m at Rideau sidewalk[-6,65] retained. Map, raw terrain context, terrain grid/descriptor/heightPNG unchanged. Existing foundations and lower arched terrace retain canal drop of approximately6m; no new pad/flattening/fitting or footprint suppression. Small terraces remain simplified and another host terrain may differ."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Surviving 1912/1929 hotel exterior, historic U-shaped wings, low central halls, Rideau and Mackenzie entrances, canal terrace, octagonal pavilions, round turrets and steep copper roofs.",
-    "notes": "Two primary local originals, additional night/historical views, Parks Canada defining features, NCC phase/aerial study, 2020 heritage-impact existing hotel elevation and satellite roof context guide the reconstruction. Mapped 39/45 m ridges and 64 m high roof agree approximately with that depiction; the adjacent drawing dimensions concern proposed buildings, not a hotel survey. Fine carving, hidden elevations and exact openings remain interpreted. No interiors, proposed modern extension, demolished garage, separate canal structures or photo pixels."
+    "scope": "Surviving1912/1929hotel exterior, historic U-shaped wings, low central halls, Rideau and Mackenzie entrances, canal terrace, octagonal pavilions, round turrets and steep copper roofs.",
+    "notes": "Full fixed surviving1912/1929hotel, connected U-shaped wings, lower central halls, Rideau and Mackenzie entrances, canal terrace, limestone pavilions, turrets and copper roofs retained. Five exact native photographer public-domain/CC0 exterior originals inspected, spanning canal and Rideau elevations, entry canopy/lounge, pavilion/gable/roof forms and native pendant-base detail. Built four closed layered pendant bases and64closed stepped circular-tower corbels. Removed16interfering shaft windows,16old box ornaments and seven background window assemblies behind pendants at close; narrowed pendant neck inside old cylinder facet planes. Original three lower levels and all source attributes after these explicit omissions exact; map/ground/placement unchanged. Dimensions, support counts/spacing, round profiles, hidden matching faces, roof joins, exact openings, fine heraldry and current patina remain medium-fi estimates. Whole fixed scope unchanged; proposed extension, removed garage, interiors, separate canal buildings, bridge, street furnishings and landscaping excluded."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:d5c9be5b817525caa72b03c73368c78699362bb5e226bd729829b75b4d761bb7",
+    "recipeHash": "sha256:86b0819a3936a4e403416bf6b6a1f7871268c5e0fca19bcb9cec7e1447b0d310",
     "levels": [
       {
         "name": "skyline",
@@ -128,33 +149,80 @@
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:c86ecfe6c9d2a5281b20f2e275bb24621f98bac760d4a3d32e5a19a32e1368d6",
-        "bytes": 6374832,
-        "gzipBytes": 1311858,
-        "triangles": 53105,
-        "cpuBytes": 6372600,
-        "gpuBytes": 6372600,
+        "hash": "sha256:92286fb77f9fe53edd5e87f65527c3a4dec664a67510c0e91a3d28ce9b76e5c3",
+        "bytes": 6932756,
+        "gzipBytes": 1426329,
+        "triangles": 57751,
+        "cpuBytes": 6930120,
+        "gpuBytes": 6930120,
         "errorMeters": 0,
-        "drawCalls": 3
+        "drawCalls": 4
       }
     ],
-    "notes": "All four current derivatives visually inspected and checked against hard budgets. Error numbers are authoring budgets, not measured survey deviations."
+    "notes": "777/3279/15874/57751triangles and1/3/3/4draws pass strict limits. Original three lower levels exact. Close removes330old window/box triangles and adds4976new corbel triangles. Every retained original position/normal/UV/color triangle hashes exactly against the V4 original-derived baseline; immutable complete original baseline unchanged. Back portions of full circular rings intentionally embed in retained roofs. Error figures remain estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 53105,
-    "sourceMaterials": 3,
+    "sourceTriangles": 57751,
+    "sourceMaterials": 4,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 777,
+        "drawCalls": 1,
+        "retainedTriangles": 777,
+        "corbelTriangles": 0,
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "district",
+        "triangles": 3279,
+        "drawCalls": 3,
+        "retainedTriangles": 3279,
+        "corbelTriangles": 0,
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "street",
+        "triangles": 15874,
+        "drawCalls": 3,
+        "retainedTriangles": 15874,
+        "corbelTriangles": 0,
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "closeup",
+        "triangles": 57751,
+        "drawCalls": 4,
+        "retainedTriangles": 52775,
+        "corbelTriangles": 4976,
+        "controls": 152,
+        "failed": 0
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration and ordinary import verification pass; four LODs and strict medium-fi audit pass. Source, scene and terrain schemas plus independent heightfield round-trip and raw DTM provenance checks pass. No separate Khronos validation claimed."
+    "verification": [
+      "node content/worldgen/source/places/f2/f24/chateau_laurier/verify-stone-corbels.mjs"
+    ],
+    "notes": "Imported1/1/1/152controls pass for four closed tips, layered radial profiles,64closed support fronts and64downward stepped undersides, exposed complete-model fronts, raw stone bindings and retained original attributes. Normals/winding/UVs, source/runtime hashes/counts, exact regeneration and strict geometry/material limits pass. V2/V3/V4 baselines derive solely from saved original after all four original full fingerprints match; precise planned omissions are recorded before each edit. No Khronos validation claimed."
   },
   "limitations": [
-    "Historic 1912/1929 exterior interpreted from individually inspected Qualla 2008/2012 front and canal photographs, NCC phase/aerial study, existing west elevation in the 2020 heritage-impact report, mapped roof facets and satellite context.",
-    "Mapped ridge heights of 39/45 m and 64 m main tower are approximate and agree with the existing hotel depiction beside dimensioned proposed buildings. The drawing does not provide a measured hotel survey.",
+    "Four moulded pendant bases and64individual circular-tower supports use five exact native named photographer public-domain/CC0 exteriors after a cleared Qualla search. Earlier attribution/private report/satellite imagery excluded as current construction controls. Full fixed historic hotel, entrances, central halls, connected wings and terrace remain in scope.",
+    "Three original lower levels and close geometry outside16interfering circular-shaft windows and16old box ornaments plus seven windows behind pendant bases retained. New close-only closed stone profiles use continuous raw limestone and meter UVs; ring dimensions, support spacing/counts and hidden matching faces are medium-fi estimates. No heraldic sculpture or lighting scheme copied.",
+    "Retained mapped ridge heights of39/45m and64m main tower are approximate. Current photographer-public-domain exterior views support silhouette, not surveyed dimensions.",
     "Fine heraldic carving, exact room-by-room openings, hidden service elevations, roof intersections and terrace limits remain simplified. Lower central halls are retained; no interiors or proposed modern addition, removed garage, separate canal buildings or landscaping.",
     "Unmodified independent NRCan ground data retains the canal drop; host runtime terrain may differ. Footprint suppression remains disabled.",
     "Photo pixels are not embedded. Copper tone follows the dated daylight images; weathering may differ today."
@@ -162,6 +230,128 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:de86852291f25e3629dfe78a7e5e602fb072fb7200fc13eaa1ac1db43ffa4971",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:fc738cee11a59b82a326008c2b087ff51032930e4965e7ae11bf714787332cf6",
+    "referenceInputHash": "sha256:6495e1ef516b34b3fa8547ca92e093ce59639e64f2333f21c1d0a0eadbe2933f",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/exterior-0.jpg",
+      ".artifacts/reference-photos/exterior-1.jpg",
+      ".artifacts/reference-photos/exterior-3.jpg",
+      ".artifacts/reference-photos/entrance-6576999193.jpg",
+      ".artifacts/reference-photos/entrance-8129704477.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:d2f40d132106e4e16ae7c14527a7d2a3959e681478852bd1a7d7f0ed48703c78",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/f/2/4/4/ch-teau-laurier-wp/hotel-chateau-laurier.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Hotel_Ch%C3%A2teau_Laurier_in_Ottawa.jpg",
+        "reason": "Earlier attribution/private heritage-report/satellite imagery excluded as current corbel construction control; fixed full scope and mapped geometry retained."
+      },
+      {
+        "path": "_m/f/2/4/4/ch-teau-laurier-wp/chateau-laurier.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Chateau_laurier.JPG",
+        "reason": "Earlier attribution/private heritage-report/satellite imagery excluded as current corbel construction control; fixed full scope and mapped geometry retained."
+      },
+      {
+        "path": "File:Fairmont Chateau Laurier Ottawa Canada.jpg",
+        "reason": "Verified public-domain interior photo inspected in source search but excluded from exterior controls."
+      },
+      {
+        "path": "_m/f/2/4/4/ch-teau-laurier-wp/chateau-laurier.jpg",
+        "reason": "Local record lacks a named creator and primary generic migrated PD-user grant does not bind photographer identity clearly; not adopted."
+      },
+      {
+        "url": "https://www.pc.gc.ca/apps/dfhd/page_nhs_eng.aspx?i=51988&id=452",
+        "reason": "Earlier report/satellite photographs and diagrams excluded as current construction controls; factual heritage scope and mapped geometry retained."
+      },
+      {
+        "url": "https://webcast.ottawa.ca/plan/All_Image%20Referencing_Site%20Plan%20Application_Image%20Reference_2018-02-18%20-%20D07-12-16-0193%20-%202008%20Guidelines%20prepared%20by%20du%20Toit%20Allsopp%20Hillier%20for%20the%20NCC.PDF",
+        "reason": "Earlier report/satellite photographs and diagrams excluded as current construction controls; factual heritage scope and mapped geometry retained."
+      },
+      {
+        "url": "https://webcast.ottawa.ca/plan/All_Image%20Referencing_Ontario%20Heritage%20Act_Image%20Reference_Rideau%2C%201%20-%20Cultural%20Heritage%20Impact%20Statment%20%28Revised%29.PDF",
+        "reason": "Earlier report/satellite photographs and diagrams excluded as current construction controls; factual heritage scope and mapped geometry retained."
+      },
+      {
+        "url": "https://www.google.com/maps/@45.42557,-75.69511,19z/data=!3m1!1e3",
+        "reason": "Earlier report/satellite photographs and diagrams excluded as current construction controls; factual heritage scope and mapped geometry retained."
+      },
+      {
+        "url": "https://open.canada.ca/data/en/dataset/0fe65119-e96e-4a57-8bfe-9d9245fba06b",
+        "reason": "Earlier report/satellite photographs and diagrams excluded as current construction controls; factual heritage scope and mapped geometry retained."
+      },
+      {
+        "path": "_m/f/2/4/4/ch-teau-laurier-wp/chateau-laurier-hdr-ot.jpg",
+        "reason": "Earlier local supplementary image excluded as current construction control."
+      },
+      {
+        "path": "_m/f/2/4/4/ch-teau-laurier-wp/chateau-laurier-ottawa.jpg",
+        "reason": "Earlier local supplementary image excluded as current construction control."
+      },
+      {
+        "path": "_m/f/2/4/4/ch-teau-laurier-wp/hero.jpg",
+        "reason": "Earlier local supplementary image excluded as current construction control."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Cleared Qualla corpus searched first. Local modern PD label lacks explicit named creator binding; early/construction archive candidates unsuitable. Those and earlier attribution/private report/satellite imagery excluded as current controls. Three exact native named photographer-own PD-self/CC0 exteriors and two exact native Flickr photographer CC0 exteriors inspected. Primary explicit creator grants, revisions, native SHA1/dimensions and reviewed transfers bound. Flickr old V.L./current litt26 display names bind same immutable59724445@N07in both primary creator objects and unchanged vlitvinov account/photo. Colored night/sunset light does not control neutral stone. Interior candidate excluded; no questionable source or photo pixels used."
+  },
+  "constructionReview": {
+    "status": "completed-for-bounded-medium-fi-exterior",
+    "model": "chateau_laurier",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:fc738cee11a59b82a326008c2b087ff51032930e4965e7ae11bf714787332cf6",
+    "sourceHash": "sha256:be3a1e56419822c672374d5cb92b91ca784c03431c0d2a3942643b2f7db21da6",
+    "runtimeHash": "sha256:8b0c0ae390daa236ba6a2d5d6980798bf00909c9e133780315a90c9792071efe",
+    "built": [
+      "Four closed layered stone pendant bases with metric UVs",
+      "64closed stepped circular-tower corbels with physical undersides",
+      "Removed16intersecting shaft windows and16old box ornaments",
+      "Cleared seven background window assemblies beneath new pendant bases",
+      "Narrowed pendant necks inside original sixteen-sided cylinder planes"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      777,
+      3279,
+      15874,
+      57751
+    ],
+    "drawCalls": [
+      1,
+      3,
+      3,
+      4
+    ],
+    "limits": "Full fixed surviving1912/1929hotel, connected U-shaped wings, lower central halls, Rideau and Mackenzie entrances, canal terrace, limestone pavilions, turrets and copper roofs retained. Five exact native photographer public-domain/CC0 exterior originals inspected, spanning canal and Rideau elevations, entry canopy/lounge, pavilion/gable/roof forms and native pendant-base detail. Built four closed layered pendant bases and64closed stepped circular-tower corbels. Removed16interfering shaft windows,16old box ornaments and seven background window assemblies behind pendants at close; narrowed pendant neck inside old cylinder facet planes. Original three lower levels and all source attributes after these explicit omissions exact; map/ground/placement unchanged. Dimensions, support counts/spacing, round profiles, hidden matching faces, roof joins, exact openings, fine heraldry and current patina remain medium-fi estimates. Whole fixed scope unchanged; proposed extension, removed garage, interiors, separate canal buildings, bridge, street furnishings and landscaping excluded.",
+    "publicDomainPrimaryOriginals": 5,
+    "pendantBases": 4,
+    "steppedCorbels": 64,
+    "removedShaftWindows": 16,
+    "replacedBoxOrnaments": 16,
+    "removedPendantBackgroundWindows": 7,
+    "exactThreeOriginalLowerLevels": true,
+    "retainedFixedWholeHotelScope": true,
+    "storyState": "ready",
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
   }
 }

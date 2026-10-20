@@ -288,8 +288,37 @@ describe('geographic structure ground cutouts', () => {
       ),
     ).toThrow('ground cutout');
   });
+  it('validates each separate opening through the schema and index', () => {
+    registerStructurePlacementsSchema();
+    const groundCutout = {
+      outline: base.groundCutout?.outline ?? [],
+      basis: 'Measured native facade boundary',
+      additionalOutlines: [
+        [
+          [6, -1],
+          [8, -1],
+          [8, 1],
+          [6, 1],
+        ],
+      ] as [number, number][][],
+    };
+    const doc = catalog({ ...base, groundCutout });
+    expect(getSchema('structure-placements')?.zod.safeParse(doc).success).toBe(true);
+    expect(() => createStructureIndex(doc)).not.toThrow();
+    groundCutout.additionalOutlines = [
+      [
+        [0, 0],
+        [2, 2],
+        [0, 2],
+        [2, 0],
+      ],
+    ];
+    expect(getSchema('structure-placements')?.zod.safeParse(doc).success).toBe(false);
+    expect(() => createStructureIndex(doc)).toThrow('ground cutout');
+  });
   it.each([
     'loaded',
+    'bounded',
     'failed',
     'cancelled',
   ] as const)('opens only successfully published models and restores after disposal (%s)', async (mode) => {
@@ -303,7 +332,34 @@ describe('geographic structure ground cutouts', () => {
       );
     });
     const r = createWorldgenSemanticRenderers(pack, {
-      structures: createStructureIndex(catalog()),
+      structures: createStructureIndex(
+        catalog({
+          ...base,
+          ...(mode === 'bounded'
+            ? {
+                datum: 'sea-level' as const,
+                bounds: [
+                  worldToWgs84(1, 0, 100)[0],
+                  worldToWgs84(1, 0, 100)[1],
+                  worldToWgs84(1, 100, 0)[0],
+                  worldToWgs84(1, 100, 0)[1],
+                ] as [number, number, number, number],
+              }
+            : {}),
+          groundCutout: {
+            outline: base.groundCutout?.outline ?? [],
+            basis: 'Measured native facade boundary',
+            additionalOutlines: [
+              [
+                [6, -1],
+                [8, -1],
+                [8, 1],
+                [6, 1],
+              ],
+            ],
+          },
+        }),
+      ),
       structureObjects: models,
       roads: { renderTransportation: false },
       generator: {
@@ -333,7 +389,10 @@ describe('geographic structure ground cutouts', () => {
       );
       if (root) scene.add(root);
       cutouts.update(scene);
-      expect(area(ground.geometry)).toBeCloseTo(mode === 'loaded' ? 10000 - 192 : 10000, 2);
+      expect(area(ground.geometry)).toBeCloseTo(
+        mode === 'loaded' || mode === 'bounded' ? 10000 - 192 - 16 : 10000,
+        2,
+      );
       if (root) r.humanFeatures.disposeTile?.(root);
       cutouts.update(scene);
       expect(ground.geometry).toBe(original);

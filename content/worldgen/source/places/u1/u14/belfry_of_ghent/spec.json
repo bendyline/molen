@@ -1,0 +1,408 @@
+{
+  "planId": "belfry_of_ghent",
+  "id": "belfry_of_ghent",
+  "assetId": "molen.worldgen.structure.belfry_of_ghent",
+  "title": "Belfry of Ghent",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 3.724791705608368,
+    "latitude": 51.05366128777874
+  },
+  "size": [
+    45.48209190368652,
+    98,
+    26.97311782836914
+  ],
+  "actualBounds": {
+    "min": [
+      -10.152986526489258,
+      -3,
+      -7.438117980957031
+    ],
+    "max": [
+      35.329105377197266,
+      95,
+      19.53499984741211
+    ]
+  },
+  "visualBrief": "Native Gothic civic tower with three paired lancet stages/stringcourses, actual pointed clock-arch openings and skeletal gold Roman clock rings/hands, pierced gallery tracery, four polygonal corner turrets/hourglass shutters/slate spires, thin weather poles/watchmen/gargoyles, central dormered slate spire/open gilded crown and original copper-dragon silhouette. Attached eleven-bay Cloth Hall with stepped buttresses/Gothic cross windows/blind tracery/stepped and timber dormers, corner pinnacles and south stair/gable. Small attached Mammelokker entrance with curved gable/oculus/abstract paired-figure relief. No neighboring churches/market pavilion/square/interior.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Gent_-_Belfry_top.jpg",
+    "https://commons.wikimedia.org/wiki/File:Carousel_on_the_Christmas_market,_Goudenleeuwplein,_Ghent,_2008.jpg",
+    "https://commons.wikimedia.org/wiki/File:Cloth_Hall_viewed_through_Ghent_Stadshal,_Belgium.jpg"
+  ],
+  "stories": [
+    {
+      "id": "belfry-of-ghent-wp",
+      "url": "https://qualla.com/belfry-of-ghent/"
+    }
+  ],
+  "referenceInputHash": "sha256:5c35d7841abc00e4a6c12169573ffc4014399a2634aa6653e96bb88e8b06f51a",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-belfry-of-ghent.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-belfry-of-ghent.mjs",
+    "level": "skyline",
+    "export": "belfryOfGhentSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.88,
+        "metallic": 0.05
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.65,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "gold": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43,
+        "metallic": 0.65,
+        "doubleSided": true
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.3,
+        "doubleSided": true
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "belfryOfGhentDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0.05
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.65,
+            "doubleSided": true
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.3,
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "belfryOfGhentStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0.05
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.65,
+            "doubleSided": true
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.3,
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "cameraYaw": 0,
+    "groundY": -3
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Two unchanged independent Terrariumtiles/2mgrid, dry tower west approach[0,-10]datum14.151m. Native footprint ground+.046..+.670m, buried-3m foundations and low portal+.9m. Threshold/stair engineering approximate; no terrain flattening/fitting. Host compatibility remains dataset-dependent.",
+    "anchor": [
+      3.724791705608368,
+      51.05366128777874
+    ],
+    "heading": 0.9361438839540814,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        3.7246766246417327,
+        51.053714548439004
+      ],
+      "modelHeight": 0,
+      "basis": "Dry paved tower west-side approach clear of its footprint, attached annex, fountain and nearby pavilion."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184873561460",
+      "buildings/35185274064488",
+      "buildings/35185274456859",
+      "buildings/35185274456858",
+      "buildings/35185274064484",
+      "buildings/35185274064485",
+      "buildings/35185274064486",
+      "buildings/35185274064487",
+      "buildings/35184873558424",
+      "buildings/35185273724096",
+      "buildings/35185273729898"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6b066dd497cd3b75606b138ac7cb9408348b924cb46e478e1e378aeab97cb771"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Exterior based on2004–2018full tower/hall originals with2025spire detail, not a claim of surveyed2026condition.",
+    "Native tower15.6×12.1m/hall42.5×12.7m footprints and95/52/67/74/25/16m map heights are nominal controls; component heights/window sizes/ornament/stair engineering proportional estimates. Published heights91,95,101–103m disagree;95moperator/native nominal retained.",
+    "Attached Cloth Hall and small Mammelokker entrance included as tower context; no interiors, neighboring churches/market pavilion, square paving/stalls, fine sculptural anatomy, heraldry/inscriptions or photographic textures.",
+    "Original simplified Gothic tracery/crockets/watchmen/dragon and annex relief; four LODs must retain open clock rings and balcony counters where budget permits.",
+    "Independent terrain acquired before geometry without model fitting or flattening."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        10,
+        35,
+        109
+      ],
+      "lookAt": [
+        5,
+        40,
+        8
+      ]
+    },
+    {
+      "name": "clock-detail",
+      "position": [
+        22,
+        61,
+        25
+      ],
+      "lookAt": [
+        0,
+        61,
+        0
+      ]
+    },
+    {
+      "name": "balcony-detail",
+      "position": [
+        0,
+        54,
+        20
+      ],
+      "lookAt": [
+        0,
+        53.3,
+        6.4
+      ]
+    },
+    {
+      "name": "spire-detail",
+      "position": [
+        28,
+        87,
+        32
+      ],
+      "lookAt": [
+        0,
+        81,
+        0
+      ]
+    },
+    {
+      "name": "hall-detail",
+      "position": [
+        18,
+        13,
+        45
+      ],
+      "lookAt": [
+        16,
+        12,
+        18
+      ]
+    },
+    {
+      "name": "annex-detail",
+      "position": [
+        16,
+        9,
+        -20
+      ],
+      "lookAt": [
+        19,
+        6,
+        -2
+      ]
+    },
+    {
+      "name": "roof-detail",
+      "position": [
+        42,
+        46,
+        50
+      ],
+      "lookAt": [
+        15,
+        19,
+        12
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -50,
+        44,
+        -64
+      ],
+      "lookAt": [
+        4,
+        34,
+        4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 51950,
+    "vertices": 155850,
+    "materials": 6,
+    "bytes": 6237460,
+    "sha256": "sha256:37d65a420be2c3ab4f1b264c74beab26ae0faafbc4964dab271906a09798ef46"
+  }
+}

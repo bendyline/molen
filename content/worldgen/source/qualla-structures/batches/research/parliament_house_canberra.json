@@ -1,0 +1,366 @@
+{
+  "format": "molen/structure-research@1",
+  "modelIdentity": "parliament_house_canberra",
+  "backlogTargetId": "QS-e5dfea5c9a9a",
+  "date": "2026-10-17",
+  "state": "source-reviewed-placement-held",
+  "scope": "Present Parliament House exterior, grassed roof slopes, forecourt and four-legged flag mast; terrain integration is essential.",
+  "inspectedLocal": [
+    {
+      "path": "_m/r/3/d/p/canberra-south-canberra-wk/canberra-au-parliament-house-2.jpg",
+      "filename": "Canberra (AU), Parliament House -- 2019 -- 1746.jpg",
+      "caption": "Parliament House, Canberra, Australian Capital Territory, Australia",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Canberra_(AU),_Parliament_House_--_2019_--_1746.jpg",
+      "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/7/78/Canberra_%28AU%29%2C_Parliament_House_--_2019_--_1746.jpg",
+      "artist": "Dietmar Rabich",
+      "license": "CC BY-SA 4.0",
+      "dateCreated": "Taken on 20 October 2019, 15:57",
+      "width": 6612,
+      "height": 4436,
+      "sourceType": "sibling",
+      "metadataOrigin": "_m/r/3/d/p/canberra-south-canberra-wk/metadata.json",
+      "reviewRecords": [],
+      "sourceFamily": "commons:canberra (au), parliament house -- 2019 -- 1746.jpg",
+      "selectionScore": 27,
+      "sha256": "cca9b55807046bcf30db5cc59ef1d1c34fc0a58496857a5f3cc264644a61685f"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://peo.gov.au/understand-our-parliament/parliament-house/australias-parliament-house",
+      "inspection": "Official architecture overview read: grassed roof and81m flag mast. The mast height reference must be reconciled with its roof deck before placing model geometry."
+    },
+    {
+      "url": "https://www.google.com/maps/@-35.308,149.1244,18z/data=!3m1!1e3",
+      "inspection": "Aerial inspected: curved paired inner walls/grass roof slopes along the long land axis, side office wings and repeated courtyards, two chamber roof pyramids, central glazing/skylights and front forecourt. Later temporary objects excluded."
+    },
+    {
+      "url": "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Department_of_Parliamentary_Services/Publications/Annual_Reports/Annual_Report_2018-19/Part_3_Performance/Activities_and_achievements",
+      "inspection": "Official maintenance account read: flag81m above roof deck. Current model estimates deck20m and flag top101m."
+    }
+  ],
+  "map": {
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "zoom": 15,
+    "rawPath": ".artifacts/qualla-batch/QS-e5dfea5c9a9a-map.json",
+    "numberedPath": ".artifacts/qualla-batch/QS-e5dfea5c9a9a-map-numbered.json",
+    "plotPath": ".artifacts/qualla-batch/QS-e5dfea5c9a9a-map.png",
+    "status": "Main scope, anchor and axes authored and reviewed; independent terrain contact remains unresolved.",
+    "researchAnchor": [
+      149.12444444444444,
+      -35.308055555555555
+    ],
+    "researchHeading": 2.508,
+    "axes": "+X northwest; +Z northeast along the land axis toward the public forecourt"
+  },
+  "notes": [
+    "Individually inspected the selected local 2019 front original: monumental open white marble portal with a central recessed square, pale sloped side retaining walls, green roof edge and four-legged curved stainless flag mast.",
+    "Scope explicitly includes architectural grass roofs/forecourt. Do not replace independent surrounding ground with a fitted hill. Accurate terrain/roof contact needs its own review.",
+    "Official overview describes a roughly300m by300m building, two curved walls of460m each, grass over the central zone and a circular Senate versus angular House chamber roof, both with terracotta and skylights. Model these as distinct shapes rather than matching pyramids.",
+    "Raw map is densely subdivided; do not extrude every part from ground. Many57m roof parts belong to mast geometry and raised elements carry min_height. Whole feature21 lacks holes; wing22 preserves four narrow courts. Source scope and mast datum still require explicit review.",
+    "Current54,425-triangle model and four detail levels pass exact generation/import, schema, LOD, strict medium-fi and visual reviews. All35 current frames inspected after exact identity capture repair.",
+    "2026-10-17:Forecourt source repair validated947controls at each4actualmesh levels;42current renders inspected. Original source ground unchanged,newACTcontour candidate not adopted. Draft excluded,0completed-story writes.",
+    "2026-10-17: Primary construction-manager account and two original engineering images inspected. Forecourt pond rests on a concrete garage roof with curved beam and waffle soffit; the present recipe has thin forecourt surfaces but no garage shell. No garage dimensions or new terrain datum inferred from the current field; all model files and completion holds unchanged."
+  ],
+  "sourcePath": "content/worldgen/source/places/r3/r3d/parliament_house_canberra",
+  "officialAerialResearch": {
+    "date": "2026-10-17",
+    "candidate": "parliament_house_canberra",
+    "state": "proposal-frozen-before-new-ground-sampling;not-adopted",
+    "originalModelFreeze": ".artifacts/qualla-batch/parliament-before-act-ground.json",
+    "imageService": "https://data4.actmapi.act.gov.au/arcgis/rest/services/ACT_IMAGERY_MGA2020/2020_04_full_100mm/ImageServer",
+    "imageExport": {
+      "href": "https://data4.actmapi.act.gov.au/arcgis/rest/directories/arcgisoutput/ACT_IMAGERY_MGA2020/2020_04_full_100mm_ImageServer/_ags_dd873e3f_6192_4db2_aabb_046a9ec20911.png",
+      "width": 1800,
+      "height": 1800,
+      "extent": {
+        "xmin": 693110,
+        "ymin": 6090710,
+        "xmax": 693370,
+        "ymax": 6090970,
+        "spatialReference": {
+          "wkid": 7855,
+          "latestWkid": 7855
+        }
+      },
+      "scale": 0
+    },
+    "originalImageSha256": "sha256:e2eba601ce2353a2c693678b32c0286e310aca206631bd004884acc763d99f43",
+    "actualInspection": "Complete official2020aerial image inspected. The reflecting basin sits within a triangular brown/pale forecourt with three radial bridges to a planted circular island and central square mosaic. Current model simplifies it as a rectangular paving area,circular ring and unbridged island. Existing pool-center/datum estimates require reconciliation with georeferenced imagery. This is source-plan evidence,not a model-ground fit.",
+    "proposedDryReference": {
+      "local": [
+        45,
+        145
+      ],
+      "modelY": -0.3,
+      "anchor": [
+        149.12499022559336,
+        -35.30676649426096
+      ],
+      "mga2020": [
+        693197.2338453333,
+        6090865.665722957
+      ],
+      "basis": "Brown paved triangle northwest of actual basin,visibly dry in official2020ortho. Outside existing model ring(51.6m from its center,radius32m) and inside model paving;-.3m is its pre-existing architectural paving top. Preserve source pixels;do not fit them to paving."
+    },
+    "groundSampledYet": false,
+    "sourceGeometryChanged": false,
+    "sourceFrameChanged": false,
+    "existingSourceQaStillHeld": true,
+    "next": "Reconcile physical forecourt plan from georeferenced aerial and local Qualla originals,then independently acquire originalACTcontours. Preserve old field and original pool-interior reference. Verify all actual source/runtime levels and current renders before activation/annotation."
+  },
+  "next": "Verify the actual garage plan/section and a ground-level control outside its roof; then author the missing shell from architectural evidence, freeze it, and compare independent ground. Keep both paved-point reference proposals and all terrain/geometry unchanged until that evidence is available.",
+  "qa": "content/worldgen/source/places/r3/r3d/parliament_house_canberra/qa.json",
+  "sourceHash": "sha256:8fc475089b0acddce1b8431f2d872bf254f4699827915bed2ceeb5ffeabd11a7",
+  "runtimeHash": "sha256:5c1bb141522de79433177275c06addc12efbee32dc0e0b152223f2612cc43613",
+  "modelInputHash": "sha256:d1bfb6aaef975df856fa0ff20f325d00c80054fbef533c1e2603b1fe1efc317d",
+  "currentFramesActuallyInspected": 42,
+  "mediumFiActualAssetIdentities": 22,
+  "lodTriangles": [
+    913,
+    3927,
+    15827,
+    54125
+  ],
+  "drawCalls": [
+    1,
+    6,
+    6,
+    6
+  ],
+  "geometryControlsByLevel": [
+    947,
+    947,
+    947,
+    947
+  ],
+  "basinFloorCoverageProbesPerLevel": 927,
+  "currentSourceGroundUnchanged": true,
+  "activePlacement": false,
+  "completedStoryWrites": 0,
+  "forecourtRepair": {
+    "sourcePlan": "content/worldgen/source/places/r3/r3d/parliament_house_canberra/forecourt-frame.json",
+    "nativeMapFeatures": [
+      "water/23375713",
+      "landuse/35184580778912",
+      "landuse/52776560939335",
+      "landuse/35184883299648",
+      "landuse/35184883299649",
+      "landuse/35184883299650"
+    ],
+    "scope": "Mapped flared court,asymmetric basin with3water patches,3real bridges,3planted beds and14m plain mosaic square. Full local2015front and official2020ortho inspected.",
+    "originalMapTileHash": "sha256:a4d76acb22bf012e3afb2074440030aad592c080e8169a07fd2233df9e126073",
+    "failedCircleFitsRejected": true,
+    "mosaicAreaPrimarySource": "https://www.aph.gov.au/Visit_Parliament/Art/Collections/Michael_Nelson_Jagamaras_Forecourt_mosaic_pavement",
+    "mosaicAreaSquareMeters": 196,
+    "levels": "Existing-.3m paving retained;water-.6m and planting-.1m photo-directed estimates frozen before source candidate sampling. Later14m mosaic size from primary196m²control.",
+    "unchangedMainGeometry": "Main building,mast,office courts and roof grades unchanged.",
+    "reviewSummary": "content/worldgen/source/places/r3/r3d/parliament_house_canberra/REVIEW.md"
+  },
+  "newIndependentGroundCandidate": {
+    "source": "Official ACT2020 LiDAR-derived2m contour tiles",
+    "rawTiles": 9,
+    "retainedOriginalContourVertices": 39490,
+    "reviewGridValues": 16641,
+    "datumAtProposedDryReference": 595.9740357593831,
+    "sourceHeightsChanged": false,
+    "adopted": false,
+    "testProbes": [
+      {
+        "local": [
+          45,
+          145
+        ],
+        "absolute": 595.6740357593832,
+        "relative": -0.2999999999999545
+      },
+      {
+        "local": [
+          -6.6,
+          145
+        ],
+        "absolute": 595.1300254792131,
+        "relative": -0.8440102801699823
+      },
+      {
+        "local": [
+          -6.5,
+          160
+        ],
+        "absolute": 594.2752636972219,
+        "relative": -1.698772062161197
+      },
+      {
+        "local": [
+          -6.5,
+          190
+        ],
+        "absolute": 593.4185950381868,
+        "relative": -2.5554407211963053
+      },
+      {
+        "local": [
+          0,
+          210
+        ],
+        "absolute": 592.8359202149707,
+        "relative": -3.1381155444124715
+      },
+      {
+        "local": [
+          -65,
+          190
+        ],
+        "absolute": 593.0387690650317,
+        "relative": -2.9352666943514123
+      },
+      {
+        "local": [
+          60,
+          190
+        ],
+        "absolute": 593.322423938318,
+        "relative": -2.651611821065103
+      },
+      {
+        "local": [
+          -40,
+          110
+        ],
+        "absolute": 596,
+        "relative": 0.025964240616872303
+      },
+      {
+        "local": [
+          30,
+          110
+        ],
+        "absolute": 596,
+        "relative": 0.025964240616872303
+      },
+      {
+        "local": [
+          -6.6,
+          110
+        ],
+        "absolute": 596,
+        "relative": 0.025964240616872303
+      },
+      {
+        "local": [
+          0,
+          0
+        ],
+        "absolute": 596.2060940329039,
+        "relative": 0.23205827352080632
+      },
+      {
+        "local": [
+          0,
+          -240
+        ],
+        "absolute": 594.0759408291693,
+        "relative": -1.8980949302138015
+      },
+      {
+        "local": [
+          -160,
+          0
+        ],
+        "absolute": 596,
+        "relative": 0.025964240616872303
+      },
+      {
+        "local": [
+          160,
+          0
+        ],
+        "absolute": 596,
+        "relative": 0.025964240616872303
+      }
+    ],
+    "reason": "Roughly3m fall across forecourt disagrees with fixed paving;source may represent terrain below actual garage deck or remaining approximate architecture may be wrong. Do not claim source-only failure.",
+    "report": ".artifacts/qualla-batch/act-parliament-contours/diagnostic.json"
+  },
+  "architecturalLevelResearch": {
+    "sources": [
+      {
+        "url": "https://www.aph.gov.au/-/media/05_About_Parliament/54_Parliamentary_Depts/544_Parliamentary_Library/history/PHSchematicDesignReportAug1981.pdf",
+        "finding": "Primary1981design material describes basement and garage under forecourt;design-era evidence,not as-built floor measurements."
+      },
+      {
+        "url": "https://www.aph.gov.au/~/media/Estimates/Live/commttee/S8317.ashx",
+        "finding": "2005officialParliament evidence confirms forecourt pond above garage through documented leak discussion. Establishes real below-deck structure,but not floor/deck dimensions."
+      },
+      {
+        "url": "https://www.aph.gov.au/-/media/05_About_Parliament/54_Parliamentary_Depts/543_DPS/Tendering/Australian_Parliament_House_Site_Book.pdf",
+        "finding": "Publicrecord found;direct document returned403. No contents inferred."
+      }
+    ],
+    "garageGeometryAdded": false,
+    "fixedGradeChanged": false,
+    "constructionRecord": {
+      "url": "https://engineeringcanberra.com.au/the-new-parliament-house/",
+      "authors": "R.P.S. Dalgleish, Parliament House Construction Authority project manager, assisted by A.E. Taylder",
+      "actuallyRead": "Construction, foundations, structure and parking sections; figure13.3 and figure13.5 images actually inspected locally.",
+      "findings": [
+        "Original Capital Hill elevation is reported as RL611.7m; removal was up to21m to the building bench, with basement excavations a further6m below most of the building. The bench was raised1.5m early in excavation. These approximate project-wide statements do not establish an exact absolute forecourt or garage floor level.",
+        "Parking for cars and tourist buses is below the forecourt, outside the main parliamentary buildings. Stairs lead up to the forecourt.",
+        "The caption to figure13.5 identifies the curved beam as support for the forecourt pool/fountain. Its actual image shows the concrete waffle soffit, curved band beam and columns. It provides construction topology, not measured garage depth.",
+        "Figure13.3 shows the longitudinal land-axis section and a flat building bench, with separate horizontal and vertical scales. It is a precinct landform diagram; the garage section and absolute forecourt deck/floor levels are not drawn.",
+        "The published early RL583m access constraint belongs to an approach-design alternative discussed in the separate roads chapter; it is not an adopted forecourt slab level."
+      ],
+      "images": [
+        {
+          "figure": "13.3",
+          "url": "https://engineeringcanberra.com.au/wp-content/uploads/2026/07/13-3-1536x684.jpg",
+          "localIgnoredReference": ".artifacts/qualla-batch/parliament-land-axis-1988-section.jpg",
+          "sha256": "sha256:0241ccf567b82315a277ef9659d09bc282b72693003cea11fa44cdf45df3ad42",
+          "dimensions": [
+            1536,
+            684
+          ],
+          "actuallyInspected": true
+        },
+        {
+          "figure": "13.5",
+          "url": "https://engineeringcanberra.com.au/wp-content/uploads/2026/07/13-5.jpg",
+          "localIgnoredReference": ".artifacts/qualla-batch/parliament-pool-garage-soffit.jpg",
+          "sha256": "sha256:c80906cefd6e200b5883cf1c8ee8cfdadfce28321014eeb1bbe0d646e65bd1cd",
+          "dimensions": [
+            1091,
+            995
+          ],
+          "actuallyInspected": true
+        }
+      ],
+      "modelInspection": "Main office masses and curved retaining walls already extend to-18m in the recipe. Only the mapped forecourt has thin slab/surface pieces with no basement shell. Do not describe the whole building as lacking foundations.",
+      "garageGeometryAdded": false,
+      "fixedGradeChanged": false,
+      "referenceQualification": "The old[-7,128]and proposed[45,145]points are dry paved surfaces. Primary sources establish a garage below the forecourt, so a dry paving point must not automatically be treated as bare-earth contact: a DTM value there may represent interpolation below the deck. The exact garage extent still needs its plan. Proposed reference and ACT field remain unadopted.",
+      "remainingEvidence": "A verified forecourt garage plan/section and an exterior ground or surveyed level control. A vehicle-clearance number or the project-wide basement excavation depth is not a uniform garage depth."
+    },
+    "publicParkingClearances": {
+      "url": "https://www.aph.gov.au/visit_parliament/whats_on/tour/~/~/link.aspx?_id=A347BB3BD119415BBF95C84C143789D7",
+      "inspection": "Official indexed public parking guidance read; not a garage survey or section.",
+      "regularVehicleClearanceMeters": 2.2,
+      "separateHighVehicleEntryClearanceMeters": 4.3,
+      "qualification": "These are entry vehicle-clearance limits. Do not turn either into a uniform slab-to-floor dimension or use it to fit an unsupported shell to a DEM."
+    },
+    "furtherPlanAccess": {
+      "official1981Pdf": "Direct request403; exact Wayback CDX query returned an empty list. No original design PDF acquired or its drawings inspected.",
+      "dignifiedAccessPdf": "Direct request403. Only indexed text about forecourt basement access read; no garage plan or levels verified.",
+      "adelaideThesis": "Old bitstream request404; current indexed repository record labels a restricted file. No thesis PDF acquired or its plan images inspected.",
+      "canberraHistoricalDrawing": "Catalogue identifies an unbuilt competition entry by P.ScottWilliams; excluded as evidence for the built building.",
+      "pmcBasementMaps": {
+        "url": "https://www.pmc.gov.au/sites/default/files/2022-11/F-maps-of-parliament-house.pdf",
+        "inspection": "Web text identifies a forecourt carpark, but no plan image actually inspected. Direct local response was212-byte HTML, not a PDF. Browser-site permission was denied by automatic approval review; read-only access question pending. Do not report this file as acquired or its plan as reviewed."
+      },
+      "localImages": "No garage/carpark/basement filename match and no such caption in the two local Parliament metadata records checked."
+    }
+  },
+  "referenceCorrection": "The old[-7,128]point lies on actual dry paving before newly mapped basin(z139..197). Former pool-interior diagnosis concerned obsolete circular proxy. Paving/reference model-height mismatch and source-ground contact still require review;new[45,145]reference remains proposal.",
+  "historical": true,
+  "supersededBy": "parliament-site-construction.json",
+  "currentSourcePolicy": "Earlier CC photographs,aerials and engineering illustrations are excluded from current construction. Exact public-domain originals and source-relative ACTacceptance are recorded in the superseding report."
+}

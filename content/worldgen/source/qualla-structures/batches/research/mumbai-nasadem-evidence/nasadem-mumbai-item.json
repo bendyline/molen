@@ -1,0 +1,122 @@
+{
+  "id": "NASADEM_HGT_n18e072",
+  "bbox": [
+    71.999861,
+    17.999861,
+    73.000139,
+    19.000139
+  ],
+  "type": "Feature",
+  "links": [
+    {
+      "rel": "collection",
+      "type": "application/json",
+      "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasadem"
+    },
+    {
+      "rel": "parent",
+      "type": "application/json",
+      "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasadem"
+    },
+    {
+      "rel": "root",
+      "type": "application/json",
+      "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+    },
+    {
+      "rel": "self",
+      "type": "application/geo+json",
+      "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/nasadem/items/NASADEM_HGT_n18e072"
+    },
+    {
+      "rel": "preview",
+      "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=nasadem&item=NASADEM_HGT_n18e072",
+      "title": "Map of item",
+      "type": "text/html"
+    }
+  ],
+  "assets": {
+    "elevation": {
+      "href": "https://nasademeuwest.blob.core.windows.net/nasadem-cog/v001/NASADEM_HGT_n18e072.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data"
+      ],
+      "title": "Elevation"
+    },
+    "tilejson": {
+      "title": "TileJSON with default rendering",
+      "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=nasadem&item=NASADEM_HGT_n18e072&assets=elevation&colormap_name=terrain&rescale=-100,4000&format=png",
+      "type": "application/json",
+      "roles": [
+        "tiles"
+      ]
+    },
+    "rendered_preview": {
+      "title": "Rendered preview",
+      "rel": "preview",
+      "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=nasadem&item=NASADEM_HGT_n18e072&assets=elevation&colormap_name=terrain&rescale=-100,4000&format=png",
+      "roles": [
+        "overview"
+      ],
+      "type": "image/png"
+    }
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          73.00013889,
+          17.99986111
+        ],
+        [
+          73.00013889,
+          19.00013889
+        ],
+        [
+          71.99986111,
+          19.00013889
+        ],
+        [
+          71.99986111,
+          17.99986111
+        ],
+        [
+          73.00013889,
+          17.99986111
+        ]
+      ]
+    ]
+  },
+  "collection": "nasadem",
+  "properties": {
+    "datetime": "2000-02-20T00:00:00Z",
+    "proj:bbox": [
+      71.99986111111112,
+      17.99986111111111,
+      73.0001388888889,
+      19.000138888888888
+    ],
+    "proj:epsg": 4326,
+    "proj:shape": [
+      3601,
+      3601
+    ],
+    "proj:transform": [
+      0.0002777777777777778,
+      0.0,
+      71.99986111111112,
+      0.0,
+      -0.0002777777777777778,
+      19.000138888888888,
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
+  ],
+  "stac_version": "1.0.0"
+}

@@ -1,0 +1,657 @@
+{
+  "planId": "hoboken_terminal",
+  "id": "hoboken_terminal",
+  "assetId": "molen.worldgen.structure.hoboken_terminal",
+  "title": "Hoboken Terminal",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -74.0275901556015,
+    "latitude": 40.73495492263358
+  },
+  "size": [
+    161.60713577270508,
+    74.58000183105469,
+    177.84833908081055
+  ],
+  "actualBounds": {
+    "min": [
+      -130.90713500976562,
+      -6,
+      -59.09933090209961
+    ],
+    "max": [
+      30.700000762939453,
+      68.58000183105469,
+      118.74900817871094
+    ]
+  },
+  "visualBrief": "Joined surviving copper ferry/rail terminal, six real deep open elliptical ferry-slip arches with structural piers/columns, rear concourse, five gabled plaza pavilions/canopy, three-window limestone/copper waiting-room facade and high skylit roof, low south rooms/former restaurant, reconstructed brown four-face clock tower with open bell lantern, green roof belvederes, raised Lackawanna signs, eight roof monitors and five white curved gangways. Western platform/train sheds, neighboring buildings, boats and interiors excluded.",
+  "nativeAxes": {
+    "x": "west toward platform side",
+    "y": "up",
+    "z": "north toward waiting-room entrance and plaza"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Lackawanna_Terminal_060.JPG",
+    "https://commons.wikimedia.org/wiki/File:Lackawana_clocktower_zoom_sun_jeh.jpg",
+    "https://commons.wikimedia.org/wiki/File:Hoboken_Terminal_from_platform.png",
+    "https://commons.wikimedia.org/wiki/File:Hoboken,_New_Jersey_(49115877322).jpg"
+  ],
+  "stories": [
+    {
+      "id": "hoboken-terminal-wp",
+      "url": "https://qualla.com/hoboken-terminal/"
+    }
+  ],
+  "referenceInputHash": "sha256:d95afd1c5b0866231de57664104b720d0a97ca8c677e45c683f6587f2d2056ea",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hoboken-terminal.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hoboken-terminal.mjs",
+    "level": "skyline",
+    "export": "hobokenTerminalSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "towerClockCase": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.22
+      },
+      "towerClockInk": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.25
+      },
+      "towerDial": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.78,
+        "metallic": 0
+      },
+      "towerCornice": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.22
+      },
+      "towerHood": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.22
+      },
+      "towerPilaster": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.22
+      },
+      "towerBracket": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.22
+      },
+      "towerScroll": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.22
+      },
+      "copper": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.25
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.25
+      },
+      "brown": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.22
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.25
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "foundation",
+        "graph": "wood_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "canopy": {
+        "slot": "roof",
+        "graph": "fabric_canvas",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metallic": 0.08
+      },
+      "dial": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.78,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hobokenTerminalDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "towerClockCase": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.22
+          },
+          "towerClockInk": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.25
+          },
+          "towerDial": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "towerCornice": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.22
+          },
+          "towerHood": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.22
+          },
+          "towerPilaster": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.22
+          },
+          "towerBracket": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.22
+          },
+          "towerScroll": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.22
+          },
+          "copper": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.25
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.25
+          },
+          "brown": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.22
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.25
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "foundation",
+            "graph": "wood_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          },
+          "dial": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "hobokenTerminalStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "towerClockCase": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.22
+          },
+          "towerClockInk": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.25
+          },
+          "towerDial": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "towerCornice": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.22
+          },
+          "towerHood": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.22
+          },
+          "towerPilaster": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.22
+          },
+          "towerBracket": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.22
+          },
+          "towerScroll": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.22
+          },
+          "copper": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.25
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.25
+          },
+          "brown": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.22
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.25
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "foundation",
+            "graph": "wood_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          },
+          "dial": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6,
+    "cameraYaw": -2.512
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent USGS1m NJ_NE6County_B23 raster48017, NAVD88 datum1.3136m at dry plaza[0,36] outside resolved vestibule/canopy. Unchanged own envelope-1.954..+.467m at review-grid vertices; marine returns near-1.95m remain below decks, with authored pile supports extending to-6m. North entry/approach+.004..+.099m below threshold.2m. Bounded land/water contact preview; hydroflattened water is not measured tide/seabed and pile embedment/host compatibility remain uncertain. Footprint replacement disabled.",
+    "anchor": [
+      -74.0275901556015,
+      40.73495492263358
+    ],
+    "heading": 3.141592653589793,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -74.0275901556015,
+        40.735278314656576
+      ],
+      "modelHeight": 0,
+      "basis": "Dry Warrington Plaza pavement outside the north vestibule street wall and projecting entrance canopy; not inner hall roof, water or gangway."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184398896859",
+      "buildings/35184703161040",
+      "buildings/35184703161039",
+      "buildings/35184702969718"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8790c9a5e9a91be38c152aafae64f59320c7875690f793c3aa68e50cbb303c8c",
+    "notes": "Own joined terminal only; western platforms/train sheds are explicitly excluded. Six river arches span mapped145m line, with south restaurant extension totaling approximately historic172.57m waterfront envelope. Ferry slip voids stay open; frame is roof outline, not solid ground-floor extrusion."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.fabric_canvas",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "New reconstructed-tower clock cases/radial Roman numerals/marks/hands,stepped hoods/cornices,eight pilaster mouldings/eight brackets/sixteen original simplified scrolls use exact local PedroXing2012self-CC0native and two exact named self-CC0tower originals. Full fixed joined terminal/ferry/rail scope retained; broader cleared facade/roof/gangway coverage still pending. Earlier attribution/private imagery controls are historical and excluded. Fine craft,lantern/roof proportions,current condition and hidden surfaces remain medium-fi estimates.",
+    "Selected2010/2015 surviving exterior and focused2011/2012 originals, primary site/floor plans, mapped parts and aerial. Own joined terminal differentiated from western platform sheds/baggage/Pullman buildings. Exact ornamental profiles, window layouts/roof heights and buried/marine pile depths remain estimates, not survey/scans.",
+    "Replica clock tower225ft/68.58m follows reconstruction designer STV, consistent with historic nomination; operator203/230ft historical statements conflict. Four12ft dials follow operator reconstruction description. Tower is above main waiting room per primary description; plain north end, five plaza pavilions and six open slips remain distinct.",
+    "Gangways fixed representative poses without boats, detached pontoons/dock equipment or tide animation. Interiors, western train-shed/platform roofs, neighboring baggage/YMCA/Pullman buildings, plaza/streets, flags/temporary signs/construction excluded. No reference pixels redistributed.",
+    "Independent USGS1m bare-earth terrain retained unchanged; hydroflattened water is not seabed/tide survey. Marine pile embedment and other host terrain compatibility unverified. Footprint replacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "clock-case",
+      "position": [
+        0,
+        52,
+        14
+      ],
+      "lookAt": [
+        0,
+        51.2,
+        3.5
+      ]
+    },
+    {
+      "name": "belfry-craft",
+      "position": [
+        -10,
+        61,
+        13
+      ],
+      "lookAt": [
+        0,
+        58.8,
+        0
+      ]
+    },
+    {
+      "name": "front",
+      "position": [
+        -280,
+        40,
+        90
+      ],
+      "lookAt": [
+        -72,
+        22,
+        30
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -28,
+        54,
+        40
+      ],
+      "lookAt": [
+        0,
+        51.2,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        85,
+        70,
+        165
+      ],
+      "lookAt": [
+        -35,
+        22,
+        30
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        0,
+        15,
+        75
+      ],
+      "lookAt": [
+        0,
+        9,
+        28.7
+      ]
+    },
+    {
+      "name": "ferry-detail",
+      "position": [
+        -150,
+        20,
+        42
+      ],
+      "lookAt": [
+        -93,
+        12,
+        32
+      ]
+    },
+    {
+      "name": "plaza-detail",
+      "position": [
+        5,
+        21,
+        115
+      ],
+      "lookAt": [
+        -38,
+        11,
+        70
+      ]
+    },
+    {
+      "name": "roof-detail",
+      "position": [
+        -95,
+        220,
+        90
+      ],
+      "lookAt": [
+        -55,
+        20,
+        28
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63889,
+    "vertices": 191667,
+    "materials": 8,
+    "bytes": 7671308,
+    "sha256": "sha256:3874e13f0a14d34a658ecfb7645b9ef39732276bbb00a83f1561affc8202956b"
+  }
+}

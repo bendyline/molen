@@ -1,0 +1,457 @@
+{
+  "planId": "alcatraz_federal_penitentiary",
+  "id": "alcatraz_federal_penitentiary",
+  "assetId": "molen.worldgen.structure.alcatraz_federal_penitentiary",
+  "title": "Alcatraz Federal Penitentiary",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -122.42262840270996,
+    "latitude": 37.82645393370771
+  },
+  "size": [
+    51.50465774536133,
+    29.40000057220459,
+    136.78215789794922
+  ],
+  "actualBounds": {
+    "min": [
+      -31.25945281982422,
+      -8.199999809265137,
+      -118.28215789794922
+    ],
+    "max": [
+      20.24520492553711,
+      21.200000762939453,
+      18.5
+    ]
+  },
+  "visualBrief": "Native principal prison exterior with staggered cellhouse wings, attached dining/kitchen and lower southeast administration frontage; nine-bay central arched entrance, two tiers of large recessed metal-grid windows over smaller base lights, plain concrete pilasters, rusticated lower walls, stepped cornices/parapets and narrow roof rods. Three long gabled glazed roof monitors, later solar-panel rows and an integral weathered cylindrical roof cistern with shallow conical cover. Short front entry apron and steps; separate lighthouse, detached cistern terrace, island guard towers/barracks and ruins excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Alcatraz_Island.jpg"
+  ],
+  "stories": [
+    {
+      "id": "alcatraz-federal-penitentiary-wk",
+      "url": "https://qualla.com/alcatraz-federal-penitentiary/"
+    },
+    {
+      "id": "alcatraz-federal-penitentiary-wp",
+      "url": "https://qualla.com/#list/9q8z/alcatraz-federal-penitentiary-wp"
+    }
+  ],
+  "referenceInputHash": "sha256:4d118828f620187b42c226ab1aa9deaf80ab38211731e6f3cb9a0ff1ed6b95f3",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-alcatraz-federal-penitentiary.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-alcatraz-federal-penitentiary.mjs",
+    "level": "skyline",
+    "export": "alcatrazFederalPenitentiarySkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "recess": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.65,
+        "metallic": 0.08
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.18
+      },
+      "solar": {
+        "slot": "roof",
+        "localRef": "palette:#fffefd",
+        "roughness": 0.4,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "alcatrazFederalPenitentiaryDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.08
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "solar": {
+            "slot": "roof",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.4,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "alcatrazFederalPenitentiaryStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.08
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "solar": {
+            "slot": "roof",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.4,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.04,
+    "groundY": 0.04,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original USGS CA_SanFrancisco_B23 export locked to raster71693 before geometry. Independent203401pixel decode and66049derived samples; provider-relative external dry footway datum37.8684m. No terrain fitting/flattening or local survey alignment.",
+    "anchor": [
+      -122.42262840270996,
+      37.82645393370771
+    ],
+    "heading": 0.7722984760596018,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -122.42234140765815,
+        37.82612872993933
+      ],
+      "modelHeight": 0,
+      "basis": "Native dry footway vertex southeast of principal prison, outside every extracted building footprint including separate lighthouse. Freeze independent USGS source ground before model geometry. No fitting, flattening, rooftop substitution or survey-datum alignment claim."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -29.957633771454862,
+          -65.23530027305394
+        ],
+        [
+          -30.16006502663573,
+          -17.033360010348147
+        ],
+        [
+          -18.98556845407837,
+          -17.01297124876077
+        ],
+        [
+          -19.09625028949744,
+          -0.000007741863605303934
+        ],
+        [
+          -15.761652276220374,
+          -0.000005275360065226664
+        ],
+        [
+          -15.902496740406711,
+          14.634752597578268
+        ],
+        [
+          19.123935833831478,
+          14.843009210301027
+        ],
+        [
+          19.096265372783428,
+          -0.000007741863603527577
+        ],
+        [
+          19.13413021034068,
+          -48.03301256967213
+        ],
+        [
+          8.795572778636725,
+          -47.89757295379327
+        ],
+        [
+          8.90625461733961,
+          -64.91053646139206
+        ],
+        [
+          3.7347913905633554,
+          -65.0095675783659
+        ],
+        [
+          3.8119774082896427,
+          -110.04105573282234
+        ],
+        [
+          0.47695887882520793,
+          -109.99736553302752
+        ],
+        [
+          0.5497758789787923,
+          -117.16983987541497
+        ],
+        [
+          -12.625731814722194,
+          -117.1640145151701
+        ],
+        [
+          -12.529613375728552,
+          -109.82697375751982
+        ],
+        [
+          -16.36706919255935,
+          -109.94348095412406
+        ],
+        [
+          -16.279688791721732,
+          -65.08092823819948
+        ]
+      ],
+      "basis": "Native three-part prison envelope, closing only the documented6.4cm digitization sliver at the attached dining junction. Original part polygons retained. Physical building foundations/floors cover the bounded opening; original USGS source values remain unchanged."
+    },
+    "featureIds": [
+      "buildings/35184500334205",
+      "buildings/35184396522269",
+      "buildings/35184500334199"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:611dc3cb5cc9276d0db155a1e8c28754ea4d6d835c6d825977ee9b7188c6bed9"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Plan is native map geometry with a documented sub-decimetre dining-junction seam. Heights, floors, window sizes, roof monitors, solar-panel layout and roof cistern proportions are photographic estimates, not measured survey elevations.",
+    "Later solar array is represented from the inspected official DOE roof photo; module count and maintenance/replacement state are not certified. Fine weathering, armorial relief and inscriptions are generalized.",
+    "Main prison exterior only. Cell interiors, subterranean Citadel, recreation yard/guard houses, separate front vaulted cistern terrace, lighthouse and island-wide ruins/barracks remain outside scope. No navigable collision or architectural conservation claim.",
+    "Original USGS field remains unchanged. One-metre source and sampling do not certify ground classification at paving/hidden foundations or default coarse Earth terrain compatibility."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "southeast-entrance",
+      "position": [
+        42,
+        19,
+        65
+      ],
+      "lookAt": [
+        1,
+        10,
+        14.6
+      ]
+    },
+    {
+      "name": "front-door-and-pilasters",
+      "position": [
+        2,
+        10,
+        33
+      ],
+      "lookAt": [
+        1,
+        9.3,
+        14.7
+      ]
+    },
+    {
+      "name": "east-cellhouse",
+      "position": [
+        100,
+        25,
+        -22
+      ],
+      "lookAt": [
+        15,
+        7.5,
+        -28
+      ]
+    },
+    {
+      "name": "west-cellhouse",
+      "position": [
+        -110,
+        25,
+        -36
+      ],
+      "lookAt": [
+        -25,
+        7,
+        -44
+      ]
+    },
+    {
+      "name": "dining-yard-face",
+      "position": [
+        -63,
+        16,
+        -89
+      ],
+      "lookAt": [
+        -16.3,
+        5,
+        -88
+      ]
+    },
+    {
+      "name": "northern-kitchen",
+      "position": [
+        30,
+        20,
+        -145
+      ],
+      "lookAt": [
+        -5,
+        6,
+        -111
+      ]
+    },
+    {
+      "name": "roof-monitors-and-solar",
+      "position": [
+        45,
+        135,
+        90
+      ],
+      "lookAt": [
+        -5,
+        14,
+        -45
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 42153,
+    "vertices": 126459,
+    "materials": 4,
+    "bytes": 5061048,
+    "sha256": "sha256:3fd9e58e459cd9853a9b5a010bc16487405877c378910e70de1d883f30c8e558"
+  }
+}

@@ -1,0 +1,439 @@
+{
+  "planId": "tower_of_the_winds",
+  "id": "tower_of_the_winds",
+  "assetId": "molen.worldgen.structure.tower_of_the_winds",
+  "title": "Tower of the Winds",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 23.727028146386147,
+    "latitude": 37.974198632639826
+  },
+  "size": [
+    10.427095413208008,
+    13.630000293254852,
+    10.886617183685303
+  ],
+  "actualBounds": {
+    "min": [
+      -5.213547706604004,
+      -0.44999998807907104,
+      -5.673069477081299
+    ],
+    "max": [
+      5.213547706604004,
+      13.180000305175781,
+      5.213547706604004
+    ]
+  },
+  "visualBrief": "Surviving octagonal Pentelic marble tower with variable stone courses, two deep north doorways with metal grilles, eight shallow rightward-flying winged wind reliefs and simplified attributes, sundial lines, projecting cornice/lion spouts,24-slab low pyramidal roof with radial joint covers and broken capital, three stepped base courses, ruined porch platforms/three column stumps and open broken southern reservoir annex. Missing porch roofs/full columns/Triton vane not restored.",
+  "nativeAxes": {
+    "x": "west",
+    "y": "up",
+    "z": "north toward the two ruined entrance porches"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Tower_of_the_Winds,_Roman_Agora,_Athens,_Greece.jpg",
+    "https://commons.wikimedia.org/wiki/File:Gr%C3%A8ce_Tour_des_vents_Ath%C3%A8nes_2016-07-22.jpg",
+    "https://commons.wikimedia.org/wiki/File:The_backside_of_the_Clocktower_of_Andronicus_Cyrrhestes_on_July_15,_2020.jpg",
+    "https://commons.wikimedia.org/wiki/File:The_Clocktower_of_Andronicus_Cyrrhestes_(Tower_of_the_Winds)_on_July_8,_2020.jpg",
+    "https://commons.wikimedia.org/wiki/File:Tour_des_vents_(Agora_romaine).jpg"
+  ],
+  "stories": [
+    {
+      "id": "tower-of-the-winds-wp",
+      "url": "https://qualla.com/tower-of-the-winds/"
+    }
+  ],
+  "referenceInputHash": "sha256:f2de6712bfebcd4385c96a36a92888b3db90d690ca169e0d076cb4cacee93811",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-tower-of-the-winds.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-tower-of-the-winds.mjs",
+    "level": "skyline",
+    "export": "towerOfTheWindsSkyline",
+    "errorMeters": 0.5,
+    "surfaces": {
+      "marble": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "relief": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "stone_marble",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roofCover": {
+        "slot": "roof",
+        "graph": "clay_fired",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "corniceProfile": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "lionMask": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "lionCarving": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.15
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "towerOfTheWindsDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roofCover": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "corniceProfile": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "lionMask": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "lionCarving": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          }
+        }
+      },
+      "street": {
+        "export": "towerOfTheWindsStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "relief": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roofCover": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "corniceProfile": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "lionMask": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "lionCarving": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.25
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent native Terrarium datum72.8751m at dry north site floor[0,5.9]; mapped footprint-.172..+.974m. Three own steps rise to.9m and door threshold.9m. North approaches/doors clear independent ground; western/southern grade meets lower steps and broken annex. Current source contact reviewed as bounded preview, without reconstructing wider excavation. Ground unchanged; coarse urban ground and other host compatibility remain limitations. Footprint replacement disabled.",
+    "anchor": [
+      23.727028146386147,
+      37.974198632639826
+    ],
+    "heading": 3.141592653589793,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        23.727028146386147,
+        37.97425163299915
+      ],
+      "modelHeight": 0,
+      "basis": "Dry archaeological site floor north of the three base steps; not higher surrounding street or roof."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776569332741",
+      "buildings/52776571259210",
+      "buildings/35185348332904"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:02d9998e8e63035b4370263d9c2004e3adf1a80d6353b0c7aeafa6403746255f",
+    "notes": "Main regular octagon sidesabout3.25m. Main wall almost9m per primary text, frieze/roof above; main map tags11m wall/12.5m top remain approximate contextual controls. Surviving porch stumps and open annex are represented, not historically complete porch or water-clock reconstruction."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.clay_fired",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.8,
+        0.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Current surviving exterior uses exact named photographer Ownwork/self-CC0 natives after Qualla-first41paths. Earlier attribution/private/aerial image controls are historical and excluded. Built physically curved/segmented ochre roof joint covers, closed stepped cornice and lion-mask spouts with real recessed mouths. Full fixed octagonal tower/eight wind reliefs/porches/ruined annex retained. Main sideabout3.25m and almost9m wall guide scale; top13.16m including broken capital is an authored elevation estimate. Exact courses, roof/cornice profiles, wind sculpture contours/poses/depth, threshold and damage remain estimates, not scans.",
+    "Two ruined porch platforms/three column stumps and broken open southern annex retained; full porch columns/pediments, complete reservoir and bronze Triton not restored. Eight low-relief wind figures keep winged flying poses and coarse attributes; two less-documented poses and fine face/cloth details are conservative original interpretations. No source photographic pixels embedded or redistributed. Interior water-clock mechanism, detached fragments, interpretation furniture and surrounding ruins/stairs/walls excluded.",
+    "Independent terrain retained unchanged. Archaeological ground may not be resolved by coarse urban DEM; north steps/doors and southern annex contact reviewed as a bounded preview, footprint replacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        9,
+        32
+      ],
+      "lookAt": [
+        0,
+        6.6,
+        0
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -7,
+        11.5,
+        12
+      ],
+      "lookAt": [
+        0,
+        10.4,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        17,
+        10,
+        -23
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        -9,
+        4,
+        10
+      ],
+      "lookAt": [
+        -2.7,
+        2.1,
+        2.7
+      ]
+    },
+    {
+      "name": "annex-detail",
+      "position": [
+        -7,
+        6,
+        -10
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        -4.8
+      ]
+    },
+    {
+      "name": "profiled-roof-covers",
+      "position": [
+        -8,
+        17,
+        10
+      ],
+      "lookAt": [
+        0,
+        12.05,
+        0
+      ]
+    },
+    {
+      "name": "lion-spouts",
+      "position": [
+        -1.05,
+        11.8,
+        6.2
+      ],
+      "lookAt": [
+        -1.05,
+        11.52,
+        4.18
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 54446,
+    "vertices": 163338,
+    "materials": 5,
+    "bytes": 6536892,
+    "sha256": "sha256:4d858161b89d97a16c06d1869b5f5c4a9329a5638a29ddd8e7b436cee9d4c322"
+  }
+}

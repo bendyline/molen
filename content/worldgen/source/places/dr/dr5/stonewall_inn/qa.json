@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.stonewall_inn",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-19",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:5c0d7bd54ff3ef61ac455bb6de4115ed0c654a445c4cf99636ae5dd1cd6b0ee3",
-  "sourceHash": "sha256:115729d6a60055925a94babd2ca29844ad7f81ca31f08d4c616cd090ca79c541",
-  "runtimeHash": "sha256:6514fa55c852b576cd7ed2b74164089aa716ec18304e4bb8cba21bfa225ab69b",
-  "captureReportHash": "sha256:d1218e5a3ed2c88c0f500641e1550071f3bae85d33a70cf1c978f2756d99848f",
+  "inputHash": "sha256:b9a9f942d4f181f00e51f7392f66cea1a70cc1aebc9a8b11943e6b823fe25fb7",
+  "sourceHash": "sha256:3964911242e00f0f339de983a11f8a1d5e2c33825a8850917dc21653527f976f",
+  "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+  "captureReportHash": "sha256:c5a8c5a8a4f3a8e4763f9926c7dfc3136f90faf3fd4d5392c4bcfa347634a700",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:c5a8c5a8a4f3a8e4763f9926c7dfc3136f90faf3fd4d5392c4bcfa347634a700",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,16 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/main-portal.png",
+      "shots/side-portal.png",
+      "shots/visitor-portal.png"
     ],
-    "notes": "Inspected all seven final portable views against individually viewed local 2014 and 2016 photographs, official city designation photographs and current NPS visitor-center photograph. Both 51 and 53 retain their contrasting stucco upper facades, three/four casement bays, brick storefronts and arched entrances. Review corrected the solid residential door at 53, light visitor-center entrance framing at 51 and foundations along the falling rear terrain."
+    "notes": "All ten fresh portable frames inspected: full exterior, original ground, both53doors and corrected51entry. Paired51leaves are recessed; old raised51round step and sill obstruction are gone. Two53portals, parapets, skylights, rear wing and upper facades retain their appearance."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:85592fc08dec37b7c6cac7afa0abbbb83274c5160f2e19982d5918fa7eef9edd",
+    "captureReportHash": "sha256:eafd751d5b864b231e2d00a5781ebb7464190c73cab97da17c4121a9ea58258e",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +34,38 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/main-portal.png",
+      "shots/shared/side-portal.png",
+      "shots/shared/visitor-portal.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven final shared-material views and the full front view. Brick, stucco, stone, membrane and painted metal use metric shared bindings; glass and pride flags use separate local palettes. Door relief, window baskets and storefront lettering remain readable without copied photo pixels. Flat terrain here is a material fixture; independent terrain remains in the portable scene."
+    "notes": "All ten fresh shared-material frames inspected, including native mapped overlay and all three entrances. Shared brick/stucco/stone/metal hierarchy is coherent; mapped footprints, placement transform and unload pass. Flat material fixture is distinct from retained independent USGS ground.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.stucco": {
+        "path": "materials/stucco.matgraph.json",
+        "hash": "sha256:d96343590b745615051aa42e86e1117bce5a4b4f7607fa129a99d6b1bece8119"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_sandstone": {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:dad4118e7e87b8b4fc487dd71a80d8fbd0557a3c86eec3c87de9d2d25f35fe3d",
+    "captureReportHash": "sha256:3bf07187e89fb484210250cbea891f6ff10f32091e5597df8e7bc5e6b0bd3e5f",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +82,15 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/main-portal.png",
+      "medium-fi/side-portal.png",
+      "medium-fi/visitor-portal.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final lighting, quality and forced-detail views. Skyline preserves the paired building masses and stepped roofs; district adds storefront openings and upper windows; street and closeup retain baskets, door framing and original lettering. Synthetic neighbors are style fixtures. No physical-device frame-rate measurement is claimed."
+    "notes": "All22fresh version2frames inspected: ground context, noon/late/economy/high, full front/back, three entrance details and four forced actual runtime levels. The corrected51entry resolves at district/street/close levels; skyline preserves the footprint/roof hierarchy. Synthetic surrounding structures are style context."
   },
   "geographicReview": {
     "status": "passed",
@@ -66,28 +98,37 @@
     "mapGeometryHash": "sha256:9bf5e7daa5c3f81d9a4c2a7321ef5e4682a0b16a55f7d8084523704e887996ee",
     "terrain": {
       "path": "terrain-grid.json",
-      "hash": "sha256:1cfc194a57fb36cd0ae842bac037d1c352972b216cdae887aed1d975a34c2da4",
-      "descriptorHash": "sha256:e0a412d582783ccc9b432594d6f6448cfc9a49db23239a2c91b0f0ee4c62745c",
-      "heightfieldHash": "sha256:41b3d72985aab6bbd8765566dc084fb82fb658d3e79c7d87a865302ceaa603ac",
-      "modelDatumElevationMeters": 6.4416,
-      "sourcePixelGroundSpacing": 3.6200013615651256,
+      "hash": "sha256:15140f1a1f0bba153bb002b4de07c5a53564da9d3fa34f99a83db272afe54de4",
+      "descriptorHash": "sha256:c221e28f4f64d476f65274b8346866e975d4ff6634fcbeefca4dc3a474d5005a",
+      "heightfieldHash": "sha256:6a81983c2d3cc148511fb467989c71370174b560108dd595e21ceeb41c88eef1",
+      "modelDatumElevationMeters": 6.5691,
+      "sourcePixelGroundSpacing": 0.9950248756215766,
       "footprintRelativeRangeMeters": [
-        -1.835850405832514,
-        0.21689048699103797
+        -2.2411481938415934,
+        0.10954013550004849
       ],
-      "maxPngEncodingErrorMeters": 0.00004595432281551126
+      "maxPngEncodingErrorMeters": 0.000053566837310725646
     },
-    "notes": "Both individual mapped footprints at 51–53 Christopher Street are retained; taller neighboring buildings are excluded. Anchor [-74.00212794542313,40.73391432195926], heading 0.191648856603142: +X east-northeast along Christopher Street and +Z south-southeast toward the street. Independent Terrarium terrain remains unchanged, datum 6.4416 m at sidewalk [-1.8,15.1]. Foundations reach -2.2 m to accommodate the rearward ground fall. Mapped heights of 6 and 7.4 m are coarse controls; photographs guide parapet heights. Footprint suppression remains off; another host DEM can differ."
+    "notes": "Two native building footprints, heading/anchor, street reference[-1.8,15.1], provider-relative6.5691mNAVD88datum, unmodified USGS NY_CMPG_2013ground/PNG and global placement are unchanged. Prior independent raster/grid verification remains applicable because all source bytes are exact. Both53thresholds retain their proven contacts. New51inset floor uses the original model street datum;15source-grid probes and current context/detail views were inspected, with submillimetre overlap at one edge and otherwise small clearances. Approximate2024entry against2013ground is not an as-built or accessibility certification; other host DEMs may differ.",
+    "visitorEntry": {
+      "thresholdModelY": 0,
+      "samples": 15,
+      "clearanceRangeMeters": [
+        -0.0004663000000002526,
+        0.07424534000000005
+      ],
+      "notes": "The inferred level threshold is within0.5mm of the2013bare-earth sample at one edge and up to74.3mm above it across the inset floor. This is an approximate later entry against an earlier one-metre DEM, not a measured accessibility survey. No terrain, anchor, translation or base-datum fitting."
+    }
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Exteriors of 51 and 53 Christopher Street, including Stonewall Inn and the current visitor-center storefront; neighbors, crowds and interiors excluded.",
-    "notes": "Individually inspected local 2014/2016 photographs, official city designation photograph and boundary map, and a current NPS photograph. Current visitor-center framing replaces the former salon frontage. Vertical dimensions, hidden rear upper-story termination, roof equipment and skylight spacing remain approximations. Window baskets, pride flags, lanterns and lettering are original simplified geometry; no exact 1969 reconstruction, photo pixels or official visitor-center logo is claimed."
+    "scope": "Street exteriors of 51–53 Christopher Street, their contrasting upper facades and storefront signs; no interiors or crowd sculpture.",
+    "notes": "Full fixed51–53ChristopherStreet exterior accepted at the agreed approximate medium-fi scope. Cleared Qualla images were checked first; exact4080x3072BakedintheHole2025creator CC0 photograph verifies53. Primary NYC LPC report LP-2574 independently describes both stable-derived buildings, their three/four upper casement bays and iron baskets, scored stucco, slightly different parapet heights,51rear wing, chimney/four skylights, brick storefronts and arched doors. Restoring architects EDG describe preserving the historic exterior and matching its original stucco scoring, then adapting51as the2024visitor center with accessibility upgrades. The firsthand2024opening account reports lowering its stoop. Corrected that concrete discrepancy:51now has a physical segmental recess, paired leaves and lowered model-street-datum sill; obsolete raised rounded stoop and continuous base strip across the doorway removed. All53geometry, roof/back/upper architecture, native footprints, USGS bare-earth ground and global placement remain exact. Portal width/head height retained; inferred lower threshold, opening depth, door pane pattern, roof equipment and unseen side/rear details remain explicit medium-fi estimates, not a measured accessibility or as-built survey. No private/copyrighted image or photo pixels used; full original scope retained."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:29f85e21d509038e45ce05e76878556cce74c4a712eedcd7383a111d485a0151",
+    "recipeHash": "sha256:921ecbbb4c18b9eaeacb2e16f3af80bd7f0371ad3964910287634c744f67721e",
     "levels": [
       {
         "name": "skyline",
@@ -104,64 +145,895 @@
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:d0d30e2f8a65ddda80d2aed1f51a8d16e81b4d9357be038ef6e0ea389cbb797d",
-        "bytes": 234452,
-        "gzipBytes": 46995,
-        "triangles": 2969,
-        "cpuBytes": 227156,
-        "gpuBytes": 227156,
+        "hash": "sha256:2e02e2eb5471fb0033ee7037b06a3b730b429827187cbb8a4dcee7e5d8c217d8",
+        "bytes": 240428,
+        "gzipBytes": 48605,
+        "triangles": 3062,
+        "cpuBytes": 233152,
+        "gpuBytes": 233152,
         "errorMeters": 0.16,
         "drawCalls": 6
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:8a0509311ffe096cc7df9293e1abd802ef617d8fa07f2093ed0ba4c41b8b1892",
-        "bytes": 404876,
-        "gzipBytes": 81341,
-        "triangles": 5171,
-        "cpuBytes": 396464,
-        "gpuBytes": 396464,
+        "hash": "sha256:1c149254e7c353efcc8ca3f4187e4576d1ef5cbd7b7c76bdc89f270ac5396e24",
+        "bytes": 429416,
+        "gzipBytes": 86517,
+        "triangles": 5514,
+        "cpuBytes": 421024,
+        "gpuBytes": 421024,
         "errorMeters": 0.06,
         "drawCalls": 7
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:1e1ddb08090bb59028f35ca32bcf4568f2770b0187c7586698bd0d066bd82883",
-        "bytes": 931588,
-        "gzipBytes": 162092,
-        "triangles": 7733,
-        "cpuBytes": 927960,
-        "gpuBytes": 927960,
+        "hash": "sha256:57ffee05bd7f9647a10e8e72bf67222fd425aa2148096f87113a08cc0ad8e8d1",
+        "bytes": 972752,
+        "gzipBytes": 169519,
+        "triangles": 8076,
+        "cpuBytes": 969120,
+        "gpuBytes": 969120,
         "errorMeters": 0,
         "drawCalls": 7
       }
     ],
-    "notes": "All four current levels were visually inspected and pass budgets; exact triangle and byte counts are recorded in levels. Simplified storefronts and upper windows reduce distant detail while preserving both building silhouettes. Error values are authoring budgets, not measured mesh deviations."
+    "notes": "338/3062/5514/8076triangles;1/6/7/7draws. Four actual runtime levels verified and inspected. Both53portals and all geometry outside the bounded51change match original triangle attributes. Error values remain authoring budgets, not measured mesh distances."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 7733,
+    "sourceTriangles": 8076,
     "sourceMaterials": 7,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 338,
+        "drawCalls": 1,
+        "controls": 3,
+        "failed": 0,
+        "revealTriangles": 0,
+        "addedTriangles": 0,
+        "retainedTriangles": 338,
+        "attributeHash": "sha256:728f4ca591af482f9008c4405e4e0565fd66eb85268615dffe57abcf1aef364a",
+        "controlResults": [
+          {
+            "name": "exact surrounding source attributes retained",
+            "pass": true,
+            "attributeHash": "sha256:728f4ca591af482f9008c4405e4e0565fd66eb85268615dffe57abcf1aef364a",
+            "retainedTriangles": 338
+          },
+          {
+            "name": "skyline unchanged by visitor entry detail",
+            "pass": true
+          },
+          {
+            "name": "real front-to-back reveal triangles",
+            "pass": true,
+            "revealTriangles": 0
+          }
+        ]
+      },
+      {
+        "level": "district",
+        "triangles": 3062,
+        "drawCalls": 6,
+        "controls": 28,
+        "failed": 0,
+        "revealTriangles": 44,
+        "addedTriangles": 25,
+        "retainedTriangles": 2920,
+        "attributeHash": "sha256:a918322a131d480bb363352f349e91dd2cbac52517971b14019ac19ec24486c3",
+        "controlResults": [
+          {
+            "name": "exact surrounding source attributes retained",
+            "pass": true,
+            "attributeHash": "sha256:a918322a131d480bb363352f349e91dd2cbac52517971b14019ac19ec24486c3",
+            "retainedTriangles": 2920
+          },
+          {
+            "name": "skyline unchanged by visitor entry detail",
+            "pass": true
+          },
+          {
+            "name": "real front-to-back reveal triangles",
+            "pass": true,
+            "revealTriangles": 44
+          },
+          {
+            "name": "entry is open in front of recessed closed leaf",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "actual closed door recessed behind brick facade",
+            "pass": true,
+            "portal": -7.62,
+            "z": 13.989999771118164
+          },
+          {
+            "name": "physical inward-facing jamb",
+            "pass": true,
+            "portal": -7.62,
+            "side": -1
+          },
+          {
+            "name": "physical inward-facing jamb",
+            "pass": true,
+            "portal": -7.62,
+            "side": 1
+          },
+          {
+            "name": "physical arched soffit depth",
+            "pass": true,
+            "portal": -7.62,
+            "y": 2.789999940079037
+          },
+          {
+            "name": "closed sill floor joins original entrance height",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "fanlight recess remains open ahead of rear plane",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "solid front wall remains outside arch profile",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "original rounded threshold top retained",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "entry is open in front of recessed closed leaf",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "actual closed door recessed behind brick facade",
+            "pass": true,
+            "portal": -1.69,
+            "z": 13.989999771118164
+          },
+          {
+            "name": "physical inward-facing jamb",
+            "pass": true,
+            "portal": -1.69,
+            "side": -1
+          },
+          {
+            "name": "physical inward-facing jamb",
+            "pass": true,
+            "portal": -1.69,
+            "side": 1
+          },
+          {
+            "name": "physical arched soffit depth",
+            "pass": true,
+            "portal": -1.69,
+            "y": 2.6199998801527244
+          },
+          {
+            "name": "closed sill floor joins original entrance height",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "fanlight recess remains open ahead of rear plane",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "solid front wall remains outside arch profile",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "original rounded threshold top retained",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "51 entrance open ahead of recessed leaf",
+            "pass": true
+          },
+          {
+            "name": "51 paired door leaves behind masonry plane",
+            "pass": true
+          },
+          {
+            "name": "51 paired door leaves behind masonry plane",
+            "pass": true
+          },
+          {
+            "name": "51 recess floor lowered to original model street datum",
+            "pass": true
+          },
+          {
+            "name": "51 old raised rounded stoop removed",
+            "pass": true
+          },
+          {
+            "name": "51 continuous base sill no longer crosses doorway",
+            "pass": true
+          },
+          {
+            "name": "51 actual inward-facing jamb",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "level": "street",
+        "triangles": 5514,
+        "drawCalls": 7,
+        "controls": 45,
+        "failed": 0,
+        "revealTriangles": 76,
+        "addedTriangles": 85,
+        "retainedTriangles": 5220,
+        "attributeHash": "sha256:616a5ac43051e3a2b44e16e387667cdddac22348b808089de1f391a805bcfae6",
+        "controlResults": [
+          {
+            "name": "exact surrounding source attributes retained",
+            "pass": true,
+            "attributeHash": "sha256:616a5ac43051e3a2b44e16e387667cdddac22348b808089de1f391a805bcfae6",
+            "retainedTriangles": 5220
+          },
+          {
+            "name": "skyline unchanged by visitor entry detail",
+            "pass": true
+          },
+          {
+            "name": "real front-to-back reveal triangles",
+            "pass": true,
+            "revealTriangles": 76
+          },
+          {
+            "name": "entry is open in front of recessed closed leaf",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "actual closed door recessed behind brick facade",
+            "pass": true,
+            "portal": -7.62,
+            "z": 13.989999771118164
+          },
+          {
+            "name": "physical inward-facing jamb",
+            "pass": true,
+            "portal": -7.62,
+            "side": -1
+          },
+          {
+            "name": "physical inward-facing jamb",
+            "pass": true,
+            "portal": -7.62,
+            "side": 1
+          },
+          {
+            "name": "physical arched soffit depth",
+            "pass": true,
+            "portal": -7.62,
+            "y": 2.7899999510715925
+          },
+          {
+            "name": "closed sill floor joins original entrance height",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "fanlight recess remains open ahead of rear plane",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "solid front wall remains outside arch profile",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "original rounded threshold top retained",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "entry is open in front of recessed closed leaf",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "actual closed door recessed behind brick facade",
+            "pass": true,
+            "portal": -1.69,
+            "z": 13.989999771118164
+          },
+          {
+            "name": "physical inward-facing jamb",
+            "pass": true,
+            "portal": -1.69,
+            "side": -1
+          },
+          {
+            "name": "physical inward-facing jamb",
+            "pass": true,
+            "portal": -1.69,
+            "side": 1
+          },
+          {
+            "name": "physical arched soffit depth",
+            "pass": true,
+            "portal": -1.69,
+            "y": 2.6199998828821225
+          },
+          {
+            "name": "closed sill floor joins original entrance height",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "fanlight recess remains open ahead of rear plane",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "solid front wall remains outside arch profile",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "original rounded threshold top retained",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "51 entrance open ahead of recessed leaf",
+            "pass": true
+          },
+          {
+            "name": "51 paired door leaves behind masonry plane",
+            "pass": true
+          },
+          {
+            "name": "51 paired door leaves behind masonry plane",
+            "pass": true
+          },
+          {
+            "name": "51 recess floor lowered to original model street datum",
+            "pass": true
+          },
+          {
+            "name": "51 old raised rounded stoop removed",
+            "pass": true
+          },
+          {
+            "name": "51 continuous base sill no longer crosses doorway",
+            "pass": true
+          },
+          {
+            "name": "51 actual inward-facing jamb",
+            "pass": true
+          },
+          {
+            "name": "physical black glazing mullion",
+            "pass": true,
+            "leaf": -2.07,
+            "dx": -0.09
+          },
+          {
+            "name": "physical black glazing mullion",
+            "pass": true,
+            "leaf": -2.07,
+            "dx": 0.09
+          },
+          {
+            "name": "glazing pane remains behind physical frame",
+            "pass": true,
+            "leaf": -2.07
+          },
+          {
+            "name": "lower panel has real recessed face",
+            "pass": true,
+            "leaf": -2.07,
+            "panel": -1
+          },
+          {
+            "name": "lower panel has sloped physical molding",
+            "pass": true,
+            "leaf": -2.07,
+            "panel": -1
+          },
+          {
+            "name": "lower panel has real recessed face",
+            "pass": true,
+            "leaf": -2.07,
+            "panel": 1
+          },
+          {
+            "name": "lower panel has sloped physical molding",
+            "pass": true,
+            "leaf": -2.07,
+            "panel": 1
+          },
+          {
+            "name": "physical black glazing mullion",
+            "pass": true,
+            "leaf": -1.31,
+            "dx": -0.09
+          },
+          {
+            "name": "physical black glazing mullion",
+            "pass": true,
+            "leaf": -1.31,
+            "dx": 0.09
+          },
+          {
+            "name": "glazing pane remains behind physical frame",
+            "pass": true,
+            "leaf": -1.31
+          },
+          {
+            "name": "lower panel has real recessed face",
+            "pass": true,
+            "leaf": -1.31,
+            "panel": -1
+          },
+          {
+            "name": "lower panel has sloped physical molding",
+            "pass": true,
+            "leaf": -1.31,
+            "panel": -1
+          },
+          {
+            "name": "lower panel has real recessed face",
+            "pass": true,
+            "leaf": -1.31,
+            "panel": 1
+          },
+          {
+            "name": "lower panel has sloped physical molding",
+            "pass": true,
+            "leaf": -1.31,
+            "panel": 1
+          },
+          {
+            "name": "unsupported diamond decoration removed from plain side leaf",
+            "pass": true
+          },
+          {
+            "name": "side door hinge has physical depth",
+            "pass": true,
+            "y": 0.7
+          },
+          {
+            "name": "side door hinge has physical depth",
+            "pass": true,
+            "y": 1.85
+          }
+        ]
+      },
+      {
+        "level": "closeup",
+        "triangles": 8076,
+        "drawCalls": 7,
+        "controls": 45,
+        "failed": 0,
+        "revealTriangles": 76,
+        "addedTriangles": 85,
+        "retainedTriangles": 7782,
+        "attributeHash": "sha256:2bd9a58dce2483ba89083beadb5fa5ad892639a131e06b8688e3e4710a8f9827",
+        "controlResults": [
+          {
+            "name": "exact surrounding source attributes retained",
+            "pass": true,
+            "attributeHash": "sha256:2bd9a58dce2483ba89083beadb5fa5ad892639a131e06b8688e3e4710a8f9827",
+            "retainedTriangles": 7782
+          },
+          {
+            "name": "skyline unchanged by visitor entry detail",
+            "pass": true
+          },
+          {
+            "name": "real front-to-back reveal triangles",
+            "pass": true,
+            "revealTriangles": 76
+          },
+          {
+            "name": "entry is open in front of recessed closed leaf",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "actual closed door recessed behind brick facade",
+            "pass": true,
+            "portal": -7.62,
+            "z": 13.989999771118164
+          },
+          {
+            "name": "physical inward-facing jamb",
+            "pass": true,
+            "portal": -7.62,
+            "side": -1
+          },
+          {
+            "name": "physical inward-facing jamb",
+            "pass": true,
+            "portal": -7.62,
+            "side": 1
+          },
+          {
+            "name": "physical arched soffit depth",
+            "pass": true,
+            "portal": -7.62,
+            "y": 2.7899999510715925
+          },
+          {
+            "name": "closed sill floor joins original entrance height",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "fanlight recess remains open ahead of rear plane",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "solid front wall remains outside arch profile",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "original rounded threshold top retained",
+            "pass": true,
+            "portal": -7.62
+          },
+          {
+            "name": "entry is open in front of recessed closed leaf",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "actual closed door recessed behind brick facade",
+            "pass": true,
+            "portal": -1.69,
+            "z": 13.989999771118164
+          },
+          {
+            "name": "physical inward-facing jamb",
+            "pass": true,
+            "portal": -1.69,
+            "side": -1
+          },
+          {
+            "name": "physical inward-facing jamb",
+            "pass": true,
+            "portal": -1.69,
+            "side": 1
+          },
+          {
+            "name": "physical arched soffit depth",
+            "pass": true,
+            "portal": -1.69,
+            "y": 2.6199998828821225
+          },
+          {
+            "name": "closed sill floor joins original entrance height",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "fanlight recess remains open ahead of rear plane",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "solid front wall remains outside arch profile",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "original rounded threshold top retained",
+            "pass": true,
+            "portal": -1.69
+          },
+          {
+            "name": "51 entrance open ahead of recessed leaf",
+            "pass": true
+          },
+          {
+            "name": "51 paired door leaves behind masonry plane",
+            "pass": true
+          },
+          {
+            "name": "51 paired door leaves behind masonry plane",
+            "pass": true
+          },
+          {
+            "name": "51 recess floor lowered to original model street datum",
+            "pass": true
+          },
+          {
+            "name": "51 old raised rounded stoop removed",
+            "pass": true
+          },
+          {
+            "name": "51 continuous base sill no longer crosses doorway",
+            "pass": true
+          },
+          {
+            "name": "51 actual inward-facing jamb",
+            "pass": true
+          },
+          {
+            "name": "physical black glazing mullion",
+            "pass": true,
+            "leaf": -2.07,
+            "dx": -0.09
+          },
+          {
+            "name": "physical black glazing mullion",
+            "pass": true,
+            "leaf": -2.07,
+            "dx": 0.09
+          },
+          {
+            "name": "glazing pane remains behind physical frame",
+            "pass": true,
+            "leaf": -2.07
+          },
+          {
+            "name": "lower panel has real recessed face",
+            "pass": true,
+            "leaf": -2.07,
+            "panel": -1
+          },
+          {
+            "name": "lower panel has sloped physical molding",
+            "pass": true,
+            "leaf": -2.07,
+            "panel": -1
+          },
+          {
+            "name": "lower panel has real recessed face",
+            "pass": true,
+            "leaf": -2.07,
+            "panel": 1
+          },
+          {
+            "name": "lower panel has sloped physical molding",
+            "pass": true,
+            "leaf": -2.07,
+            "panel": 1
+          },
+          {
+            "name": "physical black glazing mullion",
+            "pass": true,
+            "leaf": -1.31,
+            "dx": -0.09
+          },
+          {
+            "name": "physical black glazing mullion",
+            "pass": true,
+            "leaf": -1.31,
+            "dx": 0.09
+          },
+          {
+            "name": "glazing pane remains behind physical frame",
+            "pass": true,
+            "leaf": -1.31
+          },
+          {
+            "name": "lower panel has real recessed face",
+            "pass": true,
+            "leaf": -1.31,
+            "panel": -1
+          },
+          {
+            "name": "lower panel has sloped physical molding",
+            "pass": true,
+            "leaf": -1.31,
+            "panel": -1
+          },
+          {
+            "name": "lower panel has real recessed face",
+            "pass": true,
+            "leaf": -1.31,
+            "panel": 1
+          },
+          {
+            "name": "lower panel has sloped physical molding",
+            "pass": true,
+            "leaf": -1.31,
+            "panel": 1
+          },
+          {
+            "name": "unsupported diamond decoration removed from plain side leaf",
+            "pass": true
+          },
+          {
+            "name": "side door hinge has physical depth",
+            "pass": true,
+            "y": 0.7
+          },
+          {
+            "name": "side door hinge has physical depth",
+            "pass": true,
+            "y": 1.85
+          }
+        ]
+      }
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; independent terrain PNG encoding error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/dr/dr5/stonewall_inn/verify-portals.mjs"
+    ],
+    "notes": "Targeted deterministic regeneration, source/runtime integrity, four runtime levels, strict budgets, source/scene/terrain schemas and repeated30tick states pass. Imported ray checks verify all three recessed entries and preserved53details. Native map, all ground inputs and global placement remain exact.",
+    "currentGroundInputs": {
+      "terrain-grid.json": "sha256:15140f1a1f0bba153bb002b4de07c5a53564da9d3fa34f99a83db272afe54de4",
+      "terrain-review.terrain.json": "sha256:c221e28f4f64d476f65274b8346866e975d4ff6634fcbeefca4dc3a474d5005a",
+      "terrain-review.height.png": "sha256:6a81983c2d3cc148511fb467989c71370174b560108dd595e21ceeb41c88eef1",
+      "terrain-sources/3dep-nycmpg2013.tif": "sha256:83e9567676369096cc2ff8497eda4cc5142f5f552dad9252281a74757440e468",
+      "terrain-sources/3dep-export.json": "sha256:063c19ae24786bae24a461c9102016a86c77a85a3a681256aed4e3b37ef0e95b",
+      "terrain-sources/3dep-catalog.json": "sha256:0ba5c7edf8026216d7b5e501b059753b599dcd92879fa7a4990330963dd6270a",
+      "terrain-sources/3dep-manifest.json": "sha256:90c985299501d4b7246c724dc05af9c9d6446be9c535cc4e1cfa904b56026489"
+    },
+    "integration": {
+      "repeatTicks": 30,
+      "stateHash": "sha256:97bc01be5d077f96f65598b431941c58345d92e31a902aa8c52b02c16eea8b42"
+    }
   },
   "limitations": [
-    "Original medium-fi exterior of 51–53 Christopher Street, using individually inspected local 2014/2016 photos, official city designation photo/map and current NPS visitor-center photograph. No exact 1969 reconstruction.",
+    "Full fixed51–53exterior reviewed using the inspected2025creator CC0 photograph of53and primary LPC/EDG architectural descriptions. The2024visitor entry at51has a real segmental recess, paired doors and lowered threshold, replacing the obsolete raised round stoop. No exact1969reconstruction or measured accessibility certification.",
+    "Earlier attribution-licensed photographs and the prior NPS visitor-center image are excluded as current construction controls. The latter exact asset grant was not established; its existing geometry remains an unapproved approximation.",
     "Both individual mapped footprints are retained; taller neighboring buildings, interiors, crowds and temporary banners are excluded.",
     "Vertical dimensions and hidden rear/roof details are approximations. The 51 rear-wing upper-story termination, skylight spacing and equipment positions are interpreted from limited evidence.",
     "Small pride flags, window baskets, lanterns and storefront lettering are simplified original geometry. The red sign is colored geometry, not a physically simulated neon tube. No photo pixels or official visitor-center logos are embedded.",
-    "Map heights are coarse controls, with parapets interpreted from facade photographs. Independent terrain is unchanged; exact contact can differ with another host DEM."
+    "Map heights are coarse controls, with parapets interpreted from facade photographs. Independent terrain is unchanged; exact contact can differ with another host DEM.",
+    "Portal widths and arch-head heights retained from prior authored layout. Recess backs at z13.97 imply about0.34m depth; actual jambs, soffits, fanlights and door details remain estimates. Both53rounded thresholds, map and USGS ground retained;51entry is lowered to the original model street datum as an approximate representation of the documented2024access change.",
+    "The main door leaves have black three-by-three glazing frames and two simplified beveled lower panels each. The side leaf is plain with simplified hinges/pull; prior generic pale door-window sills and diamond ornament removed. Exact hardware, profiles and glazing subdivision remain photographic interpretations."
   ],
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:0c944ff2df9aca6bb45721e109d8176396e4915d83118b5ff1c186912c1f1ef6",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:b9a9f942d4f181f00e51f7392f66cea1a70cc1aebc9a8b11943e6b823fe25fb7",
+    "referenceInputHash": "sha256:c85ec0e53a1c6fe3158fdf6f2664e0e7b3ba0be93d5f2e29cd6a47172733804f",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/stonewall-2025-original.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:f42f7954678f371b0c553274fbea5d0ba2fa6555624b1605a44cbf1ebfeb3a45",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/d/r/5/r/new-york-city-wp/stonewall-inn-5-pride-weekend-.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Stonewall_Inn_5_pride_weekend_2016.jpg",
+        "reason": "Earlier attribution-licensed facade image excluded from current portal construction controls."
+      },
+      {
+        "path": "_m/d/r/5/r/stonewall-inn-wp/stonewall-inn-nyc-may.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Stonewall_Inn,_NYC_(May_2014)_-_2.JPG",
+        "reason": "Earlier attribution-licensed facade image excluded from current portal construction controls."
+      },
+      {
+        "url": "https://www.nps.gov/ston/planyourvisit/index.htm",
+        "reason": "Existing visitor-center image not adopted as a current control: an explicit public-domain grant for the exact asset was not established. Broader51exterior remains unapproved."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Full fixed51–53ChristopherStreet exterior accepted at the agreed approximate medium-fi scope. Cleared Qualla images were checked first; exact4080x3072BakedintheHole2025creator CC0 photograph verifies53. Primary NYC LPC report LP-2574 independently describes both stable-derived buildings, their three/four upper casement bays and iron baskets, scored stucco, slightly different parapet heights,51rear wing, chimney/four skylights, brick storefronts and arched doors. Restoring architects EDG describe preserving the historic exterior and matching its original stucco scoring, then adapting51as the2024visitor center with accessibility upgrades. The firsthand2024opening account reports lowering its stoop. Corrected that concrete discrepancy:51now has a physical segmental recess, paired leaves and lowered model-street-datum sill; obsolete raised rounded stoop and continuous base strip across the doorway removed. All53geometry, roof/back/upper architecture, native footprints, USGS bare-earth ground and global placement remain exact. Portal width/head height retained; inferred lower threshold, opening depth, door pane pattern, roof equipment and unseen side/rear details remain explicit medium-fi estimates, not a measured accessibility or as-built survey. No private/copyrighted image or photo pixels used; full original scope retained."
+  },
+  "constructionReview": {
+    "status": "supported-portals-completed-full-scope-awaiting-reference",
+    "model": "stonewall_inn",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:db54cbc3022107ec95e7febb52f44eb7e6928b5d3b37d6b4a83ad41d26034563",
+    "sourceHash": "sha256:b79bce4f809ad3bb4aef6965cbe93c216f911ae1c55ad69b21ac57fbc543853b",
+    "runtimeHash": "sha256:37c4ca0a073b6f5a764feeda6ca3b2b9e6f03ea268cf6d119a27c014a9111133",
+    "built": [
+      "Two real arched openings carved in original53front wall",
+      "Physical jambs, curved soffits and sill floors",
+      "Recessed closed doors/fanlights behind original thresholds",
+      "Physical black door glazing frames and four beveled lower panels",
+      "Removed pale generic sills and unsupported diamond; simplified side hinges"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      338,
+      3037,
+      5429,
+      7991
+    ],
+    "drawCalls": [
+      1,
+      6,
+      7,
+      7
+    ],
+    "limits": "Constructed two real53ChristopherStreet arched door recesses from exact inspected native2025BakedintheHole own-work CC0 exterior, after checking cleared Qualla candidates first. Main facade wall now has actual arched holes, with inward-facing jambs, soffits and sill floors joining recessed closed door/fanlight planes. Main double leaves now have physical black three-by-three glazing frames and four beveled lower panels. Removed unsupported generic pale door-window sills and diamond decoration from plain side leaf; added simplified side hinges. Native full4080x3072image and both entrance crops inspected; explicit primary creator CC0 dedication/native hashes verified. Original portal sizes/rounded thresholds, skyline, surrounding source geometry, both building footprints, map/ground and placement retained. About0.34m recess depth, moldings, subdivisions, hardware and present condition are photographic estimates. Main photo supports53only; full fixed51–53exterior remains unapproved pending suitable public-domain51visitor-center/roof evidence. Earlier attribution photos and old NPS visitor-center image excluded as current controls; exact asset grant not established. No narrower whole-model completion claim, copied pixels, interiors or artificial ground correction.",
+    "publicDomainOriginals": 1,
+    "reusedNativeQuallaOriginals": 0,
+    "fullExteriorCompleted": false,
+    "geographicCompletion": false,
+    "groundContactPending": "Retained ground obscures original left threshold in current views; no architecture raised to fit heightfield.",
+    "physicalPortals": 2,
+    "fineRevealTriangles": 76,
+    "beveledLowerPanels": 4,
+    "storyState": "needs-review",
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
+  },
+  "groundCorrectionReview": {
+    "status": "passed",
+    "inputHash": "sha256:57078af59f70b31e1a1084c10c725bb3dd6aa33585872fa5521d392c0fece841",
+    "sourceHash": "sha256:b79bce4f809ad3bb4aef6965cbe93c216f911ae1c55ad69b21ac57fbc543853b",
+    "runtimeHash": "sha256:37c4ca0a073b6f5a764feeda6ca3b2b9e6f03ea268cf6d119a27c014a9111133",
+    "originalTerrainInputs": {
+      "terrain-grid.json": "sha256:1cfc194a57fb36cd0ae842bac037d1c352972b216cdae887aed1d975a34c2da4",
+      "terrain-review.terrain.json": "sha256:e0a412d582783ccc9b432594d6f6448cfc9a49db23239a2c91b0f0ee4c62745c",
+      "terrain-review.height.png": "sha256:41b3d72985aab6bbd8765566dc084fb82fb658d3e79c7d87a865302ceaa603ac"
+    },
+    "currentGroundInputs": {
+      "terrain-grid.json": "sha256:15140f1a1f0bba153bb002b4de07c5a53564da9d3fa34f99a83db272afe54de4",
+      "terrain-review.terrain.json": "sha256:c221e28f4f64d476f65274b8346866e975d4ff6634fcbeefca4dc3a474d5005a",
+      "terrain-review.height.png": "sha256:6a81983c2d3cc148511fb467989c71370174b560108dd595e21ceeb41c88eef1",
+      "terrain-sources/3dep-nycmpg2013.tif": "sha256:83e9567676369096cc2ff8497eda4cc5142f5f552dad9252281a74757440e468",
+      "terrain-sources/3dep-export.json": "sha256:063c19ae24786bae24a461c9102016a86c77a85a3a681256aed4e3b37ef0e95b",
+      "terrain-sources/3dep-catalog.json": "sha256:0ba5c7edf8026216d7b5e501b059753b599dcd92879fa7a4990330963dd6270a",
+      "terrain-sources/3dep-manifest.json": "sha256:90c985299501d4b7246c724dc05af9c9d6446be9c535cc4e1cfa904b56026489"
+    },
+    "originalRasterPixelsVerified": 40401,
+    "derivedGridSamplesVerified": 16641,
+    "thresholdBoundaryControls": 51,
+    "freshFramesInspected": 39,
+    "geometryChanged": false,
+    "placementChanged": false,
+    "wholeModelCompleted": false,
+    "historicalSourceHash": "sha256:b79bce4f809ad3bb4aef6965cbe93c216f911ae1c55ad69b21ac57fbc543853b",
+    "historicalRuntimeHash": "sha256:37c4ca0a073b6f5a764feeda6ca3b2b9e6f03ea268cf6d119a27c014a9111133",
+    "notes": "Original raster/grid verification retained unchanged. Current geographic review records only the new51entry contact; ground source, grid, heightfield and global placement did not change."
+  },
+  "validation": {
+    "geographicReview": true,
+    "completed": true,
+    "storyAnnotation": true
+  },
+  "status": "completed",
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:b9a9f942d4f181f00e51f7392f66cea1a70cc1aebc9a8b11943e6b823fe25fb7",
+    "sourceHash": "sha256:3964911242e00f0f339de983a11f8a1d5e2c33825a8850917dc21653527f976f",
+    "runtimeHash": "sha256:e06bbf75ca25c9e43c1e6193eb52028712af7f9a3230c32d9b0861950ecaf4cc",
+    "notes": "Full fixed51–53ChristopherStreet exterior accepted at the agreed approximate medium-fi scope. Cleared Qualla images were checked first; exact4080x3072BakedintheHole2025creator CC0 photograph verifies53. Primary NYC LPC report LP-2574 independently describes both stable-derived buildings, their three/four upper casement bays and iron baskets, scored stucco, slightly different parapet heights,51rear wing, chimney/four skylights, brick storefronts and arched doors. Restoring architects EDG describe preserving the historic exterior and matching its original stucco scoring, then adapting51as the2024visitor center with accessibility upgrades. The firsthand2024opening account reports lowering its stoop. Corrected that concrete discrepancy:51now has a physical segmental recess, paired leaves and lowered model-street-datum sill; obsolete raised rounded stoop and continuous base strip across the doorway removed. All53geometry, roof/back/upper architecture, native footprints, USGS bare-earth ground and global placement remain exact. Portal width/head height retained; inferred lower threshold, opening depth, door pane pattern, roof equipment and unseen side/rear details remain explicit medium-fi estimates, not a measured accessibility or as-built survey. No private/copyrighted image or photo pixels used; full original scope retained.",
+    "geometryChanged": true,
+    "newCaptures": 42,
+    "retainedFrames": 0
   }
 }

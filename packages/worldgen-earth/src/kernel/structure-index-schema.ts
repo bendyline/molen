@@ -98,6 +98,19 @@ const placement = z
           .min(1)
           .max(MAX_STRUCTURE_GROUND_OUTLINES)
           .optional(),
+        additionalOutlines: z
+          .array(
+            z
+              .array(z.tuple([finite, finite]))
+              .min(3)
+              .max(512)
+              .refine(
+                validGroundOutline,
+                'ground cutout must be a simple polygon with positive area',
+              ),
+          )
+          .max(MAX_STRUCTURE_GROUND_OUTLINES - 1)
+          .optional(),
         basis: z.string().trim().min(1),
       })
       .optional(),

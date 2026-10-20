@@ -1,12 +1,12 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.ennis_house",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-19",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:4f55b738d8242ab5576e4c9bd9e54eaf46d93ce5383d8c983ac7e286c5ee1595",
-  "sourceHash": "sha256:fa7b28b9a6b7206756ff505a32057ff9152cb32b276397775b60aa022384f0eb",
-  "runtimeHash": "sha256:9d70eb5c0e48c914b0c6f72c6e2410a50293e03f5cb86741435caf4cefbff80b",
-  "captureReportHash": "sha256:2f061b669e0bfa7ca0f6d744e78527926ed0bfaea076268a19e87882a0063e43",
+  "inputHash": "sha256:fc934c8c2b2dabcfc503a8b8b2640a03b13e1d5a800da8170d5d32340991fa00",
+  "sourceHash": "sha256:cc95f51402fd150a43b2b654a2217284901ff4ff30b434e7dd49f07a0b0ac996",
+  "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+  "captureReportHash": "sha256:65c554a74cd49dc7c08b4c40921f566a92e2173e5e9bdb77a40faa3de740be98",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -16,13 +16,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/gate-ironwork.png",
+      "shots/service-gate.png"
     ],
-    "notes": "Inspected all seven current portable views against individually viewed Qualla south/street/courtyard/block-detail originals, HABS elevation and the published 1928 floor plan. Stepped room masses, projecting dining window, high living transom, long rear gallery, motor court, bridge, garage and retaining walls remain distinct. Final review includes the northwest boundary-wall return and stepped living-window surround."
+    "notes": "All9current portable frames actually inspected: whole asset, four orientations, front/back and gate/service details. Isolated flat review ground below-10mfoundations exposes complete authored geometry; geographic terrain acceptance comes from separate original-ground context frames. Final frozen-input captures have exactly the inspected image bytes. Full fixed textile-block house, bridge-linked garage/servants wing, motor court, terraces, pool and retaining walls retained. Exact native original1969 government HABS CA-1942 west elevation and gate detail by Jean Davis establish the stepped buff massing, recessed windows, block courses and measured4.84505mportal group. Only this cleared public-domain drawing is active imagery after Qualla-first search; earlier attribution/private/satellite imagery is excluded from this review. Independent public USGS B23 point measurements acquired2023-01-08 through2024-01-07 corroborate court datum and broad raised bridge. Corrected entrance floor1.2m, short sloping apron and4.9mdeep bridge with4.15mdeck. Original whole-house transform and every raster/grid/heightfield sample remain exact. Bounded rendered-ground opening only under solid entrance paving resolves bridge returns interpolated as ground. Inferred underpass floor, modern restoration, hidden roof joins, room heights and relief remain approximate medium-fi exterior reconstruction; registration allows2m horizontal uncertainty and architectural levels about0.4m. No measured navigable threshold/collision or exact current-condition claim."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:24f1764f5af4f975c77c5ae88c7456454948c6fb74f0816dc25e3f599cc7d73c",
+    "captureReportHash": "sha256:52fe6d7dbdc72e0a532bb78102126a69695595b55c6953bb68987e335e9cd591",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +32,29 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/gate-ironwork.png",
+      "shots/shared/service-gate.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven current shared-material views, including map overlay and full front. Concrete, roof membrane and painted metal use three shared metric surfaces; glass and pool water are separate local materials. Flat-ground fixtures expose subterranean retaining geometry and elevated street walls; actual terrain contact is assessed in portable/context views."
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    },
+    "notes": "All9current shared-surface/geographic-fixture frames inspected, including native footprint overlay, open main/service lattice and physical bronze-tone members. Three current shared graphs and metric UVs verified. Bounded opening activates only for visible loaded asset; hide and unload restore original ground and dispose all model geometry. Flat fixture validates material/placement transform and lifecycle; separate context uses original USGS ground."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:3879cd6dc3ed032139e5ed7aa7fd3a72936a4a924c1b63eeb6c9018f5fe3a650",
+    "captureReportHash": "sha256:5209f6f4cdbaa713e45a824979a89af682d9341ba4311868e9eee398965fbf91",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,16 +71,18 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/gate-ironwork.png",
+      "medium-fi/service-gate.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen current lighting, quality and forced-detail views. Skyline retains articulated masses, compound openings and retaining silhouette. District restores glazing, roof parapets, bridge screen and stepped window surround; street restores selected joints and relief; closeup restores the full block-course grid, repeated Greek-key-derived motifs and leaded-glass detail. Synthetic neighbors are style fixtures. No physical-device performance measurement is claimed."
+    "notes": "All21current version2frames actually inspected, with full-resolution entrance/service details. Original source ground retained in noon/late, economy/high, whole front/back, silhouette and all four forced detail levels. Opening coverage0/9probes and unchanged source values verified in every frame. Entrance ironwork and physical flooring stay clear of bridge-interpolated ground. Uphill street outside aperture naturally occludes a small low foreground portion of the main-gate view; it does not cross the covered floor or service leaf. Hidden architecture and source/host terrain precision remain approximate; synthetic neighbors are style fixtures."
   },
   "geographicReview": {
     "status": "passed",
-    "placementHash": "sha256:028644cd72572a19a96131fdf81e72745838edcb526265fe2f3a6a1cf940f1b6",
+    "placementHash": "sha256:575de73c2208d84addcc60b9c6711497571af4e93940b3726df9e08864b446a8",
     "mapGeometryHash": "sha256:fa304b1b968e8639bfd06507fa4f7598af8ecd03ca9335618c64d4ce7d018e73",
     "terrain": {
       "path": "terrain-grid.json",
@@ -75,92 +95,311 @@
         -7.05231486471655,
         5.6429489370010515
       ],
-      "maxPngEncodingErrorMeters": 0.0003138960838384719
+      "maxPngEncodingErrorMeters": 0.0003138960838384719,
+      "sourceHeightsUnchanged": true,
+      "originalSourceFileHash": "sha256:400a3ec44a4bcd1ac440db8b13a344560754c4a99aa8ff46d40288ce75208cca",
+      "pointMeasurementEvidence": "sha256:4d87eca7506162a3840602e7752e0b45b77cc4871f8f757b2edf352af8d0e7de",
+      "groundCutout": {
+        "outline": [
+          [
+            -24.15,
+            -11.95
+          ],
+          [
+            -15.45,
+            -11.95
+          ],
+          [
+            -15.45,
+            -2.05
+          ],
+          [
+            -24.15,
+            -2.05
+          ]
+        ],
+        "basis": "Only the authored sloping entrance paving beneath the bridge and its short street/court transitions. USGS B23 points show the bridge deck incorrectly represented as ground by the interpolated raster. Preserve every original height sample and the whole-house datum; the solid model floor replaces rendered ground triangles in this bounded passage. Approximate floor and registration, not a surveyed threshold."
+      }
     },
-    "notes": "Mapped combined compound footprint controls the court, terrace edges and northwest street return; it is not extruded as a single roof. Anchor [-118.2929,34.11622], heading -0.39: +X east-southeast, +Z south-southwest. Unmodified USGS CA_LosAngeles_B23 bare-earth GeoTIFF is retained; datum 255.9812 m NAVD88 at motor-court local [-18,2]. Foundations extend to -10 m and the street return rises with the hillside. Main upper floor is 3.25 m above the court. Ground beneath buildings is source-interpolated; placement remains approximate and host-dependent, with footprint replacement disabled."
+    "notes": "Approximate full exterior preview accepted at unchanged anchor[-118.2929,34.11622],heading-.39,motor-court datum255.9812m. Independent original class2court points are-.0112..+.0188mrelative, corroborating datum. Original USGS raster wrongly interpolates raised bridge deck into ground; explicit model architecture and matching bounded rendered-ground opening now represent covered entrance. All original map/raw raster/grid/descriptor/heightPNG and terrain-reference transform exact; no whole-house lift, fitted DEM, flattening or footprint replacement. The only placement change is documented ground opening and note. Retained enclosing map outline includes whole platform; roof/bridge/paving data constrain approximate fit, not surveyed thresholds. Host datasets can differ."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Main Ennis House, connected garage/servants wing and bridge, motor court, north pool terrace, scenic retaining walls and northwest boundary return. No interiors or neighboring properties.",
-    "notes": "Two primary and five supplemental local photographs, HABS CA-1942 measured elevation/description, 1928 Architectural Record floor plan/perspective and satellite roof context establish the articulated compound. Block module is 16 inches; repeated relief, leaded glass, hidden joins and room/roof dimensions are medium-fi interpretations, not a measured survey or photogrammetry. No photo pixels, scaffolding, vegetation, visitors, vehicles or furniture copied."
+    "scope": "Main textile-block house, attached bridge and garage/servants wing, terraces and prominent retaining walls; restrained relief for repeated blocks. Exclude neighboring houses, vegetation, temporary scaffolding and interiors.",
+    "notes": "Full fixed textile-block house, bridge-linked garage/servants wing, motor court, terraces, pool and retaining walls retained. Exact native original1969 government HABS CA-1942 west elevation and gate detail by Jean Davis establish the stepped buff massing, recessed windows, block courses and measured4.84505mportal group. Only this cleared public-domain drawing is active imagery after Qualla-first search; earlier attribution/private/satellite imagery is excluded from this review. Independent public USGS B23 point measurements acquired2023-01-08 through2024-01-07 corroborate court datum and broad raised bridge. Corrected entrance floor1.2m, short sloping apron and4.9mdeep bridge with4.15mdeck. Original whole-house transform and every raster/grid/heightfield sample remain exact. Bounded rendered-ground opening only under solid entrance paving resolves bridge returns interpolated as ground. Inferred underpass floor, modern restoration, hidden roof joins, room heights and relief remain approximate medium-fi exterior reconstruction; registration allows2m horizontal uncertainty and architectural levels about0.4m. No measured navigable threshold/collision or exact current-condition claim."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:38a37cf1413c101370ee687d68c01492db58c458a07213e514efa2035508ad13",
+    "recipeHash": "sha256:f4beabccd0c4240af97c5a9997c76bd26ba99b66537f38c9859fa8bf9a8750d6",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:c13ed4b254423a59dc80a3bc90b82e359f3289e002d1ef1b7c279a5be9ea8158",
-        "bytes": 69380,
-        "gzipBytes": 10343,
-        "triangles": 878,
-        "cpuBytes": 67980,
-        "gpuBytes": 67980,
+        "hash": "sha256:91e1d7ac158d488d2390b9402fa6f363a10cb1f48efbf4cb7983275a8eb75f89",
+        "bytes": 71096,
+        "gzipBytes": 10631,
+        "triangles": 900,
+        "cpuBytes": 69696,
+        "gpuBytes": 69696,
         "errorMeters": 0.45,
         "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:8f3b75a060003a4315e809f3f3a1600c9c4e7c58eb5c91c540deacc9a1eda7d5",
-        "bytes": 156872,
-        "gzipBytes": 30875,
-        "triangles": 2064,
-        "cpuBytes": 150840,
-        "gpuBytes": 150840,
+        "hash": "sha256:fd5285ef1eda73af6e27d509a711d647dc2bc7c692c36e4b2e615a5c29061495",
+        "bytes": 158300,
+        "gzipBytes": 31360,
+        "triangles": 2086,
+        "cpuBytes": 152268,
+        "gpuBytes": 152268,
         "errorMeters": 0.2,
         "drawCalls": 5
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:a684e4e56d9b47bc8c1e73d18d59aa12a329811be44270fbe7168a7cc83136e2",
-        "bytes": 972948,
-        "gzipBytes": 205704,
-        "triangles": 12526,
-        "cpuBytes": 966876,
-        "gpuBytes": 966876,
+        "hash": "sha256:d41624ddf28ff15000bf8f6fb57c3ad80b00d4bcb1d2f386f27349e1aa2c7ac4",
+        "bytes": 884520,
+        "gzipBytes": 189091,
+        "triangles": 11396,
+        "cpuBytes": 878448,
+        "gpuBytes": 878448,
         "errorMeters": 0.07,
         "drawCalls": 5
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:fb12dd8b4fbdffbc0d80f854db4c0491fc0bd03a06d49f04b50063deeca02d50",
-        "bytes": 7300816,
-        "gzipBytes": 1346887,
-        "triangles": 60816,
-        "cpuBytes": 7297920,
-        "gpuBytes": 7297920,
+        "hash": "sha256:e83e148655acd917a2629571f8b65aa7db62774283e0e4a08ab270b5b8d9f41d",
+        "bytes": 7034636,
+        "gzipBytes": 1283005,
+        "triangles": 58598,
+        "cpuBytes": 7031760,
+        "gpuBytes": 7031760,
         "errorMeters": 0,
         "drawCalls": 5
       }
     ],
-    "notes": "All four current levels were visually inspected and pass budgets; exact triangle and byte counts are recorded in levels. Error values are authoring budgets, not measured deviations."
+    "notes": "900/2086/11396/58598triangles,1/5/5/5draws; strict budgets/attributes/hash checks pass.113actual imported geometry controls verify closed members, open lattice, HABSwidth, raised/widened bridge and solid floor beneath every9openingprobes in all4levels. Every original triangle outside bounded entrance repair has exact original positions/normals/UV/colors. Lower levels simplify gate ornament; approximation errors are declared estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 60816,
+    "sourceTriangles": 58598,
     "sourceMaterials": 5,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 900,
+        "drawCalls": 1,
+        "retainedTriangles": 482,
+        "ironTriangles": 0,
+        "wallTriangles": 0,
+        "controls": 15,
+        "failed": 0
+      },
+      {
+        "level": "district",
+        "triangles": 2086,
+        "drawCalls": 5,
+        "retainedTriangles": 1526,
+        "ironTriangles": 0,
+        "wallTriangles": 0,
+        "controls": 15,
+        "failed": 0
+      },
+      {
+        "level": "street",
+        "triangles": 11396,
+        "drawCalls": 5,
+        "retainedTriangles": 10188,
+        "ironTriangles": 0,
+        "wallTriangles": 0,
+        "controls": 15,
+        "failed": 0
+      },
+      {
+        "level": "closeup",
+        "triangles": 58598,
+        "drawCalls": 5,
+        "retainedTriangles": 52568,
+        "ironTriangles": 3384,
+        "wallTriangles": 72,
+        "controls": 68,
+        "failed": 0
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-source.tif"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; independent terrain PNG encoding error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/9q/9q5/ennis_house/verify-entry-gates.mjs"
+    ],
+    "notes": "113actual runtime controls and exact retained exterior attribute fingerprints pass. Solid sloping model floor physically covers the bounded ground opening at all levels. This is approximate exterior placement, not a reconstruction of unseen exact survey floors."
   },
   "limitations": [
-    "Original medium-fi exterior based on individually inspected Qualla photographs, HABS CA-1942 elevation/description, 1928 Architectural Record plan/perspective and satellite roof context. Room dimensions, roof heights and precise relief are interpreted, not surveyed.",
+    "Original government HABS CA-1942 west elevation and gate detail by Jean Davis,1969, establish the textile-block hierarchy and measured15ft10.75in portal. Gate figures, rods and relief are simplified. Current condition and unseen faces are approximate; earlier attribution/private/satellite imagery is excluded from the current review.",
+    "The retained mapped full compound and HABS exterior are corroborated by public USGS B23 point measurements acquired2023-01-08 through2024-01-07. Court datum is unchanged; bridge depth/height and the raised sloping entrance are corrected as approximate architecture. This derived local registration conservatively allows2m horizontal uncertainty, without an independent epoch/datum correction; inferred under-bridge paving is not an observed navigable survey.",
     "House, linked garage/servant wing, bridge, court, terraces and pool basin included. Interiors, vegetation, neighboring houses, vehicles, temporary scaffolds, furniture and photo pixels excluded.",
-    "Independent USGS CA_LosAngeles_B23 bare-earth evidence is preserved unmodified. Terrain under buildings is source-interpolated, and host datasets may differ; placement remains a preview with footprint replacement disabled.",
+    "Original USGS raster, review grid and source heights remain exact. A bounded rendered-ground opening exists only under the authored solid entrance paving; the original raster interpolates bridge returns across this covered passage. Isolated portable views use a flat floor below the foundations; medium-fi views retain the original ground and exercise the opening. Host datasets may differ; placement remains a preview with footprint replacement disabled.",
     "16-inch block course spacing is retained; ornate block relief and leaded-glass geometry are simplified at medium-fi and progressively omitted at distant detail levels."
   ],
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:dbd038d65270c7c7a764b9349853981db5293aa06f78c692fc115946acf27669",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:fc934c8c2b2dabcfc503a8b8b2640a03b13e1d5a800da8170d5d32340991fa00",
+    "referenceInputHash": "sha256:c7bc1a1374fe725f2771851ca963f84da4d9401fa124d6d7460415848fde3ec2",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/habs-west-00001a.tif"
+    ],
+    "imageryEvidenceHash": "sha256:278132b36ede3a22c53055a31093859d64a6c7306e167482dab32099bd8c00b6",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/9/q/5/f/ennis-house-wp/ennishouse.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:EnnisHouse.jpg",
+        "reason": "Earlier attribution/private report/satellite imagery excluded as current gate control. Exact original HABS TIFF is separately verified; original full scope/mapped geometry retained."
+      },
+      {
+        "path": "_m/9/q/5/f/ennis-house-wp/ennis-house-3.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Ennis_House_3.jpg",
+        "reason": "Earlier attribution/private report/satellite imagery excluded as current gate control. Exact original HABS TIFF is separately verified; original full scope/mapped geometry retained."
+      },
+      {
+        "path": "_m/9/q/5/f/ennis-house-wp/ennis-house-1.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Ennis_House_(1)_(28416951955).jpg",
+        "reason": "Earlier attribution/private report/satellite imagery excluded as current gate control. Exact original HABS TIFF is separately verified; original full scope/mapped geometry retained."
+      },
+      {
+        "path": "_m/9/q/5/f/ennis-house-wp/ennis-house-4.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Ennis_House_(4)_(28416950915).jpg",
+        "reason": "Earlier attribution/private report/satellite imagery excluded as current gate control. Exact original HABS TIFF is separately verified; original full scope/mapped geometry retained."
+      },
+      {
+        "path": "_m/9/q/5/f/ennis-house-wp/ennis-house-2-28416951575.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Ennis_House_(2)_(28416951575).jpg",
+        "reason": "Earlier attribution/private report/satellite imagery excluded as current gate control. Exact original HABS TIFF is separately verified; original full scope/mapped geometry retained."
+      },
+      {
+        "path": "_m/9/q/5/f/ennis-house-wp/ennis-house-in-hollywood-41250.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Ennis_House_in_Hollywood_(4125056661).jpg",
+        "reason": "Earlier attribution/private report/satellite imagery excluded as current gate control. Exact original HABS TIFF is separately verified; original full scope/mapped geometry retained."
+      },
+      {
+        "path": "_m/9/q/5/f/ennis-house-wp/ennis-house-in-hollywood-41258-1.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Ennis_House_in_Hollywood_(4125829758).jpg",
+        "reason": "Earlier attribution/private report/satellite imagery excluded as current gate control. Exact original HABS TIFF is separately verified; original full scope/mapped geometry retained."
+      },
+      {
+        "url": "https://franklloydwright.org/site/ennis-house/",
+        "reason": "Earlier attribution/private report/satellite imagery excluded as current gate control. Exact original HABS TIFF is separately verified; original full scope/mapped geometry retained."
+      },
+      {
+        "url": "https://www.google.com/maps/@34.11618,-118.29284,20z/data=!3m1!1e3",
+        "reason": "Earlier attribution/private report/satellite imagery excluded as current gate control. Exact original HABS TIFF is separately verified; original full scope/mapped geometry retained."
+      },
+      {
+        "url": "https://usmodernist.org/AR/AR-1928-01.pdf",
+        "reason": "Earlier attribution/private report/satellite imagery excluded as current gate control. Exact original HABS TIFF is separately verified; original full scope/mapped geometry retained."
+      },
+      {
+        "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+        "reason": "Earlier attribution/private report/satellite imagery excluded as current gate control. Exact original HABS TIFF is separately verified; original full scope/mapped geometry retained."
+      },
+      {
+        "path": "_m/9/q/5/f/ennis-house-wp/title-public-domain-ve.jpg",
+        "reason": "Local public-domain film-title image is not an architectural exterior or gate control."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Qualla checked first; exact native public-domain original HABS west elevation/gate drawing inspected against current whole and detail model views. Government creator/delineator/survey/native file bound by primary LOC grant. Independent public USGS points are geometry evidence only; RGB/intensity imagery was not used. Full fixed mapped exterior is accepted as approximate medium-fi, with hidden/current-condition limits explicit."
+  },
+  "constructionReview": {
+    "status": "gates-completed-ground-and-full-exterior-review-pending",
+    "model": "ennis_house",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:1ca1a771afb4c3af079faafbf7820cbc3341117750c548f23025c1eacabe63bd",
+    "sourceHash": "sha256:c8ad729bc629d59139b3f2845009f9995b2abcde5088301d8752ae3ebf08155f",
+    "runtimeHash": "sha256:d0b206f79fb0a0f58426a77c8e8821e0ebaa2d55b4cc29415a6f7c21e8ff92e6",
+    "built": [
+      "Measured-width paired solid vehicle gate leaves with real lattice gaps",
+      "Closed stepped top/corner keywork and elongated rectangular loops",
+      "Two flanking closed simplified figure plates and scroll rods",
+      "Separate solid service gate in an actual cut masonry aperture",
+      "Closed side infills/lintel joining retained bridge piers; removed424flat screen triangles"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      878,
+      2064,
+      12526,
+      63848
+    ],
+    "drawCalls": [
+      1,
+      5,
+      5,
+      5
+    ],
+    "limits": "Full fixed main textile-block house, attached bridge, garage/servants wing, terraces, pool basin and prominent retaining walls retained. Exact native1969HABS CA-1942original government west elevation/wrought-iron gate sheet by Jean Davis supports actual gate construction. Built measured4.84505mouter portal group, paired closed leaves, stepped rectangular keywork, open elongated loops, central lattices, flanking simplified closed figure/scroll panels and separate pedestrian gate in cut masonry. Original two outer piers/bridge retained. Original three lower levels and all attributes outside424old flat screen triangles exact. Full exterior remains needs-review: wider hidden/roof/current restoration evidence pending and raw independent USGS terrain crosses this entrance. Native source-ground captures visibly show intersection; ground/geographic/portable review not accepted. Do not shift model/alter raw terrain to conceal it or narrow full scope. Rod widths/depths, section heights, position, closed state versus one open surveyed leaf, stylized figure craft and current condition remain estimates; neighboring buildings/landscaping/interiors excluded as before.",
+    "publicDomainPrimaryOriginals": 1,
+    "measuredOuterPortalWidthMeters": 4.84505,
+    "gateLeaves": 2,
+    "serviceGates": 1,
+    "figurePlates": 2,
+    "removedOldScreenTriangles": 424,
+    "exactThreeOriginalLowerLevels": true,
+    "retainedFixedWholeHouseScope": true,
+    "fullExteriorCompleted": false,
+    "groundContactReviewPending": true,
+    "storyState": "needs-review",
+    "completedStorySync": {
+      "writtenArticles": 1,
+      "repeatChanges": 0,
+      "fullExteriorCompleted": false
+    }
+  },
+  "status": "completed",
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:fc934c8c2b2dabcfc503a8b8b2640a03b13e1d5a800da8170d5d32340991fa00",
+    "sourceHash": "sha256:cc95f51402fd150a43b2b654a2217284901ff4ff30b434e7dd49f07a0b0ac996",
+    "runtimeHash": "sha256:ef0e52bf0b816535a49df29b590570a94759245f73cd3b7a4a4c4b94e32b957e",
+    "geometryChanged": true,
+    "newCaptures": 39,
+    "geometryControls": 113,
+    "notes": "Full fixed textile-block house, bridge-linked garage/servants wing, motor court, terraces, pool and retaining walls retained. Exact native original1969 government HABS CA-1942 west elevation and gate detail by Jean Davis establish the stepped buff massing, recessed windows, block courses and measured4.84505mportal group. Only this cleared public-domain drawing is active imagery after Qualla-first search; earlier attribution/private/satellite imagery is excluded from this review. Independent public USGS B23 point measurements acquired2023-01-08 through2024-01-07 corroborate court datum and broad raised bridge. Corrected entrance floor1.2m, short sloping apron and4.9mdeep bridge with4.15mdeck. Original whole-house transform and every raster/grid/heightfield sample remain exact. Bounded rendered-ground opening only under solid entrance paving resolves bridge returns interpolated as ground. Inferred underpass floor, modern restoration, hidden roof joins, room heights and relief remain approximate medium-fi exterior reconstruction; registration allows2m horizontal uncertainty and architectural levels about0.4m. No measured navigable threshold/collision or exact current-condition claim."
+  },
+  "validation": {
+    "completed": true,
+    "storyAnnotation": true,
+    "repeat30TickHash": "sha256:9330991782ed9b4ae81c5ae59893622ae1e5d00adb62f98e4e775470bf7b7def",
+    "packInclusionVerified": true
   }
 }

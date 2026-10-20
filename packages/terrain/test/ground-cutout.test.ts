@@ -4,6 +4,7 @@ import {
   markTerrainGroundSurface,
   markTerrainWaterSurface,
   setTerrainGroundCutout,
+  setTerrainGroundCutouts,
   setTerrainWaterCutout,
   subtractTerrainGroundGeometry,
   TerrainGroundCutoutController,
@@ -195,6 +196,43 @@ describe('model-owned ground openings', () => {
     controller.update(root);
     ground.geometry.dispose();
     expect(onSourceDispose).toHaveBeenCalledTimes(1);
+    controller.dispose();
+  });
+  it('keeps the ground between separate openings and replaces all openings atomically', () => {
+    const root = new THREE.Group(),
+      ground = new THREE.Mesh(plane()),
+      owner = new THREE.Group(),
+      controller = new TerrainGroundCutoutController();
+    root.add(ground, owner);
+    markTerrainGroundSurface(ground);
+    const source = ground.geometry,
+      positions = Array.from(source.getAttribute('position').array),
+      left: [number, number][] = [
+        [1, 1],
+        [3, 1],
+        [3, 3],
+        [1, 3],
+      ],
+      right: [number, number][] = [
+        [7, 1],
+        [9, 1],
+        [9, 3],
+        [7, 3],
+      ];
+    setTerrainGroundCutouts(owner, [left, right]);
+    controller.update(root);
+    expect(area(ground.geometry)).toBeCloseTo(92, 4);
+    const ray = new THREE.Raycaster(new THREE.Vector3(5, 100, 2), new THREE.Vector3(0, -1, 0));
+    expect(ray.intersectObject(ground).length).toBeGreaterThan(0);
+    expect(Array.from(source.getAttribute('position').array)).toEqual(positions);
+    expect(() => setTerrainGroundCutouts(owner, [left, []])).toThrow('vertices');
+    expect(controller.update(root)).toBe(false);
+    setTerrainGroundCutout(owner, left);
+    controller.update(root);
+    expect(area(ground.geometry)).toBeCloseTo(96, 4);
+    owner.visible = false;
+    controller.update(root);
+    expect(ground.geometry).toBe(source);
     controller.dispose();
   });
   it('updates clipped normals from the retained grid without corrupting original topology', () => {

@@ -1,0 +1,92 @@
+{
+  "format": "molen/source-heightfield-derivation@1",
+  "date": "2026-10-17",
+  "source": "DeltaDTM v1.1.1, dataset release4",
+  "datasetDoi": "https://doi.org/10.4121/21997565",
+  "datasetUrl": "https://data.4tu.nl/datasets/1da2e70f-6c4d-4b03-86bd-b53e789cc629",
+  "license": "CC-BY-4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "attribution": "Maarten Pronk, Deltares / TU Delft, DeltaDTM v1.1.1. Copernicus WorldDEM-30 \u00a9 DLR e.V. 2010-2014 and \u00a9 Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved.",
+  "archive": {
+    "url": "https://data.4tu.nl/file/1da2e70f-6c4d-4b03-86bd-b53e789cc629/cb0b8ee3-b018-4828-a74e-2fb05020b1b6",
+    "bytes": 2386070935,
+    "etag": "\"1733899089.812624-2386070935-3468041283\"",
+    "member": "DeltaDTM_v1_1_N40E022.tif",
+    "method": 0,
+    "memberBytes": 11214481,
+    "memberCrc32FromDirectoryOnly": 1991159080,
+    "fullMemberCrcVerified": false,
+    "zipLocalHeaderOffset": 833190537,
+    "tiffByteOffset": 833190620,
+    "ranges": [
+      {
+        "file": "original-europe-zip-tail.bin",
+        "start": 2385939863,
+        "end": 2386070934
+      },
+      {
+        "file": "original-zip-local-header-and-tiff-prefix.bin",
+        "start": 833190537,
+        "end": 833256072
+      },
+      {
+        "file": "original-tiff-block22.zstd",
+        "start": 841845009,
+        "end": 842029794
+      }
+    ]
+  },
+  "originalFiles": {
+    "original-zip-local-header-and-tiff-prefix.bin": "sha256:bcf0102a562193e8ae5dd17f6840c98076e1e7cf07031f6334f3516eb8b29956",
+    "original-tiff-block22.zstd": "sha256:fc3b94b1aaf3684f8c35997db2f61f1c1532ad26d1068a16c3de1b3fe0f9f7a7",
+    "original-europe-zip-tail.bin": "sha256:4791cdb2eb9b686bfb0ce6cc2794a7189dfd242247838f69c93f21bc4a237e62",
+    "header-range-http.txt": "sha256:266a24b6857f5b4e9f863cf714df015fb67d473a289b2bbe07dcc862780dfcf9",
+    "block-range-http.txt": "sha256:4e3bc99614740920262bf981a78f299d4bf178dcdc45f3cf9658546360080d7e",
+    "archive-tail-http.txt": "sha256:e731a4be531ac0daa767d175907993ff5cae4638807da389ffde07059f7c09f6",
+    "original-tiff-metadata.json": "sha256:df2a16bd7a8c9e5f54271c69c39e6583987523611c96bd0316d95c3f87de929a",
+    "independent-decoding.json": "sha256:224530144bffa5767f56da343a5de2016da9511524c1769d21f6c7dfe014ab5f",
+    "PROVIDER-README.md": "sha256:9da10b0576ff4368a756bd5646b091fab6b7c7c7d217a6f758fbe0803f826e00",
+    "PROVIDER-CHANGELOG.md": "sha256:e17613a95229ddc981533ed164b26b59c30f95f650287a52de7cb36523dccb4c",
+    "provider-ro-crate.json": "sha256:be619199a99a5820fa69dd45738d90f88a4d8edb2f4b421dcb4db302e926450c"
+  },
+  "decoding": "Original ZSTD TIFF block. Two independent floating predictor3 inversions agree bitwise for all262144pixels. Local libtiff lacks ZSTD, so its check losslessly re-Deflates unchanged predictor bytes. No elevation edits.",
+  "sampling": {
+    "pixelIsArea": true,
+    "pixelCentreOffset": -0.5,
+    "nativeFrameInverse": "lon=lon0+(cos(h)*x+sin(h)*z)/(111320*cos(lat0));lat=lat0+(sin(h)*x-cos(h)*z)/111320",
+    "method": "Bilinear four-pixel interpolation; reject any NODATA(-9999).",
+    "origin": [
+      -16,
+      -16
+    ],
+    "stepMeters": 1,
+    "size": [
+      33,
+      33
+    ],
+    "gridRoundingDecimals": 6,
+    "modelDatumElevationMeters": 3.096586513895495,
+    "datumContact": {
+      "local": [
+        0,
+        13
+      ],
+      "modelY": 0,
+      "basis": "Dry street-side approach immediately outside narrow tower footing; avoids sea, vegetation and roof."
+    },
+    "blockColumn": 6,
+    "blockRow": 2
+  },
+  "verticalDatum": "EGM2008 by provider README/record. TIFF GeoKeys encode horizontal WGS84 EPSG4326 only.",
+  "sourcePixelSpacingDegrees": [
+    0.0002777777777777778,
+    0.0002777777777777778
+  ],
+  "sourceNominalResolutionMeters": 30,
+  "limitations": [
+    "Interpolated one arcsecond coastal DTM, not a surveyed floor or one metre source. Grid1m spacing only resamples original data.",
+    "32m land review patch covers the complete own footing and dry approach. Sea and surrounding square are outside this bounded review. No NODATA filling, flattening, model fitting, cutout or footprint replacement.",
+    "Full11MBTIFF/archive not downloaded or checksum-verified; original HTTP byte ranges and TIFF metadata retained and checked.",
+    "Acquired after existing geometry. Architecture, frame and dry reference frozen before candidate sampling. Another host DEM requires its own contact check."
+  ]
+}

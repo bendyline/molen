@@ -8,12 +8,12 @@ Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.js
 
 - [Anne Frank House](https://qualla.com/anne-frank-house/)
 
-Original medium-fi exterior, not a measured reconstruction. Facade follows local Qualla photos; the hidden courtyard/annex arrangement follows the museum historical cutaway and the local model photograph.
+Original medium-fi exterior, not a measured reconstruction. Started with the cleared public-domain Qualla streetscape; independently verified CC0 archive exteriors and creator-released courtyard/door photos supply the missing views. Earlier CC photos, museum cutaway and model photograph are excluded from current imagery approval.
 
 The zoom-15 map supplies a generalized 5.88 by 24.1 m envelope. Front/connector/annex partition and window/roof dimensions are estimates; small modern alterations and interiors are omitted.
 
 Adjacent 261, 265 and the modern museum block are excluded. The former draft rear polygon was a neighboring property and has been removed.
 
-Ground contact is reviewed against independently preserved coarse host-terrain samples; this is not elevation survey data. Reference images remain in Qualla and are not embedded in the asset.
+Ground contact is reviewed against independently preserved coarse host-terrain samples; this is not elevation survey data. Photographs remain local comparison inputs and are not embedded. The archival rear, courtyard partitions, louver spacing, dormer depth and fine trim are generalized; small modern changes are omitted.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=anne_frank_house`. Add `--check` to verify exact regeneration. 2448 triangles; 5 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=anne_frank_house`. Add `--check` to verify exact regeneration. 3232 triangles; 5 materials; no embedded photographs.

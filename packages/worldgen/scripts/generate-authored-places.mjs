@@ -115,6 +115,9 @@ for (const model of authoredPlaceModels.filter(
   const look = model.lookAt ?? [center[0], Math.max(2, center[1] * 0.7), center[2]],
     camera = { position: model.camera, lookAt: look, fov: 43 };
   const hasTerrain = fs.existsSync(path.join(dir, 'terrain-grid.json'));
+  const usePortableTerrain = hasTerrain && model.portableGroundY === undefined;
+  if (model.portableGroundY !== undefined && !Number.isFinite(model.portableGroundY))
+    throw Error(`${model.id}: invalid isolated review ground datum`);
   const limitations = model.limitations ?? [
     'Draft exterior: approximate photographic proportions and simplified ornament. It is not a survey, photogrammetric reconstruction or approved current geographic replacement.',
     frame.notes,
@@ -138,7 +141,13 @@ for (const model of authoredPlaceModels.filter(
       colorEncoding: 'sRGB palette decoded to linear COLOR_0',
       materialBudget: 6,
     },
-    referencePages: refs.references.map((r) => r.sourceUrl).filter(Boolean),
+    referencePages: [
+      ...new Set(
+        [...refs.references, ...(refs.externalReferences ?? [])]
+          .map((r) => r.sourceUrl)
+          .filter(Boolean),
+      ),
+    ],
     stories: refs.stories.map((s) => ({ id: s.id, url: s.url })),
     referenceInputHash: refs.inputHash,
     sourceGeometry: { module: `packages/worldgen/scripts/${model.recipe}` },
@@ -186,6 +195,7 @@ for (const model of authoredPlaceModels.filter(
           }
         : {}),
       replaceFootprint: false,
+      ...(model.groundCutout ? { groundCutout: model.groundCutout } : {}),
       featureIds: frame.features.map((f) => f.id),
       source: frame.sourceUrl,
       mapGeometrySource: 'map-frame.json',
@@ -241,7 +251,7 @@ for (const model of authoredPlaceModels.filter(
         id: 'ground',
         components: {
           transform: {
-            pos: [center[0], -0.18, center[2]],
+            pos: [center[0], model.portableGroundY ?? -0.18, center[2]],
             rot: [0, 0, 0, 1],
             scale: [span * 1.8, 0.3, span * 1.8],
           },
@@ -268,7 +278,7 @@ for (const model of authoredPlaceModels.filter(
       },
     ],
     camera: { mode: 'fixed', ...camera },
-    ...(hasTerrain
+    ...(usePortableTerrain
       ? {
           terrain: {
             descriptor: 'terrain-review.terrain.json',
@@ -278,7 +288,7 @@ for (const model of authoredPlaceModels.filter(
       : {}),
     physics: { engine: 'none' },
   };
-  if (hasTerrain) scene.entities = scene.entities.filter((e) => e.id !== 'ground');
+  if (usePortableTerrain) scene.entities = scene.entities.filter((e) => e.id !== 'ground');
   const sourceFile = path.join(dir, 'source.json'),
     previous = fs.existsSync(sourceFile) ? JSON.parse(fs.readFileSync(sourceFile)) : null;
   const source = {

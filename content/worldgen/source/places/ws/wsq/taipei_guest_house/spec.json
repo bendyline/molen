@@ -1,0 +1,330 @@
+{
+  "planId": "taipei_guest_house",
+  "id": "taipei_guest_house",
+  "assetId": "molen.worldgen.structure.taipei_guest_house",
+  "title": "Taipei Guest House",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 121.51674312,
+    "latitude": 25.04008056
+  },
+  "size": [
+    59.50555992126465,
+    20.400000393390656,
+    49.57499885559082
+  ],
+  "actualBounds": {
+    "min": [
+      -29.853504180908203,
+      -0.800000011920929,
+      -24.809999465942383
+    ],
+    "max": [
+      29.652055740356445,
+      19.600000381469727,
+      24.764999389648438
+    ]
+  },
+  "visualBrief": "South-facing grey classical mansion with open paired-column loggias and lower round arcades, three-arched central pavilion/pediment and balustraded entrance canopy, slate mansards/dormers, green concave corner roofs and rounded north garden bay. Japanese bungalow and garden structures excluded.",
+  "nativeAxes": {
+    "x": "east-southeast along the main south facade",
+    "y": "up",
+    "z": "south-southwest toward the entrance garden"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Taipei_Guest_House_and_Garden_Birdview_20101203.jpg",
+    "https://commons.wikimedia.org/wiki/File:Taipei_guest_house_back.JPG"
+  ],
+  "stories": [
+    {
+      "id": "taipei-guest-house-wp",
+      "url": "https://qualla.com/taipei-guest-house/"
+    }
+  ],
+  "referenceInputHash": "100d9eb14fbdcbbdcb5b0be647fd6f25e249a884bbc67e3dc9a616fbccd71239",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-taipei-guest-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-taipei-guest-house.mjs",
+    "level": "skyline",
+    "export": "taipeiGuestHouseSkyline",
+    "errorMeters": 1.6,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "trim",
+        "graph": "metal_copper",
+        "roughness": 0.75,
+        "metallic": 0.5
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.1
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "taipeiGuestHouseDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.75,
+            "metallic": 0.5
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "taipeiGuestHouseStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.75,
+            "metallic": 0.5
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.7
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Dry south forecourt[-1.8,26] gives datum15.1705m in unchanged Terrarium. Own entrance deck2m and eight low steps meet the rising forecourt; loggia floors2.03m clear the roughly.23..1.83m footprint ground. Rounded rear terrace is an architectural masonry plinth with own steps, not a fitted ground surface. Coarse urban elevation and hidden foundations remain approximate; preview only.",
+    "anchor": [
+      121.51674312,
+      25.04008056
+    ],
+    "heading": -0.25,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        121.5166620495219,
+        25.03985826036078
+      ],
+      "modelHeight": 0,
+      "basis": "Dry south forecourt beyond entrance steps; no garden pool within this architectural scope."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185422889115",
+      "buildings/35185422889116"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d62583f826b6b8e9e25e510d8cee0fe094d6285a93f97e6a737c2137fe07096f",
+    "notes": "Main mansion mapped envelope roughly60m by46m including entrance and north bay. Heights, column/bay rhythms and hidden west wall are photographic estimates. Main figure0 and adjacent north loggia1 retained. West connector and Japanese-style living quarters excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior checked against two cleared published Qualla public-domain north/garden originals first, then exact creator-public-domain southeast and close roof originals. Heights, column counts, dormer distribution, fine ornament and unseen west wall are estimated rather than surveyed.",
+    "Earlier attribution-licensed south hero and uncertain Gongyuan Road building are excluded from current approval. Main mansion identity and major envelope follow mapped vectors and the four inspected public-domain originals.",
+    "Separate Japanese bungalow, connector, gardens, pool, garden pavilions, interiors, temporary items and fine lettering excluded. Source photographs are not redistributed.",
+    "Independent Terrarium ground remains unchanged; own entrance/loggia/terrace contact is reviewed only against this bounded source preview. Other host elevation fields remain unverified and generic-footprint replacement stays disabled. Fine capitals, stone ornament, copper profile and slate courses are simplified by distance. No physical-device performance or survey accuracy claimed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        24,
+        90
+      ],
+      "lookAt": [
+        0,
+        7,
+        7
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -20,
+        14,
+        47
+      ],
+      "lookAt": [
+        -1.8,
+        8,
+        16
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -55,
+        32,
+        -68
+      ],
+      "lookAt": [
+        0,
+        7,
+        -8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 43706,
+    "vertices": 131118,
+    "materials": 6,
+    "bytes": 5248432,
+    "sha256": "sha256:4f055cc96494d868f36370486e0f2568449e9806332e4800b9f7f7a39fdbce12"
+  }
+}

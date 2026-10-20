@@ -289,6 +289,19 @@ function detailEdge(o, a, b, hi, d, { lo = 0, ground = true, ornate = true, roof
     for (let i = 0; i < n; i++) {
       if (d === 1 && i % 2) continue;
       const x = (i - (n - 1) / 2) * step;
+      if (d > 2 && y < 21.7 && y + 2.05 > 19.5) {
+        const wx = (a[0] + b[0]) / 2 + (x * (b[0] - a[0])) / len,
+          wz = (a[1] + b[1]) / 2 + (x * (b[1] - a[1])) / len;
+        if (
+          [
+            [-44.7, -7.5],
+            [-32.3, 21.6],
+            [-30.3, -12.4],
+            [-18.5, 17.2],
+          ].some(([cx, cz]) => Math.hypot(wx - cx, wz - cz) < 1.4)
+        )
+          continue;
+      }
       win(
         q,
         x,
@@ -441,6 +454,91 @@ function archPortico(o, x, z, w, depth, d) {
   if (d > 1)
     for (const xx of [-w / 2, w / 2]) B(q, 'trim', xx, 6.3, depth / 2, 0.5, 0.9, 0.5, trim);
 }
+/** Closed stepped support extruded across X; UVs are in meters. */
+function corbelProfile(o, profile, width) {
+  const area = profile.reduce((s, a, i) => {
+    const b = profile[(i + 1) % profile.length];
+    return s + a[0] * b[1] - b[0] * a[1];
+  }, 0);
+  if (area < 0) profile = [...profile].reverse();
+  const ids = earcut(profile.flat());
+  for (const [x, n] of [
+    [-width / 2, [-1, 0, 0]],
+    [width / 2, [1, 0, 0]],
+  ])
+    for (let i = 0; i < ids.length; i += 3) {
+      const p = ids.slice(i, i + 3).map((k) => [x, ...profile[k]]);
+      o.addTriangle(
+        'corbel',
+        ref,
+        p,
+        n,
+        p.map((v) => [v[2], v[1]]),
+        trim,
+      );
+    }
+  for (let i = 0; i < profile.length; i++) {
+    const a = profile[i],
+      b = profile[(i + 1) % profile.length],
+      p = [
+        [-width / 2, ...a],
+        [-width / 2, ...b],
+        [width / 2, ...b],
+        [width / 2, ...a],
+      ],
+      length = Math.hypot(b[0] - a[0], b[1] - a[1]);
+    o.addQuad(
+      'corbel',
+      ref,
+      p,
+      normalFor(...p),
+      p.map((v) => [v[0], (v[1] * (b[0] - a[0]) + v[2] * (b[1] - a[1])) / length]),
+      trim,
+    );
+  }
+}
+function stoneCorbels(o) {
+  const c = JSON.parse(fs.readFileSync(new URL('corbel-construction-controls.json', base))),
+    p = c.pendants;
+  for (const center of p.centers) {
+    const rings = p.rings.map(([y, r]) => radialRing(y, r, r, p.sides, center)),
+      maxRadius = Math.max(...p.rings.map((r) => r[1]));
+    for (let j = 1; j < rings.length; j++)
+      for (let i = 0; i < p.sides; i++) {
+        const k = (i + 1) % p.sides,
+          points = [rings[j - 1][i], rings[j - 1][k], rings[j][k], rings[j][i]],
+          u0 = (i * Math.PI * 2 * maxRadius) / p.sides,
+          u1 = ((i + 1) * Math.PI * 2 * maxRadius) / p.sides;
+        o.addQuad(
+          'corbel',
+          ref,
+          points,
+          normalFor(...points),
+          [
+            [u0, points[0][1]],
+            [u1, points[1][1]],
+            [u1, points[2][1]],
+            [u0, points[3][1]],
+          ],
+          trim,
+        );
+      }
+    for (const [ring, n] of [
+      [rings[0], [0, -1, 0]],
+      [rings.at(-1), [0, 1, 0]],
+    ])
+      o.addConvexPolygon('corbel', ref, ring, n, (v) => [v[0], v[2]], trim);
+  }
+  for (const [x, z, r, top] of c.brackets.towers)
+    for (let i = 0; i < c.brackets.count; i++) {
+      const q = facing(o, (i * Math.PI * 2) / c.brackets.count, x, z),
+        profile = c.brackets.profile.map(([y, offset]) => [
+          top - c.brackets.lowFromTop + y,
+          r + offset,
+        ]);
+      corbelProfile(q, profile, c.brackets.width);
+    }
+}
 export function laurier(o, frame, d = 3) {
   frame ??= JSON.parse(fs.readFileSync(new URL('map-frame.json', base)));
   const f = new Map(frame.features.map((v) => [v.index, v])),
@@ -552,9 +650,11 @@ export function laurier(o, frame, d = 3) {
       for (let i = 0; i < (d > 1 ? 8 : 4); i++) {
         const a = (i * Math.PI * 2) / (d > 1 ? 8 : 4),
           q = facing(o, a, x, z);
-        for (let y = 2; y < top - 1.8; y += d === 1 ? 7 : 3.5) win(q, 0, y, r + 0.045, 1.1, 1.9, d);
+        for (let y = 2; y < top - 1.8; y += d === 1 ? 7 : 3.5) {
+          if (d > 2 && y + 1.9 > top - 5.6 && y < top - 4.0) continue;
+          win(q, 0, y, r + 0.045, 1.1, 1.9, d);
+        }
         if (d > 2) {
-          B(q, 'trim', 0, top - 5, r + 0.07, 0.25, 0.8, 0.5, trim);
           gable(q, 0, r + 0.22, top - 0.4, 1.8, 3.3, d);
         }
       }
@@ -638,6 +738,7 @@ export function laurier(o, frame, d = 3) {
     const q = facing(o, 0, 24.5, 56.6);
     for (let x = -7; x <= 7; x += 2) win(q, x, 0.7, 0, 1.75, 3.6, d);
   }
+  if (d > 2) stoneCorbels(o);
 }
 export function laurierSkyline(o) {
   laurier(o, undefined, 0);
@@ -654,6 +755,7 @@ const surfaces = {
   trim: stone,
   roof: { slot: 'roof', graph: 'metal_standing_seam', roughness: 0.73, metallic: 0.3 },
   glass: { ...landmarkSurfaces.glass, localRef: ref },
+  corbel: { slot: 'trim', graph: 'stone_limestone_raw', roughness: 0.9, metallic: 0 },
 };
 export const laurierModel = {
   id: 'chateau_laurier',
@@ -668,6 +770,8 @@ export const laurierModel = {
   qaCameras: [
     { name: 'front', position: [-106, 63, 172], lookAt: [-7, 25, 17] },
     { name: 'back', position: [131, 98, -172], lookAt: [-7, 23, -5] },
+    { name: 'pendant-bases', position: [-34, 20, 6], lookAt: [-32.3, 20.5, 21.6] },
+    { name: 'tower-corbels', position: [-42, 37.2, 61], lookAt: [-24.9, 38.5, 43.6] },
   ],
   build: laurier,
   surfaces,
@@ -688,8 +792,9 @@ export const laurierModel = {
     },
   },
   limitations: [
-    'Historic 1912/1929 exterior interpreted from individually inspected Qualla 2008/2012 front and canal photographs, NCC phase/aerial study, existing west elevation in the 2020 heritage-impact report, mapped roof facets and satellite context.',
-    'Mapped ridge heights of 39/45 m and 64 m main tower are approximate and agree with the existing hotel depiction beside dimensioned proposed buildings. The drawing does not provide a measured hotel survey.',
+    'Four moulded pendant bases and64individual circular-tower supports use five exact native named photographer public-domain/CC0 exteriors after a cleared Qualla search. Earlier attribution/private report/satellite imagery excluded as current construction controls. Full fixed historic hotel, entrances, central halls, connected wings and terrace remain in scope.',
+    'Three original lower levels and close geometry outside16interfering circular-shaft windows and16old box ornaments plus seven windows behind pendant bases retained. New close-only closed stone profiles use continuous raw limestone and meter UVs; ring dimensions, support spacing/counts and hidden matching faces are medium-fi estimates. No heraldic sculpture or lighting scheme copied.',
+    'Retained mapped ridge heights of39/45m and64m main tower are approximate. Current photographer-public-domain exterior views support silhouette, not surveyed dimensions.',
     'Fine heraldic carving, exact room-by-room openings, hidden service elevations, roof intersections and terrace limits remain simplified. Lower central halls are retained; no interiors or proposed modern addition, removed garage, separate canal buildings or landscaping.',
     'Unmodified independent NRCan ground data retains the canal drop; host runtime terrain may differ. Footprint suppression remains disabled.',
     'Photo pixels are not embedded. Copper tone follows the dated daylight images; weathering may differ today.',

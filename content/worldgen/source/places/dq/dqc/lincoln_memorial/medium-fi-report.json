@@ -1,9 +1,14 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.lincoln_memorial",
-  "sourceHash": "sha256:65114f38f35aa849ac1993e4da821bd76f3b5dc2580bfdc0c02bd5bd68e3967e",
-  "runtimeHash": "sha256:a7e8a13060035967e0e59aee71cbdb0c7345908cbbcad77d33aab4b831b9457b",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.lincoln_memorial",
+    "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2"
+  },
+  "sourceHash": "sha256:d60e0ca750c8c947bdf8c15c1618f79901e35120641954e5decd117259a160e9",
+  "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+  "fixtureHash": "sha256:10fa6f88913799edc5a4d6d7a36839b9bbc033d413db70980003ffd0559addc5",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -28,9 +33,9 @@
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:b41b1349a628d5a0c605014e2b06d3d5c344e65c3c6504d1174d4f9ee0d1baaf",
+      "hash": "sha256:239fd050dc303262445fb6c99f7d31cefc46fbb270f6a6bb0651b20b72598b2d",
       "bytes": 78028,
-      "gzipBytes": 10375,
+      "gzipBytes": 10372,
       "triangles": 982,
       "cpuBytes": 76596,
       "gpuBytes": 76596,
@@ -40,38 +45,38 @@
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:cf3e70df50429343fbb5a2f185b470319e5f8e923482871c574db67147368346",
-      "bytes": 227128,
-      "gzipBytes": 46524,
-      "triangles": 2798,
-      "cpuBytes": 222276,
-      "gpuBytes": 222276,
+      "hash": "sha256:c4847aaaeb7e9b5c8b2ae0ee09d3fcbe16d9808b66d6dbb173242ad5c7fe1f34",
+      "bytes": 227464,
+      "gzipBytes": 46648,
+      "triangles": 2786,
+      "cpuBytes": 221556,
+      "gpuBytes": 221556,
       "errorMeters": 0.3,
-      "drawCalls": 4
+      "drawCalls": 5
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:d3fe2ed2cdd4f981f03cfbc85d673269ef712b172a7f113c1627125dca4b72a6",
-      "bytes": 1066772,
-      "gzipBytes": 230145,
-      "triangles": 13998,
-      "cpuBytes": 1060740,
-      "gpuBytes": 1060740,
+      "hash": "sha256:b336b68abb04d6b33f798937f648806b61e5e9535d820c9f6dc1d0dd82897801",
+      "bytes": 1040908,
+      "gzipBytes": 228514,
+      "triangles": 13650,
+      "cpuBytes": 1033812,
+      "gpuBytes": 1033812,
       "errorMeters": 0.1,
-      "drawCalls": 5
+      "drawCalls": 6
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:70fb59828511577d8291a879307eb647569de5dbe697d3edacf86acb50c75439",
-      "bytes": 7547388,
-      "gzipBytes": 1575992,
-      "triangles": 62870,
-      "cpuBytes": 7544400,
-      "gpuBytes": 7544400,
+      "hash": "sha256:999a9fb8f88583d0c14c182acf2c492f758aa93842cae6801ae6c4e759f18daf",
+      "bytes": 7543368,
+      "gzipBytes": 1577778,
+      "triangles": 62834,
+      "cpuBytes": 7540080,
+      "gpuBytes": 7540080,
       "errorMeters": 0,
-      "drawCalls": 5
+      "drawCalls": 6
     }
   ],
   "terrainFixture": {
@@ -90,14 +95,17 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:d6c8505f6359aa9340f962cc3e8b91754002c067b89ca99a1f2c421f3b5b2fd4",
+      "hash": "sha256:996ebdb4a085954f3bc78240c38b71a2034bee040c8b47af1836b9a6531dc756",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:999a9fb8f88583d0c14c182acf2c492f758aa93842cae6801ae6c4e759f18daf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 77304,
+        "drawCalls": 12,
+        "triangles": 77268,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
@@ -124,19 +132,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:cff3486c7907aa263db88295e8efb1131e67cf3b0099ff3d0126ebea41bffd5d",
+      "hash": "sha256:d18652eabf778bd5418c208a276ba1f23475a02c4e8261141e2efa30181bb88b",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:999a9fb8f88583d0c14c182acf2c492f758aa93842cae6801ae6c4e759f18daf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 77304,
+        "drawCalls": 12,
+        "triangles": 77268,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
@@ -163,19 +175,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:9c7183e40d204658e6dcea807bf7710236f51417654e8e3341179f514dd12edb",
+      "hash": "sha256:88249690fc3b6eed39b6d74a8b65ee55b58a700f8911e8201623941d420d4cb5",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:999a9fb8f88583d0c14c182acf2c492f758aa93842cae6801ae6c4e759f18daf",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 77304,
+        "drawCalls": 12,
+        "triangles": 77268,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
@@ -202,19 +218,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:d59803aa741938e1a331cc25a775e32dfe27104c30b94e8b43f28f71f5651135",
+      "hash": "sha256:111e232384f6d9fb1262332bce758fe080e641ab4398c5cd79c5e3d152d082e2",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:999a9fb8f88583d0c14c182acf2c492f758aa93842cae6801ae6c4e759f18daf",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 77304,
+        "drawCalls": 12,
+        "triangles": 77268,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
@@ -241,19 +261,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:c8583d0a365c0bd2082c36885f51032dd426ae01e38d2e1c75a5736e59166e98",
+      "hash": "sha256:cb23fe66e5df39df9908bf3da908ce250a2d1b550952496c49d4c6aec112d6df",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:c4847aaaeb7e9b5c8b2ae0ee09d3fcbe16d9808b66d6dbb173242ad5c7fe1f34",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 10,
-        "triangles": 17232,
+        "drawCalls": 11,
+        "triangles": 17220,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
@@ -280,19 +304,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:18bb2247ccf2080a55f84f11460a15accd84458200829b83a6801b9004d6dfaf",
+      "hash": "sha256:785f8883a933d7793d694caf3b948a71e910b6d8259fa853ef02d1701d075465",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:c4847aaaeb7e9b5c8b2ae0ee09d3fcbe16d9808b66d6dbb173242ad5c7fe1f34",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 17232,
+        "drawCalls": 11,
+        "triangles": 17220,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
@@ -319,19 +347,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:12e3c5b2f2c536a959643a17ca86a812d403326b872e2cf8d293e4d9c698438e",
+      "hash": "sha256:435389848eace0b2b7f3f8618beaff71b7c95adfe8a4513c91616d83c0d01af9",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:c4847aaaeb7e9b5c8b2ae0ee09d3fcbe16d9808b66d6dbb173242ad5c7fe1f34",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 10,
-        "triangles": 17232,
+        "drawCalls": 11,
+        "triangles": 17220,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
@@ -358,19 +390,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:bc257c4fbd8ea0f6a80d4848ebe58e061dcec98b4e918649b0f8647177b88ae5",
+      "hash": "sha256:f14ec726f69e9c46ccd03bf4d362be376d17e9eaf41319a5e50b5fc9a2493c97",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:c4847aaaeb7e9b5c8b2ae0ee09d3fcbe16d9808b66d6dbb173242ad5c7fe1f34",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 17232,
+        "drawCalls": 11,
+        "triangles": 17220,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
@@ -397,13 +433,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:f3807c746576aa1a0a0dc40d75e74edabb5b8bb07cf8df32de9f7fc9c3aabe4e",
+      "hash": "sha256:997ed961d862ee3c2f5270583128799958b05e23a0d20a208945e835df0adefd",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:239fd050dc303262445fb6c99f7d31cefc46fbb270f6a6bb0651b20b72598b2d",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -436,13 +476,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:b8d447f22b98779cfe0350113bc50c5dd20a80822ca8e724297887b3b6f89e6b",
+      "hash": "sha256:592cb003f787a1e3a140a23784a069d3f1bc28fc764649a47e56b2814c6b04a6",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:239fd050dc303262445fb6c99f7d31cefc46fbb270f6a6bb0651b20b72598b2d",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -475,13 +519,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:577afc427c5d464de4ea92aa0174cb0379f39e99b139788c6cc85f5c808b8744",
+      "hash": "sha256:04db5532f3e3ce29fc6be773e12aa549178c22a82689ab086669fe9c75ff1a2d",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:239fd050dc303262445fb6c99f7d31cefc46fbb270f6a6bb0651b20b72598b2d",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -514,13 +562,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:cca8e75c0247fdafd72d9c940deeba8ad7c749380a08dbc9812831e5c2e49a72",
+      "hash": "sha256:1c24385fdbf76b91a422da3dfeecb3b8167d3508c5d7acea239102d2a9fe06c7",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:239fd050dc303262445fb6c99f7d31cefc46fbb270f6a6bb0651b20b72598b2d",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -553,13 +605,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:f117de8bb9a2d675300d8f02ae41cd3f04e384ce7fc6e37b4b9e31f5137454ea",
+      "hash": "sha256:d62eb3e99f52a0c6dd591f5bb7d8a3b9d9d128df04fd451823d20cfe15365bf3",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:239fd050dc303262445fb6c99f7d31cefc46fbb270f6a6bb0651b20b72598b2d",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -592,19 +648,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/front.png",
-      "hash": "sha256:942bc4b6cfa482b4c2462529a240698c8c33f5929e37c444cdf1a8c4481992cb",
+      "hash": "sha256:f1593b0547b86278a3e83c1f9a07b13709d92d13b86055be53028dc6310a7446",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:999a9fb8f88583d0c14c182acf2c492f758aa93842cae6801ae6c4e759f18daf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 77304,
+        "drawCalls": 12,
+        "triangles": 77268,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
@@ -631,19 +691,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/back.png",
-      "hash": "sha256:18c7c612c2256b2d7aec5ff4e9b557541205a3086ad91159d6f27b7b67864e73",
+      "hash": "sha256:ab9f9fe313df2dd20153c76b9c8b490e738e81b6ab70ae914dfbaff23e49459a",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:999a9fb8f88583d0c14c182acf2c492f758aa93842cae6801ae6c4e759f18daf",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 77304,
+        "drawCalls": 12,
+        "triangles": 77268,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
@@ -670,13 +734,103 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
+      }
+    },
+    {
+      "path": "medium-fi/covered-colonnade.png",
+      "hash": "sha256:f4696d3dc4361239ac56ccb2a7b343a48038a4ba52726271bebbcabfa018857b",
+      "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:999a9fb8f88583d0c14c182acf2c492f758aa93842cae6801ae6c4e759f18daf",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 77268,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.height.png"
+        },
+        "position": [
+          25,
+          9,
+          27
+        ],
+        "lookAt": [
+          25,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "none"
+      }
+    },
+    {
+      "path": "medium-fi/pitched-rooflights.png",
+      "hash": "sha256:5ff4216ebf355b420cf930a113d81e3d1bead6ce8c8a62bf3a21d7f382089fd0",
+      "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:999a9fb8f88583d0c14c182acf2c492f758aa93842cae6801ae6c4e759f18daf",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 77268,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.height.png"
+        },
+        "position": [
+          45,
+          70,
+          65
+        ],
+        "lookAt": [
+          0,
+          27,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:5ae58c7d872fb963b95f8e4a58da32c363c512aec5d24da0e1a49cb0d0503fbb",
+      "hash": "sha256:ed862af58b0fd6365253f9adc733032641c9897b13fe590b3ac5383aff0da8a9",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:239fd050dc303262445fb6c99f7d31cefc46fbb270f6a6bb0651b20b72598b2d",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -709,19 +863,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:18bb2247ccf2080a55f84f11460a15accd84458200829b83a6801b9004d6dfaf",
+      "hash": "sha256:785f8883a933d7793d694caf3b948a71e910b6d8259fa853ef02d1701d075465",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:c4847aaaeb7e9b5c8b2ae0ee09d3fcbe16d9808b66d6dbb173242ad5c7fe1f34",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 17232,
+        "drawCalls": 11,
+        "triangles": 17220,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
@@ -748,19 +906,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:d114874f25e31885cb6e2174fdc7bf9f589b0da56daf751a7941bca3109d7ee2",
+      "hash": "sha256:556e57ddc854a3927497a7129e8694c82b186e647b51653ab1fa885f34e18ac3",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:b336b68abb04d6b33f798937f648806b61e5e9535d820c9f6dc1d0dd82897801",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 28432,
+        "drawCalls": 12,
+        "triangles": 28084,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
@@ -787,19 +949,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:7af94f89900645aa41942ad0351fef2f7c29d689868274754d2e6b7dec570305",
+      "hash": "sha256:8cba4da9b35d32432ed66cecb23b79470369791c6eb9e3a2be6ccc5083139ecf",
       "state": {
+        "assetId": "molen.worldgen.structure.lincoln_memorial",
+        "runtimeHash": "sha256:bc5f586d4b88075dfb27e504b1db6485880889286857016eb0d080cf741f56a2",
+        "lodHash": "sha256:999a9fb8f88583d0c14c182acf2c492f758aa93842cae6801ae6c4e759f18daf",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 77304,
+        "drawCalls": 12,
+        "triangles": 77268,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/lincoln_memorial/terrain-review.terrain.json",
@@ -826,15 +992,10 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     }
   ],
-  "errors": [],
-  "identityMigration": {
-    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
-    "previousInputHash": "sha256:f3f4420091fbbb582cb69ca5a47690394e1f1ff22fbf10cebd4a14c7d383a571",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
-    "previousReportHash": "sha256:e554eedc5481fcb0fb453b25b7296372ab5027c7d1e5cb98b68103f271e6ba23"
-  }
+  "errors": []
 }

@@ -38,8 +38,8 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:Chelsea_Manhattan_Aug_2025_102.jpg",
-    "https://commons.wikimedia.org/wiki/File:Hotel_Chelsea_2010.jpg"
+    "https://commons.wikimedia.org/wiki/File:Hotel_Chelsea_Marquee.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chelsea_Hotel,_222_West_23rd_Street,_Manhattan_(NYPL_b13668355-482725).jpg"
   ],
   "stories": [
     {
@@ -47,7 +47,7 @@
       "url": "https://qualla.com/hotel-chelsea/"
     }
   ],
-  "referenceInputHash": "4b5bfb45d112fa8e323aa3e3d670284032ba4e5dfbcf6e8cad00ccfe7bc68884",
+  "referenceInputHash": "sha256:058d14dee9b282ec11c5e365f3fe7653335945020d66052c6db310ffd63e63ca",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-hotel-chelsea.mjs"
   },
@@ -239,9 +239,10 @@
     }
   ],
   "limitations": [
-    "Original medium-fi exterior from individually inspected Qualla 2025 and 2010 facade photographs, 2011 ironwork detail and the official NYC landmark report. Not a survey or photogrammetric reconstruction.",
+    "Full medium-fi exterior reviewed against the cleared Qualla sign original, exact1936Abbott WPA balcony photograph and primary NYC landmark description of the roof, chimneys and end gables. No whole-building photographic survey claimed.",
+    "Earlier attribution-licensed facade/ironwork photographs are excluded from the active review. Retained architecture now compared with independent public-domain imagery and primary factual architectural descriptions.",
     "Mapped height 52.5 m provides a coarse upper roof control. Intermediate levels, roof slopes, rear/service openings and exact balcony panel spacing remain photographic approximations.",
-    "2025 restored finishes take precedence over older white windows, air conditioners and shop signage. Flower-and-leaf ironwork is original simplified geometry; no photo pixels are embedded.",
+    "2025 public-domain night view resolves vertically stacked cream HOTEL and a red horizontal CHELSEA footer. Original simplified letter outlines, sign dimensions, thickness, concealed mounts and unlit appearance remain estimates. No photo pixels or measured neon emission are embedded.",
     "The hotel parcel only; adjacent buildings, interiors and precise rooftop spa/garden fit-out are excluded. Hidden roof service enclosure and side/rear openings are conservative interpretations.",
     "Independent terrain is preserved unchanged, with foundation below the central sidewalk datum. Exact contact with another host DEM remains uncertain."
   ],
@@ -272,16 +273,42 @@
         25,
         -2
       ]
+    },
+    {
+      "name": "blade-sign",
+      "position": [
+        16,
+        21,
+        26
+      ],
+      "lookAt": [
+        0,
+        19.5,
+        16
+      ]
+    },
+    {
+      "name": "oval-letter",
+      "position": [
+        3.5,
+        22.2,
+        15.9
+      ],
+      "lookAt": [
+        0,
+        22.175,
+        15.4
+      ]
     }
   ],
   "importOptions": {
     "optimize": false
   },
   "mesh": {
-    "triangles": 43677,
-    "vertices": 131031,
+    "triangles": 44745,
+    "vertices": 134235,
     "materials": 5,
-    "bytes": 5244456,
-    "sha256": "sha256:7619de4f17d6dcde2fb569f4cb22d4200a1db4c8040b4f7c6ffd30cccdf796d6"
+    "bytes": 5372616,
+    "sha256": "sha256:6ad9f38f279a2a7d4c8e60dd1ae2177a188b2e95ecc4b008f4b8f353f78cd3bf"
   }
 }

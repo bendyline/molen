@@ -1,15 +1,15 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.bach_house",
-  "inputHash": "sha256:61b4af70be0dabc915cd50c1f3205f50e127ecb5c5c3b080eab338455393be78",
-  "sourceHash": "sha256:79c052baaad138bfe5ce71efa2dfec2e4a23e494b0fbe5465902fc12ad4e658e",
-  "runtimeHash": "sha256:016463585bb282f89009f4d45441331a69e49ee38a16ac76057fc752615c2747",
+  "inputHash": "sha256:c81e2fe352533a1bcbaf46c0a4be3bc4f04b8e8539fe375118cdfc997cf0df9a",
+  "sourceHash": "sha256:4a8fd70bfe9fb2b462d8bd5e630b4ffd53aff368e308cc55b34ac4e1ffc96065",
+  "runtimeHash": "sha256:232410d19aca8c6fc3e4667b0cca2085218aebfb364fc07647e1d5418c357711",
   "reviewGroundY": null,
-  "fixtureHash": "sha256:3a145293930bdf1262b201ee4d813201b0bba43b68023c0e04ac1edbc1897a8e",
+  "fixtureHash": "sha256:3d4e062a0d69434f9993eeb088d730adfac8f59898924a503c68798bd8cf5ea1",
   "footprintEvidenceHash": "sha256:636cbb5dae7d9f546eea39c3ef15eab233204902f21ec6e20ec1b207b07a5f01",
   "footprintLabel": "Historic Frauenplan 21 house; modern western museum extension and neighboring eastern buildings excluded.",
-  "reflectionMode": "sky-pmrem",
-  "clippingMode": "bounds",
+  "reflectionMode": "none",
+  "clippingMode": "legacy",
   "placementHash": "sha256:11400cebb70bcc305fe984057c05dae3957849cf5c5cf1103dfbea305c6ae322",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stucco": {
@@ -19,6 +19,10 @@
     "matgraph:molen.worldgen.material.tile_flat": {
       "path": "materials/tile_flat.matgraph.json",
       "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+    },
+    "matgraph:molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
     },
     "matgraph:molen.worldgen.material.metal_painted": {
       "path": "materials/metal_painted.matgraph.json",
@@ -36,7 +40,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:ef57a5a815363304932c73f84653612ec3f27847a16734d4f60c5b09caae1e0c",
+      "hash": "sha256:9d80494cab55d84613843d912d4ac415dd4924cd30002952e9ebc9065b833907",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -51,8 +55,8 @@
           0
         ],
         "heading": 3.2815926535897932,
-        "meshes": 6,
-        "triangles": 25937,
+        "meshes": 7,
+        "triangles": 26661,
         "bounds": {
           "min": [
             -11.648190600924497,
@@ -67,11 +71,12 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "3e2773ce-201d-4691-9b82-17646ff7a341",
-          "worldgen:matgraph:molen.worldgen.material.tile_flat": "1a4a52f3-a6bd-43d4-af7b-c2d270cb22c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bc46a57c-ceab-4cef-a53e-f8143d69650d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "7f8eed97-e1c8-4286-b600-ebae3223e754",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "44bd8faf-35cf-4a4b-b651-04fa9ac6d717"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "045bafb3-4b12-47dc-9550-3dab706449f7",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "b2110bd2-2bf7-479b-af3d-1b802cd1ac4d",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bf8cc350-17af-4341-81c7-f610bcf43023",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e53ed3e5-aefc-45b4-8c63-7a491a186f2c",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "031d4ffd-1e77-4eaa-a026-4b21667c09c6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "6cad7b20-c339-4130-9516-29fa24a0a8eb"
         },
         "loads": [
           "molen.worldgen.structure.bach_house"
@@ -97,20 +102,22 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 7,
-        "renderedTriangles": 25939
+        "draws": 8,
+        "renderedTriangles": 26663
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:556a099f971ddf3c8f1f7d5e4182932b8fafccd16595359b3bb010faa571e3b4",
+      "hash": "sha256:138025c10d582b2cad09d9e4b237cc9fc5dae538cb3348c59192d88b2ecbe8f3",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -125,8 +132,8 @@
           0
         ],
         "heading": 3.2815926535897932,
-        "meshes": 6,
-        "triangles": 25937,
+        "meshes": 7,
+        "triangles": 26661,
         "bounds": {
           "min": [
             -11.648190600924497,
@@ -141,11 +148,12 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "3e2773ce-201d-4691-9b82-17646ff7a341",
-          "worldgen:matgraph:molen.worldgen.material.tile_flat": "1a4a52f3-a6bd-43d4-af7b-c2d270cb22c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bc46a57c-ceab-4cef-a53e-f8143d69650d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "7f8eed97-e1c8-4286-b600-ebae3223e754",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "44bd8faf-35cf-4a4b-b651-04fa9ac6d717"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "045bafb3-4b12-47dc-9550-3dab706449f7",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "b2110bd2-2bf7-479b-af3d-1b802cd1ac4d",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bf8cc350-17af-4341-81c7-f610bcf43023",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e53ed3e5-aefc-45b4-8c63-7a491a186f2c",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "031d4ffd-1e77-4eaa-a026-4b21667c09c6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "6cad7b20-c339-4130-9516-29fa24a0a8eb"
         },
         "loads": [
           "molen.worldgen.structure.bach_house"
@@ -171,20 +179,22 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 7,
-        "renderedTriangles": 25939
+        "draws": 8,
+        "renderedTriangles": 26663
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:a0b9bb17f456c8a430a390f6e6f57403ab297695832bbcc5174b6c62f0390aa3",
+      "hash": "sha256:b7f4476528a058899ac6e7b5bf2d47ebafcd822c6561c395a22eacab3b76e169",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -199,8 +209,8 @@
           0
         ],
         "heading": 3.2815926535897932,
-        "meshes": 6,
-        "triangles": 25937,
+        "meshes": 7,
+        "triangles": 26661,
         "bounds": {
           "min": [
             -11.648190600924497,
@@ -215,11 +225,12 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "3e2773ce-201d-4691-9b82-17646ff7a341",
-          "worldgen:matgraph:molen.worldgen.material.tile_flat": "1a4a52f3-a6bd-43d4-af7b-c2d270cb22c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bc46a57c-ceab-4cef-a53e-f8143d69650d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "7f8eed97-e1c8-4286-b600-ebae3223e754",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "44bd8faf-35cf-4a4b-b651-04fa9ac6d717"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "045bafb3-4b12-47dc-9550-3dab706449f7",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "b2110bd2-2bf7-479b-af3d-1b802cd1ac4d",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bf8cc350-17af-4341-81c7-f610bcf43023",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e53ed3e5-aefc-45b4-8c63-7a491a186f2c",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "031d4ffd-1e77-4eaa-a026-4b21667c09c6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "6cad7b20-c339-4130-9516-29fa24a0a8eb"
         },
         "loads": [
           "molen.worldgen.structure.bach_house"
@@ -245,20 +256,22 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 7,
-        "renderedTriangles": 25939
+        "draws": 8,
+        "renderedTriangles": 26663
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:8d81068194f093ba6cf9ce756fa067bd40997e88d597d6d09a206616b69ae090",
+      "hash": "sha256:1d1ff7ce8c78687dd1be64d8b4c0a14bd20ae7e472b9b471a946248bc4973af1",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -273,8 +286,8 @@
           0
         ],
         "heading": 3.2815926535897932,
-        "meshes": 6,
-        "triangles": 25937,
+        "meshes": 7,
+        "triangles": 26661,
         "bounds": {
           "min": [
             -11.648190600924497,
@@ -289,11 +302,12 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "3e2773ce-201d-4691-9b82-17646ff7a341",
-          "worldgen:matgraph:molen.worldgen.material.tile_flat": "1a4a52f3-a6bd-43d4-af7b-c2d270cb22c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bc46a57c-ceab-4cef-a53e-f8143d69650d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "7f8eed97-e1c8-4286-b600-ebae3223e754",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "44bd8faf-35cf-4a4b-b651-04fa9ac6d717"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "045bafb3-4b12-47dc-9550-3dab706449f7",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "b2110bd2-2bf7-479b-af3d-1b802cd1ac4d",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bf8cc350-17af-4341-81c7-f610bcf43023",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e53ed3e5-aefc-45b4-8c63-7a491a186f2c",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "031d4ffd-1e77-4eaa-a026-4b21667c09c6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "6cad7b20-c339-4130-9516-29fa24a0a8eb"
         },
         "loads": [
           "molen.worldgen.structure.bach_house"
@@ -319,20 +333,22 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 7,
-        "renderedTriangles": 25939
+        "draws": 8,
+        "renderedTriangles": 26663
       }
     },
     {
       "path": "shots/shared/front.png",
-      "hash": "sha256:fff31cc0a96d37cb5328b725d9ceb44663f1c764b242b7e38aab39b19d5911e6",
+      "hash": "sha256:d3f2c703dfe3a711651451170dd04ff0a0f5f8187881ebe68a584338b8a1490a",
       "camera": {
         "name": "front",
         "position": [
@@ -356,8 +372,8 @@
           0
         ],
         "heading": 3.2815926535897932,
-        "meshes": 6,
-        "triangles": 25937,
+        "meshes": 7,
+        "triangles": 26661,
         "bounds": {
           "min": [
             -11.648190600924497,
@@ -372,11 +388,12 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "3e2773ce-201d-4691-9b82-17646ff7a341",
-          "worldgen:matgraph:molen.worldgen.material.tile_flat": "1a4a52f3-a6bd-43d4-af7b-c2d270cb22c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bc46a57c-ceab-4cef-a53e-f8143d69650d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "7f8eed97-e1c8-4286-b600-ebae3223e754",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "44bd8faf-35cf-4a4b-b651-04fa9ac6d717"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "045bafb3-4b12-47dc-9550-3dab706449f7",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "b2110bd2-2bf7-479b-af3d-1b802cd1ac4d",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bf8cc350-17af-4341-81c7-f610bcf43023",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e53ed3e5-aefc-45b4-8c63-7a491a186f2c",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "031d4ffd-1e77-4eaa-a026-4b21667c09c6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "6cad7b20-c339-4130-9516-29fa24a0a8eb"
         },
         "loads": [
           "molen.worldgen.structure.bach_house"
@@ -402,20 +419,22 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 7,
-        "renderedTriangles": 25939
+        "draws": 8,
+        "renderedTriangles": 26663
       }
     },
     {
       "path": "shots/shared/back.png",
-      "hash": "sha256:c773514dc4f80b015109cd4bc9c1bebb5c6f6d00210f4065511ee696d99116a7",
+      "hash": "sha256:b506a8a47d60c201f4f137c37b2e4bf226a5c815d7c196cb96c574d8f6b4e227",
       "camera": {
         "name": "back",
         "position": [
@@ -439,8 +458,8 @@
           0
         ],
         "heading": 3.2815926535897932,
-        "meshes": 6,
-        "triangles": 25937,
+        "meshes": 7,
+        "triangles": 26661,
         "bounds": {
           "min": [
             -11.648190600924497,
@@ -455,11 +474,12 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "3e2773ce-201d-4691-9b82-17646ff7a341",
-          "worldgen:matgraph:molen.worldgen.material.tile_flat": "1a4a52f3-a6bd-43d4-af7b-c2d270cb22c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bc46a57c-ceab-4cef-a53e-f8143d69650d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "7f8eed97-e1c8-4286-b600-ebae3223e754",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "44bd8faf-35cf-4a4b-b651-04fa9ac6d717"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "045bafb3-4b12-47dc-9550-3dab706449f7",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "b2110bd2-2bf7-479b-af3d-1b802cd1ac4d",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bf8cc350-17af-4341-81c7-f610bcf43023",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e53ed3e5-aefc-45b4-8c63-7a491a186f2c",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "031d4ffd-1e77-4eaa-a026-4b21667c09c6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "6cad7b20-c339-4130-9516-29fa24a0a8eb"
         },
         "loads": [
           "molen.worldgen.structure.bach_house"
@@ -485,20 +505,194 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 7,
-        "renderedTriangles": 25939
+        "draws": 8,
+        "renderedTriangles": 26663
+      }
+    },
+    {
+      "path": "shots/shared/bay-cove.png",
+      "hash": "sha256:fe9cfa1b09a71cd41f8104579eda4c776fce3005d718ed2cea96b201ba0907bd",
+      "camera": {
+        "name": "bay-cove",
+        "position": [
+          10.1,
+          2.25,
+          10
+        ],
+        "lookAt": [
+          8,
+          3,
+          4.65
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.bach_house",
+        "mode": "geographic-flat-terrain",
+        "placementId": "bach-house",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 3.2815926535897932,
+        "meshes": 7,
+        "triangles": 26661,
+        "bounds": {
+          "min": [
+            -11.648190600924497,
+            -1.809999942779541,
+            -9.308840582243835
+          ],
+          "max": [
+            11.339800312237587,
+            11.680000305175781,
+            7.120463192840163
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stucco": "045bafb3-4b12-47dc-9550-3dab706449f7",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "b2110bd2-2bf7-479b-af3d-1b802cd1ac4d",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bf8cc350-17af-4341-81c7-f610bcf43023",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e53ed3e5-aefc-45b4-8c63-7a491a186f2c",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "031d4ffd-1e77-4eaa-a026-4b21667c09c6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "6cad7b20-c339-4130-9516-29fa24a0a8eb"
+        },
+        "loads": [
+          "molen.worldgen.structure.bach_house"
+        ],
+        "selectionBounds": [
+          10.320733002298184,
+          50.97034014220271,
+          10.324384997701817,
+          50.97263982933013
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "bach-house",
+            "coordinate": [
+              10.322486570864228,
+              50.97155614764203
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "bach-house"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 8,
+        "renderedTriangles": 26663
+      }
+    },
+    {
+      "path": "shots/shared/carved-entry.png",
+      "hash": "sha256:9acc9f2c4106db0124046779ac2a7ae8140f698546f3a48fa64abd0c622fb855",
+      "camera": {
+        "name": "carved-entry",
+        "position": [
+          1.5,
+          3.4,
+          10.3
+        ],
+        "lookAt": [
+          3.75,
+          2.7,
+          4.3
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.bach_house",
+        "mode": "geographic-flat-terrain",
+        "placementId": "bach-house",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 3.2815926535897932,
+        "meshes": 7,
+        "triangles": 26661,
+        "bounds": {
+          "min": [
+            -11.648190600924497,
+            -1.809999942779541,
+            -9.308840582243835
+          ],
+          "max": [
+            11.339800312237587,
+            11.680000305175781,
+            7.120463192840163
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stucco": "045bafb3-4b12-47dc-9550-3dab706449f7",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "b2110bd2-2bf7-479b-af3d-1b802cd1ac4d",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bf8cc350-17af-4341-81c7-f610bcf43023",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e53ed3e5-aefc-45b4-8c63-7a491a186f2c",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "031d4ffd-1e77-4eaa-a026-4b21667c09c6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "6cad7b20-c339-4130-9516-29fa24a0a8eb"
+        },
+        "loads": [
+          "molen.worldgen.structure.bach_house"
+        ],
+        "selectionBounds": [
+          10.320733002298184,
+          50.97034014220271,
+          10.324384997701817,
+          50.97263982933013
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "bach-house",
+            "coordinate": [
+              10.322486570864228,
+              50.97155614764203
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "bach-house"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 8,
+        "renderedTriangles": 26663
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:c61a8742c21dcd240a872d636d6ca092efaa477469fbf4fc8d407e5c1cecdacc",
+      "hash": "sha256:0abf8520a47ad86bce94300b7d9a224f8dbfd11a782f43399cf8d526ec66e0b9",
       "camera": {
         "name": "placement",
         "placement": true
@@ -513,8 +707,8 @@
           0
         ],
         "heading": 3.2815926535897932,
-        "meshes": 6,
-        "triangles": 25937,
+        "meshes": 7,
+        "triangles": 26661,
         "bounds": {
           "min": [
             -11.648190600924497,
@@ -529,11 +723,12 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "3e2773ce-201d-4691-9b82-17646ff7a341",
-          "worldgen:matgraph:molen.worldgen.material.tile_flat": "1a4a52f3-a6bd-43d4-af7b-c2d270cb22c9",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "bc46a57c-ceab-4cef-a53e-f8143d69650d",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "7f8eed97-e1c8-4286-b600-ebae3223e754",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "44bd8faf-35cf-4a4b-b651-04fa9ac6d717"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "045bafb3-4b12-47dc-9550-3dab706449f7",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "b2110bd2-2bf7-479b-af3d-1b802cd1ac4d",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bf8cc350-17af-4341-81c7-f610bcf43023",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e53ed3e5-aefc-45b4-8c63-7a491a186f2c",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "031d4ffd-1e77-4eaa-a026-4b21667c09c6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "6cad7b20-c339-4130-9516-29fa24a0a8eb"
         },
         "loads": [
           "molen.worldgen.structure.bach_house"
@@ -559,15 +754,17 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 25939
+        "draws": 9,
+        "renderedTriangles": 26663
       }
     }
   ],
@@ -581,11 +778,5 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
-  "identityMigration": {
-    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
-    "previousInputHash": "sha256:50171ed8929913ae3fe194b7a1d8c74ba3e9b37ae431f79b1a9003d9c422aade",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
-    "previousReportHash": "sha256:da2b1cabc57c7b2d612ee593f3438708627adb33a7d679cf6b81b21eefe83d74"
-  }
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
 }

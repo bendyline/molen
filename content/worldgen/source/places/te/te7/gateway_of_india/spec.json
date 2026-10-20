@@ -1,0 +1,419 @@
+{
+  "planId": "gateway_of_india",
+  "id": "gateway_of_india",
+  "assetId": "molen.worldgen.structure.gateway_of_india",
+  "title": "Gateway of India",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 72.834567,
+    "latitude": 18.921965
+  },
+  "size": [
+    63.48557662963867,
+    29.44999933242798,
+    39.580453872680664
+  ],
+  "actualBounds": {
+    "min": [
+      -31.128765106201172,
+      -3.4000000953674316,
+      -26.080453872680664
+    ],
+    "max": [
+      32.3568115234375,
+      26.049999237060547,
+      13.5
+    ]
+  },
+  "visualBrief": "Three-bay yellow basalt waterfront gateway: tall open pointed central arch, jali-framed side doorways, four octagonal tiered turret crowns, carved piers/cornices/rosettes, upper inscription panel and lotus parapet, three shallow roof domes and own stepped base. Temporary objects and nearby buildings excluded.",
+  "nativeAxes": {
+    "x": "southwest along the broad facade",
+    "y": "up",
+    "z": "northwest toward the city plaza and inscribed facade"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Gatewayofindia.jpg",
+    "https://commons.wikimedia.org/wiki/File:Gateway_of_India_Front_View.jpg",
+    "https://commons.wikimedia.org/wiki/File:Gateway_of_India_and_the_Taj_Mahal_Palace_Hotel_1.jpg"
+  ],
+  "stories": [
+    {
+      "id": "gateway-of-india-wp",
+      "url": "https://qualla.com/gateway-of-india/"
+    }
+  ],
+  "referenceInputHash": "feb56934f44b966dc08ad32eaecac3c9072530f0c3f401b9e329f9d1715d6940",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-gateway-of-india.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-gateway-of-india.mjs",
+    "level": "skyline",
+    "export": "gatewayOfIndiaSkyline",
+    "errorMeters": 0.6,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_basalt",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.15
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "gatewayOfIndiaDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15
+          }
+        }
+      },
+      "street": {
+        "export": "gatewayOfIndiaStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.7
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Bounded physical quay placement on the retained dry-approach datum. The original shoreline vectors define the masonry deck and sea-access flight;their two openings are entirely covered by authored paving/solid stairs. Anchor,heading,original monument/base levels and all source heights are retained. Quay masonry extends below the source mean-sea-level context-2.8118;host ocean remains scene-owned. Submerged geology,tidal stage and exact civil levels are not certified.",
+    "anchor": [
+      72.834567,
+      18.921965
+    ],
+    "heading": -2.473,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        72.83448753122872,
+        18.922060161518406
+      ],
+      "modelHeight": 0,
+      "basis": "Dry city-side approach just beyond own gateway base; independent host-ground reference."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          32.356812,
+          13.5
+        ],
+        [
+          31.298269,
+          -19.69307
+        ],
+        [
+          27.977954,
+          -23.76302
+        ],
+        [
+          24.104569,
+          -23.446497
+        ],
+        [
+          21.665608,
+          -20.053291
+        ],
+        [
+          7.504971,
+          -20.202689
+        ],
+        [
+          -6.985092,
+          -20.34278
+        ],
+        [
+          -19.585491,
+          -20.479674
+        ],
+        [
+          -23.343614,
+          -23.689632
+        ],
+        [
+          -27.372636,
+          -23.481872
+        ],
+        [
+          -30.867379,
+          -18.752177
+        ],
+        [
+          -31.066531,
+          13.5
+        ]
+      ],
+      "additionalOutlines": [
+        [
+          [
+            7.504971,
+            -20.202689
+          ],
+          [
+            7.561847,
+            -25.931626
+          ],
+          [
+            -6.921315,
+            -26.080453
+          ],
+          [
+            -6.985092,
+            -20.34278
+          ]
+        ]
+      ],
+      "basis": "Mapped physical waterfront quay deck and solid sea-access flight only. No source height,monument floor,anchor,heading or dry-approach datum changes. Masonry extends below the source mean-sea-level context;no generic building pad or host-ocean mesh is embedded."
+    },
+    "featureIds": [
+      "buildings/35184400934466",
+      "buildings/35184806982140",
+      "buildings/35184806982146",
+      "buildings/35184806982159",
+      "buildings/35184806982172",
+      "buildings/35184806982154",
+      "buildings/35184806982168",
+      "buildings/35184806982152",
+      "buildings/35184806982155",
+      "buildings/35184806982171",
+      "buildings/35184806982150",
+      "buildings/35184806982147",
+      "buildings/35184806982170",
+      "buildings/35184806983367",
+      "buildings/35184806982141",
+      "buildings/35184806982162",
+      "buildings/35184806982149",
+      "buildings/35184806982166",
+      "buildings/35184806982174",
+      "buildings/35184806982173",
+      "buildings/35184806983368",
+      "buildings/35184806982161",
+      "buildings/35184806982142",
+      "buildings/35184806982148",
+      "buildings/35184806982144",
+      "buildings/35184806982160",
+      "buildings/35184806982153",
+      "buildings/35184806982158",
+      "buildings/35184806982157",
+      "buildings/35184806982169",
+      "buildings/35184806982143",
+      "buildings/35184806982164",
+      "buildings/35184806982156",
+      "buildings/35184806982163",
+      "buildings/35184806982167",
+      "buildings/35184806982145"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8125dd7cc0fac915397fa67ef309e4a57cfc902bb8cf4ec761942098e3061405",
+    "notes": "Retained original monument anchor,heading,front approach datum and floor levels. Nominal26mheight and existing three-bay exterior retained. Fresh OSM way206817494 independently establishes immediate waterfront quay and central step projection;landward scope ends at existing approachz13.5. Exact stair count,concealed foundations,roof caps,vaults and fine carvings remain bounded medium-fi estimates. Earlier CC/FAL images and unverified aerials excluded from current construction."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Current exterior uses three inspected exact creator-released CC0 originals:DarshanRane2012front,AroundTheGlobe2011arch detail and Darshula2023harbor elevation. Earlier FAL/CC photographs and rights-unverified aerial imagery are excluded. Nominal26m monument scale retained;facade heights,shallow cap profiles,vaults,rear details and hidden joins are estimates. Map height tags are not measured elevations.",
+    "Official48ft central-dome diameter used for the central roof control; the prose83ft apex datum is not reconciled with the shallow exterior cap seen in aerial context. Exterior cap height remains an estimate. Fine inscriptions, motifs and jali patterns are simplified native geometry.",
+    "Own monument,physical immediate waterfront quay and sea stair only. Quay/stair horizontal plan follows original OSM coastline206817494. Fixed paving0,submerged masonry base-3.4,and20sea-stair risers descending to-2.65are bounded exterior estimates,not civil or tidal survey. Wider city plaza,ferry buildings/jetty,boats,people,barriers,temporary scaffolding and roof flagpole excluded. No photo pixels redistributed.",
+    "Independent Terrarium terrain is unmodified and mixes coastal land/bathymetry. Physical deck/stair surfaces replace only their own modeled volumes;buried/submerged foundations are estimates and are not fitted to terrain cells. Host ocean at mean sea level is scene-owned;portable/native-ground fixtures without ocean expose submerged geometry as a diagnostic. Footprint replacement disabled. No survey,tidal-stage,exact seabed-contact or physical-device performance claim."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        4.5,
+        62
+      ],
+      "lookAt": [
+        0,
+        12,
+        3
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -19,
+        15,
+        34
+      ],
+      "lookAt": [
+        -1,
+        11,
+        8
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        48,
+        31,
+        -60
+      ],
+      "lookAt": [
+        0,
+        10,
+        -1
+      ]
+    },
+    {
+      "name": "waterfront-platform",
+      "position": [
+        43,
+        9,
+        -48
+      ],
+      "lookAt": [
+        0,
+        -0.6,
+        -19
+      ]
+    },
+    {
+      "name": "sea-stair",
+      "position": [
+        -14,
+        4,
+        -41
+      ],
+      "lookAt": [
+        0,
+        -1.3,
+        -23
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 21872,
+    "vertices": 65616,
+    "materials": 4,
+    "bytes": 2627544,
+    "sha256": "sha256:083801f75bcb6decd01ab18ef25b3c5e7c92674a34fe6035c3e925ba4fd063d6"
+  }
+}

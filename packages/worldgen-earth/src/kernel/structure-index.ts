@@ -49,6 +49,8 @@ export interface StructurePlacement {
     outline: [number, number][];
     /** Complete set for separated openings; when present, supersedes outline. */
     outlines?: [number, number][][];
+    /** Separate excavations appended to outline when outlines is omitted; at most 63 rings. */
+    additionalOutlines?: [number, number][][];
     basis: string;
   };
   /** Remove only this native X/Z area from mapped buildings; overrides whole-footprint replacement. */
@@ -267,6 +269,14 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
     if (
       entry.groundCutout &&
       (!entry.groundCutout.basis?.trim() ||
+        (entry.groundCutout.additionalOutlines?.length ?? 0) > 63 ||
+        (entry.groundCutout.additionalOutlines ?? []).some(
+          (outline) =>
+            outline.length < 3 ||
+            outline.length > 512 ||
+            outline.some((p) => p.length !== 2 || p.some((v) => !Number.isFinite(v))) ||
+            !validGroundOutline(outline),
+        ) ||
         entry.groundCutout.outline.length < 3 ||
         entry.groundCutout.outline.length > 512 ||
         entry.groundCutout.outline.some(

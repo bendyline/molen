@@ -1,0 +1,396 @@
+{
+  "planId": "bradbury_building",
+  "id": "bradbury_building",
+  "assetId": "molen.worldgen.structure.bradbury_building",
+  "title": "Bradbury Building",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -118.24786511272077,
+    "latitude": 34.05053200121085
+  },
+  "size": [
+    47.70351028442383,
+    28.795000433921814,
+    57.52225112915039
+  ],
+  "actualBounds": {
+    "min": [
+      -26.645565032958984,
+      -0.6499999761581421,
+      -29.618301391601562
+    ],
+    "max": [
+      21.057945251464844,
+      28.145000457763672,
+      27.903949737548828
+    ]
+  },
+  "visualBrief": "Five-storey brick and terracotta exterior on native concave Broadway/Third Street plan, chamfered corner, paired rectangular middle windows and round upper windows, broad retail ground floor with arched Broadway portal, bracketed cornice, metal fire escapes, flat roof with opaque glazed ridge skylight and chimney. Exclude neighboring buildings, temporary retail signs, street scenery and navigable atrium.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.loc.gov/item/2006675247/"
+  ],
+  "stories": [
+    {
+      "id": "bradbury-building-wp",
+      "url": "https://qualla.com/bradbury-building/"
+    }
+  ],
+  "referenceInputHash": "sha256:fc7ba98655ece42eea47a5838ffb892b7c4677eeb6616642643ef2e47be2b574",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-bradbury-building.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-bradbury-building.mjs",
+    "level": "skyline",
+    "export": "bradburyBuildingSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_longformat",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "terra": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.1
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0.04
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bradburyBuildingDistrict",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "terra": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "bradburyBuildingStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "terra": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "medium-fi-exterior-source-preview-reviewed-in-qa",
+  "geographicProposal": {
+    "status": "bounded-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native concave plan and dry Broadway entrance datum fixed before USGS CA_LosAngeles_B23 locked raster127960 was frozen and independently reproduced. Datum86.3604m; approximately1m export source. Photographic raised threshold.45m and wall base-.65m; no terrain flattening or fitting. Source-relative preview, not survey or another host DEM acceptance.",
+    "anchor": [
+      -118.24786511272077,
+      34.05053200121085
+    ],
+    "heading": 0.8994823531637312,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -118.24811955693646,
+        34.05070050280717
+      ],
+      "modelHeight": 0,
+      "basis": "Dry Broadway entrance footway,1.2m beyond midpoint of native street facade; selected before terrain and geometry. Doorway/kerb position is approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184800031600"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7eb59eef46b8298a77cadb13c3d25e972f62439c3f277bcd116381e2807e6bab"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Photographic medium-fi exterior; native quantized2105.96m²plan and25.8mmapheight are controls rather than survey dimensions.",
+    "Exact bay spacing, relief artwork, fire-escape details, unseen rear levels and ridge skylight position are estimates. Opaque glazing excludes interior reconstruction.",
+    "USGS source field retained unchanged. One-metre source/export is not surveyed sidewalk/foundation accuracy or default Earth terrain certification.",
+    "Photo pixels are reference-only; ordinary shared catalog graphs provide materials. No generic footprint replacement or full-site terrain pad."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "broadway-portal",
+      "position": [
+        2.8,
+        3,
+        -39
+      ],
+      "lookAt": [
+        2.8,
+        2.5,
+        -29
+      ]
+    },
+    {
+      "name": "broadway-front",
+      "position": [
+        -30,
+        16,
+        -65
+      ],
+      "lookAt": [
+        0,
+        12,
+        -28
+      ]
+    },
+    {
+      "name": "street-corner",
+      "position": [
+        49,
+        14,
+        -62
+      ],
+      "lookAt": [
+        14,
+        13,
+        -22
+      ]
+    },
+    {
+      "name": "third-street",
+      "position": [
+        61,
+        15,
+        18
+      ],
+      "lookAt": [
+        19,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "upper-arches-cornice",
+      "position": [
+        33,
+        28,
+        -40
+      ],
+      "lookAt": [
+        16,
+        23,
+        -24
+      ]
+    },
+    {
+      "name": "rear-return",
+      "position": [
+        -58,
+        25,
+        39
+      ],
+      "lookAt": [
+        -12,
+        14,
+        13
+      ]
+    },
+    {
+      "name": "rooflight",
+      "position": [
+        -32,
+        57,
+        36
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 24358,
+    "vertices": 73074,
+    "materials": 7,
+    "bytes": 2927140,
+    "sha256": "sha256:439586bfaabb9b6d815d98f16031cde06e2209f050e0383b905fd84ae4e8ad35"
+  }
+}
