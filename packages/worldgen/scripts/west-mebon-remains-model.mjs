@@ -78,8 +78,8 @@ function crown(f, d, top, broken) {
       ? [
           [3.8, 5.6],
           [4.4, 4.8],
-          [top - 0.2, 1.45],
-          [top, 0.9],
+          [top - 0.2, 2.6],
+          [top, 2.2],
         ]
       : [
           [3.8, 5.6],
@@ -101,8 +101,8 @@ function crown(f, d, top, broken) {
                 [6.65, 3.2],
                 [7.03, 2.6],
                 [7.25, 2.15],
-                [top - 0.25, 1.8],
-                [top, 1.25],
+                [7.85, 2.7],
+                [8.1, 2.2],
               ]),
         ];
   const scale = (top - 3.8) / (broken ? 2 : 4.3);
@@ -119,8 +119,8 @@ function crown(f, d, top, broken) {
     for (const [k, y] of [4.28, 5.12, ...(broken ? [] : [6.12, 7.0])].entries()) {
       const width = [5.0, 4.05, 3.15, 2.35][k],
         height = 3.8 + (y - 3.8) * scale;
-      for (let j = 0; j < 8; j++) {
-        const a = (j * Math.PI) / 4,
+      for (let j = 0; j < (d >= 3 ? 8 : 4); j++) {
+        const a = (j * Math.PI * 2) / (d >= 3 ? 8 : 4),
           part = pose(
             f,
             Math.cos(a) * width * 0.46,
@@ -155,7 +155,7 @@ function gate(f, p, d, F, sample) {
       [-0.14, 5.8],
     ])
       box(g, 'carved', 0, y, 0, w, 0.14, w);
-  for (const side of [-1, 1]) facade(pose(g, side * 2.25, 0, 0, (side * Math.PI) / 2), d, false);
+  for (const side of [-1, 1]) facade(pose(g, side * 2.25, 0, 0, (-side * Math.PI) / 2), d, false);
   for (const side of [-1, 1]) facade(pose(g, 0, 0, side * 2.25, side === 1 ? 0 : Math.PI), d, true);
   crown(g, d, p.top, p.broken);
   const steps = d === 0 ? 1 : 4;

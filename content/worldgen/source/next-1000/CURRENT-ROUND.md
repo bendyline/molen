@@ -1,17 +1,24 @@
-# Current structure round — next N0549 West Mebon
+# Current structure round — N0549 West Mebon in progress
 
 Updated 2026-10-19. **551 of 1,000 candidates complete; 552 source/runtime candidates; 546 active previews; 449 unfinished.** N0507 is the only authored draft still incomplete. The broader library contains 715 authored structures.
 
-## Next building — N0549 West Mebon
+## Current building — N0549 West Mebon
 
 One continuous ordinary-picture/map brief, construction, current renders, concrete fixes and selected acceptance. Acceptance is the end of construction, with no second research or independent re-evaluation phase. Keep a compact appearance/extent/entry/material/LOD checklist while building; inspect the generated views together, repair concrete defects, record the same evidence and move immediately to the next candidate. Carry established evidence through the round; reopen accepted models only for a concrete defect or relevant change. Shared materials and four browser LODs; medium-fi remains the current standard. Use standard PMTiles/Mapzen for approximate fit without bespoke research campaigns. Broad source/engine checks stay at batch milestones, next 575 complete.
 
 For a new bundle, refresh both geographic source and authoring-recipe registries before its first captures. Recipe registration changes the input hash; establish it during construction so it cannot invalidate completed review records later. Inspect the selected authoring-index entry: its recipes must include model-specific geometry helpers as well as the wrapper; being present only in a generator implementation list is insufficient.
 
-- [ ] Establish appearance and approximate map fit.
-- [ ] Build the specific medium-fi geometry and browser levels.
+- [x] Establish appearance and approximate map fit.
+- [x] Build the specific medium-fi source geometry and authored level recipes.
+- [ ] Finish runtime import and optimized level export after merge coordination.
 - [ ] Inspect current appearance/site views; fix observed defects in this round.
 - [ ] Run selected checks, record concise acceptance and move on.
+
+### N0549 construction status
+
+[Draft](../places/w6/w63/n0549_west_mebon/DRAFT.md). Four inspected ordinary pictures show the2006/2009 standing state; later restoration explicitly unverified. Named PMTiles site/pool boundary and bridged path establish approximate fit. Three east gateways, perforated capped wall, map-aligned causeway/central platform and sparse low bank ruins. Three existing stone graphs; source17,048triangles/2,048,244bytes, authored levels996/3528/14104/17048. Source Khronos0errors/0warnings and33 actual mesh probes pass. Both model-specific recipes registered. This additional draft is not counted complete; last accepted inventory above remains551.
+
+Importer stopped on a newly present stylepack merge conflict. Project/placements and terrain/runtime files also have active conflicts. Waiting for owner merge coordination before importing/capturing; no review approval or new completion claimed. Preserve the current picture/map brief and source checks through the remainder of this same round.
 
 ## Completed — N0548 Temple of Romulus
 
