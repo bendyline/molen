@@ -236,11 +236,15 @@ species: no texture downloads, alpha cards, or per-tree scene objects. Conifers 
 scalloped crown that conceals the upper trunk; broadleaf crowns use overlapping foliage clumps.
 Tiles below the finest level use cached coarse crowns (132 triangles per conifer, 124 per
 broadleaf tree; 60 per shrub and 20 per rock), sharing the same material and instance transforms.
-The Earth renderer further partitions vegetation into 512-meter cells and switches from near to
-medium to distant geometry as the camera moves. Thresholds are 180 and 650 meters beyond each
-cell’s bounding sphere, with 15% hysteresis to avoid flicker. Distant crowns use 12 triangles for
-conifers and 20 for broadleaf trees. Cells share geometry, materials, and instance buffers across
-levels and can be frustum-culled independently; no per-frame placement uploads are needed.
+The Earth renderer batches vegetation per terrain tile, split into quarters on the finest tiles
+(a batch picks one detail level for all its plants, so a camera inside a whole-tile batch drew
+every tree in it at near detail), and switches each batch from near to medium to distant
+geometry by its projected error, with 15% hysteresis to avoid flicker. A batch chooses again
+only when the camera, the batch's placement, the lens or the error policy changes, so a still view
+costs no per-batch matrix work. Distant crowns are
+opaque: a cone for conifers and one lumpy volume for broadleaf trees. Cells share geometry,
+materials, and instance buffers across levels and can be frustum-culled independently; no
+per-frame placement uploads are needed.
 `propLod: false` disables this camera LOD, and the explorer exposes `?propLod=0` for comparison.
 The explorer's `AssetCache` still resolves authored GLBs for custom packs and building props.
 
@@ -458,7 +462,9 @@ aerial camera would otherwise draw every plant in the tiles below at near detail
 leaf cards (a tree's distant level, rocks and props) draws with an opaque twin of the alpha-tested
 scatter material: a shader that can discard switches off hidden-surface removal on tile-based
 GPUs, so a distant forest drawn with the card material shaded every layer of crowns behind the
-first. Buildings retain their structural faces while distant materials and facade details
+first. For the same reason a level drawn with cards hands over to the next at a quarter of the
+projected error its geometry alone would allow (a crown's cards overlap several deep), and the
+distant level neither casts nor receives sun shadows. Buildings retain their structural faces while distant materials and facade details
 simplify; geometry attributes are shared across spatial cells and levels. `setQuality(preset)`
 changes future generation and queues resident architecture for replacement, one building batch
 at a time. The previous buildings stay visible until their replacements are ready; roads remain

@@ -199,20 +199,20 @@ class PlantMesh {
     phase: number,
     bend = FOLIAGE_BEND,
     tone = 1,
+    round = sides >= 8,
   ): [number, number] {
     const start = this.vertexCount;
     if (this.seed) phase += unit01(this.seed, 41) * TAU;
-    const profiles =
-      sides >= 8
-        ? [
-            [0.2, 0.68],
-            [0.5, 1],
-            [0.8, 0.72],
-          ]
-        : [
-            [0.32, 0.85],
-            [0.68, 0.9],
-          ];
+    const profiles = round
+      ? [
+          [0.2, 0.68],
+          [0.5, 1],
+          [0.8, 0.72],
+        ]
+      : [
+          [0.32, 0.85],
+          [0.68, 0.9],
+        ];
     // Close up the outline also ripples ring by ring, so a crown reads as clustered foliage
     // rather than a lathe-turned solid; near lobes get a lumpy, irregular outline the same way.
     const ripple = sides >= 10 ? 0.08 : 0;
@@ -821,15 +821,21 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
     mesh.volume(start, [p.lean * middle, middle, 0], [r, span * 0.7, r]);
   } else {
     const canopyHeight = h - base;
-    if (far)
+    // Six sides give the distant crown a lumpy outline, and facets that keep some of their own
+    // light: five, fully rounded, read as flat colored blobs along a far tree line. Three rings
+    // round it off: with two, each crown was a bicone, a row of yellow diamonds on the skyline.
+    if (far) {
       mesh.crown(
         [p.lean * h, base + canopyHeight / 2, 0],
         [r, canopyHeight, r * 0.94],
         p.foliage,
-        5,
+        6,
         1,
+        0.75,
+        1,
+        true,
       );
-    else {
+    } else {
       trunk();
       // Leaf clusters spread over the canopy's shell, each a few crossed leaf cards around one
       // point, so the silhouette breaks into sprigs of leaves; mangroves spend their medium

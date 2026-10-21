@@ -274,10 +274,12 @@ gets variation from cheap sources rather than from per-polygon textures:
   4 m, 2 m, 1 m and half-meter layers are calmed in favor of quarter-meter grain: blotches from
   half a meter to a few meters across, and a strong blue/yellow split between them, read as
   camouflage from 10–40 m. Past about 18 m the layers from 4 m patches down to quarter-meter grain
-  ease by half and the soil specks by more (up close they read as grass, from a rooftop as
+  ease by 70% and the soil specks by 60% (up close they read as grass, from a rooftop as
   blobs), and turf mottle eases by a further 55% between 40 and 160 m away, where a lawn reads
-  as an even sward.
-  Green ground also loses a sixth of its saturation, so sunlit turf reads as grass, not lime.
+  as an even sward. The 2 m-and-finer layers fade out entirely between 60 and 120 m, so a lawn
+  filling an aerial view skips their lookups (it had run that view GPU-bound).
+  Green ground also loses a sixth of its saturation, so sunlit turf reads as grass, not lime,
+  and is then tinted a little greener and darker (sunlit lawns had drifted to a pale olive).
   The same noise raises a few centimeters of relief that catches the sun. Finer layers fade out
   before they fall below a pixel. It costs no geometry, texture or upload. The Earth view uses
   it by default; the World Explorer's `?ground=flat` turns it off for comparison.
@@ -322,7 +324,9 @@ instead of ending on a ruled line: grass blades and tufts of lawn over cast pavi
   crown's shell (twenty clusters of four cards up close, six of three at medium distance) around
   a solid core in the crown's own shade, so the outline breaks into sprigs of leaves and the gaps
   show foliage rather than sky. Plants are sized by their foliage, not by the cards' clear
-  corners. A distant crown is one faceted volume. Cards are for tree crowns only, and only
+  corners. A distant crown is one faceted volume (six-sided and lumpy for broadleaf trees), drawn
+  opaque. Clear atlas texels carry the tone of the leaves beside them, so filtering never blends
+  a pale rim into a card's cut edge. Cards are for tree crowns only, and only
   through the shared scatter material: no alpha blending, no per-species textures, no cards on
   buildings, fences or ground cover. That material (`createScatterMaterialAsync` from
   `@bendyline/molen-worldgen/client`) carries the one foliage atlas, generated at startup
@@ -334,7 +338,10 @@ instead of ending on a ruled line: grass blades and tufts of lawn over cast pavi
   Generated crowns bend their foliage normals toward the crown's rounded volume, so a crown
   shades as one soft mass. Each cluster catches the light a little differently from its
   neighbors, its cards darken toward their lower edge, and the core sits in the crown's shade.
-  Cards cast leafy shadows through the same alpha test. Each scattered plant drifts a little in hue,
+  Cards cast leafy shadows through the same cut. On WebGPU the cut is a node (`alphaTestNode`,
+  with `maskShadowNode` for the shadow pass) rather than `alphaTest`: Three copies each caster's
+  `alphaTest` onto the light's one shadow-pass material, and every switch between a carded and a
+  solid caster made all later casters rebuild their render keys, every frame. Each scattered plant drifts a little in hue,
   warmth and shade, so an autumn stand ranges from yellow to russet rather than one swatch.
 - **Generated buildings weather in the shader.** The shared facade and roof textures repeat on
   every house, so `createBuildingWeatheringAsync` (`@bendyline/molen-worldgen/client`, passed as

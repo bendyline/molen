@@ -54,6 +54,13 @@ const WARP = 0.8;
 const EDGE = 8;
 const FRINGE = 2;
 const TUFT = 0.5;
+/**
+ * Meters over which the 2 m-and-finer turf layers (clumps, grain and its warp, half- and
+ * quarter-meter grain, specks) fade out with distance. Past about 60 m they are calmed to a
+ * fifth or less and read as busy camouflage on a big lawn seen from the air, yet a lawn filling
+ * an aerial view paid for every lookup: on an Apple M2 that view ran GPU-bound and throttled.
+ */
+const OCTAVE_REACH: [number, number] = [60, 120];
 /** Mottling's share of brightness at full strength (value noise is mostly within ±0.3). */
 const MOTTLE = 0.34;
 /**
@@ -74,9 +81,10 @@ const NANO_GAIN = 0.4;
 /**
  * Share of the 4 m-to-quarter-meter turf layers taken out from about 18 m on. Up close they
  * are grass; from a rooftop or across a street at full weight they swung turf brightness ±20%
- * in blobs a meter across, which read as camouflage rather than lawn.
+ * in blobs a meter across, which read as camouflage rather than lawn. At half weight a lawn
+ * 20 m off still varied 11% in 10–20 pixel blotches; real turf there is near even.
  */
-const TURF_CALM = 0.5;
+const TURF_CALM = 0.7;
 /** How strongly turf brightness drives its cool/warm cast. */
 const SHADE_GAIN = 1.5;
 /** Straw-colored dry areas and darker, bluer lush areas on green ground. */
@@ -90,11 +98,55 @@ const WARM: [number, number, number] = [1.03, 1.02, 0.93];
 const COOL: [number, number, number] = [0.94, 1.0, 1.06];
 /** Share of green ground's saturation taken out, so sunlit turf is grass, not lime. */
 const MUTE = 0.16;
+/**
+ * Linear tint on green ground, after the mute: sunlit lawns had drifted to a pale olive (hue
+ * about 69°, value 0.57 on screen) that read washed out and yellow; this brings them to about
+ * 80° and a little darker, the green of watered turf, short of the palette's lime.
+ */
+const TURF: [number, number, number] = [0.82, 0.95, 0.8];
 /** Linear color of bare soil showing through turf. */
 const SOIL: [number, number, number] = [0.2, 0.15, 0.09];
 /** Relief amplitude in meters per noise layer (clumps, tufts, close grain). */
 const RELIEF: [number, number, number] = [0.08, 0.04, 0.016];
 const glslVec3 = (v: readonly number[]): string => `vec3(${v.map((x) => x.toFixed(3)).join(', ')})`;
+/**
+ * Texels across the shared lattice texture, and the largest cell read from it. A cell of 4 m or
+ * finer repeats in 512 cells, a span that still divides the 4096 m period. One filtered fetch at
+ * a smoothstep-remapped coordinate is exactly value noise, where hashing its four corners cost
+ * about sixty instructions: most of the ground's per-pixel cost on an Apple M2.
+ */
+const NOISE_SIZE = 512;
+const NOISE_MAX_CELL = 4;
+
+let noiseLattice: THREE.DataTexture | undefined;
+
+/** Random values at integer lattice points, wrapping and linearly filtered (shared, never disposed). */
+function groundNoiseLattice(): THREE.DataTexture {
+  if (noiseLattice === undefined) {
+    const data = new Uint8Array(NOISE_SIZE * NOISE_SIZE);
+    let state = 0x9e3779b9;
+    for (let i = 0; i < data.length; i++) {
+      // xorshift32: uncorrelated neighbours, the same lattice on every run.
+      state ^= state << 13;
+      state ^= state >>> 17;
+      state ^= state << 5;
+      data[i] = (state >>> 0) & 255;
+    }
+    noiseLattice = new THREE.DataTexture(
+      data,
+      NOISE_SIZE,
+      NOISE_SIZE,
+      THREE.RedFormat,
+      THREE.UnsignedByteType,
+    );
+    noiseLattice.name = 'terrain:noise-lattice';
+    noiseLattice.wrapS = noiseLattice.wrapT = THREE.RepeatWrapping;
+    noiseLattice.magFilter = noiseLattice.minFilter = THREE.LinearFilter;
+    noiseLattice.generateMipmaps = false;
+    noiseLattice.needsUpdate = true;
+  }
+  return noiseLattice;
+}
 
 interface TerrainGroundState {
   origin: { value: THREE.Vector2 };
@@ -106,6 +158,7 @@ const states = new WeakMap<THREE.Material, TerrainGroundState>();
 const GLSL = /* glsl */ `
   varying vec2 vTerrainGround;
   uniform float terrainGroundStrength;
+  uniform sampler2D terrainGroundNoiseMap;
 
   float terrainGroundHash(vec2 c, float period) {
     c -= period * floor(c / period);
@@ -120,6 +173,8 @@ const GLSL = /* glsl */ `
     vec2 i = floor(q);
     vec2 f = q - i;
     vec2 u = f * f * (3.0 - 2.0 * f);
+    if (cell <= ${NOISE_MAX_CELL.toFixed(1)})
+      return textureLod(terrainGroundNoiseMap, (i + u + 0.5) / ${NOISE_SIZE.toFixed(1)}, 0.0).r;
     float a = terrainGroundHash(i, period);
     float b = terrainGroundHash(i + vec2(1.0, 0.0), period);
     float c = terrainGroundHash(i + vec2(0.0, 1.0), period);
@@ -164,6 +219,12 @@ const GLSL = /* glsl */ `
     float fine = 1.0 - smoothstep(0.25, 0.6, footprint / ${FINE.toFixed(1)});
     float clump = 1.0 - smoothstep(0.25, 0.6, footprint / ${CLUMP.toFixed(1)});
     float specks = 1.0 - smoothstep(0.25, 0.6, footprint / ${SPECK.toFixed(1)});
+    float reach = 1.0 - smoothstep(${OCTAVE_REACH[0].toFixed(1)}, ${OCTAVE_REACH[1].toFixed(1)}, distance);
+    nano *= reach;
+    micro *= reach;
+    grain *= reach;
+    clump *= reach;
+    specks *= reach;
     float mid = 1.0 - smoothstep(500.0, 2000.0, distance);
     float broad = 1.0 - smoothstep(5000.0, 15000.0, distance);
     float nFine = terrainGroundNoise(p, ${FINE.toFixed(1)});
@@ -235,7 +296,8 @@ const GLSL = /* glsl */ `
     tint *= mix(vec3(1.0), turfCast, abs(turfShade) * green * 0.6 * terrainGroundStrength);
     // Sunlit turf reads lime when a palette green is lit at full strength; mute it a little.
     vec3 muted = mix(vec3(dot(base, vec3(0.2126, 0.7152, 0.0722))), base, ${(1 - MUTE).toFixed(2)});
-    tint *= mix(vec3(1.0), muted / max(base, vec3(0.001)), clamp(green * terrainGroundStrength, 0.0, 1.0));
+    tint *= mix(vec3(1.0), muted / max(base, vec3(0.001)) * ${glslVec3(TURF)},
+      clamp(green * terrainGroundStrength, 0.0, 1.0));
     relief = ((nFine - 0.5) * ${RELIEF[0].toFixed(3)} * fine +
       (nClump - 0.5) * ${(RELIEF[1] * 0.75).toFixed(3)} * clump +
       (nGrain - 0.5) * ${RELIEF[1].toFixed(3)} * grain +
@@ -264,9 +326,10 @@ function tslNoise(tsl: Tsl): {
   hash: (cell: Node<'vec2'>, period: number) => Node<'float'>;
   noise: (p: Node<'vec2'>, size: number) => Node<'float'>;
 } {
-  const { dot, floor, fract, mix, vec2, vec3 } = tsl;
+  const { dot, float, floor, fract, mix, texture, vec2, vec3 } = tsl;
   type F = Node<'float'>;
   type V2 = Node<'vec2'>;
+  const lattice = groundNoiseLattice();
   const hash = (cell: V2, period: number): F => {
     const c = cell.sub(floor(cell.div(period)).mul(period));
     const p = fract(vec3(c.x, c.y, c.x).mul(0.1031));
@@ -279,6 +342,14 @@ function tslNoise(tsl: Tsl): {
     const i = floor(q);
     const f = q.sub(i);
     const u = f.mul(f).mul(f.mul(-2).add(3));
+    // Sampled at mip 0 explicitly: the call sits inside layer branches, where implicit
+    // derivatives are undefined.
+    if (size <= NOISE_MAX_CELL) {
+      const sampled = texture(lattice, i.add(u).add(0.5).div(NOISE_SIZE) as unknown as V2).level(
+        float(0) as unknown as Node,
+      ) as unknown as Node<'vec4'>;
+      return sampled.r as unknown as F;
+    }
     const a = hash(i, period);
     const b = hash(i.add(vec2(1, 0)), period);
     const c = hash(i.add(vec2(0, 1)), period);
@@ -313,6 +384,7 @@ export function createTerrainGroundMaterial(
     Object.assign(shader.uniforms, {
       terrainGroundOrigin: state.origin,
       terrainGroundStrength: state.strength,
+      terrainGroundNoiseMap: { value: groundNoiseLattice() },
     });
     shader.vertexShader = `
       ${options.agriculture ? 'attribute vec4 agricultureRows; attribute vec3 agricultureSoil; attribute vec4 landcoverBlend; varying vec4 vAgricultureRows; varying vec3 vAgricultureSoil; varying vec4 vLandcoverBlend;' : ''}
@@ -356,7 +428,7 @@ export function createTerrainGroundMaterial(
       );
   };
   material.customProgramCacheKey = (): string =>
-    `terrain-ground@28:${options.agriculture === true}`;
+    `terrain-ground@32:${options.agriculture === true}`;
   states.set(material, state);
   return material;
 }
@@ -416,13 +488,15 @@ export async function createTerrainGroundMaterialAsync(
   const footprint = max(max(dFdx(p).length(), dFdy(p).length()), 0.0001).toVar();
   const fade = (cell: number): F =>
     smoothstep(0.25, 0.6, footprint.div(cell)).oneMinus() as unknown as F;
-  const nano = fade(NANO);
+  const reach = smoothstep(OCTAVE_REACH[0], OCTAVE_REACH[1], distance).oneMinus().toVar();
+  const near = (cell: number): F => fade(cell).mul(reach).toVar() as unknown as F;
+  const nano = near(NANO);
   const blade = fade(BLADE);
-  const micro = fade(MICRO);
-  const grain = fade(GRAIN);
+  const micro = near(MICRO);
+  const grain = near(GRAIN);
   const fine = fade(FINE);
-  const clump = fade(CLUMP);
-  const specks = fade(SPECK);
+  const clump = near(CLUMP);
+  const specks = near(SPECK);
   const mid = smoothstep(500, 2000, distance).oneMinus();
   const broad = smoothstep(5000, 15000, distance).oneMinus();
   const nFine = noise(p, FINE).toVar();
@@ -543,7 +617,11 @@ export async function createTerrainGroundMaterialAsync(
     base = planted;
   }
   const green = clamp(base.g.sub(max(base.r, base.b)).mul(10), 0, 1).toVar();
-  const calm = green.mul(smoothstep(6, 18, distance)).mul(-TURF_CALM).add(1).toVar();
+  const calm = green
+    .mul(smoothstep(6, 18, distance))
+    .mul(-TURF_CALM)
+    .add(1)
+    .toVar();
   const turf = green.mul(0.55).add(0.45).mul(calm);
   const mottle = noise(p, BROAD)
     .sub(0.5)
@@ -608,9 +686,9 @@ export async function createTerrainGroundMaterialAsync(
   );
   const bare = mix(vec3(1), vec3(...SOIL).div(max(base, vec3(0.001))), speck);
   // Sunlit turf reads lime when a palette green is lit at full strength; mute it a little.
-  const muted = mix(vec3(dot(base, vec3(0.2126, 0.7152, 0.0722))), base, 1 - MUTE).div(
-    max(base, vec3(0.001)),
-  );
+  const muted = mix(vec3(dot(base, vec3(0.2126, 0.7152, 0.0722))), base, 1 - MUTE)
+    .div(max(base, vec3(0.001)))
+    .mul(vec3(...TURF));
   const tint = mix(vec3(1), vec3(...DRY), dry)
     .mul(mix(vec3(1), vec3(...LUSH), lush))
     .mul(drift)
@@ -669,7 +747,10 @@ export interface TerrainPavementMaterialOptions {
 const FRAY = 0.03;
 const LOOSE_FRAY = 0.06;
 /** Tint of the soil margin where paving meets the ground (a factor over the paving color). */
-const VERGE: [number, number, number] = [0.66, 0.6, 0.46];
+const VERGE: [number, number, number] = [0.63, 0.62, 0.5];
+/** Footprint (meters per pixel) by which the soil margin is gone: past it, a third of a meter of
+ * tan along every paved edge drew a ruled outline round each lawn from rooftop height. */
+const VERGE_FADE = 0.12;
 /** Asphalt aggregate: chip size in meters, and how much pale chips lighten and pits darken. */
 const STONE = 0.03125;
 const STONE_LIGHT = 0.28;
@@ -874,9 +955,10 @@ const PAVEMENT_GLSL = /* glsl */ `
       fray *= min(terrainGroundStrength, 1.0);
     }
     // Soil washes and is tracked onto paving where it meets the ground: a patchy brown margin
-    // about a third of a meter wide, so a lawn edge reads as worn rather than ruled.
+    // about a third of a meter wide, so a lawn edge reads as worn rather than ruled, close up.
     float grime = (1.0 - smoothstep(0.0, 0.35, edge - fray)) * step(edge, 63.0) *
-      (0.35 + 0.65 * smoothstep(0.3, 0.7, spill)) * 0.45;
+      (0.35 + 0.65 * smoothstep(0.3, 0.7, spill)) * 0.45 *
+      (1.0 - smoothstep(0.25, 0.6, footprint / ${VERGE_FADE.toFixed(2)}));
     vec3 factor = mix(vec3(1.0), (isPaint > 0.5 ? paint : vec3(1.0)) * scalar *
       mix(vec3(1.0), ${glslVec3(VERGE)}, grime), terrainGroundStrength);
     return vec4(factor, edge - fray);
@@ -910,6 +992,7 @@ export function createTerrainPavementMaterial(
     Object.assign(shader.uniforms, {
       terrainGroundOrigin: state.origin,
       terrainGroundStrength: state.strength,
+      terrainGroundNoiseMap: { value: groundNoiseLattice() },
     });
     shader.vertexShader = `
       attribute vec4 surfaceDetail;
@@ -936,7 +1019,7 @@ export function createTerrainPavementMaterial(
        diffuseColor.rgb *= terrainPavement.rgb;`,
     );
   };
-  material.customProgramCacheKey = (): string => 'terrain-pavement@27';
+  material.customProgramCacheKey = (): string => 'terrain-pavement@29';
   states.set(material, state);
   return material;
 }
@@ -1308,12 +1391,13 @@ export async function createTerrainPavementMaterialAsync(
       fray.mulAssign(min(amount, 1));
     });
     // Soil washes and is tracked onto paving where it meets the ground: a patchy brown margin
-    // about a third of a meter wide, so a lawn edge reads as worn rather than ruled.
+    // about a third of a meter wide, so a lawn edge reads as worn rather than ruled, close up.
     const grime = smoothstep(0, 0.35, edge.sub(fray))
       .oneMinus()
       .mul(step(edge, 63))
       .mul(smoothstep(0.3, 0.7, spill).mul(0.65).add(0.35))
-      .mul(0.45);
+      .mul(0.45)
+      .mul(smoothstep(0.25, 0.6, footprint.div(VERGE_FADE)).oneMinus());
     const factor = mix(
       vec3(1),
       mix(vec3(1), paint, isPaint)

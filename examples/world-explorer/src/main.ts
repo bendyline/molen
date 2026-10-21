@@ -796,8 +796,6 @@ async function main(): Promise<void> {
   startupStage('water-material');
   // One ground material for terrain and landcover, with world-space variation; `?ground=flat`
   // keeps the solid vertex colors for comparison.
-  // TEMP(gfx-pass): ?gfxOff=ground,pave,scatter,weather splits ?ground=flat for benchmarks.
-  const gfxOff = new Set((params.get('gfxOff') ?? '').split(','));
   const groundMaterial =
     params.get('ground') === 'flat'
       ? undefined
@@ -810,17 +808,15 @@ async function main(): Promise<void> {
   const pavementMaterial = groundMaterial
     ? await createTerrainPavementMaterialAsync({}, viewer.renderer.backend)
     : undefined;
-  surfaceRenderer.setMaterial(gfxOff.has('pave') ? undefined : pavementMaterial);
+  surfaceRenderer.setMaterial(pavementMaterial);
   // Trees, shrubs and props: leaf speckle and crown occlusion (also off with `?ground=flat`).
-  const scatterMaterial =
-    groundMaterial && !gfxOff.has('scatter')
-      ? await createScatterMaterialAsync(viewer.renderer.backend)
-      : undefined;
+  const scatterMaterial = groundMaterial
+    ? await createScatterMaterialAsync(viewer.renderer.backend)
+    : undefined;
   // Buildings: facade tone drift, rain streaks and weathered roofs (also off with `?ground=flat`).
-  const buildingDecorator =
-    groundMaterial && !gfxOff.has('weather')
-      ? await createBuildingWeatheringAsync(viewer.renderer.backend)
-      : undefined;
+  const buildingDecorator = groundMaterial
+    ? await createBuildingWeatheringAsync(viewer.renderer.backend)
+    : undefined;
   performanceStatus.dataset.backend = viewer.renderer.backend;
   performanceStatus.dataset.fallbackReason = viewer.renderer.fallbackReason ?? '';
   const semanticDemo = loaded.synthetic;
@@ -855,7 +851,7 @@ async function main(): Promise<void> {
         // WebGL pays full price for every building and plant draw, so it keeps a compact scene.
         compact: viewer.renderer.backend === 'webgl',
         worker: useWorker,
-        ...(fieldMaterial && !gfxOff.has('ground') ? { groundMaterial: fieldMaterial } : {}),
+        ...(fieldMaterial ? { groundMaterial: fieldMaterial } : {}),
         ...(scatterMaterial ? { modelMaterial: scatterMaterial } : {}),
         ...(buildingDecorator ? { buildingDecorator } : {}),
         lodPolicy,
@@ -1123,7 +1119,7 @@ async function main(): Promise<void> {
           : {}),
         createTileGroup: () => viewer.renderer.createRenderGroup(),
         morphMilliseconds: params.has('freeze') ? 0 : 180,
-        ...(groundMaterial && !gfxOff.has('ground') ? { material: groundMaterial } : {}),
+        ...(groundMaterial ? { material: groundMaterial } : {}),
         // Ground, roads and buildings receive sun shadows; tall layer parts cast them.
         shadows: shadowsWanted,
         shadowCasterHeight: EARTH_SHADOW_CASTER_HEIGHT,
@@ -1341,9 +1337,6 @@ async function main(): Promise<void> {
     sampleTerrainTunnel(stream.object, x, camera.pos[1], z)?.floor ??
     aircraft?.groundHeight(x, z) ??
     stream.sampleHeight(x, z);
-  // TEMP(gfx-pass): capture harness access; remove before hand-off.
-  if (params.has('debugScene'))
-    (globalThis as Record<string, unknown>).__explorer = { viewer, camera, sampleHeight };
   // Cars and aircraft: definitions from the entities pack's types, models read from the same pack
   // the first time each is shown.
   const loadEntityModel = async (id: string): Promise<THREE.Object3D> =>
@@ -2015,11 +2008,13 @@ async function main(): Promise<void> {
     // 100 m over the ground the budget grows with height (up to four times), so the trees and
     // buildings below hand over to their coarser levels sooner; street and rooftop views keep it.
     lodPolicy.maxPixelError = objectPixelError * Math.min(4, Math.max(1, above / 100));
-    // Ambient occlusion darkens creases a meter or two across: below a pixel from high up, where
-    // its passes still cost a full-screen share of the frame. Off above 180 m over the ground,
-    // back on below 120 m.
+    // Ambient occlusion darkens creases a meter or two across, under shrubs and along wall bases:
+    // it grounds what a walker or driver sees up close. From rooftop height up the same creases
+    // are small, while the passes cost a full-screen share of the frame (about 3 ms of 44 on an
+    // Apple M2 at High, which put a rooftop view behind the explorer's frame rate before this
+    // detail). Off above 24 m over the ground, back on below 18 m.
     if (occlusionWanted) {
-      const on = occlusionOn ? above < 180 : above < 120;
+      const on = occlusionOn ? above < 24 : above < 18;
       if (on !== occlusionOn) {
         viewer.renderer.setAmbientOcclusion(on);
         occlusionOn = on;

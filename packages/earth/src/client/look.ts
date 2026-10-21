@@ -23,6 +23,13 @@ export const EARTH_SKY_PALETTE: Required<SkyPalette> = {
 };
 
 /**
+ * The clear dome drawn at about half the palette's brightness. Lit by the palette, the sky
+ * renders pale under ACES; a deeper blue reads as a clear day, and keeps white clouds bright
+ * against it. Only the dome: sky light and reflections keep the palette.
+ */
+export const EARTH_SKY_DOME: { brightness: number } = { brightness: 0.52 };
+
+/**
  * A strong sun over a moderate sky fill: lit faces sit near their authored color and shade faces
  * well under half, so slopes, cast shadows and darks read with photographic contrast without
  * swallowing the shaded side of a street seen against the sun. The fill is cool but far less saturated than the zenith

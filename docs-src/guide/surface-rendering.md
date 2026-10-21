@@ -118,7 +118,8 @@ Edges that meet bare ground fray into it rather than ending on a ruled line: the
 sidewalk, both sides of a footpath, dirt road or track bed, a road's shoulder, and a narrow fringe
 traced around each lot and plaza (skipped where a road, footway, other paved area or building meets
 it). The material discards a ragged margin so the ground shows through, and inside it a patchy
-brown soil margin about a third of a meter wide, where soil washes and is tracked onto the paving.
+brown soil margin about a third of a meter wide, where soil washes and is tracked onto the paving;
+it fades out by twenty or thirty meters away, where it would draw a ruled outline round each lawn.
 Cast paving keeps its formed edge; grass blades creep up to 3 cm over it, and on the lawn side of
 a street sidewalk or parking lot tufts of lawn about 35 cm across grow up to 10 cm over it,
 so from mid distance that edge wanders rather than ending on a ruled line. Footpaths and plazas,

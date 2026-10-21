@@ -72,6 +72,20 @@ const common = {
     .describe(
       'Sky-managed lights replace environment.ambient and environment.sun when sky is enabled.',
     ),
+  dome: z
+    .strictObject({
+      brightness: number
+        .positive()
+        .max(4)
+        .optional()
+        .describe(
+          'Multiplier on the drawn dome color, default 1. Lighting and reflections keep the palette.',
+        ),
+    })
+    .optional()
+    .describe(
+      'Sky dome drawing. Filmic tone mapping renders a physically bright clear sky pale; below 1 deepens it.',
+    ),
   stars: z
     .strictObject({
       enabled: z.boolean().optional().describe('Show the star catalog, default true.'),
@@ -192,6 +206,7 @@ export interface SkyAppearance {
     skyLightSaturation?: number;
     castShadow?: boolean;
   };
+  dome?: { brightness?: number };
   stars?: { enabled?: boolean; magnitudeLimit?: number; intensity?: number; size?: number };
   sun?: { visible?: boolean; size?: number };
   moon?: { visible?: boolean; size?: number; earthshine?: number };

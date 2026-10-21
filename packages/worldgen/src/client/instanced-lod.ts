@@ -9,6 +9,12 @@ import { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './screen-space-lod';
 export interface InstancedPlacementLodOptions {
   /** Local meters per culling cell (default 512); `Infinity` keeps the whole set in one cell. */
   cellSize?: number;
+  /**
+   * Bounds the cells to a grid from the set's own lowest corner, `cellsPerAxis` cells each way:
+   * placements past the grid join its edge cells, so a set never yields more than
+   * `cellsPerAxis²` batches whatever frame its coordinates are in.
+   */
+  cellGrid?: { cellsPerAxis: number };
   /** Distance from a cell's bounds before the medium/far model takes over. */
   distances?: [number, number];
   /** Projected-detail policy; when supplied it replaces fixed distance thresholds. */
@@ -37,10 +43,27 @@ function withoutCards(geometry: THREE.BufferGeometry): boolean {
   return free;
 }
 
+/** Projected error (meters, at unit instance scale) at which the medium and far levels take over. */
+const LEVEL_ERRORS = [0.45, 2] as const;
+/**
+ * A level drawn with leaf cards hands over at this share of that error. Its cards overlap several
+ * deep in every crown and, alpha tested, each layer is shaded: near crowns kept out to 175 m from a
+ * rooftop camera cost a residential view about a quarter of its frame time on an Apple M2. At a
+ * quarter, near crowns reach about 45 m there and medium ones about 200 m.
+ */
+const CARD_HANDOVER = 0.25;
+
+function handoverError(level: number, finer: PreparedModel): number {
+  const cards =
+    (finer.material.alphaTest > 0 || finer.material.alphaToCoverage) &&
+    !withoutCards(finer.geometry);
+  return (LEVEL_ERRORS[level - 1] ?? 2) * (cards ? CARD_HANDOVER : 1);
+}
+
 /**
  * The material for a level: an alpha-tested material's opaque twin when the level has no cards.
  * A shader that can discard (alpha test, alpha to coverage) switches off hidden-surface removal
- * on tile-based GPUs, so a distant forest drawn with the card material shaded every layer of
+ * on GPUs that defer shading (Apple's among them), so a distant forest drawn with the card material shaded every layer of
  * crowns behind the first: on an Apple M2 that was half of a residential view's frame time.
  * The twin keeps the shader hooks and shares one program across batches.
  */
@@ -54,6 +77,10 @@ function levelMaterial(material: THREE.Material, geometry: THREE.BufferGeometry)
     opaque.customProgramCacheKey = material.customProgramCacheKey;
     opaque.alphaTest = 0;
     opaque.alphaToCoverage = false;
+    // A node material cuts its cards with nodes instead (see the scatter material).
+    const nodes = opaque as THREE.Material & { alphaTestNode?: unknown; maskShadowNode?: unknown };
+    if (nodes.alphaTestNode !== undefined) nodes.alphaTestNode = null;
+    if (nodes.maskShadowNode !== undefined) nodes.maskShadowNode = null;
     opaque.name = `${material.name}:opaque`;
     material.addEventListener('dispose', () => opaque.dispose());
     opaqueTwins.set(material, opaque);
@@ -78,6 +105,8 @@ class InstancedDetailSwitch extends THREE.LOD {
   private selected = 0;
   private perspectiveAt = Number.NEGATIVE_INFINITY;
   private castsShadow: boolean | undefined;
+  /** What the last view-camera choice saw; see `update`. */
+  private readonly seen = new Float64Array(23).fill(Number.NaN);
   constructor(
     readonly policy: ScreenSpaceLodPolicy,
     readonly bounds: THREE.Box3,
@@ -102,30 +131,35 @@ class InstancedDetailSwitch extends THREE.LOD {
     const now = performance.now();
     if (perspective.isPerspectiveCamera) this.perspectiveAt = now;
     else if (now - this.perspectiveAt < 250) return;
-    const scale = this.matrixWorld.getMaxScaleOnAxis();
     const height = Math.max(1, this.policy.viewportHeight);
     const error = Math.max(0.1, this.policy.maxPixelError);
-    let level = 0;
-    if (perspective.isPerspectiveCamera) {
+    if (!perspective.isPerspectiveCamera) {
+      const ortho = camera as THREE.OrthographicCamera;
+      const scale = this.matrixWorld.getMaxScaleOnAxis();
+      const pixelsPerMeter =
+        (height * ortho.zoom) / Math.max(0.001, (ortho.top ?? 1) - (ortho.bottom ?? -1));
+      let level = 0;
+      for (let i = 1; i < this.geometries.length; i++) {
+        const threshold = this.selected >= i ? error * 1.15 : error;
+        if ((this.errors[i] ?? 0) * scale * pixelsPerMeter <= threshold) level = i;
+      }
+      this.selected = level;
+      this.seen[0] = Number.NaN;
+    } else if (this.moved(perspective, height, error)) {
+      const scale = this.matrixWorld.getMaxScaleOnAxis();
       const focal = height / (2 * Math.tan((perspective.fov * Math.PI) / 360));
-      const local = this.worldToLocal(camera.getWorldPosition(cameraPosition));
+      const local = this.worldToLocal(cameraPosition.setFromMatrixPosition(camera.matrixWorld));
       const distance = (this.bounds.distanceToPoint(local) * scale) / perspective.zoom;
+      let level = 0;
       for (let i = 1; i < this.geometries.length; i++) {
         const threshold = (scale * (this.errors[i] ?? 0) * focal) / error;
         // 15% hysteresis toward the level already shown, as THREE.LOD does.
         if (distance >= (this.selected >= i ? threshold * 0.85 : threshold)) level = i;
         else break;
       }
-    } else {
-      const ortho = camera as THREE.OrthographicCamera;
-      const pixelsPerMeter =
-        (height * ortho.zoom) / Math.max(0.001, (ortho.top ?? 1) - (ortho.bottom ?? -1));
-      for (let i = 1; i < this.geometries.length; i++) {
-        const threshold = this.selected >= i ? error * 1.15 : error;
-        if ((this.errors[i] ?? 0) * scale * pixelsPerMeter <= threshold) level = i;
-      }
+      this.selected = level;
     }
-    this.selected = level;
+    const level = this.selected;
     // Decided once the host has marked this object for shadows, from the near geometry.
     this.castsShadow ??= this.mesh.castShadow;
     const geometry = this.geometries[level];
@@ -134,6 +168,42 @@ class InstancedDetailSwitch extends THREE.LOD {
     const material = this.materials[level];
     if (material !== undefined && this.mesh.material !== material) this.mesh.material = material;
     this.mesh.castShadow = level < this.geometries.length - 1 && this.castsShadow;
+    // Nor does it receive them: it stands mostly past the camera-following shadow map, yet each
+    // of its fragments still paid for the map's soft lookups across a whole distant tree line.
+    this.mesh.receiveShadow = level < this.geometries.length - 1;
+  }
+
+  /**
+   * Whether a view camera's choice could differ from the last one. Three's projection and the
+   * WebGPU bundle walk both update every LOD each frame, and a still camera chooses the same level
+   * frame after frame: with a few thousand batches the repeated matrix inverses were milliseconds
+   * of main thread. The level's mesh state is still applied on every update, since the host may
+   * set shadow flags or visibility on the batch in between. The camera's world matrix is current
+   * here, as THREE.LOD itself assumes.
+   */
+  private moved(camera: THREE.PerspectiveCamera, height: number, error: number): boolean {
+    const seen = this.seen,
+      view = camera.matrixWorld.elements,
+      own = this.matrixWorld.elements;
+    let same =
+      seen[0] === view[12] &&
+      seen[1] === view[13] &&
+      seen[2] === view[14] &&
+      seen[3] === camera.fov &&
+      seen[4] === camera.zoom &&
+      seen[5] === height &&
+      seen[6] === error;
+    for (let i = 0; same && i < 16; i++) same = seen[7 + i] === own[i];
+    if (same) return false;
+    seen[0] = view[12] as number;
+    seen[1] = view[13] as number;
+    seen[2] = view[14] as number;
+    seen[3] = camera.fov;
+    seen[4] = camera.zoom;
+    seen[5] = height;
+    seen[6] = error;
+    seen.set(own, 7);
+    return true;
   }
 }
 const cameraPosition = new THREE.Vector3();
@@ -156,9 +226,22 @@ export function createInstancedPlacementLod(
     throw new Error('instance LOD needs a positive cell size and increasing nonnegative distances');
   }
   const cells = new Map<string, number[]>();
+  const grid = options.cellGrid;
+  const corner = [Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY];
+  if (grid !== undefined)
+    for (let i = 0; i < set.count; i++) {
+      const offset = i * PLACEMENT_STRIDE;
+      corner[0] = Math.min(corner[0] as number, set.data[offset] as number);
+      corner[1] = Math.min(corner[1] as number, set.data[offset + 2] as number);
+    }
+  const cellOf = (value: number, axis: 0 | 1): number => {
+    if (grid === undefined) return Math.floor(value / size);
+    const index = Math.floor((value - (corner[axis] as number)) / size);
+    return Math.min(grid.cellsPerAxis - 1, Math.max(0, index));
+  };
   for (let i = 0; i < set.count; i++) {
     const offset = i * PLACEMENT_STRIDE;
-    const key = `${Math.floor((set.data[offset] as number) / size)}/${Math.floor((set.data[offset + 2] as number) / size)}`;
+    const key = `${cellOf(set.data[offset] as number, 0)}/${cellOf(set.data[offset + 2] as number, 1)}`;
     const cell = cells.get(key) ?? [];
     cell.push(i);
     cells.set(key, cell);
@@ -218,7 +301,7 @@ export function createInstancedPlacementLod(
         if (model.geometry === models[level - 1]?.geometry) continue;
         geometries.push(drawn(model) ? model.geometry : undefined);
         materials.push(levelMaterial(model.material, model.geometry));
-        errors.push(([0.45, 2][level - 1] as number) * largestScale);
+        errors.push(handoverError(level, models[level - 1] as PreparedModel) * largestScale);
         if (!drawn(model)) break;
       }
       first.material = materials[0] as THREE.Material;
@@ -257,7 +340,10 @@ export function createInstancedPlacementLod(
         nothing.name = `${name}:${key}:lod${level}`;
         nothing.visible = false;
         if (lod instanceof ScreenSpaceLod)
-          lod.addDetail(nothing, ([0.45, 2][level - 1] as number) * largestScale);
+          lod.addDetail(
+            nothing,
+            handoverError(level, models[level - 1] as PreparedModel) * largestScale,
+          );
         else lod.addLevel(nothing, (distances[level - 1] as number) + radius, 0.15);
         break;
       }
@@ -278,7 +364,10 @@ export function createInstancedPlacementLod(
       mesh.computeBoundingBox();
       mesh.computeBoundingSphere();
       if (lod instanceof ScreenSpaceLod) {
-        lod.addDetail(mesh, ([0.45, 2][level - 1] as number) * largestScale);
+        lod.addDetail(
+          mesh,
+          handoverError(level, models[level - 1] as PreparedModel) * largestScale,
+        );
       } else lod.addLevel(mesh, (distances[level - 1] as number) + radius, 0.15);
       mesh.visible = false;
     }

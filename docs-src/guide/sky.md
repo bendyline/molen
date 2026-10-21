@@ -101,17 +101,25 @@ the default 1 preserves real angular size. Larger values help stylized scenes an
 
 ## Ambient occlusion
 
-`renderer.setAmbientOcclusion(true, { radius, strength })` adds screen-space ambient occlusion
+`renderer.setAmbientOcclusion(true, { radius, strength, reach })` adds screen-space ambient occlusion
 (three's GTAO) on the WebGPU backend; on WebGL it does nothing. Creases, corners, window recesses
 and the ground around building and tree bases darken where indirect light would not reach. The
 frame then draws into an offscreen multisampled target exactly as it would to the canvas (the sky
-scene, then the world, which also writes view normals); occlusion is computed from that target's
-depth and normals at half resolution, denoised, and multiplied into the image, with tone mapping
-applied once at the end. `radius` (default 3 m) is the world-space reach and
-`strength` (0–1, default 0.85) the share applied, since the multiply also dims direct light.
-Frames draw directly while the pipeline compiles. The World Explorer turns it on below 120 m
-over the ground and off above 180 m, where its creases fall below a pixel but its passes still
-cost a full-screen share of each frame; `?ao=0` turns it off for comparison.
+scene, then the world, which also writes view normals packed in 8 bits); occlusion is computed
+from that target's depth and normals at half resolution with eight samples, denoised at half
+resolution too by a depth-aware 5×5 box (nine bilinear taps; it cancels GTAO's 5×5 rotation
+pattern at a fraction of three's sixteen-tap denoiser), and multiplied into the image, with tone
+mapping applied once at the end. Sky pixels (the far plane, with either depth convention) are left
+untouched, and GTAO skips them: with a reversed depth buffer the sky reads as depth 1, the value
+GTAO skips, rather than its stored 0. Anything farther than `reach` (default 250 m of view
+distance) is skipped the same way, and the occlusion fades out over the last third of it: past
+that its creases are under a pixel, and skipping them is most of an aerial view. `radius`
+(default 3 m) is the world-space sampling radius and `strength` (0–1, default 0.85) the share
+applied, since the
+multiply also dims direct light. Frames draw directly while the pipeline compiles. The World
+Explorer keeps it for street-level views: on below 18 m over the ground and off above 24 m, where
+its creases are small but its passes still cost a full-screen share of each frame (about 3 ms of
+a 44 ms rooftop frame on an Apple M2 at High); `?ao=0` turns it off for comparison.
 
 ## Reflections
 
@@ -160,8 +168,10 @@ authored star list with `direction`, `magnitude`, and optional hex `color`.
 Attach its `lights` group to the world scene, call `update(seconds)` and `prepareCamera(camera)`,
 and render its `scene`/`camera` as a background pass before your scene. Dispose it when removed.
 
-`palette` also accepts `ground`, `sun`, and `moon`. `moon.earthshine` controls the dark side's
-subtle visibility. Stars support `enabled`, `magnitudeLimit` (up to the catalog limit of 6.5),
+`palette` also accepts `ground`, `sun`, and `moon`. `dome.brightness` (default 1) scales only the
+drawn dome, not the sky light or reflections taken from the palette: under filmic tone mapping a
+clear sky lit at the palette's brightness renders pale, and the Earth look draws it at about half
+(`EARTH_SKY_DOME`). `moon.earthshine` controls the dark side's subtle visibility. Stars support `enabled`, `magnitudeLimit` (up to the catalog limit of 6.5),
 `intensity` and visual angular `size`. Stars disappear below the horizon and fade through
 twilight; a bright visible Moon reduces their contrast. Moon disks occlude stars behind them.
 

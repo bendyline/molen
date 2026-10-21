@@ -153,38 +153,45 @@ function leafAtlas(): THREE.DataTexture {
     spread = (SPRAY_TO - SPRAY_FROM) / 2 - 4;
   const stem = ATLAS_HEIGHT - 10;
   paint([middle, 4], Math.PI / 2, stem, 3.2, 0.48, false, spray);
-  /** A branchlet fringed with needles both ways, lightening toward its tip. */
+  /**
+   * A branchlet fringed with needles both ways, lightening toward its tip. Needle pitch, angle and
+   * each branchlet's own tone vary: an even comb of branchlets, alike in tone, read on a tree as
+   * stacked parallel stripes.
+   */
   const branchlet = (
     root: readonly [number, number],
     direction: number,
     length: number,
     stream: number,
+    tone = 1,
   ): void => {
-    paint(root, direction, length, 2, 0.5, false, spray);
-    for (let s = 2, n = 0; s < length; s += 1.9, n++)
+    paint(root, direction, length, 2, 0.5 * tone, false, spray);
+    for (let s = 2, n = 0; s < length; s += 1.5 + 0.9 * unit01(13, stream + n), n++)
       for (const turn of [-0.75, 0.75]) {
         const at = s / length;
         const jitter = unit01(11, stream + n * 2 + (turn > 0 ? 1 : 0));
         paint(
           [root[0] + Math.cos(direction) * s, root[1] + Math.sin(direction) * s],
-          direction + turn + (jitter - 0.5) * 0.4,
-          (9 - 4 * at) * (0.8 + 0.4 * jitter),
+          direction + turn + (jitter - 0.5) * 0.7,
+          (9 - 4 * at) * (0.7 + 0.6 * jitter),
           2,
-          (0.58 + 0.34 * at) * (0.86 + 0.24 * jitter),
+          (0.58 + 0.34 * at) * (0.86 + 0.24 * jitter) * tone,
           false,
           spray,
         );
       }
   };
-  for (let k = 0; k < 30; k++) {
-    const t = Math.min(0.97, 0.04 + (0.92 * (k + 0.6 * unit01(12, k))) / 30);
+  for (let k = 0; k < 34; k++) {
+    const t = Math.min(0.97, 0.04 + (0.92 * (k + 0.9 * unit01(12, k))) / 34);
     const side = k % 2 === 0 ? -1 : 1;
-    const forward = 0.9 + 0.2 * unit01(12, k + 100);
+    const forward = 0.75 + 0.5 * unit01(12, k + 100);
     const envelope = Math.sin(Math.PI * t ** 0.75) ** 0.8;
-    const length = (spread * (0.12 + 0.88 * envelope)) / Math.sin(forward);
+    const length =
+      (spread * (0.12 + 0.88 * envelope) * (0.72 + 0.28 * unit01(12, k + 200))) / Math.sin(forward);
     const root: [number, number] = [middle, 4 + t * stem];
     const direction = Math.atan2(Math.cos(forward), side * Math.sin(forward));
-    branchlet(root, direction, length, k * 1000);
+    const tone = 0.78 + 0.3 * unit01(12, k + 300);
+    branchlet(root, direction, length, k * 1000, tone);
     // Shorter side shoots fill the gaps between branchlets.
     for (const [at, n] of [
       [0.35, 1],
@@ -199,10 +206,61 @@ function leafAtlas(): THREE.DataTexture {
           direction + side * 0.55,
           length * 0.34,
           k * 1000 + n * 300,
+          tone,
         );
   }
   let width = ATLAS_WIDTH,
     height = ATLAS_HEIGHT;
+  // Clear texels take the tone of the leaves beside them (a few rings, then their region's mean),
+  // so filtering at a cut edge never blends a pale rim into the leaves: at medium distance, where
+  // a card is a few texels across, that rim read as pale speckles across every crown.
+  const known = new Uint8Array(width * height);
+  for (let i = 0; i < width * height; i++) known[i] = (alpha[i] as number) > 0.02 ? 1 : 0;
+  for (let pass = 0; pass < 8; pass++) {
+    const found: [number, number][] = [];
+    for (let y = 0; y < height; y++)
+      for (let x = 0; x < SOLID_FROM; x++) {
+        const i = y * width + x;
+        if (known[i]) continue;
+        let sum = 0,
+          count = 0;
+        for (const [dx, dy] of [
+          [1, 0],
+          [-1, 0],
+          [0, 1],
+          [0, -1],
+        ] as const) {
+          const nx = x + dx,
+            ny = y + dy;
+          if (nx < 0 || ny < 0 || nx >= SOLID_FROM || ny >= height) continue;
+          const j = ny * width + nx;
+          if (!known[j]) continue;
+          sum += tone[j] as number;
+          count++;
+        }
+        if (count > 0) found.push([i, sum / count]);
+      }
+    for (const [i, value] of found) {
+      tone[i] = value;
+      known[i] = 1;
+    }
+  }
+  for (const [from, to] of [
+    [0, SPRAY_FROM],
+    [SPRAY_FROM, SOLID_FROM],
+  ] as const) {
+    let sum = 0,
+      count = 0;
+    for (let y = 0; y < height; y++)
+      for (let x = from; x < to; x++)
+        if (known[y * width + x]) {
+          sum += tone[y * width + x] as number;
+          count++;
+        }
+    const mean = count > 0 ? sum / count : 0.8;
+    for (let y = 0; y < height; y++)
+      for (let x = from; x < to; x++) if (!known[y * width + x]) tone[y * width + x] = mean;
+  }
   const level0 = new Uint8Array(width * height * 4);
   for (let i = 0; i < width * height; i++) {
     const solid = i % width >= SOLID_FROM;
@@ -278,13 +336,16 @@ function leafAtlas(): THREE.DataTexture {
   return atlas;
 }
 
+/** Atlas alpha below which a leaf card is cut away. */
+const SCATTER_ALPHA_CUT = 0.5;
+
 const parameters = (): THREE.MeshStandardMaterialParameters => ({
   vertexColors: true,
   roughness: 0.92,
   map: leafAtlas(),
   // Leaf cards cut out along the atlas's leaf edges; with multisampling, alpha to coverage
   // antialiases the cut instead of stair-stepping it.
-  alphaTest: 0.5,
+  alphaTest: SCATTER_ALPHA_CUT,
   alphaToCoverage: true,
 });
 
@@ -386,6 +447,8 @@ export async function createScatterMaterialAsync(
       smoothstep,
       step,
       clamp,
+      texture,
+      uv,
       varying,
       vec2,
       vec3,
@@ -471,6 +534,19 @@ export async function createScatterMaterialAsync(
   material.name = 'worldgen:models';
   const color = materialColor as unknown as Node<'vec4'>;
   material.colorNode = vec4(color.rgb.mul(factor), color.a);
+  // The cut is a node, not `alphaTest`: Three copies each shadow caster's `alphaTest` onto the
+  // light's one shadow-pass material, and every switch between a carded and a solid caster
+  // bumped that material's version, so every caster after it rebuilt its render-object key
+  // each frame (milliseconds of main thread at street level). The shadow mask samples the atlas
+  // itself: in the shadow pass `materialColor` is the shadow material's own color, without the
+  // atlas, and every card then cast its whole quad, a hard star of a shadow under each crown.
+  material.alphaTest = 0;
+  material.alphaTestNode = float(SCATTER_ALPHA_CUT);
+  material.maskShadowNode = texture(material.map as THREE.Texture, uv()).a.greaterThanEqual(
+    SCATTER_ALPHA_CUT,
+  );
+  // No uniforms of its own: replayed render bundles need not refresh every batch each frame.
+  material.userData.bundleStatic = true;
   return material;
 }
 

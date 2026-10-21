@@ -381,11 +381,20 @@ export function createWorldgenSemanticRenderers(
                 set,
                 [prepared, medium, distant],
                 {
-                  // One batch per tile: the terrain tile is already the culling unit. On WebGPU
-                  // every InstancedMesh pays its own shader build (about 6 ms on the main
+                  // One batch per coarser tile: the terrain tile is already the culling unit. On
+                  // WebGPU every InstancedMesh pays its own shader build (about 6 ms on the main
                   // thread, shared material or not), so four cells per tile times each model's
                   // three LOD levels starved terrain and building publication in fast flight.
-                  cellSize: Number.POSITIVE_INFINITY,
+                  // A batch picks one detail level for all its plants, though: a camera inside a
+                  // finest tile drew every tree in it at near detail, leaf cards and all, which
+                  // cost a rooftop view a third of its frame time on an Apple M2. Finest tiles
+                  // split into quarters, so near detail stays round the camera's own quarter.
+                  ...(coarse
+                    ? { cellSize: Number.POSITIVE_INFINITY }
+                    : {
+                        cellSize: context.tileSize / 2,
+                        cellGrid: { cellsPerAxis: 2 },
+                      }),
                   ...(options.lodPolicy ? { screenSpace: options.lodPolicy } : {}),
                 },
                 `${name}:${set.setId}`,

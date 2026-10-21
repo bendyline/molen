@@ -182,6 +182,8 @@ export async function createBuildingWeatheringAsync(
     if (skip(material, slot)) return;
     // Carried onto the node material WebGPU builds from this one.
     (material as THREE.MeshStandardMaterial & { colorNode?: unknown }).colorNode = colorNode;
+    // No uniforms of its own: replayed render bundles need not refresh every wall each frame.
+    material.userData.bundleStatic = true;
     material.needsUpdate = true;
   };
 }

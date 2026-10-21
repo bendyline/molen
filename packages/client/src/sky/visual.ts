@@ -388,6 +388,8 @@ export class SkyVisual {
     const horizon = this.palette.nightHorizon.clone().lerp(this.palette.dayHorizon, daylight);
     const zenith = this.palette.nightZenith.clone().lerp(this.palette.dayZenith, daylight);
     const twilight = smooth(-18, -4, altitude) * (1 - smooth(0, 16, altitude));
+    // The drawn dome only: the sky light and reflections keep the palette's brightness.
+    const brightness = this.data.dome?.brightness ?? 1;
     const color = new THREE.Color();
     const dir = new THREE.Vector3();
     for (let i = 0; i < positions.count; i++) {
@@ -405,7 +407,7 @@ export class SkyVisual {
         );
       // Clear-sky forward glow. Distance haze and volumetric scattering are separate concerns.
       const glow = clamp(dir.dot(sun)) ** 96 * smooth(-2, 5, altitude) * 0.22;
-      color.lerp(this.palette.sun, glow);
+      color.lerp(this.palette.sun, glow).multiplyScalar(brightness);
       colors.setXYZW(i, color.r, color.g, color.b, 1);
     }
     colors.needsUpdate = true;

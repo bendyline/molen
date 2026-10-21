@@ -150,7 +150,9 @@ return under half the daylight that reaches them (a room sees only the sky its w
 so from outside they read dimmer than the day, as real rooms do, not as pale smudges behind
 the glass. Furniture is merged instead
 of spawning one scene object per shelf product. Ceilings use simple bright fixture geometry;
-there are no per-building dynamic lights or additional shadow maps. The walking octree uses
+there are no per-building dynamic lights or additional shadow maps. Interior structure and the
+opaque portal covers cast the sun's shadow like the walls around them (furniture and glass do
+not), so a building's shadow stays solid where its windows line up. The walking octree uses
 the same published geometry, except that visible stair steps are skipped (`walkIgnore`) and
 a closed wedge supplies smooth stair collision. The published proxy is marked
 `walkCollisionOnly` and has rendering layers disabled. Hosts using the kernel buffers directly

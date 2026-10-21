@@ -10,7 +10,7 @@ function fixture() {
     getRenderObjectFunction: () => setRenderObjectFunction.mock.lastCall?.[0],
     shadowMap: { enabled: false },
     backend: { updateBinding: vi.fn() },
-    _nodes: { needsRefresh: vi.fn(() => true) },
+    _nodes: { needsRefresh: vi.fn(() => true), nodeFrame: { renderId: 1 } },
     getMRT: () => null,
     getDrawingBufferSize: (target: THREE.Vector2) => target.set(320, 240),
     getPixelRatio: () => 1,
@@ -33,37 +33,59 @@ function fixture() {
 }
 
 describe('WebGPU persistent buffers and command invalidation', () => {
-  it('skips only initialized unchanged observers, refreshing edits and node animation', () => {
+  it('refreshes only the first object of a material in each render of an unchanged bundle', () => {
     const { optimizer, group, mesh, prepare, driver } = fixture();
     const monitor = { hasNode: false, hasAnimation: false, renderObjects: new WeakMap() };
-    const object = { bundle: group, getMonitor: () => monitor };
+    const material = mesh.material as THREE.Material;
+    const first = { bundle: group, material, getMonitor: () => monitor };
+    const second = { bundle: group, material, getMonitor: () => monitor };
     prepare();
-    expect(driver._nodes.needsRefresh(object)).toBe(true);
+    // Not yet recorded: everything refreshes.
+    expect(driver._nodes.needsRefresh(first)).toBe(true);
+    expect(driver._nodes.needsRefresh(second)).toBe(true);
     Object.assign(group, { recordedVersion: group.version });
-    expect(driver._nodes.needsRefresh(object)).toBe(true);
-    monitor.renderObjects.set(object, {});
-    expect(driver._nodes.needsRefresh(object)).toBe(false);
+    // A plain material's observer must have seen the object.
+    expect(driver._nodes.needsRefresh(second)).toBe(true);
+    monitor.renderObjects.set(first, {});
+    monitor.renderObjects.set(second, {});
+    driver._nodes.nodeFrame.renderId++;
+    expect(driver._nodes.needsRefresh(first)).toBe(true);
+    expect(driver._nodes.needsRefresh(second)).toBe(false);
+    driver._nodes.nodeFrame.renderId++;
+    expect(driver._nodes.needsRefresh(second)).toBe(true);
+    expect(driver._nodes.needsRefresh(first)).toBe(false);
+    // Node materials may hold uniforms their owner sets each frame, unless they declare otherwise.
     monitor.hasNode = true;
-    expect(driver._nodes.needsRefresh(object)).toBe(true);
-    monitor.hasNode = false;
+    expect(driver._nodes.needsRefresh(first)).toBe(true);
+    material.userData.bundleStatic = true;
+    driver._nodes.nodeFrame.renderId++;
+    expect(driver._nodes.needsRefresh(first)).toBe(true);
+    expect(driver._nodes.needsRefresh(second)).toBe(false);
+    monitor.hasAnimation = true;
+    expect(driver._nodes.needsRefresh(second)).toBe(true);
+    monitor.hasAnimation = false;
+    // An edit re-records the bundle, and its objects refresh.
     mesh.position.x++;
     prepare();
-    expect(driver._nodes.needsRefresh(object)).toBe(true);
+    expect(driver._nodes.needsRefresh(second)).toBe(true);
     optimizer.dispose();
-    expect(driver._nodes.needsRefresh(object)).toBe(true);
+    expect(driver._nodes.needsRefresh(second)).toBe(true);
   });
-  it('refreshes bundled receivers normally while sun shadows are on', () => {
-    // Three redraws the shadow map while refreshing receivers, and a skipped refresh left
-    // replayed bundles sampling stale shadow state: the scene flashed with and without shadows.
-    const { group, prepare, driver } = fixture();
+  it('still refreshes the first object of each material while sun shadows are on', () => {
+    // That refresh redraws the shadow map; skipping every refresh left the map undrawn and the
+    // scene flashed with and without shadows.
+    const { group, mesh, prepare, driver } = fixture();
     const monitor = { hasNode: false, hasAnimation: false, renderObjects: new WeakMap() };
-    const object = { bundle: group, getMonitor: () => monitor };
+    const material = mesh.material as THREE.Material;
+    const first = { bundle: group, material, getMonitor: () => monitor };
+    const second = { bundle: group, material, getMonitor: () => monitor };
     prepare();
     Object.assign(group, { recordedVersion: group.version });
-    monitor.renderObjects.set(object, {});
-    expect(driver._nodes.needsRefresh(object)).toBe(false);
+    monitor.renderObjects.set(first, {});
+    monitor.renderObjects.set(second, {});
     driver.shadowMap.enabled = true;
-    expect(driver._nodes.needsRefresh(object)).toBe(true);
+    expect(driver._nodes.needsRefresh(first)).toBe(true);
+    expect(driver._nodes.needsRefresh(second)).toBe(false);
   });
   it('preserves shared instance attributes and honors writes through retained references', () => {
     const { mesh, group, prepare } = fixture();

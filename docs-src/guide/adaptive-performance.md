@@ -34,9 +34,14 @@ ultrawide displays. CPU caches and resident geometry have separate limits:
 
 Each tier also names its sun shadow quality (`EarthPerformanceTier.shadows`): off at Minimum and
 Low, medium at Medium, and high from Balanced up. On WebGPU the main pass keeps its render bundles
-while shadows are on, but every bundled object refreshes each frame, because that refresh is what
-redraws the shadow map and keeps receivers in step with it; shadows therefore cost real CPU time
-on WebGPU, and the controller accounts for it like any other work. Bundles exist only inside
+while shadows are on. In a replayed bundle that has not changed since it was recorded, only the
+first object of each material refreshes in a render: that refresh redraws the shadow map and
+updates the material's shared uniforms, and the snapshot of transforms and material properties
+re-records the bundle when anything else changes. Node materials whose owners set `uniform()`
+values each frame (terrain water's time, the ground's origin) still refresh every object. A node
+material without such values sets `userData.bundleStatic` to refresh like the rest (the scatter
+and building materials do); three.js would otherwise refresh every node-material object each
+frame, about 1,500 refreshes a frame at street level. Bundles exist only inside
 the frame. Between frames, warm-up compiles run the sun's shadow pass over the scene, and there
 the groups draw normally, so a tile that an admission job swapped and disposed is never replayed
 from a stale bundle. Once a WebGPU shadow map

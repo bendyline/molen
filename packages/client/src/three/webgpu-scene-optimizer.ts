@@ -46,6 +46,8 @@ export class WebGpuSceneOptimizer {
   >();
   private readonly restoreRefresh: () => void;
   private materialSamples = new Map<THREE.Material, number>();
+  /** The render each material last refreshed a replayed object in; see the constructor. */
+  private readonly refreshed = new WeakMap<THREE.Material, number>();
   private readonly videoMaterials = new WeakSet<THREE.Material>();
   private readonly materialStates = new WeakMap<
     THREE.Material,
@@ -54,11 +56,21 @@ export class WebGpuSceneOptimizer {
 
   constructor(private readonly renderer: WebGPURenderer) {
     this.instances = new WebGpuInstanceBuffers(renderer);
-    // r184 refreshes the first object of EVERY material observer each frame, even in a static
-    // bundle. Instanced meshes each have their own observer. Our command snapshot supplies the
-    // missing change detection; node/animated materials and new render objects still refresh.
+    // r184 refreshes every replayed object whose material has nodes, each frame, even in a static
+    // bundle; plain materials refresh the first object of each material. Our command snapshot
+    // supplies the missing change detection: in a replayed bundle that has not changed since it was recorded (when
+    // every object in it was fully updated), an object refreshes only if it is the first of its
+    // material in this render. That first refresh still runs the frame's before-render work
+    // (redrawing the sun's shadow map) and the material's shared uniform groups; skipping every
+    // refresh once left the shadow map undrawn and the scene flashed between shadowed and
+    // unshadowed frames. A node material can hold `uniform()` values its owner sets each frame
+    // (terrain water's time, the ground's origin), which only a refresh copies into each object's
+    // buffer; so node materials skip only when they declare `userData.bundleStatic`: their inputs
+    // change only through material properties or their objects' transforms, which the snapshot
+    // samples. Animated materials and new render objects always refresh.
     type RenderObject = {
       bundle: THREE.Object3D | null;
+      material: THREE.Material;
       getMonitor(): {
         hasNode: boolean;
         hasAnimation: boolean;
@@ -66,25 +78,32 @@ export class WebGpuSceneOptimizer {
       };
     };
     const nodes = (
-      renderer as unknown as { _nodes: { needsRefresh(object: RenderObject): boolean } }
+      renderer as unknown as {
+        _nodes: { needsRefresh(object: RenderObject): boolean; nodeFrame: { renderId: number } };
+      }
     )._nodes;
     const refresh = nodes.needsRefresh;
     nodes.needsRefresh = (object): boolean => {
       const group = object.bundle as RenderGroup | null;
-      // Sun shadows need three's normal refresh: it is what redraws the shadow map each frame,
-      // and a skipped refresh leaves replayed receivers sampling stale shadow state, so the
-      // scene flashed between shadowed and unshadowed frames. The bundles still save encoding.
       if (
         group !== null &&
         this.groups.has(group) &&
         group.eligible &&
         group.version === group.recordedVersion &&
-        !renderer.shadowMap.enabled &&
         !renderer.getMRT()?.has('velocity')
       ) {
         const monitor = object.getMonitor();
-        if (!monitor.hasNode && !monitor.hasAnimation && monitor.renderObjects.has(object))
-          return false;
+        const material = object.material;
+        if (
+          !monitor.hasAnimation &&
+          (monitor.hasNode
+            ? material.userData.bundleStatic === true
+            : monitor.renderObjects.has(object))
+        ) {
+          const renderId = nodes.nodeFrame.renderId;
+          if (this.refreshed.get(material) === renderId) return false;
+          this.refreshed.set(material, renderId);
+        }
       }
       return refresh.call(nodes, object);
     };

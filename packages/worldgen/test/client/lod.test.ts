@@ -207,6 +207,32 @@ describe('camera-distance instance LOD', () => {
     library.dispose();
   });
 
+  it('bounds a spread set to a grid of batches', () => {
+    const material = new THREE.MeshStandardMaterial();
+    const model: PreparedModel = {
+      ref: 'plant',
+      geometry: new THREE.BoxGeometry(1, 1, 1),
+      material,
+      bounds: new THREE.Box3(new THREE.Vector3(-1, 0, -1), new THREE.Vector3(1, 1, 1)),
+      builtin: false,
+    };
+    // Sixteen plants spread over 1.5 km, far past a two-by-two grid of 100 m cells.
+    const data = new Float32Array(16 * PLACEMENT_STRIDE);
+    for (let i = 0; i < 16; i++)
+      data.set(
+        [(i % 4) * 500, 0, Math.floor(i / 4) * 500, 0, 1, 1, 1, 1, 1, 1],
+        i * PLACEMENT_STRIDE,
+      );
+    const set: PlacementSet = { setId: 'plants', modelRef: 'plant', count: 16, data };
+    const root = createInstancedPlacementLod(set, [model, model, model], {
+      cellSize: 100,
+      cellGrid: { cellsPerAxis: 2 },
+      screenSpace: { viewportHeight: 900, maxPixelError: 2 },
+    });
+    expect(root.children).toHaveLength(4);
+    material.dispose();
+  });
+
   it('draws a level without leaf cards with an opaque twin of an alpha-tested material', () => {
     const material = new THREE.MeshStandardMaterial({ alphaTest: 0.5, alphaToCoverage: true });
     const model = (u: number, size: number): PreparedModel => {
