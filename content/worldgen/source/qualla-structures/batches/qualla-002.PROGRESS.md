@@ -1,8 +1,8 @@
 # Qualla compat — local 300 — completion progress
 
-**2 / 300 completed.** 2 models started; 298 not started.
+**126 / 300 completed.** 128 models started; 172 not started.
 
-2 models retain their technical validation; 2 reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.
+126 models retain their technical validation; 126 reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.
 
 Finish each model using Qualla photographs, current renders and story synchronization in the same authoring pass. Every next-1,000 candidate and collection member remains assigned to the other device.
 
@@ -12,169 +12,169 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | ---: | --- | --- | --- |
 | 1 | [Biloxi Lighthouse](https://qualla.com/biloxi-lighthouse/) | Complete | All required evidence current |
 | 2 | [Bent Pyramid](https://qualla.com/bent-pyramid/) | Complete | All required evidence current |
-| 3 | [Bloukrans Bridge](https://qualla.com/bloukrans-bridge/) | Not started | source-model-missing |
-| 4 | [Embassy of the United States, Tehran](https://qualla.com/embassy-of-the-united-states-tehran/) | Not started | source-model-missing |
-| 5 | [Aswan Dam](https://qualla.com/aswan-dam/) | Not started | source-model-missing |
+| 3 | [Bloukrans Bridge](https://qualla.com/bloukrans-bridge/) | Complete | All required evidence current |
+| 4 | [Embassy of the United States, Tehran](https://qualla.com/embassy-of-the-united-states-tehran/) | Complete | All required evidence current |
+| 5 | [Aswan Dam](https://qualla.com/aswan-dam/) | Complete | All required evidence current |
 | 6 | [Hotel Africa](https://qualla.com/hotel-africa/) | Not started | source-model-missing |
-| 7 | [Abadan Refinery](https://qualla.com/abadan-refinery/) | Not started | source-model-missing |
-| 8 | [David's Tomb](https://qualla.com/david-s-tomb/) | Not started | source-model-missing |
-| 9 | [Hartebeesthoek Radio Astronomy Observatory](https://qualla.com/hartebeesthoek-radio-astronomy-observatory/) | Not started | source-model-missing |
-| 10 | [Castle of Good Hope](https://qualla.com/castle-of-good-hope/) | Not started | source-model-missing |
-| 11 | [Amphitrite Point Lighthouse](https://qualla.com/amphitrite-point-lighthouse/) | Not started | source-model-missing |
-| 12 | [Arkadi Monastery](https://qualla.com/arkadi-monastery/) | Not started | source-model-missing |
-| 13 | [Nasseef House](https://qualla.com/nasseef-house/) | Not started | source-model-missing |
-| 14 | [Toghrol Tower](https://qualla.com/toghrol-tower/) | Not started | source-model-missing |
-| 15 | [Huguenot Tunnel](https://qualla.com/huguenot-tunnel/) | Not started | source-model-missing |
-| 16 | [Bridge of the Americas](https://qualla.com/bridge-of-the-americas/) | Not started | source-model-missing |
-| 17 | [Parliament Buildings (Barbados)](https://qualla.com/parliament-buildings-barbados/) | Not started | source-model-missing |
-| 18 | [Tivoli Hotel, Panama](https://qualla.com/tivoli-hotel-panama/) | Not started | source-model-missing |
-| 19 | [Statue of the Empress Joséphine](https://qualla.com/statue-of-the-empress-josephine/) | Not started | source-model-missing |
+| 7 | [Abadan Refinery](https://qualla.com/abadan-refinery/) | Complete | All required evidence current |
+| 8 | [David's Tomb](https://qualla.com/david-s-tomb/) | Complete | All required evidence current |
+| 9 | [Hartebeesthoek Radio Astronomy Observatory](https://qualla.com/hartebeesthoek-radio-astronomy-observatory/) | Complete | All required evidence current |
+| 10 | [Castle of Good Hope](https://qualla.com/castle-of-good-hope/) | Complete | All required evidence current |
+| 11 | [Amphitrite Point Lighthouse](https://qualla.com/amphitrite-point-lighthouse/) | Complete | All required evidence current |
+| 12 | [Arkadi Monastery](https://qualla.com/arkadi-monastery/) | Complete | All required evidence current |
+| 13 | [Nasseef House](https://qualla.com/nasseef-house/) | Complete | All required evidence current |
+| 14 | [Toghrol Tower](https://qualla.com/toghrol-tower/) | Complete | All required evidence current |
+| 15 | [Huguenot Tunnel](https://qualla.com/huguenot-tunnel/) | Complete | All required evidence current |
+| 16 | [Bridge of the Americas](https://qualla.com/bridge-of-the-americas/) | Complete | All required evidence current |
+| 17 | [Parliament Buildings (Barbados)](https://qualla.com/parliament-buildings-barbados/) | Complete | All required evidence current |
+| 18 | [Tivoli Hotel, Panama](https://qualla.com/tivoli-hotel-panama/) | Complete | All required evidence current |
+| 19 | [Statue of the Empress Joséphine](https://qualla.com/statue-of-the-empress-josephine/) | Complete | All required evidence current |
 | 20 | [Fort of Santa Catalina, Lima](https://qualla.com/fort-of-santa-catalina-lima/) | Not started | source-model-missing |
-| 21 | [Amazon Theatre](https://qualla.com/amazon-theatre/) | Not started | source-model-missing |
-| 22 | [Antigua Guatemala Cathedral](https://qualla.com/antigua-guatemala-cathedral/) | Not started | source-model-missing |
+| 21 | [Amazon Theatre](https://qualla.com/amazon-theatre/) | Complete | All required evidence current |
+| 22 | [Antigua Guatemala Cathedral](https://qualla.com/antigua-guatemala-cathedral/) | Complete | All required evidence current |
 | 23 | [Yellow House (Venezuela)](https://qualla.com/yellow-house-venezuela/) | Not started | source-model-missing |
-| 24 | [Ruins of Saint Paul's](https://qualla.com/ruins-of-saint-paul-s/) | Not started | source-model-missing |
-| 25 | [Anji Bridge](https://qualla.com/anji-bridge/) | Not started | source-model-missing |
-| 26 | [Chen Clan Ancestral Hall](https://qualla.com/chen-clan-ancestral-hall/) | Not started | source-model-missing |
-| 27 | [Sakuma Dam](https://qualla.com/sakuma-dam/) | Not started | source-model-missing |
-| 28 | [Casino Lisboa (Macau)](https://qualla.com/casino-lisboa-macau/) | Not started | source-model-missing |
+| 24 | [Ruins of Saint Paul's](https://qualla.com/ruins-of-saint-paul-s/) | Complete | All required evidence current |
+| 25 | [Anji Bridge](https://qualla.com/anji-bridge/) | Complete | All required evidence current |
+| 26 | [Chen Clan Ancestral Hall](https://qualla.com/chen-clan-ancestral-hall/) | Complete | All required evidence current |
+| 27 | [Sakuma Dam](https://qualla.com/sakuma-dam/) | Complete | All required evidence current |
+| 28 | [Casino Lisboa (Macau)](https://qualla.com/casino-lisboa-macau/) | Complete | All required evidence current |
 | 29 | [Fukushima Daiichi Nuclear Power Plant](https://qualla.com/fukushima-daiichi-nuclear-power-plant/) | Not started | source-model-missing |
-| 30 | [Inubōsaki Lighthouse](https://qualla.com/inub-saki-lighthouse/) | Not started | source-model-missing |
-| 31 | [Cihu Mausoleum](https://qualla.com/cihu-mausoleum/) | Not started | source-model-missing |
-| 32 | [Beijing Ancient Observatory](https://qualla.com/beijing-ancient-observatory/) | Not started | source-model-missing |
-| 33 | [Azuchi Castle](https://qualla.com/azuchi-castle/) | Not started | source-model-missing |
+| 30 | [Inubōsaki Lighthouse](https://qualla.com/inub-saki-lighthouse/) | Complete | All required evidence current |
+| 31 | [Cihu Mausoleum](https://qualla.com/cihu-mausoleum/) | Complete | All required evidence current |
+| 32 | [Beijing Ancient Observatory](https://qualla.com/beijing-ancient-observatory/) | Complete | All required evidence current |
+| 33 | [Azuchi Castle](https://qualla.com/azuchi-castle/) | Complete | All required evidence current |
 | 34 | [Hibiya Open-Air Concert Hall](https://qualla.com/hibiya-open-air-concert-hall/) | Not started | source-model-missing |
-| 35 | [Angkor Wat](https://qualla.com/angkor-wat/) | Not started | source-model-missing |
-| 36 | [From Customs House to Energy Story](https://qualla.com/brunei-energy-hub/) | Not started | source-model-missing |
-| 37 | [Macau Tower](https://qualla.com/macau-tower/) | Not started | source-model-missing |
-| 38 | [Zhanqiao Pier](https://qualla.com/zhanqiao-pier/) | Not started | source-model-missing |
-| 39 | [Acropolis of Athens](https://qualla.com/acropolis-of-athens/) | Not started | source-model-missing |
-| 40 | [Aesepus Bridge](https://qualla.com/aesepus-bridge/) | Not started | source-model-missing |
-| 41 | [Albert Hall, Nottingham](https://qualla.com/albert-hall-nottingham/) | Not started | source-model-missing |
-| 42 | [Cardiff Bay Barrage](https://qualla.com/cardiff-bay-barrage/) | Not started | source-model-missing |
+| 35 | [Angkor Wat](https://qualla.com/angkor-wat/) | Complete | All required evidence current |
+| 36 | [Brunei Energy Hub](https://qualla.com/brunei-energy-hub/) | Not started | source-model-missing |
+| 37 | [Macau Tower](https://qualla.com/macau-tower/) | Complete | All required evidence current |
+| 38 | [Zhanqiao Pier](https://qualla.com/zhanqiao-pier/) | Complete | All required evidence current |
+| 39 | [Acropolis of Athens](https://qualla.com/acropolis-of-athens/) | Complete | All required evidence current |
+| 40 | [Aesepus Bridge](https://qualla.com/aesepus-bridge/) | Complete | All required evidence current |
+| 41 | [Albert Hall, Nottingham](https://qualla.com/albert-hall-nottingham/) | Complete | All required evidence current |
+| 42 | [Cardiff Bay Barrage](https://qualla.com/cardiff-bay-barrage/) | Complete | All required evidence current |
 | 43 | [Athens Stock Exchange](https://qualla.com/athens-stock-exchange/) | Not started | source-model-missing |
-| 44 | [Bruichladdich distillery](https://qualla.com/bruichladdich-distillery/) | Not started | source-model-missing |
+| 44 | [Bruichladdich distillery](https://qualla.com/bruichladdich-distillery/) | Complete | All required evidence current |
 | 45 | [Andenes Lighthouse](https://qualla.com/andenes-lighthouse/) | Not started | source-model-missing |
-| 46 | [Alan Turing Memorial](https://qualla.com/alan-turing-memorial/) | Not started | source-model-missing |
-| 47 | [Berlin Observatory](https://qualla.com/berlin-observatory/) | Not started | source-model-missing |
-| 48 | [Ahmed Bey Palace](https://qualla.com/ahmed-bey-palace/) | Not started | source-model-missing |
-| 49 | [Amsterdam Bijlmer ArenA station](https://qualla.com/amsterdam-bijlmer-arena-station/) | Not started | source-model-missing |
-| 50 | [Aachen Cathedral](https://qualla.com/aachen-cathedral/) | Not started | source-model-missing |
-| 51 | [Ahlden House](https://qualla.com/ahlden-house/) | Not started | source-model-missing |
-| 52 | [Blackpool Tower](https://qualla.com/blackpool-tower/) | Not started | source-model-missing |
+| 46 | [Alan Turing Memorial](https://qualla.com/alan-turing-memorial/) | Complete | All required evidence current |
+| 47 | [Berlin Observatory](https://qualla.com/berlin-observatory/) | Complete | All required evidence current |
+| 48 | [Ahmed Bey Palace](https://qualla.com/ahmed-bey-palace/) | Complete | All required evidence current |
+| 49 | [Amsterdam Bijlmer ArenA station](https://qualla.com/amsterdam-bijlmer-arena-station/) | Complete | All required evidence current |
+| 50 | [Aachen Cathedral](https://qualla.com/aachen-cathedral/) | Complete | All required evidence current |
+| 51 | [Ahlden House](https://qualla.com/ahlden-house/) | Complete | All required evidence current |
+| 52 | [Blackpool Tower](https://qualla.com/blackpool-tower/) | Complete | All required evidence current |
 | 53 | [Berlin Nord-Süd Tunnel](https://qualla.com/berlin-nord-sud-tunnel/) | Not started | source-model-missing |
-| 54 | [Cape Lookout Lighthouse](https://qualla.com/cape-lookout-lighthouse/) | Not started | source-model-missing |
-| 55 | [Aerial Lift Bridge](https://qualla.com/aerial-lift-bridge/) | Not started | source-model-missing |
-| 56 | [Alaska Building](https://qualla.com/alaska-building/) | Not started | source-model-missing |
-| 57 | [A Dam Built for Ghosts](https://qualla.com/englebright-dam/) | Not started | source-model-missing |
-| 58 | [Ambassador Hotel, Los Angeles](https://qualla.com/ambassador-hotel-los-angeles/) | Not started | source-model-missing |
-| 59 | [Big Rock Point Nuclear Power Plant](https://qualla.com/big-rock-point-nuclear-power-plant/) | Not started | source-model-missing |
-| 60 | [Bodie Island Lighthouse](https://qualla.com/bodie-island-lighthouse/) | Not started | source-model-missing |
-| 61 | [Chamizal National Memorial](https://qualla.com/chamizal-national-memorial/) | Not started | source-model-missing |
-| 62 | [Cincinnati Observatory](https://qualla.com/cincinnati-observatory/) | Not started | source-model-missing |
-| 63 | [Fort Worth Stockyards](https://qualla.com/stockyards-fort-worth/) | Not started | source-model-missing |
-| 64 | [Arlington Memorial Amphitheater](https://qualla.com/arlington-memorial-amphitheater/) | Not started | source-model-missing |
-| 65 | [Asheville Masonic Temple](https://qualla.com/asheville-masonic-temple/) | Not started | source-model-missing |
-| 66 | [Arlington House, The Robert E. Lee Memorial](https://qualla.com/arlington-house-the-robert-e-lee-memorial/) | Not started | source-model-missing |
-| 67 | [Louisville Water Tower](https://qualla.com/louisville-water-tower/) | Not started | source-model-missing |
-| 68 | [Caldecott Tunnel](https://qualla.com/caldecott-tunnel/) | Not started | source-model-missing |
-| 69 | [Albert Bridge, Brisbane](https://qualla.com/albert-bridge-brisbane/) | Not started | source-model-missing |
-| 70 | [Boggo Road Gaol](https://qualla.com/boggo-road-gaol/) | Not started | source-model-missing |
+| 54 | [Cape Lookout Lighthouse](https://qualla.com/cape-lookout-lighthouse/) | Complete | All required evidence current |
+| 55 | [Aerial Lift Bridge](https://qualla.com/aerial-lift-bridge/) | Complete | All required evidence current |
+| 56 | [Alaska Building](https://qualla.com/alaska-building/) | Complete | All required evidence current |
+| 57 | [Englebright Dam](https://qualla.com/englebright-dam/) | Complete | All required evidence current |
+| 58 | [Ambassador Hotel, Los Angeles](https://qualla.com/ambassador-hotel-los-angeles/) | Complete | All required evidence current |
+| 59 | [Big Rock Point Nuclear Power Plant](https://qualla.com/big-rock-point-nuclear-power-plant/) | Complete | All required evidence current |
+| 60 | [Bodie Island Lighthouse](https://qualla.com/bodie-island-lighthouse/) | Complete | All required evidence current |
+| 61 | [Chamizal National Memorial Cultural Center](https://qualla.com/chamizal-national-memorial/) | Complete | All required evidence current |
+| 62 | [Cincinnati Observatory](https://qualla.com/cincinnati-observatory/) | Complete | All required evidence current |
+| 63 | [Fort Worth Livestock Exchange Building](https://qualla.com/stockyards-fort-worth/) | Complete | All required evidence current |
+| 64 | [Arlington Memorial Amphitheater](https://qualla.com/arlington-memorial-amphitheater/) | Complete | All required evidence current |
+| 65 | [Asheville Masonic Temple](https://qualla.com/asheville-masonic-temple/) | Complete | All required evidence current |
+| 66 | [Arlington House, The Robert E. Lee Memorial](https://qualla.com/arlington-house-the-robert-e-lee-memorial/) | Complete | All required evidence current |
+| 67 | [Louisville Water Tower](https://qualla.com/louisville-water-tower/) | Complete | All required evidence current |
+| 68 | [Caldecott Tunnel](https://qualla.com/caldecott-tunnel/) | Complete | All required evidence current |
+| 69 | [Albert Bridge, Brisbane](https://qualla.com/albert-bridge-brisbane/) | Complete | All required evidence current |
+| 70 | [Boggo Road Gaol](https://qualla.com/boggo-road-gaol/) | Complete | All required evidence current |
 | 71 | [Olympic Dam mine](https://qualla.com/olympic-dam-mine/) | Not started | source-model-missing |
 | 72 | [Queen's Hotel, Townsville](https://qualla.com/queen-s-hotel-townsville/) | Not started | source-model-missing |
-| 73 | [The Old Windmill, Brisbane](https://qualla.com/the-old-windmill-brisbane/) | Not started | source-model-missing |
-| 74 | [Matiu / Somes Island Lighthouse](https://qualla.com/matiu-somes-island-lighthouse/) | Not started | source-model-missing |
+| 73 | [The Old Windmill, Brisbane](https://qualla.com/the-old-windmill-brisbane/) | Complete | All required evidence current |
+| 74 | [Matiu / Somes Island Lighthouse](https://qualla.com/matiu-somes-island-lighthouse/) | Complete | All required evidence current |
 | 75 | [Allan Cunningham Monument](https://qualla.com/allan-cunningham-monument/) | Not started | source-model-missing |
-| 76 | [Sir Thomas Brisbane Planetarium](https://qualla.com/sir-thomas-brisbane-planetarium/) | Not started | source-model-missing |
-| 77 | [Castle Hill, Townsville](https://qualla.com/castle-hill-townsville/) | Not started | source-model-missing |
-| 78 | [Cremorne Theatre](https://qualla.com/cremorne-theatre/) | Not started | source-model-missing |
-| 79 | [Brisbane Synagogue](https://qualla.com/brisbane-synagogue/) | Not started | source-model-missing |
-| 80 | [Cressbrook Homestead](https://qualla.com/cressbrook-homestead/) | Not started | source-model-missing |
-| 81 | [Sky Tower (Auckland)](https://qualla.com/sky-tower-auckland/) | Not started | source-model-missing |
-| 82 | [Homer Tunnel](https://qualla.com/homer-tunnel/) | Not started | source-model-missing |
-| 83 | [Friendship Bridge (Brazil–Paraguay)](https://qualla.com/friendship-bridge-brazil-paraguay/) | Not started | source-model-missing |
-| 84 | [Buenos Aires Central Post Office](https://qualla.com/buenos-aires-central-post-office/) | Not started | source-model-missing |
-| 85 | [Bristol Hotel, Mar del Plata](https://qualla.com/bristol-hotel-mar-del-plata/) | Not started | source-model-missing |
-| 86 | [Uruguay River Pulp Mill Dispute](https://qualla.com/uruguay-river-pulp-mill-dispute/) | Not started | source-model-missing |
-| 87 | [JK Memorial](https://qualla.com/jk-memorial/) | Not started | source-model-missing |
-| 88 | [Galileo Galilei Planetarium](https://qualla.com/galileo-galilei-planetarium/) | Not started | source-model-missing |
+| 76 | [Sir Thomas Brisbane Planetarium](https://qualla.com/sir-thomas-brisbane-planetarium/) | Complete | All required evidence current |
+| 77 | [Robert Towns Monument, Castle Hill](https://qualla.com/castle-hill-townsville/) | Complete | All required evidence current |
+| 78 | [Cremorne Theatre](https://qualla.com/cremorne-theatre/) | Complete | All required evidence current |
+| 79 | [Brisbane Synagogue](https://qualla.com/brisbane-synagogue/) | Complete | All required evidence current |
+| 80 | [Cressbrook Homestead](https://qualla.com/cressbrook-homestead/) | Complete | All required evidence current |
+| 81 | [Sky Tower (Auckland)](https://qualla.com/sky-tower-auckland/) | Complete | All required evidence current |
+| 82 | [Homer Tunnel](https://qualla.com/homer-tunnel/) | Complete | All required evidence current |
+| 83 | [Friendship Bridge (Brazil–Paraguay)](https://qualla.com/friendship-bridge-brazil-paraguay/) | Complete | All required evidence current |
+| 84 | [Buenos Aires Central Post Office](https://qualla.com/buenos-aires-central-post-office/) | Complete | All required evidence current |
+| 85 | [Bristol Hotel, Mar del Plata](https://qualla.com/bristol-hotel-mar-del-plata/) | Complete | All required evidence current |
+| 86 | [Fray Bentos Pulp Mill](https://qualla.com/uruguay-river-pulp-mill-dispute/) | Not started | source-model-missing |
+| 87 | [JK Memorial](https://qualla.com/jk-memorial/) | Complete | All required evidence current |
+| 88 | [Galileo Galilei Planetarium](https://qualla.com/galileo-galilei-planetarium/) | Complete | All required evidence current |
 | 89 | [Fortress of Humaitá](https://qualla.com/fortress-of-humaita/) | Not started | source-model-missing |
-| 90 | [Wire Opera House](https://qualla.com/wire-opera-house/) | Not started | source-model-missing |
+| 90 | [Wire Opera House](https://qualla.com/wire-opera-house/) | Complete | All required evidence current |
 | 91 | [Basilica of Our Lady of Copacabana](https://qualla.com/basilica-of-our-lady-of-copacabana/) | Not started | source-model-missing |
 | 92 | [Mansión Seré](https://qualla.com/mansion-sere/) | Not started | source-model-missing |
-| 93 | [Brasília TV Tower](https://qualla.com/brasilia-tv-tower/) | Not started | source-model-missing |
+| 93 | [Brasília TV Tower](https://qualla.com/brasilia-tv-tower/) | Complete | All required evidence current |
 | 94 | [Las Raíces Tunnel](https://qualla.com/las-raices-tunnel/) | Not started | source-model-missing |
-| 95 | [Pamban Bridge](https://qualla.com/pamban-bridge/) | Not started | source-model-missing |
-| 96 | [Cellular Jail](https://qualla.com/cellular-jail/) | Not started | source-model-missing |
+| 95 | [Pamban Bridge](https://qualla.com/pamban-bridge/) | Complete | All required evidence current |
+| 96 | [Cellular Jail](https://qualla.com/cellular-jail/) | Complete | All required evidence current |
 | 97 | [Tehri Dam](https://qualla.com/tehri-dam/) | Not started | source-model-missing |
 | 98 | [Galle Face Hotel](https://qualla.com/galle-face-hotel/) | Not started | source-model-missing |
-| 99 | [Giant Metrewave Radio Telescope](https://qualla.com/giant-metrewave-radio-telescope/) | Not started | source-model-missing |
-| 100 | [Statue of Unity](https://qualla.com/statue-of-unity/) | Not started | source-model-missing |
-| 101 | [Daulatabad Fort](https://qualla.com/daulatabad-fort/) | Not started | source-model-missing |
+| 99 | [Giant Metrewave Radio Telescope](https://qualla.com/giant-metrewave-radio-telescope/) | Complete | All required evidence current |
+| 100 | [Statue of Unity](https://qualla.com/statue-of-unity/) | Complete | All required evidence current |
+| 101 | [Daulatabad Fort](https://qualla.com/daulatabad-fort/) | Complete | All required evidence current |
 | 102 | [Fondukistan monastery](https://qualla.com/fondukistan-monastery/) | Not started | source-model-missing |
-| 103 | [Quaid-e-Azam House](https://qualla.com/quaid-e-azam-house/) | Not started | source-model-missing |
+| 103 | [Quaid-e-Azam House](https://qualla.com/quaid-e-azam-house/) | Complete | All required evidence current |
 | 104 | [Salang Tunnel](https://qualla.com/salang-tunnel/) | Not started | source-model-missing |
-| 105 | [Black Pyramid](https://qualla.com/black-pyramid/) | Not started | source-model-missing |
-| 106 | [Khaju Bridge](https://qualla.com/khaju-bridge/) | Not started | source-model-missing |
+| 105 | [Black Pyramid](https://qualla.com/black-pyramid/) | Complete | All required evidence current |
+| 106 | [Khaju Bridge](https://qualla.com/khaju-bridge/) | Complete | All required evidence current |
 | 107 | [Edward J. Roye Building](https://qualla.com/edward-j-roye-building/) | Not started | source-model-missing |
-| 108 | [Kariba Dam](https://qualla.com/kariba-dam/) | Not started | source-model-missing |
+| 108 | [Kariba Dam](https://qualla.com/kariba-dam/) | Complete | All required evidence current |
 | 109 | [Ducor Hotel](https://qualla.com/ducor-hotel/) | Not started | source-model-missing |
-| 110 | [Orlando Power Station](https://qualla.com/orlando-power-station/) | Not started | source-model-missing |
+| 110 | [Orlando Power Station](https://qualla.com/orlando-power-station/) | Complete | All required evidence current |
 | 111 | [Tomb of Kha and Merit](https://qualla.com/tomb-of-kha-and-merit/) | Not started | source-model-missing |
 | 112 | [Fort Prinzenstein](https://qualla.com/fort-prinzenstein/) | Not started | source-model-missing |
-| 113 | [Amphitheatre of El Jem](https://qualla.com/amphitheatre-of-el-jem/) | Not started | source-model-missing |
-| 114 | [Church Square, Pretoria](https://qualla.com/church-square-pretoria/) | Not started | source-model-missing |
-| 115 | [Executive Mansion, Monrovia](https://qualla.com/executive-mansion-monrovia/) | Not started | source-model-missing |
-| 116 | [Tower of David](https://qualla.com/tower-of-david/) | Not started | source-model-missing |
-| 117 | [Queen Emma Bridge](https://qualla.com/queen-emma-bridge/) | Not started | source-model-missing |
-| 118 | [Coltejer Building](https://qualla.com/coltejer-building/) | Not started | source-model-missing |
-| 119 | [Hotel Nutibara](https://qualla.com/hotel-nutibara/) | Not started | source-model-missing |
-| 120 | [Statue of Father Cícero](https://qualla.com/statue-of-father-cicero/) | Not started | source-model-missing |
-| 121 | [Miraflores Palace](https://qualla.com/miraflores-palace/) | Not started | source-model-missing |
+| 113 | [Amphitheatre of El Jem](https://qualla.com/amphitheatre-of-el-jem/) | Complete | All required evidence current |
+| 114 | [Ou Raadsaal, Pretoria](https://qualla.com/church-square-pretoria/) | Complete | All required evidence current |
+| 115 | [Executive Mansion, Monrovia](https://qualla.com/executive-mansion-monrovia/) | Complete | All required evidence current |
+| 116 | [Tower of David](https://qualla.com/tower-of-david/) | Complete | All required evidence current |
+| 117 | [Queen Emma Bridge](https://qualla.com/queen-emma-bridge/) | Complete | All required evidence current |
+| 118 | [Coltejer Building](https://qualla.com/coltejer-building/) | Complete | All required evidence current |
+| 119 | [Hotel Nutibara](https://qualla.com/hotel-nutibara/) | Complete | All required evidence current |
+| 120 | [Statue of Father Cícero](https://qualla.com/statue-of-father-cicero/) | Complete | All required evidence current |
+| 121 | [Miraflores Palace](https://qualla.com/miraflores-palace/) | Complete | All required evidence current |
 | 122 | [Arena da Amazônia](https://qualla.com/arena-da-amazonia/) | Not started | source-model-missing |
 | 123 | [Cartagena Cathedral, Colombia](https://qualla.com/cartagena-cathedral-colombia/) | Not started | source-model-missing |
 | 124 | [Villa de Leyva](https://qualla.com/villa-de-leyva/) | Not started | source-model-missing |
 | 125 | [Tate's Cairn](https://qualla.com/tate-s-cairn/) | Not started | source-model-missing |
-| 126 | [Bridge of No Return](https://qualla.com/bridge-of-no-return/) | Not started | source-model-missing |
-| 127 | [General Post Office, Hong Kong](https://qualla.com/general-post-office-hong-kong/) | Not started | source-model-missing |
-| 128 | [Shihmen Dam](https://qualla.com/shihmen-dam/) | Not started | source-model-missing |
-| 129 | [Hong Kong Stock Exchange](https://qualla.com/hong-kong-stock-exchange/) | Not started | source-model-missing |
+| 126 | [Bridge of No Return](https://qualla.com/bridge-of-no-return/) | Complete | All required evidence current |
+| 127 | [General Post Office, Hong Kong](https://qualla.com/general-post-office-hong-kong/) | Complete | All required evidence current |
+| 128 | [Shihmen Dam](https://qualla.com/shihmen-dam/) | Complete | All required evidence current |
+| 129 | [Exchange Square, Hong Kong](https://qualla.com/hong-kong-stock-exchange/) | Complete | All required evidence current |
 | 130 | [Mihama Nuclear Power Plant](https://qualla.com/mihama-nuclear-power-plant/) | Not started | source-model-missing |
-| 131 | [Kaohsiung Lighthouse](https://qualla.com/kaohsiung-lighthouse/) | Not started | source-model-missing |
+| 131 | [Kaohsiung Lighthouse](https://qualla.com/kaohsiung-lighthouse/) | Complete | All required evidence current |
 | 132 | [Datong Mass Grave Memorial](https://qualla.com/datong-mass-grave-memorial/) | Not started | source-model-missing |
 | 133 | [Qingdao Observatory](https://qualla.com/qingdao-observatory/) | Not started | source-model-missing |
 | 134 | [Chihaya Castle](https://qualla.com/chihaya-castle/) | Not started | source-model-missing |
-| 135 | [Hong Kong Stadium](https://qualla.com/hong-kong-stadium/) | Not started | source-model-missing |
-| 136 | [Atsuta Shrine](https://qualla.com/atsuta-shrine/) | Not started | source-model-missing |
+| 135 | [Hong Kong Stadium](https://qualla.com/hong-kong-stadium/) | Complete | All required evidence current |
+| 136 | [Atsuta Shrine](https://qualla.com/atsuta-shrine/) | Complete | All required evidence current |
 | 137 | [Government House, Hong Kong](https://qualla.com/government-house-hong-kong/) | Not started | source-model-missing |
-| 138 | [Nakagin Capsule Tower](https://qualla.com/nakagin-capsule-tower/) | Not started | source-model-missing |
+| 138 | [Nakagin Capsule Tower](https://qualla.com/nakagin-capsule-tower/) | Complete | All required evidence current |
 | 139 | [Tanna Tunnel](https://qualla.com/tanna-tunnel/) | Not started | source-model-missing |
-| 140 | [Acropolis of Rhodes](https://qualla.com/acropolis-of-rhodes/) | Not started | source-model-missing |
-| 141 | [Alcántara Bridge](https://qualla.com/alcantara-bridge/) | Not started | source-model-missing |
-| 142 | [Bremen City Hall](https://qualla.com/bremen-city-hall/) | Not started | source-model-missing |
+| 140 | [Acropolis of Rhodes](https://qualla.com/acropolis-of-rhodes/) | Complete | All required evidence current |
+| 141 | [Alcántara Bridge](https://qualla.com/alcantara-bridge/) | Complete | All required evidence current |
+| 142 | [Bremen City Hall](https://qualla.com/bremen-city-hall/) | Complete | All required evidence current |
 | 143 | [Eschbach Dam](https://qualla.com/eschbach-dam/) | Not started | source-model-missing |
 | 144 | [Bristol Hotel, Odesa](https://qualla.com/bristol-hotel-odesa/) | Not started | source-model-missing |
-| 145 | [Cromford Mill](https://qualla.com/cromford-mill/) | Not started | source-model-missing |
-| 146 | [Cromer Lighthouse](https://qualla.com/cromer-lighthouse/) | Not started | source-model-missing |
-| 147 | [Berlin-Hohenschönhausen Memorial](https://qualla.com/berlin-hohenschonhausen-memorial/) | Not started | source-model-missing |
-| 148 | [Hamburger Kunsthalle](https://qualla.com/hamburger-kunsthalle/) | Not started | source-model-missing |
-| 149 | [Alexander I Palace](https://qualla.com/alexander-i-palace/) | Not started | source-model-missing |
-| 150 | [Ancient Theatre of Argos](https://qualla.com/argos-theater/) | Not started | source-model-missing |
-| 151 | [Abbey of Saint-Martin-du-Canigou](https://qualla.com/abbey-of-saint-martin-du-canigou/) | Not started | source-model-missing |
-| 152 | [Banqueting House](https://qualla.com/banqueting-house/) | Not started | source-model-missing |
-| 153 | [Bréhon Tower](https://qualla.com/brehon-tower/) | Not started | source-model-missing |
-| 154 | [Cromer Pier](https://qualla.com/cromer-pier/) | Not started | source-model-missing |
-| 155 | [Pyramid of the Moon](https://qualla.com/pyramid-of-the-moon/) | Not started | source-model-missing |
-| 156 | [Arlington Memorial Bridge](https://qualla.com/arlington-memorial-bridge/) | Not started | source-model-missing |
-| 157 | [Andersonville Prison](https://qualla.com/andersonville-prison/) | Not started | source-model-missing |
-| 158 | [Bagnell Dam](https://qualla.com/bagnell-dam/) | Not started | source-model-missing |
+| 145 | [Cromford Mill](https://qualla.com/cromford-mill/) | Complete | All required evidence current |
+| 146 | [Cromer Lighthouse](https://qualla.com/cromer-lighthouse/) | Complete | All required evidence current |
+| 147 | [Berlin-Hohenschönhausen Memorial](https://qualla.com/berlin-hohenschonhausen-memorial/) | Complete | All required evidence current |
+| 148 | [Hamburger Kunsthalle](https://qualla.com/hamburger-kunsthalle/) | Complete | All required evidence current |
+| 149 | [Alexander I Palace](https://qualla.com/alexander-i-palace/) | Complete | All required evidence current |
+| 150 | [Ancient Theatre of Argos](https://qualla.com/argos-theater/) | Complete | All required evidence current |
+| 151 | [Abbey of Saint-Martin-du-Canigou](https://qualla.com/abbey-of-saint-martin-du-canigou/) | Complete | All required evidence current |
+| 152 | [Banqueting House](https://qualla.com/banqueting-house/) | Complete | All required evidence current |
+| 153 | [Bréhon Tower](https://qualla.com/brehon-tower/) | Complete | All required evidence current |
+| 154 | [Cromer Pier](https://qualla.com/cromer-pier/) | Complete | All required evidence current |
+| 155 | [Pyramid of the Moon](https://qualla.com/pyramid-of-the-moon/) | Complete | All required evidence current |
+| 156 | [Arlington Memorial Bridge](https://qualla.com/arlington-memorial-bridge/) | Complete | All required evidence current |
+| 157 | [Andersonville Prison](https://qualla.com/andersonville-prison/) | Complete | All required evidence current |
+| 158 | [Bagnell Dam](https://qualla.com/bagnell-dam/) | Complete | All required evidence current |
 | 159 | [Canyon Hotel](https://qualla.com/canyon-hotel/) | Not started | source-model-missing |
-| 160 | [Buffalo Trace Distillery](https://qualla.com/buffalo-trace-distillery/) | Not started | source-model-missing |
-| 161 | [Cape Charles Lighthouse](https://qualla.com/cape-charles-lighthouse/) | Not started | source-model-missing |
-| 162 | [Confederate Monument (Greenville, South Carolina)](https://qualla.com/confederate-monument-greenville-south-carolina/) | Not started | source-model-missing |
+| 160 | [Buffalo Trace Distillery](https://qualla.com/buffalo-trace-distillery/) | Complete | All required evidence current |
+| 161 | [Cape Charles Lighthouse](https://qualla.com/cape-charles-lighthouse/) | Complete | All required evidence current |
+| 162 | [Confederate Monument (Greenville, South Carolina)](https://qualla.com/confederate-monument-greenville-south-carolina/) | Complete | All required evidence current |
 | 163 | [Golden Gate Raptor Observatory](https://qualla.com/golden-gate-raptor-observatory/) | Not started | source-model-missing |
-| 164 | [Atalaya Castle (US)](https://qualla.com/atalaya-castle-us/) | Not started | source-model-missing |
-| 165 | [Atlanta–Fulton County Stadium](https://qualla.com/atlanta-fulton-county-stadium/) | Not started | source-model-missing |
+| 164 | [Atalaya Castle (US)](https://qualla.com/atalaya-castle-us/) | Complete | All required evidence current |
+| 165 | [Atlanta–Fulton County Stadium](https://qualla.com/atlanta-fulton-county-stadium/) | Complete | All required evidence current |
 | 166 | [Baltimore Basilica](https://qualla.com/basilica-of-the-national-shrine-of-the-assumption-of-the-blessed-virgin-mary/) | Not started | source-model-missing |
 | 167 | [Blue Room (White House)](https://qualla.com/blue-room-white-house/) | Not started | source-model-missing |
 | 168 | [San Jose Electric Light Tower](https://qualla.com/san-jose-electric-light-tower/) | Not started | source-model-missing |

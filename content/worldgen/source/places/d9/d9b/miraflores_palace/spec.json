@@ -1,0 +1,382 @@
+{
+  "planId": "miraflores_palace",
+  "id": "miraflores_palace",
+  "assetId": "molen.worldgen.structure.miraflores_palace",
+  "title": "Miraflores Palace, Caracas",
+  "category": "civic",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -66.91926705,
+    "latitude": 10.508095225
+  },
+  "size": [
+    58.099998474121094,
+    14.300000190734863,
+    47.691362380981445
+  ],
+  "actualBounds": {
+    "min": [
+      -29.049999237060547,
+      0,
+      -21.243629455566406
+    ],
+    "max": [
+      29.049999237060547,
+      14.300000190734863,
+      26.44773292541504
+    ]
+  },
+  "visualBrief": "WholeprincipalhistoricMirafloresPalacecourtyardbuilding, original4vertexouterand4vertexopencourtyardhole: lowhigh-ceilingmainwings/wholeback/sides, rusticatedcreamwalls/whitecornices/tallsegmentalwindows/doorrecesses, balustradeparapets, twofrontcornerraisedpavilions/redtilemansardcaps, intrinsicraisedentry/curvedbalustrades/thinmetal-glasscanopy, openarcadedcourtyard/tiledwingroofs/centralfountain. Notfullnamedpresidentialcompoundextrusionorfront-onlycrop. Excludeadjacentofficebuildings/helipad/wholecompoundgrounds/plantedgardens/palms/flags/people/interiors/presidentialsealtext. Preserveall4originalouter/courtyardvertices andphysicallyopenverticalcourtyard. Nativepartheightsabsent: originalphotoestimatesfor1highmainfloor/2raisedfrontcornerpavilions/tiledmansards/lowcourtyardarcadesandwingroofs/hiddenrear; do notextrudefullnamedcompound. Realstreet/closeuptallwindow/doorrecesses/whitearchframes/rusticatedpilasters/cornices/stonebalusters/canopymetalframeandglass/raisedcurvedentry. Courtyardarcadeshaveactualthrougharchesandcolumns/openroomlessgallery, intrinsiccentralfountain/pavingwithinmappedholeonly. No roof/floorcoveroverthewholecourtyardaboveground. Coarsenwindow/arch/balustercountsatdistance preservewholeopenplan/roofpavilions. Excludeflags/letters/people/palms/plantedgardens/adjacentofficeblocks/helipad/wholecompoundsitefloor/roominteriors. Freeze400mfieldatfixedoutboardwestfrontbeforegeometry; rawvaluesunchanged/no fit/flatten. Hostthreshold/groundattachmentunverified.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Patio_Central,_Palacio_de_Miraflores.JPG",
+    "https://commons.wikimedia.org/wiki/File:Entrada_Miraflores.JPG",
+    "https://commons.wikimedia.org/wiki/File:Fachada_Miraflores.JPG"
+  ],
+  "stories": [
+    {
+      "id": "miraflores-palace-wp",
+      "url": "https://qualla.com/miraflores-palace/"
+    }
+  ],
+  "referenceInputHash": "4b1b8de8809b92971b92fdc54c4780b7e117a34f0f1be1d249798b4620472c03",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-miraflores-palace.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-miraflores-palace.mjs",
+    "level": "skyline",
+    "export": "mirafloresSkyline",
+    "errorMeters": 1.4,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.08
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.4,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "mirafloresDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "mirafloresStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.06
+          }
+        }
+      },
+      "closeup": {
+        "export": "mirafloresCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.15,
+    "groundY": -0.15
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Originalprincipalbuildingrelation19788212/building=government/multipolygon, outerway1447100847/all4vertices andinnerway1447100846/all4courtyardvertices. Bothcontainedinside namedcompoundway215101101/Q607224, whose6vertexsiteboundaryconfirmsidentityONLY/notbuildingfootprint. Meanoriginaloutervertexanchor, +Xalongwestfrontface3toward0 and+Zwestwardoutwardnormal; facadebearingandwestentryassignmentareoriginalboundedphoto/nativeinterpretation, notsurveyedentrancebearing. Nativewholeouter/courtyardgeometryunchanged; noheight/componentdata, twofrontpavilions/roofsections/entry/arcadesareoriginalphotoestimates. Independent400mfield frozenbeforegeometry; actualhostterrain/thresholdcontactunverified.",
+    "anchor": [
+      -66.91926705,
+      10.508095225
+    ],
+    "heading": -1.7305512000206813,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -66.91956423843546,
+        10.50814230728804
+      ],
+      "modelHeight": 0,
+      "basis": "Fixedprincipalfrontapproach12moutboardwestfront beforefield/geometry; exacturbanthreshold/streetgradeunverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/19788212"
+    ],
+    "source": "https://www.openstreetmap.org/relation/19788212",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:620572b1e8a51005173d9db83636717f8856987d4ff05cf7496a578c4ee87779",
+    "notes": "WholeprincipalhistoricMirafloresPalacecourtyardbuilding, original4vertexouterand4vertexopencourtyardhole: lowhigh-ceilingmainwings/wholeback/sides, rusticatedcreamwalls/whitecornices/tallsegmentalwindows/doorrecesses, balustradeparapets, twofrontcornerraisedpavilions/redtilemansardcaps, intrinsicraisedentry/curvedbalustrades/thinmetal-glasscanopy, openarcadedcourtyard/tiledwingroofs/centralfountain. Notfullnamedpresidentialcompoundextrusionorfront-onlycrop. Excludeadjacentofficebuildings/helipad/wholecompoundgrounds/plantedgardens/palms/flags/people/interiors/presidentialsealtext."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Originalprincipalbuildingrelation19788212/building=government/multipolygon, outerway1447100847/all4vertices andinnerway1447100846/all4courtyardvertices. Bothcontainedinside namedcompoundway215101101/Q607224, whose6vertexsiteboundaryconfirmsidentityONLY/notbuildingfootprint. Meanoriginaloutervertexanchor, +Xalongwestfrontface3toward0 and+Zwestwardoutwardnormal; facadebearingandwestentryassignmentareoriginalboundedphoto/nativeinterpretation, notsurveyedentrancebearing. Nativewholeouter/courtyardgeometryunchanged; noheight/componentdata, twofrontpavilions/roofsections/entry/arcadesareoriginalphotoestimates.",
+    "ThreeexactpublishedClementeRJ/RJ1ownPD-self1996/1998Quallaoriginals inspected/nativeSHA1matched/item-specificgrantsbound/existingpolicypasses.34families/0conflicts; politicalhero/uncleararchival/USGovvisit/interiorpainting/historicversions/attribution-onlyimagesunused. No officialsourcephoto/architecturediagram/generatedbitmap/photo texture/downloadedmesh.",
+    "Originalwhole4vertexouterand4vertexopeninnercourtyard retained withfullprincipalwings/back/sides. Nativecomponentheightsabsent: raisedfloor1.2m/mainwall7.2m/outerbalustrade8.3m/courtarcade5.8m/balustrade6.8m/wingridge8.8m/twofrontpavilions11.3m/mansard14.3m areoriginalphotoestimates. Westentryassignment/frontbearing/raisedpavilioncount/hiddenrear/roofprofiles/metricheight/currentcosmeticsbounded, notsurveyedcurrentcondition.",
+    "Recognizablecreamrustication/tallwindowanddoorrecesses/whitearchframes/cornices/floralcartouches/stonebalusters, twofrontredtilemansardpavilions/upperwindows, raisedcurvedentry/wroughtmetalglasscanopy andwholeopenarcadedcourtyard/lowwingroofs/centralfountain. Representativewindow/arch/ornament/balustercounts; finepresidentialinsignia/letters/flags/interiors/plantings/palms/people/roofgearomitted. Intrinsiccourtyardpaving/fountainonly, neverroofedcourtyardorfullcompoundsitefloor.",
+    "Independent400m129x129/16641values/4rawTerrariumtiles frozenbeforegeometryunchanged/no fit/flatten/reacquire. Portable/shared/contextflatstage separate; liveurbanhostterrain/thresholdcontactunverified. Nativepreview/replaceFootprint=false. Named6vertexpresidentialcompoundidentity-only; separateofficeblocks472476108/472476112/helipad1268322522/restofcompoundexcluded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-principal-palace-open-court-and-two-front-mansards",
+      "position": [
+        -67,
+        50,
+        77
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "rusticated-window-recesses-cornices-balusters-and-mansard",
+      "position": [
+        -43,
+        11,
+        47
+      ],
+      "lookAt": [
+        -16,
+        6.2,
+        20
+      ]
+    },
+    {
+      "name": "raised-curving-entry-stair-metal-and-glass-canopy",
+      "position": [
+        -14,
+        7,
+        45
+      ],
+      "lookAt": [
+        0,
+        3.6,
+        22
+      ]
+    },
+    {
+      "name": "open-arcaded-courtyard-and-intrinsic-fountain",
+      "position": [
+        3,
+        9,
+        7
+      ],
+      "lookAt": [
+        3,
+        3.7,
+        -12
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 35564,
+    "vertices": 106692,
+    "materials": 6,
+    "bytes": 4271388,
+    "sha256": "sha256:5ea417969fdcd9fba4c0923ab7f8bea8944fd8274264c796ee92e1f35de7b365"
+  }
+}

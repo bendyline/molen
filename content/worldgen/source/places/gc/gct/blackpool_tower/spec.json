@@ -1,0 +1,336 @@
+{
+  "planId": "blackpool_tower",
+  "id": "blackpool_tower",
+  "assetId": "molen.worldgen.structure.blackpool_tower",
+  "title": "Blackpool Tower",
+  "category": "observation-tower",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -3.0552398166666666,
+    "latitude": 53.815894549999996
+  },
+  "size": [
+    62.324201583862305,
+    158.5,
+    92.94099044799805
+  ],
+  "actualBounds": {
+    "min": [
+      -30.928016662597656,
+      -0.5,
+      -50.66958236694336
+    ],
+    "max": [
+      31.39618492126465,
+      158,
+      42.27140808105469
+    ]
+  },
+  "visualBrief": "Complete intrinsic Tower Buildings native brick polygon and roofs, four tapering open lattice stanchions with constituent pillars/diagonal bracing, central twin lift framing, pale-framed polygonal glass main gallery, three open upper galleries/corner cupolas, ogee open crown and158mmast. Original mapped component positions/heights, Qualla-first public-domain night view plus inspected exact creator own-work CC0native exterior control recognizable geometry. Adjacent Art Deco clock/store building and modern shops, beach/pier/promenade, seasonal illumination art, interiors/people/branding excluded. Hidden sections and small facade/roof census approximate.",
+  "nativeAxes": {
+    "x": "eastward along original central base north edge",
+    "y": "up",
+    "z": "south along the intrinsic entertainment block"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Blackpool_Illuminations_and_Tower.jpg",
+    "https://commons.wikimedia.org/wiki/File:Blackpool_Beach_Sunset.jpg"
+  ],
+  "stories": [
+    {
+      "id": "blackpool-tower-wp",
+      "url": "https://qualla.com/blackpool-tower/"
+    }
+  ],
+  "referenceInputHash": "6a5bf2c6694deb52ce3c813584504c12c4537b4d623881518260cfcc8596d33b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-blackpool-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-blackpool-tower.mjs",
+    "level": "skyline",
+    "export": "blackpoolSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.16
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.29,
+        "metallic": 0.08
+      },
+      "pale": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.05
+      },
+      "terra": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "blackpoolDistrict",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.16
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.29,
+            "metallic": 0.08
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.05
+          },
+          "terra": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "blackpoolStreet",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.16
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.29,
+            "metallic": 0.08
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.05
+          },
+          "terra": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3.6,
+    "groundY": -0.65
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named intrinsic entertainment blockway99715340and Towerway213940301/Q880905with15original building-part outlines/heights/min-heights. Native min23m/height114m leg-part footprints control exposed taper positions; native112-115m lower gallery,115-124m main gallery,124-128m open stage,128-142/134-146m upper crown stages and158m mast control section relationships. Mapped solid/skeleton roof tags are geographic envelope approximations, rendered as actual open braced lattice from inspected photographs. Complete eight-vertex base block is actual building, not parcel; neighboring cream Art Deco store/modern shops not included. Independent untagged base facade/roof sections and exact member census are explicit estimates. Fixed western entrance approach[-33,0] before independent220mrawterrain; foundations/thresholds/coastal host contact approximate.",
+    "anchor": [
+      -3.0552398166666666,
+      53.815894549999996
+    ],
+    "heading": 0.0661045039132531,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -3.0557408402975366,
+        53.815874968071995
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed western entrance approach before any model/terrain construction. Precise thresholds/hidden concrete foundation and coastal host contact remain approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/99715340",
+      "way/213940301",
+      "way/669351777",
+      "way/669351778",
+      "way/669351779",
+      "way/669351780",
+      "way/669351781",
+      "way/669351782",
+      "way/669351783",
+      "way/669351784",
+      "way/669351785",
+      "way/669351787",
+      "way/669351788",
+      "way/669351789",
+      "way/669351790",
+      "way/669354518",
+      "way/669354520"
+    ],
+    "source": "https://www.openstreetmap.org/way/213940301",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9d010e91b53a25f7d21e2439a2bb7976a971025056e33ef6c8ac6daa44e5a068",
+    "notes": "Complete surviving Blackpool Tower open steel lattice, central lift framing, glazed main gallery/three open upper galleries/ogee crown/mast, and intrinsic red-brick three-storey Tower Buildings entertainment block within its exact native outline, including main roofs/clerestories/roof-garden glazing and representative terracotta/arched facade detail. Exclude adjoining independent Art Deco store/clock building and modern shops, neighboring buildings, promenade/beach/pier/seasonal illumination artwork, interior ballroom/circus exhibits, people and copied branding/text. Native tower/component heights and positions control proportions; untagged base roof sections, facade/bay census and concealed details are bounded estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named intrinsic entertainment blockway99715340and Towerway213940301/Q880905with15original building-part outlines/heights/min-heights. Native min23m/height114m leg-part footprints control exposed taper positions; native112-115m lower gallery,115-124m main gallery,124-128m open stage,128-142/134-146m upper crown stages and158m mast control section relationships. Mapped solid/skeleton roof tags are geographic envelope approximations, rendered as actual open braced lattice from inspected photographs. Complete eight-vertex base block is actual building, not parcel; neighboring cream Art Deco store/modern shops not included. Independent untagged base facade/roof sections and exact member census are explicit estimates.",
+    "Qualla first: exact native MarkSJobling/Mjobling2006PD-userreleased night photograph controls silhouette only; clear supplemental MichaelDBeckwith2016native8688x5792own-workCC0photograph and pinned primary record control daytime structural form. Original SHA1matched; both viewed. Interior child/glassfloor/circus and unrelated/attribution/uncertain photographs excluded. No original photographic pixels or copied artwork/lettering embedded.",
+    "Exact original eight-vertex attached entertainment-block outline retained; native Towerway213940301/Q880905plus15component outlines/heights/min-heights control exposed legs/gallery/crown. Native solid/skillion tower tags are envelope approximations, interpreted as actual open braced steel. Published ground stanchion base100ft and30ftupper width support a bounded concealed root extension; native above-roof plan is not globally stretched.",
+    "Three unequal brick storeys, separate north ballroom roof, central raised circus roof/clerestory and twin south glazed roof-garden ranges follow original intrinsic building scope. Nominal16meaves/22mnorthroof and independent untagged facade/clerestory heights, exact window/pediment/roof-garden census and hidden current conservation are architectural estimates from inspected exterior and official text facts. No independently mapped neighboring Art Deco store/clock tower or modern shops included.",
+    "Four stanchions have constituent columns/open diagonal panels near, coarser representative bracing at district, and solid narrowed stanchion envelopes/sparse major crosses at skyline. Central closed twin lift framing remains narrow; surrounding inter-leg gaps stay open. Three upper gallery stages and original ogee rib/cupola interpretation remain open. Plate/member dimensions, connections, corner cupola census, concealed lift machinery and exact structural cross-sections are medium-fi estimates, not an engineering survey.",
+    "Opaque blue-grey glazing approximates closed observation/roof-garden panes. Applied window/terracotta ornaments have limited depth; ground door panels are closed rather than navigable interiors. No seasonal light artwork, flags/branding, interior circus/ballroom decoration, people or neighborhood landscape.",
+    "Independent220mrawTerrariumfield frozen before geometry at the fixed western entrance approach. Original tile bytes/grid/heightPNGremain unchanged, without flattening/fitting; composite coastal urban grade, beach/promenade edges and footings are approximate. No model ground platform or neighborhood terrain mesh. Flatstage is an inspection surface rather than geographic grade certification."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "native-tower-lattice-gallery-crown-and-intrinsic-base",
+      "position": [
+        -185,
+        102,
+        160
+      ],
+      "lookAt": [
+        0,
+        76,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "open-stanchion-pillars-diagonals-and-narrow-lift",
+      "position": [
+        -36,
+        61,
+        41
+      ],
+      "lookAt": [
+        0,
+        64,
+        0
+      ]
+    },
+    {
+      "name": "glazed-gallery-three-open-stages-cupolas-and-ogee-cap",
+      "position": [
+        -30,
+        129,
+        30
+      ],
+      "lookAt": [
+        0,
+        131,
+        0
+      ]
+    },
+    {
+      "name": "intrinsic-brick-block-ballroom-clerestory-and-twin-glazed-roofs",
+      "position": [
+        -70,
+        34,
+        40
+      ],
+      "lookAt": [
+        0,
+        12,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 30043,
+    "vertices": 90129,
+    "materials": 5,
+    "bytes": 3608128,
+    "sha256": "sha256:ca54245d8518642dbc04bea9797daac59d50fa194bd9edb0439a3d61e8c49562"
+  }
+}

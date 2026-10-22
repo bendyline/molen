@@ -1,0 +1,365 @@
+{
+  "planId": "ancient_theatre_of_argos",
+  "id": "ancient_theatre_of_argos",
+  "assetId": "molen.worldgen.structure.ancient_theatre_of_argos",
+  "title": "Ancient Theatre of Argos",
+  "category": "performance-sport",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 22.719544,
+    "latitude": 37.631605
+  },
+  "size": [
+    49.817399978637695,
+    28.238000869750977,
+    96.1772346496582
+  ],
+  "actualBounds": {
+    "min": [
+      -26.514135360717773,
+      0,
+      -20.674999237060547
+    ],
+    "max": [
+      23.303264617919922,
+      28.238000869750977,
+      75.50223541259766
+    ]
+  },
+  "visualBrief": "Complete surviving Ancient Theatre of Argos:17-point native theatre envelope, steep worn rock-cut83-row central cavea with4cunei/3radial stairs/two landings, surviving lower curved seating and collapsed wings,26m orchestra and partial guide ring, low restored proscenium and scenic/portico foundation remains/fragmented column drums. Intrinsic carved stone substrate included; no reconstructed tall ancient stage/colonnade/velarium. Adjacent Roman baths/odeon/nymphaeum/city, general hill/property terrain/trees/fences/lights/visitors/interiors excluded. Pale gray/buff worn cut limestone, warm dry orchestra, irregular stone step fronts and bounded lost/chipped patches; narrow uphill surviving central cavea follows native envelope, not a complete pristine semicircular stadium. Keep intrinsic stairs/landings and low Roman-stage foundations/fragmented drums readable. Preserve terrain field independently before model geometry.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Heading_to_the_ancient_theatre_of_Argos_on_September_5,_2020.jpg",
+    "https://commons.wikimedia.org/wiki/File:The_ancient_Theatre_of_Argos_on_September_5,_2020.jpg",
+    "https://commons.wikimedia.org/wiki/File:At_the_Theatre_of_Argos_on_September_5,_2020.jpg",
+    "https://commons.wikimedia.org/wiki/File:The_Theatre_of_Argos_on_September_5,_2020.jpg",
+    "https://commons.wikimedia.org/wiki/File:The_view_from_the_Theatre_of_Argos_on_September_5,_2020.jpg",
+    "https://commons.wikimedia.org/wiki/File:Argos07.jpg",
+    "https://commons.wikimedia.org/wiki/File:Argos08.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ancient_Theater,_Argos.jpg",
+    "https://commons.wikimedia.org/wiki/File:The_Theatre_of_Argos_on_5_September_2020.jpg"
+  ],
+  "stories": [
+    {
+      "id": "argos-theater-wp",
+      "url": "https://qualla.com/argos-theater/"
+    }
+  ],
+  "referenceInputHash": "7820350d3066a6cf13709e849539b5990854406628fca67c2659560b474af836",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-ancient-theatre-of-argos.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-ancient-theatre-of-argos.mjs",
+    "level": "skyline",
+    "export": "ancientTheatreOfArgosSkyline",
+    "errorMeters": 4,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "rock": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "earth": {
+        "slot": "wall",
+        "graph": "gravel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "roof",
+        "graph": "wood_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "ancientTheatreOfArgosDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "ancientTheatreOfArgosStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "ancientTheatreOfArgosCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": -0.08
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native named historic theatre way245267086/Q24912661, all17 original control vertices, not the surrounding archaeological-city relation. Fixed Qualla coordinate anchor and stage-front edge8to9 heading -1.9084735352629383 before terrain/geometry; +Zuphill/+Xstage-long-axis. Lower stage-front native span37.71m/whole theatre~100m long/upper surviving central width~45m. Orchestra centre estimated[-4.4,.8] from native stage-axis/photo symmetry, not a surveyed point. Ephorate primary facts:83 central rock-cut rows/4cunei/two landings/26m orchestra, historical proscenium24.4x2.5m/portico24x5.6m. Those constrain scale; actual ruined front dimensions/row loss/row rise/landings/wing limits/scene foundations are bounded interpretations from9clear photos, not a survey or restored ancient plan. All17vertices retained as whole scope controls; no polygon-box extrusion. Independent256m129-square2m hillside field frozen before geometry, not fitted/flattened to seating. Intrinsic cut-rock substrate closure/row rise are approximate geology/architecture; host contact unverified.",
+    "anchor": [
+      22.719544,
+      37.631605
+    ],
+    "heading": -1.9084735352629383,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        22.719551972788338,
+        37.631644674405
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed approximate orchestra-floor point before independent field; provider-relative datum not a surveyed stage threshold"
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/245267086"
+    ],
+    "source": "https://www.openstreetmap.org/way/245267086",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d66ae53799da28c1a66bf081adaf522740418aa553c80f594b8e18af26e7518b",
+    "notes": "Complete surviving Ancient Theatre of Argos:17-point native theatre envelope, steep worn rock-cut83-row central cavea with4cunei/3radial stairs/two landings, surviving lower curved seating and collapsed wings,26m orchestra and partial guide ring, low restored proscenium and scenic/portico foundation remains/fragmented column drums. Intrinsic carved stone substrate included; no reconstructed tall ancient stage/colonnade/velarium. Adjacent Roman baths/odeon/nymphaeum/city, general hill/property terrain/trees/fences/lights/visitors/interiors excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "limitations": [
+    "Native named historic theatre way245267086/Q24912661, all17 original control vertices, not the surrounding archaeological-city relation. Fixed Qualla coordinate anchor and stage-front edge8to9 heading -1.9084735352629383 before terrain/geometry; +Zuphill/+Xstage-long-axis. Lower stage-front native span37.71m/whole theatre~100m long/upper surviving central width~45m. Orchestra centre estimated[-4.4,.8] from native stage-axis/photo symmetry, not a surveyed point. Ephorate primary facts:83 central rock-cut rows/4cunei/two landings/26m orchestra, historical proscenium24.4x2.5m/portico24x5.6m. Those constrain scale; actual ruined front dimensions/row loss/row rise/landings/wing limits/scene foundations are bounded interpretations from9clear photos, not a survey or restored ancient plan. All17vertices retained as whole scope controls; no polygon-box extrusion.",
+    "Whole surviving excavated ruin, not an ideal ancient-complete semicircular theatre. All17native control vertices preserved;83 row positions and two landings represented at street/closeup, aggregated far away. Surviving central strip tapers uphill within native outline; lower curved wings/3radial stairs/4cunei/26morchestra/partial low guide ring and fragmentary scene/portico remains retained. Individual chips/lost courses, surviving wing/landing exact limits/row rise and bedrock foundation depth are approximate. Intrinsic carved substrate closure is not a claimed geological survey.",
+    "Nine cleared published CC0 files individually inspected:3exact original-byte matches and6existing1920px Qualla renditions, kept distinct. Pitched rock seat surfaces irregular/stylized, not photogrammetry. Current photographed low proscenium/capping/deck and foundation fragments remain low; original tall Roman scene/colonnades/velarium are not reconstructed. Native37.71mstage scope and official historical24.4x2.5mproscenium/24x5.6mportico constrain estimated surviving stage scale; precise modern deck/foundation fragment/drum placement unmeasured.",
+    "Independent256m129-square2mfield/all16641values/4originalTerrariumtiles/PNG frozen before geometry unchanged. Provider-relative orchestra datum33.5554m/sourcepixel3.78341m/absolute16.0497–90.1412m, not survey accuracy. Seat rise and substrate are not terrain fits; actual host grade contact unverified. Flat render fixtures are separate from real hillside; ordinary preview/replaceFootprintfalse.",
+    "Separate Roman baths/odeon/nymphaeum/citadel/city and general surrounding hill/trees/grass/fences/lights/visitors/interiors excluded. No protected source photos/plans/unknown hero image/generated bitmap or photo textures adopted."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-surviving-theatre-worn-narrow-cavea-and-low-stage",
+      "position": [
+        84,
+        83,
+        -87
+      ],
+      "lookAt": [
+        -4,
+        12,
+        28
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "eighty-three-rock-cut-rows-four-cunei-stairs-and-two-landings",
+      "position": [
+        30,
+        33,
+        4
+      ],
+      "lookAt": [
+        -5,
+        17,
+        42
+      ]
+    },
+    {
+      "name": "orchestra-partial-guide-ring-and-low-fragmentary-scene",
+      "position": [
+        31,
+        33,
+        -35
+      ],
+      "lookAt": [
+        -4,
+        1,
+        -5
+      ]
+    },
+    {
+      "name": "down-cavea-surviving-curved-wings-and-restored-low-proscenium",
+      "position": [
+        -4,
+        36,
+        71
+      ],
+      "lookAt": [
+        -4,
+        0,
+        -9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14313,
+    "vertices": 42939,
+    "materials": 5,
+    "bytes": 1720908,
+    "sha256": "sha256:254c47da4156d643b7828311155797d231f483d615877236923688e790ccfda7"
+  }
+}

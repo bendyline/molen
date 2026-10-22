@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { inspectImageryPolicy, PUBLIC_DOMAIN_POLICY } from './imagery-policy.mjs';
+import { inspectQuallaPrimaryRights, modelRightsRoot } from './imagery-primary-rights.mjs';
 
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const plainHash = (value) => (typeof value === 'string' ? value.replace(/^sha256:/, '') : null);
@@ -40,6 +41,98 @@ function field(html, name) {
     .replace(/<[^>]*>/g, '')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+/** Original nineteenth-century library book, with named deceased creator and native PDF hash. */
+export function inspectExpiredNamedBookReference(dir, reference) {
+  const blockers = [],
+    bytes = localBytes(dir, reference.path),
+    snapshot = localBytes(dir, reference.rightsEvidence?.path),
+    record = snapshotJson(snapshot),
+    metadata = record?.metadata,
+    review = reference.originalReview,
+    id = reference.archiveIdentifier,
+    year = review?.publicationYear,
+    died = review?.creatorDied,
+    file = record?.files?.find((f) => f.name === `${id}.pdf`);
+  if (!bytes || digest(bytes) !== plainHash(reference.sha256))
+    blockers.push('supplemental-image-bytes-unbound');
+  if (!snapshot || digest(snapshot) !== plainHash(reference.rightsEvidence?.sha256))
+    blockers.push('supplemental-rights-snapshot-unbound');
+  if (
+    reference.origin !== 'archive-expired-named-book' ||
+    reference.license !== 'Public domain' ||
+    !/^[a-z0-9]+$/.test(id ?? '') ||
+    reference.sourceUrl !== `https://archive.org/details/${id}` ||
+    reference.rightsEvidence?.sourceUrl !== `https://archive.org/metadata/${id}` ||
+    reference.downloadUrl !== `https://archive.org/download/${id}/${id}.pdf` ||
+    metadata?.identifier !== id ||
+    metadata?.['possible-copyright-status'] !== 'NOT_IN_COPYRIGHT' ||
+    metadata?.creator !== reference.artist ||
+    /unknown|anonymous/i.test(reference.artist ?? '') ||
+    !metadata?.contributor?.trim() ||
+    !metadata?.publisher?.trim() ||
+    !Number.isInteger(year) ||
+    year < 1800 ||
+    year > 1875 ||
+    metadata?.date !== String(year) ||
+    !Number.isInteger(died) ||
+    died < 1800 ||
+    died > 1915 ||
+    !reference.artist?.endsWith(`-${died}`) ||
+    reference.visuallyReviewedForThisPolicy !== true ||
+    review?.status !== 'inspected' ||
+    review?.rendition !== 'native-original-pdf' ||
+    !review?.pagesInspected?.length ||
+    !bytes ||
+    bytes.subarray(0, 5).toString() !== '%PDF-' ||
+    Number(file?.size) !== bytes.length ||
+    file?.sha1 !==
+      createHash('sha1')
+        .update(bytes ?? '')
+        .digest('hex')
+  )
+    blockers.push('supplemental-expired-named-book-unverified');
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers,
+    eligible: !blockers.length,
+  };
+}
+
+/** Named nineteenth-century print: bind the original bytes and explicit native grant. */
+export function inspectHistoricalPrintReference(dir, reference, root = modelRightsRoot) {
+  const blockers = [],
+    image = localBytes(dir, reference.path),
+    snapshot = localBytes(dir, reference.rightsEvidence?.path),
+    proof = reference.publicDomainEvidence;
+  if (!image || digest(image) !== plainHash(reference.sha256))
+    blockers.push('supplemental-image-bytes-unbound');
+  if (
+    !snapshot ||
+    digest(snapshot) !== plainHash(reference.rightsEvidence?.sha256) ||
+    proof?.sha256 !== plainHash(reference.rightsEvidence?.sha256) ||
+    path.resolve(root, proof?.path ?? '') !==
+      path.resolve(dir, reference.rightsEvidence?.path ?? '')
+  )
+    blockers.push('supplemental-rights-snapshot-unbound');
+  if (
+    reference.origin !== 'commons-expired-historical-print' ||
+    proof?.kind !== 'commons-native-expired-historical-print' ||
+    reference.originalReview?.status !== 'inspected' ||
+    reference.originalReview?.rendition !== 'native-original' ||
+    reference.visuallyReviewedForThisPolicy !== true ||
+    !image ||
+    !inspectQuallaPrimaryRights(reference, image, root)?.eligible
+  )
+    blockers.push('supplemental-historical-print-grant-unverified');
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers,
+    eligible: !blockers.length,
+  };
 }
 
 /** The cultural archive distinguishes the digital object's licence from its description.
@@ -183,8 +276,9 @@ export function inspectNpsReference(dir, reference) {
   const html = snapshot?.toString('utf8') ?? '',
     id = source?.[1];
   const agencyRelease =
-    ['NPS', 'NPS Photo'].includes(field(html, 'PhotoCredit')) &&
-    field(html, 'Constraints Information') === 'Public domain:Full Granting Rights';
+    ['NPS', 'NPS Photo', 'National Park Service', 'Cape Hatteras National Seashore'].includes(
+      field(html, 'PhotoCredit'),
+    ) && field(html, 'Constraints Information') === 'Public domain:Full Granting Rights';
   // Older agency records use Photographer and Publisher instead of PhotoCredit.
   // Accept only the explicit staff/public-domain combination, with no competing credit.
   const legacyStaffRelease =
@@ -428,6 +522,91 @@ export function inspectHistoricalNavyReference(dir, reference) {
   };
 }
 
+/** A NASA URL alone is insufficient: bind the named civil servant, field-work credit,
+ * exact offered photograph, agency copyright policy and independently read staff report. */
+export function inspectNasaStaffReference(dir, reference) {
+  const blockers = [],
+    image = localBytes(dir, reference.path),
+    gallery = localBytes(dir, reference.rightsEvidence?.path),
+    policy = localBytes(dir, reference.copyrightEvidence?.path),
+    role = localBytes(dir, reference.governmentRoleEvidence?.path),
+    extraction = localBytes(dir, reference.governmentRoleEvidence?.extractionPath);
+  for (const [bytes, expected, label] of [
+    [image, reference.sha256, 'image'],
+    [gallery, reference.rightsEvidence?.sha256, 'rights-snapshot'],
+    [policy, reference.copyrightEvidence?.sha256, 'copyright-policy'],
+    [role, reference.governmentRoleEvidence?.sha256, 'government-role'],
+    [extraction, reference.governmentRoleEvidence?.extractionSha256, 'role-extraction'],
+  ])
+    if (!bytes || digest(bytes) !== plainHash(expected))
+      blockers.push(`supplemental-${label}-unbound`);
+  const html = gallery?.toString('utf8') ?? '',
+    text = plainText(html),
+    creator = reference.artist?.match(/^([A-Za-z][A-Za-z .'-]+)\/NASA GSFC$/)?.[1],
+    roleDoc = extraction && snapshotJson(extraction),
+    roleText = String(roleDoc?.text ?? '')
+      .replace(/-\s*\n/g, '')
+      .replace(/\s+/g, ' '),
+    tags = [...html.matchAll(/<img\b[^>]*>/gi)].map((m) => m[0]),
+    offered = tags.some((tag) => {
+      const src = tag.match(/\bsrc="([^"]+)"/)?.[1];
+      if (!src) return false;
+      try {
+        return (
+          new URL(src, reference.sourceUrl).href === reference.downloadUrl &&
+          Number(tag.match(/\bwidth="(\d+)"/)?.[1]) === reference.width &&
+          Number(tag.match(/\bheight="(\d+)"/)?.[1]) === reference.height &&
+          tag.includes(`alt="${reference.originalReview?.imageAlt}"`)
+        );
+      } catch {
+        return false;
+      }
+    });
+  if (
+    reference.origin !== 'nasa-gsfc-civil-servant-photograph' ||
+    reference.license !== 'Public domain' ||
+    !creator ||
+    !/^https:\/\/earth\.gsfc\.nasa\.gov\/geo\/networks\/sgp\/multimedia\/[a-z0-9-]+$/.test(
+      reference.sourceUrl ?? '',
+    ) ||
+    reference.rightsEvidence?.sourceUrl !== reference.sourceUrl ||
+    !text.includes(`Photos courtesy of ${reference.artist} taken during`) ||
+    !text.includes(reference.originalReview?.captureDateEvidence ?? '\u0000') ||
+    !offered ||
+    !/^https:\/\/earth\.gsfc\.nasa\.gov\/sites\/default\/files\/styles\/carousel\/public\/gallery\/[^?#]+\.jpg\?itok=[A-Za-z0-9_-]+$/.test(
+      reference.downloadUrl ?? '',
+    ) ||
+    reference.originalReview?.status !== 'inspected' ||
+    reference.originalReview?.rendition !== 'published-gallery-jpeg'
+  )
+    blockers.push('supplemental-nasa-staff-photo-unverified');
+  const policyText = plainText(policy?.toString('utf8'));
+  if (
+    reference.copyrightEvidence?.sourceUrl !==
+      'https://www.nasa.gov/nasa-brand-center/images-and-media/' ||
+    !/NASA content[\s\S]{0,350}generally are not subject to copyright in the United States/.test(
+      policyText,
+    )
+  )
+    blockers.push('supplemental-nasa-government-work-policy-unverified');
+  if (
+    !/^https:\/\/ivscc\.gsfc\.nasa\.gov\/publications\/br\d{4}(?:%2B|\+)\d{4}\/(?:acgsfc|NASA-TP-\d+)\.pdf$/.test(
+      reference.governmentRoleEvidence?.sourceUrl ?? '',
+    ) ||
+    !role?.subarray(0, 5).equals(Buffer.from('%PDF-')) ||
+    roleDoc?.sourcePdfSha256 !== digest(role ?? Buffer.alloc(0)) ||
+    !creator ||
+    !roleText.includes(`civil servant, Dr. ${creator},`)
+  )
+    blockers.push('supplemental-nasa-civil-servant-role-unverified');
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers,
+    eligible: !blockers.length,
+  };
+}
+
 export function inspectDvidsReference(dir, reference) {
   const blockers = [],
     image = localBytes(dir, reference.path),
@@ -564,6 +743,86 @@ export function inspectCommonsWpaReference(dir, reference) {
   };
 }
 
+/** Embassy originals require the explicit DOS grant and named agency credit, not a bare PDM. */
+export function inspectCommonsEmbassyReference(dir, reference) {
+  const blockers = [],
+    image = localBytes(dir, reference.path),
+    snapshot = localBytes(dir, reference.rightsEvidence?.path),
+    json = snapshotJson(snapshot);
+  if (!image || digest(image) !== plainHash(reference.sha256))
+    blockers.push('supplemental-image-bytes-unbound');
+  if (!snapshot || digest(snapshot) !== plainHash(reference.rightsEvidence?.sha256))
+    blockers.push('supplemental-rights-snapshot-unbound');
+  let title, api, download;
+  try {
+    const source = new URL(reference.sourceUrl);
+    if (
+      source.origin === 'https://commons.wikimedia.org' &&
+      source.pathname.startsWith('/wiki/File:')
+    )
+      title = decodeURIComponent(source.pathname.slice(6)).replaceAll('_', ' ');
+    api = new URL(json?.source);
+    download = new URL(reference.downloadUrl);
+  } catch {}
+  const page = Object.values(json?.query?.pages ?? {}).find((p) => p.title === title),
+    native = page?.imageinfo?.[0],
+    body = page?.revisions?.[0]?.slots?.main?.['*'] ?? '',
+    value = (name) => native?.extmetadata?.[name]?.value,
+    id = reference.flickrId;
+  let nativeUrl;
+  try {
+    nativeUrl = new URL(native?.url);
+  } catch {}
+  if (
+    reference.origin !== 'commons-us-embassy-government-photo' ||
+    !/^\d{11}$/.test(id ?? '') ||
+    title !== `File:Emb. George visita UPM (${id}).jpg` ||
+    api?.origin !== 'https://commons.wikimedia.org' ||
+    api?.pathname !== '/w/api.php' ||
+    api?.searchParams.get('action') !== 'query' ||
+    !['imageinfo', 'revisions'].every((p) =>
+      api?.searchParams.get('prop')?.split('|').includes(p),
+    ) ||
+    !api?.searchParams.get('titles')?.split('|').includes(title) ||
+    !page?.revisions?.[0]?.revid ||
+    !/\{\{\s*PD-USGov-DOS\s*\}\}/.test(body) ||
+    reference.photographer !== 'Juan Francisco Casal' ||
+    !body.includes('[U.S. Embassy photo: Juan Francisco Casal /') ||
+    !body.includes(
+      `[https://www.flickr.com/photos/usembassy_montevideo/${id}/ Emb. George visita UPM]`,
+    ) ||
+    !body.includes(
+      '[https://www.flickr.com/people/41243200@N08 Embajada de los Estados Unidos en Uruguay]',
+    ) ||
+    !new RegExp(
+      `\\{\\{FlickreviewR\\|status=passed\\|author=U.S. Embassy Montevideo\\|sourceurl=https://flickr.com/photos/41243200@N08/${id}\\|[^}]*\\|reviewlicense=Public Domain Mark\\|`,
+    ).test(body) ||
+    reference.artist !== 'Embajada de los Estados Unidos en Uruguay from Montevideo, Uruguay' ||
+    plainText(value('Artist')) !== reference.artist ||
+    reference.license !== 'Public domain' ||
+    value('LicenseShortName') !== 'Public domain' ||
+    value('AttributionRequired') !== 'false' ||
+    plainText(value('Restrictions')) ||
+    nativeUrl?.origin !== 'https://upload.wikimedia.org' ||
+    nativeUrl?.pathname.includes('/thumb/') ||
+    nativeUrl?.pathname !== download?.pathname ||
+    download?.origin !== nativeUrl?.origin ||
+    native?.width !== reference.width ||
+    native?.height !== reference.height ||
+    native?.size !== image?.length ||
+    (image && createHash('sha1').update(image).digest('hex') !== native?.sha1) ||
+    reference.originalReview?.status !== 'inspected' ||
+    reference.originalReview?.rendition !== 'native-original'
+  )
+    blockers.push('supplemental-embassy-native-provenance-unverified');
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers,
+    eligible: !blockers.length,
+  };
+}
+
 export function inspectCommonsSelfReference(dir, reference) {
   const blockers = [],
     image = localBytes(dir, reference.path),
@@ -675,10 +934,43 @@ export function inspectCommonsSelfReference(dir, reference) {
   const originalFileName = dedication?.originalFileUrl?.split('/wiki/File:')[1],
     originalUpload = dedication?.originalUpload,
     compactBody = body.replace(/\s*\|\s*/g, '|');
+  const originalUploadRow = `${originalUpload?.timestamp} [[:en:User:${dedication?.username}|${dedication?.username}]] ${originalUpload?.width}×${originalUpload?.height}× (${originalUpload?.bytes} bytes)`,
+    digitalPhotoDate = originalUpload?.photographedDateText?.replace(
+      /^(\d{1,2})(?:st|nd|rd|th) /,
+      '$1 ',
+    ),
+    digitalPhotoTime = Date.parse(`${digitalPhotoDate} UTC`),
+    digitalPhotographerDeclaration =
+      dedication?.kind === 'english-wikipedia-original-digital-photograph' &&
+      /^[A-Za-z][A-Za-z -]{1,100}$/.test(dedication.photographSubject ?? '') &&
+      /^\d{1,2}(?:st|nd|rd|th) [A-Za-z]+ \d{4}$/.test(originalUpload?.photographedDateText ?? '') &&
+      Number.isFinite(digitalPhotoTime) &&
+      !/\{\{\s*(?:cc-by|gfdl|copyright)/i.test(body) &&
+      new Date(digitalPhotoTime).toISOString().slice(0, 10) ===
+        originalUpload?.timestamp?.slice(0, 10) &&
+      originalFileName?.startsWith(`${dedication.photographSubject.replaceAll(' ', '_')}_`) &&
+      body
+        .split('\n')
+        .some(
+          (line) =>
+            line.includes(originalUploadRow) &&
+            line.includes(
+              `<nowiki>A Digital Photograph of ${dedication.photographSubject} taken on the ${originalUpload.photographedDateText} by [[${dedication.username?.toLowerCase()}]]</nowiki>`,
+            ),
+        );
+  // Some transfers credit the photographer in the description rather than the upload comment.
+  // The existing exact account/grant/upload-row/byte checks still apply.
+  const describedPhotographerDeclaration =
+    dedication?.kind === 'english-wikipedia-photographer-described-upload' &&
+    body.includes(`Photo taken by [[:en:User:${dedication.username}|${dedication.username}]]`);
   const migratedOriginalUploadRelease =
     reference.origin === 'commons-author-public-domain' &&
     reference.license === 'Public domain' &&
-    dedication?.kind === 'english-wikipedia-original-upload' &&
+    [
+      'english-wikipedia-original-upload',
+      'english-wikipedia-original-digital-photograph',
+      'english-wikipedia-photographer-described-upload',
+    ].includes(dedication?.kind) &&
     dedication.wiki === 'en' &&
     dedication.project === 'English Wikipedia' &&
     /^[A-Za-z0-9_-]+$/.test(dedication.username ?? '') &&
@@ -693,18 +985,190 @@ export function inspectCommonsSelfReference(dir, reference) {
     String(value('Artist')).includes(`href="${dedication.profileUrl}"`) &&
     /Transferred from/.test(plainText(value('Credit'))) &&
     String(value('Credit')).includes('href="https://en.wikipedia.org"') &&
-    value('Permission') === 'Released into the public domain (by the author)' &&
+    (value('Permission') === 'Released into the public domain (by the author)' ||
+      (digitalPhotographerDeclaration && !meta?.Permission)) &&
     value('Copyrighted') === 'False' &&
     /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(originalUpload?.timestamp ?? '') &&
     originalUpload.width === info?.width &&
     originalUpload.height === info?.height &&
     originalUpload.bytes === info?.size &&
     image?.length === info?.size &&
-    body.includes(
-      `${originalUpload.timestamp} [[:en:User:${dedication.username}|${dedication.username}]] ${originalUpload.width}×${originalUpload.height}× (${originalUpload.bytes} bytes)`,
+    body.includes(originalUploadRow) &&
+    ((dedication.kind === 'english-wikipedia-original-upload' &&
+      body
+        .toLowerCase()
+        .includes(`contributor (${dedication.username.toLowerCase()}), self taken`)) ||
+      digitalPhotographerDeclaration ||
+      describedPhotographerDeclaration);
+  // For-the-Common-Good transfers preserve a different original-upload table:
+  // the granting account is an `uv` link and the photographer can use a real
+  // display name. Bind that complete row to the native file and named author.
+  const namedUploadRows = [
+    ...body.matchAll(
+      /\|\s*(\d{2}:\d{2}, \d{1,2} [A-Za-z]+ \d{4})\s*\|\|\s*([\d,]+)\s*×\s*([\d,]+)\s*\(([\d,]+) bytes\)\s*\|\|\s*\{\{uv\|([^|}]+)\|w:en:\}\}\s*\|\|\s*<nowiki>([^<]+)<\/nowiki>/g,
+    ),
+  ];
+  const migratedNamedPhotographerRelease =
+    reference.origin === 'commons-author-public-domain' &&
+    reference.license === 'Public domain' &&
+    dedication?.kind === 'english-wikipedia-original-named-photographer' &&
+    dedication.wiki === 'en' &&
+    dedication.project === 'English Wikipedia' &&
+    /^[A-Za-z0-9_-]+$/.test(dedication.username ?? '') &&
+    dedication.profileUrl === `https://en.wikipedia.org/wiki/User:${dedication.username}` &&
+    /^https:\/\/en\.wikipedia\.org\/wiki\/File:[A-Za-z0-9_.-]+$/.test(
+      dedication.originalFileUrl ?? '',
     ) &&
-    body.toLowerCase().includes(`contributor (${dedication.username.toLowerCase()}), self taken`);
-  const migratedCreatorRelease = migratedNamedRelease || migratedOriginalUploadRelease;
+    compactBody.includes(`{{PD-user-en|${dedication.username}}}`) &&
+    compactBody.includes('{{own work by original uploader}}') &&
+    compactBody.includes('{{transferred from|en.wikipedia||ftcg}}') &&
+    compactBody.includes(`{{original description page|en.wikipedia|${originalFileName}}}`) &&
+    body.includes(`:en:User:${dedication.username}|${reference.artist}`) &&
+    String(value('Artist')).includes(`href="${dedication.profileUrl}"`) &&
+    plainText(value('Artist')) === reference.artist &&
+    plainText(value('Credit')) === 'Own work by the original uploader' &&
+    value('Copyrighted') === 'False' &&
+    namedUploadRows.some(
+      (row) =>
+        row[1] === originalUpload?.timestamp &&
+        Number.isFinite(Date.parse(row[1].replace(/^(\d{2}:\d{2}), (.+)$/, '$2 $1 UTC'))) &&
+        row[5] === dedication.username &&
+        row[6].startsWith(`${reference.artist},`) &&
+        Number(row[2].replaceAll(',', '')) === info?.width &&
+        Number(row[3].replaceAll(',', '')) === info?.height &&
+        Number(row[4].replaceAll(',', '')) === info?.size &&
+        image?.length === info?.size,
+    );
+  // Earlier English-Wikipedia transfers use a bit-depth upload log, with the
+  // photographer's explicit first-person source preserved as "Image taken by".
+  // Bind the named author grant, original filename, account and exact native dimensions.
+  const migratedSelfPhotographedRelease =
+    reference.origin === 'commons-author-public-domain' &&
+    reference.license === 'Public domain' &&
+    dedication?.kind === 'english-wikipedia-self-photographed-upload' &&
+    dedication.wiki === 'en' &&
+    dedication.project === 'English Wikipedia' &&
+    /^[A-Za-z0-9_-]+$/.test(dedication.username ?? '') &&
+    /^[A-Za-z][A-Za-z .'-]+$/.test(dedication.realName ?? '') &&
+    reference.artist === `${dedication.username} (${dedication.realName})` &&
+    dedication.profileUrl === `https://en.wikipedia.org/wiki/User:${dedication.username}` &&
+    /^https:\/\/en\.wikipedia\.org\/wiki\/File:[A-Za-z0-9_.-]+$/.test(
+      dedication.originalFileUrl ?? '',
+    ) &&
+    compactBody.includes(`{{PD-user-en|${dedication.username}}}`) &&
+    compactBody.includes(`{{original description page|en.wikipedia|${originalFileName}}}`) &&
+    body.includes(
+      `Author=[[:en:User:${dedication.username}|${dedication.username}]] (${dedication.realName})`,
+    ) &&
+    String(value('Artist')).includes(`href="${dedication.profileUrl}"`) &&
+    plainText(value('Artist')) === reference.artist &&
+    /Transferred from/.test(plainText(value('Credit'))) &&
+    String(value('Credit')).includes('href="https://en.wikipedia.org"') &&
+    value('Copyrighted') === 'False' &&
+    /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(originalUpload?.timestamp ?? '') &&
+    Number.isFinite(Date.parse(`${originalUpload.timestamp.replace(' ', 'T')}:00Z`)) &&
+    originalUpload.width === info?.width &&
+    originalUpload.height === info?.height &&
+    Number.isInteger(originalUpload.bitDepth) &&
+    originalUpload.bitDepth > 0 &&
+    /^\d{4}$/.test(String(originalUpload.photographedYear)) &&
+    body.includes(
+      `${originalUpload.timestamp} [[:en:User:${dedication.username}|${dedication.username}]] ${originalUpload.width}×${originalUpload.height}×${originalUpload.bitDepth}`,
+    ) &&
+    body.includes(`Image taken by ${dedication.realName} ${originalUpload.photographedYear}.`);
+  // German transfers preserve either a dated own-photograph credit or the
+  // original Information template. Bind the named creator, explicit grant and
+  // complete original upload declaration to the same native image bytes.
+  let germanOriginalName;
+  try {
+    const u = new URL(dedication?.originalFileUrl);
+    if (
+      u.origin === 'https://de.wikipedia.org' &&
+      /^\/wiki\/(?:Image|File):[^?#]+$/.test(u.pathname)
+    )
+      germanOriginalName = decodeURIComponent(
+        u.pathname.replace(/^\/wiki\/(?:Image|File):/, ''),
+      ).replaceAll('_', ' ');
+  } catch {}
+  const germanOwnCredit =
+    dedication?.kind === 'german-wikipedia-original-own-photograph' &&
+    body
+      .split('\n')
+      .some(
+        (line) =>
+          line.includes(
+            `${originalUpload?.timestamp} . . ${dedication?.username} (Diskussion) . . ${originalUpload?.width} x ${originalUpload?.height} (${originalUpload?.bytes} Byte)`,
+          ) &&
+          line.includes(
+            `* eigene Aufnahme * ${dedication?.realName} (${dedication?.username}) * ${originalUpload?.photographedDateText}`,
+          ),
+      );
+  const germanOwnTemplate =
+    dedication?.kind === 'german-wikipedia-original-own-template' &&
+    body
+      .split('\n')
+      .some(
+        (line) =>
+          line.includes(
+            `${originalUpload?.timestamp} [[:de:User:${dedication?.username}|${dedication?.username}]] ${originalUpload?.width}×${originalUpload?.height}× (${originalUpload?.bytes} bytes)`,
+          ) &&
+          line.includes(
+            '|Quelle = selbst fotografiert |Urheber = ~~~ |Datum = ' +
+              originalUpload?.photographedDateText +
+              ' |',
+          ),
+      );
+  const migratedGermanPhotographerRelease =
+    reference.origin === 'commons-author-public-domain' &&
+    reference.license === 'Public domain' &&
+    dedication?.wiki === 'de' &&
+    dedication.project === 'German Wikipedia' &&
+    /^[A-Za-z0-9_-]+$/.test(dedication.username ?? '') &&
+    /^[A-Za-z][A-Za-z .'-]+$/.test(dedication.realName ?? '') &&
+    ['User', 'Benutzer'].some(
+      (ns) =>
+        dedication.profileUrl === `https://de.wikipedia.org/wiki/${ns}:${dedication.username}`,
+    ) &&
+    String(value('Artist')).includes(`href="${dedication.profileUrl}"`) &&
+    plainText(value('Artist')) === reference.artist &&
+    value('Copyrighted') === 'False' &&
+    !/\{\{\s*(?:cc-by|gfdl|copyright)/i.test(body) &&
+    germanOriginalName &&
+    originalUpload.width === info?.width &&
+    originalUpload.height === info?.height &&
+    originalUpload.bytes === info?.size &&
+    image?.length === info?.size &&
+    ((germanOwnCredit &&
+      /^\d{2}:\d{2}, \d{1,2}\. [A-Za-zÄÖÜäöü]+ \d{4}$/.test(originalUpload.timestamp ?? '') &&
+      /^\d{2}\/\d{4}$/.test(originalUpload.photographedDateText ?? '') &&
+      compactBody.includes(`{{PD-user-de|${dedication.username}}}`) &&
+      body.includes(
+        `Author= ${dedication.realName} ([[:de:User:${dedication.username}|${dedication.realName}]])`,
+      ) &&
+      body.includes(`:de:Image:${germanOriginalName}|de.wikipedia.org`) &&
+      String(value('Credit')).includes(`href="${dedication.originalFileUrl}"`) &&
+      /released into the public domain.*by its author/i.test(plainText(value('Permission'))) &&
+      plainText(value('Permission')).includes(
+        `${dedication.username} grants anyone the right to use this work`,
+      ) &&
+      reference.artist === `${dedication.realName} (${dedication.realName})`) ||
+      (germanOwnTemplate &&
+        /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(originalUpload.timestamp ?? '') &&
+        /^\d{2}\.\d{2}\.\d{4}$/.test(originalUpload.photographedDateText ?? '') &&
+        compactBody.includes('{{PD-release}}') &&
+        compactBody.includes(`{{original description page|de.wikipedia|${germanOriginalName}}}`) &&
+        /\|\s*Source\s*=\s*\{\{own\}\}/.test(body) &&
+        body.includes(`|Author=[[:de:Benutzer:${dedication.username}|${dedication.username}]]`) &&
+        plainText(value('Credit')) === 'Own work' &&
+        value('Permission') === 'Released into the public domain (by the author).' &&
+        reference.artist === dedication.username &&
+        dedication.realName === dedication.username));
+  const migratedCreatorRelease =
+    migratedNamedRelease ||
+    migratedOriginalUploadRelease ||
+    migratedNamedPhotographerRelease ||
+    migratedSelfPhotographedRelease ||
+    migratedGermanPhotographerRelease;
   // A direct upload can name the creator's other-wiki account in its grant.
   // Require that same creator to have authored the first Commons revision at
   // the sole native upload, rather than trusting a later transfer template.
@@ -734,7 +1198,13 @@ export function inspectCommonsSelfReference(dir, reference) {
   // A standalone CC0 tag alone does not establish that creator relationship.
   const selfCc0 =
     /\{\{\s*self\s*\|[^}]*\bcc-zero\s*(?:\||\}\})/i.test(body) ||
-    (/\{\{\s*self\s*\}\}/i.test(body) && /\{\{\s*cczero\s*\}\}/i.test(body));
+    (/\{\{\s*self\s*\}\}/i.test(body) && /\{\{\s*cczero\s*\}\}/i.test(body)) ||
+    (reference.license === 'CC0' &&
+      /^[A-Za-z0-9_-]+$/.test(reference.artist ?? '') &&
+      /\|\s*source\s*=\s*\{\{\s*own\s*\}\}/i.test(body) &&
+      body.includes(`|Author=[[User:${reference.artist}|${reference.artist}]]`) &&
+      /\|\s*permission\s*=\s*\{\{\s*cc0\s*\}\}/i.test(body) &&
+      /\{\{\s*cc0\s*\}\}/i.test(body));
   const release =
     originalNamedPhotographerRelease ||
     migratedCreatorRelease ||
@@ -845,6 +1315,21 @@ export function inspectFlickrCc0Reference(dir, reference) {
       reference.artist === name ||
       reference.artist.startsWith(`${name} from `) ||
       (dedication?.catalogName === reference.artist && stableCreator),
+    creatorLinkBound =
+      String(meta?.Artist?.value).includes(`https://www.flickr.com/people/${nsid}`) ||
+      (stableCreator &&
+        [ownerUrl, `${ownerUrl}/`].some((url) =>
+          String(meta?.Artist?.value).includes(`href="${url}"`),
+        )),
+    creditBound =
+      String(meta?.Credit?.value).includes(photoUrl) ||
+      (stableCreator &&
+        [...String(meta?.Credit?.value).matchAll(/href="([^"]+)"/g)].some((m) =>
+          [
+            `https://www.flickr.com/photos/${nsid}/${id}`,
+            `https://www.flickr.com/photos/${nsid}/${id}/`,
+          ].includes(m[1]),
+        )),
     modernReview = [...body.matchAll(/\{\{FlickreviewR\|([^{}]+)\}\}/g)].some((m) => {
       const fields = m[1].split('|').map((s) => {
           const i = s.indexOf('=');
@@ -886,8 +1371,8 @@ export function inspectFlickrCc0Reference(dir, reference) {
     meta?.AttributionRequired?.value !== 'false' ||
     plainText(meta?.Restrictions?.value) ||
     plainText(meta?.Artist?.value) !== reference.artist ||
-    !String(meta?.Artist?.value).includes(`https://www.flickr.com/people/${nsid}`) ||
-    !String(meta?.Credit?.value).includes(photoUrl) ||
+    !creatorLinkBound ||
+    !creditBound ||
     !/\{\{\s*cc-zero\s*\}\}/i.test(body) ||
     !body.includes(`https://flickr.com/photos/${nsid}/${id}`) ||
     !(/\{\{User:FlickreviewR\/reviewed-pass\|[^}]*\|cc-zero\|\}\}/.test(body) || modernReview) ||
@@ -1443,6 +1928,103 @@ export function inspectWienMuseumReference(dir, reference) {
   };
 }
 
+/** The museum releases its own archive reproductions; State Archive consultation-only items do not qualify. */
+export function inspectMuseoEgizioArchiveReference(dir, reference) {
+  const image = localBytes(dir, reference.path),
+    native = localBytes(dir, reference.catalogEvidence?.path),
+    policy = localBytes(dir, reference.rightsEvidence?.path),
+    catalog = localBytes(dir, reference.museumCatalogEvidence?.path),
+    blockers = [],
+    accession = reference.accessionNumber,
+    policyUrl =
+      'https://archiviofotografico.museoegizio.it/en/section/How-to-use-the-Archive/Policy-on-access-and-use/',
+    page = Object.values(snapshotJson(native)?.query?.pages ?? {}).find((p) => {
+      try {
+        const source = new URL(reference.sourceUrl);
+        return (
+          source.origin === 'https://commons.wikimedia.org' &&
+          source.pathname.startsWith('/wiki/File:') &&
+          decodeURIComponent(source.pathname.slice(6)).replaceAll('_', ' ') === p.title
+        );
+      } catch {
+        return false;
+      }
+    }),
+    info = page?.imageinfo?.[0],
+    value = (k) => info?.extmetadata?.[k]?.value,
+    body = page?.revisions?.[0]?.slots?.main?.['*'] ?? '',
+    html = policy?.toString('utf8') ?? '',
+    catalogHtml = catalog?.toString('utf8') ?? '',
+    slide =
+      catalogHtml
+        .split(/<div class="row swiper-slide">/)
+        .find((s) => s.includes(`id="${accession}"`)) ?? '';
+  let sameOriginal = false,
+    knownCatalog = false;
+  try {
+    const a = new URL(reference.downloadUrl),
+      b = new URL(info?.url),
+      c = new URL(reference.museumCatalogEvidence?.sourceUrl);
+    sameOriginal =
+      a.origin === 'https://upload.wikimedia.org' &&
+      !a.pathname.includes('/thumb/') &&
+      a.origin + a.pathname === b.origin + b.pathname;
+    knownCatalog =
+      c.origin === 'https://archiviofotografico.museoegizio.it' &&
+      c.pathname.startsWith('/en/archive/') &&
+      body.includes(c.href.replaceAll('&', '&amp;'));
+  } catch {}
+  if (
+    reference.origin !== 'museo-egizio-archive-cc0' ||
+    reference.license !== 'CC0' ||
+    reference.institution !== 'Museo Egizio (Turin)' ||
+    !/^C\d{5}$/.test(accession ?? '') ||
+    !reference.artist?.trim() ||
+    reference.rightsEvidence?.sourceUrl !== policyUrl ||
+    !knownCatalog ||
+    !page?.revisions?.[0]?.revid ||
+    !sameOriginal ||
+    !image ||
+    !native ||
+    !policy ||
+    !catalog ||
+    digest(image) !== plainHash(reference.sha256) ||
+    digest(native) !== plainHash(reference.catalogEvidence?.sha256) ||
+    digest(policy) !== plainHash(reference.rightsEvidence?.sha256) ||
+    digest(catalog) !== plainHash(reference.museumCatalogEvidence?.sha256) ||
+    createHash('sha1').update(image).digest('hex') !== info?.sha1 ||
+    reference.width !== info?.width ||
+    reference.height !== info?.height ||
+    image.length !== info?.size ||
+    value('LicenseShortName') !== 'CC0' ||
+    value('AttributionRequired') !== 'false' ||
+    plainText(value('Restrictions')) ||
+    !/\{\{\s*Cc-zero\s*\}\}/i.test(body) ||
+    !body.includes('{{Institution:Museo Egizio (Turin)}}') ||
+    !new RegExp(`accession number\\s*=\\s*${accession}(?:\\s|$)`).test(body) ||
+    /State Archive|Archivio di Stato/i.test(body) ||
+    !plainText(html).includes(
+      'The Museo Egizio is pleased to release the digital reproductions in the public domain of the Photographic Archive in CC0',
+    ) ||
+    !plainText(html).includes(
+      'including commercial, completely free of charge and without further permission',
+    ) ||
+    !html.includes('creativecommons.org/publicdomain/zero/1.0') ||
+    !slide.includes(`${accession}.std_full.jpg`) ||
+    !/fa-copyright[^>]*><\/i>\s*CC0/.test(slide) ||
+    /State Archive|Archivio di Stato/i.test(slide) ||
+    reference.originalReview?.status !== 'inspected' ||
+    reference.originalReview?.rendition !== 'native-original'
+  )
+    blockers.push('supplemental-egizio-item-and-institution-cc0-release-unverified');
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers,
+    eligible: !blockers.length,
+  };
+}
+
 export function inspectImageryInventory({
   dir,
   qualla,
@@ -1490,43 +2072,57 @@ export function inspectImageryInventory({
       blockers.push('qualla-first-search-evidence-missing');
   }
   const additionalProof = additional.map((r) =>
-    r.origin === 'nhhc-official-navy-public-domain'
-      ? inspectHistoricalNavyReference(dir, r)
-      : r.origin === 'california-library-expired-postcard'
-        ? inspectCaliforniaPostcardReference(dir, r)
-        : r.origin === 'taiwan-culture-object-cc0'
-          ? inspectTaiwanCultureReference(dir, r)
-          : r.origin === 'gutenberg-original-public-domain-illustration'
-            ? inspectGutenbergReference(dir, r)
-            : r.origin === 'expired-south-african-photographic-postcard'
-              ? inspectExpiredPostcardReference(dir, r)
-              : r.origin === 'commons-nypl-wpa-public-domain'
-                ? inspectCommonsWpaReference(dir, r)
-                : r.origin === 'wien-museum-cc0'
-                  ? inspectWienMuseumReference(dir, r)
-                  : r.origin === 'nps-historical-public-domain'
-                    ? inspectNpsHistoricalReference(dir, r)
-                    : ['dvids-uscg-public-domain', 'dvids-usnavy-public-domain'].includes(r.origin)
-                      ? inspectDvidsReference(dir, r)
-                      : r.origin === 'commons-flickr-cc0'
-                        ? inspectFlickrCc0Reference(dir, r)
-                        : ['commons-self-public-domain', 'commons-author-public-domain'].includes(
-                              r.origin,
-                            )
-                          ? inspectCommonsSelfReference(dir, r)
-                          : ['publicdomainpictures-creator-cc0', 'pxhere-creator-cc0'].includes(
-                                r.origin,
-                              )
-                            ? inspectCreatorCc0Reference(dir, r)
-                            : r.origin === 'loc-abdul-hamid-public-domain'
-                              ? inspectAbdulHamidReference(dir, r)
-                              : r.origin === 'loc-highsmith-public-domain'
-                                ? inspectHighsmithReference(dir, r)
-                                : r.origin === 'nationaal-archief-cc0'
-                                  ? inspectNationaalArchiefReference(dir, r)
-                                  : r.origin === 'loc-habs-original-public-domain'
-                                    ? inspectHabsReference(dir, r)
-                                    : inspectNpsReference(dir, r),
+    r.origin === 'archive-expired-named-book'
+      ? inspectExpiredNamedBookReference(dir, r)
+      : r.origin === 'commons-expired-historical-print'
+        ? inspectHistoricalPrintReference(dir, r)
+        : r.origin === 'commons-us-embassy-government-photo'
+          ? inspectCommonsEmbassyReference(dir, r)
+          : r.origin === 'nhhc-official-navy-public-domain'
+            ? inspectHistoricalNavyReference(dir, r)
+            : r.origin === 'california-library-expired-postcard'
+              ? inspectCaliforniaPostcardReference(dir, r)
+              : r.origin === 'taiwan-culture-object-cc0'
+                ? inspectTaiwanCultureReference(dir, r)
+                : r.origin === 'gutenberg-original-public-domain-illustration'
+                  ? inspectGutenbergReference(dir, r)
+                  : r.origin === 'expired-south-african-photographic-postcard'
+                    ? inspectExpiredPostcardReference(dir, r)
+                    : r.origin === 'commons-nypl-wpa-public-domain'
+                      ? inspectCommonsWpaReference(dir, r)
+                      : r.origin === 'wien-museum-cc0'
+                        ? inspectWienMuseumReference(dir, r)
+                        : r.origin === 'museo-egizio-archive-cc0'
+                          ? inspectMuseoEgizioArchiveReference(dir, r)
+                          : r.origin === 'nps-historical-public-domain'
+                            ? inspectNpsHistoricalReference(dir, r)
+                            : r.origin === 'nasa-gsfc-civil-servant-photograph'
+                              ? inspectNasaStaffReference(dir, r)
+                              : ['dvids-uscg-public-domain', 'dvids-usnavy-public-domain'].includes(
+                                    r.origin,
+                                  )
+                                ? inspectDvidsReference(dir, r)
+                                : r.origin === 'commons-flickr-cc0'
+                                  ? inspectFlickrCc0Reference(dir, r)
+                                  : [
+                                        'commons-self-public-domain',
+                                        'commons-author-public-domain',
+                                      ].includes(r.origin)
+                                    ? inspectCommonsSelfReference(dir, r)
+                                    : [
+                                          'publicdomainpictures-creator-cc0',
+                                          'pxhere-creator-cc0',
+                                        ].includes(r.origin)
+                                      ? inspectCreatorCc0Reference(dir, r)
+                                      : r.origin === 'loc-abdul-hamid-public-domain'
+                                        ? inspectAbdulHamidReference(dir, r)
+                                        : r.origin === 'loc-highsmith-public-domain'
+                                          ? inspectHighsmithReference(dir, r)
+                                          : r.origin === 'nationaal-archief-cc0'
+                                            ? inspectNationaalArchiefReference(dir, r)
+                                            : r.origin === 'loc-habs-original-public-domain'
+                                              ? inspectHabsReference(dir, r)
+                                              : inspectNpsReference(dir, r),
   );
   if (additionalProof.some((r) => !r.eligible))
     blockers.push('supplemental-public-domain-source-unverified');

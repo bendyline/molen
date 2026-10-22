@@ -1,0 +1,307 @@
+{
+  "planId": "chamizal_cultural_center",
+  "id": "chamizal_cultural_center",
+  "assetId": "molen.worldgen.structure.chamizal_cultural_center",
+  "title": "Chamizal National Memorial Cultural Center",
+  "category": "civic-cultural",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -106.45409388095239,
+    "latitude": 31.767941445238097
+  },
+  "size": [
+    106.7728500366211,
+    9.549999803304672,
+    43.258487701416016
+  ],
+  "actualBounds": {
+    "min": [
+      -60.69215774536133,
+      -0.3499999940395355,
+      -22.058399200439453
+    ],
+    "max": [
+      46.080692291259766,
+      9.199999809265137,
+      21.200088500976562
+    ]
+  },
+  "visualBrief": "Complete connected Chamizal Cultural Center/Visitor Center exterior on original42vertexC-shaped plan: open northwest innercourt, low faceted stone wings/deep open covered portals and recessed closed entry glazing, separately raised theatre volume with shadowed clerestory/white short supports/broad brown sloping faceted fascia/dark flat roofcap/tall stone end fins. Whole native building extent; photograph-interpreted roof/height/door subdivisions. No park/sitepavement/murals/sculptures/detachedfacilities/interior.",
+  "nativeAxes": {
+    "x": "true east",
+    "y": "up",
+    "z": "true south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://npgallery.nps.gov/AssetDetail/1abfea06-94e1-479d-ae8d-3abb9b27f557"
+  ],
+  "stories": [
+    {
+      "id": "chamizal-national-memorial-wp",
+      "url": "https://qualla.com/chamizal-national-memorial/"
+    }
+  ],
+  "referenceInputHash": "78a0460028329c9e62fc1723ce940ca20314bbd8e84c731b23965e43458ade65",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-chamizal-cultural-center.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-chamizal-cultural-center.mjs",
+    "level": "skyline",
+    "export": "chamizalSkyline",
+    "errorMeters": 0.9,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "fascia": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.89,
+        "metallic": 0.12
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.37,
+        "metallic": 0.07
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "chamizalDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "fascia": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.89,
+            "metallic": 0.12
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.37,
+            "metallic": 0.07
+          }
+        }
+      },
+      "street": {
+        "export": "chamizalStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "fascia": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.89,
+            "metallic": 0.12
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.37,
+            "metallic": 0.07
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.65,
+    "groundY": -0.4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named ChamizalN.M.VisitorCenterway249044427/800SouthSanMarcialStreetfixes the actual connected CulturalCenter/VisitorCenter exterior. Original42vertexC-shaped native envelope retained unchanged, meananchor[-106.45409388095239,31.767941445238097], cardinalframe. This is a building plan, not55acrememorialgrounds or a park/storycentroid. Broad west/northwest courtyard notch stays open. No native height/roofpartition supplied; multiple roof levels, raised theatre cap/fascia and shadowed porticos are bounded interpretations of the exact NPSexterior, not all plan area uniformly extruded or a certified roof survey. Exactdoor/hiddensection/mural-wall/terraincontact unverified. Unmodified independent160mfield frozen at fixed innercourt[-14,0]before geometry. Exact entrythreshold/plaza/stonebase/hostcontact unverified.",
+    "anchor": [
+      -106.45409388095239,
+      31.767941445238097
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -106.45424180547302,
+        31.767941445238097
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed open innercourt approach[-14,0]before terrain and geometry. Exactentrythreshold/plaza/stoneslope and hostground contact remain approximate; no authoredcourtyard/siteplatform."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/249044427"
+    ],
+    "source": "https://www.openstreetmap.org/way/249044427",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:037602c109c056e02fc99594b4fe1cfe186d56bbc020f848e505034cc8cafc2a",
+    "notes": "Whole named Chamizal National Memorial Cultural Center/Visitor Center connected exterior, including main museum/gallery/lobby/indoor theatre assembly and attached low wings, native42vertexC-shaped plan with open west/northwest innercourt, faceted stone walls/piers, broad raised faceted theatre roof with brown sloping fascia/dark flat cap, low overhanging wing roofs and genuinely open recessed entry/portals. Exclude55acrepark/roads/esplanade/landscape/courtyardpavement, detached administration/pavilions/outdoorstage, murals/sculpture/artwork/lettering, interiors/furniture/performers/people/vehicles. Native whole building envelope controls plan; roof and height subdivisions/hidden elevations remain bounded photograph-based estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named ChamizalN.M.VisitorCenterway249044427/800SouthSanMarcialStreetfixes the actual connected CulturalCenter/VisitorCenter exterior. Original42vertexC-shaped native envelope retained unchanged, meananchor[-106.45409388095239,31.767941445238097], cardinalframe. This is a building plan, not55acrememorialgrounds or a park/storycentroid. Broad west/northwest courtyard notch stays open. No native height/roofpartition supplied; multiple roof levels, raised theatre cap/fascia and shadowed porticos are bounded interpretations of the exact NPSexterior, not all plan area uniformly extruded or a certified roof survey. Exactdoor/hiddensection/mural-wall/terraincontact unverified.",
+    "Whole named connected cultural center exterior only: museum/gallery/lobby/theatre and attached wings with original open northwest Ccourt/recesses. The central raised theatre section, roof partition/6–9mheight/clerestory/fin positions, entry/portico distribution and concealed rear elevations are bounded interpretations from one cleared NPSexterior, not surveyed roof or engineering replica. Main footprint remains original; innercourt is not extruded or paved.",
+    "Exact already-published3072x2048QuallaNPSstaff2003exterior/nativeSHA1was inspected first; byte-identical primaryNPGalleryoriginal/explicit staff/public-domain release is the accepted control. Shared procedural stone/painted-metal/roof and muted glazing only, no copied pixels/generated bitmap. Unknown-author/attribution-licensed photographs, modern mural/sculptureartwork, performance/poster/interior/people imagery excluded. Current cosmetic condition and later concealed changes unverified.",
+    "No55acrememorial grounds, esplanade/landscape/courtyardpavement/roads, detached administration/pavilions/outdoorstage, murals/sculpture/lettering, interiors/furniture/performers/people/vehicles. Own covered portals and short endfins are part of building; no invented park slab or artwork.",
+    "Original160mTerrariumgrid/rawtiles/heightPNGretained unchanged at fixed innercourt[-14,0]. Exact plaza threshold/stonegrade and hostterraincontact remain unverified. Mapped roof-edge/wall correspondence and proposed source sections remain approximate; replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-c-shaped-center-and-open-innercourt",
+      "position": [
+        -65,
+        41,
+        -77
+      ],
+      "lookAt": [
+        -8,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "raised-theatre-faceted-fascia-clerestory-and-stone-fins",
+      "position": [
+        63,
+        20,
+        43
+      ],
+      "lookAt": [
+        20,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "courtyard-portals-stone-piers-and-recessed-entry-glazing",
+      "position": [
+        -27,
+        2.2,
+        -7
+      ],
+      "lookAt": [
+        -5,
+        2,
+        8
+      ]
+    },
+    {
+      "name": "west-low-wings-and-connected-south-roof",
+      "position": [
+        -95,
+        23,
+        51
+      ],
+      "lookAt": [
+        -39,
+        3,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1740,
+    "vertices": 5220,
+    "materials": 5,
+    "bytes": 211944,
+    "sha256": "sha256:d9662046b746c8b85d13b835b970fe341ab35b1e9cfbc8339696570ea6d4bee3"
+  }
+}

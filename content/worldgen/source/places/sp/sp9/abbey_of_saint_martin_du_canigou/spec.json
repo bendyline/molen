@@ -1,0 +1,385 @@
+{
+  "planId": "abbey_of_saint_martin_du_canigou",
+  "id": "abbey_of_saint_martin_du_canigou",
+  "assetId": "molen.worldgen.structure.abbey_of_saint_martin_du_canigou",
+  "title": "Abbey of Saint-Martin-du-Canigou",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 2.4008,
+    "latitude": 42.52814444
+  },
+  "size": [
+    54.10028648376465,
+    28.299999237060547,
+    86.5106315612793
+  ],
+  "actualBounds": {
+    "min": [
+      -26.067062377929688,
+      0,
+      -30.124786376953125
+    ],
+    "max": [
+      28.03322410583496,
+      28.299999237060547,
+      56.38584518432617
+    ]
+  },
+  "visualBrief": "Complete surviving abbey: two-level Romanesque church/three choir apses and Gauderique chapel apse, projecting square crenellated Lombard bell tower, trapezoidal open cloister and galleries, connected red-tiled monastic west/east wings, intrinsic cliff-supporting walls/buttresses/stairs, attached foreground slate annex with3dormers/chimneys/low tile lean-to. Preserve native26outer/4court/8annex vertices and real courtyard void. Separate public refuge/toilets/outlying huts/mountain/cliffs/trees/trails/general plaza/temporary awnings/visitors/interiors excluded. Brown/buff rubble stone and pale carved arch trim, red clay tile monastic roofs versus gray slate church/cloister/annex. Real open arches/windows/portal and genuine court void; do not flatten cliff-site terraces or invent mountain backdrop. Hidden fine details/levels estimates documented.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Abbaye_Saint-Martin_du_Canigou,_Grundriss_Oberkirche,_Handskizze.jpg",
+    "https://commons.wikimedia.org/wiki/File:2019_Abbaye_Saint-Martin_du_Canigou.jpg"
+  ],
+  "stories": [
+    {
+      "id": "abbey-of-saint-martin-du-canigou-wp",
+      "url": "https://qualla.com/abbey-of-saint-martin-du-canigou/"
+    }
+  ],
+  "referenceInputHash": "150888acdd79dd138e257b9492fb759c43c568c540c169e4265e1ad299d5b14f",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-abbey-of-saint-martin-du-canigou.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-abbey-of-saint-martin-du-canigou.mjs",
+    "level": "skyline",
+    "export": "abbeyOfSaintMartinDuCanigouSkyline",
+    "errorMeters": 0.65,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0.02
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.4,
+        "metallic": 0.04
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "abbeyOfSaintMartinDuCanigouDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0.02
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "abbeyOfSaintMartinDuCanigouStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0.02
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          }
+        }
+      },
+      "closeup": {
+        "export": "abbeyOfSaintMartinDuCanigouCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0.02
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": -0.08
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Named native abbey relation2501713/Q287751:outer16907289326points/inner1860379794point cloister void, plus physically attached annex1690728948points sharing main boundary. Source data.gouv.fr heritage outline is a coarse building control, not a precise architectural roof survey. FixedQualla anchor[2.4008,42.52814444], heading1.3684257688944645 along native church wall20to19 before terrain/geometry; +Xtoward choir/NNE and+Zcourt/ESE. Published own PD upper-church sketch supports~27mby10m church,3choirapses+Gauderiqueapse,tower/portal/court stair relation; modern CC0 wholephoto supports whole restored compound. Native apse side is coarsely straight: curved apse geometry deliberately interprets clear plan, original vertices retained as controls. Heights/roof divisions/crypt floor/court terrace/buttress depths and hidden facades are approximate architectural estimates independent of terrain. Independent256m129-square2m field frozen before geometry; stepped crypt/court/annex floors and intrinsic buttress foundations are architectural estimates, not terrain fits; host contact unverified.",
+    "anchor": [
+      2.4008,
+      42.52814444
+    ],
+    "heading": 1.3684257688944645,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        2.401382654142005,
+        42.528047169028554
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed lower annex approach before independent source field, not a surveyed crypt or upper cloister datum"
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/2501713",
+      "way/169072893",
+      "way/186037979",
+      "way/169072894"
+    ],
+    "source": "https://www.openstreetmap.org/relation/2501713",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e9113cd0f6b8ed56efa38976d3a33d1a02127acbee8bff51c820cd6edccff0a8",
+    "notes": "Complete surviving abbey: two-level Romanesque church/three choir apses and Gauderique chapel apse, projecting square crenellated Lombard bell tower, trapezoidal open cloister and galleries, connected red-tiled monastic west/east wings, intrinsic cliff-supporting walls/buttresses/stairs, attached foreground slate annex with3dormers/chimneys/low tile lean-to. Preserve native26outer/4court/8annex vertices and real courtyard void. Separate public refuge/toilets/outlying huts/mountain/cliffs/trees/trails/general plaza/temporary awnings/visitors/interiors excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Named native abbey relation2501713/Q287751:outer16907289326points/inner1860379794point cloister void, plus physically attached annex1690728948points sharing main boundary. Source data.gouv.fr heritage outline is a coarse building control, not a precise architectural roof survey. FixedQualla anchor[2.4008,42.52814444], heading1.3684257688944645 along native church wall20to19 before terrain/geometry; +Xtoward choir/NNE and+Zcourt/ESE. Published own PD upper-church sketch supports~27mby10m church,3choirapses+Gauderiqueapse,tower/portal/court stair relation; modern CC0 wholephoto supports whole restored compound. Native apse side is coarsely straight: curved apse geometry deliberately interprets clear plan, original vertices retained as controls. Heights/roof divisions/crypt floor/court terrace/buttress depths and hidden facades are approximate architectural estimates independent of terrain.",
+    "Complete surviving restored compound:church3choirapses+Gauderiqueapse/two church levels, crenellated tower/paired upper openings, trapezoidal courtyard with open galleries/paired shafts, red-tiled monastic wings, intrinsic supporting buttresses/stairs and attached slate annex3dormers/chimneys. Small capital/stone carving/hidden rear fenestration and exact bay counts simplified or estimated. Native plan is a building-envelope proxy; curved apses/individual roof parts interpret the clear own PD plan/2019CC0 overview. No invented complete1009appearance.",
+    "Published Qualla own-drawn upper-church PD plan inspected/exact nativeSHA1matched; primary source explicitlyselbstgezeichnet/JochenJahnke PD-user-de. Supplemental2019Chris06 selfCC0 whole-abbey original inspected/nativeSHA1matched. Original published CC0 landscape andSaint-Martin-le-Vieux captions excluded; attributed/free-use/historical-ruin views not adopted. No media metadata/categories/articlebody/policy changes, protected photo textures or generated bitmaps.",
+    "Two-level church crypt/court floor6.5m, upper10.5m, towercrenels28.3m/relative22m above court, monastic eaves14.1m, lower annexfloor0/slateridge11.8m are photo/plan architectural estimates, not surveyed levels or fitted terrain. Actual host cliff burial/abutment/grades unverified. General mountain/cliff background/trails/trees/refuge/independent huts/temporary awnings/visitors/interiors excluded.",
+    "Independent256m129-square2mfield/all16641samples/2originalTerrariumtiles/PNG frozen before geometry unchanged; provider datum1047.6265m/sourcepixel3.52062m/absolute920.5115–1094.4993m not survey accuracy. No flattening/fitting/reacquisition; flat review fixtures separate from actual hillside. Ordinary geographic preview, replacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-restored-abbey-tower-cloister-wings-and-attached-annex",
+      "position": [
+        -68,
+        58,
+        85
+      ],
+      "lookAt": [
+        3,
+        12,
+        7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "crenellated-open-bell-tower-and-four-apsidal-east-end",
+      "position": [
+        64,
+        36,
+        -16
+      ],
+      "lookAt": [
+        21,
+        17,
+        -3
+      ]
+    },
+    {
+      "name": "true-trapezoidal-court-and-open-marble-column-arcades",
+      "position": [
+        -12,
+        23,
+        39
+      ],
+      "lookAt": [
+        1,
+        8.5,
+        13
+      ]
+    },
+    {
+      "name": "three-slate-dormers-lower-annex-and-intrinsic-cliff-buttresses",
+      "position": [
+        -3,
+        25,
+        75
+      ],
+      "lookAt": [
+        8,
+        8,
+        30
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9368,
+    "vertices": 28104,
+    "materials": 6,
+    "bytes": 1127872,
+    "sha256": "sha256:fbdb0d9ced9bbc6d5b1e7786669746f9773e0506d35ee34993d248569cf6be86"
+  }
+}

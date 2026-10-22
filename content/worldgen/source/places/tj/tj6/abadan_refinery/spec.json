@@ -1,0 +1,275 @@
+{
+  "planId": "abadan_refinery",
+  "id": "abadan_refinery",
+  "assetId": "molen.worldgen.structure.abadan_refinery",
+  "title": "Abadan Refinery",
+  "category": "industrial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 48.27822861100468,
+    "latitude": 30.34933285660031
+  },
+  "size": [
+    2595.9356689453125,
+    49.30000001192093,
+    2667.5482177734375
+  ],
+  "actualBounds": {
+    "min": [
+      -1119.9400634765625,
+      -0.30000001192092896,
+      -1427.9954833984375
+    ],
+    "max": [
+      1475.99560546875,
+      49,
+      1239.552734375
+    ]
+  },
+  "visualBrief": "Complete mapped refinery structure layout:204native oil-storage tanks and74halls/other structures, using full original ways/nodes and tagged heights. Pale metal cylinders, low conical roofs, concrete footings, industrial halls, ladders, vessel catwalks and pipe racks interpret two cleared1970NIOC photographs. Unmapped process equipment is approximate and explicitly identified; adjacent city and detached river industry excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Abadan_Catalitic_facilities.jpg",
+    "https://commons.wikimedia.org/wiki/File:Abadanoilrefinery2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "abadan-refinery-wp",
+      "url": "https://qualla.com/abadan-refinery/"
+    }
+  ],
+  "referenceInputHash": "bc27db679fb6f04b935a2b292a25167a343eaa43ea5dccc4cf9c9a421aa20785",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-abadan-refinery.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-abadan-refinery.mjs",
+    "level": "skyline",
+    "export": "abadanSkyline",
+    "errorMeters": 25,
+    "surfaces": {
+      "metal": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.17
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.22
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "abadanDistrict",
+        "errorMeters": 12,
+        "surfaces": {
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.17
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.22
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "abadanStreet",
+        "errorMeters": 4,
+        "surfaces": {
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.17
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.22
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 19
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original mapped service-road point near the story position fixes a shared dry-yard datum before terrain acquisition. Individual tank bottoms and hall footings extend0.25-0.3m below it; low-relief multi-kilometer host-ground contact remains approximate.",
+    "anchor": [
+      48.27822861100468,
+      30.34933285660031
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        48.26909780502319,
+        30.343484216566537
+      ],
+      "modelHeight": 0,
+      "basis": "Original mapped private service-road vertex nearest the published refinery story point establishes an approximate dry-yard datum before terrain acquisition."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/203470198"
+    ],
+    "source": "https://www.openstreetmap.org/way/203470198",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1e360e23f2156e08421ccf72bb53904c7e0d8918449be4ef70d4b6fe76a97d19",
+    "notes": "Native plan supports location/perimeter and individual mapped building/tank positions. Current equipment heights and unmapped process columns cannot be surveyed from the1970photographs; do not replace the site with a generic rectangular factory. Original site polygon area centroid is the model anchor; individual native tank/building identities and heights are preserved."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Full original native ways/nodes locate204tagged oil-storage tanks and74other mapped structures. Tagged heights/levels are retained; missing heights, small roof falls, ladders, hall openings and material colors are photographic medium-fi estimates. Fine components retire in distant LODs while large tank-farm groups and principal halls remain.",
+    "Two Qualla-published NIOC photographs explicitly dated1970-09 and carrying PD Iran control industrial form/material typology. The native plan is current mapping, not a claim that every1970equipment item survives unchanged. Original pixels are not textures.",
+    "Three compact process-column/rack/vessel groups in the open process quarter are photographic interpretations of intrinsic refinery equipment absent from mapping. Their exact locations, inventory, pipe routing and heights are approximate, not an engineering or current as-built survey. No branded labels, people, flame/smoke or active process simulation.",
+    "The site spans about2.8by3.1km. Host terrain and foundation contact use one approximate shared dry-yard datum; source terrain is preserved and no whole-site platform or blanket ground cutout is introduced. City, hospital, airport and detached river industry are excluded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "native-storage-tank-farm",
+      "position": [
+        1200,
+        250,
+        -700
+      ],
+      "lookAt": [
+        500,
+        10,
+        -600
+      ]
+    },
+    {
+      "name": "process-columns-and-pipe-racks",
+      "position": [
+        -210,
+        90,
+        245
+      ],
+      "lookAt": [
+        -330,
+        20,
+        95
+      ]
+    },
+    {
+      "name": "southern-industrial-halls",
+      "position": [
+        -270,
+        170,
+        1450
+      ],
+      "lookAt": [
+        -530,
+        6,
+        1050
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 62886,
+    "vertices": 188658,
+    "materials": 4,
+    "bytes": 7549224,
+    "sha256": "sha256:8611897796e0af7261499849ff45d087c95924cb69ccad799f1275aea3bd7034"
+  }
+}

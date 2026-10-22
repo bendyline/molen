@@ -79,9 +79,12 @@ const openingSurfaces: Array<{
 const contextScale = Number(contextOptions.get('scale') ?? 1);
 // Rotate the standard review cameras around steep or one-sided terrain fixtures.
 const cameraYaw = Number(contextOptions.get('cameraYaw') ?? 0);
+// Distributed arrays can keep local detail framing while retaining remote stations.
+const reviewFar = Number(contextOptions.get('far') ?? 0);
 const neighborStyle = contextOptions.get('neighborStyle') ?? 'molen.worldgen.catalog.siheyuan';
 if (!Number.isFinite(contextScale) || contextScale <= 0) throw new Error('Invalid context scale');
 if (!Number.isFinite(cameraYaw)) throw new Error('Invalid review camera yaw');
+if (!Number.isFinite(reviewFar) || reviewFar < 0) throw new Error('Invalid review far plane');
 const pack = await read('content/worldgen/stylepack.json');
 const match = mediumFiAsset(pack.assets, id);
 const path = `content/worldgen/${match.path}`,
@@ -339,7 +342,7 @@ const camera = new THREE.PerspectiveCamera(
   43,
   innerWidth / innerHeight,
   0.5,
-  Math.max(3000, 600 * contextScale),
+  Math.max(3000, 600 * contextScale, reviewFar),
 );
 type View = {
   distance?: 'street' | 'block' | 'skyline';

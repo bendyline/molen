@@ -581,10 +581,9 @@ async function view(input: {
     );
     camera.lookAt(target);
   }
-  if (
-    camera === perspectiveCamera &&
-    new URLSearchParams(location.search).get('clipping') === 'adaptive'
-  ) {
+  // Large distributed arrays need the same depth fitting in the north-up plan.
+  // The explicit opt-in keeps the existing default capture path unchanged.
+  if (new URLSearchParams(location.search).get('clipping') === 'adaptive') {
     camera.updateMatrixWorld(true);
     const forward = camera.getWorldDirection(new THREE.Vector3());
     const depths: number[] = [];

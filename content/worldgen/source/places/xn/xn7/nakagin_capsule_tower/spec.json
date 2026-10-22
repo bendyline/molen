@@ -1,0 +1,338 @@
+{
+  "planId": "nakagin_capsule_tower",
+  "id": "nakagin_capsule_tower",
+  "assetId": "molen.worldgen.structure.nakagin_capsule_tower",
+  "title": "Nakagin Capsule Tower",
+  "category": "tower",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 139.7634643222222,
+    "latitude": 35.66563617222222
+  },
+  "size": [
+    21.99899959564209,
+    45.19999924302101,
+    21.798999786376953
+  ],
+  "actualBounds": {
+    "min": [
+      -10.969499588012695,
+      -0.15000000596046448,
+      -10.849499702453613
+    ],
+    "max": [
+      11.029500007629395,
+      45.04999923706055,
+      10.94950008392334
+    ]
+  },
+  "visualBrief": "Whole former Nakagin Capsule Tower ensemble: both unequal-height angular red-brown service cores, all-around projecting modular light steel capsule stacks with recessed circular portholes/side vents/separate upper/lower shell faces and dark joints, complete original18-point lower building footprint/common podium/entrance/low glazing/roof threshold.140physical modules represented near the camera with bounded photo-based internal assignments/offsets and unseen rear capsule census, not a verified unit-number survey. Keep exposed cantilever undersides and stepped voids, not a flat windowed office slab. Exclude demolition hoardings/scaffold/neighbor buildings/viaduct/streets/people/vehicles/trees/signletters/logos/interiors/detached preserved museum units. Whole native18-point low building stays unchanged and explicit historical-only dates. Original module/core/row arrangement is a bounded whole-building photographic reconstruction: two adjacent offset cores/unequal heights and irregular capsule ring projections/rotations/half-level staggering, not two identical generic box towers or a contiguous cuboid office shell. Preserve physically open cantilever voids/undersides;140near modules with small bevels/real inset round apertures/reveal and metal rim/dark glass, side vents/panel seams, taller angular red-brown corrugated service tops with diagonal cap lines/no logos, original lower footprint/podium/glazing/entry. Far levels merge module groups/porthole census while retaining two asymmetric cores and jagged stack outline. Do not copy1978street/2022demolition hoarding/scaffolding or neighboring buildings/viaduct. Freeze independent256m129x129modern ground at fixed native street approach before any geometry; rawvalues unchanged/no fitting/flattening/reacquisition. Current terrain is not historic2022threshold survey.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2022-03-01",
+    "validFrom": "2022-01-01",
+    "validUntil": "2022-04-12"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:%E4%B8%AD%E9%8A%80%E3%82%AB%E3%83%97%E3%82%BB%E3%83%AB%E3%82%BF%E3%83%AF%E3%83%BC%E3%83%93%E3%83%AB(2022%E5%B9%B4).jpg",
+    "https://commons.wikimedia.org/wiki/File:%E4%B8%AD%E9%8A%80%E3%82%AB%E3%83%97%E3%82%BB%E3%83%AB%E3%82%BF%E3%83%AF%E3%83%BC%E3%83%93%E3%83%AB(2022%E5%B9%B4)-2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Tokyo_Nagakin_Capsule_Mansion_Ginza_1978.jpg"
+  ],
+  "stories": [
+    {
+      "id": "nakagin-capsule-tower-wp",
+      "url": "https://qualla.com/nakagin-capsule-tower/"
+    }
+  ],
+  "referenceInputHash": "c491ce731bbf4b378a41ca2ce24daee760229b9803331724ce51b86050bbea4d",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-nakagin-capsule-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-nakagin-capsule-tower.mjs",
+    "level": "skyline",
+    "export": "nakaginCapsuleTowerSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "shell": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.1
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.62,
+        "metallic": 0.27
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.37,
+        "metallic": 0.08
+      },
+      "core": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86,
+        "metallic": 0.12
+      },
+      "base": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "nakaginCapsuleTowerDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "shell": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.1
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.27
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.37,
+            "metallic": 0.08
+          },
+          "core": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "nakaginCapsuleTowerStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "shell": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.1
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.27
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.37,
+            "metallic": 0.08
+          },
+          "core": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "nakaginCapsuleTowerCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "shell": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.1
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.27
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.37,
+            "metallic": 0.08
+          },
+          "core": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.17
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Whole original18-point physical way144194036/Q1633586: all18node versions1 dateJanuary2012, same node list in all8wayversions. Residential2019version6 unchanged in2023razed version8. Mean18vertexanchor/+Xalongnativeedge1toward0 and+Zoutboard streetward fixed before terrain/geometry. Original outline controls lower building/low-mass footprint, not a per-floor capsule/core engineering survey; upper modules cantilever. Two core centres/profiles, podium height,140module assignments/orientations/half-level offsets/fine unseen facades and all metric heights are bounded interpretations of exact creatorCC0photos. Do not substitute a contemporary replacement building or extrude the entire parcel. Independent256m modern field before geometry;25.3673m street approach datum is not a2022historic-grade survey. True host contact remains unverified.",
+    "anchor": [
+      139.7634643222222,
+      35.66563617222222
+    ],
+    "heading": 0.38934552214722423,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        139.76351808533036,
+        35.66555134602557
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed original southernmost native lower-footprint vertex5m streetward before terrain/geometry; historic threshold/ground grading not surveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/144194036"
+    ],
+    "source": "https://www.openstreetmap.org/way/144194036",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e22fbf5870ab1190bec0c6ec8a4107404c4807944cbca4ef8b1c5f6fc3ab535b",
+    "notes": "Whole former Nakagin Capsule Tower ensemble: both unequal-height angular red-brown service cores, all-around projecting modular light steel capsule stacks with recessed circular portholes/side vents/separate upper/lower shell faces and dark joints, complete original18-point lower building footprint/common podium/entrance/low glazing/roof threshold.140physical modules represented near the camera with bounded photo-based internal assignments/offsets and unseen rear capsule census, not a verified unit-number survey. Keep exposed cantilever undersides and stepped voids, not a flat windowed office slab. Exclude demolition hoardings/scaffold/neighbor buildings/viaduct/streets/people/vehicles/trees/signletters/logos/interiors/detached preserved museum units."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole original18-point physical way144194036/Q1633586: all18node versions1 dateJanuary2012, same node list in all8wayversions. Residential2019version6 unchanged in2023razed version8. Mean18vertexanchor/+Xalongnativeedge1toward0 and+Zoutboard streetward fixed before terrain/geometry. Original outline controls lower building/low-mass footprint, not a per-floor capsule/core engineering survey; upper modules cantilever. Two core centres/profiles, podium height,140module assignments/orientations/half-level offsets/fine unseen facades and all metric heights are bounded interpretations of exact creatorCC0photos. Do not substitute a contemporary replacement building or extrude the entire parcel.",
+    "Historical-only representative late operational structural form2022-03-01, opt-in2022-01-01through2022-04-12; current world excluded.1978unobstructed whole composition and April23,2022structural photographs are distinguished; later images show demolition preparation, which is omitted. No exactMarch exposure/unchanged lower finish claim or contemporary replacement model.",
+    "Whole original18-point low building retained. All-around two unequal cores/140near capsules/irregular projections and open cantilever undersides; lower podium/glazing/entry. Main44.6m/short39.2m service caps, core centres/width5.4m,11/9rows/7slots140modules, half-level offsets, upper overhangs beyond lower native footprint and all hidden unit assignments/fine rear/base details are bounded original photo proportions, not a surveyed apartment-number/engineering reconstruction. No verified54mwhole-height claim.",
+    "MoMA restoredA1305bounds255x270x423cm guide only approximate capsule proportions; modeled exposed shell2.62mwide/2.55mhigh with original photo-estimated visible projection about2.5–4.6m; hidden attachment/room depths inside the service envelope are not modeled or surveyed, nominal2.7mpitch. Individual near circular openings/reveal/metal rim/recessed dark glass and fine chamfer/side vents/limited panel fittings are actual geometry. Far levels merge stacks, replace recessed apertures by round dark discs and coarsen counts. Exact panel/rivet/patina/vent/shutter census remains bounded.",
+    "Qualla-first45families/zero conflicts; three exact published ownCC0 originals adopted with nativeSHA1/revisions/explicit named-author self-release bound: two DrivephotographerApril23,2022whole/core views and RenehaasNovember1978whole silhouette. Fourth samecreator9040x3648panorama inspected but unused because top cropped/base obscured. UnrelatedSonybuilding/other licensed sources/official museum pixels/architect drawings not adopted. No metadata/policy changes, generated bitmap/photo textures/downloaded mesh.",
+    "Independent256m129x129modern field/all16641values/two raw Terrarium tiles frozen before geometry unchanged without fitting/flattening/reacquisition.25.3673m provider-relative street datum/0.5906..28.9318m absolute field may include urban structures/viaduct/vegetation interpolation; not historic2022grade or actual live-host contact. Historical native preview/replaceFootprint=false. No full site/natural terrain slab or adjoining viaduct/buildings/road/people/letters/logos/demolition works/interiors."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-two-unequal-cores-and-native-lower-building",
+      "position": [
+        50,
+        35,
+        65
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "capsule-cantilevers-real-round-recesses-and-undersides",
+      "position": [
+        18,
+        22,
+        23
+      ],
+      "lookAt": [
+        3,
+        23,
+        5
+      ]
+    },
+    {
+      "name": "both-slanted-red-brown-service-tops",
+      "position": [
+        -33,
+        52,
+        -41
+      ],
+      "lookAt": [
+        0,
+        37,
+        0
+      ]
+    },
+    {
+      "name": "complete-native-podium-and-original-entrance",
+      "position": [
+        19,
+        8,
+        28
+      ],
+      "lookAt": [
+        0,
+        3,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 60812,
+    "vertices": 182436,
+    "materials": 4,
+    "bytes": 7300136,
+    "sha256": "sha256:3f5627de7196d39f6ad68a54f76b10130e0a111cdf1049c3bc3abe97b69aa5ca"
+  }
+}

@@ -1,0 +1,375 @@
+{
+  "planId": "baltimore_basilica",
+  "id": "baltimore_basilica",
+  "assetId": "molen.worldgen.structure.baltimore_basilica",
+  "title": "Baltimore Basilica",
+  "category": "religious-building",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -76.61612375789473,
+    "latitude": 39.29442909473684
+  },
+  "size": [
+    46.50671195983887,
+    51.06621599197388,
+    91.54380416870117
+  ],
+  "actualBounds": {
+    "min": [
+      -26.374666213989258,
+      -3.466217517852783,
+      -43.41380310058594
+    ],
+    "max": [
+      20.13204574584961,
+      47.599998474121094,
+      48.130001068115234
+    ]
+  },
+  "visualBrief": "Whole surviving Latrobe basilica exterior: detailed native church footprint/returns/apse and attached low rear service/chapel masses, six-column Ionic portico/open entrance/stair/pediment, paired square-based open cylindrical arched belfries/copper onion cupolas/needle spires/crosses, central stepped round dome drum/slate double-shell cupola/crown skylights/cross, tall arched multi-pane windows/ashlar walls/recess panels/roof parapets. Exclude neighboring offices/housing, grounds/independent statues/art/landscape and interiors. Main ashlar body/arched recessed glazing, low connected rear wings and semicircular apse, actual open portico and belfry arches, simple Ionic volutes/fluted shafts, copper bulb/needle profiles and real stepped roof/drum. Keep independent statue/landscape/interiors excluded. Model dimensions/ornament/rooflight and hidden annex sections approximate.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Baltimore_Basilica_main_aisle.JPG",
+    "https://commons.wikimedia.org/wiki/File:Baltimore_Basilica_Oculus.JPG",
+    "https://commons.wikimedia.org/wiki/File:Ext-Current.jpg"
+  ],
+  "stories": [
+    {
+      "id": "basilica-of-the-national-shrine-of-the-assumption-of-the-blessed-virgin-mary-wp",
+      "url": "https://qualla.com/basilica-of-the-national-shrine-of-the-assumption-of-the-blessed-virgin-mary/"
+    }
+  ],
+  "referenceInputHash": "2e000eafe05285764022f935a29704c2f2b5a4ec2eb6e6f67dfe7fc1d81c7cc5",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-baltimore-basilica.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-baltimore-basilica.mjs",
+    "level": "skyline",
+    "export": "baltimoreBasilicaSkyline",
+    "errorMeters": 1.4,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.67,
+        "metallic": 0.55
+      },
+      "gold": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.55,
+        "metallic": 0.75
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.39,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "baltimoreBasilicaDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.55
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.75
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.39,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "baltimoreBasilicaStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.55
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.75
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.39,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "baltimoreBasilicaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.55
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.75
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.39,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Actual named churchway337697161/Q1968407 (117closednodes) and native round domepart1014414329 anchor the whole church. Dome centre fixes anchor[-76.61612375789473,39.29442909473684], weighted longwall west-facing heading-1.5243315476765846; +Z west/portico, +X south. MediaGPS39.295278 is north of actual church and unused. Native footprint includes intrinsic connected rear masses; not whole block or adjacent BasilicaPlace housing. Photo-proportional wall13.8m/parapet15.4m/portico roof17.4m, dome~30m/cross and spires~46m, window/grille/column and annex sections are architectural estimates, not surveyed heights. Historical masonry plinth/floor1.6m above fixed external west approach, chosen before geometry; individual footprint foundation toes sample independent modern field. Exact church floor/sill/oldgrade not surveyed; no field flattening or fitting.",
+    "anchor": [
+      -76.61612375789473,
+      39.29442909473684
+    ],
+    "heading": -1.5243315476765846,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -76.61668031945017,
+        39.29440906682673
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed external west portico approach before independent source terrain/geometry; provider-relative grade, not surveyed church floor."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/337697161",
+      "way/1014414329"
+    ],
+    "source": "https://www.openstreetmap.org/way/337697161",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:70e4ca549cc1efd8a83f7a98bff74448b1d39e2a9c7b6ab29fe6742bde703cf6",
+    "notes": "Whole surviving Latrobe basilica exterior: detailed native church footprint/returns/apse and attached low rear service/chapel masses, six-column Ionic portico/open entrance/stair/pediment, paired square-based open cylindrical arched belfries/copper onion cupolas/needle spires/crosses, central stepped round dome drum/slate double-shell cupola/crown skylights/cross, tall arched multi-pane windows/ashlar walls/recess panels/roof parapets. Exclude neighboring offices/housing, grounds/independent statues/art/landscape and interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual named churchway337697161/Q1968407 (117closednodes) and native round domepart1014414329 anchor the whole church. Dome centre fixes anchor[-76.61612375789473,39.29442909473684], weighted longwall west-facing heading-1.5243315476765846; +Z west/portico, +X south. MediaGPS39.295278 is north of actual church and unused. Native footprint includes intrinsic connected rear masses; not whole block or adjacent BasilicaPlace housing. Photo-proportional wall13.8m/parapet15.4m/portico roof17.4m, dome~30m/cross and spires~46m, window/grille/column and annex sections are architectural estimates, not surveyed heights.",
+    "Historical masonry plinth/floor1.6m above fixed external west approach, chosen before geometry; individual footprint foundation toes sample independent modern field. Exact church floor/sill/oldgrade not surveyed; no field flattening or fitting.",
+    "Whole named surviving basilica and connected native rear wings/apse are included, with actual central dome part and six-column open west portico/twin open arched cylindrical belfries/onion cupolas/needle spires/crosses. Precise wall/dome/spire heights/column orders/fine moldings/flute sections/clockfaces/rooflight hardware/hidden rear annex roofs are bounded photographic estimates; interiors and independent artworks/statues omitted.",
+    "Qualla-first15families/one unrelated hero conflict: two Smallbones2012Own/selfCC0 interiors individually inspected/native hashes bound, ancillary only. Clear supplemental Ext-Current explicit named photographerDeadwildcatOctober2006/directPD-user-en/exactnativeSHA1/revision/original upload row/dimensions/bytes bound and individually inspected; direct creator declaration parsed without editing source metadata or inventing Own. PublishedBasilicaExterior uploader-only attribution/modernCC/LOC403-timeout sources unused. No photographictextures/generatedbitmaps/downloadedmesh.",
+    "Independent256m129square2m16641-sample field/one original Terrarium tile frozen before geometry; values/heightPNG/tilebytes preserved. Provider34.5072m fixed west approach datum is not surveyed churchfloor. Floor1.6m/intrinsic stair/plinth estimate fixed before geometry; foundation toes sample original field, not wholeblock platform. Source ground never flattened/fitted/reacquired; actual host footing contact unverified, ordinary geographic preview/replacement disabled.",
+    "Four LODs retain whole church/native dome/open portico and paired belfry voids/onion/needle profiles. Native fine returns, window mullions, Ionic volutes/flutes and copper seams reduced with distance; named structure geometry never replaced with neighboring housing, office, grounds, sculpture or interior."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-native-church-portico-twin-spires-central-dome-and-rear-wings",
+      "position": [
+        94,
+        67,
+        115
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "six-ionic-columns-open-portico-pediment-volutes-and-entry-stair",
+      "position": [
+        15,
+        12,
+        60
+      ],
+      "lookAt": [
+        0,
+        7,
+        39
+      ]
+    },
+    {
+      "name": "open-round-arched-belfry-copper-onion-cupola-needle-and-cross",
+      "position": [
+        29,
+        35,
+        47
+      ],
+      "lookAt": [
+        9.6,
+        29,
+        28.8
+      ]
+    },
+    {
+      "name": "stepped-central-dome-drum-radial-crown-skylights-and-arched-nave",
+      "position": [
+        29,
+        35,
+        -19
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 35050,
+    "vertices": 105150,
+    "materials": 6,
+    "bytes": 4209720,
+    "sha256": "sha256:41816913bbe91776fedc37ac60b610ade963f1745dd4718470779a5fe12a503f"
+  }
+}

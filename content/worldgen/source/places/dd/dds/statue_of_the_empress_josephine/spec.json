@@ -1,0 +1,282 @@
+{
+  "planId": "statue_of_the_empress_josephine",
+  "id": "statue_of_the_empress_josephine",
+  "assetId": "molen.worldgen.structure.statue_of_the_empress_josephine",
+  "title": "Statue of the Empress Joséphine (1899)",
+  "category": "monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -61.0680213,
+    "latitude": 14.6038409
+  },
+  "size": [
+    6.840000152587891,
+    6.31999996304512,
+    6.840000152587891
+  ],
+  "actualBounds": {
+    "min": [
+      -3.4200000762939453,
+      -0.2800000011920929,
+      -3.4200000762939453
+    ],
+    "max": [
+      3.4200000762939453,
+      6.039999961853027,
+      3.4200000762939453
+    ]
+  },
+  "visualBrief": "Complete historical1899marble Josephine monument: intact head turned aside beneath carved curls/wreath, coherently posed exposed arms/hands gathered in front, fitted low-necked Empire bodice/puffed sleeves, fluted floor-length gown and asymmetric long draped robe/rolled side cloth. Stepped square paneled pedestal with dark plaques, raised moldings/cornice, upper festoons and low ornamental iron scroll enclosure. Exact native demolished-monument point anchors location; estimated photographic dimensions/bearing/hidden sculpture. Historical1899only; excluded from present.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "approximate south-facing visualization"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1899",
+    "validFrom": "1899-01-01",
+    "validUntil": "1900-01-01"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Martinique._Statue_de_Jos%C3%A9phine,_sur_la_Savane_(1899)_-_(photogr.)_Salles_;_(photogr._reprod._par_Molt%C3%A9ni)_-_btv1b5965851x.jpg"
+  ],
+  "stories": [
+    {
+      "id": "statue-of-the-empress-josephine-wp",
+      "url": "https://qualla.com/statue-of-the-empress-josephine/"
+    }
+  ],
+  "referenceInputHash": "1e262909ea345610e5f410027852721aa4b83426f74bfb5c2956567e98742ba8",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-statue-of-the-empress-josephine.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-statue-of-the-empress-josephine.mjs",
+    "level": "skyline",
+    "export": "josephineSkyline",
+    "errorMeters": 0.28,
+    "surfaces": {
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "plaque": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "josephineDistrict",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "plaque": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "josephineStreet",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "plaque": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.35
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named demolished memorialnode3009793475/Q16964842and heritagePA00105984identify the former monument at its native anchor. The point establishes location only, not bearing, pedestal perimeter or surviving statue. Published1899photograph controls the intact historical figure/base; pedestal/enclosure dimensions, heading and hidden sculptural sections are explicit medium-fi estimates. Fixed southern approach datum is approximate; current park relief is not an1899grade survey.",
+    "anchor": [
+      -61.0680213,
+      14.6038409
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -61.0680213,
+        14.603804967553
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southern approach outside the estimated pedestal/enclosure, selected before terrain acquisition. Current park relief is approximate context, not an1899survey."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/3009793475",
+      "authored-pedestal-estimate"
+    ],
+    "source": "https://www.openstreetmap.org/node/3009793475",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f4bc9143d8703258f4e6459c8549e59704b55d898982f8e75c5098042c4dc277",
+    "notes": "Historical1899intact monument only; native demolition and local story2020toppling preclude current-world activation. No later beheaded/red-painted appearance is silently combined with this intact version. Full figure/pose/head/drapery and ornamented pedestal are required; no pedestal-only substitute."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named demolished memorialnode3009793475/Q16964842and heritagePA00105984identify the former monument at its native anchor. The point establishes location only, not bearing, pedestal perimeter or surviving statue. Published1899photograph controls the intact historical figure/base; pedestal/enclosure dimensions, heading and hidden sculptural sections are explicit medium-fi estimates.",
+    "Historical1899intact appearance only. The local story records1991beheading and2020toppling; native point is tagged demolished. Explicit1899-01-01to1900-01-01appearance interval represents only the dated photograph year. No current-world statue, later paint or beheaded state is inferred.",
+    "Estimated3.5mpedestal foot/3.24mupper base,2.8mfigure and6.6miron enclosure; no measured survey or documented original bearing. Hidden back, exact anatomy/fingers, fine facial/floral carving, lettering and iron scroll repeats are bounded original medium-fi interpretations. The complete visible pose, intact head/wreath, fluted gown/asymmetric robe, decorated pedestal and enclosure are included; no pedestal-only substitute.",
+    "Exposed anatomy is deterministically posed/baked from the public Molen figures kernel, with original photo-directed cloth, carved head/nose/eyelid contours/curls and marble ornament geometry. No runtime actor, imported sculpture, photo pixels or photographic texture. Neutral warm marble/dark iron palette is inferred from monochrome evidence.",
+    "Exact1200x1608published Qualla1899Salles/BNF/Gallicaoriginal controls the appearance. Source native SHA1and explicit expired-copyright releases are recorded. Anonymous/unrelated and modern attribution photographs unused. Palm trees, spiral lamp, park vegetation/roads/paving, people and neighboring buildings excluded.",
+    "Intrinsic narrow enclosure curb is retained; no whole-site platform or terrain flattening. Fixed southern approach point was chosen before terrain acquisition. Footing extends.28m beneath approximate datum; exact1899grade/foundation/host-terrain contact remain unverified. Wreath curls/face, cloth folds, pedestal relief and fence scroll detail simplify with distance."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "intact-turned-head-gathered-arms-and-folded-dress",
+      "position": [
+        2.4,
+        5.7,
+        4.2
+      ],
+      "lookAt": [
+        0,
+        4.75,
+        0
+      ]
+    },
+    {
+      "name": "decorated-pedestal-festoons-and-iron-scrollwork",
+      "position": [
+        4.6,
+        3.2,
+        6
+      ],
+      "lookAt": [
+        0,
+        1.75,
+        0
+      ]
+    },
+    {
+      "name": "rear-long-robe-and-full-monument",
+      "position": [
+        -7,
+        5.8,
+        -8
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 36878,
+    "vertices": 110634,
+    "materials": 4,
+    "bytes": 4428212,
+    "sha256": "sha256:d4e411d29391ec74d58ae3b7901bf90ecd9f026c5cfabb5d37bd10654459e4f3"
+  }
+}

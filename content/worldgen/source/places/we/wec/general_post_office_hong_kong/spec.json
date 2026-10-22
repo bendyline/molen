@@ -1,0 +1,350 @@
+{
+  "planId": "general_post_office_hong_kong",
+  "id": "general_post_office_hong_kong",
+  "assetId": "molen.worldgen.structure.general_post_office_hong_kong",
+  "title": "General Post Office, Hong Kong",
+  "category": "civic",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 114.15954112307693,
+    "latitude": 22.2835746
+  },
+  "size": [
+    82.40707778930664,
+    33.21999895572662,
+    40.878557205200195
+  ],
+  "actualBounds": {
+    "min": [
+      -37.37889099121094,
+      -1.100000023841858,
+      -21.38004493713379
+    ],
+    "max": [
+      45.0281867980957,
+      32.119998931884766,
+      19.498512268066406
+    ]
+  },
+  "visualBrief": "Whole named1976 Hong Kong General Post Office: original13-vertex building envelope and9-vertex five-storey/6-vertex three-storey office components. Broad low white limestone-faced modernist block, flat roof/parapets, two upper office window rows with actual deep splayed white reveals, dark intermediate ribbon, tall public-hall window bays, projecting scalloped concrete canopy and open ground piloti, relatively solid east side/fins, lower rear wing and bounded small roof plant. POI polygon identifies office only. Exclude separate IFC/Jardine House, exterior banners/sign lettering/flags, connecting public walkways, street, construction site, people, vehicles, gardens and interiors. Preserve all13whole/9main/6low original vertices/entrance notches; main/low union is whole building, no stretched parcel. Main parapet30.1m map height unsurveyed; upper office rows have real deeply recessed glazing and splayed white reveals/fins, not decals. Tall hall windows recessed between white piers; public ground piloti physically open behind repeated shallow segmental scalloped canopy. Central hall side and concealed north/rear profile bounded, roof plant minimal. Avoid canopy slot/roof coverage over unrelated site. Coarsen facade count for far LODs, preserve whole5/3-storey mass and open lower front. Freeze independent400m129x129 field before geometry; raw values unchanged/no fit/flatten/reacquire.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:HK_CH_%E4%B8%AD%E7%92%B0_Central_%E6%84%9B%E4%B8%81%E5%A0%A1%E5%BB%A3%E5%A0%B4_Connaught_Place_%E9%A6%99%E6%B8%AF%E9%83%B5%E6%94%BF%E7%B8%BD%E5%B1%80_General_Post_Office_building_n_IFC_high_rise_January_2024_R12S.jpg",
+    "https://commons.wikimedia.org/wiki/File:HK_Central_Connaught_Road_Place_flagpoles_n_General_Post_Office_building_March_2026_N13P_02.jpg"
+  ],
+  "stories": [
+    {
+      "id": "general-post-office-hong-kong-wp",
+      "url": "https://qualla.com/general-post-office-hong-kong/"
+    }
+  ],
+  "referenceInputHash": "1ce1b034b97a32e12e60f7683ed0101232bfd51627b2404fd024b3b6bce8f463",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-general-post-office-hong-kong.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-general-post-office-hong-kong.mjs",
+    "level": "skyline",
+    "export": "generalPostOfficeHongKongSkyline",
+    "errorMeters": 1,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_boardformed",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.4,
+        "metallic": 0.07
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "generalPostOfficeHongKongDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_boardformed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.07
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "generalPostOfficeHongKongStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_boardformed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.07
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "generalPostOfficeHongKongCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_boardformed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.07
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.15,
+    "groundY": -0.15
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original whole named buildingway1047782723/all13vertices and original officeparts16281866/all9vertices/five levels/nativeheight30.1m,184767036/all6vertices/threelevels. Original15-vertex amenity polygon184705579/Q840868 confirms identity only, not physical building boundary. Mean whole-building vertex anchor; +X along original long southwest front from166091181 toward166091396, +Z southwest outward. Part rings/entrance notches retained without rectangle fitting. Native30.1m height is an unsurveyed map attribute adopted as overall principal parapet; facade floor levels, canopy/roof-part heights and hidden rear are original bounded photo interpretations. Independent400m field frozen before geometry unchanged. Original coastal composite contains implausible negative pits, not reliable bathymetry or foundation controls. Actual host grade/threshold attachment is unverified.",
+    "anchor": [
+      114.15954112307693,
+      22.2835746
+    ],
+    "heading": -0.5608226890689252,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        114.15944131846207,
+        22.28336285764517
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest principal front approach six metres outboard of original front plane before field and model geometry. True urban grade/entry threshold not surveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1047782723",
+      "way/16281866",
+      "way/184767036"
+    ],
+    "source": "https://www.openstreetmap.org/way/1047782723",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b1f35e039aa9f6abf5a738addb6af6272ec4cfec2b19035e492ab0214c9546af",
+    "notes": "Whole named1976 Hong Kong General Post Office: original13-vertex building envelope and9-vertex five-storey/6-vertex three-storey office components. Broad low white limestone-faced modernist block, flat roof/parapets, two upper office window rows with actual deep splayed white reveals, dark intermediate ribbon, tall public-hall window bays, projecting scalloped concrete canopy and open ground piloti, relatively solid east side/fins, lower rear wing and bounded small roof plant. POI polygon identifies office only. Exclude separate IFC/Jardine House, exterior banners/sign lettering/flags, connecting public walkways, street, construction site, people, vehicles, gardens and interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original whole named buildingway1047782723/all13vertices and original officeparts16281866/all9vertices/five levels/nativeheight30.1m,184767036/all6vertices/threelevels. Original15-vertex amenity polygon184705579/Q840868 confirms identity only, not physical building boundary. Mean whole-building vertex anchor; +X along original long southwest front from166091181 toward166091396, +Z southwest outward. Part rings/entrance notches retained without rectangle fitting. Native30.1m height is an unsurveyed map attribute adopted as overall principal parapet; facade floor levels, canopy/roof-part heights and hidden rear are original bounded photo interpretations.",
+    "Qualla-first95 families/zero conflicts. Two published creatorCC0 originals show only interior counter/sign and are not used for exterior. Two exact supplemental own-work/self-cc-zero exterior originals by Poonumia Liurellb2024 and Luksongm MWLLOPPEE2026 individually inspected/nativeSHA1 matched/grants bound; existing supplemental policy passes unchanged. No official-source imagery, source photo textures/generated bitmap/downloaded mesh or copied banners/lettering.",
+    "Whole native13-vertex building and9/6-vertex office parts retained. Principal30.1m parapet follows unsurveyed map height; low roof17.5m/parapet18.1m, canopy5.4m, tall hall5.7–12.6m, ribbon17.2–18.5m/two office rows19.4–22.8m and24.5–27.9m and rooftop plant32.12m are original estimates. Eight scalloped canopy bays/24 tall hall bays/48 splayed office bays represent photographic rhythm; exact census/depth/rear/roof plant and present cosmetics bounded. Three-storey rear fenestration is approximate; not an interior reconstruction.",
+    "Government text identifies1976 building and planned redevelopment demolition; no verified completed demolition is asserted. Represents photographed2024/2026 form. Separate IFC/Jardine House, old1911 predecessor, connecting public walkways, flags/sign letters/banners, urban street/site floor/gardens/construction/people/vehicles excluded. Ground piloti/curved underside physically open; own building floor only.",
+    "Independent400m129x129/16641 samples/two original Terrarium tiles frozen before geometry. Provider datum14.3467m and whole absolute[-679.8011,66.6877]m retained unchanged/no fit/flatten/reacquire. Implausible deep negative coastal composite values are not harbor bathymetry or foundation controls; review PNG quantization max0.00573m is encoding precision only. Flat portable/shared/context fixtures separate. Native preview/replaceFootprint=false, actual host urban grade/threshold contact unverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-five-storey-office-and-lower-rear-wing",
+      "position": [
+        92,
+        57,
+        102
+      ],
+      "lookAt": [
+        3,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "deep-splayed-office-window-reveals-and-two-upper-rows",
+      "position": [
+        12,
+        24,
+        35
+      ],
+      "lookAt": [
+        4,
+        23,
+        19.4
+      ]
+    },
+    {
+      "name": "tall-hall-windows-and-shallow-scalloped-canopy",
+      "position": [
+        39,
+        10,
+        44
+      ],
+      "lookAt": [
+        18,
+        7.5,
+        19.4
+      ]
+    },
+    {
+      "name": "open-ground-piloti-and-recessed-lobby",
+      "position": [
+        0,
+        2.2,
+        24.5
+      ],
+      "lookAt": [
+        1,
+        2.5,
+        14.7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 20772,
+    "vertices": 62316,
+    "materials": 5,
+    "bytes": 2495936,
+    "sha256": "sha256:26763a917b3985cc2bab321b09db726e109c89000c22ee31c83a93edac479862"
+  }
+}

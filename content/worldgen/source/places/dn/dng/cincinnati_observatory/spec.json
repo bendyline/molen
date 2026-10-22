@@ -1,0 +1,363 @@
+{
+  "planId": "cincinnati_observatory",
+  "id": "cincinnati_observatory",
+  "assetId": "molen.worldgen.structure.cincinnati_observatory",
+  "title": "Cincinnati Observatory",
+  "category": "civic-cultural",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -84.4225883,
+    "latitude": 39.13911825
+  },
+  "size": [
+    57.804229736328125,
+    15.72244119644165,
+    62.90574836730957
+  ],
+  "actualBounds": {
+    "min": [
+      -11.308544158935547,
+      -2.4000000953674316,
+      -8.721357345581055
+    ],
+    "max": [
+      46.49568557739258,
+      13.322441101074219,
+      54.184391021728516
+    ]
+  },
+  "visualBrief": "Complete separated Herget and Mitchel observatory buildings at original native positions: redbrick/raised stonebases/pale dressed sash, open south Herget Doric portico/pediment/oculus/steps/balustrades, flat roof balustrade/paired chimneys and ribbed silver dome on square support; west Mitchel two-column entry/lowpediment, central rear domed turret and smaller northeast conical turret. No campus slab/driveways/interiors/telescopes/temporaryworks.",
+  "nativeAxes": {
+    "x": "true east",
+    "y": "up",
+    "z": "true south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cincinnati_Observatory,_Hyde_Park,_Cincinnati,_OH_(46906852341).jpg",
+    "https://commons.wikimedia.org/wiki/File:Cincinnati_Observatory,_Hyde_Park,_Cincinnati,_OH_(46906851451).jpg"
+  ],
+  "stories": [
+    {
+      "id": "cincinnati-observatory-wp",
+      "url": "https://qualla.com/cincinnati-observatory/"
+    }
+  ],
+  "referenceInputHash": "59af96fe700daebbf4aef3b80412bd2338a2bfca3aa0f30549bf3435e3bcfb10",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-cincinnati-observatory.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-cincinnati-observatory.mjs",
+    "level": "skyline",
+    "export": "cincinnatiSkyline",
+    "errorMeters": 1.05,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94,
+        "metallic": 0.03
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.3
+      },
+      "rib": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.83,
+        "metallic": 0.2
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.35,
+        "metallic": 0.08
+      },
+      "door": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.89,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cincinnatiDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0.03
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.3
+          },
+          "rib": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.35,
+            "metallic": 0.08
+          },
+          "door": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "cincinnatiStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0.03
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.3
+          },
+          "rib": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.35,
+            "metallic": 0.08
+          },
+          "door": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.5,
+    "groundY": -2.5
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named Hergetway76811703/3489ObservatoryPlace and Mitchelway76811742/3474ObservatoryPlace, both operated by CincinnatiObservatoryCenter/Q3348364. Complete original17/22vertex footprints preserve separated buildings and two east/rear Mitchel round turrets. Herget boundingboxcenter[-84.4225883,39.13911825], heading0/east-southframe. Herget faces south; Mitchel faces west; buildings are NOT copied parallel clones or merged campus slab. Native map has no heights/roof partitions: dome/portico/hidden section heights are bounded photographic/registered-text estimates. Original plans, geographic offset and independent field stay unchanged. Independent160mhilltop field frozen before geometry at fixed south Herget approach[0,12]. Exact Mitchel downslope foundation/threshold and hostcontact approximate.",
+    "anchor": [
+      -84.4225883,
+      39.13911825
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -84.4225883,
+        39.139010452659
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed south Herget approach[0,12]before terrain and geometry. Own entrance steps only; exact Mitchel downslope/threshold/hostcontact remains approximate, no campus platform."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/76811703",
+      "way/76811742"
+    ],
+    "source": "https://www.openstreetmap.org/way/76811703",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f933fa3889669f867a3a20af7f1408f976ecd2dd50a83664f5b12ae2f833a310",
+    "notes": "Both intrinsic Cincinnati Observatory buildings in their original separated native positions: complete Herget1873building with raised stone basement/red brick wings/tall dressed sash, open prostyle portico with outer stone piers/two inner Doric columns/steps/balustrades/pediment/oculus, flat roof balustrade/paired chimneys and square-backed ribbed silver1895dome; complete Mitchel1904/1908brick building with west five-bay front/two-column entrance/low pediment, taller downslope rear, native central rear domed turret and smaller northeast turret/conical cap. Exclude separate radio tower/survey markers/grounds/driveways/landscape/neighbor houses/interiors/telescopes/lettering/people/vehicles and temporary renovation works."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named Hergetway76811703/3489ObservatoryPlace and Mitchelway76811742/3474ObservatoryPlace, both operated by CincinnatiObservatoryCenter/Q3348364. Complete original17/22vertex footprints preserve separated buildings and two east/rear Mitchel round turrets. Herget boundingboxcenter[-84.4225883,39.13911825], heading0/east-southframe. Herget faces south; Mitchel faces west; buildings are NOT copied parallel clones or merged campus slab. Native map has no heights/roof partitions: dome/portico/hidden section heights are bounded photographic/registered-text estimates. Original plans, geographic offset and independent field stay unchanged.",
+    "Complete two intrinsic observatory building exteriors only. Original full map plans retain all17/22vertices; centimeter-scale collinear Herget wall jogs simplified between retained principal corners, with original full roof envelope. Silver Herget dome/portico/roof and Mitchel front controlled by two2019CC0exteriors. Primary architectural text and native curved plans establish concealed Mitchel main rear dome and northeast cone turret. Heights/vertical basement offsets/roof profiles/window census/ornaments/rear details remain bounded medium-fi estimates.",
+    "Operator reports Herget renovation beganJuly2026; temporary works and current cosmetic condition excluded/unverified. Permanent1895ribbed silver dome represented closed; no moving slit/telescope/interior. Main porch genuine open air below entablature; high windows recessed in nearer levels; open balustrades simplified at distance.",
+    "Shared procedural brick/limestone/painted-metal and muted local glazing; no photograph texture or generatedbitmap. Qualla-published exact4032x3024WarrenLeMayCC0exteriors/nativeSHA1matched before geometry. Interior/attic/markers/astronomy/unrelated/attribution imagery unused. Primary architectural document used only for text facts, no images/diagrams.",
+    "No separate radio tower/survey markers/driveways/grounds/landscape/campusslab/neighbor houses, interiors/telescopes/lettering/people/cars or temporaryrenovation. Independent original160mterrain/rawtiles/grid/heightPNG frozen unchanged; no flattening/fitting. Exact front stairs/downslopebase/hostcontact unverified; replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "herget-south-portico-oculus-open-balustrades-and-dome",
+      "position": [
+        -24,
+        15,
+        34
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "herget-west-sash-roof-balustrade-chimneys-and-ribs",
+      "position": [
+        -27,
+        15,
+        -13
+      ],
+      "lookAt": [
+        0,
+        7,
+        -3
+      ]
+    },
+    {
+      "name": "mitchel-west-five-bay-front-and-open-two-column-entry",
+      "position": [
+        6,
+        9,
+        48
+      ],
+      "lookAt": [
+        37,
+        3,
+        45
+      ]
+    },
+    {
+      "name": "mitchel-east-domed-turret-and-northeast-conical-cap",
+      "position": [
+        66,
+        17,
+        26
+      ],
+      "lookAt": [
+        40,
+        4,
+        43
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26851,
+    "vertices": 80553,
+    "materials": 7,
+    "bytes": 3226068,
+    "sha256": "sha256:8c8187df26a36a5c92b2f6acdafe1dc410a6dbfa16e71b3aeb92afda8a955287"
+  }
+}

@@ -1,0 +1,338 @@
+{
+  "planId": "kariba_dam",
+  "id": "kariba_dam",
+  "assetId": "molen.worldgen.structure.kariba_dam",
+  "title": "Kariba Dam",
+  "category": "dam",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 28.762068086842113,
+    "latitude": -16.521872636842104
+  },
+  "size": [
+    485.39796447753906,
+    130.45000004768372,
+    133.87060546875
+  ],
+  "actualBounds": {
+    "min": [
+      -238.0092315673828,
+      -128,
+      -57.004241943359375
+    ],
+    "max": [
+      247.38873291015625,
+      2.450000047683716,
+      76.86636352539062
+    ]
+  },
+  "visualBrief": "Whole Kariba double-curvature concrete arch dam exterior, native full dam polygon and actual crest-road centerline, complete curved wall and abutments, six intrinsic sluice mouths/hoist supports, structural crestroad/parapets/railings and small intrinsic control boxes. Separate north/south underground powerstations/intakes/portals, substations, project offices/construction plant and river/reservoir/gorge/vegetation are excluded; no generic dam patch or natural terrain mesh. Use exact native crest-curve; whole convex downstream wall and tapered/doublecurved section, all6large upper sluices with intrinsic projecting hoist supports, low crestparapets and intrinsic utilityboxes. No opaque blocks over real sluice holes. Broad height128m/crestthickness13m/basethickness24m fromoperator. Native map envelope/crest length may differ from published617m; do not stretch to nominal dimensions. Hidden toe embedded in actual gorge, underside/upstreamwall shape, per-sluice fine spacing/rails and present2026refitted hoists bounded. Only cleared456x262wholeoriginal informs visible geometry, not restricted hi-res websitephotos. Freeze independent1200m field at original northern crest approach before authoring; modelY0at crest anddamnegativeY. Exclude landscape/river/reservoir and separate hydroelectric plant/substations.",
+  "nativeAxes": {
+    "x": "northwest/towardZambia",
+    "y": "up",
+    "z": "northeast/downstream"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Kariba_dam.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kariba-dam-wp",
+      "url": "https://qualla.com/kariba-dam/"
+    }
+  ],
+  "referenceInputHash": "cef7e800d3d3d109ab3c5a7422d3bf34eb65bd2387a35b18461cac8c08a7ff4e",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-kariba-dam.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-kariba-dam.mjs",
+    "level": "skyline",
+    "export": "karibaSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.18
+      },
+      "road": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "joint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.92,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "karibaDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.18
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "joint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "karibaStreet",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.18
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "joint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "karibaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.18
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "joint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.3,
+    "groundY": -130
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact original named dam multipolygonrelation18274317/Q1367609, two native ways1332814560/1332814559 joined at original common endpoints, all38original perimeter vertices. Native highway crestline uses original crossing nodes fromways1081170413/1332814558, including one short northern approach. Fixed+Xnorthwest towardZambia,+Znortheast/downstream,+Yup; no spline-fit/stretch of plan. Dam area is a mapped structural envelope, not a surveyed128mvertical extrusion. Use true curved/tapered wall and13mcrest/24mbase section from operator with hidden profile bounded. Bank datum at original northern crest approach chosen before independent terrain. Independent1200mfield is diagnostic only: deep negative reservoir artifacts remain unchanged. Fixed north-bank crest reference; maximum128mwall section from operator, live gorge/water/toe contact unverified.",
+    "anchor": [
+      28.762068086842113,
+      -16.521872636842104
+    ],
+    "heading": 2.2584291574711144,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        28.7612477,
+        -16.5197637
+      ],
+      "modelHeight": 0,
+      "basis": "Original northern crest approach fixed before terrain/geometry. ModelY0is crest-bank datum, not river water/toe level; dam descends approximately128m."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/18274317",
+      "way/1081170413+1332814558"
+    ],
+    "source": "https://www.openstreetmap.org/relation/18274317",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9277b7da945fc4ae8663ddd13d981a35c21c2325d4f1cc2cf9ce3f74c4d3272e",
+    "notes": "Whole Kariba double-curvature concrete arch dam exterior, native full dam polygon and actual crest-road centerline, complete curved wall and abutments, six intrinsic sluice mouths/hoist supports, structural crestroad/parapets/railings and small intrinsic control boxes. Separate north/south underground powerstations/intakes/portals, substations, project offices/construction plant and river/reservoir/gorge/vegetation are excluded; no generic dam patch or natural terrain mesh."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact original named dam multipolygonrelation18274317/Q1367609, two native ways1332814560/1332814559 joined at original common endpoints, all38original perimeter vertices. Native highway crestline uses original crossing nodes fromways1081170413/1332814558, including one short northern approach. Fixed+Xnorthwest towardZambia,+Znortheast/downstream,+Yup; no spline-fit/stretch of plan. Dam area is a mapped structural envelope, not a surveyed128mvertical extrusion. Use true curved/tapered wall and13mcrest/24mbase section from operator with hidden profile bounded. Bank datum at original northern crest approach chosen before independent terrain.",
+    "Whole original concrete arch-dam exterior, upper edge from original native upstream boundary, downstream toe from original native opposite boundary,13mcrest/24mbase/maximum128msection controls from operator. True horizontal and vertical curvature, six9.14x8.84mconcrete flow tunnels with closed gate leaves deep behind downstream mouths, hanging metal frames, actual native crest-road nodes, low parapets and intrinsic small cabinets. Native mapped curve is not stretched to nominal617mengineering length. Skyline simplifies the toe curve between original upstream-edge stations; higher levels retain all38native plan controls.",
+    "Exact456x262BenBird2005creator-public-domain original individually inspected/nativeSHA1matched. Qualla17families searched first:CC0portrait unrelated and excluded, uncertain Spencerconstruction pictures not used, other dam photos require attribution. Native explicitPD-user-en and original own-photo uploadlog bind Benbbb/BenBird; originalCommons transfer separately retained. No image upscaling, agency photographic controls, generated bitmap or photo textures.",
+    "Photographic low resolution does not establish fine mechanics. Gate grouping/pitch/height, broad hanging-frame forms, contraction courses/runoff, rail/cabinet census and original foundation/abutment and upstream profile are medium-fi estimates. OperatorMay2026text confirms ongoing hoist replacement; current detailed mechanisms are not certified by2005photo. The full stable concrete structure is modeled; no claim of exact present refitted machinery.",
+    "Native dam polygon is an overall structural envelope, not128mtallverticalextrusion. Upper/lower side curves are paired by native arc-distance with original vertices retained at detailed levels. Operator height/section and smoothly varying bounded exposed toe follow a plausible gorge section, not the bad DEM. Maximum wallheight128m at center, abutments shorten toward ends; buried foundation/real exposure and actual geographic ground contact remain unverified.",
+    "Independent1200m129x129field/16641samples/4rawTerrariumtiles frozen before geometry, crest reference497.7347m. Implausible negative lake returns down to-986.7526m remain untouched and are not used as water/riverbed/foundation controls. Portable/shared/context use clearly separate flat review ground below foundation. No artificial gorge/river/reservoir mesh, landscape floor or flattened sourcefield. Native placement preview/replaceFootprint=false; compatible live terrain/water/toe contact unverified.",
+    "Separate north/south underground powerstations, intake/portal structures, substations, project offices/civil construction plant and neighboring roads outside the intrinsic dam crest are excluded. Water/river/gorge/trees/people/signs/vehicles are absent. No photographed shape/style from the excluded sources is adopted."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-double-curved-concrete-arch-and-six-sluices",
+      "position": [
+        120,
+        100,
+        560
+      ],
+      "lookAt": [
+        0,
+        -49,
+        -5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "six-real-sluice-mouths-hanging-frames-and-deep-gates",
+      "position": [
+        85,
+        -7,
+        125
+      ],
+      "lookAt": [
+        28,
+        -35,
+        -25
+      ]
+    },
+    {
+      "name": "curved-crest-native-road-parapets-and-service-cabinets",
+      "position": [
+        190,
+        34,
+        32
+      ],
+      "lookAt": [
+        35,
+        -2,
+        -41
+      ]
+    },
+    {
+      "name": "upstream-tapered-wall-and-native-abutments",
+      "position": [
+        -250,
+        60,
+        -355
+      ],
+      "lookAt": [
+        0,
+        -51,
+        -23
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18878,
+    "vertices": 56634,
+    "materials": 5,
+    "bytes": 2268472,
+    "sha256": "sha256:cf642e67eb82bd34a32f3d961f56e79dad2fa702dddbdf0a8704813483f36b8e"
+  }
+}

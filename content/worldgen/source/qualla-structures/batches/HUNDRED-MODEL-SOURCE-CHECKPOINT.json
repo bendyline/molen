@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-21",
+  "completedBatchModels": 100,
+  "target": 300,
+  "status": "source-rebuild-completed-existing-skyline-packaging-drift-restored-to-accepted-bytes",
+  "command": "pnpm assets:build",
+  "fullSourceBuild": {
+    "generators": 34,
+    "files": 5372,
+    "seconds": 630,
+    "imports": {
+      "run": 151,
+      "current": 788
+    },
+    "bundleAtBuildStart": {
+      "release": "assets-4cf5ab4b37d21474",
+      "key": "4cf5ab4b37d214749c40fbb824e988c865b0d4fc2f6275f986e8d8ca234f51dd"
+    },
+    "reportHash": "sha256:4eedca5fcbc049e3cbdb385468b135143550cc5315e604f6ebd9a42c7b547641",
+    "semanticMetadataDifferencesKeptAsFound": 673,
+    "addedMetadata": 0
+  },
+  "acceptedOutputPreservation": {
+    "catalogModels": 874,
+    "catalogMainAndLodFiles": 4370,
+    "mismatches": 0,
+    "batchSourceMainAndLodFiles": 600,
+    "batchSourceAndMainRuntimeBytesAllUnchanged": true,
+    "restoredSkylineFiles": 167,
+    "method": "Recreate existing source-local skyline with its originally accepted single flat material/vertex colors. Write only if bytes exactly match the current sidecar hash; do not change any source, metadata, QA or rendered input. Resolves current whole-build shared-material packaging drift while preserving accepted outputs.",
+    "restorationReportHash": "sha256:4f13dec168beaa0b56f1f2a04d4baddbb38c82d8128bb8c810c12859cc35101a",
+    "geometryAndQaReopened": false
+  },
+  "compatibilityNote": "Current whole-source rebuild uses shared-material skyline packaging for older source-local overlays whose accepted outputs used one flat material plus vertex colors.167 regenerated skyline files differed; existing metadata was preserved by the build. Recreated only those skyline build outputs with their original packaging and wrote each only after its bytes exactly matched the already accepted sidecar hash. Source geometry/main runtime/other distance levels and all QA/accepted imagery untouched. Current catalog4370main/LOD files then match their sidecars. Record this existing build compatibility discrepancy; do not reopen models or migrate their visuals as part of structure authoring. The current local installed-asset stamp is cleared because the verified accepted outputs differ from the temporary whole-build bundle and next lighthouse inputs have been added. Current branch uses input-keyed stamps; --update-lock is unsupported and no asset-lock file is created.",
+  "exchangeSquare": {
+    "model": "exchange_square_hong_kong",
+    "currentFrames": 39,
+    "geometryTerrainChecks": 619,
+    "lodTriangles": [
+      884,
+      3780,
+      15450,
+      56810
+    ],
+    "storyWrites": 1,
+    "storyRepeatChanges": 0
+  },
+  "nextModel": "kaohsiung_lighthouse",
+  "nextInputs": "Three exact creatorCC0 originals and whole native6-vertex principal station/contained named tower; independent256m16641value/two tilefield frozen before geometry. No geometry authored."
+}

@@ -1,0 +1,364 @@
+{
+  "planId": "asheville_masonic_temple",
+  "id": "asheville_masonic_temple",
+  "assetId": "molen.worldgen.structure.asheville_masonic_temple",
+  "title": "Asheville Masonic Temple",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -82.55239931999999,
+    "latitude": 35.59814604
+  },
+  "size": [
+    18.191967964172363,
+    23.71500054001808,
+    41.22145652770996
+  ],
+  "actualBounds": {
+    "min": [
+      -8.244940757751465,
+      -0.4000000059604645,
+      -25.412914276123047
+    ],
+    "max": [
+      9.947027206420898,
+      23.315000534057617,
+      15.808542251586914
+    ]
+  },
+  "visualBrief": "Complete80BroadwayTemple and intrinsic connected rear hall, full original touching native plans: pressed redbrick/darkgranitebase/pale dressed sash and bands, genuinely recessed west two-story paired Ionic portico/lowerstonebalusters/uppermetalrail, recessed arched closed entry/ownsteps, bracketed front redtile hip roof/chimney, rearhall gable roof and shaped Woodfin parapet/three tall blind thermal recesses. No neighbors/site/interiors/lettering.",
+  "nativeAxes": {
+    "x": "southward along actual west front",
+    "y": "up",
+    "z": "west/front on original native bearing"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Front_Facade,_Asheville_Masonic_Temple_Scottish_Rite_Cathedral,_Asheville,_NC_(31804133397).jpg",
+    "https://commons.wikimedia.org/wiki/File:Asheville_Masonic_Temple_Scottish_Rite_Cathedral,_Asheville,_NC_(45830201275).jpg",
+    "https://commons.wikimedia.org/wiki/File:Asheville_Masonic_Temple_Scottish_Rite_Cathedral,_Asheville,_NC_(45830201535).jpg"
+  ],
+  "stories": [
+    {
+      "id": "asheville-masonic-temple-wp",
+      "url": "https://qualla.com/asheville-masonic-temple/"
+    }
+  ],
+  "referenceInputHash": "16fab5c857f9ea6e89a74fb6d30dbd2dd90c74f18ca211b92060f503cf871cec",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-asheville-masonic-temple.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-asheville-masonic-temple.mjs",
+    "level": "skyline",
+    "export": "ashevilleSkyline",
+    "errorMeters": 1.6,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "inset": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.2
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.36,
+        "metallic": 0.07
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "ashevilleDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.36,
+            "metallic": 0.07
+          }
+        }
+      },
+      "street": {
+        "export": "ashevilleStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.36,
+            "metallic": 0.07
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.35,
+    "groundY": -0.45
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Specific80BroadwayTemple identified by original story coordinate within nativeway490235622 and owner address at Broadway/Woodfin. Native unnamed five-vertex front way490235622 and touching four-vertex hall way490235623 retained in full, joined along exact shared edge. Three inspected CC0exteriors and primary historic district text confirm west hipped front plus east gabled hall as one Temple. Whole union seven-vertex perimeter, not just the story-containing polygon. Anchor[-82.55239931999999,35.59814604]. Actual west front edge original0to4 fixes heading-1.2856986178660197rad; +Xsouthward along front/+Zwest/front. No native heights or roof/window census; estimates from photos/text. Neighbor east beyondhall excluded. Front approach fixed before terrain/geometry. Independent160mfield frozen before geometry at fixed westentry approach; exact basement/steps/threshold and hostcontact approximate.",
+    "anchor": [
+      -82.55239931999999,
+      35.59814604
+    ],
+    "heading": -1.2856986178660197,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -82.55258365705097,
+        35.598094143955535
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed west front entry approach before terrain and geometry; exact steps/basement/host contact remain estimates."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/490235622",
+      "way/490235623"
+    ],
+    "source": "https://www.openstreetmap.org/way/490235622",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:97a64af8b6e8e8a676d7484e7b89b3010d5179ac6733dded89f7e0ba967a5e5f",
+    "notes": "Complete surviving Asheville Masonic Temple/Scottish Rite Cathedral at80Broadway: west front portion and intrinsic connected east hall represented by touching native ways490235622/490235623, pressed redbrick three full floors over dark granite basement, pale limestone/greybrick bands and dressed recessed sash, two-story Broadway portico with four unfluted Ionic columns in two pairs and genuinely recessed open upper balcony/loggia, lower stone balustrade and upper metal rail, arched recessed closed entry/own steps, broad bracketed cornice and red-tile front hip roof/brick chimney, taller rear hall gable roof and north Woodfin shaped brick parapet with three tall blind thermal-arch recesses above small sash. Exclude separate neighboring buildings, sidewalk/roads/signals/trees/people/cars, lettering/Masonic artwork and interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Specific80BroadwayTemple identified by original story coordinate within nativeway490235622 and owner address at Broadway/Woodfin. Native unnamed five-vertex front way490235622 and touching four-vertex hall way490235623 retained in full, joined along exact shared edge. Three inspected CC0exteriors and primary historic district text confirm west hipped front plus east gabled hall as one Temple. Whole union seven-vertex perimeter, not just the story-containing polygon. Anchor[-82.55239931999999,35.59814604]. Actual west front edge original0to4 fixes heading-1.2856986178660197rad; +Xsouthward along front/+Zwest/front. No native heights or roof/window census; estimates from photos/text. Neighbor east beyondhall excluded. Front approach fixed before terrain/geometry.",
+    "Complete west Temple/front and intrinsic connected east hall; original5/4vertexnativeplans and sevenvertexunion retained in foundation. Three CC0exteriors and primary historic district text establish hipped front roof/gabledhall, four paired Ionic columns, open two-level portico, dark granitebase, dressed sash/bands and shaped Woodfin blind thermal field. Geometry heights, precise roof partitions/window census/volute profiles/balusters and concealed south/east elevations remain bounded estimates. Skyline uses simplified portico recess/columns/parapet and rearroof; nearlevels add true window/loggia recesses, scroll capitals, balusters, sash, arch reveals and brackets.",
+    "Front upper portico is recessed2.15m with closed back glazing, lowerstonebalustrade and uppermetalrail. Lower entry arch closes at inset door. Woodfin tall arch field is blind brick with shallow recess and two dividing piers, not transparent glazing. Rear roof and south/east windows are inferred where hidden; no interiors, text or Masonic artwork.",
+    "Only three exact already-cleared published WarrenLeMayCC0Qualla exteriors from2019, native original SHA1/source author/explicitcc-zero matched. Primary operator and historic district architectural text facts only; their images/drawings unused. Shared procedural brick/granite/limestone/ceramictile/paintedmetal and mutedglass, no copied pixels/generatedbitmap.",
+    "No adjacent buildings, street/sidewalk/site slab/landscape/trees/signals/people/cars/lampposts/flags. Original independent160mterrain/rawtiles/grid/heightPNG frozen before geometry at fixed front approach; no flattening/fitting. Exact basement/stair/sill/host contact and current cosmetic condition unverified; replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "broadway-paired-ionic-columns-open-two-level-loggia-and-arched-entry",
+      "position": [
+        -18,
+        13,
+        35
+      ],
+      "lookAt": [
+        0.8510431956943671,
+        10,
+        13.636821553392398
+      ]
+    },
+    {
+      "name": "woodfin-blind-thermal-recesses-shaped-parapet-and-dressed-sash",
+      "position": [
+        -34,
+        15,
+        -9
+      ],
+      "lookAt": [
+        -6,
+        12,
+        -3
+      ]
+    },
+    {
+      "name": "front-hip-roof-chimney-and-connected-gabled-rear-hall",
+      "position": [
+        -29,
+        38,
+        -35
+      ],
+      "lookAt": [
+        1,
+        13,
+        -6
+      ]
+    },
+    {
+      "name": "whole-south-rear-plan-and-granite-basement",
+      "position": [
+        35,
+        21,
+        -40
+      ],
+      "lookAt": [
+        2,
+        9,
+        -6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13557,
+    "vertices": 40671,
+    "materials": 6,
+    "bytes": 1630552,
+    "sha256": "sha256:4dca5a6f912b4d7c0f2eb1e291ec9e4354d325709618e9222fae93b3bf9e632d"
+  }
+}

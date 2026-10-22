@@ -1,0 +1,181 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.abadan_refinery",
+  "status": "completed",
+  "reviewedOn": "2026-10-19",
+  "reviewedBy": "Codex",
+  "inputHash": "sha256:d4f55ec45d2236a53a6b2c276c8c0c3a4c96a378bdf1e41352850ccdf94b86fb",
+  "sourceHash": "sha256:8611897796e0af7261499849ff45d087c95924cb69ccad799f1275aea3bd7034",
+  "runtimeHash": "sha256:4a72d7bd90df90d92a1ddf6d4e8d7683eaa43fe362da19cff4d161460cdd8b2a",
+  "visualReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:3d26aa0aec0ce28f87f8fef25be604d58667c8b6cfc755be3efd9550ceaa332c",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/native-storage-tank-farm.png",
+      "shots/process-columns-and-pipe-racks.png",
+      "shots/southern-industrial-halls.png"
+    ],
+    "notes": "All8 current portable images inspected: geographically distributed native tank groups, native industrial halls with low gabled roofs where appropriate, selected ladders/vents, and approximate column/catwalk/horizontal-vessel/pipe-rack groups. Industrial forms and muted pale-metal/ochre/roof colors follow both inspected1970NIOC originals; exact native positions/heights come from original ways and nodes."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:5c26fa5a69e5425fbda01ed6192ce06a3add1c04e7ddc2fdce238f7e0e881e71",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/native-storage-tank-farm.png",
+      "shots/shared/process-columns-and-pipe-racks.png",
+      "shots/shared/southern-industrial-halls.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All8 shared-material views inspected, including the full named refinery perimeter and native layout overlay. Shared painted metal, steel, plaster and concrete bind correctly. Polygon-centroid anchor, true-east heading, off-origin mapped service-road reference and load/unload pass. Inspection uses a flat stage and does not certify the full multi-kilometer host-ground contact."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:8b2fe1d6006fe105bfd87958e04455bd46baeda591b28795c2318fd934202627",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/native-storage-tank-farm.png",
+      "medium-fi/process-columns-and-pipe-racks.png",
+      "medium-fi/southern-industrial-halls.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All20 current context images inspected: noon/late economy/high at street/block/skyline, silhouette, three details and all four shipped LOD transitions. Large tank-farm groups and principal halls remain in lower LODs; small tanks, halls and rail/ladder detail retire at distance. Process equipment retains its main silhouettes. Flat context demonstrates lighting and scale, not an as-built equipment inventory or terrain survey."
+  },
+  "captureReportHash": "sha256:3d26aa0aec0ce28f87f8fef25be604d58667c8b6cfc755be3efd9550ceaa332c",
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:560f8f99692b0b94cdf614890af8bb41bfabe375cfb28fe63ba8e85af6e86e7a",
+    "mapGeometryHash": "sha256:1e360e23f2156e08421ccf72bb53904c7e0d8918449be4ef70d4b6fe76a97d19",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:9d9e8a1bc52a4bbd2ea47890f237f3abc7af3d9641c75e0c9eec6612b5a685a8",
+      "descriptorHash": "sha256:02caf21d6beb3d319fc99f9ae41686ceb4a241ac7336d9397278be2cd1b6c991",
+      "heightfieldHash": "sha256:de726765bb07626c3b233530b9ae19b2243bfdb4d19301313039ae80960953ab",
+      "providerDatumMeters": -0.031,
+      "siteBoundaryRelativeRangeMeters": [
+        -0.302,
+        4.892
+      ]
+    },
+    "groundContactVerified": false,
+    "approximateGeographicPreview": true,
+    "notes": "Complete named original OSM refinery site way203470198 and full original ways/nodes for278structures replace clipped/duplicate discovery-tile fragments. Native site area centroid defines the anchor and true-east frame.204explicitly tagged oil-storage tanks retain native centers/radii and supplied heights;74other mapped structures retain original outlines and supplied levels/heights. A native private service-road vertex near the story position fixes modelY0 before terrain acquisition. Shared native-plan overlay/off-origin reference and active placement pass. Source terrain is preserved; low-relief multi-kilometer foundation/ground contact is approximate. No whole-site platform, blanket cutout or terrain fitting."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Refinery structures within the exact named industrial site perimeter: native building/tank layout and characteristic process-column silhouettes. Adjacent city, airport, hospital and detached river industry excluded.",
+    "notes": "Native complete mapped tank/hall layout and tagged heights, pale cylindrical storage tanks with low conical roofs, large-tank ladders/vents, ochre industrial halls and low gable roofs. Three compact intrinsic process groups interpret the cleared NIOC photographs: tall pale columns with repeated dark physical catwalks/rails, horizontal vessels on supports and an open pipe rack. Groups are clear of mapped structure footprints. Unmapped equipment positions, routing and precise inventory are approximate; this does not claim a modern engineering survey or unchanged survival of every1970equipment item."
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:d4f55ec45d2236a53a6b2c276c8c0c3a4c96a378bdf1e41352850ccdf94b86fb",
+    "referenceInputHash": "bc27db679fb6f04b935a2b292a25167a343eaa43ea5dccc4cf9c9a421aa20785",
+    "acceptedReferencePaths": [
+      "_m/t/j/6/k/abadan-refinery-wp/hero.jpg",
+      "_m/t/j/6/k/abadan-refinery-wp/abadanoilrefinery2.jpg"
+    ],
+    "auxiliaryReferencePaths": [],
+    "imageryEvidenceHash": "sha256:4a43833631f98afaeb6dc2b1e8fc52cd82643584cb362c5662282618abcec5d0",
+    "excludedHistoricalImagery": [],
+    "notes": "Both exact already published Qualla NIOC originals inspected at native size. Original metadata explicitly records1970-09 and PD Iran; the hero credits Iranian Oil Industry during the Kingdom of the Pahlavi Dynasty page47. Published paths, original metadata and current image hashes agree. Uncertain Nevit group portrait, unrelated museum/hospital/worker imagery and other unselected images excluded. No external imagery or photographic textures used. Native OSM geometry is source map data."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:30b9fed4327f5dfb5bda0adc5724cf5a39be8cd5ea0b515ea4d9af49fe0a2f6f",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:18907f002959e3961ed52d20b144b329d01c691ac3d53f1cb0a9b2d77173dbef",
+        "bytes": 59176,
+        "gzipBytes": 11658,
+        "triangles": 680,
+        "cpuBytes": 57756,
+        "gpuBytes": 57756,
+        "errorMeters": 25,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:f56a7eb7e0ebd3a201748ed6fe99191622d78cd9ed67b6a08e1e16d47a1321b5",
+        "bytes": 293164,
+        "gzipBytes": 67558,
+        "triangles": 3536,
+        "cpuBytes": 288156,
+        "gpuBytes": 288156,
+        "errorMeters": 12,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:c04cba19d59bfec368b7ac1ca0dd382bda58f5a37ee7845cfcb4b1b3c066a1a3",
+        "bytes": 1184552,
+        "gzipBytes": 259656,
+        "triangles": 14782,
+        "cpuBytes": 1179492,
+        "gpuBytes": 1179492,
+        "errorMeters": 4,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:529e8ed13ee360a00466b7be13793c6fe415235fd45edb1f6ee36c44d10e02bb",
+        "bytes": 7549064,
+        "gzipBytes": 1287010,
+        "triangles": 62886,
+        "cpuBytes": 7546320,
+        "gpuBytes": 7546320,
+        "errorMeters": 0,
+        "drawCalls": 4
+      }
+    ]
+  },
+  "validation": {
+    "completed": true,
+    "exactSourceRegeneration": true,
+    "assetInspectVerified": true,
+    "mediumFiAudit": "passed without findings",
+    "currentFramesInspected": 36,
+    "activePlacement": "abadan-refinery",
+    "storyAnnotation": "linked-and-zero-change-repeat-verified",
+    "sceneValidation": true,
+    "simulationTicks": 30,
+    "stateHash": "sha256:c05a0105ea40cef5cbacf1af40c9ca0dcd9d65cf2af301020e2cfb8bd846eee9"
+  },
+  "limitations": [
+    "Full original native ways/nodes locate204tagged oil-storage tanks and74other mapped structures. Tagged heights/levels are retained; missing heights, small roof falls, ladders, hall openings and material colors are photographic medium-fi estimates. Fine components retire in distant LODs while large tank-farm groups and principal halls remain.",
+    "Two Qualla-published NIOC photographs explicitly dated1970-09 and carrying PD Iran control industrial form/material typology. The native plan is current mapping, not a claim that every1970equipment item survives unchanged. Original pixels are not textures.",
+    "Three compact process-column/rack/vessel groups in the open process quarter are photographic interpretations of intrinsic refinery equipment absent from mapping. Their exact locations, inventory, pipe routing and heights are approximate, not an engineering or current as-built survey. No branded labels, people, flame/smoke or active process simulation.",
+    "The site spans about2.8by3.1km. Host terrain and foundation contact use one approximate shared dry-yard datum; source terrain is preserved and no whole-site platform or blanket ground cutout is introduced. City, hospital, airport and detached river industry are excluded."
+  ]
+}

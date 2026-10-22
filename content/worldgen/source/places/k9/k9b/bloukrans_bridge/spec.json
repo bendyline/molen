@@ -1,0 +1,249 @@
+{
+  "planId": "bloukrans_bridge",
+  "id": "bloukrans_bridge",
+  "assetId": "molen.worldgen.structure.bloukrans_bridge",
+  "title": "Bloukrans Bridge",
+  "category": "bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 23.64522412419319,
+    "latitude": -33.966876359958746
+  },
+  "size": [
+    451.3299865722656,
+    78.17999994754791,
+    17.100000381469727
+  ],
+  "actualBounds": {
+    "min": [
+      -225.6649932861328,
+      -77,
+      -8.600000381469727
+    ],
+    "max": [
+      225.6649932861328,
+      1.1799999475479126,
+      8.5
+    ]
+  },
+  "visualBrief": "451m N2 concrete deck arch bridge with272m single broad arch, approximately62m arch rise, paired open vertical spandrel columns, approach piers and abutments, two-lane charcoal roadway, pale slotted concrete parapets, narrow under-deck catwalk and central bungee platform. River gorge and detached visitor buildings are excluded;216m river clearance is a site fact, not an invented line of tall piers.",
+  "nativeAxes": {
+    "x": "east along N2 crossing",
+    "y": "up,deck surfaceY0",
+    "z": "south across deck"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Bloukrans_Bridge-001.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bloukrans_Bridge_Bungee_Operations-001.jpg"
+  ],
+  "stories": [
+    {
+      "id": "bloukrans-bridge-wp",
+      "url": "https://qualla.com/bloukrans-bridge/"
+    }
+  ],
+  "referenceInputHash": "e41b8f08513a2e1a9066998a9846f9fd67fa54e355932641b3448c84bece9478",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-bloukrans-bridge.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-bloukrans-bridge.mjs",
+    "level": "skyline",
+    "export": "bloukransBridgeSkyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.18
+      },
+      "road": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bloukransBridgeDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.18
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "bloukransBridgeStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.18
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3.2,
+    "groundY": -81
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native mapped N2 bridge centerline fixes centroid and heading; dry eastern N2 approach240m from center defines deck-level datum. Source terrain remains unchanged. Flat inspection stage is below the arch so the open span is visible; host ravine and springing contact remain approximate.",
+    "anchor": [
+      23.64522412419319,
+      -33.966876359958746
+    ],
+    "heading": -0.01284038575775597,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        23.647823438409592,
+        -33.96690404238688
+      ],
+      "modelHeight": 0,
+      "basis": "Dry eastern N2 approach beyond mapped bridge end, chosen before terrain acquisition. Deck surfaceY0 matches this approximate road datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "roads/35184376435322"
+    ],
+    "source": "https://build.protomaps.com/20261019.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e5b0c6c20e09910a961feecd474b3e4aadf1c3d76c74aa783511ae6055c646c4",
+    "notes": "Native line is about463m including road end transitions;451m reported bridge centered within it without changing source coordinates. Bank/springing contact is approximate; landscape and river are not bridge geometry."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Primary ACI1981 construction abstract and Qualla agree on451m total length,272m arch span and216m river clearance. Native mapped bridge centerline includes about12m of end transition beyond the reported bridge length; it controls centroid/heading, not a rescaling of the whole structure.",
+    "Two inspected public-domain NJR ZA Qualla originals control the single broad concrete arch, repeated paired columns, slab/parapets and under-deck bungee platform. Rise,16m width, precise bay count, section thickness, hidden faces, platform/catwalk dimensions and bank-pier foundations are photographic medium-fi estimates. No engineering drawing or non-public-domain imagery used.",
+    "Static exterior only: no traffic, people, operator logos, active bungee ropes or detached visitor facilities. No navigable internal structural box or engineering-grade collision.",
+    "Bank reference and source terrain are approximate. Actual216m gorge/forest/river are supplied by the host landscape, not authored into the bridge. Gorge/rock contact is not surveyed and no source elevation is fitted to the model. Original photos remain in Qualla and are not textures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "arch-and-spandrels",
+      "position": [
+        25,
+        -18,
+        230
+      ],
+      "lookAt": [
+        0,
+        -38,
+        0
+      ]
+    },
+    {
+      "name": "road-and-parapets",
+      "position": [
+        160,
+        28,
+        55
+      ],
+      "lookAt": [
+        25,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "catwalk-and-platform",
+      "position": [
+        15,
+        5,
+        -40
+      ],
+      "lookAt": [
+        -8,
+        -4,
+        -5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9700,
+    "vertices": 29100,
+    "materials": 3,
+    "bytes": 1166296,
+    "sha256": "sha256:c349703b8faf40cf5e49904e600d1d78f9fb70bd2206821360eaf2ef34bf5b7a"
+  }
+}

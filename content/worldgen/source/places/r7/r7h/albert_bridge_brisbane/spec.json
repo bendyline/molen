@@ -1,0 +1,298 @@
+{
+  "planId": "albert_bridge_brisbane",
+  "id": "albert_bridge_brisbane",
+  "assetId": "molen.worldgen.structure.albert_bridge_brisbane",
+  "title": "Albert Bridge, Brisbane",
+  "category": "railway-bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 152.973998975,
+    "latitude": -27.5059466
+  },
+  "size": [
+    14.869978427886963,
+    28.06999969482422,
+    223.65938568115234
+  ],
+  "actualBounds": {
+    "min": [
+      -7.5199785232543945,
+      -14.5,
+      -113.62588500976562
+    ],
+    "max": [
+      7.349999904632568,
+      13.569999694824219,
+      110.03350067138672
+    ]
+  },
+  "visualBrief": "Whole surviving1895AlbertBridge/native207.64msteelspanextent and9.61mwidth: two paired hogback through-truss spans, lower/curvedtopchords/verticals/doublelattice/portal knees/upperwindbracing, open twintrackdeck/rails/sleepers/stringers/crossgirders/underXbracing, one central masonrycutwaterpier/ownbothbankabutments/nativeendjogs/bearings. Palegrey rivetedsteel/builtupflanges/gussets and warmfreestone masonry; only1895bridge, not its distinctneighbours.",
+  "nativeAxes": {
+    "x": "southeast across actual railwaydeck",
+    "y": "up,rail deckY0",
+    "z": "northeast along bridgeaxis towardsIndooroopillybank"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Albert_Bridge_Brisbane.jpg"
+  ],
+  "stories": [
+    {
+      "id": "albert-bridge-brisbane-wp",
+      "url": "https://qualla.com/albert-bridge-brisbane/"
+    }
+  ],
+  "referenceInputHash": "c867e136fef29a28dcc2ec257edee31e12834179a4b03842851f42eb85ee575a",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-albert-bridge-brisbane.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-albert-bridge-brisbane.mjs",
+    "level": "skyline",
+    "export": "albertBridgeSkyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.18
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "cap": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "rail": {
+        "slot": "trim",
+        "localRef": "palette:#feffff",
+        "roughness": 0.72,
+        "metallic": 0.22
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "albertBridgeDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.18
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "rail": {
+            "slot": "trim",
+            "localRef": "palette:#feffff",
+            "roughness": 0.72,
+            "metallic": 0.22
+          }
+        }
+      },
+      "street": {
+        "export": "albertBridgeStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.18
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "rail": {
+            "slot": "trim",
+            "localRef": "palette:#feffff",
+            "roughness": 0.72,
+            "metallic": 0.22
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3,
+    "groundY": -14.8
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named surviving AlbertBridgeway620779380/Q4709800 full14nonduplicate OSMpolygon supplied at fullprecision by Nominatim native lookup. Two actual long parallel deck sides7to8/11to12 identify north/south steel ends; nativecomplete south own abutment/endjogs retained. Original fullOSM endpoint is rate limited so node IDs unavailable; no invented vertex IDs or survey claim. Whole2hogbacksteeltrussspans/nativelength and width, not adjacent1957upstreamrail/JackPeschfoot/WalterTaylorroadbridges. Lowerpier/floor/trussheight/panelcensus/hiddenbankabutments/catenarysections estimated. Fixed NEbankapproach before independent terrain and geometry; do not use riverwater as floor height. Native steel-endcenter separation207.64299591696968m/nativewidth9.612554754788912m governsgeometry; no fit to roundedpublishedspanlength. Native man_madebridge layer2has no numericheight/decksurvey. Anchor[152.973998975,-27.5059466]andactualNEdeckaxisheading2.779060938559663rad,+ZIndooroopillyNE/+Znorthbank. Exact full14sourcevertices retained includingown southern endjogs. FixedNEbankapproach[0,121.82149795848484]chosenbefore independentterrain/geometry; modelraildeckY0 and underdeckpiersnegativeY, not riverwaterasfloor. Independent600mfield frozen before geometry.31extreme negative provider cells outside native footprint retained/flagged in terrain-source-note, never used for model sections. Rail deckY0/ownpiersnegativeY; exact rail/riverdatum/footings/hostcontact unverified.",
+    "anchor": [
+      152.973998975,
+      -27.5059466
+    ],
+    "heading": 2.779060938559663,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        152.97443653346738,
+        -27.504923393565832
+      ],
+      "modelHeight": 0,
+      "basis": "FixedNEbankrailapproach18moutside steelend chosen before independent terrain/geometry. Source deckY0, exact rail grade/threshold/riverdatum/centralpierfoot/hostcontact remain unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/620779380"
+    ],
+    "source": "https://www.openstreetmap.org/way/620779380",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:24411999bb3e809fa5d3ec654c47615a481475b68fe6d5aab75864c9b417a4be",
+    "notes": "Complete surviving1895AlbertBridge/Q4709800 atIndooroopilly/Chelmer: exact named native14vertex bridgepolygonway620779380 includingown southern end/abutmentjogs, two full approximately104m hogback steel through-truss spans sharingone masonry centralriverpier, both bankabutments/bearings, twintrackdeck/rail/sleeper/crossgirder/stringer/lateralunderbracing, paired highcurvedtopchords/lowerchords/verticals and latticeweb/endportal/overheadcrossbracing/representativegussetplates/rivets, currentintrinsiccatenarysupports whereobserved and ownsidewalks/rails. No adjacent1957upstreamrailbridge/JackPeschpedestrianbridge/WalterTaylorroadbridge/riverwater/landscape/roads/nearbybuildings/train/people/signs."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named surviving AlbertBridgeway620779380/Q4709800 full14nonduplicate OSMpolygon supplied at fullprecision by Nominatim native lookup. Two actual long parallel deck sides7to8/11to12 identify north/south steel ends; nativecomplete south own abutment/endjogs retained. Original fullOSM endpoint is rate limited so node IDs unavailable; no invented vertex IDs or survey claim. Whole2hogbacksteeltrussspans/nativelength and width, not adjacent1957upstreamrail/JackPeschfoot/WalterTaylorroadbridges. Lowerpier/floor/trussheight/panelcensus/hiddenbankabutments/catenarysections estimated. Fixed NEbankapproach before independent terrain and geometry; do not use riverwater as floor height. Native steel-endcenter separation207.64299591696968m/nativewidth9.612554754788912m governsgeometry; no fit to roundedpublishedspanlength. Native man_madebridge layer2has no numericheight/decksurvey. Anchor[152.973998975,-27.5059466]andactualNEdeckaxisheading2.779060938559663rad,+ZIndooroopillyNE/+Znorthbank. Exact full14sourcevertices retained includingown southern endjogs. FixedNEbankapproach[0,121.82149795848484]chosenbefore independentterrain/geometry; modelraildeckY0 and underdeckpiersnegativeY, not riverwaterasfloor.",
+    "Entire surviving1895two-span bridge/nativefull14vertexoutline/ownendjogs,207.64299591696968msteellength/9.612554754788912mwidth and onecentralmasonrypier retained. Governmentheritage text confirms two hogback trussspans/centralpier/materials/originalbankabutments; no lost1876bridge or distinct1957rail/JackPeschfoot/WalterTaylorroad bridge substitution.",
+    "Only exact already-published1024x683PaulGuardQualla2008ownphotograph/nativeSHA1/explicitPD-user-enrelease. Observed palegrey rivetedsteel chord/vertical/lattice/floor crossgirders/stringers/underbracing/open deck and masonrypier control near section forms; no historical/unknownauthor/attribution/unrelatedimagery. Governmentarchive primarytext facts only, its1896image unused. No copiedpixels/generatedbitmap.",
+    "Allverticalsections/deckheight/pierdepth/bankabutmentprofiles/curvedchordheight/panelcensus/hiddenupperbracing/trackgauge/rail/slat/catenary sections are explicit photographic medium-fi estimates.16panelsper103.82mspan is representative, not surveyed. Near double lattice/open rail/sleepers/crossgirders/overheadtrainpassage retained; close adds actual flange/webbuiltup sections/gussets/originalrivets. Skyline uses ribbon truss/alternating diagonal proxies/coarse topcurve/flatdeck, district open uncapped member proxies/coarse ties/rails within small section errors. Deep buriedcaisson/foundations notsurveyed or claimed.",
+    "Independent600m151x151at4mTerrariumfield/rawtiles/grid/PNG preserved without fitting/flattening/clipping. FixedNEbankapproach[0,121.82149795848484] provider5.671m precedesgeometry; it is not a surveyed rail elevation.31extreme negative provider cells are all outside exactnativebridgefootprint and retained only as diagnostic evidence, never as credible bridge/riverfloor. Nativefootprint samples3..19.6226m mayincludeDSMbridge/vegetation. Exactrailgrade/riverdatum/pierfoot/deckvsDSMclassification/hostcontact remain unverified; geographicpreview/replaceFootprintfalse. No river/water/groundbank/landscape/roads/houses/people/trains/signage."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "two-complete-hogback-through-truss-spans",
+      "position": [
+        190,
+        35,
+        110
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "open-twin-track-end-portal-and-overhead-bracing",
+      "position": [
+        2,
+        7.5,
+        126
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        72
+      ]
+    },
+    {
+      "name": "riveted-underside-crossgirders-stringers-and-lateral-bracing",
+      "position": [
+        20,
+        -6.8,
+        -32
+      ],
+      "lookAt": [
+        0,
+        -0.65,
+        -32
+      ]
+    },
+    {
+      "name": "central-freestone-cutwater-pier-bearing-caps-and-steelwork",
+      "position": [
+        28,
+        -4,
+        11
+      ],
+      "lookAt": [
+        0,
+        -7,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26340,
+    "vertices": 79020,
+    "materials": 4,
+    "bytes": 3163468,
+    "sha256": "sha256:38dc57d9143a886402999b2852fd6a40c244f8cf64a6873b476f97d9840a929b"
+  }
+}

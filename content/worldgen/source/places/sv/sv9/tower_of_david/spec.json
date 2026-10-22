@@ -1,0 +1,358 @@
+{
+  "planId": "tower_of_david",
+  "id": "tower_of_david",
+  "assetId": "molen.worldgen.structure.tower_of_david",
+  "title": "Tower of David, Jerusalem Citadel",
+  "category": "fortress",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 35.22795,
+    "latitude": 31.77595
+  },
+  "size": [
+    92.63297271728516,
+    37.5,
+    122.11552810668945
+  ],
+  "actualBounds": {
+    "min": [
+      -33.90129470825195,
+      0,
+      -74.68993377685547
+    ],
+    "max": [
+      58.7316780090332,
+      37.5,
+      47.425594329833984
+    ]
+  },
+  "visualBrief": "Whole surviving JerusalemCitadel/TowerofDavid principal fortified exterior: exact34vertex outer building and original18vertex openarchaeologicalcourtyard, continuous defensive walls/intrinsic batteredbases/cornerprojections, northeast survivingkeep/other native towers/barbican, southwestcylindricalminaret with balcony/cap, pointedcourtyard galleries, intrinsic roofwalks/stairs and bounded original ruinwalls. Not a lone minaret or idealized rectangularcastle. Exclude surrounding OldCitywalls/JaffaGate/Kishle/detachedmuseumannexes/outermoatlandscape/streets/precinct/trees/people/flags/temporaryaudienceseats/soundlightshowequipment/interiorrooms/undergroundvisitorcenter. No whole-site floor. Wholeoriginal34outer/18courthole, fiveasymmetricnativeprojectionsandNElargekeep; broadbatteredstonebase/flatwalltopwalk/crenellations/realslitrecesses, cylindricalSWminaret/annularbalcony/shortconicalcappedlantern andfinial. Longwestcourtyardgalleryofpointedarchedrecesses/darkdoors andnorthtowerarchedopenings, intrinsicsmallroofstairs/metalrails, coarselowarchaeologicalwallfragments/intrinsicroundearlyIslamictower. Keepcourtyardopen andavoidfabricatedfloor/filledruins. Build boundedoriginal coarsearchaeology ratherthanclaimsurveyedindividualstrata. Body/tower/minaret exactheights and internalpartpartitions are photoestimates, retained independentlyofDEM. Separateflagposts/banners/trees/stagechairs/showhardware/neighboringJaffaGatewalls/Kishle/undergroundmuseum excluded. Preserve wholeindependent400mfield beforegeometry; nofit/flatten/reacquire.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:East_Jerusalem_Batch_2_(12).jpg",
+    "https://commons.wikimedia.org/wiki/File:East_Jerusalem_Batch_2_(37).jpg",
+    "https://commons.wikimedia.org/wiki/File:Jerusalem_Zitadelle_BW_1.JPG",
+    "https://commons.wikimedia.org/wiki/File:East_Jerusalem_Batch_1_(669).jpg",
+    "https://commons.wikimedia.org/wiki/File:East_Jerusalem_Batch_2_(31).jpg"
+  ],
+  "stories": [
+    {
+      "id": "tower-of-david-wp",
+      "url": "https://qualla.com/tower-of-david/"
+    }
+  ],
+  "referenceInputHash": "7ce293c7448cae3d463727782604810b5cdce87e52f6d68d736e32368cd85da0",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-tower-of-david.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-tower-of-david.mjs",
+    "level": "skyline",
+    "export": "citadelSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "old": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.15
+      },
+      "dark": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "citadelDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "old": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.15
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "citadelStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "old": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.15
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "citadelCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "old": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.15
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 4,
+    "groundY": -0.15
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Complete named OSMrelation136164/Q1177765 with34originalouterway126781855vertices and18originalcourtyardway54484258vertices. Fixed geographic anchor[35.22795,31.77595]/northup0heading, +Xeast/+Zsouth/+Yup. Wholemetricouter/courtyardshape, no singleminaret/component substitute; separate publicnative surroundingmap used only for identitycontext. Minaretposition/keeperfootprint partitions/heights/batteredbasewidth/fine masonry and archaeologicalruinwalls are bounded photographic estimates, not surveyedparts. Mainfortwall12m/keep26m/minaret37.5m estimates; originalcourtyard terrainhole remains open atalllevels. Independent400mfield frozen beforegeometry; compatiblehostgrade andthreshold/archaeologicalattachment unverified.",
+    "anchor": [
+      35.22795,
+      31.77595
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        35.227506188019014,
+        31.775914067553003
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed westapproach[-42,4] outsidewholefort before independent field/model; not surveyed historicalcourtyard/floor/threshold datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/136164"
+    ],
+    "source": "https://www.openstreetmap.org/relation/136164",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1c4207adc35bc831e3d3afa6f072a9c0a08149379b4a5ffb8e1bbc9f73a099b8",
+    "notes": "Whole surviving JerusalemCitadel/TowerofDavid principal fortified exterior: exact34vertex outer building and original18vertex openarchaeologicalcourtyard, continuous defensive walls/intrinsic batteredbases/cornerprojections, northeast survivingkeep/other native towers/barbican, southwestcylindricalminaret with balcony/cap, pointedcourtyard galleries, intrinsic roofwalks/stairs and bounded original ruinwalls. Not a lone minaret or idealized rectangularcastle. Exclude surrounding OldCitywalls/JaffaGate/Kishle/detachedmuseumannexes/outermoatlandscape/streets/precinct/trees/people/flags/temporaryaudienceseats/soundlightshowequipment/interiorrooms/undergroundvisitorcenter. No whole-site floor."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Complete named OSMrelation136164/Q1177765 with34originalouterway126781855vertices and18originalcourtyardway54484258vertices. Fixed geographic anchor[35.22795,31.77595]/northup0heading, +Xeast/+Zsouth/+Yup. Wholemetricouter/courtyardshape, no singleminaret/component substitute; separate publicnative surroundingmap used only for identitycontext. Minaretposition/keeperfootprint partitions/heights/batteredbasewidth/fine masonry and archaeologicalruinwalls are bounded photographic estimates, not surveyedparts. Mainfortwall12m/keep26m/minaret37.5m estimates; originalcourtyard terrainhole remains open atalllevels.",
+    "Whole34vertexouter/18vertexopencourt nativecitadel with allprincipalfortifiedwings/towers/NEkeep/SWminaret.12mcurtain/26mkeep/37.5mminaret and internalpartpartition/batter widths/currentfinefinish are boundedphotographicestimates, not measuredsurvey. No minaretonly orancientreplicacastle substitute.",
+    "Qualla-first30familieschecked; publishedcourtyardimage inspected but missinglocalmachineboundPD-basis omitted, no metadata edits. Five exact ownphotographerPD-self/Ownworknativeoriginals individuallyinspected/SHA1matched/grantsbound:Mattes2011courtyard/keep/galleries/ruins/wholeuppercourtyard andBertholdWerner2008exterior/minaret/batter. GaryToddcandidates notadopted; existingpolicy unchanged. No restrictedoperatorphotos/diagrams/phototextures/generatedbitmap/downloadedmesh/signartwork.",
+    "Allnativecourtyardvertices physicallyretained. Detailedpointedarcades/blindrecesses/slitopenings havetruejambs/soffits/darksetback, merlons separatevolumes, roofstairs/railsintrinsic. Distantlevels reducearch/masonrycensus. Coarse lowarchaeologicalroundtower/wallfragments/openarch are originalboundedlayout/rubbleestimates, not archaeologicallysurveyedstrata/exactstonecensus; absentvegetation/fineunderground/interiorrooms/showhardware/stagechairs/tempawnings.",
+    "NeighboringJaffaGate/OldCitywalls/Kishle/detachedmuseumannexes/streets/outermoatlandscape excluded. Intrinsicbatteredfootings are structuregeometry, no whole-site floor orrectangularsitebase. Minaretposition/annularbalcony/cap/bands and finialcoarseoriginalarchitecturalsilhouette, no surveyedstonepattern.",
+    "Independent400m129x129field/16641originalvalues/rawtilebytes frozen beforegeometry andunchanged. UrbancompositeDEMmayinterpolatestructures/trees/coarsersourceheights; actualcourtyardfloor/moat/thresholdclassification notsurveyed. Portable/shared/contextflatstage separate; ordinarynativepreview/replaceFootprint=false; livehostgrade/contactnotcertified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-native-citadel-keep-minaret-and-open-courtyard",
+      "position": [
+        145,
+        160,
+        180
+      ],
+      "lookAt": [
+        7,
+        10,
+        -12
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "southwest-minaret-annular-balcony-and-battered-tower",
+      "position": [
+        -70,
+        36,
+        75
+      ],
+      "lookAt": [
+        -22,
+        25,
+        28
+      ]
+    },
+    {
+      "name": "pointed-courtyard-galleries-and-low-ruin-walls",
+      "position": [
+        31,
+        22,
+        -7
+      ],
+      "lookAt": [
+        -11,
+        7,
+        -17
+      ]
+    },
+    {
+      "name": "north-keep-barbican-and-whole-rear-envelope",
+      "position": [
+        135,
+        90,
+        -150
+      ],
+      "lookAt": [
+        18,
+        14,
+        -39
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 20610,
+    "vertices": 61830,
+    "materials": 5,
+    "bytes": 2476448,
+    "sha256": "sha256:5de8b6d8ac946887cc042d6c4a76e9f830cbd9cf5a9a16630b663f345006fca5"
+  }
+}

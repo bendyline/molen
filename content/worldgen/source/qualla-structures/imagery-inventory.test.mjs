@@ -18,6 +18,8 @@ import {
   inspectHighsmithReference,
   inspectHistoricalNavyReference,
   inspectImageryInventory,
+  inspectMuseoEgizioArchiveReference,
+  inspectNasaStaffReference,
   inspectNationaalArchiefReference,
   inspectNpsHistoricalReference,
   inspectNpsReference,
@@ -31,6 +33,81 @@ import {
 } from './imagery-policy.mjs';
 
 const hash = (value) => createHash('sha256').update(value).digest('hex');
+
+test('Egizio archive CC0 binds native accession, original bytes, item-level grant and primary archive policy', (t) => {
+  const f = fixture(t),
+    policyUrl =
+      'https://archiviofotografico.museoegizio.it/en/section/How-to-use-the-Archive/Policy-on-access-and-use/',
+    catalogUrl =
+      'https://archiviofotografico.museoegizio.it/en/archive/theban-region/deir-el-medina/tt8-tomb-and-chapel-of-kha-and-merit/?ff=1',
+    reference = {
+      ...f.reference,
+      origin: 'museo-egizio-archive-cc0',
+      license: 'CC0',
+      institution: 'Museo Egizio (Turin)',
+      accessionNumber: 'C02053',
+      artist: 'Photographer unrecorded; Archivio fotografico Museo Egizio',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Photo.jpg',
+      downloadUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Photo.jpg',
+      width: 20,
+      height: 10,
+      originalReview: { status: 'inspected', rendition: 'native-original' },
+    },
+    body = `{{Institution:Museo Egizio (Turin)}}\n|accession number = C02053\n|source = [${catalogUrl} Archive]\n{{Cc-zero}}`,
+    page = {
+      title: 'File:Photo.jpg',
+      revisions: [{ revid: 123, slots: { main: { '*': body } } }],
+      imageinfo: [
+        {
+          url: reference.downloadUrl,
+          width: 20,
+          height: 10,
+          size: 15,
+          sha1: createHash('sha1').update('original pixels').digest('hex'),
+          extmetadata: {
+            LicenseShortName: { value: 'CC0' },
+            AttributionRequired: { value: 'false' },
+          },
+        },
+      ],
+    },
+    policy =
+      '<p>The Museo Egizio is pleased to release the digital reproductions in the public domain of the Photographic Archive in CC0</p><p>including commercial, completely free of charge and without further permission</p><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>',
+    catalog =
+      '<div class="row swiper-slide"><figure id="C02053"><a href="/archive/C02053.std_full.jpg">Original</a></figure><i class="far fa-copyright"></i> CC0</div>',
+    check = (a = policy, b = catalog) => {
+      const native = JSON.stringify({ query: { pages: { 1: page } } });
+      for (const [n, v] of [
+        ['native.json', native],
+        ['policy.html', a],
+        ['catalog.html', b],
+      ])
+        fs.writeFileSync(path.join(f.dir, n), v);
+      return inspectMuseoEgizioArchiveReference(f.dir, {
+        ...reference,
+        catalogEvidence: { path: 'native.json', sha256: hash(native) },
+        rightsEvidence: { path: 'policy.html', sha256: hash(a), sourceUrl: policyUrl },
+        museumCatalogEvidence: { path: 'catalog.html', sha256: hash(b), sourceUrl: catalogUrl },
+      }).eligible;
+    };
+  assert.equal(check(), true);
+  assert.equal(check('<footer>CC0</footer>'), false);
+  assert.equal(check(policy, catalog.replace('id="C02053"', 'id="C02054"')), false);
+  assert.equal(check(policy, catalog.replace('</i> CC0', '</i> CC BY')), false);
+  assert.equal(check(policy, `${catalog} State Archive in Turin`), false);
+  for (const [from, to] of [
+    ['C02053', 'C02054'],
+    ['Institution:Museo Egizio (Turin)', 'Institution:State Archive in Turin'],
+    ['Cc-zero', 'Cc-by'],
+    [catalogUrl, 'https://example.com/unrelated'],
+  ]) {
+    page.revisions[0].slots.main['*'] = body.replace(from, to);
+    assert.equal(check(), false);
+  }
+  page.revisions[0].slots.main['*'] = body;
+  page.imageinfo[0].sha1 = 'wrong-original';
+  assert.equal(check(), false);
+});
 
 test('archived Navy originals need the individual federal credit, record and exact linked rendition', (t) => {
   const f = fixture(t),
@@ -724,6 +801,26 @@ test('Flickr CC0 needs the same creator/photo in the primary dedication, exact b
   photo.creator.image = 'https://farm66.staticflickr.com/65535/buddyicons/999@N01.jpg#999@N01';
   assert.equal(inspect(), false);
   photo.creator.image = photo.author.image;
+  meta.Artist.value = `<a href="https://www.flickr.com/photos/${account}/">${name}</a>`;
+  assert.equal(inspect(), true);
+  meta.Artist.value = `<a href="https://www.flickr.com/photos/unrelated/">${name}</a>`;
+  assert.equal(inspect(), false);
+  meta.Artist.value = `<a href="https://www.flickr.com/photos/${account}/">${name}</a>`;
+  photo.creator.image = 'https://farm66.staticflickr.com/65535/buddyicons/999@N01.jpg#999@N01';
+  assert.equal(inspect(), false);
+  photo.creator.image = photo.author.image;
+  meta.Artist.value = `<a href="https://www.flickr.com/people/${nsid}">${name}</a>`;
+  meta.Credit.value = `<a href="https://www.flickr.com/photos/${nsid}/${id}">original</a>`;
+  assert.equal(inspect(), true);
+  meta.Credit.value = `<a href="https://www.flickr.com/photos/999@N01/${id}">other owner</a>`;
+  assert.equal(inspect(), false);
+  meta.Credit.value = `<a href="https://www.flickr.com/photos/${nsid}/999">other photo</a>`;
+  assert.equal(inspect(), false);
+  meta.Credit.value = `<a href="https://www.flickr.com/photos/${nsid}/${id}">original</a>`;
+  photo.creator.image = 'https://farm66.staticflickr.com/65535/buddyicons/999@N01.jpg#999@N01';
+  assert.equal(inspect(), false);
+  photo.creator.image = photo.author.image;
+  meta.Credit.value = `https://www.flickr.com/photos/${account}/${id}/`;
   page.revisions[0].slots.main['*'] = displayNameReview.replace(`/${nsid}/${id}`, `/999@N01/${id}`);
   assert.equal(inspect(), false);
   delete photo.author.image;
@@ -1160,7 +1257,10 @@ test('the agency credit NPS Photo still needs an explicit public-domain grant an
   const f = fixture(t);
   for (const [credit, eligible] of [
     ['NPS Photo', true],
+    ['National Park Service', true],
+    ['Cape Hatteras National Seashore', true],
     ['NPS Photo / Private donor', false],
+    ['Cape Hatteras National Seashore / Private donor', false],
     ['Private photographer', false],
   ]) {
     const html = f.html.replace('<div>NPS</div>', `<div>${credit}</div>`);
@@ -1396,6 +1496,20 @@ test('a Commons original needs its creator release, matching author and exact na
   page.revisions[0].slots.main['*'] = '{{cczero}}';
   write();
   assert.equal(inspectCommonsSelfReference(f.dir, reference).eligible, false);
+  const ownPermission =
+    '{{Information\n|Source={{own}}\n|Author=[[User:Photographer|Photographer]]\n|Permission={{cc0}}\n}}\n{{cc0}}';
+  page.revisions[0].slots.main['*'] = ownPermission;
+  write();
+  assert.equal(inspectCommonsSelfReference(f.dir, reference).eligible, true);
+  for (const body of [
+    ownPermission.replace('|Source={{own}}', '|Source=Private archive'),
+    ownPermission.replace('User:Photographer|Photographer', 'User:Another|Another'),
+    ownPermission.replace('|Permission={{cc0}}', '|Permission='),
+  ]) {
+    page.revisions[0].slots.main['*'] = body;
+    write();
+    assert.equal(inspectCommonsSelfReference(f.dir, reference).eligible, false);
+  }
   page.revisions[0].slots.main['*'] = '{{self}}\n{{cczero}}';
   write();
   reference.artist = 'Different photographer';
@@ -1535,6 +1649,243 @@ test('an English Wikipedia original-upload release binds creator, file, dimensio
   page.imageinfo[0].extmetadata.Permission.value =
     'Released into the public domain (by the author)';
   page.imageinfo[0].extmetadata.Restrictions = { value: 'Permission required' };
+  assert.equal(inspect(), false);
+});
+
+test('a digital photograph transfer binds the same-day named photographer declaration to the original upload row', (t) => {
+  const f = fixture(t),
+    name = 'Creator1',
+    reference = {
+      ...f.reference,
+      origin: 'commons-author-public-domain',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Photo.jpg',
+      downloadUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Photo.jpg',
+      artist: `${name} at English Wikipedia`,
+      creatorDedication: {
+        kind: 'english-wikipedia-original-digital-photograph',
+        photographSubject: 'Beacon',
+        wiki: 'en',
+        project: 'English Wikipedia',
+        username: name,
+        profileUrl: `https://en.wikipedia.org/wiki/User:${name}`,
+        originalFileUrl: 'https://en.wikipedia.org/wiki/File:Beacon_31st_May_2009.jpg',
+        originalUpload: {
+          timestamp: '2009-05-31 00:54',
+          width: 20,
+          height: 10,
+          bytes: 15,
+          photographedDateText: '31st May 2009',
+        },
+      },
+    },
+    body = `{{PD-user-en|${name}}} {{user at project|${name}|wikipedia|en}} {{original description page|en.wikipedia|Beacon_31st_May_2009.jpg}}\n2009-05-31 00:54 [[:en:User:${name}|${name}]] 20×10× (15 bytes) ''<nowiki>A Digital Photograph of Beacon taken on the 31st May 2009 by [[${name.toLowerCase()}]]</nowiki>''`,
+    page = {
+      title: 'File:Photo.jpg',
+      revisions: [{ revid: 123, slots: { main: { '*': body } } }],
+      imageinfo: [
+        {
+          url: reference.downloadUrl,
+          width: 20,
+          height: 10,
+          size: 15,
+          sha1: createHash('sha1').update('original pixels').digest('hex'),
+          extmetadata: {
+            LicenseShortName: { value: 'Public domain' },
+            AttributionRequired: { value: 'false' },
+            Permission: { value: 'Released into the public domain (by the author)' },
+            Copyrighted: { value: 'False' },
+            Artist: {
+              value: `<a href="${reference.creatorDedication.profileUrl}">${name}</a> at English Wikipedia`,
+            },
+            Credit: {
+              value:
+                'Transferred from <a href="https://en.wikipedia.org">en.wikipedia</a> to Commons.',
+            },
+          },
+        },
+      ],
+    },
+    inspect = () => {
+      const bytes = JSON.stringify({ query: { pages: { 1: page } } });
+      fs.writeFileSync(path.join(f.dir, 'migrated.json'), bytes);
+      reference.rightsEvidence = { path: 'migrated.json', sha256: hash(bytes) };
+      return inspectCommonsSelfReference(f.dir, reference).eligible;
+    };
+  assert.equal(inspect(), true);
+  delete page.imageinfo[0].extmetadata.Permission;
+  assert.equal(inspect(), true);
+  page.revisions[0].slots.main['*'] = `${body}\n{{cc-by-sa-4.0}}`;
+  assert.equal(inspect(), false);
+  page.revisions[0].slots.main['*'] = body;
+  page.imageinfo[0].extmetadata.Permission = {
+    value: 'Released into the public domain (by the author)',
+  };
+
+  for (const [from, to] of [
+    ['PD-user-en|Creator1', 'PD-user-en|Other'],
+    ['Beacon_31st_May_2009.jpg', 'Unrelated.jpg'],
+    ['20×10× (15 bytes)', '20×10× (16 bytes)'],
+    ['by [[creator1]]', 'by [[other]]'],
+    ['31st May 2009 by', '30th May 2009 by'],
+    ['Photograph of Beacon', 'Photograph of Unrelated'],
+    ['<nowiki>A Digital', '<nowiki>An anonymous digital'],
+  ]) {
+    page.revisions[0].slots.main['*'] = body.replace(from, to);
+    assert.equal(inspect(), false);
+  }
+  page.revisions[0].slots.main['*'] = body.replace('<nowiki>A Digital', '\n<nowiki>A Digital');
+  assert.equal(inspect(), false);
+  page.revisions[0].slots.main['*'] = body;
+  page.imageinfo[0].extmetadata.Permission.value = 'Public domain according to uploader';
+  assert.equal(inspect(), false);
+  page.imageinfo[0].extmetadata.Permission.value =
+    'Released into the public domain (by the author)';
+  page.imageinfo[0].extmetadata.Restrictions = { value: 'Permission required' };
+  assert.equal(inspect(), false);
+});
+
+test('a named photographer transfer binds the original account, native upload row and direct grant', (t) => {
+  const f = fixture(t),
+    reference = {
+      ...f.reference,
+      origin: 'commons-author-public-domain',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Photo.jpg',
+      downloadUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Photo.jpg',
+      artist: 'Named Photographer',
+      creatorDedication: {
+        kind: 'english-wikipedia-original-named-photographer',
+        wiki: 'en',
+        project: 'English Wikipedia',
+        username: 'OriginalUser',
+        profileUrl: 'https://en.wikipedia.org/wiki/User:OriginalUser',
+        originalFileUrl: 'https://en.wikipedia.org/wiki/File:Original.jpg',
+        originalUpload: { timestamp: '19:14, 19 September 2005' },
+      },
+    },
+    body =
+      '{{own work by original uploader}} [[:en:User:OriginalUser|Named Photographer]] {{PD-user-en|OriginalUser}} {{transferred from|en.wikipedia||ftcg}} {{original description page|en.wikipedia|Original.jpg}}\n| 19:14, 19 September 2005 || 1,792 × 1,200 (15 bytes) || {{uv|OriginalUser|w:en:}} || <nowiki>Named Photographer, Town, entrance photograph</nowiki>',
+    page = {
+      title: 'File:Photo.jpg',
+      revisions: [{ revid: 123, slots: { main: { '*': body } } }],
+      imageinfo: [
+        {
+          url: reference.downloadUrl,
+          width: 1792,
+          height: 1200,
+          size: 15,
+          sha1: createHash('sha1').update('original pixels').digest('hex'),
+          extmetadata: {
+            LicenseShortName: { value: 'Public domain' },
+            AttributionRequired: { value: 'false' },
+            Copyrighted: { value: 'False' },
+            Artist: {
+              value:
+                '<a href="https://en.wikipedia.org/wiki/User:OriginalUser">Named Photographer</a>',
+            },
+            Credit: { value: 'Own work by the original uploader' },
+          },
+        },
+      ],
+    },
+    inspect = () => {
+      const bytes = JSON.stringify({ query: { pages: { 1: page } } });
+      fs.writeFileSync(path.join(f.dir, 'named-transfer.json'), bytes);
+      reference.rightsEvidence = { path: 'named-transfer.json', sha256: hash(bytes) };
+      return inspectCommonsSelfReference(f.dir, reference).eligible;
+    };
+  assert.equal(inspect(), true);
+  for (const [from, to] of [
+    ['PD-user-en|OriginalUser', 'PD-user-en|Other'],
+    ['uv|OriginalUser', 'uv|Other'],
+    ['Original.jpg', 'Another.jpg'],
+    ['1,792 × 1,200', '1,791 × 1,200'],
+    ['15 bytes', '16 bytes'],
+    ['<nowiki>Named Photographer,', '<nowiki>Another Photographer,'],
+    ['19:14, 19 September 2005', '19:14, 20 September 2005'],
+    ['own work by original uploader', 'third party archive'],
+  ]) {
+    page.revisions[0].slots.main['*'] = body.replace(from, to);
+    assert.equal(inspect(), false);
+  }
+  page.revisions[0].slots.main['*'] = body;
+  page.imageinfo[0].sha1 = 'unrelated-native';
+  assert.equal(inspect(), false);
+});
+
+test('a migrated self-photographed upload binds author grant, bit-depth row and original filename', (t) => {
+  const f = fixture(t),
+    reference = {
+      ...f.reference,
+      origin: 'commons-author-public-domain',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Photo.jpg',
+      downloadUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Photo.jpg',
+      artist: 'OriginalUser (Named Photographer)',
+      creatorDedication: {
+        kind: 'english-wikipedia-self-photographed-upload',
+        wiki: 'en',
+        project: 'English Wikipedia',
+        username: 'OriginalUser',
+        realName: 'Named Photographer',
+        profileUrl: 'https://en.wikipedia.org/wiki/User:OriginalUser',
+        originalFileUrl: 'https://en.wikipedia.org/wiki/File:Original.jpg',
+        originalUpload: {
+          timestamp: '2007-05-19 12:12',
+          width: 20,
+          height: 10,
+          bitDepth: 8,
+          photographedYear: 2005,
+        },
+      },
+    },
+    body =
+      '{{PD-user-en|OriginalUser}} {{original description page|en.wikipedia|Original.jpg}} Author=[[:en:User:OriginalUser|OriginalUser]] (Named Photographer)\n* 2007-05-19 12:12 [[:en:User:OriginalUser|OriginalUser]] 20×10×8 Image taken by Named Photographer 2005.',
+    page = {
+      title: 'File:Photo.jpg',
+      revisions: [{ revid: 123, slots: { main: { '*': body } } }],
+      imageinfo: [
+        {
+          url: reference.downloadUrl,
+          width: 20,
+          height: 10,
+          size: 15,
+          sha1: createHash('sha1').update('original pixels').digest('hex'),
+          extmetadata: {
+            LicenseShortName: { value: 'Public domain' },
+            AttributionRequired: { value: 'false' },
+            Copyrighted: { value: 'False' },
+            Artist: {
+              value:
+                '<a href="https://en.wikipedia.org/wiki/User:OriginalUser">OriginalUser</a> (Named Photographer)',
+            },
+            Credit: {
+              value:
+                'Transferred from <a href="https://en.wikipedia.org">en.wikipedia</a> to Commons.',
+            },
+          },
+        },
+      ],
+    },
+    inspect = () => {
+      const bytes = JSON.stringify({ query: { pages: { 1: page } } });
+      fs.writeFileSync(path.join(f.dir, 'self-photo-transfer.json'), bytes);
+      reference.rightsEvidence = { path: 'self-photo-transfer.json', sha256: hash(bytes) };
+      return inspectCommonsSelfReference(f.dir, reference).eligible;
+    };
+  assert.equal(inspect(), true);
+  for (const [from, to] of [
+    ['PD-user-en|OriginalUser', 'PD-user-en|Other'],
+    ['Original.jpg', 'Unrelated.jpg'],
+    ['20×10×8', '21×10×8'],
+    ['20×10×8', '20×10×16'],
+    ['Image taken by Named Photographer', 'Image taken by Other Photographer'],
+    ['2007-05-19 12:12', '2007-05-20 12:12'],
+    ['User:OriginalUser|OriginalUser', 'User:Other|Other'],
+  ]) {
+    page.revisions[0].slots.main['*'] = body.replace(from, to);
+    assert.equal(inspect(), false);
+  }
+  page.revisions[0].slots.main['*'] = body;
+  page.imageinfo[0].sha1 = 'wrong-original';
   assert.equal(inspect(), false);
 });
 
@@ -2089,4 +2440,142 @@ test('an old Abdullah print needs the collection PD tag, matching period, creato
   assert.equal(check(), true);
   fs.writeFileSync(path.join(f.dir, reference.path), 'different bytes');
   assert.equal(check(), false);
+});
+
+test('NASA staff photos require the offered image, exact creator credit, civil-service report and copyright policy', (t) => {
+  const f = fixture(t),
+    write = (name, value) => {
+      fs.writeFileSync(path.join(f.dir, name), value);
+      return hash(value);
+    },
+    sourceUrl = 'https://earth.gsfc.nasa.gov/geo/networks/sgp/multimedia/observatory',
+    downloadUrl =
+      'https://earth.gsfc.nasa.gov/sites/default/files/styles/carousel/public/gallery/2025-10/antenna.jpg?itok=abc';
+  const gallery =
+      '<p>Photos courtesy of Frank Lemoine/NASA GSFC taken during field work, March 09-17, 2016</p><img src="/sites/default/files/styles/carousel/public/gallery/2025-10/antenna.jpg?itok=abc" width="900" height="550" alt="26m VLBI antenna">',
+    policy = 'NASA content images generally are not subject to copyright in the United States',
+    pdf = '%PDF-1.5 role evidence',
+    extraction = JSON.stringify({
+      sourcePdfSha256: hash(pdf),
+      text: 'The second civil servant, Dr. Frank Lemoine, participates in field work.',
+    });
+  const r = {
+    origin: 'nasa-gsfc-civil-servant-photograph',
+    path: 'image.jpg',
+    sha256: hash('original pixels'),
+    sourceUrl,
+    downloadUrl,
+    artist: 'Frank Lemoine/NASA GSFC',
+    license: 'Public domain',
+    width: 900,
+    height: 550,
+    rightsEvidence: { path: 'gallery.html', sha256: write('gallery.html', gallery), sourceUrl },
+    copyrightEvidence: {
+      path: 'policy.html',
+      sha256: write('policy.html', policy),
+      sourceUrl: 'https://www.nasa.gov/nasa-brand-center/images-and-media/',
+    },
+    governmentRoleEvidence: {
+      path: 'role.pdf',
+      sha256: write('role.pdf', pdf),
+      sourceUrl: 'https://ivscc.gsfc.nasa.gov/publications/br2023%2B2024/acgsfc.pdf',
+      extractionPath: 'role.json',
+      extractionSha256: write('role.json', extraction),
+    },
+    originalReview: {
+      status: 'inspected',
+      rendition: 'published-gallery-jpeg',
+      imageAlt: '26m VLBI antenna',
+      captureDateEvidence: 'March 09-17, 2016',
+    },
+  };
+  assert.equal(inspectNasaStaffReference(f.dir, r).eligible, true);
+  for (const patch of [
+    { license: 'CC BY 4.0' },
+    { artist: 'Private photographer/NASA GSFC' },
+    { downloadUrl: downloadUrl.replace('antenna.jpg', 'other.jpg') },
+    { sha256: hash('other pixels') },
+    { sourceUrl: 'https://example.com/observatory' },
+    { width: 1200 },
+    {
+      governmentRoleEvidence: {
+        ...r.governmentRoleEvidence,
+        sourceUrl: 'https://example.com/role.pdf',
+      },
+    },
+  ])
+    assert.equal(inspectNasaStaffReference(f.dir, { ...r, ...patch }).eligible, false);
+  for (const [name, value, key] of [
+    ['gallery.html', gallery.replace('Frank Lemoine', 'Private donor'), 'rightsEvidence'],
+    ['policy.html', 'Images may be used with permission', 'copyrightEvidence'],
+    ['role.json', extraction.replace('civil servant', 'contractor'), 'governmentRoleEvidence'],
+  ]) {
+    const bytes = fs.readFileSync(path.join(f.dir, name)),
+      bad = structuredClone(r),
+      sha = write(name, value);
+    bad[key][name === 'role.json' ? 'extractionSha256' : 'sha256'] = sha;
+    assert.equal(inspectNasaStaffReference(f.dir, bad).eligible, false);
+    fs.writeFileSync(path.join(f.dir, name), bytes);
+  }
+  assert.equal(inspectNasaStaffReference(f.dir, r).eligible, true);
+});
+
+test('an original expired named book binds its dated library catalog and native PDF bytes', async (t) => {
+  const { inspectExpiredNamedBookReference } = await import('./imagery-inventory.mjs');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'molen-old-book-'));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const bytes = Buffer.from('%PDF-1.5 native old survey'),
+    hash = (b, a = 'sha256') => createHash(a).update(b).digest('hex');
+  const record = {
+    metadata: {
+      identifier: 'survey1869',
+      date: '1869',
+      creator: 'Thompson, George, 1839-1876',
+      contributor: 'Boston Public Library',
+      publisher: 'London',
+      'possible-copyright-status': 'NOT_IN_COPYRIGHT',
+    },
+    files: [{ name: 'survey1869.pdf', size: String(bytes.length), sha1: hash(bytes, 'sha1') }],
+  };
+  const ref = {
+    path: 'book.pdf',
+    origin: 'archive-expired-named-book',
+    license: 'Public domain',
+    archiveIdentifier: 'survey1869',
+    sourceUrl: 'https://archive.org/details/survey1869',
+    downloadUrl: 'https://archive.org/download/survey1869/survey1869.pdf',
+    artist: record.metadata.creator,
+    sha256: hash(bytes),
+    rightsEvidence: { path: 'catalog.json', sourceUrl: 'https://archive.org/metadata/survey1869' },
+    visuallyReviewedForThisPolicy: true,
+    originalReview: {
+      status: 'inspected',
+      rendition: 'native-original-pdf',
+      publicationYear: 1869,
+      creatorDied: 1876,
+      pagesInspected: [349],
+    },
+  };
+  fs.writeFileSync(path.join(dir, 'book.pdf'), bytes);
+  const save = () => {
+    const s = JSON.stringify(record);
+    fs.writeFileSync(path.join(dir, 'catalog.json'), s);
+    ref.rightsEvidence.sha256 = hash(s);
+  };
+  save();
+  assert.equal(inspectExpiredNamedBookReference(dir, ref).eligible, true);
+  for (const [key, bad] of [
+    ['date', '1969'],
+    ['creator', 'Unknown'],
+    ['possible-copyright-status', 'Copyrighted'],
+  ]) {
+    const v = record.metadata[key];
+    record.metadata[key] = bad;
+    save();
+    assert.equal(inspectExpiredNamedBookReference(dir, ref).eligible, false);
+    record.metadata[key] = v;
+  }
+  record.files[0].sha1 = hash('replaced', 'sha1');
+  save();
+  assert.equal(inspectExpiredNamedBookReference(dir, ref).eligible, false);
 });

@@ -1,0 +1,335 @@
+{
+  "planId": "galileo_galilei_planetarium",
+  "id": "galileo_galilei_planetarium",
+  "assetId": "molen.worldgen.structure.galileo_galilei_planetarium",
+  "title": "Galileo Galilei Planetarium",
+  "category": "civic-cultural",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -58.41171904230769,
+    "latitude": -34.569647457692305
+  },
+  "size": [
+    44.387535095214844,
+    25.331713914871216,
+    59.73454666137695
+  ],
+  "actualBounds": {
+    "min": [
+      -27.440628051757812,
+      -3.200000047683716,
+      -22.7713623046875
+    ],
+    "max": [
+      16.94690704345703,
+      22.1317138671875,
+      36.96318435668945
+    ]
+  },
+  "visualBrief": "Whole Galileo Galilei Planetarium exterior: exact circular upper glazed gallery and roof/dome, three broad curved tapered concrete legs and open undercroft, lower glazed V-stair/foyer structure and visible basement shell, intrinsic short polygonal entrance bridge with bounded rail/steps. Recreate perforated diamond metal dome over opaque inner projection shell using geometry and shared procedural materials. Exclude lake, grounds/landscaping/publicpaths, detachedservicebuildings, sculptures/exhibits/meteorites/interiors, people/vehicles/fences/temporarybanners/signage/oldroofdevices. Maintain allnativepartspositions/rings without whole-sitepad orsimplefilledcylinderunderuppergallery. Realopenvoidsbetweenthreelegs, lowerverticalglassVbays/staircases, mainringunderfloor andentrancebridge. Use source2007perforateddiamondlatticedomeoverdarkinneropaqueprojectionhemisphere; geometricdiamondstrips approximatedatlowerLODs,notbakedphotopixels. Keep allsourcegroundunchanged. HiddenVstairs/groundcore/ownbridge support andcurrentneutralfinish estimates.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:PlanetarioBUE001.JPG",
+    "https://commons.wikimedia.org/wiki/File:PlanetarioBUE004.JPG",
+    "https://commons.wikimedia.org/wiki/File:PlanetarioBUE005.JPG",
+    "https://commons.wikimedia.org/wiki/File:PlanetarioBUE009.JPG"
+  ],
+  "stories": [
+    {
+      "id": "galileo-galilei-planetarium-wp",
+      "url": "https://qualla.com/galileo-galilei-planetarium/"
+    }
+  ],
+  "referenceInputHash": "26ad90e3812a953ab6ed9f54e0f223777b5b03986396fd16b2ef089143c85db6",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-galileo-galilei-planetarium.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-galileo-galilei-planetarium.mjs",
+    "level": "skyline",
+    "export": "galileoPlanetariumSkyline",
+    "errorMeters": 1.1,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_stainless_beadblasted",
+        "roughness": 0.71,
+        "metallic": 0.55
+      },
+      "screen": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.23
+      },
+      "inner": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.32,
+        "metallic": 0.07
+      },
+      "darkGlass": {
+        "slot": "window",
+        "localRef": "palette:#fefeff",
+        "roughness": 0.38,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "galileoPlanetariumDistrict",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.71,
+            "metallic": 0.55
+          },
+          "screen": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.23
+          },
+          "inner": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.32,
+            "metallic": 0.07
+          },
+          "darkGlass": {
+            "slot": "window",
+            "localRef": "palette:#fefeff",
+            "roughness": 0.38,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "galileoPlanetariumStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.71,
+            "metallic": 0.55
+          },
+          "screen": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.23
+          },
+          "inner": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.32,
+            "metallic": 0.07
+          },
+          "darkGlass": {
+            "slot": "window",
+            "localRef": "palette:#fefeff",
+            "roughness": 0.38,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.7,
+    "groundY": -0.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exactoriginalnamedway1224777740/Q606675 supplies all28uppergalleryvertices, associateddomeway1224777739all26vertices, lowerglasspart1225006821all18vertices, three19/18nodecurvedlegroofs and intrinsic13vertexentrybridge1224777736. Domeoriginalvertexmeananchor; heading0east/southnativeaxespreserveworldpositions without fitting. Nativebodyheight10/min7 andlegroofheight8 are coarsesectiontags; photographguides3.4mglassgallery/underfloorandcurvedlegsections. Nativedometag24/roofheight13.8notperfectlyconsistentwith~11.75mradius/photohemisphere; retain tagsraw, usehemisphere11.75mabove10.4mroofasboundedphotographicsection. Basement/exactfloors/ownbridgegrade/hiddenbackwallsunverified. No lake/landscape/parcel extrusion. Independent160mrelief frozen at nativeouterbridgevertex beforegeometry; exactbasement/grade/legfeet/hostcontactunverified.",
+    "anchor": [
+      -58.41171904230769,
+      -34.569647457692305
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -58.4118739,
+        -34.5699793
+      ],
+      "modelHeight": 0,
+      "basis": "Fixedactualnativeouterbridgevertex chosenbeforeterrainandgeometry; no lake/pathflattening orfit. Source-floor/basement/legfootgrade/contact approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1224777738",
+      "way/1224777739",
+      "way/1224777740",
+      "way/1225006821",
+      "way/1225006822",
+      "way/1225006823",
+      "way/1224777736"
+    ],
+    "source": "https://www.openstreetmap.org/way/1224777740",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a5ff2b3822cb36a2f78b4df4d596f8c10b4db28a2d4283c0a0cae94cad51d2bb",
+    "notes": "Whole Galileo Galilei Planetarium exterior: exact circular upper glazed gallery and roof/dome, three broad curved tapered concrete legs and open undercroft, lower glazed V-stair/foyer structure and visible basement shell, intrinsic short polygonal entrance bridge with bounded rail/steps. Recreate perforated diamond metal dome over opaque inner projection shell using geometry and shared procedural materials. Exclude lake, grounds/landscaping/publicpaths, detachedservicebuildings, sculptures/exhibits/meteorites/interiors, people/vehicles/fences/temporarybanners/signage/oldroofdevices."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exactoriginalnamedway1224777740/Q606675 supplies all28uppergalleryvertices, associateddomeway1224777739all26vertices, lowerglasspart1225006821all18vertices, three19/18nodecurvedlegroofs and intrinsic13vertexentrybridge1224777736. Domeoriginalvertexmeananchor; heading0east/southnativeaxespreserveworldpositions without fitting. Nativebodyheight10/min7 andlegroofheight8 are coarsesectiontags; photographguides3.4mglassgallery/underfloorandcurvedlegsections. Nativedometag24/roofheight13.8notperfectlyconsistentwith~11.75mradius/photohemisphere; retain tagsraw, usehemisphere11.75mabove10.4mroofasboundedphotographicsection. Basement/exactfloors/ownbridgegrade/hiddenbackwallsunverified. No lake/landscape/parcel extrusion.",
+    "Four exact2816x2112ClaudioElias2007ownphotographPDself originals individually inspected; currentpreservedform controlledbytheseviews andexactnativeparts. No bitmap/copiedpixels or generatedimages. CurrentLEDinstallation/finish/hiddenrenovationsunverified; oldbanners/fences/spotlights/antenna omitted.",
+    "Outer gallery native28vertexplan,26vertexdomecontrol, lower18vertexglasspart, fullthreecurvedlegplans and13vertexintrinsicentrancebridge retained atnormaldetail. Skyline simplifiescircleandlegs within stated1.1merror. Coarseheighttags preservedraw; hemisphere22.15mtop/10.4mspring/~11.75mradius andlegcurve/section/Vglazedstairs/groundcore/basementsection approximate. Interiorprojectiondiameter20m is notoutergallerydiameter.",
+    "Visible lowerVglazing is vertical in its original nativeplan, with photo-basedlowedgeprofiles anddiagonalconcreteframes. Groundfoyerwalls set15percentinsideandbasement/ownentryflooruseuppergalleryprojectiontojoinnativebridge; hiddenplan/sectionestimates,notasurveyofallfloorplans. No interiors/exhibits/meteorites/statues/gardens/lake/externalpublicpaths/otherbuildings orwhole-siteslab. Ownentrybridge footprintisnative; exactlevel/railmotif/supports andconcealedrearentrydetails estimated.",
+    "Diamondouterdome rebuilt as intersecting thinmetalstripgeometry withrealapertures over a separateopaqueinnerhemisphere. It is an architectural mediumfi approximation, not exact panel/fastener/LEDcensus. Closeup144stripfamilieseachway, lowerlevelsreducepattern; skylineaverageclosedoutertone preservesradius/silhouette.",
+    "Original160m81x81Terrariumfield/6561values/2tiles/heightPNGfrozenbeforegeometry atnativeouterbridgepoint. RawDEMmayblurvegetation/buildingorvoids; no flattening/earthcut/fittedslab. Exactownbasement/legcontactcompatiblelivehostterrainnotverified; previewonly,replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-planetarium-three-curved-legs-and-entry-bridge",
+      "position": [
+        -56,
+        22,
+        65
+      ],
+      "lookAt": [
+        0,
+        8,
+        4
+      ]
+    },
+    {
+      "name": "diamond-screen-and-circular-glazed-gallery",
+      "position": [
+        31,
+        20,
+        28
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "open-undercroft-lower-v-glazing-and-concrete-legs",
+      "position": [
+        -25,
+        3,
+        18
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "intrinsic-entry-bridge-rails-and-basement-recess",
+      "position": [
+        -25,
+        2.4,
+        33
+      ],
+      "lookAt": [
+        -4,
+        0,
+        5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 37774,
+    "vertices": 113322,
+    "materials": 5,
+    "bytes": 4536068,
+    "sha256": "sha256:726a40efcb7a9d542ad537b419f0ab5e32be469fac9fcc4b47d5103753cefa88"
+  }
+}

@@ -1,0 +1,324 @@
+{
+  "planId": "albert_hall_nottingham",
+  "id": "albert_hall_nottingham",
+  "assetId": "molen.worldgen.structure.albert_hall_nottingham",
+  "title": "Albert Hall, Nottingham",
+  "category": "concert-hall",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -1.156528,
+    "latitude": 52.954385
+  },
+  "size": [
+    31.244999885559082,
+    37.64999997615814,
+    44.36800026893616
+  ],
+  "actualBounds": {
+    "min": [
+      -15.524999618530273,
+      -0.6499999761581421,
+      -43.05500030517578
+    ],
+    "max": [
+      15.720000267028809,
+      37,
+      1.312999963760376
+    ]
+  },
+  "visualBrief": "Complete native Nottingham Albert Hall: deep brick hall/hipped slate roof, warmbuffterracotta5bayBaroque front with rusticatedpiers, closedcasement/roundwindows, heavycornices/atticdormers/piercedbalustrade, centralIonicaedicule/brokensegmentalpediment/cartouche/festoons; attachedsquare3stagetower/claspingbuttresses/domespinnacles, genuine4openIonicportalrotunda/curvedpediments, closedogeedome/finial;5Diocletianwindows onbrickreturn. Original representative carving; no neighboringPlayhouse/missionhouse outsideparent/interior/streetscape.",
+  "nativeAxes": {
+    "x": "south-southwest",
+    "y": "up",
+    "z": "west-northwest/front"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Albert_Hall,_Nottingham.jpg",
+    "https://commons.wikimedia.org/wiki/File:AlbertHallNottingham.JPG",
+    "https://commons.wikimedia.org/wiki/File:Former_Albert_Hall_Methodist_Mission,_North_Circus_Street,_Nottingham_(NHLE_Code_1270608)_(June_2025)_(1).jpg"
+  ],
+  "stories": [
+    {
+      "id": "albert-hall-nottingham-wp",
+      "url": "https://qualla.com/albert-hall-nottingham/"
+    }
+  ],
+  "referenceInputHash": "b680dad4329b589c824931062dd5203bab74b719f805149b9196b58cbf1f3ecf",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-albert-hall-nottingham.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-albert-hall-nottingham.mjs",
+    "level": "skyline",
+    "export": "albertHallSkyline",
+    "errorMeters": 2.8,
+    "surfaces": {
+      "buff": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "trim",
+        "localRef": "palette:#feffff",
+        "roughness": 0.29,
+        "metallic": 0.04
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.35
+      },
+      "joint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "albertHallDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "buff": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "trim",
+            "localRef": "palette:#feffff",
+            "roughness": 0.29,
+            "metallic": 0.04
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.35
+          },
+          "joint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "albertHallStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "buff": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "trim",
+            "localRef": "palette:#feffff",
+            "roughness": 0.29,
+            "metallic": 0.04
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.35
+          },
+          "joint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -0.7
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Fixed pavement point[0,4]outside original westernfront before rawterrain acquisition. Complete native outline retained; frontage slope/threshold and concealed foundation levels approximate, no street terrain flattening/fitting.",
+    "anchor": [
+      -1.156528,
+      52.954385
+    ],
+    "heading": -2.0283967984613556,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -1.1565815073597785,
+        52.9544008748375
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed4moutside original native western front facade midpoint before any terrain acquisition. Threshold/sidewalk levels and sloping-front attachment are approximate; no flattened or fitted street terrain."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/40324301"
+    ],
+    "source": "https://www.openstreetmap.org/way/40324301",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:00ccc879c80d2816b329aef157e6a054020841a1d81624c0742fdacf15d8aaeb",
+    "notes": "Complete current Albert Hall, Nottingham exterior within original17vertexnamed native Hall footprint: deep brick main hall and attached footprint projections with hipped slate roof; buff terracotta3storey5bay Baroque front, rusticated base/pilasters, real facade depth/window and door surrounds, Ionic central aedicule/broken pediment/cartouche, round upper windows/festoons and end attic dormers/pierced balustrade; attached right square3stagetower with domed corner pinnacles and open4archedIonicroundturret, curved pediments/ogee dome/finial; right brick return with5Diocletianwindows. Include bounded intrinsic thresholds/steps only. No neighboring NottinghamPlayhouse, outsideparentredbrickmissionhouse/cathedral, interiors/organ, poster/sign/logo lettering, street lamps/rails/people/trees/road or site slab."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact nativeway40324301/Q4710403/NHLE1270608has17distinctparentvertices: original perimeters retained at every master level, no map quantization. Origin is midpoint of original west facade vertices4and12; signed +Xsouth-southwest along facade toward righttower, +Zwest-northwestoutfront. The native polygon is the complete Hall, not an interior parcel or neighboringPlayhouse36977572. Native has no mapped heights/roof partitions: brick/hippedslate/terracottafront/tower details come from inspectedPDoriginals and official listing text, while section heights/roof/tower subdivision and concealed elevations are explicitly inferred.",
+    "Three exact already-published Qualla own-workPD/CC0architectural originals inspected, nativeSHA1matched and primary creator releases bound. Fourth2025near-duplicate unused; interiors/organ/unrelatedlandmarks/other-licensed imagery not used. No photographic textures or generated bitmaps; nativegeometry/originalrepresentative carving and sharedPBRsurfaces.",
+    "Whole17vertexparent retained with deep brick hall/attached footprint projections and hippedslateroof. Roof ridge/hip partition, front/tower heights, side/rear window subdivisions, concealed return/threshold levels and fine carvings are photographic/primarytext estimates. Main37mfinial height is not surveyed. Original cartouche/festoons/capitals/pediments are medium-fi motifs rather than exact sculptural census or copied lettering.",
+    "Four turret portals genuinely open beneath closedconnectedrotundacornice/ogeedome, glazing and gated entries closed with3Dframing. Upperfrontstonebalustrade pierced at nearlevels, simplified distant silhouette. Separate neighboringNottinghamPlayhouse/missionhouse/cathedral and all interiors/streetfixtures/people/landscape excluded.",
+    "Independent original source terrain retained, fixed westfront pavement chosen before geometry. No terrain flattening/fitting or replacement footprint, street/threshold slope/host attachment remains approximate preview. Flat review stageY-.7shows architecture, not a surveyed certified sidewalk/contact surface."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "complete-native-hall-tower-and-hipped-roof",
+      "position": [
+        43,
+        44,
+        63
+      ],
+      "lookAt": [
+        0,
+        15,
+        -17
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "terracotta-baroque-five-bay-front-and-open-tower",
+      "position": [
+        -24,
+        23,
+        43
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ]
+    },
+    {
+      "name": "deep-brick-return-five-diocletian-windows-and-slate-roof",
+      "position": [
+        50,
+        31,
+        -33
+      ],
+      "lookAt": [
+        0,
+        13,
+        -22
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 37502,
+    "vertices": 112506,
+    "materials": 6,
+    "bytes": 4503812,
+    "sha256": "sha256:330f80ed9d34cfbad57189627a13a9ff0f15c30fa86a48c821e3f9ebcd434ce1"
+  }
+}

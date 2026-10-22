@@ -1,0 +1,313 @@
+{
+  "planId": "huguenot_tunnel",
+  "id": "huguenot_tunnel",
+  "assetId": "molen.worldgen.structure.huguenot_tunnel",
+  "title": "Huguenot Tunnel — eastern portal",
+  "category": "transport",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 19.1138374,
+    "latitude": -33.7332436
+  },
+  "size": [
+    32.70000076293945,
+    28.558629989624023,
+    82.98442077636719
+  ],
+  "actualBounds": {
+    "min": [
+      -16.600000381469727,
+      -11.85862922668457,
+      -17
+    ],
+    "max": [
+      16.100000381469727,
+      16.700000762939453,
+      65.98442077636719
+    ]
+  },
+  "visualBrief": "Photo-guided operating eastern portal: asymmetric multicolor small-stone wings with sloping roofs, stepped high ventilation cheek and pale vertical fins, genuinely open rectangular road mouth with oxidized metal fascia/raised HUGENOTE-TONNEL lettering, small service doors and native65.98mconcrete approach bridge with slit parapets and angled supports. Native operating tunnel endpoint/bearing distinguish the separate unused NorthBore. Underground bore/mountain and other end excluded.",
+  "nativeAxes": {
+    "x": "across road",
+    "y": "up,deck surfaceY0",
+    "z": "outward along east bridge"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Huguenot_Tunnel_entrance.JPG"
+  ],
+  "stories": [
+    {
+      "id": "huguenot-tunnel-wp",
+      "url": "https://qualla.com/huguenot-tunnel/"
+    }
+  ],
+  "referenceInputHash": "76b482fc40180aa758b2274e8017a5825c4d66c8f3691fe945d650bfbbc03fe7",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-huguenot-tunnel.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-huguenot-tunnel.mjs",
+    "level": "skyline",
+    "export": "huguenotSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "stone_ashlar",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.18
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "huguenotDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "huguenotStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "groundY": -12.5
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named N1operating tunnelway52435898/Q4993604ends exactly at east approachbridgeway137438581. Separate unused/private northern boreway363782330is retained as identity exclusion. Native line gives the portal center, road bearing and actual bridge span; no native portal building footprint/height exists, so wings/vent geometry and deck/support sections are photographic estimates. Fixed eastern native bridge abutment defines approximate deckY0 before terrain acquisition.",
+    "anchor": [
+      19.1138374,
+      -33.7332436
+    ],
+    "heading": 2.0047006932305367,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        19.1144841,
+        -33.7329944
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed eastern abutment of the actual native approach bridge chosen before terrain sampling. Road/deckY0approximately matches that dry approach datum; underdeck support/rock contacts are unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/137438581",
+      "authored-portal-envelope"
+    ],
+    "source": "https://www.openstreetmap.org/way/52435898",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:afbcd472fd723692760d7b6bb8cebaaef8e33fd0d431a2bf70a277217cc7781a",
+    "notes": "Exterior portal/approach only. Portal sits at actual operating tunnel endpoint, not at central underground article coordinate. No false aboveground3.9kmcylinder, whole-mountain mesh or global terrain cut. Visible portal opening/short inner recess is real geometry; host tunnel cutting remains separate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named N1operating tunnelway52435898/Q4993604ends exactly at east approachbridgeway137438581. Separate unused/private northern boreway363782330is retained as identity exclusion. Native line gives the portal center, road bearing and actual bridge span; no native portal building footprint/height exists, so wings/vent geometry and deck/support sections are photographic estimates.",
+    "Exact full3648x2736ZaianCC0Quallaoriginal controls the operating northeastern/eastern portal, not the separate unfinished NorthBore. Complete wing envelope, roughly32.5mwide facade/16.7mhigh ventilation cheek,11.5mroad mouth, roof pitch, fins and concealed rear/side sections are photographic medium-fi estimates; no measured architectural survey is claimed.",
+    "The original native attached bridge centerline fixes65.984mspan/axis.12.3mdeck width, slab/parapet sections and two pairs of battered supports are photographic interpretations; exact support count/positions/feet and rock attachment remain approximate. Thin facade cladding colors are original deterministic geometry over shared ashlar, not sampled photo texture.",
+    "Eastern portal/approach exterior only. Rectangular road mouth is physically open to a short17mdark-lined visual recess with closed far end; no traversable3.9kminterior, western portal, unused NorthBore, mountain mesh, tunnel-terrain cutting, toll plaza, vehicles, signs/cameras or detached roadside buildings. Existing surface terrain is preserved, so host-specific tunnel-mouth cutting is separate from this preview.",
+    "A fixed eastern approach abutment defines approximate deckY0 before elevation sampling. Precise road gradient and underdeck support/ground contact remain host-dependent and unverified; no whole-mountain flattening/platform. Fine cladding patches, fascia lettering/seams, doors and open parapet slits simplify with distance."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "stone-portal-and-ventilation-fins",
+      "position": [
+        22,
+        14,
+        34
+      ],
+      "lookAt": [
+        0,
+        8,
+        -2
+      ]
+    },
+    {
+      "name": "open-mouth-and-raised-fascia",
+      "position": [
+        9,
+        6,
+        18
+      ],
+      "lookAt": [
+        0,
+        5,
+        -1
+      ]
+    },
+    {
+      "name": "slit-parapets-and-angled-supports",
+      "position": [
+        31,
+        2,
+        46
+      ],
+      "lookAt": [
+        0,
+        -3,
+        29
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5370,
+    "vertices": 16110,
+    "materials": 6,
+    "bytes": 647976,
+    "sha256": "sha256:8345ba3092f1e53fe46e83fcaaccc46653daf3142e482889395eda7725da1b9b"
+  }
+}

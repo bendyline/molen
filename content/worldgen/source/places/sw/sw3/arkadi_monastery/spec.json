@@ -1,0 +1,340 @@
+{
+  "planId": "arkadi_monastery",
+  "id": "arkadi_monastery",
+  "assetId": "molen.worldgen.structure.arkadi_monastery",
+  "title": "Arkadi Monastery",
+  "category": "religious-structure",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 24.629424457142857,
+    "latitude": 35.30993238571428
+  },
+  "size": [
+    78.70327758789062,
+    14.000000387430191,
+    71.2357406616211
+  ],
+  "actualBounds": {
+    "min": [
+      -41.917598724365234,
+      -0.4000000059604645,
+      -38.919063568115234
+    ],
+    "max": [
+      36.78567886352539,
+      13.600000381469727,
+      32.31667709350586
+    ]
+  },
+  "visualBrief": "Surviving Arkadi monastery on ten distinct native building/roof plans around a genuinely open court: warm rubble enclosing cell/gate/museum wings with recessed dressed openings and parapets, open southern covered walk, and pale limestone double-aisle church with twin vault roofs, two west doors/oculi and blind central niche, engaged columns/cornices, curved paired gables/pinnacles and a genuinely open2+1bell crown with its circular void.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Arkadi_monastry.JPG",
+    "https://commons.wikimedia.org/wiki/File:%CE%9C%CE%BF%CE%BD%CE%AE_%CE%91%CF%81%CE%BA%CE%B1%CE%B4%CE%AF%CE%BF%CF%85_5463.jpg"
+  ],
+  "stories": [
+    {
+      "id": "arkadi-monastery-wp",
+      "url": "https://qualla.com/arkadi-monastery/"
+    }
+  ],
+  "referenceInputHash": "2203b57281ab2f7890122aec0b92b6cfdc3b02207a8c864c83a30e03c09f42b0",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-arkadi-monastery.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-arkadi-monastery.mjs",
+    "level": "skyline",
+    "export": "arkadiSkyline",
+    "errorMeters": 1,
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "church": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.92,
+        "metallic": 0.16
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "arkadiDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "church": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.16
+          }
+        }
+      },
+      "street": {
+        "export": "arkadiStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "church": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.16
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Named native monastery envelope establishes site identity; individual church/wing/roof ways define geometry. A fixed dry western approach six metres outside the original named West Gate defines approximateY0 before terrain sampling.",
+    "anchor": [
+      24.629424457142857,
+      35.30993238571428
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        24.62890325073535,
+        35.3098982
+      ],
+      "modelHeight": 0,
+      "basis": "Dry western approach six metres outside the original named west-gate entrance sets a fixed approximate ground datum before terrain acquisition."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/361128301",
+      "way/180851996",
+      "way/180851998",
+      "way/180851999",
+      "way/180852002",
+      "way/361128302",
+      "way/362357324",
+      "way/362664413",
+      "way/362664415",
+      "way/1206472640",
+      "way/1216604294"
+    ],
+    "source": "https://www.openstreetmap.org/way/361128301",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4a8a68cfcf8fc15f9bb2c9b3222d23c70281a39b1e8ef8d27ac568d1e2446817",
+    "notes": "Use individual building rings, preserving the large open court and true west church front. Explicit building=roof/wall=no ways are covered walks/open roofs, not solid buildings. Church and wing heights, local small hidden roofs/openings and surviving ruin edge details are medium-fi estimates. Detached memorial, restaurant and service buildings excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Named original monastery way361128301/Q541696 is a site identity envelope, not an extruded building. Ten separate original building/roof ways retain their signed position, including Katholikon, surrounding wings and explicit open covered roofs; the large court remains unmeshed. Detached ossuary/memorial, restaurant, other detached buildings and landscape excluded.",
+    "Exact public-domain Klaas1978church-front and CC0Cmessierwest-wing originals provide exterior controls after a Qualla-first search; each has an explicit own-work creator release and matching pinned primary/native-file hash. No battle/old engraving, source with uncertain authorship, attribution/share-alike photo, unrelated Preveli/Phaistos image or street sign was used. Source photos are references, not textures.",
+    "Church body5.8m, twin roof rise2.15m and bell/cross crown13.6m, main wings5.3–7m and the open walk3.35m are medium-fi photographic estimates, not surveyed heights. Paired vault curvature, engaged column sections, arch/window rhythm, hidden roofs/apse caps, wing chimneys and sculptural mouldings are simplified; no lettering, portrait sculpture or precise surviving ruin reconstruction is claimed.",
+    "Exterior assembly only: two recessed church doors and blind center niche match the photographed west front; bell-gable openings and southern covered walk are physically open, while ordinary dark door/window recesses are closed. No religious interiors, people, vegetation, signage,1866battle reconstruction or historical vanished structures.",
+    "Foundations extend.4m below a fixed dry west-gate approach datum. Actual courtyard, ruin-edge and local wing ground contact are approximate; source terrain remains unchanged, with no whole-site platform or blanket terrain opening."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "double-aisle-west-front",
+      "position": [
+        -33,
+        9,
+        3.8
+      ],
+      "lookAt": [
+        -8.4,
+        6.7,
+        3.8
+      ]
+    },
+    {
+      "name": "open-bell-gable-and-twin-roofs",
+      "position": [
+        -24,
+        16,
+        19
+      ],
+      "lookAt": [
+        -6,
+        9,
+        3.5
+      ]
+    },
+    {
+      "name": "west-gate-and-rubble-wing",
+      "position": [
+        -68,
+        12,
+        -14
+      ],
+      "lookAt": [
+        -40,
+        3.5,
+        -12
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 32308,
+    "vertices": 96924,
+    "materials": 6,
+    "bytes": 3880716,
+    "sha256": "sha256:f01ba1a7aace72998800bfb2e567a640536d376ebd37512be3f5c712219c57d2"
+  }
+}

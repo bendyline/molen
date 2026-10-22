@@ -1,0 +1,369 @@
+{
+  "planId": "boggo_road_gaol",
+  "id": "boggo_road_gaol",
+  "assetId": "molen.worldgen.structure.boggo_road_gaol",
+  "title": "Boggo Road Gaol",
+  "category": "historic-prison",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 153.02879034411765,
+    "latitude": -27.494977773529413
+  },
+  "size": [
+    91.06345558166504,
+    12.779780581593513,
+    69.71952819824219
+  ],
+  "actualBounds": {
+    "min": [
+      -23.61332893371582,
+      -0.20000000298023224,
+      -25.408763885498047
+    ],
+    "max": [
+      67.45012664794922,
+      12.579780578613281,
+      44.31076431274414
+    ]
+  },
+  "visualBrief": "Whole surviving gaol: all7nativebuilding-roof plans/three3storeycellblocks/auxiliaries/northretainedblock/openroof, actual19vertex6mbrickwall/own gates and SWpaleguardbooth/facetedroof/externalcoveredcantileverwalkway. Recessedbarredlights/buffbands/archedgablegallerywindows/corrugatedpale roofs/brickchimneys. Propertyidentity34ring stays emptyyards/no sitefloor; no demolishedlargeNo1complex/modernneighbors.",
+  "nativeAxes": {
+    "x": "SSW along actual photographed western perimeter wall",
+    "y": "up relative fixed exterior approach",
+    "z": "WNWoutward from actualwesternwall"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Boggo_Road_Gaol_2015.jpg"
+  ],
+  "stories": [
+    {
+      "id": "boggo-road-gaol-wp",
+      "url": "https://qualla.com/boggo-road-gaol/"
+    }
+  ],
+  "referenceInputHash": "d14eb800ac40ec71a1ab70406df089d54af63f9b200f05b204eae4e501127854",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-boggo-road-gaol.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-boggo-road-gaol.mjs",
+    "level": "skyline",
+    "export": "boggoSkyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.86,
+        "metallic": 0.18
+      },
+      "paint": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.91,
+        "metallic": 0.03
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.8,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "boggoDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.91,
+            "metallic": 0.03
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "boggoStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.91,
+            "metallic": 0.03
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.4,
+    "groundY": -0.3
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "OriginalnamedBoggoRoadGaolpropertyway35841181/Q4937584retains34nonduplicateboundaryvertices, identityscopeonly/notasolidsitefloor. Actualclosedbrickwallway1563719295retains19nonduplicatevertices/estimated6mheight/0.75mwidth. All7currentnativebuildings/roof retained:3storeycellblocks1002265560/5561/5565(4verticeseach),2storeyaux1002265563(6),1storeyaux1002265566(8),openroof1002265564(4),northretained2storeyblock1563719294(12); allactualrelativepositions. Nativelevels control verticalstoreycensus; sections/ridges/windowrepeatandnorthernblockrole/finishestimated. Fullnativeanchor34vertexmean[153.02879034411765,-27.494977773529413]; exactlongwesternwall5to6 fixes frontWNWheading-1.7647581634901301rad. SWguardboothcenter follows roundedSWwallcornermean1to5[63.62719583151092,40.78402547892432], width/roof/platform and northgateopeningphotographic/functionalestimates. FixedWNWfrontapproach[30.462559308045734,48.310764444045375]sixmetresoutsidewall beforeterrain/geometry. ModernVillageway1308720187/Ecosciences58458585 andotheroutsidebuildings excluded. No surveyedfloor/threshold/groundcontact. Original240mfield/rawtiles/grid/PNG frozen beforegeometry; exactfloors/threshold/slopingwallbase/hostcontact unverified.",
+    "anchor": [
+      153.02879034411765,
+      -27.494977773529413
+    ],
+    "heading": -1.7647581634901301,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        153.0282508169078,
+        -27.495162641784237
+      ],
+      "modelHeight": 0,
+      "basis": "Fixedwesternfrontapproach6moutsideoriginalwall before independent terrain/geometry; exactfloor/threshold/steps/slopingwallbase/hostcontact unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/35841181",
+      "way/1563719295",
+      "way/1002265560",
+      "way/1002265561",
+      "way/1002265565",
+      "way/1002265563",
+      "way/1002265566",
+      "way/1002265564",
+      "way/1563719294"
+    ],
+    "source": "https://www.openstreetmap.org/way/35841181",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:737a824fc3fea4275e74c1ef5d9b3e44c0effc8255d5ae58df64b2be89514399",
+    "notes": "Complete surviving BoggoRoadGaol/Q4937584compound architecture, not only photographed outerwall: original named34vertexcurrentpropertyway35841181 as identity boundary only, actual19vertexclosed6mbrickperimeterway1563719295, allthree3storeycellblocks1002265560/5561/5565,2storeyauxiliary1002265563,1storeykitchen/auxiliary1002265566, open shelterroof1002265564 and full12vertexnorthern2storeyentry/remnantblock1563719294 at actualmappedpositions. Include pale SWcornerwatchbooth/hippedroof/multipanecabin/cantilevered metalwalkway/brackets, redbrickwalls/pilasterrhythm/owncopings/barredrecessedlights/corrugatedgables/chimneys, own entrygates and preserved northernblock. Interior yards remain empty; no wholepropertyslab. No demolishedformerlargeNo1wings, modernBoggoRoadVillage/Ecosciences/nearbyhousing/roads/landscape/people/signs/interiorcells/exhibits."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "OriginalnamedBoggoRoadGaolpropertyway35841181/Q4937584retains34nonduplicateboundaryvertices, identityscopeonly/notasolidsitefloor. Actualclosedbrickwallway1563719295retains19nonduplicatevertices/estimated6mheight/0.75mwidth. All7currentnativebuildings/roof retained:3storeycellblocks1002265560/5561/5565(4verticeseach),2storeyaux1002265563(6),1storeyaux1002265566(8),openroof1002265564(4),northretained2storeyblock1563719294(12); allactualrelativepositions. Nativelevels control verticalstoreycensus; sections/ridges/windowrepeatandnorthernblockrole/finishestimated. Fullnativeanchor34vertexmean[153.02879034411765,-27.494977773529413]; exactlongwesternwall5to6 fixes frontWNWheading-1.7647581634901301rad. SWguardboothcenter follows roundedSWwallcornermean1to5[63.62719583151092,40.78402547892432], width/roof/platform and northgateopeningphotographic/functionalestimates. FixedWNWfrontapproach[30.462559308045734,48.310764444045375]sixmetresoutsidewall beforeterrain/geometry. ModernVillageway1308720187/Ecosciences58458585 andotheroutsidebuildings excluded. No surveyedfloor/threshold/groundcontact.",
+    "Wholecurrentnamedcompoundarchitecture: all3three-storeycellblocks/2auxiliaryblocks/fullnorthernretained2storeyentry-remnantblock/openpostedshelter andactual19vertexbrickwall/guardbooth/gallery. Property34ring is identityonly, not a courtyard/site slab. No demolishedlargeNo1wings/rebuiltlostprison or modernBoggoRoadVillage/Ecosciences/houses.",
+    "ExactQualla2015Shiftchange3264x1717ownCC0photo/nativeSHA1/explicitgrant only; fullreference andnativecompleteplan inspected. Itestablishes redbrickwall/pilasterrhythm/palesuspendedoutergallery/brackets/SWwindowedguardbooth/hiproof, tallcellgable/archedbarredlight/buffband/corrugatedpale roofs/chimneys. Historicalaerials/nullauthor/attribution/interior/unrelatedimages unused; no supplementalphotos/copiedpixels/generatedbitmap. Operator/historicalsocietytextfacts only, theirphotos/maps/drawingsunused.",
+    "Native3/2/1storeycensus and fullfootprints retained;6mwall primaryheightcontrol. Allothersectionheights, guardbooth/window/roof sizes/gallerylength, finecellwindow/bar/chimneycensus/hiddenroofpartition/northernblockrole and finish estimated. Northernretainedblock representedwithrestrainedpaleconcretefinish without certifiedgatehouse/visitor/No1cellclassification. Functionalnorthentrygate/closedback andSWfootdoor areboundedestimates; smallcelllights are unglazed recesses with closed shadowbacks, no interiorcells/people/exhibits. Skylinecoarsens smallapertures/galleryposts/cabinpanes; district uses flatglazing/shadow and coarser details; nearlevels add real barredrecesses/archedgallerywindows/gablebands/roofrims/cabincladding.",
+    "Independent240m161x161at1.5mfield/2rawtiles/grid/PNG frozen beforegeometry. FixedWNWfrontapproach[30.462559308045734,48.310764444045375], provider36.6026m, relativefield[-9.5241,3.0498] unchanged; no flattening/fitting or addedyardfloor. Modelcommonfloor/wallbase/steps/threshold and actual hostterraincontact unverified; geographicpreview/replaceFootprintfalse. No landscape/roads/temporaryworks/signage."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "complete-native-three-cellblocks-and-auxiliary-roof-plan",
+      "position": [
+        110,
+        72,
+        -72
+      ],
+      "lookAt": [
+        25,
+        4,
+        8
+      ]
+    },
+    {
+      "name": "southwest-guardbooth-faceted-roof-covered-gallery-and-footdoor",
+      "position": [
+        81,
+        10.5,
+        67
+      ],
+      "lookAt": [
+        62.5,
+        5.4,
+        41
+      ]
+    },
+    {
+      "name": "three-storey-cellblock-barred-recesses-arched-gallery-gable",
+      "position": [
+        24,
+        12,
+        38
+      ],
+      "lookAt": [
+        43,
+        7,
+        24
+      ]
+    },
+    {
+      "name": "northern-retained-entry-block-gate-and-two-auxiliaries",
+      "position": [
+        -43,
+        19,
+        42
+      ],
+      "lookAt": [
+        -5,
+        4,
+        10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 23959,
+    "vertices": 71877,
+    "materials": 6,
+    "bytes": 2878788,
+    "sha256": "sha256:9b3b036234dedadb2cf072eb35c1dbb1d61ea7413917b395dfbe5c08a008be06"
+  }
+}

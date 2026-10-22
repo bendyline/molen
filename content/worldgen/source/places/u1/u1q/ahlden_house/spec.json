@@ -1,0 +1,326 @@
+{
+  "planId": "ahlden_house",
+  "id": "ahlden_house",
+  "assetId": "molen.worldgen.structure.ahlden_house",
+  "title": "Ahlden House",
+  "category": "historic-house",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 9.557983891138411,
+    "latitude": 52.75922733428769
+  },
+  "size": [
+    38.028446197509766,
+    15.469999879598618,
+    38.04589080810547
+  ],
+  "actualBounds": {
+    "min": [
+      -19.179946899414062,
+      -0.3499999940395355,
+      -19.022945404052734
+    ],
+    "max": [
+      18.848499298095703,
+      15.119999885559082,
+      19.022945404052734
+    ]
+  },
+  "visualBrief": "Complete native U-shaped brick/half-timber residence with east-open court, three joined steep red-tile gabled roof ranges/timbered gables/dormers/chimneys, brick western lower facade/dark oak upper and rear framing/red brick infill/white divided casements, true western vehicle and pedestrian through-arches/barrel vaults and attached sandstone heraldic relief with paired figures. Four cleared native Qualla creator originals only; sections/hidden bays/roof joints approximate. No river/park/bridge/fences/freestanding garden monuments/interiors/copied text.",
+  "nativeAxes": {
+    "x": "along north wing toward eastern court opening",
+    "y": "up",
+    "z": "south along western main wing"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Schloss_Ahlden_hinten.jpg",
+    "https://commons.wikimedia.org/wiki/File:Schloss_Ahlden_Eingang.jpg",
+    "https://commons.wikimedia.org/wiki/File:Schloss_Ahlden_Leinearm.jpg",
+    "https://commons.wikimedia.org/wiki/File:Schloss_Ahlden_Wappen.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ahlden-house-wp",
+      "url": "https://qualla.com/ahlden-house/"
+    }
+  ],
+  "referenceInputHash": "e76482d665c885c603dedee30a3c48cf9e2ce1751e760ff910fe5a7664ccba7f",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-ahlden-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-ahlden-house.mjs",
+    "level": "skyline",
+    "export": "ahldenSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.31,
+        "metallic": 0.06
+      },
+      "white": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "ahldenDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.31,
+            "metallic": 0.06
+          },
+          "white": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "ahldenStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.31,
+            "metallic": 0.06
+          },
+          "white": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.8,
+    "groundY": -0.52
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named historic castleway98004656/Q567878matches the creator Qualla rear photo linked to the same original OSM identity. Original ten-vertex U-shaped footprint retained, with east-open court and western through-gateway; no generic filled parcel or rectangle. Three roof ranges/timbered gables, brick/half-timber facades and intrinsic portal are controlled by four primary creator-released photographs. No source roof/height tags: elevations, roof intersections, window/brace/dormer census and hidden sections are explicit architectural estimates. Fixedwesternapproach before independent raw160mterrain; roof/threshold/hiddenfootings/hostcontact approximate.",
+    "anchor": [
+      9.557983891138411,
+      52.75922733428769
+    ],
+    "heading": -0.08142881191059088,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        9.557676845922312,
+        52.75924249837139
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed western gateway approach before independent terrain acquisition. Threshold/hidden footings/host contact approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/98004656"
+    ],
+    "source": "https://www.openstreetmap.org/way/98004656",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2efe910247edd14238c42293f51020c741a3091bd63a42f1a7d64aa0a61d79e3",
+    "notes": "Complete surviving Ahlden House/Schloss Ahlden main U-shaped building: original named native footprint, three joined steep red-tile roof ranges with timbered gable ends/dormers/chimneys, brick ground floor and dark oak half-timber frame/red brick infill/white casements, true arched vehicle gateway and smaller pedestrian passage through the western main wing, attached sandstone heraldic portal relief. Preserve the east-open courtyard as unbuilt space. Exclude park/trees/river/moat/approach bridge/fences/freestanding garden monuments, interiors/auction exhibits/people and copied lettering. Roof sections/bay census/concealed timber joints and precise grade are architectural estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named historic castleway98004656/Q567878matches the creator Qualla rear photo linked to the same original OSM identity. Original ten-vertex U-shaped footprint retained, with east-open court and western through-gateway; no generic filled parcel or rectangle. Three roof ranges/timbered gables, brick/half-timber facades and intrinsic portal are controlled by four primary creator-released photographs. No source roof/height tags: elevations, roof intersections, window/brace/dormer census and hidden sections are explicit architectural estimates.",
+    "Four native published Qualla2008AxelHindemith/AxelHHcreatorPD-selfphotographs actually inspected and nativeSHA1matched to primary original photo-by-author/release/upload records. Exact front/rear/river-side/crest originals only; uncertain1747plan and attribution/other images excluded. No external image, generatedbitmap, copiedphotographictexture or lettering.",
+    "Exact original ten-vertex U boundary and genuine east-open court retained. Through vehicle/pedestrian archways have open front/court faces, full internal jambs/barrel surfaces and low intrinsic threshold only. Three intersecting gabled roof ranges follow native wing axes, with bounded ridge/valley joins. No courtyard/site slab or park/bridge/moat/river/trees/fences/freestanding garden statue included.",
+    "Firstfloor3.55m/eave7.35m/mainridge13.8m/sideridges13.35m/gateway3.4m/smallarch2.68mare photograph-informed section estimates; native map has no height tags. Tree-obscured window/brace/dormer/chimney census, historical timber joints, minor conservation and concealed roofdetails are interpreted. Representative dark oak framing/brick and selected herringbone-like fields/white divided casements reflect the native photos.",
+    "Attached heraldic panel uses original simplified sandstone shield/crests/paired robed figures/scrollwork, rather than copied coat-of-arms imagery or inscription. Closed portable glazing is an opaque color approximation. Hidden interiors/auction exhibits excluded. Decorative frame depth and fine brick/framing detail simplify with distance while both passage voids and the open court persist.",
+    "Independent160mrawTerrariumfield frozenbeforegeometry at fixed western gateway approach. Original source tiles/grid/PNGunchanged, not flattened/fitted; source urban/riverbank/bridge sampling may not match exact pavement. Thresholds/footings/host contact approximate; flatstage is an inspection surface, not geographic grade certification."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "native-u-open-court-three-roof-ranges-and-timber-gables",
+      "position": [
+        65,
+        57,
+        60
+      ],
+      "lookAt": [
+        -2,
+        6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "western-twin-arches-casements-and-sandstone-heraldic-panel",
+      "position": [
+        -38,
+        8,
+        4
+      ],
+      "lookAt": [
+        -17.5,
+        4.1,
+        -1
+      ]
+    },
+    {
+      "name": "rear-timber-brick-infill-gables-and-roof-joins",
+      "position": [
+        38,
+        14,
+        -13
+      ],
+      "lookAt": [
+        -5,
+        7,
+        -6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6443,
+    "vertices": 19329,
+    "materials": 6,
+    "bytes": 776732,
+    "sha256": "sha256:791ad101f01d43d27ba0127e259d4d79e190e0b86dac6e77156cb4fa54e7e507"
+  }
+}

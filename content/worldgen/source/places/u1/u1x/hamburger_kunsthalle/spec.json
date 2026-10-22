@@ -1,0 +1,404 @@
+{
+  "planId": "hamburger_kunsthalle",
+  "id": "hamburger_kunsthalle",
+  "assetId": "molen.worldgen.structure.hamburger_kunsthalle",
+  "title": "Hamburger Kunsthalle",
+  "category": "museum-library",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 10.00296885,
+    "latitude": 53.555280575000005
+  },
+  "size": [
+    66.45251846313477,
+    30.038494110107422,
+    240.88864135742188
+  ],
+  "actualBounds": {
+    "min": [
+      -29.15290069580078,
+      0,
+      -116.71357727050781
+    ],
+    "max": [
+      37.299617767333984,
+      30.038494110107422,
+      124.17506408691406
+    ]
+  },
+  "visualBrief": "Complete intrinsic three-building Hamburger Kunsthalle museum:original1869/1885buff-brickAltbauincludingtallercentral7-archedcolonnade/sidewings/rooflanternurns/niches/statues/terracottareliefs;allattachedmappedlinkandgalleryparts;1919MuschelkalkNeubauextensionwithnativecurvedapse/copperdome/lowerflankinghalls/skylitcentralbody;1997GaleriederGegenwartwhitecubewithallnativeupper/rooflightpartsandintrinsicredgranitethree-sloping-base/connectingplatform. All22nativebuildingparts,notonlyoldfrontandnotextrudedtourismparcel. Exclude surroundingstreet/plazaoutsideactualmappedbuildingbase/railway/trees/water/temporaryarttext/advertising/visitors/interiors. Preserve7realshallowarchedcolonnaderecesses/columns/tympanummedaillons/doorwindows/steps/currentvisitorlift,raisedcentralpavilion/7upperflowerpanels/terracottareliefpiers/archniches/robedfigures/cornices/pinnacles/greentripodurns; roofglazingandnativegalleryparts/domemassing/whitecube/redintrinsicslopingbase retained. Unknownportraitlikeness/fineleafornament/windowcensusunobservedcubefacesstylizedplain, no protectedsource adoption. Freezeindependent512m129²4mfieldbeforegeometryatfixedeastapproach. Intrinsic4mplinthlevelsnotterrain-fitconstraints; actualhostgrade/entrybasementsunsurveyed.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hamburger_Kunsthalle_-_Altbau_-_Westfacade_Detail_right.jpg",
+    "https://commons.wikimedia.org/wiki/File:Hamburger_Kunsthalle_-_South_facade_-_right_lunettes.JPG",
+    "https://commons.wikimedia.org/wiki/File:Hamburger_Kunsthalle_South_facade_-_detail.JPG",
+    "https://commons.wikimedia.org/wiki/File:Hamburger_Kunsthalle_-_Altbau_-_Detail_S%C3%BCdwest.jpg",
+    "https://commons.wikimedia.org/wiki/File:Hamburger_Kunsthalle_-_Medaillons_Carstens,_Denner.JPG",
+    "https://commons.wikimedia.org/wiki/File:Hamburger.Kunsthalle.jpg",
+    "https://commons.wikimedia.org/wiki/File:Hamburger_Kunsthalle_Altbau_001.jpg",
+    "https://commons.wikimedia.org/wiki/File:Kunsthalle_Hamburg,_entrance.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hamburger-kunsthalle-wp",
+      "url": "https://qualla.com/hamburger-kunsthalle/"
+    }
+  ],
+  "referenceInputHash": "fe693d6bfd348517584587dd06bb7eac732dea84adba6765c9b70c5e58766f38",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hamburger-kunsthalle.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hamburger-kunsthalle.mjs",
+    "level": "skyline",
+    "export": "hamburgerKunsthalleSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "terra": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.4
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.2
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.36,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hamburgerKunsthalleDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "terra": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.4
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "hamburgerKunsthalleStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "terra": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.4
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          }
+        }
+      },
+      "closeup": {
+        "export": "hamburgerKunsthalleCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "terra": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.4
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.4,
+    "groundY": -0.15
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Nativebuildingrelation4259123/47pointoutline316353727 definesattachedhistoricalAltbau/Neubauparts,notwholemuseumtourismarea142944355. Preserveall12individualhistoricalparts and10Galerie/base/rooflightparts:22intrinsicparts/alloriginalvertices. UpperwhiteGalerie142944327 belongsbasebuilding808529079,with808529080/81/82slopinggraniteedgeparts/808529083terrace and5nativeglass-roofparts808861422..426. Theseareintrinsicbuildingbase,notpublicwholeplazaslab. Original1869part316353725andhigher808529078 overlapasbody/raisedcentralroof; coveredfacescullinternally,originalcontroloutlinesretained. Individualnativeheighttags14/20/30/25m/minheight4m areestimatedarchitecturalcontrols,notasurvey. +Xalongoldfrontlongedge/+ZoutfromoldfronttowardsGalerie;fixedold12vertexmeananchor/headingbeforefield/geometry. Mainfront7arches/columns/niches/reliefs/greenopenroofurns andvisitorsteps/lift from8clearoriginals; preciseupperfigures/hiddenrear/domedextensionfenestration/whitecubepanelcensus areboundedinterpretation. No PD/CC0Gallerywholephotofoundin48nativefiles/search; donotadoptCCBYpixels:wholecube/plinth/rooflights basedonexactnativeparts/currentoperatorwhitecubedescription,plainunobservedfacades keptrestrained,notclaimedphotogrammetric. Independent512m129²4mfield frozenbeforegeometryatfixedeastapproach; intrinsic4mplinth/entryfloorlevels arearchitectureestimates, notterrainfit; hostcontactunverified.",
+    "anchor": [
+      10.00296885,
+      53.555280575000005
+    ],
+    "heading": -2.3247450120697857,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        10.002330962103459,
+        53.55520510213236
+      ],
+      "modelHeight": 0,
+      "basis": "FixedeastapproachoutsideintrinsicGalerieplinthbeforeindependentfield;providerrelative/notsurveyedmuseumthreshold"
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/4259123",
+      "way/316353727",
+      "way/808529079",
+      "way/316353725",
+      "way/808529078",
+      "way/808529077",
+      "way/808529075",
+      "way/808529076",
+      "way/808529072",
+      "way/808529070",
+      "way/808529069",
+      "way/808529068",
+      "way/808529067",
+      "way/808529071",
+      "way/316353726",
+      "way/142944327",
+      "way/808529080",
+      "way/808529081",
+      "way/808529082",
+      "way/808529083",
+      "way/808861422",
+      "way/808861423",
+      "way/808861424",
+      "way/808861425",
+      "way/808861426"
+    ],
+    "source": "https://www.openstreetmap.org/relation/4259123",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:807435d58b302320186b10892ef9e639c020c9d64f2bab7a90db513012266568",
+    "notes": "Complete intrinsic three-building Hamburger Kunsthalle museum:original1869/1885buff-brickAltbauincludingtallercentral7-archedcolonnade/sidewings/rooflanternurns/niches/statues/terracottareliefs;allattachedmappedlinkandgalleryparts;1919MuschelkalkNeubauextensionwithnativecurvedapse/copperdome/lowerflankinghalls/skylitcentralbody;1997GaleriederGegenwartwhitecubewithallnativeupper/rooflightpartsandintrinsicredgranitethree-sloping-base/connectingplatform. All22nativebuildingparts,notonlyoldfrontandnotextrudedtourismparcel. Exclude surroundingstreet/plazaoutsideactualmappedbuildingbase/railway/trees/water/temporaryarttext/advertising/visitors/interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Nativebuildingrelation4259123/47pointoutline316353727 definesattachedhistoricalAltbau/Neubauparts,notwholemuseumtourismarea142944355. Preserveall12individualhistoricalparts and10Galerie/base/rooflightparts:22intrinsicparts/alloriginalvertices. UpperwhiteGalerie142944327 belongsbasebuilding808529079,with808529080/81/82slopinggraniteedgeparts/808529083terrace and5nativeglass-roofparts808861422..426. Theseareintrinsicbuildingbase,notpublicwholeplazaslab. Original1869part316353725andhigher808529078 overlapasbody/raisedcentralroof; coveredfacescullinternally,originalcontroloutlinesretained. Individualnativeheighttags14/20/30/25m/minheight4m areestimatedarchitecturalcontrols,notasurvey. +Xalongoldfrontlongedge/+ZoutfromoldfronttowardsGalerie;fixedold12vertexmeananchor/headingbeforefield/geometry. Mainfront7arches/columns/niches/reliefs/greenopenroofurns andvisitorsteps/lift from8clearoriginals; preciseupperfigures/hiddenrear/domedextensionfenestration/whitecubepanelcensus areboundedinterpretation. No PD/CC0Gallerywholephotofoundin48nativefiles/search; donotadoptCCBYpixels:wholecube/plinth/rooflights basedonexactnativeparts/currentoperatorwhitecubedescription,plainunobservedfacades keptrestrained,notclaimedphotogrammetric.",
+    "Wholethree-buildingmuseum/all22nativeparts/157originalpartcontrolvertices,notold-front-onlycrop. Originalhistorical47pointoutlineandGalerie8pointoutline arecontrolenvelopesnotextrudedboxes; overlappinghistoricbody/raisedcentralroof/9mcentralatrium/upperglassroof resolved aspartlayers. Sevenphotographedfrontarcades/columns/tympanummedaillons,raisedbrickpavilion/sidewings/niches/robedfigures/reliefpiers/cornices/coppertripodurns/steps/lowlift retained. Portraitlikeness/leafornament/textinscriptions/actualdooropenstates stylized oromitted; no photo textures.",
+    "NativeheighttagsandprimaryarchitecturetextcontrolpaleMuschelkalkdomedextension/30mcopperroofand1997whitecube4–25m/redintrinsicplinth/5mappedglazedrooflightsupto29m. Galleryplinth/threeedge-slopeparts/connectingterrace areactualmappedbuildingbase,notgenericpropertylandscapeslab. Gallery/domefinefenestration/claddingstone/domepatina/hiddenrear currentdetailsarebounded estimateswithoutcurrentclearwholephotos; all48Galeriecategorysourcesneedattributionandunused. Cubeplainunobservedfaceskeptrestrained, rooflightshapesfromnativemaps, notclaimedphotogrammetric.",
+    "Qualla-first53families/0reservedaliasesQIDs. FiveexactpublishedOursana2014PD-userphotos/nativeoriginalSHA1matched andindividuallyinspected; nativefirstrevisionparent0/authoreditemgrantandoriginaluploadwithin1second/allsubsequentversionssamecreatorbindnamedsource, no localcategories/media/articlebodyedits. ThreeadditionalselfCC0originals:Membeth2018wholefront,Oursana2021corner,GerdaArendt2024entrance,allinspected/nativeSHA1bound.69focusedprovenancetests passed,wrongcreator/version/missingowndeclaration/changedgrant/competinglicenses/restrictions rejected. No restrictedpixels/generatedbitmaps/downloadedmesh.",
+    "Hiddenbasements/interiors/railway/neighborbuildings/trees/water/street/temporaryarttextandadvertising/people excluded. Extrinsicpublicplazaoutsideactualnativebuildingbase notmodeled. Intrinsicporticofloor5m/terrace4m/7approachsteps/currentvisitorlift heights approximate, notsurveyedthresholds. Flatportable/shared/contextreviewfixtures separatefrom actualsitegrade; ordinarypreview/replaceFootprint=false.",
+    "Independent512m129²4mfield/all16641samples/4originalTerrariumtiles/PNG frozenbeforegeometryunchanged; fixedeastapproachproviderdatum10.8171m/absolute1.1719–22.929m, likelymixedurban/terraincomposite notfoundationdatum. Source2.83795moutputpixelspacing isnot surveyaccuracy; no flatten/fit/reacquisition, hostcontactunverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-three-building-museum-altbau-dome-and-gallery",
+      "position": [
+        170,
+        170,
+        250
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "seven-recessed-arcades-columns-statue-niches-and-buff-brick-front",
+      "position": [
+        49,
+        25,
+        65
+      ],
+      "lookAt": [
+        0,
+        11,
+        23
+      ]
+    },
+    {
+      "name": "mapped-muschelkalk-extension-curved-apse-copper-dome-and-rooflights",
+      "position": [
+        74,
+        59,
+        -144
+      ],
+      "lookAt": [
+        3,
+        17,
+        -94
+      ]
+    },
+    {
+      "name": "white-cube-native-glazed-rooflights-and-sloping-granite-base",
+      "position": [
+        69,
+        43,
+        145
+      ],
+      "lookAt": [
+        0,
+        14,
+        95
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16340,
+    "vertices": 49020,
+    "materials": 5,
+    "bytes": 1964052,
+    "sha256": "sha256:6a1005e3ffaad2b9bc8c64165bca02317bd2010323b8e442227fe99530103ff5"
+  }
+}

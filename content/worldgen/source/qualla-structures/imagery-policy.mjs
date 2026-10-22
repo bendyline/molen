@@ -6,6 +6,7 @@
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import { inspectQuallaPrimaryRights, modelRightsRoot } from './imagery-primary-rights.mjs';
 
 export const PUBLIC_DOMAIN_POLICY = 'qualla-public-domain-imagery@1';
 const read = (p) => (fs.existsSync(p) ? JSON.parse(fs.readFileSync(p)) : null);
@@ -85,6 +86,7 @@ export function inspectImageryPolicy({
   stories,
   conflicts = [],
   allowUnhashed = false,
+  rightsRoot = modelRightsRoot,
 }) {
   const published = [];
   for (const story of stories ?? []) {
@@ -110,12 +112,24 @@ export function inspectImageryPolicy({
   };
   const results = (references ?? []).map((reference) => {
     const blockers = [];
+    const file = inside(qualla, reference.path);
+    const primary = reference.publicDomainEvidence
+      ? inspectQuallaPrimaryRights(
+          reference,
+          file && fs.existsSync(file) ? fs.readFileSync(file) : Buffer.alloc(0),
+          rightsRoot,
+        )
+      : null;
+    // Missing archival credit is not a named photographer. Permit it only when
+    // the exact original and its item-specific primary release prove that omission.
+    const unrecordedCreator =
+      primary?.eligible && primary.creatorAttribution === 'unrecorded-archival';
+    const artistMatches = (a, b) => a === b || (unrecordedCreator && !a?.trim() && !b?.trim());
     if (!publicDomainLabel(reference.license)) blockers.push('not-public-domain');
-    if (!reference.artist?.trim() || !family(reference))
+    if ((!reference.artist?.trim() && !unrecordedCreator) || !family(reference))
       blockers.push('incomplete-source-attribution');
     if (conflicts.some((c) => c.path === reference.path))
       blockers.push('conflicting-source-records');
-    const file = inside(qualla, reference.path);
     if (!file || !reference.path.startsWith('_m/') || !fs.existsSync(file))
       blockers.push('local-original-missing');
     const folder = typeof reference.path === 'string' ? path.posix.dirname(reference.path) : '';
@@ -130,14 +144,18 @@ export function inspectImageryPolicy({
       !original ||
       family(original) !== family(reference) ||
       original.license !== reference.license ||
-      original.artist !== reference.artist
+      !artistMatches(original.artist, reference.artist)
     )
       blockers.push('original-source-metadata-disagrees');
     const cleared = published.filter(
       ({ image }) =>
         family(image) === family(reference) &&
         image.license === reference.license &&
-        image.artist === reference.artist &&
+        (artistMatches(image.artist, reference.artist) ||
+          // Article galleries may omit a duplicate author field. The matching
+          // original-media record still has to name the bound photographer;
+          // a conflicting published author never inherits this fallback.
+          (!image.artist?.trim() && original?.artist === reference.artist)) &&
         !conflicts.some((c) => c.path === image.path) &&
         (image.path === reference.path ||
           // Qualla can publish an unchanged local copy while the media record
@@ -152,6 +170,8 @@ export function inspectImageryPolicy({
         (/^PD[-_ ](?!US[ _]architecture\b)/i.test(category) ||
           /^CC[-_]?0|^CC[-_]Zero$/i.test(category)),
     );
+    if (primary?.eligible) basis.push(primary.basis);
+    else if (primary) blockers.push(primary.blocker);
     if (publicDomainLabel(reference.license) && !/^cc0/i.test(reference.license) && !basis.length)
       blockers.push('public-domain-basis-not-recorded');
     let sha256 = null;
@@ -168,6 +188,7 @@ export function inspectImageryPolicy({
       eligible: blockers.length === 0,
       blockers,
       publicDomainBasis: basis,
+      ...(primary?.eligible ? { primaryRights: primary } : {}),
       publishedIn: cleared.map(({ storyId, articlePath }) => ({ storyId, articlePath })),
       ...(cleared.some(({ image }) => image.path !== reference.path)
         ? {

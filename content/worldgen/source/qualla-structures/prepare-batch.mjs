@@ -50,14 +50,20 @@ export function sourceFamily(image) {
   } catch {
     /* Preserve malformed original metadata. */
   }
-  return decoded
+  const canonical = decoded
     .replace(
       /^https?:\/\/(?:commons\.wikimedia\.org\/wiki\/|en\.wikipedia\.org\/wiki\/)?File:/i,
       'commons:',
     )
     .replaceAll('_', ' ')
-    .normalize('NFC')
-    .toLowerCase();
+    .normalize('NFC');
+  // MediaWiki folds the first title character, not the rest of the filename.
+  // GMRT.jpg and Gmrt.JPG are distinct originals with different licenses.
+  if (canonical.startsWith('commons:')) {
+    const title = canonical.slice('commons:'.length);
+    return `commons:${title.charAt(0).toUpperCase()}${title.slice(1)}`;
+  }
+  return canonical.toLowerCase();
 }
 
 export function rankReference(image, name) {

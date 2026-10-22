@@ -1,0 +1,397 @@
+{
+  "planId": "giant_metrewave_radio_telescope",
+  "id": "giant_metrewave_radio_telescope",
+  "assetId": "molen.worldgen.structure.giant_metrewave_radio_telescope",
+  "title": "Giant Metrewave Radio Telescope",
+  "category": "radio-telescope-array",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 74.0504627,
+    "latitude": 19.093107
+  },
+  "size": [
+    23363.9580078125,
+    118.03592681884766,
+    23628.0576171875
+  ],
+  "actualBounds": {
+    "min": [
+      -11268.173828125,
+      -34.10186767578125,
+      -9456.525390625
+    ],
+    "max": [
+      12095.7841796875,
+      83.9340591430664,
+      14171.5322265625
+    ]
+  },
+  "visualBrief": "Build the complete 30-antenna GMRT array at the operator’s named station coordinates. Each antenna has a 45 m parabolic wire-mesh reflector, an 18.54 m focal length, a quadrupod feed, open rear bracing and an altitude-azimuth mount on a splayed steel tower. Use a representative static elevation of 60 degrees toward the south. Preserve all 14 central and 16 outlying stations and their relative elevations. Fine mesh, mounts, fixtures and hidden connections are simplified medium-fi interpretations of the cleared photograph and operator dimensions. Exclude administration buildings, electronics, roads, farms, vegetation, fences, signs, people and vehicles.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:GMRT.jpg"
+  ],
+  "stories": [
+    {
+      "id": "giant-metrewave-radio-telescope-wp",
+      "url": "https://qualla.com/giant-metrewave-radio-telescope/"
+    }
+  ],
+  "referenceInputHash": "23bdefbe916f2643df8016401046da7bc0c23a185fda9f07fd0de76b1ab9d637",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-giant-metrewave-radio-telescope.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c",
+    "embed-graph-fallbacks.mjs": "sha256:bb6d50823d6a2d648529291c32da67c3bfc82a0918852725d90b2c68b626a9a6"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-giant-metrewave-radio-telescope.mjs",
+    "level": "skyline",
+    "export": "gmrtSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "mesh": {
+        "slot": "roof",
+        "graph": "metal_perforated_square",
+        "roughness": 0.85,
+        "metallic": 0.25,
+        "doubleSided": true,
+        "alphaMode": "MASK",
+        "alphaCutoff": 0.5
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.2,
+        "doubleSided": true
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_stainless_beadblasted",
+        "roughness": 0.87,
+        "metallic": 0.35,
+        "doubleSided": true
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "embeddedCanonicalGraphs": [
+      "metal_perforated_square"
+    ],
+    "authoredLevels": {
+      "district": {
+        "export": "gmrtDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "mesh": {
+            "slot": "roof",
+            "graph": "metal_perforated_square",
+            "roughness": 0.85,
+            "metallic": 0.25,
+            "doubleSided": true,
+            "alphaMode": "MASK",
+            "alphaCutoff": 0.5
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.2,
+            "doubleSided": true
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.87,
+            "metallic": 0.35,
+            "doubleSided": true
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        },
+        "embeddedCanonicalGraphs": [
+          "metal_perforated_square"
+        ]
+      },
+      "street": {
+        "export": "gmrtStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "mesh": {
+            "slot": "roof",
+            "graph": "metal_perforated_square",
+            "roughness": 0.85,
+            "metallic": 0.25,
+            "doubleSided": true,
+            "alphaMode": "MASK",
+            "alphaCutoff": 0.5
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.2,
+            "doubleSided": true
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.87,
+            "metallic": 0.35,
+            "doubleSided": true
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        },
+        "embeddedCanonicalGraphs": [
+          "metal_perforated_square"
+        ]
+      },
+      "closeup": {
+        "export": "gmrtCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "mesh": {
+            "slot": "roof",
+            "graph": "metal_perforated_square",
+            "roughness": 0.85,
+            "metallic": 0.25,
+            "doubleSided": true,
+            "alphaMode": "MASK",
+            "alphaCutoff": 0.5
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.2,
+            "doubleSided": true
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.87,
+            "metallic": 0.35,
+            "doubleSided": true
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        },
+        "embeddedCanonicalGraphs": [
+          "metal_perforated_square"
+        ]
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_perforated_square"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -34.6,
+    "far": 84000
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "NativeC02node5773281557exactanchor[74.0504627,19.093107], heading0east/south. PrimaryoperatorTable3suppliesall30relativebx/by/bzvectorsaboutC02, orthonormallyconvertedtoEast/North/Upatanchorlatitude; localZ=-North. MissingC07/E01/S05stationnumbersintentional,notmissingantennas. NamednativeC03/C06crosscheckswithinabout4moftransformedoperatorpositions; no fittedrotation/scale. Earthcurvature/localmapprojectionandrawDEMdatumarenotcertifiedsiteground; primaryrelativeUppreservedwithoutfitting. 45mdiameterand18.54mfocallengthmeasuredoperatorfacts; bases/forks/trusssections/pointingestimatedfromclearbutblurryoriginal. All30stationsretained, noone-dishsubstitute. Independent30km121x121field/20rawTerrariumtilesfrozenbeforegeometryatC02southbasepoint. RawDEMandprimaryrelativeUpbothpreservedwithoutfitting; exactcompatiblehostcontactandcurvature/projectionoffsetsatouterstationsuncertified.",
+    "anchor": [
+      74.0504627,
+      19.093107
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        74.0504627,
+        19.093057592885376
+      ],
+      "modelHeight": 0,
+      "basis": "FixedC02southbaseapproachbeforeindependent30kmterrainandgeometry. Other29stationsretainprimaryrelativeUpandarenotclampedtomodelorDEM. Noall-siteplane/groundfit."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/5773281557",
+      "operator/C00",
+      "operator/C01",
+      "operator/C02",
+      "operator/C03",
+      "operator/C04",
+      "operator/C05",
+      "operator/C06",
+      "operator/C08",
+      "operator/C09",
+      "operator/C10",
+      "operator/C11",
+      "operator/C12",
+      "operator/C13",
+      "operator/C14",
+      "operator/E02",
+      "operator/E03",
+      "operator/E04",
+      "operator/E05",
+      "operator/E06",
+      "operator/S01",
+      "operator/S02",
+      "operator/S03",
+      "operator/S04",
+      "operator/S06",
+      "operator/W01",
+      "operator/W02",
+      "operator/W03",
+      "operator/W04",
+      "operator/W05",
+      "operator/W06"
+    ],
+    "source": "https://www.openstreetmap.org/node/5773281557",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:925e5f4d4244d30de04ed10aec9870c4de3d7de1bd05ae632ebb5474be3bc3cd",
+    "notes": "Complete30-antennaGMRTarray: all14centralstationsand16outlyingstationsatoperatorrelative3Dcoordinates; each45mopenwireparabolicreflector/18.54mfocalquadrupodfeed, rearsupportframework, altitude-azimuthfork/trunnionsandsplayedsteeltower/concretefeet. Staticrepresentative60degreeelevation/southwardpointing, notliveoperation. Excludeindependentadministration/labs/guesthouse/canteen, fiberconduits, roads/farms/vegetation/fences/publicground, signs/people/vehicles/interiorelectronics."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_perforated_square",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.085,
+        0.085
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "NativeC02node5773281557exactanchor[74.0504627,19.093107], heading0east/south. PrimaryoperatorTable3suppliesall30relativebx/by/bzvectorsaboutC02, orthonormallyconvertedtoEast/North/Upatanchorlatitude; localZ=-North. MissingC07/E01/S05stationnumbersintentional,notmissingantennas. NamednativeC03/C06crosscheckswithinabout4moftransformedoperatorpositions; no fittedrotation/scale. Earthcurvature/localmapprojectionandrawDEMdatumarenotcertifiedsiteground; primaryrelativeUppreservedwithoutfitting. 45mdiameterand18.54mfocallengthmeasuredoperatorfacts; bases/forks/trusssections/pointingestimatedfromclearbutblurryoriginal. All30stationsretained, noone-dishsubstitute.",
+    "Full30stationarrayfromprimary2025-12-15operatornumericTable3andnativeC02identity; 14centralstations/16outerstations,nofabricatedregularrows. AllrelativeUpvaluespreserved. Coarselocalcartographicprojection/EarthcurvatureandrawDEMdiffer; exactlivehostcontactunverified. No whole25kmground/roads/farmsmesh.",
+    "Exactpublished640x480SankashidownmobilePDoriginalindividuallyinspected/nativeSHA1matched; correctcase-sensitivefilenameGMRT.jpgisdistinctfromattributionGmrt.JPG. Selectionbugfixedwithfocusedregressionswithoutalteringsiblingmedia. Allattributionimages/NASAcelestialphotosunused. No externalphotographneeded/copiedor generatedbitmaptextures.",
+    "45mdiameter,18.54mfocallengthandfourfeedsupportlegsareoperatorfacts. Realparabolicwiremeshusescanonicalalpha-coverageperforatedsquaregraph,8.5cmrepeatcoarserthanactual10/15/20mmwirecellsasanexplicitmedium-fiapproximation. Palephysicalconcentric/radialsteelmembers,openrearlatticeandfork/fourlegs/feedhousingareoriginalboundedforms. No opaqueparabolicdishsubstituteintheworldmaterials.",
+    "Sourcephotographisblurry; fineconnections/actualpedestal/fork/rearsection/census/servocoversandpaint/currentequipmentchangesestimated. 18mvertex/14mmountheight,60degreeelevation/southwardstaticpointingareboundedrepresentativeparameterswithintheoperatorrange, notcurrenttrackingstate orsurvey. Templateconsistentacross30stations.",
+    "LowerLODsreducereflectorsegments/ribs/mountdetailsbutretainall30actualstationlocations,theentire45mspan/parabolicprofile,quadrupodfeeds/supporttower. Administration/control/guesthouse/labs/canteen/electronics/fibercables/fences/landscape/signs/vehicles/peopleexcluded.",
+    "Independent30km250mgrid/14641values/20originalTerrariumtilesfrozenbeforegeometry. Pixelspacingabout36mdoesnotimplysurveyaccuracy; fieldincludesurban/vegetationheightreturns. FrozenC02datumpointnotfittedtoprimarytable. Portable/sharedflatgroundonlygeometryfixture, remainingstationbasesnaturallyshowrelativeheightoffsetsagainstflatplane; nothost-groundproof. PreviewreplaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "complete-thirty-station-y-array-at-operator-coordinates",
+      "position": [
+        -21000,
+        18000,
+        26500
+      ],
+      "lookAt": [
+        0,
+        20,
+        2200
+      ]
+    },
+    {
+      "name": "central-array-fourteen-dishes-at-real-stations",
+      "position": [
+        -900,
+        700,
+        1550
+      ],
+      "lookAt": [
+        0,
+        30,
+        400
+      ]
+    },
+    {
+      "name": "c02-open-parabolic-mesh-radial-framework-and-focal-feed",
+      "position": [
+        64,
+        39,
+        65
+      ],
+      "lookAt": [
+        0,
+        21,
+        0
+      ]
+    },
+    {
+      "name": "c02-backside-quadrupod-altaz-fork-and-splayed-tower",
+      "position": [
+        -52,
+        34,
+        -48
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 43380,
+    "vertices": 130140,
+    "materials": 4,
+    "bytes": 5209652,
+    "sha256": "sha256:47603978682840e5b7f11ed3c0b47bc7b58616aa520d8e4586b529a36c8608d5"
+  }
+}

@@ -252,3 +252,39 @@ test('collection member aliases remain reserved even when a model is already rea
   });
   assert.throws(() => f.run(), /Other-device work cannot enter the local batch/);
 });
+
+test('Commons filename case preserves distinct originals and their licenses', (t) => {
+  const f = fixture(t);
+  const a = 'https://commons.wikimedia.org/wiki/File:GMRT.jpg';
+  const b = 'https://commons.wikimedia.org/wiki/File:Gmrt.JPG';
+  assert.notEqual(sourceFamily({ sourceUrl: a }), sourceFamily({ sourceUrl: b }));
+  assert.equal(
+    sourceFamily({ sourceUrl: a }),
+    sourceFamily({ sourceUrl: a.replace('GMRT', 'gMRT') }),
+  );
+  f.put('_m/a/b/c/d/test/one.jpg', 'small-public-domain-original');
+  f.put('_m/a/b/c/d/test/two.jpg', 'large-attribution-original');
+  f.put(f.structure.stories[0].sourcePath, {
+    media: {
+      images: [
+        {
+          path: '_m/a/b/c/d/test/one.jpg',
+          sourceUrl: a,
+          width: 640,
+          height: 480,
+          license: 'Public domain',
+        },
+        {
+          path: '_m/a/b/c/d/test/two.jpg',
+          sourceUrl: b,
+          width: 2736,
+          height: 3648,
+          license: 'CC BY-SA 3.0',
+        },
+      ],
+    },
+  });
+  const got = collectReferences(f.dir, [f.structure], f.entry).candidates;
+  assert.equal(got.filter((r) => r.sourceUrl === a && r.license === 'Public domain').length, 1);
+  assert.equal(got.filter((r) => r.sourceUrl === b && r.license === 'CC BY-SA 3.0').length, 1);
+});

@@ -1,0 +1,358 @@
+{
+  "planId": "bristol_hotel_mar_del_plata",
+  "id": "bristol_hotel_mar_del_plata",
+  "assetId": "molen.worldgen.structure.bristol_hotel_mar_del_plata",
+  "title": "Bristol Hotel, Mar del Plata",
+  "category": "hotel-commercial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -57.54373375,
+    "latitude": -38.001642225
+  },
+  "size": [
+    176.3499984741211,
+    25.5,
+    200.49999618530273
+  ],
+  "actualBounds": {
+    "min": [
+      -130.1999969482422,
+      -1,
+      -35.29999923706055
+    ],
+    "max": [
+      46.150001525878906,
+      24.5,
+      165.1999969482422
+    ]
+  },
+  "visualBrief": "Full historical1913three-block hotel ensemble: original four-gable timber-grid lodging house/two pyramidal turrets/open balconies and related lodging wings; separate ItalianateUpublic halls/real open high courtyard/low glazed veranda/pavilions; separate four-floor academicistUguest annex/mansard/three frontal pavilions. Three exact published Qualla1899/1913PDoriginals, current street-vector registration and archival text; counterpart wings/annex details and metric positions/section approximate.",
+  "nativeAxes": {
+    "x": "northeast along exact currentEntreRiosRivadavia→SanMartin street vector",
+    "y": "up",
+    "z": "southeast toward historic public halls/sea"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1913",
+    "validFrom": "1913-01-01",
+    "validUntil": "1914-01-01"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Terraza_bristol_hotel.jpg",
+    "https://commons.wikimedia.org/wiki/File:Lodging_house_of_hotel_bristol_mdp.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bristol_hotel_frente.jpg"
+  ],
+  "stories": [
+    {
+      "id": "bristol-hotel-mar-del-plata-wp",
+      "url": "https://qualla.com/bristol-hotel-mar-del-plata/"
+    }
+  ],
+  "referenceInputHash": "e84d1e862fc7eb64397a70f2ae5ac48a20f6c073c865ed2ee6ef918b7fdbbba4",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-bristol-hotel-mar-del-plata.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-bristol-hotel-mar-del-plata.mjs",
+    "level": "skyline",
+    "export": "bristolHotelSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.34,
+        "metallic": 0.07
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bristolHotelDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.34,
+            "metallic": 0.07
+          }
+        }
+      },
+      "street": {
+        "export": "bristolHotelStreet",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.34,
+            "metallic": 0.07
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.4,
+    "groundY": -1.5
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent512mraw urban field frozen before geometry at fixed reconstructed old-house dry approach. Current original street intersections register approximate historic blocks; building corners/1913thresholds/relative floors/shoreline not surveyed or fitted.",
+    "anchor": [
+      -57.54373375,
+      -38.001642225
+    ],
+    "heading": 1.0109833863645181,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -57.54337633627368,
+        -38.00181872540382
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed dry approach3moutward from reconstructed original-house front, chosen before terrain/geometry; not a surveyed1913threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "current-road-block-control/original-lodging-block",
+      "reconstruction/lodgingHouse",
+      "reconstruction/rivadaviaLodgingWing",
+      "reconstruction/sanMartinLodgingWing",
+      "reconstruction/publicHalls",
+      "reconstruction/guestAnnex-eastBar",
+      "reconstruction/guestAnnex-northReturn",
+      "reconstruction/guestAnnex-southReturn"
+    ],
+    "source": "https://api.openstreetmap.org/api/0.6/map.json?bbox=-57.5465,-38.0037,-57.5405,-37.9989",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b98244d07880d9ea229e6f183653a73ac7dc97426202e60019727863794f3de6",
+    "notes": "Full1913three-block Bristol Hotel ensemble. OriginalTudor main lodging house, two distinct related lodging wings, separate public/diningUwith genuine open high courtyard/low glazed front terrace and three roof pavilions, separate four-floor academicistUguest annex/mansard and three frontal roof pavilions. Keep open inter-building gaps and courtyards. Use all three already inspected exact1899/1913QuallaPDoriginals; no repeat source browsing. Annex itself not photograph-verified: exterior form from historic text, fine section/census estimates. Bodydimensions/colors/positions/roof backs not surveyed. No modern Bristol Center, city/street/beach/vegetation/whole-site slab, signs/people/vehicles or underground tunnel interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Historical1913only; no default current eligibility. Full three-block scope retained: original mainTudorhouse/related1904and1908lodging wings, separate pre1920sUpublic/dining block and separate post1910four-floor academicist guest annex. No modern Bristol Center or same-name modern hotel. Exact additional-wing/annex details/census are bounded reconstructions, not photographically verified replicas.",
+    "Three exact already-published Qualla mechanical originals inspected:1899Carnaghi y Moodypublic overview/terrace, and uncredited original-house plate in WJHolland1913NewYorkbook. Exact nativeSHA1s, named periodical/BNEissue/PD-AR-Photo/PD-US-expired grants and UC-library1913USNOT_IN_COPYRIGHTbook metadata/plate caption bound. No creator invented, media metadata untouched, questionable circa1930Kohlmann/anonymous web photos unused, no supplemental photo/copied pixels/generated bitmap.",
+    "Photo-established main-house four front gables, timber grid/representative geometric tracery, three floors over arched masonry base, upper projecting balconies, steep slate roofs/two text-documented pyramidal turrets retained. Main45x28mcomes from secondary description; exact floor heights, turret positions, return roof junctions, exposed back/extra lodging houses and neutral historic colors estimated.",
+    "PublicUblock preserves clear high courtyard, long low glazed own terrace/verandas and distinct pale Italianate two-level halls/roof pavilions. Selected1899form represents pre1920sinfill;1909minor alterations not individually surveyed. Annex French academicist facade, four guest floors after1910, mansard and three principal pavilion masses follow historical text; its own photographic exterior and metric corners unavailable. No claim of full-period photographic coverage.",
+    "Current original native lodging-block intersections and EntreRios vector set signed placement frame; modern roads/shoreline cannot certify historic demolished footprints. Dining/annex block geometry, native text conflicts about triangular third block, component separations and exact1913relative floors explicit estimates. No parcel extrusion, streets/plaza/beach/terrain scenery or underground tunnel interiors.",
+    "Independent raw terrain/approach remain unchanged without clipping, fitting or flattening. Composite urban heights do not certify historic sidewalk/basement/threshold contact;1mdeep intrinsic bases/short own steps approximate. Review ground/synthetic context are fixtures. No flags/signs/logos, people/carriages/cars/trees/fences or site platforms."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "original-tudor-lodging-house-four-gables-balconies-and-two-turrets",
+      "position": [
+        52,
+        29,
+        72
+      ],
+      "lookAt": [
+        0,
+        8,
+        21
+      ]
+    },
+    {
+      "name": "half-timber-tracery-real-arched-base-and-open-balconies",
+      "position": [
+        27,
+        14,
+        49
+      ],
+      "lookAt": [
+        8,
+        8,
+        34
+      ]
+    },
+    {
+      "name": "separate-public-u-halls-open-courtyard-and-low-glazed-terrace",
+      "position": [
+        85,
+        62,
+        218
+      ],
+      "lookAt": [
+        0,
+        7,
+        119
+      ]
+    },
+    {
+      "name": "third-block-academicist-guest-annex-mansard-and-three-pavilions",
+      "position": [
+        -18,
+        43,
+        186
+      ],
+      "lookAt": [
+        -92,
+        9,
+        123
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 31237,
+    "vertices": 93711,
+    "materials": 6,
+    "bytes": 3752124,
+    "sha256": "sha256:cfadc40db403030374ad277658276766f022457a60c729340a9c530e8cbf24cb"
+  }
+}

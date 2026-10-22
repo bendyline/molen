@@ -1,0 +1,362 @@
+{
+  "planId": "orlando_power_station",
+  "id": "orlando_power_station",
+  "assetId": "molen.worldgen.structure.orlando_power_station",
+  "title": "Orlando Power Station",
+  "category": "industrial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 27.92387875,
+    "latitude": -26.253989949999998
+  },
+  "size": [
+    459.07493591308594,
+    90,
+    234.5444564819336
+  ],
+  "actualBounds": {
+    "min": [
+      -151.71983337402344,
+      0,
+      -202.5441131591797
+    ],
+    "max": [
+      307.3551025390625,
+      90,
+      32.000343322753906
+    ]
+  },
+  "visualBrief": "Complete representative2007principal Orlando Power Station exterior: whole long mainplant building on original native footprint, full roofmonitor/facade/wings and allfour intrinsic narrow chimneys, plus both whole legged/hollow hyperboloid cooling towers at their original native centers/footprints. Historical-only: original mainbuilding collapsed2014. Exclude post2009bungee/bridge/cage/newvenues, later ruins/redevelopment, lake/reservoir/grounds/pylons/rail/vehicles/people and detached utility buildings. No two-tower-only substitute or restored operating interior. Retain originalwhole native mainplant/two towerbase dimensions and relative spacing. Mainplant is roughly40mtall/fourstacks roughly70mfrom photograph proportions; refine plausible section within the old full exterior, not a generic opaque plant block. Repeated dark recessed/open facade bays in concrete bands, low long clerestory/openmonitor, 4slenderstackslots nearfront. Two original90mnativeheight towers must have true hollow open tops/rims, narrowing neck and open lower supported intakes; no capped solidcones. Preserve towerconcrete/radius profiles and bounded broad paint fields without exact mural/brand/lettering copies. Hidden rear/roof/brick/window/stack/paintcensus bounded. Original2007phase means no bungeebridge installed2009; do not borrow later licensedphoto pixels for unseen machinery. Freeze independent1000mfield at fixed original frontbank before geometry; historical/site grade/hostattachment remains unverified.",
+  "nativeAxes": {
+    "x": "southeast/along mainhall",
+    "y": "up",
+    "z": "southwest/front towardOrlandoDam"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2007",
+    "validFrom": "2007-01-01",
+    "validUntil": "2008-01-01"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:SowetoCoolingTowers.jpg",
+    "https://commons.wikimedia.org/wiki/File:Soweto_Cooling_Towers.JPG"
+  ],
+  "stories": [
+    {
+      "id": "orlando-power-station-wp",
+      "url": "https://qualla.com/orlando-power-station/"
+    }
+  ],
+  "referenceInputHash": "8cbf55b72f9294e1fd287e97079f345bc062d3768c3becf66a6c7d827508c864",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-orlando-power-station.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-orlando-power-station.mjs",
+    "level": "skyline",
+    "export": "orlandoSkyline",
+    "errorMeters": 2.7,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.12
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84,
+        "metallic": 0.02
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.93,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "orlandoDistrict",
+        "errorMeters": 1.05,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.12
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0.02
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.93,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "orlandoStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.12
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0.02
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.93,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "orlandoCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.12
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0.02
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.93,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.7,
+    "groundY": -0.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named mainplantway171672274/Q15264334 original4vertex outline and original two37vertex cooling-tower footprintsways171672273/171672272; no arbitrary parcel/tower placement. Existing mainplant geometry is now taggedruins; it is registration/control for2007reconstruction, not evidence of present intact survival. Fixed+XSEalonglongmainhall,+ZSWtowardOrlandoDam/frontphoto,+Yup; original northwest-front footprint corner fixed as ground datum before terrain/geometry. Both native towerheights90m retained; story/operatorapprox100m not used to stretch native geometry. Mainheight/stacksection/hiddenrear elevations and pre2014roof/bay partitions remain bounded photographic estimates. Independent1000mfield frozen before geometry; modern source lakeoutliers to-8231.2297m diagnostic only. Historical2007grade/threshold/tower groundcontact unverified; flat separate review stage.",
+    "anchor": [
+      27.92387875,
+      -26.253989949999998
+    ],
+    "heading": -0.6600843758474485,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        27.922505,
+        -26.2533782
+      ],
+      "modelHeight": 0,
+      "basis": "Original native northwest-front mainplant corner fixed before sampling; approximate historical yard/threshold datum, not certified modern terrain/shoreline."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/171672274",
+      "way/171672273",
+      "way/171672272"
+    ],
+    "source": "https://www.openstreetmap.org/way/171672274",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e6743b092f9bf6a2dc9eb6756fc1252ca0600caf85383801e1ab5f71e5237847",
+    "notes": "Complete representative2007principal Orlando Power Station exterior: whole long mainplant building on original native footprint, full roofmonitor/facade/wings and allfour intrinsic narrow chimneys, plus both whole legged/hollow hyperboloid cooling towers at their original native centers/footprints. Historical-only: original mainbuilding collapsed2014. Exclude post2009bungee/bridge/cage/newvenues, later ruins/redevelopment, lake/reservoir/grounds/pylons/rail/vehicles/people and detached utility buildings. No two-tower-only substitute or restored operating interior."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named mainplantway171672274/Q15264334 original4vertex outline and original two37vertex cooling-tower footprintsways171672273/171672272; no arbitrary parcel/tower placement. Existing mainplant geometry is now taggedruins; it is registration/control for2007reconstruction, not evidence of present intact survival. Fixed+XSEalonglongmainhall,+ZSWtowardOrlandoDam/frontphoto,+Yup; original northwest-front footprint corner fixed as ground datum before terrain/geometry. Both native towerheights90m retained; story/operatorapprox100m not used to stretch native geometry. Mainheight/stacksection/hiddenrear elevations and pre2014roof/bay partitions remain bounded photographic estimates.",
+    "Complete representative2007principal plant exterior, allfour narrow chimneys and both whole cooling towers. Original mapped mainplant footprint and all tower base controls retained in detailed geometry. Native towerheight90m, photographic mainhall40m/fourstack70m, facade/monitor sections and neck/rim/leg shapes bounded. Mainhall has real recessed bays at district/street/closeup; skyline uses flat window cues. Tower tops/interiors/intakes remain truly hollow/open at everyLOD, no capped solidcones.",
+    "Two exact published Qualla originals individually inspected/nativeSHA1matched: Exasbartos2007ownPD-self3648x2432frontplant/towers and TimGiddings2004ownPD-user-en1280x960wholeplant/fourchimneys/towers. Original whole structure is historical-only because primaryNRCSregulator reports confirm collapse25June2014.2007is a representative viewing year, not an exact exposure day; valid2007-01-01until2008-01-01/currentWorldEligible=false. No2009bungeebridge/cage or later redevelopment borrowed from licensedphotographs.",
+    "Original broad teal/white and varied earth/green/blue painted fields evoke the cleared historical exterior; exact mural/advertisement/logo/lettering designs are not copied or represented as accurate. Paint census/current artwork, exact facade bay/brick/glazing census, hidden rear roofs/services/foundation and fine chimney/leg sections are photographic estimates. No original artist texture/photo/generatedbitmap/downloadedmesh used.",
+    "Current native mainplant footprint is taggedruins and supplies original plan registration only. This asset includes the complete old mainplant, rather than a two-tower-only substitute; it is not eligible for default current-world placement. Detached modern utility/entertainment buildings, museumclockartifact, lake/water/roads/railways/pylons/grounds/people/vehicles and interiors/machinery excluded; no whole-site floor.",
+    "Independent1000m129x129field/16641samples/4rawTerrariumtiles frozen at original northwestfrontcorner, datum1629.6835m, unchanged. Implausible negative inland/lake samples to-8231.2297m are diagnostic evidence only and never control geometry or historical yard/water levels. Portable/shared/context use separate flat review ground. Exact historical grade/footings/thresholds and compatible live host attachment unverified; dated placement only/replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-historical-mainplant-fourstacks-and-both-towers",
+      "position": [
+        245,
+        125,
+        540
+      ],
+      "lookAt": [
+        75,
+        31,
+        -38
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "hollow-open-tower-tops-waists-and-leg-supported-intakes",
+      "position": [
+        335,
+        158,
+        -32
+      ],
+      "lookAt": [
+        240,
+        49,
+        -145
+      ]
+    },
+    {
+      "name": "whole-mainhall-recessed-bays-and-roofmonitor",
+      "position": [
+        30,
+        44,
+        125
+      ],
+      "lookAt": [
+        0,
+        23,
+        5
+      ]
+    },
+    {
+      "name": "rear-mainplant-and-four-open-chimney-collars",
+      "position": [
+        -70,
+        106,
+        -240
+      ],
+      "lookAt": [
+        0,
+        32,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 28212,
+    "vertices": 84636,
+    "materials": 5,
+    "bytes": 3388664,
+    "sha256": "sha256:01c3a59eb3aea71d9066fb525102d4adf239cc412a2e4765cfd896fa867968b3"
+  }
+}

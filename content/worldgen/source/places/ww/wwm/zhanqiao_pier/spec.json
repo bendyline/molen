@@ -1,0 +1,317 @@
+{
+  "planId": "zhanqiao_pier",
+  "id": "zhanqiao_pier",
+  "assetId": "molen.worldgen.structure.zhanqiao_pier",
+  "title": "Zhanqiao Pier",
+  "category": "pier-pavilion",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 120.31539335,
+    "latitude": 36.0582867
+  },
+  "size": [
+    51.61678123474121,
+    22.500000476837158,
+    406.5102233886719
+  ],
+  "actualBounds": {
+    "min": [
+      -25.48731231689453,
+      -6.400000095367432,
+      -393.5577087402344
+    ],
+    "max": [
+      26.12946891784668,
+      16.100000381469727,
+      12.9525146484375
+    ]
+  },
+  "visualBrief": "Complete native Zhanqiao Pier: stone retained shore approach, open southern bridge/discrete supports and enlarged stone head, two-storey octagonal Huilan Pavilion with swept orange-glazed double roofs, finial/red lattice/white open lower colonnade/teal bracket bands, blue perimeter rails and six-light ornamental white/bronze posts. Original native pier/roof plans, photographic estimated sections, no natural sea/shore or city/visitors/signs.",
+  "nativeAxes": {
+    "x": "across-pier",
+    "y": "up",
+    "z": "seaward"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:青岛栈桥_2009-04-21.jpg"
+  ],
+  "stories": [
+    {
+      "id": "zhanqiao-pier-wp",
+      "url": "https://qualla.com/zhanqiao-pier/"
+    }
+  ],
+  "referenceInputHash": "7a78017305bc68dbf99880b6015cd19d4a31ae52ac528f81c1c8b3cb39097d17",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-zhanqiao-pier.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-zhanqiao-pier.mjs",
+    "level": "skyline",
+    "export": "zhanqiaoSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "white": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_glazed",
+        "roughness": 0.62,
+        "metallic": 0
+      },
+      "paint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "trim",
+        "localRef": "palette:#feffff",
+        "roughness": 0.44,
+        "metallic": 0.06
+      },
+      "iron": {
+        "slot": "trim",
+        "localRef": "palette:#fffefe",
+        "roughness": 0.67,
+        "metallic": 0.32
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "zhanqiaoDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "trim",
+            "localRef": "palette:#feffff",
+            "roughness": 0.44,
+            "metallic": 0.06
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#fffefe",
+            "roughness": 0.67,
+            "metallic": 0.32
+          }
+        }
+      },
+      "street": {
+        "export": "zhanqiaoStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "trim",
+            "localRef": "palette:#feffff",
+            "roughness": 0.44,
+            "metallic": 0.06
+          },
+          "iron": {
+            "slot": "trim",
+            "localRef": "palette:#fffefe",
+            "roughness": 0.67,
+            "metallic": 0.32
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -6.8
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Four exact original OSMwaypayloads establish named Zhanqiao1474305748pier plan, octagonal Huilan131985941and two roof outlines1526319733/734. Original coordinates retained, no basemap quantization. Anchor native octagon vertex mean; signed axis from longest straight pier edge. The mapped pier envelope is about400m rather than the often stated440mnominal length; preserve actual native coordinates without stretching to prose. Native roof-part5/10mheight tags are coarse shape estimates; photographic swept sections and upper finial remain explicitly estimated.",
+    "anchor": [
+      120.31539335,
+      36.0582867
+    ],
+    "heading": 0.2616934424520568,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        120.31425330664328,
+        36.06172773671135
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed paved shore approach3mbeyond original pier northmost vertex before terrain acquisition. Flat deck is approximate shoreY0; tidal and footing contact/host water datum unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1474305748",
+      "way/131985941",
+      "way/1526319733",
+      "way/1526319734"
+    ],
+    "source": "https://www.openstreetmap.org/way/1474305748",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:db971af724a4b9e46731ae3b23c0417b0e39fd5b28aaa0b220ad596a1b9d0fc1",
+    "notes": "Complete Zhanqiao Pier intrinsic structure: original long paved approach/causeway and open southern bridge on discrete supports, native enlarged stone pier head, two-storey octagonal Huilan Pavilion with two swept orange-tile roofs/red lattice/white colonnade/teal bracket band, perimeter blue rails and representative six-light ornamental posts. No natural sea/shore/beach terrain, neighboring buildings/lighthouse, visitors, signs/logos, exhibition interior or temporary2026conservation works."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    }
+  ],
+  "limitations": [
+    "Four exact original OSMwaypayloads establish named Zhanqiao1474305748pier plan, octagonal Huilan131985941and two roof outlines1526319733/734. Original coordinates retained, no basemap quantization. Anchor native octagon vertex mean; signed axis from longest straight pier edge. The mapped pier envelope is about400m rather than the often stated440mnominal length; preserve actual native coordinates without stretching to prose. Native roof-part5/10mheight tags are coarse shape estimates; photographic swept sections and upper finial remain explicitly estimated.",
+    "Current permanent architectural form interpreted from exact2009own-photographerCC0original after Qualla-first inspection: original image bytes, matching2018FlickreviewR2transfer and present primary ImageObjectCC0release are saved; immutableNSID matches both primary creator records.1914pre-pavilion imagery, unknown historic sources,1988aerial/1931plans, attribution-licensed modern images and unrelated subjects are unused. No photographic textures or copied painted designs/text/brands/visitors.",
+    "Exact pier and three octagonal roof/building ways are retained. Roof-height5/10mmap tags are coarse estimates, not survey; swept eave/ridge sections and finial reach14.4mplus thin lightning rod16.1mabove shore datum by photographic interpretation. White16column portico, red/dark lattice windows, teal/gold abstract bracket bands and original symbolic ridge ornaments are representative. Hidden elevations/paintings/inscriptions and precise tile/column/lantern census are not claimed.",
+    "Northern retained approach, southern open sea bridge and enlarged stone head are all modeled. The150mapproximate open span has discrete8mbents/two legs, not a continuous solid wall. Foundation depths/caps, pier-deck level, head masonry/turrets/access-stair details, blue rail subdivisions and six-light lamp spacing/sections are photographic medium-fi estimates. Far LODs simplify supports/roof curvature/windows and group lamp repeats; nominal440mprose does not override the roughly400mnative footprint.",
+    "Temporary2026conservation closure/scaffolding is excluded; model represents permanent extant heritage architecture, not a live worksite. Nearby lighthouse/museum/shore promenade/buildings, natural water/beach/earth/vegetation, banners/boats/visitors and pavilion exhibitions are outside scope.",
+    "Fixed paved northern shore approach precedes terrain acquisition. Deck top.25mrelative to shore datum, modeled lower supports to-6.4m; these are bounded structural estimates, not surveyed tidal/seabed elevations. Raw terrain preserved without flattening/fitting; isolated inspection groundY-6.8does not certify precise host water/ground contact. No natural sea/shore slab."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "complete-native-pier-retained-approach-and-open-bridge",
+      "reviewLod": "skyline",
+      "position": [
+        240,
+        210,
+        -220
+      ],
+      "lookAt": [
+        0,
+        0,
+        -190
+      ]
+    },
+    {
+      "name": "double-swept-roofs-open-colonnade-and-lattice",
+      "position": [
+        25,
+        17,
+        -27
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "open-southern-bridge-stone-head-rails-and-lanterns",
+      "position": [
+        19,
+        7,
+        -78
+      ],
+      "lookAt": [
+        0,
+        -1,
+        -67
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 53870,
+    "vertices": 161610,
+    "materials": 6,
+    "bytes": 6467876,
+    "sha256": "sha256:d0328a4f7c3f496697027d7739069275630d8cd2a20626676d9f81b370d7a870"
+  }
+}

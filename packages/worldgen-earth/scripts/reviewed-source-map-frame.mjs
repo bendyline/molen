@@ -36,6 +36,7 @@ export function reviewedSourceMapFrame({
       /\+Z\b/.test(frame.basis));
   const point = (p) => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite);
   const outline = frame.geometry?.outline;
+  const polygons = frame.geometry?.polygons;
   const lines = frame.geometry?.centerlines;
   const orientation = frame.orientationControl;
   const mappedNode = /^https:\/\/(?:www\.)?openstreetmap\.org\/node\/(\d+)\/?$/.exec(
@@ -77,6 +78,17 @@ export function reviewedSourceMapFrame({
   // Keep that measured line evidence instead of inventing an outline for readiness.
   const usableGeometry =
     (Array.isArray(outline) && outline.length >= 4 && outline.every(point)) ||
+    (Array.isArray(polygons) &&
+      polygons.length > 0 &&
+      polygons.every((ring) => {
+        if (!Array.isArray(ring) || ring.length < 3 || !ring.every(point)) return false;
+        const area = ring.reduce(
+          (sum, p, i) =>
+            sum + p[0] * ring[(i + 1) % ring.length][1] - ring[(i + 1) % ring.length][0] * p[1],
+          0,
+        );
+        return Math.abs(area) > 1e-8;
+      })) ||
     (Array.isArray(lines) &&
       lines.length > 0 &&
       lines.every(

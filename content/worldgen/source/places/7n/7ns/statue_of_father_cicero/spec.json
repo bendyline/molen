@@ -1,0 +1,363 @@
+{
+  "planId": "statue_of_father_cicero",
+  "id": "statue_of_father_cicero",
+  "assetId": "molen.worldgen.structure.statue_of_father_cicero",
+  "title": "Statue of Father Cícero, Juazeiro do Norte",
+  "category": "memorial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -39.3300071125,
+    "latitude": -7.179835175
+  },
+  "size": [
+    28.91878318786621,
+    27,
+    28.85747718811035
+  ],
+  "actualBounds": {
+    "min": [
+      -14.58531665802002,
+      0,
+      -14.136028289794922
+    ],
+    "max": [
+      14.333466529846191,
+      27,
+      14.72144889831543
+    ]
+  },
+  "visualBrief": "Whole standing white concrete FatherCicero sculpture andintrinsicpedestal/access:17mrobedcleric/sculptedhead/combedhair/ears/standingcollar/cassockfolds/centralbuttons, bentrightarm/handrestingoncane andlefthandholdingbroadbrimhat; completeoriginal8vertex10mpedestal/archedfrontrecess/upperbalustrade, intrinsic2.6mnotchedapproach and13original8vertexlowsteprings, twosideflightswithrails andwholeback/sides. Excludeouter61mplazaterrace/hill/nearbychurch/museum/cablecar/trees/people/graffiti/plaquetext/interiors. Notgenericflatstatuecardorhemispherewithfacepaint. Main8vertexwallstarts2.6mandtop10m; intrinsiclowsteppedringsretainoriginalnativecoordinates/heights, no full61mterracefloor. Frontface7hasactualarchedrecess; uppergalleryopenbalustradeandtwosideflights. Modelwhole17mfigurefrom10to27m: fullflowingcassockwithverticalfolds/columnofbuttons/collar, rightelbowforward/handoncaneonviewersleft, lefthandandbroadbrimhatviewersright. Headmusthavephysicalnose/cheekbones/brows/eyeandmouthrecesses/chin/ears/combedhair, notpaintedflatfaceorstockpose; fineportraitbounded. Wholeback/cassock/hatback/armvolume included. Coarsendistancecloth/face/finger/railcountswithoutlosingsilhouette/cane/hat/steppedbase. Freeze400mfieldatfixedfrontapproachbeforegeometry; preserveallrawvalues/tilebytes. Actualhillgroundattachmentunverified.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Est%C3%A1tua_de_Padre_C%C3%ADcero.JPG",
+    "https://commons.wikimedia.org/wiki/File:PadreCicero.jpg",
+    "https://commons.wikimedia.org/wiki/File:PadreCicero1.jpg"
+  ],
+  "stories": [
+    {
+      "id": "statue-of-father-cicero-wp",
+      "url": "https://qualla.com/statue-of-father-cicero/"
+    }
+  ],
+  "referenceInputHash": "e218671ddb115ac201ecf58bd6bc77c80e566e5280990c4d9da5d8f2954d38b3",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-statue-of-father-cicero.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-statue-of-father-cicero.mjs",
+    "level": "skyline",
+    "export": "ciceroSkyline",
+    "errorMeters": 1,
+    "surfaces": {
+      "sculpture": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.08
+      },
+      "recess": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "ciceroDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "sculpture": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.08
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "ciceroStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "sculpture": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.08
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "ciceroCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "sculpture": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.08
+          },
+          "recess": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.15
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Namedouterterraceway159117399/Q10277578confirmsidentityONLY; its61mwholeplazaslabisexcluded. Intrinsicmainpedestalway378578496hasall8originalvertices/height10m, notchedapproachway378578497all10originalvertices/height2.6m,13native8vertexstepscarry0.2..2.6mheighttags. Main8vertexmeananchor; front+Znormaltooriginalpedestalface7towardnotchedprincipalapproach, +Xparallelthatface. Sculpturefrontbearing/frameandunmappeduppergallery/twosideflightprofilesareoriginalboundedinterpretations, notsurveyedorientation. Municipal27moverall=17mfigure+10mpedestalcontrolsverticalcomposition. Independent400mfield frozenbeforegeometry; exacthillapproach/hostgroundcontactunverified.",
+    "anchor": [
+      -39.3300071125,
+      -7.179835175
+    ],
+    "heading": 0.1962477956741479,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -39.32997356866153,
+        -7.180002577958783
+      ],
+      "modelHeight": 0,
+      "basis": "Fixedfrontapproach[0,19]beyondoriginalintrinsicsteppedbase beforefield/geometry; exactlocalgroundgradeunverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/378578496",
+      "way/378578497",
+      "way/378577298",
+      "way/378577297",
+      "way/378577302",
+      "way/378577299",
+      "way/378577313",
+      "way/378577314",
+      "way/378577315",
+      "way/378577316",
+      "way/378577317",
+      "way/378577318",
+      "way/378577319",
+      "way/378577320",
+      "way/378577321"
+    ],
+    "source": "https://www.openstreetmap.org/way/159117399",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d37e368084781ea2f4c7dcf5260660a5508506022e3bb6265e663eaf289ee5ab",
+    "notes": "Whole standing white concrete FatherCicero sculpture andintrinsicpedestal/access:17mrobedcleric/sculptedhead/combedhair/ears/standingcollar/cassockfolds/centralbuttons, bentrightarm/handrestingoncane andlefthandholdingbroadbrimhat; completeoriginal8vertex10mpedestal/archedfrontrecess/upperbalustrade, intrinsic2.6mnotchedapproach and13original8vertexlowsteprings, twosideflightswithrails andwholeback/sides. Excludeouter61mplazaterrace/hill/nearbychurch/museum/cablecar/trees/people/graffiti/plaquetext/interiors. Notgenericflatstatuecardorhemispherewithfacepaint."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Namedouterterraceway159117399/Q10277578confirmsidentityONLY; its61mwholeplazaslabisexcluded. Intrinsicmainpedestalway378578496hasall8originalvertices/height10m, notchedapproachway378578497all10originalvertices/height2.6m,13native8vertexstepscarry0.2..2.6mheighttags. Main8vertexmeananchor; front+Znormaltooriginalpedestalface7towardnotchedprincipalapproach, +Xparallelthatface. Sculpturefrontbearing/frameandunmappeduppergallery/twosideflightprofilesareoriginalboundedinterpretations, notsurveyedorientation. Municipal27moverall=17mfigure+10mpedestalcontrolsverticalcomposition.",
+    "Threeexactalready-publishedKabesaomat/LourencoTorrescreator-PDQuallaoriginals individuallyinspected/nativeSHA1matched/item-specificPD-self/PD-usergrantsbound/existingpolicypasses.18families; unrelatedconflictinghero/Rodin/museumexcluded; MTurmandatorycreditambiguityuninspected/unused. No generatedbitmap/photo texture/downloadedmesh/officialsourcephoto/architecturediagram.",
+    "Officialmunicipal27moverall=17mfigure+10mpedestal. Originalcomplete8vertexmainbase/10vertexnotchedapproach/13native8vertex0.2..2.6msteps retained. Whole61mterraceplazaslabexcluded. Nativeheighttagsnotfigurescan; wholewhitecleric/cassockfolds/centralbuttons/collar/physicalhead/ears/brows/nose/eyeandmouthrecesses/combedhair, bentrightforearm/handoncane/lefthandholdinghat areoriginalboundedphotographicsculpturalinterpretations. Fineportrait/hiddenrear/cosmeticsnotphotogrammetry.",
+    "Uppergallery/archedfrontrecess/twosideflightprofiles/railcounts/closedpedestalinterior areoriginalboundedestimates. Physicaldetailedfingerseparation/caneclearance/hatbrimandcrown, wholecassockbackandsides included; distantreducedcloth/face/finger/railcounts preservewhole17mfigure/27mheight/cane/hat/base. No antenna/plaquetext/graffiti/people/interiorstairroom.",
+    "Independent400m129x129/16641values/2rawTerrariumtiles frozenbeforegeometrywithoutfit/flatten/reacquire. HillDEMnotlocalsurvey; portable/shared/contextflatgroundseparate. Nativepreview/replaceFootprint=false; actualhillgroundattachment/precisestairthresholdsunverified. No outerplaza/hill/church/museum/cablecar/trees/roads/neighbours/whole-sitefloor."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-cleric-cane-hat-intrinsic-pedestal-and-side-stairs",
+      "position": [
+        -27,
+        23,
+        49
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "physical-face-combed-hair-ears-collar-and-brows",
+      "position": [
+        -4,
+        25.8,
+        9.5
+      ],
+      "lookAt": [
+        0,
+        25.3,
+        0
+      ]
+    },
+    {
+      "name": "bent-right-hand-on-cane-and-left-hand-holding-hat",
+      "position": [
+        -9,
+        19.6,
+        13
+      ],
+      "lookAt": [
+        0,
+        18.3,
+        1.4
+      ]
+    },
+    {
+      "name": "arched-base-open-balustrade-and-whole-rear-access",
+      "position": [
+        24,
+        14,
+        -27
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 28208,
+    "vertices": 84624,
+    "materials": 5,
+    "bytes": 3388228,
+    "sha256": "sha256:ad63e0f2a9c1ec762529f79e22c9f61cdad284fb89b4976d096e23d42b5f0138"
+  }
+}

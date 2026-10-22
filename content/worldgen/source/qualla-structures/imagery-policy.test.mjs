@@ -73,6 +73,19 @@ test('gallery downloads, conflicting aliases and architecture-only tags cannot e
 test('an empty reference set remains unapproved', (t) => {
   assert.equal(fixture(t).run({ references: [] }).status, 'needs-replacement');
 });
+test('an omitted article author inherits the matching original attribution, never a conflict', (t) => {
+  const f = fixture(t),
+    published = { ...f.image };
+  delete published.artist;
+  f.put(f.story.sourcePath, { media: { images: [published] } });
+  assert.equal(f.run().status, 'passed');
+  f.put(f.story.sourcePath, { media: { images: [{ ...published, artist: 'Different creator' }] } });
+  assert.notEqual(f.run().status, 'passed');
+  f.put(f.story.sourcePath, { media: { images: [published] } });
+  delete f.metadata.gallery[0].artist;
+  f.put('_m/a/b/c/d/story/metadata.json', f.metadata);
+  assert.notEqual(f.run().status, 'passed');
+});
 test('an identical published copy can refer to the canonical cleared original', (t) => {
   const f = fixture(t),
     copy = '_m/a/b/c/d/published-copy/front.jpg';

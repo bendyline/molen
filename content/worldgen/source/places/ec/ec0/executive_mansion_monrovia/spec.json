@@ -1,0 +1,388 @@
+{
+  "planId": "executive_mansion_monrovia",
+  "id": "executive_mansion_monrovia",
+  "assetId": "molen.worldgen.structure.executive_mansion_monrovia",
+  "title": "Executive Mansion, Monrovia",
+  "category": "residence",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -10.798172650000001,
+    "latitude": 6.30030635
+  },
+  "size": [
+    117.38237762451172,
+    37.5,
+    46.31680679321289
+  ],
+  "actualBounds": {
+    "min": [
+      -58.75910568237305,
+      0,
+      -29.823637008666992
+    ],
+    "max": [
+      58.62327194213867,
+      37.5,
+      16.4931697845459
+    ]
+  },
+  "visualBrief": "Whole surviving principal Executive Mansion exterior at CapitolHill: actual complete27vertex bent two-wing/nativecentralprojection envelope, wholecore/side/rear/roof, full defining verticalconcrete frame and three paired-height perforated screenbands/dark glazing, central raisedroofpavilion/fins/masts, intrinsic open columned entrancecanopy/balcony/threshold. NamednativeExecutiveMansionPOI lies inside wholeway100219509; adjacent anonymousbuildings not adopted. Exclude fence/estate gates/precinct/yard/CapitolBuilding/nearby presidentialoffices/landscape/roads/trees/people/vehicles/flags and undergroundshelter/pool/rooms. No genericrectangular governmentblock or earlier1850/1922residence substitute. Model the complete original bent native two-wing envelope, not a genericbox. Mainbody around28m/raisedcentralpavilion33.2m/masts37.5m and cosmetic/hiddenprofiles are photo estimates; use darkglass behind actual frontframe/perforatedoliveconcrete screens, three tall screenbands interrupted by whitehorizontal ties and strongverticalgraypilasters. Detail bands have realopen geometriccells, not an opaque screenbitmap; fineexactmotif/census originalapproximation. The intrinsic original projectedentrancecanopy must be physicallyopen undera thinwhiteflatcap with four structuralposts/boundedmidlanding, rather than extrudedsolidfrontblock. Preserve all27nativecontrols including projectedroof corners and mainrearreturns; no sitefloor/yard/fence. Freeze independent400mfield at fixedNEapproach beforegeometry; preserve rawvalues/tiles without flatten/reacquire/fit. Stable principalbuilding, exactpresent cosmeticrenovationunverified.",
+  "nativeAxes": {
+    "x": "northwest/alongfronttowardnorthwing",
+    "y": "up",
+    "z": "northeast/fronttowardmaingate"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Executive_Mansion_Apr_09.JPG"
+  ],
+  "stories": [
+    {
+      "id": "executive-mansion-monrovia-wp",
+      "url": "https://qualla.com/executive-mansion-monrovia/"
+    }
+  ],
+  "referenceInputHash": "6b6c0e2bc433013ea3e5867927b8ac5008a3f5c1ef1c1fd289e33f0d72db2f4b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-executive-mansion-monrovia.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-executive-mansion-monrovia.mjs",
+    "level": "skyline",
+    "export": "mansionSkyline",
+    "errorMeters": 2.8,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "frame": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "screen": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.45,
+        "metallic": 0.03
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.25
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "mansionDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "screen": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.45,
+            "metallic": 0.03
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.25
+          }
+        }
+      },
+      "street": {
+        "export": "mansionStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "screen": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.45,
+            "metallic": 0.03
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.25
+          }
+        }
+      },
+      "closeup": {
+        "export": "mansionCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "screen": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.45,
+            "metallic": 0.03
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.25
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3,
+    "groundY": -0.15
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original native27vertex buildingway100219509, with namedExecutiveMansionPOInode1565176470 inside its actual polygon. Coarse storypoint separately retained; surroundinganonymousblocks/estateboundaries not substituted. Anchor at native mainentrance coreline midpoint(nodes0/23), heading from original projectedcanopyfront corners26to24. Fixed+Xnorthwest alongfront/+Znortheast towardmaingate/+Yup. Original bent two-wing plan/curvature/centralprojectedcanopy/sideandback returns retained, not replaced with an idealrectangular campus. Main28mheight/raisedpavilion33.2m/masts37.5m, levelpartitions, exact screenpattern/windowcensus/hiddenrear profiles are bounded photographs, not a measured current survey. Independent400mfield frozen at fixedNEapproach before geometry; exact grade/threshold/hostcontact remains preview-only.",
+    "anchor": [
+      -10.798172650000001,
+      6.30030635
+    ],
+    "heading": 2.115462697488484,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -10.797979401417312,
+        6.3004227111134865
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed north-east entranceapproach25mfrom native coreanchor beyond projectedcanopy before independent terrain/model geometry; not a surveyed mansionfloor or estategrade."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/100219509",
+      "node/1565176470"
+    ],
+    "source": "https://www.openstreetmap.org/way/100219509",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9e781b9e717dd994fc69d5ec69fdc5f76ac89d9cac15230e358f548dbe180022",
+    "notes": "Whole surviving principal Executive Mansion exterior at CapitolHill: actual complete27vertex bent two-wing/nativecentralprojection envelope, wholecore/side/rear/roof, full defining verticalconcrete frame and three paired-height perforated screenbands/dark glazing, central raisedroofpavilion/fins/masts, intrinsic open columned entrancecanopy/balcony/threshold. NamednativeExecutiveMansionPOI lies inside wholeway100219509; adjacent anonymousbuildings not adopted. Exclude fence/estate gates/precinct/yard/CapitolBuilding/nearby presidentialoffices/landscape/roads/trees/people/vehicles/flags and undergroundshelter/pool/rooms. No genericrectangular governmentblock or earlier1850/1922residence substitute."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original native27vertex buildingway100219509, with namedExecutiveMansionPOInode1565176470 inside its actual polygon. Coarse storypoint separately retained; surroundinganonymousblocks/estateboundaries not substituted. Anchor at native mainentrance coreline midpoint(nodes0/23), heading from original projectedcanopyfront corners26to24. Fixed+Xnorthwest alongfront/+Znortheast towardmaingate/+Yup. Original bent two-wing plan/curvature/centralprojectedcanopy/sideandback returns retained, not replaced with an idealrectangular campus. Main28mheight/raisedpavilion33.2m/masts37.5m, levelpartitions, exact screenpattern/windowcensus/hiddenrear profiles are bounded photographs, not a measured current survey.",
+    "Whole original27vertex bent modernist mansion envelope and projectedcanopy, complete rear/side/core and raisedroofpavilion. Main28m/pavilion33.2m/masts37.5m/floor partitions are photographic estimates; exactcurrentrestoration/hiddenrear fenestration/services not surveyed. Three defining frontscreenbands/verticalpilasters/whitebands/darkglazing and openentrancecanopy/landing preserve the visible2009structuralcharacter.",
+    "Exact2048x1536publishedQuallaPD-selforiginal individually inspected/nativeSHA1matched. First native revision20747356/singleoriginalupload by Nimba-travellor at2009-04-28T15:29:17Z explicitly declaresSourceCamera/Author=my-self/PD-self. Literalcreatorcredit retained with originalaccount evidence, no inventedrealname or siblingmetadata edits. Old1850/1922presidentialresidenceimages are different structures and excluded. No other agency/restricted imagery, photo/generatedbitmap texture, downloadedmesh or fine presidentialseal artwork used.",
+    "Detailedscreenbands are genuine open original geometricdiamond lattice with recessedglassbehind; exactoriginalbreezeblock motif/cellcensus/finish is approximated, not claimed reproduced. District uses coarseopenlattice and skyline solidcoloredscreen cues. Lower obscuredstoreys/wingrear/finebalcony/rooftopservices and post2022renovationpaint/glazing repairs remain bounded from a singlewholefront original. Stable principalstructure represented; exact2026cosmeticfitout unverified.",
+    "Native projectedcanopy controlpoints locate its upperroof envelope, not surveyedgroundfootings; wholeoriginal maincore and structuralfrontprojection retained. Fourcanopyposts and boundedmidlanding/approachstair are intrinsic, separatefence/gates/yardplatform/nearbyCapitol/officebuildings/landscape/trees/roads/people/vehicles/flags and undergroundshelter/pool/rooms excluded. No whole-site floor.",
+    "Independent400m129x129field/16641samples and originalrawsource tilebytes frozen beforegeometry; no fitting/flattening/reacquisition. CompositeDEMmay containstructure/vegetation/outliers, not surveyed thresholddatum. Portable/shared/context use separateflatinspectionground. Nativeplacement preview/replaceFootprint=false; exactestategrade/threshold/footing/compatiblehostattachment unverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-bent-wings-screened-front-and-raised-roofpavilion",
+      "position": [
+        120,
+        80,
+        150
+      ],
+      "lookAt": [
+        0,
+        15,
+        -6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "three-perforated-screenbands-and-concrete-pilasters",
+      "position": [
+        -38,
+        20,
+        42
+      ],
+      "lookAt": [
+        -34,
+        17,
+        6
+      ]
+    },
+    {
+      "name": "whole-native-rear-wing-returns-and-roof-envelope",
+      "position": [
+        -115,
+        85,
+        -105
+      ],
+      "lookAt": [
+        0,
+        15,
+        -7
+      ]
+    },
+    {
+      "name": "native-open-columned-entrance-canopy-and-balcony",
+      "position": [
+        33,
+        19,
+        47
+      ],
+      "lookAt": [
+        0,
+        9,
+        6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 43978,
+    "vertices": 131934,
+    "materials": 6,
+    "bytes": 5281084,
+    "sha256": "sha256:e6435120d28be1d68f09bfbe6d43415d1b9baa9f1e07363114f91dc2cc95de25"
+  }
+}

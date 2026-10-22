@@ -1,0 +1,337 @@
+{
+  "planId": "acropolis_of_rhodes",
+  "id": "acropolis_of_rhodes",
+  "assetId": "molen.worldgen.structure.acropolis_of_rhodes",
+  "title": "Acropolis of Rhodes (2011)",
+  "category": "archaeological",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 28.2112603,
+    "latitude": 36.4390425
+  },
+  "size": [
+    186.24777221679688,
+    25.099199295043945,
+    263.0626983642578
+  ],
+  "actualBounds": {
+    "min": [
+      -98.4189453125,
+      -13.159199714660645,
+      -134.95591735839844
+    ],
+    "max": [
+      87.82882690429688,
+      11.9399995803833,
+      128.10678100585938
+    ]
+  },
+  "visualBrief": "Three principal contiguous surviving monuments in the Rhodes Acropolis archaeological park: whole native Apollo temple platform with three standing Doric shafts/L-shaped entablature/fourth broken shaft and low foundation remains; complete restored rectangular east-facing Odeon with open orchestra, lower10/upper9 stone seat tiers, radial stairs, walkway, retaining walls/side ramps; and whole long stadium surviving low stone seating banks/curved south end/open north end. No lost temple roof/cella/peristyle, intact Classical reconstruction, other park sanctuaries/gymnasium/library/underground shrines, precinct ground/bedrock/trees/stadium-earth slab, visitors/scaffolds/signs or city. This bounded three-monument ensemble is not every archaeological feature in the wider Acropolis. Preserve original complete three physical envelopes and the open ground between them. Temple is roofless three standing columns plus one shorter broken shaft, L-shaped entablature, low perimeter/foundation remains, original fragmented broad foundation courses. Odeon concrete-backed restoration has two sectors of pale seats with real radial stair aisles and broad walkway, no theater roof/stage building. Stadium is open north, side steps and closed curved south end, no dirt/grass floor mesh or giant stadium slab. Freeze independent512m129²field before geometry; intrinsic monument levels approximately sampled from fixed raw field, no fitted/flattened ground. Use dated2011 appearance; subsequent Apollo dismantling/restoration not certified current.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2011-04-16",
+    "validFrom": "2011-04-16",
+    "validUntil": "2025-01-01"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Temple_Apollon_Rhodes.jpg",
+    "https://commons.wikimedia.org/wiki/File:Apollon_temple_acropolis_Rhodes.jpg",
+    "https://commons.wikimedia.org/wiki/File:Theatre_Rhodes.jpg",
+    "https://commons.wikimedia.org/wiki/File:Theatre_Rhodes_2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Stadium_Rhodes.jpg"
+  ],
+  "stories": [
+    {
+      "id": "acropolis-of-rhodes-wp",
+      "url": "https://qualla.com/acropolis-of-rhodes/"
+    }
+  ],
+  "referenceInputHash": "4e9f6588dcc4530ea36884a01e38aa110c1bb160e6944ceb95b19f8129509860",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-acropolis-of-rhodes.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-acropolis-of-rhodes.mjs",
+    "level": "skyline",
+    "export": "acropolisOfRhodesSkyline",
+    "errorMeters": 4,
+    "surfaces": {
+      "temple": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "ruin": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "seat": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.99,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "acropolisOfRhodesDistrict",
+        "errorMeters": 1.7,
+        "surfaces": {
+          "temple": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "ruin": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "seat": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "acropolisOfRhodesStreet",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "temple": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "ruin": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "seat": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "acropolisOfRhodesCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "temple": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "ruin": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "seat": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.5,
+    "groundY": -13.239199999999999
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original OSM TempleApollo324703585/Q30503687 complete4-point platform, Odeon1498049947 complete5-point rectangle with collinear split, Stadium1498394922/Q30503700 complete13-point surviving perimeter. Native archaeological envelopes bound plan extent, not surveyed individual stones/seat curves/column centers or original ancient complete buildings. Fixed anchor at joint three-envelope bbox center and +X along original temple long edge east-northeast/+Z south-southeast. Apollo standing corner/ruin strips, odeon seating partitions and stadium stone-bank widths are bounded original photo interpretations inside the original footprints; individual hidden pieces and vertical levels estimated, no invented whole park masonry. Independent512mfield frozen before geometry; approximate horizontal monument levels/unknown2011thresholds and composite slope mismatch bounded, live host contact unverified.",
+    "anchor": [
+      28.2112603,
+      36.4390425
+    ],
+    "heading": -0.05610500359186375,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        28.210467904610976,
+        36.44008747590827
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed north approach4moutside original temple edge before independent ground. Approximate provider-relative architecture levels; true historic thresholds/seat foundations not surveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/324703585",
+      "way/1498049947",
+      "way/1498394922"
+    ],
+    "source": "https://www.openstreetmap.org/way/324703585",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a23f4687ca958b1f2409b706863967587bf7d72b10b86f5427d21dd5cf0b796d",
+    "notes": "Three principal contiguous surviving monuments in the Rhodes Acropolis archaeological park: whole native Apollo temple platform with three standing Doric shafts/L-shaped entablature/fourth broken shaft and low foundation remains; complete restored rectangular east-facing Odeon with open orchestra, lower10/upper9 stone seat tiers, radial stairs, walkway, retaining walls/side ramps; and whole long stadium surviving low stone seating banks/curved south end/open north end. No lost temple roof/cella/peristyle, intact Classical reconstruction, other park sanctuaries/gymnasium/library/underground shrines, precinct ground/bedrock/trees/stadium-earth slab, visitors/scaffolds/signs or city. This bounded three-monument ensemble is not every archaeological feature in the wider Acropolis."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original OSM TempleApollo324703585/Q30503687 complete4-point platform, Odeon1498049947 complete5-point rectangle with collinear split, Stadium1498394922/Q30503700 complete13-point surviving perimeter. Native archaeological envelopes bound plan extent, not surveyed individual stones/seat curves/column centers or original ancient complete buildings. Fixed anchor at joint three-envelope bbox center and +X along original temple long edge east-northeast/+Z south-southeast. Apollo standing corner/ruin strips, odeon seating partitions and stadium stone-bank widths are bounded original photo interpretations inside the original footprints; individual hidden pieces and vertical levels estimated, no invented whole park masonry.",
+    "Bounded three-monument2011ensemble, not every feature in the wider Acropolis. Full original4/5/13physical envelope vertices retained. Other sanctuaries/library/gymnasium/grottoes are outside this model; no complete ancient roof/cella/colonnade, imaginary intact theater or stadium superstructure.",
+    "Historical-only observed2011appearance; Ministry2025text confirms subsequent Apollo dismantling/restoration.2011-04-16represented date/conservative2025-01-01upper viewing cutoff does not assert exact demolition date or certify2011..2024unchanged detail. No default current-world activation. Native current archaeological envelopes are coarse plan controls, not a2011survey.",
+    "Apollo3standing columns/1broken shaft/corner L-shaped entablature/low stepped masonry and fragmentary foundations interpreted from exactCC0photos; corner,8.3m shafts/.88mradius/4.25m spacing, fine flutes/capital/frieze/chip/coursetop estimates. Exposed bedrock not modeled, arbitrary isolated architectural fragment positions representative and not an artifact survey.",
+    "Odeon lower10rows/five cunei/four aisles, upper9rows/four cunei/three aisles,5.5morchestra supported by scholarlytext; actual restored structure represented with curved seats, walkway/parodos walls and side ramps.19x.31mverticals, seat depth/.68mwalkway/hidden side/rear details estimated; no ancient roof or invented stage elevation. Stadium7lowrows/3.85mbank width/side stair census are bounded photo estimates. Original13point stadium enclosure is retained; long and curved banks are polygonal, open earth/grass racing floor not a GLB slab.",
+    "Qualla-first52families/zero conflicts; one exact publishedJebulonCC0original then four samecreator ownCC0originals individually inspected/nativeSHA1matched. No questionable/licensed imagery, protected ministry/diazoma drawings/photos, photo textures or media-metadata/policy edits. Shared sandstone/raw and weathered limestone graphs with original vertex colors.",
+    "Independent512m129²16641samples/four originalTerrariumtiles frozen before geometry unchanged.74.5335mprovider-relative north-approach datum; original source DEM about3.84moutput pixel spacing may oversample much coarser data. Approximate temple/odeon/stadium horizontal levels from frozen provider field, not surveyed2011grade. Coarse composite rises across stadium rather than a surveyed level running floor, so native host contact remains unverified; no field fitting/flattening/reacquisition. Portable/shared/context flat fixtures separate and cannot prove geographic ground contact."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-three-monument-archaeological-ensemble",
+      "position": [
+        -175,
+        120,
+        230
+      ],
+      "lookAt": [
+        0,
+        -4,
+        -5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "three-drum-columns-broken-shaft-and-open-l-entablature",
+      "position": [
+        -39.582098072806694,
+        17.06,
+        -62.96412260236639
+      ],
+      "lookAt": [
+        -60.582098072806694,
+        5.859999999999999,
+        -85.96412260236639
+      ]
+    },
+    {
+      "name": "whole-east-facing-odeon-two-tier-cavea-orchestra-stairs",
+      "position": [
+        69.10853185998529,
+        3.9608000000000008,
+        -103.37887413521378
+      ],
+      "lookAt": [
+        32.10853185998529,
+        -10.0392,
+        -121.37887413521378
+      ]
+    },
+    {
+      "name": "whole-open-stadium-long-low-stone-seating-curved-south-end",
+      "position": [
+        -180,
+        136.9608,
+        10
+      ],
+      "lookAt": [
+        63,
+        -12.0392,
+        12
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 48980,
+    "vertices": 146940,
+    "materials": 4,
+    "bytes": 5880580,
+    "sha256": "sha256:4e1a48d2d1261322cac746a10f09ffdfe7d4511b5b9aaaebe2c40897e08dd51c"
+  }
+}

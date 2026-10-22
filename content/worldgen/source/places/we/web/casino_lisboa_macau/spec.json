@@ -1,0 +1,376 @@
+{
+  "planId": "casino_lisboa_macau",
+  "id": "casino_lisboa_macau",
+  "assetId": "molen.worldgen.structure.casino_lisboa_macau",
+  "title": "Casino Lisboa (Macau)",
+  "category": "hospitality-entertainment",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 113.54407235,
+    "latitude": 22.189819999999997
+  },
+  "size": [
+    114.5149154663086,
+    92.35640259087086,
+    138.5539894104004
+  ],
+  "actualBounds": {
+    "min": [
+      -42.08000183105469,
+      -0.20000000298023224,
+      -105.60398864746094
+    ],
+    "max": [
+      72.4349136352539,
+      92.15640258789062,
+      32.95000076293945
+    ]
+  },
+  "visualBrief": "Complete original Hotel/Casino Lisboa from native circular front tower/T-shaped rear tower/bent eastern wing, plus bounded inferred low connectors/west domed annex, aqua scalloped entrance canopy and signboard. Ochre walls, dark recessed glazing, strong white vertical/curving and octagonal relief window tracery, stepped wing heights, three flared white ribbed roof/open-fin crowns with genuinely pierced gold radial finials, intrinsic entry platforms/stairs and original geometric name lettering. Native site boundary is not a building slab. Separate GrandLisboa/BankofChina/Wynn/roundabout/transit pavilion and landscape excluded; hidden layout/sections/height conventions/contact are estimates.",
+  "nativeAxes": {
+    "x": "southeast",
+    "y": "up",
+    "z": "southwest/main-front"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:MC_%E6%BE%B3%E9%96%80_Macau_Peninsula_%E5%8D%97%E7%81%A3_Nan_Wan_%E4%BA%9E%E9%A6%AC%E5%96%87%E5%89%8D%E5%9C%B0_Pra%C3%A7a_de_Ferreira_do_Amaral_roundabout_in_March_2026_N13P_03.jpg",
+    "https://commons.wikimedia.org/wiki/File:MC_%E6%BE%B3%E9%96%80_Macau_Peninsula_%E5%8D%97%E7%81%A3_Nan_Wan_%E4%BA%9E%E9%A6%AC%E5%96%87%E5%89%8D%E5%9C%B0_Pra%C3%A7a_de_Ferreira_do_Amaral_roundabout_in_March_2026_N13P_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:MacauBOCBuilding.jpg"
+  ],
+  "stories": [
+    {
+      "id": "casino-lisboa-macau-wp",
+      "url": "https://qualla.com/casino-lisboa-macau/"
+    }
+  ],
+  "referenceInputHash": "776ecbe969fc5d4ff1cba07b7de90c523678e43764585a698fe9728e1cc81f42",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-casino-lisboa-macau.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-casino-lisboa-macau.mjs",
+    "level": "skyline",
+    "export": "lisboaSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "orange": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "white": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.08
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.62,
+        "metallic": 0.1
+      },
+      "gold": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.62,
+        "metallic": 0.1
+      },
+      "aqua": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.62,
+        "metallic": 0.1
+      },
+      "dark": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.62,
+        "metallic": 0.1
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "lisboaDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "orange": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.1
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.1
+          },
+          "aqua": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.1
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.1
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "lisboaStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "orange": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.1
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.1
+          },
+          "aqua": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.1
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.1
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.2,
+    "groundY": -0.3
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Named native oldHotelLisboa resortway1313391925contains the named CasinoLisboa/Q1047611node12156894048andHotelLisboanode13679896101. All24site-boundary vertices and all19circular-building/8rearT-tower/9bent-east-wing native corners are retained separately. These are original-Lisboa controls; separate GrandLisboaways192182404/405/Q1033099andBankofChina/Wynn are excluded. Landuse boundary/forecourt is NOT a solid building footprint. Mapping supplies only3parent roof/building masses; low connecting podium, west domed annex, additional height tiers/curves/roof crowns are bounded photographic interpretations inside this named complex. Native heights37.4/76.8/37.3m are source tags, not a sectional survey; their exact roof/eave conventions and conflicts with visible multi-tier proportions must be documented rather than blindly extruded. Hidden rear/service layouts, section heights and grade/host contact remain estimates. Fixed main-front reference[0,68.86629456734734]/Y0selected before terrain; intrinsic entry platform only, no forecourt/roundabout/site flattening.",
+    "anchor": [
+      113.54407235,
+      22.189819999999997
+    ],
+    "heading": -0.9664502288273465,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        113.54352257497887,
+        22.189468477456405
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed main-front approach3mbeyond the native resort front extent, selected before terrain acquisition. ModelY0is approximate entrance datum. No entire forecourt/roundabout flattening or site slab."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1313391925",
+      "way/807699986",
+      "way/807699988",
+      "way/807699987"
+    ],
+    "source": "https://www.openstreetmap.org/way/1313391925",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:468802f19f121ee7523edcdb22ac3e69cd0a445b0f58023a0651f6642ea3312a",
+    "notes": "Build full original-Lisboa complex; do not substitute the giant separate GrandLisboa lotus tower/glazed dome or roundabout/transit pavilion. All3selected originals/current frontage and native plan already inspected."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Named native oldHotelLisboa resortway1313391925contains the named CasinoLisboa/Q1047611node12156894048andHotelLisboanode13679896101. All24site-boundary vertices and all19circular-building/8rearT-tower/9bent-east-wing native corners are retained separately. These are original-Lisboa controls; separate GrandLisboaways192182404/405/Q1033099andBankofChina/Wynn are excluded. Landuse boundary/forecourt is NOT a solid building footprint. Mapping supplies only3parent roof/building masses; low connecting podium, west domed annex, additional height tiers/curves/roof crowns are bounded photographic interpretations inside this named complex. Native heights37.4/76.8/37.3m are source tags, not a sectional survey; their exact roof/eave conventions and conflicts with visible multi-tier proportions must be documented rather than blindly extruded. Hidden rear/service layouts, section heights and grade/host contact remain estimates.",
+    "Main circular body37.4m with9interpreted room tiers/low entrance level/open upper belt; native rear T-body76.8m with19interpreted room tiers; rear eastern wing37.3m and front wing17.8m use an inferred stepped split. White flared crowns/open upper fins/gold finials extend above these parent body heights. Native source height tags are retained separately and are not claimed verified roof-tip heights. West elliptical drum/low connectors/canopy are photographically inferred inside the named complex, with no separately surveyed footprint. Concealed rear elevations, room/floor counts, exact roof sections, podium boundaries and host grade/contact remain estimates.",
+    "Three exact published Qualla originals inspected first: two4080x3060March2026own-workCC0frontage/canopy views byNuMezzaliaOK LA R0316and one2304x3072Cdip150own-workPD-selfview used only for its visible old-Lisboa cylindrical white tracery/crown/finial. Native imageSHA1and primary same-author dedications match local originals. Neighboring BankofChina in the latter image is unused. An older640x480PDnight view was inspected for discovery but not adopted; other licensed/unrelatedGrandLisboa images unused. No additional image source or photographic texture.",
+    "White vertical fins, rounded and octagonal geometric window surrounds/recesses, lower flared sheet-roof ribs, genuinely open upper roof fins and gold basket/firework finials are original medium-fi geometry. Fine pattern census, particular decorative motifs, individual roof corrugations/bolts, signage font, exact gold sculpture and weathering are simplified. Plain original geometric CASINO/LISBOAname lettering is included; decorative billboard mural, logos/brands, character artwork and fine roof sculpture are not reproduced.",
+    "Main cylindrical and rear T-tower windows have genuine close-detail recesses. Fine wing windows use shallow relief frames with progressively simpler panes at distance. Columns, roof ribs/finials and small window ornament retire progressively; all native parent outlines remain. ",
+    "Only intrinsic connected buildings, small entry platform/steps and scalloped canopy are included. No entire resort slab/filled forecourt, roundabout/transit glass pavilion, roads, planting/people/vehicles, separate GrandLisboa/BankofChina/Wynn or surrounding towers. Fixed main-front reference was selected before terrain; source relief is retained and exact thresholds/foundation/host contact remain unverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "round-front-tracery-flared-crown-and-entrance-canopy",
+      "position": [
+        43,
+        40,
+        91
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ]
+    },
+    {
+      "name": "rear-geometric-window-grid-and-open-gilt-finial",
+      "position": [
+        40,
+        89,
+        7
+      ],
+      "lookAt": [
+        -10,
+        69,
+        -40
+      ]
+    },
+    {
+      "name": "west-annex-roof-crowns-and-name-board",
+      "position": [
+        -78,
+        47,
+        23
+      ],
+      "lookAt": [
+        -20,
+        32,
+        -10
+      ]
+    },
+    {
+      "name": "complete-original-lisboa-three-native-masses",
+      "position": [
+        -170,
+        118,
+        -172
+      ],
+      "lookAt": [
+        20,
+        35,
+        -39
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 62072,
+    "vertices": 186216,
+    "materials": 8,
+    "bytes": 7452944,
+    "sha256": "sha256:c3cafcc64fb9daf4dc3d5cba8c0d11060c6f7c2f5f65d4de0094e96b00b6e20a"
+  }
+}

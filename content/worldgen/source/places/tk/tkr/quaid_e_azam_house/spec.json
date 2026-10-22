@@ -1,0 +1,372 @@
+{
+  "planId": "quaid_e_azam_house",
+  "id": "quaid_e_azam_house",
+  "assetId": "molen.worldgen.structure.quaid_e_azam_house",
+  "title": "Quaid-e-Azam House",
+  "category": "residence",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 67.03284195,
+    "latitude": 24.85117435769231
+  },
+  "size": [
+    27.924670219421387,
+    13.899999618530273,
+    28.925000190734863
+  ],
+  "actualBounds": {
+    "min": [
+      -12.337265968322754,
+      0,
+      -13.770000457763672
+    ],
+    "max": [
+      15.587404251098633,
+      13.899999618530273,
+      15.154999732971191
+    ]
+  },
+  "visualBrief": "Whole named surviving two-storey Quaid-e-Azam main house: original26vertex native outline including projecting central porch and rear wings; yellow limestone/rusticated plinth, twin front three-arch bays on both levels, open recessed loggias with physical columns/arches, green louvered fanlights and timber glazed screens, paired projecting round stone balconies, central green gabled porch, separate tiled hips/caps and rear/side walls/roof volumes. Detached annexe/auditorium, out-houses, offices/garages/guards/kitchen, garden fountain and grounds are separate and excluded. Use recessed rooms/screens behind real open loggia arches; keep paired3arch bays, segmented stone archivolts, fluted corner piers and simplified capitals, green louvered fanlights/wooden screens, round cantilevered balustrade balconies with scalloped bowl supports, central green timber gabled porch/physical fretwork, distinct hipped red tile roof/cap. Native foot outline supplies all lower wall courses; no parcel rectangle or fountain. Photograph controls visible front; roof/side/rear census and dimensions explicitly bounded. Freeze independent field first.",
+  "nativeAxes": {
+    "x": "south-southeast",
+    "y": "up",
+    "z": "west-southwest/front"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Quaid-e-Azam_House_Karachi.jpg"
+  ],
+  "stories": [
+    {
+      "id": "quaid-e-azam-house-wp",
+      "url": "https://qualla.com/quaid-e-azam-house/"
+    }
+  ],
+  "referenceInputHash": "fb5d5bc769d491d033c4ddae345b525b2c3a4370bfd1543dcc49c0336791ce4b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-quaid-e-azam-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-quaid-e-azam-house.mjs",
+    "level": "skyline",
+    "export": "quaidHouseSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "green": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.47,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "quaidHouseDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "quaidHouseStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "quaidHouseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named native buildingway535257326/FormerlyFlagstaffHouse/tourismmuseum/building2levels, all26original perimeter vertices retained. Qualla story coordinate is about290m south-east and is not used for geographic placement. Local+Zwest-southwest/front, +Xsouth-southeast at fixed heading-1.0985963rad follows the original longer front wall. Upper round balconies, front bay/porch/roof partitions and hidden sections are bounded photographic interpretations within original ground plan, not independently surveyed features. Separate neighboring buildingways535257329/535257332/535257335/535257337 excluded. Independent160m65x65field frozen before geometry; fixed front-approach datum. Coarse urban DEM returns do not certify threshold/live host ground contact.",
+    "anchor": [
+      67.03284195,
+      24.85117435769231
+    ],
+    "heading": -1.0985963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        67.03270053082984,
+        24.85109973963328
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed front approach outside the native projecting porch before terrain acquisition/geometry; not a surveyed threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/535257326"
+    ],
+    "source": "https://www.openstreetmap.org/way/535257326",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e13fa2efbc8ac49dc32d72f75271012cdc7830bcd2dacaddcbcc69eaedf1c7ec",
+    "notes": "Whole named surviving two-storey Quaid-e-Azam main house: original26vertex native outline including projecting central porch and rear wings; yellow limestone/rusticated plinth, twin front three-arch bays on both levels, open recessed loggias with physical columns/arches, green louvered fanlights and timber glazed screens, paired projecting round stone balconies, central green gabled porch, separate tiled hips/caps and rear/side walls/roof volumes. Detached annexe/auditorium, out-houses, offices/garages/guards/kitchen, garden fountain and grounds are separate and excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named native buildingway535257326/FormerlyFlagstaffHouse/tourismmuseum/building2levels, all26original perimeter vertices retained. Qualla story coordinate is about290m south-east and is not used for geographic placement. Local+Zwest-southwest/front, +Xsouth-southeast at fixed heading-1.0985963rad follows the original longer front wall. Upper round balconies, front bay/porch/roof partitions and hidden sections are bounded photographic interpretations within original ground plan, not independently surveyed features. Separate neighboring buildingways535257329/535257332/535257335/535257337 excluded.",
+    "One exact4896x3672Miansari66own-workCC0original individually inspected after Qualla-first30family inventory. All local house photographs require attribution; unrelated PD FaizMahal excluded. No photographic textures or generated bitmap.",
+    "Original complete medium-fi main-house exterior. Native two-storey outline controls ground perimeter; photographer front controls paired three-arch loggias, semicircular balconies, green fanlights/screens/gable, mouldings and separate red tiled hips/caps. Height13.9m, front partition/bearing, balcony sections, fine fluting/capital/fretwork/tile census and hidden roof/side/rear forms are bounded estimates, not measured elevations.",
+    "Operator describes the main limestone/timber/red-tile house, annexe and out-houses separately. Detached auditorium/annexe/offices/garages/guard/kitchen buildings, fountain, garden/compound, flags/signs/people and interiors excluded; no whole-site pad.",
+    "Independent160m65x65field/4225samples/one rawTerrariumtile unchanged after acquisition.2.5mgrid and4.33moutputpixels may oversample coarser native DEM and include urban/vegetation returns. Preview replaceFootprint=false; actual compatible host ground/threshold contact unverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front-arches-balconies-green-gable-and-tiled-caps",
+      "position": [
+        1,
+        8,
+        47
+      ],
+      "lookAt": [
+        1,
+        6.6,
+        9
+      ]
+    },
+    {
+      "name": "three-arch-two-storey-bay-and-round-balcony",
+      "position": [
+        -9,
+        7,
+        21
+      ],
+      "lookAt": [
+        -6.5,
+        6.3,
+        8.8
+      ]
+    },
+    {
+      "name": "central-gabled-porch-real-ground-passage-and-screen",
+      "position": [
+        8,
+        7,
+        26
+      ],
+      "lookAt": [
+        0.9,
+        6,
+        13
+      ]
+    },
+    {
+      "name": "native-rear-wings-and-roof-sections-estimated",
+      "position": [
+        -28,
+        22,
+        -32
+      ],
+      "lookAt": [
+        1,
+        6,
+        -3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 31789,
+    "vertices": 95367,
+    "materials": 6,
+    "bytes": 3818372,
+    "sha256": "sha256:0fcbc7801e3ee9cbda457aa18112a5220d578db722ebb3e6eca2d656baa9904f"
+  }
+}

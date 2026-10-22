@@ -1,0 +1,452 @@
+{
+  "planId": "khaju_bridge",
+  "id": "khaju_bridge",
+  "assetId": "molen.worldgen.structure.khaju_bridge",
+  "title": "Khaju Bridge",
+  "category": "bridge-dam",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 51.68328375454546,
+    "latitude": 32.636863918181824
+  },
+  "size": [
+    143.23491668701172,
+    13.75,
+    28.43117618560791
+  ],
+  "actualBounds": {
+    "min": [
+      -69.2828369140625,
+      -6.150000095367432,
+      -13.301616668701172
+    ],
+    "max": [
+      73.95207977294922,
+      7.599999904632568,
+      15.129559516906738
+    ]
+  },
+  "visualBrief": "Whole surviving Khaju stone/brick bridge-dam: exact original22vertex mapped bridge outline and native crossing alignment; complete lower pointed flow-vaults/piers/breakwaters, intrinsic weir/platform/stepped aprons, upper open pedestrian gallery and narrow pointed bays on both faces, projecting central royal pavilion with its different face divisions, square endpavilions and parapet/flatroof. Exclude river/riverbanks/moderncity/landscape/people/flags/floodlight/reflections and standalone shrines/artifacts; no opaque block spanning archvoids. The two exact original photos already inspected show different central pavilion face divisions:2009oblique two-big-archface and2023nearfront threebig/twosmallface. Preserve both side elevations, their pointed outerarches and real transverse flow/corridor passages; central royalbelvedere, endpavilions, local tile/brick trim and stone weir/step apron are intrinsic. Main longaxis and all22foot vertices remain native. Use currentphoto to count principal flowarches versus smaller approach/upperchamber bays; source texts use incompatible18/23/26span definitions, not an exact universally agreed census. Do not choose baycount from polygon vertexcount. Photographic fine/census/hidden underwater section can be bounded. Daylight brick/stone/plaster palette must not inherit amber floodlights. Freeze independent bank/river field first; datumY0at north approach, archpiers descend belowwalkway. Whole exterior, no end-only/flatdeck proxy.",
+  "nativeAxes": {
+    "x": "south-southeast/along crossing",
+    "y": "up",
+    "z": "west-southwest/side face"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Khaju_Bridje_at_night.jpg",
+    "https://commons.wikimedia.org/wiki/File:DSC_0840-HDR_copy.jpg"
+  ],
+  "stories": [
+    {
+      "id": "khaju-bridge-wp",
+      "url": "https://qualla.com/khaju-bridge/"
+    }
+  ],
+  "referenceInputHash": "b88c9cdc5788e8c860e15e7a77a53637f5b2635d38d317b7fda2351e7f52c099",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-khaju-bridge.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-khaju-bridge.mjs",
+    "level": "skyline",
+    "export": "khajuSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "trim",
+        "graph": "tile_ceramic",
+        "roughness": 0.7,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "khajuDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "khajuStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "khajuCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": -6.25,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact named native man_madebridgeway757378378, all22original perimeter vertices, plus named crossingway199084002/Q1740490 two original endpoints. Fixed model+Xsouth-southeast along crossing and+Zwest-southwest; no fit/stretch. The original ground outline includes central/end projections and intrinsic apron widths; do not replace it with an arbitrary rectangle. Vertical vault/step/deck dimensions and bay partitions remain photographic estimates. Native walking centerline extends past the masonry envelope; bank datum is the original north approach point, not riverbed/sea level. Independent360mfield frozen before geometry; modelY0 fixed north-bank approach, not riverbed/water datum.",
+    "anchor": [
+      51.68328375454546,
+      32.636863918181824
+    ],
+    "heading": -1.3386342651677956,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        51.6831035,
+        32.6375364
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed original native north pedestrian approach point before terrain/geometry; Y0represents approximate bridge walkway/bank datum, not a surveyed pier toe or river waterlevel."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          73.95207687576176,
+          9.686851362332128
+        ],
+        [
+          73.53957367650085,
+          -12.517846041146058
+        ],
+        [
+          68.02255964848652,
+          -12.358028044562994
+        ],
+        [
+          62.058389123847896,
+          -6.726564291008964
+        ],
+        [
+          15.89291263169728,
+          -5.137927136944646
+        ],
+        [
+          11.114721894577826,
+          -11.19958166411195
+        ],
+        [
+          2.5521172889374184,
+          -11.027728433715597
+        ],
+        [
+          -3.9304848235775944,
+          -3.977594227216814
+        ],
+        [
+          -46.801694407152915,
+          -4.952675413498853
+        ],
+        [
+          -55.305819680949625,
+          -13.301616574568463
+        ],
+        [
+          -55.60469162422432,
+          -6.860535451705827
+        ],
+        [
+          -68.73622138009802,
+          -7.200558360374881
+        ],
+        [
+          -69.28283788556246,
+          4.836376543911912
+        ],
+        [
+          -56.33537689237432,
+          5.229208518633532
+        ],
+        [
+          -56.516552573537965,
+          12.382041554623575
+        ],
+        [
+          -47.172428646852175,
+          5.372681180182079
+        ],
+        [
+          -4.820582142283738,
+          6.851100924907967
+        ],
+        [
+          1.343492233390427,
+          14.598631515540182
+        ],
+        [
+          10.731636720042692,
+          14.660487662538483
+        ],
+        [
+          16.883846275869598,
+          6.491902886111099
+        ],
+        [
+          61.58486083849284,
+          4.759317996178689
+        ],
+        [
+          66.8305028602513,
+          10.392055501344743
+        ]
+      ],
+      "basis": "Clip coarse ground overlap only inside the exact original native bridge outline, so river DEM returns do not bury flow-vaults and pier toes. Independent height samples stay unchanged; no wider river or bank parcel opening. Compatible host water/ground contact remains unverified."
+    },
+    "featureIds": [
+      "way/757378378",
+      "way/199084002"
+    ],
+    "source": "https://www.openstreetmap.org/way/757378378",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5ad45cf245a86a32a53315d3395d71ccef229926e4d29d1d146197ac05e4293b",
+    "notes": "Whole surviving Khaju stone/brick bridge-dam: exact original22vertex mapped bridge outline and native crossing alignment; complete lower pointed flow-vaults/piers/breakwaters, intrinsic weir/platform/stepped aprons, upper open pedestrian gallery and narrow pointed bays on both faces, projecting central royal pavilion with its different face divisions, square endpavilions and parapet/flatroof. Exclude river/riverbanks/moderncity/landscape/people/flags/floodlight/reflections and standalone shrines/artifacts; no opaque block spanning archvoids."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact named native man_madebridgeway757378378, all22original perimeter vertices, plus named crossingway199084002/Q1740490 two original endpoints. Fixed model+Xsouth-southeast along crossing and+Zwest-southwest; no fit/stretch. The original ground outline includes central/end projections and intrinsic apron widths; do not replace it with an arbitrary rectangle. Vertical vault/step/deck dimensions and bay partitions remain photographic estimates. Native walking centerline extends past the masonry envelope; bank datum is the original north approach point, not riverbed/sea level.",
+    "Complete original medium-fi exterior. Native22vertex bridge-dam outline and fixed native crossing alignment retained. Main lower flow-vaults, pointed upper arcades, true5.7m-ish longitudinal corridor, opposite two/three-arch royal facades, flank openings, square endpavilions, low open balustrades and intrinsic stone weir/steps.23principal lower flowvaults plus smaller projecting pavilion/enddivisions and36wing upper bays perface are photographic subdivisions; primary counts18/26use incompatible definitions and are not certified exact chamber census.",
+    "Two inspected exact originals: already published Qualla2009Gire3pich2005ownPD-self with special thanks to HosseinMajidi, and2023Ali.Alirezaei666ownCC0. Both are twilight/floodlit: their geometry informs the model but orange emission/reflections are not baked into daylight brick/stone/plaster. No photograph textures, generated bitmaps or downloaded mesh.",
+    "Heights/sections estimated from photographs: walkway0, pierbase-6.15, lowercrown-.65, wingroof5.43, pavilionroof7.6m. Exact submerged weir/sluice machinery, hidden chamber partitions, tile patterns/brick census and current fine repairs are bounded. Skyline uses single-sided thin arcade faces while retaining actual holes and full bay layout.",
+    "River, riverbed/banks/landscape, citybuildings, flags, people and lights excluded. Only intrinsic native-outline foundation/platform and structural deck belong to GLB; no site floor. Raw360m129x129field/16641values/oneTerrariumtile unchanged. Only exact bridge-footprint ground overlap is clipped in the viewer so coarse river DEM does not bury the lower arches. Source datum1566.8751m at original north-bank point, compatible host water/ground contact remains unverified geographic preview/replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-two-tier-bridge-and-two-arch-royal-face",
+      "position": [
+        4,
+        12,
+        150
+      ],
+      "lookAt": [
+        3,
+        0.6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "opposite-three-arch-royal-face-and-flow-vaults",
+      "position": [
+        8,
+        10,
+        -72
+      ],
+      "lookAt": [
+        6,
+        0.7,
+        -2
+      ]
+    },
+    {
+      "name": "open-longitudinal-gallery-through-north-gatehouse",
+      "position": [
+        -82,
+        2.4,
+        -0.6
+      ],
+      "lookAt": [
+        28,
+        2.4,
+        -0.6
+      ]
+    },
+    {
+      "name": "lower-flow-vaults-cutwaters-and-intrinsic-steps",
+      "position": [
+        37,
+        -2.1,
+        -21
+      ],
+      "lookAt": [
+        29,
+        -2,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 36668,
+    "vertices": 110004,
+    "materials": 5,
+    "bytes": 4403412,
+    "sha256": "sha256:b85697dc5314153230fead32af4f436c96faac7b1f6d8d59019af4edb8087bcc"
+  }
+}

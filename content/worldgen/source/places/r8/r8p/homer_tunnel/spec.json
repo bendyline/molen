@@ -1,0 +1,355 @@
+{
+  "planId": "homer_tunnel",
+  "id": "homer_tunnel",
+  "assetId": "molen.worldgen.structure.homer_tunnel",
+  "title": "Homer Tunnel (2016)",
+  "category": "transport",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 167.9887242,
+    "latitude": -44.7648561
+  },
+  "size": [
+    1300.7052192687988,
+    137.51141595840454,
+    60.06013870239258
+  ],
+  "actualBounds": {
+    "min": [
+      -33.96229934692383,
+      -132.97885131835938,
+      -12.989974975585938
+    ],
+    "max": [
+      1266.742919921875,
+      4.532564640045166,
+      47.07016372680664
+    ]
+  },
+  "visualBrief": "Complete representative2016Homer Tunnel along original nine-point route and both covered approaches. Truly open granite road bore/descending1:10grade/two mapped passing bays, old eastern faceted concrete shelter and own annex, full curved western gabled roof gallery with open frames/one clad side. Both actual opposite portal positions and original western envelope retained. Historical-only2016because east shelter replaced2024. No mountain/site slab/road network/vehicles/signs/people or new protected artwork; hidden sections and precise historic grade/contact estimated.",
+  "nativeAxes": {
+    "x": "roughly west along native tunnel chord",
+    "y": "up from fixed east approach",
+    "z": "roughly north across bore"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2016",
+    "validFrom": "2016-01-01",
+    "validUntil": "2017-01-01"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Entrance_of_the_Homer_Tunnel_from_Milford_Sound_2016-01-31.jpg",
+    "https://commons.wikimedia.org/wiki/File:Homer_tunnel_east.jpg"
+  ],
+  "stories": [
+    {
+      "id": "homer-tunnel-wp",
+      "url": "https://qualla.com/homer-tunnel/"
+    }
+  ],
+  "referenceInputHash": "209870eb18f57b2a8c03898ee574b61eb57838c2d08c7bf410cf74f5876c96d3",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-homer-tunnel.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-homer-tunnel.mjs",
+    "level": "skyline",
+    "export": "homerTunnelSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "rock": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "inside": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "membrane",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.94,
+        "metallic": 0.1
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "homerTunnelDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "inside": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "membrane",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.94,
+            "metallic": 0.1
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "homerTunnelStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "inside": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "membrane",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.94,
+            "metallic": 0.1
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.35,
+    "groundY": -150
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Full original nine-point named Homer Tunnel road24765236onSH94, actual bend and passing-place nodes, covered east approach1313398979and curved west gallery1021888401, plus original native tunnel/shelter envelopes. Eastern node9291822178anchors assembly; +Xroughlywest along tunnel, +Zroughlynorth. Native named-road length1227.367491mkept without stretching to nominal1240/1270mpublic descriptions, which use different extents. Primary EngineeringNZ gives1:10descent east-to-west; that grade controls a declared estimated continuous road profile, NOT terrain fitted to a bore. Full mapped road and both covered approaches retained, with genuinely open bore/portal/gallery. Cleared2007east and2016west photos depict pre2024east shelter; NZTAconfirms its replacement mid2024. Historical-only representative2016appearance, not default current placement. Native mapped positions/envelopes are modern registration controls, not certified2016corners; east annex/portal depths/hidden sections/current excavation and precise historic contact remain estimates. Fixed eastern approach before terrain/geometry. Modern3072mfield frozen before geometry. Road grade is primary1:10continuous estimate, not DEMfit. Portal/shelter-to-mountain cutouts and exact historic contact unverified.",
+    "anchor": [
+      167.9887242,
+      -44.7648561
+    ],
+    "heading": 3.011759008670245,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        167.98921282865953,
+        -44.76489611518098
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed dry east approach five metres before original covered-approach road endpoint, selected before independent modern terrain/geometry; actual historic road/portal datum and mountain-ground host cutouts unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/24765236",
+      "way/1313398979",
+      "way/1021888401",
+      "way/1243933086",
+      "way/1243933087",
+      "way/1021888402",
+      "way/1021888399"
+    ],
+    "source": "https://www.openstreetmap.org/way/24765236",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4bdd00f8f13d19cb329708f9b06ccd2ce7ae646ee41440f79ff384f0e857d778",
+    "notes": "Full original nine-point named Homer Tunnel road24765236onSH94, actual bend and passing-place nodes, covered east approach1313398979and curved west gallery1021888401, plus original native tunnel/shelter envelopes. Eastern node9291822178anchors assembly; +Xroughlywest along tunnel, +Zroughlynorth. Native named-road length1227.367491mkept without stretching to nominal1240/1270mpublic descriptions, which use different extents. Primary EngineeringNZ gives1:10descent east-to-west; that grade controls a declared estimated continuous road profile, NOT terrain fitted to a bore. Full mapped road and both covered approaches retained, with genuinely open bore/portal/gallery. Cleared2007east and2016west photos depict pre2024east shelter; NZTAconfirms its replacement mid2024. Historical-only representative2016appearance, not default current placement. Native mapped positions/envelopes are modern registration controls, not certified2016corners; east annex/portal depths/hidden sections/current excavation and precise historic contact remain estimates. Fixed eastern approach before terrain/geometry."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Full original nine-point named Homer Tunnel road24765236onSH94, actual bend and passing-place nodes, covered east approach1313398979and curved west gallery1021888401, plus original native tunnel/shelter envelopes. Eastern node9291822178anchors assembly; +Xroughlywest along tunnel, +Zroughlynorth. Native named-road length1227.367491mkept without stretching to nominal1240/1270mpublic descriptions, which use different extents. Primary EngineeringNZ gives1:10descent east-to-west; that grade controls a declared estimated continuous road profile, NOT terrain fitted to a bore. Full mapped road and both covered approaches retained, with genuinely open bore/portal/gallery. Cleared2007east and2016west photos depict pre2024east shelter; NZTAconfirms its replacement mid2024. Historical-only representative2016appearance, not default current placement. Native mapped positions/envelopes are modern registration controls, not certified2016corners; east annex/portal depths/hidden sections/current excavation and precise historic contact remain estimates. Fixed eastern approach before terrain/geometry.",
+    "Historical-only representative2016, valid2016-01-01through2017-01-01dated opt-in. Old eastern shelter was replaced mid2024, as confirmed by NZTAtext; new current shelter/iwi artwork not claimed or used. Native modern position/envelope data register2016geometry; not an exact historic survey. Both full portals/covered approaches/continuous bore retained, rather than an isolated generic mouth.",
+    "Two exact published public-domain Qualla originals inspected: east550x413Mikedux/photo2007/nativeSHA1102d557fc930eca9b93f86241c112a091c2f0138and west4637x2982Szilas2016/nativeSHA1e820be0076a35f3dea59de6902595fb83dfaa732. Native PD-user-en/ownphoto-PD-self releases pinned; full41source families inventoried without conflicts. All other imagery excluded. Primary engineer/operator facts are text only; no external photo/diagram/copied pixels/generated bitmap.",
+    "Native route1227.367491mplus33.876684meast cover/61.345057mcurved west gallery kept at original scale, without stretching to varying nominal1240/1270mmeasurements. Primary1:10grade gives estimated boreeastfloor-3.887604m/finalwestgallery-132.758859mrelative to fixed east approach. Bore6mminimum width/5.3mcrown, east faceted arch4.65mcrown/west gable5.9m, passing-bay width/side/tapers, equipment annex/hidden lining/frame/roof/cable census and exact original floor/cross-sections remain estimates. No traffic furniture/copied signs/whole cliff or topographic mountain added.",
+    "Independent3072m129x129at24mfield/16641samples from25original Terrarium tiles, frozen before geometry at fixed eastern approach. Provider921.0921m/whole relative[-208.5507,1153.1756]m; raw tiles/grid/PNG unchanged without road fitting/clipping/flattening.3.3919moutput pixels may oversample coarser DEM;24mgrid cannot resolve portals or historic road level. Underground bore requires compatible host excavation; default terrain/contact not certified. Isolated/context floorY-150is a review fixture, not modeled landscape or claimed geology."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-native-descending-bore-and-two-distinct-portals",
+      "position": [
+        610,
+        260,
+        930
+      ],
+      "lookAt": [
+        610,
+        -65,
+        15
+      ]
+    },
+    {
+      "name": "old-east-open-faceted-concrete-shelter-and-annex",
+      "position": [
+        -49.87166580789894,
+        7,
+        14.58310081861799
+      ],
+      "lookAt": [
+        -27.871665807898943,
+        1.6,
+        0.5831008186179893
+      ]
+    },
+    {
+      "name": "full-curved-west-open-framed-gabled-gallery",
+      "position": [
+        1285.236324806701,
+        -117.75885867763631,
+        69.86137569828514
+      ],
+      "lookAt": [
+        1251.236324806701,
+        -130.7588586776363,
+        29.861375698285144
+      ]
+    },
+    {
+      "name": "true-open-granite-bore-and-passing-bay",
+      "position": [
+        157,
+        -17.387603901178274,
+        -0.4
+      ],
+      "lookAt": [
+        200,
+        -21.887603901178274,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9770,
+    "vertices": 29310,
+    "materials": 5,
+    "bytes": 1175788,
+    "sha256": "sha256:c890af411820b85a81afbdbfc413e351a1847b1fbf04f2b001e615fbbf2673b3"
+  }
+}

@@ -1,0 +1,291 @@
+{
+  "planId": "sky_tower_auckland",
+  "id": "sky_tower_auckland",
+  "assetId": "molen.worldgen.structure.sky_tower_auckland",
+  "title": "Sky Tower (Auckland)",
+  "category": "tower",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 174.7621857,
+    "latitude": -36.84846881875
+  },
+  "size": [
+    41.085166931152344,
+    328.3455076813698,
+    41.085166931152344
+  ],
+  "actualBounds": {
+    "min": [
+      -20.542583465576172,
+      -0.3455076813697815,
+      -20.542583465576172
+    ],
+    "max": [
+      20.542583465576172,
+      328,
+      20.542583465576172
+    ]
+  },
+  "visualBrief": "Whole328mAuckland Sky Tower:12mconcrete shaft/eight open raked base legs and collar, recessed lift slots, precast flare fins, layered bluegreen-glazed main pod with aluminium rings/mullions/radial supports and open outer ledge, separate small220mSkydeck and complete stepped telecommunications antenna. Exact published2023creatorCC0original, native whole envelope/named upper bands and primary engineer/architect/operator text. Intermediate sections and hidden base interfaces estimated; no neighboring SkyCity buildings/site slab.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Sky_Tower_u_Aucklandu.jpg"
+  ],
+  "stories": [
+    {
+      "id": "sky-tower-auckland-wp",
+      "url": "https://qualla.com/sky-tower-auckland/"
+    }
+  ],
+  "referenceInputHash": "edaf9cd9e73a78faeb238976c4b8e5353279676713161e7258846b9044794a56",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-sky-tower-auckland.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-sky-tower-auckland.mjs",
+    "level": "skyline",
+    "export": "skyTowerAucklandSkyline",
+    "errorMeters": 2.1,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.1
+      },
+      "steel": {
+        "slot": "roof",
+        "graph": "metal_stainless_beadblasted",
+        "roughness": 0.82,
+        "metallic": 0.4
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.48,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "skyTowerAucklandDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.1
+          },
+          "steel": {
+            "slot": "roof",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.82,
+            "metallic": 0.4
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "skyTowerAucklandStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.1
+          },
+          "steel": {
+            "slot": "roof",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.82,
+            "metallic": 0.4
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.5,
+    "groundY": -0.16
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named Sky Tower building relation9692605/Q722125 retains complete component geometry and original outline697464067. Anchor is original32-vertex Skydeck1173272340circle vertex-mean, not the coarse story point. Whole outline is maximum building extent, not a ground-level parcel or footprint to extrude through the tower. Named native SkyBar329588157has179–183mlevels, Orbit697464068has187–194mlevels, and Skydeck1173272340has220–224mlevels. Other member outlines have no saved vertical attributes, so unlabelled member identities/heights are NOT invented. Twelve-metre shaft/eight raked base legs come from primary engineering text;328mheight and186/192/220mpublic levels from architect/operator text. Intermediate collars/flared neck/roof ledges/mast sections and hidden base interfaces are explicit photo/engineering interpretations, not measured floor surveys. Model+Xeast,+Zsouth, heading0; exact slit/base-door angular census is approximate. Fixed eastern approach[26,0]chosen before terrain/geometry. No neighboring casino/hotels/theatre, whole plaza or site pad. Independent192mterrain frozen before geometry at fixed eastern approach[26,0]; provider26.6608m/full relative[-4.1585,5.6263]m. Exact current plaza/core/leg-foot/host contact unverified.",
+    "anchor": [
+      174.7621857,
+      -36.84846881875
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        174.76247756928217,
+        -36.84846881875
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed eastern approach26mfromtoweraxis before terrain/geometry; exact shaft/base-plaza/host contact unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/697464067",
+      "way/329588157",
+      "way/697464068",
+      "way/1173272340"
+    ],
+    "source": "https://www.openstreetmap.org/relation/9692605",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b77f8bf4c59cf3746816542297ec2453adb280d1dd44375568450e10d56252a3",
+    "notes": "Original named Sky Tower building relation9692605/Q722125 retains complete component geometry and original outline697464067. Anchor is original32-vertex Skydeck1173272340circle vertex-mean, not the coarse story point. Whole outline is maximum building extent, not a ground-level parcel or footprint to extrude through the tower. Named native SkyBar329588157has179–183mlevels, Orbit697464068has187–194mlevels, and Skydeck1173272340has220–224mlevels. Other member outlines have no saved vertical attributes, so unlabelled member identities/heights are NOT invented. Twelve-metre shaft/eight raked base legs come from primary engineering text;328mheight and186/192/220mpublic levels from architect/operator text. Intermediate collars/flared neck/roof ledges/mast sections and hidden base interfaces are explicit photo/engineering interpretations, not measured floor surveys. Model+Xeast,+Zsouth, heading0; exact slit/base-door angular census is approximate. Fixed eastern approach[26,0]chosen before terrain/geometry. No neighboring casino/hotels/theatre, whole plaza or site pad."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named Sky Tower building relation9692605/Q722125 retains complete component geometry and original outline697464067. Anchor is original32-vertex Skydeck1173272340circle vertex-mean, not the coarse story point. Whole outline is maximum building extent, not a ground-level parcel or footprint to extrude through the tower. Named native SkyBar329588157has179–183mlevels, Orbit697464068has187–194mlevels, and Skydeck1173272340has220–224mlevels. Other member outlines have no saved vertical attributes, so unlabelled member identities/heights are NOT invented. Twelve-metre shaft/eight raked base legs come from primary engineering text;328mheight and186/192/220mpublic levels from architect/operator text. Intermediate collars/flared neck/roof ledges/mast sections and hidden base interfaces are explicit photo/engineering interpretations, not measured floor surveys. Model+Xeast,+Zsouth, heading0; exact slit/base-door angular census is approximate. Fixed eastern approach[26,0]chosen before terrain/geometry. No neighboring casino/hotels/theatre, whole plaza or site pad.",
+    "Exact already-published5152x3864AugustDominus2023QuallaCC0original inspected/native SHA17f8f098af469e946cd7940f56468736007f16582matched to pinned own-work/selfCC0release. Full31source families inventoried without conflict. All other attribution/interior/panorama images unused. Primary professional engineer/architect/operator facts used as text only; no new photo/diagram/copied pixels/generated bitmap.",
+    "Original named tower relation9692605/Q722125/62point whole maximum outline and original named SkyBar179–183m/Orbit187–194m/Skydeck220–224mrings retained in source controls. Whole outer envelope is not a40mwide ground shaft or site pad. Native Skydeck32point mean anchors toweraxis; heading0. Twelve-metre shaft/eight raked base legs and328mheight are primary-text controlled. Intermediate shoulders, ledges, leg/fin dimensions, main glass subdivisions, shaft/entry slit bearings, antenna sections and hidden current ground interfaces are bounded photo/engineering estimates. Temporary lighting/signage/neighbors/whole plaza/interiors absent.",
+    "Independent192m129x129at1.5m terrain from16641samples/one original Terrarium tile, frozen before geometry. Fixed eastern approach[26,0]; provider26.6608m/whole relative[-4.1585,5.6263]m. Raw tile/grid/PNG unchanged without clipping/fitting/flattening.3.8229moutput pixel spacing oversamples coarser urban composite DEM, possibly roofs/vegetation; exact base/core/leg foot/plaza/host contact unverified. Geographic preview, replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-shaft-eight-raked-legs-separated-pods-and-complete-tip",
+      "position": [
+        275,
+        175,
+        380
+      ],
+      "lookAt": [
+        0,
+        158,
+        0
+      ]
+    },
+    {
+      "name": "main-glazed-pod-radial-members-and-open-exterior-ledge",
+      "position": [
+        44,
+        200,
+        56
+      ],
+      "lookAt": [
+        0,
+        184,
+        0
+      ]
+    },
+    {
+      "name": "separate-skydeck-upper-taper-and-stepped-telecommunications-mast",
+      "position": [
+        60,
+        269,
+        85
+      ],
+      "lookAt": [
+        0,
+        269,
+        0
+      ]
+    },
+    {
+      "name": "eight-open-raked-base-legs-collar-and-recessed-entry",
+      "position": [
+        29,
+        12,
+        35
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22584,
+    "vertices": 67752,
+    "materials": 4,
+    "bytes": 2712900,
+    "sha256": "sha256:a8f47a5536576c53449f932fbefa47f54e6182134d345ddf1537647926e40f12"
+  }
+}

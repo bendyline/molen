@@ -1,0 +1,395 @@
+{
+  "planId": "berlin_hohenschonhausen_memorial",
+  "id": "berlin_hohenschonhausen_memorial",
+  "assetId": "molen.worldgen.structure.berlin_hohenschonhausen_memorial",
+  "title": "Berlin-Hohenschönhausen Memorial",
+  "category": "monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 13.5019794,
+    "latitude": 52.54182548181818
+  },
+  "size": [
+    188.12024688720703,
+    13.68999969214201,
+    112.0915298461914
+  ],
+  "actualBounds": {
+    "min": [
+      -138.8421630859375,
+      -0.11999999731779099,
+      -50.20439910888672
+    ],
+    "max": [
+      49.27808380126953,
+      13.569999694824219,
+      61.88713073730469
+    ]
+  },
+  "visualBrief": "Complete permanent Berlin-Hohenschönhausen former-prison memorial complex within originalnamednative367216314site:all20mappedintrinsicbuildingfeatures (oldmainhouse/factoryannexes,newcell/interrogationU-wings,prisonhospital,workshops,garages,roofcanopy,openexerciseenclosures,smallutilitybuilding andthreewatchtowers), originalindividualfootprints/courtyardvoids/connectingpassage, boundednativebricksecuritywalltraces/gate/fences. Not anentrance/watchtowercrop oronefilledpropertyblock. Separateoutsidegreen-whiteMfSoffice/neighborbuildings,temporaryexhibits/prisontransportwagon/mobileprops,trees/road/paving/landscape/interiors excluded. Preservealloriginalindividualbuildingvertices/courtyardvoids,threeseparateoctagonalwatchtowers/brickperimeterandopenentrancegate; oldmainredbricklower/tanplasteredupperstories, flatnewU-wingroofs/repetitivewhiteframed/frostedcellwindows, longtwo-storeyhospitalwithhalfhiproof/representativedormers andopenexerciseenclosures, graygaragebatten doors/brickpiers/lowworkshops/annexroofs/coveredcanopy. Hiddenfacadecensus/roofvalleys/currentequipment approximate, no copiedcopyrightedsiteplan. Freezeindependent256m129²fieldorigin[-160,-128] atfixedwestgateapproach beforegeometry; all16641samples/tilePNGbytes retained.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Clp_20060300_Gedenkst%C3%A4tte_Berlin-Hohensch%C3%B6nhausen_Eingang.jpg",
+    "https://commons.wikimedia.org/wiki/File:Clp_20060300_Gedenkst%C3%A4tte_Berlin-Hohensch%C3%B6nhausen_Wachturm.jpg",
+    "https://commons.wikimedia.org/wiki/File:Garagen-mfs-Haftanstalt_Gedenkstaette_Berlin-Hohenschoenhausen.jpg"
+  ],
+  "stories": [
+    {
+      "id": "berlin-hohenschonhausen-memorial-wp",
+      "url": "https://qualla.com/berlin-hohenschonhausen-memorial/"
+    }
+  ],
+  "referenceInputHash": "d78def47e7d88f287c519c5adef187a02c23358c0d8fe6609d69bd06a477ad3f",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-berlin-hohenschonhausen-memorial.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-berlin-hohenschonhausen-memorial.mjs",
+    "level": "skyline",
+    "export": "berlinHohenschonhausenSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.1
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.48,
+        "metallic": 0.02
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "berlinHohenschonhausenDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.48,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "berlinHohenschonhausenStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.48,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "berlinHohenschonhausenCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.48,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.3,
+    "groundY": -0.15
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Originalnamedmemorialway367216314 is22vertexsiteperimeter, NOTsinglebuildingfootprint. All20intrinsicbuildingfeatures separatelyretained withoriginalnativevertices, includingthreewatchtowerupperoutlines; overlappingtowerbuilding:parttraces identifythesametowers,not3extra buildings. Native4level tags fornewwings interpretedasthreeabovegroundlevels pluslowsemibasement inagreementwithoperatorthree-storeynewprison; oldmain4levels(primarytwoolderbrick+twoplasteredadditions),two-storeyhospital/hippedroof(primaryhalfhipdetails),lowworkshops/garages/openexerciseenclosures. Heights/windowcounts/roofsmallparts boundedby3clearcomponentphotos/primarytext, hiddencourtfacadesnotclaimedphotographicallysurveyed. Frame+Xeast/+Zsouth, anchororiginal22vertexperimetermean beforefield/geometry. AvoidunrelatedgreenwhiteMfSoffices seenbehindgarages. Gateandnativewallpathswithinprisonbounded; southernwall367216300 haslongexternalcontinuation explicitlyexcludedafteroriginalnodeat[46.71,57.19]. Southernfence367216302 firsttwooriginaloutside-propertypoints excluded, retainingthelastthreeoriginalverticesontheactualmemorialsouthernboundary. Originalbroadtracepreservedseparately; no exteriorneighborfencemodel. Independent256m129²field atfixedwestgateapproach frozenbeforegeometry, hostcontact/individualthresholds unverified.",
+    "anchor": [
+      13.5019794,
+      52.54182548181818
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        13.500081399693084,
+        52.54188117711103
+      ],
+      "modelHeight": 0,
+      "basis": "Fixedwestentranceapproachoutsidegate beforeindependentground, providerrelativegrade/notsurveyedthreshold"
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/367216314",
+      "way/40559600",
+      "way/40560160",
+      "way/40560847",
+      "way/40561338",
+      "way/40561422",
+      "way/40561663",
+      "way/40563193",
+      "way/40563621",
+      "way/46553363",
+      "way/367216309",
+      "way/367216310",
+      "way/367216311",
+      "way/367216312",
+      "way/367216313",
+      "way/367216384",
+      "way/367216385",
+      "way/367216386",
+      "way/441937384",
+      "way/460732217",
+      "way/460734726"
+    ],
+    "source": "https://www.openstreetmap.org/way/367216314",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7ebace20005d4a880d5461b11c56623ce4d0dc51fea38070c50e58c2dfb6b0a7",
+    "notes": "Complete permanent Berlin-Hohenschönhausen former-prison memorial complex within originalnamednative367216314site:all20mappedintrinsicbuildingfeatures (oldmainhouse/factoryannexes,newcell/interrogationU-wings,prisonhospital,workshops,garages,roofcanopy,openexerciseenclosures,smallutilitybuilding andthreewatchtowers), originalindividualfootprints/courtyardvoids/connectingpassage, boundednativebricksecuritywalltraces/gate/fences. Not anentrance/watchtowercrop oronefilledpropertyblock. Separateoutsidegreen-whiteMfSoffice/neighborbuildings,temporaryexhibits/prisontransportwagon/mobileprops,trees/road/paving/landscape/interiors excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Originalnamedmemorialway367216314 is22vertexsiteperimeter, NOTsinglebuildingfootprint. All20intrinsicbuildingfeatures separatelyretained withoriginalnativevertices, includingthreewatchtowerupperoutlines; overlappingtowerbuilding:parttraces identifythesametowers,not3extra buildings. Native4level tags fornewwings interpretedasthreeabovegroundlevels pluslowsemibasement inagreementwithoperatorthree-storeynewprison; oldmain4levels(primarytwoolderbrick+twoplasteredadditions),two-storeyhospital/hippedroof(primaryhalfhipdetails),lowworkshops/garages/openexerciseenclosures. Heights/windowcounts/roofsmallparts boundedby3clearcomponentphotos/primarytext, hiddencourtfacadesnotclaimedphotographicallysurveyed. Frame+Xeast/+Zsouth, anchororiginal22vertexperimetermean beforefield/geometry. AvoidunrelatedgreenwhiteMfSoffices seenbehindgarages. Gateandnativewallpathswithinprisonbounded; southernwall367216300 haslongexternalcontinuation explicitlyexcludedafteroriginalnodeat[46.71,57.19]. Southernfence367216302 firsttwooriginaloutside-propertypoints excluded, retainingthelastthreeoriginalverticesontheactualmemorialsouthernboundary. Originalbroadtracepreservedseparately; no exteriorneighborfencemodel.",
+    "All20mappedintrinsicfeatures/161originaloutlinevertices retained independently ascontrol;threeupperwatchtowersregularizedto8photo-supportedfaceswithinoriginalextents:oldmain/attachedfactoryannexes/newcell/interrogationU/hospital/workshops/garages/canopy/exerciseyards/utility/3towers. Native4levels onnewprisoninterpreted3mainfloors+lowsemibasement; operator3floors/primaryoldmain2brick+2plaster/hospital2levels+halfhiproof controlverticalmassing. Heights13.5/12.6/6.4m andhospital9.2mridge/8.3mtower, hiddenwindowcensus/dormers/radio/paint/slateroofdetails bounded estimates. Nativewatchtowerheight6m/minheight4m nottreatedasfullmeasuredverticalsurvey; upperrooms/roof photo-proportioned8.3moverall. No filledcourtyard/siteparcel extrusion.",
+    "Threeexplicitcreator-PDoriginals individuallyinspected, exactnativeSHA1/dimensions/bytes/revisions/authorgrants/originalownGermanuploadrowsbound. Qualla-first151families/0conflicts; dedicatedstorymodernphotosareCCBYSAandunused,87exterior/29mainnativefilescomplete. Platte/ChristianLiebscher2006PD-user-deentrance/corner,Langinger2009ownPD-releasegarages. Germantransferproofbindsitemgrant/profile/originalfile/name/ownstatement/log/dimensions/bytes;67focusedtests,no source metadata/category/articlebody edits. No restrictedpixels/phototextures/generatedbitmap/downloadedmesh.",
+    "Wholepermanentcomplexrecognizableexterior, notsurvey-grade reconstruction: onlythreeclearedcomponentphotos,sohiddennewcellwindowfrostedpanels/grids/oldannexfenestration/hospitalhalfhipend/dormercensus/finecourtyardpartitions/currentmuseumadaptation/patina approximate. Garagecloseddoorsretainhistorichardware; laterglazingbehindthemnotassertedabsent. Openexerciseenclosure8representativebays,notcertifiedexactcensus. Skylinewindowdetails/roofhardware/wire/mesh simplify;allmasses/voids/threeoctagonalwatchtowers/gate/wallsremain.",
+    "Sixboundedsecuritywalltraces includeoriginalnativewall367216300first12points,excludeitslongneighborhoodcontinuation. Entrancegate staysopenwithseparateleaves/posts/lintel. Nativebuilding:partwatchtowerduplicatesnotextra towers. Detachedgreen-whiteMfSadministrationblockseenbehindgarageandotheroutsidepropertybuildings excluded; no hugepavingslab/road/grass/tree/temporarysignage/exhibitionwagon/people/interiors.",
+    "Independent256m129²fieldorigin[-160,-128]/2mstep/all16641samples/4rawTerrariumtiles/PNG frozenbeforegeometry unchanged. Fixedwestgateproviderdatum56.8198m,absolute55.2278–56.9414m; notthreshold/foundationsurvey. Flatportable/shared/contextfixtures separatefrom actualhostterraincontact,ordinarypreview/replaceFootprint=false; nofieldfitting/flattening/reacquisition."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-prison-complex-all-native-parts-and-courtyard-voids",
+      "position": [
+        -205,
+        135,
+        190
+      ],
+      "lookAt": [
+        -45,
+        3,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "main-entrance-old-four-storey-brick-plaster-building-and-garages",
+      "position": [
+        -158,
+        16,
+        -12
+      ],
+      "lookAt": [
+        -100,
+        6,
+        -2
+      ]
+    },
+    {
+      "name": "southwest-octagonal-watchtower-security-wall-hospital-and-exercise-yards",
+      "position": [
+        -170,
+        24,
+        90
+      ],
+      "lookAt": [
+        -105,
+        5,
+        43
+      ]
+    },
+    {
+      "name": "whole-three-storey-cell-interrogation-u-and-open-courtyard",
+      "position": [
+        85,
+        69,
+        65
+      ],
+      "lookAt": [
+        -2,
+        6,
+        -3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 24861,
+    "vertices": 74583,
+    "materials": 6,
+    "bytes": 2987016,
+    "sha256": "sha256:ae1e9b84c2872f9f5b899d5f92d7928bfe8c54386ca70542283a2ca93dee825c"
+  }
+}

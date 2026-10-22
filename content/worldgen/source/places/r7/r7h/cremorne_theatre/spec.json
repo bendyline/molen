@@ -1,0 +1,345 @@
+{
+  "planId": "cremorne_theatre",
+  "id": "cremorne_theatre",
+  "assetId": "molen.worldgen.structure.cremorne_theatre",
+  "title": "Cremorne Theatre, Brisbane (circa1934)",
+  "category": "performance-sport",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 153.01873,
+    "latitude": -27.47262
+  },
+  "size": [
+    30.440000534057617,
+    10.93000041693449,
+    25.010000228881836
+  ],
+  "actualBounds": {
+    "min": [
+      -15.220000267028809,
+      -0.11999999731779099,
+      -9.260000228881836
+    ],
+    "max": [
+      15.220000267028809,
+      10.8100004196167,
+      15.75
+    ]
+  },
+  "visualBrief": "Historical circa1934 original Cremorne Theatre: whole tall hall/canvas-like wall panels, continuous dense upper and lower louvre banks, gently pitched roof, own low entrance annex/sloping cap, blank stepped/scalloped parapet, gridded door leaves/two pointed vents and thin projecting canopy on slender posts. Approximate photo-ratio footprint/roof/color/facing and archival site anchor. Historical1934only; no modern QPAC venue/gallery or street context mesh.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1934",
+    "validFrom": "1934-01-01",
+    "validUntil": "1935-01-01"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cremorne_Theatre_Brisbane,_circa_1934.JPG"
+  ],
+  "stories": [
+    {
+      "id": "cremorne-theatre-wp",
+      "url": "https://qualla.com/cremorne-theatre/"
+    }
+  ],
+  "referenceInputHash": "3d758a97832fa9d23fa960962170bd0c6e71afe6b7ec71a24017f7b69d1751cd",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-cremorne-theatre.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-cremorne-theatre.mjs",
+    "level": "skyline",
+    "export": "cremorneSkyline",
+    "errorMeters": 0.9,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "fabric_canvas",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.93,
+        "metallic": 0.12
+      },
+      "vent": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "entry": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "shadow": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cremorneDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "fabric_canvas",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.93,
+            "metallic": 0.12
+          },
+          "vent": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "entry": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "cremorneStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "fabric_canvas",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.93,
+            "metallic": 0.12
+          },
+          "vent": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "entry": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6,
+    "groundY": -0.16
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Historical circa1934 original Cremorne Theatre only. Exact published archival file location[153.01873,-27.47262]retained as approximate site anchor, not a surveyed building centre; positional uncertainty about30m. No original footprint survives or is mapped. The30x18m hall and12/13x4m entrance annex outline is an explicit photo-ratio reconstruction, with concealed depth/dimensions and slightly gabled roof estimated. Current Cultural Centre Tunnel way530172035 retains original three coordinates solely as modern street context, never the old theatre footprint or a claim that current tunnel is the1934road. Visualization street-facing axis is perpendicular to this present contextual axis, roughly southwest; old street alignment and plaque/front facing are approximate by60degrees. The native archival caption places the theatre on the riverbank side of former Stanley Street between Peel and Melbourne. Archival point identity, approximate orientation and reconstructed extent are separately labelled. Modern gallery/campus excluded. Fixed approach[9,18]before independently sampled modern terrain/geometry;1934grade and host contact are not established. Independent96m modern terrain frozen before geometry; historic grade and current host contact unverified.",
+    "anchor": [
+      153.01873,
+      -27.47262
+    ],
+    "heading": -0.9970685601969632,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        153.01862639206965,
+        -27.47277566611762
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed reconstructed street-side approach before modern terrain and geometry. Historic ground/threshold and changed current grading unknown."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "archival-photo/cremorne-theatre-circa1934",
+      "way/530172035"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Cremorne_Theatre_Brisbane,_circa_1934.JPG",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:03bc79734320c55c8fe3c2763219da8e6d9794c5bfdc46c40b53ec48d51364c1",
+    "notes": "Historical circa1934 original Cremorne Theatre on Stanley Street: complete theatre hall/tall louvred upper envelope and roof, lower street-front entrance annex/canopy, own scalloped/stepped entrance parapet and multi-light timber doors. Reconstruct a bounded exterior with honest hidden side/rear/roof estimates. The original burned in1954 and is not the modern QPAC namesake. Exclude surrounding street, adjoining businesses/structures, people, text lettering/posters and interior."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.fabric_canvas",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Historical circa1934 original Cremorne Theatre only. Exact published archival file location[153.01873,-27.47262]retained as approximate site anchor, not a surveyed building centre; positional uncertainty about30m. No original footprint survives or is mapped. The30x18m hall and12/13x4m entrance annex outline is an explicit photo-ratio reconstruction, with concealed depth/dimensions and slightly gabled roof estimated. Current Cultural Centre Tunnel way530172035 retains original three coordinates solely as modern street context, never the old theatre footprint or a claim that current tunnel is the1934road. Visualization street-facing axis is perpendicular to this present contextual axis, roughly southwest; old street alignment and plaque/front facing are approximate by60degrees. The native archival caption places the theatre on the riverbank side of former Stanley Street between Peel and Melbourne. Archival point identity, approximate orientation and reconstructed extent are separately labelled. Modern gallery/campus excluded. Fixed approach[9,18]before independently sampled modern terrain/geometry;1934grade and host contact are not established.",
+    "Historical-only representative1934appearance, valid1934-01-01through1935-01-01for dated opt-in. Native archival citation says circa1934, not2014capture. Original burned1954and never rebuilt; no modern QPAC namesake/gallery/streets/neighbor shops or interior represented.",
+    "Only exact already-published1000x744 SLQ/John Oxley Library1934 exterior, native SHA19ad8bc9f9324a49c307cca073f2ecdf938280d6c and explicit PD-Australia matched. Six source families inventoried without conflicts. Other posters/performer/interior/attribution images unused; no supplemental photography/copied pixels/generated bitmap.",
+    "All dimensions are estimates from one monochrome exterior:30x18m complete hall/10.75m ridge, low own annex/6.55m blank entrance parapet, louvre bays/blades, door leaves/frames, hidden rear/roof profile and canopy/post census. Muted canvas/lime/painted timber/metal roof and glazing colors are medium-fi interpretations, not a historic color/material survey. Recessed closed louvre backs avoid fabricating an interior.",
+    "Exact archival site coordinate retained as approximate anchor with about30m uncertainty; original corners/footprint/facing are not mapped. Current tunnel line is modern orientation context only; visualization front approximate by60degrees. Own bounded photo-reconstructed extent, no false original native outline or contemporary geographic activation.",
+    "Independent96m129x129at0.75m modern terrain, fixed approach[9,18], provider9.7675m, full relative[-2.6316,4.0578]. Raw tile/grid/PNG unchanged without fitting/flattening/clipping. Oversamples4.24m output pixels/coarser DEM; current gallery grading differs from1934, precise historic foot/threshold/host contact unknown. replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-tall-hall-louvres-and-own-entrance-assembly",
+      "position": [
+        -35,
+        16,
+        39
+      ],
+      "lookAt": [
+        0,
+        4.7,
+        2
+      ]
+    },
+    {
+      "name": "upper-double-louvre-banks-and-gently-pitched-roof",
+      "position": [
+        -23,
+        10,
+        20
+      ],
+      "lookAt": [
+        -9,
+        7.3,
+        5
+      ]
+    },
+    {
+      "name": "blank-stepped-parapet-canopy-open-underpass-and-gridded-doors",
+      "position": [
+        22,
+        7,
+        27
+      ],
+      "lookAt": [
+        8.6,
+        3,
+        13
+      ]
+    },
+    {
+      "name": "whole-estimated-rear-and-left-end-envelope",
+      "position": [
+        -31,
+        20,
+        -35
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11768,
+    "vertices": 35304,
+    "materials": 6,
+    "bytes": 1415876,
+    "sha256": "sha256:a72ff43724673b0aca104273a9c1f2dcfcaf23fdbab6d2aa1ddc0f0cf8f4e818"
+  }
+}

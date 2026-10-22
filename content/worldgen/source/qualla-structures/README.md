@@ -31,6 +31,19 @@ public-domain basis, attribution and fingerprint. A downloaded gallery file or a
 AI relevance score alone does not qualify. Candidate eligibility still requires
 visual inspection of the correct structure and era.
 
+When a published Qualla USACE photograph has an omitted category in generated media metadata,
+`publicDomainEvidence` may bind a saved Commons primary rights record under the model's
+`reference-rights/`. The check requires the exact native digest, named Army photo credit,
+matching agency, explicit USACE government-work grant and matching published Qualla clearance.
+It does not change Qualla media metadata or accept a bare public-domain label. Changed rights
+records or image bytes invalidate this proof.
+Published DOE photographs may likewise bind the exact native digest to an explicit
+PD-USGov-DOE record, ENERGY.GOV attribution and reviewed United States Government Work
+release from the department’s original account; matching published Qualla clearance remains required.
+For a dated US architectural journal published by 1922, the same optional proof can bind
+the native scan to its primary publisher, exact issue date, archival plate and explicit
+PD-US release. A creation date or public-domain label alone cannot establish publication.
+
 After replacing references, record `qa.imageryReview` with the current policy,
 model input and reference input hashes, all accepted reference paths, excluded
 historical imagery and the actual fidelity review. Its scope is
@@ -50,7 +63,8 @@ and bound to its original bytes. Missing inventory, unaccounted plans or a chang
 rights record prevent completion.
 
 When Qualla's eligible images leave a necessary gap, the supporting-source check
-accepts NPGallery originals only with a saved primary record crediting NPS and
+accepts NPGallery originals only with a saved primary record crediting NPS (including
+National Park Service or its Cape Hatteras National Seashore unit) and
 explicitly granting full public-domain rights. It also accepts Commons originals
 with the photographer's explicit PD-self or CC0 release, matching author and exact
 native-file digest. A migrated Wikipedia creator grant also requires the exact

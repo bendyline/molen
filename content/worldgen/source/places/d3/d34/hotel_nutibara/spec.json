@@ -1,0 +1,381 @@
+{
+  "planId": "hotel_nutibara",
+  "id": "hotel_nutibara",
+  "assetId": "molen.worldgen.structure.hotel_nutibara",
+  "title": "Hotel Nutibara, Medellín",
+  "category": "civic",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -75.56733616,
+    "latitude": 6.25243099
+  },
+  "size": [
+    78.25851058959961,
+    43,
+    30.496956825256348
+  ],
+  "actualBounds": {
+    "min": [
+      -36.207149505615234,
+      0,
+      -15.096957206726074
+    ],
+    "max": [
+      42.051361083984375,
+      43,
+      15.399999618530273
+    ]
+  },
+  "visualBrief": "Whole historic Hotel Nutibara principalbuilding: originalcomplete10vertexnativehotelgroundenvelope, lowwholecommercial/mezzaninebaseandsetbacks/roofterraces, raisedseven-bandrectangularroomblockwithwholeback/sides, recessedpairedwindows/verticalpiers/cornices, narroweruppercrownwiththreeornamentalgabledtallfrontwindows andsemicircularbalconies, redtilehippedroof/shortsidewings/chimney andboundedcoveredentry. Not front-onlycroporuniform40mextrusionofthewholebase. SeparateNutibaraExpress/Residenciasbuilding excluded, alongwithMetro/plaza/palms/roads/neighbours/interiors/basements/signlettering. Retainoriginal10vertexlowbase, containedfullrectangularmainbodyandnarrowerterracecrownasoriginalestimatedpartitions; nativewholegroundenvelopeauthoritative, nosurveyedcomponentheightclaim. Mainbodysevenregularpairedwindowbands, stronglyverticalslenderpalegraypilastersandhorizontalwindowlintels/cornices. Upperfrontthreeelongatedarchedwindowswithornamentalgabledpediments/semicircularironbalconies; twoflankingupperwindows. Redclaytiledhippedcrown/shortlowhippedsidewings/chimney, truewindowrecesses/entryvoids atstreet/closeup. Coarserdistancewindowcueskeepwholemass/threegables/hiproof. Hiddenrear/retail/canopyareboundedwholeexteriorestimates, neverMetro/train/palms/Express/neighbors/roads/sitefloor/interior/signlettering. Freeze400mfieldatfixedfront[3,22]beforegeometry; rawvaluesunchanged/no fit/flatten. Exactgroundattachmentpreviewonly.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hotel_Nutibara-Fachada-Medellin.JPG"
+  ],
+  "stories": [
+    {
+      "id": "hotel-nutibara-wp",
+      "url": "https://qualla.com/hotel-nutibara/"
+    }
+  ],
+  "referenceInputHash": "c94f75499484b768643491f29b9bc9668f8d168ed0bf8feb246f9f33669b16be",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hotel-nutibara.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hotel-nutibara.mjs",
+    "level": "skyline",
+    "export": "nutibaraSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "terrace": {
+        "slot": "roof",
+        "graph": "concrete_boardformed",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.4,
+        "metallic": 0.07
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "nutibaraDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "concrete_boardformed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.07
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "nutibaraStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "concrete_boardformed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.07
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "nutibaraCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "terrace": {
+            "slot": "roof",
+            "graph": "concrete_boardformed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.07
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": -0.15
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Originalwhole10vertexhotelway31965744; exactnamedHotelNutibaraPOI358110291/Q5903410 liesinside. Meanoriginalvertexanchor andlongoriginaledge8-to9definefixedfacadewidth+X; +Zpointssouthwesttowardhistoricprincipalfront. Wholeoutlinekept, NOTseparate44vertexNutibaraExpressway1304046292. OSMcontainsnoheight/partboundaries; lowbase/core/upperrectanglesandallheights areoriginalphoto/primarytext-boundedestimates, not surveyednativecomponents. Independent400mfield fixedbeforegeometry atfront[3,22]; actualurbanthreshold/hostgroundcontactunverified.",
+    "anchor": [
+      -75.56733616,
+      6.25243099
+    ],
+    "heading": -0.5478501220043307,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -75.56741656850785,
+        6.252248248557118
+      ],
+      "modelHeight": 0,
+      "basis": "Fixedprincipalfrontapproach[3,22], independentlychosenbeyondwholefrontenvelope beforegeometry. Exactthreshold/streetgradeunverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/31965744"
+    ],
+    "source": "https://www.openstreetmap.org/way/31965744",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7a59ab5be09054bb72c70d90473b17821276548f53f12a2ef3b8ee07b22fdcb4",
+    "notes": "Whole historic Hotel Nutibara principalbuilding: originalcomplete10vertexnativehotelgroundenvelope, lowwholecommercial/mezzaninebaseandsetbacks/roofterraces, raisedseven-bandrectangularroomblockwithwholeback/sides, recessedpairedwindows/verticalpiers/cornices, narroweruppercrownwiththreeornamentalgabledtallfrontwindows andsemicircularbalconies, redtilehippedroof/shortsidewings/chimney andboundedcoveredentry. Not front-onlycroporuniform40mextrusionofthewholebase. SeparateNutibaraExpress/Residenciasbuilding excluded, alongwithMetro/plaza/palms/roads/neighbours/interiors/basements/signlettering."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Originalwhole10vertexhotelway31965744; exactnamedHotelNutibaraPOI358110291/Q5903410 liesinside. Meanoriginalvertexanchor andlongoriginaledge8-to9definefixedfacadewidth+X; +Zpointssouthwesttowardhistoricprincipalfront. Wholeoutlinekept, NOTseparate44vertexNutibaraExpressway1304046292. OSMcontainsnoheight/partboundaries; lowbase/core/upperrectanglesandallheights areoriginalphoto/primarytext-boundedestimates, not surveyednativecomponents.",
+    "Exactpublished1024x768SajoR2005Quallapublic-domainhero individuallyinspected/SHA1matched/nativeitemPD-selfreleasebound. Qualla-first5families/0conflicts; uninspectedTichnorpostcard/attribution-onlyphotosunused. Noagencyphotos/architecturediagrams/generatedbitmap/photo texture/downloadedmesh.",
+    "Wholeoriginal10vertexlowbase/nativegeographicframe retained; mainroomblock/uppercrownpartitions/heights areoriginalreasonablephoto/primarytextestimates. Base6.4m(doubleheight/mezzanine),7bodybands to29.5m,upper36.8m/hip41m/chimney43m; primarynominaltenlevelsisnotfloor/roomcensus, preciseheightunknown. Notuniform43mextrusionofthebase.",
+    "Recognizablepalegrayverticalpiers/pairedrecessedglazing/cornices/sevenbands, narrowercentralcrownwiththreeornamentalgabledtallwindows/semicircularbalconies/redtilehiproof/shortsidewings/chimney. Representativewindow/balcony/columncounts notprecisecurrentcensus; lowerfront/coveredentry/hiddenrear/wings/roofterraces/currentcosmetics bounded. Interiors/basements/signlettering/tenantlogos/retrofitgearomitted.",
+    "SourceMetro/train/palms occludelowerfront. Coveredentryslab/twocolumns/retailportalrhythm areboundedoriginalexteriorestimates. Allnativebaseverticesandwholeback/sides retained; notfront-onlycrop. SeparateNutibaraExpress/Residenciasway1304046292 andMetro/plaza/roads/palms/neighbours/people/cars/whole-sitefloor excluded.",
+    "Independent400m129x129/16641values/1rawTerrariumtile frozenbeforegeometry withoutfit/flatten/reacquire. CompositeurbanDEMnotstreet/thresholdsurvey; portable/shared/contextflatgroundseparate. Ordinarynativepreview/replaceFootprint=false, actualhostterrainattachmentunverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-historic-hotel-and-stepped-commercial-base",
+      "position": [
+        -68,
+        48,
+        95
+      ],
+      "lookAt": [
+        2,
+        19,
+        -1
+      ]
+    },
+    {
+      "name": "three-gabled-tall-crown-windows-balconies-and-red-hipped-roof",
+      "position": [
+        -24,
+        40,
+        47
+      ],
+      "lookAt": [
+        3,
+        34,
+        2
+      ]
+    },
+    {
+      "name": "sevenband-recessed-paired-windows-and-vertical-piers",
+      "position": [
+        -21,
+        20,
+        33
+      ],
+      "lookAt": [
+        1,
+        17,
+        8.8
+      ]
+    },
+    {
+      "name": "whole-native-rear-and-low-terraces-express-excluded",
+      "position": [
+        68,
+        40,
+        -68
+      ],
+      "lookAt": [
+        3,
+        14,
+        -4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18571,
+    "vertices": 55713,
+    "materials": 6,
+    "bytes": 2232224,
+    "sha256": "sha256:16a5165249304d86a2943d4b4c7e1a31359a97fe55fea6366c7058c26b5bfdf8"
+  }
+}

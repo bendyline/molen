@@ -1,4 +1,5 @@
 /** node examples/world-explorer/test/visual/capture-landmark-library.mjs --ids=N0637,N0641
+ * Optional --target-only reviews selected placements without loading other-device neighbors.
  * Optional --turntable-padding=1.2 gives elongated groups extra room in the four whole views.
  */
 import assert from 'node:assert/strict';
@@ -101,6 +102,7 @@ const zeroReviewDatumFixtureHash =
 const clippingMode = process.argv.includes('--adaptive-clipping') ? 'bounds' : 'legacy';
 const reflectionMode = process.argv.includes('--reflections') ? 'sky-pmrem' : 'none';
 const reviewBoundedPlacement = process.argv.includes('--bounded-placement');
+const targetOnly = process.argv.includes('--target-only');
 const turntablePadding = Number(
   process.argv.find((arg) => arg.startsWith('--turntable-padding='))?.split('=')[1] ?? 1,
 );
@@ -130,6 +132,18 @@ try {
     viewport: { width: 1440, height: 1080 },
     deviceScaleFactor: 1,
   });
+  if (targetOnly) {
+    const assets = new Set(selected.map(({ spec }) => spec.assetId));
+    await page.route('**/earth/structures/placements.json', (route) =>
+      route.fulfill({
+        contentType: 'application/json',
+        body: JSON.stringify({
+          ...placements,
+          entries: placements.entries.filter((entry) => assets.has(entry.asset)),
+        }),
+      }),
+    );
+  }
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('console', (message) => {
     if (message.type() === 'error') errors.push(message.text());
@@ -175,6 +189,7 @@ try {
       'Invalid review ground datum',
     );
     let current =
+      (prior?.targetOnly ?? false) === targetOnly &&
       (prior?.reviewBoundedPlacement ?? false) === reviewBoundedPlacement &&
       (prior?.footprintLabel ?? null) === (localFootprint?.label ?? null) &&
       (!localFootprint || matchesEvidenceText(sourceFrameBytes, prior?.footprintEvidenceHash)) &&
@@ -276,6 +291,11 @@ try {
     );
     assert(mounted.loads.includes(spec.assetId), 'The requested landmark must be loaded');
     assert.equal(new Set(mounted.loads).size, mounted.loads.length, 'Each model loads only once');
+    if (targetOnly)
+      assert(
+        mounted.loads.every((asset) => selected.some(({ spec }) => spec.assetId === asset)),
+        'Target-only review cannot load an unselected neighbor',
+      );
     if (mounted.mode === 'geographic-flat-terrain') {
       const [west, south, east, north] = mounted.selectionBounds;
       assert(west < east && south < north);
@@ -478,6 +498,7 @@ try {
       reflectionMode,
       clippingMode,
       ...(reviewBoundedPlacement ? { reviewBoundedPlacement } : {}),
+      ...(targetOnly ? { targetOnly } : {}),
       placementHash,
       materialGraphs,
       frames,

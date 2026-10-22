@@ -1,0 +1,346 @@
+{
+  "planId": "caldecott_tunnel",
+  "id": "caldecott_tunnel",
+  "assetId": "molen.worldgen.structure.caldecott_tunnel",
+  "title": "Caldecott Tunnel",
+  "category": "tunnel",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -122.2138829125,
+    "latitude": 37.85822675
+  },
+  "size": [
+    185.35602569580078,
+    62.64250183105469,
+    1152.2391357421875
+  ],
+  "actualBounds": {
+    "min": [
+      -99.45338439941406,
+      -0.25,
+      -563.2927856445312
+    ],
+    "max": [
+      85.90264129638672,
+      62.39250183105469,
+      588.9463500976562
+    ]
+  },
+  "visualBrief": "All four current Caldecott bores at both native endpoints: eight genuinely open short-lined mouths, older ArtDeco portal/vent architecture and plain third-bore west vent, restrained fourth-bore permanent concrete wings, whole native west vent footprints and two intrinsic curved service access bridges. Complete native1kmseparation/east-west rise retained, no mountain/site mesh/deep interior.",
+  "nativeAxes": {
+    "x": "across whole tunnel axis, southeast",
+    "y": "up relative to west approach provider datum",
+    "z": "southwest along original bore2axis, westfront"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Caldecott_Tunnel_2680_04.JPG",
+    "https://commons.wikimedia.org/wiki/File:Caldecott_Tunnel_2681_05.JPG",
+    "https://commons.wikimedia.org/wiki/File:Caldecott_Tunnel_2685_08.JPG",
+    "https://commons.wikimedia.org/wiki/File:Caldecott1.png"
+  ],
+  "stories": [
+    {
+      "id": "caldecott-tunnel-wp",
+      "url": "https://qualla.com/caldecott-tunnel/"
+    }
+  ],
+  "referenceInputHash": "8277f1b9b170e32f2c5c6bcc25ecfac78d6b9f4a35470526d74dfa8fa0b95ab8",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-caldecott-tunnel.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-caldecott-tunnel.mjs",
+    "level": "skyline",
+    "export": "caldecottSkyline",
+    "errorMeters": 2.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.18
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.42,
+        "metallic": 0.04
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "light": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "caldecottDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.04
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "light": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "caldecottStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.04
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "light": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 10,
+    "groundY": -0.35
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "AllfouroriginalnamedCaldecottTunnelmotorwayways9898614/782783447/782802221/782809091retainedwith22/21/14/14originalcenterlinevertices; eightactualendpointmouths retained, no singlegenericportal substitute. Original bores3/4 fullundergroundenvelopes1011848635/1011848634 establish separate physical widths/alignments. Whole west intrinsic ventilation houses way471964237(originaltwins)/105058294(third) retain5/4nonduplicatefootprintvertices; native serviceaccess bridgeouterways1094966707/1094966708andcenterlineways9899497/692903204 retained. Nearby four-bore tinybuildingtags without establishedidentity excluded. Anchor is meanofeightoriginalendpoints[-122.2138829125,37.85822675]; heading-0.7368148829613466from whole originalbore2axis, +Zwestapproach/-Zeast. Endfacade bearings follow actualendpoint/nearinside nativepath. Native west/East entrances and vent positions govern sizes; allnoheighttags. Fixed westbore2frontapproach[20.27675980814147,528.1275532763736]andindependent eastfrontprobe[20.668721162807902,-578.6442379455807]beforeterrain/geometry. East vent footprintnotmappedinretrievedwindow; photographicbounded estimates rather than claimed survey. Terrain provider values not floor survey; exactthreshold/grade/hostcarvingunverified. Independent1400mfield frozen before geometry; west/east fixed approaches produce provider-relative46.4725mrise. Exact road thresholds/deep tunnel grade and host carving/contact remain unverified.",
+    "anchor": [
+      -122.2138829125,
+      37.85822675
+    ],
+    "heading": -0.7368148829613466,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -122.21774963434244,
+        37.854590723440566
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed west originalbore2frontapproach before independent terrain/geometry. Exact road/floor/threshold and host tunnelcarving are unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/9898614",
+      "way/782783447",
+      "way/782802221",
+      "way/782809091",
+      "way/1011848634",
+      "way/1011848635",
+      "way/105058294",
+      "way/471964237",
+      "way/1094966707",
+      "way/1094966708"
+    ],
+    "source": "https://www.openstreetmap.org/way/782783447",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a8257afba7b697df6a98e44d4f5ef6e02593b05c31310dc5f57af09665a512d5",
+    "notes": "Complete current Caldecott Tunnel exterior at both ends: all four original named native motorway alignments/8mouths, west original two-bore ArtDeco ventilation house and plain third-bore ventilation house, actual native west access bridges, eastern ArtDeco portal form visible in cleared Qualla photo and other original/current concrete portals. True open road mouths with bounded short dark-lined recesses; deep hidden tunnel interiors not modeled. Fourth-bore permanent wing form from exact2012CC0construction photograph and current native envelope; unobserved finished decoration and east subsidiary vent masses estimated. No mountain/site slab/landscape/ordinary road network, nearby houses, vehicles/signage/temporaryworks/ceremonyart."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "AllfouroriginalnamedCaldecottTunnelmotorwayways9898614/782783447/782802221/782809091retainedwith22/21/14/14originalcenterlinevertices; eightactualendpointmouths retained, no singlegenericportal substitute. Original bores3/4 fullundergroundenvelopes1011848635/1011848634 establish separate physical widths/alignments. Whole west intrinsic ventilation houses way471964237(originaltwins)/105058294(third) retain5/4nonduplicatefootprintvertices; native serviceaccess bridgeouterways1094966707/1094966708andcenterlineways9899497/692903204 retained. Nearby four-bore tinybuildingtags without establishedidentity excluded. Anchor is meanofeightoriginalendpoints[-122.2138829125,37.85822675]; heading-0.7368148829613466from whole originalbore2axis, +Zwestapproach/-Zeast. Endfacade bearings follow actualendpoint/nearinside nativepath. Native west/East entrances and vent positions govern sizes; allnoheighttags. Fixed westbore2frontapproach[20.27675980814147,528.1275532763736]andindependent eastfrontprobe[20.668721162807902,-578.6442379455807]beforeterrain/geometry. East vent footprintnotmappedinretrievedwindow; photographicbounded estimates rather than claimed survey. Terrain provider values not floor survey; exactthreshold/grade/hostcarvingunverified.",
+    "Complete current four-bore exterior and eight original native endpoints, two whole western vent footprints and both native access bridges. Original four complete subterranean alignments/bores3and4envelopes are plan controls; only28mvisible mouth recesses are built, not deep hidden interior or1kmburiedlining. No genericoneportal substitute or invented mountain/sitefloor.",
+    "Four exact already-published local Qualla originals only: Pegship2007PD-selfwestern three-bore architecture and PedroXing2012CC0fourth permanent sideform/thirdplainvent,eastdecoratedportal,bore1lining. NativeSHA1/owncreatorgrants bound. Fourth completedface/unseen ornament and unphotographed east subsidiary faces remain restrained bounded estimates; no claim of exact current cosmetic finish. Caption2685bore3 retained without blindly assigning all east portal identities. CC-BYceremony/uncertainJPEGhero/other unrelated media unused; no copiedpixels/generatedbitmap.",
+    "Actual native plan widths/positions/onekmendpointseparation retained. All heights/clear sections/facade ornaments/pier depths/bridge support census/rail/stair spacing/hidden roofs remain photographic medium-fi estimates; source primarytext confirms4bores/2laneseach and1937/1964/2013eras. Original representative chevronfanrelief/pilasters/medallions, not exact sculptural reproductions. Skylinecoarsens arches to rectangles/relief/rails/buriedstair details within2.2merror; districtcoarsens ribs/medallions/railspacing within0.9merror.",
+    "Independent1400m141x141at10mTerrariumfield/rawtiles/grid/PNG frozen before geometry without flattening/fitting. Fixed west/east originalbore2frontapproaches give westdatum228.4939m/eastrelative46.4725m; commonfloorat eachend is provider-relative approximation, not surveyed roadway/tunnelgrade. Exact thresholds/cuttings/underbridge supports and host tunnelterraincarving/contact unverified; geographicpreview/replaceFootprintfalse. Flat review ground cannot certify east contact. No hillside mesh/trees/ordinaryroads/neighborhoodbuildings/vehicles/people/temporaryconstruction/lettering."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "four-western-mouths-and-both-native-service-bridges",
+      "position": [
+        -130,
+        43,
+        680
+      ],
+      "lookAt": [
+        -12,
+        8,
+        510
+      ]
+    },
+    {
+      "name": "original-art-deco-and-plain-third-bore-ventilation-houses",
+      "position": [
+        10,
+        35,
+        565
+      ],
+      "lookAt": [
+        34,
+        13,
+        480
+      ]
+    },
+    {
+      "name": "complete-four-eastern-portals-and-decorated-third-bore-stair",
+      "position": [
+        -130,
+        84.4725,
+        -675
+      ],
+      "lookAt": [
+        12,
+        52.4725,
+        -526
+      ]
+    },
+    {
+      "name": "fourth-bore-arched-mouth-and-permanent-raked-wings",
+      "position": [
+        -83,
+        13,
+        590
+      ],
+      "lookAt": [
+        -70,
+        5,
+        540
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13486,
+    "vertices": 40458,
+    "materials": 5,
+    "bytes": 1621448,
+    "sha256": "sha256:1a102ff19987a9291fca3656c6da8a2ceced09134bdb19d89e05ae5a5a991be6"
+  }
+}

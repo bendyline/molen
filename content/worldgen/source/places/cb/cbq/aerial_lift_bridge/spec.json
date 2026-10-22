@@ -1,0 +1,302 @@
+{
+  "planId": "aerial_lift_bridge",
+  "id": "aerial_lift_bridge",
+  "assetId": "molen.worldgen.structure.aerial_lift_bridge",
+  "title": "Aerial Lift Bridge",
+  "category": "bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -92.09286795,
+    "latitude": 46.77895205
+  },
+  "size": [
+    151.3785171508789,
+    76.625,
+    16.331798553466797
+  ],
+  "actualBounds": {
+    "min": [
+      -75.75117492675781,
+      -8,
+      -7.877631187438965
+    ],
+    "max": [
+      75.6273422241211,
+      68.625,
+      8.454167366027832
+    ]
+  },
+  "visualBrief": "Complete current Duluth lift bridge in lowered road-open state: original native151mbridge envelope/road axis, paired open battered lattice towers and concrete footings/inner lift guides/high counterweights/cables/top sheaves/pinnacles, fixed original high arched truss with transverse bracing/catwalk, separate low moving road truss/metal deck/sidewalks/rails, central outboard sea-side operator machinery house/upper glazed cab and small end huts. Two inspected2024native Qualla creatorCC0aerials and official owner dimensions; member/hidden mechanical sections and lake/shore contact approximate. No1905gondola, separate breakwaters/lighthouses/museum/shore buildings/water/boats/people/traffic/copied branding.",
+  "nativeAxes": {
+    "x": "southeast along bridge from north city approach toward Park Point",
+    "y": "up",
+    "z": "southwest toward inner harbor"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Duluth,_MN_-_Aerial_Lift_Bridge_and_harbor,_aerial,_August_2024.jpg",
+    "https://commons.wikimedia.org/wiki/File:Duluth_Aerial_Lift_Bridge-aerial,_August_2024.jpg"
+  ],
+  "stories": [
+    {
+      "id": "aerial-lift-bridge-wp",
+      "url": "https://qualla.com/aerial-lift-bridge/"
+    }
+  ],
+  "referenceInputHash": "7f668d6be37c46f56c3fae13a6ef803c493dfbc5c67e92fabfea9c55efdac0f1",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-aerial-lift-bridge.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-aerial-lift-bridge.mjs",
+    "level": "skyline",
+    "export": "aerialLiftSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.18
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96,
+        "metallic": 0.16
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.3,
+        "metallic": 0.08
+      },
+      "house": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "aerialLiftDistrict",
+        "errorMeters": 1.25,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.18
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.3,
+            "metallic": 0.08
+          },
+          "house": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "aerialLiftStreet",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.18
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.3,
+            "metallic": 0.08
+          },
+          "house": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.7,
+    "groundY": -8.4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named current movable bridge roadway39240757/Q381123and complete actual bridge areaway1292082350share native endpoint nodes and independently establish full surviving1930bridge identity/envelope. Original full ten-vertex area and endpoint centerline retained; no filled parcel/canal/whole waterfront. Native component heights/footing plans are absent, so tower/upper/lower-truss sections and hidden machinery are explicit interpretations controlled by two clear current2024creatorCC0aerials and official owner/state dimensions. The original1905upper truss survives as a fixed structural member; do not substitute a gondola or merge fixed and moving spans. Fixed northern dry road approach before independent360mrawterrain. Closed road0; lake/waterline/bank/footing and published height measurement datums approximate.",
+    "anchor": [
+      -92.09286795,
+      46.77895205
+    ],
+    "heading": -1.1303123823064265,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -92.0933069791102,
+        46.77958987689794
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed north dry road approach three metres before original bridge endpoint, before terrain/geometry. Model road pavement0; lake/waterline/footing/shore contact approximate. No bank flattening or generic site platform."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/39240757",
+      "way/1292082350"
+    ],
+    "source": "https://www.openstreetmap.org/way/39240757",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8753846e31029aabad887ac5dd34c4af7d4178ff91126e72a86fd28fd30e8102",
+    "notes": "Complete surviving Duluth Aerial Lift Bridge exterior in the lowered road-open position: exact native bridge envelope/road axis, paired battered open lattice towers and concrete footings/inner guides/counterweights/cables/top sheaves/pinnacles, original fixed high arched truss and its transverse bracing/catwalk, separate low moving road truss with grated two-lane deck/sidewalks/rails, central operator house and small end machinery housings. Keep navigable channel and large upper-to-lower span void open. No1905transporter gondola, separate breakwaters/lighthouses/museum/canal walls/neighborhood/boats/traffic/people or copied signs. Native plan controls position/envelope; official dimensions and current two2024aerials control sections, with individual member sizes, hidden machinery and precise shore/lake contact approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named current movable bridge roadway39240757/Q381123and complete actual bridge areaway1292082350share native endpoint nodes and independently establish full surviving1930bridge identity/envelope. Original full ten-vertex area and endpoint centerline retained; no filled parcel/canal/whole waterfront. Native component heights/footing plans are absent, so tower/upper/lower-truss sections and hidden machinery are explicit interpretations controlled by two clear current2024creatorCC0aerials and official owner/state dimensions. The original1905upper truss survives as a fixed structural member; do not substitute a gondola or merge fixed and moving spans.",
+    "Exactly two native4000x2250Bspor.88August2024Qualla originals actually inspected and SHA1matched to pinned Commons explicit own-work/selfCC0releases. Near aerial controls current lattice/upper fixed truss/lowered road truss/guide/weight/sheave/operator-house forms; harbor aerial confirms whole bridge and independent waterfront context. Old1911transporter card, uncreditedPDcandidate and attribution images excluded. No external architectural photograph, generatedbitmap, copied photo texture, lettering or artwork.",
+    "Original approximately150.99mroad axis and full ten-vertex actual bridge envelope control plan. Official502ftoverall/386ftmovingtruss/390ftbetween-spans refer to different extents; they are not one global scale. Official225fttop/180ftfixed underside have no explicit surveyed datum, so adopted pavement-relative heights are approximate. Tower batter, footings, truss panel/member sizes, rail/guide/counterweight/cable/sheave details and roof sections are photographic medium-fi estimates, not engineering/as-built survey.",
+    "Original high truss remains fixed as an extant1905structural member; the low1930road truss is a separate static lowered span. Large intervening air gap, open lattice towers and underneath water channel stay open. Closeup long built-up members have two rails/open lattice webs, coarser solid rails/representative braces retire fine detail by distance. No operating animation, navigational clearance guarantee, mechanical collision or historic transporter gondola.",
+    "Operator house is central along span and outboard on the photographed northeast/sea side, with lower machinery housing and upper glazed cab; road center remains unobstructed. Exact machinery-house sections/conservation/window census and small end huts are estimates. Closed glazing is opaque blue-grey. Traffic, people, boats, lights/flags/signs and copied branding excluded.",
+    "Intrinsic bridge road/sidewalk deck and individual concrete footings only; no canal wall/breakwater/lighthouse/museum/neighbor buildings, landscape/site slab or model water. Independent360mrawTerrariumfield frozen before geometry at original north dry-road approach; original source grid/tiles/PNGunchanged without flattening/fitting. Lake level/bank/pier/host datum contact approximate; flatstage is illustrative rather than geographic certification."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "fixed-high-truss-open-towers-and-separate-lowered-road-span",
+      "position": [
+        100,
+        58,
+        195
+      ],
+      "lookAt": [
+        0,
+        29,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "battered-tower-inner-guides-counterweights-and-top-sheaves",
+      "position": [
+        -97,
+        48,
+        -34
+      ],
+      "lookAt": [
+        -63,
+        39,
+        0
+      ]
+    },
+    {
+      "name": "lower-road-truss-sidewalks-and-outboard-operator-house",
+      "position": [
+        18,
+        21,
+        -42
+      ],
+      "lookAt": [
+        0,
+        6,
+        -2
+      ]
+    },
+    {
+      "name": "fixed-upper-arched-truss-lattice-and-transverse-bracing",
+      "position": [
+        32,
+        87,
+        34
+      ],
+      "lookAt": [
+        0,
+        61,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 17632,
+    "vertices": 52896,
+    "materials": 4,
+    "bytes": 2118484,
+    "sha256": "sha256:39c6278d084480b9d7d8fc2335402ac7cbc008342b8c7206cba89b39d0f580a2"
+  }
+}

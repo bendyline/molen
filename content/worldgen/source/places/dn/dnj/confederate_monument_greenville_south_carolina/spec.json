@@ -1,0 +1,317 @@
+{
+  "planId": "confederate_monument_greenville_south_carolina",
+  "id": "confederate_monument_greenville_south_carolina",
+  "assetId": "molen.worldgen.structure.confederate_monument_greenville_south_carolina",
+  "title": "Confederate Monument (Greenville, South Carolina)",
+  "category": "monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -82.3967635,
+    "latitude": 34.8552457
+  },
+  "size": [
+    17.42516326904297,
+    10.95056600868702,
+    3.985155463218689
+  ],
+  "actualBounds": {
+    "min": [
+      -8.712581634521484,
+      -0.20116586983203888,
+      -1.524999976158142
+    ],
+    "max": [
+      8.712581634521484,
+      10.74940013885498,
+      2.460155487060547
+    ]
+  },
+  "visualBrief": "Whole1892monument surviving at1924ConfederatePlaza location: tiered square granite steps/inscriptionbase, two-stage tapered square shaft, shoulder/cornice/cavetto capital, separate pale marble standinguniformedsoldier with brimmedhat/rifle/separatedlegs/waist-heldhands, and two intrinsicParrottgun displays onstonegarrisonmounts. Exclude independentDixieHighway/Kershaw/81stDivisionmemorials, laterbronzeplaques, cemetery/park/fences/roads/trees and originalMainStreetbuildings. Realfour-sidedgraniteprofile/plinthtiers/lowerrelief/closedinsetinscriptionpanels/midshaftband/taperedupperstage/cavettocapital. Paleunpaintedmarblesoldier: twoactualseparatedlegs/shoes/kneelengthuniformcoat/waisthands/longverticalrifle/brimmedslouchhat/restrainedface; no blockman/sphere-head substitute. BothdarkironParrottbarrels withbreechband/muzzlebores/trunnions andwheel-lessslopingstonecarriages. Nearmolding/coatseams/buttons/fingers/hatdent/eyelids/rifledetails areboundedinterpretations. No literal unreadabletextorcopiedcoloredpostcardlighting.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Greenville_-_Confederate_Monument_1907.jpg"
+  ],
+  "stories": [
+    {
+      "id": "confederate-monument-greenville-south-carolina-wp",
+      "url": "https://qualla.com/confederate-monument-greenville-south-carolina/"
+    }
+  ],
+  "referenceInputHash": "e84d081f758a50ee054174dad0478f91cb0e32aed60edeeeb1f2acff68e4b86f",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-greenville-confederate-monument.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-greenville-confederate-monument.mjs",
+    "level": "skyline",
+    "export": "greenvilleMonumentSkyline",
+    "errorMeters": 0.22,
+    "surfaces": {
+      "granite": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.28
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.99,
+        "metallic": 0.18
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "greenvilleMonumentDistrict",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.28
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.99,
+            "metallic": 0.18
+          }
+        }
+      },
+      "street": {
+        "export": "greenvilleMonumentStreet",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.28
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.99,
+            "metallic": 0.18
+          }
+        }
+      },
+      "closeup": {
+        "export": "greenvilleMonumentCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.28
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.99,
+            "metallic": 0.18
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Actualnativecentre node3894273805 namedConferateMonument at[-82.3967635,34.8552457], distinctfromnearbyDixieHighway/Kershaw/81stmemorials. Heading-2.087396266791048 inferredfromcentretocurrentnativeapproachjunction3894273809, notsurveyedstatuebearing. Nativecurrentcirclefootway42336424 isapproachcontext, not3Dbasefootprint. Nativecannon3894273806 atlocal[7.992581256819033,0.6601553993773255] pinsonegun; secondgun mirroredacrosscolumnisarchitecturalplacementestimate, notmeasuredmapcontrol.28ft8.5344mreportedgraniteshaft frompublishedQuallacaption, statue2.20m/whole10.7344marchitecturalestimate; Quallaflight25ftsummary isrough/conflicting, neitherheightassertedassurvey. Smalltierwidths/sections/portrait/ornament/gunprofile areproportionalphotographicestimates. Independent256m16641samplefieldfrozenbeforegeometryatfixedexternalapproach. MonumenttoeY0/guncentredatums fromsourcefield, notsurveyed1924slabs; actualhostcontactunverified.",
+    "anchor": [
+      -82.3967635,
+      34.8552457
+    ],
+    "heading": -2.087396266791048,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -82.3968110923824,
+        34.85526788499075
+      ],
+      "modelHeight": 0,
+      "basis": "Fixedexternalplazaapproachbeforeindependentfield/geometry, source-relativemonumenttoe; notsurveyedplazaor1924foundationdatum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/3894273805",
+      "node/3894273806",
+      "way/42336424"
+    ],
+    "source": "https://www.openstreetmap.org/node/3894273805",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:83dcd04e3d72e987e990760b30210d35ba8d857a33343731520b45d2d4126707",
+    "notes": "Whole1892monument surviving at1924ConfederatePlaza location: tiered square granite steps/inscriptionbase, two-stage tapered square shaft, shoulder/cornice/cavetto capital, separate pale marble standinguniformedsoldier with brimmedhat/rifle/separatedlegs/waist-heldhands, and two intrinsicParrottgun displays onstonegarrisonmounts. Exclude independentDixieHighway/Kershaw/81stDivisionmemorials, laterbronzeplaques, cemetery/park/fences/roads/trees and originalMainStreetbuildings."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actualnativecentre node3894273805 namedConferateMonument at[-82.3967635,34.8552457], distinctfromnearbyDixieHighway/Kershaw/81stmemorials. Heading-2.087396266791048 inferredfromcentretocurrentnativeapproachjunction3894273809, notsurveyedstatuebearing. Nativecurrentcirclefootway42336424 isapproachcontext, not3Dbasefootprint. Nativecannon3894273806 atlocal[7.992581256819033,0.6601553993773255] pinsonegun; secondgun mirroredacrosscolumnisarchitecturalplacementestimate, notmeasuredmapcontrol.28ft8.5344mreportedgraniteshaft frompublishedQuallacaption, statue2.20m/whole10.7344marchitecturalestimate; Quallaflight25ftsummary isrough/conflicting, neitherheightassertedassurvey. Smalltierwidths/sections/portrait/ornament/gunprofile areproportionalphotographicestimates.",
+    "Wholegraniteshaft/plinth/cap/marblesoldier andtwoParrottdisplays included; bothlegvoids/hat/rifle/waistarms/fourfacecolumn/two-stageprofile retainedatalllevels. Nearclosedrecesspanels/moldings/restraintface/coatseam/buttons/fingers/bore/breech/trunnions/stonecheekmounts. Statueportrait/finefolds/reliefsymbol/gunmodel/calibre/currentcarriagerepairs andsmallcannonballs areapproximatephotographicinterpretations. Inscriptionrepresentedbyincisedlinefields, noliteralunreadableletteringinvented.",
+    "Exactpublished1907AmericanNewsCoNewYorkPD-US-expiredpostcard/nativeSHA1bound andindividuallyinspected; unchangedpolicy passed. OriginalMainStreetsetting/ironfence/house/rails notcurrentmodel. Unknown1918bookimage/1948unrenewedclaim/modernCCphotosunusedandunviewed. PrimaryCityhistory andpublishedtextheightcaption usedasfacts only; no protectedPDFmaps/photos/newimageryadopted. No Quallamedia/body/category/policyedits orphotographictextures/downloadedmesh/generatedbitmap.",
+    "Nativecurrentmonument3894273805/onegun3894273806/approachcircle42336424 fixcentre andonegun; approximateheadinginferredfromapproach. Secondguncentremirrored, notmapped. Reported28ftshaft8.5344m plusestimated2.20mstatue/10.7344mwholeheight; rough25ftQuallasummaryconflicts. Dimensions/rotationalbearingnotcertifiedsurvey. Smallmasonrytierwidths/ornament/portraitboundedestimates.",
+    "Independent256m129square2m16641samplefield/twooriginalTerrariumtiles frozenbeforegeometry, allvalues/PNG/tilebytes retained. Provider299.4093mfixedapproachdatum isnot surveyedplaza/foundationgrade. Gunbases independentlysamplepreexistingfield; no flattening/fitting/reacquisition/parkdisc. Actualhostcontactunverified andordinarygeographicpreview/replacementdisabled.",
+    "SeparateDixieHighway/Kershaw/81stDivisionmemorials/laterbronzeplaques/cemetery/park/fences/roads/trees/people areexcluded, notsubstitutedfornamedmonument."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-tiered-granite-column-marblesoldier-and-paired-parrott-displays",
+      "position": [
+        17,
+        12,
+        25
+      ],
+      "lookAt": [
+        0,
+        4.6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "standing-carved-soldier-hat-rifle-coat-hands-and-separated-legs",
+      "position": [
+        1.9,
+        10.3,
+        3.9
+      ],
+      "lookAt": [
+        0,
+        9.65,
+        0
+      ]
+    },
+    {
+      "name": "stepped-granite-base-recessed-panels-relief-and-two-shaft-stages",
+      "position": [
+        4.6,
+        4.8,
+        7.2
+      ],
+      "lookAt": [
+        0,
+        3.4,
+        0
+      ]
+    },
+    {
+      "name": "parrott-rifle-breech-band-trunnions-actual-bore-and-stone-mount",
+      "position": [
+        12,
+        3.4,
+        5.2
+      ],
+      "lookAt": [
+        8,
+        1,
+        0.65
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6384,
+    "vertices": 19152,
+    "materials": 3,
+    "bytes": 768552,
+    "sha256": "sha256:7e5bd8f39c33d9149c91fe6f90b9dacae67362eb13aadbcabaa393e68f448195"
+  }
+}

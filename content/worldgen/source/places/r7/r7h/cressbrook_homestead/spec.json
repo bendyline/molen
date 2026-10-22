@@ -1,0 +1,342 @@
+{
+  "planId": "cressbrook_homestead",
+  "id": "cressbrook_homestead",
+  "assetId": "molen.worldgen.structure.cressbrook_homestead",
+  "title": "Cressbrook Homestead",
+  "category": "historic",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 152.40455145,
+    "latitude": -27.05836679
+  },
+  "size": [
+    83.12749862670898,
+    8.270000457763672,
+    31.072500228881836
+  ],
+  "actualBounds": {
+    "min": [
+      -41.0724983215332,
+      0,
+      20.927499771118164
+    ],
+    "max": [
+      42.05500030517578,
+      8.270000457763672,
+      52
+    ]
+  },
+  "visualBrief": "Distinct main House and Cottage with complete intrinsic domestic wings: gabled attic House/front window and small white-railed balcony, long low veranda wing and rear slab/kitchen roofs around an open courtyard; broad low hipped Cottage with wrap veranda, service hip, timber posts/rails, doors/windows and paired brick chimneys. Four accepted archival exterior originals. Photographic plans, metric spacing and hidden dimensions are estimates; no parcel slab or separate chapel/farm buildings.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:StateLibQld_1_95648_Cressbrook_dwelling,_The_Cottage,_overlooking_the_Brisbane_River_near_Toogoolawah.jpg",
+    "https://commons.wikimedia.org/wiki/File:StateLibQld_2_232995_Homestead_at_Cressbrook_Station,_1930.jpg",
+    "https://commons.wikimedia.org/wiki/File:StateLibQld_1_92936_Front_view_of_the_homestead_at_Cressbrook_Station,_ca._1930.jpg",
+    "https://commons.wikimedia.org/wiki/File:StateLibQld_1_71327_Homestead_on_Cressbrook_Station,_1899.jpg"
+  ],
+  "stories": [
+    {
+      "id": "cressbrook-homestead-wp",
+      "url": "https://qualla.com/cressbrook-homestead/"
+    }
+  ],
+  "referenceInputHash": "481de72190c09509742122b792ceae85d1ffdf0a0939a11068158363234c4800",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-cressbrook-homestead.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-cressbrook-homestead.mjs",
+    "level": "skyline",
+    "export": "cressbrookHomesteadSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "slab": {
+        "slot": "wall",
+        "graph": "wood_vertical",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.91,
+        "metallic": 0.15
+      },
+      "brick": {
+        "slot": "foundation",
+        "graph": "brick",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.7,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cressbrookHomesteadDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "slab": {
+            "slot": "wall",
+            "graph": "wood_vertical",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.91,
+            "metallic": 0.15
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "cressbrookHomesteadStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "slab": {
+            "slot": "wall",
+            "graph": "wood_vertical",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.91,
+            "metallic": 0.15
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.8,
+    "groundY": -0.16
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Two named main Cressbrook homestead dwellings only, retained as distinct photo-guided House and Cottage with attached domestic wings/verandas. Official QHR600503heritage parcel centroid[152.40455145, -27.05836679]anchors the assembly; it is NOT a surveyed house centre or building corner. Qualla/Wikidata point is coarse (~0.01degree precision). Saved OSMquery contains no original building plans; unrelated Nominatim Brisbane street results rejected. All component outlines, metric dimensions, courtyard size and separation are explicit photographic reconstructions, not native mapped footprints. Primary heritage text places the homes toward the north of the site and House front northward with a rear southern domestic courtyard. Visualization +Z north (heading pi), +X west. House centre[-30,42]and Cottage[30,42]metres relative to parcel centroid, their60m separation, relative east/west order and offsets are approximate with at least60m registration uncertainty. A separate chapel/whole property is not substituted. Fixed north House approach[-30,55]chosen before terrain/geometry; floor/stumps/steps and exact current host contact unverified. Independent192m terrain frozen before geometry; fixed north House approach[-30,55]. Exact current floor/stumps/steps and host contact unverified.",
+    "anchor": [
+      152.40455145,
+      -27.05836679
+    ],
+    "heading": 3.141592653589793,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        152.40485406669052,
+        -27.057872718853755
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed north House approach[-30,55]before terrain and geometry; no floor or exact site contact survey."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "qhr600503/house",
+      "qhr600503/cottage"
+    ],
+    "source": "https://qhr.detsi.qld.gov.au/asset/?full=false&slug=qld-600503-cressbrook-ho-2ae5a1",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2b4d9dd2eeb16ee9660f370c6d5b686eebb0008aa6746cf1bdd3dd51474ec973",
+    "notes": "Two named main Cressbrook homestead dwellings only, retained as distinct photo-guided House and Cottage with attached domestic wings/verandas. Official QHR600503heritage parcel centroid[152.40455145, -27.05836679]anchors the assembly; it is NOT a surveyed house centre or building corner. Qualla/Wikidata point is coarse (~0.01degree precision). Saved OSMquery contains no original building plans; unrelated Nominatim Brisbane street results rejected. All component outlines, metric dimensions, courtyard size and separation are explicit photographic reconstructions, not native mapped footprints. Primary heritage text places the homes toward the north of the site and House front northward with a rear southern domestic courtyard. Visualization +Z north (heading pi), +X west. House centre[-30,42]and Cottage[30,42]metres relative to parcel centroid, their60m separation, relative east/west order and offsets are approximate with at least60m registration uncertainty. A separate chapel/whole property is not substituted. Fixed north House approach[-30,55]chosen before terrain/geometry; floor/stumps/steps and exact current host contact unverified."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Two named main Cressbrook homestead dwellings only, retained as distinct photo-guided House and Cottage with attached domestic wings/verandas. Official QHR600503heritage parcel centroid[152.40455145, -27.05836679]anchors the assembly; it is NOT a surveyed house centre or building corner. Qualla/Wikidata point is coarse (~0.01degree precision). Saved OSMquery contains no original building plans; unrelated Nominatim Brisbane street results rejected. All component outlines, metric dimensions, courtyard size and separation are explicit photographic reconstructions, not native mapped footprints. Primary heritage text places the homes toward the north of the site and House front northward with a rear southern domestic courtyard. Visualization +Z north (heading pi), +X west. House centre[-30,42]and Cottage[30,42]metres relative to parcel centroid, their60m separation, relative east/west order and offsets are approximate with at least60m registration uncertainty. A separate chapel/whole property is not substituted. Fixed north House approach[-30,55]chosen before terrain/geometry; floor/stumps/steps and exact current host contact unverified.",
+    "Both named main dwellings retained with their distinct gabled/attic House and hipped Cottage profiles, domestic wings/verandas and own floors/stumps/steps. Open rear House courtyard and intervening gap; no parcel/site slab, separate chapel/stables/dairy/worker homes/tanks/farm sheds, landscape/river/trees/fence/tennis court/people/interior.",
+    "Four exact unconflicted already-published Qualla originals: named Cottage SLQ1 95648, Homestead1930SLQ2 232995, front ca1930SLQ1 92936 and rear1899SLQ1 71327. Native originals/hashes, archive item handles and explicit PD-Australia/StateLibQld-License matched; unrecorded creators established by exact native archive records. Full15source families inventoried. All other media unused; no supplementary imagery, copied pixels or generated bitmap.",
+    "Photographs establish exterior roof/veranda/attic/slab/chimney forms; component dimensions, House6.9m/Cottage6.1m roof ridges, House/Cottage60m spacing and relative east/west position, hidden aperture/roof census, current colors/finish and exact ground contact are declared estimates. Neutral timber/metal/brick/glass palette is not a historic/current color survey. Official site centroid anchors a photo reconstruction, not mapped building corners.",
+    "Independent192m129x129 field at1.5m,16641 samples from two original Terrarium tiles. Provider87.8798m, whole relative[-1.1564,5.5846]m at fixed approach[-30,55]. Original grid/PNG unchanged without fitting/clipping/flattening. Oversamples4.2544m source pixels; composite rural DEM can include vegetation. Geographic preview only, replaceFootprint=false; exact house-floor/stump/step/host contact unverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-distinct-house-and-cottage-with-open-gap",
+      "position": [
+        10,
+        38,
+        132
+      ],
+      "lookAt": [
+        -1,
+        3,
+        39
+      ]
+    },
+    {
+      "name": "house-attic-gable-window-balcony-and-long-veranda",
+      "position": [
+        -45,
+        12,
+        71
+      ],
+      "lookAt": [
+        -28,
+        3,
+        43
+      ]
+    },
+    {
+      "name": "cottage-hipped-roof-open-wrap-veranda-and-chimneys",
+      "position": [
+        58,
+        13,
+        69
+      ],
+      "lookAt": [
+        29,
+        3,
+        42
+      ]
+    },
+    {
+      "name": "house-open-rear-domestic-courtyard-and-slab-wings",
+      "position": [
+        -26,
+        11,
+        9
+      ],
+      "lookAt": [
+        -30,
+        2.8,
+        33
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 24740,
+    "vertices": 74220,
+    "materials": 6,
+    "bytes": 2972484,
+    "sha256": "sha256:0ae95e5aa1c7e72832a7d8a36c96bb825932da2ad8cc61f453c4d42d96945bd0"
+  }
+}

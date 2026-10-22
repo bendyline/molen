@@ -1,0 +1,341 @@
+{
+  "planId": "sir_thomas_brisbane_planetarium",
+  "id": "sir_thomas_brisbane_planetarium",
+  "assetId": "molen.worldgen.structure.sir_thomas_brisbane_planetarium",
+  "title": "Sir Thomas Brisbane Planetarium",
+  "category": "planetarium",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 152.97692078235295,
+    "latitude": -27.47571355490196
+  },
+  "size": [
+    44.37880325317383,
+    14.900000095367432,
+    39.774253845214844
+  ],
+  "actualBounds": {
+    "min": [
+      -19.089582443237305,
+      -3.4000000953674316,
+      -23.748502731323242
+    ],
+    "max": [
+      25.289220809936523,
+      11.5,
+      16.0257511138916
+    ]
+  },
+  "visualBrief": "Whole native multilobed planetarium: white main Cosmic Skydome/curved fluted auditorium/cantilevered underside and supports, smaller cylindrical telescope observatory/ribbed dome/raised shutter, eastern low-roof foyer and native service jags, open sweeping access ramp and own stairs, real entry/vents. Native51-vertex boundary and mapped entrance; no site pad or garden/statue/parking/interior.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Planetarium-Thursday-1-July-2008.JPG",
+    "https://commons.wikimedia.org/wiki/File:Sir-Thomas-Brisbane-Planetarium-fence.JPG",
+    "https://commons.wikimedia.org/wiki/File:Sir-Thomas-Brisbane-Planetarium-cars.JPG"
+  ],
+  "stories": [
+    {
+      "id": "sir-thomas-brisbane-planetarium-wp",
+      "url": "https://qualla.com/sir-thomas-brisbane-planetarium/"
+    }
+  ],
+  "referenceInputHash": "8cf99ec2d7e6abf33393fe5a0fa7f79be52da57c0a3f969c9367d5adfe7555d5",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-sir-thomas-brisbane-planetarium.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-sir-thomas-brisbane-planetarium.mjs",
+    "level": "skyline",
+    "export": "brisbanePlanetariumSkyline",
+    "errorMeters": 1.35,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.94,
+        "metallic": 0.08
+      },
+      "dome": {
+        "slot": "roof",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "observatory": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.9,
+        "metallic": 0.16
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.9,
+        "metallic": 0.12
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.8,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "brisbanePlanetariumDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.94,
+            "metallic": 0.08
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "observatory": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.9,
+            "metallic": 0.16
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.12
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "brisbanePlanetariumStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.94,
+            "metallic": 0.08
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "observatory": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.9,
+            "metallic": 0.16
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.12
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.4,
+    "groundY": -3.25
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named Sir Thomas Brisbane Planetarium building way37025041/Q1444706 retains all51 nonduplicate vertices and node IDs, no smoothed/replaced compound footprint. Original entrance node469535518 is boundary vertex8. Actual straight entry wall7to9 defines westward outward normal/heading-1.62936205176055rad; full original vertex-mean anchor[152.97692078235295,-27.47571355490196]. Native NW auditorium arc10..23, eastern curved wing25..38, SW spiral-access/observatory region0..7/48..50 and full southern service-jog vertices39..47 retained. Component roof partitions/circular continuations and observatory centre are photographic estimates, not separately mapped building parts; do not fill the open spiral access area with a solid observatory cylinder or invent a site slab. Fixed exterior entry approach[1.8233977585460464,12.141578029876964]three metres beyond mapped door before terrain/geometry. Door/floor0, own undercroft/supports near-3.2m and all ramp grades are bounded source-photo estimates, not surveyed levels. Neighbor Information/Visitor Centre buildings, gardens, statue, parking and roads excluded. Original128m field frozen before geometry. Common entry floor0, auditorium underside/supports-3.2 and own access grade are photo estimates; flat fixture cannot prove host contact.",
+    "anchor": [
+      152.97692078235295,
+      -27.47571355490196
+    ],
+    "heading": -1.62936205176055,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        152.97679697701165,
+        -27.475723522541927
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed external approach3m beyond original entrance before terrain and geometry. Common entry floor0/own undercroft levels and ramp grade are photo estimates; exact threshold and host contact unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/37025041",
+      "node/469535518"
+    ],
+    "source": "https://www.openstreetmap.org/way/37025041",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2e9fbe9826fcfd8205ab2bbc2bd55a723702fe784f3500d3f40e65fd46929511",
+    "notes": "Whole surviving Sir Thomas Brisbane Planetarium/Q1444706, full native51-vertex multilobed exterior and southern service/entry jogs. NW curved auditorium and broad white Cosmic Skydome; separate smaller cylindrical telescope observatory with ribbed domed roof and raised sliding shutter; eastern curved foyer/display wing with low pale roof; original connecting volumes and sweeping corrugated curved access/ramp walls/own steps. Include observed cantilevered auditorium underside/own supports, white fluted walls, entrance/door recesses/vents/eaves. Preserve open access/undercroft spaces; no whole-site slab. Exclude gardens/parking/cars/fences/external lamps/statues/sundial/other visitor buildings, text signs, exhibits/interior."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original named Sir Thomas Brisbane Planetarium building way37025041/Q1444706 retains all51 nonduplicate vertices and node IDs, no smoothed/replaced compound footprint. Original entrance node469535518 is boundary vertex8. Actual straight entry wall7to9 defines westward outward normal/heading-1.62936205176055rad; full original vertex-mean anchor[152.97692078235295,-27.47571355490196]. Native NW auditorium arc10..23, eastern curved wing25..38, SW spiral-access/observatory region0..7/48..50 and full southern service-jog vertices39..47 retained. Component roof partitions/circular continuations and observatory centre are photographic estimates, not separately mapped building parts; do not fill the open spiral access area with a solid observatory cylinder or invent a site slab. Fixed exterior entry approach[1.8233977585460464,12.141578029876964]three metres beyond mapped door before terrain/geometry. Door/floor0, own undercroft/supports near-3.2m and all ramp grades are bounded source-photo estimates, not surveyed levels. Neighbor Information/Visitor Centre buildings, gardens, statue, parking and roads excluded.",
+    "Whole native51-vertex multilobed exterior and mapped entrance retained. Main broad dome/curved auditorium is NW, lower foyer is east, smaller telescope observatory and open spiral access occupy SW region; full native southern service jags retained. Internal partition/roof centres and small observatory centre[8.4,5.3] are photo estimates inside the original outline, not separately mapped building parts. No whole-site floor/pad, gardens/statues/parking/cars/fences/lamps/sign text, visitor neighbours, sundial or interior/exhibits.",
+    "Three exact already-published Figaro2008 public-domain originals inspected; native SHA1/named own photographer/PD-self matched. Seven source families inventoried; attribution images unused. No supplemental photographs, copied pixels or generated bitmap. Main white hemisphere, vertically fluted curved walls/cantilevered underside, smaller ribbed telescope dome/raised shutter, low pale foyer roof and sweeping curved access walls follow the retained views.",
+    "Approximate exterior heights, roof partitions/ridge locations, rear details, shutter closed state and seam count, curved ramp grade/step census, underside/core/support positions and finish after2008 are accepted medium-fi estimates. Main Cosmic Skydome12.5m is the internal theatre diameter, not the full external auditorium width. Exterior dome base6.8m radius/top11.5m, small telescope dome3.2m radius/eave5.5m, common entry floor0/own underside near-3.2m are visualization controls.",
+    "Independent128m129x129at1m field/raw source tile/grid/PNG frozen before model. Fixed entry approach[1.8233977585460464,12.141578029876964], provider41.0421m and full relative field[-6.0421,4.6758] unchanged without fitting or flattening. Own building floors/foundations and ramp are structure geometry, not a site pad; exact threshold/host terrain contact and floor survey remain unverified. Geographic preview/replaceFootprint=false; flat review ground-3.25 exposes the actual model underside."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-native-three-region-building-and-both-domes",
+      "position": [
+        48,
+        34,
+        54
+      ],
+      "lookAt": [
+        1,
+        4,
+        -2
+      ]
+    },
+    {
+      "name": "curved-auditorium-and-open-cantilever-undercroft",
+      "position": [
+        -22,
+        1.5,
+        31
+      ],
+      "lookAt": [
+        -10,
+        1.2,
+        9
+      ]
+    },
+    {
+      "name": "ribbed-observatory-raised-shutter-and-open-curved-access",
+      "position": [
+        26,
+        12,
+        24
+      ],
+      "lookAt": [
+        10,
+        4.5,
+        8
+      ]
+    },
+    {
+      "name": "mapped-entrance-foyer-roof-and-complete-service-jogs",
+      "position": [
+        32,
+        18,
+        -32
+      ],
+      "lookAt": [
+        5,
+        2.2,
+        -6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12976,
+    "vertices": 38928,
+    "materials": 6,
+    "bytes": 1560856,
+    "sha256": "sha256:6e2d20a68cafa1af40781d29dace1b6b0a44da2bfbb1cc089743c4af6ab1abd4"
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "planId": "hartrao_26m_antenna",
+  "id": "hartrao_26m_antenna",
+  "assetId": "molen.worldgen.structure.hartrao_26m_antenna",
+  "title": "HartRAO26m Radio Telescope",
+  "category": "scientific-instrument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 27.685401908694235,
+    "latitude": -25.889723233383336
+  },
+  "size": [
+    26.141199111938477,
+    26.988656610250473,
+    20.650010108947754
+  ],
+  "actualBounds": {
+    "min": [
+      -13.070599555969238,
+      -0.3499999940395355,
+      -8.10497760772705
+    ],
+    "max": [
+      13.070599555969238,
+      26.638656616210938,
+      12.545032501220703
+    ]
+  },
+  "visualBrief": "Principal26m HartRAO reflector at its specifically named native location: shallow white parabolic shell with central receiver, three open triangular feed trusses, rear radial webs/rings, inclined open polar/hour-axis framework and four splayed lattice legs with bounded concrete footings and an access ladder. Movable antenna shown in an illustrative observing pose; detached instruments and campus structures excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://earth.gsfc.nasa.gov/geo/networks/sgp/multimedia/vlbi-training-school9th-ivs-general-meeting-hartebeesthoek-radio-astronomy-observatory"
+  ],
+  "stories": [
+    {
+      "id": "hartebeesthoek-radio-astronomy-observatory-wp",
+      "url": "https://qualla.com/hartebeesthoek-radio-astronomy-observatory/"
+    }
+  ],
+  "referenceInputHash": "d4e3659e175c2be9b8e49007acb8878360bc245b62b8d217cfbca56ca48fd74b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hartrao-26m-antenna.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hartrao-26m-antenna.mjs",
+    "level": "skyline",
+    "export": "hartraoSkyline",
+    "errorMeters": 1.1,
+    "surfaces": {
+      "reflector": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.13
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.19
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.9,
+        "metallic": 0.18
+      },
+      "base": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hartraoDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "reflector": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.13
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.19
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.18
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "hartraoStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "reflector": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.13
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.19
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.18
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original named26m telescope way220662077 and explicit26m diameter establish the physical instrument identity/center. A fixed open pad point south of the native reflector extent defines the approximate foundation datum before terrain sampling. Movable dish pose is illustrative, not a permanent azimuth.",
+    "anchor": [
+      27.685401908694235,
+      -25.889723233383336
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        27.685401908694235,
+        -25.889884929394835
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed open pad point south of the native reflector extent defines the approximate foundation datum before terrain sampling. Do not use a dish/receiver roof return as bare ground."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/220662077"
+    ],
+    "source": "https://www.openstreetmap.org/way/220662077",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:816c924c7d3c3bc5b25d6ca6fac56b90f6ed4f5b71873463ffa73104d94a878a",
+    "notes": "Native polygon fixes position/plan;26m diameter comes from explicit native tag and NASA station description. Photo-guided reflector pose, support sections and mount details are medium-fi estimates. Native plan is not an engineering ground footprint or permanent dish orientation."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Native way220662077 explicitly identifies the26m IVS/VLBI telescope; its original polygon fixes the instrument center rather than the general campus/story point.26m diameter is retained. Surface focal ratio/depth,50degree display elevation, receiver, polar framework, truss sections and small fittings are photographic medium-fi estimates; this is not an engineering or tracking simulation.",
+    "Two inspected NASA GSFC photographs by named civil servant Frank Lemoine show the principal instrument during the2016VLBI meeting. Both exact offered900x550renditions, primary staff-role report and NASA government-work policy are hash-bound after a Qualla-first search. Original pixels are visual references and are not textures.",
+    "Principal26m structure only. Separate15m/XDM/C-BASS dishes, HIRAX array, laser-ranging equipment, campus buildings, containers, fences, landscape and branded labels are excluded. Fine webs/cage/ladder detail retires in lower LODs; the open mount and main feed/reflector silhouettes remain.",
+    "Footings extend0.35m below a fixed dry-pad datum. Source terrain, local foundation/pad attachment and ground slope remain approximate; no whole-site platform, blanket ground opening or source-height fitting is introduced."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "parabolic-reflector-and-feed",
+      "position": [
+        27,
+        30,
+        34
+      ],
+      "lookAt": [
+        0,
+        20,
+        4
+      ]
+    },
+    {
+      "name": "rear-ribs-and-polar-frame",
+      "position": [
+        -27,
+        19,
+        -25
+      ],
+      "lookAt": [
+        0,
+        11,
+        -1
+      ]
+    },
+    {
+      "name": "open-lattice-feet-and-axis",
+      "position": [
+        18,
+        8,
+        18
+      ],
+      "lookAt": [
+        0,
+        7,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 15184,
+    "vertices": 45552,
+    "materials": 3,
+    "bytes": 1824540,
+    "sha256": "sha256:02caaa245eb941ae1d2456eb6a361e2f412b49d62b74a5b7422b40a689e3a844"
+  }
+}

@@ -1,0 +1,334 @@
+{
+  "planId": "pyramid_of_the_moon",
+  "id": "pyramid_of_the_moon",
+  "assetId": "molen.worldgen.structure.pyramid_of_the_moon",
+  "title": "Pyramid of the Moon",
+  "category": "archaeological",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -98.84396359604472,
+    "latitude": 19.69951782590822
+  },
+  "size": [
+    144.3739776611328,
+    45.5,
+    156.7452392578125
+  ],
+  "actualBounds": {
+    "min": [
+      -72.18697357177734,
+      0,
+      -78.33806610107422
+    ],
+    "max": [
+      72.18700408935547,
+      45.5,
+      78.40717315673828
+    ]
+  },
+  "visualBrief": "Whole surviving Pyramid of the Moon, its receding worn masonry tiers, summit, central upper stair flights and intrinsic projecting stepped talud-tablero front platform with axial stair. Preserve complete native outline including projections and irregular rear notch. Exclude separate plaza pyramids/altars, Pyramid of the Sun, Palace of Quetzalpapálotl, avenue, mountains, trees, visitors, temporary access barriers and interiors. Warm grey-brown rough volcanic rubble, subdued pale stone ledges and recessed dark tablero panels. Four stepped projecting talud-tablero bodies, real central tread/riser stairs, upper two axial flights/landings, broad battered main tiers and worn open summit. Do not substitute a regular four-sided ideal pyramid, add a summit temple, fill the entire plaza or use the posterized green image for colors.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:June_2007_Teotihuacan_10.jpg",
+    "https://commons.wikimedia.org/wiki/File:June_2007_Teotihuacan_11.jpg",
+    "https://commons.wikimedia.org/wiki/File:June_2007_Teotihuacan_5.jpg",
+    "https://commons.wikimedia.org/wiki/File:June_2007_Teotihuacan_6.jpg",
+    "https://commons.wikimedia.org/wiki/File:%22Teotihuac%C3%A1n_in_Green%22,_A_photo.jpg"
+  ],
+  "stories": [
+    {
+      "id": "pyramid-of-the-moon-wp",
+      "url": "https://qualla.com/pyramid-of-the-moon/"
+    }
+  ],
+  "referenceInputHash": "b7061ce096c0cb0ca153e4e70c83359386735889cdbdba6c2e5087dc8bf54600",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-pyramid-of-the-moon.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-pyramid-of-the-moon.mjs",
+    "level": "skyline",
+    "export": "pyramidOfTheMoonSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "band": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "panel": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "tread": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "pyramidOfTheMoonDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "band": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "tread": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "pyramidOfTheMoonStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "band": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "tread": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "pyramidOfTheMoonCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "band": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "tread": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.15,
+    "groundY": -0.06
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native named pyramid way148480246/Q29240, all21 unique perimeter vertices (22 closed positions), including full projecting platform/stair foot and irregular west/rear notch. Front platform ledges from native ways1073687046..7053/7059; axial access from16126294 and1073687054..7058. Fixed whole-envelope midpoint anchor [-98.84396359604472,19.69951782590822], heading -0.27895362671173113 from northern edge before terrain or geometry; local+X ESE/+Z SSW toward plaza. Whole native envelope144.37m by156.68m is consistent with rounded INAH140x150m base, not a survey. Main tier levels/inset rings, platform16m height and stair counts are photographic architectural estimates; no rescaling native geometry to rounded published dimensions. Independent256m field frozen before geometry; provider plaza datum2314.9264m is not a surveyed threshold. Composite elevation may include the monument itself; actual host/bare-earth contact unverified.",
+    "anchor": [
+      -98.84396359604472,
+      19.69951782590822
+    ],
+    "heading": -0.27895362671173113,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -98.84418036800069,
+        19.698772668335113
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed plaza source point beyond the native southern stair foot before independent terrain; Y0 is architectural plaza grade, not a surveyed threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/16126294",
+      "way/148480246",
+      "way/1073687046",
+      "way/1073687047",
+      "way/1073687048",
+      "way/1073687049",
+      "way/1073687050",
+      "way/1073687051",
+      "way/1073687052",
+      "way/1073687053",
+      "way/1073687054",
+      "way/1073687055",
+      "way/1073687056",
+      "way/1073687057",
+      "way/1073687058",
+      "way/1073687059"
+    ],
+    "source": "https://www.openstreetmap.org/way/148480246",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:701b7a0a37ece61e40150c2e46ade5fb520aba39b291347b230c54ef237ad8ba",
+    "notes": "Whole surviving Pyramid of the Moon, its receding worn masonry tiers, summit, central upper stair flights and intrinsic projecting stepped talud-tablero front platform with axial stair. Preserve complete native outline including projections and irregular rear notch. Exclude separate plaza pyramids/altars, Pyramid of the Sun, Palace of Quetzalpapálotl, avenue, mountains, trees, visitors, temporary access barriers and interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Native named pyramid way148480246/Q29240, all21 unique perimeter vertices (22 closed positions), including full projecting platform/stair foot and irregular west/rear notch. Front platform ledges from native ways1073687046..7053/7059; axial access from16126294 and1073687054..7058. Fixed whole-envelope midpoint anchor [-98.84396359604472,19.69951782590822], heading -0.27895362671173113 from northern edge before terrain or geometry; local+X ESE/+Z SSW toward plaza. Whole native envelope144.37m by156.68m is consistent with rounded INAH140x150m base, not a survey. Main tier levels/inset rings, platform16m height and stair counts are photographic architectural estimates; no rescaling native geometry to rounded published dimensions.",
+    "Whole surviving native21vertex pyramid outline and complete projecting front platform, four talud-tablero bodies, three axial stair flights, upper ledges and worn flat summit. Main tiers/inset rings/platform16m/crown45.2m/56+44+32 detailed treads and hidden rear wear are architectural estimates from five clear originals and native access/ledge controls, not an archaeological measured reconstruction. Distant levels aggregate stair treads.",
+    "Five already-published exact own CC0 originals individually inspected/native-SHA1-bound: Syced2007 images5/6/10/11 and Goose friend2015. Goose image is strongly posterized and supplies topology only. Gorgo template-only PD candidate and Syced14/15 of Pyramid of the Sun unused. No source metadata/categories/article body/imagery-policy changes, protected official photos/plans, supplemental imagery, photo textures, generated bitmap or downloaded mesh.",
+    "Primary INAH text supplies broad height/base scale and distinguishes separate Structure A12m south; no official image pixels or protected plan adopted. Whole native144.37x156.68m envelope retained rather than rescaling to rounded140x150m public dimensions. No summit temple/ancient colored stucco/interiors/tunnels/excavated earlier phases/other plaza pyramids/altars/avenue/mountains/temporary barriers/visitors.",
+    "Independent256m129square2m field/all16641heights/PNG/two original Terrarium tiles frozen before geometry unchanged. Providerplazadatum2314.9264m/absolute2309.0654..2339.2687m/sourcepixel4.497714218753129m do not imply survey accuracy or bare-earth resolution. The composite likely includes monumental relief; default host terrain/actual plaza contacts unverified. No fitting, flattening, source height deletion or reacquisition. Ordinary preview/replacementdisabled; flat review fixtures separate from actual geographic ground."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-native-pyramid-front-platform-and-open-worn-summit",
+      "position": [
+        140,
+        95,
+        195
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "four-talud-tablero-platform-bodies-and-real-central-stair",
+      "position": [
+        74,
+        35,
+        122
+      ],
+      "lookAt": [
+        1,
+        10,
+        52
+      ]
+    },
+    {
+      "name": "upper-stair-flights-landings-and-receding-main-terraces",
+      "position": [
+        48,
+        62,
+        70
+      ],
+      "lookAt": [
+        1,
+        28,
+        5
+      ]
+    },
+    {
+      "name": "rear-native-notch-battered-tiers-and-open-crown",
+      "position": [
+        -132,
+        80,
+        -130
+      ],
+      "lookAt": [
+        -3,
+        22,
+        -31
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 21986,
+    "vertices": 65958,
+    "materials": 4,
+    "bytes": 2641224,
+    "sha256": "sha256:da7198a2bdfa8ba3039d4ced37a18c6f5a0bcb062aa6d5bc9bea4537e84f41ae"
+  }
+}

@@ -1,0 +1,399 @@
+{
+  "planId": "arlington_memorial_bridge",
+  "id": "arlington_memorial_bridge",
+  "assetId": "molen.worldgen.structure.arlington_memorial_bridge",
+  "title": "Arlington Memorial Bridge",
+  "category": "bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -77.05543868919229,
+    "latitude": 38.887370853226976
+  },
+  "size": [
+    659.04638671875,
+    18.575414657592773,
+    43.65789604187012
+  ],
+  "actualBounds": {
+    "min": [
+      -329.523193359375,
+      0,
+      -21.881513595581055
+    ],
+    "max": [
+      329.523193359375,
+      18.575414657592773,
+      21.776382446289062
+    ]
+  },
+  "visualBrief": "Whole659m Arlington Memorial Bridge with8concrete river arches, current fixed steel center span,2smaller road-overpass arches, complete deck/six-lane road/two sidewalks/open balustrades/40globe lamps,8native cutwater piers and both gilded Arts of War entrance groups/pedestals. Retain173unique native footprint vertices as deck, toe/cutwater and terminal controls; do not extrude the entire envelope into a solid river barrier. Exclude independent BoundaryChannel/Humpback bridges, MemorialCircle/Avenue, LincolnMemorial/Watergate steps/Arts of Peace, general roads beneath, river/banks/vehicles/people/interiors and historic drawbridge operation. Pale warm granite ashlar, real open elliptical concrete vaults/curved soffits, darkgray road, two raised sidewalks, open turned balusters and forty slender dark poles/opaque pale globes, paired gold equestrian/human groups on tall rectangular plinths. Native faceted cutwater toes, tall pier panel/eagle-relief forms, bison-keystone masses, closed painted-steel central fascia with open underside girders/diagonals. Full road arches overGWParkway/OhioDrive, notsolid abutmentboxes. Ordinary geographic preview; host contact approximate.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Arlington_Memorial_Bridge_-_July_2012_-_3.JPG",
+    "https://commons.wikimedia.org/wiki/File:Arlington_Memorial_Bridge_-_July_2012_-_2.JPG",
+    "https://commons.wikimedia.org/wiki/File:The_Arts_of_War,_July_2012.jpg"
+  ],
+  "stories": [
+    {
+      "id": "arlington-memorial-bridge-wp",
+      "url": "https://qualla.com/arlington-memorial-bridge/"
+    }
+  ],
+  "referenceInputHash": "cc19545ef1fbe9d9cb3f7c4ce78a9b9955fa444037bd7f4a889435f4bb17d336",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-arlington-memorial-bridge.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-arlington-memorial-bridge.mjs",
+    "level": "skyline",
+    "export": "arlingtonMemorialBridgeSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.22
+      },
+      "gold": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.43,
+        "metallic": 0.78
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.4,
+        "metallic": 0.01
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "arlingtonMemorialBridgeDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.22
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.43,
+            "metallic": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.01
+          }
+        }
+      },
+      "street": {
+        "export": "arlingtonMemorialBridgeStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.22
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.43,
+            "metallic": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.01
+          }
+        }
+      },
+      "closeup": {
+        "export": "arlingtonMemorialBridgeCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.22
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.43,
+            "metallic": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.01
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": -0.08
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native named bridgeway368707612/Q1328779, all173unique perimeter vertices/174closedpositions, whole659.046m envelope and eight curved cutwater pairs. Road468423958/two mapped sidewalks, OhioDrive50202337 at localX294.22 and coveredGWParkway496744836/838 atX-314.31/-321.20 fix both intrinsic road-overpass locations. NativeArtsOfWar nodes358955151/358960320 at east entry establish both group centers. Fixedwhole-envelope midpointanchor[-77.05543868919229,38.887370853226976],heading0.44232465331581355 fromnativeprincipalaxis before terrain/geometry; +X ENE towardWashington/+Z SSE. Geometryscale corroborated byNPS2163ft/659.28m overall and94ft/28.65m width;nativebodyabout29.5m/coarsemapping. Exact archprofile/crown/spring/road openings/deckcamber/ornament/figurative detail estimates, no native-map fitting to published rounded dimensions. Independent1024m129square8mfield frozen beforegeometry, openPotomacproviderdatum1.1719m is not a surveyedwater/bridge threshold. Architecturalpier toeY0/roadgrade/camber/submergedembedment and actualhostcontact approximate.",
+    "anchor": [
+      -77.05543868919229,
+      38.887370853226976
+    ],
+    "heading": 0.44232465331581355,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -77.055191693033,
+        38.88696492479638
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed open Potomac source point north of bridge before independent field. Architecturalwaterline/pier toeY0 is not surveyed chart/bathymetric datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/368707612",
+      "way/50579250",
+      "way/69200708",
+      "way/468423958"
+    ],
+    "source": "https://www.openstreetmap.org/way/368707612",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2dc49ec8d59283e8400180607d15a9f70b4dfcbfb02af225c167a1969c69e5a5",
+    "notes": "Whole659m Arlington Memorial Bridge with8concrete river arches, current fixed steel center span,2smaller road-overpass arches, complete deck/six-lane road/two sidewalks/open balustrades/40globe lamps,8native cutwater piers and both gilded Arts of War entrance groups/pedestals. Retain173unique native footprint vertices as deck, toe/cutwater and terminal controls; do not extrude the entire envelope into a solid river barrier. Exclude independent BoundaryChannel/Humpback bridges, MemorialCircle/Avenue, LincolnMemorial/Watergate steps/Arts of Peace, general roads beneath, river/banks/vehicles/people/interiors and historic drawbridge operation."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Native named bridgeway368707612/Q1328779, all173unique perimeter vertices/174closedpositions, whole659.046m envelope and eight curved cutwater pairs. Road468423958/two mapped sidewalks, OhioDrive50202337 at localX294.22 and coveredGWParkway496744836/838 atX-314.31/-321.20 fix both intrinsic road-overpass locations. NativeArtsOfWar nodes358955151/358960320 at east entry establish both group centers. Fixedwhole-envelope midpointanchor[-77.05543868919229,38.887370853226976],heading0.44232465331581355 fromnativeprincipalaxis before terrain/geometry; +X ENE towardWashington/+Z SSE. Geometryscale corroborated byNPS2163ft/659.28m overall and94ft/28.65m width;nativebodyabout29.5m/coarsemapping. Exact archprofile/crown/spring/road openings/deckcamber/ornament/figurative detail estimates, no native-map fitting to published rounded dimensions.",
+    "Full11span bridge:8concrete river arches/2smaller road arches/currentfixedsteelcenter, sixlane road/twowalks/openrails/40globelamps, native8cutwaterpairs andbothgildedentrygroups. Native173point envelope represents ground/cutwater/terminal controls, not a single solid extruded deck. Roadmouthprofiles/archcrown/springs/gradecamber/railspindle and decorativeprofile census/hidden underside/figurative anatomical andfacialdetail approximate. Skyline omits lamps/relief anduses coarser solidrail masks; detailedlevels preserve openbalustrades andall40lamps.",
+    "Two exactpublishedBenoitPrieur2012ownCC0bridgeoriginals plusone exactsupplementalownCC02012entrancepair individuallyinspected/nativeSHA1bound; Qualla-first39families/0ownershipconflicts, existinginventory/helperpasses. PublishedstatuephotoCC-BY-SAphotography/PDunderlyingsculpture mislabelnotused; DuaneLempkenon-owncredit andunrelatedgalleryphotos notadopted. No metadata/category/articlebody/imagery-policy changes, protectedofficialphoto/plan/video/3Dmodel, phototexture/generatedbitmap/downloadedmesh.",
+    "PrimaryNPS2016EAtext gives2163ftwhole94ftwide/10concrete+centersteel/40lamps/60ftroad14ftwalks/eagleandbisonrelief/pairedentrygroups;2020NPStextconfirmsfixedsteel/retainedfascia. Fineornament/equestrianfigures simplified, no claim tosculptorlikeness or measuredsurfacecondition. No workingbascule, 2019construction, naturalriver/banks/nearbyroads/independentBoundaryChannelorHumpbackbridges/MemorialCircle/Avenue/LincolnMemorial/Watergatesteps/ArtsOfPeace/vehicles/people/interiors.",
+    "Independent1024m129square8mfield/all16641values/PNG/sixoriginalTerrariumtiles frozenbeforegeometry unchanged. Providerdatum1.1719m/absolute-5.8242..10.8714m/sourcepixel3.7185732624479058m do not implysurveyaccuracy/bathymetry/threshold contact. No terrainfitting/flattening/reacquisition; actualhostcontactunverified, ordinarygeographicpreview/replacementdisabled. Flatreviewfixtures are not actualPotomac/banks/roads."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "full-eleven-span-crossing-two-road-arches-and-fixed-center",
+      "position": [
+        -410,
+        170,
+        590
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "granite-vault-cutwaters-eagle-piers-balustrades-and-lamps",
+      "position": [
+        120,
+        28,
+        82
+      ],
+      "lookAt": [
+        125,
+        6,
+        1
+      ]
+    },
+    {
+      "name": "fixed-steel-central-fascia-and-open-under-truss",
+      "position": [
+        -9,
+        3,
+        55
+      ],
+      "lookAt": [
+        -9,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "washington-entry-paired-gilded-horse-groups-and-ohio-road-arch",
+      "position": [
+        376,
+        30,
+        64
+      ],
+      "lookAt": [
+        306,
+        13,
+        2
+      ]
+    },
+    {
+      "name": "west-end-gw-parkway-through-arch-and-continuous-sidewalks",
+      "position": [
+        -365,
+        24,
+        65
+      ],
+      "lookAt": [
+        -305,
+        6,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 56284,
+    "vertices": 168852,
+    "materials": 6,
+    "bytes": 6757812,
+    "sha256": "sha256:0e45fc7b2a84047a9f10642b7d967b21a8d41fa339d2a776b5250e1532229887"
+  }
+}

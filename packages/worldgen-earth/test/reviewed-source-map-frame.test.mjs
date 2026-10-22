@@ -35,6 +35,52 @@ const fixture = (evidence = frame) => {
   };
 };
 describe('reviewed source-local geographic frame', () => {
+  it('accepts two separately reviewed wings without an invented courtyard polygon', () => {
+    const evidence = {
+      ...frame,
+      geometry: {
+        polygons: [
+          [
+            [-20, 0],
+            [-10, 0],
+            [-10, 40],
+            [-20, 40],
+          ],
+          [
+            [10, -10],
+            [20, -10],
+            [20, 30],
+            [10, 30],
+          ],
+        ],
+      },
+    };
+    expect(reviewedSourceMapFrame(fixture(evidence))).toEqual(evidence);
+    expect(
+      reviewedSourceMapFrame({ ...fixture(evidence), geographicReviewed: false }),
+    ).toBeUndefined();
+    for (const polygons of [
+      [],
+      [
+        [
+          [0, 0],
+          [1, 0],
+          [2, 0],
+        ],
+      ],
+      [
+        [
+          [0, 0],
+          [1, null],
+          [1, 1],
+        ],
+      ],
+    ])
+      expect(reviewedSourceMapFrame(fixture({ ...frame, geometry: { polygons } }))).toBeUndefined();
+    const changed = fixture(evidence);
+    changed.placement.heading += Math.PI;
+    expect(reviewedSourceMapFrame(changed)).toBeUndefined();
+  });
   it('accepts explicitly approximate visualization facing only with current placement review', () => {
     const evidence = {
       ...frame,

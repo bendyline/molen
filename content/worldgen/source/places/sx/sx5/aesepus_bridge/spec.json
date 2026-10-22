@@ -1,0 +1,286 @@
+{
+  "planId": "aesepus_bridge",
+  "id": "aesepus_bridge",
+  "assetId": "molen.worldgen.structure.aesepus_bridge",
+  "title": "Aesepus Bridge",
+  "category": "bridge-ruins",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 27.6022052,
+    "latitude": 40.2674618
+  },
+  "size": [
+    164.3000030517578,
+    13.900000095367432,
+    13.300000190734863
+  ],
+  "actualBounds": {
+    "min": [
+      -65,
+      -10.800000190734863,
+      -6.300000190734863
+    ],
+    "max": [
+      99.30000305175781,
+      3.0999999046325684,
+      7
+    ]
+  },
+  "visualBrief": "Surviving ruined Aesepus/Güvercin bridge: two detached granite piers/pointed cutwaters and four true longitudinal hollow chambers between five upper masonry walls, broken deck/arch springers, western small bank arches and eastern58mramp with genuine open stone/brick vaults, partial arch9ruin, bounded paving and low intrinsic east brick exedra/stonecolumn. Four main vaults and conjectural third pier absent, no restored intact bridge or river terrain mesh.",
+  "nativeAxes": {
+    "x": "east-northeast",
+    "y": "up",
+    "z": "south-southeast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Aesepus_Bridge._Picture_04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Aesepus_Bridge._Picture_05.jpg",
+    "https://commons.wikimedia.org/wiki/File:Aesepus_Bridge._Picture_03.jpg",
+    "https://commons.wikimedia.org/wiki/File:Aesepus_Bridge._Picture_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:Aesepus_Bridge._Picture_02.jpg",
+    "https://commons.wikimedia.org/wiki/File:Roman_bridge_over_the_Aesepus._Drawing_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "aesepus-bridge-wp",
+      "url": "https://qualla.com/aesepus-bridge/"
+    }
+  ],
+  "referenceInputHash": "b818f07f29f8cdcee60695cd8529822beb89a9c56f3b1fae5dee1db62f723373",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-aesepus-bridge.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-aesepus-bridge.mjs",
+    "level": "skyline",
+    "export": "aesepusSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "mortar": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "aesepusDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "mortar": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "aesepusStreet",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "mortar": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": -11.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Fixed open east-bank approach[107,0]before raw terrain acquisition; source-relative approximate distributed bank/riverbed/foundation levels, no fitted natural valley mesh.",
+    "anchor": [
+      27.6022052,
+      40.2674618
+    ],
+    "heading": 0.04243426835824478,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        27.603463762243077,
+        40.267502575280204
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed open east-bank approach beyond native eastern aggregate envelope, chosen before raw terrain acquisition. Riverbed/abutment relative levels are independent photographic estimates; no flattening or fitting of bank terrain."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/1817148418",
+      "way/1015750743",
+      "way/1015750744",
+      "authored-documented-ruin-envelope"
+    ],
+    "source": "https://www.openstreetmap.org/node/1817148418",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:009b0508beffa6541ec2d570599c15a9f39bed0340823906c4b3077121e7b2d4",
+    "notes": "Surviving Aesepus/Güvercin bridge ruins: two detached main-river granite piers with pointed upstream/downstream cutwaters, capped shoulders, five parallel upper masonry walls/four open hollow-chamber slots and fragmentary deck/arch springers; short western abutment/two small bank arches and eastern58mramp with documented surviving minor arches/alternating granite-brick voussoirs, partial spandrel chambers, bounded paving and original low eastern brick exedra/80cmstone column. Four main river vaults are absent; dashed third pier/overgrown conjectural arch9are not reconstructed as intact standing structure. No modern highway, natural river/water/bank/valley mesh, whole-site slab, vegetation/roads/people or conjectural complete ancient bridge."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "limitations": [
+    "Original native named ruins node1817148418/Q409720and two adjacent man_made=bridgeways1015750743/744 establish the crossing identity, aggregate surviving-site envelope and signed east-axis bearing. Their continuous filled map polygons are NOT evidence of surviving road decks across the already collapsed main spans, exact pier footprints or a158mancient survey. Original native polygons are preserved as context only; do not extrude them. The cleared1906published elevation/photo controls give documented separate piers/abutted bank arches; complete158mlength/5.6mwidth are independently reported by the2020primary field study. Final measured-elevation digitization/repeat heights/hidden section and158mregistration relative to current partial map envelopes are explicit medium-fi estimates.",
+    "Published58measternramp and158moverall span govern coarse extents; relative registration of detached piers/western remnants is approximate against the current aggregate native envelope. The1906elevation is not a metric plan. East ramp arch9(third east minor opening) is conjectural/overgrown, retained only as a broken low section; never an intact invented arch.",
+    "Five1905/1906Hasluckphotographs and contemporary elevation are already published QuallaPD-old-100-expired originals, nativeSHA1matched/primaryrelease bound and all6actually inspected. Primary2020fieldstudy text only corroborates current surviving piers/arch/chambers and dimensions. Its restricted modern photos/figures and uncreditedManyas4were not used. No external bitmap generated or photo texture copied; original medium-fi geometry and shared material graphs.",
+    "Two current native bridge polygons are aggregate crossing envelopes, not intact load-bearing road surfaces across the missing river arches. Four main spans and conjectural third pier remain genuinely absent at everyLOD. Arch9is explicitly uncertain/overgrown and retained only as low discontinuous fragments, not a completed invented vault. The low east exedra/80cmcolumn are intrinsic reported remains with approximate placement.",
+    "Broad geometry follows the cleared surviving1906forms corroborated by2020fieldwork, but recent small losses, upper jagged courses, floor levels/riverbed depth, original stone/brick census, bank-arch spacing and detached-pier registration are estimates. Permanent nominal158mlength/5.6mwidth and58meastramp are coarse controls, not a full measured3Dsurvey. Natural river/ground/bank/valley and the nearby modern highway are excluded.",
+    "Independent raw source terrain is preserved without flattening or fitting, fixed east-bank reference chosen before geometry. Exact dry-bank/river footing and compatible host water datum remain unverified approximate geographic preview; flat reviewY-11.1shows the intrinsic ruins."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "full-ruined-crossing-and-missing-main-vaults",
+      "position": [
+        -36,
+        65,
+        168
+      ],
+      "lookAt": [
+        17,
+        -1,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "two-granite-piers-open-four-chambers-and-cutwater-caps",
+      "position": [
+        -53,
+        16,
+        24
+      ],
+      "lookAt": [
+        -20,
+        -2,
+        0
+      ]
+    },
+    {
+      "name": "eastern-brick-stone-vaults-and-broken-ninth-opening",
+      "position": [
+        67,
+        17,
+        38
+      ],
+      "lookAt": [
+        62,
+        -1,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10208,
+    "vertices": 30624,
+    "materials": 4,
+    "bytes": 1227712,
+    "sha256": "sha256:ea57a79d64205f73700513e12472046bf84ae9f1ef57f18a22ec700dd4ff3fbe"
+  }
+}

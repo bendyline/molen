@@ -1,0 +1,358 @@
+{
+  "planId": "bremen_city_hall",
+  "id": "bremen_city_hall",
+  "assetId": "molen.worldgen.structure.bremen_city_hall",
+  "title": "Bremen City Hall",
+  "category": "civic",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 8.80775,
+    "latitude": 53.075962
+  },
+  "size": [
+    64.44708061218262,
+    29.700000762939453,
+    67.52149963378906
+  ],
+  "actualBounds": {
+    "min": [
+      -28.385000228881836,
+      0,
+      -53.75
+    ],
+    "max": [
+      36.06208038330078,
+      29.700000762939453,
+      13.771499633789062
+    ]
+  },
+  "visualBrief": "Whole surviving physically attached Bremen Old and New Town Hall: complete old hall and hipped dark roof, eleven open market arcade bays, upper hall tall mullioned windows, eight coarse attached Gothic figures, projecting two-storey central oriel, large central and two smaller sculpted Renaissance gables/balustrades/finials; old hall end walls/pointed windows/entrances; full offset New Town Hall with native L-shaped wings and genuine inner courtyard, copper hipped roof/dormers/open roof lantern, north rounded projecting oriel/pediment, western repeated crossgables/rounded onion-roof stair turret/low connector. Exclude separate Roland, Town Musicians, detached herald statues, churches/cathedral, parliament, whole square/streets/paving/natural ground and underground Ratskeller interior. Native full old/new body/innercourtyard/roofnetwork before geometry; preserve eleven openpointedarcadebays/threefrontgables/greennewhallhippedroof/dormers/squareopenlantern/northroundedprojection/westroundonionstairturret. Recesswindows physically with wallpanels/reveals; no opaque sheet hidingarcade or courtyard. No wholebuildingrectangle simplification. Approximate hiddenroof valleys/fine tracery/stone relief/room interiors from clearoriginals; levelindependent2mgroundfield frozen before geometry. Groundcontact remains uncertified unless matched to livehost.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Bremen_Rathaus_1.JPG",
+    "https://commons.wikimedia.org/wiki/File:Bremer_Rathaus_2026-02-01_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bremer_Rathaus_2026-02-01_04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bremer_Rathaus_2026-02-01_10.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bremer_Rathaus_2026-02-01_12.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bremer_Rathaus_2026-02-01_14.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bremer_Rathaus_2026-02-01_21.jpg"
+  ],
+  "stories": [
+    {
+      "id": "bremen-city-hall-wp",
+      "url": "https://qualla.com/bremen-city-hall/"
+    }
+  ],
+  "referenceInputHash": "3c278d9849cc84c22c8a9d4bf82bd9cae276394c64b13fa8e9a01ca5b6825acb",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-bremen-city-hall.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-bremen-city-hall.mjs",
+    "level": "skyline",
+    "export": "bremenCityHallSkyline",
+    "errorMeters": 3.8,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.23
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.39,
+        "metallic": 0.08
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.28
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bremenCityHallDistrict",
+        "errorMeters": 1.8,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.23
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.39,
+            "metallic": 0.08
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "bremenCityHallStreet",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.23
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.39,
+            "metallic": 0.08
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "bremenCityHallCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.23
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.39,
+            "metallic": 0.08
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.5,
+    "groundY": -0.18
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "OSMrelation2190791/Q19479 complete original multipolygonouter374370995 and inner164225490, distinct from wider UNESCOsite/Roland. Native buildingrelation2805358 provides oldhall374370982/connector374370979/centeroriel208622388/twosmallerfrontgables374371003/374371028, fullnewroofbody225552770, westernwing/stairturretparts and roofedge/ridgeline graph. All original plan vertices preserved as controls; tiny attached detail offsets simplify by detail level. Native roofheight28moldhall expressly estimated from shadow and other unsourcedverticaltags are approximate, not measured survey; observedphoto proportions bound roof/gable/lantern heights. Complete inner lightwell stays genuinely open. Fixed+XSEalongmarketarcade/+ZSWtowardmarket before terrain/geometry.",
+    "anchor": [
+      8.80775,
+      53.075962
+    ],
+    "heading": -0.7447156152315646,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        8.8075137521003,
+        53.075903457430755
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed point2moutside oldmarketarcade before independent ground acquisition. Source-relative grade is coarse, not surveyed urban threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/2190791",
+      "way/208622388",
+      "way/224608430",
+      "way/224608436",
+      "way/224608448",
+      "way/224608460",
+      "way/224608466",
+      "way/224608468",
+      "way/225552770",
+      "way/374370979",
+      "way/374370982",
+      "way/374370994",
+      "way/374371003",
+      "way/374371028"
+    ],
+    "source": "https://www.openstreetmap.org/relation/2190791",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e6324c2ec30505a5434c300c6a8902dcee0052aaed21a237095407fb080ff2bf",
+    "notes": "Whole surviving physically attached Bremen Old and New Town Hall: complete old hall and hipped dark roof, eleven open market arcade bays, upper hall tall mullioned windows, eight coarse attached Gothic figures, projecting two-storey central oriel, large central and two smaller sculpted Renaissance gables/balustrades/finials; old hall end walls/pointed windows/entrances; full offset New Town Hall with native L-shaped wings and genuine inner courtyard, copper hipped roof/dormers/open roof lantern, north rounded projecting oriel/pediment, western repeated crossgables/rounded onion-roof stair turret/low connector. Exclude separate Roland, Town Musicians, detached herald statues, churches/cathedral, parliament, whole square/streets/paving/natural ground and underground Ratskeller interior."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "OSMrelation2190791/Q19479 complete original multipolygonouter374370995 and inner164225490, distinct from wider UNESCOsite/Roland. Native buildingrelation2805358 provides oldhall374370982/connector374370979/centeroriel208622388/twosmallerfrontgables374371003/374371028, fullnewroofbody225552770, westernwing/stairturretparts and roofedge/ridgeline graph. All original plan vertices preserved as controls; tiny attached detail offsets simplify by detail level. Native roofheight28moldhall expressly estimated from shadow and other unsourcedverticaltags are approximate, not measured survey; observedphoto proportions bound roof/gable/lantern heights. Complete inner lightwell stays genuinely open. Fixed+XSEalongmarketarcade/+ZSWtowardmarket before terrain/geometry.",
+    "Whole attached Old/NewTownHall; separateRoland/TownMusicians/heralds/churches/parliament/marketstreet/paving/naturalground and undergroundinteriors not modeled. Nativefullphysicalouter/innercourtyard/parts/roofgraph retained. Mainfacadeeleven truepointedarcadebays/two-storeycentraloriel/threeRenaissancegables; lowerdetailedlevels simplify windowrecess/figures/pinnacles/dormers. Sculptures/coatsofarms/inscription/tracery are coarse abstractions, not precise individual portraits.",
+    "Seven exactnativecreatorCC0originals: startpublishedQuallaZairon2009front, thencurrent2026LeonhardLenzsixviews. NativeSHA1/revisions/ownselfCC0grants bound. No attributionlicensed/questionablephotos or localmediarepairs. Currentdarkgrayoldroof overrides2009green; attachednewroofgreen. No photo textures/generatedbitmap.",
+    "Nativeoldroof28m/14mrise expressly estimatedfromshadow; roof/gable/lantern heights conservativelyphoto-bounded22.5mold/newmainhips/~29mornamentlantern; not asurvey. Facetgraphroofvalleys/hiddenreardetail/precisereliefandwindowcensus estimated. Roofseamsandfinejambs simplify atdistance.",
+    "Independent256m129²16641samplefield/oneoriginalTerrariumtile frozen before geometry; source range14.6587..23.3836m/fixedapproachdatum17.0043m. Output2.87mspacing/2mreviewgrid mayoversamplecoarseurbanDEM, notsurveyclassificationorbuildingthresholdgrade. Originalgrid/heightfield/rawtile unchanged. Flatreviewfixtures; actualhostgroundcontactunverified, geographicpreview/replaceFootprint=false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-old-and-attached-new-town-hall",
+      "position": [
+        90,
+        57,
+        90
+      ],
+      "lookAt": [
+        2,
+        12,
+        -20
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "eleven-open-market-arcades-central-oriel-and-three-gables",
+      "position": [
+        -7,
+        18,
+        72
+      ],
+      "lookAt": [
+        -7,
+        12,
+        6
+      ]
+    },
+    {
+      "name": "new-townhall-copper-hips-dormers-open-lantern-north-oriel",
+      "position": [
+        85,
+        50,
+        -90
+      ],
+      "lookAt": [
+        15,
+        13,
+        -30
+      ]
+    },
+    {
+      "name": "western-crossgables-onion-stair-turret-and-open-courtyard",
+      "position": [
+        -75,
+        58,
+        -65
+      ],
+      "lookAt": [
+        0,
+        12,
+        -22
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 62933,
+    "vertices": 188799,
+    "materials": 5,
+    "bytes": 7555192,
+    "sha256": "sha256:c2e83adc783d9a58b03e97b33c2e35c3c7df880d8bc990f0fe60f9e0738d49f7"
+  }
+}

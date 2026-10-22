@@ -1,0 +1,356 @@
+{
+  "planId": "statue_of_unity",
+  "id": "statue_of_unity",
+  "assetId": "molen.worldgen.structure.statue_of_unity",
+  "title": "Statue of Unity",
+  "category": "monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 73.7191589631579,
+    "latitude": 21.83797107368421
+  },
+  "size": [
+    171.2595558166504,
+    208.5,
+    163.6354103088379
+  ],
+  "actualBounds": {
+    "min": [
+      -114.9835433959961,
+      0,
+      -48.37704086303711
+    ],
+    "max": [
+      56.2760124206543,
+      208.5,
+      115.25836944580078
+    ]
+  },
+  "visualBrief": "Build the recognizable full sculpted human form, not a generic human mannequin, capsule or extruded photographic silhouette. Match Patel bald head, broad ears/nose/chin, heavy asymmetric draped jacket/scarf, long dhoti folds, lowered hands and narrow walking-leg gap, broad sandaled toes and intrinsic stepped pedestal/real entrance/geometric perforated panel. Use original closed shaped cross sections and sculpted surfaces with canonical bronze metal and stone; all hidden fine wrinkles, exact back pose and fold census remain estimates. Primary 182 m controls statue height; podium vertical section is a separate bounded estimate, and promotional 240/58 m statements are not adopted as a measured local above-entry section. Preserve intrinsic original native outlines. Exclude terrain/island/long bridges/independent buildings. Freeze independent terrain before geometry.",
+  "nativeAxes": {
+    "x": "northwest",
+    "y": "up",
+    "z": "northeast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Entrance_of_Statue_of_Unity.jpg",
+    "https://commons.wikimedia.org/wiki/File:Full_Length_shot_of_The_Statue_of_Unity.jpg",
+    "https://commons.wikimedia.org/wiki/File:Highly_close_view_of_statue_of_Unity.jpg",
+    "https://commons.wikimedia.org/wiki/File:Statue_of_Unity_B.jpg",
+    "https://commons.wikimedia.org/wiki/File:Statue_of_Unity_-_Redscale.jpg"
+  ],
+  "stories": [
+    {
+      "id": "statue-of-unity-wp",
+      "url": "https://qualla.com/statue-of-unity/"
+    }
+  ],
+  "referenceInputHash": "4edb2140aa01035d4f892ce60b3964ef1c6cc88cc5b539cec228814ad00f39d8",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-statue-of-unity.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-statue-of-unity.mjs",
+    "level": "skyline",
+    "export": "unitySkyline",
+    "errorMeters": 2.8,
+    "surfaces": {
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.81,
+        "metallic": 0.48
+      },
+      "recess": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.88,
+        "metallic": 0.4
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "cap": {
+        "slot": "roof",
+        "graph": "stone_sandstone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.45,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "unityDistrict",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.81,
+            "metallic": 0.48
+          },
+          "recess": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.88,
+            "metallic": 0.4
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "unityStreet",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.81,
+            "metallic": 0.48
+          },
+          "recess": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.88,
+            "metallic": 0.4
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "unityCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.81,
+            "metallic": 0.48
+          },
+          "recess": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.88,
+            "metallic": 0.4
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "roof",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3,
+    "groundY": -0.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native named Statue of Unity way614681966/Q7604504 establishes identity and anchor. Original pedestal/basement and entry shell ways651184068/842382859/979667347/980067315 retained separately. Native sculpture outline is a projected envelope, not a slab to extrude. Heading135degrees places local +Z toward northeast, consistent with the facing-dam identity; photographic walking/body pose must remain distinct from podium plan. Whole native footprint retained without replacing it with a generic star or rectangular block. Source map contains no surveyed sculptural surface or reliable completed vertical section. Independent520m65x65terrain field frozen before geometry; no fitted island/river slab. Exact host podium contact and completed vertical datum unverified.",
+    "anchor": [
+      73.7191589631579,
+      21.83797107368421
+    ],
+    "heading": 2.356194490192345,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        73.71952848959472,
+        21.83831408272287
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed local point before terrain and geometry. Not a surveyed museum threshold or water level. No fitted/clamped island pad."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/614681966",
+      "way/651184068",
+      "way/842382859",
+      "way/979667347",
+      "way/980067315"
+    ],
+    "source": "https://www.openstreetmap.org/way/614681966",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d781be74a6721e59c8a319a54dde0406dcd0926d6484a8d26f724cc3c5f29ce4",
+    "notes": "Complete exterior of the 182 m Sardar Patel sculpture and its intrinsic stepped geometric pedestal/entry shell: bald head and facial profile, jacket/shawl and dhoti folds, two walking legs with true gap, lowered hands, sandaled feet with toes, central upper support and original podium/entry outlines with actual openings and geometric lattice ramp. Exclude the separate mainland visitor buildings, the long river access bridges, island/river/hills/landscape, signs/flags/people, interior museum and mechanical cores."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Native named Statue of Unity way614681966/Q7604504 establishes identity and anchor. Original pedestal/basement and entry shell ways651184068/842382859/979667347/980067315 retained separately. Native sculpture outline is a projected envelope, not a slab to extrude. Heading135degrees places local +Z toward northeast, consistent with the facing-dam identity; photographic walking/body pose must remain distinct from podium plan. Whole native footprint retained without replacing it with a generic star or rectangular block. Source map contains no surveyed sculptural surface or reliable completed vertical section.",
+    "Exact five published CC0 originals individually inspected and native SHA1 matched, no external imagery or photographic/AI bitmap textures. Redscale/monochrome images govern shape; bronze palette is a bounded material interpretation.",
+    "Original sculpted cross sections and facial displacements establish bald head/nose/brow/cheeks/ears/chin, draped coat and dhoti, lowered hands, real separated walking legs, sandals/toes. Fine facial likeness/wrinkles, back and exact fold/casting-panel census are simplified medium-fi estimates; no scan or engineering replica claim.",
+    "Primary182m controls toe-to-crown sculpture height. Intrinsic podium vertical section26.5m is an explicit above-local-entry estimate; old promotional240m/58m figures are not adopted as a surveyed completed local section. Inner partitions, slab depths, portal census, canopy/ramp/lattice geometry and concealed supports estimated.",
+    "Native mapped statue outline is a footprint proxy around the feet, not the full upper-body projected silhouette. Shoulder overhang is original photo-based reconstruction. Four intrinsic native podium/entry outlines retained. Separate long river bridges/mainland buildings, island/river/landscape/people/signs/interiors omitted.",
+    "Independent520mfield/4225samples/4rawTerrariumtiles frozen before geometry, unchanged. Urban/vegetation/water returns do not establish surveyed thresholds. Preview replaceFootprint=false and compatible actual host ground contact unverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "complete-sculpture-and-native-intrinsic-podium",
+      "position": [
+        -220,
+        130,
+        310
+      ],
+      "lookAt": [
+        -15,
+        100,
+        10
+      ]
+    },
+    {
+      "name": "patel-head-facial-profile-ears-and-draped-shoulders",
+      "position": [
+        -35,
+        195,
+        58
+      ],
+      "lookAt": [
+        0,
+        191,
+        0
+      ]
+    },
+    {
+      "name": "dhoti-walking-leg-gap-sandals-and-toes",
+      "position": [
+        -43,
+        65,
+        80
+      ],
+      "lookAt": [
+        0,
+        48,
+        8
+      ]
+    },
+    {
+      "name": "geometric-podium-panel-and-entrance-voids",
+      "position": [
+        -100,
+        36,
+        30
+      ],
+      "lookAt": [
+        -20,
+        15,
+        0
+      ]
+    },
+    {
+      "name": "rear-drapery-and-independent-podium-shape",
+      "position": [
+        100,
+        105,
+        -200
+      ],
+      "lookAt": [
+        0,
+        95,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 39752,
+    "vertices": 119256,
+    "materials": 4,
+    "bytes": 4773024,
+    "sha256": "sha256:9afad71fd3d101626ce5ad707a42a946ba5bb4989d5cce81ed69fd8ab836b780"
+  }
+}
