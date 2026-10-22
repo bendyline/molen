@@ -664,7 +664,7 @@ describe('renderer backend selection', () => {
     expect(() => renderer.setAmbientOcclusion(true)).toThrow(/disposed/);
   });
 
-  it('prepares the materials a mesh swaps to itself, after the one it shows', async () => {
+  it('prepares a material a mesh swaps to itself once it asks, ahead of queued work', async () => {
     const renderer = await Renderer.create({ backend: 'webgpu', optimizeWebGpu: false });
     const shown = new THREE.MeshStandardMaterial();
     const twin = new THREE.MeshStandardMaterial();
@@ -675,16 +675,16 @@ describe('renderer backend selection', () => {
       compiled.push((object as THREE.Mesh).material as THREE.Material);
     });
     const ready = renderer.prepareObject(mesh);
-    // Background work waits behind normal work, which the owner's question moves it ahead of.
-    void renderer.admission.run(() => compiled.push(new THREE.MeshBasicMaterial()));
+    while (renderer.admission.pending) renderer.admission.flush();
+    await ready;
+    // Only the material it shows; most meshes never switch.
+    expect(compiled).toEqual([shown]);
     const materialReady = mesh.userData.materialReady as (material: THREE.Material) => boolean;
     expect(materialReady(shown)).toBe(true);
+    void renderer.admission.run(() => compiled.push(new THREE.MeshBasicMaterial()));
     expect(materialReady(twin)).toBe(false);
     renderer.admission.flush();
-    await ready;
-    await Promise.resolve();
-    expect(compiled).toContain(shown);
-    expect(compiled.indexOf(twin)).toBeGreaterThanOrEqual(0);
+    expect(compiled.indexOf(twin)).toBeGreaterThan(0);
     expect(compiled.indexOf(twin)).toBeLessThan(
       compiled.findIndex((material) => material instanceof THREE.MeshBasicMaterial),
     );
@@ -692,10 +692,8 @@ describe('renderer backend selection', () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(materialReady(twin)).toBe(true);
     expect(mesh.material).toBe(shown);
-    // Prepared once per mesh and material.
-    const again = renderer.prepareObject(mesh);
-    while (renderer.admission.pending) renderer.admission.flush();
-    await again;
+    // Built once per mesh and material.
+    expect(materialReady(twin)).toBe(true);
     expect(compiled.filter((material) => material === twin)).toHaveLength(1);
     renderer.dispose();
   });

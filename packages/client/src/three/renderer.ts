@@ -208,11 +208,15 @@ export class Renderer {
   private warmupMaterial: THREE.MeshBasicMaterial | undefined;
   private readonly warmedPrograms = new WeakMap<THREE.Material, Map<string, Promise<unknown>>>();
   private readonly warmedMeshes = new WeakMap<THREE.Mesh, Promise<unknown>>();
-  /** Per mesh, builds of the materials it swaps to itself; see `prepareVariants`. */
+  /**
+   * Per mesh, builds of the materials it swaps to itself (`null`: prepared with the mesh); see
+   * `prepareVariants`.
+   */
   private readonly warmedVariants = new WeakMap<
     THREE.Mesh,
-    Map<THREE.Material, Promise<unknown>>
+    Map<THREE.Material, Promise<unknown> | null>
   >();
+  private readonly variantInterests = new WeakMap<THREE.Mesh, WarmupInterest>();
   private readonly warmups = new WeakMap<Promise<unknown>, Warmup>();
   /** Deferred meshes whose preparation has not settled, with the interest that can promote it. */
   private readonly deferredMeshes = new WeakMap<THREE.Object3D, WarmupInterest>();
@@ -919,31 +923,40 @@ export class Renderer {
   }
 
   /**
-   * A mesh that swaps its own material, as an instanced detail switch swaps in an opaque twin
-   * for its coarser levels, lists every material in `userData.materialVariants`. Each needs its own
-   * shader build, which the first frame to draw it would otherwise make mid-frame. Those the mesh
-   * does not show now are built in the background while it lives, and `userData.materialReady`
-   * tells the mesh's owner whether one is ready: until it is, the owner keeps what it shows, and
-   * asking moves the build ahead of other queued work. In flight a whole view of trees changed
-   * level at once and built their twins in one frame, for most of a second.
+   * A mesh that swaps its own material, as an instanced detail switch swaps in an opaque twin for
+   * its coarser levels, lists every material in `userData.materialVariants`. Each needs its own
+   * shader build, which the first frame to draw it would otherwise make mid-frame: in flight a whole
+   * view of trees changed level at once and built their twins in one frame, for most of a second.
+   * `userData.materialReady(material)` tells the mesh's owner whether one is ready. Until it is, the
+   * owner keeps what it shows; asking queues its build ahead of other work. Most batches never
+   * change level, so a variant is built only once its mesh asks for it.
    */
   private prepareVariants(mesh: THREE.Mesh): void {
-    const lane = createLane(true);
-    const variants = mesh.userData.materialVariants as readonly THREE.Material[];
-    let warmed = this.warmedVariants.get(mesh);
-    if (warmed === undefined) {
-      warmed = new Map();
-      this.warmedVariants.set(mesh, warmed);
+    let builds = this.warmedVariants.get(mesh);
+    if (builds === undefined) {
+      builds = new Map();
+      this.warmedVariants.set(mesh, builds);
     }
-    const builds = warmed;
-    let interest: WarmupInterest | undefined;
-    for (const material of variants) {
-      if (material === mesh.material || builds.has(material)) continue;
+    // Prepared with the mesh itself, which is published only once that is done.
+    builds.set(mesh.material as THREE.Material, null);
+    mesh.userData.materialReady ??= (material: THREE.Material): boolean =>
+      this.variantReady(mesh, material);
+  }
+
+  /** Whether `mesh` can draw `material` without building it mid-frame; builds it first if not. */
+  private variantReady(mesh: THREE.Mesh, material: THREE.Material): boolean {
+    const builds = this.warmedVariants.get(mesh);
+    const known = builds?.get(material);
+    if (builds === undefined || known === null) return true;
+    let promise = known;
+    if (promise === undefined) {
+      let interest = this.variantInterests.get(mesh);
       if (interest === undefined) {
         interest = new WarmupInterest(this.cancel);
         releaseOnDispose(mesh, interest);
+        this.variantInterests.set(mesh, interest);
       }
-      const warmup = this.warmup(() => this.compileMesh(mesh, material), lane, {
+      const warmup = this.warmup(() => this.compileMesh(mesh, material), createLane(true), {
         label: 'shader-variant',
         bytes: 0,
       });
@@ -954,17 +967,10 @@ export class Renderer {
       };
       warmup.forget.push(forget);
       void warmup.promise.catch(forget);
+      promise = warmup.promise;
     }
-    mesh.userData.materialReady ??= (material: THREE.Material): boolean =>
-      this.variantReady(mesh, material);
-  }
-
-  /** Whether `mesh` can draw `material` without building it mid-frame; expedites it if not. */
-  private variantReady(mesh: THREE.Mesh, material: THREE.Material): boolean {
-    const promise = this.warmedVariants.get(mesh)?.get(material);
-    const warmup = promise === undefined ? undefined : this.warmups.get(promise);
-    // Not a queued variant: the material the mesh was prepared with, or one already built.
-    if (promise === undefined || warmup === undefined || warmup.settled) return true;
+    const warmup = this.warmups.get(promise);
+    if (warmup === undefined || warmup.settled) return true;
     this.admission.promote(promise, { front: true });
     return false;
   }

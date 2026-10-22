@@ -59,7 +59,7 @@ describe('WebGPU driver initialization transaction', () => {
     expect(stagingTarget.dispose).toHaveBeenCalledOnce();
     expect(driver.info.autoReset).toBe(false);
     expect(mocks.timestampGuard).toHaveBeenCalledExactlyOnceWith(driver);
-    expect(mocks.sharedInstancing).toHaveBeenCalledExactlyOnceWith(driver, expect.anything());
+    expect(mocks.sharedInstancing).toHaveBeenCalledOnce();
     expect(driver.dispose).not.toHaveBeenCalled();
   });
 

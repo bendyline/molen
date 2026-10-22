@@ -81,10 +81,10 @@ When `prepareObject` receives the parent the object will join, it evaluates LODs
 camera and waits only for the selected levels. The other levels prepare in the queue's background
 lane (`priority: 'background'`), which runs only in budget that normal jobs leave, and are dropped
 if their mesh or geometry is disposed first. A mesh that swaps its own material (an instanced
-detail switch's opaque and shadow-free twins) lists every material in `userData.materialVariants`;
-the ones it does not show yet build in the background lane, and the renderer sets
-`userData.materialReady(material)`, which the mesh's owner asks before switching: until it returns
-true the owner keeps what it shows, and asking moves that build ahead of other queued work. Shadow
+detail switch's opaque and shadow-free twins) lists every material in `userData.materialVariants`,
+and the renderer sets `userData.materialReady(material)`, which the mesh's owner asks before
+switching. Until it returns true the owner keeps what it shows; the first question queues that
+material's build ahead of other work, so variants a mesh never switches to are never built. Shadow
 flags are part of what a mesh's shaders are built for, so set `castShadow` and `receiveShadow`
 before preparing (the terrain stream marks layers and surfaces first). Resident world-generation
 quality replacements use the same preparation/publication path when supplied with
@@ -141,14 +141,17 @@ to the same material. Transparent group order is preserved.
 
 World props (trees, ground cover, rocks, rooftop and street props) keep one batch per model per
 coarse terrain tile, and four per finest tile, so near detail stays around the camera's own quarter.
-On WebGPU, three.js keys an `InstancedMesh`'s shader and node state by the mesh, and declares its
-matrices as a uniform array sized to the batch: every batch built its own (about 11 ms of main thread
-for a plant batch, per draw target and material) and compiled its own GPU pipeline, which, when a
-frame created it, stalled the browser's GPU process for seconds in fast flight. The WebGPU driver
-installs an adapter that reads instance matrices from one named, runtime-sized storage buffer and
-shares node state among instanced meshes of a material, each render object binding its own mesh's
-matrices and colors; a material's batches then build once and share one pipeline. It does not apply
-to batched, skinned or morphed meshes. `createInstancedPlacementLod` accepts any `cellSize`.
+On WebGPU, three.js keys an `InstancedMesh`'s node state by the mesh (about 11 ms of main thread
+for a plant batch, per draw target and material) and declared its matrices as a uniform array sized
+to the batch and named after its node, so every batch also compiled a GPU pipeline of its own; when a
+frame created one, it stalled the browser's GPU process, for seconds in fast flight. The WebGPU
+driver reads instance matrices from one named, runtime-sized storage buffer instead, so a material's
+batches share one shader and one pipeline. `createInstancedPlacementLod` accepts any `cellSize`.
+
+Lights are compiled into every lit shader: a light that joins or leaves the scene rebuilds every
+object in view at once. Keep a streamed world's light set fixed. Earth hosts mount dioramas with
+`localLights: false`, which keeps a diorama's own point and spot lights out of the world scene; a
+football field's scoreboard glow, loading and unloading as an aircraft passed, froze its takeoff.
 
 Terrain palettes compile once per mesh. Terrain index topology is immutable and shared in a
 bounded CPU cache; use a copy before editing or transferring it. Grids and building cells use

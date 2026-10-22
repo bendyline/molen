@@ -41,12 +41,7 @@ export async function createWebGpuDriver(options: RendererOptions): Promise<WebG
     installWebGpuTimestampGuard(renderer);
     installWebGpuDepthBiasGuard(renderer);
     installWebGpuRenderObjectRelease(renderer);
-    installWebGpuSharedInstancing(renderer, {
-      InstanceNode,
-      StorageBufferNode,
-      instanceIndex,
-      objectGroup,
-    });
+    installWebGpuSharedInstancing({ InstanceNode, StorageBufferNode, instanceIndex, objectGroup });
     // r184 initializes devices eagerly, but canvas contexts lazily. Check configuration now
     // so context failures reach the async factory's WebGL fallback before the first frame.
     renderer.getContext();

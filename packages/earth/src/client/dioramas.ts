@@ -125,6 +125,8 @@ export class EarthDioramaDirector implements EarthDioramas {
             root: frame.root,
             camera: frame.camera,
             assets: this.options.assets,
+            // A diorama's own light, arriving and leaving with it, rebuilt every lit shader in view.
+            localLights: false,
           }),
         onError: this.onError,
       });
