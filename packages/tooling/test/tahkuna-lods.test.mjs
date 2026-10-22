@@ -10,6 +10,7 @@ import {
   buildTahkunaStreet,
 } from '../../worldgen/scripts/tahkuna-current-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 it('retains the original detailed recipe and applies the current authority height in source', () => {
   for (const [build, height] of [
@@ -41,8 +42,8 @@ it('keeps the current height, red dome and critical near surfaces within all aut
   }
 });
 it('reconstructs identical four-level bytes from source without changing the detailed import', async () => {
-  const p = resolve(
-    '../../content/worldgen/assets/places/ud/ud8/n0661_tahkuna_lighthouse/asset.json',
+  const p = await runtimeLodFixture(
+    resolve('../../content/worldgen/assets/places/ud/ud8/n0661_tahkuna_lighthouse/asset.json'),
   );
   const before = JSON.parse(await readFile(p));
   const master = await readFile(resolve(p, '../model.glb'));

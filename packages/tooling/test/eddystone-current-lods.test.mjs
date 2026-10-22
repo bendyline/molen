@@ -9,11 +9,14 @@ import {
   eddystoneRadius,
 } from '../../worldgen/scripts/eddystone-browser-model.mjs';
 import { buildEddystoneOriginal } from '../../worldgen/scripts/eddystone-detail-model.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/gb/gbu/n0646_eddystone_lighthouse'),
-  runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
+  runtime = await runtimeLodFixture(
+    source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
+  );
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
   const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12))),

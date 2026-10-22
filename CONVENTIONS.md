@@ -66,6 +66,10 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   with a golden suite; example suites consume those builds rather than rebuilding themselves.
   `pnpm assets:test` builds the schema package before loading its source-bundle checks, so it
   also works in a fresh checkout whose GLBs came from a release or cache.
+- **Asset tests rebuild temporary copies.** Use
+  `packages/tooling/test/fixtures/runtime-lod-fixture.mjs` before regenerating landmark LODs.
+  Tests must leave installed GLBs and sidecars untouched, including while a build reads them.
+  The root `test:unit` post-hook checks the installed bundle again to catch persistent changes.
 - CI runs only plain `pnpm` scripts: `pnpm lint`, `pnpm typecheck`, `pnpm source:check`,
   `pnpm test:unit`, `pnpm audit:prod`, `pnpm docs:check`, `pnpm smoke:packed`,
   `pnpm docs:site:check`, `pnpm test:golden`. Local green must equal CI green.

@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { encodeAuthoredAssembly } from '../../worldgen/scripts/authored-glb-assembly.mjs';
@@ -10,7 +11,7 @@ import { MATERIAL_REPEAT_METERS } from '../../worldgen/scripts/standard-material
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/6g/6gy/n0223_edificio_copan'),
-  runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
+  runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
   const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12))),

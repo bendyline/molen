@@ -2,6 +2,7 @@ import { copyFile, mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { expect, it } from 'vitest';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
@@ -9,7 +10,7 @@ import { fourWorldTradeCenterStudy } from '../../worldgen/scripts/four-world-tra
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/dr/dr5/n0218_4_world_trade_center'),
-  runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
+  runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
   const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12))),
