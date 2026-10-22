@@ -116,8 +116,15 @@ distance) is skipped the same way, and the occlusion fades out over the last thi
 that its creases are under a pixel, and skipping them is most of an aerial view. `radius`
 (default 3 m) is the world-space sampling radius and `strength` (0–1, default 0.85) the share
 applied, since the
-multiply also dims direct light. Frames draw directly while the pipeline compiles. The World
-Explorer keeps it for street-level views: on below 18 m over the ground and off above 24 m, where
+multiply also dims direct light. Frames draw directly while the pipeline compiles.
+
+Every object's shaders are built for the target it draws into, and the occlusion target (it writes
+normals beside color) is a different one from the canvas. With occlusion on, `prepareObject`
+builds for the occlusion target. To skip the occlusion work for a while, call
+`renderer.suspendAmbientOcclusion(true)` rather than turning it off: the frame keeps drawing into
+the same target and copies the image out unshaded, so nothing is built again. Turning it off and on
+with `setAmbientOcclusion` changes the target, and every object in view builds its shaders again,
+mid-frame. The World Explorer suspends it above 24 m over the ground and resumes below 18 m, where
 its creases are small but its passes still cost a full-screen share of each frame (about 3 ms of
 a 44 ms rooftop frame on an Apple M2 at High); `?ao=0` turns it off for comparison.
 

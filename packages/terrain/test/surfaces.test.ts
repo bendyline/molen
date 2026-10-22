@@ -114,6 +114,73 @@ function positions(object: THREE.Object3D, name: string) {
   return (object.getObjectByName(name) as THREE.Mesh).geometry.getAttribute('position');
 }
 
+/** Pairs of a mesh's triangles that overlap in plan at one height: one plane, so they z-fight. */
+function coplanarOverlaps(object: THREE.Object3D, name: string): number {
+  const p = positions(object, name);
+  const triangles: number[][][] = [];
+  for (let i = 0; i + 2 < p.count; i += 3) {
+    const t = [0, 1, 2].map((k) => [p.getX(i + k), p.getY(i + k), p.getZ(i + k)]);
+    const [a, b, c] = t as [number[], number[], number[]];
+    // Curb faces and other risers have no area in plan.
+    const area =
+      ((b[0] as number) - (a[0] as number)) * ((c[2] as number) - (a[2] as number)) -
+      ((b[2] as number) - (a[2] as number)) * ((c[0] as number) - (a[0] as number));
+    if (Math.abs(area) > 1e-6) triangles.push(t);
+  }
+  const cells = new Map<string, number[]>();
+  triangles.forEach((t, n) => {
+    const xs = t.map((v) => v[0] as number),
+      zs = t.map((v) => v[2] as number);
+    for (let x = Math.floor(Math.min(...xs)); x <= Math.floor(Math.max(...xs)); x++)
+      for (let z = Math.floor(Math.min(...zs)); z <= Math.floor(Math.max(...zs)); z++) {
+        const cell = cells.get(`${x}/${z}`) ?? [];
+        cell.push(n);
+        cells.set(`${x}/${z}`, cell);
+      }
+  });
+  // A point's height on a triangle, if the point lies strictly inside it in plan.
+  const heightIn = (t: number[][], x: number, z: number): number | undefined => {
+    const [a, b, c] = t as [number[], number[], number[]];
+    const [ax, ay, az] = a as [number, number, number],
+      [bx, by, bz] = b as [number, number, number],
+      [cx, cy, cz] = c as [number, number, number];
+    const d = (bz - cz) * (ax - cx) + (cx - bx) * (az - cz);
+    const u = ((bz - cz) * (x - cx) + (cx - bx) * (z - cz)) / d;
+    const v = ((cz - az) * (x - cx) + (ax - cx) * (z - cz)) / d;
+    if (u < 1e-4 || v < 1e-4 || 1 - u - v < 1e-4) return undefined;
+    return u * ay + v * by + (1 - u - v) * cy;
+  };
+  const weights = [
+    [1 / 3, 1 / 3],
+    [0.6, 0.2],
+    [0.2, 0.6],
+    [0.2, 0.2],
+  ];
+  const pairs = new Set<string>();
+  for (const cell of cells.values())
+    for (let i = 0; i < cell.length; i++)
+      for (let j = i + 1; j < cell.length; j++) {
+        const [m, n] = [cell[i] as number, cell[j] as number].sort((a, b) => a - b) as [
+          number,
+          number,
+        ];
+        const key = `${m}/${n}`;
+        if (pairs.has(key)) continue;
+        const [a, b, c] = triangles[m] as [number[], number[], number[]];
+        for (const [u, v] of weights as [number, number][]) {
+          const at = [0, 1, 2].map(
+            (k) => u * (a[k] as number) + v * (b[k] as number) + (1 - u - v) * (c[k] as number),
+          ) as [number, number, number];
+          const y = heightIn(triangles[n] as number[][], at[0], at[2]);
+          if (y !== undefined && Math.abs(y - at[1]) < 0.0005) {
+            pairs.add(key);
+            break;
+          }
+        }
+      }
+  return pairs.size;
+}
+
 describe('parameterized line features', () => {
   it('samples by arc length, removes duplicates, and joins both edges at a right-angle bend', () => {
     const path = terrainLinePath(
@@ -408,6 +475,56 @@ describe('surface styles', () => {
       },
     ];
     expect(stats(createTerrainSurfaceObject(tile, context())).junctions).toBe(0);
+  });
+
+  it('stacks crossing roads, shared stall lines and all, so no two pieces of paving share a plane', () => {
+    const object = createTerrainSurfaceObject(fixture(), context());
+    expect(stats(object).parkingBays).toBeGreaterThan(30);
+    for (const name of ['semantic:transportation', 'surface:edges', 'surface:markings'])
+      expect(coplanarOverlaps(object, name), name).toBe(0);
+  });
+
+  it('splits roads that would lie on themselves: hairpin carriageways and a looped cul-de-sac', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    // Round the loop from the stem's end and back to it.
+    const loop = Array.from({ length: 17 }, (_, i): [number, number] => {
+      const angle = Math.PI / 2 + (i * Math.PI) / 8;
+      return i % 16 === 0
+        ? [0.8, 0.55]
+        : [0.8 + Math.cos(angle) * 0.05, 0.5 + Math.sin(angle) * 0.05];
+    });
+    tile.transportation = [
+      {
+        // Two one-way carriageways 11 m apart that join end to end where the road narrows.
+        class: 'major_road',
+        subclass: 'secondary',
+        oneway: true,
+        width: 8,
+        lines: [
+          [
+            [0.05, 0.7],
+            [0.6, 0.7],
+          ],
+          [
+            [0.6, 0.7],
+            [0.05, 0.755],
+          ],
+        ],
+      },
+      {
+        class: 'minor_road',
+        subclass: 'residential',
+        name: 'Loop Court',
+        lines: [[[0.8, 0.95], ...loop]],
+      },
+    ];
+    const network = new SurfaceNetwork(tile, 200, resolveTerrainSurfaceStyle());
+    expect(network.roads).toHaveLength(4);
+    const ring = network.roads.find((road) => road.path.points.length === 17);
+    expect(ring?.path.points[0]).toEqual(ring?.path.points.at(-1));
+    const object = createTerrainSurfaceObject(tile, context());
+    for (const name of ['semantic:transportation', 'surface:edges', 'surface:markings'])
+      expect(coplanarOverlaps(object, name), name).toBe(0);
   });
 
   it('lines a residential block with utility poles and hydrants beside the road, not on it', () => {

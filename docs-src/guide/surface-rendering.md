@@ -141,6 +141,15 @@ turning circle, or for a tight wrap a rounded end. Footway pieces inside it are 
 footways that merely connect to the street's end do not count as the ring, so a circle never
 spills past a footway onto a lawn (`SurfaceNetwork.findTurningCircles`).
 
+Roads overlap wherever they meet: at a junction, at the corners of their sidewalks, across a narrow
+median. Their paving never shares a plane there, or which road drew on top would change pixel by
+pixel as the camera moved: the widest road keeps its nominal heights, and each road overlapping
+another sits one or more 2 mm steps lower, asphalt, sidewalks, curbs and paint alike
+(`SurfaceNetwork.stackRoads`). A mapped line that would lie on itself becomes separate roads: where
+it doubles back more sharply than a band can miter, as two one-way carriageways joined where a
+divided road narrows do, and at the vertex its own end returns to, as a cul-de-sac mapped up the
+street and round a loop back to its middle does. A stall line two parking bays share is painted once.
+
 Curbs are a step, not a stripe: a 15 cm vertical face drops from the curb's road-side edge to the
 asphalt, split finer than the ground grid so it follows the draped ground, and jointed like the curb top.
 Any draped band can have one with `riser` (meters) on its `TerrainLineBand`.

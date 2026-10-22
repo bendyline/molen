@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { PLACEMENT_STRIDE, type PlacementSet } from '../kernel/types';
 import { createInstancedPlacements } from './instanced-box';
 import type { PreparedModel } from './instanced-models';
-import { SCATTER_SOLID_UV } from './scatter-material';
+import { SCATTER_SOLID_UV, scatterFullyLitTerm } from './scatter-material';
 import { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './screen-space-lod';
 
 export interface InstancedPlacementLodOptions {
@@ -89,6 +89,34 @@ function levelMaterial(material: THREE.Material, geometry: THREE.BufferGeometry)
   return twin;
 }
 
+const unshadowedTwins = new WeakMap<THREE.Material, THREE.Material>();
+
+/**
+ * The distant level's material when `source` (the models' shared material) offers a constant shadow
+ * term: a twin of `material` that never samples the sun's shadow map. The level used to switch off
+ * `receiveShadow` instead, and three keys a mesh's shaders by that flag, so every batch rebuilt its
+ * shaders, mid-frame, each time it crossed into the level or back out.
+ */
+function unshadowedMaterial(
+  material: THREE.Material,
+  source: THREE.Material,
+): THREE.Material | undefined {
+  const lit = scatterFullyLitTerm(source);
+  if (lit === undefined) return undefined;
+  let twin = unshadowedTwins.get(material);
+  if (twin === undefined) {
+    const created = material.clone() as THREE.Material & { receivedShadowNode?: () => unknown };
+    created.onBeforeCompile = material.onBeforeCompile;
+    created.customProgramCacheKey = material.customProgramCacheKey;
+    created.receivedShadowNode = () => lit;
+    created.name = `${material.name}:unshadowed`;
+    material.addEventListener('dispose', () => created.dispose());
+    unshadowedTwins.set(material, created);
+    twin = created;
+  }
+  return twin;
+}
+
 /**
  * One instanced mesh whose shared geometry follows a projected-error LOD choice. WebGPU builds a
  * node program per InstancedMesh (Three keys instanced render objects by object), so a set drawn
@@ -103,8 +131,12 @@ function levelMaterial(material: THREE.Material, geometry: THREE.BufferGeometry)
  */
 class InstancedDetailSwitch extends THREE.LOD {
   private selected = 0;
+  /** The level last applied to the mesh. */
+  private shown = 0;
   private perspectiveAt = Number.NEGATIVE_INFINITY;
-  private castsShadow: boolean | undefined;
+  /** The host's shadow decision for the batch, and the flag this switch last set from it. */
+  private castsShadow = false;
+  private appliedShadow: boolean | undefined;
   /** What the last view-camera choice saw; see `update`. */
   private readonly seen = new Float64Array(23).fill(Number.NaN);
   constructor(
@@ -114,6 +146,8 @@ class InstancedDetailSwitch extends THREE.LOD {
     private readonly geometries: readonly (THREE.BufferGeometry | undefined)[],
     private readonly errors: readonly number[],
     private readonly materials: readonly THREE.Material[] = [],
+    /** The distant level's material skips shadow lookups itself; see `unshadowedMaterial`. */
+    private readonly shadowFreeDistant = false,
   ) {
     super();
     this.add(mesh);
@@ -159,18 +193,40 @@ class InstancedDetailSwitch extends THREE.LOD {
       }
       this.selected = level;
     }
+    // Keep the level shown while the material the chosen one draws with is still being prepared,
+    // as `userData.materialReady` (a preparing renderer sets it) reports: drawing it now would build
+    // its shaders mid-frame. Asking moves its preparation ahead; the choice is made again next frame.
+    const wanted = this.materials[this.selected];
+    const ready = this.mesh.userData.materialReady as
+      | ((material: THREE.Material) => boolean)
+      | undefined;
+    if (
+      this.selected !== this.shown &&
+      this.geometries[this.selected] !== undefined &&
+      wanted !== undefined &&
+      wanted !== this.mesh.material &&
+      ready?.(wanted) === false
+    ) {
+      this.selected = this.shown;
+      this.seen[0] = Number.NaN;
+    }
     const level = this.selected;
-    // Decided once the host has marked this object for shadows, from the near geometry.
-    this.castsShadow ??= this.mesh.castShadow;
+    this.shown = level;
+    // The host marks the batch for shadows from its near geometry, possibly after a first update
+    // (a renderer preparing the batch selects its level before the host publishes it): a flag
+    // this switch did not set is the host's decision.
+    if (this.mesh.castShadow !== this.appliedShadow) this.castsShadow = this.mesh.castShadow;
     const geometry = this.geometries[level];
     this.mesh.visible = geometry !== undefined;
     if (geometry !== undefined && this.mesh.geometry !== geometry) this.mesh.geometry = geometry;
     const material = this.materials[level];
     if (material !== undefined && this.mesh.material !== material) this.mesh.material = material;
     this.mesh.castShadow = level < this.geometries.length - 1 && this.castsShadow;
+    this.appliedShadow = this.mesh.castShadow;
     // Nor does it receive them: it stands mostly past the camera-following shadow map, yet each
-    // of its fragments still paid for the map's soft lookups across a whole distant tree line.
-    this.mesh.receiveShadow = level < this.geometries.length - 1;
+    // of its fragments still paid for the map's soft lookups across a whole distant tree line. A
+    // shadow-free material skips them itself and the host's flag stays, as shaders are built for it.
+    if (!this.shadowFreeDistant) this.mesh.receiveShadow = level < this.geometries.length - 1;
   }
 
   /**
@@ -281,6 +337,10 @@ export function createInstancedPlacementLod(
     }
     first.computeBoundingBox();
     first.computeBoundingSphere();
+    // Ground cover (a near-detail-only model) is walked through and flown over, not collided
+    // with: over a forest floor its ferns and shrubs were most of the 170k triangles an aircraft's
+    // collision neighborhood rebuilt every 24 m of a takeoff roll.
+    if (!drawn(models[1])) first.userData.walkIgnore = true;
     const radius = first.boundingSphere?.radius ?? 0;
     let largestScale = 0;
     for (let i = 0; i < indices.length; i++) {
@@ -304,7 +364,17 @@ export function createInstancedPlacementLod(
         errors.push(handoverError(level, models[level - 1] as PreparedModel) * largestScale);
         if (!drawn(model)) break;
       }
+      const last = geometries.length - 1;
+      const shadowFree =
+        last > 0 && geometries[last] !== undefined
+          ? unshadowedMaterial(materials[last] as THREE.Material, models[0].material)
+          : undefined;
+      if (shadowFree !== undefined) materials[last] = shadowFree;
       first.material = materials[0] as THREE.Material;
+      // The renderer prepares the materials a level swaps in (the opaque and shadow-free twins)
+      // ahead of the frame that first shows them, which would otherwise build them mid-frame.
+      const variants = [...new Set(materials.filter((_, level) => geometries[level]))];
+      if (variants.length > 1) first.userData.materialVariants = variants;
       const bounds = (first.boundingBox as THREE.Box3).clone();
       const lod = new InstancedDetailSwitch(
         options.screenSpace,
@@ -313,6 +383,7 @@ export function createInstancedPlacementLod(
         geometries,
         errors,
         materials,
+        shadowFree !== undefined,
       );
       lod.name = `${name}:${key}`;
       lod.position.copy(center);

@@ -32,14 +32,15 @@ const SPECS = [
 ] as const;
 
 // cars, pedestrians, trains, aircraft, detailed cars, skinned figures, figure radius (m),
-// activity radius (m), pose evaluations per frame.
+// activity radius (m), pose evaluations per frame. Car and pedestrian caps are a third of what
+// they were (High drew 320 cars and 40 people), matching the lower spawn density in ambient.ts.
 const AMBIENT = [
-  [24, 3, 0, 0, 2, 6, 60, 250, 4],
-  [48, 5, 0, 1, 4, 12, 80, 350, 8],
-  [96, 11, 1, 1, 6, 20, 100, 450, 12],
-  [160, 16, 1, 2, 8, 32, 120, 600, 20],
-  [240, 27, 2, 3, 12, 48, 150, 800, 32],
-  [320, 40, 2, 4, 16, 64, 180, 1000, 48],
+  [8, 1, 0, 0, 2, 6, 60, 250, 4],
+  [16, 2, 0, 1, 4, 12, 80, 350, 8],
+  [32, 4, 1, 1, 6, 20, 100, 450, 12],
+  [54, 6, 1, 2, 8, 32, 120, 600, 20],
+  [80, 9, 2, 3, 12, 48, 150, 800, 32],
+  [108, 13, 2, 4, 16, 64, 180, 1000, 48],
 ] as const;
 
 /** Explicit work/working-set budgets, driven by measurements instead of device names. */

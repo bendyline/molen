@@ -1579,6 +1579,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       'terrain-assembly',
     );
     object.add(surface.mesh);
+    // Before preparing: the renderer builds the surface's shaders for its shadow flags.
+    if (this.options.shadows === true) surface.mesh.receiveShadow = true;
     try {
       await this.options.prepareObject?.(object, signal);
       await this.admit(
@@ -1587,7 +1589,6 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             throw new DOMException('Tile cancelled', 'AbortError');
           surface.mesh.visible = false;
           freezeStaticTransforms(object);
-          if (this.options.shadows === true) surface.mesh.receiveShadow = true;
           this.resident.set(key, {
             address,
             heightfield,
@@ -2043,6 +2044,11 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           ...(this.options.admission ? { admission: this.options.admission } : {}),
         });
         if (object !== undefined) {
+          // A renderer builds each mesh's shaders for its shadow flags too: marked after preparing,
+          // every instanced batch (three builds those per object) was built again mid-frame.
+          freezeStaticTransforms(object);
+          if (this.options.shadows === true)
+            markShadows(object, this.options.shadowCasterHeight ?? 1.5);
           try {
             if (!signal.aborted) await this.options.prepareObject?.(object, signal, tile.object);
             if (signal.aborted) throw signal.reason;
@@ -2074,9 +2080,6 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             object.name ||= `layer:${layer.id}:${tileKey}`;
             this.layerRetries.clear(key);
             object.visible = false;
-            freezeStaticTransforms(object);
-            if (this.options.shadows === true)
-              markShadows(object, this.options.shadowCasterHeight ?? 1.5);
             current.layers.set(layer.id, object);
             current.object.add(object);
             this.trackAllocations(current);

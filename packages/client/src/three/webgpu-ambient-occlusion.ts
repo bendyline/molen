@@ -19,8 +19,17 @@ export interface AmbientOcclusionOptions {
 }
 
 export interface WebGpuAmbientOcclusion {
-  /** Draw the frame: the optional sky scene first, then the occluded world over it. */
-  render(sky: { scene: THREE.Scene; camera: THREE.Camera } | undefined): void;
+  /**
+   * Draw the frame: the optional sky scene first, then the occluded world over it. With `occlude`
+   * false the world still draws into the occlusion target, and the image is copied out without
+   * computing occlusion: the shaders already built for that target stay in use.
+   */
+  render(sky: { scene: THREE.Scene; camera: THREE.Camera } | undefined, occlude?: boolean): void;
+  /**
+   * Build `object`'s shaders for drawing into the occlusion target, as `compileAsync` does for the
+   * canvas. The target writes normals beside color, so each object needs its own build for it.
+   */
+  compile(object: THREE.Object3D): Promise<void>;
   dispose(): void;
 }
 
@@ -154,9 +163,30 @@ export async function createWebGpuAmbientOcclusion(
   );
   const pipeline = new webgpu.RenderPipeline(renderer);
   pipeline.outputNode = vec4(image.rgb.mul(shade), image.a);
+  // Without occlusion: the same image, tone mapped and encoded the same way.
+  const copy = new webgpu.RenderPipeline(renderer);
+  copy.outputNode = image;
   const size = new THREE.Vector2();
+  // Point the renderer at the target, as the frame's world draw does, for the duration of `use`.
+  const intoTarget = <T>(use: () => T): T => {
+    const previousTarget = renderer.getRenderTarget();
+    const previousMrt = renderer.getMRT();
+    try {
+      renderer.setRenderTarget(target);
+      // Every draw into the target writes both attachments; the sky's normals sit at the far
+      // plane, where the occlusion pass leaves the image untouched.
+      renderer.setMRT(normals);
+      return use();
+    } finally {
+      renderer.setRenderTarget(previousTarget);
+      renderer.setMRT(previousMrt);
+    }
+  };
   return {
-    render(sky) {
+    // compileAsync reads the target and MRT before its first await, so they are restored here
+    // while its builds continue.
+    compile: (object) => intoTarget(() => renderer.compileAsync(object, camera, scene)),
+    render(sky, occlude = true) {
       renderer.getDrawingBufferSize(size);
       nearPlane.value = lens.near;
       farPlane.value = lens.far;
@@ -168,30 +198,25 @@ export async function createWebGpuAmbientOcclusion(
           1 / Math.max(1, Math.round(size.y / 2)),
         );
       }
-      const previousTarget = renderer.getRenderTarget();
-      const previousMrt = renderer.getMRT();
       const autoClear = renderer.autoClear;
       try {
-        renderer.setRenderTarget(target);
-        // Every draw into the target writes both attachments; the sky's normals sit at the far
-        // plane, where the occlusion pass leaves the image untouched.
-        renderer.setMRT(normals);
-        renderer.autoClear = true;
-        if (sky) {
-          renderer.render(sky.scene, sky.camera);
-          renderer.autoClear = false;
-          renderer.clearDepth();
-        }
-        renderer.render(scene, camera);
+        intoTarget(() => {
+          renderer.autoClear = true;
+          if (sky) {
+            renderer.render(sky.scene, sky.camera);
+            renderer.autoClear = false;
+            renderer.clearDepth();
+          }
+          renderer.render(scene, camera);
+        });
       } finally {
-        renderer.setRenderTarget(previousTarget);
-        renderer.setMRT(previousMrt);
         renderer.autoClear = autoClear;
       }
-      pipeline.render();
+      (occlude ? pipeline : copy).render();
     },
     dispose() {
       pipeline.dispose();
+      copy.dispose();
       occlusion.dispose();
       cleaned.dispose();
       target.dispose();

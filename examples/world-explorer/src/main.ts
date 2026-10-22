@@ -2012,11 +2012,13 @@ async function main(): Promise<void> {
     // it grounds what a walker or driver sees up close. From rooftop height up the same creases
     // are small, while the passes cost a full-screen share of the frame (about 3 ms of 44 on an
     // Apple M2 at High, which put a rooftop view behind the explorer's frame rate before this
-    // detail). Off above 24 m over the ground, back on below 18 m.
+    // detail). Suspended above 24 m over the ground, back on below 18 m. Suspending keeps drawing
+    // into the occlusion target: switching it off and on changed the target every object's shaders
+    // were built for, and a takeoff or landing rebuilt everything in view mid-frame.
     if (occlusionWanted) {
       const on = occlusionOn ? above < 24 : above < 18;
       if (on !== occlusionOn) {
-        viewer.renderer.setAmbientOcclusion(on);
+        viewer.renderer.suspendAmbientOcclusion(!on);
         occlusionOn = on;
       }
     }

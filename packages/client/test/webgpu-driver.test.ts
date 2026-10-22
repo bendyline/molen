@@ -2,9 +2,15 @@ import type { WebGPURenderer } from 'three/webgpu';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createWebGpuDriver } from '../src/three/webgpu-driver';
 
-const mocks = vi.hoisted(() => ({ construct: vi.fn(), timestampGuard: vi.fn() }));
+const mocks = vi.hoisted(() => ({
+  construct: vi.fn(),
+  timestampGuard: vi.fn(),
+  sharedInstancing: vi.fn(),
+}));
 
 vi.mock('three/webgpu', () => ({
+  InstanceNode: class {},
+  StorageBufferNode: class {},
   WebGPUBackend: class {
     dispose = vi.fn();
   },
@@ -17,6 +23,10 @@ vi.mock('three/webgpu', () => ({
 vi.mock('../src/three/webgpu-frame-timer', () => ({
   installWebGpuTimestampGuard: mocks.timestampGuard,
 }));
+vi.mock('three/tsl', () => ({ instanceIndex: {}, objectGroup: {} }));
+vi.mock('../src/three/webgpu-shared-instancing', () => ({
+  installWebGpuSharedInstancing: mocks.sharedInstancing,
+}));
 
 describe('WebGPU driver initialization transaction', () => {
   let driver: ReturnType<typeof fakeDriver>;
@@ -25,6 +35,7 @@ describe('WebGPU driver initialization transaction', () => {
   beforeEach(async () => {
     mocks.construct.mockReset();
     mocks.timestampGuard.mockReset();
+    mocks.sharedInstancing.mockReset();
     const { WebGPUBackend } = await import('three/webgpu');
     driver = fakeDriver(new WebGPUBackend());
     canvas = { width: 640, height: 480 } as HTMLCanvasElement;
@@ -48,6 +59,7 @@ describe('WebGPU driver initialization transaction', () => {
     expect(stagingTarget.dispose).toHaveBeenCalledOnce();
     expect(driver.info.autoReset).toBe(false);
     expect(mocks.timestampGuard).toHaveBeenCalledExactlyOnceWith(driver);
+    expect(mocks.sharedInstancing).toHaveBeenCalledExactlyOnceWith(driver, expect.anything());
     expect(driver.dispose).not.toHaveBeenCalled();
   });
 

@@ -168,6 +168,14 @@ export function createTerrainSurfaceObject(
     // Before any band is built: mapped footways inside a turning circle are clipped away.
     if (style.sidewalks) network.findTurningCircles();
   }
+  const sidewalked = (road: SurfaceRoad): boolean =>
+    style.sidewalks && road.kind === 'street' && !road.feature.bridge && !road.unpaved;
+  const shoulder = (road: SurfaceRoad): number => (road.unpaved ? 0.7 : 0.3);
+  // Overlapping roads' paving must not share a plane: past the carriageway edge, each reaches
+  // over its shoulders or, beyond a curb, its sidewalks.
+  network.stackRoads((road) =>
+    Math.max(shoulder(road), sidewalked(road) ? style.sidewalkWidth + 0.18 : 0),
+  );
   const pavement = new TerrainSurfaceMeshBuilder(context);
   const roads = new TerrainSurfaceMeshBuilder(context);
   const edges = new TerrainSurfaceMeshBuilder(context);
@@ -307,13 +315,13 @@ export function createTerrainSurfaceObject(
           ring[(i + 1) % ring.length] as TerrainSemanticPoint,
         ],
         color,
-        circle.road.elevation - 0.02,
+        circle.road.elevation + circle.road.stack - 0.02,
       );
     roads.surfaceSince(start, TERRAIN_SURFACE_KIND.road, () => [0, 60], 127);
   }
   for (const road of network.roads) {
     stats.roads++;
-    const elevation = bridgeProfiles.has(road) ? 0 : road.elevation;
+    const elevation = (bridgeProfiles.has(road) ? 0 : road.elevation) + road.stack;
     // Frayed edges show the ground beneath, so a deck keeps its edges whole.
     const grounded = !bridgeProfiles.has(road) && !road.feature.bridge;
     const clipPath =
@@ -359,7 +367,7 @@ export function createTerrainSurfaceObject(
     // Draw only the exposed shoulder edges, avoiding a second sheet beneath the asphalt. They
     // are a few decimeters wide: below a pixel on coarser tiles, which are kilometers away, yet
     // draped segment by segment they were most of those tiles' memory.
-    const shoulderWidth = road.unpaved ? 0.7 : 0.3;
+    const shoulderWidth = shoulder(road);
     if (detailed)
       for (const sign of [-1, 1])
         appendTerrainLineBand(
@@ -394,7 +402,7 @@ export function createTerrainSurfaceObject(
       });
       continue;
     }
-    if (style.sidewalks && road.kind === 'street' && !road.feature.bridge && !road.unpaved) {
+    if (sidewalked(road)) {
       const clear = (points: readonly TerrainSemanticPoint[]): boolean =>
         points.every((p) => !network.occupied(p[0], p[1], 0.25, road) && !blocked(p[0], p[1]));
       for (const sign of [-1, 1]) {
@@ -727,7 +735,7 @@ export function createTerrainSurfaceObject(
           marks.polygon(
             rectangle(x - arm.dz * offset, z + arm.dx * offset, arm.dx, arm.dz, 0.5, 2.6),
             white,
-            arm.road.elevation + 0.055,
+            arm.road.elevation + arm.road.stack + 0.055,
           );
           marks.surfaceSince(start, TERRAIN_SURFACE_KIND.paint);
         }
@@ -736,7 +744,7 @@ export function createTerrainSurfaceObject(
           marks.polygon(
             rectangle(x + arm.dx * 2.3, z + arm.dz * 2.3, arm.dx, arm.dz, arm.width - 0.7, 0.35),
             white,
-            arm.road.elevation + 0.055,
+            arm.road.elevation + arm.road.stack + 0.055,
           );
           marks.surfaceSince(start, TERRAIN_SURFACE_KIND.paint);
         }
@@ -935,6 +943,9 @@ export function createTerrainSurfaceObject(
         ].some(([du = 0, dv = 0]) => pointInPolygon([u + du, v + dv], polygon)),
     );
   };
+  // Neighboring bays share a side line, and back-to-back rows a back line. Painted twice, the two
+  // coplanar copies fought, and the paint's wear flickered as the camera moved; paint each once.
+  const stallLines = new Set<string>();
   for (const feature of [...tile.landcover, ...inferredParking]) {
     const kind = areaKind(feature.class, feature.subclass);
     if (!kind) continue;
@@ -1070,6 +1081,12 @@ export function createTerrainSurfaceObject(
                 [corners[1], corners[2]],
               ]) {
                 if (!a || !b) continue;
+                const ends = [a, b]
+                  .map((p) => `${Math.round(p[0] * 100)}/${Math.round(p[1] * 100)}`)
+                  .sort()
+                  .join(':');
+                if (stallLines.has(ends)) continue;
+                stallLines.add(ends);
                 const line = terrainLinePath(
                   [
                     a.map((n) => n / context.tileSize),

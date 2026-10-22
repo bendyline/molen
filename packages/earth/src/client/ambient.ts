@@ -106,7 +106,9 @@ interface Entry {
   detachedAt?: number;
 }
 
-const BASE_DENSITY = { car: 20, pedestrian: 40 / 3, train: 0.8 };
+// Per lane-km at density 1. A third of the earlier 20 cars and 13 people: streets read as busy
+// at that, and every agent costs simulation, a draw and, as each first appears, shader builds.
+const BASE_DENSITY = { car: 7, pedestrian: 40 / 9, train: 0.8 };
 
 /** Whether two tiles' areas overlap (an ancestor and its descendant do). */
 function overlaps(a: TerrainPyramidTileLayerContext, b: TerrainPyramidTileLayerContext): boolean {

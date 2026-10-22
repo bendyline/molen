@@ -171,13 +171,15 @@ export class EarthAircraft {
   private sequence = 0;
   private disposed = false;
   // An airframe moves tens of meters a second: a wide neighborhood rebuilt every 24 m, bounded
-  // vertically so the ground far below never enters the tree, rescanned at 5 Hz.
+  // vertically so the ground far below never enters the tree, rescanned at 5 Hz. Plants collide
+  // as their instances' boxes: a forest's leaves made each rebuild a long frame.
   private readonly collision = new WalkCollision({
     ignoreVehicles: true,
     radius: 48,
     rebuildDistance: 24,
     verticalRadius: 40,
     rescanIntervalMs: 200,
+    instanceBounds: true,
   });
 
   /** Entity type ids with an `aircraft` component, e.g. `molen.entities.aircraft.p51d`. */

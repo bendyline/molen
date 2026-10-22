@@ -12,6 +12,16 @@ import { unit01 } from '../kernel/seed';
 /** Scatter material for either the legacy WebGL renderer or the WebGPU node renderer. */
 export type ScatterMaterial = THREE.MeshStandardMaterial | MeshStandardNodeMaterial;
 
+const fullyLitTerms = new WeakMap<THREE.Material, Node<'float'>>();
+
+/**
+ * A node scatter material's constant shadow term: a twin whose `receivedShadowNode` returns it
+ * never samples the sun's shadow map. Undefined for the plain (WebGL) material.
+ */
+export function scatterFullyLitTerm(material: THREE.Material): Node<'float'> | undefined {
+  return fullyLitTerms.get(material);
+}
+
 /**
  * Per-vertex `canopy` attribute: 0 for props, 1 + relative height (1 at the base to 2 at the
  * top) for plants. `ModelLibrary` writes it on every geometry it prepares.
@@ -547,6 +557,7 @@ export async function createScatterMaterialAsync(
   );
   // No uniforms of its own: replayed render bundles need not refresh every batch each frame.
   material.userData.bundleStatic = true;
+  fullyLitTerms.set(material, float(1) as unknown as Node<'float'>);
   return material;
 }
 

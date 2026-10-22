@@ -1,8 +1,16 @@
-import { CanvasTarget, WebGPUBackend, WebGPURenderer } from 'three/webgpu';
+import { instanceIndex, objectGroup } from 'three/tsl';
+import {
+  CanvasTarget,
+  InstanceNode,
+  StorageBufferNode,
+  WebGPUBackend,
+  WebGPURenderer,
+} from 'three/webgpu';
 import type { RendererOptions } from './renderer';
 import { installWebGpuDepthBiasGuard } from './webgpu-depth-bias';
 import { installWebGpuTimestampGuard } from './webgpu-frame-timer';
 import { installWebGpuRenderObjectRelease } from './webgpu-render-object-release';
+import { installWebGpuSharedInstancing } from './webgpu-shared-instancing';
 
 /** Loaded only by the asynchronous backend factory, never by a legacy WebGL-only viewer. */
 export async function createWebGpuDriver(options: RendererOptions): Promise<WebGPURenderer> {
@@ -33,6 +41,12 @@ export async function createWebGpuDriver(options: RendererOptions): Promise<WebG
     installWebGpuTimestampGuard(renderer);
     installWebGpuDepthBiasGuard(renderer);
     installWebGpuRenderObjectRelease(renderer);
+    installWebGpuSharedInstancing(renderer, {
+      InstanceNode,
+      StorageBufferNode,
+      instanceIndex,
+      objectGroup,
+    });
     // r184 initializes devices eagerly, but canvas contexts lazily. Check configuration now
     // so context failures reach the async factory's WebGL fallback before the first frame.
     renderer.getContext();

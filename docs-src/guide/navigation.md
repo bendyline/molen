@@ -91,8 +91,11 @@ verticalRadius: 40 })` with `update(root, x, z, y)` keeps ground far below an ai
 tree entirely. Queries reach at most `radius - rebuildDistance` from the subject. Leave
 `verticalRadius` unset for a walker, whose placement ray scans the whole column.
 
-Meshes opt out with `userData.walkIgnore = true`. Water materials and landcover overlays are never
-solid. A missing terrain tile pauses movement until it arrives, rather than dropping the walker.
+Meshes opt out with `userData.walkIgnore = true`; world-generation ground cover does, so walkers
+pass through ferns and moss. Water materials and landcover overlays are never solid. An aircraft can
+pass `instanceBounds: true`, which collides with each instance of an instanced mesh as its bounding
+box rather than its triangles. A missing terrain tile pauses movement until it arrives, rather than
+dropping the walker.
 
 ## Follow
 

@@ -208,6 +208,11 @@ export class Renderer {
   private warmupMaterial: THREE.MeshBasicMaterial | undefined;
   private readonly warmedPrograms = new WeakMap<THREE.Material, Map<string, Promise<unknown>>>();
   private readonly warmedMeshes = new WeakMap<THREE.Mesh, Promise<unknown>>();
+  /** Per mesh, builds of the materials it swaps to itself; see `prepareVariants`. */
+  private readonly warmedVariants = new WeakMap<
+    THREE.Mesh,
+    Map<THREE.Material, Promise<unknown>>
+  >();
   private readonly warmups = new WeakMap<Promise<unknown>, Warmup>();
   /** Deferred meshes whose preparation has not settled, with the interest that can promote it. */
   private readonly deferredMeshes = new WeakMap<THREE.Object3D, WarmupInterest>();
@@ -247,6 +252,7 @@ export class Renderer {
   private occlusionOptions: AmbientOcclusionOptions | undefined;
   private occlusion: { camera: THREE.Camera; pass: WebGpuAmbientOcclusion } | undefined;
   private occlusionLoad: Promise<void> | undefined;
+  private occlusionSuspended = false;
   /** Sun lights whose WebGPU shadow map exists and must not be torn down; see setShadowQuality. */
   private readonly webgpuShadowLights = new WeakSet<THREE.DirectionalLight>();
   // WebGPU's getClearColor expects an alpha field; both backends accept this RGB scratch color.
@@ -734,9 +740,11 @@ export class Renderer {
     const interest: WarmupInterest | 'pinned' =
       signal === undefined ? 'pinned' : new WarmupInterest(this.cancel);
     const deferred: THREE.Mesh[] = [];
+    const switching: THREE.Mesh[] = [];
     root.traverse((object) => {
       const mesh = object as THREE.Mesh;
       if (!mesh.isMesh) return;
+      if (mesh.userData.materialVariants !== undefined) switching.push(mesh);
       if (deferredLevels !== undefined && withinAny(mesh, root, deferredLevels))
         deferred.push(mesh);
       else this.prepareMesh(mesh, foreground, interest);
@@ -757,6 +765,7 @@ export class Renderer {
         if (this.deferredMeshes.get(mesh) === meshInterest) this.deferredMeshes.delete(mesh);
       });
     });
+    for (const mesh of switching) this.prepareVariants(mesh);
     for (const [lod, levels] of lods ?? []) if (levels.length > 0) this.guardLod(lod);
     // Shared resource work belongs to the renderer: one caller's cancellation cancels a queued
     // job only when no other caller still waits for it. The caller's signal decides publication.
@@ -909,6 +918,57 @@ export class Renderer {
     lane.glBatches.length = 0;
   }
 
+  /**
+   * A mesh that swaps its own material, as an instanced detail switch swaps in an opaque twin
+   * for its coarser levels, lists every material in `userData.materialVariants`. Each needs its own
+   * shader build, which the first frame to draw it would otherwise make mid-frame. Those the mesh
+   * does not show now are built in the background while it lives, and `userData.materialReady`
+   * tells the mesh's owner whether one is ready: until it is, the owner keeps what it shows, and
+   * asking moves the build ahead of other queued work. In flight a whole view of trees changed
+   * level at once and built their twins in one frame, for most of a second.
+   */
+  private prepareVariants(mesh: THREE.Mesh): void {
+    const lane = createLane(true);
+    const variants = mesh.userData.materialVariants as readonly THREE.Material[];
+    let warmed = this.warmedVariants.get(mesh);
+    if (warmed === undefined) {
+      warmed = new Map();
+      this.warmedVariants.set(mesh, warmed);
+    }
+    const builds = warmed;
+    let interest: WarmupInterest | undefined;
+    for (const material of variants) {
+      if (material === mesh.material || builds.has(material)) continue;
+      if (interest === undefined) {
+        interest = new WarmupInterest(this.cancel);
+        releaseOnDispose(mesh, interest);
+      }
+      const warmup = this.warmup(() => this.compileMesh(mesh, material), lane, {
+        label: 'shader-variant',
+        bytes: 0,
+      });
+      interest.join(warmup);
+      builds.set(material, warmup.promise);
+      const forget = (): void => {
+        if (builds.get(material) === warmup.promise) builds.delete(material);
+      };
+      warmup.forget.push(forget);
+      void warmup.promise.catch(forget);
+    }
+    mesh.userData.materialReady ??= (material: THREE.Material): boolean =>
+      this.variantReady(mesh, material);
+  }
+
+  /** Whether `mesh` can draw `material` without building it mid-frame; expedites it if not. */
+  private variantReady(mesh: THREE.Mesh, material: THREE.Material): boolean {
+    const promise = this.warmedVariants.get(mesh)?.get(material);
+    const warmup = promise === undefined ? undefined : this.warmups.get(promise);
+    // Not a queued variant: the material the mesh was prepared with, or one already built.
+    if (promise === undefined || warmup === undefined || warmup.settled) return true;
+    this.admission.promote(promise, { front: true });
+    return false;
+  }
+
   /** Queue one cancellable warm-up job in the lane's admission priority. */
   private warmup(
     task: () => unknown,
@@ -1010,16 +1070,35 @@ export class Renderer {
     void promise.catch(forget);
   }
 
-  private compileMesh(mesh: THREE.Mesh): Promise<unknown> {
+  /** Build `mesh` for the frame's draw target, drawn with `material` when given. */
+  private compileMesh(mesh: THREE.Mesh, material?: THREE.Material): Promise<unknown> {
+    // With ambient occlusion every frame draws the world into its target, which writes normals
+    // beside color: a build for the canvas would go unused, and the frame would build the object
+    // again itself, mid-frame, creating its pipeline synchronously. Wait for the pass to load.
+    const load = this.occlusionOptions !== undefined ? this.occlusionLoad : undefined;
+    if (load !== undefined && this.occlusion === undefined) {
+      const retry = (): Promise<unknown> => this.compileMesh(mesh, material);
+      return load.then(retry, retry);
+    }
+    const occlusion =
+      this.occlusionOptions !== undefined && this.occlusion?.camera === this.camera
+        ? this.occlusion.pass
+        : undefined;
     const visible = mesh.visible,
-      culled = mesh.frustumCulled;
+      culled = mesh.frustumCulled,
+      shown = mesh.material;
     mesh.visible = true;
     mesh.frustumCulled = false;
+    // The compile reads the material before its first await, so it is restored while it runs.
+    if (material !== undefined) mesh.material = material;
     try {
-      return this.three.compileAsync(mesh, this.camera, this.scene);
+      return occlusion !== undefined
+        ? occlusion.compile(mesh)
+        : this.three.compileAsync(mesh, this.camera, this.scene);
     } finally {
       mesh.visible = visible;
       mesh.frustumCulled = culled;
+      mesh.material = shown;
     }
   }
 
@@ -1130,7 +1209,7 @@ export class Renderer {
         this.three.info.reset();
         this.three.info.autoReset = false;
         try {
-          this.optimized(() => occlusion.render(sky));
+          this.optimized(() => occlusion.render(sky, !this.occlusionSuspended));
         } finally {
           this.three.info.autoReset = autoReset;
         }
@@ -1212,9 +1291,32 @@ export class Renderer {
    */
   setAmbientOcclusion(enabled: boolean, options: AmbientOcclusionOptions = {}): void {
     if (this.disposed) throw new Error('Renderer has been disposed');
+    const next = enabled && this.backend === 'webgpu' ? { ...options } : undefined;
+    const current = this.occlusionOptions;
+    if (
+      next !== undefined &&
+      current !== undefined &&
+      next.radius === current.radius &&
+      next.strength === current.strength &&
+      next.reach === current.reach
+    )
+      return;
     this.occlusion?.pass.dispose();
     this.occlusion = undefined;
-    this.occlusionOptions = enabled && this.backend === 'webgpu' ? { ...options } : undefined;
+    this.occlusionOptions = next;
+    // Load the pass now, so objects prepared from here on build their shaders for its target.
+    this.currentOcclusion();
+  }
+
+  /**
+   * Skip the occlusion computation while keeping ambient occlusion set up: the frame still draws
+   * into its target, and the image is copied out unshaded. Each object's shaders are built for
+   * one draw target, so turning occlusion off and on again (`setAmbientOcclusion`) built every
+   * object in view again, mid-frame, when the target changed; suspending changes nothing there.
+   */
+  suspendAmbientOcclusion(suspended: boolean): void {
+    if (this.disposed) throw new Error('Renderer has been disposed');
+    this.occlusionSuspended = suspended;
   }
 
   /** The occlusion pass for the current camera, building one in the background when needed. */
@@ -1384,8 +1486,11 @@ function unselectedLodLevels(
   const unselected = new Map<THREE.LOD, THREE.Object3D[]>();
   root.traverse((object) => {
     const lod = object as THREE.LOD;
-    if (!lod.isLOD || !lod.autoUpdate || lod.levels.length < 2) return;
+    if (!lod.isLOD || !lod.autoUpdate) return;
+    // A LOD without levels may switch its own mesh's geometry and material (an instanced detail
+    // switch): choosing now prepares the material it will first draw.
     lod.update(camera);
+    if (lod.levels.length < 2) return;
     const selected = lod.getCurrentLevel();
     unselected.set(
       lod,

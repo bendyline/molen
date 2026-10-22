@@ -70,12 +70,14 @@ export class WorldAircraft {
   private disposed = false;
   // An airframe moves tens of meters a second: a wider neighborhood rebuilt every 24 m, bounded
   // vertically so the ground far below never enters the tree, and rescanned at 5 Hz while hovering.
+  // Plants collide as their instances' boxes: a forest's leaves made each rebuild a long frame.
   private collision = new WalkCollision({
     ignoreVehicles: true,
     radius: 48,
     rebuildDistance: 24,
     verticalRadius: 40,
     rescanIntervalMs: 200,
+    instanceBounds: true,
   });
   private inputs: AircraftInputData = { ...IDLE_AIRCRAFT_INPUT };
   constructor(

@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { createInstancedPlacementLod } from '../../src/client/instanced-lod';
 import { ModelLibrary, type PreparedModel } from '../../src/client/instanced-models';
+import { createScatterMaterialAsync, scatterFullyLitTerm } from '../../src/client/scatter-material';
 import { disposeWorldgenObject } from '../../src/client/upload';
 import { PLACEMENT_STRIDE, type PlacementSet } from '../../src/kernel/types';
 
@@ -30,6 +31,8 @@ describe('camera-distance instance LOD', () => {
     expect(lod.levels).toHaveLength(3);
     const near = lod.levels[0]?.object as THREE.InstancedMesh;
     const far = lod.levels[2]?.object as THREE.InstancedMesh;
+    // A tree with coarser levels stays solid for walk and flight collision.
+    expect(near.userData.walkIgnore).toBeUndefined();
     expect(far.instanceMatrix).toBe(near.instanceMatrix);
     expect(far.instanceColor).toBe(near.instanceColor);
     root.updateMatrixWorld(true);
@@ -281,6 +284,67 @@ describe('camera-distance instance LOD', () => {
     camera.updateMatrixWorld();
     lod.update(camera);
     expect(mesh.material).toBe(material);
+    // A renderer prepares both materials, and the switch holds a level until its is ready.
+    expect(mesh.userData.materialVariants).toEqual([material, opaque]);
+    let twinReady = false;
+    const asked: THREE.Material[] = [];
+    mesh.userData.materialReady = (candidate: THREE.Material): boolean => {
+      asked.push(candidate);
+      return candidate !== opaque || twinReady;
+    };
+    camera.position.set(0, 2, 20_000);
+    camera.updateMatrixWorld();
+    lod.update(camera);
+    expect(lod.getCurrentLevel()).toBe(0);
+    expect(mesh.material).toBe(material);
+    expect(asked).toEqual([opaque]);
+    // Asked again each frame, even with the camera still, until the twin is ready.
+    lod.update(camera);
+    expect(asked).toEqual([opaque, opaque]);
+    twinReady = true;
+    lod.update(camera);
+    expect(lod.getCurrentLevel()).toBe(2);
+    expect(mesh.material).toBe(opaque);
+    disposeWorldgenObject(root);
+    material.dispose();
+  });
+
+  it('draws the distant level of a node material without shadow lookups, keeping the flag', async () => {
+    const material = await createScatterMaterialAsync('webgpu');
+    const model = (size: number): PreparedModel => ({
+      ref: 'plant',
+      geometry: new THREE.BoxGeometry(size, size, size),
+      material,
+      bounds: new THREE.Box3(new THREE.Vector3(-1, 0, -1), new THREE.Vector3(1, 2, 1)),
+      builtin: false,
+    });
+    const set: PlacementSet = {
+      setId: 'forest',
+      modelRef: 'plant',
+      count: 1,
+      data: new Float32Array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1]),
+    };
+    const root = createInstancedPlacementLod(set, [model(2), model(1.5), model(1)], {
+      cellSize: Number.POSITIVE_INFINITY,
+      screenSpace: { viewportHeight: 900, maxPixelError: 2 },
+    });
+    const lod = root.children[0] as THREE.LOD;
+    const mesh = lod.children[0] as THREE.InstancedMesh;
+    mesh.receiveShadow = true;
+    mesh.castShadow = true;
+    root.updateMatrixWorld(true);
+    const camera = new THREE.PerspectiveCamera(60, 16 / 9, 0.1, 100_000);
+    camera.position.set(0, 2, 20_000);
+    camera.updateMatrixWorld();
+    lod.update(camera);
+    expect(lod.getCurrentLevel()).toBe(2);
+    const distant = mesh.material as THREE.Material & { receivedShadowNode?: () => unknown };
+    expect(distant).not.toBe(material);
+    expect(distant.receivedShadowNode?.()).toBe(scatterFullyLitTerm(material));
+    // Shaders are built for the flag, so it stays; the distant level still casts nothing.
+    expect(mesh.receiveShadow).toBe(true);
+    expect(mesh.castShadow).toBe(false);
+    expect(mesh.userData.materialVariants).toContain(distant);
     disposeWorldgenObject(root);
     material.dispose();
   });
