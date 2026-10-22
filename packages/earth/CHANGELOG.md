@@ -1,3 +1,19 @@
+## @bendyline/molen-earth [0.0.11](https://github.com/bendyline/molen/compare/@bendyline/molen-earth@0.0.10...@bendyline/molen-earth@0.0.11) (2026-10-16)
+
+### Bug Fixes
+
+* Agriculture ([1cb687d](https://github.com/bendyline/molen/commit/1cb687ddace908fd3e0bf8d0666d73c695f88d9b))
+* Test updates ([91f64e1](https://github.com/bendyline/molen/commit/91f64e1171c5b9d50fdb29e95b08f69bedb4fd8d))
+* Updated models and biomes + ecology ([35bdd46](https://github.com/bendyline/molen/commit/35bdd46ddca21d938635658aee5e3281f14ee433))
+
+
+### Dependencies
+
+* **@bendyline/molen-ambient:** upgraded to 0.0.11
+* **@bendyline/molen-terrain:** upgraded to 0.0.11
+* **@bendyline/molen-worldgen:** upgraded to 0.0.10
+* **@bendyline/molen-worldgen-earth:** upgraded to 0.0.11
+
 ## @bendyline/molen-earth [0.0.10](https://github.com/bendyline/molen/compare/@bendyline/molen-earth@0.0.9...@bendyline/molen-earth@0.0.10) (2026-10-15)
 
 ### Bug Fixes

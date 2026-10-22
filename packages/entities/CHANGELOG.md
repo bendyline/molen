@@ -1,3 +1,9 @@
+## @bendyline/molen-entities [0.0.10](https://github.com/bendyline/molen/compare/@bendyline/molen-entities@0.0.9...@bendyline/molen-entities@0.0.10) (2026-10-16)
+
+### Bug Fixes
+
+* Adjust content build ([4662a1b](https://github.com/bendyline/molen/commit/4662a1bd6e805033d6c6a33a8333a7bf5a6d68b6))
+
 ## @bendyline/molen-entities [0.0.9](https://github.com/bendyline/molen/compare/@bendyline/molen-entities@0.0.8...@bendyline/molen-entities@0.0.9) (2026-10-15)
 
 ### Bug Fixes
