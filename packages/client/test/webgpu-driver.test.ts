@@ -9,7 +9,8 @@ const mocks = vi.hoisted(() => ({
 }));
 
 vi.mock('three/webgpu', () => ({
-  InstanceNode: class {},
+  // r185+ removed the class. Vitest's strict module mock needs an explicit undefined.
+  InstanceNode: undefined,
   StorageBufferNode: class {},
   WebGPUBackend: class {
     dispose = vi.fn();
@@ -59,7 +60,9 @@ describe('WebGPU driver initialization transaction', () => {
     expect(stagingTarget.dispose).toHaveBeenCalledOnce();
     expect(driver.info.autoReset).toBe(false);
     expect(mocks.timestampGuard).toHaveBeenCalledExactlyOnceWith(driver);
-    expect(mocks.sharedInstancing).toHaveBeenCalledOnce();
+    expect(mocks.sharedInstancing).toHaveBeenCalledExactlyOnceWith(
+      expect.objectContaining({ InstanceNode: undefined }),
+    );
     expect(driver.dispose).not.toHaveBeenCalled();
   });
 

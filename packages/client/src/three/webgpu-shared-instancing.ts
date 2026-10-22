@@ -1,7 +1,7 @@
 import type { InstancedBufferAttribute } from 'three';
 import type * as WebGPU from 'three/webgpu';
 
-// Three r184–r186 internals: `InstanceNode._createInstanceMatrixNode`.
+// Three r184 internals: `InstanceNode._createInstanceMatrixNode` (removed in r185).
 interface InstanceNodeInternals {
   instanceMatrix: InstancedBufferAttribute;
   _createInstanceMatrixNode(
@@ -12,7 +12,7 @@ interface InstanceNodeInternals {
 }
 /** The `three/webgpu` and `three/tsl` values this needs, which only the lazy driver may import. */
 export interface SharedInstancingNodes {
-  InstanceNode: typeof WebGPU.InstanceNode;
+  InstanceNode?: { prototype: object };
   StorageBufferNode: typeof WebGPU.StorageBufferNode;
   instanceIndex: unknown;
   objectGroup: unknown;
@@ -40,10 +40,15 @@ const patched = new WeakSet<object>();
  * (velocity) keep three's own path.
  */
 export function installWebGpuSharedInstancing(three: SharedInstancingNodes): void {
-  const prototype = three.InstanceNode.prototype as unknown as InstanceNodeInternals;
+  const prototype = three.InstanceNode?.prototype as InstanceNodeInternals | undefined;
   const Storage = three.StorageBufferNode as unknown as MatrixStorage;
   const { instanceIndex, objectGroup } = three;
-  if (patched.has(prototype) || typeof prototype._createInstanceMatrixNode !== 'function') return;
+  if (
+    !prototype ||
+    patched.has(prototype) ||
+    typeof prototype._createInstanceMatrixNode !== 'function'
+  )
+    return;
   patched.add(prototype);
   const create = prototype._createInstanceMatrixNode;
   prototype._createInstanceMatrixNode = function (assignBuffer, builder) {
