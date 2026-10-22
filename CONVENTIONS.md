@@ -46,6 +46,11 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
 
 ## Build & test
 
+- Use the exact pnpm version in `package.json` locally and in CI. pnpm 11 audits through npm's
+  bulk advisory endpoint; pnpm 10 uses the legacy endpoint that timed out in CI. Keep
+  `audit:prod` at `--prod --audit-level critical`, with registry failures still failing the check.
+  `pnpm-workspace.yaml` explicitly skips esbuild's install script as before; its platform binary
+  comes from an optional dependency.
 - Repository builds and regression checks use the Node major in `.node-version`; CI and Release
   install its exact version. Native fractional powers differ between Node 22 and 24, enough to
   change figure animation phases by about 1e-15 and invalidate a pinned hash. Root build/test entry
