@@ -52,7 +52,7 @@ const CANARY_GRAPH: MatGraphDoc = {
     {
       id: 'bricks',
       type: 'bricks',
-      params: { rows: 3, cols: 2, mortarWidth: 0.1, offset: 0.5 },
+      params: { rows: 3, cols: 2, mortarWidth: 0.1, offset: 0.5, output: 'mask' },
     },
     {
       id: 'ramp',

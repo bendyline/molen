@@ -75,11 +75,14 @@ export class InteriorStreamer {
   >;
   private readonly generation: InteriorGenerateOptions;
   private readonly solids = createInteriorMaterialSet();
+  // Seen from a sunlit street, a pane is darker than the day outside: a smoky film that keeps the
+  // room dim behind it and a near-mirror finish that picks up the sky. A pale film read as frost.
   private readonly glass = new THREE.MeshStandardMaterial({
     vertexColors: true,
+    color: 0x4a5a64,
     transparent: true,
-    opacity: 0.22,
-    roughness: 0.18,
+    opacity: 0.38,
+    roughness: 0.06,
     side: THREE.DoubleSide,
     depthWrite: false,
   });
@@ -172,7 +175,11 @@ export class InteriorStreamer {
       'worldgen:interior-portals',
     );
     region.gates.userData.walkDoubleSided = true;
-    region.gates.castShadow = false;
+    // Covers and interior structure block the sun like the walls around them; without them in the
+    // shadow pass, sunlight crossed a building through every pair of windows in line and patched
+    // its shadow with bright window shapes. Rooms change little: the shell already shades them,
+    // and only sun that passed through an inner wall is stopped now.
+    region.gates.castShadow = true;
     root.add(region.gates);
     this.regions.set(root, region);
     this.counters.sites += sites.length;
@@ -317,7 +324,7 @@ export class InteriorStreamer {
             },
             `${root.name}:${name}`,
           );
-          mesh.castShadow = false;
+          mesh.castShadow = name === 'structure';
           if (name === 'steps') mesh.userData.walkIgnore = true;
           if (name === 'collision') {
             mesh.layers.disableAll();

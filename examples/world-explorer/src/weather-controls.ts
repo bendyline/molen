@@ -2,12 +2,23 @@ import {
   type Renderer,
   resolveWeather,
   type WeatherData,
-  type WeatherProfile,
   weatherProfile,
 } from '@bendyline/molen-client';
 import { Weather, type World } from '@bendyline/molen-kernel/world';
 
-const profiles = ['sunny', 'partly-cloudy', 'overcast', 'rain', 'snow', 'fog'] as const;
+const profiles = ['fair', 'sunny', 'partly-cloudy', 'overcast', 'rain', 'snow', 'fog'] as const;
+type ExplorerProfile = (typeof profiles)[number];
+
+/**
+ * The explorer opens on a fair day: sunny conditions with scattered fair-weather cumulus, so a
+ * street-level sky is not a bare gradient. Scattered cloud dims the sun only a little.
+ */
+function explorerProfile(profile: ExplorerProfile): WeatherData {
+  if (profile !== 'fair') return weatherProfile(profile);
+  const sunny = weatherProfile('sunny');
+  // Larger cells than the default deck: separate cumulus rather than streaks at the horizon.
+  return { ...sunny, clouds: { ...sunny.clouds, coverage: 0.3, density: 0.45, scale: 24000 } };
+}
 
 /** The UI authors the same weather component consumed by flight physics and rendering. */
 export function createWeatherControls(
@@ -50,13 +61,13 @@ export function createWeatherControls(
     status.textContent = `${Math.round(w.clouds.coverage * 100)}% cloud · ${w.precipitation.kind === 'none' ? 'dry' : w.precipitation.kind} · ${(w.atmosphere.temperatureK - 273.15).toFixed(0)} °C · ${(w.atmosphere.pressurePa / 100).toFixed(0)} hPa · ${w.visibility / 1000} km visibility`;
     status.dataset.weather = JSON.stringify(w);
   };
-  const initial = params.get('weather') ?? 'sunny';
-  profile.value = profiles.includes(initial as WeatherProfile) ? initial : 'sunny';
-  apply(weatherProfile(profile.value as WeatherProfile));
+  const initial = params.get('weather') ?? 'fair';
+  profile.value = profiles.includes(initial as ExplorerProfile) ? initial : 'fair';
+  apply(explorerProfile(profile.value as ExplorerProfile));
   root.disabled = false;
   profile.addEventListener('change', () => {
     if (profile.value === 'custom') return;
-    apply(weatherProfile(profile.value as WeatherProfile));
+    apply(explorerProfile(profile.value as ExplorerProfile));
     const url = new URL(location.href);
     url.searchParams.set('weather', profile.value);
     history.replaceState(null, '', url);

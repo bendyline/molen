@@ -302,7 +302,9 @@ describe('graphics backends in Chromium', () => {
         );
         expect(actual.errors, step).toEqual([]);
         expect(actual.cached, step).toBe(true);
-        expect(actual.storage, step).toBe(false);
+        // r184's shared shader adapter uses storage matrices in both paths; newer Three
+        // revisions keep native instancing. Render bundles must preserve either layout.
+        expect(actual.storage, step).toBe(baseline.storage);
         expect(actual.drawCalls, step).toBe(baseline.drawCalls);
         expect(actual.triangles, step).toBe(baseline.triangles);
         const a = PNG.sync.read(await reference.page.locator('canvas').screenshot());

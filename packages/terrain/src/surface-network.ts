@@ -22,6 +22,15 @@ import {
   transportWidth,
 } from './transport-features';
 
+/**
+ * Meters between the stacked paving of overlapping roads: far above the depth error between
+ * coplanar triangles at street distances, far below a visible step. The deepest level still
+ * clears the layer under it by 4 mm (a plaza, under a footway's shoulder).
+ */
+const STACK_STEP = 0.002;
+/** Levels roads stack on; more overlapping neighbors than this share the least used. */
+const STACK_LEVELS = 4;
+
 export interface SurfaceRoad {
   feature: TerrainTransportationFeature;
   path: TerrainLinePath;
@@ -29,6 +38,9 @@ export interface SurfaceRoad {
   kind: TransportKind;
   unpaved: boolean;
   elevation: number;
+  /** Meters (zero or less) all of this road's paving sits under its nominal heights; see
+   * `SurfaceNetwork.stackRoads`. */
+  stack: number;
 }
 interface Segment {
   road: SurfaceRoad;
@@ -52,6 +64,15 @@ export interface SurfaceJunction {
     distance: number;
     width: number;
   }[];
+}
+
+/** An asphalt turning circle at a dead end, inside its mapped footway ring. */
+export interface SurfaceTurningCircle {
+  road: SurfaceRoad;
+  center: TerrainSemanticPoint;
+  radius: number;
+  /** Convex outline, counterclockwise. */
+  outline: TerrainSemanticPoint[];
 }
 
 export function isSurfaceLink(road: SurfaceRoad): boolean {
@@ -97,16 +118,21 @@ function subtractFootprint(
 export class SurfaceNetwork {
   readonly roads: SurfaceRoad[] = [];
   readonly junctions: SurfaceJunction[] = [];
+  readonly turningCircles: SurfaceTurningCircle[] = [];
   private readonly cells = new Map<string, Segment[]>();
   private readonly cellSize = 32;
   private readonly footprints = new WeakMap<Segment, TerrainSemanticPoint[]>();
+  private readonly tileSize: number;
 
   constructor(tile: TerrainSemanticTile, tileSize: number, style: TerrainSurfaceStyle) {
+    this.tileSize = tileSize;
     for (const feature of groupTransportationFeatures(tile.transportation)) {
       if (!isPaintedTransport(feature, style)) continue;
       const kind = transportKind(feature);
-      for (const line of joinTerrainLines(feature.lines)) {
-        const path = terrainLinePath(line, tileSize);
+      const paths = joinTerrainLines(feature.lines).flatMap((line) =>
+        roadPieces(terrainLinePath(line, tileSize)),
+      );
+      for (const path of paths) {
         if (path.length <= 0) continue;
         const road: SurfaceRoad = {
           feature,
@@ -119,6 +145,7 @@ export class SurfaceNetwork {
           // Parking sits at 0.30 and pedestrian polygons at 0.38–0.40. Keep mapped
           // paths (and their shoulders, 0.04 lower) clear of the parking sheet.
           elevation: transportSurfaceLift(kind, feature.bridge === true),
+          stack: 0,
         };
         this.roads.push(road);
         for (let i = 1; i < path.points.length; i++) {
@@ -159,17 +186,197 @@ export class SurfaceNetwork {
     }
   }
 
-  occupied(x: number, z: number, padding = 0, except?: SurfaceRoad): boolean {
+  /** Whether a road's paving reaches within `padding` of a point; mapped paths only if `paths`. */
+  occupied(x: number, z: number, padding = 0, except?: SurfaceRoad, paths = false): boolean {
     return (
-      this.cells.get(`${Math.floor(x / this.cellSize)}/${Math.floor(z / this.cellSize)}`) ?? []
-    ).some(
-      (s) =>
-        s.road !== except &&
-        s.road.kind !== 'path' &&
-        s.road.kind !== 'rail' &&
-        !s.road.feature.bridge &&
-        distanceToSegment(x, z, s) < s.road.width / 2 + padding,
+      (
+        this.cells.get(`${Math.floor(x / this.cellSize)}/${Math.floor(z / this.cellSize)}`) ?? []
+      ).some(
+        (s) =>
+          s.road !== except &&
+          (paths || s.road.kind !== 'path') &&
+          s.road.kind !== 'rail' &&
+          !s.road.feature.bridge &&
+          distanceToSegment(x, z, s) < s.road.width / 2 + padding,
+      ) ||
+      this.turningCircles.some(
+        (c) =>
+          c.road !== except && Math.hypot(x - c.center[0], z - c.center[1]) < c.radius + padding,
+      )
     );
+  }
+
+  /**
+   * Sink each road whose paving overlaps another road's a step or more under it. Every road
+   * draws its asphalt, shoulders, sidewalks, curbs and paint at the same heights over the one
+   * draped ground, so where two overlapped (a junction, the corners of their sidewalks, a narrow
+   * median between carriageways) their triangles were exactly coplanar, and which one drew on
+   * top changed pixel by pixel as the camera moved: joints, wear and paint flickered. Widest
+   * roads are placed first, each on the highest level no overlapping neighbor holds, so a through
+   * road stays on top and a road that overlaps nothing keeps its nominal heights. `reach` is how
+   * far a road's paving extends past its carriageway edge.
+   */
+  stackRoads(reach: (road: SurfaceRoad) => number): void {
+    // Paths draw a separate set of heights from streets, rails and their sidewalks, and decks
+    // follow their own profiles, so only roads in the same family can share a plane.
+    const family = (road: SurfaceRoad): string =>
+      `${road.kind === 'path'}/${road.feature.bridge === true}`;
+    const cellSize = 16;
+    const cells = new Map<string, { segment: Segment; extent: number }[]>();
+    for (const road of this.roads) {
+      road.stack = 0;
+      const extent = road.width / 2 + reach(road);
+      const points = road.path.points;
+      for (let i = 1; i < points.length; i++) {
+        const a = points[i - 1] as TerrainSemanticPoint,
+          b = points[i] as TerrainSemanticPoint;
+        const minX = Math.max(-extent, Math.min(a[0], b[0]) - extent),
+          maxX = Math.min(this.tileSize + extent, Math.max(a[0], b[0]) + extent),
+          minZ = Math.max(-extent, Math.min(a[1], b[1]) - extent),
+          maxZ = Math.min(this.tileSize + extent, Math.max(a[1], b[1]) + extent);
+        if (minX > maxX || minZ > maxZ) continue;
+        const segment: Segment = {
+          road,
+          a,
+          b,
+          start: road.path.distances[i - 1] ?? 0,
+          length: (road.path.distances[i] ?? 0) - (road.path.distances[i - 1] ?? 0),
+        };
+        for (let x = Math.floor(minX / cellSize); x <= Math.floor(maxX / cellSize); x++)
+          for (let z = Math.floor(minZ / cellSize); z <= Math.floor(maxZ / cellSize); z++) {
+            const key = `${x}/${z}`;
+            const cell = cells.get(key) ?? [];
+            cell.push({ segment, extent });
+            cells.set(key, cell);
+          }
+      }
+    }
+    const neighbors = new Map<SurfaceRoad, Set<SurfaceRoad>>();
+    for (const cell of cells.values())
+      for (let i = 0; i < cell.length; i++) {
+        const { segment: s, extent: e } = cell[i] as (typeof cell)[number];
+        const near = neighbors.get(s.road) ?? new Set<SurfaceRoad>();
+        neighbors.set(s.road, near);
+        for (let j = i + 1; j < cell.length; j++) {
+          const { segment: t, extent: f } = cell[j] as (typeof cell)[number];
+          if (s.road === t.road || near.has(t.road) || family(s.road) !== family(t.road)) continue;
+          if (segmentGap(s, t) >= e + f) continue;
+          near.add(t.road);
+          const other = neighbors.get(t.road) ?? new Set<SurfaceRoad>();
+          other.add(s.road);
+          neighbors.set(t.road, other);
+        }
+      }
+    const levels = new Map<SurfaceRoad, number>();
+    const order = this.roads.map((road, i) => ({ road, i }));
+    order.sort((p, q) => q.road.width - p.road.width || p.i - q.i);
+    for (const { road } of order) {
+      // How many placed neighbors hold each level; a crowded crossing shares the emptiest.
+      const held = new Array<number>(STACK_LEVELS).fill(0);
+      for (const other of neighbors.get(road) ?? []) {
+        const level = levels.get(other);
+        if (level !== undefined) held[level] = (held[level] ?? 0) + 1;
+      }
+      const level = held.indexOf(Math.min(...held));
+      levels.set(road, level);
+      road.stack = -level * STACK_STEP;
+    }
+  }
+
+  /**
+   * Turning circles. Maps often end a cul-de-sac street at the bulb's near edge, or simply stop
+   * it, and trace only the sidewalk wrapping round the end, which left the street stopping on a
+   * ruled line before a notch of lawn and a concrete pad. Where a street dead-ends and a mapped
+   * footway rings most of a circle about its end (all but the mouth the street enters by), the
+   * circle inside that ring is asphalt: a bulb, or for a tight wrap a rounded end. A ring is
+   * required, so a disc never spills past the footway onto lawns.
+   */
+  findTurningCircles(maximum = 64): void {
+    this.turningCircles.length = 0;
+    const near = (x: number, z: number, reach: number, test: (s: Segment) => boolean): boolean => {
+      for (
+        let cx = Math.floor((x - reach) / this.cellSize);
+        cx <= Math.floor((x + reach) / this.cellSize);
+        cx++
+      )
+        for (
+          let cz = Math.floor((z - reach) / this.cellSize);
+          cz <= Math.floor((z + reach) / this.cellSize);
+          cz++
+        )
+          for (const s of this.cells.get(`${cx}/${cz}`) ?? [])
+            if (test(s) && (reach <= 0 || distanceToSegment(x, z, s) < reach)) return true;
+      return false;
+    };
+    for (const road of this.roads) {
+      if (this.turningCircles.length >= maximum) break;
+      if (road.kind !== 'street' || road.feature.bridge || road.unpaved) continue;
+      const points = road.path.points;
+      if (points.length < 2) continue;
+      for (const [end, previous] of [
+        [points[0], points[1]],
+        [points.at(-1), points.at(-2)],
+      ] as [TerrainSemanticPoint, TerrainSemanticPoint][]) {
+        const [ex, ez] = end;
+        const length = Math.hypot(ex - previous[0], ez - previous[1]) || 1;
+        const dx = (ex - previous[0]) / length;
+        const dz = (ez - previous[1]) / length;
+        // A dead end: no other carriageway within a few meters of the end.
+        if (
+          near(
+            ex,
+            ez,
+            3,
+            (s) => s.road !== road && s.road.kind !== 'path' && s.road.kind !== 'rail',
+          )
+        )
+          continue;
+        // Rays from candidate centers beyond the end: each stops where it meets a footway's inner
+        // edge. Most must hit, at similar distances (a ring, not a lone path), and the circle
+        // ends at the nearest hit, so it never runs under the footway or past it.
+        let found: { center: TerrainSemanticPoint; radius: number; spread: number } | undefined;
+        for (let reach = -2; reach <= 12; reach++) {
+          const center: TerrainSemanticPoint = [ex + dx * reach, ez + dz * reach];
+          const hits: number[] = [];
+          let rays = 0;
+          for (let i = 0; i < 12; i++) {
+            const angle = (i * Math.PI) / 6;
+            const ux = Math.cos(angle);
+            const uz = Math.sin(angle);
+            // The mouth, where the street comes in.
+            if (ux * dx + uz * dz < -0.5) continue;
+            rays++;
+            for (let t = 1; t <= 16; t += 0.5)
+              if (
+                near(center[0] + ux * t, center[1] + uz * t, 0, (s) => {
+                  // Footways that reach the street's end connect to it; they are not the ring.
+                  if (s.road.kind !== 'path' || distanceToSegment(ex, ez, s) < road.width / 2 + 0.5)
+                    return false;
+                  const d = distanceToSegment(center[0] + ux * t, center[1] + uz * t, s);
+                  return d < s.road.width / 2;
+                })
+              ) {
+                hits.push(t);
+                break;
+              }
+          }
+          if (rays === 0 || hits.length / rays < 0.75) continue;
+          const nearest = Math.min(...hits);
+          const spread = Math.max(...hits) - nearest;
+          if (spread > 4 || nearest < Math.max(1.6, road.width * 0.25)) continue;
+          if (!found || spread < found.spread) found = { center, radius: nearest - 0.1, spread };
+        }
+        if (!found) continue;
+        const outline = Array.from({ length: 20 }, (_, i): TerrainSemanticPoint => {
+          const angle = (i * Math.PI) / 10;
+          return [
+            found.center[0] + Math.cos(angle) * found.radius,
+            found.center[1] + Math.sin(angle) * found.radius,
+          ];
+        });
+        this.turningCircles.push({ road, center: found.center, radius: found.radius, outline });
+      }
+    }
   }
 
   /** Mapped paths stop at the exact carriageway edge, including mitered curves.
@@ -200,6 +407,17 @@ export class SurfaceNetwork {
           )
             candidates.add(segment);
         }
+    for (const circle of this.turningCircles) {
+      if (
+        circle.center[0] - circle.radius >= bounds[2] ||
+        circle.center[0] + circle.radius <= bounds[0] ||
+        circle.center[1] - circle.radius >= bounds[3] ||
+        circle.center[1] + circle.radius <= bounds[1]
+      )
+        continue;
+      pieces = pieces.flatMap((piece) => subtractFootprint(piece, circle.outline));
+      if (!pieces.length) return pieces;
+    }
     for (const segment of candidates) {
       const road = segment.road;
       let footprint = this.footprints.get(segment);
@@ -379,6 +597,71 @@ export class SurfaceNetwork {
       if (junction.arms.length >= 3) this.junctions.push(junction);
     }
   }
+}
+
+/**
+ * Cut a path where its bands would lie on each other, which as one road could not be stacked
+ * apart (see `SurfaceNetwork.stackRoads`):
+ * - where it doubles back more sharply than a band can miter (past 120°, where
+ *   `sampleTerrainLine` caps the join): two one-way carriageways joined end to end where a
+ *   divided road narrows put their median-side sidewalks in one plane;
+ * - at the vertex its own end returns to: a cul-de-sac mapped as one way up the street, round a
+ *   loop and back to its own middle laid the loop's last stretch, sidewalks and all, over the
+ *   street's mouth. Cut there, the loop closes on itself and keeps a mitered join.
+ */
+function roadPieces(path: TerrainLinePath): TerrainLinePath[] {
+  const { points, distances } = path;
+  const cuts = new Set<number>();
+  for (let i = 1; i + 1 < points.length; i++) {
+    const [ax, az] = points[i - 1] as TerrainSemanticPoint,
+      [bx, bz] = points[i] as TerrainSemanticPoint,
+      [cx, cz] = points[i + 1] as TerrainSemanticPoint;
+    const turn =
+      ((bx - ax) * (cx - bx) + (bz - az) * (cz - bz)) /
+      (Math.hypot(bx - ax, bz - az) * Math.hypot(cx - bx, cz - bz));
+    if (turn < -0.5) cuts.add(i);
+  }
+  for (const [end, at] of [
+    [points[0], 0],
+    [points.at(-1), path.length],
+  ] as [TerrainSemanticPoint, number][])
+    for (let i = 1; i + 1 < points.length; i++) {
+      const [x, z] = points[i] as TerrainSemanticPoint;
+      if (Math.abs((distances[i] ?? 0) - at) > 10 && Math.hypot(x - end[0], z - end[1]) < 0.5) {
+        cuts.add(i);
+        break;
+      }
+    }
+  if (cuts.size === 0) return [path];
+  const pieces: TerrainLinePath[] = [];
+  let start = 0;
+  for (const end of [...[...cuts].sort((a, b) => a - b), points.length - 1]) {
+    const from = distances[start] ?? 0;
+    pieces.push({
+      points: points.slice(start, end + 1),
+      distances: distances.slice(start, end + 1).map((d) => d - from),
+      length: (distances[end] ?? 0) - from,
+    });
+    start = end;
+  }
+  return pieces;
+}
+
+/** Least distance between two segments: zero where they cross. */
+function segmentGap(s: Segment, t: Segment): number {
+  const side = (a: TerrainSemanticPoint, b: TerrainSemanticPoint, p: TerrainSemanticPoint) =>
+    (b[0] - a[0]) * (p[1] - a[1]) - (b[1] - a[1]) * (p[0] - a[0]);
+  if (
+    side(s.a, s.b, t.a) * side(s.a, s.b, t.b) < 0 &&
+    side(t.a, t.b, s.a) * side(t.a, t.b, s.b) < 0
+  )
+    return 0;
+  return Math.min(
+    distanceToSegment(t.a[0], t.a[1], s),
+    distanceToSegment(t.b[0], t.b[1], s),
+    distanceToSegment(s.a[0], s.a[1], t),
+    distanceToSegment(s.b[0], s.b[1], t),
+  );
 }
 
 function distanceToSegment(x: number, z: number, s: Segment): number {

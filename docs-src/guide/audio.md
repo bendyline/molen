@@ -17,7 +17,7 @@ play without opening a browser.
 | `molen.audio.*` | scene scripts | `play`, `stop` and `music`, emitted as `audio.*` events |
 | `@bendyline/molen-client/audio` | the page | `createAudioLayer` loads banks and plays what the rules ask for |
 
-The `molen.sounds` content pack carries 63 CC0 sounds (ambience, vehicles, footsteps, impacts,
+The `molen.sounds` content pack carries 157 CC0 sounds (ambience, vehicles, footsteps, impacts,
 foley, UI, stings and six music tracks). Fetch it into a project with:
 
 ```sh
@@ -203,10 +203,14 @@ Every game sample does exactly this in its `src/audio.ts`. Hosts without a Worke
 `setBusGain('music', 0)` drive a settings menu.
 
 `mountEarthView` plays the Earth soundscape on its own when its content includes the
-`molen.sounds` pack: weather and time-of-day ambience, footsteps in walk mode, traffic near
-streets, and engines on the cars and aircraft you board. Birds, crickets and traffic fade with
-height above the terrain, and traffic also fades with distance from the nearest street. Pass `audio: false` to turn it off, and
-use `view.audio` for volume. See [Earth view](earth-view.md).
+`molen.sounds` pack: 88 recorded ambience beds and 12 walking surfaces, plus engines on the cars
+and aircraft you board. Birds favor the morning; warm nights bring crickets/frogs and warm days
+bring cicadas. Broad geographic palettes select local recordings. Wind and rain follow weather,
+surf follows mapped ocean shores, rivers follow flowing water, and traffic follows streets.
+Ground ambience fades with altitude; enclosed cockpits attenuate the outdoors to 18%. Open
+boats and exterior cameras retain outside ambience. Only one bed per category plays, with
+staggered rotation and five-second crossfades. See [Earth view](earth-view.md) for host inputs.
+Pass `audio: false` to turn it off, and use `view.audio` for volume.
 
 ## Make your own sounds
 

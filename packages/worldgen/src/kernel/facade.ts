@@ -77,6 +77,7 @@ export interface FacadeInput {
     top: number;
     start?: number;
     end?: number;
+    kind?: 'door' | 'window';
   }[];
   /** Internal layout reservation so a fallback entrance does not overlap a punched window. */
   entranceReservation?: { edge: number; start: number; end: number };

@@ -16,6 +16,24 @@ export interface AmbientVehicleModels {
   vehicle(type: string): VehicleData | undefined;
 }
 
+/**
+ * Authored glazing is often nearly clear (about 16% opaque), so from the street a passing car
+ * reads as an open frame of pillars and seats. Traffic glass is tinted and glossy instead:
+ * darker, at least 60% opaque and smooth enough to pick up the sky. Only traffic: a car the
+ * player sits in keeps its authored glass. The visual's materials are its own clones.
+ */
+function tintGlass(object: THREE.Object3D): void {
+  const mesh = object as THREE.Mesh;
+  if (!mesh.isMesh) return;
+  for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) {
+    if (!material.transparent || !/glass|glazing/i.test(material.name)) continue;
+    if (!(material instanceof THREE.MeshStandardMaterial)) continue;
+    material.color.multiplyScalar(0.3);
+    material.opacity = Math.max(material.opacity, 0.62);
+    material.roughness = Math.min(material.roughness, 0.08);
+  }
+}
+
 export interface DetailCandidate {
   id: string;
   type: string;
@@ -141,6 +159,7 @@ export class VehicleDetail {
       visual.object.visible = false;
       visual.object.traverse((object) => {
         object.userData.walkIgnore = true;
+        tintGlass(object);
       });
       this.group.add(visual.object);
       await this.options.prepare?.(visual.object);

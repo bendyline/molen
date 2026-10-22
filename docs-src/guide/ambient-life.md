@@ -384,7 +384,9 @@ and `cars` how many cars a train has.
 The `molen.entities` pack gives roles to its eleven road vehicles, a city bus, a light-rail car, an airliner
 the P-51 and OH-6 aircraft, and eight watercraft. See [Reusable entities](entities.md). Near the
 camera the Earth view draws cars, trains and vessels with their full models, painted in the
-agent's colour. Further
+agent's colour. Their glazing (a transparent material named like `glass` or `glazing`) is tinted
+dark and glossy, at least 62% opaque, so a passing car does not read as an open frame of pillars
+and seats; a car the player drives keeps its authored glass. Further
 out, and without content, every vehicle is a proxy shape built from its dimensions.
 
 ## Water traffic

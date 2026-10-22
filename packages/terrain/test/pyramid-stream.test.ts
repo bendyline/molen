@@ -8,6 +8,7 @@ import {
   createTerrainPyramidStream,
   selectTerrainPyramidTiles,
   surfaceDescriptor,
+  TERRAIN_COVERS_GROUND,
   type TerrainPyramidHeightSource,
   type TerrainPyramidTileLayer,
   terrainPyramidBudgetForQuality,
@@ -99,6 +100,47 @@ describe('screen-space terrain pyramid', () => {
         expect(colors.getY(i)).toBeCloseTo(expected[1] ?? 0);
         expect(colors.getZ(i)).toBeCloseTo(expected[2] ?? 0);
       }
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('skips drawing bare terrain under a displayed layer that covers its whole tile', async () => {
+    const d = descriptor({ maxLevel: 0, skirts: false });
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 10_000,
+        viewDistance: 100,
+        maxSelectedTiles: 1,
+        maxResidentTiles: 2,
+        maxConcurrentLoads: 1,
+        layers: [
+          {
+            id: 'landcover',
+            category: 'land-classification',
+            createTile() {
+              const cover = new THREE.Group();
+              cover.userData[TERRAIN_COVERS_GROUND] = true;
+              return cover;
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await stream.whenIdle();
+      const surface = stream.object.getObjectByName('surface:0/0/0') as THREE.Mesh;
+      // Still displayed for the stream's own bookkeeping, but drawn by no camera.
+      expect(surface.visible).toBe(true);
+      expect(surface.layers.mask).toBe(0);
+      stream.setLayerVisible('landcover', false);
+      expect(surface.layers.mask).toBe(1);
+      stream.setLayerVisible('landcover', true);
+      await stream.whenIdle();
+      expect(surface.layers.mask).toBe(0);
     } finally {
       stream.dispose();
     }
@@ -421,10 +463,18 @@ describe('screen-space terrain pyramid', () => {
 
   it('freezes static tile transforms and leaves marked moving parts alone', async () => {
     const d = descriptor({ maxLevel: 1 });
+    // What a renderer preparing each object sees: shaders are built for these flags.
+    const prepared = new Map<string, { cast: boolean; receive: boolean }>();
     const stream = createTerrainPyramidStream(
       d,
       { load: async (address) => flatTile(d, address) },
       {
+        prepareObject: async (object) => {
+          object.traverse((child) => {
+            if ((child as THREE.Mesh).isMesh)
+              prepared.set(child.uuid, { cast: child.castShadow, receive: child.receiveShadow });
+          });
+        },
         initialView: VIEW,
         maxScreenSpaceError: 1,
         viewDistance: 100,
@@ -469,7 +519,10 @@ describe('screen-space terrain pyramid', () => {
       // matrix pass still places it inside its tile.
       expect(building.castShadow).toBe(true);
       expect(building.receiveShadow).toBe(true);
+      expect(prepared.get(building.uuid)).toEqual({ cast: true, receive: true });
       const tile = stream.object.getObjectByName('tile:1/0/0') as THREE.Group;
+      const surface = tile.children.find((child) => (child as THREE.Mesh).isMesh) as THREE.Mesh;
+      expect(prepared.get(surface.uuid)?.receive).toBe(true);
       expect(tile.matrixAutoUpdate).toBe(false);
       expect(tile.children.every((child) => !child.matrixAutoUpdate)).toBe(true);
     } finally {

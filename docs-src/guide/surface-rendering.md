@@ -82,6 +82,89 @@ budgets can call the stream's `refreshMemoryUsage()` after a new revision finish
 Disposing the controller
 also disposes its generator; do not share that generator between separately owned controllers.
 
+## Pavement material
+
+By default the surfaces draw in a plain vertex-color material. For textured asphalt, concrete and
+paint, give the controller the pavement material for the renderer's backend once the renderer
+exists; resident tiles switch in place and later tiles use it too:
+
+```ts
+import {
+  createTerrainPavementMaterialAsync,
+  setTerrainGroundOrigin,
+} from '@bendyline/molen-terrain/client';
+
+const pavement = await createTerrainPavementMaterialAsync({}, renderer.backend);
+surfaces.setMaterial(pavement);
+// Each frame, or whenever the floating origin moves, keep the pattern on the ground:
+setTerrainGroundOrigin(pavement, [worldOrigin[0], worldOrigin[2]]);
+```
+
+The material reads a `surfaceDetail` attribute the surface builder writes on every road, sidewalk,
+curb, marking and lot: meters along the band, meters across it from its edge, the surface kind
+and band width, and a road's lane width. Roads and lots get asphalt aggregate (within a few meters,
+crisp pale chips and dark pits a few centimeters across), blotchy wear, polished wheel
+tracks and an oil line in each lane, grit in the gutters, storm-drain grates, manhole covers and
+the odd darker repaired section; asphalt and concrete both get hairline cracks; lots get oil
+stains; sidewalks and footways get 1.5 m saw-cut slabs and curbs 3 m ones, each slab its own
+tone, weathered with water stains and, close up, the odd spot of gum; plazas and pedestrian areas get a half-meter paver grid; markings wear through to the
+asphalt. Detail fades to the plain swatch with distance, so it never shimmers, and each layer's
+noise is evaluated only where it still shows: distant pavement skips the fine layers, and only
+fragments within 2 m of a frayed edge evaluate the fray. `setMaterial(undefined)` restores the plain material. Your own geometry can opt in with
+`TerrainSurfaceMeshBuilder.surfaceSince(start, TERRAIN_SURFACE_KIND.road, …)`, or a
+`surface` (and `lanes`) on a `TerrainLineBand`.
+
+Edges that meet bare ground fray into it rather than ending on a ruled line: the lawn side of a
+sidewalk, both sides of a footpath, dirt road or track bed, a road's shoulder, and a narrow fringe
+traced around each lot and plaza (skipped where a road, footway, other paved area or building meets
+it). The material discards a ragged margin so the ground shows through, and inside it a patchy
+brown soil margin about a third of a meter wide, where soil washes and is tracked onto the paving;
+it fades out by twenty or thirty meters away, where it would draw a ruled outline round each lawn.
+Cast paving keeps its formed edge; grass blades creep up to 3 cm over it, and on the lawn side of
+a street sidewalk or parking lot tufts of lawn about 35 cm across grow up to 10 cm over it,
+so from mid distance that edge wanders rather than ending on a ruled line. Footpaths and plazas,
+which often abut other paving, keep only the blades. Where a driveway, footway or paved lot crosses
+a sidewalk's lawn side, that stretch stays clean (the builder clears the fray flag on its vertices,
+`TerrainSurfaceMeshBuilder.unfraySince`), so no ragged seam runs between two slabs. Loose surfaces
+(dirt, gravel, shoulders) break up to 0.1 m deep, a gentle waviness with blade-scale tufts rather
+than blob islands. With multisampling the ragged edge is antialiased through alpha to coverage. The
+margin shrinks away as its noise falls below a pixel, leaving the band's own antialiased edge, and
+it also closes up within the last few meters of the camera, where its cells would grow to dozens of
+pixels and read as torn paper. A band opts in with `fray: 'outer' | 'inner' | 'both'` on its
+`TerrainLineBand` (outer is the edge away from the line); bridge decks keep their edges whole.
+
+Maps often stop a cul-de-sac street at the bulb's near edge, or simply stop it, and trace only
+the sidewalk wrapping round the end. Where a street dead-ends and a mapped footway rings most of a
+circle about its end (rays from candidate centers meet the footway's inner edge at similar
+distances, all but the mouth the street enters by), that circle is paved as plain asphalt: a
+turning circle, or for a tight wrap a rounded end. Footway pieces inside it are clipped away, and
+footways that merely connect to the street's end do not count as the ring, so a circle never
+spills past a footway onto a lawn (`SurfaceNetwork.findTurningCircles`).
+
+Roads overlap wherever they meet: at a junction, at the corners of their sidewalks, across a narrow
+median. Their paving never shares a plane there, or which road drew on top would change pixel by
+pixel as the camera moved: the widest road keeps its nominal heights, and each road overlapping
+another sits one or more 2 mm steps lower, asphalt, sidewalks, curbs and paint alike
+(`SurfaceNetwork.stackRoads`). A mapped line that would lie on itself becomes separate roads: where
+it doubles back more sharply than a band can miter, as two one-way carriageways joined where a
+divided road narrows do, and at the vertex its own end returns to, as a cul-de-sac mapped up the
+street and round a loop back to its middle does. A stall line two parking bays share is painted once.
+
+Curbs are a step, not a stripe: a 15 cm vertical face drops from the curb's road-side edge to the
+asphalt, split finer than the ground grid so it follows the draped ground, and jointed like the curb top.
+Any draped band can have one with `riser` (meters) on its `TerrainLineBand`.
+
+Styles with streetlights also furnish their blocks: utility poles every 38 m on one side of each
+street with sidewalks, set back behind the sidewalk with a crossarm and a pair of sagging lines
+between neighbors, and a hydrant at the other curb about every 100 m. Residential streets that
+run through residential land also get a mailbox on a post behind the sidewalk every 22–30 m on
+both sides (on a mounting board, a top vaulted in stepped courses, a door with a handle facing the
+curb and a red flag), about a third of them with a pair of wheeled bins beside it. Poles and
+hydrants (1,200 boxes) and mailboxes and bins (4,800) have
+per-tile budgets of their own, enough to furnish every street of a dense suburban tile.
+Placement is fixed per road, skips junctions, buildings and other roads, and draws in the same
+instanced box batch as the lights (`streetFurniture` in the surface stats).
+
 `TERRAIN_SURFACE_STYLES` provides immutable presets. Pass a custom `TerrainSurfaceStyle` to
 change colors, inferred road widths, sidewalk width, and defaults for each detail class:
 

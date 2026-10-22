@@ -74,7 +74,7 @@ describe('weather profiles in the explorer', () => {
           return;
         }
         await page.goto(
-          `${url}/index.html?synthetic=1&level=8&nostyles=1&quality=economy&freeze=1&backend=${backend}&date=2024-06-21T19:00:00Z&alt=400&pitch=0.3`,
+          `${url}/index.html?synthetic=1&level=8&nostyles=1&quality=economy&freeze=1&weather=sunny&backend=${backend}&date=2024-06-21T19:00:00Z&alt=400&pitch=0.3`,
         );
         await page.waitForFunction(
           () => !!document.querySelector<HTMLElement>('#weather-status')?.dataset.effects,

@@ -16,16 +16,17 @@ describe('the shared Earth look', () => {
     // WebGPU fogs before tone mapping: the dome's own radiance.
     expect(earthHazeColor('webgpu', horizon).equals(horizon)).toBe(true);
     // WebGL fogs after tone mapping, so the fog is the tone-mapped value: below the input where
-    // Neutral compresses highlights, the same hue order, and never above one.
+    // ACES compresses highlights, the same hue order, and never above one.
     const webgl = earthHazeColor('webgl', horizon);
     expect(webgl.b).toBeLessThan(horizon.b);
     expect(webgl.b).toBeGreaterThan(webgl.g);
     expect(webgl.g).toBeGreaterThan(webgl.r);
     expect(Math.max(webgl.r, webgl.g, webgl.b)).toBeLessThanOrEqual(1);
-    // Mid-tones below Neutral's compression start only lose its small toe offset.
-    const mid = earthHazeColor('webgl', new Color(0.3, 0.4, 0.5));
-    expect(mid.r).toBeCloseTo(0.26, 6);
-    expect(mid.b).toBeCloseTo(0.46, 6);
+    // Mid-tones follow three's ACES filmic curve (exposure / 0.6, the RRT+ODT fit).
+    const mid = earthHazeColor('webgl', new Color(0.3, 0.4, 0.5), new Color(), 1);
+    expect(mid.r).toBeCloseTo(0.390115, 5);
+    expect(mid.g).toBeCloseTo(0.476941, 5);
+    expect(mid.b).toBeCloseTo(0.549567, 5);
     // The default distance haze is the horizon, not a separate grey.
     expect(createEarthFog('webgpu').color.equals(horizon)).toBe(true);
     expect(createEarthFog('webgl').color.equals(webgl)).toBe(true);
@@ -33,7 +34,7 @@ describe('the shared Earth look', () => {
 
   it('gives mountEarthView the same light rig as the clock-driven sky', () => {
     const env = earthEnvironment(undefined);
-    expect(env.toneMapping).toBe('neutral');
+    expect(env.toneMapping).toBe('aces');
     expect(env.sun?.intensity).toBe(EARTH_LIGHTING.sunIntensity);
     expect(env.ambient?.intensity).toBe(EARTH_LIGHTING.dayAmbient);
     expect(env.ambient?.sky).toBe(EARTH_SKY_PALETTE.dayHorizon);
@@ -55,6 +56,9 @@ describe('the shared Earth look', () => {
     // A flying camera's square widens with height above the ground, within limits.
     expect(earthShadowFocus('fly', [0, 600, 0], [1, -0.3, 0], 100).radius).toBe(1_000);
     expect(earthShadowFocus('fly', [0, 50, 0], [1, 0, 0], 0).radius).toBe(300);
+    // Near the ground it is tighter (and sharper) than a walker's.
+    expect(earthShadowFocus('fly', [0, 102, 0], [1, 0, 0], 100).radius).toBe(116);
+    expect(earthShadowFocus('fly', [0, 10, 0], [1, 0, 0], 0).radius).toBe(180);
     expect(earthShadowFocus('fly', [0, 9_000, 0], [1, 0, 0], 0).radius).toBe(2_500);
   });
 });

@@ -10,6 +10,7 @@ import {
 } from '../../worldgen/scripts/altino-arantes-current-model.mjs';
 import { localGeographic } from '../../worldgen/scripts/signature-tower-expansion-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 it('preserves the independently mapped upper core and northwest address entrance', async () => {
   const base = resolve('../../content/worldgen/source/places/6g/6gy/n0148_edificio_altino_arantes');
@@ -59,8 +60,8 @@ it('retains mast height, front-facing portal and a visible canton on both flag s
 });
 
 it('reproduces all four browser levels with the exact repaired source and shared mosaic', async () => {
-  const path = resolve(
-    '../../content/worldgen/assets/places/6g/6gy/n0148_edificio_altino_arantes/asset.json',
+  const path = await runtimeLodFixture(
+    resolve('../../content/worldgen/assets/places/6g/6gy/n0148_edificio_altino_arantes/asset.json'),
   );
   const asset = JSON.parse(await readFile(path)),
     master = await readFile(resolve(path, '../model.glb'));

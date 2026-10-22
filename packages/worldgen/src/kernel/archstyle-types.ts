@@ -107,6 +107,8 @@ export interface ArchFacadeDetails {
   /** Visual ground entrance when no structural interior opening already supplies one. */
   entrance?: { width: number; height: number; style: 'single' | 'double' | 'service' };
   shutters?: boolean;
+  /** Trim boards up each outside wall corner. */
+  cornerBoards?: boolean;
   balconies?: { depth: number; railing: 'open' | 'solid'; every: number };
   framing?: { style: 'timber' | 'pilasters'; width: number };
   awnings?: { depth: number };

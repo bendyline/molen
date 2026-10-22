@@ -216,7 +216,9 @@ export class AudioDirector {
   private musicOverride: { playlist: string[]; crossfadeS?: number } | undefined;
   private listenerState: ListenerCtx | undefined;
   private footAcc = 0;
-  private footLast: number | undefined;
+  private footLast: AudioVec3 | undefined;
+  private footGrounded = false;
+  private footAt = -Infinity;
   private startMs: number | undefined;
   private lastNow: number | undefined;
   private frame = 0;
@@ -565,8 +567,8 @@ export class AudioDirector {
       const oldest = this.oneShots.shift();
       if (oldest) cmds.push({ op: 'stop', voice: oldest.voice, fadeS: 0.05 });
     }
-    const clip = this.pickClip(sound, tick, shot.key);
-    const pitch = this.basePitch(sound, tick, shot.key) * shot.pitchMul;
+    const clip = this.pickClip(sound, tick, shot.key, this.serial);
+    const pitch = this.basePitch(sound, tick, shot.key, this.serial) * shot.pitchMul;
     const voice = `shot:${this.serial++}`;
     const { entry } = sound;
     cmds.push({
@@ -988,16 +990,27 @@ export class AudioDirector {
     cmds: VoiceCommand[],
   ): void {
     const f = env?.footsteps;
-    const travelled = ctx.listener.distance;
-    const delta = this.footLast === undefined ? 0 : travelled - this.footLast;
-    this.footLast = travelled;
+    const pos = ctx.listener.position;
+    const delta =
+      this.footLast === undefined
+        ? 0
+        : Math.hypot(pos[0] - this.footLast[0], pos[2] - this.footLast[2]);
+    this.footLast = [...pos];
+    const wasGrounded = this.footGrounded;
+    this.footGrounded = !!f && ctx.listener.grounded !== false && evalWhen(f.when, ctx);
     if (!f || ctx.listener.grounded === false || !evalWhen(f.when, ctx)) {
+      this.footAcc = 0;
+      return;
+    }
+    // Camera bob, landings, mode changes and teleports must not produce phantom steps.
+    if (!wasGrounded || delta > 4) {
       this.footAcc = 0;
       return;
     }
     const stride = f.strideM ?? 0.75;
     this.footAcc += delta;
-    if (this.footAcc < stride) return;
+    if (this.footAcc < stride || now - this.footAt < 250) return;
+    this.footAt = now;
     this.footAcc -= stride;
     if (this.footAcc > stride) this.footAcc = 0;
     const surface = ctx.listener.surface;
@@ -1007,7 +1020,11 @@ export class AudioDirector {
     this.fireOneShot(
       {
         sound,
-        gain: (sound.entry.gain ?? 1) * (f.gain ?? 1),
+        gain:
+          (sound.entry.gain ?? 1) *
+          (f.gain ?? 1) *
+          Math.max(0.4, Math.min(1.15, ctx.listener.speed / 3)) *
+          (0.9 + 0.1 * unitRandom(this.seed, 'step-gain', this.serial)),
         pitchMul: 1,
         bus: sound.entry.bus ?? 'sfx',
         key: 'footstep',

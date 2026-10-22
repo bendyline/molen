@@ -91,7 +91,17 @@
         }
       }
     ],
-    "fallback": "flat"
+    "fallback": "flat",
+    "features": {
+      "dormers": {
+        "probability": 0.3,
+        "perRidgeMeters": 5,
+        "style": "gable",
+        "when": {
+          "areaMin": 110
+        }
+      }
+    }
   },
   "facade": {
     "bays": {
@@ -132,7 +142,9 @@
         "width": 1.05,
         "height": 2.15,
         "style": "single"
-      }
+      },
+      "shutters": true,
+      "cornerBoards": true
     }
   },
   "materials": {
@@ -376,6 +388,34 @@
           "weight": 1
         },
         {
+          "color": "#e4e1d6",
+          "weight": 1
+        },
+        {
+          "color": "#e1d4a6",
+          "weight": 1
+        },
+        {
+          "color": "#b9bdb9",
+          "weight": 1
+        },
+        {
+          "color": "#f0eee6",
+          "weight": 1
+        },
+        {
+          "color": "#7d8c99",
+          "weight": 1
+        },
+        {
+          "color": "#9a6a5c",
+          "weight": 1
+        },
+        {
+          "color": "#7f8f7c",
+          "weight": 1
+        },
+        {
           "color": "#d8d5ca",
           "weight": 1
         }
@@ -390,6 +430,22 @@
       "entries": [
         {
           "color": "#716d64",
+          "weight": 1
+        },
+        {
+          "color": "#5a5e63",
+          "weight": 1
+        },
+        {
+          "color": "#7b7c78",
+          "weight": 1
+        },
+        {
+          "color": "#6a5d52",
+          "weight": 1
+        },
+        {
+          "color": "#76665a",
           "weight": 1
         },
         {
@@ -421,7 +477,48 @@
       }
     }
   },
-  "props": [],
+  "props": [
+    {
+      "id": "chimney",
+      "model": "molen.worldgen.prop.chimney.brick",
+      "anchor": "roof-ridge",
+      "probability": 0.35,
+      "count": {
+        "min": 1,
+        "max": 1
+      },
+      "roof": [
+        "gable",
+        "hip"
+      ],
+      "spacing": 4,
+      "margin": 1.2,
+      "scale": {
+        "min": 0.9,
+        "max": 1.15
+      },
+      "yaw": "align-wall",
+      "lodTier": 0
+    },
+    {
+      "id": "foundation-shrubs",
+      "model": "builtin:shrub",
+      "anchor": "ground-any",
+      "probability": 0.8,
+      "count": {
+        "min": 3,
+        "max": 6
+      },
+      "spacing": 1.7,
+      "margin": 1.1,
+      "scale": {
+        "min": 0.5,
+        "max": 0.75
+      },
+      "yaw": "random",
+      "lodTier": 0
+    }
+  ],
   "lod": {
     "tiers": [
       {

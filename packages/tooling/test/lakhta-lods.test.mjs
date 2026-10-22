@@ -8,6 +8,7 @@ import {
   lakhtaSkinRows,
 } from '../../worldgen/scripts/lakhta-skyline-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 it('keeps the five-petal skin samples within the declared one-metre skyline reservation', () => {
   const rows = lakhtaSkinRows(),
@@ -44,8 +45,8 @@ it('keeps the five-petal skin samples within the declared one-metre skyline rese
 });
 
 it('reproduces four levels while preserving the exact original tower master', async () => {
-  const path = resolve(
-    '../../content/worldgen/assets/places/ud/udt/n0160_lakhta_centre/asset.json',
+  const path = await runtimeLodFixture(
+    resolve('../../content/worldgen/assets/places/ud/udt/n0160_lakhta_centre/asset.json'),
   );
   const asset = JSON.parse(await readFile(path)),
     master = await readFile(resolve(path, '../model.glb'));

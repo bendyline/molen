@@ -25,8 +25,10 @@ own an entire strip mall. Apply its facade locally and retain other tenants.
 Flat or gently faceted surfaces are the default. Use hard normals on architecture and metal
 edges; smooth normals only on deliberately round shapes. Curved identity marks should still
 read at low polygon counts. Avoid tiny bevels, microdisplacement, alpha-card foliage and surface
-noise that shimmer at street-view distance. Signs face +Z in their own frame and must read from
-the street; never mirror text to compensate for an incorrectly oriented facade.
+noise that shimmer at street-view distance; generated tree crowns are the one exception, cut from
+the scatter material's shared leaf atlas (see the [medium-fi style guide](medium-fi.md)). Signs
+face +Z in their own frame and must read from the street; never mirror text to compensate for an
+incorrectly oriented facade.
 
 ## Scale and pivots
 

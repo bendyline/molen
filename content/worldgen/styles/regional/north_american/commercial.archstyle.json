@@ -185,8 +185,8 @@
       "tint": "multiply",
       "uv": "meters",
       "uvScale": [
-        4,
-        4
+        6,
+        6
       ],
       "uvOffset": "meters",
       "uvMirror": false
@@ -413,6 +413,34 @@
         {
           "color": "#c7b6a0",
           "weight": 1
+        },
+        {
+          "color": "#e4e1d6",
+          "weight": 1
+        },
+        {
+          "color": "#e1d4a6",
+          "weight": 1
+        },
+        {
+          "color": "#b9bdb9",
+          "weight": 1
+        },
+        {
+          "color": "#f0eee6",
+          "weight": 1
+        },
+        {
+          "color": "#7d8c99",
+          "weight": 1
+        },
+        {
+          "color": "#9a6a5c",
+          "weight": 1
+        },
+        {
+          "color": "#7f8f7c",
+          "weight": 1
         }
       ],
       "jitter": {
@@ -456,7 +484,30 @@
       }
     }
   },
-  "props": [],
+  "props": [
+    {
+      "id": "hvac",
+      "model": "molen.worldgen.prop.rooftop.hvac",
+      "anchor": "roof-flat",
+      "probability": 0.85,
+      "count": {
+        "min": 2,
+        "max": 14
+      },
+      "perAreaM2": 150,
+      "roof": [
+        "flat"
+      ],
+      "spacing": 4,
+      "margin": 2,
+      "scale": {
+        "min": 1.1,
+        "max": 1.7
+      },
+      "yaw": "align-wall",
+      "lodTier": 0
+    }
+  ],
   "lod": {
     "tiers": [
       {

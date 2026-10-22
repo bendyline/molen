@@ -2,10 +2,13 @@
 import { createParkedVehicleBatch } from '@bendyline/molen-client/vehicles';
 import type { VehiclePlacement } from '@bendyline/molen-schema';
 import * as THREE from 'three';
+import { sampleTerrainLine } from './line-path';
 import {
   appendTerrainLineBand,
   appendTerrainSurfaceArea,
   createTerrainBoxInstances,
+  TERRAIN_PAVEMENT,
+  TERRAIN_SURFACE_KIND,
   type TerrainBoxPlacement,
   type TerrainLineBand,
   TerrainSurfaceMeshBuilder,
@@ -39,6 +42,8 @@ export interface TerrainSurfaceStats {
   parkingAreas: number;
   junctions: number;
   streetlights: number;
+  /** Utility poles and hydrants along blocks with sidewalks. */
+  streetFurniture: number;
   trafficSignals: number;
   parkingBays: number;
   parkedCars: number;
@@ -67,6 +72,54 @@ function areaKind(className: string, subclass = ''): 'parking' | 'plaza' | 'path
   if (/pedestrian|plaza|square|platform/.test(tag)) return 'plaza';
   if (/pavement|footway|sidewalk/.test(tag)) return 'path';
   return undefined;
+}
+
+/** Meters an area's frayed fringe reaches inside and outside its mapped edge. */
+const FRINGE_INSIDE = 0.2;
+const FRINGE_OUTSIDE = 0.3;
+
+/**
+ * Trace each ring of a paved area with a narrow band of the same surface that frays into the
+ * ground outside it, so a lot or plaza no longer ends on a ruled polygon edge. `keep` drops
+ * stretches that meet a road or building, where the edge belongs to them.
+ */
+function appendAreaFringe(
+  builder: TerrainSurfaceMeshBuilder,
+  polygon: TerrainSemanticPolygon,
+  band: Omit<TerrainLineBand, 'width' | 'offset' | 'fray'>,
+  keep: (points: readonly TerrainSemanticPoint[]) => boolean,
+): void {
+  const tileSize = builder.context.tileSize;
+  for (const source of [polygon.outer, ...(polygon.holes ?? [])]) {
+    const ring = normalizeRing(source);
+    const first = ring[0];
+    if (ring.length < 3 || first === undefined) continue;
+    const path = terrainLinePath([...ring, first], tileSize);
+    if (!(path.length > 0)) continue;
+    // Which side is outside: probe just off the middle of the ring's longest segment.
+    let longest = 0,
+      probeAt = 0;
+    for (let i = 1; i < path.distances.length; i++) {
+      const span = (path.distances[i] ?? 0) - (path.distances[i - 1] ?? 0);
+      if (span > longest) {
+        longest = span;
+        probeAt = (path.distances[i - 1] ?? 0) + span / 2;
+      }
+    }
+    const probe = sampleTerrainLine(path, probeAt, 0.05);
+    const outward = pointInPolygon([probe.x / tileSize, probe.z / tileSize], polygon) ? -1 : 1;
+    appendTerrainLineBand(
+      builder,
+      path,
+      {
+        ...band,
+        width: FRINGE_INSIDE + FRINGE_OUTSIDE,
+        offset: (outward * (FRINGE_OUTSIDE - FRINGE_INSIDE)) / 2,
+        fray: 'outer',
+      },
+      { spacing: 3, filter: keep },
+    );
+  }
 }
 
 function midpoint(a: TerrainSemanticPoint, b: TerrainSemanticPoint): TerrainSemanticPoint {
@@ -102,6 +155,7 @@ export function createTerrainSurfaceObject(
     parkingAreas: 0,
     junctions: 0,
     streetlights: 0,
+    streetFurniture: 0,
     trafficSignals: 0,
     parkingBays: 0,
     parkedCars: 0,
@@ -109,12 +163,27 @@ export function createTerrainSurfaceObject(
   };
   group.userData.surfaceStats = stats;
   const network = new SurfaceNetwork(tile, context.tileSize, style);
-  if (detailed) network.findJunctions();
+  if (detailed) {
+    network.findJunctions();
+    // Before any band is built: mapped footways inside a turning circle are clipped away.
+    if (style.sidewalks) network.findTurningCircles();
+  }
+  const sidewalked = (road: SurfaceRoad): boolean =>
+    style.sidewalks && road.kind === 'street' && !road.feature.bridge && !road.unpaved;
+  const shoulder = (road: SurfaceRoad): number => (road.unpaved ? 0.7 : 0.3);
+  // Overlapping roads' paving must not share a plane: past the carriageway edge, each reaches
+  // over its shoulders or, beyond a curb, its sidewalks.
+  network.stackRoads((road) =>
+    Math.max(shoulder(road), sidewalked(road) ? style.sidewalkWidth + 0.18 : 0),
+  );
   const pavement = new TerrainSurfaceMeshBuilder(context);
   const roads = new TerrainSurfaceMeshBuilder(context);
   const edges = new TerrainSurfaceMeshBuilder(context);
   const marks = new TerrainSurfaceMeshBuilder(context);
   const bridges = new TerrainSurfaceMeshBuilder(context);
+  // Every pavement mesh carries surfaceDetail, so one material program serves them all.
+  for (const builder of [pavement, roads, edges, marks])
+    builder.ensureAttribute('surfaceDetail', 4);
   const bridgeProfiles = new Map<SurfaceRoad, (x: number, z: number) => number>();
   const groundEnds = new Set<string>();
   for (const road of network.roads)
@@ -140,6 +209,15 @@ export function createTerrainSurfaceObject(
   let remaining = details.maxDetailElements ?? 16_000;
   const parkingReserve = Math.floor(remaining * 0.35);
   const maxFixtures = details.maxFixturesPerTile ?? 160;
+  // Poles, lines and hydrants have their own budget, so they never crowd out lights and signals.
+  // A finest tile can hold well over ten kilometers of suburban street; at a box or two per
+  // element these budgets furnish all of it rather than only the roads that come first.
+  let furniture = 0;
+  const maxFurniture = 1200;
+  // Mailboxes and bins on residential streets, again with a budget of their own: a vaulted
+  // mailbox is ten small boxes, so this still covers several hundred lots.
+  let clutter = 0;
+  const maxClutter = 4800;
   const exclusions = [
     ...tile.buildings.flatMap((b) => b.polygons),
     ...tile.water.flatMap((w) => w.polygons ?? []),
@@ -172,6 +250,23 @@ export function createTerrainSurfaceObject(
     ).some((p) => pointInPolygon([x / context.tileSize, z / context.tileSize], p));
   const inTile = (x: number, z: number): boolean =>
     x >= 0 && z >= 0 && x < context.tileSize && z < context.tileSize;
+  // Mapped residential land, for clutter that belongs to homes (not shops on a residential road).
+  const homes = tile.landcover
+    .filter((feature) => feature.class === 'residential')
+    .flatMap((feature) => feature.polygons)
+    .map((polygon) => ({ polygon, bounds: polygonBounds(polygon) }));
+  const residential = (x: number, z: number): boolean => {
+    const u = x / context.tileSize,
+      v = z / context.tileSize;
+    return homes.some(
+      ({ polygon, bounds }) =>
+        u >= bounds[0] &&
+        u <= bounds[2] &&
+        v >= bounds[1] &&
+        v <= bounds[3] &&
+        pointInPolygon([u, v], polygon),
+    );
+  };
   const band = (
     builder: TerrainSurfaceMeshBuilder,
     road: SurfaceRoad,
@@ -186,9 +281,49 @@ export function createTerrainSurfaceObject(
       ...(bridgeProfiles.has(road) ? { heightAt: bridgeProfiles.get(road) } : {}),
     });
   };
+  // Mapped paved areas and other roads (with their sidewalks), so a sidewalk whose lawn side runs
+  // over one keeps that edge clean.
+  const pavedAreas = tile.landcover
+    .filter((feature) => areaKind(feature.class, feature.subclass) !== undefined)
+    .flatMap((feature) => feature.polygons)
+    .map((polygon) => ({ polygon, bounds: polygonBounds(polygon) }));
+  const overPaving = (x: number, z: number, road: SurfaceRoad): boolean => {
+    // Another road's carriageway or, at a corner, its own sidewalks.
+    if (network.occupied(x, z, style.sidewalkWidth + 0.5, road, true)) return true;
+    const u = x / context.tileSize,
+      v = z / context.tileSize;
+    return pavedAreas.some(
+      ({ polygon, bounds }) =>
+        u >= bounds[0] &&
+        u <= bounds[2] &&
+        v >= bounds[1] &&
+        v <= bounds[3] &&
+        pointInPolygon([u, v], polygon),
+    );
+  };
+  // Turning circles: plain asphalt (no lanes, so no wheel tracks, covers or gutters), a hair
+  // under the street so the two never fight where the circle overlaps the street's end.
+  for (const circle of network.turningCircles) {
+    const start = roads.vertexCount;
+    const color = new THREE.Color(style.road);
+    const ring = circle.outline;
+    for (let i = 0; i < ring.length; i++)
+      roads.polygon(
+        [
+          circle.center,
+          ring[i] as TerrainSemanticPoint,
+          ring[(i + 1) % ring.length] as TerrainSemanticPoint,
+        ],
+        color,
+        circle.road.elevation + circle.road.stack - 0.02,
+      );
+    roads.surfaceSince(start, TERRAIN_SURFACE_KIND.road, () => [0, 60], 127);
+  }
   for (const road of network.roads) {
     stats.roads++;
-    const elevation = bridgeProfiles.has(road) ? 0 : road.elevation;
+    const elevation = (bridgeProfiles.has(road) ? 0 : road.elevation) + road.stack;
+    // Frayed edges show the ground beneath, so a deck keeps its edges whole.
+    const grounded = !bridgeProfiles.has(road) && !road.feature.bridge;
     const clipPath =
       road.kind === 'path' && !road.feature.bridge
         ? {
@@ -204,16 +339,35 @@ export function createTerrainSurfaceObject(
           : road.unpaved
             ? style.dirt
             : style.road;
+    // Mapped footways are mostly poured concrete: slabs along the path, like a sidewalk.
+    const surface =
+      road.kind === 'rail'
+        ? TERRAIN_SURFACE_KIND.ballast
+        : road.unpaved
+          ? TERRAIN_SURFACE_KIND.dirt
+          : road.kind === 'path'
+            ? TERRAIN_SURFACE_KIND.sidewalk
+            : TERRAIN_SURFACE_KIND.road;
     appendTerrainLineBand(
       roads,
       road.path,
-      { width: road.width, color, elevation },
+      {
+        width: road.width,
+        color,
+        elevation,
+        surface,
+        ...(surface === TERRAIN_SURFACE_KIND.road && road.kind !== 'service'
+          ? { lanes: inferLaneCount(road.feature, road.width) }
+          : {}),
+        // Footpaths, dirt roads and track ballast meet the ground directly on both sides.
+        ...(surface !== TERRAIN_SURFACE_KIND.road && grounded ? { fray: 'both' as const } : {}),
+      },
       { spacing: detailed ? 6 : 16, ...clipPath, heightAt: bridgeProfiles.get(road) },
     );
     // Draw only the exposed shoulder edges, avoiding a second sheet beneath the asphalt. They
     // are a few decimeters wide: below a pixel on coarser tiles, which are kilometers away, yet
     // draped segment by segment they were most of those tiles' memory.
-    const shoulderWidth = road.unpaved ? 0.7 : 0.3;
+    const shoulderWidth = shoulder(road);
     if (detailed)
       for (const sign of [-1, 1])
         appendTerrainLineBand(
@@ -224,25 +378,35 @@ export function createTerrainSurfaceObject(
             offset: sign * (road.width / 2 + shoulderWidth / 2),
             color: style.shoulder,
             elevation: elevation - 0.04,
+            surface: road.unpaved ? TERRAIN_SURFACE_KIND.dirt : TERRAIN_SURFACE_KIND.shoulder,
+            ...(grounded ? { fray: 'outer' as const } : {}),
           },
           { spacing: 6, ...clipPath, heightAt: bridgeProfiles.get(road) },
         );
     if (!detailed) continue;
     if (road.kind === 'rail') {
       for (const offset of [-0.72, 0.72])
-        band(marks, road, { width: 0.09, offset, color: '#b5b5ae', elevation: elevation + 0.14 });
+        band(marks, road, {
+          width: 0.09,
+          offset,
+          color: '#b5b5ae',
+          elevation: elevation + 0.14,
+          surface: TERRAIN_SURFACE_KIND.plain,
+        });
       band(marks, road, {
         width: 2.4,
         color: '#74634f',
         elevation: elevation + 0.06,
         dash: [0.2, 0.65],
+        surface: TERRAIN_SURFACE_KIND.plain,
       });
       continue;
     }
-    if (style.sidewalks && road.kind === 'street' && !road.feature.bridge && !road.unpaved) {
+    if (sidewalked(road)) {
       const clear = (points: readonly TerrainSemanticPoint[]): boolean =>
         points.every((p) => !network.occupied(p[0], p[1], 0.25, road) && !blocked(p[0], p[1]));
       for (const sign of [-1, 1]) {
+        const start = edges.vertexCount;
         band(
           edges,
           road,
@@ -251,9 +415,13 @@ export function createTerrainSurfaceObject(
             offset: sign * (road.width / 2 + style.sidewalkWidth / 2 + 0.18),
             color: style.sidewalk,
             elevation: elevation + 0.13,
+            surface: TERRAIN_SURFACE_KIND.sidewalk,
+            fray: 'outer',
           },
           clear,
         );
+        // Where a driveway, footway or paved lot crosses its lawn side, that edge meets paving.
+        edges.unfraySince(start, (x, z) => !overPaving(x, z, road));
         band(
           edges,
           road,
@@ -262,14 +430,206 @@ export function createTerrainSurfaceObject(
             offset: sign * (road.width / 2 + 0.11),
             color: style.curb,
             elevation: elevation + 0.15,
+            surface: TERRAIN_SURFACE_KIND.curb,
+            // The curb's face, down to the road surface.
+            riser: 0.15,
           },
           clear,
         );
       }
+      if (style.streetlights && detailed) {
+        // Street furniture, fixed per road: utility poles carrying a pair of lines on one side,
+        // just behind the sidewalk, and the odd hydrant at the other curb.
+        const first = road.path.points[0] ?? [0, 0];
+        const side = hash(first[0], first[1]) < 0.5 ? -1 : 1;
+        const free = (x: number, z: number): boolean =>
+          inTile(x, z) && !blocked(x, z) && !network.occupied(x, z, 1.2, road);
+        const groundAt = (x: number, z: number): number =>
+          context.heightfield.sampleHeight(context.origin[0] + x, context.origin[1] + z);
+        let previous: { x: number; z: number; top: number } | undefined;
+        const back = road.width / 2 + style.sidewalkWidth + 0.8;
+        for (
+          let d = 10 + hash(first[1], first[0]) * 14;
+          d < road.path.length - 10 && furniture + 4 <= maxFurniture;
+          d += 38
+        ) {
+          const p = sampleTerrainLine(road.path, d, side * back);
+          if (!free(p.x, p.z)) {
+            previous = undefined;
+            continue;
+          }
+          const ground = groundAt(p.x, p.z);
+          const top = ground + 9;
+          const along = Math.atan2(p.dx, p.dz);
+          const across = Math.atan2(-p.dz, p.dx);
+          fixtures.push(
+            {
+              x: p.x,
+              z: p.z,
+              y: ground + 4.5,
+              yaw: along,
+              size: [0.26, 9, 0.26],
+              color: '#6e5b45',
+            },
+            { x: p.x, z: p.z, y: top - 0.45, yaw: across, size: [0.1, 0.1, 1.7], color: '#5f4f3d' },
+          );
+          furniture += 2;
+          stats.streetFurniture++;
+          if (previous !== undefined) {
+            const length = Math.hypot(p.x - previous.x, p.z - previous.z);
+            const yaw = Math.atan2(p.x - previous.x, p.z - previous.z);
+            for (const lateral of [-0.65, 0.65]) {
+              fixtures.push({
+                x: (p.x + previous.x) / 2 + -p.dz * lateral,
+                z: (p.z + previous.z) / 2 + p.dx * lateral,
+                // A little sag between poles.
+                y: (top + previous.top) / 2 - 0.75,
+                yaw,
+                size: [0.03, 0.03, length],
+                color: '#2a2a2a',
+              });
+              furniture++;
+            }
+          }
+          previous = { x: p.x, z: p.z, top };
+        }
+        const curb = road.width / 2 + 0.55;
+        for (
+          let d = 14 + hash(first[0] + 7, first[1]) * 40;
+          d < road.path.length - 14 && furniture + 2 <= maxFurniture;
+          d += 95
+        ) {
+          const p = sampleTerrainLine(road.path, d, -side * curb);
+          if (!free(p.x, p.z)) continue;
+          const y = groundAt(p.x, p.z) + elevation + 0.13;
+          fixtures.push(
+            { x: p.x, z: p.z, y: y + 0.3, yaw: 0, size: [0.26, 0.6, 0.26], color: '#b3362b' },
+            { x: p.x, z: p.z, y: y + 0.65, yaw: 0, size: [0.2, 0.1, 0.2], color: '#9c2c23' },
+          );
+          furniture += 2;
+          stats.streetFurniture++;
+        }
+        if (road.feature.subclass === 'residential') {
+          // A mailbox on a post just behind the sidewalk about once a lot, on both sides, and
+          // beside some of them a pair of wheelie bins put out for collection.
+          const behind = road.width / 2 + style.sidewalkWidth + 0.45;
+          for (const lot of [-1, 1]) {
+            for (
+              let d = 6 + hash(first[0] + lot * 3, first[1] - 5) * 18;
+              d < road.path.length - 6 && clutter + 12 <= maxClutter;
+              d += 22 + hash(first[1] + d, first[0] - lot) * 8
+            ) {
+              const p = sampleTerrainLine(road.path, d, lot * behind);
+              if (!free(p.x, p.z) || !residential(p.x, p.z)) continue;
+              const ground = groundAt(p.x, p.z);
+              const across = Math.atan2(-p.dz, p.dx);
+              const pick = hash(p.x + context.origin[0], p.z + context.origin[1]);
+              const [body, door] = (
+                [
+                  ['#262829', '#55595b'],
+                  ['#4c5054', '#7a7f82'],
+                  ['#e2e0da', '#b9b6ae'],
+                  ['#2f4a3a', '#5b6f62'],
+                ] as const
+              )[Math.floor(pick * 97) % 4] as readonly [string, string];
+              // The box's long axis runs toward the street: its door faces the curb, an arched
+              // top steps in above it, and a red flag stands on its side.
+              fixtures.push(
+                {
+                  x: p.x,
+                  z: p.z,
+                  y: ground + 0.52,
+                  yaw: across,
+                  size: [0.09, 1.04, 0.09],
+                  color: pick < 0.5 ? '#e6e2d8' : '#5b4a3a',
+                },
+                // The post's mounting board, then the box: straight sides under a vaulted top
+                // stepped in four courses, so it reads as a mailbox rather than a crate.
+                {
+                  x: p.x,
+                  z: p.z,
+                  y: ground + 1.03,
+                  yaw: across,
+                  size: [0.24, 0.025, 0.5],
+                  color: pick < 0.5 ? '#e6e2d8' : '#5b4a3a',
+                },
+                ...(
+                  [
+                    [0.2, 0.12, 1.102],
+                    [0.19, 0.04, 1.182],
+                    [0.16, 0.035, 1.219],
+                    [0.11, 0.03, 1.251],
+                    [0.05, 0.015, 1.273],
+                  ] as const
+                ).map(([wide, tall, y]) => ({
+                  x: p.x,
+                  z: p.z,
+                  y: ground + y,
+                  yaw: across,
+                  size: [wide, tall, 0.48] as [number, number, number],
+                  color: body,
+                })),
+                {
+                  x: p.x + lot * p.dz * 0.245,
+                  z: p.z - lot * p.dx * 0.245,
+                  y: ground + 1.13,
+                  yaw: across,
+                  size: [0.17, 0.17, 0.012],
+                  color: door,
+                },
+                {
+                  x: p.x + lot * p.dz * 0.252,
+                  z: p.z - lot * p.dx * 0.252,
+                  y: ground + 1.19,
+                  yaw: across,
+                  size: [0.04, 0.02, 0.012],
+                  color: '#9a9a96',
+                },
+                {
+                  x: p.x + p.dx * 0.11,
+                  z: p.z + p.dz * 0.11,
+                  y: ground + 1.27,
+                  yaw: across,
+                  size: [0.012, 0.2, 0.035],
+                  color: '#b8322a',
+                },
+              );
+              clutter += 10;
+              stats.streetFurniture++;
+              if (pick < 0.3) {
+                const along = Math.atan2(p.dx, p.dz);
+                for (const [step, color] of [
+                  [0.95, '#3d6342'],
+                  [1.7, pick < 0.15 ? '#2e5785' : '#55595c'],
+                ] as const) {
+                  const q = sampleTerrainLine(road.path, d + step * lot, lot * behind);
+                  if (!free(q.x, q.z)) continue;
+                  fixtures.push({
+                    x: q.x,
+                    z: q.z,
+                    y: groundAt(q.x, q.z) + 0.52,
+                    yaw: along,
+                    size: [0.6, 1.04, 0.72],
+                    color,
+                  });
+                  clutter++;
+                }
+              }
+            }
+          }
+        }
+      }
     }
     if (road.unpaved && style.id !== 'minimal' && road.kind !== 'path') {
       for (const offset of [-road.width * 0.24, road.width * 0.24]) {
-        band(marks, road, { width: 0.48, offset, color: '#8c795b', elevation: elevation + 0.025 });
+        band(marks, road, {
+          width: 0.48,
+          offset,
+          color: '#8c795b',
+          elevation: elevation + 0.025,
+          surface: TERRAIN_SURFACE_KIND.dirt,
+          ...(grounded ? { fray: 'both' as const } : {}),
+        });
       }
       continue;
     }
@@ -303,6 +663,7 @@ export function createTerrainSurfaceObject(
             offset,
             color: style.center,
             elevation: elevation + 0.045,
+            surface: TERRAIN_SURFACE_KIND.paint,
             ...(road.width < 9 ? { dash: [3, 5] as const } : {}),
           },
           clearJunction,
@@ -315,7 +676,14 @@ export function createTerrainSurfaceObject(
       band(
         marks,
         road,
-        { width: 0.12, offset, color: style.white, elevation: elevation + 0.045, dash: [3, 6] },
+        {
+          width: 0.12,
+          offset,
+          color: style.white,
+          elevation: elevation + 0.045,
+          dash: [3, 6],
+          surface: TERRAIN_SURFACE_KIND.paint,
+        },
         clearJunction,
       );
     }
@@ -329,6 +697,7 @@ export function createTerrainSurfaceObject(
             offset: sign * (road.width / 2 - 0.3),
             color: style.white,
             elevation: elevation + 0.045,
+            surface: TERRAIN_SURFACE_KIND.paint,
           },
           clearJunction,
         );
@@ -362,18 +731,23 @@ export function createTerrainSurfaceObject(
           offset += 1.1
         ) {
           remaining--;
+          const start = marks.vertexCount;
           marks.polygon(
             rectangle(x - arm.dz * offset, z + arm.dx * offset, arm.dx, arm.dz, 0.5, 2.6),
             white,
-            arm.road.elevation + 0.055,
+            arm.road.elevation + arm.road.stack + 0.055,
           );
+          marks.surfaceSince(start, TERRAIN_SURFACE_KIND.paint);
         }
-        if (style.markings && remaining-- > 0)
+        if (style.markings && remaining-- > 0) {
+          const start = marks.vertexCount;
           marks.polygon(
             rectangle(x + arm.dx * 2.3, z + arm.dz * 2.3, arm.dx, arm.dz, arm.width - 0.7, 0.35),
             white,
-            arm.road.elevation + 0.055,
+            arm.road.elevation + arm.road.stack + 0.055,
           );
+          marks.surfaceSince(start, TERRAIN_SURFACE_KIND.paint);
+        }
       }
     if (!style.streetlights && !style.trafficSignals) continue;
     const arms = [...node.arms].sort((a, b) => Math.atan2(a.dz, a.dx) - Math.atan2(b.dz, b.dx));
@@ -544,6 +918,34 @@ export function createTerrainSurfaceObject(
     (sum, f) => sum + f.polygons.length,
     0,
   );
+  const areas = [...tile.landcover, ...inferredParking]
+    .filter((feature) => areaKind(feature.class, feature.subclass) !== undefined)
+    .flatMap((feature) => feature.polygons)
+    .map((polygon) => ({ polygon, bounds: polygonBounds(polygon) }));
+  // Whether a point on one lot's edge also touches another paved area (within 0.6 m).
+  const touchesOtherArea = (x: number, z: number, self: TerrainSemanticPolygon): boolean => {
+    const u = x / context.tileSize,
+      v = z / context.tileSize,
+      r = 0.6 / context.tileSize;
+    return areas.some(
+      ({ polygon, bounds }) =>
+        polygon !== self &&
+        u >= bounds[0] - r &&
+        u <= bounds[2] + r &&
+        v >= bounds[1] - r &&
+        v <= bounds[3] + r &&
+        [
+          [0, 0],
+          [r, 0],
+          [-r, 0],
+          [0, r],
+          [0, -r],
+        ].some(([du = 0, dv = 0]) => pointInPolygon([u + du, v + dv], polygon)),
+    );
+  };
+  // Neighboring bays share a side line, and back-to-back rows a back line. Painted twice, the two
+  // coplanar copies fought, and the paint's wear flickered as the camera moved; paint each once.
+  const stallLines = new Set<string>();
   for (const feature of [...tile.landcover, ...inferredParking]) {
     const kind = areaKind(feature.class, feature.subclass);
     if (!kind) continue;
@@ -553,7 +955,27 @@ export function createTerrainSurfaceObject(
       // Pedestrian areas can overlap mapped or inferred parking. Distinct heights
       // keep those different-colored fills from competing in the depth buffer.
       const elevation = kind === 'parking' ? 0.3 : kind === 'plaza' ? 0.38 : 0.4;
+      const start = pavement.vertexCount;
       appendTerrainSurfaceArea(pavement, polygon, new THREE.Color(color), elevation);
+      const surface =
+        kind === 'parking' ? TERRAIN_SURFACE_KIND.parking : TERRAIN_SURFACE_KIND.plaza;
+      // Areas have no band to run joints along: pedestrian areas use the world paver grid.
+      pavement.surfaceSince(start, surface);
+      if (detailed)
+        appendAreaFringe(
+          edges,
+          polygon,
+          { color, elevation: elevation + 0.02, surface },
+          // Where a lot or plaza meets a road (within a curb-and-gutter's width), a footway,
+          // another paved area or a building, the edge belongs to them and stays clean.
+          (points) =>
+            points.every(
+              (p) =>
+                !network.occupied(p[0], p[1], 1.5, undefined, true) &&
+                !blocked(p[0], p[1]) &&
+                !touchesOtherArea(p[0], p[1], polygon),
+            ),
+        );
       if (kind !== 'parking') continue;
       stats.parkingAreas++;
       if (!detailed || (!style.parkingStalls && !style.parkedCars) || remaining <= 0) continue;
@@ -659,6 +1081,12 @@ export function createTerrainSurfaceObject(
                 [corners[1], corners[2]],
               ]) {
                 if (!a || !b) continue;
+                const ends = [a, b]
+                  .map((p) => `${Math.round(p[0] * 100)}/${Math.round(p[1] * 100)}`)
+                  .sort()
+                  .join(':');
+                if (stallLines.has(ends)) continue;
+                stallLines.add(ends);
                 const line = terrainLinePath(
                   [
                     a.map((n) => n / context.tileSize),
@@ -670,6 +1098,7 @@ export function createTerrainSurfaceObject(
                   width: 0.1,
                   color: style.white,
                   elevation: 0.345,
+                  surface: TERRAIN_SURFACE_KIND.paint,
                 });
               }
             }
@@ -726,10 +1155,15 @@ export function createTerrainSurfaceObject(
     edges.mesh('surface:edges'),
     roads.mesh('semantic:transportation', roadMaterial),
     marks.mesh('surface:markings'),
-    createTerrainBoxInstances(fixtures, 'surface:street-fixtures'),
   ]) {
-    if (mesh) group.add(mesh);
+    if (!mesh) continue;
+    // A host pavement material (createTerrainSurfaceRenderer's setMaterial) replaces the plain one.
+    if (mesh.name !== 'semantic:transportation' || roadMaterial === undefined)
+      mesh.userData[TERRAIN_PAVEMENT] = true;
+    group.add(mesh);
   }
+  const fixtureMesh = createTerrainBoxInstances(fixtures, 'surface:street-fixtures');
+  if (fixtureMesh) group.add(fixtureMesh);
   if (renderVehicles && vehicles.length)
     group.add(createParkedVehicleBatch(vehicles, context.origin));
   appendTerrainSignalLenses(group, signalHeads);
@@ -757,6 +1191,12 @@ export interface TerrainSurfaceRenderer {
   disposeTile(object: THREE.Object3D): void;
   /** Refresh resident tiles cooperatively, without refetching map data or rebuilding buildings. */
   setOptions(options: TerrainSurfaceOptions): Promise<void>;
+  /**
+   * Draw roads, sidewalks, markings and lots with `material` (for example
+   * `createTerrainPavementMaterialAsync`, which reads their `surfaceDetail`), on resident tiles
+   * and every later one. Undefined restores the plain vertex-color material.
+   */
+  setMaterial(material: THREE.Material | undefined): void;
   /** Absolute simulation time in seconds; optionally resolve colours from a traffic graph. */
   updateSignals(elapsedSeconds: number, resolve?: TerrainTrafficSignalResolver): void;
   stats(): TerrainSurfaceStats & {
@@ -789,6 +1229,16 @@ export function createTerrainSurfaceRenderer(
   let disposed = false;
   let signalTime = 0;
   let signalResolver: TerrainTrafficSignalResolver | undefined;
+  let pavement: THREE.Material | undefined;
+  const plain = new WeakMap<THREE.Mesh, THREE.Material | THREE.Material[]>();
+  const dress = (object: THREE.Object3D): void => {
+    object.traverse((child) => {
+      const mesh = child as THREE.Mesh;
+      if (!mesh.isMesh || mesh.userData[TERRAIN_PAVEMENT] !== true) return;
+      if (!plain.has(mesh)) plain.set(mesh, mesh.material);
+      mesh.material = pavement ?? (plain.get(mesh) as THREE.Material);
+    });
+  };
   const register = (
     tile: TerrainSemanticTile,
     context: TerrainPyramidTileLayerContext,
@@ -826,6 +1276,7 @@ export function createTerrainSurfaceRenderer(
       }
       disposeTerrainSurfaceObject(root);
       root.clear();
+      dress(object);
       root.add(object);
       updateTerrainSurfaceSignals(object, signalTime, signalResolver);
       geometryRevision++;
@@ -841,6 +1292,7 @@ export function createTerrainSurfaceRenderer(
       const root = register(tile, context);
       try {
         const object = createTerrainSurfaceObject(tile, context, options);
+        dress(object);
         root.add(object);
         updateTerrainSurfaceSignals(object, signalTime, signalResolver);
         geometryRevision++;
@@ -891,6 +1343,10 @@ export function createTerrainSurfaceRenderer(
         await new Promise<void>((resolve) => setTimeout(resolve, 0));
       }
     },
+    setMaterial(material) {
+      pavement = material;
+      for (const root of tiles.keys()) dress(root);
+    },
     updateSignals(elapsedSeconds, resolve) {
       if (!Number.isFinite(elapsedSeconds)) throw new Error('Signal time must be finite');
       signalTime = elapsedSeconds;
@@ -906,6 +1362,7 @@ export function createTerrainSurfaceRenderer(
         parkingAreas: 0,
         junctions: 0,
         streetlights: 0,
+        streetFurniture: 0,
         trafficSignals: 0,
         parkingBays: 0,
         parkedCars: 0,
@@ -924,6 +1381,7 @@ export function createTerrainSurfaceRenderer(
           'parkingAreas',
           'junctions',
           'streetlights',
+          'streetFurniture',
           'trafficSignals',
           'parkingBays',
           'parkedCars',

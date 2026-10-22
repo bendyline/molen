@@ -11,6 +11,7 @@ import {
 } from '../../worldgen/scripts/grande-arche-runtime-model.mjs';
 import { skylineExpansion } from '../../worldgen/scripts/signature-tower-expansion-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 it('preserves every original face and adds the missing panelled soffit', () => {
   const capture = (build) => {
@@ -69,7 +70,9 @@ it('keeps the upper opening empty and both piers and top beam solid at every aut
 });
 
 it('reproduces the current source and four strict-budget derivatives without altering the master', async () => {
-  const path = resolve('../../content/worldgen/assets/places/u0/u09/n0147_grande_arche/asset.json');
+  const path = await runtimeLodFixture(
+    resolve('../../content/worldgen/assets/places/u0/u09/n0147_grande_arche/asset.json'),
+  );
   const asset = JSON.parse(await readFile(path)),
     master = await readFile(resolve(path, '../model.glb'));
   await buildModelLandmarkLods(path, { force: true });

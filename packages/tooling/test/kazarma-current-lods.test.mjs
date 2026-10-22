@@ -4,12 +4,13 @@ import { expect, it } from 'vitest';
 import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import * as levels from '../../worldgen/scripts/kazarma-current-lods.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 const source = resolve(
   '../../content/worldgen/source/places/sw/sw8/n0012_kazarma_mycenaean_bridge',
 );
-const runtime = resolve(
-  '../../content/worldgen/assets/places/sw/sw8/n0012_kazarma_mycenaean_bridge',
+const runtime = await runtimeLodFixture(
+  resolve('../../content/worldgen/assets/places/sw/sw8/n0012_kazarma_mycenaean_bridge'),
 );
 const read = async (p) => JSON.parse(await readFile(p));
 const sub = (a, b) => a.map((v, i) => v - b[i]),

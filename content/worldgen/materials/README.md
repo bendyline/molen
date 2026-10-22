@@ -12,7 +12,8 @@ color; `green_shingled_wood` uses `wood_painted_shingle` with `#486a56`. Color v
 same texture maps. [The material-library guide](../source/material-library/README.md) describes
 static GLB binding, texture ownership, the extraction audit and reviewed swatches.
 
-All maps bake at **256 × 256** and remain shared by material reference. Every material includes a
+All maps bake at **256 × 256** (lap siding at 512 × 512, since street-level cameras see it at arm's
+length) and remain shared by material reference. Every material includes a
 roughness map; new jointed or profiled surfaces also have restrained height-derived normals, and
 uncoated metal finishes provide metalness. Stainless steel has continuous fine grain without
 roof-panel seams; marble also has a continuous surface for columns and sculpture. The base colors are intentionally light for
@@ -54,7 +55,7 @@ open lattice or a silhouette that needs visible holes.
 
 | Suffix | Construction and intended use | Physical repeat (U × V) | Roughness |
 | --- | --- | --- | --- |
-| siding_lap | Eight horizontal lap boards with repeated narrow underlaps | 2 × 1.60 m | 0.88 |
+| siding_lap | Fourteen horizontal lap boards with shadowed underlaps and height-derived relief | 2 × 1.60 m | 0.88 |
 | siding_shingle | Staggered small wood cladding shingles | 1.50 × 1.60 m | 0.88 |
 | wood_board_batten | Six vertical broad boards with raised narrow battens | 1.80 × 2 m | 0.86 |
 | wood_vertical | Ten narrow vertical tongue-and-groove boards | 1.50 × 2 m | 0.86 |
@@ -73,7 +74,7 @@ open lattice or a silhouette that needs visible holes.
 
 | Suffix | Construction and intended use | Physical repeat (U × V) | Roughness |
 | --- | --- | --- | --- |
-| shingle_asphalt | Standard asphalt roof courses | 1.80 × 2.10 m | 0.88 |
+| shingle_asphalt | Asphalt roof courses: per-tab tones, shaded butt lines, tab slots, course normal | 1.80 × 2.10 m | 0.90 |
 | slate | Broad staggered plates with horizontal cleavage | 1.50 × 1.60 m | 0.82 |
 | tile_ceramic | Eight aligned barrel tile ribs and courses | 2.40 × 2.40 m | 0.88 |
 | tile_flat | Small staggered overlapping clay tiles | 1.60 × 1.80 m | 0.78 |
@@ -91,7 +92,7 @@ open lattice or a silhouette that needs visible holes.
 | metal_expanded_diamond | Staggered elongated diamond alpha apertures, 56% open | 0.12 × 0.04 m | 0.50 |
 | metal_asanoha | Reusable 6 mm Japanese hemp-leaf lattice; analytic alpha coverage | 0.48 × 0.27713 m | 0.50 |
 | stone_checker_fine | Fine 100 mm cool grey checker paving for plazas and sidewalks | 0.20 × 0.20 m | 0.88 |
-| membrane | Low-contrast flat roofing | 4 × 4 m | 0.88 |
+| membrane | Flat roofing membrane: 1 m rolls with welded laps and end laps, cap-sheet granules, ponding stains, grime (regional flat roofs repeat it over 6 m) | 4 × 4 m | 0.88 |
 | etfe_film | Smooth neutral opaque ETFE film; cushion shape remains geometry | 2 × 2 m | 0.22–0.28 |
 | gravel | Roof ballast and surface aggregate | 2 × 2 m | 0.88 |
 
@@ -117,10 +118,10 @@ shared material replacement does not copy an asset's local alpha or transmission
 | concrete_panel | Precast panels with restrained seams | 3 × 3 m | 0.88 |
 | concrete_plain | Foundations, pads and poured surfaces | 2 × 2 m | 0.88 |
 | concrete_boardformed | Eight horizontal timber formwork impressions | 2 × 1.60 m | 0.94 |
-| window_punched | One framed pane | One repeat per window | 0.30 |
-| window_grid | Paired commercial panes in one continuous storey | One repeat per bay | 0.30 |
-| window_sliding | Two sliding panes | One repeat per window | 0.30 |
-| storefront | Full-height commercial glazing | One repeat per pane | 0.22 |
+| window_punched | One framed pane | One repeat per window | 0.62 frame / 0.07 glass |
+| window_grid | Paired commercial panes in one continuous storey | One repeat per bay | 0.62 frame / 0.07 glass |
+| window_sliding | Two sliding panes | One repeat per window | 0.62 frame / 0.07 glass |
+| storefront | Full-height commercial glazing | One repeat per pane | 0.62 frame / 0.06 glass |
 
 Repeat sizes are authoring recommendations. Set worldgen material-part `uvScale` to
 `[repeatWidthMeters, repeatHeightMeters]` with `uv: "meters"`. Static GLBs should use the same physical

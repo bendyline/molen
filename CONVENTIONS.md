@@ -46,10 +46,15 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
 
 ## Build & test
 
-- Repository builds and regression checks use the exact Node version in `.node-version`, shared
-  by CI and Release. Native fractional powers differ between Node 22 and 24, enough to change
-  figure animation phases by about 1e-15 and invalidate a pinned hash. Root build/test entry
-  points check the version first. Published packages still support Node ≥22.13; the packed-install
+- Use the exact pnpm version in `package.json` locally and in CI. pnpm 11 audits through npm's
+  bulk advisory endpoint; pnpm 10 uses the legacy endpoint that timed out in CI. Keep
+  `audit:prod` at `--prod --audit-level critical`, with registry failures still failing the check.
+  `pnpm-workspace.yaml` explicitly skips esbuild's install script as before; its platform binary
+  comes from an optional dependency.
+- Repository builds and regression checks use the Node major in `.node-version`; CI and Release
+  install its exact version. Native fractional powers differ between Node 22 and 24, enough to
+  change figure animation phases by about 1e-15 and invalidate a pinned hash. Root build/test entry
+  points check the major first. Published packages still support Node ≥22.13; the packed-install
   CI job tests Node 22 independently of the regression fixtures.
 - `pnpm build` compiles and bundles; it does not execute unit or browser assertions.
   `pnpm verify` adds the headless checks, while `pnpm all` includes the browser golden tests.
@@ -61,6 +66,10 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   with a golden suite; example suites consume those builds rather than rebuilding themselves.
   `pnpm assets:test` builds the schema package before loading its source-bundle checks, so it
   also works in a fresh checkout whose GLBs came from a release or cache.
+- **Asset tests rebuild temporary copies.** Use
+  `packages/tooling/test/fixtures/runtime-lod-fixture.mjs` before regenerating landmark LODs.
+  Tests must leave installed GLBs and sidecars untouched, including while a build reads them.
+  The root `test:unit` post-hook checks the installed bundle again to catch persistent changes.
 - CI runs only plain `pnpm` scripts: `pnpm lint`, `pnpm typecheck`, `pnpm source:check`,
   `pnpm test:unit`, `pnpm audit:prod`, `pnpm docs:check`, `pnpm smoke:packed`,
   `pnpm docs:site:check`, `pnpm test:golden`. Local green must equal CI green.

@@ -6,39 +6,102 @@
     {
       "id": "courses",
       "type": "bricks",
-      "params": { "rows": 14, "cols": 6, "mortarWidth": 0.05, "offset": 0.5 }
+      "params": { "rows": 14, "cols": 6, "mortarWidth": 0.035, "offset": 0.5 }
     },
     {
-      "id": "shingles",
+      "id": "slots",
       "type": "ramp",
       "input": "courses",
+      "params": { "stops": [{ "t": 0, "color": "#8f8f8f" }, { "t": 1, "color": "#ffffff" }] }
+    },
+    {
+      "id": "tab-pick",
+      "type": "bricks",
+      "params": { "rows": 14, "cols": 6, "mortarWidth": 0, "offset": 0.5, "output": "random" }
+    },
+    {
+      "id": "tabs",
+      "type": "ramp",
+      "input": "tab-pick",
       "params": {
         "stops": [
-          { "t": 0, "color": "#a6a6a6" },
-          { "t": 0.5, "color": "#a6a6a6" },
-          { "t": 0.56, "color": "#ececec" },
-          { "t": 1, "color": "#ececec" }
+          { "t": 0, "color": "#dcdcdc" },
+          { "t": 0.5, "color": "#f2f2f2" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "course-phase",
+      "type": "bricks",
+      "params": { "rows": 14, "cols": 6, "mortarWidth": 0, "offset": 0.5, "output": "row" }
+    },
+    {
+      "id": "butt-line",
+      "type": "ramp",
+      "input": "course-phase",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#9c9c9c" },
+          { "t": 0.12, "color": "#e6e6e6" },
+          { "t": 0.2, "color": "#ffffff" },
+          { "t": 1, "color": "#ffffff" }
         ]
       }
     },
     {
       "id": "grain-noise",
       "type": "noise",
-      "params": { "kind": "simplex", "octaves": 3, "scale": 16, "seedOffset": 7 }
+      "params": { "kind": "value", "octaves": 2, "scale": 96, "seedOffset": 7 }
     },
     {
       "id": "grain",
       "type": "levels",
       "input": "grain-noise",
-      "params": { "outMin": 0.86, "outMax": 1 }
+      "params": { "outMin": 0.88, "outMax": 1 }
+    },
+    {
+      "id": "weather-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 3, "scale": 3, "seedOffset": 11 }
+    },
+    {
+      "id": "weather",
+      "type": "levels",
+      "input": "weather-noise",
+      "params": { "outMin": 0.93, "outMax": 1 }
+    },
+    {
+      "id": "lined",
+      "type": "blend",
+      "inputs": { "a": "tabs", "b": "butt-line" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "slotted",
+      "type": "blend",
+      "inputs": { "a": "lined", "b": "slots" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "grained",
+      "type": "blend",
+      "inputs": { "a": "slotted", "b": "grain" },
+      "params": { "mode": "multiply", "factor": 1 }
     },
     {
       "id": "out",
       "type": "blend",
-      "inputs": { "a": "shingles", "b": "grain" },
+      "inputs": { "a": "grained", "b": "weather" },
       "params": { "mode": "multiply", "factor": 1 }
     },
-    { "id": "rough", "type": "const", "params": { "value": 0.88 } }
+    {
+      "id": "relief",
+      "type": "height-to-normal",
+      "input": "course-phase",
+      "params": { "strength": 0.012 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.9 } }
   ],
-  "outputs": { "baseColor": "out", "roughness": "rough" }
+  "outputs": { "baseColor": "out", "roughness": "rough", "normal": "relief" }
 }

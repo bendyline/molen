@@ -250,6 +250,8 @@ describe('procedural vegetation', () => {
       });
       expect(meshes).toHaveLength(1);
       expect(meshes[0]?.count).toBe(2);
+      // Walkers and aircraft pass through ground cover.
+      expect(meshes[0]?.userData.walkIgnore).toBe(true);
       const level = lod.children[0] as THREE.LOD;
       expect(level.levels).toHaveLength(2);
       expect((level.levels[1]?.object as THREE.Object3D).children).toHaveLength(0);

@@ -103,15 +103,20 @@ export class FrameAdmissionQueue implements SceneAdmission {
     this.queuedBackground.delete(job.promise);
     job.promise = undefined;
   }
-  /** Move a still-queued background job to the normal lane, behind the jobs already there. */
-  promote(promise: Promise<unknown>): void {
+  /**
+   * Move a still-queued background job to the normal lane, behind the jobs already there, or with
+   * `front` ahead of them: for work a frame is waiting on, such as a material an object holds off
+   * switching to until it is prepared.
+   */
+  promote(promise: Promise<unknown>, options: { front?: boolean } = {}): void {
     const job = this.queuedBackground.get(promise);
     const index = job === undefined ? -1 : this.background.indexOf(job);
     if (job === undefined || index < 0) return;
     this.forget(job);
     this.background.splice(index, 1);
     job.options = { ...job.options, priority: 'normal' };
-    this.jobs.push(job);
+    if (options.front === true) this.jobs.unshift(job);
+    else this.jobs.push(job);
     this.request();
   }
   get pending(): number {

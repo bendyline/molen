@@ -139,7 +139,7 @@ async function main(): Promise<void> {
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     // The Earth view's own sun, sky fill and tone mapping, so a style reviewed here looks the way
     // it will in the world (see the medium-fi style guide).
-    renderer.toneMapping = THREE.NeutralToneMapping;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = EARTH_EXPOSURE;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;

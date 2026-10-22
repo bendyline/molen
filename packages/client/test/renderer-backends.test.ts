@@ -5,7 +5,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { applyEnvironment } from '../src/three/environment';
 import { Renderer, type RendererOptions } from '../src/three/renderer';
 
-const factories = vi.hoisted(() => ({ webgl: vi.fn(), webgpu: vi.fn(), reflections: vi.fn() }));
+const factories = vi.hoisted(() => ({
+  webgl: vi.fn(),
+  webgpu: vi.fn(),
+  reflections: vi.fn(),
+  occlusion: vi.fn(),
+}));
 
 vi.mock('three', async (importOriginal) => ({
   ...(await importOriginal<typeof import('three')>()),
@@ -19,6 +24,9 @@ vi.mock('../src/three/sky-reflections', async (importOriginal) => ({
 }));
 vi.mock('../src/three/webgpu-sky-reflections', () => ({
   createWebGpuSkyReflectionFilter: factories.reflections,
+}));
+vi.mock('../src/three/webgpu-ambient-occlusion', () => ({
+  createWebGpuAmbientOcclusion: factories.occlusion,
 }));
 
 function fakeDriver() {
@@ -643,6 +651,75 @@ describe('renderer backend selection', () => {
     renderer.setShadowQuality('off');
     expect(light.castShadow).toBe(false);
     expect(renderer.three.shadowMap.enabled).toBe(false);
+    renderer.dispose();
+  });
+
+  it('keeps ambient occlusion to the WebGPU backend and draws WebGL frames directly', () => {
+    const renderer = new Renderer();
+    expect(renderer.backend).toBe('webgl');
+    renderer.setAmbientOcclusion(true, { radius: 2 });
+    expect(() => renderer.render()).not.toThrow();
+    renderer.setAmbientOcclusion(false);
+    renderer.dispose();
+    expect(() => renderer.setAmbientOcclusion(true)).toThrow(/disposed/);
+  });
+
+  it('prepares a material a mesh swaps to itself once it asks, ahead of queued work', async () => {
+    const renderer = await Renderer.create({ backend: 'webgpu', optimizeWebGpu: false });
+    const shown = new THREE.MeshStandardMaterial();
+    const twin = new THREE.MeshStandardMaterial();
+    const mesh = new THREE.InstancedMesh(new THREE.BoxGeometry(), shown, 4);
+    mesh.userData.materialVariants = [shown, twin];
+    const compiled: THREE.Material[] = [];
+    webgpu.compileAsync.mockImplementation(async (object: THREE.Object3D) => {
+      compiled.push((object as THREE.Mesh).material as THREE.Material);
+    });
+    const ready = renderer.prepareObject(mesh);
+    while (renderer.admission.pending) renderer.admission.flush();
+    await ready;
+    // Only the material it shows; most meshes never switch.
+    expect(compiled).toEqual([shown]);
+    const materialReady = mesh.userData.materialReady as (material: THREE.Material) => boolean;
+    expect(materialReady(shown)).toBe(true);
+    void renderer.admission.run(() => compiled.push(new THREE.MeshBasicMaterial()));
+    expect(materialReady(twin)).toBe(false);
+    renderer.admission.flush();
+    expect(compiled.indexOf(twin)).toBeGreaterThan(0);
+    expect(compiled.indexOf(twin)).toBeLessThan(
+      compiled.findIndex((material) => material instanceof THREE.MeshBasicMaterial),
+    );
+    while (renderer.admission.pending) renderer.admission.flush();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(materialReady(twin)).toBe(true);
+    expect(mesh.material).toBe(shown);
+    // Built once per mesh and material.
+    expect(materialReady(twin)).toBe(true);
+    expect(compiled.filter((material) => material === twin)).toHaveLength(1);
+    renderer.dispose();
+  });
+
+  it('builds prepared objects for the occlusion target and keeps it while suspended', async () => {
+    const pass = { render: vi.fn(), compile: vi.fn(async () => {}), dispose: vi.fn() };
+    factories.occlusion.mockResolvedValue(pass);
+    const renderer = await Renderer.create({ backend: 'webgpu', optimizeWebGpu: false });
+    renderer.setAmbientOcclusion(true);
+    // Preparation started before the pass loads still builds for its target.
+    const mesh = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial());
+    const ready = renderer.prepareObject(mesh);
+    while (renderer.admission.pending) renderer.admission.flush();
+    await ready;
+    expect(pass.compile).toHaveBeenCalledWith(mesh);
+    expect(webgpu.compileAsync).not.toHaveBeenCalled();
+    renderer.render();
+    expect(pass.render).toHaveBeenLastCalledWith(undefined, true);
+    renderer.suspendAmbientOcclusion(true);
+    renderer.setAmbientOcclusion(true);
+    renderer.render();
+    expect(pass.render).toHaveBeenLastCalledWith(undefined, false);
+    expect(pass.dispose).not.toHaveBeenCalled();
+    expect(factories.occlusion).toHaveBeenCalledTimes(1);
+    renderer.setAmbientOcclusion(false);
+    expect(pass.dispose).toHaveBeenCalledTimes(1);
     renderer.dispose();
   });
 

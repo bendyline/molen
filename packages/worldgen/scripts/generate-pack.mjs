@@ -48,10 +48,10 @@ const multiply = (id, a, b) => ({
   inputs: { a, b },
   params: { mode: 'multiply', factor: 1 },
 });
-const bricks = (id, rows, cols, mortarWidth, offset = 0.5) => ({
+const bricks = (id, rows, cols, mortarWidth, offset = 0.5, output = undefined) => ({
   id,
   type: 'bricks',
-  params: { rows, cols, mortarWidth, offset },
+  params: { rows, cols, mortarWidth, offset, ...(output === undefined ? {} : { output }) },
 });
 const twoTone = (id, input, mortar, face) =>
   ramp(id, input, [
@@ -184,14 +184,18 @@ function renderSurface(low, high, roughness, xScale = 12, yScale = 12) {
   );
 }
 
+/**
+ * Framed glazing. Frames stay satin while the panes are smooth glass, so the sky environment
+ * reflects in them and brightens toward grazing angles instead of a sheen baked into the color.
+ */
 const glass = (rows, cols, mortarWidth, frame, pane, roughness) => ({
   nodes: [
     bricks('frame', rows, cols, mortarWidth, 0),
     twoTone('panes', 'frame', frame, pane),
     { id: 'sheen', type: 'gradient', params: { kind: 'linear', angleDeg: 55 } },
-    levels('sheen-soft', 'sheen', 0.82, 1),
+    levels('sheen-soft', 'sheen', 0.9, 1),
     multiply('out', 'panes', 'sheen-soft'),
-    { id: 'rough', type: 'const', params: { value: roughness } },
+    { id: 'rough', type: 'levels', input: 'frame', params: { outMin: 0.62, outMax: roughness } },
   ],
   outputs: { baseColor: 'out', roughness: 'rough' },
 });
@@ -608,19 +612,28 @@ const MATERIALS = {
     outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
   },
   siding_lap: {
-    doc: 'Horizontal lap siding: eight boards per repeat with a shadow line under each board.',
+    doc: 'Horizontal lap siding: fourteen boards per repeat (about 180 mm each on a house wall), each with a shadow line under its lip and relief from the board profile. Baked at 512 px so the lines stay crisp at street level.',
     seed: 11,
+    size: [512, 512],
     nodes: [
-      ...profile('lap', 8, 90, [
-        [0, '#9a9a9a'],
-        [0.12, '#e4e4e4'],
-        [0.9, '#f3f3f3'],
-        [1, '#9a9a9a'],
+      ...profile('lap-height', 14, 90, [
+        [0, '#141414'],
+        [0.05, '#141414'],
+        [0.09, '#a6a6a6'],
+        [0.95, '#d6d6d6'],
+        [1, '#141414'],
       ]),
-      ...grain(5, 0.86, 1),
+      ramp('lap', 'lap-height', [
+        [0, '#8c8c8c'],
+        [0.4, '#dcdcdc'],
+        [0.7, '#eeeeee'],
+        [1, '#f5f5f5'],
+      ]),
+      ...grain(5, 0.88, 1),
       multiply('out', 'lap', 'grain'),
+      { id: 'normal', type: 'height-to-normal', input: 'lap-height', params: { strength: 0.007 } },
     ],
-    outputs: { baseColor: 'out' },
+    outputs: { baseColor: 'out', normal: 'normal' },
   },
   siding_shingle: {
     doc: 'Staggered wood shingles.',
@@ -687,16 +700,46 @@ const MATERIALS = {
     outputs: { baseColor: 'out' },
   },
   shingle_asphalt: {
-    doc: 'Asphalt shingle courses.',
+    doc: 'Asphalt shingle courses: per-tab granule tones, a shadowed butt line under each course, tab slots, granular grain and broad weathering, with a stepped course normal.',
     seed: 17,
     nodes: [
-      bricks('courses', 14, 6, 0.05),
-      // Light enough that a roof renders near its palette swatch under multiply tinting.
-      twoTone('shingles', 'courses', '#a6a6a6', '#ececec'),
-      ...grain(16, 0.86, 7),
-      multiply('out', 'shingles', 'grain'),
+      bricks('courses', 14, 6, 0.035),
+      ramp('slots', 'courses', [
+        [0, '#8f8f8f'],
+        [1, '#ffffff'],
+      ]),
+      bricks('tab-pick', 14, 6, 0, 0.5, 'random'),
+      // Each tab its own blend of granules, as on a real roof seen from the street.
+      ramp('tabs', 'tab-pick', [
+        [0, '#dcdcdc'],
+        [0.5, '#f2f2f2'],
+        [1, '#ffffff'],
+      ]),
+      bricks('course-phase', 14, 6, 0, 0.5, 'row'),
+      // The course above overlaps this one: a narrow darker band below its butt edge.
+      ramp('butt-line', 'course-phase', [
+        [0, '#9c9c9c'],
+        [0.12, '#e6e6e6'],
+        [0.2, '#ffffff'],
+        [1, '#ffffff'],
+      ]),
+      noise('grain-noise', 96, 2, 7, 'value'),
+      levels('grain', 'grain-noise', 0.88, 1),
+      noise('weather-noise', 3, 3, 11),
+      levels('weather', 'weather-noise', 0.93, 1),
+      multiply('lined', 'tabs', 'butt-line'),
+      multiply('slotted', 'lined', 'slots'),
+      multiply('grained', 'slotted', 'grain'),
+      multiply('out', 'grained', 'weather'),
+      {
+        id: 'relief',
+        type: 'height-to-normal',
+        input: 'course-phase',
+        params: { strength: 0.012 },
+      },
+      { id: 'rough', type: 'const', params: { value: 0.9 } },
     ],
-    outputs: { baseColor: 'out' },
+    outputs: { baseColor: 'out', roughness: 'rough', normal: 'relief' },
   },
   tile_ceramic: {
     doc: 'Barrel tiles: aligned courses with a rounded shading profile.',
@@ -714,14 +757,42 @@ const MATERIALS = {
     outputs: { baseColor: 'out' },
   },
   membrane: {
-    doc: 'Flat-roof membrane.',
+    doc: 'Flat-roof membrane: rolls with lapped seams and staggered end laps, sheet mottling, cap-sheet granules, ponding stains and grime.',
     seed: 19,
     nodes: [
       noise('sheet', 10, 4, 8),
-      ramp('out', 'sheet', [
-        [0, '#d3d3d1'],
-        [1, '#ebebe8'],
+      ramp('base', 'sheet', [
+        [0, '#cdcdc9'],
+        [1, '#f0f0ed'],
       ]),
+      // Two rolls per 6 m repeat: real membrane comes in 3 m (10 ft) rolls, and narrower ones
+      // read as decking. A dark lap shadow, then the lighter welded edge of the next sheet.
+      bricks('roll', 2, 1, 0, 0.5, 'row'),
+      // A welded lap is 10-15 cm of doubled sheet: wide enough to read from the air.
+      ramp('seams', 'roll', [
+        [0, '#a8a8a4'],
+        [0.02, '#c6c6c2'],
+        [0.04, '#f6f6f4'],
+        [0.055, '#ffffff'],
+        [1, '#ffffff'],
+      ]),
+      bricks('laps', 2, 1, 0.004, 0.5),
+      ramp('end-laps', 'laps', [
+        [0, '#b4b4b0'],
+        [1, '#ffffff'],
+      ]),
+      noise('ponding-noise', 3, 3, 21),
+      levels('ponding', 'ponding-noise', 0.82, 1),
+      noise('grime-noise', 5, 3, 13),
+      levels('grime', 'grime-noise', 0.8, 1),
+      // Granules in the cap sheet: a fine speckle that keeps a flat roof from reading as paper.
+      noise('speck-noise', 48, 2, 33),
+      levels('speck', 'speck-noise', 0.88, 1),
+      multiply('seamed', 'base', 'seams'),
+      multiply('lapped', 'seamed', 'end-laps'),
+      multiply('stained', 'lapped', 'ponding'),
+      multiply('grimed', 'stained', 'grime'),
+      multiply('out', 'grimed', 'speck'),
     ],
     outputs: { baseColor: 'out' },
   },
@@ -755,22 +826,22 @@ const MATERIALS = {
   window_punched: {
     doc: 'One framed pane per window.',
     seed: 22,
-    ...glass(1, 1, 0.1, '#e9e7e2', '#5b768e', 0.3),
+    ...glass(1, 1, 0.1, '#e9e7e2', '#4a6175', 0.07),
   },
   window_grid: {
     doc: 'One storey of paired commercial panes; no horizontal subdivision suggesting extra floors.',
     seed: 23,
-    ...glass(1, 2, 0.045, '#b8bcbf', '#5b768e', 0.3),
+    ...glass(1, 2, 0.045, '#b8bcbf', '#4a6175', 0.07),
   },
   window_sliding: {
     doc: 'Two sliding panes.',
     seed: 24,
-    ...glass(1, 2, 0.07, '#ebe9e4', '#5f7a8f', 0.3),
+    ...glass(1, 2, 0.07, '#ebe9e4', '#4d6476', 0.07),
   },
   storefront: {
     doc: 'Full-height storefront glazing.',
     seed: 25,
-    ...glass(1, 1, 0.04, '#4b4e52', '#6a8196', 0.22),
+    ...glass(1, 1, 0.04, '#4b4e52', '#566b80', 0.06),
   },
   brick_flemish: {
     doc: 'Flemish bond: alternating broad stretchers and short headers in every course.',
@@ -1309,7 +1380,7 @@ function materialDocument(entry) {
   const roughness = entry.outputs.roughness === undefined;
   return {
     format: 'molen/matgraph@1',
-    size: [256, 256],
+    size: entry.size ?? [256, 256],
     seed: entry.seed,
     ...(entry.alphaTest === undefined ? {} : { alphaTest: entry.alphaTest }),
     ...(entry.alphaCoverage ? { alphaCoverage: true } : {}),

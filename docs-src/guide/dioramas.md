@@ -54,6 +54,8 @@ const director = new DioramaDirector({
     root: viewer.renderer.worldRoot,
     camera: viewer.renderer.camera,
     // assets: a host-owned AssetCache, when the scene uses glTF refs
+    // A large streamed world keeps the diorama's own lights out (see below).
+    localLights: false,
   }),
   onError: (error, id) => console.error(id, error),
 });
@@ -75,6 +77,10 @@ director.update(cameraPosition, elapsedSeconds, Date.now());
 // On teardown:
 director.dispose();
 ```
+
+A diorama's point and spot lights light the host scene by default. In a large streamed world, pass
+`localLights: false` (Earth hosts do): three compiles the scene's lights into every lit shader, so a
+light that arrives and leaves with a diorama rebuilds every object in view in one frame.
 
 The loader is a host callback: use an allowlisted dynamic import, HTTP URL or your pack reader.
 The runtime never chooses content hosts. `loadDioramaScene` fetches the scene and relative `.js`

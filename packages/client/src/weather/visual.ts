@@ -31,7 +31,8 @@ function noise(x: number, y: number, period: number, seed: number): number {
   return (a + (b - a) * fx) * (1 - fy) + (c + (d - c) * fx) * fy;
 }
 
-const CLOUD_RESOLUTION = 256;
+/** Cloud texture texels per side: about 47 m each at the explorer's 24 km cloud scale. */
+const CLOUD_RESOLUTION = 512;
 const PARTICLE_LIMIT = 1400;
 
 /**
@@ -122,6 +123,9 @@ export class WeatherVisual {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
     texture.magFilter = THREE.LinearFilter;
     texture.minFilter = THREE.LinearMipmapLinearFilter;
+    // The deck is seen at grazing angles toward the horizon; without anisotropic filtering its
+    // mips smear clouds into streaks along the view.
+    texture.anisotropy = 16;
     texture.generateMipmaps = true;
     texture.colorSpace = THREE.LinearSRGBColorSpace;
     this.cloudTexture = texture;
@@ -172,9 +176,11 @@ export class WeatherVisual {
         for (let x = 0; x < CLOUD_RESOLUTION; x++) {
           let value = 0,
             weight = 0;
+          // Five octaves, the finest about four texels across: one more, a texel or two across,
+          // left a grain that streaked the clear sky wherever it hovered near the threshold.
           for (let octave = 0; octave < 5; octave++) {
             const frequency = 8 * 2 ** octave,
-              amplitude = 0.5 ** octave;
+              amplitude = 0.52 ** octave;
             value +=
               noise(
                 (x / CLOUD_RESOLUTION) * frequency,
@@ -203,6 +209,7 @@ export class WeatherVisual {
           const shade = clamp(
             0.56 + rim * 0.3 + (dx * sun[0] + dz * sun[2]) * 4 - clouds.density * 0.15,
           );
+          // An edge band soft enough that margins feather out without speckling the clear sky.
           const alpha =
             smooth(threshold - 0.075, threshold + 0.075, n) * (1 - Math.exp(-clouds.density * 6));
           pixels.set([shade * 255, shade * 255, shade * 255, alpha * 255], i * 4);

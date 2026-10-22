@@ -180,6 +180,10 @@ const facade = z.strictObject({
         )
         .optional(),
       shutters: z.boolean().describe('Paired louvered shutters beside punched windows.').optional(),
+      cornerBoards: z
+        .boolean()
+        .describe('Trim boards up each outside wall corner, as on lap-sided houses.')
+        .optional(),
       balconies: z
         .strictObject({
           depth: z.number().min(0.25).max(2).describe('Balcony projection in meters.').default(0.7),

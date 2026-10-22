@@ -34,8 +34,8 @@ molen sim run scene.json --ticks 30 --assert checks.json --hash
 
 One invariant matters more than the rest: **build before you typecheck or
 test**, because packages consume each other's `dist`. The root scripts encode it.
-Use the exact Node version in `.node-version` for repository builds and tests, matching CI and
-Release. Native math can change the bits of a simulation hash between Node/V8 versions; the
+Use the Node major in `.node-version` for repository builds and tests; CI and Release install its
+exact version. Native math can change the bits of a simulation hash between Node/V8 versions; the
 published packages' Node ≥22.13 support is checked separately by the Node 22 packed-install job.
 `pnpm build` only compiles and bundles. Use `pnpm all` to execute the same checks as CI, including
 the browser tests.

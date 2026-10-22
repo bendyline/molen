@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { Heightfield } from '../src/heightfield';
-import { createTerrainLinearObject } from '../src/linear-features';
+import { createTerrainLinearObject, TerrainSurfaceMeshBuilder } from '../src/linear-features';
 import { buildChunkGeometry } from '../src/mesh';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
 import { createTerrainSemanticObject, disposeTerrainSemanticObject } from '../src/semantic-client';
@@ -130,18 +130,16 @@ describe('surface draping over hills and valleys', () => {
     for (let x = 12.3; x < 90; x += 6.7) {
       for (const z of [46.7, 50.3, 54.1]) {
         const y = height(terrain, x, z);
-        expect(height(land, x, z) - y).toBeCloseTo(0.244, 4);
+        expect(height(land, x, z) - y).toBeCloseTo(0.18, 4);
         expect(height(parking, x, z) - y).toBeCloseTo(0.3, 4);
         expect(height(road, x, z) - y).toBeCloseTo(0.32, 4);
       }
     }
-    // Interior samples, not just vertices: no triangle can span the depression.
+    // Interior samples, not just vertices: no triangle can span the depression. Every class
+    // sits at the one land-cover height, so neighbors meet without a step.
     for (let x = 2.3; x < 100; x += 7.1)
       for (let z = 3.7; z < 100; z += 8.3)
-        expect(height(land, x, z) - height(terrain, x, z)).toBeCloseTo(
-          x > 10 && x < 90 && z > 10 && z < 90 ? 0.244 : 0.18,
-          4,
-        );
+        expect(height(land, x, z) - height(terrain, x, z)).toBeCloseTo(0.18, 4);
     disposeTerrainSemanticObject(object);
     terrain.geometry.dispose();
   });
@@ -266,5 +264,45 @@ describe('surface draping over hills and valleys', () => {
     );
     for (const x of [1, 17, 39, 74, 99]) expect(height(object, x, 50)).toBeCloseTo(40, 5);
     disposeTerrainSemanticObject(object);
+  });
+  it('cuts a shared edge at identical points from both sides, leaving no hairline gaps', () => {
+    const ctx = context(17);
+    let seed = 7;
+    const random = (): number => {
+      seed = (seed * 16807) % 2147483647;
+      return (seed / 2147483647) * 100;
+    };
+    // Vertices of a draped polygon lying on the segment a-b.
+    const cuts = (
+      polygon: [number, number][],
+      a: [number, number],
+      b: [number, number],
+    ): string[] => {
+      const builder = new TerrainSurfaceMeshBuilder(ctx);
+      builder.polygon(polygon, new THREE.Color('#808080'), 0.1);
+      const mesh = builder.mesh('side');
+      const position = mesh?.geometry.getAttribute('position');
+      const result = new Set<string>();
+      for (let i = 0; i < (position?.count ?? 0); i++) {
+        const x = position?.getX(i) ?? 0,
+          z = position?.getZ(i) ?? 0;
+        if (Math.abs((x - a[0]) * (b[1] - a[1]) - (z - a[1]) * (b[0] - a[0])) < 1e-4)
+          result.add(`${x},${z}`);
+      }
+      mesh?.geometry.dispose();
+      return [...result].sort();
+    };
+    let points = 0;
+    for (let i = 0; i < 20; i++) {
+      // Two triangles sharing an oblique edge, each walking it the opposite way.
+      const a: [number, number] = [random(), random()],
+        b: [number, number] = [random(), random()];
+      const c: [number, number] = [random(), random()];
+      const d: [number, number] = [a[0] + b[0] - c[0], a[1] + b[1] - c[1]];
+      const left = cuts([a, b, c], a, b);
+      expect(cuts([b, a, d], a, b)).toEqual(left);
+      points += left.length;
+    }
+    expect(points).toBeGreaterThan(100);
   });
 });

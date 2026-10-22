@@ -1032,7 +1032,7 @@ describe('worldgen human-feature tile orchestration', () => {
     f.dispose();
   });
 
-  it('keeps one prop batch per tile while preserving every placement in world coordinates', async () => {
+  it("keeps prop batches to a tile's quarters (one on coarser tiles) while preserving every placement in world coordinates", async () => {
     const data = new Float32Array(64 * 10);
     const expected: string[] = [];
     for (let z = 0; z < 8; z++)
@@ -1084,8 +1084,10 @@ describe('worldgen human-feature tile orchestration', () => {
       expect(positions.sort()).toEqual([...expected].sort());
       counts.push(meshes);
     }
-    // Placements spread over kilometres still compile as one instanced mesh per visible level.
-    expect(counts).toEqual([1, 1]);
+    // Placements spread over kilometres still compile as at most four instanced meshes on a
+    // finest tile (its quarters, so near detail stays round the camera) and one on a coarser one.
+    expect(counts[0]).toBeLessThanOrEqual(4);
+    expect(counts[1]).toBe(1);
     for (const root of roots) renderers.humanFeatures.disposeTile?.(root);
     renderers.dispose();
     models.dispose();

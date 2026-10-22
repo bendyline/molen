@@ -1,6 +1,11 @@
 export { createBuildingCellLod, createBuildingDetailLod } from './client/building-lod';
 export type { BuildingObjectOptions } from './client/building-object';
 export { createBuildingObject } from './client/building-object';
+export {
+  type BuildingMaterialDecorator,
+  createBuildingWeathering,
+  createBuildingWeatheringAsync,
+} from './client/building-weathering';
 export type {
   WorldgenEntityClient,
   WorldgenEntityLayer,
@@ -31,6 +36,13 @@ export {
   TEXTURED_SURFACE_MEAN,
 } from './client/materials';
 export { createPlantGeometry } from './client/plant-geometry';
+export {
+  createScatterMaterial,
+  createScatterMaterialAsync,
+  SCATTER_CANOPY_ATTRIBUTE,
+  type ScatterMaterial,
+  setScatterCanopy,
+} from './client/scatter-material';
 export { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './client/screen-space-lod';
 export {
   type StructureAcquireOptions,
