@@ -1,0 +1,399 @@
+{
+  "planId": "kavanagh_building",
+  "id": "kavanagh_building",
+  "assetId": "molen.worldgen.structure.kavanagh_building",
+  "title": "Kavanagh Building",
+  "category": "building",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -58.374616054545456,
+    "latitude": -34.59538998181818
+  },
+  "size": [
+    66.65807723999023,
+    125.20000153779984,
+    44.293559074401855
+  ],
+  "actualBounds": {
+    "min": [
+      -35.18888854980469,
+      -0.800000011920929,
+      -13.3694429397583
+    ],
+    "max": [
+      31.469188690185547,
+      124.4000015258789,
+      30.924116134643555
+    ]
+  },
+  "visualBrief": "Whole surviving Kavanagh residential skyscraper exterior on its actual named footprint: staggered ArtDeco tower/shoulder/low-wing volumes and terraces, narrow stepped crown/roof mechanical masses and bounded original antenna silhouettes, cream-gray stucco/vertical ribs/rectangular grouped sash windows/faceted corners, ground perimeter/entries. Exclude neighbouring towers/historic row buildings/hotel/basilica/whole plaza and street, city masts/trees/birds/construction fence/text/people/interiors/roof vegetation.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:2011.10.17.173611_Plaza_San_Mart%C3%ADn_Retiro_Buenos_Aires.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kavanagh-building-wp",
+      "url": "https://qualla.com/kavanagh-building/"
+    }
+  ],
+  "referenceInputHash": "fe1e7dd65f0a2ed7cd1dea4f511b11c8c84fe89b6aacf4156de737670d91a2d3",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-kavanagh-building.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-kavanagh-building.mjs",
+    "level": "skyline",
+    "export": "kavanaghSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stucco",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.3,
+        "metallic": 0.15
+      },
+      "metal": {
+        "slot": "foundation",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.4
+      },
+      "door": {
+        "slot": "door",
+        "localRef": "palette:#fffffd",
+        "roughness": 0.72,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "kavanaghDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.3,
+            "metallic": 0.15
+          },
+          "metal": {
+            "slot": "foundation",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.4
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.72,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "kavanaghStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.3,
+            "metallic": 0.15
+          },
+          "metal": {
+            "slot": "foundation",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.4
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.72,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "kavanaghCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.3,
+            "metallic": 0.15
+          },
+          "metal": {
+            "slot": "foundation",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.4
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.72,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Actual named way102440659/Q375910 supplies11-corner ground footprint, native height120m and current identity. Street-side long edge5-to6 fixes orientation; +X northeast along that edge, +Z southeast across building depth. Ground polygon is not a surveyed upper-level roof/setback plan. Cleared2011 creatorCC0 plaza view fixes recognizable staggered skyline/window/corner character. Current municipal tourism record and native height agree120m; national heritage text instead says110m/30floors while local legislature says120m/31floors, so do not invent a common precise floor census. Use120m whole-height control and record per-tier heights/setbacks/window census/hidden rear details as bounded estimates. Independent128m/16641value field/raw tile/PNG frozen before geometry, exterior reference25.7418m fixed3m beyond actual long street edge. Choose floor+.12/plinth bottom-.8 before geometry; maintain native120m main crown whole-height and bounded4.4m top antenna. Provider surface varies-2.59 to+20.25m, including urban composite/building-canopy artifacts; at rear wing about+8.65m and street-left+4.39m. It cannot survey foundation/thresholds; preserve field unchanged, allow partial low-wall burial in source preview, shared flat views reveal full facade. No raised whole-site pad, fit, flattening or reacquisition. Whole11-corner footprint retained; upper clipped tier heights31/44/74/84/111/116/120m, hidden rear/crown sections/window census are medium-fi estimates supported by the cleared full exterior, not a floor-count reconciliation. Exact host contact unverified/replacementfalse.",
+    "anchor": [
+      -58.374616054545456,
+      -34.59538998181818
+    ],
+    "heading": 1.0328585600832585,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -58.374790913648084,
+        -34.59535914215199
+      ],
+      "modelHeight": 0,
+      "basis": "Exterior public-street point3m outward from the midpoint of actual long edge5-to6, selected before terrain/geometry; not a surveyed building floor datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/102440659"
+    ],
+    "source": "https://www.openstreetmap.org/way/102440659",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:917908b5362c2d5c2c838055812a8925f4a5aeb83b4497dc373f1b1d41e56d74",
+    "notes": "Whole surviving Kavanagh residential skyscraper exterior on its actual named footprint: staggered ArtDeco tower/shoulder/low-wing volumes and terraces, narrow stepped crown/roof mechanical masses and bounded original antenna silhouettes, cream-gray stucco/vertical ribs/rectangular grouped sash windows/faceted corners, ground perimeter/entries. Exclude neighbouring towers/historic row buildings/hotel/basilica/whole plaza and street, city masts/trees/birds/construction fence/text/people/interiors/roof vegetation."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual named way102440659/Q375910 supplies11-corner ground footprint, native height120m and current identity. Street-side long edge5-to6 fixes orientation; +X northeast along that edge, +Z southeast across building depth. Ground polygon is not a surveyed upper-level roof/setback plan. Cleared2011 creatorCC0 plaza view fixes recognizable staggered skyline/window/corner character. Current municipal tourism record and native height agree120m; national heritage text instead says110m/30floors while local legislature says120m/31floors, so do not invent a common precise floor census. Use120m whole-height control and record per-tier heights/setbacks/window census/hidden rear details as bounded estimates.",
+    "Independent128m/16641value field/raw tile/PNG frozen before geometry, exterior reference25.7418m fixed3m beyond actual long street edge. Choose floor+.12/plinth bottom-.8 before geometry; maintain native120m main crown whole-height and bounded4.4m top antenna. Provider surface varies-2.59 to+20.25m, including urban composite/building-canopy artifacts; at rear wing about+8.65m and street-left+4.39m. It cannot survey foundation/thresholds; preserve field unchanged, allow partial low-wall burial in source preview, shared flat views reveal full facade. No raised whole-site pad, fit, flattening or reacquisition. Whole11-corner footprint retained; upper clipped tier heights31/44/74/84/111/116/120m, hidden rear/crown sections/window census are medium-fi estimates supported by the cleared full exterior, not a floor-count reconciliation. Exact host contact unverified/replacementfalse.",
+    "Complete actual11-corner ground envelope, low wings, stepped shoulders/main faceted shaft and crown, roof terraces/parapets, vertical stucco piers, grouped rectangular sash windows, bounded ground entries and original small top poles. Neighbor buildings/hotel/basilica/plaza/street/city broadcast masts/trees/birds/construction fence/text/people/interiors/roof vegetation excluded.",
+    "One exact cleared2011 HermannLuyken own-photo/selfCC0 Qualla original controls cream-gray facade, staggered skyline, faceted corner bays and vertical rib/sash character. Photographer and architect credits retain their actual meanings. Mixed-license Rojas image/unknown-author historic photos not used, no questionable source or external photo fetch, photographic texture or borrowed model.",
+    "Actual ground footprint and120m native/municipal whole-height control retained. Upper tier planes/heights/window/floor census/hidden rear plan/ground doors/cosmetics/air-conditioners/antenna configuration are bounded original medium-fi estimates, not surveyed separate roof parts or a claim that conflicting30/31/33floor counts agree. Fine bays vary by LOD without changing whole extent or stepped crown.",
+    "Six actual canonical material slots: stucco wall/trim, concrete roof/plinth, painted metal window mullions/poles and opaque locally colored glass/doors. Three shared graphs plus two local accents. Near levels have true recessed window apertures/reveals/sash mullions/sills and small service units; no transparent interior or active illumination.",
+    "Original16641 independently sampled field/raw tile/PNG frozen before geometry and retained unchanged. Urban terrain artifacts partly cover low wings/thresholds in source views; no fitting/flattening/reacquisition or surrounding ground pad. Approximate geographic preview and replacementfalse; exact host contact unverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-plaza-side-faceted-tower-and-stepped-low-wings",
+      "position": [
+        170,
+        110,
+        -165
+      ],
+      "lookAt": [
+        0,
+        58,
+        3
+      ]
+    },
+    {
+      "name": "opposite-rear-entire-native-envelope-and-hidden-estimated-setbacks",
+      "position": [
+        -155,
+        100,
+        150
+      ],
+      "lookAt": [
+        0,
+        54,
+        3
+      ]
+    },
+    {
+      "name": "long-street-front-full-height-ribbed-bays",
+      "position": [
+        -10,
+        64,
+        -160
+      ],
+      "lookAt": [
+        -3,
+        60,
+        -5
+      ]
+    },
+    {
+      "name": "high-terrace-faceted-shaft-and-zigzag-parapet-crown",
+      "position": [
+        65,
+        112,
+        -54
+      ],
+      "lookAt": [
+        18,
+        104,
+        -2
+      ]
+    },
+    {
+      "name": "recessed-sash-reveals-vertical-piers-and-small-service-units",
+      "position": [
+        20,
+        52,
+        -30
+      ],
+      "lookAt": [
+        12,
+        52,
+        -12.5
+      ]
+    },
+    {
+      "name": "stepped-roof-terraces-low-wing-and-whole-native-back-line",
+      "position": [
+        -65,
+        90,
+        75
+      ],
+      "lookAt": [
+        -2,
+        43,
+        7
+      ]
+    },
+    {
+      "name": "street-entrances-plinth-and-lower-window-bays",
+      "position": [
+        -8,
+        5,
+        -31
+      ],
+      "lookAt": [
+        -10,
+        4,
+        -12.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 46707,
+    "vertices": 140121,
+    "materials": 6,
+    "bytes": 5608424,
+    "sha256": "sha256:d6e5b1b513d2e94af8616238ef23a34069e5e93771961ea5ae7d2ce3e7de225b"
+  }
+}

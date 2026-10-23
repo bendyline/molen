@@ -72,8 +72,20 @@ export function verifiedSupplementalSelection(references, inventory, evidence) {
     )
   );
 }
+/** Match Qualla's FetchMedia hero filename without changing its source record. */
+export function originalHeroPath(folder, image) {
+  const extension =
+    {
+      'image/jpeg': '.jpg',
+      'image/png': '.png',
+      'image/gif': '.gif',
+      'image/webp': '.webp',
+      'image/svg+xml': '.svg',
+    }[image?.mime ?? image?.mimeType] ?? '.jpg';
+  return `${folder}/hero${extension}`;
+}
 const originals = (metadata, folder) => [
-  ...(metadata?.hero ? [{ ...metadata.hero, path: `${folder}/hero.jpg` }] : []),
+  ...(metadata?.hero ? [{ ...metadata.hero, path: originalHeroPath(folder, metadata.hero) }] : []),
   ...(metadata?.gallery ?? []).map((image, i) => ({
     ...image,
     path: metadata.galleryPaths?.[i],

@@ -288,12 +288,27 @@ export async function buildProgress({
   const rows = [];
   for (const entry of batch.entries) {
     const structure = structures.find((s) => s.id === entry.structureId);
-    if (
-      !structure ||
-      next1000Matches(structure, reserved, entry.modelIdentity).length ||
-      entry.workOwner === 'next-1000-other-device'
-    )
-      throw Error(`Local ownership unavailable: ${entry.name}`);
+    if (!structure) throw Error(`Structure identity unavailable: ${entry.name}`);
+    const otherDevice = next1000Matches(structure, reserved, entry.modelIdentity);
+    if (otherDevice.length || entry.workOwner === 'next-1000-other-device') {
+      // A newly resolved alias must remain visible without inspecting or approving
+      // the other device's asset, or preventing unrelated local progress updates.
+      rows.push({
+        candidateId: entry.modelIdentity,
+        backlogTargetId: entry.structureId,
+        title: entry.name,
+        asset: null,
+        sourcePath: null,
+        order: entry.order,
+        pilot: !!entry.pilot,
+        readiness: 'reserved-other-device',
+        blockers: ['next-1000-other-device'],
+        reservedCandidateIds: [...new Set(otherDevice.map((m) => m.id))].sort(),
+        geographic: { activePlacement: null },
+        fidelityQa: { target: 'medium-fi', hashBoundReviewPassed: false },
+      });
+      continue;
+    }
     rows.push(
       await inspectLocalModel(entry, {
         repository,
@@ -310,6 +325,12 @@ export async function buildProgress({
     ready: rows.filter((r) => r.readiness === 'ready').length,
     started: rows.filter((r) => r.sourcePath).length,
     pilotsReady: rows.filter((r) => r.pilot && r.readiness === 'ready').length,
+    ...(rows.some((r) => r.readiness === 'reserved-other-device')
+      ? {
+          reservedForOtherDevice: rows.filter((r) => r.readiness === 'reserved-other-device')
+            .length,
+        }
+      : {}),
     ...(batch.policy?.imagery?.id === PUBLIC_DOMAIN_POLICY
       ? {
           technicallyValidated: rows.filter((r) => r.technicalReadiness === 'ready').length,
@@ -332,7 +353,7 @@ export async function buildProgress({
   const text = `# Qualla compat — local 100 — completion progress\n\n**${counts.ready} / ${counts.target} completed. ${rows.some((r) => r.pilot) ? `${counts.pilotsReady} / ${rows.filter((r) => r.pilot).length} pilots completed.` : ''}** ${counts.started} models started; ${counts.target - counts.started} not started.${counts.technicallyValidated === undefined ? '' : `\n\n${counts.technicallyValidated} models retain their technical validation; ${counts.publicDomainImageryVerified} reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.`}\n\nFinish each model using Qualla photographs, current renders and story synchronization in the same authoring pass. Every next-1,000 candidate and collection member remains assigned to the other device.\n\nCompletion is recomputed from current evidence; editing geometry, source references, material graphs, terrain or placement invalidates the affected approval. [Machine-readable ledger](readiness.json).\n\n| # | Structure and story | Completion | Remaining checks |\n| ---: | --- | --- | --- |\n${rows
     .map((r) => {
       const s = structures.find((s) => s.id === r.backlogTargetId);
-      return `| ${r.order}${r.pilot ? ' · pilot' : ''} | [${r.title.replaceAll('|', '/')}](https://qualla.com/${s.stories[0].url.split('qualla.com/')[1]}) | ${r.readiness === 'ready' ? 'Complete' : r.readiness === 'not-started' ? 'Not started' : 'In review'} | ${r.blockers.join('; ') || 'All required evidence current'} |`;
+      return `| ${r.order}${r.pilot ? ' · pilot' : ''} | [${r.title.replaceAll('|', '/')}](https://qualla.com/${s.stories[0].url.split('qualla.com/')[1]}) | ${r.readiness === 'ready' ? 'Complete' : r.readiness === 'not-started' ? 'Not started' : r.readiness === 'reserved-other-device' ? 'Other device' : 'In review'} | ${r.blockers.join('; ') || 'All required evidence current'} |`;
     })
     .join(
       '\n',

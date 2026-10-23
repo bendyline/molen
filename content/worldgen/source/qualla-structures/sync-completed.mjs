@@ -82,6 +82,18 @@ export function locateCompletedStory(bundles, id, expectedTile) {
   return { tile, entry };
 }
 
+/** Keep a story/room batch key separate from its explicitly identified physical building. */
+export function completedPhysicalModelIdentity(entry) {
+  const identity = entry.physicalModelIdentity ?? entry.modelIdentity;
+  if (
+    !/^[a-z][a-z0-9_]*$/.test(identity ?? '') ||
+    /qualla/i.test(identity) ||
+    (identity !== entry.modelIdentity && !/^QS-[a-f0-9]{12}$/.test(entry.physicalStructureId ?? ''))
+  )
+    throw Error(`Physical source identity invalid: ${entry.modelIdentity}`);
+  return identity;
+}
+
 export async function syncCompleted({
   ids,
   qualla = path.resolve(root, '../qualla-internal'),
@@ -109,11 +121,17 @@ export async function syncCompleted({
     .map(JSON.parse);
   const verifyModel = async (entry) => {
     const catalog = loadCatalog(repository);
-    const target = structures.find((s) => s.id === entry.structureId);
+    const target = structures.find((s) => s.id === entry.structureId),
+      physicalIdentity = completedPhysicalModelIdentity(entry),
+      physicalTarget = entry.physicalStructureId
+        ? structures.find((s) => s.id === entry.physicalStructureId)
+        : target;
     if (
       !target ||
+      !physicalTarget ||
       entry.workOwner !== batch.id ||
-      next1000Matches(target, catalog.next1000, entry.modelIdentity).length
+      next1000Matches(target, catalog.next1000, entry.modelIdentity).length ||
+      next1000Matches(physicalTarget, catalog.next1000, physicalIdentity).length
     )
       throw Error(`Local ownership unavailable: ${entry.modelIdentity}`);
     const dir = inside(repository, entry.sourcePath),
@@ -136,15 +154,15 @@ export async function syncCompleted({
       );
     const spec = read(path.join(dir, 'spec.json'));
     if (
-      spec.id !== entry.modelIdentity ||
-      spec.assetId !== `molen.worldgen.structure.${entry.modelIdentity}`
+      spec.id !== physicalIdentity ||
+      spec.assetId !== `molen.worldgen.structure.${physicalIdentity}`
     )
       throw Error(`Source identity differs: ${entry.modelIdentity}`);
     const matches = catalog.models.filter(
       (m) =>
         m.assetId === spec.assetId &&
         m.sourcePath === entry.sourcePath &&
-        m.candidateId === entry.modelIdentity &&
+        m.candidateId === physicalIdentity &&
         m.registered &&
         m.sourceModelReported,
     );
@@ -160,14 +178,14 @@ export async function syncCompleted({
         fidelity: 'medium-fi',
       },
     };
-    return { entry, row, refs, model };
+    return { entry, row, refs, model, physicalTarget };
   };
   const verified = [];
   for (const entry of entries) verified.push(await verifyModel(entry));
   const desired = modelAnnotations(
-    verified.map(({ entry, refs, model }) => ({
-      id: entry.structureId,
-      name: entry.name,
+    verified.map(({ refs, model, physicalTarget }) => ({
+      id: physicalTarget.id,
+      name: physicalTarget.name,
       status: 'existing-ready',
       stories: refs.stories,
       existing: [model],

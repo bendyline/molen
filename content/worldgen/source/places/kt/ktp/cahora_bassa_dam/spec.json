@@ -1,0 +1,336 @@
+{
+  "planId": "cahora_bassa_dam",
+  "id": "cahora_bassa_dam",
+  "assetId": "molen.worldgen.structure.cahora_bassa_dam",
+  "title": "Cahora Bassa Dam",
+  "category": "dam",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 32.705106150000006,
+    "latitude": -15.58546845
+  },
+  "size": [
+    152.43592071533203,
+    183.04999923706055,
+    265.05963134765625
+  ],
+  "actualBounds": {
+    "min": [
+      -76.61080169677734,
+      -163,
+      -132.6172637939453
+    ],
+    "max": [
+      75.82511901855469,
+      20.049999237060547,
+      132.44236755371094
+    ]
+  },
+  "visualBrief": "Whole Cahora Bassa double-curvature concrete arch dam/Q12981841, actual native area-way842089986/all30 unique controls retained, complete bowed wall between both gorge abutments, crest road/edge rails and compact intrinsic crest service structures. Story171m maximum wall height/303m crest are section references; preserve actual native whole outline rather than rescale mapped controls. Hidden submerged/downslope wall taper/curvature/outlets/sections/fixtures original bounded estimates. Exclude underground hydroelectric stationway849296590/Q11962991 from aboveground body, reservoirrelation67377/Q755015, whole gorge/terrain/landscape/water/settlement/electricity network/private plant interiors. No generic straightwall or facade-only model.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cahorra_bassa.jpg"
+  ],
+  "stories": [
+    {
+      "id": "cahora-bassa-dam-wp",
+      "url": "https://qualla.com/cahora-bassa-dam/"
+    }
+  ],
+  "referenceInputHash": "c4197f8d8bacc1eee62202a6d64f613e8636ba2e6c9c7742609e84d70949cc38",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-cahora-bassa-dam.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-cahora-bassa-dam.mjs",
+    "level": "skyline",
+    "export": "cahoraBassaSkyline",
+    "errorMeters": 4,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.2
+      },
+      "road": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.18
+      },
+      "joint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cahoraBassaDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.2
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "joint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "cahoraBassaStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.2
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "joint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "cahoraBassaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.2
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "joint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3,
+    "groundY": -165
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Actual named whole dam area-way842089986 with exact building identityQ12981841/waterwaydam/area yes, all30 unique native controls. Anchor fixed nativebbox midpoint/+Xeast/+Zsouth heading0. Separate underground generationstationway849296590/Q11962991 and reservoirQ755015 are exclusions. Published storypoint reference only. Dam area is coarse Lakewalker/Landsat mapping, not surveyed crest/wall sections; original geometry retains full native crestplan while hidden lower arch taper/elevation is bounded estimate. Independent1000m129x129field/16641samples/2rawTerrariumtiles frozen before wall/crest/sections. Fixed SW exterior datum322.0773m; original crest+8m about330m from supplied story, maximum171m section and14m endsection. Whole native upper outline untouched, lowerarch18m downstream shift/32m addedbasewidth and smooth exposedtoe envelope original estimates; not fitted to DEM. Source lake/gorge artifacts down to-3146.5546m remain unchanged, never adopted as foundation or bathymetry. Photo only establishes upstreamcrest/serviceframes, no measuredmechanics; 2boundedgantries/8lowoutlet recesses/sections census estimated. Groundcontact and current machinery unverified; replacementfalse.",
+    "anchor": [
+      32.705106150000006,
+      -15.58546845
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        32.70424046084876,
+        -15.586810907457522
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exteriorSW point5m beyond whole dam acquisitionbounds before terrain/wall/floor/section decisions; not surveyed gorgefloor/crest/waterlevel."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/842089986"
+    ],
+    "source": "https://www.openstreetmap.org/way/842089986",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d1c0c9b2a97d696b757fbfd0bfcc8f312bb65d37a6522acbaff0e93111eeb6dd",
+    "notes": "Whole Cahora Bassa double-curvature concrete arch dam/Q12981841, actual native area-way842089986/all30 unique controls retained, complete bowed wall between both gorge abutments, crest road/edge rails and compact intrinsic crest service structures. Story171m maximum wall height/303m crest are section references; preserve actual native whole outline rather than rescale mapped controls. Hidden submerged/downslope wall taper/curvature/outlets/sections/fixtures original bounded estimates. Exclude underground hydroelectric stationway849296590/Q11962991 from aboveground body, reservoirrelation67377/Q755015, whole gorge/terrain/landscape/water/settlement/electricity network/private plant interiors. No generic straightwall or facade-only model."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual named whole dam area-way842089986 with exact building identityQ12981841/waterwaydam/area yes, all30 unique native controls. Anchor fixed nativebbox midpoint/+Xeast/+Zsouth heading0. Separate underground generationstationway849296590/Q11962991 and reservoirQ755015 are exclusions. Published storypoint reference only. Dam area is coarse Lakewalker/Landsat mapping, not surveyed crest/wall sections; original geometry retains full native crestplan while hidden lower arch taper/elevation is bounded estimate.",
+    "Independent1000m129x129field/16641samples/2rawTerrariumtiles frozen before wall/crest/sections. Fixed SW exterior datum322.0773m; original crest+8m about330m from supplied story, maximum171m section and14m endsection. Whole native upper outline untouched, lowerarch18m downstream shift/32m addedbasewidth and smooth exposedtoe envelope original estimates; not fitted to DEM. Source lake/gorge artifacts down to-3146.5546m remain unchanged, never adopted as foundation or bathymetry. Photo only establishes upstreamcrest/serviceframes, no measuredmechanics; 2boundedgantries/8lowoutlet recesses/sections census estimated. Groundcontact and current machinery unverified; replacementfalse.",
+    "Full original native30control crestoutline retained at everyLOD, both concave/convex wall faces with verticalcurvature/basewidening/taperedend exposure, native-shaped crestroad/continuous lowconcreteparapets and twoopen servicegantries. Skyline omits estimated lowoutletmechanics; higherlevels include eight genuine deep concrete tunnels with gateleaves recessed near upstream face. Native mapped area is coarse and not stretched to story303m crestlength.",
+    "Exact existing cleared Qualla500x333 Nic2005 own-photo/explicit My photo. Placed in public domain./PD-author original/nativeSHA1matched, individually inspected. Upstream water obscureslowerwall. Hiddenwall taper, outletcount/shape/elevation and towercensus/geometry/rail/post/contractionjoint detail are bounded original mediumfi estimates, not measured present machinery. Conflictedhero and attribution/sharealike alternatives excluded withoutpixels; no image textures/generatedbitmaps or protectedplans.",
+    "Independent1000mfield/two raw tiles/16641samples frozen before geometry. Native SWdatum322.0773m, crest+8m near supplied330m. Implausible negative lake/gorge elevation down to-3146.5546m remains immutable and is never interpreted as bathymetry/foundation. Portable/context reviewground is separate below model; actual mapterrain dam/water/toe contact remains unverified, preview/replaceFootprintfalse.",
+    "Separate underground generatingstationQ11962991/nativeway849296590, reservoirQ755015, gorge/river/landscape/settlement/transmissionlines and private plant interiors excluded. No arbitrary whole-site groundplate/water mesh."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-native-double-curved-arch-and-both-abutments",
+      "position": [
+        440,
+        110,
+        200
+      ],
+      "lookAt": [
+        0,
+        -50,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "crest-road-open-service-gantries-and-parapets",
+      "position": [
+        -170,
+        75,
+        80
+      ],
+      "lookAt": [
+        -27,
+        9,
+        14
+      ]
+    },
+    {
+      "name": "downstream-double-curvature-and-recessed-outlets",
+      "position": [
+        215,
+        -47,
+        70
+      ],
+      "lookAt": [
+        -13,
+        -90,
+        8
+      ]
+    },
+    {
+      "name": "upstream-whole-arch-and-native-crest-return",
+      "position": [
+        -370,
+        115,
+        -130
+      ],
+      "lookAt": [
+        0,
+        -45,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 28070,
+    "vertices": 84210,
+    "materials": 5,
+    "bytes": 3371520,
+    "sha256": "sha256:0e4e48081bbfd7bc3e0df23246fca7027370bcaa6f89c2ee92451b1e53d3f9b8"
+  }
+}

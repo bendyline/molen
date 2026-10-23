@@ -1,0 +1,350 @@
+{
+  "planId": "godavari_arch_bridge",
+  "id": "godavari_arch_bridge",
+  "assetId": "molen.worldgen.structure.godavari_arch_bridge",
+  "title": "Godavari Arch Bridge",
+  "category": "bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 81.7541373,
+    "latitude": 17.0078714
+  },
+  "size": [
+    2761.3194580078125,
+    35.599998474121094,
+    95.41633605957031
+  ],
+  "actualBounds": {
+    "min": [
+      -1380.650634765625,
+      -2,
+      -47.708168029785156
+    ],
+    "max": [
+      1380.6688232421875,
+      33.599998474121094,
+      47.708168029785156
+    ]
+  },
+  "visualBrief": "Whole surviving Godavari Arch Bridge/Q2012032 exterior on exact nativeway56683928 east/west abutment alignment, complete approximately2.76km mapped endpoint extent with28 twin concrete parabolic bowstring spans, vertical hangers/lateral concrete Vierendeel struts, concrete tie-box railway deck/open underside/pale piers and end abutments, single broad-gauge track/simple intrinsic maintenance edges and sparse electrification. All28 structural spans retained; internal repeat positions and architectural sections estimated within native ends. Exclude separate parallel abandoned Havelock steel-truss/masonry-pier bridge97471765/Q15263787 visible in foreground of source, separate southern road/rail GodavariBridge/Q2736879, small detached approach bridge56683933 beyond endpoint, river/water/ground slab/city/people/boats/trees/private interiors. No one-span/facade-only reduction or transplanted neighbor geometry.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Sunset_at_Godavri.JPG"
+  ],
+  "stories": [
+    {
+      "id": "godavari-arch-bridge-wp",
+      "url": "https://qualla.com/godavari-arch-bridge/"
+    }
+  ],
+  "referenceInputHash": "8087a31d2735c185ac7c840de70fde965acdb030191f3bab301c85ee737a535e",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-godavari-arch-bridge.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-godavari-arch-bridge.mjs",
+    "level": "skyline",
+    "export": "godavariSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "ballast": {
+        "slot": "roof",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.2
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "godavariDistrict",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "ballast": {
+            "slot": "roof",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "godavariStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "ballast": {
+            "slot": "roof",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "godavariCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "ballast": {
+            "slot": "roof",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -2.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Raw4000m/129x129/16641-value independent field/25original tiles and PNG frozen before these sections, fixed exterior datum24.5575m. Nominal28x97.552m primary span pattern held inside2762.416m native endpoint length using symmetric15.48m end allowances. Independent deck12.8/bottom10.3/archspring13.05+20rise; pier bottom-2/top10.05; paired concrete ribs5.6m apart/.8wide/1.7..1.1deep. These sections and unseen pier/box/end/rail/catenary census/levels are original medium-fi estimates supported by clear upper-arch photo and native alignment/primary structural family. Source river DEM contains low/urban artifacts, is not bathymetry/water/rail datum and does not certify foundations or banks; no source fitting/flattening/reacquisition. Foreground old steel-truss/brick piers are excluded. Exact host/source contact unresolved/replacementfalse.",
+    "anchor": [
+      81.7541373,
+      17.0078714
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        81.74074613109624,
+        17.00707226177763
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exteriorSW point5m beyond acquisition bounds of entire native bridge, chosen before terrain/floors/geometry; not a surveyed bank/rail/river stage."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/56683928"
+    ],
+    "source": "https://www.openstreetmap.org/way/56683928",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:004938d561e8fd31a166e945ca7977a1cefb34e556b84e03db5827076aae1c40",
+    "notes": "Whole surviving Godavari Arch Bridge/Q2012032 exterior on exact nativeway56683928 east/west abutment alignment, complete approximately2.76km mapped endpoint extent with28 twin concrete parabolic bowstring spans, vertical hangers/lateral concrete Vierendeel struts, concrete tie-box railway deck/open underside/pale piers and end abutments, single broad-gauge track/simple intrinsic maintenance edges and sparse electrification. All28 structural spans retained; internal repeat positions and architectural sections estimated within native ends. Exclude separate parallel abandoned Havelock steel-truss/masonry-pier bridge97471765/Q15263787 visible in foreground of source, separate southern road/rail GodavariBridge/Q2736879, small detached approach bridge56683933 beyond endpoint, river/water/ground slab/city/people/boats/trees/private interiors. No one-span/facade-only reduction or transplanted neighbor geometry."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole native2762.416m alignment/Q2012032/way56683928 and both original endpoints retained. Primary engineer28x97.552m pattern centered with15.48m original end allowances. All28 twin concrete parabolic spans, separate hangers/lateral Vierendeel struts/tie deck/open underside/piers/abutments/single1676mm gauge track/intrinsic maintenance edges and sparse catenary; no facade-only or single-span reduction.",
+    "One exact3872x2592 Hariya1234 2011-05-12 Own/PD-own Qualla original individually inspected/nativeSHA1matched. Separate oldHavelock steel-through-truss/masonry piers overlap foreground of photo and are excluded; separate road/approach bridges excluded. Other nominalPD image has creator/grant ambiguity and is unused. Primary BBR/KDM text only; no protected drawings/images/textures/borrowed meshes/copied people/artwork/license-policy-verifier changes.",
+    "Photo is sunset and hides much of new deck/piers behind old bridge. Daylight palette/arch-rise20m and rib sections/width/vertical deck level/pier supports/end offsets/rails/maintenance/catenary details are bounded original medium-fi estimates.12 hanger positions per rib modeled; dense sleepers/posts reduced intentionally byLOD. Skyline preserves28 paired arch silhouettes/native ends/deck/piers but omits fine hangers/track/struts; district retains partial hanger and lateral rhythm. No as-built survey or engineering structural analysis claimed.",
+    "Independent4000m/129x129/16641-value field/25raw source tiles/PNG frozen before deck/floor/arch/pier decisions unchanged. Original source includes river low/urban artifacts and is not bathymetry or current water/rail elevation. Source and host contact unresolved/replacementfalse; isolated/shared flat appearance separate. No terrain fitting/flattening/reacquisition or river/ground slab."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-28-twin-bowstring-spans-native-both-ends",
+      "position": [
+        1794.9564205701852,
+        1050,
+        1758.0191831302263
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "opposite-whole-bridge-and-pier-openings",
+      "position": [
+        -1648.2151388237655,
+        800,
+        -1653.2957558017727
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "eastern-end-repeated-arches-no-old-truss",
+      "position": [
+        1456.3958879755005,
+        29,
+        136.42220306113302
+      ],
+      "lookAt": [
+        1119.4325905903167,
+        25,
+        35.64653032557568
+      ]
+    },
+    {
+      "name": "paired-concrete-ribs-open-lateral-vierendeel-struts",
+      "position": [
+        1343.71388416767,
+        40,
+        61.798037954567235
+      ],
+      "lookAt": [
+        1314.3338005591665,
+        25,
+        41.85284587333216
+      ]
+    },
+    {
+      "name": "twelve-hanger-pairs-tie-deck-pier-caps",
+      "position": [
+        1312.1695469322567,
+        18,
+        109.81839601631567
+      ],
+      "lookAt": [
+        1314.3338005591665,
+        19,
+        41.85284587333216
+      ]
+    },
+    {
+      "name": "true-deck-soffit-and-separated-pier-bearings",
+      "position": [
+        1260.915069553948,
+        5,
+        54.158908517090126
+      ],
+      "lookAt": [
+        1267.3576114897514,
+        11,
+        40.35696469002675
+      ]
+    },
+    {
+      "name": "single-gauge-track-maintenance-edge-catenary",
+      "position": [
+        1379.141734252687,
+        16,
+        48.91908464486252
+      ],
+      "lookAt": [
+        1289.3464659477756,
+        16,
+        41.05716439285056
+      ]
+    },
+    {
+      "name": "western-abutment-and-complete-span-rhythm",
+      "position": [
+        -1430.9311444758207,
+        32,
+        -150.61892234748603
+      ],
+      "lookAt": [
+        -1129.4275244348732,
+        24,
+        -35.96480291776832
+      ]
+    },
+    {
+      "name": "whole-native-alignment-and-28-span-distribution",
+      "position": [
+        -0.31827259219264,
+        2500,
+        9.9949338445564
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 62988,
+    "vertices": 188964,
+    "materials": 3,
+    "bytes": 7560888,
+    "sha256": "sha256:9d4e8c624b7400fd10be14e43d0a7787b0d700589a164154a8d5a81935306660"
+  }
+}

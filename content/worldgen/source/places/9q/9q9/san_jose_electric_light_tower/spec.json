@@ -1,0 +1,288 @@
+{
+  "planId": "san_jose_electric_light_tower",
+  "id": "san_jose_electric_light_tower",
+  "assetId": "molen.worldgen.structure.san_jose_electric_light_tower",
+  "title": "San Jose Electric Light Tower",
+  "category": "tower",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -121.8920664,
+    "latitude": 37.3354708
+  },
+  "size": [
+    25.799999237060547,
+    73.8038991689682,
+    25.799999237060547
+  ],
+  "actualBounds": {
+    "min": [
+      -12.899999618530273,
+      -0.36629998683929443,
+      -12.899999618530273
+    ],
+    "max": [
+      12.899999618530273,
+      73.4375991821289,
+      12.899999618530273
+    ]
+  },
+  "visualBrief": "Original1881 downtown SanJoseElectricLightTower: whole four splayed tubular ironlegs on independentbrickcornerpiers, openstreetarches, tapering square horizontalgirters/Xdiagonalbracing, slimmaintenanceaccessladder, compacttopserviceplatform/6carbonarclamps/diffusingshield/30ftflagpole. Historical dated reconstruction at actual Market/SantaClara intersection; not1977halfsizeHistoryParkreplica, no surroundingstreets/buildings/trams/people.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1881-12-13",
+    "validFrom": "1881-12-13",
+    "validUntil": "1882-01-01"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:San_Jose_Electric_Light_Tower_(Harper%27s_Weekly,_1881-12-10,_pg_821).jpg"
+  ],
+  "stories": [
+    {
+      "id": "san-jose-electric-light-tower-wp",
+      "url": "https://qualla.com/san-jose-electric-light-tower/"
+    }
+  ],
+  "referenceInputHash": "d6f077d481c5b0b27a5ec4238a9e1ad7bdc7d4888721640467fdc7c47bd90605",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-san-jose-electric-light-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-san-jose-electric-light-tower.mjs",
+    "level": "skyline",
+    "export": "sanJoseTowerSkyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.6
+      },
+      "brick": {
+        "slot": "foundation",
+        "graph": "brick",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "lamp": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.5,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "sanJoseTowerDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.6
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "lamp": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.5,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "sanJoseTowerStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.6
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "lamp": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.5,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "sanJoseTowerCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.6
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "lamp": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.5,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "PrimaryHistorySanJose states original237fttotal atMarket/SantaClara intersection, fourcornerfeet and6carbonarclights, versus1977HistoryParkreplica115ft. Historical207ftironframe63.0936m plus30ftpole9.144m total72.2376m. Exact native current roadjunctionnode1984576776 anchors original intersection[-121.8920664,37.3354708]; heading0.5358846203930857 alongSouthMarketway417034082, +Zsoutheast/+Xnortheast. Approximate24mx24mfourfootspan/12mlowerarch and8trussbays proportioned from exact1881publishedprint and cornerstreetspan, not a mapped surviving footprint or surveyed frame. Current roadlines/grade do not certify1881 streetalignment/footlocations. Four independent brick pier tops fixed at1.2m above original intersection provider datum27.1207m, selected before geometry. Each isolated foundation toe samples original independent modern field. Original1881 pavement/footing elevations unverified; no whole-intersection slab or field flattening/fitting/reacquisition.",
+    "anchor": [
+      -121.8920664,
+      37.3354708
+    ],
+    "heading": 0.5358846203930857,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -121.8920664,
+        37.3354708
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed original intersection centre before independent modern sourceground/geometry. Provider-relative review datum, not surveyed1881pavement."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/1984576776",
+      "way/417034082"
+    ],
+    "source": "https://www.openstreetmap.org/node/1984576776",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:77997189cae9076ef05e4f0dcf2f9e1118cf33b4e773e8f18719c1055f0dd1e4",
+    "notes": "Original1881 downtown SanJoseElectricLightTower: whole four splayed tubular ironlegs on independentbrickcornerpiers, openstreetarches, tapering square horizontalgirters/Xdiagonalbracing, slimmaintenanceaccessladder, compacttopserviceplatform/6carbonarclamps/diffusingshield/30ftflagpole. Historical dated reconstruction at actual Market/SantaClara intersection; not1977halfsizeHistoryParkreplica, no surroundingstreets/buildings/trams/people."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "limitations": [
+    "PrimaryHistorySanJose states original237fttotal atMarket/SantaClara intersection, fourcornerfeet and6carbonarclights, versus1977HistoryParkreplica115ft. Historical207ftironframe63.0936m plus30ftpole9.144m total72.2376m. Exact native current roadjunctionnode1984576776 anchors original intersection[-121.8920664,37.3354708]; heading0.5358846203930857 alongSouthMarketway417034082, +Zsoutheast/+Xnortheast. Approximate24mx24mfourfootspan/12mlowerarch and8trussbays proportioned from exact1881publishedprint and cornerstreetspan, not a mapped surviving footprint or surveyed frame. Current roadlines/grade do not certify1881 streetalignment/footlocations.",
+    "Four independent brick pier tops fixed at1.2m above original intersection provider datum27.1207m, selected before geometry. Each isolated foundation toe samples original independent modern field. Original1881 pavement/footing elevations unverified; no whole-intersection slab or field flattening/fitting/reacquisition.",
+    "Dated original1881 reconstruction, current-world excluded;1977HistoryPark115ftreplica notmodeled. Fourfoot24msquare span, lowerarchcurve/bracebaycensus, pipegauges, brickpiersections, accessladder routing, colors, lamp/reflector/serviceplatformhardware approximate from one contemporaneous print. Sixarclamps/207ftframe/30ftpole from primarytext; later incandescentstrings/repairs/collapse notrepresented.",
+    "One individually inspected exact published H.G.Peelor10Dec1881 HarperWeeklyp821 public-domain illustration with original bytes/native revision and dated citation. Qualla heroCCreplicaphoto and othercity/CCmediaunused. No supplementalimages/photographictextures/generatedbitmaps/borrowedmesh.",
+    "Independent256m129square16641-sample modernsourcefield/four originalTerrariumtiles frozenbeforegeometry. Provider27.1207mintersectiondatum and fourpier tops1.2m fixed, foundationtoes sample unchangedmodernfield; original1881pavement elevations/hostcontactunverified. No groundflattening/fitting/reacquisition or whole-intersectionplatform; dated geographicpreview only.",
+    "Four LODs retain four splayed legs, openarchedstreetspan, tapering lattice and lamptop/shield/flagpole. Skyline alternates single diagonals/reducedbaycount; district restoresXbraces; nearpipeflanges/crossbolts/ladderrungs/crown hardware added."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-original-four-leg-open-lattice-tower-and-flagpole",
+      "position": [
+        98,
+        67,
+        115
+      ],
+      "lookAt": [
+        0,
+        34,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "open-street-arches-four-independent-brick-footings-and-pipe-legs",
+      "position": [
+        32,
+        9,
+        38
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "tapered-square-xbraces-horizontal-girts-and-maintenance-access",
+      "position": [
+        24,
+        37,
+        28
+      ],
+      "lookAt": [
+        0,
+        35,
+        0
+      ]
+    },
+    {
+      "name": "six-carbon-arc-lamps-service-platform-shield-and-thirty-foot-flagpole",
+      "position": [
+        8,
+        66,
+        9
+      ],
+      "lookAt": [
+        0,
+        63,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 17212,
+    "vertices": 51636,
+    "materials": 3,
+    "bytes": 2067776,
+    "sha256": "sha256:c0ca1fdd1a91809e81781deeda1369d8a4049a499f4167d3b277122923c7ae86"
+  }
+}

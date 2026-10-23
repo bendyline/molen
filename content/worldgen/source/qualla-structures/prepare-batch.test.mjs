@@ -86,6 +86,32 @@ test('authoritative gallery paths recover originals absent from merged article',
   assert.ok(r.candidates.every((r) => r.metadataOrigin.endsWith('metadata.json')));
   assert.ok(!r.candidates.some((r) => r.path.endsWith('old.jpg')));
 });
+test('a PNG hero keeps authoritative source metadata instead of falling back to merged media', (t) => {
+  const f = fixture(t),
+    folder = '_m/a/b/c/d/test',
+    hero = {
+      filename: 'Exterior.png',
+      descriptionUrl: 'https://commons.wikimedia.org/wiki/File:Exterior.png',
+      url: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Exterior.png',
+      mime: 'image/png',
+      license: 'CC0',
+      artist: 'Original photographer',
+      dateCreated: '2015-10-30',
+    };
+  f.put(`${folder}/hero.png`, 'original PNG');
+  f.put(`${folder}/hero.jpg`, 'stale unrelated JPEG');
+  f.put(`${folder}/metadata.json`, { hero });
+  f.put(f.structure.stories[0].sourcePath, {
+    media: { hero: { path: `${folder}/hero.png`, sourceUrl: hero.descriptionUrl } },
+  });
+  const got = collectReferences(f.dir, [f.structure], f.entry).candidates;
+  assert.equal(got.length, 1);
+  assert.equal(got[0].path, `${folder}/hero.png`);
+  assert.equal(got[0].metadataOrigin, `${folder}/metadata.json`);
+  assert.equal(got[0].artist, hero.artist);
+  assert.equal(got[0].license, 'CC0');
+  assert.equal(got[0].dateCreated, hero.dateCreated);
+});
 test('public-domain policy rejects uncertain manual choices before writing and selects published eligible originals', (t) => {
   const f = fixture(t);
   f.batch.policy = { imagery: { id: PUBLIC_DOMAIN_POLICY } };

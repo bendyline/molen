@@ -8,7 +8,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { inspectImageryPolicy, PUBLIC_DOMAIN_POLICY } from './imagery-policy.mjs';
+import { inspectImageryPolicy, originalHeroPath, PUBLIC_DOMAIN_POLICY } from './imagery-policy.mjs';
 import { next1000Entries, next1000Matches } from './work-ownership.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -144,8 +144,10 @@ export function collectReferences(qualla, structures, entry) {
           (meta.mediaReviews?.[path.basename(p)]?.productionReviews ?? [])
             .map((r) => r.assessment?.record)
             .filter(Boolean);
-        if (meta.hero)
-          add(meta.hero, `${folder}/hero.jpg`, metadataPath, true, records(`${folder}/hero.jpg`));
+        if (meta.hero) {
+          const heroPath = originalHeroPath(folder, meta.hero);
+          add(meta.hero, heroPath, metadataPath, true, records(heroPath));
+        }
         for (let i = 0; i < (meta.gallery ?? []).length; i++) {
           const p = meta.galleryPaths?.[i];
           if (p) add(meta.gallery[i], p, metadataPath, true, records(p));

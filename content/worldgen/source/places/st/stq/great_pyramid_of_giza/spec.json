@@ -1,0 +1,306 @@
+{
+  "planId": "great_pyramid_of_giza",
+  "id": "great_pyramid_of_giza",
+  "assetId": "molen.worldgen.structure.great_pyramid_of_giza",
+  "title": "Great Pyramid of Giza",
+  "category": "archaeological",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 31.1342122,
+    "latitude": 29.97917
+  },
+  "size": [
+    224.8262481689453,
+    142.9999951198697,
+    232.23472595214844
+  ],
+  "actualBounds": {
+    "min": [
+      -112.41312408447266,
+      0.11999999731779099,
+      -116.11736297607422
+    ],
+    "max": [
+      112.41312408447266,
+      143.1199951171875,
+      116.11736297607422
+    ]
+  },
+  "visualBrief": "Whole surviving GreatPyramidofGiza/KhufuQ37200 exterior on actual namedway4420397/allfive native controls and full base: complete four sloping rough limestone core faces/exposed stepped horizontal masonry courses and original restrained irregular block rhythm, small truncated summit/open air above, bounded north entry/rebate/chevrons and surviving basal casing fragments only where supportable. Current stripped weathered mass, not hypothetical polished white original/pyramidion. No neighboringKhafre/Menkaure/queens pyramids/wholeGiza complex/Sphinx/mortuarytemples/roads/sitepad/people/private burial interiors/artwork/inscriptions. Hidden exact courses/stonecensus/entrance/current summit details original bounded estimates.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:GizaPyramids@CairoEgypt_Kheops_2007jan20-42_byDanielCsorfoly.JPG"
+  ],
+  "stories": [
+    {
+      "id": "great-pyramid-of-giza-wp",
+      "url": "https://qualla.com/great-pyramid-of-giza/"
+    }
+  ],
+  "referenceInputHash": "e5f5111b51434697fe2f8aded73d66af97778ac9a7e9bb1d8868d2d094f41c93",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-great-pyramid-of-giza.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-great-pyramid-of-giza.mjs",
+    "level": "skyline",
+    "export": "gizaSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#fffffd",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "gizaDistrict",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#fffffd",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "gizaStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#fffffd",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "gizaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#fffffd",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 5,
+    "groundY": -0.05
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "After independent1000m/16641-value ground/untouchedrawtiles frozen, original bounded floor+.12, current massheight138.8 fromnamednativeway (not original146.6mapex), small truncated summit5.2% of nativebaselines. Exposed steppedroughlimestone rows/coarse-to-fine24/60/128/203 courses and restrained original irregularblockcolor rhythms are medium-fi estimates, not a measured course/stone census. Nativefive basecontrols retained, exact230.3m survey datum not imposed onto existing224–229m mappedoutline. North entryrecess/chevrons andlowerrobberentry placement/sections original bounded estimates because clearphoto shows otherfaces; no privateinterior. Hidden basal casing/summitfixture/currentdetails unknown. Exact source/host footingcontact unresolved/replacementfalse; no terrain fitting/flattening/reacquisition or wholeGiza pad.",
+    "anchor": [
+      31.1342122,
+      29.97917
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        31.1329634403095,
+        29.97805503987741
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exteriorSW point5m beyond full building/projection acquisition bounds before terrain/floors/geometry; not surveyed street or pyramid base."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/4420397"
+    ],
+    "source": "https://www.openstreetmap.org/way/4420397",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:79b0f12b3501d87c8cf3783705894f4339a3eacabe4dd18bb5dc82d6d5cf2ed0",
+    "notes": "Whole surviving GreatPyramidofGiza/KhufuQ37200 exterior on actual namedway4420397/allfive native controls and full base: complete four sloping rough limestone core faces/exposed stepped horizontal masonry courses and original restrained irregular block rhythm, small truncated summit/open air above, bounded north entry/rebate/chevrons and surviving basal casing fragments only where supportable. Current stripped weathered mass, not hypothetical polished white original/pyramidion. No neighboringKhafre/Menkaure/queens pyramids/wholeGiza complex/Sphinx/mortuarytemples/roads/sitepad/people/private burial interiors/artwork/inscriptions. Hidden exact courses/stonecensus/entrance/current summit details original bounded estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole surviving Khufu pyramidway4420397/Q37200/allfive native basecontrols. Complete weathered core faces/real stepped course treads/small truncated summit and bounded two north entryrebates/chevron estimates. Neighboring Khafre/Menkaure/queens pyramids/temples/Sphinx/wholeGiza site/ground slab/private interiors excluded; no hypothetical polished white casing/pyramidion.",
+    "One exact1656x1242 Qualla DanielCsörföly2007-02 Own/PD-self photograph/nativeSHA1matched/clear namedcreator allrightsreleased nativegrant individually inspected after51familyQuallasearch/0conflicts. No supplementalimages needed, unrelatedCC0 masonrydiagram/museumfragment/interiors/portraits skippedwithoutpixels. No protected plan/photo pixels/borrowedmesh/generatedbitmap/copied inscriptions or sourcebody/policy changes.",
+    "Nativeheight138.8m retained for current mass, original bounded floor+.12/summit5.2% of base/24,60,128,203course levels/irregular original muted blockcolor rhythm. Nativebase224–229m approximates survey230.3m rather than inventing a replacement footprint. Individualstone/coursecensus/rear/currentfinish/basal casing remnants omitted or estimated. Northrebates/chevrons not seen in selected view: estimated centers+7/+5m east,height17/7m,width2.6/2m/depth1.6m. Small4.2m survey mast supported by Qualla story text, precise fixture/braces unsurveyed.",
+    "Independent1000m129x12916641-value field/fourrawtiles/PNG frozen before floor/course/summit geometry unchanged. Source contains pyramid/building/plateau relief and is not archaeological foundation survey; exact source/host contact unresolved/replacementfalse. Flat appearance separate; no terrain fitting/flattening/reacquisition or whole-sitepad."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-surviving-weathered-limestone-pyramid",
+      "position": [
+        350,
+        215,
+        390
+      ],
+      "lookAt": [
+        0,
+        58,
+        0
+      ]
+    },
+    {
+      "name": "whole-north-native-faces-and-bounded-entry-details",
+      "position": [
+        250,
+        180,
+        -360
+      ],
+      "lookAt": [
+        0,
+        55,
+        0
+      ]
+    },
+    {
+      "name": "exposed-core-stepped-courses-and-original-block-rhythm",
+      "position": [
+        135,
+        25,
+        170
+      ],
+      "lookAt": [
+        75,
+        16,
+        81
+      ]
+    },
+    {
+      "name": "north-entrance-rebates-and-chevron-estimates",
+      "position": [
+        10,
+        24,
+        -145
+      ],
+      "lookAt": [
+        7,
+        18,
+        -96
+      ]
+    },
+    {
+      "name": "truncated-summit-and-estimated-small-survey-mast",
+      "position": [
+        26,
+        165,
+        35
+      ],
+      "lookAt": [
+        0,
+        137,
+        0
+      ]
+    },
+    {
+      "name": "whole-five-native-base-controls-and-course-domain",
+      "position": [
+        0,
+        510,
+        0.01
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 55644,
+    "vertices": 166932,
+    "materials": 3,
+    "bytes": 6679636,
+    "sha256": "sha256:cca8d44b42f15ba87066b36d3e6b1feea76dc3773d587d35d54e5618f790294b"
+  }
+}

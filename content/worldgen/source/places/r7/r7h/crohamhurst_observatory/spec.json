@@ -1,0 +1,394 @@
+{
+  "planId": "crohamhurst_observatory",
+  "id": "crohamhurst_observatory",
+  "assetId": "molen.worldgen.structure.crohamhurst_observatory",
+  "title": "Crohamhurst Observatory",
+  "category": "museum-library",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 152.8695467670947,
+    "latitude": -26.809709569805033
+  },
+  "size": [
+    26.06527614593506,
+    9.488890886306763,
+    24.196809768676758
+  ],
+  "actualBounds": {
+    "min": [
+      -10.927638053894043,
+      -2.135791063308716,
+      -13.468404769897461
+    ],
+    "max": [
+      15.137638092041016,
+      7.353099822998047,
+      10.728404998779297
+    ]
+  },
+  "visualBrief": "Whole surviving1935 timber observatory: actual front rectangular roof extent, low timber stumps, weatherboard body and currently enclosed north/east casement verandas, hipped fibre-cement roof with north/east/west louvred gablets and entry gable, attached southwest shed, and intrinsic Stevenson screen, low temperature-pit caps, remnant instrument strip and sundial/telescope-marker stands. Separate later residence/eastern house/workshop, trees/private garden/fences/cars/people excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Crohamhurst_Observatory_on_its_opening_day,_1935.JPG"
+  ],
+  "stories": [
+    {
+      "id": "crohamhurst-observatory-wp",
+      "url": "https://qualla.com/crohamhurst-observatory/"
+    }
+  ],
+  "referenceInputHash": "2fa10bb3243df2b9184125ede9f32e9c5bf922d082b1f74e2b9de06fba6298d9",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-crohamhurst-observatory.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-crohamhurst-observatory.mjs",
+    "level": "skyline",
+    "export": "crohamhurstObservatorySkyline",
+    "errorMeters": 0.9,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_panel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_painted_lap",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.38,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "crohamhurstObservatoryDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.38,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "crohamhurstObservatoryStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.38,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "crohamhurstObservatoryCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_panel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.38,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.3
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "QRA public building-vector feature1730744 gives the northern/front rectangular333.265m² roof, 21.235276910457262m along north frontage and 15.756809327181642m depth, aligned with road approach and consistent with1935 building form/QHR siting. It is geometrically identified as the observatory from relative front placement/rectangular hipped form, not a named QRA semantic label; this identity is an explicit supported inference. Automated TWOSTOREY/slab/floor labels are not a building survey and do not override primary single-storey timber-stump description. Distinct eastern210.90m² feature1730737 and southern201.13m² feature1730767 are excluded. Original footprint is metric data rather than interpreted from licensed aerial pixels. Southwest shed projection/instrument positions are bounded estimates from primary relative-location text, not mapped roof parts. +X east-northeast along north frontage; -Z north-northwest toward road. Before geometry, level observatory/shed floor fixed0.65m above independent north-east/uphill corner sample[9.617638455228631,-6.878404663590821]. Low stumps at that corner, with longer exposed toes on the downhill west; original opening photo also shows falling ground and exposed posts. Support toes alone consume the unchanged field. Native QRA automated slab/floor/class labels are not a floor survey and are not fitted to the independent Terrarium datum. Coarse source DEM may include vegetation/building effects; exact stumps/steps/grade contact unverified, geographic preview approximate and replacement disabled. No terrain flattening/fitting/reacquisition.",
+    "anchor": [
+      152.8695467670947,
+      -26.809709569805033
+    ],
+    "heading": 0.5228394112848955,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        152.86948645650924,
+        -26.80961617366746
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed outside northern frontage point selected from native rectangle before independent terrain/geometry; not surveyed finished-floor datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "qra/1730744"
+    ],
+    "source": "https://gisservices.qra.qld.gov.au/arcgis/rest/services/Foundation_Data/Queensland_Building_Footprints/FeatureServer/0",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:28f2ce39eae272176cbb69c444da1bcb635764276838f74eeac4cd0ae16aa6cf",
+    "notes": "Whole surviving1935 timber observatory: actual front rectangular roof extent, low timber stumps, weatherboard body and currently enclosed north/east casement verandas, hipped fibre-cement roof with north/east/west louvred gablets and entry gable, attached southwest shed, and intrinsic Stevenson screen, low temperature-pit caps, remnant instrument strip and sundial/telescope-marker stands. Separate later residence/eastern house/workshop, trees/private garden/fences/cars/people excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "QRA public building-vector feature1730744 gives the northern/front rectangular333.265m² roof, 21.235276910457262m along north frontage and 15.756809327181642m depth, aligned with road approach and consistent with1935 building form/QHR siting. It is geometrically identified as the observatory from relative front placement/rectangular hipped form, not a named QRA semantic label; this identity is an explicit supported inference. Automated TWOSTOREY/slab/floor labels are not a building survey and do not override primary single-storey timber-stump description. Distinct eastern210.90m² feature1730737 and southern201.13m² feature1730767 are excluded. Original footprint is metric data rather than interpreted from licensed aerial pixels. Southwest shed projection/instrument positions are bounded estimates from primary relative-location text, not mapped roof parts. +X east-northeast along north frontage; -Z north-northwest toward road.",
+    "Before geometry, level observatory/shed floor fixed0.65m above independent north-east/uphill corner sample[9.617638455228631,-6.878404663590821]. Low stumps at that corner, with longer exposed toes on the downhill west; original opening photo also shows falling ground and exposed posts. Support toes alone consume the unchanged field. Native QRA automated slab/floor/class labels are not a floor survey and are not fitted to the independent Terrarium datum. Coarse source DEM may include vegetation/building effects; exact stumps/steps/grade contact unverified, geographic preview approximate and replacement disabled. No terrain flattening/fitting/reacquisition.",
+    "Whole surviving single-storey timber observatory and intrinsic weather instruments, with current enclosed north/east weatherboard/casement verandas, hipped fibre-cement roof/three louvred gablets/entry gable, genuine open timber-stump underfloor, attached southwest lean-to and meteorological devices. No telescope dome, removed telescope, independent house/workshop, private garden/trees/people/vehicles/bunting or copied memorial text.",
+    "One exact1432x1003 expired1935 Courier-Mail opening photograph controls original roof/post/veranda proportions; it depicts the formerly open verandas, not current enclosures or all sides. Current enclosure/shed/instruments derive from official QHR602682 text, itself based on boundary observations/heritage photos rather than a complete site survey. Fine bay/door/vent census, sections, shed dimensions and instrument locations remain bounded estimates. Neutral light weatherboards/gray fibre-cement/painted frames inferred from grayscale/type, not copyrighted modern colour images.",
+    "Actual QRA public333.265m² front roof rectangle fixes21.235m by15.757m metric extent and bearing; its identification as observatory is a supported geometric/context inference, not an official named building label. Automated TWOSTOREY/slab/floor/height attributes are not accepted as literal construction facts. Eastern210.90m² and southern201.13m² independent roofs excluded. Shed projection and instrument layout are not separately mapped parts. Compatible independent ground required; provider DEM may include vegetation/surface effects, exact contact unsurveyed/replacement disabled.",
+    "Four LODs retain complete roof/three vent gablets/entry/current enclosures/open supports/attached shed and instruments. Near details restore recessed divided casements/weatherboard edges, attic and Stevenson slats, corrugation geometry, joists and entry rails. Six actual canonical surface slots, five shared graphs and local glazing. Fibre-cement roof uses rough concrete-panel binding with original corrugated geometry; small painted instrument supports use neutral trim approximation."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-observatory-three-gablets-enclosed-verandas-and-instruments",
+      "position": [
+        -36,
+        25,
+        -42
+      ],
+      "lookAt": [
+        1,
+        2,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "north-casements-weatherboards-entry-gable-and-open-stumps",
+      "position": [
+        -6,
+        6,
+        -19
+      ],
+      "lookAt": [
+        1,
+        3,
+        -6
+      ]
+    },
+    {
+      "name": "north-east-louvred-gablets-roof-and-enclosed-return",
+      "position": [
+        27,
+        15,
+        -21
+      ],
+      "lookAt": [
+        5,
+        4,
+        -1
+      ]
+    },
+    {
+      "name": "south-west-attached-shed-hip-roof-and-timber-subfloor",
+      "position": [
+        -24,
+        10,
+        20
+      ],
+      "lookAt": [
+        -7,
+        2,
+        7
+      ]
+    },
+    {
+      "name": "stevenson-screen-pit-caps-and-surviving-instrument-stands",
+      "position": [
+        21,
+        5,
+        -14
+      ],
+      "lookAt": [
+        14,
+        2,
+        -7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4288,
+    "vertices": 12864,
+    "materials": 6,
+    "bytes": 518288,
+    "sha256": "sha256:e35c6da29988334089754ac798a9ecbd321dd7871b99db42b21344fec5b9e387"
+  }
+}

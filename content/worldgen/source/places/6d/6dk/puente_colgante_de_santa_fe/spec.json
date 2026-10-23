@@ -1,0 +1,381 @@
+{
+  "planId": "puente_colgante_de_santa_fe",
+  "id": "puente_colgante_de_santa_fe",
+  "assetId": "molen.worldgen.structure.puente_colgante_de_santa_fe",
+  "title": "Puente Colgante de Santa Fe",
+  "category": "bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -60.6812881,
+    "latitude": -31.6400604
+  },
+  "size": [
+    316.3233947753906,
+    33.01756954193115,
+    15.246622562408447
+  ],
+  "actualBounds": {
+    "min": [
+      -158.1616973876953,
+      -7.300000190734863,
+      -7.401512622833252
+    ],
+    "max": [
+      158.1616973876953,
+      25.71756935119629,
+      7.845109939575195
+    ]
+  },
+  "visualBrief": "Whole surviving rebuilt Puente Colgante/Ingeniero Marcial Candioti: entire mapped three-span crossing and both actual tower locations, red riveted/laced twin-column portals/stacked arched crossbeams, concrete river piers and bounded abutments/anchors, fan/sagging cable system/clamps/suspenders, deck/stiffening edge members, large visible longitudinal water pipes, sidewalks/open railings and simple lamps. Separate parallel concrete bridge/shore promenades/city/river water/boats/cars/people/vegetation/signs/holiday stars and light strings excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Santa_fe.jpg"
+  ],
+  "stories": [
+    {
+      "id": "puente-colgante-de-santa-fe-wp",
+      "url": "https://qualla.com/puente-colgante-de-santa-fe/"
+    }
+  ],
+  "referenceInputHash": "837e70b66fb7e651a40995003f90a374a0a356c1f040d1bb63582b9a16eae5e9",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-puente-colgante-santa-fe.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-puente-colgante-santa-fe.mjs",
+    "level": "skyline",
+    "export": "santaFeSuspensionSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "steel": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.25
+      },
+      "cable": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.5
+      },
+      "road": {
+        "slot": "roof",
+        "graph": "gravel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "pier": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "accent": {
+        "slot": "door",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.8,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "santaFeSuspensionDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "steel": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.25
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.5
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "pier": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "door",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "santaFeSuspensionStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "steel": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.25
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.5
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "pier": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "door",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "santaFeSuspensionCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "steel": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.25
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.5
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "pier": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "door",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Named current whole road-bridge ways939373894+939373891+66986314/Q4068764 fix exact endpoints and309.3234074312497m straight plan alignment. Explicit mapped support=pylon nodes4576260557/4576260559 fix tower positions[-66.5825602318821,87.73427803146059]m in midpoint frame. +X east-southeast from west bank to east; +Z south-southwest. Native road tags height8/min_height6.5 are approximate structural metadata, not surveyed provider datum. Clear2006 creatorPD original controls rebuilt2002 red lattice towers/Gisclard-type fan+sagging cable appearance/water pipes. Width/tower heights/cable/lacing census/end anchorage/hidden underwater sections remain medium-fi estimates; no parallel concrete bridge substitution. Original16641values independent512m field/raw tile/PNG frozen before geometry; fixed western exterior contact datum15.1052m. Coarse lagoon surface around centre is about-4.3m relative, varies near pylons/parallel road embankment and is not bathymetry or a surveyed water stage. Choose approximate water-4.5m, roadway+3.5m (8m above that level matching native height tag), underside/pipes about6.5m clear, tower cap+25.5m (about30m above inferred water), pier cap-3.7m/base-7.3m before geometry. Whole mapped bridge-road boundary309.323m includes about11m of western mapped connectors; it is map-derived overall scope, not a claim to replace published rounded300m or historic295m engineering lengths. Actual mapped pylon spacing154.317m retained. Width/cable/portal/anchor/underwater foundation sections estimated, exact shore/bed/water contacts unverified. Keep field unchanged, no water/parallel concrete bridge geometry, preview/replacementfalse.",
+    "anchor": [
+      -60.6812881,
+      -31.6400604
+    ],
+    "heading": -0.24470653615227814,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -60.68290210416291,
+        -31.639717272480745
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exterior point just beyond western bridge end selected before terrain and geometry, not a surveyed deck/water/pier datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "ways/939373894+939373891+66986314",
+      "node/4576260557",
+      "node/4576260559"
+    ],
+    "source": "https://www.openstreetmap.org/way/66986314",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5c28459a601670674c2c5e3953a001b8b9bded9f63ea4ea708cefd08545e69a8",
+    "notes": "Whole surviving rebuilt Puente Colgante/Ingeniero Marcial Candioti: entire mapped three-span crossing and both actual tower locations, red riveted/laced twin-column portals/stacked arched crossbeams, concrete river piers and bounded abutments/anchors, fan/sagging cable system/clamps/suspenders, deck/stiffening edge members, large visible longitudinal water pipes, sidewalks/open railings and simple lamps. Separate parallel concrete bridge/shore promenades/city/river water/boats/cars/people/vegetation/signs/holiday stars and light strings excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Named current whole road-bridge ways939373894+939373891+66986314/Q4068764 fix exact endpoints and309.3234074312497m straight plan alignment. Explicit mapped support=pylon nodes4576260557/4576260559 fix tower positions[-66.5825602318821,87.73427803146059]m in midpoint frame. +X east-southeast from west bank to east; +Z south-southwest. Native road tags height8/min_height6.5 are approximate structural metadata, not surveyed provider datum. Clear2006 creatorPD original controls rebuilt2002 red lattice towers/Gisclard-type fan+sagging cable appearance/water pipes. Width/tower heights/cable/lacing census/end anchorage/hidden underwater sections remain medium-fi estimates; no parallel concrete bridge substitution.",
+    "Original16641values independent512m field/raw tile/PNG frozen before geometry; fixed western exterior contact datum15.1052m. Coarse lagoon surface around centre is about-4.3m relative, varies near pylons/parallel road embankment and is not bathymetry or a surveyed water stage. Choose approximate water-4.5m, roadway+3.5m (8m above that level matching native height tag), underside/pipes about6.5m clear, tower cap+25.5m (about30m above inferred water), pier cap-3.7m/base-7.3m before geometry. Whole mapped bridge-road boundary309.323m includes about11m of western mapped connectors; it is map-derived overall scope, not a claim to replace published rounded300m or historic295m engineering lengths. Actual mapped pylon spacing154.317m retained. Width/cable/portal/anchor/underwater foundation sections estimated, exact shore/bed/water contacts unverified. Keep field unchanged, no water/parallel concrete bridge geometry, preview/replacementfalse.",
+    "Whole current mapped crossing/both explicit native pylon positions, paired red lattice columns/three stacked arched crossbeams/concrete piers, full side and middle spans/fan+sagging cable/suspender system, large longitudinal water pipes, two-lane road/sidewalks/open rails/lamps/bounded end abutments and anchors. Separate parallel concrete bridge, shore promenades/city/water/boats/people/cars/signs/holiday stars and light strings excluded.",
+    "One exact cleared native2006 Alegsa original individually inspected with named own/PD-self release, current rebuilt2002 bridge; no doubtful assumed-author night image or unknown-author historic photographs used, no source media/article repair, generated bitmap or borrowed mesh. Current exact lighting installation/fine maintenance details not reproduced from old photographs.",
+    "Gisclard-type fan/sagging cable arrangement follows the clear reference, with bounded interpreted wire/cross-clamp/suspender/lattice/lamp census. It is recognizable exterior geometry, not engineering force design. Native current pylon centres and full mapped bridge-road extent retained, including short western connectors; width/height/cable/anchor/underwater sections remain estimated.",
+    "Five actual canonical slots/three shared graphs plus one local pale accent for lamp/road markings: red painted steel, gray cable metal, coarse asphalt-like gravel roadway, concrete piers/sidewalks and pale marks. No active illumination/water rendering/physics, flag/holiday strings or parallel road-deck substitution. Skyline preserves full bridge/towers/cable families/water pipes; near levels add real four-face column lacing/arch knee plates/underdeck cross girders/pipe joints/rail posts/clamps.",
+    "Independent16641value512m source field/raw tile/PNG frozen before geometry and unchanged. Approximate shared water/deck/pier/shore datum chosen beforehand; provider field not bathymetry or surveyed water stage. Foundations partly embedded and abutment contact approximate; geographic preview/replacementfalse, no flattening/fitting/source-field alteration."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-three-span-red-towers-cables-water-pipes-and-abutments",
+      "position": [
+        225,
+        100,
+        230
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "south-elevation-two-native-pylons-fan-and-sagging-cable-system",
+      "position": [
+        10,
+        15,
+        210
+      ],
+      "lookAt": [
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "eastern-red-lattice-tower-three-arched-openings-and-concrete-pier",
+      "position": [
+        111.73427803146059,
+        12,
+        30
+      ],
+      "lookAt": [
+        87.73427803146059,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "road-through-western-tower-open-portals-sidewalks-and-rails",
+      "position": [
+        -91.5825602318821,
+        5.5,
+        0
+      ],
+      "lookAt": [
+        -36.5825602318821,
+        6.5,
+        0
+      ]
+    },
+    {
+      "name": "main-cable-clamps-suspenders-and-fan-stays",
+      "position": [
+        25,
+        20,
+        19
+      ],
+      "lookAt": [
+        25,
+        14,
+        4.6
+      ]
+    },
+    {
+      "name": "large-water-pipes-underdeck-cross-girders-and-iron-railings",
+      "position": [
+        67.73427803146059,
+        2,
+        18
+      ],
+      "lookAt": [
+        57.73427803146059,
+        2.8,
+        4.5
+      ]
+    },
+    {
+      "name": "western-abutment-cable-anchors-and-full-side-span",
+      "position": [
+        -174.66170371562484,
+        15,
+        29
+      ],
+      "lookAt": [
+        -131.66170371562484,
+        7,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 47584,
+    "vertices": 142752,
+    "materials": 5,
+    "bytes": 5713344,
+    "sha256": "sha256:93af7430258077420d572895fdab5f3969b38f803d1684df7f4bfe2fbdf8c981"
+  }
+}

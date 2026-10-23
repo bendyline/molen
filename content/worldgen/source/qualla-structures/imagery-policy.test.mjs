@@ -53,6 +53,35 @@ test('matching published Qualla metadata and original bytes qualify', (t) => {
   f.put(f.image.path, 'replacement pixels');
   assert.ok(f.run().references[0].blockers.includes('original-bytes-unbound'));
 });
+test('a published PNG hero matches its original metadata without inheriting a stale JPEG', (t) => {
+  const f = fixture(t),
+    image = { ...f.image, path: '_m/a/b/c/d/story/hero.png', license: 'CC0' },
+    hero = { ...image, mime: 'image/png', categories: ['CC-Zero'] },
+    reference = { ...image, sha256: f.reference.sha256 };
+  f.put(image.path, 'original pixels');
+  f.put('_m/a/b/c/d/story/hero.jpg', 'original pixels');
+  f.put('_m/a/b/c/d/story/metadata.json', { hero });
+  f.put(f.story.sourcePath, { media: { hero: image } });
+  assert.equal(f.run({ references: [reference] }).status, 'passed');
+  assert.ok(
+    f
+      .run({ references: [{ ...reference, path: '_m/a/b/c/d/story/hero.jpg' }] })
+      .references[0].blockers.includes('original-source-metadata-disagrees'),
+  );
+  for (const change of [{ artist: 'Different photographer' }, { license: 'CC BY 4.0' }]) {
+    f.put('_m/a/b/c/d/story/metadata.json', { hero: { ...hero, ...change } });
+    assert.ok(
+      f
+        .run({ references: [reference] })
+        .references[0].blockers.includes('original-source-metadata-disagrees'),
+    );
+  }
+  f.put('_m/a/b/c/d/story/metadata.json', { hero });
+  f.put(image.path, 'replacement pixels');
+  assert.ok(
+    f.run({ references: [reference] }).references[0].blockers.includes('original-bytes-unbound'),
+  );
+});
 test('gallery downloads, conflicting aliases and architecture-only tags cannot establish clearance', (t) => {
   const f = fixture(t);
   f.put(f.story.sourcePath, { media: { images: [] } });

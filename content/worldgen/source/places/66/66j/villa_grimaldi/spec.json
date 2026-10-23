@@ -1,0 +1,472 @@
+{
+  "planId": "villa_grimaldi",
+  "id": "villa_grimaldi",
+  "assetId": "molen.worldgen.structure.villa_grimaldi",
+  "title": "Villa Grimaldi",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -70.54255985,
+    "latitude": -33.4636815
+  },
+  "size": [
+    95.59807205200195,
+    11.52526444196701,
+    152.4715118408203
+  ],
+  "actualBounds": {
+    "min": [
+      -47.77779769897461,
+      -0.18000000715255737,
+      -76.62908935546875
+    ],
+    "max": [
+      47.820274353027344,
+      11.345264434814453,
+      75.84242248535156
+    ]
+  },
+  "visualBrief": "Whole surviving VillaGrimaldi memory-park architectural complex/Q2301496 on actual7-corner siteway111293916, not the demolished original estate: current reconstructed water/cell towerway1205370100, Sala de la Memoria1205370099, information/workshop building1211121810,2011CentrodeDocumentacion1211121818 and open model-display shelter1211121812; full Teatro por la Vida tensile pavilion1205370102 with open underside/supports/two tall flanking block piers, actualpool1204054446, Fuente de la Esperanza1211121811/other small fountain controls, curved Muro de los Nombres/node11170906082/low solidarity-wall control/old gate and actual boundary/retaining lines plus intrinsic bounded cross/brick paths/stairs/open courts. No single villa house/facade-only substitute or fullsite solid slab. Current tower/hidden building roof-window-height/canopy/fountain/terrace/boundary sections original bounded estimates from four clear2006 creatorPD originals/current native footprints and primary museum text. Exclude reconstructed torture/private interiors, destroyed villa/cell compound rebuilt as if still surviving, copied pictorial mosaic/murals/portraits/inscriptions/independent sculptures, whole landscape/trees/people/neighborhood.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Villa_Grimaldi_3.jpg",
+    "https://commons.wikimedia.org/wiki/File:Villa_Grimaldi_1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Villa_Grimaldi_4.jpg",
+    "https://commons.wikimedia.org/wiki/File:Villa_Grimaldi_5.jpg"
+  ],
+  "stories": [
+    {
+      "id": "villa-grimaldi-wp",
+      "url": "https://qualla.com/villa-grimaldi/"
+    }
+  ],
+  "referenceInputHash": "e8e7e302cf174a961f4a1a60780ceb0f5f1a4c24af6e259ebb4f3332d5292e43",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-villa-grimaldi.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-villa-grimaldi.mjs",
+    "level": "skyline",
+    "export": "grimaldiSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.15
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffd",
+        "roughness": 0.65,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "grimaldiDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.65,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "grimaldiStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.65,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "grimaldiCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.65,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.15,
+    "groundY": -0.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Immutable original400m/16641-value field/two raw tiles/PNG frozen before these choices. Independent flat appearance floor+.05/path+.035; service bodies2.8..3.25 with low gable roof estimates; timber reconstructed tower8.7+.48 low cap/lookout openings6.95..7.85; open pavilion peak11.1/eaves4.1/corner sag.8 on actual theatre plot with5m front setback and1.4m back setback, stage+.35, flanking stepped block piers9.4. Actual pool/fountain footprints have genuine open dry interiors; poolrim+.65/floor+.075 and fountainrim+.23/floor+.055 are bounded above-stage sections, not excavated/surveyed depths. Name wall18m/2.45m high/7 neutral plaque divisions at actual named point/direction; boundary2.35m, low solidarity bench.58m and native paths/courts/stairs. All unknown current tower/top/service finishes/roof/census/canopy-footings/terrace levels original medium-fi estimates from cleared partial photographs/native plans/primary text; exact site/host contact unresolved/replacementfalse. No source flattening/fitting/reacquisition or whole-site slab.",
+    "anchor": [
+      -70.54255985,
+      -33.4636815
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -70.54312753803146,
+        -33.462950887577826
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exteriorNW point5m beyond whole open-site bounds before independent terrain or geometry/floors; no surveyed site thresholds."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/111293916",
+      "way/1204054446",
+      "way/1205370099",
+      "way/1205370100",
+      "way/1205370101",
+      "way/1205370102",
+      "way/1211121810",
+      "way/1211121811",
+      "way/1211121812",
+      "way/1211121813",
+      "way/1211121814",
+      "way/1211121815",
+      "way/1211121816",
+      "way/1211121817",
+      "way/1211121818",
+      "way/1211121819",
+      "way/1211121820",
+      "way/1204054439",
+      "way/1204054440",
+      "way/1204054441",
+      "way/1204054442",
+      "way/1204054444",
+      "way/1204054445",
+      "way/1211121821",
+      "way/1211121822",
+      "way/1211121823",
+      "way/1211121824",
+      "way/1211606759",
+      "way/1431405418",
+      "node/11170906051",
+      "node/11170906061",
+      "node/11170906082",
+      "node/11221386261",
+      "node/11221386298",
+      "node/11221386258"
+    ],
+    "source": "https://www.openstreetmap.org/way/111293916",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4025e4b575c2ab07d93cd7dbe19f22fb06689823455b6e1bb22e5fd58f7d0fb9",
+    "notes": "Whole surviving VillaGrimaldi memory-park architectural complex/Q2301496 on actual7-corner siteway111293916, not the demolished original estate: current reconstructed water/cell towerway1205370100, Sala de la Memoria1205370099, information/workshop building1211121810,2011CentrodeDocumentacion1211121818 and open model-display shelter1211121812; full Teatro por la Vida tensile pavilion1205370102 with open underside/supports/two tall flanking block piers, actualpool1204054446, Fuente de la Esperanza1211121811/other small fountain controls, curved Muro de los Nombres/node11170906082/low solidarity-wall control/old gate and actual boundary/retaining lines plus intrinsic bounded cross/brick paths/stairs/open courts. No single villa house/facade-only substitute or fullsite solid slab. Current tower/hidden building roof-window-height/canopy/fountain/terrace/boundary sections original bounded estimates from four clear2006 creatorPD originals/current native footprints and primary museum text. Exclude reconstructed torture/private interiors, destroyed villa/cell compound rebuilt as if still surviving, copied pictorial mosaic/murals/portraits/inscriptions/independent sculptures, whole landscape/trees/people/neighborhood."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole current memory-park architectural ensemble/Q2301496 uses actual7-corner open siteway111293916, five native building/roof footprints including reconstructed timber tower/SalaMemoria/service buildings/display shelter, separate Teatro por la Vida tensile pavilion/open underside/A-frame/stays/tall flanking stepped piers/platform, actual pool/fountain/court/wall/gate/retaining and bounded path/stair controls. No destroyed original villa presented as surviving, facade-only panel or whole-site solid slab.",
+    "Exact cleared Qualla LionHirth2006 Own/PD-self2048x1536 wall original plus three exact same-creatorPD court/garden/pavilion originals individually inspected/nativeSHA1matched. Primary owner/CMN text only resolves demolition and tower reconstruction/restoration; no protected gallery/plan pixels. Abstract plaque/neutral pier tile/basin divisions only; no copied names/lettering/portraits/pictorial mosaic/murals/independent sculpture/photo textures/borrowed meshes/generated bitmaps/policy-verifier changes.",
+    "Cleared photographs are partial2006 views and do not show current tower/modern service rear roofs or2019 tower changes. Tower height/cap/lookout/board census, service gables/window rhythm/current finishes, tensile roof extent/shape/supports/stepped pier/terrace and wall/plaques/fountain/bench sections are bounded original medium-fi estimates using actual native component plans and primary text; no as-built/private or torture interior reconstruction claimed. Pool/fountain dry linings remain visible in genuine open bowls above appearance-stage height; vertical excavation/water state/thresholds estimated.",
+    "Original400m/129x129/16641-value independent field/two raw tiles/PNG frozen before geometry/floor/component choices unchanged. Independent flat appearance floors/paths/component levels; source urban relief may bury/raise structures or disagree with foundations/terraces. Separate unchanged original-field evidence; exact source/host terrain contact unresolved/replacementfalse. No source flattening/fitting/reacquisition, full-site floor/vegetation/neighborhood/people/vehicles/private rooms."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-current-memory-park-open-courts-and-all-native-components",
+      "position": [
+        -135,
+        115,
+        -160
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "opposite-pavilion-tower-pool-and-whole-perimeter",
+      "position": [
+        140,
+        95,
+        145
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "tensile-pavilion-open-soffit-aframe-and-flanking-stepped-piers",
+      "position": [
+        -14,
+        7,
+        9
+      ],
+      "lookAt": [
+        16,
+        6,
+        41
+      ]
+    },
+    {
+      "name": "pavilion-white-membrane-and-visible-open-underside",
+      "position": [
+        10,
+        1.5,
+        28
+      ],
+      "lookAt": [
+        17,
+        6,
+        44
+      ]
+    },
+    {
+      "name": "reconstructed-timber-tower-and-surviving-memory-room",
+      "position": [
+        52,
+        12,
+        73
+      ],
+      "lookAt": [
+        33,
+        4,
+        60
+      ]
+    },
+    {
+      "name": "curved-grey-name-wall-abstract-plaques-and-low-plinth",
+      "position": [
+        -18,
+        4,
+        29
+      ],
+      "lookAt": [
+        -37,
+        1.5,
+        44
+      ]
+    },
+    {
+      "name": "central-dry-fountain-and-native-retaining-terraces",
+      "position": [
+        -18,
+        9,
+        -13
+      ],
+      "lookAt": [
+        -7,
+        1,
+        6
+      ]
+    },
+    {
+      "name": "native-garden-grid-old-gate-and-modern-service-buildings",
+      "position": [
+        -55,
+        35,
+        -63
+      ],
+      "lookAt": [
+        4,
+        2,
+        -38
+      ]
+    },
+    {
+      "name": "whole-native-open-site-and-separate-building-pavilion-pool-footprints",
+      "position": [
+        4,
+        185,
+        3
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19585,
+    "vertices": 58755,
+    "materials": 6,
+    "bytes": 2353780,
+    "sha256": "sha256:0c64c4e384f97779d297b29e5218c3ea936b9b7c5c2a685b2a7c4f5c443ef569"
+  }
+}

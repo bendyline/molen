@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-22",
+  "date": "2026-10-23",
   "mode": "bounded-verified-completion",
   "stories": [
     {
@@ -1148,10 +1148,11 @@
     }
   },
   "latestConstructionCompletion": {
+    "checkpoint": "NEXT-300-START.json",
     "models": [
-      "amazon_theatre"
-    ],
-    "checkpoint": "NEXT-300-START.json"
+      "embassy_of_the_united_states_caracas",
+      "monument_abertura_dos_portos"
+    ]
   },
   "currentConstructionCounts": {
     "authored": 100,
@@ -1266,17 +1267,24 @@
     "completedLinks": 0
   },
   "nextConstruction": {
-    "model": "baltimore_basilica",
-    "name": "Baltimore Basilica",
-    "state": "actual-native-whole-church-dome-and-clear-exterior-prepared",
+    "model": "tomioka_silk_mill",
+    "name": "Tomioka Silk Mill",
+    "state": "queued-until-user-resumes",
     "sourcePath": null,
-    "researchCheckpoint": "research/baltimore-basilica-preparation.json",
-    "candidateFamilies": 15,
-    "acceptedReferenceCount": 1,
+    "researchCheckpoint": null,
+    "candidateFamilies": null,
+    "acceptedReferenceCount": 0,
     "geometryAuthored": false,
     "terrainAcquired": false,
-    "work": "Prepare ordinary places/dq/dqc/baltimore_basilica source from actual117node churchway337697161 and native domepart1014414329. Use already inspected clear Deadwildcat exterior for six-Ionic-column portico/pediment/stairs, paired open cylindrical belfries/onion cupolas/needle spires/crosses, central stepped dome drum/crown skylights, gray ashlar/arched windows. Exterior only; no need for interiors/artist imagery. Preserve actual native plan; do not extrude wholeblock or use inaccurate mediaGPS. Freeze independent terrain before geometry. Bind exact raw creator grant in supplemental inventory without provenance fabrication; finish whole geometry/import/fourLODs/currentviews/catalog/geographicpreview/storyannotation in samepass. Hidden rear roof/sculpture/metric heights can remain bounded estimates; no bespoke survey campaign.",
-    "completionLoop": "Same authoring pass: geometry/import/four LODs/current views/catalog/native preview/bounded story annotation/zero-change repeat."
+    "work": "Paused at completed Tokuyama Dam. Resume with Tomioka Silk Mill: inspect cached metadata, confirm exact physical identity and other-device reservation, then choose cleared published Qualla public-domain imagery before constructing. No imagery or geometry has yet been adopted for Tomioka.",
+    "completionLoop": "Same authoring pass: geometry/import/four LODs/current views/catalog/native preview/bounded story annotation/zero-change repeat.",
+    "metadataFetchedOnly": true,
+    "resumeCaches": [
+      ".artifacts/qualla-batch/next-300/tomioka-silk-mill-local-context.json",
+      ".artifacts/qualla-batch/next-300/tomioka-silk-mill-published-native.json",
+      ".artifacts/qualla-batch/next-300/tomioka-silk-mill-identity.json",
+      ".artifacts/qualla-batch/next-300/tomioka-silk-mill-native-map.json"
+    ]
   },
   "latestDetailConstruction": {
     "status": "portals-completed-full-exterior-awaiting-reference",
@@ -1534,7 +1542,7 @@
       "proof": ".artifacts/qualla-batch/owner-accept-core/core-source-reproduction.txt"
     }
   },
-  "updatedOn": "2026-10-22",
+  "updatedOn": "2026-10-23",
   "latestPartialModelWork": {
     "path": "content/worldgen/source/qualla-structures/batches/research/stonewall-ground-review-2026-10-19.json",
     "model": "stonewall_inn",
@@ -1580,11 +1588,11 @@
   "latestAdditionalBatchCompletion": {
     "checkpoint": "NEXT-300-START.json",
     "models": [
-      "atlanta_fulton_county_stadium"
+      "tokuyama_dam"
     ],
     "writtenStories": 1,
     "repeatChanges": 0,
-    "cumulativeAdditionalReady": 126
+    "cumulativeAdditionalReady": 163
   },
   "activeBatchImageryHolds": [
     {
@@ -1760,9 +1768,99 @@
       "status": "deferred-imagery",
       "reason": "Qualla-first36families/zero conflicts; two exactpublishedAmakuhaownCC0originals inspected, both are plaques/limitedstuccopatches rather than wholebuilding coverage. Mainnative104files/postattack11files metadata assessed,no continuation. Current/earlier whole exteriors and2025postdamage photos require attribution,unused. Earlypostcards attribute uploader/reproducer,not originalphotographer/expiry; selfphotographed2007file explicitlyunknownoriginalauthor despitePDself, remainsuncertain/unused. UAAprimary26February2025structuralinspection confirms partialroof/wing damage from31January2025; cannot treat oldintacthotel as certifiedcurrent. No clear wholeexterior PD/CC0architecture evidence established; no questionable sourcepixels or mediarepairs/terrain/geometry/completion credit. Retainfixed300member pendingclearsourcecoverage; advanceCromfordMill.",
       "retainFixedTarget": true
+    },
+    {
+      "model": "brisbane_festival_hall",
+      "status": "deferred-imagery",
+      "reason": "Qualla-first25families/no conflicts. Publishedhero StateLibQld1_101668 is interioronly (1959newhall), not exterior; ca1925BrisbaneStadium entrance depicts predecessor demolished1958, not1959FestivalHall. No imagerypixels adopted. BoundedCommons nativefile search returned14records: onlyhallPD interior,10CC0OliviaNewtonJohnperformerconcertscans not exterior,1974floodwholeexterior CCBY4 and2unrelatedhistoricPDFs. StateLibrary primary1959exteriorNeg79168 explicitlyin-copyright; RAIA/Love1959collections have no clearPDgrant andwereunused. No clearPD/CC0whole1959-2003hall exterior established. Do not substitute1910Stadium orcurrentFestivalTowers. No geometry/terrain/mediaedits/completioncredit; retainfixed300member and advanceCopetonDam.",
+      "retainFixedTarget": true
+    },
+    {
+      "model": "empire_theatre_toowoomba",
+      "status": "deferred-imagery",
+      "reason": "Current1933 Art Deco exterior lacks a usable clear public-domain image in the bounded searches. Qualla7 families/no conflicts provide one exact4000x2340 pre-fire1911-1933 Kemp photograph, individually inspected; second local JPEG is not its native TIFF. They show the destroyed predecessor frontage, not current1933 front or modern additions. Current primary QHR600978 text and actual native main theatre42341736/Q7731948 obtained, but do not turn the old frontage into current imagery. No historical substitute or guessed current fa\u00e7ade accepted. Modern licensed photos unused/unviewed; source media/body/category untouched. Retain fixed batch member pending a clear public-domain reference to the rebuilt front.",
+      "retainFixedTarget": true
+    },
+    {
+      "model": "atacama_cosmology_telescope",
+      "status": "deferred-imagery",
+      "reason": "Qualla-first20 candidate families/0conflicts: four physical ACT photographs are CC-BY/CC-BY-SA; the sole relevant CC0 item is a sky survey coverage map, not physical structure imagery. Exact native category checked to terminal6files/no continuation: five physical photos require attribution licenses, one CC0 survey map. Earth/CrabNebula/volcano/city references are unrelated and excluded. No questionable or attribution-only pixels viewed or used. Need an unambiguous public-domain/CC0 physical ACT exterior before authoring; retain full telescope/ground-screen structure scope and fixed300 membership, no generic telescope substitution.",
+      "retainFixedTarget": true
+    },
+    {
+      "model": "frere_hall",
+      "status": "deferred-imagery",
+      "reason": "Qualla41families/0conflicts: sole PDcandidate depicts differentFaizMahal inKhairpur.193-file Commonscategory has only two PDlabels: historicJungFricke c1860 eBay scan with no pinned publication/creator expiry evidence, and Kamranyosuf image modified/replaced byNomi887 with ambiguous derivative credit. All skipped without pixels. Exact clear correct-building original and full actual building plan still required. Continue other fixed local structures; retain this member/target and saved research for a later primary archive source.",
+      "retainFixedTarget": true
+    },
+    {
+      "model": "kaptai_dam",
+      "status": "deferred-imagery",
+      "reason": "Qualla-first8families/0conflicts and exact7-file nativeKaptaiDam category. Sole PD-labelled source is1957JohnDominis LIFE Magazine construction photograph fromart.com with PD Bangladesh tag; explicit creator release/US government authorship/global-public-domain basis absent, source questionable and skipped without pixels. Remaining current local/native views are attribution/share-alike. No geometry/floors or terrain chosen. Retain fixed member for an unambiguous primary public-domain/CC0 source; continue next available model.",
+      "retainFixedTarget": true
+    },
+    {
+      "model": "mubarak_mandi_palace",
+      "status": "deferred-imagery",
+      "reason": "Qualla-first24families/0conflicts; six nominalPD historic photos are1905DewanAlamChand/unknown originals attributed only toNostalgicKashmir or2008book, without pinned primary original publication/creator expiry proof. Exact27-file nativepalacecategory also has unknown missionary slide with explicitcontactrepositoryrights, unknown1905royalvisit fromblog and1847Harding/Hardinge lithograph markedunidentifiedview/speculativepalace identity. All uncertain files skipped without pixels; other current views are attribution/share-alike. Whole palace is retained, no facade-only model or substitution. Need unambiguous PD/CC0 whole-palace exterior evidence before geometry.",
+      "retainFixedTarget": true
+    },
+    {
+      "model": "kuwait_national_assembly_building",
+      "status": "deferred-imagery",
+      "reason": "Qualla-first6families/0conflicts; two clear governmentpublicdomain photos show chamber/reception interiors, locallyresized vs native originals, not used. Exact12-file nativebuildingcategory has10 clear RonPrzysucha/StateDepartment governmentphotos: eight other licensed thumbnails inspected onlyforrelevance; seven interiors/one croppedentrance without wholewavecanopy/exteriorbody. Two adequateaerial/streetexteriors CC-BY-SA/CC-BY unused. Exactnativearticlehero not available inCommons rightsquery, skipped. No adequateclear wholeexterior reference. Keepfixedmember pending suitablePD/CC0 exterior; nogeometry/terrain/sourcebody/policy changes.",
+      "retainFixedTarget": true
+    },
+    {
+      "model": "grand_bazaar_isfahan",
+      "status": "deferred-imagery",
+      "reason": "Qualla-first38families/0conflicts and exact199-file IsfahanGrandBazaar category checked. Published clear-expired PascalCoste1840/1867book is interior vaultscene; ChehelSotun view wrongpalace. DirectcreatorPD stamps/spices are objects/interior, not wholebazaar exterior/roof. Native1714namedCornelisdeBruyn firstview explicitlyfaces southtoShahMosque/AliQapu, not bazaar northface; second genericNYPLsource not item-bound, unselected. AnonymousPD-Iran1800s image questionable/skippedwithoutpixels. Fullnativefourmemberrelation3366393/Q2754230 saved; no construction/terrain/sourcebundle/body-media repair. Keepfixedbatchmember for suitablePD exterior/roof imagery; no next1000reservation.",
+      "retainFixedTarget": true
+    },
+    {
+      "model": "tomb_of_tutankhamun",
+      "status": "deferred-imagery",
+      "reason": "Qualla-first63families/0conflicts and exactKV62category154files/subcategorylist checked. ClearedpublishedJoshdboz Own/PD-self plaque personallyinspected: close sign/stone only, insufficientwholeentrance/canopy/stairs. Otherclearreferences museumobjects/interior/historical1920sburial artifacts. CurrentUla KV62Egypt21\u201325 native renderedPublicdomain labels conflictwith explicitself|cc-by-sa-4.0; allpixels skippedwithoutdownload/inspection. Exactfiles1\u20136 absent. No sourcebody/media/licensing repair. Fullnative8controlsurfaceway813832374 andundergroundlevel\u22123way1238953535/Q835309 retained; do notextrudeunderground asabovegroundbuilding. No otherdevicereservation; retainfixedtarget/imageryhold, no geometry/terrain/sourcebundle.",
+      "retainFixedTarget": true
+    },
+    {
+      "model": "market_theatre_johannesburg",
+      "status": "deferred-imagery",
+      "reason": "Qualla-first17families/0conflicts. Clear officialUSgovernment original2018 personally inspected/nativeoriginalSHA1matched: oldmarket entrance brick/cream pilasters/roundheaded windows and barrelawning only. Native29control oldmarket buildingway846541435 physically shares MarketTheatreQ1900656 and MuseumAfricaQ704439, both unreserved. Modern easternbuilding604604639 is distinct. ExactMarketcategory14files onlythree officialPD event/speech/entrance views; MuseumAfricacategory fivefiles has four attribution-only whole exteriors and unrelated1887portrait. No questionable pixels used. Close entrance alone does not establish whole shared roof/body; no geometry/terrain/sourcebundle or media metadata edits.",
+      "retainFixedTarget": true
+    },
+    {
+      "model": "house_of_wonders",
+      "status": "deferred-imagery",
+      "reason": "Qualla-first24families/0conflicts. Suppliedstory records2012veranda/2015roof/2020frontalfacade-and-clocktowercollapse and subsequentreconstruction uncertainty. Published1907anonymous institutional image has archivalreworking/firstpublication credit caveat; skippedwithoutpixels. Gomespostcard dated1938or1918/countryPDlabel is not adequate clear proof or current survivingstate. ClearMoongateclimberOwn/PDself depicts museumkangaartifact only, not architecture. No questionable pixels inspected; no geometry/sourcebundle/terrain or media/article/rightsmetadata edits.",
+      "retainFixedTarget": true
+    },
+    {
+      "model": "juscelino_kubitschek_de_oliveira_bridge",
+      "status": "deferred-imagery",
+      "reason": "Qualla-first4families/0conflicts. PublishedFernandoSantosCunhaFilho2008selfCC0 original personallyinspected/nativeSHA1matched. Exactnativecategory contains onlytwo clearCC0 photos bysamecreator; secondoriginal alsoinspected/SHA1matched, but bothshow roadwaytopandbalustrades only. Precollapse2024-12-01 nativeway153919252/threecontrols/Q1684949/wholecrossing preserved; currentreplacementway1460511387/start2025-12-22 is distinct. DNIT primarytext supplies oldwidth12m andconfirms oldstructure demoli\u00e7\u00e3o, not oldpier/haunch/spanorganization. Existingstory supplies533m length/140m free span, but no adequatelybound whole historicalunderside/pierprofile. Do not substitute adjacentrailway or new630mbridge or publishroadway-only genericbeammodel aswholeoldbridge. No questionablepixels, geometry/sourcebundle/terrain or article/media/metadata repair.",
+      "retainFixedTarget": true
+    },
+    {
+      "model": "church_of_la_compania_quito",
+      "status": "deferred-imagery",
+      "reason": "Qualla-first58families/zero conflicts; five nominalPD/CC0families concern unrelatedQuitoPlazaGrande/MitadMundo/ChurchofNativity/medievalart, not thisbuilding; no pixels used fromthose. ActualChurchLaCompaniaQuitoQ3075573 resolved/unreserved. ExactnativeCommonsrootcategory96files/exteriorcategory113files checked: exteriorcategory has noPD/CC0 files. Sole rootcreatorOwn/selfCC0 candidate Templo barroco m\u00e1s importante de Sudam\u00e9rica.jpg/nativeSHA1 7aae2878d8862ec730cc33b2d9285d47ce65854a/revisionpinned individuallyinspected: lower-right cropped photographic signature/watermark cannotbe bound to the nameduploader, so source is questionable and unselected. No use for geometry/colors/tracing; no article/media/rightsmetadata repair orlicense-policy change. No adequate clearlyattributed publishedPD exterior reference verified. Keep fixed target pending clearwholeexterior; do not substitute neighboringchurch/interior/unrelatedQuitoattractions.",
+      "retainFixedTarget": true
+    },
+    {
+      "model": "governor_nobre_de_carvalho_bridge",
+      "status": "deferred-imagery",
+      "reason": "Qualla-first28families/zero conflicts. Exacttwo publishedNuMezzaliaOKLAR0316 March2026creatorOwn/selfCC0 cityview originals individuallyinspected/nativeSHA1matched, but only roundabout/casino/approach citycontext: neither shows wholebridge, mainraisedspan orpiers/underside. Other nominalPDfamilies areunrelatedcookies/beach/border/chapel, unselectedwithoutpixels. ActualbridgeQ977841unreserved, distinct otherMacaubridges. Nativeexactcategory41files checked: onlythese twoCC0stills and2009Cdip150Own/PD-self640x480roadwayjourney video (clearprimarygrant, no pixelsdownloaded/used). Exactnight/recent subcategories also checked; no adequateclearPDwholeexteriorstills. Retainfixedtarget: do not substitute genericroadbeam from citycontext or useBY/SA photos/questionablegrants. No sourcebundle/terrain/geometry or article/media/rightsmetadata repair. NominalPDnightphoto found in9-filenightsubcategory: barePD-self/no namedphotographer/source/Informationrecord, noArtistmetadata; unaccepted/uninspectedpixels, no recordrepair.4-file2026subcategory contains onlythetwoalreadyinspectedcitycontextCC0photos.",
+      "retainFixedTarget": true
+    },
+    {
+      "model": "hotel_okura_tokyo",
+      "status": "deferred-imagery",
+      "reason": "Qualla-first48families/zero conflicts. Exact native rootcategory35files andcurrentPrestigeTowercategory2files metadata screened; public-domain families are2011Abasaa/2006Lombroso original/crops of demolished1962MainWing/1973SouthWing, plus2017WhiteHouse indoor people event. Current2019Prestige+Heritage tower exteriorreferences areBY/SA, outsideallowedpolicy. Historic main demolished2015/SouthWing2021-22; oldphotographs cannot standin forcurrenttwo-towerarchitecture. No complete metricallyregistered historicwholecomplexplan adopted either. Root subcategories arelobby/distinctOkuraShukokanmuseum/PrestigeTower; museum/USembassy/RainbowBridge/otherTokyoattractions cannot substitute. ActualQ11337851/Okura aliases unreserved across next1000candidates+members. No questionablepixels/newphotos/model/terrain/sourcearticle-media-rightsmetadata repair; retainfixedtargetpendingclearPD/CC0currentwholecomplexorproperhistoricwholeplan+datedscope.",
+      "retainFixedTarget": true
     }
   ],
-  "goalStatus": "active",
+  "goalStatus": "paused",
   "activePlanHolds": [
     {
       "model": "fray_bentos_pulp_mill",
@@ -1812,81 +1910,79 @@
       "reason": "StoryandprimaryinstitutiondescribeoutdoorHawkHillmigrationcounting/bandingprogram, not a boundedobservatorybuilding.2025summitvisitorimprovementprojectchangesplatform/sitegeometry; currentintrinsicpermanentcountingplatform/retainingstructures andexactscope notestablished.31Quallareferencefamilies/0conflicts containGGROraptor/bandingCCimagesplusunrelatedSanFranciscostructures, nosuitablepublishedPD/CC0facilityview. Do notinventadome/toweroruseunrelatedbarracks/bridge/WWIIbunker asGGRO. Retainfixedbatchmemberpendingcorrectpermanentphysicalscope/PDreferences; notcompletioncredit.",
       "retainFixedTarget": true,
       "researchCheckpoint": "research/golden-gate-raptor-observatory-preparation.json"
+    },
+    {
+      "model": "copeton_dam",
+      "status": "deferred-plan-controls",
+      "reason": "Actualmainembankment207808677/mainspillway207802245/gatebridge377282652/roadcontrols nowrecovered from nativeOSMusinghonestUArequest; earlier429isresolved, notcurrentblocker. Wholecurrentdam requires2013DiamondBayauxfuseplug250mwide11mdeep,whosemetriclocation/footprintisnotidentifiedinboundednativecontext. Oneclear2006gatephoto plus1484m/113moperatorfacts are insufficienttoinventauxiliarytopology.1972inheritedaerialquestionable/unused;NASAlakeaerialnotadopted; no terrain/geometry/completioncredit.",
+      "retainFixedTarget": true,
+      "researchCheckpoint": "research/copeton-dam-preparation.json"
     }
   ],
   "nextModelPreparedInputs": {
-    "model": "baltimore_basilica",
-    "name": "Baltimore Basilica",
-    "state": "actual-native-whole-church-dome-and-clear-exterior-prepared",
+    "model": "tomioka_silk_mill",
+    "name": "Tomioka Silk Mill",
+    "state": "queued-until-user-resumes",
     "sourcePath": null,
-    "researchCheckpoint": "research/baltimore-basilica-preparation.json",
-    "candidateFamilies": 15,
-    "acceptedReferenceCount": 1,
+    "researchCheckpoint": null,
+    "candidateFamilies": null,
+    "acceptedReferenceCount": 0,
     "geometryAuthored": false,
     "terrainAcquired": false,
-    "work": "Prepare ordinary places/dq/dqc/baltimore_basilica source from actual117node churchway337697161 and native domepart1014414329. Use already inspected clear Deadwildcat exterior for six-Ionic-column portico/pediment/stairs, paired open cylindrical belfries/onion cupolas/needle spires/crosses, central stepped dome drum/crown skylights, gray ashlar/arched windows. Exterior only; no need for interiors/artist imagery. Preserve actual native plan; do not extrude wholeblock or use inaccurate mediaGPS. Freeze independent terrain before geometry. Bind exact raw creator grant in supplemental inventory without provenance fabrication; finish whole geometry/import/fourLODs/currentviews/catalog/geographicpreview/storyannotation in samepass. Hidden rear roof/sculpture/metric heights can remain bounded estimates; no bespoke survey campaign.",
-    "completionLoop": "Same authoring pass: geometry/import/four LODs/current views/catalog/native preview/bounded story annotation/zero-change repeat."
+    "work": "Paused at completed Tokuyama Dam. Resume with Tomioka Silk Mill: inspect cached metadata, confirm exact physical identity and other-device reservation, then choose cleared published Qualla public-domain imagery before constructing. No imagery or geometry has yet been adopted for Tomioka.",
+    "completionLoop": "Same authoring pass: geometry/import/four LODs/current views/catalog/native preview/bounded story annotation/zero-change repeat.",
+    "metadataFetchedOnly": true,
+    "resumeCaches": [
+      ".artifacts/qualla-batch/next-300/tomioka-silk-mill-local-context.json",
+      ".artifacts/qualla-batch/next-300/tomioka-silk-mill-published-native.json",
+      ".artifacts/qualla-batch/next-300/tomioka-silk-mill-identity.json",
+      ".artifacts/qualla-batch/next-300/tomioka-silk-mill-native-map.json"
+    ]
   },
   "currentTurnAudit": {
     "classification": "progress",
     "previousGoalTurnClassification": "progress",
     "completedModels": [
-      "atlanta_fulton_county_stadium"
+      "tokuyama_dam"
     ],
     "completedThisTurn": 1,
-    "currentFramesInspected": 39,
-    "geometryAndTerrainByteChecks": 252,
+    "currentFramesInspected": 42,
+    "geometryAndTerrainByteChecks": 386,
     "storyWrites": 1,
     "storyRepeatChanges": 0,
-    "newModelsTechnicalChecks": "Completed whole datedJune1974 stadium/asymmetric baseball field/three seating tiers/white radial concrete rakers and open galleries/press and period equipment. Three exact cleared published PD originals/native hashes. Exact source/import/fourLODs950/3756/14856/62200,252physicalgeometry/terrain-byte checks plus4date-selection assertions, strictmediumfiaudit/validscene/30tick simulation and39currentframes inspected. Catalog/dated historical native preview integrated; excluded currentworld. Final L0 gallery-band improvement verified with changed views inspected and unchanged final contact sheets byte-matched; no source-terrain alteration. Old metric section/seat colors/census/equipment/grade/flat-fixture field occlusion and hostcontact limits recorded. Story annotation written; zero-change repeat verified.",
-    "workflowChanges": "No engine/renderer/imagery-policy changes. One geographic recipe/model/catalog/native preview/source provenance/QA and bounded sibling story annotation. Ignored checkpoint helper now derives current dates/counts/next research and preserves prior audit automatically; no separate finalization or accepted-model re-review.",
+    "newModelsTechnicalChecks": "Whole Tokuyama Dam complete: all 21 native envelope controls/nine crest stations, primary 161 m height/427.1 m earth crest, constrained continuous curved crest and rockfill banks, four radial gate backs, pale control rooms/physical window recesses, open descending channels/divider walls, intake stilt void/service bridge. Four LODs 943/3375/9863/12481; five material combinations/three shared graphs; 386 geometry and terrain-byte checks. All 42 final current frames plus unchanged source-field render inspected. Five exact published creator-CC0 originals only. Component layout/sections/hidden foundation closures remain bounded estimates; source hillside occludes west gate complex/lower channel and precise terrain contact is unresolved; geographic preview/replacement=false. Story annotation written; zero-change repeat verified.",
+    "workflowChanges": "One ordinary geographic model completed and story-linked during its authoring pass; targeted source/import/four-LOD/scene/30-tick simulation/strict medium-fi/lint checks passed. All 42 final current renders and unchanged source-field view inspected. Source index refreshed before dependent authoring index. No engine/renderer/policy changes, accepted-model re-review, separate finalization, Git mutations or uploads.",
     "touchedCodeLint": "passed",
-    "newImageryHolds": [],
+    "newImageryHolds": [
+      "hotel_okura_tokyo"
+    ],
     "newPlanHolds": [],
-    "nextResearch": "Qualla-first15families/one unrelated hero conflict. Two Smallbones2012 Own/selfCC0 published interiors exact-nativeSHA1 bound and individually inspected; ancillary only. Published2007BasilicaExterior merely credits original uploaderBasilica1, insufficient exact photographer declaration, unused/unviewed. Supplemental original Ext-Current explicit named photographerDeadwildcat October2006/directPD-user-en release/exactnativeSHA1/dimensions/revision bound and individually inspected; clear exterior source saved. No need to adopt ambiguousBasilica1photo or modernCCphotos. LOC403/25secondtimeout left no adopted LOC imagery; no rights bypass. Exact exterior grant is preserved raw, not rewritten to Own or a different upload format. Existing supplemental inventory supports narrow transfer variants; during integration bind this exact named photographic declaration without fabricated metadata or weakening public-domain requirements. Native actual main churchway337697161/Q1968407(117closednodes)/domepart1014414329, not inaccurate mediaGPSnorthofbuilding. No geometry or terrain authored, notcompletioncredit.",
-    "scopeNote": "Accepted core100 and prior completed additions preserved. Current model limitations remain in source QA; all fixed batch members retained."
+    "nextResearch": "Tomioka metadata fetched into ignored cache only; not inspected or adopted. Stop here until user resumes.",
+    "scopeNote": "All fixed 300 retained. 44 imagery holds, 8 plan holds and 1 other-device reservation remain incomplete. Hotel Okura Tokyo retained as an imagery hold. Current Tokuyama terrain/contact and hidden-section limitations recorded in QA; independent source field unchanged.",
+    "pauseAtCompletedModelBoundary": true
   },
   "previousGoalTurnAudit": {
     "classification": "progress",
     "previousGoalTurnClassification": "progress",
     "completedModels": [
-      "confederate_monument_greenville_south_carolina",
-      "atalaya_castle_us"
+      "santa_rosa_de_la_eminencia_castle",
+      "handa_red_brick_building"
     ],
     "completedThisTurn": 2,
-    "currentFramesInspected": 81,
-    "geometryAndTerrainByteChecks": 287,
+    "currentFramesInspected": 84,
+    "geometryAndTerrainByteChecks": 567,
     "storyWrites": 2,
     "storyRepeatChanges": 0,
-    "modelRecords": [
-      {
-        "model": "confederate_monument_greenville_south_carolina",
-        "frames": 39,
-        "geometryAndTerrainChecks": 103,
-        "storyWrites": 1,
-        "repeatChanges": 0
-      },
-      {
-        "model": "atalaya_castle_us",
-        "frames": 42,
-        "geometryAndTerrainChecks": 184,
-        "storyWrites": 1,
-        "repeatChanges": 0
-      }
-    ],
-    "newImageryHolds": [],
-    "newPlanHolds": [
-      {
-        "model": "golden_gate_raptor_observatory",
-        "reason": "StoryandprimaryinstitutiondescribeoutdoorHawkHillmigrationcounting/bandingprogram, not a boundedobservatorybuilding.2025summitvisitorimprovementprojectchangesplatform/sitegeometry; currentintrinsicpermanentcountingplatform/retainingstructures andexactscope notestablished.31Quallareferencefamilies/0conflicts containGGROraptor/bandingCCimagesplusunrelatedSanFranciscostructures, nosuitablepublishedPD/CC0facilityview. Do notinventadome/toweroruseunrelatedbarracks/bridge/WWIIbunker asGGRO. Retainfixedbatchmemberpendingcorrectpermanentphysicalscope/PDreferences; notcompletioncredit.",
-        "retainFixedTarget": true,
-        "researchCheckpoint": "research/golden-gate-raptor-observatory-preparation.json"
-      }
-    ],
-    "workflowChanges": "Two ordinary geographic model recipes/source bundles/currentfourLODs/catalog/placements/QA and2bounded story annotations. No engine/renderer/imagery-policy changes, no accepted model re-review or separate finalization. GGRO permanent physical scope deferred; fixed member retained. Next Atlanta stadium has3 clear published originals inspected and actual native former-site context saved.",
+    "newModelsTechnicalChecks": "WholeHandaheritagegroup complete:12nativeoutercontrols/eightroofvolumes/highmainbrickgable/exposedfronttwoarches+blindarch/flatstorage/lowshop/two-storeyhalftimberwing/darkwoodXbraces/physicalwindowanddoorrecesses. FourLODs408/3252/10510/12466; sixactualmaterialcombos/foursharedgraphs;285geometry/terrainchecks. All42 finalcurrentframes andunchangedsourcefield inspected. Three exactpublishedcreatorCC0originals only. Internalcomponentboundaries/sections/hiddenwalls/census andprecisegradecontact original boundedestimates; replacementfalse. Story annotation written; zero-change repeat verified.",
+    "workflowChanges": "Two ordinary geographic whole-structure recipes completed, imported, currentlyrendered, catalogintegrated andstorylinked during same authoringpass. No engine/renderer/policychanges, sourcearticle/media/rightsmetadata repair, accepted-model rereview, separatefinalization, Git mutations oruploads.",
     "touchedCodeLint": "passed",
-    "nextResearch": "Qualla-first32families/zero conflicts; three exact published PD originals individually inspected/nativeSHA1/revisions bound, unchanged policy passed. EPA NARA1974 exterior shows defining steep radial white concrete bent/raker frame and open concourses;1983 own-photo field/fence;2007 own-photo demolished site confirms loss. Hero1960s/70spostcard with PD-1978 claim and unknown1968 football media-guide drawing excluded/questionable notice proof, unviewed; modern CC/aerial/demolition images unused/unviewed. No metadata/body/category/policy repair. Actualnativehistoricnode11075183526 at[-84.389571,33.7395938]; parkingGreenLot255159838 preserved curved perimeter onlycontext, asphaltpaintedfield1135698204/HankAaronwall1193413464 aid historicalorientation but are not historical buildingfootprint.",
-    "scopeNote": "Accepted core100 and prior123 additional models preserved;125/300 nowready.29imagery/7planholds remainfixed members, not completion credit."
+    "newImageryHolds": [
+      "church_of_la_compania_quito",
+      "governor_nobre_de_carvalho_bridge"
+    ],
+    "newPlanHolds": [],
+    "nextResearch": "Qualla-first30families/zero conflicts. Five exactpublished Own/selfCC0 originals by\u5148\u5f93\u9697\u59cb individuallyinspected/nativeSHA1matched:20220918-01/03/04/05/06 upstream/crest/gates/riprap/trough. File02 administrationcontext wasinspectedbutunselected; lake/remoteAlpsdake panoramas/otherattractions notselected. No sourcebody/media/rightsmetadata edits orsupplementalphotographs. Correctactualdamlocation distinctfromstorypowerplantcoordinate; exactQ573983/aliasesunreserved. ActualTokuyamaDam/Q573983/nativearea436904952,21 unique overall damarea controls plus nativecrest/serviceway685595953. Damarea boundary is an overall site/embankment/spillway envelope, not a verticalwall or measuredfoundationcontour. Exactfullroad preserved separately; last9 roadstations traverse spillway/crest/approach, longer than427.1m earthdamcrest duegatebridge/approaches. Fixednativebboxmidpoint/+Xeast/+Zsouth/heading0. Original componentboundaries/spillway/intake registration and structuralsections require bounded interpretation. Storyreference136.47642,35.63422 is the separate downstreampowerstation; use actualdamframewithouteditingstory. Do notsubstitute4kmdownstreampowerhouse/reservoirbridge/naturalhill.",
+    "scopeNote": "SantaRosa whole19controlfort:42finalframes/282checks/fiveexactQuallaCC0originals; Handa whole12controlheritagegroup:42finalframes/285checks/threeexactQuallaCC0originals. Internalpartboundaries/sections/hiddenfaces/contact original boundedestimates; sourcefields immutable/replacementfalse. QuitoandNobre remainfixedimageryholds, notcompletioncredit. Tokuyama actualdamQ573983/native21area+crestroad/fiveclearQuallaCC0originals/primarynumericfacts/independent1600mfield prepared; no floors/sections/geometry yet."
   },
   "sourceReproducibilityCheckpoint": {
     "path": "HUNDRED-MODEL-SOURCE-CHECKPOINT.json",
@@ -1896,15 +1992,44 @@
     "acceptedReviewReopened": false
   },
   "researchThisGoalTurn": 2,
-  "heldThisTurn": [],
+  "heldThisTurn": [
+    "hotel_okura_tokyo"
+  ],
   "sourceMetadataUpdatedThisGoalTurn": false,
   "activeBatchCounts": {
     "target": 300,
-    "ready": 126,
-    "started": 128,
+    "ready": 163,
+    "started": 165,
     "pilotsReady": 0,
-    "technicallyValidated": 126,
-    "publicDomainImageryVerified": 126,
-    "publicDomainFidelityReviewed": 126
-  }
+    "reservedForOtherDevice": 1,
+    "technicallyValidated": 163,
+    "publicDomainImageryVerified": 163,
+    "publicDomainFidelityReviewed": 163
+  },
+  "activeOtherDeviceHolds": [
+    {
+      "model": "great_mosque_of_herat",
+      "reservation": {
+        "candidateId": "N0475",
+        "title": "Friday Mosque of Herat",
+        "wikidataId": "Q1291612",
+        "modelRef": "molen.worldgen.structure.n0475_friday_mosque_of_herat",
+        "evidence": "Exact native mosque relation5873573/Q1291612 and next1000candidateN0475/Q1291612 resolve synonym GreatMosqueOfHerat vsFridayMosqueOfHerat. Existing next1000statusmodeled does not certify its readiness here; no local model/source/terrain authored or existing model changed.",
+        "localAuthoringAllowed": false
+      },
+      "retainFixedTarget": true
+    }
+  ],
+  "appGoalStatusObservation": "Paused at user request after completing Tokuyama Dam; 163/300 ready, 137 remaining.",
+  "appGoalTrackerStatus": "paused",
+  "pauseRequestedByUser": true,
+  "pauseBoundary": {
+    "model": "tokuyama_dam",
+    "completed": true,
+    "integrated": true,
+    "storyLinked": true,
+    "repeatChanges": 0,
+    "liveCommands": []
+  },
+  "latestContinuationDirection": "Paused at completed Tokuyama Dam. Resume with Tomioka Silk Mill: inspect cached metadata, confirm exact physical identity and other-device reservation, then choose cleared published Qualla public-domain imagery before constructing. No imagery or geometry has yet been adopted for Tomioka."
 }

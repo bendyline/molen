@@ -6,6 +6,7 @@ import path from 'node:path';
 import test from 'node:test';
 import { contentHash } from './scan.mjs';
 import {
+  completedPhysicalModelIdentity,
   locateCompletedStory,
   syncCompleted,
   upsertCompletedModels,
@@ -131,4 +132,24 @@ test('unrelated broken bundles do not hide selected corruption, relocation or du
   assert.throws(() => locateCompletedStory([good, good], 'hall-wp', 'u1ab'), /duplicate/);
   assert.throws(() => locateCompletedStory([good], 'hall-wp', 'else'), /relocation/);
   assert.throws(() => locateCompletedStory([broken], 'hall-wp', 'u1ab'), /Missing/);
+});
+
+test('a room batch key may link its explicitly identified whole physical building', () => {
+  assert.equal(completedPhysicalModelIdentity({ modelIdentity: 'hall' }), 'hall');
+  const parent = {
+    modelIdentity: 'blue_room_white_house',
+    physicalModelIdentity: 'white_house_executive_residence',
+    physicalStructureId: 'QS-30c365bc4f36',
+  };
+  assert.equal(completedPhysicalModelIdentity(parent), 'white_house_executive_residence');
+  for (const physicalStructureId of [undefined, '', 'unknown-parent'])
+    assert.throws(
+      () => completedPhysicalModelIdentity({ ...parent, physicalStructureId }),
+      /identity invalid/,
+    );
+  for (const physicalModelIdentity of ['../white_house', 'qualla_white_house', 'White House', ''])
+    assert.throws(
+      () => completedPhysicalModelIdentity({ ...parent, physicalModelIdentity }),
+      /identity invalid/,
+    );
 });

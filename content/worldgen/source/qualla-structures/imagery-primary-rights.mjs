@@ -56,6 +56,7 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
   };
   if (
     ![
+      'commons-native-whitehouse-photo',
       'commons-native-usace-photo',
       'commons-native-doe-photo',
       'commons-native-nps-photo',
@@ -65,6 +66,7 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       'commons-native-expired-us-book-photo',
       'commons-native-expired-historical-print',
       'commons-native-slq-archival-photo',
+      'commons-native-qsa-government-plan',
       'commons-native-self-released-photo',
     ].includes(proof.kind) ||
     !/^content\/worldgen\/source\/places\/[a-z0-9_/-]+\/reference-rights\/[a-z0-9-]+\.json$/.test(
@@ -140,12 +142,26 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       !/\.jpe?g$/i.test(nativeUrl.pathname)
     );
 
+    // Commons' explicit self-photographed declaration with the same named author link.
+    // Bind the original/grant directly; do not invent or repair local Qualla categories.
+    const selfPhotographed =
+      /^[A-Za-z0-9_-]+$/.test(photographer) &&
+      photographer === reference.artist &&
+      author?.trim() === `[[User:${photographer}|${photographer}]]` &&
+      /^\s*\{\{\s*self-photographed\s*\}\}\s*$/i.test(sourceField ?? '') &&
+      /\{\{\s*PD-self\s*\}\}/i.test(wiki) &&
+      !/\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) &&
+      /\.jpe?g$/i.test(nativeUrl.pathname) &&
+      text(info.extmetadata?.Artist?.value) === photographer &&
+      info.extmetadata?.Copyrighted?.value === 'False' &&
+      info.extmetadata?.AttributionRequired?.value === 'false' &&
+      !text(info.extmetadata?.Restrictions?.value);
     const namedSelf =
       photographer === reference.artist &&
       /\.jpe?g$/i.test(nativeUrl.pathname) &&
       !record.continue?.iicontinue &&
       nativeNamedUploaderRelease(page, photographer, proof.nativeCreatorRelease);
-    if (!ordinarySelf && !namedSelf) return failed;
+    if (!ordinarySelf && !selfPhotographed && !namedSelf) return failed;
     basis = `Exact native creator photograph; pinned own-photo/PD-self or contemporaneous named-native-photographer release by ${photographer}`;
   } else if (proof.kind === 'commons-native-expired-library-photo') {
     // Recover a missing local category only from the exact native library photo.
@@ -184,6 +200,38 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
     )
       return failed;
     basis = `Exact native national-library photograph, ${proof.photoYear}; named creator ${reference.artist} (${born}-${died}), item ${proof.archiveItem}, explicit PD-old grant and original bytes bound`;
+  } else if (proof.kind === 'commons-native-qsa-government-plan') {
+    // These two original Crown architectural drawings have an explicit native
+    // government-work release; do not infer one from an anonymous photo credit.
+    const plans = {
+        'File:Ground Floor Plan of Government House, Brisbane, c 1940.jpg': '35295240095',
+        'File:First Floor Plan of Government House, Brisbane, c 1940.jpg': '35254984396',
+      },
+      item = plans[title],
+      sourceField = wiki.match(/\|\s*source\s*=([^\r\n]*)/i)?.[1] ?? '',
+      dateField = wiki.match(/\|\s*date\s*=([^\r\n]*)/i)?.[1] ?? '',
+      author = wiki.match(/\|\s*author\s*=([^\r\n]*)/i)?.[1]?.trim();
+    if (
+      !item ||
+      proof.archive !== 'queensland-state-archives' ||
+      proof.archiveItem !== item ||
+      proof.creationYear !== 1940 ||
+      reference.artist !== 'Unknown author' ||
+      author !== '{{unknown|author}}' ||
+      !sourceField.includes(`https://www.flickr.com/photos/queenslandstatearchives/${item}`) ||
+      !sourceField.includes('published by Queensland State Archives') ||
+      !sourceField.includes(title.slice(5, -4)) ||
+      !(dateField.includes('1940') || dateField.trim() === '2012-04-15 00:55:02') ||
+      !/\{\{\s*PD-AustraliaGov\s*\}\}/i.test(wiki) ||
+      !/\{\{\s*PDreview\|/i.test(wiki) ||
+      /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+      info.extmetadata?.Copyrighted?.value !== 'False' ||
+      info.extmetadata?.AttributionRequired?.value !== 'false' ||
+      text(info.extmetadata?.Restrictions?.value) ||
+      !/\.jpe?g$/i.test(nativeUrl.pathname)
+    )
+      return failed;
+    basis = `Exact native circa1940 Crown architectural plan, Queensland State Archives item ${item}; explicit PD-AustraliaGov release and reviewed original bytes bound`;
   } else if (proof.kind === 'commons-native-slq-archival-photo') {
     const author = wiki.match(/\|\s*author\s*=([^\r\n]*)/i)?.[1];
     if (
@@ -326,6 +374,20 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
         return failed;
     } else return failed;
     basis = `Exact native historical print, ${proof.publicationYear}; named original creator, matched source citation and explicit ${proof.recordClass.startsWith('brazilian-') ? 'PD-Brazil-media historical print' : 'PD-old-70-1923 map'} grant`;
+  } else if (proof.kind === 'commons-native-whitehouse-photo') {
+    if (
+      !/^The White House(?: from Washington, DC)?$/.test(reference.artist) ||
+      !/\{\{\s*PD-USGov-POTUS\s*\}\}/i.test(wiki) ||
+      !/^[A-Za-z][A-Za-z .'-]+ [A-Za-z][A-Za-z .'-]+$/.test(photographer) ||
+      !clean.includes(`Official White House Photo by ${photographer}`) ||
+      !/\|\s*Source\s*=\s*\[https:\/\/www\.flickr\.com\/photos\/whitehouse\/\d+\//i.test(wiki) ||
+      info.extmetadata?.Copyrighted?.value !== 'False' ||
+      info.extmetadata?.AttributionRequired?.value !== 'false' ||
+      text(info.extmetadata?.Restrictions?.value)
+    )
+      return failed;
+    basis =
+      'Exact native official White House photograph; named presidential staff photo credit, official White House Flickr source and explicit PD-USGov-POTUS grant';
   } else if (proof.kind === 'commons-native-usace-photo') {
     if (
       !/\{\{\s*PD-USGov-Military-Army-USACE\s*\}\}/i.test(wiki) ||

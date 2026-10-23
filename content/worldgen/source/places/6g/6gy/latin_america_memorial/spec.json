@@ -1,0 +1,469 @@
+{
+  "planId": "latin_america_memorial",
+  "id": "latin_america_memorial",
+  "assetId": "molen.worldgen.structure.latin_america_memorial",
+  "title": "Latin America Memorial",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -46.66393665,
+    "latitude": -23.527110399999998
+  },
+  "size": [
+    500.80279541015625,
+    31.230000004172325,
+    226.75779724121094
+  ],
+  "actualBounds": {
+    "min": [
+      -250.39962768554688,
+      -0.23000000417232513,
+      -113.37889862060547
+    ],
+    "max": [
+      250.40316772460938,
+      31,
+      113.37889862060547
+    ]
+  },
+  "visualBrief": "Whole named Memorial da América Latina architectural ensemble across both actual institution parcels: SalãoDeAtos/Tiradentes sculptural beam/pylons/vaults, curved-roof LatinoAmerican library, circular MartaTraba gallery, twin-wave SimónBolívar auditorium, former Parlatino glazed cylinder/folded crown, CreativityPavilion/open arcade, administration/reception/congressist/service blocks, actual connecting footbridge/ramps and intrinsic Mão/open-hand and bounded GrandeFlorTropical landmark interpretations. Preserve all native principal building footprints and compound scope; whole paved plazas/parking/trees/city office towers/temporary antennas/event booths/text/interiors excluded. Native site boundary is identity/scope only, never a whole-site floor.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Audit%C3%B3rio_Sim%C3%B3n_Bol%C3%ADvar_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:Audit%C3%B3rio_Sim%C3%B3n_Bol%C3%ADvar_02.jpg",
+    "https://commons.wikimedia.org/wiki/File:Esplanada,_Parlatino_1.JPG",
+    "https://commons.wikimedia.org/wiki/File:Galeria_Marta_Traba_01.JPG",
+    "https://commons.wikimedia.org/wiki/File:Memorial_da_América_Latina,_vista_geral.jpg",
+    "https://commons.wikimedia.org/wiki/File:Memorial_da_América_Latina_01.JPG"
+  ],
+  "stories": [
+    {
+      "id": "latin-america-memorial-wp",
+      "url": "https://qualla.com/latin-america-memorial/"
+    }
+  ],
+  "referenceInputHash": "542c3c1c0ab3710426ec7df79384363c4e4a53540244b0c6d8e414dd55d488ad",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-latin-america-memorial.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-latin-america-memorial.mjs",
+    "level": "skyline",
+    "export": "memorialSkyline",
+    "errorMeters": 3.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.3,
+        "metallic": 0.22
+      },
+      "iron": {
+        "slot": "foundation",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.45
+      },
+      "red": {
+        "slot": "door",
+        "localRef": "palette:#fffffd",
+        "roughness": 0.78,
+        "metallic": 0.2
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "memorialDistrict",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.3,
+            "metallic": 0.22
+          },
+          "iron": {
+            "slot": "foundation",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.45
+          },
+          "red": {
+            "slot": "door",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.78,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "memorialStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.3,
+            "metallic": 0.22
+          },
+          "iron": {
+            "slot": "foundation",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.45
+          },
+          "red": {
+            "slot": "door",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.78,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "memorialCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.3,
+            "metallic": 0.22
+          },
+          "iron": {
+            "slot": "foundation",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.45
+          },
+          "red": {
+            "slot": "door",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.78,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Actual named relation4466370/Q1920091 has three outer site boundary ways40816738/451065231/230916245. Eleven actual building footprints retained including seven named main buildings/three low blocks and generic cylindrical formerParlatino171487609 identified from exact Qualla plaza view/native position. Native height tags often describe low parts/averaged shell values and do not certify whole end-pylon/vault heights. Actual hand artwork node3273658965/Q44993741 retained as position only. +X east/+Z south in compound midpoint frame. Whole tagged bridge and entry-ramp lines were registered before independent terrain acquisition. Architectural sections were selected from the six cleared photographs and native gross footprints after the source field was frozen, before geometry; heights and road clearances remain bounded estimates. Tagged interparcel bridge171487360 and formerParlatino entry ramp320839646 retained whole, with connected ground-approach lines253676337/935908192/1467644685 as local alignment controls only. Widths/vertical road clearance/ramp profiles remain estimates, not mapped elevations. Native principal footprints and two whole bridge/ramp axes are controls; OSM height values are retained for circular/low buildings but do not represent high shell/pylon peaks. Library90m-like mapped full beam spans two low curved roof wings; Salão60m-like mapped beam supports a taller one-sided vault. Exact cleared vista-geral gives tall Salão arch/pylon character, while opposite civic panorama also supplies low two-sided library/hand/bridge context; its broad Salão caption is not a separately surveyed building identification. Beam heights/pylon24/31m, shell crowns, intermediate floors/canopies/roof folds/bridge6.3m crown and road clearance/hand7.4m/flower are explicit medium-fi estimates selected now before geometry, not engineering section measurements. Ground+.05 is independent architectural floor choice; source field728.2272m datum/16641values/PNG/two raw tiles already frozen unchanged. Urban composite does not certify local threshold/clearance contacts. Default isolated/flat appearance with separate unchanged source-field evidence; no flattening/fitting/reacquisition or full-campus floor.",
+    "anchor": [
+      -46.66393665,
+      -23.527110399999998
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -46.66643867663475,
+        -23.527110399999998
+      ],
+      "modelHeight": 0,
+      "basis": "Exterior point5m west of whole building envelope selected before terrain/geometry, not a surveyed campus floor datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/171487383",
+      "way/171487609",
+      "way/171487631",
+      "way/301417281",
+      "way/320729071",
+      "way/320729075",
+      "way/320729079",
+      "way/320729082",
+      "way/320729084",
+      "way/320839642",
+      "way/320839647",
+      "node/3273658965",
+      "way/40816738",
+      "way/451065231",
+      "way/230916245",
+      "way/171487360",
+      "way/320839646",
+      "way/253676337",
+      "way/935908192",
+      "way/1467644685"
+    ],
+    "source": "https://www.openstreetmap.org/relation/4466370",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b56b8fdc85086e4f011d390625f4b725f1d2b9133752b695e212c45370bb6e38",
+    "notes": "Whole named Memorial da América Latina architectural ensemble across both actual institution parcels: SalãoDeAtos/Tiradentes sculptural beam/pylons/vaults, curved-roof LatinoAmerican library, circular MartaTraba gallery, twin-wave SimónBolívar auditorium, former Parlatino glazed cylinder/folded crown, CreativityPavilion/open arcade, administration/reception/congressist/service blocks, actual connecting footbridge/ramps and intrinsic Mão/open-hand and bounded GrandeFlorTropical landmark interpretations. Preserve all native principal building footprints and compound scope; whole paved plazas/parking/trees/city office towers/temporary antennas/event booths/text/interiors excluded. Native site boundary is identity/scope only, never a whole-site floor."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual named relation4466370/Q1920091 has three outer site boundary ways40816738/451065231/230916245. Eleven actual building footprints retained including seven named main buildings/three low blocks and generic cylindrical formerParlatino171487609 identified from exact Qualla plaza view/native position. Native height tags often describe low parts/averaged shell values and do not certify whole end-pylon/vault heights. Actual hand artwork node3273658965/Q44993741 retained as position only. +X east/+Z south in compound midpoint frame. Whole tagged bridge and entry-ramp lines were registered before independent terrain acquisition. Architectural sections were selected from the six cleared photographs and native gross footprints after the source field was frozen, before geometry; heights and road clearances remain bounded estimates. Tagged interparcel bridge171487360 and formerParlatino entry ramp320839646 retained whole, with connected ground-approach lines253676337/935908192/1467644685 as local alignment controls only. Widths/vertical road clearance/ramp profiles remain estimates, not mapped elevations.",
+    "Native principal footprints and two whole bridge/ramp axes are controls; OSM height values are retained for circular/low buildings but do not represent high shell/pylon peaks. Library90m-like mapped full beam spans two low curved roof wings; Salão60m-like mapped beam supports a taller one-sided vault. Exact cleared vista-geral gives tall Salão arch/pylon character, while opposite civic panorama also supplies low two-sided library/hand/bridge context; its broad Salão caption is not a separately surveyed building identification. Beam heights/pylon24/31m, shell crowns, intermediate floors/canopies/roof folds/bridge6.3m crown and road clearance/hand7.4m/flower are explicit medium-fi estimates selected now before geometry, not engineering section measurements. Ground+.05 is independent architectural floor choice; source field728.2272m datum/16641values/PNG/two raw tiles already frozen unchanged. Urban composite does not certify local threshold/clearance contacts. Default isolated/flat appearance with separate unchanged source-field evidence; no flattening/fitting/reacquisition or full-campus floor.",
+    "Whole eleven-building native architectural ensemble: Salão beam/end pylons/high one-sided shell, library long beam/two curved roof wings/end pylons, circular glazed gallery/reception, twin-wave auditorium, formerParlatino glazed cylinder/folded white crown, long curved CreativityPavilion/open arcade, administration/open piloti, congressist annex/two service blocks, complete mapped interparcel bridge/formerParlatino curved entry ramp, intrinsic hand and bounded red folded-plate flower. Native compound boundary is identity only; no full plaza/parking/site floor, city buildings/trees/poles/events/people/text/interiors.",
+    "Four exact cleared published Qualla Dornicke own/PD-self originals first, then two exact native own/PD-self creator supplements. All six originals individually inspected/native-byte matched and inventory passed. No attribution-only or uncertain images, protected PDF/photo-gallery pixels, generated bitmap, borrowed model or license-policy changes. Photographs2008/2010 predate later auditorium restorations; current hidden finish/fixtures not claimed surveyed.",
+    "Whole mapped component footprints/positions and bridge/ramp routes retained. LODs simplify minor outline corners, roof subdivisions, glazing/column census and curves without dropping principal structures. Native low/average height tags do not certify high shell/pylon peaks. Roof/pylon/beam sections, hidden low auditorium foyer/service projection roofs and nondefining facade detail, ramp slope/road clearance, hand/flower art silhouette and red palm inlay are original bounded medium-fi interpretations, not measured engineering or copied protected murals/insignia.",
+    "Six canonical slots/two shared graphs plus two opaque local accents: white/pale concrete wall/trim/roof, dark reflective opaque glass, painted metal rail/frame and muted red art. Near levels retain roof undersides/eaves, folded crown, glazing mullions/columns/bridge posts; no transparent interiors or active illumination.",
+    "Independent1000m16641value field/two original tiles/PNG frozen before geometry and unchanged. Architectural+.05m common floor/bridge estimates chosen independently, coarse urban composite may contain building/canopy artifacts and cannot certify local foundation or traffic clearances. Isolated/flat appearance accepted with separate unchanged-field evidence. Approximate geographic preview/replacementfalse; no flattening/fitting/reacquisition or full-campus ground pad."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-eight-principal-buildings-reception-service-bridge-and-artworks",
+      "position": [
+        430,
+        290,
+        470
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "opposite-whole-compound-and-both-mapped-parcels",
+      "position": [
+        -470,
+        260,
+        -380
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "civic-salao-single-sided-vault-beam-pylons-and-hand",
+      "position": [
+        -20,
+        25,
+        135
+      ],
+      "lookAt": [
+        -92,
+        14,
+        50
+      ]
+    },
+    {
+      "name": "library-two-curved-wings-long-beam-and-pylon-ends",
+      "position": [
+        -165,
+        20,
+        168
+      ],
+      "lookAt": [
+        -178,
+        10,
+        94
+      ]
+    },
+    {
+      "name": "circular-dark-glazed-gallery-and-low-roof-rim",
+      "position": [
+        -255,
+        14,
+        32
+      ],
+      "lookAt": [
+        -217,
+        3,
+        3
+      ]
+    },
+    {
+      "name": "whole-twin-wave-auditorium-shells-glazed-ends-and-recessed-eaves",
+      "position": [
+        315,
+        28,
+        45
+      ],
+      "lookAt": [
+        202,
+        10,
+        -25
+      ]
+    },
+    {
+      "name": "former-parlatino-cylinder-folded-white-crown-and-entry-ramp",
+      "position": [
+        100,
+        38,
+        10
+      ],
+      "lookAt": [
+        44,
+        14,
+        -36
+      ]
+    },
+    {
+      "name": "whole-long-creativity-pavilion-open-arcade-and-curved-footprint",
+      "position": [
+        8,
+        27,
+        -160
+      ],
+      "lookAt": [
+        20,
+        3,
+        -90
+      ]
+    },
+    {
+      "name": "administration-open-piloti-and-congressist-service-wings",
+      "position": [
+        -85,
+        22,
+        -139
+      ],
+      "lookAt": [
+        -125,
+        6,
+        -68
+      ]
+    },
+    {
+      "name": "complete-curved-interparcel-bridge-thickness-piers-and-open-rails",
+      "position": [
+        -95,
+        19,
+        15
+      ],
+      "lookAt": [
+        -110,
+        4,
+        -23
+      ]
+    },
+    {
+      "name": "intrinsic-open-hand-fingers-and-bounded-red-palm-inlay",
+      "position": [
+        -152.16213495092313,
+        7,
+        10.508801038441586
+      ],
+      "lookAt": [
+        -142.16213495092313,
+        3.7,
+        22.508801038441586
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26886,
+    "vertices": 80658,
+    "materials": 6,
+    "bytes": 3229924,
+    "sha256": "sha256:a72f2487d96aa4a446b1792a78644ba10fa1b1e6ff039ad7ae4a1862e63ec4e9"
+  }
+}

@@ -1,0 +1,370 @@
+{
+  "planId": "embassy_of_the_united_states_caracas",
+  "id": "embassy_of_the_united_states_caracas",
+  "assetId": "molen.worldgen.structure.embassy_of_the_united_states_caracas",
+  "title": "Embassy of the United States, Caracas",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -66.87168975,
+    "latitude": 10.4784243
+  },
+  "size": [
+    100.3228988647461,
+    30.420000076293945,
+    141.19764709472656
+  ],
+  "actualBounds": {
+    "min": [
+      -50.16144943237305,
+      -10,
+      -70.59882354736328
+    ],
+    "max": [
+      50.16144943237305,
+      20.420000076293945,
+      70.59882354736328
+    ]
+  },
+  "visualBrief": "Whole photographed USembassyCaracas mainchancery and two intrinsicnorthern/westernsupportblocks inside actualway342998158/Q20994812 compound: fullnative18controlmainbuilding330875684/fourcontrolnorthblock153825282/fourcontrolwestserviceblock816348036, redbrick stepped flatroofmasses, narrow recessedwindowrows, tallerend/cornerblocks and boundedroofmechanicalvolumes. Preserveall26native architecturalcontrols and completeall-sidebuildingbodies. Compoundfence/park/roads/vegetation/guardentrance/vehicles/flag/lettering/privateinteriors excluded; no wholelandscapeextrusion. Hiddenback/roof/sections/individualblockroles andcurrentfinish estimated from clear2015publishedQuallaCC0photo plus actualnativegeometry. Operational/diplomaticstatus is not model geometry.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Embassy_of_the_United_States_in_Caracas.png"
+  ],
+  "stories": [
+    {
+      "id": "embassy-of-the-united-states-caracas-wp",
+      "url": "https://qualla.com/embassy-of-the-united-states-caracas/"
+    }
+  ],
+  "referenceInputHash": "6b6286b117703380a2c54bc4f90ae2fb9c84525a2421e99bd8e32c83877a839b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-us-embassy-caracas.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-us-embassy-caracas.mjs",
+    "level": "skyline",
+    "export": "caracasEmbassySkyline",
+    "errorMeters": 1.8,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_longformat",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.67,
+        "metallic": 0.03
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.16
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "caracasEmbassyDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.67,
+            "metallic": 0.03
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.16
+          }
+        }
+      },
+      "street": {
+        "export": "caracasEmbassyStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.67,
+            "metallic": 0.03
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.16
+          }
+        }
+      },
+      "closeup": {
+        "export": "caracasEmbassyCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.67,
+            "metallic": 0.03
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.16
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.9,
+    "groundY": -10.15
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Actual USembassycompoundway342998158/CalleSuapure/countryUS/diplomaticembassy establishes physicalidentityQ20994812. Main18controlchanceryfootprintway330875684 and adjacentintrinsicnorthernfourcontrolblock153825282/westernfourcontrolserviceblock816348036 retained as wholethreebuilding architecturegroup (26uniquecontrols). Compound59nodefenceline is contextualidentity only, not an inventedsolidbuilding orfittedgroundplate. Fixedwholethreebuildingbboxmidpoint/+Xeast/+Zsouth/heading0. No1958historicNixonembassypremises substituted for the modern photographedchancery. Exactindividualinternalbuildingrole/hiddenroof/floorsections unsurveyed. Independent600mfield/16641samples/four originalrawtiles frozen before everyfloor/section/geometry decision. FixedSWproviderdatum994.0135m; separateflatstructural referencefloors main-10m/north-6m/west+3m are bounded unsurveyed architectural estimates on a steep hillside, never edits/fits to originalground. Main whole18controlbody floor-10..9.5m with highernative-clipped southend14m/northend12m, three narrowwindowranks andsouthendupperrank, .24mwindowrecesses/.42mparapet. Northernfourcontrolblock floor-6..8m andtwo insetsteppedroofvolumes to13/20m, westernfourcontrolserviceblock floor3..9.6m. Mainroofequipment/smallbowldishes from visiblephotofamily, exactconfiguration/census estimated. Separatefloorlevels andcoarse urbanDEM cannotcertify precisehostfooting/thresholdcontact: diagnosticflatground mayleave higherblocks suspended; inspectunchangedsourceground separately. Wholethreebuildinggroup/all26 nativecontrols retained, no compoundfence/guardbooth/landscapeplate/roads/vegetation/privateinterior. Hiddenbacks/blockroles/sections/currentfinish originalboundedestimates; sourcegrid/PNG/rawtilesunchanged, geographicpreview/replaceFootprintfalse.",
+    "anchor": [
+      -66.87168975,
+      10.4784243
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -66.87222108158058,
+        10.477718238006997
+      ],
+      "modelHeight": 0,
+      "basis": "FixedSWexterior5m beyond wholethree-buildinggroup beforefloors/heights/roofsections/geometry; unsurveyedreference."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/330875684",
+      "way/153825282",
+      "way/816348036",
+      "way/342998158"
+    ],
+    "source": "https://www.openstreetmap.org/way/330875684",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7ac8c72f154a64852807dd3bebbce01532894b22d3099da3507bc4916d837cd1",
+    "notes": "Whole photographed USembassyCaracas mainchancery and two intrinsicnorthern/westernsupportblocks inside actualway342998158/Q20994812 compound: fullnative18controlmainbuilding330875684/fourcontrolnorthblock153825282/fourcontrolwestserviceblock816348036, redbrick stepped flatroofmasses, narrow recessedwindowrows, tallerend/cornerblocks and boundedroofmechanicalvolumes. Preserveall26native architecturalcontrols and completeall-sidebuildingbodies. Compoundfence/park/roads/vegetation/guardentrance/vehicles/flag/lettering/privateinteriors excluded; no wholelandscapeextrusion. Hiddenback/roof/sections/individualblockroles andcurrentfinish estimated from clear2015publishedQuallaCC0photo plus actualnativegeometry. Operational/diplomaticstatus is not model geometry."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual USembassycompoundway342998158/CalleSuapure/countryUS/diplomaticembassy establishes physicalidentityQ20994812. Main18controlchanceryfootprintway330875684 and adjacentintrinsicnorthernfourcontrolblock153825282/westernfourcontrolserviceblock816348036 retained as wholethreebuilding architecturegroup (26uniquecontrols). Compound59nodefenceline is contextualidentity only, not an inventedsolidbuilding orfittedgroundplate. Fixedwholethreebuildingbboxmidpoint/+Xeast/+Zsouth/heading0. No1958historicNixonembassypremises substituted for the modern photographedchancery. Exactindividualinternalbuildingrole/hiddenroof/floorsections unsurveyed.",
+    "Independent600mfield/16641samples/four originalrawtiles frozen before everyfloor/section/geometry decision. FixedSWproviderdatum994.0135m; separateflatstructural referencefloors main-10m/north-6m/west+3m are bounded unsurveyed architectural estimates on a steep hillside, never edits/fits to originalground. Main whole18controlbody floor-10..9.5m with highernative-clipped southend14m/northend12m, three narrowwindowranks andsouthendupperrank, .24mwindowrecesses/.42mparapet. Northernfourcontrolblock floor-6..8m andtwo insetsteppedroofvolumes to13/20m, westernfourcontrolserviceblock floor3..9.6m. Mainroofequipment/smallbowldishes from visiblephotofamily, exactconfiguration/census estimated. Separatefloorlevels andcoarse urbanDEM cannotcertify precisehostfooting/thresholdcontact: diagnosticflatground mayleave higherblocks suspended; inspectunchangedsourceground separately. Wholethreebuildinggroup/all26 nativecontrols retained, no compoundfence/guardbooth/landscapeplate/roads/vegetation/privateinterior. Hiddenbacks/blockroles/sections/currentfinish originalboundedestimates; sourcegrid/PNG/rawtilesunchanged, geographicpreview/replaceFootprintfalse.",
+    "Whole modernchanceryarchitecturegroup/all26nativecontrols: complete18controlmainbuilding/twofourcontrolintrinsicblocks, redbrickmasses/narrowwindowrows/raisednative-clippedmainends/insetnorthroofboxes/palewestserviceblock/boundedvisibleplantanddishvocabulary. Compoundfence/guardbooths/park/roads/landscape/flag/lettering/privateinteriors andhistoric1958premises excluded.",
+    "Onlyexact2684x1796 ZiaLater2015Own/selfCC0 publishedQuallaoriginal/nativeSHA1matched/personallyinspected. Existingimageryinventorypassed after provenance lookup followed originalPNG MIME; no sourcebody/media/rightsmetadata changes or supplementary imagery/generatedphotographs/photo textures.",
+    "Blockroles/floorreferences/hiddenfacades/windowcensus/roofsections/plant-anddishconfiguration/currentfinish are originalbounded estimates. Modern physicalbuilding only, no claim aboutcurrentdiplomaticoperations. Flat reviewground cannot represent separatehillsidefloorlevels, so higherblocks mayfloat in diagnosticviews; inspect originalsourceground separately.",
+    "Independent600m129x129field/16641samples/four rawtiles frozen before anyfloors/geometry. Fixed994.0135m provider datum andflatmain-10/north-6/west+3m referencefloors unsurveyed. Groundgrid/PNG/rawtiles unchanged; precisefooting/threshold/hostcontact unresolved, geographicpreview/replaceFootprintfalse; no fittedterrain or artificialsiteplate."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-three-building-chancery-stepped-roof-and-native-plan",
+      "position": [
+        160,
+        72,
+        170
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "main-brick-chancery-native-raised-southend-and-narrow-window-recesses",
+      "position": [
+        101,
+        23,
+        93
+      ],
+      "lookAt": [
+        31,
+        2,
+        37
+      ]
+    },
+    {
+      "name": "northern-brick-block-and-two-stepped-roof-volumes",
+      "position": [
+        -65,
+        33,
+        -101
+      ],
+      "lookAt": [
+        2,
+        9,
+        -48
+      ]
+    },
+    {
+      "name": "bounded-roof-mechanical-volumes-and-dishes",
+      "position": [
+        73,
+        31,
+        13
+      ],
+      "lookAt": [
+        31,
+        12,
+        -6
+      ]
+    },
+    {
+      "name": "western-intrinsic-service-building-on-separate-structural-reference-floor",
+      "position": [
+        -80,
+        22,
+        -3
+      ],
+      "lookAt": [
+        -33,
+        7,
+        -28
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10680,
+    "vertices": 32040,
+    "materials": 5,
+    "bytes": 1284856,
+    "sha256": "sha256:984bb1c896cd433a3dfcf83c073ba4106e04c62bcfa0e72453914801de2af83e"
+  }
+}

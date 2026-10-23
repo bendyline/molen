@@ -1,0 +1,379 @@
+{
+  "planId": "colman_dock",
+  "id": "colman_dock",
+  "assetId": "molen.worldgen.structure.colman_dock",
+  "title": "Colman Dock (1911)",
+  "category": "transport",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -122.33841351819422,
+    "latitude": 47.6024507
+  },
+  "size": [
+    35.7810001373291,
+    43,
+    214.88400268554688
+  ],
+  "actualBounds": {
+    "min": [
+      -18,
+      -10,
+      -107.44200134277344
+    ],
+    "max": [
+      17.7810001373291,
+      33,
+      107.44200134277344
+    ]
+  },
+  "visualBrief": "Whole1908-1911ColmanDock steamship terminal at footofColumbiaStreet: full approximately705ft timberpier/independentpilebents/fenders/cargoapron, two longconnectedcargo sheds with clerestories/awnings/doors, shoreoffice/shopfront, domedwesternwaitingroom and iconic northwestclocktower/fourclocks/openlookout/hiproof/flagstaff. Dated1911 reconstruction; no current2023terminal/Pier50/GrandTrunkDock/ColmanBuilding/boats/streets/cardart.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "1911-07-17",
+    "validFrom": "1911-01-01",
+    "validUntil": "1912-01-01"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Steamers_at_the_Colman_Dock,_ca._1910_-_DPLA_-_b0c27c2e7d40410c04d231548a4eeece_(page_1).jpg",
+    "https://commons.wikimedia.org/wiki/File:Colman_Dock1911_Golden_Jubilee.jpg"
+  ],
+  "stories": [
+    {
+      "id": "colman-dock-wp",
+      "url": "https://qualla.com/colman-dock/"
+    }
+  ],
+  "referenceInputHash": "23cc154aac5d5d779e673de775d792c89a5f8d374ea39b0256f681f9b524e5ce",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-colman-dock.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-colman-dock.mjs",
+    "level": "skyline",
+    "export": "colmanDockSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "wood": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "foundation",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_painted_lap",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.25
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.4,
+        "metallic": 0.05
+      },
+      "clock": {
+        "slot": "trim",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.82,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "colmanDockDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "foundation",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "clock": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "colmanDockStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "foundation",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "clock": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "colmanDockCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "foundation",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "clock": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Primary CityofSeattle historicwaterfrontsurvey text identifies1908westextension705ft, domedwaitingroom and clocktower on northwestcorner/fourclockfaces, followedby1912destruction. Whole historical pier length214.884m;35.052m width inferred from later115ft dock record and postcard proportions, not measured1911survey. Present ColumbiaStreet shoreapproachnode12233211727/ways1321962095+775170043 give shorevicinity; inferred duewest pier axis heading-PI/2, +Zwest/+Xsouth and midpoint anchor[-122.33841351819422,47.6024507]. Historicshoreedge/centreline/bearing may differ by tensofmetres; actual historicfootprint notmapped. Current2023terminal outline notused as1911shape. Picturedroof/window/clock/pile/office dimensions are bounded medium-fi estimates; source postcard is hand-coloured. Historic intrinsic pier deck6m above fixed openbay provider reference, chosen before geometry; piles to fixed-10m below providerwaterreference, not a seabed survey. Independentmoderncoastalfield retained, includingmodernreclaimedgroundandstructures; not1911tidal/pavement reconstruction. No sourceflattening/fitting/reacquisition or footprint shift toclear currentground. Oldverticalgrade/deckfreeboard/seabed/hostcontact unverified, datedonlyplacement.",
+    "anchor": [
+      -122.33841351819422,
+      47.6024507
+    ],
+    "heading": -1.5707963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -122.34005221105072,
+        47.6024507
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed openbay point beyond inferredwestpierend before independent moderncoastalground/geometry; providerrelativewater/grade reference, not surveyed1911tidaldatum or pierfloor."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/12233211727",
+      "way/1321962095"
+    ],
+    "source": "https://www.openstreetmap.org/node/12233211727",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6faaab4318916aaed3508b715538931d42b93f86a0f6d0b898aabe87c9bbac5a",
+    "notes": "Whole1908-1911ColmanDock steamship terminal at footofColumbiaStreet: full approximately705ft timberpier/independentpilebents/fenders/cargoapron, two longconnectedcargo sheds with clerestories/awnings/doors, shoreoffice/shopfront, domedwesternwaitingroom and iconic northwestclocktower/fourclocks/openlookout/hiproof/flagstaff. Dated1911 reconstruction; no current2023terminal/Pier50/GrandTrunkDock/ColmanBuilding/boats/streets/cardart."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Primary CityofSeattle historicwaterfrontsurvey text identifies1908westextension705ft, domedwaitingroom and clocktower on northwestcorner/fourclockfaces, followedby1912destruction. Whole historical pier length214.884m;35.052m width inferred from later115ft dock record and postcard proportions, not measured1911survey. Present ColumbiaStreet shoreapproachnode12233211727/ways1321962095+775170043 give shorevicinity; inferred duewest pier axis heading-PI/2, +Zwest/+Xsouth and midpoint anchor[-122.33841351819422,47.6024507]. Historicshoreedge/centreline/bearing may differ by tensofmetres; actual historicfootprint notmapped. Current2023terminal outline notused as1911shape. Picturedroof/window/clock/pile/office dimensions are bounded medium-fi estimates; source postcard is hand-coloured.",
+    "Historic intrinsic pier deck6m above fixed openbay provider reference, chosen before geometry; piles to fixed-10m below providerwaterreference, not a seabed survey. Independentmoderncoastalfield retained, includingmodernreclaimedgroundandstructures; not1911tidal/pavement reconstruction. No sourceflattening/fitting/reacquisition or footprint shift toclear currentground. Oldverticalgrade/deckfreeboard/seabed/hostcontact unverified, datedonlyplacement.",
+    "Whole dated1911 terminal/pier, not just clocktower and notcurrent2023terminal. Pierwidth/shoreposition/duewestbearing/longshed layout, room/dome sections, office/shopfront, openingcensus/clerestories, pilings/bents/fenders and roof/clock/rail hardware are medium-fi inferences from publishedpostcards/text, not architecturalsurvey. Hiddenrearandconnectiondetails approximate; ships/GrandTrunkDock/Pier50/independentColmanBuilding/cardart excluded.",
+    "Two individually inspected exact published ca1910LowmanHanford and1911MitchellUS-expiredpostcards/nativePD-US/grants/SHA1/revisions bound. Same underlyingfacade view/negativefamily, no claim of independentfullcoverage. ModernCCviews andunknowncreator/damaged-terminal images unused; no supplementalphotos/photographictextures/generatedbitmaps/borrowedmeshes.",
+    "Independent256m129square16641-sample moderncoastalfield andoriginalrawtile frozenbeforegeometry, with fixed offshoreprovider reference. Deck6m/piletoe-10m are intrinsic structural estimates; sourcegroundnotflattened/fitted/reacquired and not1911tidal/grade/seabedsurvey. Dated1911placement only, currentworldexcluded and hostground/watercontactunverified.",
+    "FourLODs preservewholepier/twosheds/shoreoffice/domedwaitingroom/NWclocktower/fourclockfaces/openlookout/hiproof/flagstaff. Nearcargo openings/windowreveals/mullions/clerestories/coveredwalk posts/piles/bents/fenders/clockticks/lookoutrails restored progressively."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-705ft-historic-pier-sheds-waiting-room-and-northwest-clocktower",
+      "position": [
+        130,
+        100,
+        225
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "four-clockfaces-open-lookout-overhanging-hiproof-and-flagstaff",
+      "position": [
+        -36,
+        27,
+        128
+      ],
+      "lookAt": [
+        -14,
+        22,
+        100
+      ]
+    },
+    {
+      "name": "domed-waiting-room-entrances-clerestory-sheds-and-cargo-apron",
+      "position": [
+        40,
+        24,
+        120
+      ],
+      "lookAt": [
+        1,
+        13,
+        80
+      ]
+    },
+    {
+      "name": "timber-pilebents-fenders-covered-cargo-walk-and-whole-long-sheds",
+      "position": [
+        -40,
+        10,
+        -30
+      ],
+      "lookAt": [
+        0,
+        6,
+        15
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 23180,
+    "vertices": 69540,
+    "materials": 6,
+    "bytes": 2785164,
+    "sha256": "sha256:b8e243d841ecc37ceab80fb852a9325b4d83b6b000585f9003136d9388f50841"
+  }
+}

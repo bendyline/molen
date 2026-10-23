@@ -92,3 +92,73 @@ test('later batches write a separate resumable ledger and preserve the core ledg
     fs.rmSync(repository, { recursive: true, force: true });
   }
 });
+
+test('a resolved other-device alias stays unresolved without blocking unrelated local progress', async () => {
+  const repository = fs.mkdtempSync(path.join(os.tmpdir(), 'structure-reservation-'));
+  const output = path.join(repository, 'content/worldgen/source/qualla-structures');
+  const put = (relative, value) => {
+    const file = path.join(repository, relative);
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, JSON.stringify(value));
+  };
+  try {
+    put('content/worldgen/source/qualla-structures/batches/qualla-002.json', {
+      targetCount: 300,
+      entries: [
+        {
+          order: 1,
+          structureId: 'mosque',
+          name: 'Great Mosque of Herat',
+          modelIdentity: 'great_mosque_of_herat',
+          modelState: 'completed',
+          sourcePath: '../must-not-inspect',
+        },
+        {
+          order: 2,
+          structureId: 'local',
+          name: 'Local tomb',
+          modelIdentity: 'local_tomb',
+          modelState: 'queued',
+        },
+      ],
+    });
+    put('content/worldgen/source/next-1000/candidates.json', {
+      candidates: [{ id: 'N0475', title: 'Friday Mosque of Herat', modelRef: 'reserved.asset' }],
+    });
+    put('content/worldgen/source/next-1000/collections.json', { collections: [] });
+    put('content/worldgen/project.json', { assets: {} });
+    put('content/worldgen/stylepack.json', { assets: {} });
+    put('content/earth/structures/placements.json', { entries: [] });
+    const stories = [{ url: 'https://qualla.com/example/' }];
+    fs.writeFileSync(
+      path.join(output, 'structures.jsonl'),
+      `${[
+        {
+          id: 'mosque',
+          name: 'Great Mosque of Herat',
+          stories,
+          existing: [{ candidateId: 'N0475' }],
+        },
+        { id: 'local', name: 'Local tomb', stories },
+      ]
+        .map(JSON.stringify)
+        .join('\n')}\n`,
+    );
+    const counts = await buildProgress({ repository, output, batchName: 'qualla-002' });
+    assert.equal(counts.target, 300);
+    assert.equal(counts.ready, 0);
+    assert.equal(counts.started, 0);
+    assert.equal(counts.reservedForOtherDevice, 1);
+    const ledger = JSON.parse(
+      fs.readFileSync(path.join(output, 'batches/qualla-002.readiness.json')),
+    );
+    assert.equal(ledger.candidates[0].readiness, 'reserved-other-device');
+    assert.deepEqual(ledger.candidates[0].reservedCandidateIds, ['N0475']);
+    assert.equal(ledger.candidates[0].sourcePath, null);
+    assert.equal(ledger.candidates[0].fidelityQa.hashBoundReviewPassed, false);
+    assert.equal(ledger.candidates[1].readiness, 'not-started');
+    await buildProgress({ repository, output, batchName: 'qualla-002', check: true });
+  } finally {
+    fs.rmSync(repository, { recursive: true, force: true });
+  }
+});

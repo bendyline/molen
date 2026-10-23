@@ -1,0 +1,362 @@
+{
+  "planId": "tokuyama_dam",
+  "id": "tokuyama_dam",
+  "assetId": "molen.worldgen.structure.tokuyama_dam",
+  "title": "Tokuyama Dam",
+  "category": "dam",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 136.50175405,
+    "latitude": 35.66597855
+  },
+  "size": [
+    490.24420166015625,
+    170.5,
+    616.8648376464844
+  ],
+  "actualBounds": {
+    "min": [
+      -245.12210083007812,
+      -126.0968017578125,
+      -340.8092041015625
+    ],
+    "max": [
+      245.12210083007812,
+      44.4031982421875,
+      276.0556335449219
+    ]
+  },
+  "visualBrief": "Whole surviving TokuyamaDam exterior at actualQ573983 damlocation: rockfill embankment/curvedcrestroad/parapets, intrinsic concrete spillway withfour surfaceradialgatebays/controlboxes andtwo lowerorifice outlets wherevisible, realopen downstreamchannels/highcurveddividerwalls, intrinsic intake/shortservicebridge exterior. Native21controlwholearea andcrestroad for registration; structuralprofile/partboundaries/channelplan/hiddenmechanisms originalboundedestimates informed byfiveexactQuallaCC0originals andprimarynumericfacts. Exclude separate4kmdownstreampowerstation/neighboradministrationcampus, reservoirsurface/naturalhill/anchorednaturalrockfaces/forests/bridge/vehicles/interiors/signage.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Tokuyama_Dam_20220918_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:Tokuyama_Dam_20220918_03.jpg",
+    "https://commons.wikimedia.org/wiki/File:Tokuyama_Dam_20220918_04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Tokuyama_Dam_20220918_05.jpg",
+    "https://commons.wikimedia.org/wiki/File:Tokuyama_Dam_20220918_06.jpg"
+  ],
+  "stories": [
+    {
+      "id": "tokuyama-dam-wp",
+      "url": "https://qualla.com/tokuyama-dam/"
+    }
+  ],
+  "referenceInputHash": "7ee2323eb308a3687ae45eb7b86b41c316446e96fe814f7b073bc3de4fd7d378",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-tokuyama-dam.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-tokuyama-dam.mjs",
+    "level": "skyline",
+    "export": "tokuyamaSkyline",
+    "errorMeters": 20,
+    "surfaces": {
+      "rock": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.18
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.68,
+        "metallic": 0.03
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "tokuyamaDistrict",
+        "errorMeters": 8,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68,
+            "metallic": 0.03
+          }
+        }
+      },
+      "street": {
+        "export": "tokuyamaStreet",
+        "errorMeters": 3,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68,
+            "metallic": 0.03
+          }
+        }
+      },
+      "closeup": {
+        "export": "tokuyamaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68,
+            "metallic": 0.03
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.3,
+    "groundY": -126.29679999999998
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "ActualTokuyamaDam/Q573983/nativearea436904952,21 unique overall damarea controls plus nativecrest/serviceway685595953. Damarea boundary is an overall site/embankment/spillway envelope, not a verticalwall or measuredfoundationcontour. Exactfullroad preserved separately; last9 roadstations traverse spillway/crest/approach, longer than427.1m earthdamcrest duegatebridge/approaches. Fixednativebboxmidpoint/+Xeast/+Zsouth/heading0. Original componentboundaries/spillway/intake registration and structuralsections require bounded interpretation. Storyreference136.47642,35.63422 is the separate downstreampowerstation; use actualdamframewithouteditingstory. Do notsubstitute4kmdownstreampowerhouse/reservoirbridge/naturalhill. Independent1600m129x129field/16641samples/sixoriginalrawtiles frozen before allfloors/sections/geometry. Flat foundation245m andcrest406m follow primaryowner161mheight/406mcrest facts, relativefixed371.0968m provider datum (foundation-126.0968m/crest34.9032m); no terrain-derived fitting. Native530.098m service-roadpath includes spillway/approaches, not samequantityas427.1m earthdamcrest. Originalbounded interpretation sets embankmentstart atlast427.1m, SW103m gatebridge/hoistcomplex, curved nativecrest/parapets, whole21controlarea partitioned into rockfillbanks andopen spillwayfloor/curveddividerwalls, four16.5m surfacegatebays withwidecentralmonolith, palecontrolboxes, .24m windowvoids, grayradialgatebacks/stiffeners/arms. Originaldownstream.5/upstream.65 structuralprofile, channelplan/widthflare/verticalstations, exactgate/boxdimensions, intake435mstation/-140mupstream/shortservicebridge, hiddenfaces are estimates, not surveyed/borrowedprotectedplan. Primarytwo lowerorificegates are concealedmechanisms, no inventedvisibleoutlets/privateinterior. Nativewholearea isoverall envelope, not a solidflatplate/naturalhill. Exactsourcegrade/contact unresolved; immutablefield/geographicpreview/replaceFootprintfalse.",
+    "anchor": [
+      136.50175405,
+      35.66597855
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        136.4989884269391,
+        35.66345379578473
+      ],
+      "modelHeight": 0,
+      "basis": "FixedSW5m beyond entiremapped damarea envelope beforefloors/sections/geometry; unsurveyedreference."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/436904952",
+      "way/685595953"
+    ],
+    "source": "https://www.openstreetmap.org/way/436904952",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d51d0b1db75dfdcfc388c5830bf4e3a86a06110831a020cb4411d17e5851a2c9",
+    "notes": "Whole surviving TokuyamaDam exterior at actualQ573983 damlocation: rockfill embankment/curvedcrestroad/parapets, intrinsic concrete spillway withfour surfaceradialgatebays/controlboxes andtwo lowerorifice outlets wherevisible, realopen downstreamchannels/highcurveddividerwalls, intrinsic intake/shortservicebridge exterior. Native21controlwholearea andcrestroad for registration; structuralprofile/partboundaries/channelplan/hiddenmechanisms originalboundedestimates informed byfiveexactQuallaCC0originals andprimarynumericfacts. Exclude separate4kmdownstreampowerstation/neighboradministrationcampus, reservoirsurface/naturalhill/anchorednaturalrockfaces/forests/bridge/vehicles/interiors/signage."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "ActualTokuyamaDam/Q573983/nativearea436904952,21 unique overall damarea controls plus nativecrest/serviceway685595953. Damarea boundary is an overall site/embankment/spillway envelope, not a verticalwall or measuredfoundationcontour. Exactfullroad preserved separately; last9 roadstations traverse spillway/crest/approach, longer than427.1m earthdamcrest duegatebridge/approaches. Fixednativebboxmidpoint/+Xeast/+Zsouth/heading0. Original componentboundaries/spillway/intake registration and structuralsections require bounded interpretation. Storyreference136.47642,35.63422 is the separate downstreampowerstation; use actualdamframewithouteditingstory. Do notsubstitute4kmdownstreampowerhouse/reservoirbridge/naturalhill.",
+    "Independent1600m129x129field/16641samples/sixoriginalrawtiles frozen before allfloors/sections/geometry. Flat foundation245m andcrest406m follow primaryowner161mheight/406mcrest facts, relativefixed371.0968m provider datum (foundation-126.0968m/crest34.9032m); no terrain-derived fitting. Native530.098m service-roadpath includes spillway/approaches, not samequantityas427.1m earthdamcrest. Originalbounded interpretation sets embankmentstart atlast427.1m, SW103m gatebridge/hoistcomplex, curved nativecrest/parapets, whole21controlarea partitioned into rockfillbanks andopen spillwayfloor/curveddividerwalls, four16.5m surfacegatebays withwidecentralmonolith, palecontrolboxes, .24m windowvoids, grayradialgatebacks/stiffeners/arms. Originaldownstream.5/upstream.65 structuralprofile, channelplan/widthflare/verticalstations, exactgate/boxdimensions, intake435mstation/-140mupstream/shortservicebridge, hiddenfaces are estimates, not surveyed/borrowedprotectedplan. Primarytwo lowerorificegates are concealedmechanisms, no inventedvisibleoutlets/privateinterior. Nativewholearea isoverall envelope, not a solidflatplate/naturalhill. Exactsourcegrade/contact unresolved; immutablefield/geographicpreview/replaceFootprintfalse.",
+    "Wholeactualdam architecture, not4kmdownstreamplant: fullmapped21controlenvelope partitioned intoslopingrockfill andopenconcretespillway, nativecurvedcrest/gatebridge/parapets, foursurfaceradialgatebacks/stiffeners/arms/widecentralmonolith/palecontrolrooms, realopenlongchannelstaperingdividers, intrinsicintake/stiltlegs/servicebridge. Naturalhill/reservoir/forest/upstreamreservoirbridge/administrationcampus/vehicles/interiors/text excluded. Two lowerorificegates are concealedmechanisms recordedasfacts, not inventedvisibleoutlets.",
+    "OnlyfiveexactpublishedQualla先従隗始Own/selfCC0 originals individuallyinspected/nativeSHA1matched. Ownernumerictextfacts only, no protectedsectiondrawing/damcard/photo pixels. No sourcearticle/media/rightsmetadata repairs or supplementalphotographs/phototextures. Componentboundary/channelplan/gate/roomdimensions/intakeplacement/structuralprofile/hiddenfaces are original bounded mediumfi estimates.",
+    "Independent1600m129x129field/16641samples/sixoriginalrawtiles frozen before allfloors/sections/geometry. Primarycrest406m/foundation245m remain independentstructural references relativefixed371.0968m provider datum; no terrainfit. Exactabutment/footing/waterline/thresholdcontact unresolved, originalfield immutable/geographicpreview/replaceFootprintfalse. Diagnosticflatground cannot seat allslopingdamsections, originalsourcefield inspectedseparately."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-embankment-four-surface-gates-open-channels-and-intake",
+      "position": [
+        750,
+        420,
+        880
+      ],
+      "lookAt": [
+        0,
+        -20,
+        -25
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-upstream-face-curved-native-crest-and-intake",
+      "position": [
+        -690,
+        220,
+        -740
+      ],
+      "lookAt": [
+        0,
+        12,
+        -80
+      ]
+    },
+    {
+      "name": "four-radial-gate-backs-control-boxes-and-real-open-channels",
+      "position": [
+        -80,
+        100,
+        175
+      ],
+      "lookAt": [
+        -170,
+        28,
+        7
+      ]
+    },
+    {
+      "name": "intrinsic-intake-tower-open-supports-and-service-bridge",
+      "position": [
+        -90,
+        105,
+        -490
+      ],
+      "lookAt": [
+        90,
+        22,
+        -335
+      ]
+    },
+    {
+      "name": "whole-native-plan-rockfill-slope-and-curved-channel-dividers",
+      "position": [
+        760,
+        650,
+        450
+      ],
+      "lookAt": [
+        0,
+        -5,
+        -10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12481,
+    "vertices": 37443,
+    "materials": 5,
+    "bytes": 1500844,
+    "sha256": "sha256:baa832a23b1180044802e411c9cadc970a2478e1592ee1a63abf2dc46f3d29c4"
+  }
+}

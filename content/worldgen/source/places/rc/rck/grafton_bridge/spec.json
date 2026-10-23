@@ -1,0 +1,379 @@
+{
+  "planId": "grafton_bridge",
+  "id": "grafton_bridge",
+  "assetId": "molen.worldgen.structure.grafton_bridge",
+  "title": "Grafton Bridge",
+  "category": "bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 174.76507147,
+    "latitude": -36.85928809
+  },
+  "size": [
+    11.199999809265137,
+    56.83720827102661,
+    296.19000244140625
+  ],
+  "actualBounds": {
+    "min": [
+      -5.599999904632568,
+      -6.23899507522583,
+      -148.09500122070312
+    ],
+    "max": [
+      5.599999904632568,
+      50.59821319580078,
+      148.09500122070312
+    ]
+  },
+  "visualBrief": "Whole surviving GraftonBridge in Auckland: mapped bridge/road/sidewalk outline plus intrinsic endabutments, asymmetric six-west/three-east approaches with chamfered portalpiers, twin97.6mconcrete mainarchribs/open spandrelposts/transversebraces/soffitgirders, roaddeck/kerbedwalkways/concretebalusters/talltransparentinwardcurvedsafetycanopy/replicalamps and bounded endsignalframe. Exclude independentmotorway/gantries/cemetery/trees/citybuildings/vehicles/people.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Grafton_Bridge_Understructure_I.jpg",
+    "https://commons.wikimedia.org/wiki/File:Grafton_Bridge_From_Eastern_Abutment_I.jpg",
+    "https://commons.wikimedia.org/wiki/File:Grafton_Bridge_From_Southeastern_Side.jpg",
+    "https://commons.wikimedia.org/wiki/File:Grafton_Bridge_Running_Westwards_Look.jpg",
+    "https://commons.wikimedia.org/wiki/File:Grafton_Bridge_Understructure_II.jpg",
+    "https://commons.wikimedia.org/wiki/File:Mexican_Standoff,_Bus_Car,_Grafton_Bridge.jpg",
+    "https://commons.wikimedia.org/wiki/File:This_Is_Why_It_A_Bus_Only_Bridge_Not_For_Cars.jpg"
+  ],
+  "stories": [
+    {
+      "id": "grafton-bridge-wp",
+      "url": "https://qualla.com/grafton-bridge/"
+    }
+  ],
+  "referenceInputHash": "f39f0bc545a93dabe41c1bfc56153bbe58d56f475efcdc12c1a6cbaf2693fe3e",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-grafton-bridge.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-grafton-bridge.mjs",
+    "level": "skyline",
+    "export": "graftonBridgeSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "roof",
+        "graph": "gravel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.25
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.25,
+        "metallic": 0,
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.12
+        ],
+        "alphaMode": "BLEND",
+        "doubleSided": true
+      },
+      "lamp": {
+        "slot": "trim",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.64,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "graftonBridgeDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.25,
+            "metallic": 0,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.12
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "lamp": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.64,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "graftonBridgeStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.25,
+            "metallic": 0,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.12
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "lamp": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.64,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "graftonBridgeCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.25,
+            "metallic": 0,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.12
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "lamp": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.64,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Actualnamedwholebridgepolygonway291093994/Q5592519/HeritageNZ16 and mappedroad/sidewalks anchor[174.76507147,-36.85928809], heading0.924112180865449; +Zsoutheast/eastGraftonRd, +Xsouthwestside. Nativepolygon283.047m x~11.3m spans coreelevateddeck; primary296mwholelength includesendabutments/approaches, representedby~6.5mexplicit extensions beyondnativecaps. Primarytwin97.6march/25.6mrise and6west23-24.4m/3east11-12.8mapproachports reconcileas142.2mwest+97.6mcentre+36meast=275.8mplusendabutments. Mainarchcentrelocalz53m, springs4.2/101.8; primaryspanlayout/photoproportions, not individuallymappedpierfootings. Width11.2m from actualnativepolygon; roadgrade from fixedfrozenapproachsourcecontrols beforegeometry, exactdeck/arch/piersections/footingdatum/guard/lamp hardware approximate. Independent512m129square4m field/16641values/two originalTerrariumtiles frozen before any geometry; fixed external valleyreference[20,53] datum46.5598m. Original external approach samples retained unchanged: western18.27955/eastern15.0843m relative, with sourcegradefall3.19525m over300m. Native coarseterrain cannot establish elevated deck level: applying these returns directly would bury the published25.6m mainarch rise. Before geometry, use independently published43.3m valley clearance as intrinsic deckheight at mainarchcentre z53, with sourcegradefall only controlling longitudinal slope; resulting west/east control deck45.462119/42.266869m relative. This is explicit source-dimension placement, not surveyed absolute roadgrade or a fitted terrain field. Actualapproach/footing contacts remain unverified; footingtoes sample unchanged originalfield. Ground never flattened/fitted/reacquired, all originalbytes/values preserved; coarse~3.82m outputpixel mayoversample coarserDEM. Approximatepreview requires compatible valleyhost; replacementdisabled.",
+    "anchor": [
+      174.76507147,
+      -36.85928809
+    ],
+    "heading": 0.924112180865449,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        174.76568166904906,
+        -36.859431577934664
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed externalvalleyground beside mainarchcentre before independent512mfield/geometry, not bridge-deckelevation or surveyedfooting."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/291093994",
+      "way/163899694",
+      "way/623580299"
+    ],
+    "source": "https://www.openstreetmap.org/way/291093994",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7c566282fbf738d53663970609da7e3e433498e0c97ed74b380f57eee4c386b7",
+    "notes": "Whole surviving GraftonBridge in Auckland: mapped bridge/road/sidewalk outline plus intrinsic endabutments, asymmetric six-west/three-east approaches with chamfered portalpiers, twin97.6mconcrete mainarchribs/open spandrelposts/transversebraces/soffitgirders, roaddeck/kerbedwalkways/concretebalusters/talltransparentinwardcurvedsafetycanopy/replicalamps and bounded endsignalframe. Exclude independentmotorway/gantries/cemetery/trees/citybuildings/vehicles/people."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actualnamedwholebridgepolygonway291093994/Q5592519/HeritageNZ16 and mappedroad/sidewalks anchor[174.76507147,-36.85928809], heading0.924112180865449; +Zsoutheast/eastGraftonRd, +Xsouthwestside. Nativepolygon283.047m x~11.3m spans coreelevateddeck; primary296mwholelength includesendabutments/approaches, representedby~6.5mexplicit extensions beyondnativecaps. Primarytwin97.6march/25.6mrise and6west23-24.4m/3east11-12.8mapproachports reconcileas142.2mwest+97.6mcentre+36meast=275.8mplusendabutments. Mainarchcentrelocalz53m, springs4.2/101.8; primaryspanlayout/photoproportions, not individuallymappedpierfootings. Width11.2m from actualnativepolygon; roadgrade from fixedfrozenapproachsourcecontrols beforegeometry, exactdeck/arch/piersections/footingdatum/guard/lamp hardware approximate.",
+    "Independent512m129square4m field/16641values/two originalTerrariumtiles frozen before any geometry; fixed external valleyreference[20,53] datum46.5598m. Original external approach samples retained unchanged: western18.27955/eastern15.0843m relative, with sourcegradefall3.19525m over300m. Native coarseterrain cannot establish elevated deck level: applying these returns directly would bury the published25.6m mainarch rise. Before geometry, use independently published43.3m valley clearance as intrinsic deckheight at mainarchcentre z53, with sourcegradefall only controlling longitudinal slope; resulting west/east control deck45.462119/42.266869m relative. This is explicit source-dimension placement, not surveyed absolute roadgrade or a fitted terrain field. Actualapproach/footing contacts remain unverified; footingtoes sample unchanged originalfield. Ground never flattened/fitted/reacquired, all originalbytes/values preserved; coarse~3.82m outputpixel mayoversample coarserDEM. Approximatepreview requires compatible valleyhost; replacementdisabled.",
+    "Whole surviving Auckland bridge with primary296m length, twin97.6m arches/25.6m rise, six western/three eastern approaches. Seven individually inspected exact published Ingolfson PD-self/CC0 originals from2008-2011 control section character, actual voids, transverse braces, flared/chamfered piers, kerbed walks/concrete balusters, inward-curved transparent safety screens and replica globe lamps. Native core283m outline plus explicit endabutments; detailed pier locations/sections, footing foundations, repair infills, screening profiles/spacing and hidden hardware are medium-fi estimates, not an engineering survey.",
+    "Published43.3m valley clearance defines intrinsic deckheight over the fixed valley reference; source approach heights supply grade fall only. Coarse nativeDEM does not establish absolute elevated deck/abutment contacts; compatible host valley needed. Original field/raw tiles remain unchanged. No claim of surveyed43.3m clearance at the exact sampled point or verified present-day road connection.",
+    "No independent motorway/steel gantries, cemetery, city buildings, trees, vehicles or people. End signal frame is bounded2008-2011 exterior furniture without regulatory lettering or claim of current access rules. No borrowed meshes, photographic textures, generated bitmaps or non-PD imagery. Fine2026 street furniture/markings/repairs unverified.",
+    "All four LODs retain whole bridge, asymmetric approaches, twin separate arches/real open spandrels/transverse braces/walkways and safety-screen silhouette. Balusters, curved screen ribs, replica lampglobes/hat/Ubrackets/finials and section hardware resolve progressively. Safety panels use local transparent glazing, canonical shared concrete/gravel/painted metal remain bound."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-296m-bridge-six-west-three-east-approaches-and-twin-mainarches",
+      "position": [
+        190,
+        125,
+        225
+      ],
+      "lookAt": [
+        0,
+        22,
+        5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "twin-arches-real-open-spandrels-and-transverse-braces",
+      "position": [
+        38,
+        13,
+        71
+      ],
+      "lookAt": [
+        0,
+        29,
+        53
+      ]
+    },
+    {
+      "name": "western-approach-chamfered-open-portals-and-flared-piercaps",
+      "position": [
+        18,
+        20,
+        -58
+      ],
+      "lookAt": [
+        0,
+        31,
+        -76
+      ]
+    },
+    {
+      "name": "kerbed-walkways-baluster-openings-transparent-curved-screens-and-replica-lamps",
+      "position": [
+        9,
+        49,
+        114
+      ],
+      "lookAt": [
+        0,
+        46,
+        95
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 45492,
+    "vertices": 136476,
+    "materials": 5,
+    "bytes": 5462164,
+    "sha256": "sha256:f9b390be68d9f345fa1f1054e856c3ff9abf624cbaca05966c6cdc4a1ac22373"
+  }
+}

@@ -1,0 +1,395 @@
+{
+  "planId": "santa_rosa_de_la_eminencia_castle",
+  "id": "santa_rosa_de_la_eminencia_castle",
+  "assetId": "molen.worldgen.structure.santa_rosa_de_la_eminencia_castle",
+  "title": "Santa Rosa de la Eminencia Castle, La Asunción",
+  "category": "palace-castle-fort",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -63.867264199999994,
+    "latitude": 11.026878100000001
+  },
+  "size": [
+    42.56935501098633,
+    8.479999542236328,
+    44.88401794433594
+  ],
+  "actualBounds": {
+    "min": [
+      -21.284677505493164,
+      0,
+      -22.44200897216797
+    ],
+    "max": [
+      21.284677505493164,
+      8.479999542236328,
+      22.44200897216797
+    ]
+  },
+  "visualBrief": "Whole SantaRosa de laEminencia Castle at LaAsuncion/Q7419927:19 nativeouterbastion/curtaincontrols, batteredroughrubble fortwalls with restrainedbrickrepairs, ochreplasteredparapets/artilleryembrasures/intrinsiccannons, wholeopenairflagstonecourtyard andraisedwalk, lowterracottaroofedbarracks/centralarchpassage/smallsquareguardroom, small domedcornersentry/bartizan, woodenstuddedgatedoor/palestonejambandcresttablet/taperedbrickentrystair. Internalarrangement/sections/exactcensus/hiddenfaces original estimates, no closedroominterior. Road/landscape/hill/trees/people/antenna/flags/lettering/otherislandforts excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:360%C2%B0_Panoramic_view_of_Santa_Rosa_de_la_Eminencia_Castle.jpg",
+    "https://commons.wikimedia.org/wiki/File:Panoramica_del_patio_del_Castillo_de_Santa_Rosa_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:Door_of_Santa_Rosa_Fort.jpg",
+    "https://commons.wikimedia.org/wiki/File:Muro_y_entrada_del_Castillo_de_Santa_Rosa.jpg",
+    "https://commons.wikimedia.org/wiki/File:Cannon_overlooking_the_mountains_from_Castillo_de_Santa_Rosa,_Margarita_Island,_Venezuela.jpg"
+  ],
+  "stories": [
+    {
+      "id": "santa-rosa-de-la-eminencia-castle-wp",
+      "url": "https://qualla.com/santa-rosa-de-la-eminencia-castle/"
+    }
+  ],
+  "referenceInputHash": "15abd871c0d9cbdff8fac143a4e241d999da720a84ef2ef139070ed108f95186",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-santa-rosa-castle.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-santa-rosa-castle.mjs",
+    "level": "skyline",
+    "export": "santaRosaSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "clay_fired",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.85,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "santaRosaDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.85,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "santaRosaStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.85,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "santaRosaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.85,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.12
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Actual namedCastilloSantaRosa/LaAsuncion/Margarita/Q7419927/nativeway203587857,19 original unique bastion/curtain perimeter controls. Whole fort architecture with intrinsic open-aircourtyard/artillerywalk/barracks/gate-stair, not a solid extruded fort block. No separate mapped internal roomoutline; original bounded internalplan/sections/roofs/cannoncounts andbearing estimates from exactQualla panoramas/entrancephotos. Distinct PampatarSanCarlosdeBorromeofort/otherisland attractions excluded. Fixednativebboxmidpoint/+Xeast/+Zsouth/heading0; nativeperimeterretained. Independent400m129x129/16641samples/two originalrawtiles frozen before everyfloor/section/geometry decision. Structuralfloor0 relativefixed96.5453m provider datum is an unsurveyed architecturalreference, never hillfit. Original sectionestimates from exactpublishedCC0originals: lowercourt3m/artillerywalk4.2m, fullnative19control batteredrubblewall with .65m insetupperedge, ochreparapets1.3m above walk/frontgate6m, gatefloor2.7m/1.7x2.15m realwooddoor/15taperedbricksteps/cresttablet/slits, lowU-shapedbarracks/eaves5.85m/ridge7.05m, higherguardroof8.3m, cornerturret/embrasures/fiveboundedcannonplacements. Original internalrectangles/roofsections/openarchpassage/hiddenwindowcensus/cannoncounts/bartizanposition inferred from panoramic/photo views rather than protectedplan. Preserveall19outerbasecontrols and completefort/openaircourt/raisedwalk; no solidwholeforttop/courtyardfill orhill/road/siteplate. Exacthillfooting/gatestepcontact unresolved, geographicpreview/replaceFootprintfalse; rawfield immutable.",
+    "anchor": [
+      -63.867264199999994,
+      11.026878100000001
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -63.86756882408646,
+        11.026568703581173
+      ],
+      "modelHeight": 0,
+      "basis": "FixedSW5m beyond entirefort-plus-approachenvelope beforefloors/sections/geometry; unsurveyedreference."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/203587857"
+    ],
+    "source": "https://www.openstreetmap.org/way/203587857",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4874bfe29f0db1149021c993a1d460a1ccc45a6163e0551924e7e00b8ae0d0d7",
+    "notes": "Whole SantaRosa de laEminencia Castle at LaAsuncion/Q7419927:19 nativeouterbastion/curtaincontrols, batteredroughrubble fortwalls with restrainedbrickrepairs, ochreplasteredparapets/artilleryembrasures/intrinsiccannons, wholeopenairflagstonecourtyard andraisedwalk, lowterracottaroofedbarracks/centralarchpassage/smallsquareguardroom, small domedcornersentry/bartizan, woodenstuddedgatedoor/palestonejambandcresttablet/taperedbrickentrystair. Internalarrangement/sections/exactcensus/hiddenfaces original estimates, no closedroominterior. Road/landscape/hill/trees/people/antenna/flags/lettering/otherislandforts excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.clay_fired",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual namedCastilloSantaRosa/LaAsuncion/Margarita/Q7419927/nativeway203587857,19 original unique bastion/curtain perimeter controls. Whole fort architecture with intrinsic open-aircourtyard/artillerywalk/barracks/gate-stair, not a solid extruded fort block. No separate mapped internal roomoutline; original bounded internalplan/sections/roofs/cannoncounts andbearing estimates from exactQualla panoramas/entrancephotos. Distinct PampatarSanCarlosdeBorromeofort/otherisland attractions excluded. Fixednativebboxmidpoint/+Xeast/+Zsouth/heading0; nativeperimeterretained.",
+    "Independent400m129x129/16641samples/two originalrawtiles frozen before everyfloor/section/geometry decision. Structuralfloor0 relativefixed96.5453m provider datum is an unsurveyed architecturalreference, never hillfit. Original sectionestimates from exactpublishedCC0originals: lowercourt3m/artillerywalk4.2m, fullnative19control batteredrubblewall with .65m insetupperedge, ochreparapets1.3m above walk/frontgate6m, gatefloor2.7m/1.7x2.15m realwooddoor/15taperedbricksteps/cresttablet/slits, lowU-shapedbarracks/eaves5.85m/ridge7.05m, higherguardroof8.3m, cornerturret/embrasures/fiveboundedcannonplacements. Original internalrectangles/roofsections/openarchpassage/hiddenwindowcensus/cannoncounts/bartizanposition inferred from panoramic/photo views rather than protectedplan. Preserveall19outerbasecontrols and completefort/openaircourt/raisedwalk; no solidwholeforttop/courtyardfill orhill/road/siteplate. Exacthillfooting/gatestepcontact unresolved, geographicpreview/replaceFootprintfalse; rawfield immutable.",
+    "Whole native19-control fort/bastions/batteredroughrubblecurtain/ochreparapets/realopenembrasures/fiveintrinsiccannons/wholelowercourtyardandraisedwalk/Ushapedlowbarracks/trueopenarchpassage/higherguardroom/domedbartizan/realrecessedwoodgate/cresttablet/taperedbrickentrystair. Interiorroomplan/heights/batter/roofprofiles/cannoncensus/gatestation/bartizanlocation/hiddenwindows original boundedphotoestimates, notmetricpanorama projection or privateinterior. Finecrest is simplified originalrelief withoutlettering.",
+    "Five exactpublishedQualla creatorOwn/selfCC0 originals byWilfredor/ThePhotographer individuallyinspected/nativeSHA1matched. No supplemental photos/generatedbitmap/photo textures/copiedmesh/protectedplan/rightsmetadata repair. Otherislandforts/roads/trees/hill/people/antenna/flags/lettering excluded.",
+    "Six actualmaterialcombinations maximum: stone_drywall/plaster_lime/clay_fired/stone_limestone_raw plusopaquewood/metal palettes. Physicalbarreltile ribs/windowbars/doorstuds/hollowcannonbores atnear levels; skyline preserveswholefort/court/roof/arch/gate/cannons withreducedprofiles.",
+    "Independent400m129x129/16641values/two rawTerrariumtiles frozen before allfloors/sections/geometry. Floor0 relativefixed96.5453m datum unsurveyed; exacthillfoundation/gatestep/plazaattachment unresolved. No fieldfit/flatten/reacquire, geographicpreview/replaceFootprintfalse. Intrinsiccourt/gunwalk arestructure; no hill/road/siteplate."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-native19-control-bastions-and-complete-open-fort",
+      "position": [
+        -52,
+        48,
+        64
+      ],
+      "lookAt": [
+        0,
+        3.5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "front-battered-rubble-wall-gatedoor-crest-and-tapered-brickstairs",
+      "position": [
+        -27,
+        12,
+        36
+      ],
+      "lookAt": [
+        -3.4381092657198113,
+        3.8,
+        9.502677012231864
+      ]
+    },
+    {
+      "name": "open-courtyard-lower-floor-roofed-barracks-true-arch-and-guardroom",
+      "position": [
+        15,
+        28,
+        -20
+      ],
+      "lookAt": [
+        -1.25922387253235,
+        4.8,
+        -0.423795332149405
+      ]
+    },
+    {
+      "name": "splayed-physical-embrasure-and-hollow-cannon-barrel",
+      "position": [
+        29,
+        10,
+        32
+      ],
+      "lookAt": [
+        12.5,
+        4.9,
+        17.5
+      ]
+    },
+    {
+      "name": "northeastern-domed-bartizan-and-native-bastion-returns",
+      "position": [
+        37,
+        18,
+        -31
+      ],
+      "lookAt": [
+        20,
+        5,
+        -9.6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9534,
+    "vertices": 28602,
+    "materials": 6,
+    "bytes": 1147688,
+    "sha256": "sha256:5fdc54f66e207b91746fe981e9f986ebc0187fa03eb4dce5ba3ec7056cfddb9d"
+  }
+}

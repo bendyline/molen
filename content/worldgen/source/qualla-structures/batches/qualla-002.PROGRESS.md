@@ -1,8 +1,8 @@
 # Qualla compat — local 300 — completion progress
 
-**126 / 300 completed.** 128 models started; 172 not started.
+**163 / 300 completed.** 165 models started; 135 not started.
 
-126 models retain their technical validation; 126 reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.
+163 models retain their technical validation; 163 reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.
 
 Finish each model using Qualla photographs, current renders and story synchronization in the same authoring pass. Every next-1,000 candidate and collection member remains assigned to the other device.
 
@@ -175,59 +175,59 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 163 | [Golden Gate Raptor Observatory](https://qualla.com/golden-gate-raptor-observatory/) | Not started | source-model-missing |
 | 164 | [Atalaya Castle (US)](https://qualla.com/atalaya-castle-us/) | Complete | All required evidence current |
 | 165 | [Atlanta–Fulton County Stadium](https://qualla.com/atlanta-fulton-county-stadium/) | Complete | All required evidence current |
-| 166 | [Baltimore Basilica](https://qualla.com/basilica-of-the-national-shrine-of-the-assumption-of-the-blessed-virgin-mary/) | Not started | source-model-missing |
-| 167 | [Blue Room (White House)](https://qualla.com/blue-room-white-house/) | Not started | source-model-missing |
-| 168 | [San Jose Electric Light Tower](https://qualla.com/san-jose-electric-light-tower/) | Not started | source-model-missing |
-| 169 | [Colman Dock](https://qualla.com/colman-dock/) | Not started | source-model-missing |
-| 170 | [Grafton Bridge](https://qualla.com/grafton-bridge/) | Not started | source-model-missing |
+| 166 | [Baltimore Basilica](https://qualla.com/basilica-of-the-national-shrine-of-the-assumption-of-the-blessed-virgin-mary/) | Complete | All required evidence current |
+| 167 | [Blue Room (White House)](https://qualla.com/blue-room-white-house/) | Complete | All required evidence current |
+| 168 | [San Jose Electric Light Tower](https://qualla.com/san-jose-electric-light-tower/) | Complete | All required evidence current |
+| 169 | [Colman Dock](https://qualla.com/colman-dock/) | Complete | All required evidence current |
+| 170 | [Grafton Bridge](https://qualla.com/grafton-bridge/) | Complete | All required evidence current |
 | 171 | [Brisbane Festival Hall](https://qualla.com/brisbane-festival-hall/) | Not started | source-model-missing |
 | 172 | [Copeton Dam](https://qualla.com/copeton-dam/) | Not started | source-model-missing |
-| 173 | [Hotel Corones](https://qualla.com/hotel-corones/) | Not started | source-model-missing |
-| 174 | [Cascades Female Factory](https://qualla.com/cascades-female-factory/) | Not started | source-model-missing |
-| 175 | [Australian War Memorial](https://qualla.com/australian-war-memorial/) | Not started | source-model-missing |
-| 176 | [Crohamhurst Observatory](https://qualla.com/crohamhurst-observatory/) | Not started | source-model-missing |
-| 177 | [Fort Lytton](https://qualla.com/fort-lytton/) | Not started | source-model-missing |
+| 173 | [Hotel Corones](https://qualla.com/hotel-corones/) | Complete | All required evidence current |
+| 174 | [Cascades Female Factory](https://qualla.com/cascades-female-factory/) | Complete | All required evidence current |
+| 175 | [Australian War Memorial](https://qualla.com/australian-war-memorial/) | Complete | All required evidence current |
+| 176 | [Crohamhurst Observatory](https://qualla.com/crohamhurst-observatory/) | Complete | All required evidence current |
+| 177 | [Fort Lytton](https://qualla.com/fort-lytton/) | Complete | All required evidence current |
 | 178 | [Empire Theatre, Toowoomba](https://qualla.com/empire-theatre-toowoomba/) | Not started | source-model-missing |
-| 179 | [Shrine of Remembrance, Brisbane](https://qualla.com/shrine-of-remembrance-brisbane/) | Not started | source-model-missing |
-| 180 | [Government House, Brisbane](https://qualla.com/government-house-brisbane/) | Not started | source-model-missing |
-| 181 | [Tunnel Beach](https://qualla.com/tunnel-beach/) | Not started | source-model-missing |
-| 182 | [Puente Colgante de Santa Fe](https://qualla.com/puente-colgante-de-santa-fe/) | Not started | source-model-missing |
-| 183 | [Kavanagh Building](https://qualla.com/kavanagh-building/) | Not started | source-model-missing |
-| 184 | [Eden Hotel](https://qualla.com/eden-hotel/) | Not started | source-model-missing |
+| 179 | [Shrine of Remembrance, Brisbane](https://qualla.com/shrine-of-remembrance-brisbane/) | Complete | All required evidence current |
+| 180 | [Government House, Brisbane](https://qualla.com/government-house-brisbane/) | Complete | All required evidence current |
+| 181 | [Tunnel Beach](https://qualla.com/tunnel-beach/) | Complete | All required evidence current |
+| 182 | [Puente Colgante de Santa Fe](https://qualla.com/puente-colgante-de-santa-fe/) | Complete | All required evidence current |
+| 183 | [Kavanagh Building](https://qualla.com/kavanagh-building/) | Complete | All required evidence current |
+| 184 | [Eden Hotel](https://qualla.com/eden-hotel/) | Complete | All required evidence current |
 | 185 | [Atacama Cosmology Telescope](https://qualla.com/atacama-cosmology-telescope/) | Not started | source-model-missing |
-| 186 | [Latin America Memorial](https://qualla.com/latin-america-memorial/) | Not started | source-model-missing |
-| 187 | [Las Campanas Observatory](https://qualla.com/las-campanas-observatory/) | Not started | source-model-missing |
-| 188 | [La Moneda Palace](https://qualla.com/la-moneda-palace/) | Not started | source-model-missing |
-| 189 | [Municipal Theatre Ignacio A. Pane](https://qualla.com/municipal-theatre-ignacio-a-pane/) | Not started | source-model-missing |
-| 190 | [Basilica of the Eternal Father, Trindade](https://qualla.com/basilica-of-the-eternal-father-trindade/) | Not started | source-model-missing |
-| 191 | [Villa Grimaldi](https://qualla.com/villa-grimaldi/) | Not started | source-model-missing |
-| 192 | [Godavari Arch Bridge](https://qualla.com/godavari-arch-bridge/) | Not started | source-model-missing |
+| 186 | [Latin America Memorial](https://qualla.com/latin-america-memorial/) | Complete | All required evidence current |
+| 187 | [Las Campanas Observatory](https://qualla.com/las-campanas-observatory/) | Complete | All required evidence current |
+| 188 | [La Moneda Palace](https://qualla.com/la-moneda-palace/) | Complete | All required evidence current |
+| 189 | [Municipal Theatre Ignacio A. Pane](https://qualla.com/municipal-theatre-ignacio-a-pane/) | Complete | All required evidence current |
+| 190 | [Basilica of the Eternal Father, Trindade](https://qualla.com/basilica-of-the-eternal-father-trindade/) | Complete | All required evidence current |
+| 191 | [Villa Grimaldi](https://qualla.com/villa-grimaldi/) | Complete | All required evidence current |
+| 192 | [Godavari Arch Bridge](https://qualla.com/godavari-arch-bridge/) | Complete | All required evidence current |
 | 193 | [Frere Hall](https://qualla.com/frere-hall/) | Not started | source-model-missing |
 | 194 | [Kaptai Dam](https://qualla.com/kaptai-dam/) | Not started | source-model-missing |
-| 195 | [Gawhar Shad Mausoleum](https://qualla.com/gawhar-shad-mausoleum/) | Not started | source-model-missing |
+| 195 | [Gawhar Shad Mausoleum](https://qualla.com/gawhar-shad-mausoleum/) | Complete | All required evidence current |
 | 196 | [Mubarak Mandi Palace](https://qualla.com/mubarak-mandi-palace/) | Not started | source-model-missing |
-| 197 | [Great Mosque of Herat](https://qualla.com/great-mosque-of-herat/) | Not started | source-model-missing |
-| 198 | [Wazir Mansion](https://qualla.com/wazir-mansion/) | Not started | source-model-missing |
-| 199 | [Great Pyramid of Giza](https://qualla.com/great-pyramid-of-giza/) | Not started | source-model-missing |
-| 200 | [Dona Ana Bridge](https://qualla.com/dona-ana-bridge/) | Not started | source-model-missing |
+| 197 | [Great Mosque of Herat](https://qualla.com/great-mosque-of-herat/) | Other device | next-1000-other-device |
+| 198 | [Wazir Mansion](https://qualla.com/wazir-mansion/) | Complete | All required evidence current |
+| 199 | [Great Pyramid of Giza](https://qualla.com/great-pyramid-of-giza/) | Complete | All required evidence current |
+| 200 | [Dona Ana Bridge](https://qualla.com/dona-ana-bridge/) | Complete | All required evidence current |
 | 201 | [Kuwait National Assembly Building](https://qualla.com/kuwait-national-assembly-building/) | Not started | source-model-missing |
-| 202 | [Cahora Bassa Dam](https://qualla.com/cahora-bassa-dam/) | Not started | source-model-missing |
+| 202 | [Cahora Bassa Dam](https://qualla.com/cahora-bassa-dam/) | Complete | All required evidence current |
 | 203 | [Grand Bazaar, Isfahan](https://qualla.com/grand-bazaar-isfahan/) | Not started | source-model-missing |
-| 204 | [Southern African Large Telescope](https://qualla.com/southern-african-large-telescope/) | Not started | source-model-missing |
+| 204 | [Southern African Large Telescope](https://qualla.com/southern-african-large-telescope/) | Complete | All required evidence current |
 | 205 | [Tomb of Tutankhamun](https://qualla.com/tomb-of-tutankhamun/) | Not started | source-model-missing |
-| 206 | [Palace of Darius in Susa](https://qualla.com/palace-of-darius-in-susa/) | Not started | source-model-missing |
+| 206 | [Palace of Darius in Susa](https://qualla.com/palace-of-darius-in-susa/) | Complete | All required evidence current |
 | 207 | [Market Theatre (Johannesburg)](https://qualla.com/market-theatre-johannesburg/) | Not started | source-model-missing |
-| 208 | [Khalid ibn al-Walid Mosque](https://qualla.com/khalid-ibn-al-walid-mosque/) | Not started | source-model-missing |
+| 208 | [Khalid ibn al-Walid Mosque](https://qualla.com/khalid-ibn-al-walid-mosque/) | Complete | All required evidence current |
 | 209 | [House of Wonders](https://qualla.com/house-of-wonders/) | Not started | source-model-missing |
-| 210 | [Hassan Tower](https://qualla.com/hassan-tower/) | Not started | source-model-missing |
+| 210 | [Hassan Tower](https://qualla.com/hassan-tower/) | Complete | All required evidence current |
 | 211 | [Juscelino Kubitschek de Oliveira Bridge](https://qualla.com/juscelino-kubitschek-de-oliveira-bridge/) | Not started | source-model-missing |
-| 212 | [Embassy of the United States, Caracas](https://qualla.com/embassy-of-the-united-states-caracas/) | Not started | source-model-missing |
-| 213 | [Monument Abertura dos Portos](https://qualla.com/monument-abertura-dos-portos/) | Not started | source-model-missing |
-| 214 | [Santa Rosa de la Eminencia castle](https://qualla.com/santa-rosa-de-la-eminencia-castle/) | Not started | source-model-missing |
+| 212 | [Embassy of the United States, Caracas](https://qualla.com/embassy-of-the-united-states-caracas/) | Complete | All required evidence current |
+| 213 | [Monument Abertura dos Portos](https://qualla.com/monument-abertura-dos-portos/) | Complete | All required evidence current |
+| 214 | [Santa Rosa de la Eminencia castle](https://qualla.com/santa-rosa-de-la-eminencia-castle/) | Complete | All required evidence current |
 | 215 | [Church of La Compañía, Quito](https://qualla.com/church-of-la-compania-quito/) | Not started | source-model-missing |
 | 216 | [Governor Nobre de Carvalho Bridge](https://qualla.com/governor-nobre-de-carvalho-bridge/) | Not started | source-model-missing |
-| 217 | [Handa Red Brick Building](https://qualla.com/handa-red-brick-building/) | Not started | source-model-missing |
-| 218 | [Tokuyama Dam](https://qualla.com/tokuyama-dam/) | Not started | source-model-missing |
+| 217 | [Handa Red Brick Building](https://qualla.com/handa-red-brick-building/) | Complete | All required evidence current |
+| 218 | [Tokuyama Dam](https://qualla.com/tokuyama-dam/) | Complete | All required evidence current |
 | 219 | [Hotel Okura Tokyo](https://qualla.com/hotel-okura-tokyo/) | Not started | source-model-missing |
 | 220 | [Tomioka Silk Mill](https://qualla.com/tomioka-silk-mill/) | Not started | source-model-missing |
 | 221 | [Maniguin Island Lighthouse](https://qualla.com/maniguin-island-lighthouse/) | Not started | source-model-missing |

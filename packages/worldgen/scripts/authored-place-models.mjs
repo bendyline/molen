@@ -31,10 +31,12 @@ import { ashevilleModel } from './structure-asheville-masonic-temple.mjs';
 import { atalayaCastleModel } from './structure-atalaya-castle-us.mjs';
 import { atlantaFultonCountyStadiumModel } from './structure-atlanta-fulton-county-stadium.mjs';
 import { atsutaShrineModel } from './structure-atsuta-shrine.mjs';
+import { australianWarMemorialModel } from './structure-australian-war-memorial.mjs';
 import { azuchiCastleModel } from './structure-azuchi-castle.mjs';
 import { bagnellDamModel } from './structure-bagnell-dam.mjs';
 import { baltimoreBasilicaModel } from './structure-baltimore-basilica.mjs';
 import { banquetingHouseModel } from './structure-banqueting-house.mjs';
+import { eternalFatherTrindadeModel } from './structure-basilica-eternal-father-trindade.mjs';
 import { beijingAncientObservatoryModel } from './structure-beijing-ancient-observatory.mjs';
 import { berlinHohenschonhausenModel } from './structure-berlin-hohenschonhausen-memorial.mjs';
 import { berlinObservatoryModel } from './structure-berlin-observatory.mjs';
@@ -53,10 +55,12 @@ import { bristolHotelMarDelPlataModel } from './structure-bristol-hotel-mar-del-
 import { bruichladdichModel } from './structure-bruichladdich-distillery.mjs';
 import { buenosAiresCentralPostOfficeModel } from './structure-buenos-aires-central-post-office.mjs';
 import { buffaloTraceDistilleryModel } from './structure-buffalo-trace-distillery.mjs';
+import { cahoraBassaDamModel } from './structure-cahora-bassa-dam.mjs';
 import { caldecottTunnelModel } from './structure-caldecott-tunnel.mjs';
 import { capeCharlesLighthouseModel } from './structure-cape-charles-lighthouse.mjs';
 import { capeLookoutLighthouseModel } from './structure-cape-lookout-lighthouse.mjs';
 import { cardiffBarrageModel } from './structure-cardiff-bay-barrage.mjs';
+import { cascadesFemaleFactoryModel } from './structure-cascades-female-factory.mjs';
 import { casinoLisboaMacauModel } from './structure-casino-lisboa-macau.mjs';
 import { castleGoodHopeModel } from './structure-castle-of-good-hope.mjs';
 import { cellularJailModel } from './structure-cellular-jail.mjs';
@@ -64,27 +68,40 @@ import { chamizalModel } from './structure-chamizal-cultural-center.mjs';
 import { chenClanHallModel } from './structure-chen-clan-ancestral-hall.mjs';
 import { cihuMausoleumModel } from './structure-cihu-mausoleum.mjs';
 import { cincinnatiModel } from './structure-cincinnati-observatory.mjs';
+import { colmanDockModel } from './structure-colman-dock.mjs';
 import { coltejerModel } from './structure-coltejer-building.mjs';
 import { cremorneTheatreModel } from './structure-cremorne-theatre.mjs';
 import { cressbrookHomesteadModel } from './structure-cressbrook-homestead.mjs';
+import { crohamhurstObservatoryModel } from './structure-crohamhurst-observatory.mjs';
 import { cromerLighthouseModel } from './structure-cromer-lighthouse.mjs';
 import { cromerPierModel } from './structure-cromer-pier.mjs';
 import { cromfordMillModel } from './structure-cromford-mill.mjs';
 import { daulatabadFortModel } from './structure-daulatabad-fort.mjs';
 import { davidsTombModel } from './structure-davids-tomb.mjs';
+import { donaAnaBridgeModel } from './structure-dona-ana-bridge.mjs';
+import { edenHotelModel } from './structure-eden-hotel.mjs';
 import { englebrightDamModel } from './structure-englebright-dam.mjs';
 import { exchangeSquareHongKongModel } from './structure-exchange-square-hong-kong.mjs';
 import { mansionModel } from './structure-executive-mansion-monrovia.mjs';
+import { fortLyttonModel } from './structure-fort-lytton.mjs';
 import { exchangeModel } from './structure-fort-worth-livestock-exchange.mjs';
 import { friendshipBridgeBrazilParaguayModel } from './structure-friendship-bridge-brazil-paraguay.mjs';
 import { galileoPlanetariumModel } from './structure-galileo-galilei-planetarium.mjs';
+import { gawharShadMausoleumModel } from './structure-gawhar-shad-mausoleum.mjs';
 import { generalPostOfficeHongKongModel } from './structure-general-post-office-hong-kong.mjs';
 import { giantMetrewaveRadioTelescopeModel } from './structure-giant-metrewave-radio-telescope.mjs';
+import { godavariArchBridgeModel } from './structure-godavari-arch-bridge.mjs';
+import { brisbaneGovernmentHouseModel } from './structure-government-house-brisbane.mjs';
+import { graftonBridgeModel } from './structure-grafton-bridge.mjs';
+import { greatPyramidModel } from './structure-great-pyramid-of-giza.mjs';
 import { greenvilleConfederateMonumentModel } from './structure-greenville-confederate-monument.mjs';
 import { hamburgerKunsthalleModel } from './structure-hamburger-kunsthalle.mjs';
+import { handaRedBrickModel } from './structure-handa-red-brick-building.mjs';
 import { hartrao26mModel } from './structure-hartrao-26m-antenna.mjs';
+import { hassanTowerModel } from './structure-hassan-tower.mjs';
 import { homerTunnelModel } from './structure-homer-tunnel.mjs';
 import { hongKongStadiumModel } from './structure-hong-kong-stadium.mjs';
+import { hotelCoronesModel } from './structure-hotel-corones.mjs';
 import { nutibaraModel } from './structure-hotel-nutibara.mjs';
 import { huguenotTunnelModel } from './structure-huguenot-tunnel.mjs';
 import { inubosakiLighthouseModel } from './structure-inubosaki-lighthouse.mjs';
@@ -92,31 +109,49 @@ import { jkMemorialModel } from './structure-jk-memorial.mjs';
 import { kaohsiungLighthouseModel } from './structure-kaohsiung-lighthouse.mjs';
 import { karibaModel } from './structure-kariba-dam.mjs';
 import { khajuModel } from './structure-khaju-bridge.mjs';
+import { khalidIbnAlWalidMosqueModel } from './structure-khalid-ibn-al-walid-mosque.mjs';
+import { laMonedaPalaceModel } from './structure-la-moneda-palace.mjs';
+import { lasCampanasObservatoryModel } from './structure-las-campanas-observatory.mjs';
+import { latinAmericaMemorialModel } from './structure-latin-america-memorial.mjs';
 import { louisvilleWaterModel } from './structure-louisville-water-tower.mjs';
 import { macauTowerModel } from './structure-macau-tower.mjs';
 import { matiuSomesModel } from './structure-matiu-somes-island-lighthouse.mjs';
 import { mirafloresModel } from './structure-miraflores-palace.mjs';
+import { municipalTheatrePaneModel } from './structure-municipal-theatre-ignacio-a-pane.mjs';
 import { nakaginCapsuleTowerModel } from './structure-nakagin-capsule-tower.mjs';
 import { nasseefHouseModel } from './structure-nasseef-house.mjs';
 import { oldWindmillModel } from './structure-old-windmill-brisbane.mjs';
+import { openingPortsModel } from './structure-opening-of-the-ports-monument.mjs';
 import { orlandoModel } from './structure-orlando-power-station.mjs';
 import { raadsaalModel } from './structure-ou-raadsaal.mjs';
+import { palaceOfDariusInSusaModel } from './structure-palace-of-darius-in-susa.mjs';
 import { pambanBridgeModel } from './structure-pamban-bridge.mjs';
 import { parliamentBarbadosModel } from './structure-parliament-buildings-barbados.mjs';
+import { santaFeSuspensionModel } from './structure-puente-colgante-santa-fe.mjs';
 import { pyramidOfTheMoonModel } from './structure-pyramid-of-the-moon.mjs';
 import { pontoonModel } from './structure-queen-emma-bridge.mjs';
 import { townsMonumentModel } from './structure-robert-towns-monument.mjs';
 import { saintPaulsModel } from './structure-ruins-of-saint-pauls.mjs';
 import { sakumaDamModel } from './structure-sakuma-dam.mjs';
+import { sanJoseElectricLightTowerModel } from './structure-san-jose-electric-light-tower.mjs';
+import { santaRosaModel } from './structure-santa-rosa-castle.mjs';
 import { shihmenDamModel } from './structure-shihmen-dam.mjs';
+import { brisbaneShrineModel } from './structure-shrine-of-remembrance-brisbane.mjs';
 import { brisbanePlanetariumModel } from './structure-sir-thomas-brisbane-planetarium.mjs';
 import { skyTowerAucklandModel } from './structure-sky-tower-auckland.mjs';
+import { southernAfricanLargeTelescopeModel } from './structure-southern-african-large-telescope.mjs';
 import { ciceroModel } from './structure-statue-of-father-cicero.mjs';
 import { josephineModel } from './structure-statue-of-the-empress-josephine.mjs';
 import { statueOfUnityModel } from './structure-statue-of-unity.mjs';
 import { tivoliHotelModel } from './structure-tivoli-hotel-panama.mjs';
 import { toghrolTowerModel } from './structure-toghrol-tower.mjs';
+import { tokuyamaDamModel } from './structure-tokuyama-dam.mjs';
 import { citadelModel } from './structure-tower-of-david.mjs';
+import { tunnelBeachModel } from './structure-tunnel-beach.mjs';
+import { usEmbassyCaracasModel } from './structure-us-embassy-caracas.mjs';
+import { villaGrimaldiModel } from './structure-villa-grimaldi.mjs';
+import { wazirMansionModel } from './structure-wazir-mansion.mjs';
+import { whiteHouseExecutiveResidenceModel } from './structure-white-house-executive-residence.mjs';
 import { wireOperaHouseModel } from './structure-wire-opera-house.mjs';
 import { zhanqiaoPierModel } from './structure-zhanqiao-pier.mjs';
 /** Authored geographic structures: each source recipe owns its identity and review inputs. */
@@ -183,6 +218,7 @@ import { humayunsTombModel } from './structure-humayuns-tomb.mjs';
 import { jamaicaModel } from './structure-jamaica-inn.mjs';
 import { jeffersonModel } from './structure-jefferson-memorial.mjs';
 import { jeronimosMonasteryModel } from './structure-jeronimos-monastery.mjs';
+import { kavanaghModel } from './structure-kavanagh-building.mjs';
 import { kensington13Model } from './structure-kensington-palace-gardens-13.mjs';
 import { kobePortTowerModel } from './structure-kobe-port-tower.mjs';
 import { kyotoTowerModel } from './structure-kyoto-tower.mjs';
@@ -231,12 +267,26 @@ import { winchesterModel } from './structure-winchester-mystery-house.mjs';
 export { landmarkSurfaces } from './landmark-model-helpers.mjs';
 export const authoredPlaceModels = [
   baltimoreBasilicaModel,
+  whiteHouseExecutiveResidenceModel,
+  sanJoseElectricLightTowerModel,
+  colmanDockModel,
+  graftonBridgeModel,
+  hotelCoronesModel,
+  cascadesFemaleFactoryModel,
+  australianWarMemorialModel,
+  crohamhurstObservatoryModel,
+  fortLyttonModel,
+  brisbaneShrineModel,
+  brisbaneGovernmentHouseModel,
+  tunnelBeachModel,
+  santaFeSuspensionModel,
   atlantaFultonCountyStadiumModel,
   atalayaCastleModel,
   aachenCathedralModel,
   aerialLiftBridgeModel,
   blackpoolTowerModel,
   capeLookoutLighthouseModel,
+  edenHotelModel,
   englebrightDamModel,
   ahmedBeyPalaceModel,
   ahldenHouseModel,
@@ -329,6 +379,27 @@ export const authoredPlaceModels = [
   beijingAncientObservatoryModel,
   cihuMausoleumModel,
   inubosakiLighthouseModel,
+  laMonedaPalaceModel,
+  municipalTheatrePaneModel,
+  eternalFatherTrindadeModel,
+  villaGrimaldiModel,
+  godavariArchBridgeModel,
+  gawharShadMausoleumModel,
+  wazirMansionModel,
+  greatPyramidModel,
+  donaAnaBridgeModel,
+  cahoraBassaDamModel,
+  southernAfricanLargeTelescopeModel,
+  khalidIbnAlWalidMosqueModel,
+  hassanTowerModel,
+  usEmbassyCaracasModel,
+  openingPortsModel,
+  santaRosaModel,
+  handaRedBrickModel,
+  tokuyamaDamModel,
+  palaceOfDariusInSusaModel,
+  lasCampanasObservatoryModel,
+  latinAmericaMemorialModel,
   macauTowerModel,
   zhanqiaoPierModel,
   anjiBridgeModel,
@@ -443,6 +514,7 @@ export const authoredPlaceModels = [
   phoenixShotTowerModel,
   newYorkStockExchangeModel,
   nusretiyeClockTowerModel,
+  kavanaghModel,
   kobePortTowerModel,
   kyotoTowerModel,
   whiteTowerOfThessalonikiModel,

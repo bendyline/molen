@@ -1,0 +1,435 @@
+{
+  "planId": "gawhar_shad_mausoleum",
+  "id": "gawhar_shad_mausoleum",
+  "assetId": "molen.worldgen.structure.gawhar_shad_mausoleum",
+  "title": "Gawhar Shad Mausoleum",
+  "category": "monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 62.18530605,
+    "latitude": 34.357407699999996
+  },
+  "size": [
+    24.898375511169434,
+    27.40000046044588,
+    27.373031616210938
+  ],
+  "actualBounds": {
+    "min": [
+      -12.449182510375977,
+      0.11999999731779099,
+      -13.686481475830078
+    ],
+    "max": [
+      12.449193000793457,
+      27.520000457763672,
+      13.68655014038086
+    ]
+  },
+  "visualBrief": "Whole surviving Gawhar Shad Mausoleum/Tomb of Baysunghur exterior on native four-corner buildingway743807289: full cubic/plastered brick chamber shell, true recessed pointed window/doorway and blind arch panels/corner piers, roof ledge/parapet, tall cylindrical panelled drum/small aperture and complete bulbous fluted outer dome with original restrained turquoise tile rhythm. Exclude separate adjacent mausoleum, all freestanding Musalla minarets/ruined madrasa/site walls/gardens/graves/city/private burial interiors; no whole-Musalla site or facade-only substitution. Surviving architecture follows clear2001 exterior/current native plan; exact current post-conservation finish/openings and unknown sections are bounded original medium-fi estimates, no copied inscription or pictorial ornament.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Gowhar_Shad.png"
+  ],
+  "stories": [
+    {
+      "id": "gawhar-shad-mausoleum-wp",
+      "url": "https://qualla.com/gawhar-shad-mausoleum/"
+    }
+  ],
+  "referenceInputHash": "2766c1bf17f8536b2d2fa60c772ab39c96daaed9cbfe1e76b0dcb51b6d8c893c",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-gawhar-shad-mausoleum.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-gawhar-shad-mausoleum.mjs",
+    "level": "skyline",
+    "export": "gawharSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "foundation",
+        "graph": "brick_flemish",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "trim",
+        "localRef": "palette:#fffffe",
+        "roughness": 0.77,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffffd",
+        "roughness": 0.72,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.92,
+        "metallic": 0.05
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "gawharDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick_flemish",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.77,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "gawharStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick_flemish",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.77,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "gawharCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick_flemish",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.77,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffffd",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.8,
+    "groundY": -0.05
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original400m/129x129/16641-value field/one raw source and PNG frozen before all floor/body/drum/dome decisions; fixed exterior datum934.8227m. Independent floor+.12/body11m/parapet+.42/drum11.25..17.2/radius6.85/bulbous48-flute dome+10.2m/radius7.45/flute relief.22m. True pointed reveal5.15..8.65/windowwidth2.85, small low door2.35/.9m and north/east hidden census original estimates. Actual four corners/whole body retained; internal axis matches native south face. Clear2001 photograph supports surviving structure and tan/teal fragments, primaryUNESCO documents subsequent tile conservation; exact current tile coverage/window-door changes unknown. Original abstract sparse tile rhythm/no inscription/pictorial sacred art. Source/host ground-footing/threshold contact unresolved/replacementfalse; no source fitting/flattening/reacquisition or whole-site slab.",
+    "anchor": [
+      62.18530605,
+      34.357407699999996
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        62.18508564791558,
+        34.357214635660405
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exteriorSW point5m beyond whole building acquisition bounds chosen before terrain/floors/geometry, not a surveyed tomb threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/743807289"
+    ],
+    "source": "https://www.openstreetmap.org/way/743807289",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6890a0939a0f7ef477a3c0553c84604a20645c4fec6d37e9e5cb2c8c4d11b83e",
+    "notes": "Whole surviving Gawhar Shad Mausoleum/Tomb of Baysunghur exterior on native four-corner buildingway743807289: full cubic/plastered brick chamber shell, true recessed pointed window/doorway and blind arch panels/corner piers, roof ledge/parapet, tall cylindrical panelled drum/small aperture and complete bulbous fluted outer dome with original restrained turquoise tile rhythm. Exclude separate adjacent mausoleum, all freestanding Musalla minarets/ruined madrasa/site walls/gardens/graves/city/private burial interiors; no whole-Musalla site or facade-only substitution. Surviving architecture follows clear2001 exterior/current native plan; exact current post-conservation finish/openings and unknown sections are bounded original medium-fi estimates, no copied inscription or pictorial ornament."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole surviving mausoleum/actual four-corner buildingway743807289/Q85762853; nativepersonQ464986 is not building identity. Full chamber shell/pointed window-door and blind niches/pilasters/plinth/roof/parapet, tall panelled cylindrical drum/small square aperture and full fluted bulb dome. Separate small tomb/minarets/widerMusalla/graves/site/landscape/interior burial rooms excluded.",
+    "Qualla-first16families/0conflicts yielded unclear historic/art or unrelated US-government sources, all unused. Supplemental exact2435x1630 bluuurgh2001-07-15 Own/PD-self PNG/nativeSHA1matched/terminal exact rights record individually inspected. No protected UNESCO/gallery/plan pixels; conservation text only. No inscriptions/pictorial art/photo texture/borrowed mesh/generated bitmap or policy/verifier/source-body changes.",
+    "Clear exterior documents2001 tan body/drum/partly exposed fluted dome with turquoise lower fragments; later UNESCO tile conservation/reproduction means exact current coverage/finish/opening census unsurveyed. This is an original weathered architectural preview, not a verified current restoration color survey. Independent body11m/drum11.25..17.2/radius6.85/dome+10.2/radius7.45/48ribs and opposite face/door-window placement/reliefs/grille/roof/section details bounded medium-fi estimates. Abstract original muted geometric fragments only.",
+    "Independent400m/129x129/16641 heights/one raw tile/PNG frozen before geometry/floor/drum/dome unchanged. Source urban relief not a historical or construction survey and may contain canopy/building artifacts; precise source/host tomb footing/threshold contact unresolved/replacementfalse. Flat appearance views separate; no source flattening/fitting/reacquisition or whole-site pad."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-mausoleum-native-cube-drum-fluted-bulb-dome",
+      "position": [
+        -27.97371753212633,
+        24,
+        61.62362475084379
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "opposite-whole-tomb-hidden-faces-bounded-estimates",
+      "position": [
+        29.666227485691806,
+        21,
+        -51.767894942398264
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "south-pointed-window-grille-deep-reveal-and-low-door",
+      "position": [
+        6.540922836315901,
+        7,
+        26.271968492089837
+      ],
+      "lookAt": [
+        2.0140868447429208,
+        6,
+        11.728318472050182
+      ]
+    },
+    {
+      "name": "west-pointed-blind-niches-corner-pilasters",
+      "position": [
+        -24.071705552454713,
+        7,
+        19.35337158729509
+      ],
+      "lookAt": [
+        -9.855729808445531,
+        5,
+        1.6925099535654797
+      ]
+    },
+    {
+      "name": "drum-small-square-aperture-and-panel-rhythm",
+      "position": [
+        9.636959782911374,
+        18,
+        20.66709960644088
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ]
+    },
+    {
+      "name": "fluted-bulb-dome-original-neutral-turquoise-fragment-rhythm",
+      "position": [
+        -10.413001824692781,
+        25,
+        22.080973551882735
+      ],
+      "lookAt": [
+        0,
+        21,
+        0
+      ]
+    },
+    {
+      "name": "roof-ledge-open-parapet-and-whole-native-body",
+      "position": [
+        32.33507133363083,
+        39,
+        22.85701559366414
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "low-entry-door-and-uninterrupted-plinth-gaps",
+      "position": [
+        12.76292972080158,
+        3.5,
+        21.14491960121579
+      ],
+      "lookAt": [
+        10.39145718192162,
+        1.3,
+        10.289685011519524
+      ]
+    },
+    {
+      "name": "whole-four-corner-footprint-and-roof-drum-domain",
+      "position": [
+        0.0016925099535654799,
+        66,
+        0.00985572980844553
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16798,
+    "vertices": 50394,
+    "materials": 6,
+    "bytes": 2019344,
+    "sha256": "sha256:5506269f30248211a6a2167a884e17c2ace4881bbb0de6b951a37fa03320debb"
+  }
+}

@@ -1,0 +1,360 @@
+{
+  "planId": "dona_ana_bridge",
+  "id": "dona_ana_bridge",
+  "assetId": "molen.worldgen.structure.dona_ana_bridge",
+  "title": "Dona Ana Bridge",
+  "category": "bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 35.05014835,
+    "latitude": -17.4423973
+  },
+  "size": [
+    3543.283447265625,
+    35.132232666015625,
+    1010.5166625976562
+  ],
+  "actualBounds": {
+    "min": [
+      -1771.6417236328125,
+      -14,
+      -505.2583312988281
+    ],
+    "max": [
+      1771.6417236328125,
+      21.132232666015625,
+      505.2583312988281
+    ]
+  },
+  "visualBrief": "Whole surviving DonaAna railwaybridge/Q1239603 acrossZambezi: full native named mainway32776288 and connected SWapproach410111566/NEapproach410111569, allnative ends/bends retained, approximately3674m total including2997m mainstructuralcrossing/564mSW/114mNE approaches. Complete40 paired steel throughtruss spans (33x80m and7x50m nominal fromQuallastory), polygonal upperchords/endposts/open vertical-diagonal webs/toplateralbracing, railwaydeck/crossbearers/concretepiers/abutments, intrinsic1067mmgauge track/simplepedestrianlane/rails and full bounded approachviaducts. Main spanordering/sections/pierstations/approachrepeat/hidden details originalestimates inside nativeends. Exclude temporarycrane/one collapsed2000span slope inreference, river/water/landscape/neighborhood/roadbridgeN322/otherrailway/privateinteriors. Existing parallel footpath570690312 co-located on same bridge, not a separate secondbridge.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Sena_Bridge_Following_2000_Floods_(5687097826).jpg"
+  ],
+  "stories": [
+    {
+      "id": "dona-ana-bridge-wp",
+      "url": "https://qualla.com/dona-ana-bridge/"
+    }
+  ],
+  "referenceInputHash": "a759d79aa6df960f73495c08e3a9430e7c2de765ab569d56aa8cc113bc32ae32",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-dona-ana-bridge.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-dona-ana-bridge.mjs",
+    "level": "skyline",
+    "export": "donaAnaSkyline",
+    "errorMeters": 4,
+    "surfaces": {
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.92,
+        "metallic": 0.12
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "ballast": {
+        "slot": "roof",
+        "localRef": "palette:#fffffe",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "donaAnaDistrict",
+        "errorMeters": 2.2,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.12
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "ballast": {
+            "slot": "roof",
+            "localRef": "palette:#fffffe",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "donaAnaStreet",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.12
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "ballast": {
+            "slot": "roof",
+            "localRef": "palette:#fffffe",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "donaAnaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.92,
+            "metallic": 0.12
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "ballast": {
+            "slot": "roof",
+            "localRef": "palette:#fffffe",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 46,
+    "groundY": -14.5,
+    "far": 18000
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "After independent4000m16641-value field/20rawtiles/PNG frozen unchanged, originalbounded deck+8m relativefixed exteriorbankdatum49m, pierbottom-14m/shaft3.4x7.8m/cap, full33x80m+7x50m pairedsteelthroughtruss mainspanrhythm within2996.536m nativeendpoints (6.536m totalboundedendoffset). Seven50mspans groupedSW then3380mspans as originalestimatedordering, not measuredpierstations; sourceQuallastory supplies counts only. Polygonal upperchord mainheight11.4/short8.2, framewidth4.5m/mainrailbed5.7m/slab.72, intrinsic1.15m footwaycenter+3.35 onsource/nativeSSEside, 1067mmgauge/noelectrification fromnativeway. Bothnative564mSW/114mNEapproachviaducts/fulloriginalbends retained; estimated24m approachbeam/pierpitch. Hiddenconnection/rail/sleeper/footrailrepeat/currentpaint and exactfootings unsurveyed.2000floodcollapsedspan/deck slope andcrane excluded. Source/host ground/river/piercontact unresolved/replacementfalse, no terrainfitting/flattening/reacquisition.",
+    "anchor": [
+      35.05014835,
+      -17.4423973
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        35.03308015279379,
+        -17.44729841945875
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exteriorSW point5m beyond entire bridge acquisitionbounds before terrain/floor/deck/pier decisions; not surveyed riverbank or trackdatum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/410111566",
+      "way/32776288",
+      "way/410111569"
+    ],
+    "source": "https://www.openstreetmap.org/way/32776288",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:86275971c93ee25640569390ed7166704b00a93c7ec92e693fde041e87eb107d",
+    "notes": "Whole surviving DonaAna railwaybridge/Q1239603 acrossZambezi: full native named mainway32776288 and connected SWapproach410111566/NEapproach410111569, allnative ends/bends retained, approximately3674m total including2997m mainstructuralcrossing/564mSW/114mNE approaches. Complete40 paired steel throughtruss spans (33x80m and7x50m nominal fromQuallastory), polygonal upperchords/endposts/open vertical-diagonal webs/toplateralbracing, railwaydeck/crossbearers/concretepiers/abutments, intrinsic1067mmgauge track/simplepedestrianlane/rails and full bounded approachviaducts. Main spanordering/sections/pierstations/approachrepeat/hidden details originalestimates inside nativeends. Exclude temporarycrane/one collapsed2000span slope inreference, river/water/landscape/neighborhood/roadbridgeN322/otherrailway/privateinteriors. Existing parallel footpath570690312 co-located on same bridge, not a separate secondbridge."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole actual native mainrailbridge32776288/Q1239603 and connected564mSW410111566/114mNE410111569 approaches, allnativeends/bends retained,3674m fullphysicalextent. Complete40pairedpolygonalsteelthroughtrusses inside2997m mainends, deck/concretepiers/abutments/current1067mmrail/noelectrification/intrinsicfootway. Co-located path570690312 samebridge, no secondfootbridge. No neighboringroadbridge/landscape/river/sitepad/privateinteriors.",
+    "Qualla-first11families/0conflicts. One exact886x570USAID officialgovernmentwork2000 original/nativeSHA1matched/PD-USGov-USAID and reviewedofficialFlickrUnitedStatesGovernmentWork, personallyinspected/existingunchangedpolicy passed. TransferredPD-author source unpinned/skippedwithoutpixels, othernativecategoryOGL/CCBY/CCBYSA unused. Sourceflooddamage/deckcollapse/crane excluded from current wholebridge; reference controls structuralfamily, later finish/repairs hidden estimates. No supplementalpixels/borrowedmesh/phototexture/generatedbitmap/imagerypolicy changes.",
+    "After independentground frozen: deck+8m/pierbottom-14m/shaft3.4x7.8,33nominal80m+7nominal50m mainspans with6.536m totalnativeendoffset. Seven50mspans groupedSW as originalestimatedordering, not measuredpierstations. Polygonalupperchord11.4m/short8.2/frame4.5m/mainrailbed5.7m/.72mdeck, intrinsic1.15mfootwaycenter+3.35/1067mmgauge. Approach24mbeam-pierpitch/hiddenconnections/currentpaint/census estimated. Sleepers/footrailposts sampled by detailbudget; full40truss stations retained, skyline centralopen trussribbon and pierprofiles, district pairedopenframes, nearfullsolidmembers/topbracing/rails.",
+    "Independent4000m129x12916641-value field/20rawtiles/PNG frozen before all deck/pier/geometry unchanged, fixedexteriordatum49m. Publicsource river/urbanrelief not bathymetry or railwayfoundation survey; exact source/host footing/deck/riverbankcontact unresolved/replacementfalse. Appearanceflatstage separate; no terrainfitting/flattening/reacquisition or whole-sitepad."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-main-crossing-and-both-full-native-approaches",
+      "position": [
+        1221.9045745466392,
+        350,
+        4225.705049970297
+      ],
+      "lookAt": [
+        -0.17854362773636012,
+        5,
+        -1.248682006574036
+      ]
+    },
+    {
+      "name": "opposite-whole-bridge-forty-paired-truss-spans",
+      "position": [
+        -1022.5489281913439,
+        420,
+        -4440.604918756139
+      ],
+      "lookAt": [
+        -0.17854362773636012,
+        5,
+        -1.248682006574036
+      ]
+    },
+    {
+      "name": "one-long-span-open-polygonal-truss-web-and-footway",
+      "position": [
+        27.049357727038227,
+        33,
+        94.97315225059788
+      ],
+      "lookAt": [
+        -0.17854362773636012,
+        12,
+        -1.248682006574036
+      ]
+    },
+    {
+      "name": "intrinsic-rail-gauge-pedestrian-lane-and-crossbearers",
+      "position": [
+        26.98039820689189,
+        17,
+        13.929983231953372
+      ],
+      "lookAt": [
+        0.09373538581138519,
+        8.3,
+        -0.28646366400231926
+      ]
+    },
+    {
+      "name": "southwest-full-approach-bends-and-bounded-pier-repeat",
+      "position": [
+        -1286.4961517191095,
+        90,
+        1246.1161169561474
+      ],
+      "lookAt": [
+        -1517.9333132346937,
+        3,
+        428.2305257701858
+      ]
+    },
+    {
+      "name": "north-east-abutment-short-approach-and-open-underdeck",
+      "position": [
+        1788.145965486091,
+        35,
+        -341.0086083981277
+      ],
+      "lookAt": [
+        1701.2814979027244,
+        3,
+        -482.71098759995425
+      ]
+    },
+    {
+      "name": "whole-native-seven-station-alignment-no-second-footbridge",
+      "position": [
+        4.635270875257703,
+        4700,
+        -2.6004548908870504
+      ],
+      "lookAt": [
+        4.632548085122238,
+        0,
+        -2.6100770743127697
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 51792,
+    "vertices": 155376,
+    "materials": 4,
+    "bytes": 6217816,
+    "sha256": "sha256:aa4c725467260d57c9e0b5c160d2712c8438fc85116ad0e5ae337d134a8fa872"
+  }
+}

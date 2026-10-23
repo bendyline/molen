@@ -993,3 +993,182 @@ test('an expired named library photograph can recover an omitted category withou
   put(story.sourcePath, JSON.stringify({ media: { images: [] } }));
   assert.equal(run().status, 'needs-replacement');
 });
+
+test('official White House photos bind the federal grant, named staff credit, official source and exact original', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'molen-whitehouse-rights-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const bytes = Buffer.from('native photograph'),
+    hash = (b, a = 'sha256') => createHash(a).update(b).digest('hex'),
+    rightsPath = 'content/worldgen/source/places/dq/dqc/residence/reference-rights/native.json',
+    file = path.join(root, rightsPath);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  const body =
+      '{{Information\n|Source=[https://www.flickr.com/photos/whitehouse/123/ Official]\n|Description=(Official White House Photo by Named Photographer)\n}}\n{{PD-USGov-POTUS}}',
+    page = {
+      title: 'File:Residence.jpg',
+      revisions: [{ revid: 123, slots: { main: { '*': body } } }],
+      imageinfo: [
+        {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Residence.jpg',
+          sha1: hash(bytes, 'sha1'),
+          extmetadata: {
+            Artist: { value: 'The White House from Washington, DC' },
+            LicenseShortName: { value: 'Public domain' },
+            Copyrighted: { value: 'False' },
+            AttributionRequired: { value: 'false' },
+          },
+        },
+      ],
+    },
+    reference = {
+      path: '_m/a/b/c/d/story/front.jpg',
+      sha256: hash(bytes),
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Residence.jpg',
+      artist: 'The White House from Washington, DC',
+      license: 'Public domain',
+      publicDomainEvidence: {
+        kind: 'commons-native-whitehouse-photo',
+        path: rightsPath,
+        photographer: 'Named Photographer',
+      },
+    };
+  const check = (change, ref = reference) => {
+    const p = structuredClone(page);
+    change?.(p);
+    const record = {
+        source:
+          'https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo%7Crevisions&titles=File%3AResidence.jpg',
+        query: { pages: { 1: p } },
+      },
+      text = JSON.stringify(record);
+    fs.writeFileSync(file, text);
+    return inspectQuallaPrimaryRights(
+      { ...ref, publicDomainEvidence: { ...ref.publicDomainEvidence, sha256: hash(text) } },
+      bytes,
+      root,
+    ).eligible;
+  };
+  assert.equal(check(), true);
+  for (const [from, to] of [
+    ['PD-USGov-POTUS', 'PD-user'],
+    ['Official White House Photo by Named Photographer', 'Courtesy of a private photographer'],
+    ['/photos/whitehouse/', '/photos/privateagency/'],
+  ])
+    assert.equal(
+      check((p) => {
+        p.revisions[0].slots.main['*'] = body.replace(from, to);
+      }),
+      false,
+    );
+  assert.equal(
+    check((p) => {
+      p.imageinfo[0].sha1 = '0'.repeat(40);
+    }),
+    false,
+  );
+  assert.equal(
+    check((p) => {
+      p.imageinfo[0].extmetadata.Copyrighted.value = 'True';
+    }),
+    false,
+  );
+  assert.equal(
+    check((p) => {
+      p.imageinfo[0].extmetadata.Restrictions = { value: 'Special permission required' };
+    }),
+    false,
+  );
+  assert.equal(
+    check(undefined, {
+      ...reference,
+      publicDomainEvidence: { ...reference.publicDomainEvidence, photographer: 'Someone Else' },
+    }),
+    false,
+  );
+});
+
+test('a native self-photographed release requires the exact named author, PD-self grant and original', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'molen-self-photographed-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const bytes = Buffer.from('native bridge photograph'),
+    hash = (b, a = 'sha256') => createHash(a).update(b).digest('hex'),
+    rightsPath = 'content/worldgen/source/places/rc/rck/bridge/reference-rights/native.json',
+    file = path.join(root, rightsPath);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  const body =
+      '{{Information\n|Source={{self-photographed}}\n|Author=[[User:BridgePhotographer|BridgePhotographer]]\n}}\n{{PD-self}}',
+    page = {
+      title: 'File:Bridge.jpg',
+      revisions: [{ revid: 123, slots: { main: { '*': body } } }],
+      imageinfo: [
+        {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Bridge.jpg',
+          sha1: hash(bytes, 'sha1'),
+          extmetadata: {
+            Artist: { value: 'BridgePhotographer' },
+            LicenseShortName: { value: 'Public domain' },
+            Copyrighted: { value: 'False' },
+            AttributionRequired: { value: 'false' },
+          },
+        },
+      ],
+    },
+    reference = {
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Bridge.jpg',
+      artist: 'BridgePhotographer',
+      license: 'Public domain',
+      publicDomainEvidence: {
+        kind: 'commons-native-self-released-photo',
+        path: rightsPath,
+        photographer: 'BridgePhotographer',
+      },
+    };
+  const check = (change) => {
+    const p = structuredClone(page);
+    change?.(p);
+    const text = JSON.stringify({
+      source:
+        'https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo%7Crevisions&titles=File%3ABridge.jpg',
+      query: { pages: { 1: p } },
+    });
+    fs.writeFileSync(file, text);
+    return inspectQuallaPrimaryRights(
+      {
+        ...reference,
+        publicDomainEvidence: { ...reference.publicDomainEvidence, sha256: hash(text) },
+      },
+      bytes,
+      root,
+    ).eligible;
+  };
+  assert.equal(check(), true);
+  for (const [from, to] of [
+    ['[[User:BridgePhotographer|BridgePhotographer]]', '[[User:SomeoneElse|SomeoneElse]]'],
+    ['{{self-photographed}}', 'Courtesy of another photographer'],
+    ['{{PD-self}}', '{{CC-by-sa-4.0}}'],
+  ])
+    assert.equal(
+      check((p) => {
+        p.revisions[0].slots.main['*'] = body.replace(from, to);
+      }),
+      false,
+    );
+  assert.equal(
+    check((p) => {
+      p.imageinfo[0].sha1 = '0'.repeat(40);
+    }),
+    false,
+  );
+  assert.equal(
+    check((p) => {
+      p.imageinfo[0].extmetadata.Copyrighted.value = 'True';
+    }),
+    false,
+  );
+  assert.equal(
+    check((p) => {
+      p.imageinfo[0].extmetadata.Restrictions = { value: 'permission required' };
+    }),
+    false,
+  );
+});

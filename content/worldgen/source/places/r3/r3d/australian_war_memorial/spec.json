@@ -1,0 +1,399 @@
+{
+  "planId": "australian_war_memorial",
+  "id": "australian_war_memorial",
+  "assetId": "molen.worldgen.structure.australian_war_memorial",
+  "title": "Australian War Memorial",
+  "category": "monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 149.14906188125,
+    "latitude": -35.28046835
+  },
+  "size": [
+    100.71596145629883,
+    36.22089922428131,
+    193.07134246826172
+  ],
+  "actualBounds": {
+    "min": [
+      -50.69518280029297,
+      0.5874999761581421,
+      -68.6029052734375
+    ],
+    "max": [
+      50.02077865600586,
+      36.80839920043945,
+      124.46843719482422
+    ]
+  },
+  "visualBrief": "Whole current connected memorial complex: native T-shaped sandstone galleries and open commemorative court, genuine arched cloisters, stepped Hall of Memory and copper dome, low pyloned commemorative entrance, full northern semicircular new Anzac Hall/glazed-link footprint and modern southern entrance/forecourt with oculus and stairs. Adjacent offices/BeanResearchCentre/PoppysCafe/carpark, campus landscape and independent monuments/sculptures/interior exhibits excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Aust_War_Memorial.jpg",
+    "https://www.awm.gov.au/collection/C308739",
+    "https://www.awm.gov.au/collection/C237217"
+  ],
+  "stories": [
+    {
+      "id": "australian-war-memorial-wp",
+      "url": "https://qualla.com/australian-war-memorial/"
+    }
+  ],
+  "referenceInputHash": "cce745a9342def65c0c6bb800dbd0c90f901a0e8717e91dfd8996564863b9fe6",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-australian-war-memorial.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-australian-war-memorial.mjs",
+    "level": "skyline",
+    "export": "australianWarMemorialSkyline",
+    "errorMeters": 1.4,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.7,
+        "metallic": 0.55
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.35,
+        "metallic": 0.05
+      },
+      "bronze": {
+        "slot": "door",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.8,
+        "metallic": 0.5
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "australianWarMemorialDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.7,
+            "metallic": 0.55
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.35,
+            "metallic": 0.05
+          },
+          "bronze": {
+            "slot": "door",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.8,
+            "metallic": 0.5
+          }
+        }
+      },
+      "street": {
+        "export": "australianWarMemorialStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.7,
+            "metallic": 0.55
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.35,
+            "metallic": 0.05
+          },
+          "bronze": {
+            "slot": "door",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.8,
+            "metallic": 0.5
+          }
+        }
+      },
+      "closeup": {
+        "export": "australianWarMemorialCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.7,
+            "metallic": 0.55
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.35,
+            "metallic": 0.05
+          },
+          "bronze": {
+            "slot": "door",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.8,
+            "metallic": 0.5
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.22
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Relation7527080/Q782783, outer5090724(April2026), inner commemorative court520199710, Hall tower520199707/dome520199676 and entrance towers520199708/709 fix actual main geometry. Native northern semicircular building1489367025(March2026) and underground southern entrance1489659375(April2026), plus steps/parts1489603158/159/160, fix full connected modern extent. Anchor is native dome centre; +Z south-west down commemorative axis toward AnzacParade, +X south-east. Primary dome interior rises24m; exterior cap26m above authored Hall floor is an estimate. Modern exact glazing/roof sections/link division/oculus/foyer depth and opening census remain bounded estimates, not measured drawings. Erroneous native dome glass/3m tags do not override primary copper/24m-interior description. Before geometry: level gallery/court floor0.35m above independent sample[0,30], Hall floor0.35m above[0,0], north hall floor0.35m above[0,-65], upper southern forecourt0.35m above[0,73], lower foyer0.35m above[0,124]. Intrinsic stairs connect these fixed levels; foundation toes alone consume source ground. Raw field/PNG/tiles unchanged, with no terrain flattening, fitting or reacquisition. Coarse DEM may include building/urban surface effects, so levels are provider-relative contact estimates; precise courtyard grading/slab excavation and host contact are unverified, geographic preview and replacement disabled.",
+    "anchor": [
+      149.14906188125,
+      -35.28046835
+    ],
+    "heading": -0.6274299379270604,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        149.14824789661245,
+        -35.28138464456573
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southern forecourt exterior point selected from current native boundary before terrain and geometry; provider-relative grade, not finished-floor survey."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/520199710",
+      "way/520199707",
+      "way/1489367025",
+      "way/1489659375"
+    ],
+    "source": "https://www.openstreetmap.org/relation/7527080",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ef6f31245024c208522e162f77dc2f0c01df5ea8700b312bc0400f1911c4ea31",
+    "notes": "Whole current connected memorial complex: native T-shaped sandstone galleries and open commemorative court, genuine arched cloisters, stepped Hall of Memory and copper dome, low pyloned commemorative entrance, full northern semicircular new Anzac Hall/glazed-link footprint and modern southern entrance/forecourt with oculus and stairs. Adjacent offices/BeanResearchCentre/PoppysCafe/carpark, campus landscape and independent monuments/sculptures/interior exhibits excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Relation7527080/Q782783, outer5090724(April2026), inner commemorative court520199710, Hall tower520199707/dome520199676 and entrance towers520199708/709 fix actual main geometry. Native northern semicircular building1489367025(March2026) and underground southern entrance1489659375(April2026), plus steps/parts1489603158/159/160, fix full connected modern extent. Anchor is native dome centre; +Z south-west down commemorative axis toward AnzacParade, +X south-east. Primary dome interior rises24m; exterior cap26m above authored Hall floor is an estimate. Modern exact glazing/roof sections/link division/oculus/foyer depth and opening census remain bounded estimates, not measured drawings. Erroneous native dome glass/3m tags do not override primary copper/24m-interior description.",
+    "Before geometry: level gallery/court floor0.35m above independent sample[0,30], Hall floor0.35m above[0,0], north hall floor0.35m above[0,-65], upper southern forecourt0.35m above[0,73], lower foyer0.35m above[0,124]. Intrinsic stairs connect these fixed levels; foundation toes alone consume source ground. Raw field/PNG/tiles unchanged, with no terrain flattening, fitting or reacquisition. Coarse DEM may include building/urban surface effects, so levels are provider-relative contact estimates; precise courtyard grading/slab excavation and host contact are unverified, geographic preview and replacement disabled.",
+    "Whole connected native2026 main memorial/court/tower/dome plus northern semicircular hall/link extent and southern underground-entrance roof/forecourt. No campus office/BeanResearchCentre/cafe/carpark, sculpture garden, independent monuments, interiors, people, inscriptions or copied artwork. Main horizontal outline and current added volumes are not replaced by a generic narrow facade model.",
+    "One exact published2006 creator-PD courtyard-edge image and two explicitly expired primary1946 KeithBenjaminDavis archive renditions were inspected. Both old exterior images show nearly the same west/north-west composition, not independent all-side coverage. They control older stone/gallery/tower/dome character only. Primary textual descriptions/current native geometry control modern additions; exact Anzac Hall roof/link partition, foyer/oculus position and section, bay/window census, wall/roof heights and fine finishes are bounded medium-fi estimates. No modern copyrighted gallery/architect pixels, CC/BSD imagery, questionable third-party public-domain-photo archive, DVIDS pixels, photographic textures, generated images or borrowed meshes used.",
+    "Cloister passages and commemorative entrance arch remain genuine voids, with recessed bronze Roll of Honour panels without copied names. Twin side porches and southern circular skylight are geometric structures. The apparent native glass/3m tag on the Hall dome is superseded by primary copper-cladding and24m interior-height evidence; exterior cap26m is explicitly estimated. Lower foyer and slab elevations/contact/excavation remain approximate, original16641 terrain values/PNG/four raw tiles unchanged and replacement disabled.",
+    "Four LODs preserve the full T galleries/open court/stepped Hall/copper dome, real cloister arch voids, north semicircular mass and south forecourt/oculus. Skyline simplifies minor native spurs and arcade census; near views restore15 bays per side, reveals, bronze panel divisions, dome seams, cornices and glazing frames. Six actual canonical surface slots, five shared graphs and local glazing. Reflection pool is an opaque original color approximation, not simulated water."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-current-memorial-and-both-connected-extensions",
+      "position": [
+        139,
+        111,
+        197
+      ],
+      "lookAt": [
+        0,
+        15,
+        24
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "open-cloisters-reflection-pool-and-hall-copper-dome",
+      "position": [
+        0,
+        23,
+        70
+      ],
+      "lookAt": [
+        0,
+        22,
+        5
+      ]
+    },
+    {
+      "name": "hall-stepped-buttresses-arched-lights-and-copper-seams",
+      "position": [
+        -40,
+        36,
+        -3
+      ],
+      "lookAt": [
+        0,
+        30,
+        0
+      ]
+    },
+    {
+      "name": "northern-semicircular-anzac-hall-and-translucent-link",
+      "position": [
+        82,
+        63,
+        -106
+      ],
+      "lookAt": [
+        0,
+        19,
+        -39
+      ]
+    },
+    {
+      "name": "southern-forecourt-inverted-glass-oculus-and-entry-porches",
+      "position": [
+        62,
+        31,
+        145
+      ],
+      "lookAt": [
+        0,
+        6,
+        103
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13239,
+    "vertices": 39717,
+    "materials": 6,
+    "bytes": 1592424,
+    "sha256": "sha256:6f975be9a49c47cd3843c0e74d5f3516dc4ee2a009b26d18df8ca39d9707ab61"
+  }
+}
