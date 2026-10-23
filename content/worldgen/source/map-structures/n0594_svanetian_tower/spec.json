@@ -1,0 +1,328 @@
+{
+  "planId": "N0594",
+  "id": "N0594",
+  "assetId": "molen.worldgen.structure.n0594_svanetian_tower",
+  "title": "Svanetian tower",
+  "category": "tower",
+  "quality": "detailed",
+  "wikidataId": "Q16375698",
+  "usage": {
+    "kind": "map-category",
+    "rules": [
+      "map.svanetian-tower.label",
+      "map.svanetian-tower.tags"
+    ]
+  },
+  "visualBrief": "Reusable Svanetian defensive-tower type: tall tapered warm-stone shaft, sparse recessed arrow slits and elevated closed timber door, four projecting crown faces with three deep arched mouths each, and shallow stone/slate gable roof. Medium-fi exterior based on two ordinary photographs, not a replica of a named tower.",
+  "mediumFiContext": {
+    "scale": 1.4,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "size": [
+    5.599999904632568,
+    24.56999969482422,
+    5.599999904632568
+  ],
+  "actualBounds": {
+    "min": [
+      -2.799999952316284,
+      -1.5,
+      -2.799999952316284
+    ],
+    "max": [
+      2.799999952316284,
+      23.06999969482422,
+      2.799999952316284
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Ground attachment plane Y=0; bounded footing reaches Y=-1.5m. No unique geographic anchor."
+  },
+  "sourceFacts": {
+    "identity": "Q16375698 describes a type, not a unique building. Existing unique-anchor identity rejection is retained.",
+    "dimensions": "Authored nominal envelope from ordinary pictures; not surveyed."
+  },
+  "reconstruction": {
+    "type": "Svanetian defensive tower",
+    "baseWidthMeters": 5.6,
+    "heightMeters": 23,
+    "crownWidthMeters": 5.16,
+    "upperArchesPerFace": 3,
+    "subgradeFootingDepthMeters": 1.5
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Towers_of_Svaneti.jpg",
+    "https://commons.wikimedia.org/wiki/File:Svanų_bokštas_Mestijoje_(Photo_by_deguonis_2009).jpg"
+  ],
+  "scaleBasis": "Nominal23m tower on5.6m square occupied base, inferred from ordinary village and close tower photos. Instance footprint/height overrides come only from map data.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "This regional building type is not a unique named landmark. No geographic centroid is published as a placement.",
+    "Nominal5.6m base/23m height, taper, slit inventory, upper arches, roof pitch and elevated-door facing are authored picture-led type values, not measured dimensions.",
+    "Only explicit type names with classification and regional bounds, or tower:type=svanetian in that region, may select this model. Hotels, museums, generic attractions, untyped square buildings and partial-name matches are excluded.",
+    "Mapped direction/complete footprint controls instance orientation and fit when supplied; point-only type labels have no directed facade evidence and keep the declared fallback. No invented survey orientation.",
+    "Exterior only; no copied photo textures, furnished interior, adjoining houses, terrain slab or active unique-site identity.",
+    "Ground attachment plane isY=0 with a bounded1.5m subgrade footing. This is a coarse-terrain visualization aid, not a measured or engineered historical foundation. No ground flattening/cutout."
+  ],
+  "qaCameras": [
+    {
+      "name": "crown-arched-mouths-and-shallow-roof",
+      "position": [
+        8,
+        23,
+        10
+      ],
+      "lookAt": [
+        0,
+        20.7,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "recessed-elevated-door-and-taper",
+      "position": [
+        8,
+        7,
+        13
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "base-contact-and-rear-slits",
+      "position": [
+        -14,
+        8,
+        -18
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 47
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/svanetian-tower-model.mjs",
+    "export": "buildSvanetianSkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSvanetianDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSvanetianStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSvanetianCloseup",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "position": [
+        30,
+        19,
+        38
+      ],
+      "lookAt": [
+        0,
+        11.5,
+        0
+      ],
+      "fov": 43,
+      "name": "svan-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        30,
+        19,
+        38
+      ],
+      "lookAt": [
+        0,
+        11.5,
+        0
+      ],
+      "fov": 43,
+      "name": "svan-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        30,
+        19,
+        38
+      ],
+      "lookAt": [
+        0,
+        11.5,
+        0
+      ],
+      "fov": 43,
+      "name": "svan-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        30,
+        19,
+        38
+      ],
+      "lookAt": [
+        0,
+        11.5,
+        0
+      ],
+      "fov": 43,
+      "name": "svan-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 1172,
+    "vertices": 3516,
+    "materials": 4,
+    "bytes": 143536,
+    "sha256": "sha256:f5f48d551398a9a1933d014c0708121a0efbf7d1995138c63048e7c9f96c4995"
+  }
+}

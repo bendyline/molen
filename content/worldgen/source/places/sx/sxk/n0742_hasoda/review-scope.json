@@ -1,0 +1,511 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "stone_limestone",
+      "slot": "wall"
+    },
+    "floor": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim"
+    },
+    "trim": {
+      "graph": "stone_marble",
+      "slot": "trim"
+    },
+    "column": {
+      "graph": "stone_granite",
+      "slot": "trim"
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof"
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "door"
+    },
+    "screen": {
+      "graph": "metal_rosette_screen",
+      "slot": "trim"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      18.950624287568406,
+      33.770623599202736,
+      74.1004307619829
+    ],
+    "lookAt": [
+      -1.3840699407537074,
+      7.570623599202737,
+      2.66164430364052
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "courtyard-pointed-arcade-and-low-lead-crowns",
+      "position": [
+        25.942095233753513,
+        16.770623599202736,
+        28.142631271486742
+      ],
+      "lookAt": [
+        7.204213720908282,
+        7.170623599202736,
+        -3.016505372691528
+      ],
+      "fov": 58
+    },
+    {
+      "name": "open-colonnade-capitals-and-recessed-window-backs",
+      "position": [
+        17.123257439137877,
+        6.170623599202736,
+        6.086382724821811
+      ],
+      "lookAt": [
+        7.807502376396057,
+        6.570623599202737,
+        1.2421379321838346
+      ],
+      "fov": 78
+    },
+    {
+      "name": "angled-southern-connector-and-exact-footprint",
+      "position": [
+        -11.853402906548244,
+        20.770623599202736,
+        42.302444841108574
+      ],
+      "lookAt": [
+        -8.730277765484516,
+        6.770623599202736,
+        14.621294407045045
+      ],
+      "fov": 65
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        18.950624287568406,
+        33.770623599202736,
+        74.1004307619829
+      ],
+      "lookAt": [
+        -1.3840699407537074,
+        7.570623599202737,
+        2.66164430364052
+      ],
+      "fov": 46,
+      "name": "hasoda-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        18.950624287568406,
+        33.770623599202736,
+        74.1004307619829
+      ],
+      "lookAt": [
+        -1.3840699407537074,
+        7.570623599202737,
+        2.66164430364052
+      ],
+      "fov": 46,
+      "name": "hasoda-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        18.950624287568406,
+        33.770623599202736,
+        74.1004307619829
+      ],
+      "lookAt": [
+        -1.3840699407537074,
+        7.570623599202737,
+        2.66164430364052
+      ],
+      "fov": 46,
+      "name": "hasoda-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        18.950624287568406,
+        33.770623599202736,
+        74.1004307619829
+      ],
+      "lookAt": [
+        -1.3840699407537074,
+        7.570623599202737,
+        2.66164430364052
+      ],
+      "fov": 46,
+      "name": "hasoda-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 3.7706235992027364,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/topkapi-hasoda-model.mjs",
+    "export": "buildTopkapiHasodaSkyline",
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTopkapiHasodaDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone",
+            "slot": "wall"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "door"
+          },
+          "screen": {
+            "graph": "metal_rosette_screen",
+            "slot": "trim"
+          }
+        }
+      },
+      "street": {
+        "export": "buildTopkapiHasodaStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone",
+            "slot": "wall"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "door"
+          },
+          "screen": {
+            "graph": "metal_rosette_screen",
+            "slot": "trim"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTopkapiHasodaCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone",
+            "slot": "wall"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "door"
+          },
+          "screen": {
+            "graph": "metal_rosette_screen",
+            "slot": "trim"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "draft-proposal",
+    "anchor": [
+      28.984177261590958,
+      41.01332484364261
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": false,
+    "groundContactBasis": "Existing standard Protomaps/Mapzen extract and original161x161/6m grid retained. Uncovered court attachment internal[8,19] is outside all573 original building records, verified before authoring. Level floor .18m above highest original boundary sample; bounded protective base follows only the actual mapped parent, leaving the exterior court open. Falling coarse ground may expose foundations; threshold/basement heights remain unverified. No precinct flattening or bespoke terrain. Initial native render exposes several metres of plain protective base along the courtyard arcade. Native elevation fit is not accepted; public placement must remain draft. Geometry/contact and XY ownership checks do not approve this visual fit.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      28.983873731260065,
+      41.01307456432561,
+      28.98448079192185,
+      41.0135751229596
+    ],
+    "terrainReference": {
+      "anchor": [
+        28.984421888879837,
+        41.01330985922131
+      ],
+      "modelHeight": 0,
+      "basis": "Existing standard Protomaps/Mapzen extract and original161x161/6m grid retained. Uncovered court attachment internal[8,19] is outside all573 original building records, verified before authoring. Level floor .18m above highest original boundary sample; bounded protective base follows only the actual mapped parent, leaving the exterior court open. Falling coarse ground may expose foundations; threshold/basement heights remain unverified. No precinct flattening or bespoke terrain."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -24.892949216974884,
+          23.42947291094059
+        ],
+        [
+          1.4644688852061283,
+          -27.257323821411397
+        ],
+        [
+          24.893284976033694,
+          -14.416701782463194
+        ],
+        [
+          13.404329480948428,
+          6.758786572351806
+        ],
+        [
+          10.701731368466746,
+          6.533572223828146
+        ],
+        [
+          10.701572165031559,
+          6.533896995967476
+        ],
+        [
+          10.700829074859303,
+          6.533835072380589
+        ],
+        [
+          6.8357821224765765,
+          14.418461216691671
+        ],
+        [
+          6.836555567616386,
+          14.418461216691671
+        ],
+        [
+          6.836297872734446,
+          14.418986909607806
+        ],
+        [
+          6.870855903682095,
+          14.418986909607806
+        ],
+        [
+          5.06890212994883,
+          18.022864566955658
+        ],
+        [
+          0.1128064184276183,
+          11.940434944314795
+        ],
+        [
+          -2.9118669905251573,
+          14.418461216691668
+        ],
+        [
+          -2.9116844430494995,
+          14.418461216691668
+        ],
+        [
+          -2.9123261026648284,
+          14.418986909607803
+        ],
+        [
+          -2.8164411856657168,
+          14.418986909607803
+        ],
+        [
+          -18.585191038675152,
+          27.25915623296104
+        ]
+      ],
+      "additionalOutlines": [],
+      "basis": "Existing standard Protomaps/Mapzen extract and original161x161/6m grid retained. Uncovered court attachment internal[8,19] is outside all573 original building records, verified before authoring. Level floor .18m above highest original boundary sample; bounded protective base follows only the actual mapped parent, leaving the exterior court open. Falling coarse ground may expose foundations; threshold/basement heights remain unverified. No precinct flattening or bespoke terrain."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -18.587217639968554,
+          27.26096612379859
+        ],
+        [
+          -24.895606657170006,
+          23.43089979514528
+        ],
+        [
+          1.4644474504217655,
+          -27.2609661237986
+        ],
+        [
+          24.895606657170006,
+          -14.419059894227445
+        ],
+        [
+          13.40532666155308,
+          6.758869669938235
+        ],
+        [
+          10.701731368466746,
+          6.533572223828146
+        ],
+        [
+          6.836297872734446,
+          14.418986909607806
+        ],
+        [
+          6.871638036594434,
+          14.418986909607804
+        ],
+        [
+          5.069241174536879,
+          18.023750736254456
+        ],
+        [
+          0.11264980387860124,
+          11.940712809820951
+        ],
+        [
+          -2.9123261026648284,
+          14.418986909607803
+        ],
+        [
+          -2.8162450969649346,
+          14.418986909607803
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -18.587217639968554,
+            27.26096612379859
+          ],
+          [
+            -24.895606657170006,
+            23.43089979514528
+          ],
+          [
+            1.4644474504217655,
+            -27.2609661237986
+          ],
+          [
+            24.895606657170006,
+            -14.419059894227445
+          ],
+          [
+            13.40532666155308,
+            6.758869669938235
+          ],
+          [
+            10.701731368466746,
+            6.533572223828146
+          ],
+          [
+            6.836297872734446,
+            14.418986909607806
+          ],
+          [
+            6.871638036594434,
+            14.418986909607804
+          ],
+          [
+            5.069241174536879,
+            18.023750736254456
+          ],
+          [
+            0.11264980387860124,
+            11.940712809820951
+          ],
+          [
+            -2.9123261026648284,
+            14.418986909607803
+          ],
+          [
+            -2.8162450969649346,
+            14.418986909607803
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only declared dormitory way103907804/native35184475996636. Preserve Agas Mosque, Sacred Relics chambers, independent porticos and all other palace members."
+    },
+    "notes": "Declared Topkapi Q170495 OSM member way103907804/native35184475996636. Existing standard PMTiles fixes the full irregular parent and angled southern connector. Internal+X follows the range northeast; internal+Z faces southeast into Third Courtyard. Ordinary courtyard photographs guide the arcade. Has Oda Kogusu is the dormitory, not the adjacent Sacred Relics chamber or the Harem private rooms. Existing standard Protomaps/Mapzen extract and original161x161/6m grid retained. Uncovered court attachment internal[8,19] is outside all573 original building records, verified before authoring. Level floor .18m above highest original boundary sample; bounded protective base follows only the actual mapped parent, leaving the exterior court open. Falling coarse ground may expose foundations; threshold/basement heights remain unverified. No precinct flattening or bespoke terrain."
+  }
+}

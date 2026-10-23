@@ -1,0 +1,478 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "brick",
+      "slot": "wall",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "plinth": {
+      "graph": "brick",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "stone": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "metal_painted",
+      "slot": "roof",
+      "roughness": 0.7,
+      "metallic": 0.25
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.3,
+      "metallic": 0.1
+    },
+    "frame": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    },
+    "ball": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      18.906344532091982,
+      11.2,
+      15.117874732707488
+    ],
+    "lookAt": [
+      0,
+      3.2,
+      0
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "south-brick-quoins-cap-and-lights",
+      "position": [
+        11.931479595210398,
+        4.2,
+        11.60343891564384
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "west-camera-obscura-entry-and-soffit",
+      "position": [
+        -7.1556873602524185,
+        3.2,
+        -4.293732455838832
+      ],
+      "lookAt": [
+        -1.7534174372441633,
+        2,
+        0.4068504525843747
+      ],
+      "fov": 64
+    },
+    {
+      "name": "north-facing-lights-and-rounded-cap",
+      "position": [
+        -10.957358796741417,
+        6.2,
+        -11.829466944857382
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        0
+      ],
+      "fov": 54
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        18.906344532091982,
+        11.2,
+        15.117874732707488
+      ],
+      "lookAt": [
+        0,
+        3.2,
+        0
+      ],
+      "fov": 45,
+      "name": "eastpavilion-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        18.906344532091982,
+        11.2,
+        15.117874732707488
+      ],
+      "lookAt": [
+        0,
+        3.2,
+        0
+      ],
+      "fov": 45,
+      "name": "eastpavilion-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        18.906344532091982,
+        11.2,
+        15.117874732707488
+      ],
+      "lookAt": [
+        0,
+        3.2,
+        0
+      ],
+      "fov": 45,
+      "name": "eastpavilion-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        18.906344532091982,
+        11.2,
+        15.117874732707488
+      ],
+      "lookAt": [
+        0,
+        3.2,
+        0
+      ],
+      "fov": 45,
+      "name": "eastpavilion-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.2,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/eastpavilion-model.mjs",
+    "export": "buildEastPavilionSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildEastPavilionDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plinth": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "ball": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "buildEastPavilionStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plinth": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "ball": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildEastPavilionCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plinth": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "ball": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      -0.0017826472073499606,
+      51.478076776441995
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard Protomaps20261020/Mapzen201x201/6m extract reused from Observatory review. Uncovered court control immediately west of the door at internal[-3.2,0], absolute datum45.70766003019248m. Floor0.2m above control, closed brick foundation follows the original minimum footprint grade. Only occupied pavilion floor cuts terrain; retain the courtyard, provider, Flamsteed House, every independent building, roads and water. Approximate exterior fit reviewed2026-10-22 after moving the provider immediately outside the west doorway. Boundary grades span -0.91..+0.43m; slight uphill plinth burial and downhill brick base retained on the original hill. Exact historic terrace/thresholds and accessibility remain approximate.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 7
+    },
+    "bounds": [
+      -0.0018671723665108976,
+      51.47802338417477,
+      -0.0016974834082555787,
+      51.47813073965147
+    ],
+    "terrainReference": {
+      "anchor": [
+        -0.0018276076801374485,
+        51.47807027902013
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard Protomaps20261020/Mapzen201x201/6m extract reused from Observatory review. Uncovered court control immediately west of the door at internal[-3.2,0], absolute datum45.70766003019248m. Floor0.2m above control, closed brick foundation follows the original minimum footprint grade. Only occupied pavilion floor cuts terrain; retain the courtyard, provider, Flamsteed House, every independent building, roads and water. Approximate exterior fit reviewed2026-10-22 after moving the provider immediately outside the west doorway. Boundary grades span -0.91..+0.43m; slight uphill plinth burial and downhill brick base retained on the original hill. Exact historic terrace/thresholds and accessibility remain approximate."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -2.860274,
+          -2.077351
+        ],
+        [
+          -1.744502,
+          2.9436
+        ],
+        [
+          2.904552,
+          2.013794
+        ],
+        [
+          1.788779,
+          -3.007157
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -2.860274,
+            -2.077351
+          ],
+          [
+            -1.744502,
+            2.9436
+          ],
+          [
+            2.904552,
+            2.013794
+          ],
+          [
+            1.788779,
+            -3.007157
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Shared campus Q192988 with independent way268533443/native35184640622275. Its small rotated square footprint lies northeast of Flamsteed House and matches the detached domed pavilion visible in the court and north photographs. Use its own anchor, not the campus POI. InternalX east-northeast andZ south-southeast follow the footprint, heading0 with native east/south orientation baked in. Do not suppress any other Observatory building."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -2.860274,
+          -2.077351
+        ],
+        [
+          -1.744502,
+          2.9436
+        ],
+        [
+          2.904552,
+          2.013794
+        ],
+        [
+          1.788779,
+          -3.007157
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -2.860274,
+            -2.077351
+          ],
+          [
+            -1.744502,
+            2.9436
+          ],
+          [
+            2.904552,
+            2.013794
+          ],
+          [
+            1.788779,
+            -3.007157
+          ]
+        ]
+      ],
+      "basis": "Occupied house only; retain original court and detached buildings."
+    },
+    "notes": "Shared campus Q192988 with independent way268533443/native35184640622275. Its small rotated square footprint lies northeast of Flamsteed House and matches the detached domed pavilion visible in the court and north photographs. Use its own anchor, not the campus POI. InternalX east-northeast andZ south-southeast follow the footprint, heading0 with native east/south orientation baked in. Do not suppress any other Observatory building. Original standard Protomaps20261020/Mapzen201x201/6m extract reused from Observatory review. Uncovered court control immediately west of the door at internal[-3.2,0], absolute datum45.70766003019248m. Floor0.2m above control, closed brick foundation follows the original minimum footprint grade. Only occupied pavilion floor cuts terrain; retain the courtyard, provider, Flamsteed House, every independent building, roads and water. Approximate exterior fit reviewed2026-10-22 after moving the provider immediately outside the west doorway. Boundary grades span -0.91..+0.43m; slight uphill plinth burial and downhill brick base retained on the original hill. Exact historic terrace/thresholds and accessibility remain approximate."
+  }
+}

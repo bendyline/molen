@@ -1,0 +1,310 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.uh_60m": {
+      "doc": "Sikorsky UH-60M Black Hawk: original polygonal exterior and heli-glass cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.uh_60m",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.uh_60m",
+          "spec": {
+            "label": "Sikorsky UH-60M Black Hawk",
+            "genericLabel": "Helicopter with enclosed cockpit",
+            "model": "helicopter",
+            "mass": 7800,
+            "span": 16.36,
+            "length": 19.76,
+            "height": 5.13,
+            "centerOfMass": [
+              0,
+              1.3,
+              0
+            ],
+            "pilotEye": [
+              -0.56,
+              1.91,
+              2.75
+            ],
+            "hardLandingSpeed": 4.5,
+            "hardLandingRoll": 0.35,
+            "hardLandingPitch": 0.4,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [
+                0,
+                1.3,
+                8.4968
+              ],
+              [
+                0,
+                1.3,
+                -8.4968
+              ],
+              [
+                7.5256,
+                4.93,
+                0
+              ],
+              [
+                -7.5256,
+                4.93,
+                0
+              ]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "main-rotor",
+                  "axis": "y",
+                  "multiplier": 1
+                },
+                {
+                  "node": "tail-rotor",
+                  "axis": "x",
+                  "multiplier": 5
+                }
+              ],
+              "gearNodes": [],
+              "flaps": [],
+              "ailerons": [],
+              "animation": {
+                "bindings": []
+              },
+              "interior": {
+                "nodes": [
+                  "cockpit"
+                ],
+                "bindings": [
+                  {
+                    "node": "UH60-horizon-249",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1
+                  },
+                  {
+                    "node": "UH60-horizon-1575",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1
+                  },
+                  {
+                    "node": "UH60-cyclic--1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.15
+                  },
+                  {
+                    "node": "UH60-cyclic--1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.15
+                  },
+                  {
+                    "node": "UH60-collective--1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.4
+                  },
+                  {
+                    "node": "UH60-pedal--1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "UH60-pedal--1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  },
+                  {
+                    "node": "UH60-cyclic-1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.15
+                  },
+                  {
+                    "node": "UH60-cyclic-1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.15
+                  },
+                  {
+                    "node": "UH60-collective-1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.4
+                  },
+                  {
+                    "node": "UH60-pedal-1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "UH60-pedal-1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  }
+                ]
+              }
+            },
+            "engine": {
+              "position": [
+                0,
+                1.3,
+                0
+              ],
+              "thrustAxis": [
+                0,
+                1,
+                0
+              ],
+              "power": 1638000,
+              "idleRpm": 1,
+              "spoolRate": 0.1,
+              "rotorAngularSpeed": 24
+            },
+            "helicopter": {
+              "rotorPosition": [
+                0,
+                3.42,
+                0
+              ],
+              "rotorRadius": 8.18,
+              "cyclicTilt": 0.5,
+              "cyclicResponse": 2.5,
+              "cyclicDamping": 2.4,
+              "groundLevelRate": 1,
+              "maxTilt": 0.65,
+              "yawRate": 0.5,
+              "liftMultiplier": 2.05,
+              "groundEffect": 0.12,
+              "translationalLift": 0.1,
+              "translationalLiftSpeed": 18,
+              "verticalDrag": 1404,
+              "horizontalDrag": 124.8,
+              "quadraticDrag": 15.6,
+              "groundDeceleration": 9
+            }
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                -0.56,
+                1.91,
+                2.75
+              ]
+            },
+            {
+              "id": "copilot",
+              "role": "passenger",
+              "position": [
+                0.56,
+                1.91,
+                2.75
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.9811,
+              0,
+              2.8
+            ]
+          ],
+          "exits": [
+            [
+              2.6811,
+              0,
+              2.8
+            ]
+          ],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.2,
+          "width": 8.03,
+          "height": 2.5,
+          "cruise": 45,
+          "weight": 0.35
+        }
+      },
+      "assets": [
+        "molen.entities.aircraft.uh_60m"
+      ]
+    }
+  }
+}

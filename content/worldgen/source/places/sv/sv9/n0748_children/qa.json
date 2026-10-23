@@ -1,0 +1,823 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0748_children",
+  "reviewedOn": "2026-10-22",
+  "inputHash": "sha256:b77d507a9053fc057b5391361ddfc6c7e6745ac07a250084cf3dfcb20e31ff6e",
+  "sourceHash": "sha256:15ad2737247728496166ae5d26fcec587418802d8bc6fec89b2b110428f041f7",
+  "runtimeHash": "sha256:21eb51884f8de9536b9390e8810c06d226776b3bf476be12a5ab87e31fffab80",
+  "captureReportHash": "sha256:b35a7b3f5870f92274641d80f87aafb3000bb01af40ab60007d0f42fdbbd9af8",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/rock-cut-entrance-and-approach.png",
+      "shots/broken-pillars-and-stone-support.png",
+      "shots/closed-roof-and-hewn-approach.png"
+    ],
+    "notes": "Authored the exterior rock-cut portal, real clear sloping aisle, closed cave roof and finite rear, ascending hewn approach blocks, adjoining low stone support and twenty picture-led unfinished pillars. Two ordinary attributed photos and the existing named PMTiles point guided this continuous pass. Corrected an overly boxy surround with sloping rock shoulders, seated front blocks on retained grade, simplified their tops and aligned all LODs with the same shared surfaces. No mirrored candle chamber, recordings, portrait, copied inscriptions/dedication imagery or independent campus buildings."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/rock-cut-entrance-and-approach.png",
+      "shots/shared/broken-pillars-and-stone-support.png",
+      "shots/shared/closed-roof-and-hewn-approach.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Two existing 256px shared graphs across four roles and two textured draws: stone_limestone_raw supplies continuous grain for the modeled rock/lining/pillars; stone_limestone supplies paving joints on the aisle. Pale rock, lining and pillar tints are shared stylistic approximations. No new graph, private atlas or embedded image. Skyline uses a baked mean-color palette. Every requested graph reads once and all model geometries are released on unload.",
+    "captureReportHash": "sha256:dfd08b5f6ac8a53edcb3e6fccd2c30120c073c60ddc4a56c28e63f58005cdd5e"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/rock-cut-entrance-and-approach.png",
+      "medium-fi/broken-pillars-and-stone-support.png",
+      "medium-fi/closed-roof-and-hewn-approach.png",
+      "medium-fi/yad-children-skyline.png",
+      "medium-fi/yad-children-district.png",
+      "medium-fi/yad-children-street.png",
+      "medium-fi/yad-children-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs: 828 / 908 / 1900 / 2748 triangles; 77688 / 79824 / 161244 / 227388 bytes. Initial skyline plus district geometry is157512 bytes. One skyline draw/two textured draws; separate POSITION/NORMAL streams and equal CPU/GPU accounting. Six GLBs have zero Khronos errors/warnings.282 actual mesh/contact probes and48 current source/shared/medium-fi/native frames were inspected. Phone/tablet/laptop and dense-city physical measurements remain pending.",
+    "captureReportHash": "sha256:cf2c0f10633947d7a5393a269fe750e62251b0731d9dfabe1defffae78e521a8"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:2ba9f9415630772ef26eb405cd0f0ac0fcecd2f3c75eb932c93f3eacdf90515e",
+    "mapFrameHash": "sha256:9328261e2cd2baf83e80cb4fc6cc5b0c0a82c348ce13da238c57bae8afae312d",
+    "notes": "Approximate native exterior fit accepted at shared campus Q156591 plus distinct named node13197000158/native17605383044574. The2019 photo camera lies about23m east of the named point; model+X faces east/forecourt, passage extends west, +Z is south. Facing has an explicit25-degree approximation. Two actual level15 POI records confirm the identity/anchor; no matching13/14 POI was present. No building is owned or replaced: all153 resident and257 wider independent buildings remain. Original201x201/6m hill, roads and zero-water-area input are retained. Only the narrow aisle cuts terrain and is sealed by an authored sloping floor/lining/roof. Outside hill, pillar-field ground and uncovered front control remain. Every LOD, failed loading and unloading restore ground/water with zero live model geometries; modelWorldY approximately0. Pillar roots contact the low support. The coarse path line touches that reconstructed support, so exact pedestrian clearance, walkability, threshold and accessibility remain unverified. No terrain flattening or bespoke survey data."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Completed as an exterior medium-fi point-anchored visualization, not a surveyed reconstruction. The map supplies a named point, no footprint/height/facing. Entrance dimensions, cave direction,20-pillar inventory/layout, broken heads, hidden roof/back, mound and stone support are picture-led approximations. The finite cave volume is an exterior proxy and omits the actual underground chamber. Commons category metadata links Q1188026 to a conflicting distant coordinate and Pavilion way245190611; that cached identity was not used to move this memorial or change the Pavilion. All other Yad Vashem models remain independent. History, Visitors Centre, Art Museum and Pavilion remain inactive fit drafts; North remains reference-pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sv/sv9/n0748_children/models/source.glb\",\"hash\":\"sha256:15ad2737247728496166ae5d26fcec587418802d8bc6fec89b2b110428f041f7\",\"bytes\":266164,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sv/sv9/n0748_children/model.glb\",\"hash\":\"sha256:21eb51884f8de9536b9390e8810c06d226776b3bf476be12a5ab87e31fffab80\",\"bytes\":265864,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sv/sv9/n0748_children/model.skyline.glb\",\"hash\":\"sha256:e1ddc6f0ad13dd91feb0a4e14b31ab25e414198f15b43e267946a96caad4aa95\",\"bytes\":77688,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sv/sv9/n0748_children/model.district.glb\",\"hash\":\"sha256:44be25066c2524d2b04ab5263284140744fffa639348922b1e31663a47232bb0\",\"bytes\":79824,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sv/sv9/n0748_children/model.street.glb\",\"hash\":\"sha256:0f6b5f1892631093a0730dced2876f163c864832c72f281e738db86b50e7a292\",\"bytes\":161244,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sv/sv9/n0748_children/model.closeup.glb\",\"hash\":\"sha256:d3a8554aaeb34eeadd68c72c4e2b9d0d3e2c711e676c3d5cffca6de993fef197\",\"bytes\":227388,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "open-portal-sloping-floor-closed-cave-and-supported-broken-pillars",
+        "passed": true,
+        "notes": "282 mesh/contact probes over six GLBs; material references, budgets and separate vertex streams checked."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Approximate native exterior fit accepted at shared campus Q156591 plus distinct named node13197000158/native17605383044574. The2019 photo camera lies about23m east of the named point; model+X faces east/forecourt, passage extends west, +Z is south. Facing has an explicit25-degree approximation. Two actual level15 POI records confirm the identity/anchor; no matching13/14 POI was present. No building is owned or replaced: all153 resident and257 wider independent buildings remain. Original201x201/6m hill, roads and zero-water-area input are retained. Only the narrow aisle cuts terrain and is sealed by an authored sloping floor/lining/roof. Outside hill, pillar-field ground and uncovered front control remain. Every LOD, failed loading and unloading restore ground/water with zero live model geometries; modelWorldY approximately0. Pillar roots contact the low support. The coarse path line touches that reconstructed support, so exact pedestrian clearance, walkability, threshold and accessibility remain unverified. No terrain flattening or bespoke survey data."
+    },
+    "inputHash": "sha256:b77d507a9053fc057b5391361ddfc6c7e6745ac07a250084cf3dfcb20e31ff6e",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:b77d507a9053fc057b5391361ddfc6c7e6745ac07a250084cf3dfcb20e31ff6e",
+      "reviewedOn": "2026-10-22",
+      "method": "Actually inspected all48 current views in six labeled contact sheets, plus the native entry and whole-site views at full resolution. Corrected rock shoulders, entry-block seating/tops and LOD surface consistency during this continuous authoring pass. Approximate exterior placement accepted with explicit unsurveyed cave/layout/path-clearance limits.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/preview.png",
+          "hash": "sha256:5a9c43eb37569029f8a30c7a7c751a09ed2e1c5816e8b1876d78b0e0cce77c41"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/turntable/angle_0.png",
+          "hash": "sha256:2ea0fe1fd81f15bd6af8a415906e28f1a396f5bfca78fda171fb35fae3f8796e"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/turntable/angle_1.png",
+          "hash": "sha256:05c2ceb66a06243bfc6b5191354adb51d4616773ad50753969e02d8556512316"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/turntable/angle_2.png",
+          "hash": "sha256:4e5c9ca7d186cbe729bcbda84e70ce52554180f37ea29121a7a3f874c0dbd2d4"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/turntable/angle_3.png",
+          "hash": "sha256:0c50cb40d5a6e022058507f6b1138b256a41109a8cdd95be22f3e1c504e51914"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/rock-cut-entrance-and-approach.png",
+          "hash": "sha256:57630f0d243f61bac455430eba53a62c9f4fa2e504b914007df8ba0f26116604"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/broken-pillars-and-stone-support.png",
+          "hash": "sha256:085e5b640bccd19c9ae6bd5a24bad0d087b9d7f494becd08cbf4f0e1c47dd601"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/closed-roof-and-hewn-approach.png",
+          "hash": "sha256:d098e1f396a4e915d8020cd7bffd1f181961f70ce91b75e9eb53aaaedb118226"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/shared/angle-0.png",
+          "hash": "sha256:74a7ef1e112b4a6f1fa1371b5aeb2db09cdabff6b9834ab5265f3d08d2cecc24"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/shared/angle-1.png",
+          "hash": "sha256:2fbce70713fdd43f20d75cc0bec3b9616e1f8bd768bc60546de37822485c814a"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/shared/angle-2.png",
+          "hash": "sha256:4e6ff334944bd522488087512aa926a06f5ce8dc798080783ab2ddf11dc2fe99"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/shared/angle-3.png",
+          "hash": "sha256:02143da04ae21add44b794e38a65a0e1c3e1aa1c1c0ad607d62d5a656e350039"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/shared/rock-cut-entrance-and-approach.png",
+          "hash": "sha256:f66f1d14858ddc11198517a0b32d5a50085e03bc99ee98325673caf5cff30704"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/shared/broken-pillars-and-stone-support.png",
+          "hash": "sha256:e38eefc236b1777bd29d274abd52bfc5576cf63da57243d865e5ef3aae7e89c5"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/shared/closed-roof-and-hewn-approach.png",
+          "hash": "sha256:aab6c476267ed5349188bdaa6c2342fedad980c9e3d23331d3b6489f32dfe302"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/shots/shared/placement.png",
+          "hash": "sha256:9d841d3cfcf2947dc15105673287061eaf03f047f9a712e67e87c0d80293142e"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/street-noon-economy.png",
+          "hash": "sha256:a1e2f775994250b232a59c4c48e3eced9e38467847754dff46900903b0463341"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/street-noon-high.png",
+          "hash": "sha256:40ed154a99c44082f2e9b58dde0a58067975ad2c156389afc36a3eee7912bfbc"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/street-late-economy.png",
+          "hash": "sha256:d1d58f15f47fb3344a54b2a3158bee5c3efcfc0dccac20cfa2bc6684b0b510c7"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/street-late-high.png",
+          "hash": "sha256:d886160db2c01a0c82f3be8a0e3bde19e5a6af07a9956b789c57f47e32de2aba"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/block-noon-economy.png",
+          "hash": "sha256:de115c70e5c9ee2d3a7916b10ca672d3b6b57a7e9dc8e2a1b39d9a5056676d22"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/block-noon-high.png",
+          "hash": "sha256:552b82cda0f300102b16f5c8cf6b459d47645d7f3a00ccab0378311d7faef647"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/block-late-economy.png",
+          "hash": "sha256:8ecee95aca0d9c23868bb02388c0c26a8264575ac748a2c373809d9b052486df"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/block-late-high.png",
+          "hash": "sha256:c39e7511094a18d6093f48ea1de859dbbee9bfe0b629548cb87b4d63cb1ea20f"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:c92646fa896c2c8a50a38e2fed8be3f87b93839944e711a24b88e6a6338d5d46"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:48f63d1042f335c3a84e051899559f0409c060b1868681db26ad499ebb6120b7"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:ba6588e9e66cae86866a084f88b784f1d21ded6ed1e1dfec4dc0d7ce3a5298b5"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/skyline-late-high.png",
+          "hash": "sha256:f289c04b8df2616d420f279389544c1e0dd526f257b52bc5722eb0a92c623a73"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/silhouette.png",
+          "hash": "sha256:6de45021e385c4a35864ebf6f627e9bcf89d25961c5b65afc9100ccdfe2b3364"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/rock-cut-entrance-and-approach.png",
+          "hash": "sha256:929fa86e976d08517baa13c35b2061eead4d1e82fe57ed537fd7e84c5896ad72"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/broken-pillars-and-stone-support.png",
+          "hash": "sha256:97f6d1d39775a5b032a91f1de519f615e23b71f4094c9d506a8dfba215017a3b"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/closed-roof-and-hewn-approach.png",
+          "hash": "sha256:a5bd187f5900612260f9e4d96ffa18db39516b71d6c705275aadc11f29544169"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/yad-children-skyline.png",
+          "hash": "sha256:3eb494dd46ac3c50f0dacc9be6b326b79a04076663df7ebe41c77f07a8c9b2d1"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/yad-children-district.png",
+          "hash": "sha256:88a0f6a1571f43fbbb6524cecdc266a0cab051d51d4e6275dad28dee8e33881b"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/yad-children-street.png",
+          "hash": "sha256:2c56249be6a689f006ebb9e0b65dc6b1db8ad1e80007c8028134f10225d1c685"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/yad-children-closeup.png",
+          "hash": "sha256:5d1d1d80c576ca126e9f13a1c27b440c22494fd0cbc79ea0dfd586771ad9b624"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/transition-skyline.png",
+          "hash": "sha256:c0f76a4385a9c18286aba5e4daafd7fb7af489fcd568427a10a8aad2639e3529"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/transition-district.png",
+          "hash": "sha256:552b82cda0f300102b16f5c8cf6b459d47645d7f3a00ccab0378311d7faef647"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/transition-street.png",
+          "hash": "sha256:3945316fc64ce09c8e004c4378cae6d4b1c5f8a64b0b55f408335bb79cb9433b"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_children/medium-fi/transition-closeup.png",
+          "hash": "sha256:cb77713f0e22609b6ece6aa13ed877da7b82999f48c2bca4934bb421fda50692"
+        },
+        {
+          "path": ".artifacts/yad-children-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:b5dbe9119254bc251c8cad3430f1b48a58a6b23cef6811c919d02a4bc419082e"
+        },
+        {
+          "path": ".artifacts/yad-children-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:21f253f7e2d47141e12dabb5e9f3eb53fdc5b40138ca74fcd0e1efce667b1564"
+        },
+        {
+          "path": ".artifacts/yad-children-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:22ac388aea99796f8037435bdacccf11880e43c93d617f969c5628b1e7824edc"
+        },
+        {
+          "path": ".artifacts/yad-children-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:f58efa63a8f32dd0752f7bf2e51e8b10711d3a1fde67b2c28c65e3eb354de1ee"
+        },
+        {
+          "path": ".artifacts/yad-children-integration/shots/final-closeup-rock-cut-entrance-and-approach.png",
+          "hash": "sha256:c2eec672dc1317f70b571431f20cc44a9e47fb649d811d028e0cc5d8733f7ee8"
+        },
+        {
+          "path": ".artifacts/yad-children-integration/shots/final-closeup-broken-pillars-and-stone-support.png",
+          "hash": "sha256:167152971db4f3031db67af09d63645975ccf6d623144403e224ba5c93e694c9"
+        },
+        {
+          "path": ".artifacts/yad-children-integration/shots/final-closeup-closed-roof-and-hewn-approach.png",
+          "hash": "sha256:b433c668f6198ef84daafec598c00192acaf00370f2e312be4091e0ab7d3fa62"
+        },
+        {
+          "path": ".artifacts/yad-children-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:554d90ec4cd4a96c79c40f1def5c9be2b1b4c60edeb9b8d6b1e38165a0bd2755"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:b77d507a9053fc057b5391361ddfc6c7e6745ac07a250084cf3dfcb20e31ff6e",
+      "sourceHash": "sha256:15ad2737247728496166ae5d26fcec587418802d8bc6fec89b2b110428f041f7",
+      "runtimeHash": "sha256:21eb51884f8de9536b9390e8810c06d226776b3bf476be12a5ab87e31fffab80",
+      "files": {
+        "content/worldgen/source/places/sv/sv9/n0748_children/models/source.glb": "sha256:15ad2737247728496166ae5d26fcec587418802d8bc6fec89b2b110428f041f7",
+        "content/worldgen/assets/places/sv/sv9/n0748_children/model.glb": "sha256:21eb51884f8de9536b9390e8810c06d226776b3bf476be12a5ab87e31fffab80",
+        "content/worldgen/assets/places/sv/sv9/n0748_children/model.skyline.glb": "sha256:e1ddc6f0ad13dd91feb0a4e14b31ab25e414198f15b43e267946a96caad4aa95",
+        "content/worldgen/assets/places/sv/sv9/n0748_children/model.district.glb": "sha256:44be25066c2524d2b04ab5263284140744fffa639348922b1e31663a47232bb0",
+        "content/worldgen/assets/places/sv/sv9/n0748_children/model.street.glb": "sha256:0f6b5f1892631093a0730dced2876f163c864832c72f281e738db86b50e7a292",
+        "content/worldgen/assets/places/sv/sv9/n0748_children/model.closeup.glb": "sha256:d3a8554aaeb34eeadd68c72c4e2b9d0d3e2c711e676c3d5cffca6de993fef197"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [],
+      "mapLevels": [
+        {
+          "level": 15,
+          "tile": [
+            19585,
+            13330
+          ],
+          "id": 17605383044574,
+          "mapNode": 13197000158,
+          "name": "Children's Memorial",
+          "offsetMeters": [
+            0,
+            0
+          ],
+          "identityPassed": true,
+          "buildingReplacement": false
+        },
+        {
+          "level": 15,
+          "tile": [
+            19585,
+            13331
+          ],
+          "id": 17605383044574,
+          "mapNode": 13197000158,
+          "name": "Children's Memorial",
+          "offsetMeters": [
+            0,
+            0
+          ],
+          "identityPassed": true,
+          "buildingReplacement": false
+        }
+      ],
+      "residentIndependent": 153,
+      "widerIndependent": 257,
+      "originalGridRetained": true,
+      "groundCutout": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 4.2727339177872636e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 153,
+          "independentBuildings": 153,
+          "remainingBuildings": 153,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0748_children"
+          ],
+          "rawTerrainRange": {
+            "min": -195.05569908404868,
+            "max": 32.620900915951324
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:b5dbe9119254bc251c8cad3430f1b48a58a6b23cef6811c919d02a4bc419082e",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 13,
+              "triangles": 387440
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                27,
+                19.06,
+                24
+              ],
+              "lookAt": [
+                -1,
+                2.06,
+                2
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 4.2727339177872636e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 153,
+          "independentBuildings": 153,
+          "remainingBuildings": 153,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_limestone": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0748_children"
+          ],
+          "rawTerrainRange": {
+            "min": -195.05569908404868,
+            "max": 32.620900915951324
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:21f253f7e2d47141e12dabb5e9f3eb53fdc5b40138ca74fcd0e1efce667b1564",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 387520
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                27,
+                19.06,
+                24
+              ],
+              "lookAt": [
+                -1,
+                2.06,
+                2
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 4.2727339177872636e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 153,
+          "independentBuildings": 153,
+          "remainingBuildings": 153,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_limestone": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0748_children"
+          ],
+          "rawTerrainRange": {
+            "min": -195.05569908404868,
+            "max": 32.620900915951324
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:22ac388aea99796f8037435bdacccf11880e43c93d617f969c5628b1e7824edc",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 388512
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                27,
+                19.06,
+                24
+              ],
+              "lookAt": [
+                -1,
+                2.06,
+                2
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 4.2727339177872636e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 153,
+          "independentBuildings": 153,
+          "remainingBuildings": 153,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_limestone": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0748_children"
+          ],
+          "rawTerrainRange": {
+            "min": -195.05569908404868,
+            "max": 32.620900915951324
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:f58efa63a8f32dd0752f7bf2e51e8b10711d3a1fde67b2c28c65e3eb354de1ee",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 389360
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                27,
+                19.06,
+                24
+              ],
+              "lookAt": [
+                -1,
+                2.06,
+                2
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-rock-cut-entrance-and-approach.png",
+            "hash": "sha256:c2eec672dc1317f70b571431f20cc44a9e47fb649d811d028e0cc5d8733f7ee8",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 13,
+              "triangles": 388593
+            },
+            "camera": {
+              "name": "rock-cut-entrance-and-approach",
+              "position": [
+                18,
+                4.06,
+                -8
+              ],
+              "lookAt": [
+                2,
+                1.46,
+                0
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-broken-pillars-and-stone-support.png",
+            "hash": "sha256:167152971db4f3031db67af09d63645975ccf6d623144403e224ba5c93e694c9",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 389360
+            },
+            "camera": {
+              "name": "broken-pillars-and-stone-support",
+              "position": [
+                8,
+                6.56,
+                17
+              ],
+              "lookAt": [
+                -5,
+                2.66,
+                6
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-closed-roof-and-hewn-approach.png",
+            "hash": "sha256:b433c668f6198ef84daafec598c00192acaf00370f2e312be4091e0ab7d3fa62",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 389360
+            },
+            "camera": {
+              "name": "closed-roof-and-hewn-approach",
+              "position": [
+                11,
+                15.06,
+                12
+              ],
+              "lookAt": [
+                -1,
+                1.76,
+                1
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 153,
+          "independentBuildings": 153,
+          "remainingBuildings": 153,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0748_children"
+          ],
+          "rawTerrainRange": {
+            "min": -195.05569908404868,
+            "max": 32.620900915951324
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:554d90ec4cd4a96c79c40f1def5c9be2b1b4c60edeb9b8d6b1e38165a0bd2755",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 386596
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                27,
+                19.06,
+                24
+              ],
+              "lookAt": [
+                -1,
+                2.06,
+                2
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Children's Memorial, Yad Vashem: exterior-only rock-cut entrance, low sloping stone-lined approach, hewn blocks rising toward a rough bedrock arch, closed cave roof and finite dark rear, adjoining fieldstone support and twenty picture-led unfinished square pillars with broken heads. Keep original ground around the pillar field and outside the entrance. No mirrored candle chamber, recordings, portrait, copied inscriptions/dedication imagery or independent campus buildings. Sloping outer rock shoulders blend to original sampled grade; small entry blocks seat on that same retained grade. Exterior mound and hidden back shape are picture-led approximations.",
+    "Shared campus Q156591 plus named node13197000158/native17605383044574. The2019 entrance photo is explicitly labelled Children's Memorial and records its camera at31°46′29.1″N35°10′34.3″E, about23m east of the mapped memorial point. Heading0 puts the approach on model+X/east and underground passage toward-X/west, with+Z/south as the left side from that approach. Entrance, pillar-field offset and facing are approximate picture-led controls, not a surveyed plan. The Commons category links Q1188026 to a conflicting distant coordinate and way245190611; do not borrow that way or move this asset away from the named node.",
+    "No measured footprint or height is supplied by the point. Working entrance arch about3.2m clear/high3.95m, aisle width2.8m and length11.5m, and pillar profile/spacing are estimated from the two ordinary photos. Twenty visible/reconstructed pillars use varied heights roughly2.4..4.7m on a low stone support. Layout, stone inventory, hidden roof/back, precise cave direction and threshold/accessibility are unverified. The finite roof/lining/rear is an exterior visualization proxy, not the full underground memorial chamber.",
+    "Use the original Protomaps20261020/Mapzen201x201/6m hill. Uncovered forecourt control internal[6.2,0], datum806.5489990840487m; entrance floor0.06m above it, falling0.04m per metre into the passage. A narrow entrance-aisle opening is sealed by authored floor, side lining and rock roof. Keep original surrounding hill, uncovered forecourt and pillar-field terrain. The pillar support follows the original local grade; post roots seat into that support. No native building footprint is owned or removed, no broad ground slab, no custom terrain or precinct flattening. Inspect rock/hill and portal contact before activation. Corrected native entrance, pillar-field and whole-site views inspected in this authoring pass. Approximate exterior fit accepted: the aisle is unobstructed and sealed, front blocks seat on retained sampled grade, sloping rock shoulders meet original grade, and pillar roots contact their low support. Original hill, independent buildings and paths remain unchanged; the coarse path line touches the reconstructed pillar support, so exact path clearance, walkability and threshold/accessibility are unverified. The point supplies no dimensions or orientation. The cave roof, finite rear and mound are explicitly exterior proxies; the candle chamber is not modeled. Do not infer a surveyed site plan from this placement.",
+    "Completed as an exterior medium-fi point-anchored visualization, not a surveyed reconstruction. The map supplies a named point, no footprint/height/facing. Entrance dimensions, cave direction,20-pillar inventory/layout, broken heads, hidden roof/back, mound and stone support are picture-led approximations. The finite cave volume is an exterior proxy and omits the actual underground chamber. Commons category metadata links Q1188026 to a conflicting distant coordinate and Pavilion way245190611; that cached identity was not used to move this memorial or change the Pavilion. All other Yad Vashem models remain independent. History, Visitors Centre, Art Museum and Pavilion remain inactive fit drafts; North remains reference-pending.",
+    "Approximate native exterior fit accepted at shared campus Q156591 plus distinct named node13197000158/native17605383044574. The2019 photo camera lies about23m east of the named point; model+X faces east/forecourt, passage extends west, +Z is south. Facing has an explicit25-degree approximation. Two actual level15 POI records confirm the identity/anchor; no matching13/14 POI was present. No building is owned or replaced: all153 resident and257 wider independent buildings remain. Original201x201/6m hill, roads and zero-water-area input are retained. Only the narrow aisle cuts terrain and is sealed by an authored sloping floor/lining/roof. Outside hill, pillar-field ground and uncovered front control remain. Every LOD, failed loading and unloading restore ground/water with zero live model geometries; modelWorldY approximately0. Pillar roots contact the low support. The coarse path line touches that reconstructed support, so exact pedestrian clearance, walkability, threshold and accessibility remain unverified. No terrain flattening or bespoke survey data."
+  ]
+}

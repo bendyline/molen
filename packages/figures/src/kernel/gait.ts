@@ -8,7 +8,15 @@
 
 import { dmath } from '@bendyline/molen-kernel/determinism';
 import type { FigureGait } from './components';
-import { type PoseBuffer, rotateX, rotateY, rotateZ, translateRoot } from './pose-buffer';
+import { forearmRoll, REST_FOREARM_ROLL } from './hand-rest';
+import {
+  type PoseBuffer,
+  rotateJoint,
+  rotateX,
+  rotateY,
+  rotateZ,
+  translateRoot,
+} from './pose-buffer';
 import type { FigureRig } from './rig';
 import { unit01 } from './seed';
 
@@ -58,6 +66,16 @@ export function quadrupedGaitFor(fr: number, prev: FigureGait | undefined): Figu
 
 function j(rig: FigureRig, name: string): number {
   return rig.index[name] ?? -1;
+}
+
+function turnForearm(rig: FigureRig, buf: PoseBuffer, side: string, angle: number): void {
+  const hand = rig.joints[j(rig, `hand.${side}`)];
+  if (!hand) return;
+  rotateJoint(
+    buf,
+    j(rig, `foreArm.${side}`),
+    forearmRoll(hand.bindPos, angle, side === 'l' ? 1 : -1),
+  );
 }
 
 /** A smooth bump on [start, end] (0 outside), peaking at 1 in the middle. */
@@ -115,6 +133,7 @@ export function bipedGaitPose(rig: FigureRig, phase: number, run: boolean, buf: 
     const elbow = run ? 90 * DEG : 12 * DEG + (18 * DEG * (1 + dmath.cos(TAU * p))) / 2;
     rotateX(buf, j(rig, `upperArm.${side}`), -swing);
     rotateX(buf, j(rig, `foreArm.${side}`), -elbow);
+    turnForearm(rig, buf, side, (run ? 20 : 40) * DEG);
   }
 }
 
@@ -172,6 +191,17 @@ export function idlePose(rig: FigureRig, seconds: number, seed: number, buf: Pos
   const ramp = dmath.smoothstep((seconds - start) / 0.4);
   const yaw = dmath.lerp(glance(window - 1), glance(window), ramp);
   rotateY(buf, j(rig, 'head'), yaw);
+  if (rig.archetype === 'biped') {
+    // Turn the whole forearm, not just the wrist: backs of hands angle forward,
+    // with palms facing diagonally inward/back and a small relaxed wrist flexion.
+    for (const side of ['l', 'r']) {
+      rotateX(buf, j(rig, `upperArm.${side}`), 3 * DEG);
+      rotateX(buf, j(rig, `foreArm.${side}`), -9 * DEG);
+      turnForearm(rig, buf, side, REST_FOREARM_ROLL);
+      rotateX(buf, j(rig, `hand.${side}`), 3 * DEG);
+      rotateZ(buf, j(rig, `hand.${side}`), (side === 'l' ? -5 : 5) * DEG);
+    }
+  }
   if (rig.archetype === 'quadruped') {
     for (let seg = 0; seg < 3; seg++) {
       rotateY(
@@ -190,6 +220,7 @@ export function jumpPose(rig: FigureRig, buf: PoseBuffer): void {
       rotateX(buf, j(rig, `lowerLeg.${side}`), 50 * DEG);
       rotateX(buf, j(rig, `upperArm.${side}`), -35 * DEG);
       rotateX(buf, j(rig, `foreArm.${side}`), -20 * DEG);
+      turnForearm(rig, buf, side, 35 * DEG);
     }
     return;
   }
@@ -199,8 +230,8 @@ export function jumpPose(rig: FigureRig, buf: PoseBuffer): void {
 
 export function fallPose(rig: FigureRig, buf: PoseBuffer): void {
   if (rig.archetype === 'biped') {
-    rotateZ(buf, j(rig, 'upperArm.l'), 60 * DEG);
-    rotateZ(buf, j(rig, 'upperArm.r'), -60 * DEG);
+    rotateZ(buf, j(rig, 'upperArm.l'), 70 * DEG);
+    rotateZ(buf, j(rig, 'upperArm.r'), -70 * DEG);
     for (const side of ['l', 'r']) rotateX(buf, j(rig, `lowerLeg.${side}`), 20 * DEG);
     return;
   }
@@ -215,6 +246,7 @@ export function sitPose(rig: FigureRig, buf: PoseBuffer): void {
       rotateX(buf, j(rig, `lowerLeg.${side}`), 85 * DEG);
       rotateX(buf, j(rig, `upperArm.${side}`), -20 * DEG);
       rotateX(buf, j(rig, `foreArm.${side}`), -30 * DEG);
+      turnForearm(rig, buf, side, 40 * DEG);
     }
     rotateX(buf, j(rig, 'spine'), -5 * DEG);
     return;

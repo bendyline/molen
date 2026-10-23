@@ -9,7 +9,9 @@ import { availableParallelism, totalmem } from 'node:os';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { isDeepStrictEqual, parseArgs } from 'node:util';
+import { createAssetFileCache } from './asset-file-cache.mjs';
 import { assetInputs, changedInputs } from './asset-inputs.mjs';
+import { createJobCache } from './asset-job-cache.mjs';
 import {
   ASSET_ROOTS,
   bundleFiles,
@@ -76,6 +78,17 @@ export function validatePlan(plan) {
       !args.every((arg) => typeof arg === 'string')
     )
       throw new Error(`Generator ${job.id} must run a repository script with node or python.`);
+    if (
+      job.outputs !== undefined &&
+      (!Array.isArray(job.outputs) ||
+        !job.outputs.every(
+          (path) =>
+            typeof path === 'string' &&
+            /^(assets|content|examples)\//.test(path) &&
+            !path.split('/').some((part) => !part || part === '..' || /[\\:]/.test(part)),
+        ))
+    )
+      throw new Error(`Generator ${job.id} has invalid output directories.`);
   }
   for (const path of plan.masters) safePath(path);
   return plan;
@@ -308,7 +321,7 @@ export async function preparePython(
   return local;
 }
 
-function run(command, { root, log, label, python }) {
+function run(command, { root, log, label, python, trace }) {
   const [program, ...args] = command;
   const executable = program === 'node' ? process.execPath : python;
   const heap = /--max-old-space-size/.test(process.env.NODE_OPTIONS ?? '')
@@ -317,6 +330,9 @@ function run(command, { root, log, label, python }) {
   // Every Node process a build starts, and each one they start, computes with the same Math on
   // any CPU (packages/worldgen/scripts/deterministic-math.mjs).
   const math = ` --import=${pathToFileURL(join(root, DETERMINISTIC_MATH)).href}`;
+  const tracking = trace
+    ? ` --import=${new URL('./trace-asset-job.mjs', import.meta.url).href}`
+    : '';
   return new Promise((done, fail) => {
     const started = Date.now();
     const child = spawn(executable, args, {
@@ -325,7 +341,8 @@ function run(command, { root, log, label, python }) {
       windowsHide: true,
       env: {
         ...process.env,
-        NODE_OPTIONS: `${process.env.NODE_OPTIONS ?? ''}${heap}${math}`.trim(),
+        NODE_OPTIONS: `${process.env.NODE_OPTIONS ?? ''}${heap}${tracking}${math}`.trim(),
+        ...(trace ? { MOLEN_ASSET_TRACE_ROOT: root, MOLEN_ASSET_TRACE_DIRECTORY: trace } : {}),
       },
       stdio: ['ignore', 'pipe', 'pipe'],
     });
@@ -556,15 +573,23 @@ export async function buildAssetsFromSource({
     throw new Error(
       `Asset builds use Node ${plan.node} (${PLAN} "node"); this is Node ${process.versions.node}. Switch Node major, or use pnpm assets:fetch.`,
     );
+  const masters = await readMasters(root);
+  const fileCache = await createAssetFileCache(root, { force });
+  // The bundle is named by the inputs the build starts from; until it finishes, none is installed.
+  const inputs = await assetInputs(root, { fileCache });
+  const previous = await readStamp(root);
+  const cache = await createJobCache(root, plan, { force, inputs: inputs.inputs, fileCache });
+  const current = new Set();
+  for (const job of generate ? plan.generators : [])
+    if (await cache.current(job)) current.add(job.id);
+  // Keep derived files during incremental generation. Recheck their dependencies after imports.
+  for (const job of plan.afterImport ?? []) await cache.current(job);
+  const jobs = generate ? plan.generators.filter((job) => !current.has(job.id)) : [];
   const python = await preparePython(
     root,
-    [...(generate ? plan.generators : []), ...(plan.afterImport ?? [])],
+    [...jobs, ...(plan.afterImport ?? []).filter((job) => job.command[0] === 'python')],
     { log },
   );
-  const masters = await readMasters(root);
-  // The bundle is named by the inputs the build starts from; until it finishes, none is installed.
-  const inputs = await assetInputs(root);
-  const previous = await readStamp(root);
   await clearStamp(root);
   const out = join(root, OUT);
   const logs = join(out, 'logs');
@@ -579,34 +604,45 @@ export async function buildAssetsFromSource({
   const importOutputs = new Set(imports.map((entry) => entry.output));
   const report = {
     format: 'molen/asset-build-report@1',
-    generators: [],
+    generators: [...current].map((id) => ({ id, cached: true })),
     imports: { run: 0, current: 0 },
     metadata: { changed: [], added: [] },
   };
   const text = await readText(root);
 
   if (generate) {
-    // Everything except masters and import outputs is written by a generator. Moving those GLBs
-    // aside makes every build a clean build: generator guards never see a stale output.
+    // Only uncached jobs start clean. Preserving current sources and derived LODs is necessary
+    // for the import and LOD stages to reuse unchanged models too.
     const generated = new Set([
       ...(await inventory(root)),
       ...(previous?.files.map((f) => f.path) ?? []),
     ]);
     for (const path of [...masters, ...importOutputs]) generated.delete(path);
+    if (!force)
+      for (const job of [
+        ...plan.generators.filter((job) => current.has(job.id)),
+        ...(plan.afterImport ?? []),
+      ])
+        for (const path of cache.outputs(job)) generated.delete(path);
     const backup = join(out, 'previous');
     const moved = await stageAside(root, [...generated], backup);
     const owned = new Set(previous?.files.map((f) => f.path));
-    log(`Running ${plan.generators.length} generators (${concurrency} at a time).`);
+    log(`Running ${jobs.length} generators (${current.size} cached; ${concurrency} at a time).`);
     try {
-      await pool(plan.generators, concurrency, async (job) => {
+      for (const job of plan.generators.filter((job) => current.has(job.id)))
+        await cache.restore(job);
+      await pool(jobs, concurrency, async (job) => {
+        const trace = await cache.begin(job);
         const seconds = await withWindowsRetry(() =>
           run(job.command, {
             root,
             python,
             log: join(logs, `${job.id}.log`),
             label: `Generator ${job.id}`,
+            trace,
           }),
         );
+        await cache.complete(job, trace);
         report.generators.push({ id: job.id, seconds });
         log(`  ${job.id}: ${seconds}s`);
       });
@@ -614,6 +650,7 @@ export async function buildAssetsFromSource({
       // Leave the checkout as it was: every GLB that was not rebuilt, and every committed file.
       await restoreMoved(root, moved, backup, () => true);
       await reconcileText(root, text, false);
+      await cache.save();
       throw error;
     }
     // A moved GLB the last build or fetch did not place, and no generator rebuilt, is someone's
@@ -622,15 +659,33 @@ export async function buildAssetsFromSource({
   }
 
   const pending = [];
-  for (const entry of imports) {
-    if (!(await exists(resolve(root, entry.source))))
-      throw new Error(`${entry.source}: no generator produced this source model.`);
-    if (!force && (await importCurrent(root, entry))) report.imports.current++;
-    else pending.push(entry);
-  }
-  log(`Importing ${pending.length} models (${report.imports.current} already current).`);
+  const imported = new Map();
   let finished = 0;
   try {
+    for (const entry of imports) {
+      if (!(await exists(resolve(root, entry.source))))
+        throw new Error(`${entry.source}: no generator produced this source model.`);
+      const job = {
+        id: `import-${entry.id}`,
+        command: ['node', 'scripts/build-assets.mjs', JSON.stringify(entry)],
+      };
+      const cached = await cache.current(job);
+      const record = cache.record(
+        job,
+        [entry.source, 'scripts/build-assets.mjs'],
+        [entry.output],
+        [entry.sidecar],
+      );
+      if (!force && (cached || (!cache.known(job) && (await importCurrent(root, entry))))) {
+        if (cached) await cache.restore(job);
+        report.imports.current++;
+        await record();
+      } else {
+        pending.push(entry);
+        imported.set(entry.id, record);
+      }
+    }
+    log(`Importing ${pending.length} models (${report.imports.current} already current).`);
     await pool(pending, concurrency, async (entry) => {
       if (entry.pipeline === 'copy') await copyModel(root, entry);
       else {
@@ -644,34 +699,44 @@ export async function buildAssetsFromSource({
           }),
         );
       }
+      await imported.get(entry.id)();
       report.imports.run++;
       if (++finished % 25 === 0) log(`  imported ${finished}/${pending.length}`);
     });
     for (const job of plan.afterImport ?? []) {
+      if (await cache.current(job)) {
+        await cache.restore(job);
+        log(`  ${job.id}: cached`);
+        continue;
+      }
+      const trace = await cache.begin(job);
       const seconds = await withWindowsRetry(() =>
         run(job.command, {
           root,
           python,
           log: join(logs, `${job.id}.log`),
           label: `After-import ${job.id}`,
+          trace,
         }),
       );
+      await cache.complete(job, trace);
       log(`  ${job.id}: ${seconds}s`);
     }
   } catch (error) {
     await reconcileText(root, text, false);
+    await cache.save();
     throw error;
   }
   report.metadata = await reconcileText(root, text, false);
+  await cache.save();
 
-  const built = await bundleFiles(root);
+  const built = await bundleFiles(root, { fileCache });
   await writeStamp(root, { ...inputs, from: 'build', prefix: '', files: built });
   Object.assign(report, {
     files: built.length,
     seconds: Math.round((Date.now() - started) / 1000),
     bundle: { release: inputs.release, key: inputs.key },
   });
-  await writeFile(join(out, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
   await rm(join(out, 'previous'), { recursive: true, force: true });
 
   const annotate = process.env.GITHUB_ACTIONS === 'true';
@@ -682,7 +747,10 @@ export async function buildAssetsFromSource({
     for (const path of [...report.metadata.changed, ...report.metadata.added].slice(0, 200))
       log(annotate ? `::warning file=${path}::Regenerated metadata differs from Git` : `  ${path}`);
   }
-  const after = await assetInputs(root);
+  const after = await assetInputs(root, { fileCache });
+  await fileCache.save();
+  report.hashes = { ...fileCache.stats };
+  await writeFile(join(out, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
   if (after.key !== inputs.key)
     log(
       `Warning: the build changed its own inputs, so this checkout now names ${after.release}, not ${inputs.release}. Commit the changes and rebuild:\n${changedInputs(inputs.inputs, after.inputs).slice(0, 20).join('\n')}`,

@@ -1,5 +1,7 @@
 # OH-6
 
+![Molen preview](preview.png)
+
 Portable source bundle for `molen.entities.aircraft.oh6`. The entity definition owns all
 concrete flight tuning, seats, collision probes, visual bindings, and behavior-script attachment.
 Molen supplies the generic `airplane` or `helicopter` solver.

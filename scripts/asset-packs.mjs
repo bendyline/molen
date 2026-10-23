@@ -101,7 +101,8 @@ export async function localPath(root, path) {
   return current;
 }
 
-export async function fileInfo(path) {
+export async function fileInfo(path, { fileCache } = {}) {
+  if (fileCache) return fileCache.get(path, 'sha256', () => fileInfo(path));
   const hash = createHash('sha256');
   let size = 0;
   for await (const chunk of createReadStream(path)) {
@@ -138,11 +139,12 @@ export async function readMasters(root = ROOT) {
 }
 
 /** The GLBs a build leaves: everything on disk except the committed masters. */
-export async function bundleFiles(root = ROOT) {
+export async function bundleFiles(root = ROOT, { fileCache } = {}) {
   const masters = await readMasters(root);
   const files = [];
   for (const path of await inventory(root))
-    if (!masters.has(path)) files.push({ path, ...(await fileInfo(join(root, path))) });
+    if (!masters.has(path))
+      files.push({ path, ...(await fileInfo(join(root, path), { fileCache })) });
   return files;
 }
 
@@ -779,7 +781,7 @@ async function main() {
         if (!(error instanceof ReleaseMissingError)) throw error;
         console.log(`Warning: ${error.message}\nBuilding the bundle locally.`);
         const { buildAssetsFromSource } = await import('./build-assets.mjs');
-        await buildAssetsFromSource({ root, compile: true });
+        await buildAssetsFromSource({ root, compile: true, force: values.force });
       }
       break;
     case 'check':

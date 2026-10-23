@@ -1,0 +1,901 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 228,
+  "alphaCoverage": true,
+  "nodes": [
+    { "id": "u", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    { "id": "v", "type": "gradient", "params": { "kind": "linear", "angleDeg": 90 } },
+    { "id": "inv-u", "type": "invert", "input": "u", "params": {} },
+    { "id": "inv-v", "type": "invert", "input": "v", "params": {} },
+    { "id": "radius", "type": "gradient", "params": { "kind": "radial", "angleDeg": 0 } },
+    {
+      "id": "circle",
+      "type": "ramp",
+      "input": "radius",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.894, "color": "#000000" },
+          { "t": 0.9, "color": "#ffffff" },
+          { "t": 0.994, "color": "#ffffff" },
+          { "t": 0.999, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "normal-0",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.6995306146512928 }
+    },
+    {
+      "id": "edge-0",
+      "type": "ramp",
+      "input": "normal-0",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.3322140634555707, "color": "#000000" },
+          { "t": 0.333736725509168, "color": "#ffffff" },
+          { "t": 0.37180327684909914, "color": "#ffffff" },
+          { "t": 0.3733259389026964, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-0",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.30046938534870704 }
+    },
+    {
+      "id": "length-0",
+      "type": "ramp",
+      "input": "tangent-0",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.14619069893228645, "color": "#000000" },
+          { "t": 0.1477133609858837, "color": "#ffffff" },
+          { "t": 0.3660663502203984, "color": "#ffffff" },
+          { "t": 0.36758901227399565, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-0",
+      "type": "blend",
+      "inputs": { "a": "edge-0", "b": "length-0" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-1",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.2852349996872638 }
+    },
+    {
+      "id": "edge-1",
+      "type": "ramp",
+      "input": "normal-1",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.33039688180417454, "color": "#000000" },
+          { "t": 0.3319360348319384, "color": "#ffffff" },
+          { "t": 0.37041486052603473, "color": "#ffffff" },
+          { "t": 0.3719540135537986, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-1",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.7147650003127363 }
+    },
+    {
+      "id": "length-1",
+      "type": "ramp",
+      "input": "tangent-1",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.6338450460403925, "color": "#000000" },
+          { "t": 0.6353841990681564, "color": "#ffffff" },
+          { "t": 0.8561020292049322, "color": "#ffffff" },
+          { "t": 0.857641182232696, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-1",
+      "type": "blend",
+      "inputs": { "a": "edge-1", "b": "length-1" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-2",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.7147650003127363 }
+    },
+    {
+      "id": "edge-2",
+      "type": "ramp",
+      "input": "normal-2",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.3303968818041746, "color": "#000000" },
+          { "t": 0.3319360348319384, "color": "#ffffff" },
+          { "t": 0.3704148605260348, "color": "#ffffff" },
+          { "t": 0.37195401355379865, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-2",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.2852349996872638 }
+    },
+    {
+      "id": "length-2",
+      "type": "ramp",
+      "input": "tangent-2",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.14235881776730377, "color": "#000000" },
+          { "t": 0.14389797079506764, "color": "#ffffff" },
+          { "t": 0.3646158009318434, "color": "#ffffff" },
+          { "t": 0.3661549539596073, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-2",
+      "type": "blend",
+      "inputs": { "a": "edge-2", "b": "length-2" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-3",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.30046938534870704 }
+    },
+    {
+      "id": "edge-3",
+      "type": "ramp",
+      "input": "normal-3",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.3322140634555707, "color": "#000000" },
+          { "t": 0.333736725509168, "color": "#ffffff" },
+          { "t": 0.37180327684909914, "color": "#ffffff" },
+          { "t": 0.3733259389026964, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-3",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.6995306146512928 }
+    },
+    {
+      "id": "length-3",
+      "type": "ramp",
+      "input": "tangent-3",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.6324109877260042, "color": "#000000" },
+          { "t": 0.6339336497796015, "color": "#ffffff" },
+          { "t": 0.8522866390141162, "color": "#ffffff" },
+          { "t": 0.8538093010677134, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-3",
+      "type": "blend",
+      "inputs": { "a": "edge-3", "b": "length-3" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-4",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.30046938534870693 }
+    },
+    {
+      "id": "edge-4",
+      "type": "ramp",
+      "input": "normal-4",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.33221406345557075, "color": "#000000" },
+          { "t": 0.333736725509168, "color": "#ffffff" },
+          { "t": 0.37180327684909914, "color": "#ffffff" },
+          { "t": 0.3733259389026964, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-4",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.6995306146512931 }
+    },
+    {
+      "id": "length-4",
+      "type": "ramp",
+      "input": "tangent-4",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.14619069893228648, "color": "#000000" },
+          { "t": 0.14771336098588372, "color": "#ffffff" },
+          { "t": 0.36606635022039846, "color": "#ffffff" },
+          { "t": 0.3675890122739957, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-4",
+      "type": "blend",
+      "inputs": { "a": "edge-4", "b": "length-4" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-5",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.7147650003127363 }
+    },
+    {
+      "id": "edge-5",
+      "type": "ramp",
+      "input": "normal-5",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.3303968818041745, "color": "#000000" },
+          { "t": 0.33193603483193834, "color": "#ffffff" },
+          { "t": 0.3704148605260347, "color": "#ffffff" },
+          { "t": 0.37195401355379853, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-5",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.28523499968726373 }
+    },
+    {
+      "id": "length-5",
+      "type": "ramp",
+      "input": "tangent-5",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.6338450460403925, "color": "#000000" },
+          { "t": 0.6353841990681564, "color": "#ffffff" },
+          { "t": 0.8561020292049322, "color": "#ffffff" },
+          { "t": 0.8576411822326963, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-5",
+      "type": "blend",
+      "inputs": { "a": "edge-5", "b": "length-5" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-6",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.2852349996872638 }
+    },
+    {
+      "id": "edge-6",
+      "type": "ramp",
+      "input": "normal-6",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.3303968818041746, "color": "#000000" },
+          { "t": 0.3319360348319384, "color": "#ffffff" },
+          { "t": 0.3704148605260348, "color": "#ffffff" },
+          { "t": 0.37195401355379865, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-6",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.7147650003127363 }
+    },
+    {
+      "id": "length-6",
+      "type": "ramp",
+      "input": "tangent-6",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.14235881776730386, "color": "#000000" },
+          { "t": 0.14389797079506772, "color": "#ffffff" },
+          { "t": 0.3646158009318436, "color": "#ffffff" },
+          { "t": 0.36615495395960745, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-6",
+      "type": "blend",
+      "inputs": { "a": "edge-6", "b": "length-6" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-7",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.6995306146512932 }
+    },
+    {
+      "id": "edge-7",
+      "type": "ramp",
+      "input": "normal-7",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.33221406345557064, "color": "#000000" },
+          { "t": 0.33373672550916794, "color": "#ffffff" },
+          { "t": 0.3718032768490991, "color": "#ffffff" },
+          { "t": 0.37332593890269633, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-7",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.3004693853487068 }
+    },
+    {
+      "id": "length-7",
+      "type": "ramp",
+      "input": "tangent-7",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.6324109877260043, "color": "#000000" },
+          { "t": 0.6339336497796016, "color": "#ffffff" },
+          { "t": 0.8522866390141164, "color": "#ffffff" },
+          { "t": 0.8538093010677137, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-7",
+      "type": "blend",
+      "inputs": { "a": "edge-7", "b": "length-7" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-8",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.6995306146512928 }
+    },
+    {
+      "id": "edge-8",
+      "type": "ramp",
+      "input": "normal-8",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.33221406345557075, "color": "#000000" },
+          { "t": 0.333736725509168, "color": "#ffffff" },
+          { "t": 0.37180327684909914, "color": "#ffffff" },
+          { "t": 0.3733259389026964, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-8",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.3004693853487072 }
+    },
+    {
+      "id": "length-8",
+      "type": "ramp",
+      "input": "tangent-8",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.14619069893228645, "color": "#000000" },
+          { "t": 0.1477133609858837, "color": "#ffffff" },
+          { "t": 0.3660663502203985, "color": "#ffffff" },
+          { "t": 0.36758901227399576, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-8",
+      "type": "blend",
+      "inputs": { "a": "edge-8", "b": "length-8" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-9",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.285234999687264 }
+    },
+    {
+      "id": "edge-9",
+      "type": "ramp",
+      "input": "normal-9",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.3303968818041746, "color": "#000000" },
+          { "t": 0.33193603483193845, "color": "#ffffff" },
+          { "t": 0.3704148605260348, "color": "#ffffff" },
+          { "t": 0.37195401355379865, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-9",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.714765000312736 }
+    },
+    {
+      "id": "length-9",
+      "type": "ramp",
+      "input": "tangent-9",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.6338450460403925, "color": "#000000" },
+          { "t": 0.6353841990681564, "color": "#ffffff" },
+          { "t": 0.8561020292049324, "color": "#ffffff" },
+          { "t": 0.8576411822326963, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-9",
+      "type": "blend",
+      "inputs": { "a": "edge-9", "b": "length-9" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-10",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.714765000312736 }
+    },
+    {
+      "id": "edge-10",
+      "type": "ramp",
+      "input": "normal-10",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.3303968818041746, "color": "#000000" },
+          { "t": 0.33193603483193845, "color": "#ffffff" },
+          { "t": 0.3704148605260348, "color": "#ffffff" },
+          { "t": 0.37195401355379865, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-10",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.28523499968726385 }
+    },
+    {
+      "id": "length-10",
+      "type": "ramp",
+      "input": "tangent-10",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.14235881776730375, "color": "#000000" },
+          { "t": 0.14389797079506758, "color": "#ffffff" },
+          { "t": 0.36461580093184354, "color": "#ffffff" },
+          { "t": 0.3661549539596074, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-10",
+      "type": "blend",
+      "inputs": { "a": "edge-10", "b": "length-10" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-11",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.30046938534870704 }
+    },
+    {
+      "id": "edge-11",
+      "type": "ramp",
+      "input": "normal-11",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.3322140634555707, "color": "#000000" },
+          { "t": 0.33373672550916794, "color": "#ffffff" },
+          { "t": 0.37180327684909914, "color": "#ffffff" },
+          { "t": 0.3733259389026964, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-11",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.6995306146512931 }
+    },
+    {
+      "id": "length-11",
+      "type": "ramp",
+      "input": "tangent-11",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.6324109877260042, "color": "#000000" },
+          { "t": 0.6339336497796015, "color": "#ffffff" },
+          { "t": 0.8522866390141163, "color": "#ffffff" },
+          { "t": 0.8538093010677135, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-11",
+      "type": "blend",
+      "inputs": { "a": "edge-11", "b": "length-11" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-12",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.3004693853487073 }
+    },
+    {
+      "id": "edge-12",
+      "type": "ramp",
+      "input": "normal-12",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.3322140634555707, "color": "#000000" },
+          { "t": 0.33373672550916794, "color": "#ffffff" },
+          { "t": 0.3718032768490991, "color": "#ffffff" },
+          { "t": 0.37332593890269633, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-12",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.6995306146512927 }
+    },
+    {
+      "id": "length-12",
+      "type": "ramp",
+      "input": "tangent-12",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.1461906989322865, "color": "#000000" },
+          { "t": 0.14771336098588375, "color": "#ffffff" },
+          { "t": 0.3660663502203985, "color": "#ffffff" },
+          { "t": 0.36758901227399576, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-12",
+      "type": "blend",
+      "inputs": { "a": "edge-12", "b": "length-12" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-13",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.714765000312736 }
+    },
+    {
+      "id": "edge-13",
+      "type": "ramp",
+      "input": "normal-13",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.33039688180417465, "color": "#000000" },
+          { "t": 0.3319360348319385, "color": "#ffffff" },
+          { "t": 0.3704148605260349, "color": "#ffffff" },
+          { "t": 0.3719540135537987, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-13",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.285234999687264 }
+    },
+    {
+      "id": "length-13",
+      "type": "ramp",
+      "input": "tangent-13",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.6338450460403925, "color": "#000000" },
+          { "t": 0.6353841990681564, "color": "#ffffff" },
+          { "t": 0.8561020292049324, "color": "#ffffff" },
+          { "t": 0.8576411822326963, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-13",
+      "type": "blend",
+      "inputs": { "a": "edge-13", "b": "length-13" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-14",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.2852349996872638 }
+    },
+    {
+      "id": "edge-14",
+      "type": "ramp",
+      "input": "normal-14",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.3303968818041746, "color": "#000000" },
+          { "t": 0.3319360348319384, "color": "#ffffff" },
+          { "t": 0.3704148605260348, "color": "#ffffff" },
+          { "t": 0.37195401355379865, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-14",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.7147650003127363 }
+    },
+    {
+      "id": "length-14",
+      "type": "ramp",
+      "input": "tangent-14",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.14235881776730375, "color": "#000000" },
+          { "t": 0.14389797079506758, "color": "#ffffff" },
+          { "t": 0.36461580093184354, "color": "#ffffff" },
+          { "t": 0.3661549539596074, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-14",
+      "type": "blend",
+      "inputs": { "a": "edge-14", "b": "length-14" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "normal-15",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.6995306146512927 }
+    },
+    {
+      "id": "edge-15",
+      "type": "ramp",
+      "input": "normal-15",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.3322140634555706, "color": "#000000" },
+          { "t": 0.33373672550916783, "color": "#ffffff" },
+          { "t": 0.371803276849099, "color": "#ffffff" },
+          { "t": 0.3733259389026962, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "tangent-15",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.3004693853487073 }
+    },
+    {
+      "id": "length-15",
+      "type": "ramp",
+      "input": "tangent-15",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.6324109877260041, "color": "#000000" },
+          { "t": 0.6339336497796014, "color": "#ffffff" },
+          { "t": 0.8522866390141162, "color": "#ffffff" },
+          { "t": 0.8538093010677134, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "segment-15",
+      "type": "blend",
+      "inputs": { "a": "edge-15", "b": "length-15" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "union-1",
+      "type": "blend",
+      "inputs": { "a": "circle", "b": "segment-0" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-2",
+      "type": "blend",
+      "inputs": { "a": "union-1", "b": "segment-1" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-3",
+      "type": "blend",
+      "inputs": { "a": "union-2", "b": "segment-2" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-4",
+      "type": "blend",
+      "inputs": { "a": "union-3", "b": "segment-3" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-5",
+      "type": "blend",
+      "inputs": { "a": "union-4", "b": "segment-4" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-6",
+      "type": "blend",
+      "inputs": { "a": "union-5", "b": "segment-5" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-7",
+      "type": "blend",
+      "inputs": { "a": "union-6", "b": "segment-6" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-8",
+      "type": "blend",
+      "inputs": { "a": "union-7", "b": "segment-7" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-9",
+      "type": "blend",
+      "inputs": { "a": "union-8", "b": "segment-8" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-10",
+      "type": "blend",
+      "inputs": { "a": "union-9", "b": "segment-9" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-11",
+      "type": "blend",
+      "inputs": { "a": "union-10", "b": "segment-10" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-12",
+      "type": "blend",
+      "inputs": { "a": "union-11", "b": "segment-11" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-13",
+      "type": "blend",
+      "inputs": { "a": "union-12", "b": "segment-12" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-14",
+      "type": "blend",
+      "inputs": { "a": "union-13", "b": "segment-13" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-15",
+      "type": "blend",
+      "inputs": { "a": "union-14", "b": "segment-14" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-16",
+      "type": "blend",
+      "inputs": { "a": "union-15", "b": "segment-15" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "color",
+      "type": "ramp",
+      "input": "union-16",
+      "params": { "stops": [{ "t": 0, "color": "#eeeeee00" }, { "t": 1, "color": "#eeeeeeff" }] }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.65 } },
+    { "id": "metal", "type": "const", "params": { "value": 0.05 } }
+  ],
+  "outputs": { "baseColor": "color", "roughness": "rough", "metalness": "metal" }
+}

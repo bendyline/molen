@@ -1,0 +1,1158 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0725_gillette_stadium",
+  "reviewedOn": "2026-10-20",
+  "inputHash": "sha256:168f7f6efe93dc4344de907d54f07d85f06e0a4d02de73f5022cf6a78e75f614",
+  "sourceHash": "sha256:18a0e0e2c52f2feed2c41147be22706edecb4dbb1f7813306007f84948f04770",
+  "runtimeHash": "sha256:724035782540009c9153f326cd2958320f5085b1e91a7669cf5a423b2c6409da",
+  "captureReportHash": "sha256:298ce6b247fd32730a73993608e4fbdfb503ccfd1f6d3ba1af4039d4b6fa62ee",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/new-lighthouse-lantern-observation-ring-and-entry-arch.png",
+      "shots/three-side-banks-club-belts-and-open-field.png",
+      "shots/curved-north-display-atrium-and-supported-bridge.png"
+    ],
+    "notes": "Inspected48 current views across the source turntable/details, shared-material placement, noon/late economy/high and all four levels, native site and failed-load fallback. Specific renovated2023 north end: complete new octagonal lighthouse with tall corner glazing/observation ring/lantern/flat crown; large curved neutral north display and leaning-glass G-P Atrium; blue arched entry deck/piers/guards and a real open underpass; open blue lower/upper and red middle side banks, two closed hospitality belts, pale aisles, lower end banks, side lighting girders, native-shaped brick/concrete services and cores. Upper stands use a smooth picture-led envelope while retaining the original lower concourse outline. Corrected an obscured arch, serrated upper rows, a rear wall blocking the entry and the simplified skyline gate in this same pass. Portable and native views show the whole lighthouse crown; two tight shared/synthetic detail cameras crop its upper edge and are used only for lower facade/entry checks."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/new-lighthouse-lantern-observation-ring-and-entry-arch.png",
+      "shots/shared/three-side-banks-club-belts-and-open-field.png",
+      "shots/shared/curved-north-display-atrium-and-supported-bridge.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Five existing256px shared material graphs: concrete_plain, brick, metal_painted, fabric_canvas and window_grid. No embedded images or unique texture atlas. Actual shared runtime binds each graph once; near geometry uses five draws, skyline merges into one draw. Separate position/normal streams avoid duplicated GPU uploads; CPU/GPU byte accounting agrees. Opaque shared glazing and muted blue/red seats keep the medium-fi palette.",
+    "captureReportHash": "sha256:bcb1a2326c6936f17988f3cbc5f486b18d8b3a20b7b9c43615019869c307fda6"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/new-lighthouse-lantern-observation-ring-and-entry-arch.png",
+      "medium-fi/three-side-banks-club-belts-and-open-field.png",
+      "medium-fi/curved-north-display-atrium-and-supported-bridge.png",
+      "medium-fi/gillette-skyline.png",
+      "medium-fi/gillette-district.png",
+      "medium-fi/gillette-street.png",
+      "medium-fi/gillette-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Skyline/district/street/closeup preserve the open bowl, field, curved north board, atrium, new lighthouse and supported entry arch. Repeated rows, trusses, mullions and goals simplify with distance; skyline omits hidden undersides. Initial skyline plus district is436928 bytes, below the3MB phone and6MB laptop targets. These are asset budgets and automated browser renders; physical laptop/phone/tablet and dense-city measurements remain pending. Levels872/3974/14174/62272 triangles; at most five draws.",
+    "captureReportHash": "sha256:77c8aaf42b41cf480ae95916ecc341703b77f1654d7b5007aea01fb2cf67b384"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:de74220dd1d1b8c8abb9d3d19906ce0630f7ebfa5b49c33bf05b3e5628e55599",
+    "mapFrameHash": "sha256:dd6133684a3f1add2281f741479ab037d404cd6edd12f46289d4433be10938f3",
+    "notes": "Own native pitch35184501265667 and named stadiumPOI52776576644818 control the independent stadium parent52776576644817 and new lighthouse35185796940468. Anchor[-71.26435581388355,42.09092707489616], heading0/native east-south/internal north is negativeX. Original6m Mapzen datum79.1632391714457m and all samples are retained. Bounded occupied floor replaces only internal coarse terrain; all38 resident independent buildings, native roads and55825.20974881254m2 water remain unchanged;91 wider independent building inputs are retained unchanged by the actual helper. The99.5percent whole-feature coverage mode removes the own parents without trimming the slightly overlapping Pavilion. Actual PMTiles13/14 generalized merged-campus features fall back to area clipping;15 removes only the owned parents. All four levels load/place/unload; failed load retains40 originals and original ground. Every unload restores ground/water and reports zero live model geometries. Fine positioning/contact and hidden component layout remain approximate."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Three actually viewed ordinary exterior/bowl pictures from the architect gallery plus one supplemental atrium interior guided this specific model. No pixels copied. The2018/01 image URL is not an exposure date: the displayed bowl photo visibly has the new lighthouse and large curved board. Neutral American-football marks replace event-specific soccer marks. Operator370ftx60ft board dimensions are a nominal112.776x18.288m visible curved chord approximation. Architect218ft observation-deck wording versus operator218ft tower wording leaves the vertical datum uncertain; deck66.4464m above sampled tower foot and estimated lantern/crown are explicitly approximate. Upper profile, tier heights/row inventory, bridge span, cores, lighting and fine20degree/2m facing are picture-led estimates. Hidden furnished G-P Atrium/Hall of Fame/retail rooms, signs/advertising/crowds and site-wide retail-plaza slabs are excluded. This is medium-fi visualization, not engineering or current-condition certification."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/dr/drm/n0725_gillette_stadium/models/source.glb\",\"hash\":\"sha256:18a0e0e2c52f2feed2c41147be22706edecb4dbb1f7813306007f84948f04770\",\"bytes\":7476040,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/dr/drm/n0725_gillette_stadium/model.glb\",\"hash\":\"sha256:724035782540009c9153f326cd2958320f5085b1e91a7669cf5a423b2c6409da\",\"bytes\":7475540,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/dr/drm/n0725_gillette_stadium/model.skyline.glb\",\"hash\":\"sha256:1e380709563ca9a59b58c585f1f3bcfa7ef0b91dacf0032ec082749ab33c9048\",\"bytes\":77588,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/dr/drm/n0725_gillette_stadium/model.district.glb\",\"hash\":\"sha256:3c33a63f1d9e81f3e54d6a07cecfcd106a62042c1545621660ccbbe1f7190e02\",\"bytes\":359340,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/dr/drm/n0725_gillette_stadium/model.street.glb\",\"hash\":\"sha256:fea64fccdaf4a1f4374ef5b0edf94e7d4e49e5ee4ac2cf7384375fc27de64687\",\"bytes\":1242084,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/dr/drm/n0725_gillette_stadium/model.closeup.glb\",\"hash\":\"sha256:3ff0065c73b3ca571fdc73517626d2d947ce0045a40422fec5d5fa8d20c4e06b\",\"bytes\":5587384,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "gillette-open-bowl-north-display-atrium-lighthouse-entry-arch-and-native-contacts",
+        "passed": true,
+        "notes": "6197 actual mesh/material/contact checks across six GLBs verify complete neutral NFL turf; smooth upper/native lower bank treads and matching detailed undersides; closed hospitality fronts and walking floors; sampled native-foot columns and connected lighting girders; atrium floors/roof/leaning glazing and open entry paths between columns; curved board front/back/closed top; octagonal lantern/crown/shaft-to-deck neck; supported bridge deck, detailed underside, paired blue arches/hangers/piers; supported south display and common floor under bounded terrain opening. Five shared graphs and separate GPU streams satisfy selected browser budgets. Skyline merges repetitions and omits hidden undersides."
+      },
+      {
+        "check": "owned-native-replacement",
+        "passed": true,
+        "notes": "Actual renderer retains all38 independent resident building inputs of40 originals unchanged. Only the owned stadium52776576644817 and new lighthouse35185796940468 are removed. All91 wider independent inputs remain the same objects in the production helper. The Pavilion has a small source overlap, deliberately retained in full by99.5percent whole-feature coverage. Actual PMTiles13/14 generalized campus features use bounded area clipping;15 preserves the Pavilion and independent south feature in full while removing both own parents. Original6m samples/native roads/55825.20974881254m2 source water remain unchanged. Failure retains40 originals and original ground; every unload restores ground/water/zero live geometry."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Five existing256px shared material graphs: concrete_plain, brick, metal_painted, fabric_canvas and window_grid. No embedded images or unique texture atlas. Actual shared runtime binds each graph once; near geometry uses five draws, skyline merges into one draw. Separate position/normal streams avoid duplicated GPU uploads; CPU/GPU byte accounting agrees. Opaque shared glazing and muted blue/red seats keep the medium-fi palette. Skyline/district/street/closeup preserve the open bowl, field, curved north board, atrium, new lighthouse and supported entry arch. Repeated rows, trusses, mullions and goals simplify with distance; skyline omits hidden undersides. Initial skyline plus district is436928 bytes, below the3MB phone and6MB laptop targets. These are asset budgets and automated browser renders; physical laptop/phone/tablet and dense-city measurements remain pending. Levels872/3974/14174/62272 triangles; at most five draws."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "inputHash": "sha256:168f7f6efe93dc4344de907d54f07d85f06e0a4d02de73f5022cf6a78e75f614",
+      "ownerRemainder": 0,
+      "independentBuildingsUnchanged": 38,
+      "widerIndependentBuildingsUnchanged": 91,
+      "coverage": [
+        {
+          "id": 35184502448923,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184502449129,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184502449130,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184502449135,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585335173,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185084995682,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185894664731,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184501266055,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184501266056,
+          "owned": false,
+          "coverage": 0.002670293858667269
+        },
+        {
+          "id": 35184502449126,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184502449127,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184502449128,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184502449131,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184502449132,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184502449133,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184502450031,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184502450032,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333929,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333930,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333942,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333970,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333986,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333998,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334000,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334026,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334063,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334087,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334098,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334246,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334259,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334291,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334372,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334380,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334452,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334738,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334815,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334847,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185102889385,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185796940463,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185796940468,
+          "owned": true,
+          "coverage": 1
+        },
+        {
+          "id": 35185796941144,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185848434145,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185848434146,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 52776576644817,
+          "owned": true,
+          "coverage": 1.0000000000000007
+        },
+        {
+          "id": 35184585333760,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333784,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333788,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333798,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333803,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333819,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333827,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333841,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333855,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333859,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333866,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333867,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333870,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333871,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333872,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333892,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333938,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184502450392,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184502450393,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185911549934,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184501268739,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184501268755,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184501268758,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333967,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333971,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333974,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333977,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334005,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334025,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334043,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334180,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334274,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334479,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585334480,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185193213416,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185235720603,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185721149963,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185721149964,
+          "owned": false,
+          "coverage": 0.0000053965864096823675
+        },
+        {
+          "id": 35185721149968,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185902300479,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185921282753,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35185937760795,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333807,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333814,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333831,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333835,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333847,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333890,
+          "owned": false,
+          "coverage": 0
+        },
+        {
+          "id": 35184585333944,
+          "owned": false,
+          "coverage": 0
+        }
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            2474,
+            3038
+          ],
+          "id": 35184501266050,
+          "owned": false,
+          "covered": 0.16801849772991348,
+          "area": 309048.8756314706,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            4948,
+            6076
+          ],
+          "id": 35184501266050,
+          "owned": false,
+          "covered": 0.27360285207922935,
+          "area": 189897.840405799,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            9897,
+            12152
+          ],
+          "id": 35184501266056,
+          "owned": false,
+          "covered": 0.002670293858667268,
+          "area": 2315.3115920836435,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            9897,
+            12152
+          ],
+          "id": 35185796940468,
+          "owned": true,
+          "covered": 1,
+          "area": 118.3642705796633,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            9897,
+            12152
+          ],
+          "id": 52776576644817,
+          "owned": true,
+          "covered": 1.0000000000000009,
+          "area": 47846.393434598736,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            9897,
+            12153
+          ],
+          "id": 35185721149964,
+          "owned": false,
+          "covered": 0.000005396586409682366,
+          "area": 1173.1885170257974,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            9897,
+            12153
+          ],
+          "id": 52776576644817,
+          "owned": true,
+          "covered": 1.0000000000000007,
+          "area": 9884.28989766373,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "method": "Actual renderer retains all38 independent resident building inputs of40 originals unchanged. Only the owned stadium52776576644817 and new lighthouse35185796940468 are removed. All91 wider independent inputs remain the same objects in the production helper. The Pavilion has a small source overlap, deliberately retained in full by99.5percent whole-feature coverage. Actual PMTiles13/14 generalized campus features use bounded area clipping;15 preserves the Pavilion and independent south feature in full while removing both own parents. Original6m samples/native roads/55825.20974881254m2 source water remain unchanged. Failure retains40 originals and original ground; every unload restores ground/water/zero live geometry."
+    },
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:18a0e0e2c52f2feed2c41147be22706edecb4dbb1f7813306007f84948f04770"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:724035782540009c9153f326cd2958320f5085b1e91a7669cf5a423b2c6409da"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:1e380709563ca9a59b58c585f1f3bcfa7ef0b91dacf0032ec082749ab33c9048"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:3c33a63f1d9e81f3e54d6a07cecfcd106a62042c1545621660ccbbe1f7190e02"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:fea64fccdaf4a1f4374ef5b0edf94e7d4e49e5ee4ac2cf7384375fc27de64687"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:3ff0065c73b3ca571fdc73517626d2d947ce0045a40422fec5d5fa8d20c4e06b"
+      }
+    ],
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 40,
+          "independentBuildings": 38,
+          "remainingBuildings": 38,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0725_gillette_stadium"
+          ],
+          "rawTerrainRange": {
+            "min": -5.767339171445698,
+            "max": 28.5814608285543
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 55825.20974881254,
+          "remainingWaterArea": 55825.20974881254,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:4d7e9ab38e13c2e2a8632b788199945fae71aa051bacbee807e82bdada482e13",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 282207
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                208.9648720060978,
+                265,
+                -449.20338630455046
+              ],
+              "lookAt": [
+                -3.0234653139050187,
+                25,
+                -9.531980775033762
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 40,
+          "independentBuildings": 38,
+          "remainingBuildings": 38,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.fabric_canvas": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0725_gillette_stadium"
+          ],
+          "rawTerrainRange": {
+            "min": -5.767339171445698,
+            "max": 28.5814608285543
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 55825.20974881254,
+          "remainingWaterArea": 55825.20974881254,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:ded68ef2f453bca9f21cd175fc1c136b9675f1b88c53dab8f131383fd4edbd79",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 285309
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                208.9648720060978,
+                265,
+                -449.20338630455046
+              ],
+              "lookAt": [
+                -3.0234653139050187,
+                25,
+                -9.531980775033762
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 40,
+          "independentBuildings": 38,
+          "remainingBuildings": 38,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.fabric_canvas": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0725_gillette_stadium"
+          ],
+          "rawTerrainRange": {
+            "min": -5.767339171445698,
+            "max": 28.5814608285543
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 55825.20974881254,
+          "remainingWaterArea": 55825.20974881254,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:fddb5e79d758d097277871b76483af7ec0f17375a2b5a5686c0a9458c10d7aee",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 295509
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                208.9648720060978,
+                265,
+                -449.20338630455046
+              ],
+              "lookAt": [
+                -3.0234653139050187,
+                25,
+                -9.531980775033762
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 40,
+          "independentBuildings": 38,
+          "remainingBuildings": 38,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.fabric_canvas": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0725_gillette_stadium"
+          ],
+          "rawTerrainRange": {
+            "min": -5.767339171445698,
+            "max": 28.5814608285543
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 55825.20974881254,
+          "remainingWaterArea": 55825.20974881254,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:1664aad5ffb90c54b93f9570157345e134b13ebc1d7c77962e8df7c4315ec80d",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 343607
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                208.9648720060978,
+                265,
+                -449.20338630455046
+              ],
+              "lookAt": [
+                -3.0234653139050187,
+                25,
+                -9.531980775033762
+              ],
+              "fov": 43
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-new-lighthouse-lantern-observation-ring-and-entry-arch.png",
+            "hash": "sha256:320856f2449f57ecc43cbbbbaa3c6bae703bbbb1e9b22fbc8747f7e2cf9e9c03",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 343607
+            },
+            "camera": {
+              "name": "new-lighthouse-lantern-observation-ring-and-entry-arch",
+              "position": [
+                11.809876530761315,
+                26,
+                -224.05697225555863
+              ],
+              "lookAt": [
+                -31.633305977406366,
+                31,
+                -129.49646309046355
+              ],
+              "fov": 77
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-three-side-banks-club-belts-and-open-field.png",
+            "hash": "sha256:0cd85e5adff575c33f1c045e344ab268c3d6e543514ad62c79c8a1297749726c",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 343607
+            },
+            "camera": {
+              "name": "three-side-banks-club-belts-and-open-field",
+              "position": [
+                7.256316753372046,
+                10,
+                22.876753860081028
+              ],
+              "lookAt": [
+                -100.0857981378545,
+                30,
+                31.7463857960027
+              ],
+              "fov": 90
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-curved-north-display-atrium-and-supported-bridge.png",
+            "hash": "sha256:ed38049a13fb42d392a389999cf63df75715c6632830445597ede066b6dcb169",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 343607
+            },
+            "camera": {
+              "name": "curved-north-display-atrium-and-supported-bridge",
+              "position": [
+                7.558663284762547,
+                14,
+                23.829951937584404
+              ],
+              "lookAt": [
+                -33.86281151573621,
+                28,
+                -106.75818468037812
+              ],
+              "fov": 91
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 40,
+          "independentBuildings": 38,
+          "remainingBuildings": 40,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185796940468,
+              "area": 118.36427057966432
+            },
+            {
+              "id": 52776576644817,
+              "area": 52063.100122517935
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0725_gillette_stadium"
+          ],
+          "rawTerrainRange": {
+            "min": -5.767339171445698,
+            "max": 28.5814608285543
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 55825.20974881254,
+          "remainingWaterArea": 55825.20974881254,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:6b181e6e18306c5738e097eb43d2038667c30307d55998e84516c338fbc8e25a",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 295036
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                208.9648720060978,
+                265,
+                -449.20338630455046
+              ],
+              "lookAt": [
+                -3.0234653139050187,
+                25,
+                -9.531980775033762
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Specific renovated2023-reference Gillette Stadium: own mapped open stadium/field axis, blue lower and upper side banks/red club bank/two closed hospitality belts/pale aisles/lower end banks/open central north entry/upper side lighting girders, concrete-brick recessed services/galleries/cores, curved neutral370ftx60ft north display/connected leaning-glass G-P Atrium/floors/roof, own new octagonal lighthouse/tall corner glazing/observation ring/lantern/flat crown, supported blue arched entry deck/piers/guards on its east side, south display and neutral American-football field/goals. Five existing shared graphs, no obsolete short lighthouse/copied event screens/logos/furnished hidden rooms/blanket retail-plaza slab. Far levels merge repeated rows/girders while preserving the open-bowl and new north-end silhouettes.",
+    "RetainedQ373355/named native stadium POI52776576644818 and native field35184501265667 identify own stadium parent52776576644817. Separate octagonal lighthouse35185796940468 supplies direct base/position control, not generic old-lighthouse placement. No exact-QID field in extract. Main parent merges two tile fragments into109-point outer/26-point hole, approximately316x277m body. Separate120.77045302574675x71.61555047357405m mapped field surround supplies own axis. Anchor[-71.26435581388355,42.09092707489616]/heading0/native east-south/internal X[0.3023465313905019,0.9531980775033762]/Z[-0.9531980775033762,0.3023465313905019]. North is internal negativeX; lighthouse center[-136.63669278476462,-1.2822482135271036]. Working lower opening clips only the native narrow north access neck atX-66m while leaving a central gate. Complete neutral109.728x48.768m NFL field remains distinct from larger mapped surround. Fine20degree/2m facing/component layout are picture-led estimates.",
+    "No qualified native architectural height. Operator2023 announcement gives new board370ftx60ft (112.776x18.288m nominal span/height), approximated as a curved visible chord. Architect describes observation deck218ft (66.4464m), operator sometimes describes218ft tower overall; working deck66.4464m above original own sampled foot/estimated lantern6.4m and crown7m above deck explicitly do not resolve that datum ambiguity. Working field0/lower1.4..16m/red club22..29m/upper34..48m/belts16..22 and29..34m/side light girders50m/atrium12.5..35.5m/display24..42.288m/bridge deck12.5m/arch springs5.5m and crown11.5m/south screen26..34m are picture-led allocations. Tower shaft taper/window/ring/crown proportions, exact row/portal/lighting inventory/bridge span and fine placements are approximate. Shared brick/concrete/glazing represent medium-fi materials, not exact construction/optics. No hidden furnished G-P Atrium/Hall of Fame/retail rooms. Completed north-end reference era modeled, not inferred from image upload dates or old short-lighthouse plans.",
+    "Original6m Mapzen samples/native roads/water/all independent building inputs remain unchanged. Original datum79.1632391714457m defines occupied common field floor0, with outer original grade-4.46184745246714..15.542366442890057m. Own tower/frames/approach contacts retain sampled grades; basement/retaining feet extend to supported common floor where the bounded opening removes coarse terrain. Opening stays within90percent main body/all-level supported floor; only main stadium and new lighthouse records replaced by99.5percent whole-feature coverage; small source overlaps at Pavilion boundaries do not trim neighboring detailed buildings; generalized lower-zoom merged complexes use area clipping. Hall of Fame/Pavilion/shops/statues/practice fields/retail plaza remain native. Failure/unload retain or restore original context."
+  ]
+}

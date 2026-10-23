@@ -1,0 +1,241 @@
+{
+  "variant": "Bell 407GX, standard low skid gear, Garmin G1000H cockpit",
+  "references": [
+    {
+      "url": "https://www.indesaviation.com/wp-content/uploads/2014/11/407_ProductSpec_201302-Web.pdf",
+      "author": "Bell Helicopter Textron",
+      "title": "Bell 407 Product Specifications, February 2013",
+      "pages": [
+        10,
+        12
+      ],
+      "license": "Copyright Bell, all rights reserved. Local research only; no distributed reference pixels.",
+      "scope": "Exterior and approximate cabin dimensions."
+    },
+    {
+      "url": "https://www.easa.europa.eu/sites/default/files/dfu/EASA-OEB%28F%29-Bell_407---407GX-01-19062012.pdf",
+      "author": "EASA Operational Evaluation Board",
+      "title": "Bell 407 and 407GX, 19 June 2012",
+      "pages": [
+        10,
+        11,
+        12
+      ],
+      "license": "Publicly accessible report; no public-domain claim.",
+      "scope": "GX variant, layout, rotor arrangement and dimensions."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bell_407_GX_Cockpit_in_2011.jpg",
+      "author": "Waerfelu",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "scope": "GX panel and central pedestal; left panel edge cropped."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bell_407_orthographical_image.svg",
+      "author": "FOX 52",
+      "license": "CC BY-SA 4.0",
+      "scope": "Secondary silhouette reference; printed manufacturer dimensions take precedence."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bell_407_-N23986.jpg",
+      "author": "stuart.mike",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "revision": 895285461,
+      "scope": "Exterior photograph for shape and detail comparison; gear configuration may differ."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      1.49,
+      -0.3
+    ],
+    "lookAt": [
+      0,
+      1.14,
+      1.6
+    ],
+    "fov": 80
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -1.25
+    ],
+    "viewHeight": 1.05,
+    "cameraHeight": 8.45
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/bell-407-spec-10.png",
+      "crop": {
+        "left": 540,
+        "top": 650,
+        "width": 660,
+        "height": 205
+      },
+      "referenceAnchor": [
+        734,
+        838
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 306,
+        "meters": 5.335,
+        "description": "Printed rotor radius, hub to forward blade tip."
+      },
+      "scope": "Uniform scale, low gear; schematic and raster landmark uncertainty remains."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/bell-407-spec-10.png",
+      "crop": {
+        "left": 190,
+        "top": 650,
+        "width": 180,
+        "height": 205
+      },
+      "referenceAnchor": [
+        279,
+        838
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 141.5,
+        "meters": 2.47,
+        "description": "Printed skid outside span."
+      },
+      "scope": "Uniform scale; root rotor azimuth differs."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/bell-407-spec-10.png",
+      "crop": {
+        "left": 540,
+        "top": 374,
+        "width": 650,
+        "height": 163
+      },
+      "rotate": 270,
+      "referenceAnchor": [
+        738,
+        454
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 306,
+        "meters": 5.335,
+        "description": "Common orthographic sheet scale transferred from side rotor radius."
+      },
+      "scope": "Approximate scale transfer; rotor pose differs."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/bell-407-panel.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 770,
+        "height": 600
+      },
+      "referenceAnchor": [
+        383,
+        512
+      ],
+      "modelAnchor": [
+        0,
+        -1.02
+      ],
+      "scaleControls": {
+        "pixels": 750,
+        "meters": 1.15,
+        "description": "Authored panel-width assumption; relative arrangement only."
+      },
+      "edgeMode": "photo",
+      "scope": "Near-front photograph, without perspective rectification. Small perspective and occlusion differences remain; coaming, pedestal and cabin depth are not measured by this overlay."
+    }
+  ],
+  "status": "reviewed-with-limitations",
+  "reviewNotes": {
+    "corrections": [
+      "Individual seven-seat 407GX shell, pilot/middle/aft glazing, chin windows, low skid gear and baggage hatch measured against the Bell drawing.",
+      "Raised and resectioned engine cowling, twin upward exhausts, tapered tail boom, stabilizer endplates, four-blade rotor and pitch links.",
+      "GX asymmetric coaming, two displays, two standby instruments, central pedestal, dual controls, overhead switches and seven beveled seats. Display layers corrected after close camera inspection."
+    ],
+    "limitations": [
+      "The dimension drawing is schematic; rotor azimuth and static blade droop differ from the modeled idle rotor.",
+      "The near-front GX panel photograph does not establish absolute panel dimensions or cabin depth; its left edge is cropped. The overlay checks relative layout with a stated 1.15 m width assumption.",
+      "Rear seating and upholstery are reconstructed from the manufacturer seating plan; equipment fits vary.",
+      "Avionics display graphics and labels are original simplified diagrams; this is not a systems trainer."
+    ],
+    "independentDimensions": [
+      {
+        "feature": "main rotor diameter",
+        "referenceMeters": 10.67,
+        "modelMeters": 10.67
+      },
+      {
+        "feature": "skid outside span",
+        "referenceMeters": 2.47,
+        "modelMeters": 2.47
+      },
+      {
+        "feature": "nose to tail stinger",
+        "referenceMeters": 10.57,
+        "modelMeters": 10.57
+      },
+      {
+        "feature": "tail fin height, low gear",
+        "referenceMeters": 3.1,
+        "modelMeters": 3.1
+      },
+      {
+        "feature": "stabilizer span",
+        "referenceMeters": 2.22,
+        "modelMeters": 2.22
+      }
+    ],
+    "visual": "Front, side, top and panel overlays inspected; current lit three-quarter, operator, close cabin, wide cabin and four turntable views inspected. Internal cross-section slivers removed and display foreground layers repaired."
+  },
+  "sourceHash": "sha256:e69b42da8208e1cbcfa8b43a82bd09ef8950c1a2f5a56a8a2d0e60b6355fa252",
+  "runtimeHash": "sha256:5720ce8af4b5e087acc1263f04febbd536ceeaa7ba0dd566e9e9ee9e0f12b5dd",
+  "limitations": [
+    "The dimension drawing is schematic; rotor azimuth and static blade droop differ from the modeled idle rotor.",
+    "The near-front GX panel photograph does not establish absolute panel dimensions or cabin depth; its left edge is cropped. The overlay checks relative layout with a stated 1.15 m width assumption.",
+    "Rear seating and upholstery are reconstructed from the manufacturer seating plan; equipment fits vary.",
+    "Avionics display graphics and labels are original simplified diagrams; this is not a systems trainer."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:a5e4890a720f3f2e191c0f8b75f43038b3d71a891aab5b53f80a5e9469bc47b6",
+    "sourceHash": "sha256:e69b42da8208e1cbcfa8b43a82bd09ef8950c1a2f5a56a8a2d0e60b6355fa252",
+    "runtimeHash": "sha256:5720ce8af4b5e087acc1263f04febbd536ceeaa7ba0dd566e9e9ee9e0f12b5dd",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/bell-407-pair.png",
+        "sha256": "sha256:bc3a8199675ce7c862a760b99035ad359af3a24dd524feaf251681bbafcef547",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

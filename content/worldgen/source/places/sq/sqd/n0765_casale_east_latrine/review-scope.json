@@ -1,0 +1,530 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "rubble": {
+      "graph": "stone_drywall",
+      "slot": "wall",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "broken": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "foundation": {
+      "graph": "stone_limestone_raw",
+      "slot": "foundation",
+      "roughness": 0.94,
+      "metallic": 0
+    }
+  },
+  "previewGround": true,
+  "camera": {
+    "position": [
+      11.34340954743087,
+      12,
+      17.214152893455257
+    ],
+    "lookAt": [
+      0,
+      0.06614167250434089,
+      0
+    ],
+    "fov": 52
+  },
+  "qaCameras": [
+    {
+      "name": "octagonal-open-center-and-west-entry",
+      "position": [
+        -9.95037948768756,
+        7,
+        9.054830095093257
+      ],
+      "lookAt": [
+        0,
+        -0.03385832749565909,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "broken-rubble-cap-and-inner-face",
+      "position": [
+        6.268727879743594,
+        5,
+        7.661791616177339
+      ],
+      "lookAt": [
+        0.8955325542490847,
+        0.16614167250434098,
+        1.0945416594539055
+      ],
+      "fov": 48
+    },
+    {
+      "name": "west-gap-and-closed-wall-bases",
+      "position": [
+        -8.059801407414371,
+        3.2,
+        0.199000686032212
+      ],
+      "lookAt": [
+        -2.6104228339992295,
+        -0.03385832749565909,
+        -0.11865494230588769
+      ],
+      "fov": 50
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        11.34340954743087,
+        12,
+        17.214152893455257
+      ],
+      "lookAt": [
+        0,
+        0.06614167250434089,
+        0
+      ],
+      "fov": 52,
+      "name": "east-latrine-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        11.34340954743087,
+        12,
+        17.214152893455257
+      ],
+      "lookAt": [
+        0,
+        0.06614167250434089,
+        0
+      ],
+      "fov": 52,
+      "name": "east-latrine-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        11.34340954743087,
+        12,
+        17.214152893455257
+      ],
+      "lookAt": [
+        0,
+        0.06614167250434089,
+        0
+      ],
+      "fov": 52,
+      "name": "east-latrine-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        11.34340954743087,
+        12,
+        17.214152893455257
+      ],
+      "lookAt": [
+        0,
+        0.06614167250434089,
+        0
+      ],
+      "fov": 52,
+      "name": "east-latrine-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -0.6338583274956591,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/casale-east-latrine-model.mjs",
+    "export": "buildCasaleEastLatrineSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCasaleEastLatrineDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "rubble": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "broken": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_limestone_raw",
+            "slot": "foundation",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildCasaleEastLatrineStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "rubble": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "broken": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_limestone_raw",
+            "slot": "foundation",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCasaleEastLatrineCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "rubble": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "broken": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_limestone_raw",
+            "slot": "foundation",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "draft-proposal",
+    "anchor": [
+      14.335354417562485,
+      37.364871610631006
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": false,
+    "groundContactBasis": "Original Protomaps20261020/Mapzen 201x201 / 6m grid retained. Eastern outside-building provider [4,0] supplies 554.9566939433241m datum. Boundary grades -1.174..-0.130m relative. Nine closed wall segments extend 0.15m below their own boundary minima. Ground masks occupy only masonry; center and west gap retain native ground. Native visual acceptance remains pending. No bespoke terrain or flattening.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 3
+    },
+    "bounds": [
+      14.335300967162581,
+      37.36482912880388,
+      14.335407867962388,
+      37.36491409245813
+    ],
+    "terrainReference": {
+      "anchor": [
+        14.335399403182588,
+        37.36486803517259
+      ],
+      "modelHeight": 0,
+      "basis": "Original Protomaps20261020/Mapzen 201x201 / 6m grid retained. Eastern outside-building provider [4,0] supplies 554.9566939433241m datum. Boundary grades -1.174..-0.130m relative. Nine closed wall segments extend 0.15m below their own boundary minima. Ground masks occupy only masonry; center and west gap retain native ground. Native visual acceptance remains pending. No bespoke terrain or flattening."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -2.7290784173628273,
+          1.0678908517709824
+        ],
+        [
+          -1.3052114169995968,
+          2.4917461254816824
+        ],
+        [
+          0.83058908354522,
+          2.729055363077932
+        ],
+        [
+          2.4917672506356596,
+          1.3052000450727512
+        ],
+        [
+          2.7290784173628415,
+          -0.8305824715889824
+        ],
+        [
+          1.3052114169996394,
+          -2.491746275766473
+        ],
+        [
+          -1.067900250272387,
+          -2.7290553630779177
+        ],
+        [
+          -2.491767250635632,
+          -1.3052007363827578
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -2.7290784173628273,
+            1.0678908517709824
+          ],
+          [
+            -1.3052114169995968,
+            2.4917461254816824
+          ],
+          [
+            0.83058908354522,
+            2.729055363077932
+          ],
+          [
+            2.4917672506356596,
+            1.3052000450727512
+          ],
+          [
+            2.7290784173628415,
+            -0.8305824715889824
+          ],
+          [
+            1.3052114169996394,
+            -2.491746275766473
+          ],
+          [
+            -1.067900250272387,
+            -2.7290553630779177
+          ],
+          [
+            -2.491767250635632,
+            -1.3052007363827578
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Shared park Q505617 identifies the site; independent way304818578/native35184676907410 identifies this eastern latrine. Its eight mapped vertices set meter scale and offsets. Internal +X points east/slightly south away from the villa and +Z follows the western side south/slightly west. Native east/up/south axes are baked with heading 0. Only this one footprint is replaced; the southern polygonal latrine and every other building remain independent."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -2.7290784173628273,
+          1.0678908517709824
+        ],
+        [
+          -1.3052114169995968,
+          2.4917461254816824
+        ],
+        [
+          -1.0311170194296817,
+          1.968479439130529
+        ],
+        [
+          -2.1559719497166334,
+          0.8436337728990762
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -2.7290784173628273,
+            1.0678908517709824
+          ],
+          [
+            -1.3052114169995968,
+            2.4917461254816824
+          ],
+          [
+            -1.0311170194296817,
+            1.968479439130529
+          ],
+          [
+            -2.1559719497166334,
+            0.8436337728990762
+          ]
+        ],
+        [
+          [
+            -1.3052114169995968,
+            2.4917461254816824
+          ],
+          [
+            0.83058908354522,
+            2.729055363077932
+          ],
+          [
+            0.6561653760007238,
+            2.155953736831566
+          ],
+          [
+            -1.0311170194296817,
+            1.968479439130529
+          ]
+        ],
+        [
+          [
+            0.83058908354522,
+            2.729055363077932
+          ],
+          [
+            2.4917672506356596,
+            1.3052000450727512
+          ],
+          [
+            1.9684961280021716,
+            1.0311080356074735
+          ],
+          [
+            0.6561653760007238,
+            2.155953736831566
+          ]
+        ],
+        [
+          [
+            2.4917672506356596,
+            1.3052000450727512
+          ],
+          [
+            2.7290784173628415,
+            -0.8305824715889824
+          ],
+          [
+            2.1559719497166445,
+            -0.6561601525552961
+          ],
+          [
+            1.9684961280021716,
+            1.0311080356074735
+          ]
+        ],
+        [
+          [
+            2.7290784173628415,
+            -0.8305824715889824
+          ],
+          [
+            1.3052114169996394,
+            -2.491746275766473
+          ],
+          [
+            1.0311170194297152,
+            -1.9684795578555134
+          ],
+          [
+            2.1559719497166445,
+            -0.6561601525552961
+          ]
+        ],
+        [
+          [
+            1.3052114169996394,
+            -2.491746275766473
+          ],
+          [
+            -1.067900250272387,
+            -2.7290553630779177
+          ],
+          [
+            -0.8436411977151859,
+            -2.155953736831555
+          ],
+          [
+            1.0311170194297152,
+            -1.9684795578555134
+          ]
+        ],
+        [
+          [
+            -1.067900250272387,
+            -2.7290553630779177
+          ],
+          [
+            -2.491767250635632,
+            -1.3052007363827578
+          ],
+          [
+            -1.9684961280021496,
+            -1.0311085817423788
+          ],
+          [
+            -0.8436411977151859,
+            -2.155953736831555
+          ]
+        ],
+        [
+          [
+            -2.491767250635632,
+            -1.3052007363827578
+          ],
+          [
+            -2.555695330067904,
+            -0.66592535107421
+          ],
+          [
+            -2.0189993107536446,
+            -0.526081027348626
+          ],
+          [
+            -1.9684961280021496,
+            -1.0311085817423788
+          ]
+        ],
+        [
+          [
+            -2.6651503379305552,
+            0.42861546646243465
+          ],
+          [
+            -2.7290784173628273,
+            1.0678908517709824
+          ],
+          [
+            -2.1559719497166334,
+            0.8436337728990762
+          ],
+          [
+            -2.1054687669651386,
+            0.33860621850532346
+          ]
+        ]
+      ],
+      "basis": "Nine occupied masonry strips only; open center and west entrance retain native terrain."
+    },
+    "notes": "Shared park Q505617 identifies the site; independent way304818578/native35184676907410 identifies this eastern latrine. Its eight mapped vertices set meter scale and offsets. Internal +X points east/slightly south away from the villa and +Z follows the western side south/slightly west. Native east/up/south axes are baked with heading 0. Only this one footprint is replaced; the southern polygonal latrine and every other building remain independent. Original Protomaps20261020/Mapzen 201x201 / 6m grid retained. Eastern outside-building provider [4,0] supplies 554.9566939433241m datum. Boundary grades -1.174..-0.130m relative. Nine closed wall segments extend 0.15m below their own boundary minima. Ground masks occupy only masonry; center and west gap retain native ground. Native visual acceptance remains pending. No bespoke terrain or flattening."
+  }
+}

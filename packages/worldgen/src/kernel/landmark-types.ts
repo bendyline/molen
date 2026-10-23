@@ -1,5 +1,9 @@
 import type { Vec3 } from './types';
 export interface SignDesign {
+  /** Font id or semantic role from the host's font library. */
+  font?: string;
+  /** Additional letter spacing in em units. */
+  letterSpacing?: number;
   text: string;
   background: string;
   foreground: string;

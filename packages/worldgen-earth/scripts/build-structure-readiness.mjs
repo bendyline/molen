@@ -20,6 +20,7 @@ import {
 import { reviewedMediumFi } from './medium-fi-readiness.mjs';
 import { readinessRefresh } from './readiness-refresh.mjs';
 import { readinessSourceIdentity } from './readiness-source-identity.mjs';
+import { reviewedCategoryRules } from './reviewed-category-rules.mjs';
 import { reviewedSourceMapFrame } from './reviewed-source-map-frame.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
@@ -29,6 +30,7 @@ const details = await readJson('content/earth/structures/evidence/wikidata-detai
 const geographic = await readJson('content/earth/structures/georeferencing.json');
 const identityReview = await readJson('content/earth/structures/identity-review.json');
 const placements = await readJson('content/earth/structures/placements.json');
+const mapRules = await readJson('content/earth/structures/map-rules.json');
 const project = await readJson('content/worldgen/project.json');
 const geoById = new Map(geographic.candidates.map((entry) => [entry.candidateId, entry]));
 const reviewedById = new Map(identityReview.reviews.map((entry) => [entry.candidateId, entry]));
@@ -147,6 +149,20 @@ async function modelReadiness(candidate, geo) {
   const sharedReviewed =
     reviewMatches && sharedMatches && qa.sharedSurfaceReview?.status === 'passed';
   const visualReviewed = reviewMatches && capturesMatch && qa.visualReview?.status === 'passed';
+  const category =
+    reviewMatches &&
+    (await reviewedCategoryRules({
+      spec,
+      sourceEntry: sourceEntries.find((e) => e.assetId === asset),
+      sourceManifest,
+      sidecar,
+      qa,
+      rules: mapRules.rules ?? [],
+      placements: placements.entries,
+      reportBytes: await bytes(`${sourceDirectory}/category-integration-report.json`),
+      exampleBytes: await bytes(`${sourceDirectory}/map-example.json`),
+      readImage: (path) => bytes(`${sourceDirectory}/${path}`),
+    }));
   const geographicReviewed =
     reviewMatches &&
     hasHistoricalPlacementCapture(placement, sharedCapture, placementHash) &&
@@ -184,7 +200,11 @@ async function modelReadiness(candidate, geo) {
   const rejected =
     recommendation?.original.wikidataId === candidate.wikidataId ? recommendation : undefined;
   const blockers = [];
-  if (rejected && !historicalIdentityResolved(rejected, placement, geographicReviewed))
+  if (
+    rejected &&
+    !(rejected.reasonCode === 'category' && category) &&
+    !historicalIdentityResolved(rejected, placement, geographicReviewed)
+  )
     blockers.push(`identity:${rejected.reasonCode}`);
   if (!source) blockers.push('source-model-missing');
   if (!runtime || !sidecar) blockers.push('runtime-import-missing');
@@ -192,10 +212,11 @@ async function modelReadiness(candidate, geo) {
   if (needsSharedReview && !sharedReviewed)
     blockers.push('shared-surface-review-missing-or-unbound');
   if (!fidelityReviewed) blockers.push(`${fidelityTarget}-fidelity-review-missing-or-unbound`);
-  if (geo.orientationStatus === 'unresolved' && !localFrame)
+  if (geo.orientationStatus === 'unresolved' && !localFrame && !category)
     blockers.push('orientation-unresolved');
-  if (!geographicReviewed) blockers.push('geographic-review-missing-or-unbound');
-  if (!hasUsableStructurePlacement(placement)) blockers.push('runtime-placement-inactive');
+  if (!geographicReviewed && !category) blockers.push('geographic-review-missing-or-unbound');
+  if (!hasUsableStructurePlacement(placement) && !category)
+    blockers.push('runtime-placement-inactive');
   const assetRegistered = typeof project.assets?.[asset] === 'string';
   if (source && !assetRegistered) blockers.push('asset-registry-missing');
   return {
@@ -225,8 +246,12 @@ async function modelReadiness(candidate, geo) {
     },
     geographic: {
       disposition: geo.disposition,
-      orientationEvidence: localFrame ? 'reviewed-source-frame' : geo.orientationStatus,
-      anchor: placement?.anchor ?? geo.anchor ?? geo.referenceAnchor,
+      orientationEvidence: category
+        ? 'reviewed-map-category-rule'
+        : localFrame
+          ? 'reviewed-source-frame'
+          : geo.orientationStatus,
+      anchor: category ? null : (placement?.anchor ?? geo.anchor ?? geo.referenceAnchor),
       heading: placement?.heading ?? geo.heading ?? null,
       mappedFeatureIds: localFrame
         ? (localFrame.elements ?? []).map((p) => `${p.type}/${p.id}`)
@@ -240,7 +265,16 @@ async function modelReadiness(candidate, geo) {
             },
           }
         : {}),
-      verified: geographicReviewed,
+      verified: geographicReviewed || Boolean(category),
+      ...(category
+        ? {
+            placementKind: 'map-category',
+            activeRules: category.rules,
+            ruleHash: category.ruleHash,
+            exampleFeatureId: category.example,
+            orientationLimit: category.orientationLimit,
+          }
+        : {}),
       activePlacement: placement?.status === 'preview' ? placement.id : null,
       ...(placement?.status === 'historical'
         ? { historicalPlacement: placement.id, appearance: placement.appearance }
@@ -352,6 +386,8 @@ const counts = {
   authoredAssets: individualRecords.filter((record) => record.model.source.present).length,
   importedAssets: individualRecords.filter((record) => record.model.runtime.present).length,
   placedAssets: individualRecords.filter((record) => record.geographic.activePlacement).length,
+  activeCategoryModels: individualRecords.filter((record) => record.geographic.activeRules?.length)
+    .length,
   fidelityReviews: records.filter((record) => record.fidelityQa.hashBoundReviewPassed).length,
   ready: records.filter((record) => record.readiness === 'ready').length,
 };
@@ -359,7 +395,7 @@ const output = {
   format: 'molen/structure-readiness@1',
   title: 'Next 1,000 structure production and placement readiness',
   policy:
-    'All current catalog identities remain visible. Missing geometry, undirected map axes, missing datum/facade review and unbound screenshots remain explicit blockers. ready requires hash-bound fidelity against the declared standard, visual and geographic review plus an active runtime placement. New medium-fi reviews also bind all four runtime LODs and the required context captures; legacy maximum-fidelity reviews retain their original meaning.',
+    'All current catalog identities remain visible. Missing geometry, undirected map axes, missing datum/facade review and unbound screenshots remain explicit blockers. ready requires hash-bound fidelity, visual and geographic review plus an active runtime placement, or a deliberately reusable type with hash-bound current map rules and inspected real-map integration including negative matches, all four LODs, failure and eviction. Reusable types never receive a fabricated unique anchor. New medium-fi reviews bind all four runtime LODs and the required context captures; legacy maximum-fidelity reviews retain their original meaning.',
   counts,
   candidates: records,
 };
@@ -379,6 +415,7 @@ const progress = `# All 1,000 structure models — production progress
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
 There are ${counts.authoredAssets} authored assets, ${counts.importedAssets} imported assets and ${counts.placedAssets} active geographic asset previews.
+There are ${counts.activeCategoryModels} reviewed reusable map-category models; they have rule-based instances rather than a unique landmark anchor.
 A candidate is complete only after its current source/runtime,
 portable render, shared-material render, geographic fit and its declared fidelity standard pass.
 New models follow [medium-fi](../../../../docs-src/guide/medium-fi.md); older maximum-fidelity

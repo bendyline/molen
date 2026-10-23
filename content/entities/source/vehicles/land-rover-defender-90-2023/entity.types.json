@@ -1,0 +1,167 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.land_rover_defender_90_2023": {
+      "doc": "2023 Land Rover Defender 90, S short-wheelbase three-door. Polygonal reference interpretation; rounded proportions, simplified trim and gameplay handling.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.land_rover_defender_90_2023",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.land_rover_defender_90_2023",
+          "color": "#7f9085",
+          "spec": {
+            "label": "2023 Land Rover Defender 90",
+            "bodyStyle": "offroad",
+            "genericLabel": "Off-road SUV",
+            "width": 2.286,
+            "length": 4.633,
+            "height": 1.974,
+            "centerOfMass": [
+              0,
+              0.63168,
+              0
+            ],
+            "wheelbase": 2.587,
+            "wheelTrack": 1.7165599999999999,
+            "wheelRadius": 0.405,
+            "mass": 2300,
+            "engineForce": 8740,
+            "maxSpeed": 50,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [
+              0.4591,
+              1.704,
+              0.264
+            ],
+            "drive": "all",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.26,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.4591,
+                1.704,
+                0.264
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.448,
+              0,
+              0.264
+            ]
+          ],
+          "exits": [
+            [
+              1.548,
+              0,
+              0.264
+            ],
+            [
+              -1.548,
+              0,
+              0.264
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.land_rover_defender_90_2023"
+      ]
+    }
+  }
+}

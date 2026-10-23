@@ -22,23 +22,34 @@ import type {
   AudioSignalBinding,
   WeatherData,
 } from '@bendyline/molen-schema';
+import { type BirdsongLocation, birdsongLevel, loadBirdsongProfiles } from './birdsong';
 
-/** Sources in trees and grass (birds, crickets): full on the ground, gone by about 200 m up. */
+/** Sources in trees and grass (birds, crickets): full on the ground, gone by 60 m up. */
 const NEAR_GROUND: AudioSignalBinding = {
   signal: 'listener.heightAboveGround',
   curve: [
     [3, 1],
-    [15, 0.7],
-    [40, 0.35],
-    [100, 0.1],
-    [200, 0],
+    [10, 0.55],
+    [25, 0.15],
+    [60, 0],
+  ],
+};
+
+// Use a gain factor so a lost terrain sample cannot restart a ground loop during the director's
+// condition hysteresis. Existing voices still fade out normally.
+const GROUND_AMBIENCE: AudioSignalBinding = {
+  signal: 'host.groundAmbience',
+  curve: [
+    [0, 0],
+    [1, 1],
   ],
 };
 
 /**
  * Soundscape rules for Earth views: every decision is data the audio director evaluates. Ground
- * sounds read two host signals the Earth audio supplies each frame: `listener.heightAboveGround`
- * and `host.streetDistance` (meters to the nearest street, measured to the nearest parked car).
+ * sounds require `host.groundAmbience` (known terrain height, outside a vehicle) and fade with
+ * `listener.heightAboveGround` and `host.streetDistance` (meters to the nearest street, measured
+ * to the nearest car).
  */
 export const EARTH_AUDIO_ENVIRONMENT: AudioEnvironmentData = {
   buses: { music: 0.45, ambience: 0.85 },
@@ -86,7 +97,15 @@ export const EARTH_AUDIO_ENVIRONMENT: AudioEnvironmentData = {
       sound: 'ambience.birds',
       when: { 'sky.daylight': { min: 0.35 }, 'weather.precipitation.kind': 'none' },
       gainFrom: [
+        GROUND_AMBIENCE,
         NEAR_GROUND,
+        {
+          signal: 'host.genericBirds',
+          curve: [
+            [0, 0],
+            [1, 1],
+          ],
+        },
         {
           signal: 'host.regionalBirds',
           curve: [
@@ -113,14 +132,14 @@ export const EARTH_AUDIO_ENVIRONMENT: AudioEnvironmentData = {
       // street, and carries further up than birdsong.
       sound: 'ambience.city.traffic',
       gainFrom: [
+        GROUND_AMBIENCE,
         {
           signal: 'listener.heightAboveGround',
           curve: [
             [3, 1],
-            [30, 0.7],
-            [100, 0.3],
-            [300, 0.08],
-            [500, 0],
+            [10, 0.6],
+            [30, 0.2],
+            [100, 0],
           ],
         },
         {
@@ -141,6 +160,7 @@ export const EARTH_AUDIO_ENVIRONMENT: AudioEnvironmentData = {
       sound: 'ambience.crickets',
       when: { 'sky.daylight': { max: 0.15 }, 'weather.precipitation.kind': 'none' },
       gainFrom: [
+        GROUND_AMBIENCE,
         NEAR_GROUND,
         {
           signal: 'host.regionalInsects',
@@ -191,18 +211,21 @@ export interface EarthAudioFrame {
   /** Listener pose in world meters; default the renderer's camera. */
   position?: [number, number, number];
   forward?: [number, number, number];
-  /** walk, drive, pilot, fly or orbit — the `listener.mode` signal. */
+  /** walk, drive, pilot, fly or orbit — drive/pilot suppress outdoor ground ambience. */
   mode: string;
   grounded?: boolean;
   /**
    * Height of the listener above the ground in meters (camera Y minus terrain height). Ground
-   * ambience fades as it grows; leave it out when the terrain height is unknown.
+   * ambience fades as it grows; leave it out when the terrain height is unknown to silence
+   * ground ambience until a valid sample is available.
    */
   heightAboveGround?: number;
   /** Weather to hear; default the renderer's current weather. */
   weather?: WeatherData;
   /** Optional habitat levels (0..1); omission preserves generic legacy ambience. */
-  regionalAmbience?: { birds: number; insects: number };
+  regionalAmbience?: { birds: number; insects: number; habitat?: string };
+  /** Geographic listener and sky clock for recordings supplied by a pack's `birdsong` role. */
+  location?: BirdsongLocation;
 }
 
 export interface EarthAudio {
@@ -253,10 +276,46 @@ export async function createEarthAudio(
   const warn = options.onWarning ?? ((m: string) => console.warn(`audio: ${m}`));
   const banks = await loadPackSoundbanks(packs, warn);
   if (banks.length === 0) return undefined;
+  const curatedBirds = !options.environment && packs.provided('birdsong').length > 0;
+  const birdProfiles = options.environment
+    ? []
+    : await loadBirdsongProfiles(
+        packs,
+        new Set(banks.flatMap(({ doc }) => Object.keys(doc.sounds))),
+        warn,
+      );
+  const birdLayer = EARTH_AUDIO_ENVIRONMENT.ambience?.find((a) => a.sound === 'ambience.birds');
+  const environment = options.environment ?? {
+    ...EARTH_AUDIO_ENVIRONMENT,
+    ambience: [
+      ...(EARTH_AUDIO_ENVIRONMENT.ambience ?? []),
+      ...birdProfiles.map((p, i) => ({
+        ...birdLayer,
+        sound: p.sound,
+        when: { 'weather.precipitation.kind': 'none' },
+        gainFrom: [
+          ...(Array.isArray(birdLayer?.gainFrom)
+            ? birdLayer.gainFrom.filter(
+                (binding) =>
+                  binding.signal !== 'host.genericBirds' && binding.signal !== 'host.regionalBirds',
+              )
+            : []),
+          {
+            signal: `host.birdsong${i}`,
+            curve: [
+              [0, 0],
+              [1, 1],
+            ] as [number, number][],
+            smoothS: 2,
+          },
+        ],
+      })),
+    ],
+  };
   const layer = createAudioLayer({
     banks,
     provider: packs.assetProvider(),
-    environment: options.environment ?? EARTH_AUDIO_ENVIRONMENT,
+    environment,
     renderer,
     ...(options.volume !== undefined ? { volume: options.volume } : {}),
     ...(options.muted !== undefined ? { muted: options.muted } : {}),
@@ -325,9 +384,24 @@ export async function createEarthAudio(
         ...(weather ? { weather } : {}),
         host: {
           urban,
+          // Streamed tiles may not cover the camera (especially when looking down from high
+          // above). An absent height otherwise resolves to zero in the generic audio layer.
+          groundAmbience:
+            Number.isFinite(frame.heightAboveGround) &&
+            frame.mode !== 'drive' &&
+            frame.mode !== 'pilot',
           streetDistance: street,
           regionalBirds: Math.max(0, Math.min(1, frame.regionalAmbience?.birds ?? 1)),
           regionalInsects: Math.max(0, Math.min(1, frame.regionalAmbience?.insects ?? 1)),
+          // Once a curated catalog is present, uncovered places/seasons stay quiet.
+          genericBirds: !curatedBirds,
+          ...Object.fromEntries(
+            birdProfiles.map((p, i) => [
+              `birdsong${i}`,
+              birdsongLevel(p, frame.location, frame.regionalAmbience?.habitat) *
+                Math.max(0, Math.min(1, frame.regionalAmbience?.birds ?? 0)),
+            ]),
+          ),
         },
       });
     },

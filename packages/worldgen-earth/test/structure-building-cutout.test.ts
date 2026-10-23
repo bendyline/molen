@@ -27,6 +27,7 @@ const rect = (a: number, b: number, c: number, d: number): [number, number][] =>
   [a, d],
 ];
 const context = { origin: [0, 0] as [number, number], tileSize: 200 };
+const baseCutout = { outline: rect(-10, -10, 10, 10), basis: 'Modeled site boundary' };
 const entry: StructurePlacement = {
   id: 'shrine',
   title: 'Shrine',
@@ -38,7 +39,7 @@ const entry: StructurePlacement = {
   status: 'preview',
   source: 'https://example.com',
   replaceFootprint: true,
-  buildingCutout: { outline: rect(-10, -10, 10, 10), basis: 'Modeled site boundary' },
+  buildingCutout: baseCutout,
 };
 const tile = () => ({
   ...createEmptyTerrainSemanticTile(),
@@ -50,6 +51,106 @@ const tile = () => ({
 });
 
 describe('explicit landmark building cutouts', () => {
+  it('replaces a nearly covered whole building without trimming an overlapping neighbor', () => {
+    const source = {
+        ...createEmptyTerrainSemanticTile(),
+        buildings: [
+          { id: 'stadium', polygons: [{ outer: rect(0, 0, 1, 1) }] },
+          { id: 'pavilion', polygons: [{ outer: rect(0.995, 0, 1.5, 1) }] },
+        ],
+      },
+      before = structuredClone(source);
+    const result = withoutBuildingCutouts(
+      source,
+      context,
+      [],
+      [
+        {
+          outlines: [rect(-1, -1, 199.8, 201)],
+          minimumCoverage: 0.995,
+        },
+      ],
+    );
+    expect(result.buildings).toEqual([source.buildings[1]]);
+    expect(result.buildings[0]).toBe(source.buildings[1]);
+    expect(source).toEqual(before);
+  });
+  it('clips generalized merged blocks instead of retaining the original stadium under a model', () => {
+    const source = { ...tile(), buildingsGeneralized: true };
+    const result = withoutBuildingCutouts(
+      source,
+      context,
+      [],
+      [{ outlines: [rect(40, 50, 60, 70)], minimumCoverage: 0.995 }],
+    );
+    expect(result.buildings.map((b) => b.id)).toEqual(['merged', 'neighbor']);
+    expect(result.buildings[0]?.polygons[0]?.holes).toHaveLength(1);
+    expect(result.buildings[1]).toBe(source.buildings[2]);
+    expect(source.buildings).toHaveLength(3);
+  });
+  it('measures all components and holes, without counting overlapping masks twice', () => {
+    const source = {
+      ...createEmptyTerrainSemanticTile(),
+      buildings: [
+        {
+          id: 'parts',
+          polygons: [
+            { outer: rect(0, 0, 1, 1), holes: [rect(0.1, 0.1, 0.9, 0.9)] },
+            { outer: rect(2, 0, 3, 1) },
+          ],
+        },
+      ],
+    };
+    const first = rect(-1, -1, 201, 201);
+    expect(
+      withoutBuildingCutouts(
+        source,
+        context,
+        [],
+        [{ outlines: [first, first], minimumCoverage: 0.4 }],
+      ),
+    ).toBe(source);
+    expect(
+      withoutBuildingCutouts(
+        source,
+        context,
+        [],
+        [{ outlines: [first, first, rect(399, -1, 601, 201)], minimumCoverage: 0.995 }],
+      ).buildings,
+    ).toEqual([]);
+  });
+  it('keeps coverage decisions separate for independently placed landmarks', () => {
+    const source = {
+      ...createEmptyTerrainSemanticTile(),
+      buildings: [{ polygons: [{ outer: rect(0, 0, 1, 1) }] }],
+    };
+    expect(
+      withoutBuildingCutouts(
+        source,
+        context,
+        [],
+        [
+          { outlines: [rect(-1, -1, 102, 201)], minimumCoverage: 0.995 },
+          { outlines: [rect(98, -1, 201, 201)], minimumCoverage: 0.995 },
+        ],
+      ),
+    ).toBe(source);
+  });
+  it.each([
+    0,
+    -0.1,
+    1.001,
+    NaN,
+    Infinity,
+  ])('rejects invalid whole-building coverage: %s', (minimumCoverage) => {
+    expect(() =>
+      createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'invalid',
+        entries: [{ ...entry, buildingCutout: { ...baseCutout, minimumCoverage } }],
+      }),
+    ).toThrow(/building cutout/);
+  });
   it('uses independent masks without clearing a mapped building in their gap', () => {
     const source = {
         ...createEmptyTerrainSemanticTile(),
@@ -167,8 +268,19 @@ describe('explicit landmark building cutouts', () => {
       }),
     ).toThrow(/building cutout/);
   });
-  it.each([true, false])('clips only after a successful model load: %s', async (success) => {
-    const source = tile(),
+  it.each([
+    { success: true, minimumCoverage: undefined },
+    { success: false, minimumCoverage: undefined },
+    { success: true, minimumCoverage: 0.995 },
+    { success: false, minimumCoverage: 0.995 },
+    { success: true, minimumCoverage: 0.995, generalized: true },
+    { success: false, minimumCoverage: 0.995, generalized: true },
+  ])('changes map buildings only after a successful load: %j', async ({
+    success,
+    minimumCoverage,
+    generalized,
+  }) => {
+    const source = { ...tile(), buildingsGeneralized: generalized ?? false },
       seen: WorldgenGenerateRequest[] = [];
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
     const models = new ModelLibrary(async () => {
@@ -181,7 +293,7 @@ describe('explicit landmark building cutouts', () => {
       structures: createStructureIndex({
         format: 'molen/structure-placements@1',
         title: 'Site',
-        entries: [entry],
+        entries: [{ ...entry, buildingCutout: { ...baseCutout, minimumCoverage } }],
       }),
       structureModels: models,
       roads: { renderTransportation: false },
@@ -230,7 +342,11 @@ describe('explicit landmark building cutouts', () => {
       expect(request.tile.buildings.map((b) => b.id)).toEqual(
         success ? ['merged', 'neighbor'] : ['merged', 'part', 'neighbor'],
       );
-      expect(request.tile.buildings[0]?.polygons[0]?.holes?.length ?? 0).toBe(success ? 1 : 0);
+      expect(request.tile.buildings[0]?.polygons[0]?.holes?.length ?? 0).toBe(
+        success && (minimumCoverage === undefined || generalized) ? 1 : 0,
+      );
+      if (minimumCoverage !== undefined && !generalized)
+        expect(request.tile.buildings[0]).toBe(source.buildings[0]);
       expect(source.buildings).toHaveLength(3);
       if (root) renderers.humanFeatures.disposeTile?.(root);
       expect(withoutBuildingCutouts(source, context, [])).toBe(source);

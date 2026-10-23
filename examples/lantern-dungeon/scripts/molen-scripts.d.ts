@@ -9,6 +9,7 @@ type MolenAircraftData = {
   kind: string;
   spec: {
     label: string;
+    genericLabel?: string;
     model: 'airplane' | 'helicopter';
     mass: number;
     span: number;
@@ -23,6 +24,7 @@ type MolenAircraftData = {
       idleRpm: number;
       spoolRate: number;
       rotorAngularSpeed: number;
+      vectored?: boolean;
       propellerEfficiency?: number;
       maxThrust?: number;
       minPropellerSpeed?: number;
@@ -36,6 +38,7 @@ type MolenAircraftData = {
       idleRpm: number;
       spoolRate: number;
       rotorAngularSpeed: number;
+      vectored?: boolean;
       propellerEfficiency?: number;
       maxThrust?: number;
       minPropellerSpeed?: number;
@@ -82,6 +85,7 @@ type MolenAircraftData = {
       inducedDrag: number;
       gearDrag: number;
       flapDrag: number;
+      fixedGear?: boolean;
       gearTransitTime?: number;
       flapTransitTime?: number;
       stallDrag: number;
@@ -110,6 +114,14 @@ type MolenAircraftData = {
       horizontalDrag: number;
       quadraticDrag: number;
       groundDeceleration: number;
+    };
+    poweredLift?: {
+      transitTime: number;
+      controlFadeSpeed: number;
+      pitchAuthority: number;
+      rollAuthority: number;
+      yawAuthority: number;
+      damping: number;
     };
     hardLandingSpeed: number;
     hardLandingRoll: number;
@@ -154,15 +166,22 @@ type MolenAircraftData = {
         bindings: {
           node: string;
           source: string;
-          property: 'rotation' | 'position';
-          axis: 'x' | 'y' | 'z';
+          property: 'rotation' | 'position' | 'visible';
+          axis?: 'x' | 'y' | 'z';
           scale?: number;
           offset?: number;
           keys?: [number, number][];
           ease?: 'linear' | 'smooth';
           min?: number;
           max?: number;
+          period?: number;
+          responseSeconds?: number;
+          missing?: 'hold' | 'rest' | 'hide';
         }[];
+        derived?: Record<string, {
+            op: 'add' | 'subtract' | 'multiply' | 'divide' | 'min' | 'max' | 'clamp' | 'abs' | 'sqrt' | 'floor' | 'modulo' | 'sin' | 'cos' | 'atan2' | 'less' | 'greater' | 'equal' | 'and' | 'or' | 'not' | 'if' | 'coalesce';
+            args: (number | string)[];
+          }>;
       };
       animation?: {
         sources?: Record<string, {
@@ -172,15 +191,22 @@ type MolenAircraftData = {
         bindings: {
           node: string;
           source: string;
-          property: 'rotation' | 'position';
-          axis: 'x' | 'y' | 'z';
+          property: 'rotation' | 'position' | 'visible';
+          axis?: 'x' | 'y' | 'z';
           scale?: number;
           offset?: number;
           keys?: [number, number][];
           ease?: 'linear' | 'smooth';
           min?: number;
           max?: number;
+          period?: number;
+          responseSeconds?: number;
+          missing?: 'hold' | 'rest' | 'hide';
         }[];
+        derived?: Record<string, {
+            op: 'add' | 'subtract' | 'multiply' | 'divide' | 'min' | 'max' | 'clamp' | 'abs' | 'sqrt' | 'floor' | 'modulo' | 'sin' | 'cos' | 'atan2' | 'less' | 'greater' | 'equal' | 'and' | 'or' | 'not' | 'if' | 'coalesce';
+            args: (number | string)[];
+          }>;
       };
     };
   };
@@ -199,6 +225,7 @@ type MolenAircraftInputData = {
     }>;
   gear: boolean;
   flaps: boolean;
+  thrustVector?: number;
 };
 /** Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. */
 type MolenAircraftStateData = {
@@ -213,6 +240,7 @@ type MolenAircraftStateData = {
   gearPosition?: number;
   flapPosition?: number;
   pitchTrim?: number;
+  thrustVectorPosition?: number;
   sideslip?: number;
   loadFactor?: number;
   engines?: Record<string, {
@@ -470,15 +498,22 @@ type MolenBoatData = {
       bindings: {
         node: string;
         source: string;
-        property: 'rotation' | 'position';
-        axis: 'x' | 'y' | 'z';
+        property: 'rotation' | 'position' | 'visible';
+        axis?: 'x' | 'y' | 'z';
         scale?: number;
         offset?: number;
         keys?: [number, number][];
         ease?: 'linear' | 'smooth';
         min?: number;
         max?: number;
+        period?: number;
+        responseSeconds?: number;
+        missing?: 'hold' | 'rest' | 'hide';
       }[];
+      derived?: Record<string, {
+          op: 'add' | 'subtract' | 'multiply' | 'divide' | 'min' | 'max' | 'clamp' | 'abs' | 'sqrt' | 'floor' | 'modulo' | 'sin' | 'cos' | 'atan2' | 'less' | 'greater' | 'equal' | 'and' | 'or' | 'not' | 'if' | 'coalesce';
+          args: (number | string)[];
+        }>;
     };
     animation?: {
       sources?: Record<string, {
@@ -488,15 +523,22 @@ type MolenBoatData = {
       bindings: {
         node: string;
         source: string;
-        property: 'rotation' | 'position';
-        axis: 'x' | 'y' | 'z';
+        property: 'rotation' | 'position' | 'visible';
+        axis?: 'x' | 'y' | 'z';
         scale?: number;
         offset?: number;
         keys?: [number, number][];
         ease?: 'linear' | 'smooth';
         min?: number;
         max?: number;
+        period?: number;
+        responseSeconds?: number;
+        missing?: 'hold' | 'rest' | 'hide';
       }[];
+      derived?: Record<string, {
+          op: 'add' | 'subtract' | 'multiply' | 'divide' | 'min' | 'max' | 'clamp' | 'abs' | 'sqrt' | 'floor' | 'modulo' | 'sin' | 'cos' | 'atan2' | 'less' | 'greater' | 'equal' | 'and' | 'or' | 'not' | 'if' | 'coalesce';
+          args: (number | string)[];
+        }>;
     };
   };
   color?: string;
@@ -851,7 +893,7 @@ type MolenLocalTransformData = {
   scale?: [number, number, number];
   teleport?: boolean;
 };
-/** Bind same-entity simulation fields to named GLB transform channels. Visual only; no physics writes. */
+/** Bind same-entity simulation fields and named numeric expressions to GLB transforms and visibility. Supports calibration, cyclic needles and timed response. Visual only; no physics writes. */
 type MolenModel_signalsData = {
   sources: Record<string, {
       component: string;
@@ -860,15 +902,22 @@ type MolenModel_signalsData = {
   bindings: {
     node: string;
     source: string;
-    property: 'rotation' | 'position';
-    axis: 'x' | 'y' | 'z';
+    property: 'rotation' | 'position' | 'visible';
+    axis?: 'x' | 'y' | 'z';
     scale?: number;
     offset?: number;
     keys?: [number, number][];
     ease?: 'linear' | 'smooth';
     min?: number;
     max?: number;
+    period?: number;
+    responseSeconds?: number;
+    missing?: 'hold' | 'rest' | 'hide';
   }[];
+  derived?: Record<string, {
+      op: 'add' | 'subtract' | 'multiply' | 'divide' | 'min' | 'max' | 'clamp' | 'abs' | 'sqrt' | 'floor' | 'modulo' | 'sin' | 'cos' | 'atan2' | 'less' | 'greater' | 'equal' | 'and' | 'or' | 'not' | 'if' | 'coalesce';
+      args: (number | string)[];
+    }>;
 };
 /** Mount points in local meters, ordered safe exit candidates, and interaction reach. Seat position is the rider camera anchor. */
 type MolenMountableData = {
@@ -1009,6 +1058,8 @@ type MolenVehicleData = {
   color: string;
   spec: {
     label: string;
+    bodyStyle?: 'city' | 'hatchback' | 'sedan' | 'fastback' | 'coupe' | 'roadster' | 'wagon' | 'crossover' | 'suv' | 'offroad' | 'pickup' | 'van' | 'cargo-van' | 'box-truck' | 'motorhome' | 'bus' | 'light-rail' | 'bicycle' | 'motorcycle' | 'scooter';
+    genericLabel?: string;
     width: number;
     length: number;
     height: number;
@@ -1068,15 +1119,22 @@ type MolenVehicleData = {
       bindings: {
         node: string;
         source: string;
-        property: 'rotation' | 'position';
-        axis: 'x' | 'y' | 'z';
+        property: 'rotation' | 'position' | 'visible';
+        axis?: 'x' | 'y' | 'z';
         scale?: number;
         offset?: number;
         keys?: [number, number][];
         ease?: 'linear' | 'smooth';
         min?: number;
         max?: number;
+        period?: number;
+        responseSeconds?: number;
+        missing?: 'hold' | 'rest' | 'hide';
       }[];
+      derived?: Record<string, {
+          op: 'add' | 'subtract' | 'multiply' | 'divide' | 'min' | 'max' | 'clamp' | 'abs' | 'sqrt' | 'floor' | 'modulo' | 'sin' | 'cos' | 'atan2' | 'less' | 'greater' | 'equal' | 'and' | 'or' | 'not' | 'if' | 'coalesce';
+          args: (number | string)[];
+        }>;
     };
     animation?: {
       sources?: Record<string, {
@@ -1086,15 +1144,22 @@ type MolenVehicleData = {
       bindings: {
         node: string;
         source: string;
-        property: 'rotation' | 'position';
-        axis: 'x' | 'y' | 'z';
+        property: 'rotation' | 'position' | 'visible';
+        axis?: 'x' | 'y' | 'z';
         scale?: number;
         offset?: number;
         keys?: [number, number][];
         ease?: 'linear' | 'smooth';
         min?: number;
         max?: number;
+        period?: number;
+        responseSeconds?: number;
+        missing?: 'hold' | 'rest' | 'hide';
       }[];
+      derived?: Record<string, {
+          op: 'add' | 'subtract' | 'multiply' | 'divide' | 'min' | 'max' | 'clamp' | 'abs' | 'sqrt' | 'floor' | 'modulo' | 'sin' | 'cos' | 'atan2' | 'less' | 'greater' | 'equal' | 'and' | 'or' | 'not' | 'if' | 'coalesce';
+          args: (number | string)[];
+        }>;
     };
   };
 };
@@ -1260,7 +1325,7 @@ interface MolenComponentData {
   'light': MolenLightData;
   /** Parent-relative transform for entities carrying `parent`. */
   'localTransform': MolenLocalTransformData;
-  /** Bind same-entity simulation fields to named GLB transform channels. Visual only; no physics writes. */
+  /** Bind same-entity simulation fields and named numeric expressions to GLB transforms and visibility. Supports calibration, cyclic needles and timed response. Visual only; no physics writes. */
   'model.signals': MolenModel_signalsData;
   /** Mount points in local meters, ordered safe exit candidates, and interaction reach. Seat position is the rider camera anchor. */
   'mountable': MolenMountableData;

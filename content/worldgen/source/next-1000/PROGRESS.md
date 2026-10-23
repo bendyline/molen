@@ -2,7 +2,8 @@
 
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
-There are 552 authored assets, 552 imported assets and 546 active geographic asset previews.
+There are 680 authored assets, 680 imported assets and 657 active geographic asset previews.
+There are 1 reviewed reusable map-category models; they have rule-based instances rather than a unique landmark anchor.
 A candidate is complete only after its current source/runtime,
 portable render, shared-material render, geographic fit and its declared fidelity standard pass.
 New models follow [medium-fi](../../../../docs-src/guide/medium-fi.md); older maximum-fidelity
@@ -10,14 +11,14 @@ approvals retain their original scope and are not automatically medium-fi approv
 
 | Stage | Models |
 | --- | ---: |
-| Source GLBs authored | 552 |
-| Runtime GLBs imported | 552 |
-| Portable visual reviews passed | 551 |
-| Shared-material reviews passed | 551 |
-| Active geographic previews | 546 |
-| Declared fidelity reviews passed | 551 |
-| Complete | 551 |
-| Source models still to author | 448 |
+| Source GLBs authored | 640 |
+| Runtime GLBs imported | 640 |
+| Portable visual reviews passed | 638 |
+| Shared-material reviews passed | 639 |
+| Active geographic previews | 625 |
+| Declared fidelity reviews passed | 638 |
+| Complete | 631 |
+| Source models still to author | 360 |
 
 ## Authored models
 
@@ -449,11 +450,24 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0546 | [Capela dos Ossos](../places/ey/eyf/n0546_capela_dos_ossos/README.md) | 54368 | Passed | Passed | Passed | Passed | Yes |
 | N0547 | [Temple of Apollo](../places/sr/sr4/n0547_temple_of_apollo/README.md) | 23850 | Passed | Passed | Passed | Passed | Yes |
 | N0548 | [Temple of Romulus](../places/sr/sr2/n0548_temple_of_romulus/README.md) | 11088 | Passed | Passed | Passed | Passed | Yes |
+| N0549 | [West Mebon](../places/w6/w63/n0549_west_mebon/README.md) | 17048 | Passed | Passed | Passed | Passed | Yes |
+| N0550 | [Temple of Mars Ultor](../places/sr/sr2/n0550_temple_of_mars_ultor/README.md) | 15330 | Passed | Passed | Passed | Passed | Yes |
+| N0551 | [Temple of the Moon](../places/wx/wx4/n0551_temple_of_the_moon/README.md) | 6490 | Passed | Passed | Passed | Passed | Yes |
+| N0552 | [Ancient Shiva Temple Bhainsdehi](../places/te/tez/n0552_bhainsdehi/README.md) | 3528 | Passed | Passed | Passed | Passed | Yes |
+| N0553 | [Temple of the Sun](../places/wx/wx4/n0553_temple_of_the_sun/README.md) | 5640 | Passed | Passed | Passed | Passed | Yes |
+| N0554 | [Temple of Vesta](../places/sr/sr3/n0554_temple_of_vesta/README.md) | 35234 | Passed | Passed | Passed | Passed | Yes |
+| N0555 | [Timotesubani](../places/sz/szq/n0555_timotesubani/README.md) | 6110 | Passed | Passed | Passed | Passed | Yes |
+| N0556 | [Osireion](../places/ss/ssw/n0556_osireion/README.md) | 7612 | Passed | Passed | Passed | Passed | Yes |
+| N0557 | [Temple of Hercules](../places/sv/sv9/n0557_temple_of_hercules/README.md) | 10878 | Passed | Passed | Passed | Passed | Yes |
+| N0558 | [Temple of Hibis](../places/ss/sst/n0558_temple_of_hibis/README.md) | 16390 | Passed | Passed | Passed | Passed | Yes |
+| N0559 | [Brahma Temple](../places/ts/tst/n0559_brahma_temple/README.md) | 27889 | Passed | Passed | Passed | Passed | Yes |
+| N0560 | [Buddha Dhatu Jadi](../places/w5/w5c/n0560_buddha_dhatu_jadi/README.md) | 27995 | Passed | Passed | Passed | Passed | Yes |
 | N0561 | [Galata Tower](../places/sx/sxk/n0561_galata_tower/README.md) | 121046 | Passed | Passed | Passed | Passed | Yes |
 | N0562 | [Maiden Tower](../places/tp/tp5/n0562_maiden_tower/README.md) | 85366 | Passed | Passed | Passed | Passed | Yes |
 | N0563 | [Azadi Tower](../places/tn/tnk/n0563_azadi_tower/README.md) | 162112 | Passed | Passed | Passed | Passed | Yes |
 | N0564 | [Gonbad-e Qabus](../places/tn/tnx/n0564_gonbad_e_qabus/README.md) | 12469 | Passed | Passed | Passed | Passed | Yes |
 | N0565 | [Mole Antonelliana](../places/u0/u0j/n0565_mole_antonelliana/README.md) | 253101 | Passed | Passed | Passed | Passed | Yes |
+| N0566 | [Dharahara](../places/tu/tuu/n0566_dharahara/README.md) | 15618 | Passed | Passed | Passed | Passed | Yes |
 | N0567 | [Einstein Tower](../places/u3/u33/n0567_einstein_tower/README.md) | 37135 | Passed | Passed | Passed | Passed | Yes |
 | N0569 | [Saint-Jacques Tower](../places/u0/u09/n0569_saint_jacques_tower/README.md) | 162896 | Passed | Passed | Passed | Passed | Yes |
 | N0570 | [Powder Tower](../places/u2/u2f/n0570_powder_tower/README.md) | 128240 | Passed | Passed | Passed | Passed | Yes |
@@ -477,8 +491,13 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0589 | [Torre Velasca](../places/u0/u0n/n0589_torre_velasca/README.md) | 120144 | Passed | Passed | Passed | Passed | Yes |
 | N0590 | [Town Hall Tower](../places/u2/u2y/n0590_town_hall_tower/README.md) | 100224 | Passed | Passed | Passed | Passed | Yes |
 | N0591 | [Kızıl Kule](../places/sw/swq/n0591_k_z_l_kule/README.md) | 25650 | Passed | Passed | Passed | Passed | Yes |
+| N0592 | [De La Fratta](../places/sr/srb/n0592_de_la_fratta/README.md) | 6726 | Passed | Passed | Passed | Passed | Yes |
+| N0593 | [Omar Khayyam Mausoleum](../places/tq/tq3/n0593_omar_khayyam_mausoleum/README.md) | 17478 | Passed | Passed | Passed | Passed | Yes |
+| N0594 | [Svanetian tower](../map-structures/n0594_svanetian_tower/README.md) | 1172 | Passed | Passed | Passed | Passed | Yes |
 | N0595 | [Leaning Tower of Toruń](../places/u3/u3m/n0595_leaning_tower_of_torun/README.md) | 45782 | Passed | Passed | Passed | Passed | Yes |
 | N0596 | [Torre del Mangia](../places/sr/sr8/n0596_torre_del_mangia/README.md) | 115282 | Passed | Passed | Passed | Passed | Yes |
+| N0597 | [Kharaqan Towers](../places/tn/tn6/n0597_kharaqan_towers/README.md) | 11484 | Passed | Passed | Passed | Passed | Yes |
+| N0598 | [Baghdad Tower](../places/sv/svz/n0598_baghdad_tower/README.md) | 15356 | Passed | Passed | Passed | Passed | Yes |
 | N0599 | [Triq il-Wiesgħa Tower](../places/sq/sq6/n0599_triq_il_wiesg_a_tower/README.md) | 22250 | Passed | Passed | Passed | Passed | Yes |
 | N0600 | [Laboe Naval Memorial](../places/u1/u1x/n0600_laboe_naval_memorial/README.md) | 47862 | Passed | Passed | Passed | Passed | Yes |
 | N0601 | [Avicenna Mausoleum](../places/tn/tn4/n0601_avicenna_mausoleum/README.md) | 36740 | Passed | Passed | Passed | Passed | Yes |
@@ -497,11 +516,23 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0614 | [Bierpinsel](../places/u3/u33/n0614_bierpinsel/README.md) | 104857 | Passed | Passed | Passed | Passed | Yes |
 | N0615 | [Gerbrandy Tower](../places/u1/u15/n0615_gerbrandy_tower/README.md) | 140946 | Passed | Passed | Passed | Passed | Yes |
 | N0616 | [Grunewald Tower](../places/u3/u33/n0616_grunewald_tower/README.md) | 335988 | Passed | Passed | Passed | Passed | Yes |
+| N0617 | [Yueyang Tower](../places/wt/wt0/n0617_yueyang_tower/README.md) | 11920 | Passed | Passed | Passed | Passed | Yes |
 | N0619 | [Montevideo](../places/u1/u15/n0619_montevideo/README.md) | 493066 | Passed | Passed | Passed | Passed | Yes |
 | N0620 | [Kärnan](../places/u3/u3c/n0620_karnan/README.md) | 76762 | Passed | Passed | Passed | Passed | Yes |
 | N0621 | [Amazon Tall Tower Observatory](../places/6x/6xw/n0621_amazon_tall_tower_observatory/README.md) | 184412 | Passed | Passed | Passed | Passed | Yes |
 | N0622 | [Montelbaanstoren](../places/u1/u17/n0622_montelbaanstoren/README.md) | 107734 | Passed | Passed | Passed | Passed | Yes |
 | N0623 | [Rembrandt Tower](../places/u1/u17/n0623_rembrandt_tower/README.md) | 642002 | Passed | Passed | Passed | Passed | Yes |
+| N0624 | [Gregorian Tower](../places/sr/sr2/n0624_gregorian_tower/README.md) | 4514 | Passed | Passed | Passed | Passed | Yes |
+| N0625 | [Aladdin Tower](../places/tn/tnk/n0625_aladdin_tower/README.md) | 3335 | Passed | Passed | Passed | Passed | Yes |
+| N0626 | [Flag Tower of Hanoi](../places/w7/w7e/n0626_flag_tower_of_hanoi/README.md) | 19760 | Passed | Passed | Passed | Passed | Yes |
+| N0627 | [Broch of Gurness](../places/gf/gft/n0627_broch_of_gurness/README.md) | 6396 | Passed | Passed | Passed | Passed | Yes |
+| N0628 | [Blatnica Castle](../places/u2/u2t/n0628_blatnica_castle/README.md) | 1299 | Passed | Passed | Passed | Passed | Yes |
+| N0631 | [Malá Strana Bridge Tower](../places/u2/u2f/n0631_mala_strana_bridge_tower/README.md) | 4584 | Passed | Passed | Passed | Passed | Yes |
+| N0632 | [St. Urban Tower](../places/u2/u2x/n0632_st_urban_tower/README.md) | 6670 | Passed | Passed | Passed | Passed | Yes |
+| N0633 | [Towers of Silence in Yazd](collections.json) (2/2 members complete) | 6792 | Passed | Passed | Passed | Passed | Yes |
+| N0634 | [Mouse Tower](../places/u0/u0v/n0634_mouse_tower/README.md) | 2580 | Passed | Passed | Passed | Passed | Yes |
+| N0635 | [El Faro Towers](../places/69/69y/n0635_el_faro_towers/README.md) | 36068 | Passed | Passed | Passed | Passed | Yes |
+| N1005 | [Gardoš Tower](../places/sr/sry/n1005_gardos_tower/README.md) | 4011 | Passed | Passed | Passed | Passed | Yes |
 | N1006 | [Emley Moor transmitting station](../places/gc/gcw/n1006_emley_moor_transmitting_station/README.md) | 271836 | Passed | Passed | Passed | Passed | Yes |
 | N0637 | [Tower of Hercules](../places/ez/ezd/n0637_tower_of_hercules/README.md) | 13060 | Passed | Passed | Passed | Passed | Yes |
 | N0638 | [Maiden's Tower](../places/sx/sxk/n0638_maiden_s_tower/README.md) | 18588 | Passed | Passed | Passed | Passed | Yes |
@@ -575,8 +606,67 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0705 | [BC Place](../places/c2/c2b/n0705_bc_place/README.md) | 1736182 | Passed | Passed | Passed | Passed | Yes |
 | N0706 | [Khalifa International Stadium](../places/th/thk/n0706_khalifa_international_stadium/README.md) | 1147020 | Passed | Passed | Passed | Passed | Yes |
 | N0707 | [Parken Stadium](../places/u3/u3b/n0707_parken_stadium/README.md) | 663256 | Passed | Passed | Passed | Passed | Yes |
+| N0708 | [MetLife Stadium](../places/dr/dr7/n0708_metlife_stadium/README.md) | 55482 | Passed | Passed | Passed | Passed | Yes |
+| N0709 | [Ernst-Happel-Stadion](../places/u2/u2e/n0709_ernst_happel_stadion/README.md) | 29762 | Passed | Passed | Passed | Passed | Yes |
+| N0710 | [SoFi Stadium](../places/9q/9q5/n0710_sofi_stadium/README.md) | 39834 | Passed | Passed | Passed | Passed | Yes |
+| N0711 | [Millennium Stadium](../places/gc/gcj/n0711_millennium_stadium/README.md) | 36638 | Passed | Passed | Passed | Passed | Yes |
+| N0712 | [Castelão](../places/7p/7pk/n0712_castelao/README.md) | 31626 | Passed | Passed | Passed | Passed | Yes |
+| N0713 | [Peter Mokaba Stadium](../places/ke/kes/n0713_peter_mokaba_stadium/README.md) | 26196 | Passed | Passed | Passed | Passed | Yes |
+| N0714 | [Stadium 974](../places/th/thk/n0714_stadium_974/README.md) | 45542 | Passed | Passed | Passed | Passed | Yes |
+| N0715 | [Nelson Mandela Bay Stadium](../places/k9/k9f/n0715_nelson_mandela_bay_stadium/README.md) | 62442 | Passed | Passed | Passed | Passed | Yes |
+| N0716 | [Mestalla Stadium](../places/ez/ezp/n0716_mestalla_stadium/README.md) | 41550 | Passed | Passed | Passed | Passed | Yes |
+| N0717 | [Nizhny Novgorod Stadium](../places/uf/ufp/n0717_nizhny_novgorod_stadium/README.md) | 56702 | Passed | Passed | Passed | Passed | Yes |
+| N0718 | [Estádio da Luz](../places/ey/eyc/n0718_estadio_da_luz/README.md) | 54374 | Passed | Passed | Passed | Passed | Yes |
+| N0719 | [Education City Stadium](../places/th/thk/n0719_education_city_stadium/README.md) | 54682 | Passed | Passed | Passed | Passed | Yes |
+| N0720 | [Al Bayt Stadium](../places/th/ths/n0720_al_bayt_stadium/README.md) | 50900 | Passed | Passed | Passed | Passed | Yes |
+| N0721 | [Estádio Beira-Rio](../places/6f/6fe/n0721_estadio_beira_rio/README.md) | 44874 | Passed | Passed | Passed | Passed | Yes |
+| N0722 | [Mbombela Stadium](../places/ke/kem/n0722_mbombela_stadium/README.md) | 53342 | Passed | Passed | Passed | Passed | Yes |
+| N0723 | [Royal Bafokeng Stadium](../places/ke/ke7/n0723_royal_bafokeng_stadium/README.md) | 58702 | Passed | Passed | Passed | Passed | Yes |
+| N0724 | [Melbourne Cricket Ground](../places/r1/r1r/n0724_melbourne_cricket_ground/README.md) | 50680 | Passed | Passed | Passed | Passed | Yes |
+| N0725 | [Gillette Stadium](../places/dr/drm/n0725_gillette_stadium/README.md) | 62272 | Passed | Passed | Passed | Passed | Yes |
+| N0726 | [Ahmad bin Ali Stadium](../places/th/ths/n0726_ahmad_bin_ali_stadium/README.md) | 49678 | Passed | Passed | Passed | Passed | Yes |
+| N0727 | [Arena Amazônia](../places/6x/6xm/n0727_arena_amazonia/README.md) | 48686 | Passed | Passed | Passed | Passed | Yes |
+| N0728 | [Donbass Arena](../places/ub/ubd/n0728_donbass_arena/README.md) | 42222 | Passed | Passed | Passed | Passed | Yes |
+| N0729 | [Tottenham Hotspur Stadium](../places/gc/gcp/n0729_tottenham_hotspur_stadium/README.md) | 45228 | Passed | Passed | Passed | Passed | Yes |
+| N0730 | [Stadion Wankdorf](../places/u0/u0m/n0730_stadion_wankdorf/README.md) | 55728 | Passed | Passed | Passed | Passed | Yes |
+| N0731 | [Rajko Mitić Stadium](../places/sr/sry/n0731_rajko_mitic_stadium/README.md) | 45302 | Passed | Passed | Passed | Passed | Yes |
+| N0732 | [Estadio Centenario](../places/6c/6cb/n0732_estadio_centenario/README.md) | 39674 | Passed | Passed | Passed | Passed | Yes |
+| N0733 | [Arrowhead Stadium](../places/9y/9yu/n0733_arrowhead_stadium/README.md) | 60678 | Passed | Passed | Passed | Passed | Yes |
+| N0734 | [Arena Fonte Nova](../places/7j/7js/n0734_arena_fonte_nova/README.md) | 60342 | Passed | Passed | Passed | Passed | Yes |
+| N0735 | [Stadion Maksimir](../places/u2/u25/n0735_stadion_maksimir/README.md) | 60728 | Passed | Passed | Passed | Passed | Yes |
+| N0737 | [British Museum](../places/gc/gcp/n0737_british_museum/README.md) | 62718 | Passed | Passed | Passed | Passed | Yes |
+| N0738 | [Forbidden City](../places/wx/wx4/n0738_forbidden_city/README.md) | 63694 | Passed | Passed | Passed | Passed | Yes |
+| N0740 | [Metropolitan Museum of Art](../places/dr/dr5/n0740_metropolitan_museum_of_art/README.md) | 22509 | Passed | Passed | Passed | Passed | Yes |
+| N0741 | [Hermitage Museum](collections.json) (0/5 members complete) | 200848 | Passed | Passed | Pending | Passed | Pending |
+| N0742 | [Topkapı Palace](collections.json) (16/18 members complete) | 322672 | Passed | Passed | Pending | Passed | Pending |
+| N0746 | [Guggenheim Museum Bilbao](../places/ez/ezt/n0746_guggenheim_museum_bilbao/README.md) | 10432 | Passed | Passed | Pending | Passed | Pending |
+| N0747 | [Museum of Modern Art](../places/dr/dr5/n0747_museum_of_modern_art/README.md) | 8560 | Passed | Passed | Passed | Passed | Yes |
+| N0748 | [Yad Vashem](collections.json) (4/10 members complete) | 33574 | Pending | Pending | Pending | Pending | Pending |
+| N0749 | [Centre Georges Pompidou](../places/u0/u09/n0749_centre_georges_pompidou/README.md) | 46504 | Passed | Passed | Pending | Passed | Pending |
+| N0750 | [Balmoral Castle](../places/gf/gfj/n0750_balmoral_castle/README.md) | 8554 | Passed | Passed | Passed | Passed | Yes |
+| N0751 | [Pergamon Museum](../places/u3/u33/n0751_pergamon_museum/README.md) | 22157 | Passed | Passed | Pending | Passed | Pending |
+| N0752 | [Royal Observatory](collections.json) (7/7 members complete) | 39186 | Passed | Passed | Passed | Passed | Yes |
+| N0753 | [Tretyakov Gallery](../places/uc/ucf/n0753_tretyakov_gallery/README.md) | 6284 | Passed | Passed | Passed | Passed | Yes |
+| N0754 | [Van Gogh Museum](../places/u1/u17/n0754_van_gogh_museum/README.md) | 2554 | Passed | Passed | Passed | Passed | Yes |
+| N0756 | [Drottningholm Palace](../places/u6/u6s/n0756_drottningholm_palace/README.md) | 8758 | Passed | Passed | Passed | Passed | Yes |
+| N0757 | [Museum of Philistine Culture](../places/sv/sv8/n0757_museum_of_philistine_culture/README.md) | 904 | Passed | Passed | Passed | Passed | Yes |
+| N0758 | [Castel Sant'Angelo](../places/sr/sr2/n0758_castel_sant_angelo/README.md) | 11573 | Passed | Passed | Passed | Passed | Yes |
+| N0759 | [Palace of Fontainebleau](../places/u0/u09/n0759_palace_of_fontainebleau/README.md) | 29106 | Passed | Passed | Passed | Passed | Yes |
+| N0760 | [Saint Isaac's Cathedral](../places/ud/udt/n0760_saint_isaac_s_cathedral/README.md) | 23950 | Passed | Passed | Pending | Passed | Pending |
+| N0761 | [Nymphenburg Palace](../places/u2/u28/n0761_nymphenburg_palace/README.md) | 29645 | Passed | Passed | Passed | Passed | Yes |
+| N0762 | [Charlottenburg Palace](../places/u3/u33/n0762_charlottenburg_palace/README.md) | 15865 | Passed | Passed | Passed | Passed | Yes |
+| N0763 | [Boyana Church](../places/sx/sx8/n0763_boyana_church/README.md) | 2208 | Passed | Passed | Passed | Passed | Yes |
+| N0764 | [Palazzo Vecchio](../places/sr/srb/n0764_palazzo_vecchio/README.md) | 8110 | Passed | Passed | Passed | Passed | Yes |
+| N0765 | [Villa Romana del Casale](collections.json) (5/6 members complete) | 23845 | Pending | Passed | Pending | Pending | Pending |
+| N0766 | [Brooklyn Museum](../places/dr/dr5/n0766_brooklyn_museum/README.md) | 26486 | Passed | Passed | Passed | Passed | Yes |
+| N0767 | [Neues Museum](../places/u3/u33/n0767_neues_museum/README.md) | 25632 | Passed | Passed | Passed | Passed | Yes |
+| N0768 | [Science Museum](../places/gc/gcp/n0768_science_museum/README.md) | 39285 | Passed | Passed | Passed | Passed | Yes |
+| N0769 | [Galleria Borghese](../places/sr/sr2/n0769_galleria_borghese/README.md) | 6078 | Passed | Passed | Passed | Passed | Yes |
+| N0770 | [Basilica of Santa Croce](../places/sr/srb/n0770_basilica_of_santa_croce/README.md) | 2556 | Passed | Passed | Passed | Passed | Yes |
+| N0771 | [Würzburg Residence](../places/u0/u0z/n0771_wurzburg_residence/README.md) | 10080 | Passed | Passed | Passed | Passed | Yes |
 | N0791 | [London King's Cross railway station](../places/gc/gcp/n0791_london_king_s_cross_railway_station/README.md) | 132146 | Passed | Passed | Passed | Passed | Yes |
 | N0796 | [Tokyo Station](../places/xn/xn7/n0796_tokyo_station/README.md) | 9673 | Passed | Passed | Passed | Passed | Yes |
+| N0894 | [Winter Palace](../places/ud/udt/n0894_winter_palace/README.md) | 63729 | Passed | Passed | Pending | Passed | Pending |
 | N0946 | [Stonehenge](../places/gc/gcn/n0946_stonehenge/README.md) | 55452 | Passed | Passed | Passed | Passed | Yes |
 | N0963 | [Gateway Arch](../places/9y/9yz/n0963_gateway_arch/README.md) | 50314 | Passed | Passed | Passed | Passed | Yes |
 | N0975 | [Spire of Dublin](../places/gc/gc7/n0975_spire_of_dublin/README.md) | 193294 | Passed | Passed | Passed | Passed | Yes |

@@ -105,6 +105,8 @@ export {
   earthOrbitMaxRange,
   mountEarthView,
 } from './client/earth-view';
+export type { EarthFleet, EarthFleetContent, EarthFleetOptions } from './client/fleet';
+export { createEarthFleet } from './client/fleet';
 export {
   EARTH_EXPOSURE,
   EARTH_LIGHTING,
@@ -146,6 +148,11 @@ export {
   extrapolateTrack,
 } from './client/prefetch';
 export { createRegionalGroundColor } from './client/regional-ground';
+export {
+  createEarthRoadSigns,
+  type EarthRoadSignContent,
+  type EarthRoadSigns,
+} from './client/road-signs';
 export {
   type EarthSpawnOptions,
   EarthVehicles,

@@ -6,7 +6,9 @@ import { describe, expect, it } from 'vitest';
 import { ENTITY_TYPES } from './test-content';
 import { aircraftBlocks, WorldAircraft } from './world-aircraft';
 
-async function setup() {
+async function setup(
+  loadModel: (id: string) => Promise<THREE.Object3D> = async () => new THREE.Group(),
+) {
   const root = new THREE.Group();
   let flight: WorldAircraft;
   const vehicles: EarthVehicles = new EarthVehicles({
@@ -21,7 +23,7 @@ async function setup() {
     root,
     () => 0,
     [10000, 50, 20000],
-    async () => new THREE.Group(),
+    loadModel,
     ENTITY_TYPES,
   );
   flight.sync();
@@ -29,10 +31,86 @@ async function setup() {
   return { root, vehicles, flight };
 }
 describe('world aircraft', () => {
+  it('loads the selected catalog aircraft only, evicts the previous addition and boards it', async () => {
+    const loads: string[] = [];
+    const { vehicles, flight } = await setup(async (id) => {
+      loads.push(id);
+      return new THREE.Group();
+    });
+    expect(flight.choices).toHaveLength(53);
+    expect(loads).toHaveLength(3);
+    await flight.request('f_16b');
+    await flight.request('f_16b');
+    expect(loads).toHaveLength(4);
+    expect(flight.has('f_16b')).toBe(true);
+    await flight.request('av_8b');
+    expect(flight.has('f_16b')).toBe(false);
+    expect(vehicles.world.exists('aircraft-f_16b')).toBe(false);
+    expect(vehicles.world.query({ name: 'aircraft' }).count()).toBe(4);
+    expect(flight.enter(flight.visitPosition('av_8b'))).toBe(true);
+    expect(flight.mountedKind).toBe('av_8b');
+    flight.key('KeyJ');
+    flight.input(1 / 60, new Set());
+    vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: false });
+    expect(flight.state?.thrustVectorPosition).toBeGreaterThan(0);
+    flight.dispose();
+    vehicles.dispose();
+  });
+  it('coalesces rapid catalog changes to one download at a time and drops stale results', async () => {
+    const loads: string[] = [];
+    let release: ((model: THREE.Object3D) => void) | undefined;
+    const { vehicles, flight } = await setup(async (id) => {
+      loads.push(id);
+      if (id.endsWith('.f_16b'))
+        return new Promise((resolve) => {
+          release = resolve;
+        });
+      return new THREE.Group();
+    });
+    const first = flight.request('f_16b'),
+      second = flight.request('c_17a'),
+      last = flight.request('mv_22b');
+    expect(loads).toHaveLength(4);
+    release?.(new THREE.Group());
+    await Promise.all([first, second, last]);
+    expect(loads.map((id) => id.split('.').at(-1))).toEqual([
+      'p51d',
+      'oh6',
+      'airliner',
+      'f_16b',
+      'mv_22b',
+    ]);
+    expect(flight.has('f_16b')).toBe(false);
+    expect(flight.has('mv_22b')).toBe(true);
+    expect(vehicles.world.query({ name: 'aircraft' }).count()).toBe(4);
+    flight.dispose();
+    vehicles.dispose();
+  });
+  it('boards the airliner at its ground entry and takes off within the practice runway', async () => {
+    const { vehicles, flight } = await setup();
+    expect(flight.enter(flight.visitPosition('airliner'))).toBe(true);
+    expect(flight.mountedKind).toBe('airliner');
+    flight.key('KeyI');
+    flight.key('KeyF');
+    const start = vehicles.world.get('aircraft-airliner', Transform)?.pos[2] ?? 0;
+    for (let i = 0; i < 3600 && (flight.state?.grounded ?? true); i++) {
+      const keys = new Set(['ShiftLeft']);
+      if ((flight.state?.airspeed ?? 0) >= 65) keys.add('KeyS');
+      flight.input(1 / 60, keys);
+      vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: false });
+    }
+    expect(flight.state?.crashed).toBe(false);
+    expect(flight.state?.grounded).toBe(false);
+    const end = vehicles.world.get('aircraft-airliner', Transform)?.pos[2] ?? 0;
+    expect(end - start).toBeGreaterThan(800);
+    expect(end - start).toBeLessThan(1600);
+    flight.dispose();
+    vehicles.dispose();
+  });
   it('creates registered aircraft once, boards, follows flight through origin shifts, and preserves residency', async () => {
     const { root, vehicles, flight } = await setup();
     expect(flight.ready).toBe(true);
-    expect(vehicles.world.query({ name: 'aircraft' }).count()).toBe(2);
+    expect(vehicles.world.query({ name: 'aircraft' }).count()).toBe(3);
     expect(flight.enter(flight.visitPosition('oh6'))).toBe(true);
     flight.key('KeyI');
     const run = (keys: string[], count: number): void => {
@@ -53,7 +131,7 @@ describe('world aircraft', () => {
     expect(flight.cameraPose('cockpit', 0, 0)).toEqual(pose);
     flight.sync();
     vehicles.sync(1000);
-    expect(vehicles.world.query({ name: 'aircraft' }).count()).toBe(2);
+    expect(vehicles.world.query({ name: 'aircraft' }).count()).toBe(3);
     flight.dispose();
     vehicles.dispose();
     expect(root.children).toHaveLength(0);

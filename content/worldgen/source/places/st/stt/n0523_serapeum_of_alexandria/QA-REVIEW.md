@@ -1,12 +1,12 @@
 # N0523 — Serapeum of Alexandria
 
-Reviewed 2026-10-19 in one continuous author/build/inspect/fix round.
+Reviewed2026-10-19 in one continuous author/build/inspect/fix round.
 
 ![Serapeum of Alexandria](preview.png)
 
 ## Appearance
 
-Inspected all current source, shared, medium-fi and native-site views during this authoring round. Specific slender plain tapered granite column, square/moulded foot, flared leafy Corinthian capital and concave abacus; two separately based worn sphinxes with frontal heads, nemes flaps, chest/paws and simplified crouching backs. Pale tapered restored plinths and original stone blocks remain distinct. Recessed a chest that hid the lower face, removed a torso overlap and protruding decorative lines, and padded automatic library views to keep every plinth in frame. No missing section, clipped whole view or terrain-through-foot defect remains in the final set.
+Inspected all current source, shared, medium-fi and native-site views during this authoring round. Specific slender plain tapered granite column, square/moulded foot, flared leafy Corinthian capital and concave abacus; two separately based worn sphinxes with frontal heads, nemes flaps, chest/paws and simplified crouching backs. Pale tapered restored plinths and original stone blocks remain distinct. Recessed a chest that hid the lower face, removed a torso overlap and protruding decorative lines, and padded automatic library views to keep every plinth in frame. No missing section, clipped whole view or terrain-through-foot defect remains in the final set. Current binding repair:48 fresh source/shared/medium-fi/native/fallback views inspected using the retained brief. Master/runtime/four LODs rebuilt byte-identically; no new research or model alteration.
 
 ## Shared materials and browser levels
 
@@ -31,7 +31,7 @@ Accepted medium-fi surviving landmark group and approximate standard-map fit. Th
 
 ## Selected checks
 
-Six Khronos files: zero errors/warnings. 126 actual geometry/contact probes; 48 current inspected views. Scene validation/sim 30 and strict selected medium-fi audit pass. Source and runtime hashes/material bindings/LOD caps verified.
+Six Khronos files: zero errors/warnings.126 actual geometry/contact probes; 48 current inspected views. Scene validation/sim30 and strict selected medium-fi audit pass. Source and runtime hashes/material bindings/LOD caps verified.
 
 Rebuild: node packages/worldgen/scripts/generate-additional-landmarks.mjs --ids=N0523; node packages/worldgen/scripts/import-next-1000-models.mjs --ids=N0523; node packages/tooling/scripts/generate-landmark-lods.mjs --ids=N0523 --force.
 
@@ -39,7 +39,7 @@ Source: sha256:92f47ff3bfc473844a56f6ecf28c530dacfcbfadf85698e90cecad93262c5f7d
 
 Runtime: sha256:f225e65e4a88430002a296515acbca567c45946ae5162d71f5dad0e03ee16b72
 
-Input: sha256:d2f7717f9556032db28603d61c517b2f16c4b7f837f12e5ab9e8be62cd56c067
+Input: sha256:565a42aebe7cedb849a659ad181d9ccf8b9c4bd2835157d533ef80c4c488a513
 
 ## Viewed ordinary pictures
 

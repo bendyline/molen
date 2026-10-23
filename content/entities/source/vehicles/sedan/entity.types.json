@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.vehicle.sedan": {
-      "doc": "Full-size sedan with balanced road handling.",
+      "doc": "Bendy Sedan. Full-size sedan with balanced road handling.",
       "components": {
         "transform": {
           "pos": [
@@ -23,7 +23,9 @@
           "kind": "molen.entities.vehicle.sedan",
           "color": "#4d76b8",
           "spec": {
-            "label": "Sedan",
+            "label": "Bendy Sedan",
+            "bodyStyle": "sedan",
+            "genericLabel": "Sedan",
             "width": 1.82,
             "length": 4.65,
             "height": 1.45,
@@ -74,7 +76,8 @@
             "interior": {
               "nodes": [
                 "body",
-                "steering-wheel"
+                "steering-wheel",
+                "cabin"
               ],
               "bindings": [
                 {
@@ -83,6 +86,15 @@
                   "property": "rotation",
                   "axis": "z",
                   "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
                 }
               ]
             }
@@ -150,7 +162,7 @@
         "audioSource": {
           "sound": "vehicle.engine.car",
           "loop": true,
-          "pitch": 1.0,
+          "pitch": 1,
           "gain": 1.2,
           "when": {
             "self.occupied": true

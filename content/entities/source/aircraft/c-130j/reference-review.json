@@ -1,0 +1,226 @@
+{
+  "variant": "Standard unstretched C-130J / 328U, four CMDUs, no optional external tanks or mission equipment",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://www.0x4d.net/files/AF1/R11%20Segment%207.pdf",
+      "title": "USAF T.O. 00-105E-9, C-130J.2 dimensional/general-information drawing",
+      "author": "US Air Force",
+      "license": "US federal government work; public archive",
+      "scope": "Standard 328U length 97ft9in, span132ft7in, tail52ft8in, body height16ft1in, tandem wheel arrangement and 14ft3in main track. Low-resolution schematic has inconsistent dimensions (notably prop-to-nose); not engineering station data."
+    },
+    {
+      "url": "https://www.lockheedmartin.com/content/dam/lockheed-martin/aero/documents/C-130J/C130JPocketGuide.pdf",
+      "title": "C-130J Pocket Guide, pp6–7,22–25",
+      "author": "Lockheed Martin",
+      "license": "Copyright Lockheed Martin; local reference only",
+      "scope": "Manufacturer flight-station panel, overhead and console drawings; FOUR CMDUs. Exterior arrangement is stretched J-30, used only for shared components and cross-checks, not fuselage length."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:120316-F-LR266-986_C-130J_Hercules_Cockpit_Ramstein_Air_Base_2012.jpg",
+      "title": "C-130J cockpit at Ramstein, 16 March 2012",
+      "author": "USAF / Staff Sgt. Chris Willis",
+      "license": "Public domain US federal government work",
+      "scope": "Occupied flight station, console, seats, overhead and forward glazing. Perspective/crew obstruction."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:40th_Airlift_Squadron_C-130J_Super_Hercules_cockpit.jpg",
+      "title": "C-130J flight preparation, 18 February 2023",
+      "author": "USAF / Airman 1st Class Courtney Sebastianelli",
+      "license": "Public domain US federal government work",
+      "scope": "Right sidewall/glazing, overhead, HUD mounting, seat/harness and live display appearance; occupied oblique night view."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Lockheed_Martin_C-130J_Hercules_C5_(code_ZH883)_of_the_RAF_arrives_Fairford_7Jul2016_arp.jpg",
+      "title": "Short-body Hercules C5 ZH883, Fairford, 7 July 2016",
+      "author": "Adrian Pingstone",
+      "license": "Released to public domain by photographer",
+      "scope": "Actual short-body J exterior, nacelles, ramp profile, fin, six-blade props, cockpit glazing and tandem gear. RAF markings not copied."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      4.38,
+      10
+    ],
+    "lookAt": [
+      0,
+      3.58,
+      11.42
+    ],
+    "fov": 84
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -3.67
+    ],
+    "viewHeight": 1.75,
+    "cameraHeight": 9.1
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 1,
+    "flapPosition": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "prop1": 0,
+    "prop2": 0,
+    "prop3": 0,
+    "prop4": 0
+  },
+  "exteriorState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 1,
+    "flapPosition": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "prop1": 0,
+    "prop2": 0,
+    "prop3": 0,
+    "prop4": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/c130j-side.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 600,
+        "height": 250
+      },
+      "referenceAnchor": [
+        95,
+        199
+      ],
+      "modelAnchor": [
+        -14.895,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 457,
+        "meters": 29.79,
+        "description": "Independent standard-body length, 97ft9in; uniform scaling."
+      },
+      "scope": "Short body, canopy, ramp, fin and wheel placement. Low-resolution schematic only."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/c130j-top.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 660,
+        "height": 470
+      },
+      "referenceAnchor": [
+        324,
+        459
+      ],
+      "modelAnchor": [
+        0,
+        14.895
+      ],
+      "scaleControls": {
+        "pixels": 625,
+        "meters": 40.41,
+        "description": "Independent 132ft7in wingspan; no unequal-axis stretch."
+      },
+      "scope": "Wing planform, engine spacing, short body and 52ft8in tail span. Prop-to-nose printed dimension conflicts with scale."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/c130j-front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 660,
+        "height": 205
+      },
+      "referenceAnchor": [
+        327,
+        175
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 625,
+        "meters": 40.41,
+        "description": "Wingspan, independent 13ft6in propeller diameter, 14ft3in gear track."
+      },
+      "scope": "High wing, engine elevations, body, single fin; no optional tanks."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/c130j-panel.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 465,
+        "height": 175
+      },
+      "referenceAnchor": [
+        230,
+        90
+      ],
+      "modelAnchor": [
+        0,
+        -3.62
+      ],
+      "scaleControls": {
+        "pixels": 450,
+        "meters": 2.12,
+        "description": "Manufacturer panel diagram; estimated overall width2.12m, not a certified cockpit dimension."
+      },
+      "scope": "Four CMDUs, standby instruments, shelf and lower controls. Absolute panel scale remains estimated."
+    }
+  ],
+  "panelOriginHeight": 20,
+  "reviewNotes": {
+    "corrections": [
+      "Replaced the generic transport with an unstretched C-130J: raised flight deck and blunt nose, constant cargo barrel, upswept ramp, high unswept-leading-edge wing, tapered horizontal tail, tall fin and separate wheel sponsons.",
+      "Rebuilt four long J nacelles with recessed intake/exhaust details, six swept blades on each independent propeller, twin nose wheels and four tandem main wheels. Selected shell/wing seams and rivets follow actual surface facets.",
+      "Corrected the prototype six-screen cockpit to the manufacturer four-CMDU layout, with standby instruments, upper avionics shelf, blank optional bay, lower hydraulic/gear modules, dual roof-mounted HUD structures, three console CNI controllers and four power levers.",
+      "Overlay iterations shortened the horizontal-tail chord and refined its taper. Sightline testing moved the obstructing wiper. Control tests fixed swept-hinge mount orientation and separated propeller mesh names from cockpit NP gauges.",
+      "Both pilot displays share telemetry expressions; all four NP gauges read their own engine state. Wired attitude, true heading, true airspeed, geometric altitude, vertical speed, flap/gear indications, yokes, pedals, throttles, flaps, ailerons, elevators and rudder. Unsupported engine/navigation systems remain unavailable."
+    ],
+    "independentDimensions": "USAF T.O.00-105E-9 C-130J.2: standard-body 97ft9in /29.79m, wingspan132ft7in /40.41m, tail52ft8in /16.05m, bodyheight16ft1in /4.90m, maintrack14ft3in /4.34m, nosegear3.50m behind nose and tandem-main spacing1.524m. Propellers nominal13ft6in /4.115m. Height11.84m follows manufacturer guide (rescue drawing labels38ft11in). Uniform view scales reveal schematic inconsistencies; cockpit width2.12m is an estimate, not a certified measured station.",
+    "visual": "Personally inspected four final-hash overlays, eight standard views and twelve detail/state captures. Checked zero/cruise/limits/negative-altitude/missing telemetry, different NP values including a stopped fourth engine, overhead, pedestal, clean gear-up exterior and both control extremes. All23 shared instrument tests and final targeted geometry/cardinal/hinge checks passed; separate deterministic candidate is byte-identical.",
+    "limitations": [
+      "The Air Force dimensional drawing is a low-resolution schematic: front fin height, top-view length and printed prop-to-nose dimension disagree with the independent dimensions and other views. The model uses consistent overall dimensions; overlay alignment is not an engineering-tolerance claim.",
+      "Body sections, cockpit scale and depth, nacelle contours and glass frames are estimated from drawings and photographs. The simplified seats, sidewalls, overhead controls and lower panel do not reproduce every switch or installation variation.",
+      "CMDU symbology is an original simulator adaptation. Readings are true airspeed, geometric altitude and true heading; no pitot/static, magnetic, radio/navigation, HUD collimation, terrain map or autopilot simulation is implied.",
+      "NP displays use each simulated engine normalized rotor speed, not a detailed constant-speed propeller governor. Torque, ITT, gas-generator speed, oil, fuel, hydraulics, bleed-air and failures have no modeled telemetry and remain blank/INOP.",
+      "Gear retracts by simplified translation and hiding; flaps rotate without full Fowler-track extension. Cargo ramp stays closed; cargo furnishings, optional tanks, mission equipment and external weapons are omitted. Seams/fasteners are selective rather than a manufacturing rivet schedule."
+    ]
+  },
+  "sourceHash": "sha256:7e91cd81ce77025945616f69e29847bc50bdc53afdb14cc0a46bddf4944d4118",
+  "runtimeHash": "sha256:7f5fe609326ac9f0e9d0493a44324b69d6ba5195cdab3f5fa2dcb015804c4c09",
+  "limitations": [
+    "The Air Force dimensional drawing is a low-resolution schematic: front fin height, top-view length and printed prop-to-nose dimension disagree with the independent dimensions and other views. The model uses consistent overall dimensions; overlay alignment is not an engineering-tolerance claim.",
+    "Body sections, cockpit scale and depth, nacelle contours and glass frames are estimated from drawings and photographs. The simplified seats, sidewalls, overhead controls and lower panel do not reproduce every switch or installation variation.",
+    "CMDU symbology is an original simulator adaptation. Readings are true airspeed, geometric altitude and true heading; no pitot/static, magnetic, radio/navigation, HUD collimation, terrain map or autopilot simulation is implied.",
+    "NP displays use each simulated engine normalized rotor speed, not a detailed constant-speed propeller governor. Torque, ITT, gas-generator speed, oil, fuel, hydraulics, bleed-air and failures have no modeled telemetry and remain blank/INOP.",
+    "Gear retracts by simplified translation and hiding; flaps rotate without full Fowler-track extension. Cargo ramp stays closed; cargo furnishings, optional tanks, mission equipment and external weapons are omitted. Seams/fasteners are selective rather than a manufacturing rivet schedule."
+  ]
+}

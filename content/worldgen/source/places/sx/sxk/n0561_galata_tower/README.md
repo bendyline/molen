@@ -33,4 +33,4 @@ Circular exact-QID OSM footprint center supplies the anchor; museum brochure exp
 
 Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.
 
-Regenerate with `node packages/worldgen/scripts/generate-galata-tower.mjs --ids=N0561`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/galata-tower-model.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.
+Regenerate with `node content/worldgen/source/places/sx/sxk/n0561_galata_tower/models/generate-galata-tower.mjs --ids=N0561`; add `--check` for reproducibility. Editable component recipes are in `content/worldgen/source/places/sx/sxk/n0561_galata_tower/models/galata-tower-model.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.

@@ -22,7 +22,7 @@ const complete = (member) => ({
   },
   geographic: {
     verified: true,
-    activePlacement: `next1000.${member.id.toLowerCase()}`,
+    activePlacement: `next1000.${member.id.toLowerCase().replaceAll('_', '-')}`,
     mappedFeatureIds: [],
   },
   visualQa: {

@@ -19,7 +19,7 @@ Own map footprint; native Y0 is estimated local ground contact. Heights, roof pr
 
 ## Build
 
-Run node packages/worldgen/scripts/generate-ksiaz-service-structures.mjs --ids=KSI_S01 (or --check).
+Run node content/worldgen/source/places/u3/u35/ksiaz_forester_house/models/generate-ksiaz-service-structures.mjs --ids=KSI_S01 (or --check).
 
 1468 triangles;179376 source bytes;5 merged material groups;no embedded images. Four existing shared plaster, tile, rubble and timber graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Runtime LODs are separate generated outputs.
 

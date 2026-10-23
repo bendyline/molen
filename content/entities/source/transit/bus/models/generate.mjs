@@ -11,6 +11,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as T from 'three';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+import { addTransitDetail } from '../../../../../../packages/entities/scripts/vehicle-detail.mjs';
 
 // GLTFExporter uses FileReader only to pack its binary buffer in Node.
 globalThis.FileReader = class {
@@ -79,9 +80,14 @@ function bus() {
   g.add(body);
   const skirt = 0.36;
   // Lower body, window band, roof and roof pod.
-  box(body, 'lower-body', [W, 1.0, L - 0.2], [0, skirt + 0.5, 0], paint);
+  box(body, 'floor', [W, 0.1, L - 0.2], [0, skirt, 0], trim);
+  for (const x of [-W / 2 + 0.04, W / 2 - 0.04]) {
+    box(body, 'lower-side', [0.08, 1.0, L - 0.2], [x, skirt + 0.5, 0], paint);
+    box(body, 'belt-side', [0.08, 0.2, L - 0.2], [x, skirt + 1.1, 0], paint);
+  }
+  for (const z of [-L / 2 + 0.1, L / 2 - 0.1])
+    box(body, 'lower-end', [W, 1.2, 0.08], [0, skirt + 0.6, z], paint);
   box(body, 'window-band', [W - 0.04, 1.28, L - 0.7], [0, skirt + 1.64, -0.1], glass);
-  box(body, 'pillar-band', [W, 0.2, L - 0.2], [0, skirt + 1.1, 0], paint);
   box(body, 'roof', [W, 0.36, L - 0.3], [0, H - 0.34, -0.05], paint);
   box(body, 'roof-pod', [W * 0.72, 0.28, 2.8], [0, H - 0.04, -L / 2 + 2.4], paint);
   // Window pillars along both sides.
@@ -116,6 +122,10 @@ function bus() {
   wheel(g, 'wheel-front-right', -W / 2 + 0.2, FRONT_AXLE);
   wheel(g, 'wheel-rear-left', W / 2 - 0.2, REAR_AXLE);
   wheel(g, 'wheel-rear-right', -W / 2 + 0.2, REAR_AXLE);
+  body.remove(body.getObjectByName('sign-text'));
+  glass.opacity = 0.18;
+  glass.depthWrite = false;
+  addTransitDetail(g);
   return g;
 }
 

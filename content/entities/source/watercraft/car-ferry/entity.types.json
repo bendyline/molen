@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.watercraft.car_ferry": {
-      "doc": "Roll-on car ferry. Waterline origin; powered boat with driver and passenger seats.",
+      "doc": "Bendy Car Ferry. Roll-on car ferry. Waterline origin; powered boat with driver and passenger seats.",
       "components": {
         "transform": {
           "pos": [
@@ -46,7 +46,7 @@
           "kind": "molen.entities.watercraft.car_ferry",
           "color": "#6f9684",
           "spec": {
-            "label": "Roll-on car ferry",
+            "label": "Bendy Car Ferry",
             "length": 64.2,
             "width": 17.6,
             "height": 13,
@@ -68,7 +68,22 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "helm",
+                "helm-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {
@@ -95,9 +110,9 @@
               "id": "passenger-2",
               "role": "passenger",
               "position": [
-                4.0,
+                4,
                 3.1500000000000004,
-                -16.0
+                -16
               ]
             }
           ],
@@ -115,12 +130,12 @@
           ],
           "entries": [
             [
-              8.0,
+              8,
               3.2,
               14.72
             ],
             [
-              -8.0,
+              -8,
               3.2,
               14.72
             ]

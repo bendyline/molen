@@ -30,6 +30,12 @@ Source folders follow location, while the candidate inventory remains in `next-1
 Those candidate IDs are stable identifiers, not file counters. Collection candidates still
 require every independently located member, and reusable models never count as named replicas.
 
+Keep dedicated place generators and recipes in the owning geographic bundle's `models/`
+directory and inventory them in `source.json`. A site-wide authoring bundle can own a generator
+and shared recipe for several independently placed components, as with the Książ park gates.
+Use its registered command in `asset-build.json`; keep general mesh and material helpers in
+`packages/worldgen/scripts/`. Batch labels such as `next-1000` are production metadata.
+
 ## Edit, rebuild and review
 
 The current owner-authorized work is the fixed213 authored/incomplete candidates in

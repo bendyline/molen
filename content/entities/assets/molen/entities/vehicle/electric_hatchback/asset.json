@@ -6,19 +6,19 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:6c6dae9f3b90a8a33100896030cfbe322dd8d61841b9af71c4c784107e8e2450",
-  "sourceHash": "sha256:b90db16b85aef2680b90145f357f760c136aded87cba9b2e192d7d0f91653af2",
+  "hash": "sha256:5011d64d3c16634b3b06a278d3425bafdb06254edc2ec03bba44666385688eb6",
+  "sourceHash": "sha256:e98ab18a2bd6b09d0d7b2fe6a6d61be54b46f4baf14a331161a1ad55f2f4042a",
   "bounds": {
     "aabb": {
       "min": [
-        -1.0061,
+        -1.0215,
         0,
-        -2.0975
+        -2.1165
       ],
       "max": [
-        1.0061,
+        1.0215,
         1.5616,
-        2.0975
+        2.1165
       ]
     },
     "sphere": {
@@ -27,35 +27,35 @@
         0.7808,
         0
       ],
-      "radius": 2.2715
+      "radius": 2.2716
     }
   },
   "stats": {
-    "triangles": 360,
-    "vertices": 580,
-    "meshes": 8,
-    "primitives": 8,
-    "materials": 6,
+    "triangles": 7748,
+    "vertices": 10332,
+    "meshes": 23,
+    "primitives": 23,
+    "materials": 13,
     "textures": 0,
     "animations": 0,
-    "sizeBytes": 18208
+    "sizeBytes": 228584
   },
   "nodes": [
     {
       "name": "body-vehicle-paint-and-trim",
-      "triangles": 112
+      "triangles": 266
+    },
+    {
+      "name": "body-rubber-and-trim",
+      "triangles": 48
     },
     {
       "name": "body-glazing",
-      "triangles": 28
+      "triangles": 22
     },
     {
       "name": "body-brushed-metal",
       "triangles": 24
-    },
-    {
-      "name": "body-rubber-and-trim",
-      "triangles": 36
     },
     {
       "name": "body-tail-lamps",
@@ -74,12 +74,36 @@
       "triangles": 48
     },
     {
+      "name": "wheel-front-left-fittings-detail-alloy",
+      "triangles": 720
+    },
+    {
+      "name": "wheel-front-left-fittings-detail-trim",
+      "triangles": 1200
+    },
+    {
+      "name": "wheel-front-left-brakes-detail-red",
+      "triangles": 24
+    },
+    {
       "name": "wheel-front-right-spin-rubber-and-trim",
       "triangles": 64
     },
     {
       "name": "wheel-front-right-spin-brushed-metal",
       "triangles": 48
+    },
+    {
+      "name": "wheel-front-right-fittings-detail-alloy",
+      "triangles": 720
+    },
+    {
+      "name": "wheel-front-right-fittings-detail-trim",
+      "triangles": 1200
+    },
+    {
+      "name": "wheel-front-right-brakes-detail-red",
+      "triangles": 24
     },
     {
       "name": "wheel-rear-left-spin-rubber-and-trim",
@@ -90,11 +114,83 @@
       "triangles": 48
     },
     {
+      "name": "wheel-rear-left-fittings-detail-alloy",
+      "triangles": 720
+    },
+    {
+      "name": "wheel-rear-left-fittings-detail-trim",
+      "triangles": 1200
+    },
+    {
+      "name": "wheel-rear-left-brakes-detail-red",
+      "triangles": 24
+    },
+    {
       "name": "wheel-rear-right-spin-rubber-and-trim",
       "triangles": 64
     },
     {
       "name": "wheel-rear-right-spin-brushed-metal",
+      "triangles": 48
+    },
+    {
+      "name": "wheel-rear-right-fittings-detail-alloy",
+      "triangles": 720
+    },
+    {
+      "name": "wheel-rear-right-fittings-detail-trim",
+      "triangles": 1200
+    },
+    {
+      "name": "wheel-rear-right-brakes-detail-red",
+      "triangles": 24
+    },
+    {
+      "name": "close-detail-detail-alloy",
+      "triangles": 636
+    },
+    {
+      "name": "close-detail-detail-trim",
+      "triangles": 360
+    },
+    {
+      "name": "close-detail-detail-lettering",
+      "triangles": 1200
+    },
+    {
+      "name": "close-detail-detail-amber",
+      "triangles": 24
+    },
+    {
+      "name": "cabin-detail-trim",
+      "triangles": 600
+    },
+    {
+      "name": "cabin-cabin-trim",
+      "triangles": 60
+    },
+    {
+      "name": "cabin-detail-alloy",
+      "triangles": 1540
+    },
+    {
+      "name": "cabin-detail-lettering",
+      "triangles": 444
+    },
+    {
+      "name": "cabin-instrument-display",
+      "triangles": 24
+    },
+    {
+      "name": "steering-fittings-detail-trim",
+      "triangles": 276
+    },
+    {
+      "name": "steering-fittings-detail-alloy",
+      "triangles": 72
+    },
+    {
+      "name": "steering-fittings-detail-lettering",
       "triangles": 48
     }
   ],
@@ -110,23 +206,23 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "rubber-and-trim",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "glazing",
       "slots": [
         "baseColor"
       ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
+      "doubleSided": true,
+      "alphaMode": "BLEND"
     },
     {
       "name": "brushed-metal",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "rubber-and-trim",
       "slots": [
         "baseColor"
       ],
@@ -143,6 +239,62 @@
     },
     {
       "name": "headlamps",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-alloy",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-trim",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-red",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-lettering",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-amber",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "cabin-trim",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "instrument-display",
       "slots": [
         "baseColor"
       ],
@@ -179,6 +331,35 @@
           1.0061,
           1.5616,
           2.05
+        ]
+      },
+      {
+        "node": "body-rubber-and-trim",
+        "points": [
+          -0.7651,
+          0.2058,
+          -2.085,
+          -0.7651,
+          0.2058,
+          2.09,
+          -0.7651,
+          0.6084,
+          -2.085,
+          -0.7651,
+          0.6084,
+          2.09,
+          0.7651,
+          0.2058,
+          -2.085,
+          0.7651,
+          0.2058,
+          2.09,
+          0.7651,
+          0.6084,
+          -2.085,
+          0.7651,
+          0.6084,
+          2.09
         ]
       },
       {
@@ -237,35 +418,6 @@
           0.9294,
           0.8125,
           0.0599
-        ]
-      },
-      {
-        "node": "body-rubber-and-trim",
-        "points": [
-          -0.747,
-          0.2761,
-          -2.085,
-          -0.747,
-          0.2761,
-          2.09,
-          -0.747,
-          0.6084,
-          -2.085,
-          -0.747,
-          0.6084,
-          2.09,
-          0.747,
-          0.2761,
-          -2.085,
-          0.747,
-          0.2761,
-          2.09,
-          0.747,
-          0.6084,
-          -2.085,
-          0.747,
-          0.6084,
-          2.09
         ]
       },
       {
@@ -385,6 +537,93 @@
         ]
       },
       {
+        "node": "wheel-front-left-fittings-detail-alloy",
+        "points": [
+          0.7547,
+          0.0853,
+          1.0503,
+          0.7547,
+          0.0853,
+          1.4997,
+          0.7547,
+          0.5347,
+          1.0503,
+          0.7547,
+          0.5347,
+          1.4997,
+          1.0093,
+          0.0853,
+          1.0503,
+          1.0093,
+          0.0853,
+          1.4997,
+          1.0093,
+          0.5347,
+          1.0503,
+          1.0093,
+          0.5347,
+          1.4997
+        ]
+      },
+      {
+        "node": "wheel-front-left-fittings-detail-trim",
+        "points": [
+          0.7515,
+          0.0409,
+          1.0059,
+          0.7515,
+          0.0409,
+          1.5441,
+          0.7515,
+          0.5791,
+          1.0059,
+          0.7515,
+          0.5791,
+          1.5441,
+          1.0125,
+          0.0409,
+          1.0059,
+          1.0125,
+          0.0409,
+          1.5441,
+          1.0125,
+          0.5791,
+          1.0059,
+          1.0125,
+          0.5791,
+          1.5441
+        ]
+      },
+      {
+        "node": "wheel-front-left-brakes-detail-red",
+        "points": [
+          0.7425,
+          0.2511,
+          1.3897,
+          0.7425,
+          0.2511,
+          1.4393,
+          0.7425,
+          0.3689,
+          1.3897,
+          0.7425,
+          0.3689,
+          1.4393,
+          1.0215,
+          0.2511,
+          1.3897,
+          1.0215,
+          0.2511,
+          1.4393,
+          1.0215,
+          0.3689,
+          1.3897,
+          1.0215,
+          0.3689,
+          1.4393
+        ]
+      },
+      {
         "node": "wheel-front-right-spin-rubber-and-trim",
         "points": [
           -0.99,
@@ -440,6 +679,93 @@
           -0.768,
           0.4836,
           1.4486
+        ]
+      },
+      {
+        "node": "wheel-front-right-fittings-detail-alloy",
+        "points": [
+          -1.0093,
+          0.0853,
+          1.0503,
+          -1.0093,
+          0.0853,
+          1.4997,
+          -1.0093,
+          0.5347,
+          1.0503,
+          -1.0093,
+          0.5347,
+          1.4997,
+          -0.7547,
+          0.0853,
+          1.0503,
+          -0.7547,
+          0.0853,
+          1.4997,
+          -0.7547,
+          0.5347,
+          1.0503,
+          -0.7547,
+          0.5347,
+          1.4997
+        ]
+      },
+      {
+        "node": "wheel-front-right-fittings-detail-trim",
+        "points": [
+          -1.0125,
+          0.0409,
+          1.0059,
+          -1.0125,
+          0.0409,
+          1.5441,
+          -1.0125,
+          0.5791,
+          1.0059,
+          -1.0125,
+          0.5791,
+          1.5441,
+          -0.7515,
+          0.0409,
+          1.0059,
+          -0.7515,
+          0.0409,
+          1.5441,
+          -0.7515,
+          0.5791,
+          1.0059,
+          -0.7515,
+          0.5791,
+          1.5441
+        ]
+      },
+      {
+        "node": "wheel-front-right-brakes-detail-red",
+        "points": [
+          -1.0215,
+          0.2511,
+          1.3897,
+          -1.0215,
+          0.2511,
+          1.4393,
+          -1.0215,
+          0.3689,
+          1.3897,
+          -1.0215,
+          0.3689,
+          1.4393,
+          -0.7425,
+          0.2511,
+          1.3897,
+          -0.7425,
+          0.2511,
+          1.4393,
+          -0.7425,
+          0.3689,
+          1.3897,
+          -0.7425,
+          0.3689,
+          1.4393
         ]
       },
       {
@@ -501,6 +827,93 @@
         ]
       },
       {
+        "node": "wheel-rear-left-fittings-detail-alloy",
+        "points": [
+          0.7547,
+          0.0853,
+          -1.4997,
+          0.7547,
+          0.0853,
+          -1.0503,
+          0.7547,
+          0.5347,
+          -1.4997,
+          0.7547,
+          0.5347,
+          -1.0503,
+          1.0093,
+          0.0853,
+          -1.4997,
+          1.0093,
+          0.0853,
+          -1.0503,
+          1.0093,
+          0.5347,
+          -1.4997,
+          1.0093,
+          0.5347,
+          -1.0503
+        ]
+      },
+      {
+        "node": "wheel-rear-left-fittings-detail-trim",
+        "points": [
+          0.7515,
+          0.0409,
+          -1.5441,
+          0.7515,
+          0.0409,
+          -1.0059,
+          0.7515,
+          0.5791,
+          -1.5441,
+          0.7515,
+          0.5791,
+          -1.0059,
+          1.0125,
+          0.0409,
+          -1.5441,
+          1.0125,
+          0.0409,
+          -1.0059,
+          1.0125,
+          0.5791,
+          -1.5441,
+          1.0125,
+          0.5791,
+          -1.0059
+        ]
+      },
+      {
+        "node": "wheel-rear-left-brakes-detail-red",
+        "points": [
+          0.7425,
+          0.2511,
+          -1.1603,
+          0.7425,
+          0.2511,
+          -1.1107,
+          0.7425,
+          0.3689,
+          -1.1603,
+          0.7425,
+          0.3689,
+          -1.1107,
+          1.0215,
+          0.2511,
+          -1.1603,
+          1.0215,
+          0.2511,
+          -1.1107,
+          1.0215,
+          0.3689,
+          -1.1603,
+          1.0215,
+          0.3689,
+          -1.1107
+        ]
+      },
+      {
         "node": "wheel-rear-right-spin-rubber-and-trim",
         "points": [
           -0.99,
@@ -556,6 +969,441 @@
           -0.768,
           0.4836,
           -1.1014
+        ]
+      },
+      {
+        "node": "wheel-rear-right-fittings-detail-alloy",
+        "points": [
+          -1.0093,
+          0.0853,
+          -1.4997,
+          -1.0093,
+          0.0853,
+          -1.0503,
+          -1.0093,
+          0.5347,
+          -1.4997,
+          -1.0093,
+          0.5347,
+          -1.0503,
+          -0.7547,
+          0.0853,
+          -1.4997,
+          -0.7547,
+          0.0853,
+          -1.0503,
+          -0.7547,
+          0.5347,
+          -1.4997,
+          -0.7547,
+          0.5347,
+          -1.0503
+        ]
+      },
+      {
+        "node": "wheel-rear-right-fittings-detail-trim",
+        "points": [
+          -1.0125,
+          0.0409,
+          -1.5441,
+          -1.0125,
+          0.0409,
+          -1.0059,
+          -1.0125,
+          0.5791,
+          -1.5441,
+          -1.0125,
+          0.5791,
+          -1.0059,
+          -0.7515,
+          0.0409,
+          -1.5441,
+          -0.7515,
+          0.0409,
+          -1.0059,
+          -0.7515,
+          0.5791,
+          -1.5441,
+          -0.7515,
+          0.5791,
+          -1.0059
+        ]
+      },
+      {
+        "node": "wheel-rear-right-brakes-detail-red",
+        "points": [
+          -1.0215,
+          0.2511,
+          -1.1603,
+          -1.0215,
+          0.2511,
+          -1.1107,
+          -1.0215,
+          0.3689,
+          -1.1603,
+          -1.0215,
+          0.3689,
+          -1.1107,
+          -0.7425,
+          0.2511,
+          -1.1603,
+          -0.7425,
+          0.2511,
+          -1.1107,
+          -0.7425,
+          0.3689,
+          -1.1603,
+          -0.7425,
+          0.3689,
+          -1.1107
+        ]
+      },
+      {
+        "node": "close-detail-detail-alloy",
+        "points": [
+          -0.9189,
+          0.175,
+          -2.116,
+          -0.9189,
+          0.175,
+          2.116,
+          -0.9189,
+          0.7872,
+          -2.116,
+          -0.9189,
+          0.7872,
+          2.116,
+          0.9189,
+          0.175,
+          -2.116,
+          0.9189,
+          0.175,
+          2.116,
+          0.9189,
+          0.7872,
+          -2.116,
+          0.9189,
+          0.7872,
+          2.116
+        ]
+      },
+      {
+        "node": "close-detail-detail-trim",
+        "points": [
+          -0.9211,
+          0.1998,
+          -2.114,
+          -0.9211,
+          0.1998,
+          2.114,
+          -0.9211,
+          1.149,
+          -2.114,
+          -0.9211,
+          1.149,
+          2.114,
+          0.9211,
+          0.1998,
+          -2.114,
+          0.9211,
+          0.1998,
+          2.114,
+          0.9211,
+          1.149,
+          -2.114,
+          0.9211,
+          1.149,
+          2.114
+        ]
+      },
+      {
+        "node": "close-detail-detail-lettering",
+        "points": [
+          -0.1093,
+          0.2362,
+          -2.1165,
+          -0.1093,
+          0.2362,
+          2.1165,
+          -0.1093,
+          0.2894,
+          -2.1165,
+          -0.1093,
+          0.2894,
+          2.1165,
+          0.1093,
+          0.2362,
+          -2.1165,
+          0.1093,
+          0.2362,
+          2.1165,
+          0.1093,
+          0.2894,
+          -2.1165,
+          0.1093,
+          0.2894,
+          2.1165
+        ]
+      },
+      {
+        "node": "close-detail-detail-amber",
+        "points": [
+          -0.917,
+          0.7072,
+          1.103,
+          -0.917,
+          0.7072,
+          1.193,
+          -0.917,
+          0.7421,
+          1.103,
+          -0.917,
+          0.7421,
+          1.193,
+          0.917,
+          0.7072,
+          1.103,
+          0.917,
+          0.7072,
+          1.193,
+          0.917,
+          0.7421,
+          1.103,
+          0.917,
+          0.7421,
+          1.193
+        ]
+      },
+      {
+        "node": "cabin-detail-trim",
+        "points": [
+          -0.7825,
+          0.2365,
+          -0.38,
+          -0.7825,
+          0.2365,
+          0.94,
+          -0.7825,
+          1.1395,
+          -0.38,
+          -0.7825,
+          1.1395,
+          0.94,
+          0.7825,
+          0.2365,
+          -0.38,
+          0.7825,
+          0.2365,
+          0.94,
+          0.7825,
+          1.1395,
+          -0.38,
+          0.7825,
+          1.1395,
+          0.94
+        ]
+      },
+      {
+        "node": "cabin-cabin-trim",
+        "points": [
+          -0.764,
+          0.6291,
+          -0.12,
+          -0.764,
+          0.6291,
+          0.5935,
+          -0.764,
+          0.9159,
+          -0.12,
+          -0.764,
+          0.9159,
+          0.5935,
+          0.764,
+          0.6291,
+          -0.12,
+          0.764,
+          0.6291,
+          0.5935,
+          0.764,
+          0.9159,
+          -0.12,
+          0.764,
+          0.9159,
+          0.5935
+        ]
+      },
+      {
+        "node": "cabin-detail-alloy",
+        "points": [
+          -0.7447,
+          0.291,
+          0.11,
+          -0.7447,
+          0.291,
+          0.8675,
+          -0.7447,
+          1.1115,
+          0.11,
+          -0.7447,
+          1.1115,
+          0.8675,
+          0.7447,
+          0.291,
+          0.11,
+          0.7447,
+          0.291,
+          0.8675,
+          0.7447,
+          1.1115,
+          0.11,
+          0.7447,
+          1.1115,
+          0.8675
+        ]
+      },
+      {
+        "node": "cabin-detail-lettering",
+        "points": [
+          -0.702,
+          0.751,
+          0.535,
+          -0.702,
+          0.751,
+          0.5715,
+          -0.702,
+          1.1007,
+          0.535,
+          -0.702,
+          1.1007,
+          0.5715,
+          0.702,
+          0.751,
+          0.535,
+          0.702,
+          0.751,
+          0.5715,
+          0.702,
+          1.1007,
+          0.535,
+          0.702,
+          1.1007,
+          0.5715
+        ]
+      },
+      {
+        "node": "cabin-instrument-display",
+        "points": [
+          -0.125,
+          0.9265,
+          0.549,
+          -0.125,
+          0.9265,
+          0.57,
+          -0.125,
+          1.1315,
+          0.549,
+          -0.125,
+          1.1315,
+          0.57,
+          0.513,
+          0.9265,
+          0.549,
+          0.513,
+          0.9265,
+          0.57,
+          0.513,
+          1.1315,
+          0.549,
+          0.513,
+          1.1315,
+          0.57
+        ]
+      },
+      {
+        "node": "steering-fittings-detail-trim",
+        "points": [
+          0.205,
+          0.696,
+          0.485,
+          0.205,
+          0.696,
+          0.535,
+          0.205,
+          1.042,
+          0.485,
+          0.205,
+          1.042,
+          0.535,
+          0.551,
+          0.696,
+          0.485,
+          0.551,
+          0.696,
+          0.535,
+          0.551,
+          1.042,
+          0.485,
+          0.551,
+          1.042,
+          0.535
+        ]
+      },
+      {
+        "node": "steering-fittings-detail-alloy",
+        "points": [
+          0.2364,
+          0.723,
+          0.494,
+          0.2364,
+          0.723,
+          0.526,
+          0.2364,
+          0.8828,
+          0.494,
+          0.2364,
+          0.8828,
+          0.526,
+          0.5196,
+          0.723,
+          0.494,
+          0.5196,
+          0.723,
+          0.526,
+          0.5196,
+          0.8828,
+          0.494,
+          0.5196,
+          0.8828,
+          0.526
+        ]
+      },
+      {
+        "node": "steering-fittings-detail-lettering",
+        "points": [
+          0.2815,
+          0.857,
+          0.486,
+          0.2815,
+          0.857,
+          0.488,
+          0.2815,
+          0.871,
+          0.486,
+          0.2815,
+          0.871,
+          0.488,
+          0.4745,
+          0.857,
+          0.486,
+          0.4745,
+          0.857,
+          0.488,
+          0.4745,
+          0.871,
+          0.486,
+          0.4745,
+          0.871,
+          0.488
         ]
       }
     ]

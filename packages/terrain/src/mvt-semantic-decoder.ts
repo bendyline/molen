@@ -423,6 +423,20 @@ function decodeTransportation(
     const layer = numberProperty(feature.properties, properties.transportationLayer);
     if (subclass !== undefined) decoded.subclass = subclass;
     if (surface !== undefined) decoded.surface = surface;
+    for (const [field, names] of [
+      ['ref', ['ref', 'shield_text']],
+      ['network', ['network']],
+      ['shieldText', ['shield_text']],
+      ['destination', ['destination', 'exit_to']],
+      ['destinationRef', ['destination:ref']],
+      ['destinationColour', ['destination:colour']],
+      ['junctionRef', ['junction:ref']],
+      ['maxspeed', ['maxspeed']],
+    ] as const) {
+      const value = firstProperty(feature.properties, names);
+      if ((typeof value === 'string' || typeof value === 'number') && String(value).trim())
+        decoded[field] = String(value).trim();
+    }
     const service = optionalStringProperty(feature.properties, properties.transportationService);
     if (service !== undefined) decoded.service = service;
     if (flagProperty(feature.properties, properties.transportationLink)) decoded.link = true;
@@ -440,8 +454,18 @@ function decodeTransportation(
     );
     if (floor !== undefined) decoded.tunnelFloorElevation = floor;
     if (clearance !== undefined && clearance > 0) decoded.tunnelClearance = clearance;
-    if (firstProperty(feature.properties, properties.transportationOneway) !== undefined)
+    const oneway = firstProperty(feature.properties, properties.transportationOneway);
+    if (oneway !== undefined) {
       decoded.oneway = flagProperty(feature.properties, properties.transportationOneway);
+      // Normalize reverse one-ways once so fixtures and traffic agree on travel direction.
+      if (String(oneway) === '-1') {
+        decoded.oneway = true;
+        decoded.lines = decoded.lines.map((line) => [...line].reverse());
+      }
+    } else if (subclass === 'motorway' || subclass === 'motorway_link') {
+      // OSM motorways are implicitly one-way unless explicitly tagged otherwise.
+      decoded.oneway = true;
+    }
     result.transportation.push(decoded);
   });
 }
@@ -528,10 +552,20 @@ function decodePois(
           ['leafType', ['leaf_type', 'leafType']],
           ['species', ['species', 'species:en']],
           ['genus', ['genus']],
+          ['ref', ['ref']],
+          ['exitTo', ['exit_to', 'destination']],
         ] as const) {
           const value = optionalStringProperty(properties, names);
           if (value !== undefined) poi[field] = value;
         }
+        const stop = firstProperty(properties, ['stop']);
+        const ref = firstProperty(properties, ['ref']);
+        if (typeof ref === 'number' && Number.isFinite(ref)) poi.ref = String(ref);
+        if (stop === 'all' || stop === 'minor') poi.stop = stop;
+        const layer = numberProperty(properties, ['layer']);
+        if (layer !== undefined) poi.layer = layer;
+        if (flagProperty(properties, ['bridge', 'is_bridge'])) poi.bridge = true;
+        if (flagProperty(properties, ['tunnel', 'is_tunnel'])) poi.tunnel = true;
         for (const [field, names, scale] of [
           ['height', ['height'], linearUnitScale],
           ['crownDiameter', ['diameter_crown', 'crown_diameter'], linearUnitScale],

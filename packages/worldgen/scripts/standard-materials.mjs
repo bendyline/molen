@@ -49,6 +49,7 @@ export const MATERIAL_REPEAT_METERS = {
   metal_perforated_round_open: [0.012, 0.012],
   metal_expanded_diamond: [0.12, 0.04],
   metal_asanoha: [0.48, 0.27712812921102037],
+  metal_rosette_screen: [2, 2],
   metal_stainless: [1, 1],
   metal_stainless_polished: [1, 1],
   metal_stainless_beadblasted: [1, 1],

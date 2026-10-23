@@ -1,0 +1,470 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "plaster_lime",
+      "slot": "wall"
+    },
+    "trim": {
+      "graph": "stone_marble",
+      "slot": "trim"
+    },
+    "floor": {
+      "graph": "stone_limestone",
+      "slot": "trim"
+    },
+    "stone": {
+      "graph": "stone_ashlar",
+      "slot": "wall"
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof"
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim"
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      -49.75128187200242,
+      21.097296103142327,
+      16.211414253314363
+    ],
+    "lookAt": [
+      0,
+      3.0972961031423267,
+      0
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "long-garden-round-entries-pilasters-and-frieze",
+      "position": [
+        -27.693401842338613,
+        4.097296103142327,
+        -5.106416982460044
+      ],
+      "lookAt": [
+        -5.348326712863522,
+        3.8972961031423266,
+        -2.7194487258395723
+      ],
+      "fov": 60
+    },
+    {
+      "name": "end-wall-two-arches-and-recessed-urn-niche",
+      "position": [
+        -15.8483557775949,
+        4.097296103142327,
+        28.962555466442776
+      ],
+      "lookAt": [
+        -8.158346177518716,
+        3.8972961031423266,
+        16.044980138590567
+      ],
+      "fov": 58
+    },
+    {
+      "name": "lead-parapet-dentils-and-chimney-caps",
+      "position": [
+        -11.980902172967145,
+        11.097296103142327,
+        -13.944819221552898
+      ],
+      "lookAt": [
+        -2.1756365327173546,
+        6.097296103142327,
+        -8.959163224180347
+      ],
+      "fov": 60
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -49.75128187200242,
+        21.097296103142327,
+        16.211414253314363
+      ],
+      "lookAt": [
+        0,
+        3.0972961031423267,
+        0
+      ],
+      "fov": 46,
+      "name": "grand-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -49.75128187200242,
+        21.097296103142327,
+        16.211414253314363
+      ],
+      "lookAt": [
+        0,
+        3.0972961031423267,
+        0
+      ],
+      "fov": 46,
+      "name": "grand-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -49.75128187200242,
+        21.097296103142327,
+        16.211414253314363
+      ],
+      "lookAt": [
+        0,
+        3.0972961031423267,
+        0
+      ],
+      "fov": 46,
+      "name": "grand-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -49.75128187200242,
+        21.097296103142327,
+        16.211414253314363
+      ],
+      "lookAt": [
+        0,
+        3.0972961031423267,
+        0
+      ],
+      "fov": 46,
+      "name": "grand-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 1.097296103142327,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/topkapi-grand-model.mjs",
+    "export": "buildTopkapiGrandSkyline",
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTopkapiGrandDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "graph": "plaster_lime",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone",
+            "slot": "trim"
+          },
+          "stone": {
+            "graph": "stone_ashlar",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          }
+        }
+      },
+      "street": {
+        "export": "buildTopkapiGrandStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "graph": "plaster_lime",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone",
+            "slot": "trim"
+          },
+          "stone": {
+            "graph": "stone_ashlar",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTopkapiGrandCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "graph": "plaster_lime",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone",
+            "slot": "trim"
+          },
+          "stone": {
+            "graph": "stone_ashlar",
+            "slot": "wall"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      28.985716849565506,
+      41.013746821360286
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[-11,0] is uncovered and outside all573 building records. Upper floor sits0.18m above highest boundary grade; protective basement descends to the lowest boundary. Original terrain is removed only under the occupied floor; entry steps follow original garden grade. No custom terrain or precinct flattening; historic sea-side lower floors/terraces and threshold/accessibility fit remain unverified. Corrected native image inspected: both garden stair feet meet original ground; twelve and five treads accommodate the unresolved slope instead of floating. Main upper exterior fit accepted as approximate. Historical photographed four-tread thresholds and sea-side lower-storey/terrace reconstruction are not approved.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      28.98551852760878,
+      41.01354860668181,
+      28.985915171522233,
+      41.01394503603876
+    ],
+    "terrainReference": {
+      "anchor": [
+        28.985600115156018,
+        41.013791608270125
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[-11,0] is uncovered and outside all573 building records. Upper floor sits0.18m above highest boundary grade; protective basement descends to the lowest boundary. Original terrain is removed only under the occupied floor; entry steps follow original garden grade. No custom terrain or precinct flattening; historic sea-side lower floors/terraces and threshold/accessibility fit remain unverified."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -15.658322739125026,
+          14.306266850319947
+        ],
+        [
+          -2.365645881450546,
+          21.065157076052955
+        ],
+        [
+          0.3379494116357762,
+          15.658044395571892
+        ],
+        [
+          1.6897470581789662,
+          16.333933266278468
+        ],
+        [
+          4.618641959022497,
+          10.926824072404429
+        ],
+        [
+          3.0415447047221136,
+          10.250935704756401
+        ],
+        [
+          10.701731368466724,
+          -4.618592649474053
+        ],
+        [
+          12.053529015009914,
+          -3.9427056486266157
+        ],
+        [
+          14.982423915853433,
+          -9.575095399764749
+        ],
+        [
+          13.630626269310271,
+          -10.250981878570302
+        ],
+        [
+          15.658322739125012,
+          -14.531594799495666
+        ],
+        [
+          2.365645881450533,
+          -21.065157076052955
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -15.658322739125026,
+            14.306266850319947
+          ],
+          [
+            -2.365645881450546,
+            21.065157076052955
+          ],
+          [
+            0.3379494116357762,
+            15.658044395571892
+          ],
+          [
+            1.6897470581789662,
+            16.333933266278468
+          ],
+          [
+            4.618641959022497,
+            10.926824072404429
+          ],
+          [
+            3.0415447047221136,
+            10.250935704756401
+          ],
+          [
+            10.701731368466724,
+            -4.618592649474053
+          ],
+          [
+            12.053529015009914,
+            -3.9427056486266157
+          ],
+          [
+            14.982423915853433,
+            -9.575095399764749
+          ],
+          [
+            13.630626269310271,
+            -10.250981878570302
+          ],
+          [
+            15.658322739125012,
+            -14.531594799495666
+          ],
+          [
+            2.365645881450533,
+            -21.065157076052955
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Independent Grand Kiosk Q20471823 confirmed by Wikidata and its Commons category; exact named OSM way32396254 v21/native35184404485086 and twelve-corner parent. Internal+X east-southeast points from garden toward sea; internal+Z southwest follows the long court facade. Garden entrances face internal-X, and the end niche faces internal+Z."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -15.139664267100652,
+          13.999770666381533
+        ],
+        [
+          -2.1793043308680344,
+          20.589688636471216
+        ],
+        [
+          0.45670107989113085,
+          15.317753773002178
+        ],
+        [
+          1.7747037852707415,
+          15.976745421941088
+        ],
+        [
+          4.6303763135931835,
+          10.704813957913899
+        ],
+        [
+          3.09270649065031,
+          10.045822799457074
+        ],
+        [
+          10.561388487801304,
+          -4.451967345917619
+        ],
+        [
+          11.879391193180917,
+          -3.792977520091367
+        ],
+        [
+          14.735063721503344,
+          -9.284557527451046
+        ],
+        [
+          13.417061016123764,
+          -9.94354684428646
+        ],
+        [
+          15.394065074193136,
+          -14.117144442188689
+        ],
+        [
+          2.433705137960521,
+          -20.487367661832053
+        ]
+      ],
+      "basis": "Only occupied upper hall floor; preserve all surrounding garden ground."
+    },
+    "notes": "Independent Grand Kiosk Q20471823 confirmed by Wikidata and its Commons category; exact named OSM way32396254 v21/native35184404485086 and twelve-corner parent. Internal+X east-southeast points from garden toward sea; internal+Z southwest follows the long court facade. Garden entrances face internal-X, and the end niche faces internal+Z. Original standard Protomaps20261020/Mapzen extract and161x161/6m terrain retained. Provider internal[-11,0] is uncovered and outside all573 building records. Upper floor sits0.18m above highest boundary grade; protective basement descends to the lowest boundary. Original terrain is removed only under the occupied floor; entry steps follow original garden grade. No custom terrain or precinct flattening; historic sea-side lower floors/terraces and threshold/accessibility fit remain unverified."
+  }
+}

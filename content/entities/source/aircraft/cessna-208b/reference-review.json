@@ -1,0 +1,262 @@
+{
+  "variant": "2021 Cessna 208B Grand Caravan EX, McCauley four-blade propeller, Garmin G1000 NXi, 12-place commuter cabin without optional belly cargo pod",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://cdn.sprinkle.com/library/pdfs/18191aef-558e-401d-ba9d-8169c7f70825.pdf",
+      "title": "Grand Caravan EX Specification and Description, August 2021 Revision B, serial 208B5656 onward",
+      "author": "Textron Aviation",
+      "license": "Copyright Textron Aviation; local study only, no source pixels distributed.",
+      "scope": "Manufacturer dimensions on printed pages 3-6, propeller and powerplant on page 10, panel photograph on page 13 and standby instrument descriptions on page 16."
+    },
+    {
+      "url": "https://africair.com/wp-content/uploads/2016/03/SD-Grand-Caravan-EX-Unit-5265-to-TBD-2016-Feb.pdf",
+      "title": "Grand Caravan EX Specification and Description, February 2016 Revision D",
+      "author": "Cessna Aircraft Company",
+      "license": "Copyright Cessna; local study only.",
+      "scope": "Secondary dimension check; wheelbase 13 ft 3.5 in. Earlier three-blade propeller and lower stated height do not define selected 2021 variant."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Cessna_208B_Grand_Caravan_EX_(N613AJ,_cn_208B5804)_(9-19-2025).jpg",
+      "title": "File:Cessna 208B Grand Caravan EX (N613AJ, cn 208B5804) (9-19-2025).jpg",
+      "author": "ZLEA",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "revision": 1142137484,
+      "scope": "EX nose, windscreen, strut attachments, windows, gear and tail. This photographed aircraft carries the optional cargo pod, omitted in selected manufacturer three-view."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Cessna_206X_Grand_Caravan_EX_-SANSA_cockpit.jpg",
+      "title": "File:Cessna 206X Grand Caravan EX -SANSA cockpit.jpg",
+      "author": "Steve Knight / kitmasterbloke",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "revision": 1264200764,
+      "scope": "Cabin trim, overhead vents, seat headrests, windscreen frames and cockpit depth. Filename incorrectly says 206X; visible cockpit is a Caravan, corroborated with manufacturer panel."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      2.61,
+      0.76
+    ],
+    "lookAt": [
+      0,
+      2.05,
+      2.45
+    ],
+    "fov": 77
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2.14
+    ],
+    "viewHeight": 1.05,
+    "cameraHeight": 8.4
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "propNormalized": 0,
+    "verticalSpeed": 0,
+    "elevator": 0,
+    "flapPosition": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/caravan-ex-dimensions-small.png",
+      "crop": {
+        "left": 290,
+        "top": 1180,
+        "width": 820,
+        "height": 310
+      },
+      "referenceAnchor": [
+        627,
+        1474
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 772,
+        "meters": 12.6746,
+        "description": "Overall 41 ft 7 in length, uniformly scaled."
+      },
+      "scope": "Manufacturer 2021 side rendering without cargo pod; static ground attitude versus maximum-height dimension retained."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/caravan-ex-top-level.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 735,
+        "height": 590
+      },
+      "referenceAnchor": [
+        366,
+        354
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 710,
+        "meters": 15.875,
+        "description": "52 ft 1 in full span; this view has an independent scale from front and side."
+      },
+      "scope": "Manufacturer plan view; align main axle projection from wheelbase and nose position.",
+      "preparation": "Manufacturer drawing cropped to [320,610,735,590] at 1376px page width, then rigid 180-degree rotation to align +Z nose-down projection. No nonuniform scaling."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/caravan-ex-dimensions-small.png",
+      "crop": {
+        "left": 280,
+        "top": 325,
+        "width": 820,
+        "height": 240
+      },
+      "referenceAnchor": [
+        689,
+        552
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 799,
+        "meters": 15.875,
+        "description": "52 ft 1 in full span."
+      },
+      "scope": "Front manufacturer rendering; ground and outer light positions set alignment."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/caravan-ex-panel-crop.png",
+      "crop": {
+        "left": 125,
+        "top": 40,
+        "width": 1465,
+        "height": 545
+      },
+      "referenceAnchor": [
+        875,
+        215
+      ],
+      "modelAnchor": [
+        0,
+        -2.23
+      ],
+      "scaleControls": {
+        "pixels": 320,
+        "meters": 0.29972,
+        "description": "GDU 10.4-inch unit 11.8-inch bezel, matching Garmin physical display dimensions; photograph perspective remains."
+      },
+      "scope": "Manufacturer 2021 NXi panel photograph. Three displays, two audio strips, four standby apertures, lower switches and central pedestal.",
+      "edgeMode": "photo"
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Replaced generic airframe with the 2021 EX long turbine nose, split windscreen, separate pilot door and seven passenger window bays, hollow cabin, four-blade 102-inch propeller, right-side exhaust, fixed tricycle gear and asymmetric wing fairing.",
+      "Compared side/front/top manufacturer views at independent uniform scales. Lowered the aft cabin roof and windows, corrected window spacing and narrowed/moved the tapered wing planform. Retained published three-degree dihedral, 52-foot-one-inch span, 20-foot-six-inch stabilizer and measured wheel track.",
+      "Rebuilt the NXi panel from the 2021 manufacturer photograph, with three 10.4-inch displays, dual audio strips, four standby apertures, lower switch/breaker banks, AFCS strip, sloped power/propeller/condition/flap pedestal, dual yokes, electrical side cabinet and overhead trim.",
+      "Added twelve seats with headrests, posts, back pockets, seat belts and cabin vents; separated wing/tail control pivots and skin seams/rivet rows.",
+      "Connected shared expressions to both PFDs, moving speed tapes, independent bank and pitch, three-pointer standby altimeter, true heading roses, vertical-speed pointers, propeller RPM and live power/flap/yoke inputs. Unsupported engine systems and navigation remain blank or INOP."
+    ],
+    "independentDimensions": {
+      "spanM": 15.875,
+      "lengthM": 12.6746,
+      "maximumHeightM": 4.7244,
+      "modelStaticHeightM": 4.6346,
+      "stabilizerSpanM": 6.2484,
+      "wheelTrackM": 3.556,
+      "wheelbaseM": 4.0513,
+      "propellerDiameterM": 2.5908,
+      "wingAreaM2": 25.9563352,
+      "wingDihedralDegrees": 3,
+      "maximumPropRpm": 1900
+    },
+    "visual": "Individually inspected side, front, top and cockpit overlays; four turntable views, three-quarter ground, pilot, cabin and centered wide cockpit. Repeated cockpit captures against refreshed catalog after correcting a stale-binding speed-tape artifact. Inspected zero, 120-knot/3500-foot/1800-RPM cruise, 200-knot/12500-foot/1900-RPM upper-range and negative-altitude/missing-sensor states, including opposite pitch/bank.",
+    "limitations": [
+      "Manufacturer three-views are shaded renders rather than engineering section drawings. Static-ground height, front-view wing elevation and small nose-wheel alignment residuals remain; maximum-height dimension is 4.7244 m, model static height 4.6346 m. Published three-degree dihedral takes precedence over the apparent angle of the front rendering.",
+      "Panel photograph has perspective and callout occlusion. Display width supplies approximate absolute scale; upholstery, cabin shell sections, fine switch labels and precise rivet spacing remain polygonal approximations. Rivet rows follow visible skin divisions rather than a manufacturing fastener map.",
+      "Chosen 2021 EX has four-blade McCauley propeller and mechanical standbys. The 2016 EX uses a different propeller, while newer aircraft can have GI 275 standby instruments. Optional belly cargo pod is omitted to match the selected three-view.",
+      "Glass displays reproduce the physical panel and a useful subset of live readouts, not the complete Garmin interface. Speed uses TAS, altitude geometric world elevation (GEO FT), heading true north and RPM the simulated propeller normalized to 1900. Pressure/IAS, magnetic errors, electrical failures, torque, ITT, turbine gas-generator speed, oil/fuel and navigation receivers are not yet simulated. Both PFDs share sensors; no independent AHRS failure model. Analog standby-speed scale is a coherent approximation.",
+      "Propeller and condition levers, trim and most switches are modeled but not interactive; their systems have no telemetry yet. Source photos/drawings remain local analysis inputs, with no source pixels or photorealistic textures shipped."
+    ]
+  },
+  "instrumentValidation": {
+    "sourceComponents": [
+      "aircraftState",
+      "aircraftInput",
+      "transform"
+    ],
+    "units": {
+      "speed": "TAS m/s to knots",
+      "altitude": "world elevation meters to feet",
+      "heading": "true north clockwise from yaw",
+      "rpm": "normalized engine-1 speed scaled to 1900 RPM",
+      "climb": "vertical speed m/s to ft/min"
+    },
+    "test": "packages/entities/test/aircraft-instruments.test.mjs",
+    "captureCommand": "node .artifacts/aircraft/caravan-instrument-cases.mjs",
+    "cases": [
+      "zero",
+      "cruise",
+      "limits",
+      "missing"
+    ],
+    "statesInspected": true
+  },
+  "sourceHash": "sha256:c76f084c985691af99ef08fd438eddd8b01dabd09cb131d5149f7602d217fa04",
+  "runtimeHash": "sha256:e5af7f9bf42bcdf0df21fc3be6976b50489f97e1346dc519c5fbc2461b3422de",
+  "limitations": [
+    "Manufacturer three-views are shaded renders rather than engineering section drawings. Static-ground height, front-view wing elevation and small nose-wheel alignment residuals remain; maximum-height dimension is 4.7244 m, model static height 4.6346 m. Published three-degree dihedral takes precedence over the apparent angle of the front rendering.",
+    "Panel photograph has perspective and callout occlusion. Display width supplies approximate absolute scale; upholstery, cabin shell sections, fine switch labels and precise rivet spacing remain polygonal approximations. Rivet rows follow visible skin divisions rather than a manufacturing fastener map.",
+    "Chosen 2021 EX has four-blade McCauley propeller and mechanical standbys. The 2016 EX uses a different propeller, while newer aircraft can have GI 275 standby instruments. Optional belly cargo pod is omitted to match the selected three-view.",
+    "Glass displays reproduce the physical panel and a useful subset of live readouts, not the complete Garmin interface. Speed uses TAS, altitude geometric world elevation (GEO FT), heading true north and RPM the simulated propeller normalized to 1900. Pressure/IAS, magnetic errors, electrical failures, torque, ITT, turbine gas-generator speed, oil/fuel and navigation receivers are not yet simulated. Both PFDs share sensors; no independent AHRS failure model. Analog standby-speed scale is a coherent approximation.",
+    "Propeller and condition levers, trim and most switches are modeled but not interactive; their systems have no telemetry yet. Source photos/drawings remain local analysis inputs, with no source pixels or photorealistic textures shipped."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:4c5fb8f01a74361d3e59afe98077441a5cd8f8854a8f034a63bf74194094077f",
+    "sourceHash": "sha256:c76f084c985691af99ef08fd438eddd8b01dabd09cb131d5149f7602d217fa04",
+    "runtimeHash": "sha256:e5af7f9bf42bcdf0df21fc3be6976b50489f97e1346dc519c5fbc2461b3422de",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/cessna-208b-pair.png",
+        "sha256": "sha256:9173ba756f1767841cb27fa791f8237fb559e452abe812efaa1b7821e0856bf2",
+        "individuallyCompared": true
+      },
+      "exterior-pair": {
+        "path": ".artifacts/aircraft/control-audit/cessna-208b-exterior-pair.png",
+        "sha256": "sha256:23e80dc5e4069703fcf1427d5c8c02bfaa93cb436f332dae6725ed9f04f6adc8",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

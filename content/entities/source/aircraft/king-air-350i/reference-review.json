@@ -1,0 +1,287 @@
+{
+  "variant": "2015 Beechcraft King Air 350i, FL-1031 onward, Pro Line Fusion, PT6A-60A and standard Hartzell 105-inch four-blade propellers",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://africair.com/wp-content/uploads/2016/03/SD-KA350i-Unit-1031-to-TBD-2015-Oct.pdf",
+      "title": "King Air 350i Specification and Description, October 2015, FL-1031 onward",
+      "author": "Beechcraft Corporation",
+      "license": "Copyright Beechcraft; local study only, no source pixels distributed.",
+      "scope": "PDF pages 7–8 dimensions and three-view; page 16 actual Fusion cockpit photograph; page 21 double-club cabin plan and cross-section. Printed 17.85m span in drawing conflicts with 57ft11in and specification 17.65m; use 17.653m."
+    },
+    {
+      "url": "https://media.txtav.com/194521-beechcraft-brings-state-of-the-art-avionics-cabin-upgrades-to-new-production-king-air-turboprops/",
+      "title": "Beechcraft brings state-of-the-art avionics, cabin upgrades to new production King Air turboprops",
+      "author": "Textron Aviation",
+      "scope": "May 2015 manufacturer announcement: three 14-inch interchangeable touchscreen displays."
+    },
+    {
+      "url": "https://www.sfsaviation.ch/files/177/King%20Air%20350i%20Specification%20and%20Description%20%28FL-1161%20and%20on%29.pdf",
+      "title": "King Air 350i Specification and Description, August 2018",
+      "author": "Textron Aviation",
+      "scope": "Secondary clarification of Fusion screen sizing: 14-diagonal-inch displays, not 14-inch horizontal width."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Beechcraft_King_Air_350i,_EBACE_2019,_Le_Grand-Saconnex_(EB190202).jpg",
+      "title": "File:Beechcraft King Air 350i, EBACE 2019, Le Grand-Saconnex (EB190202).jpg",
+      "author": "Matti Blume",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "revision": 1151270121,
+      "scope": "350i at EBACE 2019; windshield, pressure windows, standard four-blade propeller, nacelle exhausts and dual main wheels."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Beechcraft_King_Air_350i_interior.jpg",
+      "title": "File:Beechcraft King Air 350i interior.jpg",
+      "author": "JetRequest.com",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "revision": 1152866452,
+      "scope": "2012 350i cabin; secondary upholstery, window reveals and cabinet geometry only, not the later Fusion cockpit."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      2.42,
+      1.38
+    ],
+    "lookAt": [
+      0,
+      1.97,
+      2.55
+    ],
+    "fov": 76
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2
+    ],
+    "viewHeight": 0.85,
+    "cameraHeight": 7.85
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "propNormalized": 0,
+    "propNormalized2": 0,
+    "verticalSpeed": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "elevator": 0,
+    "flapPosition": 0,
+    "gear": 1
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/ka350-dimensions-small.png",
+      "crop": {
+        "left": 360,
+        "top": 1310,
+        "width": 720,
+        "height": 245
+      },
+      "referenceAnchor": [
+        620,
+        1543
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 695,
+        "meters": 14.224,
+        "description": "46ft8in overall length, uniform scale."
+      },
+      "scope": "Side silhouette, long nose, pressure cabin, T-tail and main axle.",
+      "edgeMode": "photo"
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/ka350-top-level.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 835,
+        "height": 675
+      },
+      "referenceAnchor": [
+        418,
+        431
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 824,
+        "meters": 17.653,
+        "description": "57ft11in overall span, using imperial dimension and specification text."
+      },
+      "scope": "Planform, engine spacing, long nacelles and 18ft5in tail span.",
+      "preparation": "Page at 1376px wide, crop [270,585,835,675], rigid rotation 180 degrees. No unequal scaling.",
+      "edgeMode": "photo"
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/ka350-dimensions-small.png",
+      "crop": {
+        "left": 265,
+        "top": 265,
+        "width": 845,
+        "height": 225
+      },
+      "referenceAnchor": [
+        686,
+        480
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 824,
+        "meters": 17.653,
+        "description": "57ft11in span; nose plane in factory perspective illustration is nearer than wings."
+      },
+      "scope": "Dihedral, T-tail height, prop diameter and printed 17ft2in wheel track.",
+      "edgeMode": "photo"
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/ka350-panel-small.png",
+      "crop": {
+        "left": 320,
+        "top": 580,
+        "width": 730,
+        "height": 365
+      },
+      "referenceAnchor": [
+        691,
+        752
+      ],
+      "modelAnchor": [
+        0,
+        -1.96
+      ],
+      "scaleControls": {
+        "pixels": 174,
+        "meters": 0.3015481969042093,
+        "description": "14in diagonal active display at estimated 1.6 aspect ratio; uniform photo scale, depth remains approximate."
+      },
+      "scope": "Fusion display spacing, ESIS, flight guidance controller, panel contour and yokes; perspective retained.",
+      "edgeMode": "photo"
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Dedicated 2015 FL-1031 onward 350i shell, long radar nose, pressure windows, 105-inch four-blade propellers, nacelles, winglets and T-tail replace the generic twin.",
+      "Independent manufacturer dimensions constrain span, length, height, wheel track, propeller diameter and tail span. Side/top overlays corrected the nose and tail cone, nacelle length and fin placement; locally clamped ring bevels remove crossed narrow-tip surfaces.",
+      "Factory Fusion cockpit photograph calibrates three 14-inch diagonal displays, central ESIS, flight guidance controls, dual yokes, six engine levers and overhead panel. The double-club cabin follows the factory floor plan; rear cabinetry and instrument masks were corrected after close inspection.",
+      "Independent engine-1 and engine-2 propeller RPM, synchronized PFD attitudes, scrolling speed/altitude scales, whole-knot readouts, true heading, VSI and gear indications use shared named formulas. Equivalent left/right formulas are reused to stay within the graph budget.",
+      "Main gear retracts forward, nose gear aft; flap trailing edges move downward. Three gear lights read actual gear position. Window sightlines, missing telemetry, asymmetric RPM and final source reproducibility were tested."
+    ],
+    "independentDimensions": {
+      "lengthMeters": 14.224,
+      "spanMeters": 17.653,
+      "heightMeters": 4.3688,
+      "wingAreaSqMeters": 28.7999424,
+      "wingDihedralDegrees": 6,
+      "tailSpanMeters": 5.6134,
+      "tailAreaSqMeters": 6.3174,
+      "tailQuarterChordSweepDegrees": 17,
+      "mainGearTrackMeters": 5.2324,
+      "cabinWidthMeters": 1.3716,
+      "cabinHeightMeters": 1.4478,
+      "propellerDiameterMeters": 2.667,
+      "maxPropRpm": 1700
+    },
+    "visual": "Individually inspected all four turntables, ground three-quarter, pilot, cabin, wide cabin and uniformly calibrated side/top/front/panel overlays at the final source hash. Inspected zero, asymmetric 1500/1600-RPM cruise, upper-range and missing TAS/engine-2 RPM/gear cases, plus passenger and close exterior views. Checked factory cockpit, cabin plan, dimensions, CC exterior and cabin photographs. Final revisions corrected the overlong tail cone and narrow ring self-crossings.",
+    "limitations": [
+      "Factory three-view uses perspective renderings, with conflicting front projection: engine centers appear about +/-2.92 m versus printed wheel track and plan +/-2.6162 m; projected horizontal tail span is smaller and wing root higher. Printed span, track, height and 6-degree dihedral take precedence. No reference was stretched to hide residuals.",
+      "Fin/roof, wing-tip/chord and tail-planform contour residuals remain. Polygonal cross-sections, fillets, nacelle transitions and rivet lines follow visible forms and panel divisions, not CAD or a manufacturing fastener map.",
+      "Cockpit scale uses the published 14-inch diagonal with estimated screen aspect ratio. Photograph perspective and unmeasured panel depth remain limitations; seats, side panels, overhead controls, switch legends and control mechanisms are simplified. No freely licensed exact 2015 Fusion 350i cockpit photograph was verified. Factory imagery and cited CC photographs remain local study only.",
+      "Displayed speed is TAS, altitude is geometric world elevation and heading is true. Propeller RPM maps normalized simulated shaft speed to 1700; it does not represent N1. IAS, pressure altitude, magnetic errors, torque, ITT, fuel/oil/electrical/pressurization systems, governing, feather/reverse/beta, synthetic vision, charts, navigation, flight director, FMS and autopilot are not implemented. Unsupported fields are blank or INOP.",
+      "Both power handles follow shared pilot power input; engine indications can differ but independent cockpit throttle interaction is not provided. Propeller/condition/trim controls remain static. Gear lamps share one position sensor, gear door linkage is approximate, wheel wells are simplified and pilot flap input selects up/down only. Assisted flight tuning is not a validated real-aircraft performance model."
+    ]
+  },
+  "instrumentValidation": {
+    "sourceComponents": [
+      "aircraftState",
+      "aircraftInput",
+      "transform"
+    ],
+    "units": {
+      "speed": "TAS m/s to knots; nearest whole-knot readout",
+      "altitude": "world meters to feet",
+      "heading": "true heading radians",
+      "rpm": "independent engine-1/engine-2 normalized shaft speed to 1700 propeller RPM",
+      "climb": "m/s to ft/min",
+      "gear": "actual position 0-1; locked threshold .999"
+    },
+    "test": "packages/entities/test/aircraft-instruments.test.mjs",
+    "captureCommand": "node .artifacts/aircraft/kingair-instrument-cases.mjs",
+    "cases": [
+      "zero",
+      "cruise",
+      "limits",
+      "missing"
+    ],
+    "statesInspected": true
+  },
+  "sourceHash": "sha256:55c2449bf5503f2c80f6a5251c5af94ddff10361d3742d27548f727504563d7f",
+  "runtimeHash": "sha256:03a2180b858d4161550f87f5e6f956899618beb45cb11ba7e27a22809324ce50",
+  "limitations": [
+    "Factory three-view uses perspective renderings, with conflicting front projection: engine centers appear about +/-2.92 m versus printed wheel track and plan +/-2.6162 m; projected horizontal tail span is smaller and wing root higher. Printed span, track, height and 6-degree dihedral take precedence. No reference was stretched to hide residuals.",
+    "Fin/roof, wing-tip/chord and tail-planform contour residuals remain. Polygonal cross-sections, fillets, nacelle transitions and rivet lines follow visible forms and panel divisions, not CAD or a manufacturing fastener map.",
+    "Cockpit scale uses the published 14-inch diagonal with estimated screen aspect ratio. Photograph perspective and unmeasured panel depth remain limitations; seats, side panels, overhead controls, switch legends and control mechanisms are simplified. No freely licensed exact 2015 Fusion 350i cockpit photograph was verified. Factory imagery and cited CC photographs remain local study only.",
+    "Displayed speed is TAS, altitude is geometric world elevation and heading is true. Propeller RPM maps normalized simulated shaft speed to 1700; it does not represent N1. IAS, pressure altitude, magnetic errors, torque, ITT, fuel/oil/electrical/pressurization systems, governing, feather/reverse/beta, synthetic vision, charts, navigation, flight director, FMS and autopilot are not implemented. Unsupported fields are blank or INOP.",
+    "Both power handles follow shared pilot power input; engine indications can differ but independent cockpit throttle interaction is not provided. Propeller/condition/trim controls remain static. Gear lamps share one position sensor, gear door linkage is approximate, wheel wells are simplified and pilot flap input selects up/down only. Assisted flight tuning is not a validated real-aircraft performance model."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:1d71df452158c3408afa8af9ca8bd0c9c6b519563d9b1ddcfcbfdb73741eff52",
+    "sourceHash": "sha256:55c2449bf5503f2c80f6a5251c5af94ddff10361d3742d27548f727504563d7f",
+    "runtimeHash": "sha256:03a2180b858d4161550f87f5e6f956899618beb45cb11ba7e27a22809324ce50",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/king-air-350i-pair.png",
+        "sha256": "sha256:0e8ff093b8dc97ed82ed484f225a8be094f8cc191014ca61c0a972ce6d14c1a5",
+        "individuallyCompared": true
+      },
+      "exterior-pair": {
+        "path": ".artifacts/aircraft/control-audit/king-air-350i-exterior-pair.png",
+        "sha256": "sha256:ca58945ff6c9bede4ae9d00c8f589623c3a72fa34b8d2702ad7feb0fb12af361",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  },
+  "headingReview": {
+    "typeDefinitionHash": "sha256:8df9e720e2ffaddb15321652843d21c0175eaae0239647fbcbb0579c38c5c0fd",
+    "sourceHash": "sha256:55c2449bf5503f2c80f6a5251c5af94ddff10361d3742d27548f727504563d7f",
+    "runtimeHash": "sha256:03a2180b858d4161550f87f5e6f956899618beb45cb11ba7e27a22809324ce50",
+    "checked": "2026-10-22",
+    "checks": "Corrected rotation direction; four-cardinal imported-node test passes. Refreshed cruise at true285 degrees visually inspected; geometry unchanged.",
+    "capture": {
+      "path": ".artifacts/aircraft/king-air-350i-instruments/cruise.png",
+      "sha256": "sha256:350f4a97264445997db644e49fa3abdc56ebd3c6d6cd1bd8a3b449ed3d6923d2",
+      "inspected": true
+    }
+  }
+}

@@ -5,7 +5,7 @@
   "doc": "Waterline-aligned boats, cargo ships and ferries for ambient water routes.",
   "types": {
     "molen.entities.watercraft.speedboat": {
-      "doc": "Open speedboat. Waterline origin; powered boat with driver and passenger seats.",
+      "doc": "Bendy Speedboat. Open speedboat. Waterline origin; powered boat with driver and passenger seats.",
       "components": {
         "transform": {
           "pos": [0, 0, 0],
@@ -36,7 +36,7 @@
           "kind": "molen.entities.watercraft.speedboat",
           "color": "#709cb5",
           "spec": {
-            "label": "Open speedboat",
+            "label": "Bendy Speedboat",
             "length": 6.6000000000000005,
             "width": 2.5850000000000004,
             "height": 1.45,
@@ -54,7 +54,19 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": ["helm", "helm-wheel"],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {
@@ -83,7 +95,7 @@
       "assets": ["molen.entities.watercraft.speedboat"]
     },
     "molen.entities.watercraft.sailboat": {
-      "doc": "Coastal sailboat. Waterline origin; powered boat with driver and passenger seats (sailboat uses its auxiliary motor).",
+      "doc": "Bendy Sailboat. Coastal sailboat. Waterline origin; powered boat with driver and passenger seats (sailboat uses its auxiliary motor).",
       "components": {
         "transform": {
           "pos": [0, 0, 0],
@@ -114,7 +126,7 @@
           "kind": "molen.entities.watercraft.sailboat",
           "color": "#e5dfcd",
           "spec": {
-            "label": "Coastal sailboat",
+            "label": "Bendy Sailboat",
             "length": 10.7,
             "width": 3.63,
             "height": 12,
@@ -132,7 +144,19 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": ["helm", "helm-wheel"],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {
@@ -161,7 +185,7 @@
       "assets": ["molen.entities.watercraft.sailboat"]
     },
     "molen.entities.watercraft.fishing_boat": {
-      "doc": "Coastal fishing boat. Waterline origin; powered boat with driver and passenger seats.",
+      "doc": "Bendy Fishing Boat. Coastal fishing boat. Waterline origin; powered boat with driver and passenger seats.",
       "components": {
         "transform": {
           "pos": [0, 0, 0],
@@ -192,7 +216,7 @@
           "kind": "molen.entities.watercraft.fishing_boat",
           "color": "#668b81",
           "spec": {
-            "label": "Coastal fishing boat",
+            "label": "Bendy Fishing Boat",
             "length": 12.2,
             "width": 4.620000000000001,
             "height": 5,
@@ -210,7 +234,19 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": ["helm", "helm-wheel"],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {
@@ -239,7 +275,7 @@
       "assets": ["molen.entities.watercraft.fishing_boat"]
     },
     "molen.entities.watercraft.tugboat": {
-      "doc": "Harbor tug. Waterline origin; powered boat with driver and passenger seats.",
+      "doc": "Bendy Tugboat. Harbor tug. Waterline origin; powered boat with driver and passenger seats.",
       "components": {
         "transform": {
           "pos": [0, 0, 0],
@@ -270,7 +306,7 @@
           "kind": "molen.entities.watercraft.tugboat",
           "color": "#af6750",
           "spec": {
-            "label": "Harbor tug",
+            "label": "Bendy Tugboat",
             "length": 24.2,
             "width": 9.02,
             "height": 8.5,
@@ -288,7 +324,19 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": ["helm", "helm-wheel"],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {
@@ -320,7 +368,7 @@
       "assets": ["molen.entities.watercraft.tugboat"]
     },
     "molen.entities.watercraft.container_ship": {
-      "doc": "Container feeder ship. Waterline origin; powered boat with driver and passenger seats.",
+      "doc": "Bendy Container Ship. Container feeder ship. Waterline origin; powered boat with driver and passenger seats.",
       "components": {
         "transform": {
           "pos": [0, 0, 0],
@@ -351,7 +399,7 @@
           "kind": "molen.entities.watercraft.container_ship",
           "color": "#668898",
           "spec": {
-            "label": "Container feeder ship",
+            "label": "Bendy Container Ship",
             "length": 150.2,
             "width": 26.400000000000002,
             "height": 25,
@@ -369,7 +417,19 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": ["helm", "helm-wheel"],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {
@@ -398,7 +458,7 @@
       "assets": ["molen.entities.watercraft.container_ship"]
     },
     "molen.entities.watercraft.bulk_carrier": {
-      "doc": "Geared bulk carrier. Waterline origin; powered boat with driver and passenger seats.",
+      "doc": "Bendy Bulk Carrier. Geared bulk carrier. Waterline origin; powered boat with driver and passenger seats.",
       "components": {
         "transform": {
           "pos": [0, 0, 0],
@@ -429,7 +489,7 @@
           "kind": "molen.entities.watercraft.bulk_carrier",
           "color": "#a36b55",
           "spec": {
-            "label": "Geared bulk carrier",
+            "label": "Bendy Bulk Carrier",
             "length": 135.2,
             "width": 25.3,
             "height": 24,
@@ -447,7 +507,19 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": ["helm", "helm-wheel"],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {
@@ -476,7 +548,7 @@
       "assets": ["molen.entities.watercraft.bulk_carrier"]
     },
     "molen.entities.watercraft.passenger_ferry": {
-      "doc": "Passenger ferry. Waterline origin; powered boat with driver and passenger seats.",
+      "doc": "Bendy Passenger Ferry. Passenger ferry. Waterline origin; powered boat with driver and passenger seats.",
       "components": {
         "transform": {
           "pos": [0, 0, 0],
@@ -507,7 +579,7 @@
           "kind": "molen.entities.watercraft.passenger_ferry",
           "color": "#678f9f",
           "spec": {
-            "label": "Passenger ferry",
+            "label": "Bendy Passenger Ferry",
             "length": 32.2,
             "width": 9.46,
             "height": 8.5,
@@ -525,7 +597,19 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": ["helm", "helm-wheel"],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {
@@ -554,7 +638,7 @@
       "assets": ["molen.entities.watercraft.passenger_ferry"]
     },
     "molen.entities.watercraft.car_ferry": {
-      "doc": "Roll-on car ferry. Waterline origin; powered boat with driver and passenger seats.",
+      "doc": "Bendy Car Ferry. Roll-on car ferry. Waterline origin; powered boat with driver and passenger seats.",
       "components": {
         "transform": {
           "pos": [0, 0, 0],
@@ -585,7 +669,7 @@
           "kind": "molen.entities.watercraft.car_ferry",
           "color": "#6f9684",
           "spec": {
-            "label": "Roll-on car ferry",
+            "label": "Bendy Car Ferry",
             "length": 64.2,
             "width": 17.6,
             "height": 13,
@@ -603,7 +687,19 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": ["helm", "helm-wheel"],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {

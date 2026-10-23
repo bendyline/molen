@@ -1,0 +1,721 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "panel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.05
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.05
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      64.96621055346465,
+      38.37090844436621,
+      61.232274874635344
+    ],
+    "lookAt": [
+      -0.2705706338229899,
+      21.370908444366208,
+      7.995423161541397
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "open-pointed-gate-and-connected-unequal-towers",
+      "position": [
+        24.681305416766,
+        8.37090844436621,
+        9.840384287430915
+      ],
+      "lookAt": [
+        -0.30439196305086363,
+        6.37090844436621,
+        8.994851056734072
+      ],
+      "fov": 55
+    },
+    {
+      "name": "pierced-gallery-four-corner-turrets-and-closed-hip-roof",
+      "position": [
+        25.76358795205796,
+        32.37090844436621,
+        -22.141308358734673
+      ],
+      "lookAt": [
+        0,
+        31.370908444366208,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "lower-tower-stepped-dormer-slate-roof-and-buried-foot",
+      "position": [
+        22.70105897396499,
+        20.370908444366208,
+        38.789971918790606
+      ],
+      "lookAt": [
+        -0.37610010092219115,
+        13.37090844436621,
+        18.12952162323344
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        64.96621055346465,
+        38.37090844436621,
+        61.232274874635344
+      ],
+      "lookAt": [
+        -0.2705706338229899,
+        21.370908444366208,
+        7.995423161541397
+      ],
+      "fov": 45,
+      "name": "mala-strana-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        64.96621055346465,
+        38.37090844436621,
+        61.232274874635344
+      ],
+      "lookAt": [
+        -0.2705706338229899,
+        21.370908444366208,
+        7.995423161541397
+      ],
+      "fov": 45,
+      "name": "mala-strana-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        64.96621055346465,
+        38.37090844436621,
+        61.232274874635344
+      ],
+      "lookAt": [
+        -0.2705706338229899,
+        21.370908444366208,
+        7.995423161541397
+      ],
+      "fov": 45,
+      "name": "mala-strana-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        64.96621055346465,
+        38.37090844436621,
+        61.232274874635344
+      ],
+      "lookAt": [
+        -0.2705706338229899,
+        21.370908444366208,
+        7.995423161541397
+      ],
+      "fov": 45,
+      "name": "mala-strana-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/mala-strana-model.mjs",
+    "export": "buildMalaStranaSkyline",
+    "errorMeters": 1.4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMalaStranaDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.05
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "buildMalaStranaStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.05
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMalaStranaCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.05
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      14.40685391,
+      50.087307246
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain original6m standard Mapzen grid, native roads/paths/water and all independent surrounding houses. Replace only the13 corresponding tower/roof/gateway shells. Each occupied tower has a bounded buried foot; gate piers reach native ground and the actual opening extends below original grade so the native passage stays open. No broad city platform, terrain flattening, ground or water cutout. Common attachment height is the highest sampled compound rim plus0.08m; foundation depth and street contact remain coarse-DEM estimates. The mapped neighboring annex part35184890435416 overlaps the lower tower: subtract only its overlap with the13 owned component footprints and prove its remaining outside shape unchanged. Other independent buildings remain exact. Exact clipping can leave sub-square-micrometer numerical fragments in owned records; these are measured separately from visible shells.",
+    "replaceFootprint": false,
+    "bounds": [
+      14.406517892086038,
+      50.0870018188034,
+      14.407189927913963,
+      50.08744199329262
+    ],
+    "terrainReference": {
+      "anchor": [
+        14.40685391,
+        50.087307246
+      ],
+      "modelHeight": 0,
+      "basis": "Retain original6m standard Mapzen grid, native roads/paths/water and all independent surrounding houses. Replace only the13 corresponding tower/roof/gateway shells. Each occupied tower has a bounded buried foot; gate piers reach native ground and the actual opening extends below original grade so the native passage stays open. No broad city platform, terrain flattening, ground or water cutout. Common attachment height is the highest sampled compound rim plus0.08m; foundation depth and street contact remain coarse-DEM estimates. The mapped neighboring annex part35184890435416 overlaps the lower tower: subtract only its overlap with the13 owned component footprints and prove its remaining outside shape unchanged. Other independent buildings remain exact. Exact clipping can leave sub-square-micrometer numerical fragments in owned records; these are measured separately from visible shells."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.215277237969622,
+          4.69984216426676
+        ],
+        [
+          -5.886860992613135,
+          4.261953483069058
+        ],
+        [
+          -5.832124949460468,
+          4.125113257313223
+        ],
+        [
+          -5.77577901679736,
+          4.113844062227206
+        ],
+        [
+          -5.64054880520589,
+          3.9335369676509377
+        ],
+        [
+          -5.448972482191507,
+          -0.2811419158875814
+        ],
+        [
+          -5.305290510777035,
+          -4.5916008311282575
+        ],
+        [
+          -5.3340269827512445,
+          -4.649073720460101
+        ],
+        [
+          -5.448972660951313,
+          -4.687388913596086
+        ],
+        [
+          -5.832124949460468,
+          -5.645268707192924
+        ],
+        [
+          -5.448972660951313,
+          -6.219996503620993
+        ],
+        [
+          -4.682668083933002,
+          -6.411572416780341
+        ],
+        [
+          -4.10793965116927,
+          -6.219996503620993
+        ],
+        [
+          -4.005405945328956,
+          -5.963662514365127
+        ],
+        [
+          0.37656085544489004,
+          -5.7370093026155615
+        ],
+        [
+          4.321410696032143,
+          -5.645268707192924
+        ],
+        [
+          4.417198772114299,
+          -5.693162692997
+        ],
+        [
+          4.512986840286721,
+          -5.836844645663394
+        ],
+        [
+          4.8322804210752235,
+          -5.90070329111713
+        ],
+        [
+          5.087715273050453,
+          -6.0284205778060835
+        ],
+        [
+          5.215432701147329,
+          -5.9773336622867985
+        ],
+        [
+          5.470867561559608,
+          -6.0284205778060835
+        ],
+        [
+          6.0455959943233415,
+          -5.645268707192924
+        ],
+        [
+          6.237172138577918,
+          -5.07054085065094
+        ],
+        [
+          6.176674406841359,
+          -4.989877279328541
+        ],
+        [
+          6.237172138577918,
+          -4.687388913596086
+        ],
+        [
+          5.801171311907514,
+          -4.396721940834558
+        ],
+        [
+          5.563107882868342,
+          0.3645469027273842
+        ],
+        [
+          5.470867561559608,
+          4.69984216426676
+        ],
+        [
+          5.542708612318162,
+          4.843524402721425
+        ],
+        [
+          5.662443705814185,
+          4.891418482404056
+        ],
+        [
+          5.7263024177533675,
+          5.2107123635433865
+        ],
+        [
+          5.854019850068763,
+          5.466147471618739
+        ],
+        [
+          5.799283807109803,
+          5.575619677689495
+        ],
+        [
+          5.854019850068763,
+          5.849300168007247
+        ],
+        [
+          5.470867561559608,
+          6.2324528897068765
+        ],
+        [
+          4.704562984541298,
+          6.424029264794197
+        ],
+        [
+          4.704562984541298,
+          6.615605639881518
+        ],
+        [
+          4.640908325367702,
+          6.611933251354386
+        ],
+        [
+          4.353687130638533,
+          11.781923395546064
+        ],
+        [
+          4.512986840286721,
+          11.788170456545865
+        ],
+        [
+          4.321410696032143,
+          12.36290018927475
+        ],
+        [
+          4.704562984541298,
+          23.857507860096813
+        ],
+        [
+          -4.87424422818758,
+          24.04908486479829
+        ],
+        [
+          -5.448972660951313,
+          12.171323605370675
+        ],
+        [
+          -5.2823846947377495,
+          5.840970766391191
+        ],
+        [
+          -5.832124949460468,
+          5.657723818231048
+        ],
+        [
+          -6.215277237969622,
+          5.082994803705243
+        ],
+        [
+          -6.138646780394347,
+          4.891418494743228
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -6.215277237969622,
+            4.69984216426676
+          ],
+          [
+            -5.886860992613135,
+            4.261953483069058
+          ],
+          [
+            -5.832124949460468,
+            4.125113257313223
+          ],
+          [
+            -5.77577901679736,
+            4.113844062227206
+          ],
+          [
+            -5.64054880520589,
+            3.9335369676509377
+          ],
+          [
+            -5.448972482191507,
+            -0.2811419158875814
+          ],
+          [
+            -5.305290510777035,
+            -4.5916008311282575
+          ],
+          [
+            -5.3340269827512445,
+            -4.649073720460101
+          ],
+          [
+            -5.448972660951313,
+            -4.687388913596086
+          ],
+          [
+            -5.832124949460468,
+            -5.645268707192924
+          ],
+          [
+            -5.448972660951313,
+            -6.219996503620993
+          ],
+          [
+            -4.682668083933002,
+            -6.411572416780341
+          ],
+          [
+            -4.10793965116927,
+            -6.219996503620993
+          ],
+          [
+            -4.005405945328956,
+            -5.963662514365127
+          ],
+          [
+            0.37656085544489004,
+            -5.7370093026155615
+          ],
+          [
+            4.321410696032143,
+            -5.645268707192924
+          ],
+          [
+            4.417198772114299,
+            -5.693162692997
+          ],
+          [
+            4.512986840286721,
+            -5.836844645663394
+          ],
+          [
+            4.8322804210752235,
+            -5.90070329111713
+          ],
+          [
+            5.087715273050453,
+            -6.0284205778060835
+          ],
+          [
+            5.215432701147329,
+            -5.9773336622867985
+          ],
+          [
+            5.470867561559608,
+            -6.0284205778060835
+          ],
+          [
+            6.0455959943233415,
+            -5.645268707192924
+          ],
+          [
+            6.237172138577918,
+            -5.07054085065094
+          ],
+          [
+            6.176674406841359,
+            -4.989877279328541
+          ],
+          [
+            6.237172138577918,
+            -4.687388913596086
+          ],
+          [
+            5.801171311907514,
+            -4.396721940834558
+          ],
+          [
+            5.563107882868342,
+            0.3645469027273842
+          ],
+          [
+            5.470867561559608,
+            4.69984216426676
+          ],
+          [
+            5.542708612318162,
+            4.843524402721425
+          ],
+          [
+            5.662443705814185,
+            4.891418482404056
+          ],
+          [
+            5.7263024177533675,
+            5.2107123635433865
+          ],
+          [
+            5.854019850068763,
+            5.466147471618739
+          ],
+          [
+            5.799283807109803,
+            5.575619677689495
+          ],
+          [
+            5.854019850068763,
+            5.849300168007247
+          ],
+          [
+            5.470867561559608,
+            6.2324528897068765
+          ],
+          [
+            4.704562984541298,
+            6.424029264794197
+          ],
+          [
+            4.704562984541298,
+            6.615605639881518
+          ],
+          [
+            4.640908325367702,
+            6.611933251354386
+          ],
+          [
+            4.353687130638533,
+            11.781923395546064
+          ],
+          [
+            4.512986840286721,
+            11.788170456545865
+          ],
+          [
+            4.321410696032143,
+            12.36290018927475
+          ],
+          [
+            4.704562984541298,
+            23.857507860096813
+          ],
+          [
+            -4.87424422818758,
+            24.04908486479829
+          ],
+          [
+            -5.448972660951313,
+            12.171323605370675
+          ],
+          [
+            -5.2823846947377495,
+            5.840970766391191
+          ],
+          [
+            -5.832124949460468,
+            5.657723818231048
+          ],
+          [
+            -6.215277237969622,
+            5.082994803705243
+          ],
+          [
+            -6.138646780394347,
+            4.891418494743228
+          ]
+        ]
+      ],
+      "basis": "Exact union of13 corresponding native compound components; no generic margin across shared walls."
+    },
+    "notes": "Retained exact-QID OSMway839278891 fixes the tall tower. Native parent35185211367723 and its body/gallery/four turrets/roof plus the directly connected lower tower/gateway supply13 component controls. Ordinary bridge-side pictures identify the joined unequal towers and gate. Anchor14.40685391,50.087307246, global heading0/native east-south; internal axes follow the retained near-cardinal footprint. Facade from bridge faces approximately east; fine ornament/reverse facade retains20degree/2m uncertainty. The lower tower/gate are visually connected native compound controls, not a fabricated extension of the exact-QID tall footprint. Retain original6m standard Mapzen grid, native roads/paths/water and all independent surrounding houses. Replace only the13 corresponding tower/roof/gateway shells. Each occupied tower has a bounded buried foot; gate piers reach native ground and the actual opening extends below original grade so the native passage stays open. No broad city platform, terrain flattening, ground or water cutout. Common attachment height is the highest sampled compound rim plus0.08m; foundation depth and street contact remain coarse-DEM estimates. The mapped neighboring annex part35184890435416 overlaps the lower tower: subtract only its overlap with the13 owned component footprints and prove its remaining outside shape unchanged. Other independent buildings remain exact. Exact clipping can leave sub-square-micrometer numerical fragments in owned records; these are measured separately from visible shells."
+  }
+}

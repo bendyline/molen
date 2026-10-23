@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import * as T from 'three';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { addRivetRows } from '../../../../../../packages/entities/scripts/vehicle-detail.mjs';
 import { instrumentParts } from './instruments.mjs';
 import { addInterior } from './interior.mjs';
 
@@ -580,6 +581,33 @@ function helicopter() {
   tail(g);
   details(g);
   mergeStaticFrames(g);
+  const rows = [];
+  for (const z of [-4.5, -4, -3.5, -3, -2.5, -2, -1.5]) {
+    const aft = z < -3,
+      t = aft ? (-z - 3) / 1.5 : (-z - 1.3) / 1.7;
+    const rx = aft ? 0.13 - t * 0.047 : 0.26 - t * 0.13;
+    const ry = aft ? 0.15 - t * 0.05 : 0.29 - t * 0.14;
+    const y = aft ? 1.84 - t * 0.17 : 1.94 - t * 0.1;
+    rows.push(
+      Array.from({ length: 28 }, (_, k) => {
+        const a = (k * Math.PI * 2) / 28;
+        return {
+          point: [rx * Math.cos(a), y + ry * Math.sin(a), z],
+          normal: [Math.cos(a), Math.sin(a), 0],
+        };
+      }),
+    );
+  }
+  // Rows along the lower cabin's structural skin, never on its transparent panels.
+  for (const side of [-1, 1])
+    for (const y of [0.7, 0.82, 0.94])
+      rows.push(
+        Array.from({ length: 30 }, (_, k) => ({
+          point: [side * 0.85, y, -0.65 + k * 0.065],
+          normal: [side, 0, 0],
+        })),
+      );
+  addRivetRows(g, [g.getObjectByName('tail-boom'), g.getObjectByName('cabin-panels')], rows);
   addInterior(g, interiorLayout, api);
   return g;
 }

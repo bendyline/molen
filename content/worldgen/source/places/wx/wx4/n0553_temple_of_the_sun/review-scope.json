@@ -1,0 +1,393 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "base": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.7,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.86,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -69.51464529578692,
+      60,
+      77.19135451210146
+    ],
+    "lookAt": [
+      1.8919514700261626,
+      1,
+      -6.183890072933991
+    ],
+    "fov": 47
+  },
+  "qaCameras": [
+    {
+      "name": "west-three-open-stone-portals-and-red-curved-wall",
+      "position": [
+        -54.13982630109758,
+        4.517900654992386,
+        7.902127652533222
+      ],
+      "lookAt": [
+        -35.31050179065554,
+        2.5179006549923852,
+        -3.488065266535713
+      ],
+      "fov": 49
+    },
+    {
+      "name": "low-altar-pale-coping-four-stairs-and-open-court",
+      "position": [
+        26.71586118815875,
+        8.512023440142212,
+        15.076508264917415
+      ],
+      "lookAt": [
+        1.8919514700261626,
+        1.1120234401422122,
+        -6.183890072933991
+      ],
+      "fov": 48
+    },
+    {
+      "name": "east-closed-red-leaves-finials-and-green-coping",
+      "position": [
+        54.41128631056778,
+        5.910025871959792,
+        -1.9690303457632243
+      ],
+      "lookAt": [
+        39.09440473070787,
+        3.9100258719597916,
+        -8.879714879332269
+      ],
+      "fov": 49
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -69.51464529578692,
+        60,
+        77.19135451210146
+      ],
+      "lookAt": [
+        1.8919514700261626,
+        1,
+        -6.183890072933991
+      ],
+      "fov": 47,
+      "name": "ritan-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -69.51464529578692,
+        60,
+        77.19135451210146
+      ],
+      "lookAt": [
+        1.8919514700261626,
+        1,
+        -6.183890072933991
+      ],
+      "fov": 47,
+      "name": "ritan-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -69.51464529578692,
+        60,
+        77.19135451210146
+      ],
+      "lookAt": [
+        1.8919514700261626,
+        1,
+        -6.183890072933991
+      ],
+      "fov": 47,
+      "name": "ritan-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -69.51464529578692,
+        60,
+        77.19135451210146
+      ],
+      "lookAt": [
+        1.8919514700261626,
+        1,
+        -6.183890072933991
+      ],
+      "fov": 47,
+      "name": "ritan-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/ritan-model.mjs",
+    "export": "buildRitanSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRitanDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildRitanStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildRitanCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      116.438111111,
+      39.914416666
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard6m Mapzen grid, native pedestrian courtyard/paths/water and all independent buildings remain unchanged. Only corresponding central platform shell35185801754351 is replaced. Altar occupied footing is buried below sampled ground and each narrow cardinal approach descends to sampled grade. Circular wall footings and coping follow the retained ground; gate footings are individually buried. No broad court/park slab, ground or water cutout, terrain flattening or invented whole-park reconstruction. Native coarse park ground cannot resolve archaeological paving and actual altar/stair thresholds; courtyard paving stays a host surface.",
+    "replaceFootprint": false,
+    "bounds": [
+      116.43761920671581,
+      39.914093272497716,
+      116.43864986331124,
+      39.91485684048922
+    ],
+    "terrainReference": {
+      "anchor": [
+        116.438111111,
+        39.914416666
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard6m Mapzen grid, native pedestrian courtyard/paths/water and all independent buildings remain unchanged. Only corresponding central platform shell35185801754351 is replaced. Altar occupied footing is buried below sampled ground and each narrow cardinal approach descends to sampled grade. Circular wall footings and coping follow the retained ground; gate footings are individually buried. No broad court/park slab, ground or water cutout, terrain flattening or invented whole-park reconstruction. Native coarse park ground cannot resolve archaeological paving and actual altar/stair thresholds; courtyard paving stays a host surface."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.716059113124116,
+          -13.990347313408968
+        ],
+        [
+          9.085880359872396,
+          -15.135413207908194
+        ],
+        [
+          9.125880359872395,
+          -15.135413207908194
+        ],
+        [
+          10.499962053176441,
+          1.5825659114765696
+        ],
+        [
+          10.499962053176441,
+          1.6225659114765696
+        ],
+        [
+          -5.301977419820072,
+          2.767634318104631
+        ],
+        [
+          -5.341977419820071,
+          2.767634318104631
+        ],
+        [
+          -6.716059113124116,
+          -13.950347313408969
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -6.716059113124116,
+            -13.990347313408968
+          ],
+          [
+            9.085880359872396,
+            -15.135413207908194
+          ],
+          [
+            9.125880359872395,
+            -15.135413207908194
+          ],
+          [
+            10.499962053176441,
+            1.5825659114765696
+          ],
+          [
+            10.499962053176441,
+            1.6225659114765696
+          ],
+          [
+            -5.301977419820072,
+            2.767634318104631
+          ],
+          [
+            -5.341977419820071,
+            2.767634318104631
+          ],
+          [
+            -6.716059113124116,
+            -13.950347313408969
+          ]
+        ]
+      ],
+      "basis": "Replace only the corresponding Temple of the Sun central altar platform control with two-centimeter numeric tolerance. Preserve all independent buildings and original native ground/water."
+    },
+    "notes": "Named standard PMTiles Altar of the Sun POI35184495982750 and its central platform building35185801754351 correlate candidateQ964720. Platform four measured corners fix15.843x16.774m envelope/center[1.891951470026,-6.183890072934] and near-east-west cross axis; retain its slight mapped skew through explicit x/z vectors rather than inventing an orthogonal survey. Pedestrian courtyard35184495982750 supplies the approximately74.6m circular boundary. Native approaches35185801754350 support four cardinal portals and the west axis. Anchor116.438111111,39.914416666, heading0/native east-south axes. Circular wall/gates approximately centered on the altar, west triple facing west. Fine gate foundations lack separate footprints; radius37.3m, portal positions/open/closed assignments are picture/map approximations with about3m/5degree uncertainty, not exact-QID footprint registration. Original standard6m Mapzen grid, native pedestrian courtyard/paths/water and all independent buildings remain unchanged. Only corresponding central platform shell35185801754351 is replaced. Altar occupied footing is buried below sampled ground and each narrow cardinal approach descends to sampled grade. Circular wall footings and coping follow the retained ground; gate footings are individually buried. No broad court/park slab, ground or water cutout, terrain flattening or invented whole-park reconstruction. Native coarse park ground cannot resolve archaeological paving and actual altar/stair thresholds; courtyard paving stays a host surface."
+  }
+}

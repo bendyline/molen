@@ -1,0 +1,167 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.honda_pilot_2025": {
+      "doc": "2025 Honda Pilot, EX-L. Polygonal reference interpretation with a complete driving cabin; dimensions rounded for authoring and handling tuned for play.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.honda_pilot_2025",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.honda_pilot_2025",
+          "color": "#829391",
+          "spec": {
+            "label": "2025 Honda Pilot",
+            "bodyStyle": "suv",
+            "genericLabel": "Midsize SUV",
+            "width": 2.224,
+            "length": 5.077,
+            "height": 1.801,
+            "centerOfMass": [
+              0,
+              0.61234,
+              0
+            ],
+            "wheelbase": 2.891,
+            "wheelTrack": 1.71484,
+            "wheelRadius": 0.376,
+            "mass": 1800,
+            "engineForce": 5800,
+            "maxSpeed": 50,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [
+              0.4586,
+              1.481,
+              0.2662
+            ],
+            "drive": "front",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.18,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.4586,
+                1.481,
+                0.2662
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.447,
+              0,
+              0.2662
+            ]
+          ],
+          "exits": [
+            [
+              1.5470000000000002,
+              0,
+              0.2662
+            ],
+            [
+              -1.5470000000000002,
+              0,
+              0.2662
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.honda_pilot_2025"
+      ]
+    }
+  }
+}

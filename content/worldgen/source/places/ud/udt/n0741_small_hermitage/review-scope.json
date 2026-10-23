@@ -1,0 +1,536 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "stucco",
+      "slot": "wall"
+    },
+    "trim": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim"
+    },
+    "floor": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim"
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof"
+    },
+    "glass": {
+      "graph": "window_grid",
+      "slot": "window"
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "garden": {
+      "graph": "stucco",
+      "slot": "wall"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      -2.1950376308707575,
+      114.79295620297503,
+      242.99214351455697
+    ],
+    "lookAt": [
+      0,
+      -9.20704379702497,
+      0
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "river-pavilion-six-columns-and-open-connectors",
+      "position": [
+        -82.3463483799934,
+        -2.2070437970249692,
+        -95.89097407201973
+      ],
+      "lookAt": [
+        -44.7966632318529,
+        -6.207043797024969,
+        -61.39429096660339
+      ],
+      "fov": 60
+    },
+    {
+      "name": "south-pavilion-paired-columns-and-balconies",
+      "position": [
+        50.68873317657387,
+        -7.207043797024969,
+        115.2764170546348
+      ],
+      "lookAt": [
+        45.97552279058586,
+        -8.20704379702497,
+        63.00993020256664
+      ],
+      "fov": 60
+    },
+    {
+      "name": "raised-hanging-garden-and-galleries",
+      "position": [
+        35.82819276628551,
+        71.79295620297503,
+        -32.331727499499415
+      ],
+      "lookAt": [
+        0,
+        -10.20704379702497,
+        0
+      ],
+      "fov": 65
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -2.1950376308707575,
+        114.79295620297503,
+        242.99214351455697
+      ],
+      "lookAt": [
+        0,
+        -9.20704379702497,
+        0
+      ],
+      "fov": 45,
+      "name": "small-hermitage-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -2.1950376308707575,
+        114.79295620297503,
+        242.99214351455697
+      ],
+      "lookAt": [
+        0,
+        -9.20704379702497,
+        0
+      ],
+      "fov": 45,
+      "name": "small-hermitage-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -2.1950376308707575,
+        114.79295620297503,
+        242.99214351455697
+      ],
+      "lookAt": [
+        0,
+        -9.20704379702497,
+        0
+      ],
+      "fov": 45,
+      "name": "small-hermitage-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -2.1950376308707575,
+        114.79295620297503,
+        242.99214351455697
+      ],
+      "lookAt": [
+        0,
+        -9.20704379702497,
+        0
+      ],
+      "fov": 45,
+      "name": "small-hermitage-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 3.5,
+    "groundY": -20.20704379702497,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/small-hermitage-model.mjs",
+    "export": "buildSmallHermitageSkyline",
+    "errorMeters": 8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSmallHermitageDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "garden": {
+            "graph": "stucco",
+            "slot": "wall"
+          }
+        }
+      },
+      "street": {
+        "export": "buildSmallHermitageStreet",
+        "errorMeters": 1,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "garden": {
+            "graph": "stucco",
+            "slot": "wall"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSmallHermitageCloseup",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "garden": {
+            "graph": "stucco",
+            "slot": "wall"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "draft-proposal",
+    "anchor": [
+      30.315708965063095,
+      59.941255818912424
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": -20.20704379702497,
+    "groundContactReviewed": false,
+    "groundContactBasis": "PENDING NATIVE TERRAIN FIT: current standard main-site terrain is roof/tree influenced and Winter Palace fit already failed. Original6m Mapzen samples, roads, water and independent buildings remain unchanged. A shared plaza floor and occupied lower rooms support the garden, rather than treating the native garden hole as an at-grade courtyard. Ground opening is strictly inside the occupied main parent only; all connector streets remain native terrain. No flattening, precinct slab or bespoke terrain source; do not activate or count ready without inspecting native fit.",
+    "replaceFootprint": false,
+    "bounds": [
+      30.312480761103227,
+      59.93963885140101,
+      30.318937169022963,
+      59.94287278642384
+    ],
+    "terrainReference": {
+      "anchor": [
+        30.315047028387312,
+        59.93964319761939
+      ],
+      "modelHeight": -20.20704379702497,
+      "basis": "Shared existing Winter Palace south-plaza control, internal[0,110]. modelHeight is this member's actual native floor Y, not its raw map-anchor datum. The host samples this ground point and subtracts modelHeight, so all five floors coincide even when the host uses a clean or vertically translated ground provider. Original model geometry and standard PMTiles/elevation samples remain unchanged. This corrects reference semantics; native roof/tree-influenced terrain still requires a separate fit review."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -46.83587455444008,
+          -33.387275542521444
+        ],
+        [
+          -60.06567172316497,
+          -51.52229295946023
+        ],
+        [
+          -31.13882821671513,
+          -72.99340188240564
+        ],
+        [
+          -23.83256324599995,
+          -63.59980741477178
+        ],
+        [
+          -17.909592456182626,
+          -55.90007056970796
+        ],
+        [
+          -19.517071842673516,
+          -54.43874680806959
+        ],
+        [
+          -19.47690886942495,
+          -54.38396541767025
+        ],
+        [
+          -19.508447441147847,
+          -54.35529440350103
+        ],
+        [
+          59.96581794590255,
+          54.045812554499825
+        ],
+        [
+          34.170230816384866,
+          72.83367508042058
+        ],
+        [
+          -44.70760510886403,
+          -34.82245612244039
+        ],
+        [
+          -44.751172859890566,
+          -34.79133658490426
+        ],
+        [
+          -44.79205445823639,
+          -34.847133687647684
+        ]
+      ],
+      "additionalOutlines": [],
+      "basis": "PENDING NATIVE TERRAIN FIT: current standard main-site terrain is roof/tree influenced and Winter Palace fit already failed. Original6m Mapzen samples, roads, water and independent buildings remain unchanged. A shared plaza floor and occupied lower rooms support the garden, rather than treating the native garden hole as an at-grade courtyard. Ground opening is strictly inside the occupied main parent only; all connector streets remain native terrain. No flattening, precinct slab or bespoke terrain source; do not activate or count ready without inspecting native fit."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          14.7313,
+          60.2709
+        ],
+        [
+          18.3206,
+          65.0568
+        ],
+        [
+          24.9011,
+          60.2709
+        ],
+        [
+          21.3117,
+          55.485
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            14.7313,
+            60.2709
+          ],
+          [
+            18.3206,
+            65.0568
+          ],
+          [
+            24.9011,
+            60.2709
+          ],
+          [
+            21.3117,
+            55.485
+          ]
+        ],
+        [
+          [
+            -19.0684,
+            14.8054
+          ],
+          [
+            -8.1508,
+            29.7611
+          ],
+          [
+            -1.2712,
+            24.6761
+          ],
+          [
+            -12.1888,
+            9.87
+          ]
+        ],
+        [
+          [
+            16.526,
+            -5.2352
+          ],
+          [
+            20.8631,
+            0.5975
+          ],
+          [
+            27.7427,
+            -4.4874
+          ],
+          [
+            23.5551,
+            -10.021
+          ]
+        ],
+        [
+          [
+            -60.1963,
+            -51.5972
+          ],
+          [
+            -46.8858,
+            -33.3516
+          ],
+          [
+            -44.7921,
+            -34.8471
+          ],
+          [
+            34.3231,
+            73.1329
+          ],
+          [
+            60.1963,
+            54.2885
+          ],
+          [
+            -19.5171,
+            -54.4387
+          ],
+          [
+            -17.872,
+            -55.9343
+          ],
+          [
+            -23.8542,
+            -63.7111
+          ],
+          [
+            -31.1824,
+            -73.1329
+          ]
+        ],
+        [
+          [
+            46.8858,
+            36.0425
+          ],
+          [
+            49.7274,
+            39.931
+          ],
+          [
+            57.3548,
+            34.2478
+          ],
+          [
+            54.3636,
+            30.3593
+          ]
+        ],
+        [
+          [
+            -57.3548,
+            -39.6329
+          ],
+          [
+            -53.7654,
+            -34.548
+          ],
+          [
+            -49.877,
+            -37.3896
+          ],
+          [
+            -53.4663,
+            -42.4744
+          ]
+        ],
+        [
+          [
+            -27.7427,
+            -68.7959
+          ],
+          [
+            -23.8542,
+            -63.7111
+          ],
+          [
+            -19.3675,
+            -66.8517
+          ],
+          [
+            -23.256,
+            -72.2356
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only Small Hermitage parent and six individually mapped connecting wings; all independent Winter/Old/New Hermitage/Theatre retained."
+    },
+    "notes": "Independent Q4279216/Small Hermitage, member N0741_SMALL of N0741 five-building main museum complex; not the Hermitage institution centroid. Exact native parent52776559201196/relation1067948 supplies the approximately36.75x156.8m outline and raised-garden opening. Six small connecting wing records are owned explicitly. Anchor[30.315708965063095,59.941255818912424]/world heading0/native east-south; internal axis0.630352782657rad places north pavilion toward Neva and south pavilion toward Palace Square. Ordinary north/south photographs actually viewed; map footprint establishes fit, photos establish visible architecture. PENDING NATIVE TERRAIN FIT: current standard main-site terrain is roof/tree influenced and Winter Palace fit already failed. Original6m Mapzen samples, roads, water and independent buildings remain unchanged. A shared plaza floor and occupied lower rooms support the garden, rather than treating the native garden hole as an at-grade courtyard. Ground opening is strictly inside the occupied main parent only; all connector streets remain native terrain. No flattening, precinct slab or bespoke terrain source; do not activate or count ready without inspecting native fit."
+  }
+}

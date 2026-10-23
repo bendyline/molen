@@ -4,6 +4,7 @@
  * primitives cover packs without assets.
  */
 
+import type { FontLibrary } from '@bendyline/molen-materials/text';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { generateLandmarkModel } from '../kernel/landmark-models';
@@ -126,11 +127,13 @@ function builtinGeometry(
   name: string,
   coarse: boolean | 'distant',
   definitions: LandmarkDefinitions,
+  fonts?: FontLibrary,
 ): THREE.BufferGeometry | undefined {
   const landmark = generateLandmarkModel(
     name,
     definitions,
     coarse === 'distant' ? 2 : coarse ? 1 : 0,
+    fonts,
   );
   if (landmark !== undefined) {
     const geometry = new THREE.BufferGeometry();
@@ -186,6 +189,7 @@ export class ModelLibrary {
     private readonly disposeLoadedScene = false,
     /** Pack-authored recipes share the same instancing path and have three independent LODs. */
     private readonly plants: Readonly<Record<string, PlantPreset>> = {},
+    private readonly fonts: FontLibrary | undefined = undefined,
   ) {
     this.material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.92 });
     this.material.name = 'worldgen:models';
@@ -268,7 +272,12 @@ export class ModelLibrary {
       };
     }
     if (ref.startsWith('builtin:')) {
-      const geometry = builtinGeometry(ref.slice('builtin:'.length), coarse, this.landmarks);
+      const geometry = builtinGeometry(
+        ref.slice('builtin:'.length),
+        coarse,
+        this.landmarks,
+        this.fonts,
+      );
       if (geometry === undefined) throw new Error(`unknown builtin model "${ref}"`);
       geometry.computeBoundingBox();
       return {

@@ -1,0 +1,332 @@
+{
+  "variant": "F-22A clean exterior; NMUSAF 91-4003 EMD cockpit reference, simplified non-tactical simulator displays",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Lockheed_Martin_F-22A_Raptor_3-view_line_drawing.jpg",
+      "title": "F-22A three-view, USAF 060411-F-ZZ000-159, 11April2006",
+      "author": "US Air Force",
+      "license": "Public domain US federal government work",
+      "scope": "Front, side and top silhouettes. Drawing states62ft1in length,44ft6in span,16ft5in height. Model uses later5.08m manufacturer height; drawing has minor view-scale discrepancies."
+    },
+    {
+      "url": "https://www.lockheedmartin.com/content/dam/lockheed-martin/aero/documents/f22/F-22-Product-Card.pdf",
+      "title": "F-22 Product Card FG15-1758_001,2015",
+      "author": "Lockheed Martin",
+      "license": "Copyright Lockheed Martin; local reference only, no reference pixels redistributed",
+      "scope": "Independent44.5ft span,5.08m height,840sqft wing area,29ft horizontal-tail span. Rounded62ft length; USAF62ft1in used."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Lockheed_Martin_F-22A_Raptor_cockpit.jpg",
+      "title": "NMUSAF F-22A cockpit,080116-F-1234P-002",
+      "author": "US Air Force",
+      "license": "Public domain US federal government work",
+      "scope": "Museum aircraft91-4003 EMD: six-display layout, center ICP, bezels, coaming, floor and side ledges. Angled photo; upper-right auxiliary obscured. No claim of production block-specific switch/avionics accuracy."
+    },
+    {
+      "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196040/lockheed-martin-f-22a-raptor/",
+      "title": "NMUSAF F-22A exhibit identification",
+      "author": "National Museum of the US Air Force",
+      "license": "Public factual reference",
+      "scope": "Identifies91-4003 as EMD aircraft; cockpit reference must not be described as a verified current production fit."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:F-22_cockpit_close-up.jpg",
+      "title": "RaptorNo18,MajMichaelHoepfner checkout,12November2003",
+      "author": "Lisa Carroll,USAF",
+      "license": "Public domain US federal government work",
+      "scope": "Continuous canopy without windscreen bow, coaming/HUD, seat and selected flush fastener rows."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:F-22_Raptor_edit1_(cropped).jpg",
+      "title": "F-22 over Kadena,23January2009",
+      "author": "MasterSgtAndyDunaway,USAF; cropped/color-adjusted Commons version",
+      "license": "Public domain US federal government work",
+      "scope": "Upper-airframe geometry, aligned leading/trailing borders, intake shoulders, engine humps, flat nozzles, canted fins and diamond tail."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      3.04,
+      7.3
+    ],
+    "lookAt": [
+      0,
+      2.5,
+      8.12
+    ],
+    "fov": 82
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2.44
+    ],
+    "viewHeight": 1.05,
+    "cameraHeight": 2.25
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 1,
+    "flapPosition": 0,
+    "loadFactor": 1,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/f22-three-view.png",
+      "crop": {
+        "left": 14,
+        "top": 326,
+        "width": 650,
+        "height": 180
+      },
+      "referenceAnchor": [
+        20,
+        502
+      ],
+      "modelAnchor": [
+        -11.85,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 639,
+        "meters": 18.923,
+        "description": "USAF62ft1in nose-to-tail length. Independent Lockheed5.08m height; drawing16ft5in is lower."
+      },
+      "scope": "Side silhouette, gear spacing, canopy and fin rake; low-resolution drawing, not production loft data."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/f22-three-view.png",
+      "crop": {
+        "left": 12,
+        "top": 523,
+        "width": 654,
+        "height": 480
+      },
+      "rotate": 270,
+      "referenceAnchor": [
+        18,
+        763
+      ],
+      "modelAnchor": [
+        0,
+        11.85
+      ],
+      "scaleControls": {
+        "pixels": 644,
+        "meters": 18.923,
+        "description": "62ft1in overall length; independently44ft6in span and29ft tail span. Slight aspect discrepancy in drawing is retained."
+      },
+      "scope": "Diamond wings/tails, shoulders, canopy, fins and nozzles. Uniform reference scaling only."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/f22-three-view.png",
+      "crop": {
+        "left": 100,
+        "top": 65,
+        "width": 464,
+        "height": 179
+      },
+      "referenceAnchor": [
+        331,
+        238
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 452,
+        "meters": 13.5636,
+        "description": "44ft6in span; manufacturer5.08m height independently. Drawing16ft5in slightly lower."
+      },
+      "scope": "Track, inlets, wing dihedral, canopy and fin cant."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/f22-panel-rectified.png",
+      "crop": {
+        "left": 315,
+        "top": 270,
+        "width": 380,
+        "height": 420
+      },
+      "referenceAnchor": [
+        500,
+        470
+      ],
+      "modelAnchor": [
+        0,
+        -2.44
+      ],
+      "scaleControls": {
+        "pixels": 300,
+        "meters": 0.2032,
+        "description": "Assumed nominal8in center active display; approximate perspective correction from four photo corners, not a dimensioned panel measurement."
+      },
+      "edgeMode": "photo",
+      "scope": "Central primary display and bezel only. ICP and neighboring angled panels occupy different depth planes and are compared separately by eye. Image rectification is documented, no model deformation."
+    }
+  ],
+  "referencePreparation": {
+    "photoResize": [
+      1912,
+      1280
+    ],
+    "sourceCorners": [
+      [
+        603,
+        505
+      ],
+      [
+        923,
+        429
+      ],
+      [
+        941,
+        729
+      ],
+      [
+        635,
+        804
+      ]
+    ],
+    "targetCorners": [
+      [
+        350,
+        320
+      ],
+      [
+        650,
+        320
+      ],
+      [
+        650,
+        620
+      ],
+      [
+        350,
+        620
+      ]
+    ],
+    "outputSize": [
+      1100,
+      1100
+    ],
+    "method": "PIL perspective transform solved from four approximate central-display corners. Scale assumption8in square; neighboring panels are not coplanar."
+  },
+  "reviewNotes": {
+    "corrections": [
+      "Replaced generic stealth-aircraft geometry with measured F-22A chine forebody, continuous bubble canopy, raked trapezoidal inlets, blended paired engine humps, diamond wing/tail planforms, canted fins and rectangular exhaust ducts.",
+      "Uniform reference overlays exposed forward wing trailing edges, high wingtips, excessive fin-tip chord and blocked intakes. Corrected them against the USAF three-view while retaining independent manufacturer span,height and tail span.",
+      "Reconstructed six display housings, projecting ICP keypad/option fields, HUD and coaming, right side-stick,left twin throttles,pedals,seat,harness and console ledges from the NMUSAF EMD cockpit and canopy photograph. Reduced display spacing and removed a protruding horizon mask and unsupported HUD gap.",
+      "Live attitude,true airspeed,geometric altitude,vertical speed and true-heading presentation use shared named expressions. Tactical/sensor/engine fields are explicitly unavailable. Missing telemetry blanks live readings; negative altitude retains its sign.",
+      "Leading/trailing flaps,ailerons and rudders use oriented parent mounts aligned with their swept hinge lines; final control-state renders and imported-node regression tests verify attached hinge endpoints. Differential stabilators,gear and pilot controls are animated.",
+      "Removed painted aft fairing intersections inside both exhaust ducts; dark internal bulkhead and liner close the simplified engine interior. Selected sawtooth access borders,canopy flush fasteners and rescue markings use geometry rather than photographic textures."
+    ],
+    "independentDimensions": [
+      "USAF62ft1in=18.923m length and44ft6in=13.5636m wingspan. Lockheed product card5.08m height,29ft=8.8392m horizontal-tail span and840ft2=78.0385536m2 nominal wing area.",
+      "The USAF drawing states16ft5in height; later manufacturer figure5.08m is used. Fin thickness yields5.0959m total runtime bound. Wing border thickness yields13.5694m measured span. No axis stretching was applied to overlays.",
+      "Canopy and wheel stations reconstructed from three-view: canopy about3.5m long,3.24m maximum height, main-wheel track3.16m,nose wheelbase6.14m. These are drawing reconstructions,not independently certified dimensions.",
+      "Cockpit scale assumes nominal8in central,6in secondary and4x3in auxiliary display apertures. Central panel photograph rectified with recorded four-corner transform; no dimensioned cockpit source found. Only the center display plane is overlaid; nearby panels and ICP are at different depths and are checked visually."
+    ],
+    "visual": "Inspected four exterior/panel overlays,eight standard views and twelve detailed instrument/control/exterior states. All24 final-hash captures were rechecked in six contact sheets after hinge and duct corrections. Compared the USAF three-view,NMUSAF EMD cockpit photograph,LisaCarroll canopy close-up and AndyDunaway upper-airframe photograph.",
+    "limitations": [
+      "Polygonal interpretation,not an engineering replica. Compound surfaces,airfoil sections,intake/engine internals,RAM edging,livery,individual fasteners and labels are simplified; low-resolution drawing has disclosed scale disagreements.",
+      "Cockpit geometry uses museum91-4003 EMD evidence,not a verified current production block. Photo is oblique and partly occluded; upper-right auxiliary,console switch identities/spacing,seat and harness are approximations. Display scales are assumptions; several display surfaces are simplified to one plane.",
+      "FLIGHT/SIM and NAV/SIM are simulator presentations,not authentic F-22 operational avionics. No tactical radar,sensor fusion,navigation map,collimated HUD,HMD,pressure altitude,magnetic heading or calibrated IAS/Mach. Tactical and unsupported engine/fuel information remain INOP or blank.",
+      "Shared assisted flight physics and simplified control mixes are not F-22 flight-control laws. Nozzle petals remain neutral because an F119 vector-control law is not modeled. Landing-gear motion is approximate with hiding behind closed bays; no landing-gear mechanical linkage or working canopy.",
+      "Public-domain reference photos and drawing retained as local review inputs; manufacturer PDF is local study only. No reference pixels or external weapons are included in the model."
+    ]
+  },
+  "instrumentReview": {
+    "typeDefinitionHash": "sha256:5fe9d2cc2eeba5189372df72ff2024d5f44a0aaf590f70444bd27b33cde8de01",
+    "checks": "17 shared imported-instrument tests and targeted F-22A geometry test passed; cardinal-heading regression covers14models. Swept hinge endpoints remain fixed under positive/negative controls and flap extension.",
+    "captures": {
+      "zero": {
+        "path": ".artifacts/aircraft/f-22a-instruments/zero.png",
+        "sha256": "sha256:a1faf2d7f7a312be66ca3e6a51a452735c90ee96ba0d028b0ff2eadfacb26d29",
+        "inspected": true
+      },
+      "cruise": {
+        "path": ".artifacts/aircraft/f-22a-instruments/cruise.png",
+        "sha256": "sha256:5d6e32efba56daf296ea2dd690fecad911bddbfdd2a911ff6ed444d92a4547ed",
+        "inspected": true
+      },
+      "limits": {
+        "path": ".artifacts/aircraft/f-22a-instruments/limits.png",
+        "sha256": "sha256:1771db0bb257f6edfb5971ac1cda7b7398c8496a3505a76b2330f7bb3d79f475",
+        "inspected": true
+      },
+      "below-sea-level": {
+        "path": ".artifacts/aircraft/f-22a-instruments/below-sea-level.png",
+        "sha256": "sha256:ba0c125fe50ee3ee1d8b9e9711c40057a5fb6632015dfaaad514084de2a51d1c",
+        "inspected": true
+      },
+      "missing": {
+        "path": ".artifacts/aircraft/f-22a-instruments/missing.png",
+        "sha256": "sha256:b5c84f8ec0c0c5810c468bb26c7260885f50a662e343ca7b713655312b7159e1",
+        "inspected": true
+      },
+      "controls": {
+        "path": ".artifacts/aircraft/f-22a-instruments/controls.png",
+        "sha256": "sha256:fbb201f084bcee273aa1ccb8120db861f01f3b9ca66238d4a2f836a5c35ac345",
+        "inspected": true
+      },
+      "close-exterior": {
+        "path": ".artifacts/aircraft/f-22a-instruments/close-exterior.png",
+        "sha256": "sha256:22baefa4d878c8ced3dd3023ce968e262e3348f58555c1b871799a9fb08c873f",
+        "inspected": true
+      },
+      "clean-flight": {
+        "path": ".artifacts/aircraft/f-22a-instruments/clean-flight.png",
+        "sha256": "sha256:4959a9d716303b8d87bd656a80a37d36ba79a88661f1371a6226bedd355fe5e3",
+        "inspected": true
+      },
+      "canopy-side": {
+        "path": ".artifacts/aircraft/f-22a-instruments/canopy-side.png",
+        "sha256": "sha256:1976ecd02c3f618158b69a135b22fcd4bb4b3abbd0843206f6e4176e57e9826d",
+        "inspected": true
+      },
+      "exhausts": {
+        "path": ".artifacts/aircraft/f-22a-instruments/exhausts.png",
+        "sha256": "sha256:bcf7cb8e8edef5646c070b9f5d0ed0f3d07f300930aabfefb7c95b791803d67f",
+        "inspected": true
+      },
+      "controls-exterior-positive": {
+        "path": ".artifacts/aircraft/f-22a-instruments/controls-exterior-positive.png",
+        "sha256": "sha256:e064d0772c84d9ae8489c0fcac27dc2abfc17dfc2cb4dff8a1453c329154469a",
+        "inspected": true
+      },
+      "controls-exterior-negative": {
+        "path": ".artifacts/aircraft/f-22a-instruments/controls-exterior-negative.png",
+        "sha256": "sha256:4f2f55290b059ddd77f27872a91ef6bc3c626bdb8d36e003fbfc809a5125ba84",
+        "inspected": true
+      }
+    }
+  },
+  "sourceHash": "sha256:725365ab82ab50b1f80a5a096b209211ce356f15e8c0d9abc470ab58a327a813",
+  "runtimeHash": "sha256:495dec336cfb270af1c9880785c089169b8f9bbe5e9b84db2f30cd8ce583117f",
+  "limitations": [
+    "Polygonal interpretation,not an engineering replica. Compound surfaces,airfoil sections,intake/engine internals,RAM edging,livery,individual fasteners and labels are simplified; low-resolution drawing has disclosed scale disagreements.",
+    "Cockpit geometry uses museum91-4003 EMD evidence,not a verified current production block. Photo is oblique and partly occluded; upper-right auxiliary,console switch identities/spacing,seat and harness are approximations. Display scales are assumptions; several display surfaces are simplified to one plane.",
+    "FLIGHT/SIM and NAV/SIM are simulator presentations,not authentic F-22 operational avionics. No tactical radar,sensor fusion,navigation map,collimated HUD,HMD,pressure altitude,magnetic heading or calibrated IAS/Mach. Tactical and unsupported engine/fuel information remain INOP or blank.",
+    "Shared assisted flight physics and simplified control mixes are not F-22 flight-control laws. Nozzle petals remain neutral because an F119 vector-control law is not modeled. Landing-gear motion is approximate with hiding behind closed bays; no landing-gear mechanical linkage or working canopy.",
+    "Public-domain reference photos and drawing retained as local review inputs; manufacturer PDF is local study only. No reference pixels or external weapons are included in the model."
+  ]
+}

@@ -4,8 +4,10 @@
 // fetches content on its own: pass opened packs, or use `openPacksFromIndex` with the URL of a
 // pack index you host.
 
+import { fleetCatalogSchema } from '@bendyline/molen-ambient/kernel';
 import { type AssetProvider, decodeStarCatalog, type SkyStar } from '@bendyline/molen-client';
 import { createTypeLibrary, type TypeLibrary } from '@bendyline/molen-kernel/content';
+import { type FontLibrary, loadFontLibrary } from '@bendyline/molen-materials/text';
 import {
   createPackSet,
   isDirectoryPackUrl,
@@ -23,6 +25,11 @@ import {
 } from '@bendyline/molen-pack/cache';
 import type { PackIndex, PackIndexEntry, VehicleData } from '@bendyline/molen-schema';
 import type { TerrainParkedVehicle } from '@bendyline/molen-terrain/client';
+import {
+  terrainRoadSignCatalogSchema,
+  terrainRoadSignProfilesSchema,
+  terrainRouteShieldLibrarySchema,
+} from '@bendyline/molen-terrain/kernel';
 import {
   type ResolvedStylePack,
   resolveStylePackDocuments,
@@ -45,7 +52,9 @@ import {
   type WildlifeRangesDoc,
   wildlifeRangesSchema,
 } from '@bendyline/molen-worldgen-earth/kernel';
+import type { EarthFleetContent } from './fleet';
 import { withModelArchives } from './model-archives';
+import type { EarthRoadSignContent } from './road-signs';
 
 /** Content-pack ids an Earth view looks for. */
 export const EARTH_PACK_IDS: {
@@ -68,6 +77,7 @@ export const EARTH_PACK_IDS: {
 
 /** Worldgen style, region atlas and recognizable places, resolved from the packs. */
 export interface EarthWorldgenContent {
+  fonts?: FontLibrary;
   pack: ResolvedStylePack;
   /** Pack id of the style pack, for addressing its assets. */
   styleId: string;
@@ -82,6 +92,8 @@ export interface EarthWorldgenContent {
 }
 
 export interface EarthContent {
+  /** Shared lettering faces loaded from the Earth pack, if available. */
+  fonts?: FontLibrary;
   packs: PackSet;
   /**
    * Entity types merged from every opened pack that provides `types` documents (the entities
@@ -92,6 +104,10 @@ export interface EarthContent {
   types?: TypeLibrary;
   /** Parked-car kinds for street surfaces, in type order. */
   parkedVehicles: TerrainParkedVehicle[];
+  /** Compact regional road mixtures; reading these never loads model geometry. */
+  fleet?: EarthFleetContent;
+  /** Country sign appearances and dedicated country geometry, independent of worldgen. */
+  roadSigns?: EarthRoadSignContent;
   /** Assets across every pack: entity models by id, style-pack materials and props by path. */
   assets: AssetProvider;
   /** Undefined when no style pack was requested or it failed to load. */
@@ -364,6 +380,14 @@ export async function loadEarthContent(
     ...(entities === undefined ? [] : [entities]),
     ...opened.filter((pack) => pack.manifest.id !== EARTH_PACK_IDS.entities),
   ]);
+  const fontPack = byId.get(EARTH_PACK_IDS.earth);
+  const fontPath = fontPack?.manifest.provides.fonts?.[0];
+  const fonts =
+    fontPack && fontPath
+      ? await loadFontLibrary(await fontPack.readJson(fontPath), (path) =>
+          fontPack.readJson(fontPath.slice(0, fontPath.lastIndexOf('/') + 1) + path),
+        )
+      : undefined;
   const styleId =
     options.stylePack === false ? undefined : (options.stylePack ?? EARTH_PACK_IDS.style);
   let worldgen: EarthWorldgenContent | undefined;
@@ -376,6 +400,7 @@ export async function loadEarthContent(
       if (styles === undefined) throw new Error(`style pack "${styleId}" is not open`);
       if (earth === undefined) throw new Error(`the ${EARTH_PACK_IDS.earth} pack is not open`);
       worldgen = await readWorldgen(styles, earth);
+      if (fonts) worldgen.fonts = fonts;
       const environment = await readRegionalContent(opened, worldgen.pack);
       if (environment !== undefined) worldgen.environment = environment;
     } catch (error) {
@@ -385,16 +410,80 @@ export async function loadEarthContent(
   const styleIndex =
     worldgen === undefined ? {} : stylePackAssetIndex(worldgen.pack, `pack:${worldgen.styleId}/`);
   let stars: Promise<SkyStar[]> | undefined;
+  const fleetCatalogs = await Promise.all(
+    opened.flatMap((pack) =>
+      (pack.manifest.provides.fleet ?? []).map(async (path) =>
+        fleetCatalogSchema.parse(await pack.readJson(path)),
+      ),
+    ),
+  );
+  const earthPack = byId.get(EARTH_PACK_IDS.earth);
+  const signPath = earthPack?.manifest.provides['road-signs']?.[0];
+  const signAtlasPath = earthPack?.manifest.provides['road-sign-regions']?.[0];
+  const signProfiles = earthPack
+    ? (
+        await Promise.all(
+          (earthPack.manifest.provides['road-sign-profiles'] ?? []).map(
+            async (path) =>
+              terrainRoadSignProfilesSchema.parse(await earthPack.readJson(path)).profiles,
+          ),
+        )
+      ).flat()
+    : [];
+  const shieldPath = earthPack?.manifest.provides['route-shields']?.[0];
+  const signCatalog =
+    earthPack && signPath
+      ? terrainRoadSignCatalogSchema.parse(await earthPack.readJson(signPath))
+      : undefined;
+  const roadSigns =
+    earthPack && signCatalog
+      ? {
+          catalog: terrainRoadSignCatalogSchema.parse({
+            ...signCatalog,
+            profiles: [...signCatalog.profiles, ...signProfiles],
+          }),
+          ...(shieldPath
+            ? {
+                shields: terrainRouteShieldLibrarySchema.parse(
+                  await earthPack.readJson(shieldPath),
+                ),
+              }
+            : {}),
+          ...(signAtlasPath
+            ? { atlas: await earthPack.readJson<RegionAtlasDoc>(signAtlasPath) }
+            : {}),
+        }
+      : undefined;
+  const fleetAtlas =
+    fleetCatalogs.length && earthPack
+      ? (worldgen?.atlas ??
+        (await earthPack.readJson<RegionAtlasDoc>(
+          earthPack.manifest.provides.atlas?.[0] ?? 'world.atlas.json',
+        )))
+      : undefined;
   return {
     packs,
+    ...(fonts ? { fonts } : {}),
+    ...(roadSigns ? { roadSigns } : {}),
     ...(types !== undefined ? { types } : {}),
+    ...(fleetCatalogs.length
+      ? { fleet: { catalogs: fleetCatalogs, ...(fleetAtlas ? { atlas: fleetAtlas } : {}) } }
+      : {}),
     parkedVehicles:
       types
         ?.idsWith('vehicle')
         .filter((id) => types.component<VehicleData>(id, 'vehicle').spec.cycle === undefined)
+        // Player-controllable transit must not become ordinary curbside parked cars.
+        .filter((id) => {
+          const role = (types.components(id).ambientRole as { role?: string } | undefined)?.role;
+          return role === undefined || role === 'car';
+        })
         .map((id) => ({
           id,
           spec: types.component<VehicleData>(id, 'vehicle').spec,
+          ...((types.components(id).ambientRole as { colors?: string[] } | undefined)?.colors
+            ? { colors: (types.components(id).ambientRole as { colors: string[] }).colors }
+            : {}),
         })) ?? [],
     assets: {
       load: (ref, options) => packs.readBytes(styleIndex[ref] ?? ref, options),

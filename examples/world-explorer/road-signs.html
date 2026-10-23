@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1b382c" />
+    <title>Road sign library · Molen</title>
+  </head>
+  <body>
+    <header>
+      <div class="topline"><a href="index.html">← Earth explorer</a><span>MOLEN / FIELD GUIDE 01</span></div>
+      <div class="intro"><div><p class="eyebrow">THE ROADSIDE COLLECTION</p><h1>Signs that belong<br />on the road.</h1></div>
+        <p class="lede">Global patterns, regional appearances. Explore the shapes, lettering, and map cues that decide where each one appears.</p></div>
+      <div class="legend"><span><i class="dot mapped"></i>Mapped legend or control</span><span><i class="dot inferred"></i>Inferred from road layout</span><span>All hardware placement is estimated</span></div>
+    </header>
+    <main>
+      <section class="region-bar" aria-label="Regional sign appearance"><label for="view">Collection</label><select id="view"><option value="patterns">Road sign patterns</option><option value="states">All 50 U.S. states</option></select><label for="region">Sign convention</label><select id="region"></select><p id="region-note"></p><span id="region-sources"></span></section>
+      <section class="toolbar" aria-label="Filter signs">
+        <div id="filters" role="group" aria-label="Sign families"><button data-family="all" aria-pressed="true">All patterns <span>9</span></button><button data-family="highway" aria-pressed="false">Highways</button><button data-family="junction" aria-pressed="false">Junctions</button><button data-family="speed" aria-pressed="false">Speed limits</button></div>
+        <label class="search">Find a pattern<input id="search" type="search" placeholder="Name or map cue…" /></label>
+      </section>
+      <p id="status" role="status">Loading the road-sign library…</p>
+      <section id="gallery" aria-label="Road sign patterns"></section>
+      <section class="data-note"><div><p class="eyebrow">READING THE MAP</p><h2>Good signs need good evidence.</h2></div><div><p>The examples above use synthetic map records and the same detector and geometry as Earth. Click a card to inspect its actual detection result.</p><p>PMTiles is a container; the tile producer decides which OpenStreetMap tags survive. Missing limits, exit numbers, and destinations stay unknown. Mapped signals override inferred stop signs.</p><p>Brown attraction boards require a signposted destination. Nearby attractions alone do not establish a driving route. The state collection uses simplified primary-route artwork from OpenStreetMap Americana (CC0). National typefaces, mixed destination panels and exact sign layouts remain approximations. Country and state outlines are approximate; unclassified regions use a neutral fallback.</p></div></section>
+      <footer><span>Overpass fallback · country font roles supported · <a href="https://overpassfont.org/">OFL font</a></span><span>Sources: <a href="https://wiki.openstreetmap.org/wiki/Key:destination">OSM destinations</a> · <a href="https://wiki.openstreetmap.org/wiki/Key:destination:colour">destination colours</a> · <a href="https://mutcd.fhwa.dot.gov/pdfs/11th_Edition/mutcd11thedition.pdf">FHWA signs</a></span></footer>
+    </main>
+    <dialog id="detail" aria-labelledby="detail-title">
+      <button id="close" aria-label="Close sign details">×</button>
+      <div id="preview" aria-label="Interactive sign preview"></div>
+      <div class="detail-copy"><p class="eyebrow" id="detail-family"></p><h2 id="detail-title"></h2><p id="detail-caption"></p><p class="hint">Drag to rotate · scroll to zoom · <button id="reset">Reset view</button></p><dl id="facts"></dl><details><summary>Detection record & sample map tags</summary><pre id="record"></pre></details></div>
+    </dialog>
+    <script type="module" src="/src/road-sign-gallery.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.entities.aircraft.airbus_h125",
+  "kind": "aircraft",
+  "title": "Airbus H125",
+  "order": 8,
+  "files": {
+    "definitions": [
+      "entity.types.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.entities.aircraft.airbus_h125",
+        "output": "assets/molen/entities/aircraft/airbus_h125/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:53530998122f130ccf5948c99766dc6bde35062b3ea91739945bf73a72e00dfe"
+      }
+    ],
+    "generators": [
+      {
+        "id": "model",
+        "path": "models/generate.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "models/airframe.json",
+      "reference-review.json",
+      "preview.png"
+    ]
+  }
+}

@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0140_shanghai_world_financial_center",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:54597f576025649334df8fe1fa01b2f56eef0c20528450bd197a5d21bbe37e08",
+  "inputHash": "sha256:2ee4d907a4a1d284ca6806167a36372e0be197bae66fcd4320bd68f441f6664c",
   "sourceHash": "sha256:dcc6c7893926b740e19aa905f55dbf00e8b61d06bff7c943dd6838b9573efeab",
   "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
-  "captureReportHash": "sha256:45f9aebab43605df8f496a5f3d7f741acecb4b991521f2abd7d3e8c658f88f01",
+  "captureReportHash": "sha256:9d663bea060de0837d4d253414769f4f0482b3ec7d71537d58e2c355c6e013f3",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -24,7 +24,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:77206fefacd5294c6144fc37f55ec2869616ebdf9e553035df9318c0d7ad0094",
+    "captureReportHash": "sha256:6f42dfeb122697b6b96a12e142e997ba22c5c860b8f9e8382ddbe2bc3ab9da1c",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -400,12 +400,11 @@
     "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   },
   "sourceBindingMaintenance": {
-    "reviewedOn": "2026-10-19",
+    "reviewedOn": "2026-10-20",
     "status": "carried-existing-acceptance-after-source-equivalence",
-    "previousInputHash": "sha256:c212e19cc785d2b98a7c551d1b9e502536f3f4a7592b368ddc2af87277d7a3ae",
-    "inputHash": "sha256:54597f576025649334df8fe1fa01b2f56eef0c20528450bd197a5d21bbe37e08",
+    "previousInputHash": "sha256:8dfb5fd5e9f4d8d0fd705b374e7b7e6fa0e3b68944977e2a2e72d46fc6fd0427",
+    "inputHash": "sha256:2ee4d907a4a1d284ca6806167a36372e0be197bae66fcd4320bd68f441f6664c",
     "originalVisualReviewOn": "2026-10-12",
-    "sourceRelease": "assets-3ad02ba96a6d989f",
     "modelPins": [
       {
         "name": "source",
@@ -438,7 +437,96 @@
         "hash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05"
       }
     ],
-    "change": "Exact prior input reconstructed using HEAD tower generator; only validation guard gained support for centerline/point frames. These three outlined frames and all six approved model files are unchanged.",
-    "scope": "Existing inspected images, materials, LODs and placement retained; no new visual inspection is claimed."
-  }
+    "generatorBeforeHash": "sha256:f9118f2ccf160cd924756085576a61cc90c632ef5760864598e073bcbcfc179f",
+    "generatorAfterHash": "sha256:f6ff4ec35e135c308cb0f993850ee419944e4b0c6dd42e6ce1cf584fdfffbfd2",
+    "command": "node packages/worldgen/scripts/generate-additional-landmarks.mjs --ids=N0140,N0141,N0144 --check",
+    "change": "Only declared OSM collection members gained an attributed map-frame guard and their feature ID in the spec. These three older geographic studies are not OSM collection members. Selected --check reproduced source GLBs and every generated text document exactly. All18 approved source/runtime/LOD bytes and existing inspected image hashes are unchanged. The exact prior combined input was reconstructed before carrying acceptance; no new visual review is claimed."
+  },
+  "sourceBindingMaintenanceHistory": [
+    {
+      "reviewedOn": "2026-10-19",
+      "status": "carried-existing-acceptance-after-source-equivalence",
+      "previousInputHash": "sha256:c212e19cc785d2b98a7c551d1b9e502536f3f4a7592b368ddc2af87277d7a3ae",
+      "inputHash": "sha256:54597f576025649334df8fe1fa01b2f56eef0c20528450bd197a5d21bbe37e08",
+      "originalVisualReviewOn": "2026-10-12",
+      "sourceRelease": "assets-3ad02ba96a6d989f",
+      "modelPins": [
+        {
+          "name": "source",
+          "path": "content/worldgen/source/places/wt/wtw/n0140_shanghai_world_financial_center/models/source.glb",
+          "hash": "sha256:dcc6c7893926b740e19aa905f55dbf00e8b61d06bff7c943dd6838b9573efeab"
+        },
+        {
+          "name": "runtime",
+          "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.glb",
+          "hash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985"
+        },
+        {
+          "name": "skyline",
+          "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.skyline.glb",
+          "hash": "sha256:b50e080689c23041d94cc8583827b4d1eb33200a5fdfa896476b6e346a8960b6"
+        },
+        {
+          "name": "district",
+          "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.district.glb",
+          "hash": "sha256:c0c6fe5e83838ca69fc01317accd118b3e83684719684e6e704946da0f48f9b6"
+        },
+        {
+          "name": "street",
+          "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.street.glb",
+          "hash": "sha256:f0bf21c7a5b26b4681e70a41784a56bcf12eb1196a230886ac882c6b1f3ea5af"
+        },
+        {
+          "name": "closeup",
+          "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.closeup.glb",
+          "hash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05"
+        }
+      ],
+      "change": "Exact prior input reconstructed using HEAD tower generator; only validation guard gained support for centerline/point frames. These three outlined frames and all six approved model files are unchanged.",
+      "scope": "Existing inspected images, materials, LODs and placement retained; no new visual inspection is claimed."
+    },
+    {
+      "reviewedOn": "2026-10-20",
+      "status": "carried-existing-acceptance-after-source-equivalence",
+      "previousInputHash": "sha256:54597f576025649334df8fe1fa01b2f56eef0c20528450bd197a5d21bbe37e08",
+      "inputHash": "sha256:8dfb5fd5e9f4d8d0fd705b374e7b7e6fa0e3b68944977e2a2e72d46fc6fd0427",
+      "originalVisualReviewOn": "2026-10-12",
+      "modelPins": [
+        {
+          "name": "source",
+          "path": "content/worldgen/source/places/wt/wtw/n0140_shanghai_world_financial_center/models/source.glb",
+          "hash": "sha256:dcc6c7893926b740e19aa905f55dbf00e8b61d06bff7c943dd6838b9573efeab"
+        },
+        {
+          "name": "runtime",
+          "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.glb",
+          "hash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985"
+        },
+        {
+          "name": "skyline",
+          "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.skyline.glb",
+          "hash": "sha256:b50e080689c23041d94cc8583827b4d1eb33200a5fdfa896476b6e346a8960b6"
+        },
+        {
+          "name": "district",
+          "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.district.glb",
+          "hash": "sha256:c0c6fe5e83838ca69fc01317accd118b3e83684719684e6e704946da0f48f9b6"
+        },
+        {
+          "name": "street",
+          "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.street.glb",
+          "hash": "sha256:f0bf21c7a5b26b4681e70a41784a56bcf12eb1196a230886ac882c6b1f3ea5af"
+        },
+        {
+          "name": "closeup",
+          "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.closeup.glb",
+          "hash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05"
+        }
+      ],
+      "generatorBeforeHash": "sha256:a021f0f0035571c41a1126a7622a39c63029f728e36658ecb3914b062f496a8d",
+      "generatorAfterHash": "sha256:f9118f2ccf160cd924756085576a61cc90c632ef5760864598e073bcbcfc179f",
+      "command": "node packages/worldgen/scripts/generate-additional-landmarks.mjs --ids=N0140,N0141,N0144 --check",
+      "change": "Only two spec metadata fields gained an opt-in reusableMapRules branch. These three geographic studies do not opt in. Selected --check reproduced source GLBs and every generated text document exactly. All18 approved source/runtime/LOD bytes and existing inspected image hashes are unchanged. The exact prior combined input was reconstructed before carrying acceptance; no new visual review is claimed."
+    }
+  ]
 }

@@ -1,0 +1,576 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0554_temple_of_vesta",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:fa8bf84c8a0fefb80dec212d4badf750d38432ccfad396d6abc6f168797e486f",
+  "sourceHash": "sha256:cb537c0ee602da672b567313615b60572a615078ad01d467876b227abbb65edf",
+  "runtimeHash": "sha256:6a93453fcba2c313793ee30058483070e3f6bc3914794ef585ae3316301e2ab9",
+  "captureReportHash": "sha256:dc9b6def5dc99e0c9d2fa38c205f84c377d498e322ccf6aa7aefc89d4b351882",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/open-southwest-doorway-bare-cella-and-surviving-arc.png",
+      "shots/fluted-columns-floral-capitals-frieze-and-coffers.png",
+      "shots/roofless-cella-window-partial-annular-roof-and-missing-arc.png"
+    ],
+    "notes": "Inspected 48 current source, shared-material, medium-fi, native and failed-load views in this construction round. Standing Tivoli temple: roofless hollow cella, real southwest doorway and southeast window, blocked eastern relieving arch, ten fluted columns, partial curved entablature and recessed annular coffers. Original simplified floral capitals and horned/swag/rosette frieze; restraint rods and circular occupied podium. Construction views caught a lintel partly buried in the curved wall; moved the complete pale frame forward. Added quiet reticulate masonry patches and calibrated their contrast. No absent column ring or complete conical roof restored."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/open-southwest-doorway-bare-cella-and-surviving-arc.png",
+      "shots/shared/fluted-columns-floral-capitals-frieze-and-coffers.png",
+      "shots/shared/roofless-cella-window-partial-annular-roof-and-missing-arc.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Five existing 256-square graphs: stone_ashlar, stone_limestone_raw, stone_travertine, brick_longformat and metal_painted. Seven roles merge into at most five runtime draws; wall/rubble and stone/column share their respective graphs. Each graph read once, metric UVs/linear tints, zero embedded images. Master 35,234 triangles/4,231,512 bytes. Levels 995/2858/14876/35234 triangles, initial 346140 bytes. Separate GPU streams and equal CPU/GPU accounting; eviction releases geometry. Reticulate patches use the existing raw-limestone surface with close stone tints, without a bespoke texture.",
+    "captureReportHash": "sha256:d25b79e2d2405af394052f30df371066013733fd9faaba91611b1019c2e9186f"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/open-southwest-doorway-bare-cella-and-surviving-arc.png",
+      "medium-fi/fluted-columns-floral-capitals-frieze-and-coffers.png",
+      "medium-fi/roofless-cella-window-partial-annular-roof-and-missing-arc.png",
+      "medium-fi/tivoli-vesta-skyline.png",
+      "medium-fi/tivoli-vesta-district.png",
+      "medium-fi/tivoli-vesta-street.png",
+      "medium-fi/tivoli-vesta-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected current noon/late/economy/high context, silhouette, all four levels/transitions and three detail views. Skyline preserves ten supports, open door/window, hollow roofless cella, missing western arc and partial entablature; district restores molded column forms, street adds flutes/leafy capitals/coffers and quiet masonry, close-up increases capital/ornament density. Coarse wall colors blend the two stone tints to limit a color jump. Native/source/medium-fi terrain views establish contact; the flat shared stage exposes the below-grade footing. Synthetic surrounding procedural buildings are comparison context, not authored neighbors.",
+    "captureReportHash": "sha256:9d7dddfb66d0ea6f5729bfc0111e0bb983abdbac25579d37f00f641c4756a7f7"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:bc912b3595a78155ca425d610ac018568e7fd302fb3063ef51a2636ade449dd0",
+    "mapFrameHash": "sha256:fb9b50c28bcdf7da3deb2e448ffbea11fcb374259c5fb53469f1309f24ef2093",
+    "notes": "Exact-QID OSM way/432883964 and named PMTiles cella35184804972796 identifyQ1219688. The approximately9.1m map footprint is the cella; picture-led column/podium radii6.25/7.25m extend outside it. Anchor12.800822243,41.966639022, heading0, native center[.0135748544,-.0109101368]. Southwest door/southeast window and eastern-southern surviving arc are approximate from pictures and independent Sibyl-north/restaurant-west context; retain30degree facing uncertainty. Only matching cella shell replaced with2cm numeric tolerance, zero residual. All292 independent resident inputs (including Temple of the Sibyl35184580229500), paths/original6m cliff ground and65713.10864765145m2 native water retained. Loaded292/failure293 original records; unload restores surfaces/frees geometry. No surrounding acropolis slab, ground/water cutout or flattening."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi standing-state approximation from the three retained ordinary2014/2017 pictures and standard PMTiles/Mapzen, continued from the saved brief without restarting research. Detailed carving, wall damage, column arc/window/door inventory and heights remain picture-led estimates; original simplified motifs are not traced sculpture or copied inscriptions. Neighboring Sibyl temple, restaurant furniture, retaining structures and landscaping remain independent host context. Floor4.1542317132m above coarse anchor datum is at least.2m above the occupied envelope and.6m above its southwest approach. Ground-following buried footing bottoms produce varying exposed podium depth because DEM blurs the cliff; this is a visualization fit, not a measured ancient foundation section. Flat stage exposes those feet. Physical-device/dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/sr3/n0554_temple_of_vesta/models/source.glb\",\"hash\":\"sha256:cb537c0ee602da672b567313615b60572a615078ad01d467876b227abbb65edf\",\"bytes\":4231512,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sr/sr3/n0554_temple_of_vesta/model.glb\",\"hash\":\"sha256:6a93453fcba2c313793ee30058483070e3f6bc3914794ef585ae3316301e2ab9\",\"bytes\":4231012,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/sr3/n0554_temple_of_vesta/model.skyline.glb\",\"hash\":\"sha256:46fbac2a9fcb88ae56dc4c136d682ab6deea6ce3b966daf0bec19970e16c5cb8\",\"bytes\":102448,\"errors\":0,\"warnings\":0,\"triangles\":995,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/sr3/n0554_temple_of_vesta/model.district.glb\",\"hash\":\"sha256:5f233bb203f94a08dedf96d762252989103c3197a12715c537b24f9acb147e94\",\"bytes\":243692,\"errors\":0,\"warnings\":0,\"triangles\":2858,\"draws\":4}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/sr3/n0554_temple_of_vesta/model.street.glb\",\"hash\":\"sha256:4dbe8296ebbd2ec9735bbbcd29108451e468c5eac7df6437e41044cc5f25525c\",\"bytes\":1458060,\"errors\":0,\"warnings\":0,\"triangles\":14876,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/sr3/n0554_temple_of_vesta/model.closeup.glb\",\"hash\":\"sha256:baeda10cc19cbc7eb41498753243d631d7fd3d0ee6b7cfb6504afc10eea7ea33\",\"bytes\":3675632,\"errors\":0,\"warnings\":0,\"triangles\":35234,\"draws\":5}"
+      },
+      {
+        "check": "roofless-cella-real-door-window-ten-surviving-columns-absent-western-arc-recessed-coffers-and-buried-podium",
+        "passed": true,
+        "notes": "203 actual mesh probes across source/runtime/four levels verify the roofless cella, actual southwest doorway/southeast window, blocked eastern arch, ten surviving supports, absent western column/roof arc, partial entablature, recessed near-level coffers, approach treads, buried occupied podium and open surrounding ground."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Five reused graphs, zero embedded images, separate GPU streams and all triangle/draw/download caps pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:cb537c0ee602da672b567313615b60572a615078ad01d467876b227abbb65edf"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:6a93453fcba2c313793ee30058483070e3f6bc3914794ef585ae3316301e2ab9"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:46fbac2a9fcb88ae56dc4c136d682ab6deea6ce3b966daf0bec19970e16c5cb8"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:5f233bb203f94a08dedf96d762252989103c3197a12715c537b24f9acb147e94"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:4dbe8296ebbd2ec9735bbbcd29108451e468c5eac7df6437e41044cc5f25525c"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:baeda10cc19cbc7eb41498753243d631d7fd3d0ee6b7cfb6504afc10eea7ea33"
+      }
+    ],
+    "reports": [
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 293,
+          "independentBuildings": 292,
+          "remainingBuildings": 292,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_travertine": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0554_temple_of_vesta"
+          ],
+          "rawTerrainRange": {
+            "min": -125.73386279992722,
+            "max": 133.98363720007276
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 65713.10864765145,
+          "remainingWaterArea": 65713.10864765145,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:ba6fb312d4b7a0faf946dbf067f64694f6712faafd96378e144b87459060129f",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 264683
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                25,
+                22.154231713206975,
+                28
+              ],
+              "lookAt": [
+                0,
+                7.754231713206973,
+                0
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-southwest-doorway-bare-cella-and-surviving-arc.png",
+            "hash": "sha256:81ae05ab49d69900c0915ac03062c00e0b61809b47400455af6ee231c14e3af8",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 264683
+            },
+            "camera": {
+              "name": "open-southwest-doorway-bare-cella-and-surviving-arc",
+              "position": [
+                -17,
+                10.154231713206974,
+                20
+              ],
+              "lookAt": [
+                0,
+                7.154231713206974,
+                0
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-fluted-columns-floral-capitals-frieze-and-coffers.png",
+            "hash": "sha256:7d413f9f0b33e738f84a10af8aa13c5164f2d9ae880cf7eeee914d88f7a3784c",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 264683
+            },
+            "camera": {
+              "name": "fluted-columns-floral-capitals-frieze-and-coffers",
+              "position": [
+                14,
+                8.154231713206974,
+                5
+              ],
+              "lookAt": [
+                5,
+                10.654231713206974,
+                1
+              ],
+              "fov": 49
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-roofless-cella-window-partial-annular-roof-and-missing-arc.png",
+            "hash": "sha256:ff2aca8d45b2a925ae80e03751d1bf15dceb055d2f466d71cf0cc7cf3440d311",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 264683
+            },
+            "camera": {
+              "name": "roofless-cella-window-partial-annular-roof-and-missing-arc",
+              "position": [
+                -15,
+                20.154231713206975,
+                -19
+              ],
+              "lookAt": [
+                0,
+                8.154231713206974,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 293,
+          "independentBuildings": 292,
+          "remainingBuildings": 292,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_travertine": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0554_temple_of_vesta"
+          ],
+          "rawTerrainRange": {
+            "min": -125.73386279992722,
+            "max": 133.98363720007276
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 65713.10864765145,
+          "remainingWaterArea": 65713.10864765145,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:1aa36f23d990e4f20029650a819f8800ee87c09ddcfd6634fa7977be5ea9be65",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 244325
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                25,
+                22.154231713206975,
+                28
+              ],
+              "lookAt": [
+                0,
+                7.754231713206973,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 293,
+          "independentBuildings": 292,
+          "remainingBuildings": 292,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.stone_travertine": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0554_temple_of_vesta"
+          ],
+          "rawTerrainRange": {
+            "min": -125.73386279992722,
+            "max": 133.98363720007276
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 65713.10864765145,
+          "remainingWaterArea": 65713.10864765145,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:a629d412f3da14a4b05c532848ac8db19700986cff2b09ddc75c50edcbd1d712",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 232307
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                25,
+                22.154231713206975,
+                28
+              ],
+              "lookAt": [
+                0,
+                7.754231713206973,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 293,
+          "independentBuildings": 292,
+          "remainingBuildings": 292,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0554_temple_of_vesta"
+          ],
+          "rawTerrainRange": {
+            "min": -125.73386279992722,
+            "max": 133.98363720007276
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 65713.10864765145,
+          "remainingWaterArea": 65713.10864765145,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:e0c04d591639054e717b55e62b8a2a04cfb47c42a07074ddc889b693851ae233",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 230444
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                25,
+                22.154231713206975,
+                28
+              ],
+              "lookAt": [
+                0,
+                7.754231713206973,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 293,
+          "independentBuildings": 292,
+          "remainingBuildings": 293,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184804972796,
+              "area": 64.88593177288067
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0554_temple_of_vesta"
+          ],
+          "rawTerrainRange": {
+            "min": -125.73386279992722,
+            "max": 133.98363720007276
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 65713.10864765145,
+          "remainingWaterArea": 65713.10864765145,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:308162c481ede5acc31d31879e4c749f4af0848c7b3e7e394d4130f3bf3735a4",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 9,
+              "triangles": 229467
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                25,
+                22.154231713206975,
+                28
+              ],
+              "lookAt": [
+                0,
+                7.754231713206973,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Standing Temple of Vesta at Tivoli: roofless hollow dark-rubble cella with original simplified reticulate masonry patches with real southwest doorway and southeast window, blocked eastern relieving arch, ten surviving pale fluted Corinthian columns on the eastern/southern arc, partial curved entablature/annular coffered soffit and circular occupied podium with short southwest approach. Original simplified Tivoli-style floral capitals and horned skull/swag/rosette frieze; small restraint rods. Neighboring Temple of the Sibyl, restaurant furniture, cliff-retaining structures and landscaping remain separate host context. No restored absent columns, complete conical roof, copied inscription/sculpture or photo atlas.",
+    "Exact OSM way/432883964 carriesQ1219688 and agrees with named PMTiles cella building/POI35184804972796. Its approximately9.1m circular footprint identifies the cella, not the whole peristyle. Native anchor12.800822243,41.966639022, heading0/east-south axes; mapped cella center[0.013574854432735428,-0.01091013677570185]. Separate Temple of the Sibyl35184580229500 lies about15m north and remains untouched. Picture-led column ring radius6.25m/podium7.25m, ten surviving columns at approximately-80 through100degrees, doorway southwest and window southeast. Restaurant west/Sibyl north and ordinary pictures support approximate facing, with about30degree uncertainty; doorway/window/arc locations are not separately surveyed map controls.",
+    "Ordinary-picture/map estimates: cella radius4.6m/wall0.65m, column ring6.25m, podium radius7.25m, columns6.8m above level occupied floor, partial entablature to7.9m and irregular roofless cella top about7.1m. Door2.2x3.8m, southeast window1.1x1.9m with raised sill, blocked relieving arch3.5m wide. Ten columns, incomplete eastern/southern arc and original simplified relief/coffers; fine inventory, sculptural form, heights and absolute threshold levels remain estimates.",
+    "Retain pinned standard6m Mapzen cliff terrain, paths/water and all independent buildings. Level occupied podium floor is at least0.2m above its sampled7.25m envelope and0.6m above the coarse southwest approach; narrow perimeter footing bottoms follow retained ground and southwest steps descend to sampled approach. No surrounding acropolis slab, native ground/water cutout or terrain flattening. Coarse DEM blurs the cliff edge and cannot resolve archaeological paving/thresholds; exposed podium depths are visualization fit, not a measured ancient foundation section. Only matching cella shell is replaced; neighboring Sibyl/restaurant remain independent.",
+    "Three retained ordinary pictures establish the standing shell/columns/capital-frieze vocabulary; later changes, hidden stonework and exact inventory/facing remain approximate. Neighboring Sibyl temple, restaurant furniture and cliff-retaining structures remain independent context. No restored complete roof, absent column ring, copied inscription/sculpture or photographic atlas."
+  ]
+}

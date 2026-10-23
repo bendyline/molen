@@ -1,0 +1,793 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.86,
+      "metallic": 0.04
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.86,
+      "metallic": 0.04
+    },
+    "orange": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.86,
+      "metallic": 0.04
+    },
+    "green": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.86,
+      "metallic": 0.04
+    },
+    "seat": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.86,
+      "metallic": 0.04
+    },
+    "seatPale": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.86,
+      "metallic": 0.04
+    },
+    "service": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.86,
+      "metallic": 0.04
+    },
+    "entry": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.86,
+      "metallic": 0.04
+    },
+    "mark": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.86,
+      "metallic": 0.04
+    },
+    "screen": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.86,
+      "metallic": 0.04
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.3,
+      "metallic": 0.1
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "fabric_canvas",
+      "roughness": 0.86,
+      "metallic": 0.04
+    },
+    "roofPale": {
+      "slot": "roof",
+      "graph": "fabric_canvas",
+      "roughness": 0.86,
+      "metallic": 0.04
+    },
+    "turf": {
+      "slot": "wall",
+      "graph": "fabric_canvas",
+      "roughness": 0.98,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      -359.8096358914639,
+      235,
+      225.24880891949715
+    ],
+    "lookAt": [
+      0,
+      22,
+      0
+    ],
+    "fov": 43
+  },
+  "qaCameras": [
+    {
+      "name": "orange-lattice-giraffe-masts-stays-and-access-cores",
+      "position": [
+        -74.94793459753771,
+        30,
+        -185.4260151639009
+      ],
+      "lookAt": [
+        -26.26957081167737,
+        27,
+        -95.94743169762424
+      ],
+      "fov": 77
+    },
+    {
+      "name": "three-zebra-tiers-vent-gap-and-canopy-underside",
+      "position": [
+        3.8472946065232785,
+        11,
+        -14.498217966723251
+      ],
+      "lookAt": [
+        -62.8067143378645,
+        29,
+        -1.1474467664714147
+      ],
+      "fov": 90
+    },
+    {
+      "name": "green-corner-ramp-closed-guards-and-ground-contacts",
+      "position": [
+        149.90133363514886,
+        14,
+        -100.9286390198728
+      ],
+      "lookAt": [
+        91.64926865100507,
+        10,
+        -64.6561022312349
+      ],
+      "fov": 78
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -359.8096358914639,
+        235,
+        225.24880891949715
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 43,
+      "name": "mbombela-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -359.8096358914639,
+        235,
+        225.24880891949715
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 43,
+      "name": "mbombela-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -359.8096358914639,
+        235,
+        225.24880891949715
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 43,
+      "name": "mbombela-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -359.8096358914639,
+        235,
+        225.24880891949715
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 43,
+      "name": "mbombela-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 3.5,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/mbombela-model.mjs",
+    "export": "buildMbombelaSkyline",
+    "errorMeters": 12,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMbombelaDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "orange": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "seat": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "seatPale": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "service": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "entry": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "mark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "screen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "roofPale": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "turf": {
+            "slot": "wall",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildMbombelaStreet",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "orange": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "seat": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "seatPale": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "service": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "entry": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "mark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "screen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "roofPale": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "turf": {
+            "slot": "wall",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMbombelaCloseup",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "orange": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "seat": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "seatPale": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "service": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "entry": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "mark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "screen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "roofPale": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.86,
+            "metallic": 0.04
+          },
+          "turf": {
+            "slot": "wall",
+            "graph": "fabric_canvas",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      30.929697453975677,
+      -25.461735381949467
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original standard6m Mapzen samples/native roads/water/practice-pitch and independent building inputs remain unchanged. Original anchor datum defines modelY0 and working field, with individually sampled mast/core/ramp/column support contacts. Occupied retaining floor and bounded opening within90percent body/common supported floor address coarse ground without original-sample/outside/water edits or whole parking/plaza platform. Both owned overlapping stadium records are replaced; every independent footprint is outside mask. Ramp/mast/upper-head allocations extend only locally into pictured stadium apron; independent practice pitches/site buildings stay separate. Failure/unload retain or restore original ground/native context.",
+    "replaceFootprint": false,
+    "bounds": [
+      30.92770754911647,
+      -25.46353201251771,
+      30.931687358834886,
+      -25.459938751381223
+    ],
+    "terrainReference": {
+      "anchor": [
+        30.929697453975677,
+        -25.461735381949467
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard6m Mapzen samples/native roads/water/practice-pitch and independent building inputs remain unchanged. Original anchor datum defines modelY0 and working field, with individually sampled mast/core/ramp/column support contacts. Occupied retaining floor and bounded opening within90percent body/common supported floor address coarse ground without original-sample/outside/water edits or whole parking/plaza platform. Both owned overlapping stadium records are replaced; every independent footprint is outside mask. Ramp/mast/upper-head allocations extend only locally into pictured stadium apron; independent practice pitches/site buildings stay separate. Failure/unload retain or restore original ground/native context."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -92.196919,
+          32.632917
+        ],
+        [
+          -63.567349,
+          -74.849469
+        ],
+        [
+          -39.547626,
+          -96.685737
+        ],
+        [
+          -11.403303,
+          -105.66288
+        ],
+        [
+          61.868985,
+          -86.495473
+        ],
+        [
+          82.977227,
+          -61.262478
+        ],
+        [
+          90.741178,
+          -33.845918
+        ],
+        [
+          61.626361,
+          75.091834
+        ],
+        [
+          53.71153844742311,
+          84.93181388878882
+        ],
+        [
+          40.364484458824165,
+          98.15090843601689
+        ],
+        [
+          12.131174,
+          104.449056
+        ],
+        [
+          -61.141115,
+          85.039331
+        ],
+        [
+          -81.278863,
+          65.629574
+        ]
+      ],
+      "additionalOutlines": [],
+      "basis": "Original standard6m Mapzen samples/native roads/water/practice-pitch and independent building inputs remain unchanged. Original anchor datum defines modelY0 and working field, with individually sampled mast/core/ramp/column support contacts. Occupied retaining floor and bounded opening within90percent body/common supported floor address coarse ground without original-sample/outside/water edits or whole parking/plaza platform. Both owned overlapping stadium records are replaced; every independent footprint is outside mask. Ramp/mast/upper-head allocations extend only locally into pictured stadium apron; independent practice pitches/site buildings stay separate. Failure/unload retain or restore original ground/native context."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          0.2597633920428686,
+          -114.08387573655878
+        ],
+        [
+          68.79331660957074,
+          -96.15608152237421
+        ],
+        [
+          92.2469187469537,
+          -68.11941979951227
+        ],
+        [
+          100.8735310273704,
+          -37.656575023218004
+        ],
+        [
+          100.8735310273704,
+          -37.55657502321801
+        ],
+        [
+          68.52373497580771,
+          83.48537147061208
+        ],
+        [
+          48.57469407734405,
+          108.28670433059742
+        ],
+        [
+          13.529081688151125,
+          116.10450625680554
+        ],
+        [
+          13.429081688151124,
+          116.10450625680554
+        ],
+        [
+          0.2597633920428686,
+          112.61597253560056
+        ],
+        [
+          0.2597633920428686,
+          61.832471707471925
+        ],
+        [
+          15.607982930138224,
+          65.84234951135848
+        ],
+        [
+          21.786112334804823,
+          60.20147531473857
+        ],
+        [
+          48.45902333629108,
+          -41.101629444938055
+        ],
+        [
+          45.239714472187785,
+          -49.41820546044709
+        ],
+        [
+          0.2597633920428686,
+          -61.46645841196078
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            0.2597633920428686,
+            -114.08387573655878
+          ],
+          [
+            68.79331660957074,
+            -96.15608152237421
+          ],
+          [
+            92.2469187469537,
+            -68.11941979951227
+          ],
+          [
+            100.8735310273704,
+            -37.656575023218004
+          ],
+          [
+            100.8735310273704,
+            -37.55657502321801
+          ],
+          [
+            68.52373497580771,
+            83.48537147061208
+          ],
+          [
+            48.57469407734405,
+            108.28670433059742
+          ],
+          [
+            13.529081688151125,
+            116.10450625680554
+          ],
+          [
+            13.429081688151124,
+            116.10450625680554
+          ],
+          [
+            0.2597633920428686,
+            112.61597253560056
+          ],
+          [
+            0.2597633920428686,
+            61.832471707471925
+          ],
+          [
+            15.607982930138224,
+            65.84234951135848
+          ],
+          [
+            21.786112334804823,
+            60.20147531473857
+          ],
+          [
+            48.45902333629108,
+            -41.101629444938055
+          ],
+          [
+            45.239714472187785,
+            -49.41820546044709
+          ],
+          [
+            0.2597633920428686,
+            -61.46645841196078
+          ]
+        ],
+        [
+          [
+            -102.49102082994854,
+            36.20879634412783
+          ],
+          [
+            -70.6803880459119,
+            -83.21607651464886
+          ],
+          [
+            -43.99180630337266,
+            -107.47859616008179
+          ],
+          [
+            -12.720336786862058,
+            -117.45320031736036
+          ],
+          [
+            -12.620336786862056,
+            -117.45320031736036
+          ],
+          [
+            0.2797633920428686,
+            -114.07864390678417
+          ],
+          [
+            0.2797633920428686,
+            -61.46110124608479
+          ],
+          [
+            -15.071056933779134,
+            -65.57294578698253
+          ],
+          [
+            -21.246949067278777,
+            -60.47109782509251
+          ],
+          [
+            -47.919496552205345,
+            41.10019194463124
+          ],
+          [
+            -44.16138793713569,
+            50.2269960172237
+          ],
+          [
+            0.2797633920428686,
+            61.83769691003556
+          ],
+          [
+            0.2797633920428686,
+            112.62127050720815
+          ],
+          [
+            -67.98457170828166,
+            94.53814504858107
+          ],
+          [
+            -90.35984731061254,
+            72.97174911666144
+          ],
+          [
+            -102.49102082994854,
+            36.30879634412783
+          ]
+        ]
+      ],
+      "basis": "Only owned stadium parents52776558590422/52776560443840; every independent footprint is outside the mask."
+    },
+    "notes": "RetainedQ187087/earlier mappedway52908226 reference and named native stadium POI35184424997058 establish Mbombela at the matching overlapping parents52776558590422/52776560443840. Extracted map has no exact-QID field. Both own parents share12-point approximately219x178m clipped rectangular outer; smaller8-point hole controls stand reference/larger4-point hole controls canopy aperture. Separate own pitch35184545102673 supplies99.868619x57.739589m mapped axis. Own anchor[30.929697453975677,-25.461735381949467]/heading0/native east-south; internal X[0.2564863071015519,-0.9665478644482167]/Z[0.9665478644482167,0.2564863071015519] preserves this axis. Working118x80m rounded lower-bowl opening fits a neutral105x68m field distinct from the smaller mapped playing rectangle; native source coordinates retained. Masts/cores/ramps allocated from ordinary photos on that own frame, fine20degree/2m facing and component layout remain approximate. Original standard6m Mapzen samples/native roads/water/practice-pitch and independent building inputs remain unchanged. Original anchor datum defines modelY0 and working field, with individually sampled mast/core/ramp/column support contacts. Occupied retaining floor and bounded opening within90percent body/common supported floor address coarse ground without original-sample/outside/water edits or whole parking/plaza platform. Both owned overlapping stadium records are replaced; every independent footprint is outside mask. Ramp/mast/upper-head allocations extend only locally into pictured stadium apron; independent practice pitches/site buildings stay separate. Failure/unload retain or restore original ground/native context."
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.chrysler_pt_cruiser_2006": {
+      "doc": "2006 Chrysler PT Cruiser, Touring five-door. Polygonal reference interpretation; rounded proportions, simplified trim and gameplay handling.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.chrysler_pt_cruiser_2006",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.chrysler_pt_cruiser_2006",
+          "color": "#674d75",
+          "spec": {
+            "label": "2006 Chrysler PT Cruiser",
+            "bodyStyle": "hatchback",
+            "genericLabel": "Compact hatchback",
+            "width": 1.995,
+            "length": 4.29,
+            "height": 1.601,
+            "centerOfMass": [
+              0,
+              0.51232,
+              0
+            ],
+            "wheelbase": 2.616,
+            "wheelTrack": 1.4663,
+            "wheelRadius": 0.32,
+            "mass": 1650,
+            "engineForce": 6270,
+            "maxSpeed": 50,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [
+              0.3922,
+              1.331,
+              -0.0542
+            ],
+            "drive": "front",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.16,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.3922,
+                1.331,
+                -0.0542
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.3025,
+              0,
+              -0.0542
+            ]
+          ],
+          "exits": [
+            [
+              1.4025,
+              0,
+              -0.0542
+            ],
+            [
+              -1.4025,
+              0,
+              -0.0542
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.chrysler_pt_cruiser_2006"
+      ]
+    }
+  }
+}

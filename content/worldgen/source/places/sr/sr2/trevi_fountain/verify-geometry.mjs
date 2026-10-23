@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { createRequire } from 'node:module';
+import { pathToFileURL } from 'node:url';
 import { MeshBufferBuilder } from '../../../../../../../packages/worldgen/dist/kernel.mjs';
 import { validateAuthoredMesh } from '../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { hashBytes } from '../../../../../../../packages/worldgen/scripts/structure-model-files.mjs';
@@ -16,7 +17,9 @@ const root = new URL('../../../../../../../', import.meta.url),
   opening = read('ground-opening.json'),
   req = createRequire(new URL('packages/worldgen/package.json', root)),
   T = req('three');
-const { GLTFLoader } = await import(req.resolve('three/addons/loaders/GLTFLoader.js'));
+const { GLTFLoader } = await import(
+  pathToFileURL(req.resolve('three/addons/loaders/GLTFLoader.js')).href
+);
 assert.equal(
   hashBytes(fs.readFileSync(new URL('terrain-grid.json', dir))),
   'sha256:5ad5261fa89cd7127ed48a3250cd348c0c24d2a92213d3c2035fb12ae14804bb',
@@ -45,7 +48,8 @@ for (let d = 0; d < 4; d++) {
   treviFountain(source, undefined, d);
   const m = source.finalize();
   validateAuthoredMesh(m, `Trevi source ${d}`);
-  assert(m.triangleCount <= [1000, 4000, 16000, 64000][d]);
+  // The detailed source master is retained; the generated close-up file has the runtime cap.
+  if (d < 3) assert(m.triangleCount <= [1000, 4000, 16000, 64000][d]);
   const level = side.runtimeLods.levels[d],
     bytes = fs.readFileSync(new URL(level.file, runtime));
   assert.equal(hashBytes(bytes), level.hash);
@@ -92,6 +96,7 @@ for (let d = 0; d < 4; d++) {
     }
   });
   assert.equal(count, level.triangles);
+  assert(count <= [1000, 4000, 16000, 64000][d]);
   const covered = ([x, z]) =>
     (buckets.get(`${Math.floor(x / 4)},${Math.floor(z / 4)}`) ?? []).some(({ q, den }) => {
       const a = ((q[1][2] - q[2][2]) * (x - q[2][0]) + (q[2][0] - q[1][0]) * (z - q[2][2])) / den,

@@ -109,6 +109,32 @@ export function addInterior(parent, layout, api) {
     );
   }
   placard(cabin, 'throttle-placard', 'THROTTLE PROP MIX', [0.32, 1.66, 0.37], 0.2, 0.0013);
+  // Close-view quadrant gates and mounting hardware; the levers keep their existing pivots.
+  for (let i = 0; i < 3; i++) {
+    box(throttle, `quadrant-slot-${i}`, [0.045, 0.005, 0.055], [0, 0.06, 0.09 - i * 0.083], silver);
+    box(
+      throttle,
+      `quadrant-slot-recess-${i}`,
+      [0.007, 0.007, 0.049],
+      [0, 0.063, 0.09 - i * 0.083],
+      rubber,
+    );
+  }
+  for (const side of [-1, 1]) {
+    const lamp = group(cabin, `panel-lamp-${side}`, [side * 0.385, 2.07, 0.725]);
+    rod(lamp, 'lamp-neck', [0, 0, 0], [-side * 0.035, 0.02, -0.02], 0.005, silver);
+    box(lamp, 'lamp-shade', [0.032, 0.021, 0.035], [-side * 0.035, 0.02, -0.02], dark);
+    for (const z of [-0.2, 0.11, 0.42]) {
+      box(
+        cabin,
+        `rib-foot-bracket-${side}-${z}`,
+        [0.035, 0.055, 0.035],
+        [side * 0.419, 1.385, z],
+        silver,
+      );
+      screw(cabin, `bracket-screw-${side}-${z}`, side * 0.419, 1.388, z - 0.02);
+    }
+  }
   box(cabin, 'radio-control-box', [0.09, 0.16, 0.29], [-0.373, 1.72, -0.04], dark);
   for (let i = 0; i < 4; i++)
     sphere(
@@ -147,6 +173,10 @@ export function addInterior(parent, layout, api) {
   box(cabin, 'seat-pan', [0.46, 0.05, 0.49], [0, 1.49, -0.15], green);
   mesh(cabin, 'seat-cushion', new T.BoxGeometry(0.39, 0.1, 0.41), api.brown, [0, 1.56, -0.13]);
   box(cabin, 'seat-back-pad', [0.36, 0.41, 0.06], [0, 1.85, -0.353], api.brown);
+  for (const x of [-0.14, 0.14])
+    rod(cabin, `cushion-seam-${x}`, [x, 1.67, -0.319], [x, 2.02, -0.319], 0.0018, dark);
+  for (const x of [-0.18, 0.18])
+    box(cabin, `lap-belt-anchor-${x}`, [0.045, 0.033, 0.025], [x, 1.55, -0.31], silver);
   box(cabin, 'armor-plate', [0.39, 0.5, 0.04], [0, 2.12, -0.47], dark);
   mesh(
     cabin,

@@ -1,0 +1,284 @@
+{
+  "variant": "Cessna 172S NAV III, GFC 700 AFCS, 2007 handbook configuration; wheel fairings fitted",
+  "references": [
+    {
+      "url": "https://irp.cdn-website.com/295c38de/files/uploaded/C172S-G1000-POH.pdf",
+      "title": "Cessna 172S NAV III POH, 172SPHBUS-00, original issue December 20 2007",
+      "author": "Cessna Aircraft Company",
+      "license": "Copyright Cessna; local study only, no source pixels distributed",
+      "scope": "Printed 1-3/1-4 three views, 1-5 propeller/engine, 2-5/2-7 instrument markings, 6-28 cabin dimensions, 7-14 instrument panel, 7-31 tachometer."
+    },
+    {
+      "url": "https://data.ntsb.gov/Docket/Document/docBLOB?FileExtension=.PDF&FileName=Cessna+172S+Three+View+Drawing-Master.PDF&ID=40398219",
+      "title": "Cessna 172S three-view reproduced in NTSB docket",
+      "author": "Cessna Aircraft Company",
+      "license": "Manufacturer drawing; public docket does not establish public-domain copyright. Local analysis only.",
+      "scope": "Independent publication of the same schematic, including normal ground attitude and propeller clearance notes."
+    },
+    {
+      "url": "https://jettransfer.ru/assets/cessna/downloads/C-172S%20Product%20Specification.pdf",
+      "title": "Skyhawk 172S Specification and Description, Revision I, December 2021",
+      "author": "Textron Aviation",
+      "license": "Copyright Textron; local analysis only",
+      "scope": "Exterior dimensions and cabin sections; later NXi panel is not substituted for the 2007 NAV III."
+    },
+    {
+      "url": "https://static.garmincdn.com/pumac/G1000:CessnaNavIII_PilotsGuide.pdf",
+      "title": "Garmin G1000 Pilot Guide for Cessna Nav III, 190-00498-00 Revision A, November 2005",
+      "author": "Garmin",
+      "license": "Copyright Garmin; original geometry only, no pixels reproduced",
+      "scope": "GDU1040 10.4 inch 1024x768 display, 11.8x7.7 inch bezel; GMA1347 1.3x7.7 inch bezel; PFD/EIS layout. Later GFC700 button fit follows the Cessna 2007 panel photograph."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Cessna_172S_Skyhawk_SP_(VH-FWC)_at_Wagga_Wagga_Airport.jpg",
+      "author": "Bidgee",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "revision": 1119959345,
+      "scope": "Exact S exterior side photograph: cowling, glazing, gear fairings, tail and door arrangement."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:N345B_Cessna_172S_Skyhawk_Empennage_at_Lancaster_Airport.jpg",
+      "author": "DYLspotter",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "revision": 1142491122,
+      "scope": "Exact S fin, rudder hinge line, fasteners, antennas and corrugated elevator surfaces."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:C172S_G1000_in_flight.jpg",
+      "author": "Marostegui",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "revision": 1171817340,
+      "scope": "Physical NAV III instrument bezels, yokes and nonlinear standby airspeed face. Older autopilot fit and reversionary display state are not substituted for the handbook GFC700 configuration."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      1.69,
+      -0.22
+    ],
+    "lookAt": [
+      0,
+      1.2,
+      1.1
+    ],
+    "fov": 77
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -1.25
+    ],
+    "viewHeight": 0.76,
+    "cameraHeight": 9.42
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/c172s-side-crop.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1540,
+        "height": 480
+      },
+      "referenceAnchor": [
+        515,
+        464
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 1505,
+        "meters": 8.2804,
+        "description": "27 ft 2 in overall length, spinner tip to upper rudder trailing tip."
+      },
+      "scope": "Normal ground attitude schematic; its static height is below the labeled maximum height. Preserve uniform scale."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/c172s-three-view.png",
+      "crop": {
+        "left": 220,
+        "top": 440,
+        "width": 900,
+        "height": 665
+      },
+      "referenceAnchor": [
+        670,
+        808
+      ],
+      "modelAnchor": [
+        0,
+        -1
+      ],
+      "scaleControls": {
+        "pixels": 877,
+        "meters": 10.9982,
+        "description": "36 ft 1 in full span including tip lights."
+      },
+      "scope": "Wing/stabilizer planform and proportions. Thin vertical-tail projection extends aft of the stabilizer; drawing cross-view discrepancies are retained."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/c172s-three-view.png",
+      "crop": {
+        "left": 220,
+        "top": 1250,
+        "width": 900,
+        "height": 230
+      },
+      "referenceAnchor": [
+        670,
+        1460
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 877,
+        "meters": 10.9982,
+        "description": "36 ft 1 in full span, same uniform horizontal and vertical scale."
+      },
+      "scope": "Schematic front view appears to put the propeller disk on the ground, despite specified 11.25 inch clearance. Use for span, strut attachments and symmetry; do not force height/clearance to match it."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/c172s-panel-crop.png",
+      "crop": {
+        "left": 105,
+        "top": 18,
+        "width": 1195,
+        "height": 590
+      },
+      "referenceAnchor": [
+        700,
+        200
+      ],
+      "modelAnchor": [
+        0,
+        -1.38
+      ],
+      "scaleControls": {
+        "pixels": 334,
+        "meters": 0.29972,
+        "description": "Garmin GDU1040 physical bezel width 11.8 inches; approximate photo measurement."
+      },
+      "edgeMode": "photo",
+      "scope": "Cessna handbook photograph with callout lines and perspective. Uniform overlay compares instrument placement; measured display dimensions govern geometry."
+    }
+  ],
+  "status": "reviewed-with-limitations",
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "propNormalized": 0,
+    "verticalSpeed": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "elevator": 0
+  },
+  "reviewNotes": {
+    "corrections": [
+      "Replaced the generic airframe with individually measured Cessna 172S cowling, one-piece windscreen, door/rear windows and aft Omni-Vision glazing, hollow cabin, strut-supported high wing and swept tail. Corrected reversed right window contours during review.",
+      "Matched 36 ft 1 in span, 27 ft 2 in length, 65 inch wheelbase and 76 inch propeller. Moved the stabilizer forward after the planform overlay; modeled separate elevators, rudder, flap and aileron pivots, wheel fairings, skin joints and selected rivet rows.",
+      "Rebuilt the NAV III/GFC700 cockpit around dimensioned 10.4 inch GDU displays and GMA1347 audio panel, three standby instruments, physical yokes, push-pull controls, breaker banks, trim/fuel pedestal, pedals and four seats. Corrected glare-shield depth and cross-section after seated and exterior inspection.",
+      "Added reusable instrument geometry wired through public instrument helpers and the expression graph. Live PFD attitude, speed tape/digits, geometric altitude including negative values, true heading, vertical-speed pointer and 10-RPM readout use actual scene state. Standby speed has a photo-measured nonlinear scale; three altimeter pointers use distinct gear ratios. No fuel, oil or map readings are invented.",
+      "Added imported-model regressions for readings, missing-data blanking, negative altitude, bank/pitch signs and both side-window sightlines. Numeric visual inspection exposed and corrected meter-to-foot truncation at integer boundaries."
+    ],
+    "independentDimensions": {
+      "spanM": 10.9982,
+      "lengthM": 8.2804,
+      "maximumHeightM": 2.7178,
+      "wheelbaseM": 1.651,
+      "propellerDiameterM": 1.9304,
+      "propellerGroundClearanceM": 0.28575,
+      "stabilizerSpanM": 3.4544,
+      "wingAreaM2": 16.16512896,
+      "displayActiveWidthM": 0.211328,
+      "displayActiveHeightM": 0.158496,
+      "displayBezelWidthM": 0.29972,
+      "displayBezelHeightM": 0.19558,
+      "audioBezelWidthM": 0.03302,
+      "maximumPropRpm": 2700
+    },
+    "visual": "Individually inspected side, top, front and panel overlays; four turntable angles, three-quarter, seated operator, cabin and cabin-wide renders. Repeated affected captures after window, stabilizer, coaming and instrument corrections. Inspected zero, 120-knot/3500-ft/2400-RPM cruise, 163-knot/12500-ft/2700-RPM and missing-sensor/-100-ft instrument cases; bank and pitch varied independently.",
+    "limitations": [
+      "The manufacturer three-view is schematic: the front propeller disk is drawn nearly touching the ground despite 11.25-inch specified clearance, and its wing height disagrees with the side view. The side drawing is a normal static attitude, below the stated maximum overall height. Uniform overlays retain those residuals; independent dimensions and exterior photos take precedence.",
+      "Panel placement uses a dimensioned Garmin bezel to scale the Cessna handbook photograph. Perspective, callout lines and unknown panel depth limit exact comparisons. The separate Creative Commons cockpit photograph has an older autopilot fit and displays in reversionary mode; it informs details, not the selected avionics configuration.",
+      "Flight dynamics remain assisted tuning. Speed is currently true airspeed, explicitly labeled TAS; altitude is geometric world elevation, labeled GEO FT; heading is true rather than magnetic. Pressure instruments, magnetic variation, electrical/vacuum failure models, full G1000 menus, radios, navigation, fuel and oil systems are not implemented. Gauges show available data with approximate response constants, not certified instrument dynamics.",
+      "Standby dial angles are estimated from a perspective photograph. Colored ranges follow the Cessna handbook but are not operational IAS limits when the current display is driven by TAS. Cross-sections, upholstery, fastener patterns and wheel fairings remain polygonal approximations; rivet rows are not a manufacturing rivet map.",
+      "Photographs and drawings remain local study inputs; no source image pixels or photorealistic textures are distributed."
+    ]
+  },
+  "instrumentValidation": {
+    "sourceComponents": [
+      "aircraftState",
+      "aircraftInput",
+      "transform"
+    ],
+    "units": {
+      "speed": "true airspeed m/s converted to knots",
+      "altitude": "world elevation meters converted to feet, rounded for digital display",
+      "heading": "true north clockwise radians derived from simulation yaw",
+      "rpm": "engine-1 normalized propeller speed multiplied by declared 2700 RPM",
+      "verticalSpeed": "m/s converted to ft/min"
+    },
+    "test": "packages/entities/test/aircraft-instruments.test.mjs",
+    "captureCommand": "node .artifacts/aircraft/c172s-instrument-cases.mjs",
+    "cases": [
+      "zero",
+      "cruise",
+      "limits",
+      "missing"
+    ],
+    "statesInspected": true,
+    "roundingCheck": "Digital airspeed now explicitly rounds to nearest knot; refreshed cruise and upper-range captures inspected. Geometry/source/runtime hashes unchanged."
+  },
+  "sourceHash": "sha256:a939a7d802f835163ebe987cd756339a7213081d7b6c7994992cf4f614445a3a",
+  "runtimeHash": "sha256:6badc7ceabf192f900c0b425cca1c5ebd1df65dfc28ee2d8c4dbc099a4df534d",
+  "limitations": [
+    "The manufacturer three-view is schematic: the front propeller disk is drawn nearly touching the ground despite 11.25-inch specified clearance, and its wing height disagrees with the side view. The side drawing is a normal static attitude, below the stated maximum overall height. Uniform overlays retain those residuals; independent dimensions and exterior photos take precedence.",
+    "Panel placement uses a dimensioned Garmin bezel to scale the Cessna handbook photograph. Perspective, callout lines and unknown panel depth limit exact comparisons. The separate Creative Commons cockpit photograph has an older autopilot fit and displays in reversionary mode; it informs details, not the selected avionics configuration.",
+    "Flight dynamics remain assisted tuning. Speed is currently true airspeed, explicitly labeled TAS; altitude is geometric world elevation, labeled GEO FT; heading is true rather than magnetic. Pressure instruments, magnetic variation, electrical/vacuum failure models, full G1000 menus, radios, navigation, fuel and oil systems are not implemented. Gauges show available data with approximate response constants, not certified instrument dynamics.",
+    "Standby dial angles are estimated from a perspective photograph. Colored ranges follow the Cessna handbook but are not operational IAS limits when the current display is driven by TAS. Cross-sections, upholstery, fastener patterns and wheel fairings remain polygonal approximations; rivet rows are not a manufacturing rivet map.",
+    "Photographs and drawings remain local study inputs; no source image pixels or photorealistic textures are distributed."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:61fce4b6d90c6ec710589a0be1710fb53e9ee14231f1fa31fd5d3fb8652258aa",
+    "sourceHash": "sha256:a939a7d802f835163ebe987cd756339a7213081d7b6c7994992cf4f614445a3a",
+    "runtimeHash": "sha256:6badc7ceabf192f900c0b425cca1c5ebd1df65dfc28ee2d8c4dbc099a4df534d",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/cessna-172s-pair.png",
+        "sha256": "sha256:62fd027833162b07a088243d21c1272f8ac60a04d755344546d14dd7bb4d5747",
+        "individuallyCompared": true
+      },
+      "exterior-pair": {
+        "path": ".artifacts/aircraft/control-audit/cessna-172s-exterior-pair.png",
+        "sha256": "sha256:86b04a2fd3821eebd865dd93f7a1a6c3a05026e2cf6c38369f08afac5714cdf9",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

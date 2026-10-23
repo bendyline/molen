@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.watercraft.fishing_boat": {
-      "doc": "Coastal fishing boat. Waterline origin; powered boat with driver and passenger seats.",
+      "doc": "Bendy Fishing Boat. Coastal fishing boat. Waterline origin; powered boat with driver and passenger seats.",
       "components": {
         "transform": {
           "pos": [
@@ -46,17 +46,17 @@
           "kind": "molen.entities.watercraft.fishing_boat",
           "color": "#668b81",
           "spec": {
-            "label": "Coastal fishing boat",
+            "label": "Bendy Fishing Boat",
             "length": 12.2,
             "width": 4.620000000000001,
             "height": 5,
             "draft": 1.2,
-            "mass": 33264.0,
+            "mass": 33264,
             "thrust": 19958.399999999998,
             "maxSpeed": 6.5,
-            "reverseSpeed": 2.0,
+            "reverseSpeed": 2,
             "turnRate": 0.25,
-            "turnResponse": 1.0,
+            "turnResponse": 1,
             "lateralDrag": 1.4,
             "buoyancyFrequency": 1.2,
             "driverEye": [
@@ -68,7 +68,22 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "helm",
+                "helm-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {
@@ -97,7 +112,7 @@
               "position": [
                 1.05,
                 2.05,
-                -3.0
+                -3
               ]
             }
           ],

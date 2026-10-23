@@ -105,7 +105,7 @@ export class SurfaceNetwork {
     for (const feature of groupTransportationFeatures(tile.transportation)) {
       if (!isPaintedTransport(feature, style)) continue;
       const kind = transportKind(feature);
-      for (const line of joinTerrainLines(feature.lines)) {
+      for (const line of joinTerrainLines(feature.lines, feature.oneway === true)) {
         const path = terrainLinePath(line, tileSize);
         if (path.length <= 0) continue;
         const road: SurfaceRoad = {

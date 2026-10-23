@@ -1,0 +1,158 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.hyundai_ioniq_5_2022": {
+      "doc": "2022 Hyundai IONIQ 5, SEL battery electric. Polygonal reference interpretation; rounded proportions, simplified trim and gameplay handling.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.hyundai_ioniq_5_2022",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.hyundai_ioniq_5_2022",
+          "color": "#9eafa4",
+          "spec": {
+            "label": "2022 Hyundai IONIQ 5",
+            "bodyStyle": "hatchback",
+            "genericLabel": "Compact hatchback",
+            "width": 2.1799999999999997,
+            "length": 4.635,
+            "height": 1.605,
+            "centerOfMass": [
+              0,
+              0.5136000000000001,
+              0
+            ],
+            "wheelbase": 3,
+            "wheelTrack": 1.6254,
+            "wheelRadius": 0.365,
+            "mass": 1650,
+            "engineForce": 6270,
+            "maxSpeed": 50,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [
+              0.4347,
+              1.335,
+              0.1613
+            ],
+            "drive": "rear",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.16,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.4347,
+                1.335,
+                0.1613
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.395,
+              0,
+              0.1613
+            ]
+          ],
+          "exits": [
+            [
+              1.495,
+              0,
+              0.1613
+            ],
+            [
+              -1.495,
+              0,
+              0.1613
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.hyundai_ioniq_5_2022"
+      ]
+    }
+  }
+}

@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.watercraft.sailboat": {
-      "doc": "Coastal sailboat. Waterline origin; powered boat with driver and passenger seats (sailboat uses its auxiliary motor).",
+      "doc": "Bendy Sailboat. Coastal sailboat. Waterline origin; powered boat with driver and passenger seats (sailboat uses its auxiliary motor).",
       "components": {
         "transform": {
           "pos": [
@@ -46,13 +46,13 @@
           "kind": "molen.entities.watercraft.sailboat",
           "color": "#e5dfcd",
           "spec": {
-            "label": "Coastal sailboat",
+            "label": "Bendy Sailboat",
             "length": 10.7,
             "width": 3.63,
             "height": 12,
             "draft": 1.5,
             "mass": 5000,
-            "thrust": 3000.0,
+            "thrust": 3000,
             "maxSpeed": 5.2,
             "reverseSpeed": 1.6,
             "turnRate": 0.2857142857142857,
@@ -68,7 +68,22 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "helm",
+                "helm-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {

@@ -35,6 +35,22 @@ function setup() {
   return { root, tile, placements, vehicles };
 }
 describe('earth vehicles', () => {
+  it('unloads a borrowed car model after walking away while preserving its simulation state', async () => {
+    const { tile, vehicles } = setup();
+    vehicles.sync(300, [1000, 1.7, 2004]);
+    await Promise.resolve();
+    expect(vehicles.enter([998.5, 1.7, 2000])).toBe(true);
+    vehicles.release();
+    vehicles.sync(performance.now() + 1000, [2000, 2, 3000]);
+    expect(vehicles.object.children).toHaveLength(0);
+    expect(vehicles.world.exists('car')).toBe(true);
+    const mesh = (tile.children[0] as THREE.Group).children[0] as THREE.Mesh;
+    expect(isParkedVehicleHidden(mesh, 0)).toBe(true);
+    vehicles.sync(performance.now() + 2000, [1000, 1.7, 2004]);
+    await Promise.resolve();
+    expect(vehicles.object.children).toHaveLength(1);
+    vehicles.dispose();
+  });
   it('loads the same cabin GLB on approach, retains it on boarding, and demotes unvisited cars', async () => {
     const { tile, vehicles } = setup();
     vehicles.sync(300, [1000, 1.7, 2004]);

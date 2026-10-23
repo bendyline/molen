@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0141_the_shard",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:2a39d51e640c8bfe9d81f3b6c0230d2ec5fd38764e34ca64d12bb3db6699ae55",
+  "inputHash": "sha256:f6c65f5df028b4f0b5f46519848c21247dfd3c71f8074dd6bcadde408c7b2ae4",
   "sourceHash": "sha256:317d512e8713443ea728ac58c94e329424504c928f1b7f0c1a14b3272b769cef",
   "runtimeHash": "sha256:d72e7eb03e6b627b5f958233eb95df7b62c943e0597f3e93e7cb45ea5696e6da",
-  "captureReportHash": "sha256:d7b405666639619447b791a4c0b1ecbf613cf78dd5e5307e5d6a220403f1bf7d",
+  "captureReportHash": "sha256:2e9951a880ec42099f917319eb183a2eb684407ebe80b265558f9ebdad9a361b",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -24,7 +24,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:3a5ec970201837dd80e20cd8bee32d45c926f14dba01688264f13ebc5906d48f",
+    "captureReportHash": "sha256:7578747f6f25ff88fabf2862d79ff369d0f13ca8f52556b25f8392eff7860378",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -347,12 +347,11 @@
     "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   },
   "sourceBindingMaintenance": {
-    "reviewedOn": "2026-10-19",
+    "reviewedOn": "2026-10-20",
     "status": "carried-existing-acceptance-after-source-equivalence",
-    "previousInputHash": "sha256:fc0800ab7cd3b75b39ad52dfb0d072913ea8aea60ae075e2171b09fedd1abce4",
-    "inputHash": "sha256:2a39d51e640c8bfe9d81f3b6c0230d2ec5fd38764e34ca64d12bb3db6699ae55",
+    "previousInputHash": "sha256:bc5d70862a33ea90c5d799053d4b2749f2e318940522793a7e133e61c420843f",
+    "inputHash": "sha256:f6c65f5df028b4f0b5f46519848c21247dfd3c71f8074dd6bcadde408c7b2ae4",
     "originalVisualReviewOn": "2026-10-12",
-    "sourceRelease": "assets-3ad02ba96a6d989f",
     "modelPins": [
       {
         "name": "source",
@@ -385,7 +384,96 @@
         "hash": "sha256:fc528a48d12ae3210b996659d378d4c6d5c50571db9fdf0643aa8000523e69af"
       }
     ],
-    "change": "Exact prior input reconstructed using HEAD tower generator; only validation guard gained support for centerline/point frames. These three outlined frames and all six approved model files are unchanged.",
-    "scope": "Existing inspected images, materials, LODs and placement retained; no new visual inspection is claimed."
-  }
+    "generatorBeforeHash": "sha256:f9118f2ccf160cd924756085576a61cc90c632ef5760864598e073bcbcfc179f",
+    "generatorAfterHash": "sha256:f6ff4ec35e135c308cb0f993850ee419944e4b0c6dd42e6ce1cf584fdfffbfd2",
+    "command": "node packages/worldgen/scripts/generate-additional-landmarks.mjs --ids=N0140,N0141,N0144 --check",
+    "change": "Only declared OSM collection members gained an attributed map-frame guard and their feature ID in the spec. These three older geographic studies are not OSM collection members. Selected --check reproduced source GLBs and every generated text document exactly. All18 approved source/runtime/LOD bytes and existing inspected image hashes are unchanged. The exact prior combined input was reconstructed before carrying acceptance; no new visual review is claimed."
+  },
+  "sourceBindingMaintenanceHistory": [
+    {
+      "reviewedOn": "2026-10-19",
+      "status": "carried-existing-acceptance-after-source-equivalence",
+      "previousInputHash": "sha256:fc0800ab7cd3b75b39ad52dfb0d072913ea8aea60ae075e2171b09fedd1abce4",
+      "inputHash": "sha256:2a39d51e640c8bfe9d81f3b6c0230d2ec5fd38764e34ca64d12bb3db6699ae55",
+      "originalVisualReviewOn": "2026-10-12",
+      "sourceRelease": "assets-3ad02ba96a6d989f",
+      "modelPins": [
+        {
+          "name": "source",
+          "path": "content/worldgen/source/places/gc/gcp/n0141_the_shard/models/source.glb",
+          "hash": "sha256:317d512e8713443ea728ac58c94e329424504c928f1b7f0c1a14b3272b769cef"
+        },
+        {
+          "name": "runtime",
+          "path": "content/worldgen/assets/places/gc/gcp/n0141_the_shard/model.glb",
+          "hash": "sha256:d72e7eb03e6b627b5f958233eb95df7b62c943e0597f3e93e7cb45ea5696e6da"
+        },
+        {
+          "name": "skyline",
+          "path": "content/worldgen/assets/places/gc/gcp/n0141_the_shard/model.skyline.glb",
+          "hash": "sha256:d70a26816dde5a80dcfdb62ee52dabfccc13d199b2b2e247586bae6ce4d69c24"
+        },
+        {
+          "name": "district",
+          "path": "content/worldgen/assets/places/gc/gcp/n0141_the_shard/model.district.glb",
+          "hash": "sha256:0310e156f46e113cf872e81475de003a9e04c446397ee798e7eda62785051ff7"
+        },
+        {
+          "name": "street",
+          "path": "content/worldgen/assets/places/gc/gcp/n0141_the_shard/model.street.glb",
+          "hash": "sha256:79a76057c0ca47856ecd143eae2a3bd07c1a3d5e018a9be5711443beda2c2725"
+        },
+        {
+          "name": "closeup",
+          "path": "content/worldgen/assets/places/gc/gcp/n0141_the_shard/model.closeup.glb",
+          "hash": "sha256:fc528a48d12ae3210b996659d378d4c6d5c50571db9fdf0643aa8000523e69af"
+        }
+      ],
+      "change": "Exact prior input reconstructed using HEAD tower generator; only validation guard gained support for centerline/point frames. These three outlined frames and all six approved model files are unchanged.",
+      "scope": "Existing inspected images, materials, LODs and placement retained; no new visual inspection is claimed."
+    },
+    {
+      "reviewedOn": "2026-10-20",
+      "status": "carried-existing-acceptance-after-source-equivalence",
+      "previousInputHash": "sha256:2a39d51e640c8bfe9d81f3b6c0230d2ec5fd38764e34ca64d12bb3db6699ae55",
+      "inputHash": "sha256:bc5d70862a33ea90c5d799053d4b2749f2e318940522793a7e133e61c420843f",
+      "originalVisualReviewOn": "2026-10-12",
+      "modelPins": [
+        {
+          "name": "source",
+          "path": "content/worldgen/source/places/gc/gcp/n0141_the_shard/models/source.glb",
+          "hash": "sha256:317d512e8713443ea728ac58c94e329424504c928f1b7f0c1a14b3272b769cef"
+        },
+        {
+          "name": "runtime",
+          "path": "content/worldgen/assets/places/gc/gcp/n0141_the_shard/model.glb",
+          "hash": "sha256:d72e7eb03e6b627b5f958233eb95df7b62c943e0597f3e93e7cb45ea5696e6da"
+        },
+        {
+          "name": "skyline",
+          "path": "content/worldgen/assets/places/gc/gcp/n0141_the_shard/model.skyline.glb",
+          "hash": "sha256:d70a26816dde5a80dcfdb62ee52dabfccc13d199b2b2e247586bae6ce4d69c24"
+        },
+        {
+          "name": "district",
+          "path": "content/worldgen/assets/places/gc/gcp/n0141_the_shard/model.district.glb",
+          "hash": "sha256:0310e156f46e113cf872e81475de003a9e04c446397ee798e7eda62785051ff7"
+        },
+        {
+          "name": "street",
+          "path": "content/worldgen/assets/places/gc/gcp/n0141_the_shard/model.street.glb",
+          "hash": "sha256:79a76057c0ca47856ecd143eae2a3bd07c1a3d5e018a9be5711443beda2c2725"
+        },
+        {
+          "name": "closeup",
+          "path": "content/worldgen/assets/places/gc/gcp/n0141_the_shard/model.closeup.glb",
+          "hash": "sha256:fc528a48d12ae3210b996659d378d4c6d5c50571db9fdf0643aa8000523e69af"
+        }
+      ],
+      "generatorBeforeHash": "sha256:a021f0f0035571c41a1126a7622a39c63029f728e36658ecb3914b062f496a8d",
+      "generatorAfterHash": "sha256:f9118f2ccf160cd924756085576a61cc90c632ef5760864598e073bcbcfc179f",
+      "command": "node packages/worldgen/scripts/generate-additional-landmarks.mjs --ids=N0140,N0141,N0144 --check",
+      "change": "Only two spec metadata fields gained an opt-in reusableMapRules branch. These three geographic studies do not opt in. Selected --check reproduced source GLBs and every generated text document exactly. All18 approved source/runtime/LOD bytes and existing inspected image hashes are unchanged. The exact prior combined input was reconstructed before carrying acceptance; no new visual review is claimed."
+    }
+  ]
 }

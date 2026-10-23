@@ -1,0 +1,262 @@
+{
+  "variant": "Robinson R44 Raven II, later eight-hole analog panel and standard skid gear",
+  "references": [
+    {
+      "url": "https://robinsonstrapistorprod.blob.core.windows.net/uploads/assets/r44ii_poh_1_b4fce9d9be.pdf",
+      "title": "Robinson R44 II Pilot Operating Handbook, Section 1, page 1-3",
+      "author": "Robinson Helicopter Company",
+      "date": "2024-01-26",
+      "license": "Copyright Robinson; local analysis only, reference pixels are not shipped.",
+      "scope": "Manufacturer dimensions and three-view geometry."
+    },
+    {
+      "url": "https://robinsonstrapistorprod.blob.core.windows.net/uploads/assets/r44ii_poh_7_e5154ae439.pdf",
+      "title": "Robinson R44 II Pilot Operating Handbook, Section 7, page 7-21",
+      "author": "Robinson Helicopter Company",
+      "date": "2015-03-05",
+      "license": "Copyright Robinson; local analysis only.",
+      "scope": "Later eight-hole panel and cockpit controls."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Robinson_R44_cockpit.JPG",
+      "author": "Dtom",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "scope": "Panel depth, T-bar cyclic, seating, floor and bubble structure; optional equipment varies."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Robinson_R44_Raven_II_Bakoma.JPG",
+      "author": "Łukasz Golowanow and Maciek Hypś, Konflikty.pl",
+      "license": "Attribution (Commons custom license)",
+      "revision": 1235812458,
+      "scope": "Exact Raven II exterior shape, glazing, mast and tail details."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      1.38,
+      0.48
+    ],
+    "lookAt": [
+      0,
+      1,
+      1.67
+    ],
+    "fov": 78
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -1.19
+    ],
+    "viewHeight": 0.65,
+    "cameraHeight": 8.8
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/r44-dimensions.png",
+      "crop": {
+        "left": 234,
+        "top": 795,
+        "width": 1057,
+        "height": 406
+      },
+      "referenceAnchor": [
+        577.3875,
+        1183.7
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 530.6625,
+        "meters": 5.03,
+        "description": "Printed main rotor radius."
+      },
+      "scope": "Manufacturer drawing; independent dimensions checked separately."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/r44-dimensions.png",
+      "crop": {
+        "left": 445,
+        "top": 1335,
+        "width": 256,
+        "height": 378
+      },
+      "referenceAnchor": [
+        569.6,
+        1698.7875000000001
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 218.05,
+        "meters": 2.18,
+        "description": "Printed outside skid span."
+      },
+      "scope": "Manufacturer drawing; independent dimensions checked separately."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/r44-dimensions.png",
+      "crop": {
+        "left": 317,
+        "top": 467,
+        "width": 968,
+        "height": 250
+      },
+      "referenceAnchor": [
+        576.275,
+        590.7375000000001
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 530.6625,
+        "meters": 5.03,
+        "description": "Printed main rotor radius."
+      },
+      "rotate": 270,
+      "scope": "Manufacturer drawing; independent dimensions checked separately."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/r44-panel-rectified.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1500,
+        "height": 1100
+      },
+      "referenceAnchor": [
+        750,
+        350
+      ],
+      "modelAnchor": [
+        0,
+        -1.22
+      ],
+      "scaleControls": {
+        "pixels": 900,
+        "meters": 0.315,
+        "description": "Three equal instrument pitches, assumed 0.105 m each; relative arrangement only."
+      },
+      "scope": "Projective rectification of the manufacturer diagram using the centers of its four corner gauges. Equal 0.105 m gauge pitch is assumed; relative placement only, not measured panel width or depth."
+    }
+  ],
+  "panelRectification": {
+    "source": "r44-panel.png",
+    "sourceQuad": [
+      [
+        530.6625,
+        412.7375
+      ],
+      [
+        801,
+        438.32500000000005
+      ],
+      [
+        793.2125,
+        544.0125
+      ],
+      [
+        523.9875000000001,
+        508.4125
+      ]
+    ],
+    "output": [
+      1500,
+      1100
+    ],
+    "inverseHomography": [
+      0.20933950027878492,
+      -0.019262036520768598,
+      459.0834063981041,
+      -0.017410557801319358,
+      0.3118579105101766,
+      296.74009931697776,
+      -0.00010268562401263785,
+      0.000004460551993310384
+    ],
+    "scope": "Projective rectification of the manufacturer diagram using the centers of its four corner gauges. Equal 0.105 m gauge pitch is assumed; relative placement only, not measured panel width or depth."
+  },
+  "status": "reviewed-with-limitations",
+  "reviewNotes": {
+    "corrections": [
+      "Individually traced four-seat bubble shell, wraparound glazing, tall tapered mast fairing, two-blade rotor, narrow rising boom, fin and tail guard.",
+      "Later eight-hole instrument arrangement and annunciators from the manufacturer drawing, compact sloping engine/radio pedestal, shared T-bar cyclic, collectives, pedals and four upholstered seats.",
+      "Overlay iteration corrected painted side-wrap obstruction, square mast silhouette and excess panel brow height."
+    ],
+    "limitations": [
+      "Panel overlay rectifies an oblique manufacturer diagram using equal gauge pitch; 0.105 m pitch, panel depth and absolute cockpit placement remain estimates.",
+      "Photograph corroborates cabin construction and controls but depicts a different instrument fit. Model follows the later handbook instrument arrangement, with simplified engine instruments and radios.",
+      "Manufacturer three-views have small scale differences; side dimensions take precedence for height. Static rotor azimuth differs, and the rear engine fairing and bubble remain visibly faceted.",
+      "Original geometry and markings only; reference pixels are not distributed."
+    ],
+    "independentDimensions": [
+      {
+        "feature": "main rotor diameter",
+        "referenceMeters": 10.06,
+        "modelMeters": 10.06
+      },
+      {
+        "feature": "outside skid span",
+        "referenceMeters": 2.18,
+        "modelMeters": 2.18
+      },
+      {
+        "feature": "cabin width",
+        "referenceMeters": 1.28,
+        "modelMeters": 1.28
+      },
+      {
+        "feature": "nose to tail guard",
+        "referenceMeters": 8.97,
+        "modelMeters": 8.97
+      },
+      {
+        "feature": "tail rotor diameter",
+        "referenceMeters": 1.47,
+        "modelMeters": 1.47
+      }
+    ],
+    "visual": "Individually inspected four calibrated exterior/panel overlays, lit three-quarter, operator, close and wide cockpit, and four turntable views. Compared to Raven II exterior and cockpit photos; remaining reconstruction limits recorded."
+  },
+  "sourceHash": "sha256:2072442af2aaa16de43acb9aabdbe404fc953a98069f540942754d875f945090",
+  "runtimeHash": "sha256:414825175852ccd2643ee589b06c87da200299218fd5bc1e2812e7930479b44f",
+  "limitations": [
+    "Panel overlay rectifies an oblique manufacturer diagram using equal gauge pitch; 0.105 m pitch, panel depth and absolute cockpit placement remain estimates.",
+    "Photograph corroborates cabin construction and controls but depicts a different instrument fit. Model follows the later handbook instrument arrangement, with simplified engine instruments and radios.",
+    "Manufacturer three-views have small scale differences; side dimensions take precedence for height. Static rotor azimuth differs, and the rear engine fairing and bubble remain visibly faceted.",
+    "Original geometry and markings only; reference pixels are not distributed."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:6da0fa42d9e7103731b23bbf9a8286eac658019803fd1723d84547e1a5c03705",
+    "sourceHash": "sha256:2072442af2aaa16de43acb9aabdbe404fc953a98069f540942754d875f945090",
+    "runtimeHash": "sha256:414825175852ccd2643ee589b06c87da200299218fd5bc1e2812e7930479b44f",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/robinson-r44-pair.png",
+        "sha256": "sha256:a7fa387b33b7db22efe6f711e387b875ca3f8f14cbda17f1cfcefe9649bca8f3",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

@@ -1,0 +1,5548 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.mig_29a": {
+      "doc": "Mikoyan MiG-29A: original polygonal exterior and mig29 cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.mig_29a",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.mig_29a",
+          "spec": {
+            "label": "Mikoyan MiG-29A",
+            "genericLabel": "Military jet with enclosed cockpit",
+            "model": "airplane",
+            "mass": 14500,
+            "span": 11.36,
+            "length": 17.32,
+            "height": 4.73,
+            "centerOfMass": [
+              0,
+              2.13,
+              0
+            ],
+            "pilotEye": [
+              0,
+              3.05,
+              3.4
+            ],
+            "hardLandingSpeed": 4,
+            "hardLandingRoll": 0.2,
+            "hardLandingPitch": 0.28,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [
+                0,
+                2.13,
+                7.4476
+              ],
+              [
+                0,
+                2.13,
+                -7.4476
+              ],
+              [
+                5.2256,
+                2.13,
+                0
+              ],
+              [
+                -5.2256,
+                2.13,
+                0
+              ]
+            ],
+            "visual": {
+              "rotors": [],
+              "gearNodes": [],
+              "flaps": [],
+              "ailerons": [],
+              "animation": {
+                "bindings": [
+                  {
+                    "node": "MiG29-slat-right",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.24
+                  },
+                  {
+                    "node": "MiG29-flap-right",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.4
+                  },
+                  {
+                    "node": "MiG29-aileron-right",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.28
+                  },
+                  {
+                    "node": "MiG29-stabilator-right",
+                    "source": "tailRight",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1
+                  },
+                  {
+                    "node": "MiG29-rudder-right",
+                    "source": "yawInput",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": 0.3
+                  },
+                  {
+                    "node": "MiG29-slat-left",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.24
+                  },
+                  {
+                    "node": "MiG29-flap-left",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.4
+                  },
+                  {
+                    "node": "MiG29-aileron-left",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.28
+                  },
+                  {
+                    "node": "MiG29-stabilator-left",
+                    "source": "tailLeft",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1
+                  },
+                  {
+                    "node": "MiG29-rudder-left",
+                    "source": "yawInput",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": 0.3
+                  },
+                  {
+                    "node": "MiG29-gear-left",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1.5707963267948966,
+                    "offset": -1.5707963267948966
+                  },
+                  {
+                    "node": "MiG29-gear-left",
+                    "source": "gearExposed",
+                    "property": "visible",
+                    "scale": 1
+                  },
+                  {
+                    "node": "MiG29-gear-right",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1.5707963267948966,
+                    "offset": -1.5707963267948966
+                  },
+                  {
+                    "node": "MiG29-gear-right",
+                    "source": "gearExposed",
+                    "property": "visible",
+                    "scale": 1
+                  },
+                  {
+                    "node": "MiG29-gear-nose",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 1.5707963267948966,
+                    "offset": -1.5707963267948966
+                  },
+                  {
+                    "node": "MiG29-gear-nose",
+                    "source": "gearExposed",
+                    "property": "visible",
+                    "scale": 1
+                  }
+                ]
+              },
+              "interior": {
+                "nodes": [
+                  "cockpit"
+                ],
+                "sources": {
+                  "trueAirspeed": {
+                    "component": "aircraftState",
+                    "path": [
+                      "airspeed"
+                    ]
+                  },
+                  "pitch": {
+                    "component": "aircraftState",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "roll": {
+                    "component": "aircraftState",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "yaw": {
+                    "component": "aircraftState",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "verticalSpeed": {
+                    "component": "aircraftState",
+                    "path": [
+                      "verticalSpeed"
+                    ]
+                  },
+                  "gear": {
+                    "component": "aircraftState",
+                    "path": [
+                      "gearPosition"
+                    ]
+                  },
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "flapPosition"
+                    ]
+                  },
+                  "loadFactor": {
+                    "component": "aircraftState",
+                    "path": [
+                      "loadFactor"
+                    ]
+                  },
+                  "angleOfAttack": {
+                    "component": "aircraftState",
+                    "path": [
+                      "angleOfAttack"
+                    ]
+                  },
+                  "altitude": {
+                    "component": "transform",
+                    "path": [
+                      "pos",
+                      1
+                    ]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "power": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "power"
+                    ]
+                  }
+                },
+                "derived": {
+                  "kph": {
+                    "op": "multiply",
+                    "args": [
+                      "trueAirspeed",
+                      3.6
+                    ]
+                  },
+                  "altitudeKm": {
+                    "op": "divide",
+                    "args": [
+                      "altitude",
+                      1000
+                    ]
+                  },
+                  "altitudeRemainder": {
+                    "op": "modulo",
+                    "args": [
+                      "altitude",
+                      1000
+                    ]
+                  },
+                  "aoaDegrees": {
+                    "op": "multiply",
+                    "args": [
+                      "angleOfAttack",
+                      57.29577951308232
+                    ]
+                  },
+                  "headingRaw": {
+                    "op": "subtract",
+                    "args": [
+                      3.141592653589793,
+                      "yaw"
+                    ]
+                  },
+                  "trueHeading": {
+                    "op": "modulo",
+                    "args": [
+                      "headingRaw",
+                      6.283185307179586
+                    ]
+                  },
+                  "gearDown": {
+                    "op": "greater",
+                    "args": [
+                      "gear",
+                      0.999
+                    ]
+                  },
+                  "gearExposed": {
+                    "op": "greater",
+                    "args": [
+                      "gear",
+                      0.02
+                    ]
+                  },
+                  "MiG29.ADI-bank.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "roll",
+                      -100000000000000000000
+                    ]
+                  },
+                  "MiG29.ADI-bank.available": {
+                    "op": "greater",
+                    "args": [
+                      "MiG29.ADI-bank.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "MiG29.ADI-pitch.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "pitch",
+                      -100000000000000000000
+                    ]
+                  },
+                  "MiG29.ADI-pitch.available": {
+                    "op": "greater",
+                    "args": [
+                      "MiG29.ADI-pitch.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "MiG29.airspeed.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "kph",
+                      -100000000000000000000
+                    ]
+                  },
+                  "MiG29.airspeed.available": {
+                    "op": "greater",
+                    "args": [
+                      "MiG29.airspeed.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "MiG29.altitude.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "altitudeRemainder",
+                      -100000000000000000000
+                    ]
+                  },
+                  "MiG29.altitude.available": {
+                    "op": "greater",
+                    "args": [
+                      "MiG29.altitude.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "MiG29.altitude-number.magnitude": {
+                    "op": "abs",
+                    "args": [
+                      "altitude"
+                    ]
+                  },
+                  "MiG29.altitude-number.negative": {
+                    "op": "less",
+                    "args": [
+                      "altitude",
+                      0
+                    ]
+                  },
+                  "MiG29.altitude-number.rounded": {
+                    "op": "add",
+                    "args": [
+                      "MiG29.altitude-number.magnitude",
+                      0.5
+                    ]
+                  },
+                  "MiG29.altitude-number.whole": {
+                    "op": "floor",
+                    "args": [
+                      "MiG29.altitude-number.rounded"
+                    ]
+                  },
+                  "MiG29.altitude-number.positive": {
+                    "op": "greater",
+                    "args": [
+                      "MiG29.altitude-number.whole",
+                      -1
+                    ]
+                  },
+                  "MiG29.altitude-number.inRange": {
+                    "op": "less",
+                    "args": [
+                      "MiG29.altitude-number.whole",
+                      100000
+                    ]
+                  },
+                  "MiG29.altitude-number.valid": {
+                    "op": "and",
+                    "args": [
+                      "MiG29.altitude-number.positive",
+                      "MiG29.altitude-number.inRange"
+                    ]
+                  },
+                  "MiG29.altitude-number.0.quotient": {
+                    "op": "divide",
+                    "args": [
+                      "MiG29.altitude-number.whole",
+                      10000
+                    ]
+                  },
+                  "MiG29.altitude-number.0.integer": {
+                    "op": "floor",
+                    "args": [
+                      "MiG29.altitude-number.0.quotient"
+                    ]
+                  },
+                  "MiG29.altitude-number.0.digit": {
+                    "op": "modulo",
+                    "args": [
+                      "MiG29.altitude-number.0.integer",
+                      10
+                    ]
+                  },
+                  "MiG29.altitude-number.0.display": {
+                    "op": "if",
+                    "args": [
+                      "MiG29.altitude-number.valid",
+                      "MiG29.altitude-number.0.digit",
+                      -1
+                    ]
+                  },
+                  "MiG29.altitude-number.1.quotient": {
+                    "op": "divide",
+                    "args": [
+                      "MiG29.altitude-number.whole",
+                      1000
+                    ]
+                  },
+                  "MiG29.altitude-number.1.integer": {
+                    "op": "floor",
+                    "args": [
+                      "MiG29.altitude-number.1.quotient"
+                    ]
+                  },
+                  "MiG29.altitude-number.1.digit": {
+                    "op": "modulo",
+                    "args": [
+                      "MiG29.altitude-number.1.integer",
+                      10
+                    ]
+                  },
+                  "MiG29.altitude-number.1.display": {
+                    "op": "if",
+                    "args": [
+                      "MiG29.altitude-number.valid",
+                      "MiG29.altitude-number.1.digit",
+                      -1
+                    ]
+                  },
+                  "MiG29.altitude-number.2.quotient": {
+                    "op": "divide",
+                    "args": [
+                      "MiG29.altitude-number.whole",
+                      100
+                    ]
+                  },
+                  "MiG29.altitude-number.2.integer": {
+                    "op": "floor",
+                    "args": [
+                      "MiG29.altitude-number.2.quotient"
+                    ]
+                  },
+                  "MiG29.altitude-number.2.digit": {
+                    "op": "modulo",
+                    "args": [
+                      "MiG29.altitude-number.2.integer",
+                      10
+                    ]
+                  },
+                  "MiG29.altitude-number.2.display": {
+                    "op": "if",
+                    "args": [
+                      "MiG29.altitude-number.valid",
+                      "MiG29.altitude-number.2.digit",
+                      -1
+                    ]
+                  },
+                  "MiG29.altitude-number.3.quotient": {
+                    "op": "divide",
+                    "args": [
+                      "MiG29.altitude-number.whole",
+                      10
+                    ]
+                  },
+                  "MiG29.altitude-number.3.integer": {
+                    "op": "floor",
+                    "args": [
+                      "MiG29.altitude-number.3.quotient"
+                    ]
+                  },
+                  "MiG29.altitude-number.3.digit": {
+                    "op": "modulo",
+                    "args": [
+                      "MiG29.altitude-number.3.integer",
+                      10
+                    ]
+                  },
+                  "MiG29.altitude-number.3.display": {
+                    "op": "if",
+                    "args": [
+                      "MiG29.altitude-number.valid",
+                      "MiG29.altitude-number.3.digit",
+                      -1
+                    ]
+                  },
+                  "MiG29.altitude-number.4.quotient": {
+                    "op": "divide",
+                    "args": [
+                      "MiG29.altitude-number.whole",
+                      1
+                    ]
+                  },
+                  "MiG29.altitude-number.4.integer": {
+                    "op": "floor",
+                    "args": [
+                      "MiG29.altitude-number.4.quotient"
+                    ]
+                  },
+                  "MiG29.altitude-number.4.digit": {
+                    "op": "modulo",
+                    "args": [
+                      "MiG29.altitude-number.4.integer",
+                      10
+                    ]
+                  },
+                  "MiG29.altitude-number.4.display": {
+                    "op": "if",
+                    "args": [
+                      "MiG29.altitude-number.valid",
+                      "MiG29.altitude-number.4.digit",
+                      -1
+                    ]
+                  },
+                  "MiG29.vertical-speed.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "verticalSpeed",
+                      -100000000000000000000
+                    ]
+                  },
+                  "MiG29.vertical-speed.available": {
+                    "op": "greater",
+                    "args": [
+                      "MiG29.vertical-speed.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "MiG29.heading.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "trueHeading",
+                      -100000000000000000000
+                    ]
+                  },
+                  "MiG29.heading.available": {
+                    "op": "greater",
+                    "args": [
+                      "MiG29.heading.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "MiG29.G.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "loadFactor",
+                      -100000000000000000000
+                    ]
+                  },
+                  "MiG29.G.available": {
+                    "op": "greater",
+                    "args": [
+                      "MiG29.G.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "tailPitch": {
+                    "op": "multiply",
+                    "args": [
+                      "pitchInput",
+                      0.29
+                    ]
+                  },
+                  "tailRoll": {
+                    "op": "multiply",
+                    "args": [
+                      "rollInput",
+                      0.13
+                    ]
+                  },
+                  "tailLeft": {
+                    "op": "subtract",
+                    "args": [
+                      "tailPitch",
+                      "tailRoll"
+                    ]
+                  },
+                  "tailRight": {
+                    "op": "add",
+                    "args": [
+                      "tailPitch",
+                      "tailRoll"
+                    ]
+                  }
+                },
+                "bindings": [
+                  {
+                    "node": "MiG29-ADI-bank",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "MiG29-ADI-pitch",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.13125,
+                    "min": -0.0375,
+                    "max": 0.0375,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "MiG29-ADI-bank",
+                    "source": "MiG29.ADI-bank.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "MiG29-ADI-pitch",
+                    "source": "MiG29.ADI-pitch.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "MiG29-airspeed",
+                    "source": "kph",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        -0.35
+                      ],
+                      [
+                        200,
+                        0.55
+                      ],
+                      [
+                        400,
+                        1.5
+                      ],
+                      [
+                        600,
+                        2.45
+                      ],
+                      [
+                        800,
+                        3.45
+                      ],
+                      [
+                        1000,
+                        4.45
+                      ],
+                      [
+                        1200,
+                        5.4
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "MiG29-airspeed",
+                    "source": "MiG29.airspeed.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "MiG29-altitude",
+                    "source": "altitudeRemainder",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        1000,
+                        6.283185307179586
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "period": 6.283185307179586,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "MiG29-altitude",
+                    "source": "MiG29.altitude.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "MiG29-altitude-number-minus",
+                    "source": "MiG29.altitude-number.negative",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "MiG29-altitude-number-0-0",
+                    "source": "MiG29.altitude-number.0.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-0-1",
+                    "source": "MiG29.altitude-number.0.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        0
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-0-2",
+                    "source": "MiG29.altitude-number.0.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-0-3",
+                    "source": "MiG29.altitude-number.0.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-0-4",
+                    "source": "MiG29.altitude-number.0.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-0-5",
+                    "source": "MiG29.altitude-number.0.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-0-6",
+                    "source": "MiG29.altitude-number.0.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-1-0",
+                    "source": "MiG29.altitude-number.1.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-1-1",
+                    "source": "MiG29.altitude-number.1.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        0
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-1-2",
+                    "source": "MiG29.altitude-number.1.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-1-3",
+                    "source": "MiG29.altitude-number.1.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-1-4",
+                    "source": "MiG29.altitude-number.1.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-1-5",
+                    "source": "MiG29.altitude-number.1.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-1-6",
+                    "source": "MiG29.altitude-number.1.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-2-0",
+                    "source": "MiG29.altitude-number.2.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-2-1",
+                    "source": "MiG29.altitude-number.2.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        0
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-2-2",
+                    "source": "MiG29.altitude-number.2.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-2-3",
+                    "source": "MiG29.altitude-number.2.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-2-4",
+                    "source": "MiG29.altitude-number.2.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-2-5",
+                    "source": "MiG29.altitude-number.2.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-2-6",
+                    "source": "MiG29.altitude-number.2.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-3-0",
+                    "source": "MiG29.altitude-number.3.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-3-1",
+                    "source": "MiG29.altitude-number.3.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        0
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-3-2",
+                    "source": "MiG29.altitude-number.3.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-3-3",
+                    "source": "MiG29.altitude-number.3.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-3-4",
+                    "source": "MiG29.altitude-number.3.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-3-5",
+                    "source": "MiG29.altitude-number.3.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-3-6",
+                    "source": "MiG29.altitude-number.3.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-4-0",
+                    "source": "MiG29.altitude-number.4.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-4-1",
+                    "source": "MiG29.altitude-number.4.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        0
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-4-2",
+                    "source": "MiG29.altitude-number.4.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        1
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        1
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-4-3",
+                    "source": "MiG29.altitude-number.4.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-4-4",
+                    "source": "MiG29.altitude-number.4.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        0
+                      ],
+                      [
+                        5,
+                        0
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-4-5",
+                    "source": "MiG29.altitude-number.4.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        0
+                      ],
+                      [
+                        3,
+                        0
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-altitude-number-4-6",
+                    "source": "MiG29.altitude-number.4.display",
+                    "property": "visible",
+                    "missing": "hide",
+                    "keys": [
+                      [
+                        -1,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ],
+                      [
+                        2,
+                        1
+                      ],
+                      [
+                        3,
+                        1
+                      ],
+                      [
+                        4,
+                        1
+                      ],
+                      [
+                        5,
+                        1
+                      ],
+                      [
+                        6,
+                        1
+                      ],
+                      [
+                        7,
+                        0
+                      ],
+                      [
+                        8,
+                        1
+                      ],
+                      [
+                        9,
+                        1
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "MiG29-vertical-speed",
+                    "source": "verticalSpeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -100,
+                        -1.5707963267948966
+                      ],
+                      [
+                        -50,
+                        0
+                      ],
+                      [
+                        0,
+                        1.5707963267948966
+                      ],
+                      [
+                        50,
+                        3.141592653589793
+                      ],
+                      [
+                        100,
+                        4.71238898038469
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "MiG29-vertical-speed",
+                    "source": "MiG29.vertical-speed.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "MiG29-heading",
+                    "source": "trueHeading",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "period": 6.283185307179586
+                  },
+                  {
+                    "node": "MiG29-heading",
+                    "source": "MiG29.heading.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "MiG29-G",
+                    "source": "loadFactor",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -3,
+                        -1.6
+                      ],
+                      [
+                        0,
+                        -0.5
+                      ],
+                      [
+                        3,
+                        0.6
+                      ],
+                      [
+                        6,
+                        1.7
+                      ],
+                      [
+                        9,
+                        2.8
+                      ]
+                    ],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "MiG29-G",
+                    "source": "MiG29.G.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "MiG29-gear-lamp",
+                    "source": "gearDown",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "MiG29-stick",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.15
+                  },
+                  {
+                    "node": "MiG29-stick",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.14
+                  },
+                  {
+                    "node": "MiG29-throttle--1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.6,
+                    "offset": -0.3
+                  },
+                  {
+                    "node": "MiG29-pedal--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.06
+                  },
+                  {
+                    "node": "MiG29-throttle-1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.6,
+                    "offset": -0.3
+                  },
+                  {
+                    "node": "MiG29-pedal-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.06
+                  }
+                ]
+              }
+            },
+            "airplane": {
+              "wingPosition": [
+                0,
+                2.13,
+                0
+              ],
+              "wingArea": 38,
+              "controlAuthoritySpeed": 120,
+              "maxControlAuthority": 1.8,
+              "pitchAuthority": 0.25,
+              "pitchResponse": 2.5,
+              "stallPitchRate": 0.18,
+              "rollAuthority": 1.8,
+              "rollResponse": 2,
+              "rudderAuthority": 1,
+              "groundSteerSpeed": 8,
+              "groundLevelRate": 2,
+              "maxGroundPitch": 0.22,
+              "camberAngle": 0.045,
+              "flapLift": 0.33,
+              "postStallFlapEffect": 0.4,
+              "stallAngle": 0.28,
+              "stallTransitionAngle": 0.12,
+              "pitchFrequency": 3.5,
+              "pitchDamping": 0.7,
+              "maxLoadFactor": 7.5,
+              "minLoadFactor": -3,
+              "autoTrim": 1,
+              "directionalStability": 4,
+              "yawDamping": 1.2,
+              "dihedralEffect": 2.5,
+              "propellerEffects": 0,
+              "stallSpeed": 60,
+              "liftSlope": 4.8,
+              "postStallLift": 0.2,
+              "postStallDecay": 3.8,
+              "profileDrag": 0.025,
+              "inducedDrag": 0.06,
+              "gearDrag": 0.018,
+              "flapDrag": 0.035,
+              "gearTransitTime": 6,
+              "flapTransitTime": 4,
+              "stallDrag": 1.1,
+              "propellerEfficiency": 0.85,
+              "maxThrust": 91350,
+              "minPropellerSpeed": 160,
+              "lateralDamping": 0.35,
+              "brakeDeceleration": 4,
+              "rollingDeceleration": 0.22,
+              "groundTrackRate": 12
+            },
+            "engines": [
+              {
+                "id": "engine-1",
+                "position": [
+                  1.15,
+                  1.61,
+                  -5.5
+                ],
+                "thrustAxis": [
+                  0,
+                  0,
+                  1
+                ],
+                "power": 9672352.94117647,
+                "idleRpm": 0.18,
+                "spoolRate": 0.2,
+                "rotorAngularSpeed": 150,
+                "maxThrust": 45675,
+                "minPropellerSpeed": 160,
+                "propellerEfficiency": 0.85
+              },
+              {
+                "id": "engine-2",
+                "position": [
+                  -1.15,
+                  1.61,
+                  -5.5
+                ],
+                "thrustAxis": [
+                  0,
+                  0,
+                  1
+                ],
+                "power": 9672352.94117647,
+                "idleRpm": 0.18,
+                "spoolRate": 0.2,
+                "rotorAngularSpeed": 150,
+                "maxThrust": 45675,
+                "minPropellerSpeed": 160,
+                "propellerEfficiency": 0.85
+              }
+            ]
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0,
+                3.05,
+                3.4
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.9000000000000001,
+              0,
+              3.4
+            ]
+          ],
+          "exits": [
+            [
+              2.6,
+              0,
+              3.4
+            ]
+          ],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.83,
+          "width": 11.28,
+          "height": 4.1,
+          "cruise": 90,
+          "weight": 0.35
+        },
+        "model.signals": {
+          "sources": {
+            "trueAirspeed": {
+              "component": "aircraftState",
+              "path": [
+                "airspeed"
+              ]
+            },
+            "pitch": {
+              "component": "aircraftState",
+              "path": [
+                "pitch"
+              ]
+            },
+            "roll": {
+              "component": "aircraftState",
+              "path": [
+                "roll"
+              ]
+            },
+            "yaw": {
+              "component": "aircraftState",
+              "path": [
+                "yaw"
+              ]
+            },
+            "verticalSpeed": {
+              "component": "aircraftState",
+              "path": [
+                "verticalSpeed"
+              ]
+            },
+            "gear": {
+              "component": "aircraftState",
+              "path": [
+                "gearPosition"
+              ]
+            },
+            "flapPosition": {
+              "component": "aircraftState",
+              "path": [
+                "flapPosition"
+              ]
+            },
+            "loadFactor": {
+              "component": "aircraftState",
+              "path": [
+                "loadFactor"
+              ]
+            },
+            "angleOfAttack": {
+              "component": "aircraftState",
+              "path": [
+                "angleOfAttack"
+              ]
+            },
+            "altitude": {
+              "component": "transform",
+              "path": [
+                "pos",
+                1
+              ]
+            },
+            "pitchInput": {
+              "component": "aircraftInput",
+              "path": [
+                "pitch"
+              ]
+            },
+            "rollInput": {
+              "component": "aircraftInput",
+              "path": [
+                "roll"
+              ]
+            },
+            "yawInput": {
+              "component": "aircraftInput",
+              "path": [
+                "yaw"
+              ]
+            },
+            "power": {
+              "component": "aircraftInput",
+              "path": [
+                "power"
+              ]
+            }
+          },
+          "derived": {
+            "kph": {
+              "op": "multiply",
+              "args": [
+                "trueAirspeed",
+                3.6
+              ]
+            },
+            "altitudeKm": {
+              "op": "divide",
+              "args": [
+                "altitude",
+                1000
+              ]
+            },
+            "altitudeRemainder": {
+              "op": "modulo",
+              "args": [
+                "altitude",
+                1000
+              ]
+            },
+            "aoaDegrees": {
+              "op": "multiply",
+              "args": [
+                "angleOfAttack",
+                57.29577951308232
+              ]
+            },
+            "headingRaw": {
+              "op": "subtract",
+              "args": [
+                3.141592653589793,
+                "yaw"
+              ]
+            },
+            "trueHeading": {
+              "op": "modulo",
+              "args": [
+                "headingRaw",
+                6.283185307179586
+              ]
+            },
+            "gearDown": {
+              "op": "greater",
+              "args": [
+                "gear",
+                0.999
+              ]
+            },
+            "gearExposed": {
+              "op": "greater",
+              "args": [
+                "gear",
+                0.02
+              ]
+            },
+            "MiG29.ADI-bank.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "roll",
+                -100000000000000000000
+              ]
+            },
+            "MiG29.ADI-bank.available": {
+              "op": "greater",
+              "args": [
+                "MiG29.ADI-bank.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "MiG29.ADI-pitch.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "pitch",
+                -100000000000000000000
+              ]
+            },
+            "MiG29.ADI-pitch.available": {
+              "op": "greater",
+              "args": [
+                "MiG29.ADI-pitch.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "MiG29.airspeed.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "kph",
+                -100000000000000000000
+              ]
+            },
+            "MiG29.airspeed.available": {
+              "op": "greater",
+              "args": [
+                "MiG29.airspeed.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "MiG29.altitude.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "altitudeRemainder",
+                -100000000000000000000
+              ]
+            },
+            "MiG29.altitude.available": {
+              "op": "greater",
+              "args": [
+                "MiG29.altitude.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "MiG29.altitude-number.magnitude": {
+              "op": "abs",
+              "args": [
+                "altitude"
+              ]
+            },
+            "MiG29.altitude-number.negative": {
+              "op": "less",
+              "args": [
+                "altitude",
+                0
+              ]
+            },
+            "MiG29.altitude-number.rounded": {
+              "op": "add",
+              "args": [
+                "MiG29.altitude-number.magnitude",
+                0.5
+              ]
+            },
+            "MiG29.altitude-number.whole": {
+              "op": "floor",
+              "args": [
+                "MiG29.altitude-number.rounded"
+              ]
+            },
+            "MiG29.altitude-number.positive": {
+              "op": "greater",
+              "args": [
+                "MiG29.altitude-number.whole",
+                -1
+              ]
+            },
+            "MiG29.altitude-number.inRange": {
+              "op": "less",
+              "args": [
+                "MiG29.altitude-number.whole",
+                100000
+              ]
+            },
+            "MiG29.altitude-number.valid": {
+              "op": "and",
+              "args": [
+                "MiG29.altitude-number.positive",
+                "MiG29.altitude-number.inRange"
+              ]
+            },
+            "MiG29.altitude-number.0.quotient": {
+              "op": "divide",
+              "args": [
+                "MiG29.altitude-number.whole",
+                10000
+              ]
+            },
+            "MiG29.altitude-number.0.integer": {
+              "op": "floor",
+              "args": [
+                "MiG29.altitude-number.0.quotient"
+              ]
+            },
+            "MiG29.altitude-number.0.digit": {
+              "op": "modulo",
+              "args": [
+                "MiG29.altitude-number.0.integer",
+                10
+              ]
+            },
+            "MiG29.altitude-number.0.display": {
+              "op": "if",
+              "args": [
+                "MiG29.altitude-number.valid",
+                "MiG29.altitude-number.0.digit",
+                -1
+              ]
+            },
+            "MiG29.altitude-number.1.quotient": {
+              "op": "divide",
+              "args": [
+                "MiG29.altitude-number.whole",
+                1000
+              ]
+            },
+            "MiG29.altitude-number.1.integer": {
+              "op": "floor",
+              "args": [
+                "MiG29.altitude-number.1.quotient"
+              ]
+            },
+            "MiG29.altitude-number.1.digit": {
+              "op": "modulo",
+              "args": [
+                "MiG29.altitude-number.1.integer",
+                10
+              ]
+            },
+            "MiG29.altitude-number.1.display": {
+              "op": "if",
+              "args": [
+                "MiG29.altitude-number.valid",
+                "MiG29.altitude-number.1.digit",
+                -1
+              ]
+            },
+            "MiG29.altitude-number.2.quotient": {
+              "op": "divide",
+              "args": [
+                "MiG29.altitude-number.whole",
+                100
+              ]
+            },
+            "MiG29.altitude-number.2.integer": {
+              "op": "floor",
+              "args": [
+                "MiG29.altitude-number.2.quotient"
+              ]
+            },
+            "MiG29.altitude-number.2.digit": {
+              "op": "modulo",
+              "args": [
+                "MiG29.altitude-number.2.integer",
+                10
+              ]
+            },
+            "MiG29.altitude-number.2.display": {
+              "op": "if",
+              "args": [
+                "MiG29.altitude-number.valid",
+                "MiG29.altitude-number.2.digit",
+                -1
+              ]
+            },
+            "MiG29.altitude-number.3.quotient": {
+              "op": "divide",
+              "args": [
+                "MiG29.altitude-number.whole",
+                10
+              ]
+            },
+            "MiG29.altitude-number.3.integer": {
+              "op": "floor",
+              "args": [
+                "MiG29.altitude-number.3.quotient"
+              ]
+            },
+            "MiG29.altitude-number.3.digit": {
+              "op": "modulo",
+              "args": [
+                "MiG29.altitude-number.3.integer",
+                10
+              ]
+            },
+            "MiG29.altitude-number.3.display": {
+              "op": "if",
+              "args": [
+                "MiG29.altitude-number.valid",
+                "MiG29.altitude-number.3.digit",
+                -1
+              ]
+            },
+            "MiG29.altitude-number.4.quotient": {
+              "op": "divide",
+              "args": [
+                "MiG29.altitude-number.whole",
+                1
+              ]
+            },
+            "MiG29.altitude-number.4.integer": {
+              "op": "floor",
+              "args": [
+                "MiG29.altitude-number.4.quotient"
+              ]
+            },
+            "MiG29.altitude-number.4.digit": {
+              "op": "modulo",
+              "args": [
+                "MiG29.altitude-number.4.integer",
+                10
+              ]
+            },
+            "MiG29.altitude-number.4.display": {
+              "op": "if",
+              "args": [
+                "MiG29.altitude-number.valid",
+                "MiG29.altitude-number.4.digit",
+                -1
+              ]
+            },
+            "MiG29.vertical-speed.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "verticalSpeed",
+                -100000000000000000000
+              ]
+            },
+            "MiG29.vertical-speed.available": {
+              "op": "greater",
+              "args": [
+                "MiG29.vertical-speed.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "MiG29.heading.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "trueHeading",
+                -100000000000000000000
+              ]
+            },
+            "MiG29.heading.available": {
+              "op": "greater",
+              "args": [
+                "MiG29.heading.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "MiG29.G.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "loadFactor",
+                -100000000000000000000
+              ]
+            },
+            "MiG29.G.available": {
+              "op": "greater",
+              "args": [
+                "MiG29.G.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "tailPitch": {
+              "op": "multiply",
+              "args": [
+                "pitchInput",
+                0.29
+              ]
+            },
+            "tailRoll": {
+              "op": "multiply",
+              "args": [
+                "rollInput",
+                0.13
+              ]
+            },
+            "tailLeft": {
+              "op": "subtract",
+              "args": [
+                "tailPitch",
+                "tailRoll"
+              ]
+            },
+            "tailRight": {
+              "op": "add",
+              "args": [
+                "tailPitch",
+                "tailRoll"
+              ]
+            }
+          },
+          "bindings": [
+            {
+              "node": "MiG29-ADI-bank",
+              "source": "roll",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "MiG29-ADI-pitch",
+              "source": "pitch",
+              "property": "position",
+              "axis": "y",
+              "scale": -0.13125,
+              "min": -0.0375,
+              "max": 0.0375,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "MiG29-ADI-bank",
+              "source": "MiG29.ADI-bank.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "MiG29-ADI-pitch",
+              "source": "MiG29.ADI-pitch.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "MiG29-airspeed",
+              "source": "kph",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  -0.35
+                ],
+                [
+                  200,
+                  0.55
+                ],
+                [
+                  400,
+                  1.5
+                ],
+                [
+                  600,
+                  2.45
+                ],
+                [
+                  800,
+                  3.45
+                ],
+                [
+                  1000,
+                  4.45
+                ],
+                [
+                  1200,
+                  5.4
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "MiG29-airspeed",
+              "source": "MiG29.airspeed.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "MiG29-altitude",
+              "source": "altitudeRemainder",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1000,
+                  6.283185307179586
+                ]
+              ],
+              "responseSeconds": 0,
+              "period": 6.283185307179586,
+              "missing": "hold"
+            },
+            {
+              "node": "MiG29-altitude",
+              "source": "MiG29.altitude.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "MiG29-altitude-number-minus",
+              "source": "MiG29.altitude-number.negative",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "MiG29-altitude-number-0-0",
+              "source": "MiG29.altitude-number.0.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-0-1",
+              "source": "MiG29.altitude-number.0.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  0
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-0-2",
+              "source": "MiG29.altitude-number.0.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-0-3",
+              "source": "MiG29.altitude-number.0.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-0-4",
+              "source": "MiG29.altitude-number.0.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-0-5",
+              "source": "MiG29.altitude-number.0.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-0-6",
+              "source": "MiG29.altitude-number.0.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-1-0",
+              "source": "MiG29.altitude-number.1.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-1-1",
+              "source": "MiG29.altitude-number.1.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  0
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-1-2",
+              "source": "MiG29.altitude-number.1.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-1-3",
+              "source": "MiG29.altitude-number.1.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-1-4",
+              "source": "MiG29.altitude-number.1.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-1-5",
+              "source": "MiG29.altitude-number.1.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-1-6",
+              "source": "MiG29.altitude-number.1.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-2-0",
+              "source": "MiG29.altitude-number.2.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-2-1",
+              "source": "MiG29.altitude-number.2.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  0
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-2-2",
+              "source": "MiG29.altitude-number.2.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-2-3",
+              "source": "MiG29.altitude-number.2.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-2-4",
+              "source": "MiG29.altitude-number.2.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-2-5",
+              "source": "MiG29.altitude-number.2.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-2-6",
+              "source": "MiG29.altitude-number.2.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-3-0",
+              "source": "MiG29.altitude-number.3.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-3-1",
+              "source": "MiG29.altitude-number.3.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  0
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-3-2",
+              "source": "MiG29.altitude-number.3.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-3-3",
+              "source": "MiG29.altitude-number.3.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-3-4",
+              "source": "MiG29.altitude-number.3.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-3-5",
+              "source": "MiG29.altitude-number.3.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-3-6",
+              "source": "MiG29.altitude-number.3.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-4-0",
+              "source": "MiG29.altitude-number.4.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-4-1",
+              "source": "MiG29.altitude-number.4.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  0
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-4-2",
+              "source": "MiG29.altitude-number.4.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  1
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-4-3",
+              "source": "MiG29.altitude-number.4.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-4-4",
+              "source": "MiG29.altitude-number.4.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-4-5",
+              "source": "MiG29.altitude-number.4.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-altitude-number-4-6",
+              "source": "MiG29.altitude-number.4.display",
+              "property": "visible",
+              "missing": "hide",
+              "keys": [
+                [
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  7,
+                  0
+                ],
+                [
+                  8,
+                  1
+                ],
+                [
+                  9,
+                  1
+                ]
+              ]
+            },
+            {
+              "node": "MiG29-vertical-speed",
+              "source": "verticalSpeed",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -100,
+                  -1.5707963267948966
+                ],
+                [
+                  -50,
+                  0
+                ],
+                [
+                  0,
+                  1.5707963267948966
+                ],
+                [
+                  50,
+                  3.141592653589793
+                ],
+                [
+                  100,
+                  4.71238898038469
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "MiG29-vertical-speed",
+              "source": "MiG29.vertical-speed.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "MiG29-heading",
+              "source": "trueHeading",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -1,
+              "period": 6.283185307179586
+            },
+            {
+              "node": "MiG29-heading",
+              "source": "MiG29.heading.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "MiG29-G",
+              "source": "loadFactor",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -3,
+                  -1.6
+                ],
+                [
+                  0,
+                  -0.5
+                ],
+                [
+                  3,
+                  0.6
+                ],
+                [
+                  6,
+                  1.7
+                ],
+                [
+                  9,
+                  2.8
+                ]
+              ],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "MiG29-G",
+              "source": "MiG29.G.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "MiG29-gear-lamp",
+              "source": "gearDown",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "MiG29-stick",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.15
+            },
+            {
+              "node": "MiG29-stick",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.14
+            },
+            {
+              "node": "MiG29-throttle--1",
+              "source": "power",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.6,
+              "offset": -0.3
+            },
+            {
+              "node": "MiG29-pedal--1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": 0.06
+            },
+            {
+              "node": "MiG29-throttle-1",
+              "source": "power",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.6,
+              "offset": -0.3
+            },
+            {
+              "node": "MiG29-pedal-1",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": -0.06
+            },
+            {
+              "node": "MiG29-slat-right",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.24
+            },
+            {
+              "node": "MiG29-flap-right",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.4
+            },
+            {
+              "node": "MiG29-aileron-right",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.28
+            },
+            {
+              "node": "MiG29-stabilator-right",
+              "source": "tailRight",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "MiG29-rudder-right",
+              "source": "yawInput",
+              "property": "rotation",
+              "axis": "y",
+              "scale": 0.3
+            },
+            {
+              "node": "MiG29-slat-left",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.24
+            },
+            {
+              "node": "MiG29-flap-left",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.4
+            },
+            {
+              "node": "MiG29-aileron-left",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.28
+            },
+            {
+              "node": "MiG29-stabilator-left",
+              "source": "tailLeft",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "MiG29-rudder-left",
+              "source": "yawInput",
+              "property": "rotation",
+              "axis": "y",
+              "scale": 0.3
+            },
+            {
+              "node": "MiG29-gear-left",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1.5707963267948966,
+              "offset": -1.5707963267948966
+            },
+            {
+              "node": "MiG29-gear-left",
+              "source": "gearExposed",
+              "property": "visible",
+              "scale": 1
+            },
+            {
+              "node": "MiG29-gear-right",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1.5707963267948966,
+              "offset": -1.5707963267948966
+            },
+            {
+              "node": "MiG29-gear-right",
+              "source": "gearExposed",
+              "property": "visible",
+              "scale": 1
+            },
+            {
+              "node": "MiG29-gear-nose",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1.5707963267948966,
+              "offset": -1.5707963267948966
+            },
+            {
+              "node": "MiG29-gear-nose",
+              "source": "gearExposed",
+              "property": "visible",
+              "scale": 1
+            }
+          ]
+        }
+      },
+      "assets": [
+        "molen.entities.aircraft.mig_29a"
+      ]
+    }
+  }
+}

@@ -1,5 +1,8 @@
 import { expect, it } from 'vitest';
-import { buildKsiazGate, ksiazGateModels } from '../../worldgen/scripts/ksiaz-gate-models.mjs';
+import {
+  buildKsiazGate,
+  ksiazGateModels,
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-park-gates/models/ksiaz-gate-models.mjs';
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 it.each(ksiazGateModels)('keeps $key deterministic, shared and within browser budgets', async ({

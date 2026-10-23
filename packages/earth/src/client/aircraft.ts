@@ -88,6 +88,8 @@ export interface EarthFlightStatus {
   id: string;
   type: string;
   label: string;
+  /** The spec's name-free label ('Light helicopter'), for a HUD that must not show the type name. */
+  genericLabel?: string;
   model: 'airplane' | 'helicopter';
   /** Air-relative speed, m/s. */
   airspeed: number;
@@ -117,6 +119,8 @@ export interface EarthFlightStatus {
   gearPosition: number;
   /** Flap travel, 0 up … 1 fully down. */
   flapPosition: number;
+  /** Actual powered-lift nozzle/nacelle position, 0 forward to 1 vertical. */
+  thrustVectorPosition?: number;
   stalled: boolean;
   grounded: boolean;
   crashed: boolean;
@@ -138,6 +142,7 @@ export interface EarthPilotControls {
   engine?: number;
   gear?: number;
   flaps?: number;
+  vector?: number;
 }
 
 /** A compass heading as the kernel's vehicle yaw (+Z south is yaw 0 in the Earth frame). */
@@ -252,8 +257,15 @@ export class EarthAircraft {
       pos: [...placement.position],
       rot: vehicleRotation(yaw, 0, 0),
     };
-    components.aircraftState = initialAircraftState(yaw);
-    components.aircraftInput = { ...IDLE_AIRCRAFT_INPUT };
+    const parkedVector = (components.aircraftInput as AircraftInputData | undefined)?.thrustVector;
+    components.aircraftState = {
+      ...initialAircraftState(yaw),
+      ...(parkedVector === undefined ? {} : { thrustVectorPosition: parkedVector }),
+    };
+    components.aircraftInput = {
+      ...IDLE_AIRCRAFT_INPUT,
+      ...(parkedVector === undefined ? {} : { thrustVector: parkedVector }),
+    };
     this.world.spawnRaw(components, id);
     this.spawned.add(id);
     if (placement.airborne !== undefined) this.launch(id, data.spec, yaw, placement.airborne);
@@ -468,6 +480,9 @@ export class EarthAircraft {
     if ((controls.gear ?? 0) % 2 === 1 && state !== undefined && !state.grounded)
       next.gear = !next.gear;
     if ((controls.flaps ?? 0) % 2 === 1) next.flaps = !next.flaps;
+    if (this.world.get(id, Aircraft)?.spec.poweredLift && (controls.vector ?? 0) > 0)
+      next.thrustVector =
+        ((Math.round((next.thrustVector ?? 0) * 4) + (controls.vector ?? 0)) % 5) / 4;
     next.power = Math.max(
       0,
       Math.min(1, next.power + Math.min(dt, 0.1) * POWER_RATE * controls.throttle),
@@ -494,13 +509,21 @@ export class EarthAircraft {
       if (!t || !state || !input) continue;
       visual.object.position.fromArray(t.pos);
       visual.object.quaternion.fromArray(t.rot);
+      const channels = this.world.get(id, Aircraft)?.spec.visual;
+      const weather = weatherOf(this.world);
+      const atmosphere = weather ? sampleAtmosphere(weather, t.pos[1]) : undefined;
       visual.update(
         state,
         input,
         t.pos[1],
-        readModelSignals(this.world.get(id, Aircraft)?.spec.visual.interior?.sources, (name) =>
-          this.world.get(id, { name }),
-        ),
+        {
+          trueHeading: (((Math.PI - state.yaw) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI),
+          airDensity: atmosphere?.densityKgM3 ?? 1.225 * Math.exp(-Math.max(0, t.pos[1]) / 8500),
+          staticPressure: atmosphere?.pressurePa,
+          ...readModelSignals(channels?.interior?.sources, (name) => this.world.get(id, { name })),
+          ...readModelSignals(channels?.animation?.sources, (name) => this.world.get(id, { name })),
+        },
+        this.world.tick / this.world.tickRate,
       );
     }
   }
@@ -536,6 +559,9 @@ export class EarthAircraft {
       id,
       type: aircraft.kind,
       label: aircraft.spec.label,
+      ...(aircraft.spec.genericLabel !== undefined
+        ? { genericLabel: aircraft.spec.genericLabel }
+        : {}),
       model: aircraft.spec.model,
       airspeed: state.airspeed,
       altitude: t.pos[1],
@@ -553,6 +579,9 @@ export class EarthAircraft {
       flaps: this.controls.flaps,
       gearPosition: state.gearPosition ?? Number(this.controls.gear),
       flapPosition: state.flapPosition ?? Number(this.controls.flaps),
+      ...(aircraft.spec.poweredLift
+        ? { thrustVectorPosition: state.thrustVectorPosition ?? 0 }
+        : {}),
       stalled: state.stalled,
       grounded: state.grounded,
       crashed: state.crashed,

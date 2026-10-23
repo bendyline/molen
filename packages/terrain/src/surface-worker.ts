@@ -1,10 +1,12 @@
 import { createParkedVehicleBatch } from '@bendyline/molen-client/vehicles';
+import type { FontLibrary } from '@bendyline/molen-materials/text';
 import type { VehiclePlacement } from '@bendyline/molen-schema';
 /** Off-thread road topology, parking inference, terrain draping and fixture placement. */
 import * as THREE from 'three';
 import { Heightfield } from './heightfield';
 import type { TerrainLandcoverWorker } from './landcover-worker';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
+import type { TerrainRouteShieldLibrary } from './route-shields';
 import type { TerrainSemanticTile } from './semantic-types';
 import {
   createTerrainSurfaceObject,
@@ -12,6 +14,7 @@ import {
   type TerrainSurfaceGenerator,
   type TerrainSurfaceStats,
 } from './surface-client';
+import type { SurfaceSign } from './surface-sign-mesh';
 import { appendTerrainSignalLenses, type TerrainSignalHead } from './surface-signals';
 import type { TerrainSurfaceOptions } from './surface-styles';
 
@@ -29,7 +32,10 @@ interface Request {
     worldSize: [number, number];
     height: { min: number; max: number };
   };
-  options: TerrainSurfaceOptions;
+  options: Omit<TerrainSurfaceOptions, 'fonts' | 'routeShields'>;
+  /** Sent once per change, not per tile. Empty update clears the library. */
+  fontUpdate?: { fonts?: FontLibrary };
+  shieldUpdate?: { routeShields?: TerrainRouteShieldLibrary };
 }
 
 interface MeshData {
@@ -52,6 +58,7 @@ interface Result {
   inferredParkingAreas?: number;
   vehicles?: VehiclePlacement[];
   signalHeads?: TerrainSignalHead[];
+  roadSigns?: SurfaceSign[];
   error?: string;
 }
 
@@ -59,10 +66,14 @@ interface Result {
 export function installTerrainSurfaceWorker(
   scope: Pick<TerrainSurfaceWorker, 'postMessage' | 'addEventListener'>,
 ): void {
+  let fonts: FontLibrary | undefined;
+  let routeShields: TerrainRouteShieldLibrary | undefined;
   scope.addEventListener('message', (event) => {
     const request = event.data as Request;
     let object: THREE.Group | undefined;
     try {
+      if (request.fontUpdate) fonts = request.fontUpdate.fonts;
+      if (request.shieldUpdate) routeShields = request.shieldUpdate.routeShields;
       const ground = request.ground;
       object = createTerrainSurfaceObject(
         request.tile,
@@ -71,7 +82,7 @@ export function installTerrainSurfaceWorker(
           heightfield: new Heightfield(ground.samples, ground.cols, ground.rows, ground),
           signal: new AbortController().signal,
         },
-        request.options,
+        { ...request.options, fonts, routeShields },
         undefined,
         false,
       );
@@ -118,6 +129,7 @@ export function installTerrainSurfaceWorker(
           inferredParkingAreas: object.userData.inferredParkingAreas as number,
           vehicles: object.userData.vehicles as VehiclePlacement[],
           signalHeads: object.userData.trafficSignalHeads as TerrainSignalHead[],
+          roadSigns: object.userData.roadSigns as SurfaceSign[],
         } satisfies Result,
         transfer,
       );
@@ -147,6 +159,8 @@ export function createTerrainSurfaceWorkerBridge(
   let nextId = 1;
   let disposed = false;
   let failure: Error | undefined;
+  let sentFonts: FontLibrary | undefined;
+  let sentShields: TerrainRouteShieldLibrary | undefined;
   const material = new THREE.MeshStandardMaterial({
     vertexColors: true,
     roughness: 0.96,
@@ -164,6 +178,7 @@ export function createTerrainSurfaceWorkerBridge(
         continue;
       }
       const { heightfield, signal: _signal, admission: _admission, ...context } = job.context;
+      const { fonts, routeShields, ...options } = job.options;
       const request: Request = {
         id: job.id,
         tile: job.tile,
@@ -176,11 +191,15 @@ export function createTerrainSurfaceWorkerBridge(
           worldSize: heightfield.worldSize,
           height: heightfield.heightRange,
         },
-        options: job.options,
+        options,
+        ...(fonts !== sentFonts ? { fontUpdate: { fonts } } : {}),
+        ...(routeShields !== sentShields ? { shieldUpdate: { routeShields } } : {}),
       };
       active = job;
       try {
         worker.postMessage(request, [request.ground.samples.buffer]);
+        sentFonts = fonts;
+        sentShields = routeShields;
         return;
       } catch (error) {
         active = undefined;
@@ -202,6 +221,7 @@ export function createTerrainSurfaceWorkerBridge(
       group.name = 'semantic:surfaces';
       group.userData.shadowCaster = false;
       group.userData.surfaceStats = result.stats;
+      group.userData.roadSigns = result.roadSigns ?? [];
       group.userData.surfaceStyle = result.style;
       group.userData.inferredParkingAreas = result.inferredParkingAreas;
       group.userData.vehicles = result.vehicles ?? [];

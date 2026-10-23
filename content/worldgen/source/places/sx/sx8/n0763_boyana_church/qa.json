@@ -1,0 +1,3075 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0763_boyana_church",
+  "reviewedOn": "2026-10-22",
+  "inputHash": "sha256:ebc28a9cad2da6d3f1078be595075bbad69d6d73e6a4aac9b218dbaa96d34fd1",
+  "sourceHash": "sha256:a78d271052d0f54a9697bf89a594f302ba6b4fd44a116734490b662990c245af",
+  "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+  "captureReportHash": "sha256:03886e321de0bfb79aea83e16731fc950da722b2891c695c28248e4bf08bfd66",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/south-stone-annex-brick-church-and-exterior-stair.png",
+      "shots/upper-door-recess-landing-and-stair.png",
+      "shots/octagonal-drum-tiled-cap-and-cross.png",
+      "shots/eastern-roof-and-northern-reconstructed-wall.png"
+    ],
+    "notes": "Principal connected Boyana Church exterior: stone western annex, taller brick middle body with raised south doorway and supported exterior stair/landing/rails, lower eastern church with curved roof crown and rounded brick apse/slit window, blind brick arcades and octagonal plaster drum/tiled cap/cross. Upper door is an actual 0.35m recess with jambs, soffit and threshold. Corrected the missing apse, dark upper door and metric brick UV consistency and closed roof/eave undersides during the same author/inspect/fix pass. Arcades and small windows are closed exterior proxies, not traversable openings."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/south-stone-annex-brick-church-and-exterior-stair.png",
+      "shots/shared/upper-door-recess-landing-and-stair.png",
+      "shots/shared/octagonal-drum-tiled-cap-and-cross.png",
+      "shots/shared/eastern-roof-and-northern-reconstructed-wall.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Six existing 256px shared graphs and six roles: brick, stone_drywall, plaster_lime, tile_ceramic, wood_plain and metal_painted. Metric UVs: brick 1.92 x 0.90m, fieldstone 2m repeat. No embedded image, private atlas or new graph. One skyline draw; six textured draws. Separate POSITION/NORMAL streams and equal CPU/GPU geometry bytes. Each graph reads once per textured native run; unload releases geometry.",
+    "captureReportHash": "sha256:63b8a1168472fbe090f6d7ed70e0b9c81132d5091d195791333e5d5fe89f627e"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/south-stone-annex-brick-church-and-exterior-stair.png",
+      "medium-fi/upper-door-recess-landing-and-stair.png",
+      "medium-fi/octagonal-drum-tiled-cap-and-cross.png",
+      "medium-fi/eastern-roof-and-northern-reconstructed-wall.png",
+      "medium-fi/boyana-skyline.png",
+      "medium-fi/boyana-district.png",
+      "medium-fi/boyana-street.png",
+      "medium-fi/boyana-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 260 / 1208 / 1836 / 2208 triangles; initial skyline+district geometry 135280 bytes, closeup 196720 bytes. Six GLBs zero Khronos errors/warnings; 190 actual mesh/contact probes and one intersecting detailed PMTiles case at level 15 (levels 13/14 have no intersecting building records in the extract). Inspected 52 current portable/shared/medium-fi/native frames. All LODs/failure/unload preserve 880 resident / 994 wider independent buildings, original 201x201/6m terrain/roads/289.053m² water and garden/approach ground. Failure keeps all 881 originals; unload restores ground/water and zero live geometry.",
+    "captureReportHash": "sha256:2213fb3272f4a74cb19513fdfa9c9b757a7859a919cd506625f0a00fff176939"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:07e9fa85ca9d05bc205eaef8eeaec9089d6c5b6f5d9b5c59408803f169aefb22",
+    "mapFrameHash": "sha256:04247454219a5160918e97e3b2d4de6871f6c308fdb5480ff414d9a4f7a18be5",
+    "notes": "Q276553 and named church way44890267/native35184416979099 establish the single owned building. Current standard PMTiles supplies the approximately 13.9 x 9.5m rectangular footprint; the older georeference has the same identity and long axis. Internal +X points east/slightly south toward the lower church; +Z south toward the photographed stair. Native east/up/south coordinates are baked with heading 0. Three construction volumes and local roof treatment are picture-led approximations from the mapped perimeter and photographs. Unrelated buildings remain independent. Qualified approximate native exterior fit on original standard Protomaps20261020/Mapzen 201x201/6m terrain. Uncovered western approach datum 775.2697762814635m, floor +0.15m and foundation -1.554m. Boundary grades -1.404..-0.007m leave an exposed downhill foundation; inspected stair/doorway and approach remain clear. Original samples are retained. Only one owned parent is replaced; 880 resident / 994 wider independent buildings, roads and 289.053m² water remain. Exact historic terrain, paving, step levels and accessibility are unverified. Apse projection and unseen elevations are approximate. No bespoke terrain or flattening."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Picture-led medium-fi reconstruction: west annex eave 5.6m/ridge 6.7m, middle eave 6.3m/ridge 7.3m, lower east eave 3.8m with raised center gable to 6.3m, octagonal drum 7.0..9.0m and overhanging tiled cap to 9.9m; schematic cross reaches 10.5m. Source map height 5m and one level are unqualified controls, not survey. South landing/door threshold 3.05m, actual 0.35m recess, stair proportions reconstructed. Heights, inventories, north/east faces, roof junctions, exact paving/step levels are unverified. No authored historic frescoes or furnished rooms. An additional ordinary eastern exterior photo shows the rounded brick apse and curved roof crown. The source map simplifies this as a rectangle: the added 1.45m apse projection and its 3.55m wall/4.05m roof are picture-led approximations, not surveyed map geometry. Only the owned parent is replaced; the added apse has its own occupied ground mask. Upper doorway back uses shared dark painted metal; triangle and quad brick UVs now use the same metric repeat. Native fit is qualified: original coarse ground slopes about 1.4m across the rectangle and exposes the downhill foundation. Steps, upper doorway and inspected approach remain clear. Northern/other unseen elevations, roof junctions, internal subdivisions and architectural heights remain reconstructed; the apse projection is photograph-led and extends beyond the simplified mapped rectangle. Exact paving, step levels and accessibility are unverified. No copied frescoes, inscriptions, garden monuments or furnished rooms. Physical phone/laptop and dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sx/sx8/n0763_boyana_church/models/source.glb\",\"hash\":\"sha256:a78d271052d0f54a9697bf89a594f302ba6b4fd44a116734490b662990c245af\",\"bytes\":218848,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sx/sx8/n0763_boyana_church/model.glb\",\"hash\":\"sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d\",\"bytes\":218264,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sx/sx8/n0763_boyana_church/model.skyline.glb\",\"hash\":\"sha256:bc79ef8f30ac839f6dc3b26b3a725e8fd287152b48855c52ce5b79ace3668d36\",\"bytes\":25232,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sx/sx8/n0763_boyana_church/model.district.glb\",\"hash\":\"sha256:bd393c8572ebce93170b69aca3ff1963c9d7c09368dd230a317b673f13270c12\",\"bytes\":110048,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sx/sx8/n0763_boyana_church/model.street.glb\",\"hash\":\"sha256:5561fd41e023e0d7a4223269a70d042c990a1f8665a2c0a01d547d6a1ceded9c\",\"bytes\":166676,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sx/sx8/n0763_boyana_church/model.closeup.glb\",\"hash\":\"sha256:a2a6f125b5a4b287f9fe6e2b2a481c445a6c07673271e5fe3c42d58a12005e52\",\"bytes\":196720,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "closed-apse-roof-recessed-door-and-supported-stair",
+        "passed": true,
+        "notes": "190 actual mesh/contact probes over six current GLBs, including distinct roof bodies, closed tiled drum cap, rounded apse/footing, actual upper door recess/soffit/threshold and supported stair treads/landing/posts. Current shared materials, hashes, vertex layout and LOD caps checked."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Q276553 and named church way44890267/native35184416979099 establish the single owned building. Current standard PMTiles supplies the approximately 13.9 x 9.5m rectangular footprint; the older georeference has the same identity and long axis. Internal +X points east/slightly south toward the lower church; +Z south toward the photographed stair. Native east/up/south coordinates are baked with heading 0. Three construction volumes and local roof treatment are picture-led approximations from the mapped perimeter and photographs. Unrelated buildings remain independent. Qualified approximate native exterior fit on original standard Protomaps20261020/Mapzen 201x201/6m terrain. Uncovered western approach datum 775.2697762814635m, floor +0.15m and foundation -1.554m. Boundary grades -1.404..-0.007m leave an exposed downhill foundation; inspected stair/doorway and approach remain clear. Original samples are retained. Only one owned parent is replaced; 880 resident / 994 wider independent buildings, roads and 289.053m² water remain. Exact historic terrain, paving, step levels and accessibility are unverified. Apse projection and unseen elevations are approximate. No bespoke terrain or flattening."
+    },
+    "inputHash": "sha256:ebc28a9cad2da6d3f1078be595075bbad69d6d73e6a4aac9b218dbaa96d34fd1",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:ebc28a9cad2da6d3f1078be595075bbad69d6d73e6a4aac9b218dbaa96d34fd1",
+      "reviewedOn": "2026-10-22",
+      "method": "Actually inspected 52 current frames in nine labeled contact sheets plus final native south facade/stair, upper doorway, drum/roof and eastern apse/north wall at full resolution. Five ordinary pictures and standard PMTiles/Mapzen guided one continuous author/inspect/fix pass. Added the missing rounded apse and curved eastern roof crown, darkened the upper door, aligned triangle/quad brick UV repeats and closed roof/eave undersides after seeing a sky gap from below. No bespoke terrain research.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/preview.png",
+          "hash": "sha256:2fd3010be1a35673ba0699df352151e5a7880a368ac09cb96aab6c23a7ea1557"
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/turntable/angle_0.png",
+          "hash": "sha256:d4ab1c608db438df4320a631a787d12ec73155807ad0c04ceb75b53d870b3704"
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/turntable/angle_1.png",
+          "hash": "sha256:f1226b89138ebbfba8bc71972a25081ea38a894809c906cda3c295b052787047"
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/turntable/angle_2.png",
+          "hash": "sha256:3dbfa53beb0480b5792e90339cf642abe3443e07cec61f0708d5eecf1717987e"
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/turntable/angle_3.png",
+          "hash": "sha256:b878d3b4fc6c60fb79ffbb25a0e1f9035defde3c2dff62df69cf43eff165361a"
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/south-stone-annex-brick-church-and-exterior-stair.png",
+          "hash": "sha256:c9c29aed510c85d2c600ba95486f3f405dc77293bd446c9dfab50b1469da6ee1"
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/upper-door-recess-landing-and-stair.png",
+          "hash": "sha256:af6f00008170052240fe76d21e51059d6abc5ce30299ca582e775f40f294c0db"
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/octagonal-drum-tiled-cap-and-cross.png",
+          "hash": "sha256:1b5eb0e45046941857f219a0abcd2eea0424ee50a9946b683cda5babe0d60719"
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/eastern-roof-and-northern-reconstructed-wall.png",
+          "hash": "sha256:39b21a50f613144f6506d87eea88fe1690ecc1b2ae05cb6e63164245bc39e9a1"
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/shared/angle-0.png",
+          "hash": "sha256:00a5da23df6d79d11a5bf75b0dd19b03744860eed6f16bf210ad0d4c0154348f",
+          "camera": {
+            "name": "angle-0",
+            "angle": 0.6
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0763_boyana_church",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0763",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 2208,
+            "bounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "490db821-45ed-4835-abc7-c37e884058a8",
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c7d9c8d1-df6d-4839-bdcc-8403364838ba",
+              "worldgen:matgraph:molen.worldgen.material.stone_drywall": "f3e72b8b-4dc4-4b99-8a8e-c80f5d8b9e6f",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "d3dae599-fb55-4180-a65a-777cae765002",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "29a97372-09d8-4404-b0de-7f26b800cf1e",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "3c94e70e-fca8-421e-892b-862e867e5f8e"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0763_boyana_church"
+            ],
+            "selectionBounds": [
+              23.26541420296705,
+              42.64406627249289,
+              23.266977404794332,
+              42.64521611605659
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0763",
+                "coordinate": [
+                  23.26609307997948,
+                  42.64464479505599
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0763"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 2227
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/shared/angle-1.png",
+          "hash": "sha256:e77e535efe2195c48686a8b263758e3d7c36d1ae704b3aa0f71dafe6a19a814d",
+          "camera": {
+            "name": "angle-1",
+            "angle": 2.1707963267948966
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0763_boyana_church",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0763",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 2208,
+            "bounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "490db821-45ed-4835-abc7-c37e884058a8",
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c7d9c8d1-df6d-4839-bdcc-8403364838ba",
+              "worldgen:matgraph:molen.worldgen.material.stone_drywall": "f3e72b8b-4dc4-4b99-8a8e-c80f5d8b9e6f",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "d3dae599-fb55-4180-a65a-777cae765002",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "29a97372-09d8-4404-b0de-7f26b800cf1e",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "3c94e70e-fca8-421e-892b-862e867e5f8e"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0763_boyana_church"
+            ],
+            "selectionBounds": [
+              23.26541420296705,
+              42.64406627249289,
+              23.266977404794332,
+              42.64521611605659
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0763",
+                "coordinate": [
+                  23.26609307997948,
+                  42.64464479505599
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0763"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 2227
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/shared/angle-2.png",
+          "hash": "sha256:720d0d194c2cbc7d3224eefa387270591c4b8cdd99d175910f5868a999ef800e",
+          "camera": {
+            "name": "angle-2",
+            "angle": 3.741592653589793
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0763_boyana_church",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0763",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 2208,
+            "bounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "490db821-45ed-4835-abc7-c37e884058a8",
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c7d9c8d1-df6d-4839-bdcc-8403364838ba",
+              "worldgen:matgraph:molen.worldgen.material.stone_drywall": "f3e72b8b-4dc4-4b99-8a8e-c80f5d8b9e6f",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "d3dae599-fb55-4180-a65a-777cae765002",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "29a97372-09d8-4404-b0de-7f26b800cf1e",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "3c94e70e-fca8-421e-892b-862e867e5f8e"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0763_boyana_church"
+            ],
+            "selectionBounds": [
+              23.26541420296705,
+              42.64406627249289,
+              23.266977404794332,
+              42.64521611605659
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0763",
+                "coordinate": [
+                  23.26609307997948,
+                  42.64464479505599
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0763"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 2227
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/shared/angle-3.png",
+          "hash": "sha256:2c05cd8125f39ec513e97b6f6b94db32078ed94fc310128a7fef898512c10cb0",
+          "camera": {
+            "name": "angle-3",
+            "angle": 5.312388980384689
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0763_boyana_church",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0763",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 2208,
+            "bounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "490db821-45ed-4835-abc7-c37e884058a8",
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c7d9c8d1-df6d-4839-bdcc-8403364838ba",
+              "worldgen:matgraph:molen.worldgen.material.stone_drywall": "f3e72b8b-4dc4-4b99-8a8e-c80f5d8b9e6f",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "d3dae599-fb55-4180-a65a-777cae765002",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "29a97372-09d8-4404-b0de-7f26b800cf1e",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "3c94e70e-fca8-421e-892b-862e867e5f8e"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0763_boyana_church"
+            ],
+            "selectionBounds": [
+              23.26541420296705,
+              42.64406627249289,
+              23.266977404794332,
+              42.64521611605659
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0763",
+                "coordinate": [
+                  23.26609307997948,
+                  42.64464479505599
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0763"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 2227
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/shared/south-stone-annex-brick-church-and-exterior-stair.png",
+          "hash": "sha256:ca7f2b8ef4980cbfe90cd3bd6cefbe53706b131e404a0a4f80290f6556a9650a",
+          "camera": {
+            "name": "south-stone-annex-brick-church-and-exterior-stair",
+            "position": [
+              6.992076278763126,
+              7,
+              21.35675231190262
+            ],
+            "lookAt": [
+              0,
+              4,
+              0
+            ],
+            "fov": 52
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0763_boyana_church",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0763",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 2208,
+            "bounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "490db821-45ed-4835-abc7-c37e884058a8",
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c7d9c8d1-df6d-4839-bdcc-8403364838ba",
+              "worldgen:matgraph:molen.worldgen.material.stone_drywall": "f3e72b8b-4dc4-4b99-8a8e-c80f5d8b9e6f",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "d3dae599-fb55-4180-a65a-777cae765002",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "29a97372-09d8-4404-b0de-7f26b800cf1e",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "3c94e70e-fca8-421e-892b-862e867e5f8e"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0763_boyana_church"
+            ],
+            "selectionBounds": [
+              23.26541420296705,
+              42.64406627249289,
+              23.266977404794332,
+              42.64521611605659
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0763",
+                "coordinate": [
+                  23.26609307997948,
+                  42.64464479505599
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0763"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 2227
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/shared/upper-door-recess-landing-and-stair.png",
+          "hash": "sha256:959a32259c1bdabda59657f0af5694ccdcdcad8b9244c5a5f28a9ca3f08890d0",
+          "camera": {
+            "name": "upper-door-recess-landing-and-stair",
+            "position": [
+              -1.4745199508752735,
+              4.4,
+              9.941116180513673
+            ],
+            "lookAt": [
+              -1.073883363493049,
+              3.5,
+              4.681320808954207
+            ],
+            "fov": 58
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0763_boyana_church",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0763",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 2208,
+            "bounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "490db821-45ed-4835-abc7-c37e884058a8",
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c7d9c8d1-df6d-4839-bdcc-8403364838ba",
+              "worldgen:matgraph:molen.worldgen.material.stone_drywall": "f3e72b8b-4dc4-4b99-8a8e-c80f5d8b9e6f",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "d3dae599-fb55-4180-a65a-777cae765002",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "29a97372-09d8-4404-b0de-7f26b800cf1e",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "3c94e70e-fca8-421e-892b-862e867e5f8e"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0763_boyana_church"
+            ],
+            "selectionBounds": [
+              23.26541420296705,
+              42.64406627249289,
+              23.266977404794332,
+              42.64521611605659
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0763",
+                "coordinate": [
+                  23.26609307997948,
+                  42.64464479505599
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0763"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 2227
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/shared/octagonal-drum-tiled-cap-and-cross.png",
+          "hash": "sha256:33227adf8e349e7a5214b7681b71deddd65a6ed1098d5def6028aa2082005609",
+          "camera": {
+            "name": "octagonal-drum-tiled-cap-and-cross",
+            "position": [
+              9.370334002901112,
+              11,
+              13.460937585252939
+            ],
+            "lookAt": [
+              0,
+              8.3,
+              0
+            ],
+            "fov": 45
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0763_boyana_church",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0763",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 2208,
+            "bounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "490db821-45ed-4835-abc7-c37e884058a8",
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c7d9c8d1-df6d-4839-bdcc-8403364838ba",
+              "worldgen:matgraph:molen.worldgen.material.stone_drywall": "f3e72b8b-4dc4-4b99-8a8e-c80f5d8b9e6f",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "d3dae599-fb55-4180-a65a-777cae765002",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "29a97372-09d8-4404-b0de-7f26b800cf1e",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "3c94e70e-fca8-421e-892b-862e867e5f8e"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0763_boyana_church"
+            ],
+            "selectionBounds": [
+              23.26541420296705,
+              42.64406627249289,
+              23.266977404794332,
+              42.64521611605659
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0763",
+                "coordinate": [
+                  23.26609307997948,
+                  42.64464479505599
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0763"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 2227
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/shared/eastern-roof-and-northern-reconstructed-wall.png",
+          "hash": "sha256:cd7d922d052aafca30548f65d10bb6a8552efa19fbe9a1ebd4d0a7704aae556c",
+          "camera": {
+            "name": "eastern-roof-and-northern-reconstructed-wall",
+            "position": [
+              20.785970808913902,
+              10,
+              -16.029454686014088
+            ],
+            "lookAt": [
+              0.9988681361981387,
+              4,
+              0.04756518146771349
+            ],
+            "fov": 48
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0763_boyana_church",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0763",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 2208,
+            "bounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "490db821-45ed-4835-abc7-c37e884058a8",
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c7d9c8d1-df6d-4839-bdcc-8403364838ba",
+              "worldgen:matgraph:molen.worldgen.material.stone_drywall": "f3e72b8b-4dc4-4b99-8a8e-c80f5d8b9e6f",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "d3dae599-fb55-4180-a65a-777cae765002",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "29a97372-09d8-4404-b0de-7f26b800cf1e",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "3c94e70e-fca8-421e-892b-862e867e5f8e"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0763_boyana_church"
+            ],
+            "selectionBounds": [
+              23.26541420296705,
+              42.64406627249289,
+              23.266977404794332,
+              42.64521611605659
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0763",
+                "coordinate": [
+                  23.26609307997948,
+                  42.64464479505599
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0763"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 2227
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/shots/shared/placement.png",
+          "hash": "sha256:2b92a3933045534f1d0212f5c76c4a08db48f8468eda95d69f178a37e27ea464",
+          "camera": {
+            "name": "placement",
+            "placement": true
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0763_boyana_church",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0763",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 2208,
+            "bounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -7.310568809509277,
+                -1.5544570684432983,
+                -5.328249454498291
+              ],
+              "max": [
+                8.461307525634766,
+                10.649999618530273,
+                5.739645481109619
+              ]
+            },
+            "reviewGroundY": 0.15,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.brick": "490db821-45ed-4835-abc7-c37e884058a8",
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c7d9c8d1-df6d-4839-bdcc-8403364838ba",
+              "worldgen:matgraph:molen.worldgen.material.stone_drywall": "f3e72b8b-4dc4-4b99-8a8e-c80f5d8b9e6f",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "d3dae599-fb55-4180-a65a-777cae765002",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "29a97372-09d8-4404-b0de-7f26b800cf1e",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "3c94e70e-fca8-421e-892b-862e867e5f8e"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0763_boyana_church"
+            ],
+            "selectionBounds": [
+              23.26541420296705,
+              42.64406627249289,
+              23.266977404794332,
+              42.64521611605659
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0763",
+                "coordinate": [
+                  23.26609307997948,
+                  42.64464479505599
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0763"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 2227
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/street-noon-economy.png",
+          "hash": "sha256:909fb0c33c37b9fd7d0066b90440de9690ac8a3aaa019fce59908e43941db374",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:a2a6f125b5a4b287f9fe6e2b2a481c445a6c07673271e5fe3c42d58a12005e52",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 11,
+            "triangles": 13864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/street-noon-high.png",
+          "hash": "sha256:c597085159a0f89a1246665402b8bd18d2edcf177cf411d935aa78c1905d377b",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:a2a6f125b5a4b287f9fe6e2b2a481c445a6c07673271e5fe3c42d58a12005e52",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 13864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/street-late-economy.png",
+          "hash": "sha256:b11c30e79c4128c901afadfcacb6fcde0db6567c4a0652c1db38bba3cd5aca4a",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:a2a6f125b5a4b287f9fe6e2b2a481c445a6c07673271e5fe3c42d58a12005e52",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 11,
+            "triangles": 13864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/street-late-high.png",
+          "hash": "sha256:f64158f8112e0fa584b72e6e11d2b4b3215c543d3bbd1cc576c5316478f4e901",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:a2a6f125b5a4b287f9fe6e2b2a481c445a6c07673271e5fe3c42d58a12005e52",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 13864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/block-noon-economy.png",
+          "hash": "sha256:290a1bc7520decf2f89a4a7428fc9a57fe7a8b6103aee0ec17c1921ae02210ba",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:bd393c8572ebce93170b69aca3ff1963c9d7c09368dd230a317b673f13270c12",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 11,
+            "triangles": 12864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/block-noon-high.png",
+          "hash": "sha256:6c740955691f4ec014dc5edd12eecb7163b964154d57f6c4fa1a4ab71dc84caa",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:bd393c8572ebce93170b69aca3ff1963c9d7c09368dd230a317b673f13270c12",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 12864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/block-late-economy.png",
+          "hash": "sha256:dde495bd6d9fa82e406ab3d7900e5299b221c4aba81def3d29564faf7ebaba6b",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:bd393c8572ebce93170b69aca3ff1963c9d7c09368dd230a317b673f13270c12",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 11,
+            "triangles": 12864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/block-late-high.png",
+          "hash": "sha256:946b23c64d2781c391b3d9db52cd31f40b871929ce787974ef364f270150841d",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:bd393c8572ebce93170b69aca3ff1963c9d7c09368dd230a317b673f13270c12",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 12864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:7c5eb28323cca4bce7341316ea89d91ececea0a5cae48c1a9e277bddf70e24e3",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:bc79ef8f30ac839f6dc3b26b3a725e8fd287152b48855c52ce5b79ace3668d36",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 11916,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:be89362bcb48e11ecf66fc20fcaff92a76a4fc885bf62424ae2bc06543ced87e",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:bc79ef8f30ac839f6dc3b26b3a725e8fd287152b48855c52ce5b79ace3668d36",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 11916,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:e1dc5d5bb02e0c44ae862475910b62f717ddd55ba61b898f6ffcedae9a798ebf",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:bc79ef8f30ac839f6dc3b26b3a725e8fd287152b48855c52ce5b79ace3668d36",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 11916,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/skyline-late-high.png",
+          "hash": "sha256:7a5945bc0d112b156e259211537ea33ac5ff740b7d52535212beec1f4f0bb885",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:bc79ef8f30ac839f6dc3b26b3a725e8fd287152b48855c52ce5b79ace3668d36",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 11916,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/silhouette.png",
+          "hash": "sha256:e6c3730ed601c68036e5fa9f9b071bafc314bc93484e55dd97f57ad769e25f5b",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:bc79ef8f30ac839f6dc3b26b3a725e8fd287152b48855c52ce5b79ace3668d36",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 2,
+            "triangles": 270,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/south-stone-annex-brick-church-and-exterior-stair.png",
+          "hash": "sha256:877bd3707a2df4a9c8ae3b0feec4ea8413c7c56eade0dda29f81836324e73d1f",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:a2a6f125b5a4b287f9fe6e2b2a481c445a6c07673271e5fe3c42d58a12005e52",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 13864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              6.992076278763126,
+              7,
+              21.35675231190262
+            ],
+            "lookAt": [
+              0,
+              4,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/upper-door-recess-landing-and-stair.png",
+          "hash": "sha256:a60b153bba745abce41e96854981553e2936aedbbf2e230757586eaeeca11c2b",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:a2a6f125b5a4b287f9fe6e2b2a481c445a6c07673271e5fe3c42d58a12005e52",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 13864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              -1.4745199508752735,
+              4.4,
+              9.941116180513673
+            ],
+            "lookAt": [
+              -1.073883363493049,
+              3.5,
+              4.681320808954207
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/octagonal-drum-tiled-cap-and-cross.png",
+          "hash": "sha256:c7555cdbaf229a7f4e136e54ae9254c33c4c04cb19cbc406042068d7c7df27a3",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:a2a6f125b5a4b287f9fe6e2b2a481c445a6c07673271e5fe3c42d58a12005e52",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 13864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              9.370334002901112,
+              11,
+              13.460937585252939
+            ],
+            "lookAt": [
+              0,
+              8.3,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/eastern-roof-and-northern-reconstructed-wall.png",
+          "hash": "sha256:c973b2963b0b6daa821be6b734b4a2e1b3a422d7be6c5b1283f7896b7c7bd88e",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:a2a6f125b5a4b287f9fe6e2b2a481c445a6c07673271e5fe3c42d58a12005e52",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 13864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              20.785970808913902,
+              10,
+              -16.029454686014088
+            ],
+            "lookAt": [
+              0.9988681361981387,
+              4,
+              0.04756518146771349
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/boyana-skyline.png",
+          "hash": "sha256:a64e921dc9f2f604d39d0b702f507f99fa083a382b867ab2070ff41ecb33fb23",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:bc79ef8f30ac839f6dc3b26b3a725e8fd287152b48855c52ce5b79ace3668d36",
+            "level": "skyline",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 11916,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              21.737272414396642,
+              17,
+              27.064570714909017
+            ],
+            "lookAt": [
+              0,
+              4,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/boyana-district.png",
+          "hash": "sha256:caf021504057e59637a29b008692643c8767e00f0a50b354a5d903b6b49df0ec",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:bd393c8572ebce93170b69aca3ff1963c9d7c09368dd230a317b673f13270c12",
+            "level": "district",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 12864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              21.737272414396642,
+              17,
+              27.064570714909017
+            ],
+            "lookAt": [
+              0,
+              4,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/boyana-street.png",
+          "hash": "sha256:ad6bd3eaa22c3a30c71b3ef1e681dd5dcdbaf02d90c14f684e762956eda7b3a6",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:5561fd41e023e0d7a4223269a70d042c990a1f8665a2c0a01d547d6a1ceded9c",
+            "level": "street",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 13492,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              21.737272414396642,
+              17,
+              27.064570714909017
+            ],
+            "lookAt": [
+              0,
+              4,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/boyana-closeup.png",
+          "hash": "sha256:3b8dae94cb563f0c93ef33fc747342e3f20b81d16ef7a4daa7ccc02ffef9b8d0",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:a2a6f125b5a4b287f9fe6e2b2a481c445a6c07673271e5fe3c42d58a12005e52",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 13864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              21.737272414396642,
+              17,
+              27.064570714909017
+            ],
+            "lookAt": [
+              0,
+              4,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/transition-skyline.png",
+          "hash": "sha256:8398e01ec93aac9c6779abb788525897cb7a4274d0c1a7ab97c6620494e94758",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:bc79ef8f30ac839f6dc3b26b3a725e8fd287152b48855c52ce5b79ace3668d36",
+            "level": "skyline",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 11916,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/transition-district.png",
+          "hash": "sha256:6c740955691f4ec014dc5edd12eecb7163b964154d57f6c4fa1a4ab71dc84caa",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:bd393c8572ebce93170b69aca3ff1963c9d7c09368dd230a317b673f13270c12",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 12864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/transition-street.png",
+          "hash": "sha256:8820578536ac9a8fbbe9eeb84a962d08356d20587be3663fb8b1677b60675958",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:5561fd41e023e0d7a4223269a70d042c990a1f8665a2c0a01d547d6a1ceded9c",
+            "level": "street",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 13492,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sx/sx8/n0763_boyana_church/medium-fi/transition-closeup.png",
+          "hash": "sha256:2dfd02ea10fe8ad88a436eded696620e37cb0f170029f8b25326be2a431c86d9",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0763_boyana_church",
+            "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+            "lodHash": "sha256:a2a6f125b5a4b287f9fe6e2b2a481c445a6c07673271e5fe3c42d58a12005e52",
+            "level": "closeup",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 13864,
+            "groundY": 0.15,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.brick": 1,
+              "molen.worldgen.material.stone_drywall": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.wood_plain": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": ".artifacts/boyana-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:a3b1b10c1e2426ca315f647e4e2d16496c82946f2860b5bdfec9ccb3c4936ef1",
+          "state": {
+            "level": "skyline",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 15,
+            "triangles": 386997
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              21.737272414396642,
+              17,
+              27.064570714909017
+            ],
+            "lookAt": [
+              0,
+              4,
+              0
+            ],
+            "fov": 50
+          }
+        },
+        {
+          "path": ".artifacts/boyana-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:625d682c52825f56744e06eacec877ea56ed4fc08624347fc526b667be3b66db",
+          "state": {
+            "level": "district",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 20,
+            "triangles": 387945
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              21.737272414396642,
+              17,
+              27.064570714909017
+            ],
+            "lookAt": [
+              0,
+              4,
+              0
+            ],
+            "fov": 50
+          }
+        },
+        {
+          "path": ".artifacts/boyana-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:ae2710715b3f3ccbd10a6b1ca347fe0a249af9b7a48a87ede8f3367a2fc1ca04",
+          "state": {
+            "level": "street",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 20,
+            "triangles": 388573
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              21.737272414396642,
+              17,
+              27.064570714909017
+            ],
+            "lookAt": [
+              0,
+              4,
+              0
+            ],
+            "fov": 50
+          }
+        },
+        {
+          "path": ".artifacts/boyana-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:58590cd83466cdf8943ecd8c951d0d57bfc6c135bbfdd6f4a8887501141be31f",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 20,
+            "triangles": 388945
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              21.737272414396642,
+              17,
+              27.064570714909017
+            ],
+            "lookAt": [
+              0,
+              4,
+              0
+            ],
+            "fov": 50
+          }
+        },
+        {
+          "path": ".artifacts/boyana-integration/shots/final-closeup-south-stone-annex-brick-church-and-exterior-stair.png",
+          "hash": "sha256:7642dbd3feb53def7b69b7d50a06c315f70717bcbc8ea865ca85ddb9e296de88",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 21,
+            "triangles": 389603
+          },
+          "camera": {
+            "name": "south-stone-annex-brick-church-and-exterior-stair",
+            "position": [
+              6.992076278763126,
+              7,
+              21.35675231190262
+            ],
+            "lookAt": [
+              0,
+              4,
+              0
+            ],
+            "fov": 52
+          }
+        },
+        {
+          "path": ".artifacts/boyana-integration/shots/final-closeup-upper-door-recess-landing-and-stair.png",
+          "hash": "sha256:76144e7a667b0ed18542d2a71ffede2c70689533c209c3a6abd26e0e2035a02a",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 21,
+            "triangles": 389603
+          },
+          "camera": {
+            "name": "upper-door-recess-landing-and-stair",
+            "position": [
+              -1.4745199508752735,
+              4.4,
+              9.941116180513673
+            ],
+            "lookAt": [
+              -1.073883363493049,
+              3.5,
+              4.681320808954207
+            ],
+            "fov": 58
+          }
+        },
+        {
+          "path": ".artifacts/boyana-integration/shots/final-closeup-octagonal-drum-tiled-cap-and-cross.png",
+          "hash": "sha256:ade4b2e90df72d3e39189fd306a1286cd57da8b950ced7b4d09c8b75485e8197",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 20,
+            "triangles": 388945
+          },
+          "camera": {
+            "name": "octagonal-drum-tiled-cap-and-cross",
+            "position": [
+              9.370334002901112,
+              11,
+              13.460937585252939
+            ],
+            "lookAt": [
+              0,
+              8.3,
+              0
+            ],
+            "fov": 45
+          }
+        },
+        {
+          "path": ".artifacts/boyana-integration/shots/final-closeup-eastern-roof-and-northern-reconstructed-wall.png",
+          "hash": "sha256:d458a7453ad3cf48a9d7d620f2d5bfbadf3e982d96792187f1570f57c88a310e",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 20,
+            "triangles": 388945
+          },
+          "camera": {
+            "name": "eastern-roof-and-northern-reconstructed-wall",
+            "position": [
+              20.785970808913902,
+              10,
+              -16.029454686014088
+            ],
+            "lookAt": [
+              0.9988681361981387,
+              4,
+              0.04756518146771349
+            ],
+            "fov": 48
+          }
+        },
+        {
+          "path": ".artifacts/boyana-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:2c56d5ba3499d4dc675ccf56265506820bafe41908fef918cd51a23ec99d4932",
+          "state": {
+            "level": "failure",
+            "mode": "high",
+            "groundCutoutActive": false,
+            "draws": 14,
+            "triangles": 386685
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              21.737272414396642,
+              17,
+              27.064570714909017
+            ],
+            "lookAt": [
+              0,
+              4,
+              0
+            ],
+            "fov": 50
+          }
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:ebc28a9cad2da6d3f1078be595075bbad69d6d73e6a4aac9b218dbaa96d34fd1",
+      "sourceHash": "sha256:a78d271052d0f54a9697bf89a594f302ba6b4fd44a116734490b662990c245af",
+      "runtimeHash": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+      "files": {
+        "content/worldgen/source/places/sx/sx8/n0763_boyana_church/models/source.glb": "sha256:a78d271052d0f54a9697bf89a594f302ba6b4fd44a116734490b662990c245af",
+        "content/worldgen/assets/places/sx/sx8/n0763_boyana_church/model.glb": "sha256:a6427faf08c8dc909478157a796a603aaf26b882c5f52fbb1c4feb41bd2dc15d",
+        "content/worldgen/assets/places/sx/sx8/n0763_boyana_church/model.skyline.glb": "sha256:bc79ef8f30ac839f6dc3b26b3a725e8fd287152b48855c52ce5b79ace3668d36",
+        "content/worldgen/assets/places/sx/sx8/n0763_boyana_church/model.district.glb": "sha256:bd393c8572ebce93170b69aca3ff1963c9d7c09368dd230a317b673f13270c12",
+        "content/worldgen/assets/places/sx/sx8/n0763_boyana_church/model.street.glb": "sha256:5561fd41e023e0d7a4223269a70d042c990a1f8665a2c0a01d547d6a1ceded9c",
+        "content/worldgen/assets/places/sx/sx8/n0763_boyana_church/model.closeup.glb": "sha256:a2a6f125b5a4b287f9fe6e2b2a481c445a6c07673271e5fe3c42d58a12005e52"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184416979099
+      ],
+      "mapLevels": [
+        {
+          "level": 15,
+          "tile": [
+            18501,
+            12084
+          ],
+          "id": 35184416979099,
+          "owned": true,
+          "covered": 0.9999999429793401,
+          "area": 130.96187996983682,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 880,
+      "widerIndependent": 994,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.0000016706944307998128,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 881,
+          "independentBuildings": 880,
+          "remainingBuildings": 880,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0763_boyana_church"
+          ],
+          "rawTerrainRange": {
+            "min": -85.19147628146345,
+            "max": 215.99452371853658
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 289.0533453677781,
+          "remainingWaterArea": 289.0533453677781,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:a3b1b10c1e2426ca315f647e4e2d16496c82946f2860b5bdfec9ccb3c4936ef1",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 15,
+              "triangles": 386997
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                21.737272414396642,
+                17,
+                27.064570714909017
+              ],
+              "lookAt": [
+                0,
+                4,
+                0
+              ],
+              "fov": 50
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.0000016706944307998128,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 881,
+          "independentBuildings": 880,
+          "remainingBuildings": 880,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_drywall": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0763_boyana_church"
+          ],
+          "rawTerrainRange": {
+            "min": -85.19147628146345,
+            "max": 215.99452371853658
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 289.0533453677781,
+          "remainingWaterArea": 289.0533453677781,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:625d682c52825f56744e06eacec877ea56ed4fc08624347fc526b667be3b66db",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 387945
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                21.737272414396642,
+                17,
+                27.064570714909017
+              ],
+              "lookAt": [
+                0,
+                4,
+                0
+              ],
+              "fov": 50
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.0000016706944307998128,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 881,
+          "independentBuildings": 880,
+          "remainingBuildings": 880,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_drywall": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0763_boyana_church"
+          ],
+          "rawTerrainRange": {
+            "min": -85.19147628146345,
+            "max": 215.99452371853658
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 289.0533453677781,
+          "remainingWaterArea": 289.0533453677781,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:ae2710715b3f3ccbd10a6b1ca347fe0a249af9b7a48a87ede8f3367a2fc1ca04",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 388573
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                21.737272414396642,
+                17,
+                27.064570714909017
+              ],
+              "lookAt": [
+                0,
+                4,
+                0
+              ],
+              "fov": 50
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.0000016706944307998128,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 881,
+          "independentBuildings": 880,
+          "remainingBuildings": 880,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_drywall": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0763_boyana_church"
+          ],
+          "rawTerrainRange": {
+            "min": -85.19147628146345,
+            "max": 215.99452371853658
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 289.0533453677781,
+          "remainingWaterArea": 289.0533453677781,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:58590cd83466cdf8943ecd8c951d0d57bfc6c135bbfdd6f4a8887501141be31f",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 388945
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                21.737272414396642,
+                17,
+                27.064570714909017
+              ],
+              "lookAt": [
+                0,
+                4,
+                0
+              ],
+              "fov": 50
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-south-stone-annex-brick-church-and-exterior-stair.png",
+            "hash": "sha256:7642dbd3feb53def7b69b7d50a06c315f70717bcbc8ea865ca85ddb9e296de88",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 389603
+            },
+            "camera": {
+              "name": "south-stone-annex-brick-church-and-exterior-stair",
+              "position": [
+                6.992076278763126,
+                7,
+                21.35675231190262
+              ],
+              "lookAt": [
+                0,
+                4,
+                0
+              ],
+              "fov": 52
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-upper-door-recess-landing-and-stair.png",
+            "hash": "sha256:76144e7a667b0ed18542d2a71ffede2c70689533c209c3a6abd26e0e2035a02a",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 389603
+            },
+            "camera": {
+              "name": "upper-door-recess-landing-and-stair",
+              "position": [
+                -1.4745199508752735,
+                4.4,
+                9.941116180513673
+              ],
+              "lookAt": [
+                -1.073883363493049,
+                3.5,
+                4.681320808954207
+              ],
+              "fov": 58
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-octagonal-drum-tiled-cap-and-cross.png",
+            "hash": "sha256:ade4b2e90df72d3e39189fd306a1286cd57da8b950ced7b4d09c8b75485e8197",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 388945
+            },
+            "camera": {
+              "name": "octagonal-drum-tiled-cap-and-cross",
+              "position": [
+                9.370334002901112,
+                11,
+                13.460937585252939
+              ],
+              "lookAt": [
+                0,
+                8.3,
+                0
+              ],
+              "fov": 45
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-eastern-roof-and-northern-reconstructed-wall.png",
+            "hash": "sha256:d458a7453ad3cf48a9d7d620f2d5bfbadf3e982d96792187f1570f57c88a310e",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 388945
+            },
+            "camera": {
+              "name": "eastern-roof-and-northern-reconstructed-wall",
+              "position": [
+                20.785970808913902,
+                10,
+                -16.029454686014088
+              ],
+              "lookAt": [
+                0.9988681361981387,
+                4,
+                0.04756518146771349
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 881,
+          "independentBuildings": 880,
+          "remainingBuildings": 881,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184416979099,
+              "area": 130.9618805948465
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0763_boyana_church"
+          ],
+          "rawTerrainRange": {
+            "min": -85.19147628146345,
+            "max": 215.99452371853658
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 289.0533453677781,
+          "remainingWaterArea": 289.0533453677781,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:2c56d5ba3499d4dc675ccf56265506820bafe41908fef918cd51a23ec99d4932",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 386685
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                21.737272414396642,
+                17,
+                27.064570714909017
+              ],
+              "lookAt": [
+                0,
+                4,
+                0
+              ],
+              "fov": 50
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Principal connected Boyana Church exterior: stone western annex, taller brick middle bay with south exterior stair/raised door, lower eastern church with rounded apse and curved roof crown, red ceramic gables and octagonal tiled drum/cap/cross. Arched blind brickwork is raised framing over closed wall, with narrow dark window proxies. Upper door has an actual shallow recess, jambs, soffit, threshold and supported landing. Unseen northern/eastern elevations, internal subdivisions are conservative reconstructions. No fresco copies, furnished interior, garden monuments or surrounding buildings.",
+    "Q276553 and named church way44890267/native35184416979099 establish the single owned building. Current standard PMTiles supplies the approximately 13.9 x 9.5m rectangular footprint; the older georeference has the same identity and long axis. Internal +X points east/slightly south toward the lower church; +Z south toward the photographed stair. Native east/up/south coordinates are baked with heading 0. Three construction volumes and local roof treatment are picture-led approximations from the mapped perimeter and photographs. Unrelated buildings remain independent.",
+    "Picture-led medium-fi reconstruction: west annex eave 5.6m/ridge 6.7m, middle eave 6.3m/ridge 7.3m, lower east eave 3.8m with raised center gable to 6.3m, octagonal drum 7.0..9.0m and overhanging tiled cap to 9.9m; schematic cross reaches 10.5m. Source map height 5m and one level are unqualified controls, not survey. South landing/door threshold 3.05m, actual 0.35m recess, stair proportions reconstructed. Heights, inventories, north/east faces, roof junctions, exact paving/step levels are unverified. No authored historic frescoes or furnished rooms. An additional ordinary eastern exterior photo shows the rounded brick apse and curved roof crown. The source map simplifies this as a rectangle: the added 1.45m apse projection and its 3.55m wall/4.05m roof are picture-led approximations, not surveyed map geometry. Only the owned parent is replaced; the added apse has its own occupied ground mask. Upper doorway back uses shared dark painted metal; triangle and quad brick UVs now use the same metric repeat.",
+    "Qualified approximate native exterior fit on original standard Protomaps20261020/Mapzen 201x201/6m terrain. Uncovered western approach datum 775.2697762814635m, floor +0.15m and foundation -1.554m. Boundary grades -1.404..-0.007m leave an exposed downhill foundation; inspected stair/doorway and approach remain clear. Original samples are retained. Only one owned parent is replaced; 880 resident / 994 wider independent buildings, roads and 289.053m² water remain. Exact historic terrain, paving, step levels and accessibility are unverified. Apse projection and unseen elevations are approximate. No bespoke terrain or flattening.",
+    "Picture-led medium-fi reconstruction: west annex eave 5.6m/ridge 6.7m, middle eave 6.3m/ridge 7.3m, lower east eave 3.8m with raised center gable to 6.3m, octagonal drum 7.0..9.0m and overhanging tiled cap to 9.9m; schematic cross reaches 10.5m. Source map height 5m and one level are unqualified controls, not survey. South landing/door threshold 3.05m, actual 0.35m recess, stair proportions reconstructed. Heights, inventories, north/east faces, roof junctions, exact paving/step levels are unverified. No authored historic frescoes or furnished rooms. An additional ordinary eastern exterior photo shows the rounded brick apse and curved roof crown. The source map simplifies this as a rectangle: the added 1.45m apse projection and its 3.55m wall/4.05m roof are picture-led approximations, not surveyed map geometry. Only the owned parent is replaced; the added apse has its own occupied ground mask. Upper doorway back uses shared dark painted metal; triangle and quad brick UVs now use the same metric repeat. Native fit is qualified: original coarse ground slopes about 1.4m across the rectangle and exposes the downhill foundation. Steps, upper doorway and inspected approach remain clear. Northern/other unseen elevations, roof junctions, internal subdivisions and architectural heights remain reconstructed; the apse projection is photograph-led and extends beyond the simplified mapped rectangle. Exact paving, step levels and accessibility are unverified. No copied frescoes, inscriptions, garden monuments or furnished rooms. Physical phone/laptop and dense-city timings remain pending.",
+    "Q276553 and named church way44890267/native35184416979099 establish the single owned building. Current standard PMTiles supplies the approximately 13.9 x 9.5m rectangular footprint; the older georeference has the same identity and long axis. Internal +X points east/slightly south toward the lower church; +Z south toward the photographed stair. Native east/up/south coordinates are baked with heading 0. Three construction volumes and local roof treatment are picture-led approximations from the mapped perimeter and photographs. Unrelated buildings remain independent. Qualified approximate native exterior fit on original standard Protomaps20261020/Mapzen 201x201/6m terrain. Uncovered western approach datum 775.2697762814635m, floor +0.15m and foundation -1.554m. Boundary grades -1.404..-0.007m leave an exposed downhill foundation; inspected stair/doorway and approach remain clear. Original samples are retained. Only one owned parent is replaced; 880 resident / 994 wider independent buildings, roads and 289.053m² water remain. Exact historic terrain, paving, step levels and accessibility are unverified. Apse projection and unseen elevations are approximate. No bespoke terrain or flattening."
+  ]
+}

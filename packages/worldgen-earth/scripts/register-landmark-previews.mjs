@@ -3,6 +3,11 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { formatJson } from '../../worldgen/scripts/format-json.mjs';
 import {
+  authoredMapMatchRadius,
+  distinctMappedCollectionPlacement,
+  readStructureCollections,
+} from '../../worldgen/scripts/structure-collections.mjs';
+import {
   authoredModels,
   content,
   hashBytes,
@@ -21,6 +26,9 @@ const path = resolve(root, 'content/earth/structures/placements.json');
 const catalog = JSON.parse(await readFile(path, 'utf8'));
 const project = JSON.parse(await readFile(resolve(content, 'project.json'), 'utf8'));
 const check = process.argv.includes('--check');
+const collections = await readStructureCollections(
+  resolve(content, 'source/next-1000/collections.json'),
+);
 for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
   const proposal = spec.geographicProposal;
   if (!proposal) throw new Error(`${spec.id}: no authored geographic proposal`);
@@ -34,7 +42,10 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
     );
   if (spec.collectionId) {
     const duplicate = catalog.entries.find(
-      (item) => item.asset !== spec.assetId && item.mapIdentity?.wikidata === spec.wikidataId,
+      (item) =>
+        item.asset !== spec.assetId &&
+        item.mapIdentity?.wikidata === spec.wikidataId &&
+        !distinctMappedCollectionPlacement(spec, proposal, item, collections),
     );
     if (duplicate) throw new Error(`${spec.id}: reuse existing placed identity ${duplicate.id}`);
   }
@@ -54,7 +65,7 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
     appearance !== undefined && (proposal.elevationMode === 'terrain-contact' || absolute);
   const active = preview || historical;
   const entry = {
-    id: `next1000.${spec.id.toLowerCase()}`,
+    id: `next1000.${spec.id.toLowerCase().replaceAll('_', '-')}`,
     title: spec.title,
     asset: spec.assetId,
     anchor: proposal.anchor,
@@ -62,7 +73,7 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
     datum: absolute ? 'sea-level' : 'terrain',
     elevation: absolute ? proposal.elevationMeters : 0,
     orientation: 'fixed',
-    mapIdentity: { wikidata: spec.wikidataId, maxDistance: 80 },
+    mapIdentity: { wikidata: spec.wikidataId, maxDistance: authoredMapMatchRadius(proposal) },
     replaceFootprint: active && proposal.replaceFootprint !== false,
     ...(historical ? { appearance } : {}),
     ...(proposal.groundCutout ? { groundCutout: proposal.groundCutout } : {}),

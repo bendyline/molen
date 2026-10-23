@@ -1,0 +1,1222 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0759_palace_of_fontainebleau",
+  "reviewedOn": "2026-10-22",
+  "inputHash": "sha256:d4fa28d3dcf82c5e9cb4ea4bae5813e362928b7682e34d50450080b3a635c11c",
+  "sourceHash": "sha256:0b8716e6447f8291a9ba07d10f39352ac833c244b3ba97eabe135f1bbff277e2",
+  "runtimeHash": "sha256:6dab7b83adfa4a48f2fb0adcde101d3f4649eeb721c80b91acc744b1b6cb2cf5",
+  "captureReportHash": "sha256:072e5d6c19f2f6ce1b1cdb625c62eb8cf79c0c52544caefa18cd36979f30929d",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/white-horse-court-and-horseshoe-facade.png",
+      "shots/fontaine-court-arcade-and-slate-roofs.png",
+      "shots/double-horseshoe-steps-and-arched-entrance.png"
+    ],
+    "notes": "Principal palace exterior across the White Horse courtyard ranges/northern range, main front pavilion/two mapped curved horseshoe stair flights, Gallery of Francis I/Cour de la Fontaine, eastern oval court/chapel and northeast ranges. Open courts, pale masonry, crossed casements, steep slate roofscape/dormers and tall brick chimneys. Actual1.5m arched lower gate recess/soffit/threshold, separate4.9m upper landing/door and stepped flights with closed railings; nine2.7m recessed gallery arch bays with opaque back glazing as an exterior proxy. Hidden geometry/ornament reconstructed. Fixed the dark wall texture and unsupported pavilion projection in the same author/inspect pass."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/white-horse-court-and-horseshoe-facade.png",
+      "shots/shared/fontaine-court-arcade-and-slate-roofs.png",
+      "shots/shared/double-horseshoe-steps-and-arched-entrance.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Five existing256px graphs shared by six textured roles/draws: stone_limestone_raw pale walls/trim, slate roof, brick_flemish stacks, storefront opaque crossed glazing and metal_painted static doors/dark trim. Generic limestone substitutes for exact historic masonry/weathering; plain pediments/fields omit sculpture/inscriptions. No new graph/private atlas/embedded images. One skyline draw, linear palette tints, separate POSITION/NORMAL streams and equal CPU-GPU accounting. Every native textured run reads each required graph once; all LOD unloads release model geometry.",
+    "captureReportHash": "sha256:ac212f566e083b38c31b090488aeb2fa77ba81dadf379aaee54598a55290ad1b"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/white-horse-court-and-horseshoe-facade.png",
+      "medium-fi/fontaine-court-arcade-and-slate-roofs.png",
+      "medium-fi/double-horseshoe-steps-and-arched-entrance.png",
+      "medium-fi/fontainebleau-skyline.png",
+      "medium-fi/fontainebleau-district.png",
+      "medium-fi/fontainebleau-street.png",
+      "medium-fi/fontainebleau-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 843 / 2658 / 15231 / 29106 triangles within1k/4k/16k/64k caps. Initial skyline+district geometry 329672 bytes; cached shared bakes separate. Six GLBs have zero Khronos errors/warnings;209 actual geometry/contact probes and24 actual PMTiles13/14/15 cases (19 detailed owned records) pass. Inspected48 current portable/shared/medium-fi/native frames across LODs and Economy/High noon/late light, including failed loading and unload restoration.",
+    "captureReportHash": "sha256:359232c2ffecc91dd132b8b31b5bd06995e1a3c096575e5ee8751f8d67b5727c"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:3687d56e2219f23af04a3b8ef7cef1ca1283a7188aaf717979b8caad172d48f8",
+    "mapFrameHash": "sha256:a1354150c7e6cbb99b2e2543f4bb584c5efbb015e64bb354016364ea0539e332",
+    "notes": "Q201428 and named way655065732 identify the palace. Standard map splits its principal exterior across eight further building footprints (including both mapped horseshoe flights) and northern relation12351522 plus nine integral building parts:19 owned records. Actual parent/part geometry supplies horizontal layout and open courts; parents outside this explicit set stay independent. Model anchor[2.699433515814212,48.40235043393468] shifts45m east/65m north of the old map-axis anchor to the main front range. InternalX south along the main facade; internalZ west toward the White Horse court. Native east/up/south geometry baked in, heading0. Approximate native exterior placement inspected on the original standard PMTiles/Mapzen201x201/6m grid. Uncovered White Horse court provider fixes datum76.83680555555556m, floor0.3m. Boundary grades-1.281..+3.502m leave modest low-side foundations and uphill/lower-arcade burial; the main horseshoe stair approach and lower entrance remain visible. Exact historic court paving, terrace/step levels, thresholds and accessibility are unverified. Original open courts,1,898 resident/2,283 wider independent buildings, roads and92,631.157534m² water retained. Failure keeps1,917 originals; all LODs must retain original terrain/water and restore ground on unload. No bespoke terrain research or custom flattening."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Photo-led exterior reconstruction from two ordinary pictures and mapped footprints. Most heights are absent; use8..20m working eaves, main front12.5m/central pavilion19m, gallery13.5m, south range11.5m, eastern chapel20m and northern range11.5m. Two northeast part tags5/8m are unqualified; exact eaves/ridges are not surveyed. Medial-ridge hip roofs reconstruct the complex unseen roof junctions; dome-like turrets are omitted where unsupported. Repeated windows/quoins/dormers/chimneys and plain pediments abstract the Renaissance detail. Horseshoe stair flights rise4.9m above the working floor; central lower arched gate1.5m recess and upper landing/door are distinct. Gallery has actual recessed arch bays. No copied ornament/artwork. Five existing256px graphs shared by six roles: stone_limestone_raw for pale walls/trim, slate, brick_flemish, storefront and metal_painted. Skyline preserves court holes and simplifies the lower range heights/footprints within5m; district rounds eaves and flattens portals; street has coarser roof ridges and fewer windows/dormers. The closeup preserves full mapped exterior topology. Ornament, sculpture, art and lettering are abstracted or omitted. The broad exterior is a medium-fi reconstruction. Most heights/eave/ridge levels, exact facade/bay/dormer/stack counts and unseen elevations/roof junctions are approximate. The northern relation and all19 map records are included; independent peripheral stable/administration buildings and garden/fountain context remain procedural. No furnished rooms, copied arms/inscriptions/sculpture/art, flags or walk-through gallery interior. Exact court grades/thresholds/accessibility and physical phone/laptop/dense-city timings remain unverified."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/models/source.glb\",\"hash\":\"sha256:0b8716e6447f8291a9ba07d10f39352ac833c244b3ba97eabe135f1bbff277e2\",\"bytes\":2752888,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/u0/u09/n0759_palace_of_fontainebleau/model.glb\",\"hash\":\"sha256:6dab7b83adfa4a48f2fb0adcde101d3f4649eeb721c80b91acc744b1b6cb2cf5\",\"bytes\":2752276,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/u0/u09/n0759_palace_of_fontainebleau/model.skyline.glb\",\"hash\":\"sha256:0adbe5263fa8d10a0e654b5b52cbdbb09d9baf4a623c65574bd4b532ba8f25ff\",\"bytes\":82096,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/u0/u09/n0759_palace_of_fontainebleau/model.district.glb\",\"hash\":\"sha256:5c6b5169277a7beb6aefd0285cf785b775c0a0579a7639158de58a2376e11fdb\",\"bytes\":247576,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/u0/u09/n0759_palace_of_fontainebleau/model.street.glb\",\"hash\":\"sha256:3dad5819f838a650f7c47e664e6d71e87fbc75d40ca67717381d620d11a50db9\",\"bytes\":1245368,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/u0/u09/n0759_palace_of_fontainebleau/model.closeup.glb\",\"hash\":\"sha256:fcfd7db670dc3056db6ed08afce81fd1e7ea80a14db6d88029628ecfafe3362b\",\"bytes\":2355028,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "mapped-roof-envelope-open-courts-recesses-soffits-threshold-and-horseshoe-treads",
+        "passed": true,
+        "notes": "209 actual geometry/contact probes across six current GLBs; current hashes/material/LOD/vertex layout checks pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Q201428 and named way655065732 identify the palace. Standard map splits its principal exterior across eight further building footprints (including both mapped horseshoe flights) and northern relation12351522 plus nine integral building parts:19 owned records. Actual parent/part geometry supplies horizontal layout and open courts; parents outside this explicit set stay independent. Model anchor[2.699433515814212,48.40235043393468] shifts45m east/65m north of the old map-axis anchor to the main front range. InternalX south along the main facade; internalZ west toward the White Horse court. Native east/up/south geometry baked in, heading0. Approximate native exterior placement inspected on the original standard PMTiles/Mapzen201x201/6m grid. Uncovered White Horse court provider fixes datum76.83680555555556m, floor0.3m. Boundary grades-1.281..+3.502m leave modest low-side foundations and uphill/lower-arcade burial; the main horseshoe stair approach and lower entrance remain visible. Exact historic court paving, terrace/step levels, thresholds and accessibility are unverified. Original open courts,1,898 resident/2,283 wider independent buildings, roads and92,631.157534m² water retained. Failure keeps1,917 originals; all LODs must retain original terrain/water and restore ground on unload. No bespoke terrain research or custom flattening."
+    },
+    "inputHash": "sha256:d4fa28d3dcf82c5e9cb4ea4bae5813e362928b7682e34d50450080b3a635c11c",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:d4fa28d3dcf82c5e9cb4ea4bae5813e362928b7682e34d50450080b3a635c11c",
+      "reviewedOn": "2026-10-22",
+      "method": "Actually inspected48 current frames in six labeled contact sheets plus final native White Horse facade, gallery court and horseshoe entrance at full resolution. Two ordinary pictures and standard PMTiles/Mapzen guided one author/inspect/fix pass. Changed dark weathered limestone to the shared pale raw-limestone graph; cropped the raised central pavilion to its supported mapped footprint; aligned recesses with actual mapped wall edges, closed railing ends and refined street arch curvature. Medial roof samples preserve steep continuous ridges; adjacent vertical bands merge without changing their exterior envelope.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/preview.png",
+          "hash": "sha256:87a9525ee9e80fa9d8b3c2b1599df96f37a29f6ef6ffa7f84993721c4409c3a7"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/turntable/angle_0.png",
+          "hash": "sha256:fcbce73f0cdda8b4a4ed3366a6c027b987dd2b3b047dd8e84b198deb6210da19"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/turntable/angle_1.png",
+          "hash": "sha256:f2c602af58e68f8e2b684d64f609b49b5b84c7ef47351a188476f13ec1dbf6f3"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/turntable/angle_2.png",
+          "hash": "sha256:f87c348cd1100333084addcea5d120205ed11b5a1f02d434a65813f792558ab7"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/turntable/angle_3.png",
+          "hash": "sha256:e679630c5d5c31c9e695ee7080a8535d44abca40b879aa0b0447444957a58ba9"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/white-horse-court-and-horseshoe-facade.png",
+          "hash": "sha256:9f8456626617322dc47e5d8afe55f1f88bc0d36d428cb3b4e3fd746f6e34c87a"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/fontaine-court-arcade-and-slate-roofs.png",
+          "hash": "sha256:617dca3616bb7f527263093ea365ff61901e51fe00e53a3d3fcad15d86bb0466"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/double-horseshoe-steps-and-arched-entrance.png",
+          "hash": "sha256:8cd38687d8c115d8973e84e2a3845de0869173ceaaf7414f32d06537047e2429"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/shared/angle-0.png",
+          "hash": "sha256:fc1b8c798c09f5352c4127e70fa20802e57d6220fcd10b939e142e4156c76dd0"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/shared/angle-1.png",
+          "hash": "sha256:99f1fe4fb1746b14f48aa18de88deaed8e3426afe79037ce87244d319b010e2a"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/shared/angle-2.png",
+          "hash": "sha256:ea91625fa5a3a0320fa6499f8d007308e429d70b772a55dd2a3d5b7253e7722d"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/shared/angle-3.png",
+          "hash": "sha256:0d24d3aad57b9a6489bfba5604d60beeb4c04209c89e236d2d66602f50be94fd"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/shared/white-horse-court-and-horseshoe-facade.png",
+          "hash": "sha256:d760e534d9967ff5655cf834858b6fd9538f21bbe5b6ffc86109b852091fa654"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/shared/fontaine-court-arcade-and-slate-roofs.png",
+          "hash": "sha256:2e08f9f9b87731b5443060ead0a9137498a4dd0206f09e56b56b4a91a85c2fdd"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/shared/double-horseshoe-steps-and-arched-entrance.png",
+          "hash": "sha256:56b54fdce43406cb4ce0d8c1e460f3b0508200f83a6a5af9ba4865de137495f4"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/shots/shared/placement.png",
+          "hash": "sha256:440534aecc3dc0878f2f18483543c631688803af266c61650d3f5fcbf6708bad"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/street-noon-economy.png",
+          "hash": "sha256:92d65641e18ce011a5c3764b3519eda7fa6dd2527edf4a04d2b9ef856bca1aa7"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/street-noon-high.png",
+          "hash": "sha256:74fb1c64c0ba1d62c97b52b8dfd64c49b2cedde317d752070989e78c91ad1e75"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/street-late-economy.png",
+          "hash": "sha256:f940d0c9886c37467528a5827c316f9f1bd6d3af8e6d1eb617873e2d82f46ca1"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/street-late-high.png",
+          "hash": "sha256:567e6d7b3c1f509b3cd2f2898cd3440768a1f409f065bdbd5698285d32432ab0"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/block-noon-economy.png",
+          "hash": "sha256:9082d9af0dfcd233a8a916d9a3e23e706d7ea430dcdcc5f12cd452d14f6ea6ef"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/block-noon-high.png",
+          "hash": "sha256:cb8083fadd964db81c457daf2325b9b0a7695b89249ab9c82bb526211ca89142"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/block-late-economy.png",
+          "hash": "sha256:c35c94d47a0ff5f16a2637e1f92cdd1b05e728bb40f01d0328dc044a95b9ea70"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/block-late-high.png",
+          "hash": "sha256:46980c6008bb252cec94f11d8d9b5358f62ba0887159b531bb9ba7de9b90235d"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:6e93ce3eb1641cf56c0855047b4dc129d5acc088d7015fced61e87e493df316a"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:894579acfa8cdfcd7777d52f906fbbee2b100f0fa824ecd61cd5fa689fc74ab9"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:8ca71253527c2538b9f19b7eb3e6c7c5643a6cba1a2cf1578165f298f697eac1"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/skyline-late-high.png",
+          "hash": "sha256:2567ee92a47a92380684a7414213b44a7fb8e41ea2fddcd03b3c7ba435c115fc"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/silhouette.png",
+          "hash": "sha256:b0bec13acee2429f5c478c83ac194b966867a3bebbafa46c64145ab98b117069"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/white-horse-court-and-horseshoe-facade.png",
+          "hash": "sha256:60107e329ba8b051e9bebe477a50a5fed17961af980ad1969a66f9901b0dd0e7"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/fontaine-court-arcade-and-slate-roofs.png",
+          "hash": "sha256:c1c22910d7597f67563e7fbb9ea75506bf7856276c58d5e4c3aa4b9ba38667fa"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/double-horseshoe-steps-and-arched-entrance.png",
+          "hash": "sha256:b5c63836de233225468502f97f6fe71794e28239f7517ce9088d53568f390140"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/fontainebleau-skyline.png",
+          "hash": "sha256:672da50db4e1f4d5c60b57e8e31ee92e893f2f176b80e9b08875877ff44a38b5"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/fontainebleau-district.png",
+          "hash": "sha256:b036144d92129da07d569ab7cedb1661d981aae010c7137e81b0d30c5f3d7002"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/fontainebleau-street.png",
+          "hash": "sha256:431d5b02b9da467a69ab230ea6d074a2a47a8f5a3379b172a5c605739e67aaac"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/fontainebleau-closeup.png",
+          "hash": "sha256:a08b80b8a4440c828fead7a9916dfcd3e50a12cdd23317fe5c133ad0e64be641"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/transition-skyline.png",
+          "hash": "sha256:fea6af43170a79ed0ca08f2bff43c099a076a5727a8050bd1467a81cc2fdc57a"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/transition-district.png",
+          "hash": "sha256:cb8083fadd964db81c457daf2325b9b0a7695b89249ab9c82bb526211ca89142"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/transition-street.png",
+          "hash": "sha256:113283e845ec11b6d5d9437314ceee6fbaf2d71ec23ccd0c271753255eef7201"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/medium-fi/transition-closeup.png",
+          "hash": "sha256:745d299900edbe45640000830a3f9a40dc059787c15c55f4053ac19f35787ec1"
+        },
+        {
+          "path": ".artifacts/fontainebleau-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:c7ebd9adb7b6ca2738e1320b34648967584fe57906a561b5de9365259be4550b"
+        },
+        {
+          "path": ".artifacts/fontainebleau-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:57a8929a94dd4b4a0ce490c3ab691b4f7883e190dbd7e07149dc6ea7111ca0af"
+        },
+        {
+          "path": ".artifacts/fontainebleau-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:c411991b584bd87b98fe70c8fb50968ab9e964465f45a2cbcf11c6ac3d5bb2f5"
+        },
+        {
+          "path": ".artifacts/fontainebleau-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:46d32a61ea3d122daba252a783eb2b6ada5b13d0802056e3fb469fcaa3af7de3"
+        },
+        {
+          "path": ".artifacts/fontainebleau-integration/shots/final-closeup-white-horse-court-and-horseshoe-facade.png",
+          "hash": "sha256:1156a2fa47e99a07690df2300bc1927115634f8584e1e343521e7312e3a2d25d"
+        },
+        {
+          "path": ".artifacts/fontainebleau-integration/shots/final-closeup-fontaine-court-arcade-and-slate-roofs.png",
+          "hash": "sha256:3f73dbdddb5eb5b3aa67e1680d1acab17f98e68095444dfe7d8edd6593e07f9a"
+        },
+        {
+          "path": ".artifacts/fontainebleau-integration/shots/final-closeup-double-horseshoe-steps-and-arched-entrance.png",
+          "hash": "sha256:d549fa47e5619185997fd55ce882ca7e28a4b6fd93c77794539f15dcffc5f412"
+        },
+        {
+          "path": ".artifacts/fontainebleau-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:b032bb7b567730a89d3a43e6f95f63b1672c3fe81022cdaeddcdf78879ab998c"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:d4fa28d3dcf82c5e9cb4ea4bae5813e362928b7682e34d50450080b3a635c11c",
+      "sourceHash": "sha256:0b8716e6447f8291a9ba07d10f39352ac833c244b3ba97eabe135f1bbff277e2",
+      "runtimeHash": "sha256:6dab7b83adfa4a48f2fb0adcde101d3f4649eeb721c80b91acc744b1b6cb2cf5",
+      "files": {
+        "content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/models/source.glb": "sha256:0b8716e6447f8291a9ba07d10f39352ac833c244b3ba97eabe135f1bbff277e2",
+        "content/worldgen/assets/places/u0/u09/n0759_palace_of_fontainebleau/model.glb": "sha256:6dab7b83adfa4a48f2fb0adcde101d3f4649eeb721c80b91acc744b1b6cb2cf5",
+        "content/worldgen/assets/places/u0/u09/n0759_palace_of_fontainebleau/model.skyline.glb": "sha256:0adbe5263fa8d10a0e654b5b52cbdbb09d9baf4a623c65574bd4b532ba8f25ff",
+        "content/worldgen/assets/places/u0/u09/n0759_palace_of_fontainebleau/model.district.glb": "sha256:5c6b5169277a7beb6aefd0285cf785b775c0a0579a7639158de58a2376e11fdb",
+        "content/worldgen/assets/places/u0/u09/n0759_palace_of_fontainebleau/model.street.glb": "sha256:3dad5819f838a650f7c47e664e6d71e87fbc75d40ca67717381d620d11a50db9",
+        "content/worldgen/assets/places/u0/u09/n0759_palace_of_fontainebleau/model.closeup.glb": "sha256:fcfd7db670dc3056db6ed08afce81fd1e7ea80a14db6d88029628ecfafe3362b"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35185027154553,
+        35185027154558,
+        35185027154562,
+        35185027154563,
+        35185027154564,
+        35185027154565,
+        35185027154566,
+        35185027154567,
+        35185027154568,
+        35185428190565,
+        35185428190566,
+        35185428190567,
+        35185428190568,
+        35185428190569,
+        35185428190570,
+        35185428190571,
+        35185428190572,
+        35185428190573,
+        52776570484770
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4157,
+            2833
+          ],
+          "id": 35184594576000,
+          "owned": false,
+          "covered": 0.040164297002684445,
+          "area": 410138.5524962078,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8314,
+            5667
+          ],
+          "id": 35184411517630,
+          "owned": false,
+          "covered": 0.044984983108488585,
+          "area": 375244.08451339795,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8314,
+            5667
+          ],
+          "id": 35185215337110,
+          "owned": false,
+          "covered": 0.45068282140385335,
+          "area": 12909.871873389508,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8314,
+            5667
+          ],
+          "id": 35185428190570,
+          "owned": true,
+          "covered": 0.9997110095070786,
+          "area": 1377.4000926968656,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8314,
+            5667
+          ],
+          "id": 35185428190571,
+          "owned": true,
+          "covered": 0.9997110095070786,
+          "area": 1377.4000926968656,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185027154553,
+          "owned": true,
+          "covered": 0.9999359832785292,
+          "area": 123.32498084459927,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185027154558,
+          "owned": true,
+          "covered": 0.9999552599931175,
+          "area": 119.08147109383488,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185027154562,
+          "owned": true,
+          "covered": 0.999968390117616,
+          "area": 4647.3513299381175,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185027154563,
+          "owned": true,
+          "covered": 0.9999999811352682,
+          "area": 71.43537625465979,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185027154564,
+          "owned": true,
+          "covered": 0.9999918707089437,
+          "area": 6379.712996094163,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185027154565,
+          "owned": true,
+          "covered": 0.9999740769616633,
+          "area": 190.42009550468006,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185027154566,
+          "owned": true,
+          "covered": 0.9999554875946636,
+          "area": 2331.5824142188735,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185027154567,
+          "owned": true,
+          "covered": 1.000000119465143,
+          "area": 184.30651118582682,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185027154568,
+          "owned": true,
+          "covered": 1.0000000903790378,
+          "area": 53.65576987971053,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185428190565,
+          "owned": true,
+          "covered": 0.9999983760340342,
+          "area": 830.3860203455479,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185428190566,
+          "owned": true,
+          "covered": 0.9999858486409644,
+          "area": 2639.4285835318024,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185428190567,
+          "owned": true,
+          "covered": 0.99994379952965,
+          "area": 664.9633458057933,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185428190568,
+          "owned": true,
+          "covered": 0.9999389390453509,
+          "area": 621.0477853382372,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185428190569,
+          "owned": true,
+          "covered": 0.9999933365661382,
+          "area": 110.22060473686588,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185428190570,
+          "owned": true,
+          "covered": 0.9999466634340927,
+          "area": 1384.6694224740818,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185428190571,
+          "owned": true,
+          "covered": 0.9999466634340927,
+          "area": 1384.6694224740818,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185428190572,
+          "owned": true,
+          "covered": 0.9999993744822119,
+          "area": 558.2078031515124,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 35185428190573,
+          "owned": true,
+          "covered": 0.9999997838928905,
+          "area": 520.6071539670496,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16629,
+            11335
+          ],
+          "id": 52776570484770,
+          "owned": true,
+          "covered": 0.9999548269063211,
+          "area": 2772.6704965964673,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 1898,
+      "widerIndependent": 2283,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.000002030977972466985,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1917,
+          "independentBuildings": 1898,
+          "remainingBuildings": 1898,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0759_palace_of_fontainebleau"
+          ],
+          "rawTerrainRange": {
+            "min": -10.689005555555553,
+            "max": 11.463094444444437
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 92631.15753437737,
+          "remainingWaterArea": 92631.15753437737,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:c7ebd9adb7b6ca2738e1320b34648967584fe57906a561b5de9365259be4550b",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 422116
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -330,
+                180,
+                240
+              ],
+              "lookAt": [
+                25,
+                9,
+                0
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.000002030977972466985,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1917,
+          "independentBuildings": 1898,
+          "remainingBuildings": 1898,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.slate": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0759_palace_of_fontainebleau"
+          ],
+          "rawTerrainRange": {
+            "min": -10.689005555555553,
+            "max": 11.463094444444437
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 92631.15753437737,
+          "remainingWaterArea": 92631.15753437737,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:57a8929a94dd4b4a0ce490c3ab691b4f7883e190dbd7e07149dc6ea7111ca0af",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 423931
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -330,
+                180,
+                240
+              ],
+              "lookAt": [
+                25,
+                9,
+                0
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.000002030977972466985,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1917,
+          "independentBuildings": 1898,
+          "remainingBuildings": 1898,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.slate": 1,
+            "molen.worldgen.material.brick_flemish": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0759_palace_of_fontainebleau"
+          ],
+          "rawTerrainRange": {
+            "min": -10.689005555555553,
+            "max": 11.463094444444437
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 92631.15753437737,
+          "remainingWaterArea": 92631.15753437737,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:c411991b584bd87b98fe70c8fb50968ab9e964465f45a2cbcf11c6ac3d5bb2f5",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 436504
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -330,
+                180,
+                240
+              ],
+              "lookAt": [
+                25,
+                9,
+                0
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.000002030977972466985,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1917,
+          "independentBuildings": 1898,
+          "remainingBuildings": 1898,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.slate": 1,
+            "molen.worldgen.material.brick_flemish": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0759_palace_of_fontainebleau"
+          ],
+          "rawTerrainRange": {
+            "min": -10.689005555555553,
+            "max": 11.463094444444437
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 92631.15753437737,
+          "remainingWaterArea": 92631.15753437737,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:46d32a61ea3d122daba252a783eb2b6ada5b13d0802056e3fb469fcaa3af7de3",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 450379
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -330,
+                180,
+                240
+              ],
+              "lookAt": [
+                25,
+                9,
+                0
+              ],
+              "fov": 53
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-white-horse-court-and-horseshoe-facade.png",
+            "hash": "sha256:1156a2fa47e99a07690df2300bc1927115634f8584e1e343521e7312e3a2d25d",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 450379
+            },
+            "camera": {
+              "name": "white-horse-court-and-horseshoe-facade",
+              "position": [
+                -180,
+                25,
+                30
+              ],
+              "lookAt": [
+                0,
+                11,
+                20
+              ],
+              "fov": 58
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-fontaine-court-arcade-and-slate-roofs.png",
+            "hash": "sha256:3f73dbdddb5eb5b3aa67e1680d1acab17f98e68095444dfe7d8edd6593e07f9a",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 450379
+            },
+            "camera": {
+              "name": "fontaine-court-arcade-and-slate-roofs",
+              "position": [
+                38,
+                23,
+                95
+              ],
+              "lookAt": [
+                38,
+                8,
+                28
+              ],
+              "fov": 63
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-double-horseshoe-steps-and-arched-entrance.png",
+            "hash": "sha256:d549fa47e5619185997fd55ce882ca7e28a4b6fd93c77794539f15dcffc5f412",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 450379
+            },
+            "camera": {
+              "name": "double-horseshoe-steps-and-arched-entrance",
+              "position": [
+                -47,
+                9,
+                30
+              ],
+              "lookAt": [
+                -15,
+                5,
+                30
+              ],
+              "fov": 65
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 1917,
+          "independentBuildings": 1898,
+          "remainingBuildings": 1917,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185027154553,
+              "area": 123.32639653738431
+            },
+            {
+              "id": 35185027154558,
+              "area": 119.0828380738207
+            },
+            {
+              "id": 35185027154562,
+              "area": 4647.404678592983
+            },
+            {
+              "id": 35185027154563,
+              "area": 71.43619628759535
+            },
+            {
+              "id": 35185027154564,
+              "area": 6379.786231165836
+            },
+            {
+              "id": 35185027154565,
+              "area": 190.4222814069678
+            },
+            {
+              "id": 35185027154566,
+              "area": 2331.6091793108585
+            },
+            {
+              "id": 35185027154567,
+              "area": 184.3086269080163
+            },
+            {
+              "id": 35185027154568,
+              "area": 53.6563858140493
+            },
+            {
+              "id": 35185428190565,
+              "area": 830.3955526520346
+            },
+            {
+              "id": 35185428190566,
+              "area": 2639.4588825030787
+            },
+            {
+              "id": 35185428190567,
+              "area": 664.9709791645853
+            },
+            {
+              "id": 35185428190568,
+              "area": 621.0549145741195
+            },
+            {
+              "id": 35185428190569,
+              "area": 110.22186999973371
+            },
+            {
+              "id": 35185428190570,
+              "area": 1384.68531760358
+            },
+            {
+              "id": 35185428190571,
+              "area": 1384.68531760358
+            },
+            {
+              "id": 35185428190572,
+              "area": 558.2142110241972
+            },
+            {
+              "id": 35185428190573,
+              "area": 520.6131302079941
+            },
+            {
+              "id": 52776570484770,
+              "area": 2772.702325100771
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0759_palace_of_fontainebleau"
+          ],
+          "rawTerrainRange": {
+            "min": -10.689005555555553,
+            "max": 11.463094444444437
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 92631.15753437737,
+          "remainingWaterArea": 92631.15753437737,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:b032bb7b567730a89d3a43e6f95f63b1672c3fe81022cdaeddcdf78879ab998c",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 420588
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -330,
+                180,
+                240
+              ],
+              "lookAt": [
+                25,
+                9,
+                0
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Principal exterior of the Palace of Fontainebleau, including the mapped White Horse courtyard ranges/north range, central pavilion and two curved horseshoe stair flights, Gallery of Francis I/Cour de la Fontaine ranges, eastern oval court/chapel and northeast service court ranges. Pale masonry, crossed casements, steep slate roofs/dormers and brick chimneys. Open courtyards and independent buildings remain. No furnished rooms, copied crests/inscriptions/sculpture, flags, gardens, fountain sculpture or peripheral stable/administration buildings.",
+    "Q201428 and named way655065732 identify the palace. Standard map splits its principal exterior across eight further building footprints (including both mapped horseshoe flights) and northern relation12351522 plus nine integral building parts:19 owned records. Actual parent/part geometry supplies horizontal layout and open courts; parents outside this explicit set stay independent. Model anchor[2.699433515814212,48.40235043393468] shifts45m east/65m north of the old map-axis anchor to the main front range. InternalX south along the main facade; internalZ west toward the White Horse court. Native east/up/south geometry baked in, heading0.",
+    "Photo-led exterior reconstruction from two ordinary pictures and mapped footprints. Most heights are absent; use8..20m working eaves, main front12.5m/central pavilion19m, gallery13.5m, south range11.5m, eastern chapel20m and northern range11.5m. Two northeast part tags5/8m are unqualified; exact eaves/ridges are not surveyed. Medial-ridge hip roofs reconstruct the complex unseen roof junctions; dome-like turrets are omitted where unsupported. Repeated windows/quoins/dormers/chimneys and plain pediments abstract the Renaissance detail. Horseshoe stair flights rise4.9m above the working floor; central lower arched gate1.5m recess and upper landing/door are distinct. Gallery has actual recessed arch bays. No copied ornament/artwork. Five existing256px graphs shared by six roles: stone_limestone_raw for pale walls/trim, slate, brick_flemish, storefront and metal_painted. Skyline preserves court holes and simplifies the lower range heights/footprints within5m; district rounds eaves and flattens portals; street has coarser roof ridges and fewer windows/dormers. The closeup preserves full mapped exterior topology. Ornament, sculpture, art and lettering are abstracted or omitted.",
+    "Approximate native exterior placement inspected on the original standard PMTiles/Mapzen201x201/6m grid. Uncovered White Horse court provider fixes datum76.83680555555556m, floor0.3m. Boundary grades-1.281..+3.502m leave modest low-side foundations and uphill/lower-arcade burial; the main horseshoe stair approach and lower entrance remain visible. Exact historic court paving, terrace/step levels, thresholds and accessibility are unverified. Original open courts,1,898 resident/2,283 wider independent buildings, roads and92,631.157534m² water retained. Failure keeps1,917 originals; all LODs must retain original terrain/water and restore ground on unload. No bespoke terrain research or custom flattening.",
+    "Photo-led exterior reconstruction from two ordinary pictures and mapped footprints. Most heights are absent; use8..20m working eaves, main front12.5m/central pavilion19m, gallery13.5m, south range11.5m, eastern chapel20m and northern range11.5m. Two northeast part tags5/8m are unqualified; exact eaves/ridges are not surveyed. Medial-ridge hip roofs reconstruct the complex unseen roof junctions; dome-like turrets are omitted where unsupported. Repeated windows/quoins/dormers/chimneys and plain pediments abstract the Renaissance detail. Horseshoe stair flights rise4.9m above the working floor; central lower arched gate1.5m recess and upper landing/door are distinct. Gallery has actual recessed arch bays. No copied ornament/artwork. Five existing256px graphs shared by six roles: stone_limestone_raw for pale walls/trim, slate, brick_flemish, storefront and metal_painted. Skyline preserves court holes and simplifies the lower range heights/footprints within5m; district rounds eaves and flattens portals; street has coarser roof ridges and fewer windows/dormers. The closeup preserves full mapped exterior topology. Ornament, sculpture, art and lettering are abstracted or omitted. The broad exterior is a medium-fi reconstruction. Most heights/eave/ridge levels, exact facade/bay/dormer/stack counts and unseen elevations/roof junctions are approximate. The northern relation and all19 map records are included; independent peripheral stable/administration buildings and garden/fountain context remain procedural. No furnished rooms, copied arms/inscriptions/sculpture/art, flags or walk-through gallery interior. Exact court grades/thresholds/accessibility and physical phone/laptop/dense-city timings remain unverified.",
+    "Q201428 and named way655065732 identify the palace. Standard map splits its principal exterior across eight further building footprints (including both mapped horseshoe flights) and northern relation12351522 plus nine integral building parts:19 owned records. Actual parent/part geometry supplies horizontal layout and open courts; parents outside this explicit set stay independent. Model anchor[2.699433515814212,48.40235043393468] shifts45m east/65m north of the old map-axis anchor to the main front range. InternalX south along the main facade; internalZ west toward the White Horse court. Native east/up/south geometry baked in, heading0. Approximate native exterior placement inspected on the original standard PMTiles/Mapzen201x201/6m grid. Uncovered White Horse court provider fixes datum76.83680555555556m, floor0.3m. Boundary grades-1.281..+3.502m leave modest low-side foundations and uphill/lower-arcade burial; the main horseshoe stair approach and lower entrance remain visible. Exact historic court paving, terrace/step levels, thresholds and accessibility are unverified. Original open courts,1,898 resident/2,283 wider independent buildings, roads and92,631.157534m² water retained. Failure keeps1,917 originals; all LODs must retain original terrain/water and restore ground on unload. No bespoke terrain research or custom flattening."
+  ]
+}

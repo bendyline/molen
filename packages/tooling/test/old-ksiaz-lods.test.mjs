@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
-import { buildOldKsiaz } from '../../worldgen/scripts/old-ksiaz-model.mjs';
+import { buildOldKsiaz } from '../../../content/worldgen/source/places/u3/u35/old_ksiaz_ruins/models/old-ksiaz-model.mjs';
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 it('keeps the mapped ruin within all deterministic browser LOD and shared material budgets', async () => {

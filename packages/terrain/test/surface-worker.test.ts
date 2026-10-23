@@ -1,7 +1,11 @@
+import { readFileSync } from 'node:fs';
+import { loadFontLibrary } from '@bendyline/molen-materials/text';
 import type * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { Heightfield } from '../src/heightfield';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
+import { DEFAULT_ROAD_SIGN_PROFILE } from '../src/road-sign-styles';
+import { terrainRouteShieldLibrarySchema } from '../src/route-shields';
 import {
   createDefaultTerrainSemanticRenderer,
   disposeTerrainSemanticObject,
@@ -159,7 +163,148 @@ function worker() {
   };
 }
 
+const readFont = async (path: string) =>
+  JSON.parse(
+    readFileSync(new URL(`../../../content/earth/fonts/${path}`, import.meta.url), 'utf8'),
+  );
+const fonts = await loadFontLibrary(await readFont('catalog.json'), readFont);
 describe('surface worker', () => {
+  it('caches route artwork and renders identical direct/worker geometry, including clear and reload', async () => {
+    const shields = terrainRouteShieldLibrarySchema.parse(
+      JSON.parse(
+        readFileSync(
+          new URL('../../../content/earth/signs/route-shields.json', import.meta.url),
+          'utf8',
+        ),
+      ),
+    );
+    const tile = fixture();
+    const road = tile.transportation[0];
+    if (!road) throw Error('Missing road');
+    road.network = 'US:WA';
+    road.shieldText = '520';
+    const ctx = { ...context(), origin: [0, 0] as [number, number], tileSize: 400 };
+    const thread = worker(),
+      bridge = createTerrainSurfaceWorkerBridge(thread.bridge);
+    for (const [routeShields, update] of [
+      [shields, true],
+      [shields, false],
+      [undefined, true],
+      [undefined, false],
+      [shields, true],
+    ] as const) {
+      const options = { fonts, routeShields, details: { parkedCars: false } };
+      const pending = bridge.generate(tile, ctx, options);
+      const request = thread.requests[0] as {
+        options: { routeShields?: unknown };
+        shieldUpdate?: unknown;
+      };
+      expect(request.options.routeShields).toBeUndefined();
+      expect(Boolean(request.shieldUpdate)).toBe(update);
+      thread.run();
+      const actual = await pending;
+      const direct = createTerrainSurfaceObject(tile, ctx, options);
+      expect(actual?.userData.roadSigns).toEqual(direct.userData.roadSigns);
+      expect(
+        direct.userData.roadSigns.some((s: { pattern: string }) => s.pattern === 'route-marker'),
+      ).toBe(!!routeShields);
+      const a = actual?.getObjectByName('surface:road-signs') as THREE.Mesh | undefined;
+      const b = direct.getObjectByName('surface:road-signs') as THREE.Mesh | undefined;
+      for (const name of ['position', 'normal', 'color'])
+        expect(a?.geometry.getAttribute(name).array).toEqual(b?.geometry.getAttribute(name).array);
+      if (actual) disposeTerrainSurfaceObject(actual);
+      disposeTerrainSurfaceObject(direct);
+    }
+    bridge.dispose();
+  });
+  it('transfers regional geometry and metadata and honors an explicit profile over the tile resolver', async () => {
+    const tile = fixture();
+    const main = tile.transportation[0];
+    if (!main) throw new Error('Missing road');
+    main.maxspeed = '50';
+    const profile = {
+      ...DEFAULT_ROAD_SIGN_PROFILE,
+      id: 'test-circle',
+      motorwayColor: '#245a91',
+      speedSign: 'circle' as const,
+      inferStopSigns: false,
+      drivingSide: 'left' as const,
+    };
+    const ctx = context(),
+      thread = worker(),
+      bridge = createTerrainSurfaceWorkerBridge(thread.bridge);
+    const direct = createTerrainSurfaceObject(tile, ctx, { signProfile: profile, fonts });
+    const pending = bridge.generate(tile, ctx, { signProfile: profile, fonts });
+    thread.run();
+    const actual = await pending;
+    expect(actual?.userData.roadSigns).toEqual(direct.userData.roadSigns);
+    expect(
+      actual?.userData.roadSigns.some(
+        (s: { appearance: { id: string } }) => s.appearance.id === profile.id,
+      ),
+    ).toBe(true);
+    const face = actual?.getObjectByName('surface:road-signs') as THREE.Mesh;
+    const directFace = direct.getObjectByName('surface:road-signs') as THREE.Mesh;
+    expect(face.geometry.getAttribute('position').array).toEqual(
+      directFace.geometry.getAttribute('position').array,
+    );
+    if (actual) disposeTerrainSurfaceObject(actual);
+    disposeTerrainSurfaceObject(direct);
+    bridge.dispose();
+    const choose = vi.fn(() => profile);
+    const renderer = createTerrainSurfaceRenderer(
+      { signProfile: DEFAULT_ROAD_SIGN_PROFILE },
+      undefined,
+      undefined,
+      choose,
+    );
+    const object = renderer.createTile(tile, ctx);
+    expect(choose).not.toHaveBeenCalled();
+    expect(object.children[0]?.userData.roadSigns[0]?.appearance.id).toBe(
+      DEFAULT_ROAD_SIGN_PROFILE.id,
+    );
+    await renderer.setOptions({ fonts });
+    expect(choose).toHaveBeenCalledWith(1100, 2100);
+    expect(object.children[0]?.userData.roadSigns[0]?.appearance.id).toBe(profile.id);
+    renderer.dispose();
+  });
+  it('sends fonts once and explicitly clears or replaces them', async () => {
+    const thread = worker(),
+      bridge = createTerrainSurfaceWorkerBridge(thread.bridge);
+    for (const [library, update] of [
+      [fonts, true],
+      [fonts, false],
+      [undefined, true],
+      [undefined, false],
+      [fonts, true],
+    ] as const) {
+      const pending = bridge.generate(fixture(), context(), { fonts: library });
+      const request = thread.requests[0] as {
+        options: { fonts?: unknown };
+        fontUpdate?: { fonts?: unknown };
+      };
+      expect(request.options.fonts).toBeUndefined();
+      expect(Boolean(request.fontUpdate)).toBe(update);
+      thread.run();
+      const object = await pending;
+      if (object) disposeTerrainSurfaceObject(object);
+    }
+    bridge.dispose();
+  });
+  it('selects regional parking metadata before sending a serializable worker request', async () => {
+    const ctx = context(),
+      thread = worker();
+    const bridge = createTerrainSurfaceWorkerBridge(thread.bridge);
+    const fleet = vi.fn(() => []);
+    const renderer = createTerrainSurfaceRenderer({ style: 'modern' }, bridge, fleet);
+    const pending = renderer.createTileAsync?.(fixture(), ctx);
+    thread.run();
+    const object = await pending;
+    expect(fleet).toHaveBeenCalledWith(1100, 2100);
+    expect(object).toBeDefined();
+    expect(renderer.stats().parkedCars).toBe(0);
+    renderer.dispose();
+  });
   it.each([
     'modern',
     '1910',
@@ -172,8 +317,8 @@ describe('surface worker', () => {
     const before = ctx.heightfield.sampleHeight(1050, 2080);
     // Repeated jobs exercise shared fixture geometry after previous transfers.
     for (let repeat = 0; repeat < 2; repeat++) {
-      const direct = createTerrainSurfaceObject(tile, ctx, { style });
-      const generated = bridge.generate(tile, ctx, { style });
+      const direct = createTerrainSurfaceObject(tile, ctx, { style, fonts });
+      const generated = bridge.generate(tile, ctx, { style, fonts });
       thread.run();
       const actual = (await generated) as THREE.Group;
       expect(actual.userData).toEqual(direct.userData);

@@ -1,0 +1,598 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0709_ernst_happel_stadion",
+  "reviewedOn": "2026-10-20",
+  "inputHash": "sha256:9c814ca626baa1e6a6edeb4c7471b9a2d6c5461758de99c6d7258c0cb4fad79c",
+  "sourceHash": "sha256:345ed06562de395d7f515d835fe45ead5f8f7609fc4cccdb755380d362064d54",
+  "runtimeHash": "sha256:f683f48745730c813118c068245ded24f59c5f6246335ec5ee8a31a5c12ad4fe",
+  "captureReportHash": "sha256:94e21b11e2a074c99d7ff356bb10737577926d925de8b641e6bd100332e00da2",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/open-pitch-blue-track-and-covered-three-tier-bowl.png",
+      "shots/pale-green-frontage-and-exposed-concrete-frame.png",
+      "shots/annular-roof-outer-collar-and-radial-supports.png"
+    ],
+    "notes": "Inspected47 current portable/shared/medium-fi/native-site frames in one ordinary-picture/map/build/inspect/fix round. Specific mapped oval with closed shallow white annular roof and true open pitch, renderable underside/radial beams, outer white collar truss/posts/diagonals, open inner catwalk/guardrail, exposed concrete columns/floor belts/open bays, pale green two-storey curved frontage with windows and main entrance glazing, three covered blue/yellow stepped seating tiers/concourses/radial aisles, blue athletics surface, neutral football field/linework/goals and two supported end boards. Refined entrance glazing and attached board brackets during construction. Accepted views show no unintended missing roof faces, floating screens or closed-over pitch. Flat-facet lighting remains intentionally simplified."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/open-pitch-blue-track-and-covered-three-tier-bowl.png",
+      "shots/shared/pale-green-frontage-and-exposed-concrete-frame.png",
+      "shots/shared/annular-roof-outer-collar-and-radial-supports.png"
+    ],
+    "notes": "Four existing shared256-square graphs: concrete_plain, metal_painted, window_grid and fabric_canvas. Concrete supplies the exposed frame; tinted paint supplies roof, steel, seats, green frontage, track, markings and neutral boards; window-grid supplies closed glazing; canvas grain is an explicit approximation for the green playing surface. Semantic palette roles merge into five near-level draws. Each shared graph is read once and eviction releases model geometry. All six current GLBs contain zero embedded images/copied pixels, canonical shared references, separate runtime POSITION/NORMAL streams and equal counted CPU/GPU geometry bytes. No bespoke bitmap or building photo atlas was created.",
+    "captureReportHash": "sha256:4995d1700b38b91b7ffeb2d0c519e2f53148b645c1d9eea37af760c48f6856a1"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/open-pitch-blue-track-and-covered-three-tier-bowl.png",
+      "medium-fi/pale-green-frontage-and-exposed-concrete-frame.png",
+      "medium-fi/annular-roof-outer-collar-and-radial-supports.png",
+      "medium-fi/happel-skyline.png",
+      "medium-fi/happel-district.png",
+      "medium-fi/happel-street.png",
+      "medium-fi/happel-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected24 current medium-fi frames at street/block/skyline distances, noon/late afternoon, Economy/High, neutral silhouette, matched levels and transitions. Skyline retains the annular roof/opening, lower shell, three colored tiers and field; district adds frame/frontage windows and roof collar; street and closeup add radial roof structure, seating rows/aisles, railings, track/field lines and entrance/board/goal details. Initial skyline plus district404640bytes. Synthetic context tests appearance; separate native fixture tests approximate geographic fit. Physical ordinary-laptop/phone and dense-city timing measurements remain pending. Levels752/3790/15958/29762 triangles; at most five draws.",
+    "captureReportHash": "sha256:8d8eb95b0b17f51e965852a98c2ab866f4db201ab362082051f2501fc031fcad"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:b797742d0fdc8b12d8433fa6b9f04329985714639fcb4cdcd025833ea43e5d49",
+    "mapFrameHash": "sha256:d17ee004700c6f2526f4244c16a2c5e00631a05086981cbdfd2fd69747568b26",
+    "notes": "Retained exact-QID OSMrelation37185/native parent52776558170433 identifies Q185741 and controls the280.067x235.268m outer oval and mapped central roof opening. Own anchor16.420911482,48.207193552/global heading0/native east-south; internal X[.35312278685873716,-.9355769863571457]/Z[.9355769863571457,.35312278685873716] retains its long-axis orientation. Field centre/bowl front use bounded allocations inside that opening; fine frontage/section/entry/screen orientation retains20degree/2m approximation. Only the stadium parent shell is replaced. All113 independent resident inputs among114 originals (376 wider records), original6m terrain/native roads and797098.459312224m2 water remain unchanged. A numerical parent remainder of1.2789769243681803e-11m2 is below the1e-7m2 threshold and has no visible old shell; loaded record count is114, not113. Failure restores114 originals and all four levels unload with zero live model geometry. Bounded occupied perimeter feet/internal sports floor meet coarse native grade; floor-.192003m relative to159.075297m datum. No whole-site slab, practice grounds/railway/parking mesh, flattening or ground/water cutout."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Original medium-fi exterior follows four actually viewed ordinary2010/2014/2016/2017 bowl/exterior/aerial/roof pictures. This is a reference-era appearance; later roof finishes and equipment changes are unverified. Native26.7m height has no qualifying dimension or source. Overall collar26.7m, perimeter floor belts.3/5.8/11.6/18.8m, outer/inner roof20/23m, seating1.2..5.7/6.8..11.4/12.5..17.7m and fine row/column/brace/catwalk/frontage/screen inventory are picture-led estimates. The105x68m football pitch and blue athletics surface use representative permanent-sport dimensions, not an athletics certification or as-built survey. Canvas grain approximates grass. No roof over the field, furnished service/office interior, spectators/event fixtures, copied text/live graphics/photo atlas, adjacent practice grounds or whole-site reconstruction is authored. Coarse DEM contacts are not surveyed foundations, drainage or flood levels."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/u2/u2e/n0709_ernst_happel_stadion/models/source.glb\",\"hash\":\"sha256:345ed06562de395d7f515d835fe45ead5f8f7609fc4cccdb755380d362064d54\",\"bytes\":3574864,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/u2/u2e/n0709_ernst_happel_stadion/model.glb\",\"hash\":\"sha256:f683f48745730c813118c068245ded24f59c5f6246335ec5ee8a31a5c12ad4fe\",\"bytes\":3574360,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/u2/u2e/n0709_ernst_happel_stadion/model.skyline.glb\",\"hash\":\"sha256:7f5e18ff1ae3e85612c3dbd4ec69828da1311577a03c96c40ab483679ab74b2b\",\"bytes\":75572,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/u2/u2e/n0709_ernst_happel_stadion/model.district.glb\",\"hash\":\"sha256:174b700a50e3412698c8c587d60a703753d495820dc5d1905022a84178af0cd3\",\"bytes\":329068,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/u2/u2e/n0709_ernst_happel_stadion/model.street.glb\",\"hash\":\"sha256:0b20d67b8fee7ca19c7f0b01793fdc6b3c1171ea3f535a2dcd7266688cd3f01d\",\"bytes\":1299872,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/u2/u2e/n0709_ernst_happel_stadion/model.closeup.glb\",\"hash\":\"sha256:4f7a1e3a7dc3a7a1ab4ff18a89b832d4c39190640fb446f12a31dac1f18167ac\",\"bytes\":2466096,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "annular-roof-open-pitch-seating-frame-entrance-boards-and-grade",
+        "passed": true,
+        "notes": "411 actual front-face mesh/contact probes across six files verify open sky above the closed football pitch, intact athletics floor, closed annular roof top/renderable underside, all three covered seating tiers, concrete piers/open bays, outer collar posts/far silhouette, radial underside beams, closed green frontage/windows/main entrance, closed end boards/attached hangers/roof brackets, supported goal frames and bounded feet crossing original DEM. No neighboring practice-ground or railway platform is authored."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Four existing shared256-square graphs: concrete_plain, metal_painted, window_grid and fabric_canvas. Concrete supplies the exposed frame; tinted paint supplies roof, steel, seats, green frontage, track, markings and neutral boards; window-grid supplies closed glazing; canvas grain is an explicit approximation for the green playing surface. Semantic palette roles merge into five near-level draws. Each shared graph is read once and eviction releases model geometry. All six current GLBs contain zero embedded images/copied pixels, canonical shared references, separate runtime POSITION/NORMAL streams and equal counted CPU/GPU geometry bytes. No bespoke bitmap or building photo atlas was created. Inspected24 current medium-fi frames at street/block/skyline distances, noon/late afternoon, Economy/High, neutral silhouette, matched levels and transitions. Skyline retains the annular roof/opening, lower shell, three colored tiers and field; district adds frame/frontage windows and roof collar; street and closeup add radial roof structure, seating rows/aisles, railings, track/field lines and entrance/board/goal details. Initial skyline plus district404640bytes. Synthetic context tests appearance; separate native fixture tests approximate geographic fit. Physical ordinary-laptop/phone and dense-city timing measurements remain pending. Levels752/3790/15958/29762 triangles; at most five draws."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:345ed06562de395d7f515d835fe45ead5f8f7609fc4cccdb755380d362064d54"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:f683f48745730c813118c068245ded24f59c5f6246335ec5ee8a31a5c12ad4fe"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:7f5e18ff1ae3e85612c3dbd4ec69828da1311577a03c96c40ab483679ab74b2b"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:174b700a50e3412698c8c587d60a703753d495820dc5d1905022a84178af0cd3"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:0b20d67b8fee7ca19c7f0b01793fdc6b3c1171ea3f535a2dcd7266688cd3f01d"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:4f7a1e3a7dc3a7a1ab4ff18a89b832d4c39190640fb446f12a31dac1f18167ac"
+      }
+    ],
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 114,
+          "independentBuildings": 113,
+          "remainingBuildings": 114,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 52776558170433,
+              "area": 1.2789769243681803e-11
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0709_ernst_happel_stadion"
+          ],
+          "rawTerrainRange": {
+            "min": -4.153597415256513,
+            "max": 5.163902584743511
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 797098.459312224,
+          "remainingWaterArea": 797098.459312224,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:dfcbc7e550bd335c1b95726de7dd82782f0d8df1a2883ea21055466b1b3f5c79",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 347080
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -400.11588656801905,
+                229.80799745844266,
+                196.36007057415753
+              ],
+              "lookAt": [
+                0,
+                11.807997458442644,
+                0
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 114,
+          "independentBuildings": 113,
+          "remainingBuildings": 114,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 52776558170433,
+              "area": 1.2789769243681803e-11
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.fabric_canvas": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0709_ernst_happel_stadion"
+          ],
+          "rawTerrainRange": {
+            "min": -4.153597415256513,
+            "max": 5.163902584743511
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 797098.459312224,
+          "remainingWaterArea": 797098.459312224,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:ece83a8d7834cba1a1fed9f98e25d6ae1d8649bb23ebf2b3ca16ea891d962002",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 18,
+              "triangles": 350118
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -400.11588656801905,
+                229.80799745844266,
+                196.36007057415753
+              ],
+              "lookAt": [
+                0,
+                11.807997458442644,
+                0
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 114,
+          "independentBuildings": 113,
+          "remainingBuildings": 114,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 52776558170433,
+              "area": 1.2789769243681803e-11
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.fabric_canvas": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0709_ernst_happel_stadion"
+          ],
+          "rawTerrainRange": {
+            "min": -4.153597415256513,
+            "max": 5.163902584743511
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 797098.459312224,
+          "remainingWaterArea": 797098.459312224,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:a3023242470b038ea8724a403276c2b49b20d6dd3d4b1897fda6412cad152dbe",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 18,
+              "triangles": 362286
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -400.11588656801905,
+                229.80799745844266,
+                196.36007057415753
+              ],
+              "lookAt": [
+                0,
+                11.807997458442644,
+                0
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 114,
+          "independentBuildings": 113,
+          "remainingBuildings": 114,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 52776558170433,
+              "area": 1.2789769243681803e-11
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.fabric_canvas": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0709_ernst_happel_stadion"
+          ],
+          "rawTerrainRange": {
+            "min": -4.153597415256513,
+            "max": 5.163902584743511
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 797098.459312224,
+          "remainingWaterArea": 797098.459312224,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:d583eaf1e06fb6de6e35cf54ef155c82517a469609f443328c4c3df8c207bc7e",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 18,
+              "triangles": 376090
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -400.11588656801905,
+                229.80799745844266,
+                196.36007057415753
+              ],
+              "lookAt": [
+                0,
+                11.807997458442644,
+                0
+              ],
+              "fov": 43
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-pitch-blue-track-and-covered-three-tier-bowl.png",
+            "hash": "sha256:490a3841957d4aa627c5a6caca84a4167121ff45f3a145496c25d4ceb7a92ebf",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 18,
+              "triangles": 376090
+            },
+            "camera": {
+              "name": "open-pitch-blue-track-and-covered-three-tier-bowl",
+              "position": [
+                7.5901559292777705,
+                25.807997458442642,
+                8.2091128003731
+              ],
+              "lookAt": [
+                -53.75004837603973,
+                8.807997458442644,
+                -41.66452087296083
+              ],
+              "fov": 78
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-pale-green-frontage-and-exposed-concrete-frame.png",
+            "hash": "sha256:74a04464c2f9e5565343821fccfb0d2dc8c4cb4ebe011407c0a048b6407d1ce4",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 18,
+              "triangles": 376090
+            },
+            "camera": {
+              "name": "pale-green-frontage-and-exposed-concrete-frame",
+              "position": [
+                -173.48961927032607,
+                11.807997458442644,
+                -38.7601858282091
+              ],
+              "lookAt": [
+                -103.84904548564317,
+                10.807997458442644,
+                -39.19662934131983
+              ],
+              "fov": 61
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-annular-roof-outer-collar-and-radial-supports.png",
+            "hash": "sha256:2963171119d800684777a1b1c4027d1ceba422c94f83cb576971c1533ad5a9b8",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 18,
+              "triangles": 376090
+            },
+            "camera": {
+              "name": "annular-roof-outer-collar-and-radial-supports",
+              "position": [
+                206.01738630929697,
+                82.80799745844264,
+                -121.04890143361852
+              ],
+              "lookAt": [
+                43.338878128262216,
+                16.807997458442642,
+                -15.708012050658569
+              ],
+              "fov": 50
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 114,
+          "independentBuildings": 113,
+          "remainingBuildings": 114,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 52776558170433,
+              "area": 35386.57035360816
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0709_ernst_happel_stadion"
+          ],
+          "rawTerrainRange": {
+            "min": -4.153597415256513,
+            "max": 5.163902584743511
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 797098.459312224,
+          "remainingWaterArea": 797098.459312224,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:b75148d0743ba5ebe2590910a96c04bf95a3360140f8866a4165e5b9bb02db31",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 346399
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -400.11588656801905,
+                229.80799745844266,
+                196.36007057415753
+              ],
+              "lookAt": [
+                0,
+                11.807997458442644,
+                0
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Specific Ernst-Happel-Stadion: exact mapped oval roof envelope/opening, closed shallow white annular roof/radial underside beams, white outer collar truss/open inner catwalk, exposed concrete perimeter columns/floor belts, pale green windowed frontage, three covered blue/yellow seating tiers/concourse aisles, blue representative athletics track and football pitch/goals, two supported neutral end boards. Four existing shared concrete/paint/window-grid/canvas graphs. No roof over pitch, unique atlas/copied text/live screens, crowd/event fixtures, furnished offices, neighboring practice ground/railway or whole-site slab.",
+    "Retained exact-QID OSMrelation37185/native52776558170433 controls the280.067x235.268m oval and its mapped central roof opening. Own anchor16.420911482,48.207193552/global heading0/native east-south, internal X[0.35312278685873716,-0.9355769863571457]/Z[0.9355769863571457,0.35312278685873716] preserves the stadium long axis. Bowl front/field centre are a bounded picture/map allocation inside that opening; frontage placement and fine roof/portal/section inventory retain20degree/2m approximation, not a facade survey.",
+    "OSM/native PMTiles carries26.7m without a qualifying dimension or source. Visualization uses an overall26.7m collar, perimeter floor belts.3/5.8/11.6/18.8m, outer roof20m/inner roof23m, seating1.2..5.7/6.8..11.4/12.5..17.7m. Detailed height allocation, column/row/diagonal counts, catwalk/screens/frontage extent and hidden condition are picture-led estimates. Field105x68m and blue track based on36.5m bends/84.39m straights with representative lane spacing are a neutral sports configuration, not an athletics certification or as-built survey. Later roof finishes/equipment changes beyond the viewed photos are not verified.",
+    "Retain original6m standard Mapzen ground, native roads/water and every independent Prater building/practice ground. Replace only the stadium parent shell. Bounded occupied perimeter feet/internal sports floor meet coarse DEM; no outside whole-site slab, parking/railway mesh, terrain flattening or ground/water cutout. Coarse field/foundation/nearby bank heights are not surveyed drainage/flood measurements.",
+    "Ordinary2010/2014/2016/2017 bowl/exterior/aerial/roof-detail views inspected. Exact stadium relation/outer roof and central opening control the complete covered bowl;26.7m tag is unqualified. Fine heights/column/row/truss/screen/frontage inventory are estimates. Shared canvas grain approximates grass, blue track is a representative configuration. No roof over pitch, copied sign/live screen atlas, crowd, furnished offices, adjacent railway/grounds or outside-site platform; later roof finish/equipment changes are unverified."
+  ]
+}

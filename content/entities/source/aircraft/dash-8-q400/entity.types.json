@@ -1,0 +1,475 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.dash_8_q400": {
+      "doc": "De Havilland Canada Dash 8-400: original polygonal exterior and transport-five cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.dash_8_q400",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.dash_8_q400",
+          "spec": {
+            "label": "De Havilland Canada Dash 8-400",
+            "genericLabel": "Civil transport with enclosed cockpit",
+            "model": "airplane",
+            "mass": 23000,
+            "span": 28.42,
+            "length": 32.84,
+            "height": 8.36,
+            "centerOfMass": [
+              0,
+              2.3482,
+              0
+            ],
+            "pilotEye": [
+              0.559251,
+              3.2520399999999996,
+              11.494
+            ],
+            "hardLandingSpeed": 4,
+            "hardLandingRoll": 0.2,
+            "hardLandingPitch": 0.28,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [
+                0,
+                2.3482,
+                14.121200000000002
+              ],
+              [
+                0,
+                2.3482,
+                -14.121200000000002
+              ],
+              [
+                13.073200000000002,
+                2.3482,
+                0
+              ],
+              [
+                -13.073200000000002,
+                2.3482,
+                0
+              ]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "propeller-1",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "engine-1"
+                },
+                {
+                  "node": "propeller-2",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "engine-2"
+                }
+              ],
+              "gearNodes": [
+                "gear-0",
+                "gear-1",
+                "gear-2"
+              ],
+              "flaps": [
+                {
+                  "node": "flap-right",
+                  "axis": "x",
+                  "multiplier": -0.65
+                },
+                {
+                  "node": "flap-left",
+                  "axis": "x",
+                  "multiplier": -0.65
+                }
+              ],
+              "ailerons": [
+                {
+                  "node": "aileron-right",
+                  "axis": "x",
+                  "multiplier": -0.3
+                },
+                {
+                  "node": "aileron-left",
+                  "axis": "x",
+                  "multiplier": 0.3
+                }
+              ],
+              "animation": {
+                "bindings": [
+                  {
+                    "node": "pitch-surface--1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.3
+                  },
+                  {
+                    "node": "pitch-surface-1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.3
+                  },
+                  {
+                    "node": "rudder-0",
+                    "source": "yawInput",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": -0.3
+                  },
+                  {
+                    "node": "gear-0",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1.35,
+                    "offset": -1.35
+                  },
+                  {
+                    "node": "gear-1",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1.35,
+                    "offset": -1.35
+                  },
+                  {
+                    "node": "gear-2",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1.35,
+                    "offset": 1.35
+                  }
+                ]
+              },
+              "interior": {
+                "nodes": [
+                  "cockpit"
+                ],
+                "bindings": [
+                  {
+                    "node": "horizon-0",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1
+                  },
+                  {
+                    "node": "horizon-0",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.09,
+                    "min": -0.056100000000000004,
+                    "max": 0.056100000000000004
+                  },
+                  {
+                    "node": "horizon-4",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1
+                  },
+                  {
+                    "node": "horizon-4",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.09,
+                    "min": -0.056100000000000004,
+                    "max": 0.056100000000000004
+                  },
+                  {
+                    "node": "needle-standby-0",
+                    "source": "airspeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.04,
+                    "offset": 0
+                  },
+                  {
+                    "node": "needle-standby-1",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.02,
+                    "offset": 0
+                  },
+                  {
+                    "node": "control-0",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.22
+                  },
+                  {
+                    "node": "control-0",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.3
+                  },
+                  {
+                    "node": "pedal-0--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.035
+                  },
+                  {
+                    "node": "pedal-0-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.035
+                  },
+                  {
+                    "node": "control-1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.22
+                  },
+                  {
+                    "node": "control-1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.3
+                  },
+                  {
+                    "node": "pedal-1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.035
+                  },
+                  {
+                    "node": "pedal-1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.035
+                  },
+                  {
+                    "node": "power-lever-0",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.6,
+                    "offset": -0.3
+                  },
+                  {
+                    "node": "power-lever-1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.6,
+                    "offset": -0.3
+                  }
+                ]
+              }
+            },
+            "airplane": {
+              "wingPosition": [
+                0,
+                2.3482,
+                0
+              ],
+              "wingArea": 69.629,
+              "controlAuthoritySpeed": 80,
+              "maxControlAuthority": 1.8,
+              "pitchAuthority": 0.18,
+              "pitchResponse": 2.5,
+              "stallPitchRate": 0.18,
+              "rollAuthority": 0.55,
+              "rollResponse": 1.3,
+              "rudderAuthority": 1,
+              "groundSteerSpeed": 8,
+              "groundLevelRate": 2,
+              "maxGroundPitch": 0.22,
+              "camberAngle": 0.045,
+              "flapLift": 0.33,
+              "postStallFlapEffect": 0.4,
+              "stallAngle": 0.28,
+              "stallTransitionAngle": 0.12,
+              "pitchFrequency": 3.5,
+              "pitchDamping": 0.7,
+              "maxLoadFactor": 3.8,
+              "minLoadFactor": -1.5,
+              "autoTrim": 1,
+              "directionalStability": 4,
+              "yawDamping": 1.2,
+              "dihedralEffect": 2.5,
+              "propellerEffects": 0.08,
+              "stallSpeed": 48,
+              "liftSlope": 4.8,
+              "postStallLift": 0.2,
+              "postStallDecay": 3.8,
+              "profileDrag": 0.028,
+              "inducedDrag": 0.06,
+              "gearDrag": 0.018,
+              "flapDrag": 0.035,
+              "gearTransitTime": 6,
+              "flapTransitTime": 4,
+              "stallDrag": 1.1,
+              "propellerEfficiency": 0.85,
+              "maxThrust": 96600,
+              "minPropellerSpeed": 25,
+              "lateralDamping": 0.35,
+              "brakeDeceleration": 4,
+              "rollingDeceleration": 0.22,
+              "groundTrackRate": 12
+            },
+            "engines": [
+              {
+                "id": "engine-1",
+                "position": [
+                  5.684000000000001,
+                  3.486104,
+                  0.007399999999999962
+                ],
+                "thrustAxis": [
+                  0,
+                  0,
+                  1
+                ],
+                "power": 2557058.823529412,
+                "idleRpm": 0.18,
+                "spoolRate": 0.25,
+                "rotorAngularSpeed": 180,
+                "maxThrust": 48300,
+                "minPropellerSpeed": 25,
+                "propellerEfficiency": 0.85
+              },
+              {
+                "id": "engine-2",
+                "position": [
+                  -5.684000000000001,
+                  3.486104,
+                  0.007399999999999962
+                ],
+                "thrustAxis": [
+                  0,
+                  0,
+                  1
+                ],
+                "power": 2557058.823529412,
+                "idleRpm": 0.18,
+                "spoolRate": 0.25,
+                "rotorAngularSpeed": 180,
+                "maxThrust": 48300,
+                "minPropellerSpeed": 25,
+                "propellerEfficiency": 0.85
+              }
+            ]
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.559251,
+                3.2520399999999996,
+                11.494
+              ]
+            },
+            {
+              "id": "copilot",
+              "role": "passenger",
+              "position": [
+                -0.559251,
+                3.2520399999999996,
+                11.494
+              ]
+            }
+          ],
+          "entries": [
+            [
+              2.145,
+              0,
+              11.494
+            ]
+          ],
+          "exits": [
+            [
+              2.8449999999999998,
+              0,
+              11.494
+            ]
+          ],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.83,
+          "width": 11.28,
+          "height": 4.1,
+          "cruise": 90,
+          "weight": 0.35
+        }
+      },
+      "assets": [
+        "molen.entities.aircraft.dash_8_q400"
+      ]
+    }
+  }
+}

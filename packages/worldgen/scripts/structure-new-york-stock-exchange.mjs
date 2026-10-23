@@ -12,6 +12,7 @@ import {
   rigBindModel,
 } from '../../figures/dist/kernel.mjs';
 import { quatFromEuler, quatRotateVec3 } from '../../kernel/dist/determinism.mjs';
+import { simplifyStaticSculpture } from '../../tooling/scripts/static-sculpture-lod.mjs';
 import { beam, loft, normalFor, radialRing, sphere } from './authored-structure-mesh.mjs';
 import { B, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
@@ -277,10 +278,11 @@ function figureGeometry(d, kind) {
       ),
       height: heights[kind],
     };
+  if (d === 2) result.triangles = simplifyStaticSculpture(result.triangles, 400, 0.08);
   cache.set(key, result);
   return result;
 }
-function statue(o, x, kind, d) {
+function unfittedStatue(o, x, kind, d) {
   const y = 31.1,
     z = 0.28;
   if (d < 2) {
@@ -376,6 +378,32 @@ function statue(o, x, kind, d) {
         }),
       );
     loft(o, 'marble', rings, pale);
+  }
+}
+/** Keep every complete posed figure below both slopes of the pediment cornice. */
+export function newYorkStockExchangePedimentStatue(o, x, kind, d) {
+  const calls = [],
+    collector = Object.fromEntries(
+      ['addTriangle', 'addQuad', 'addConvexPolygon'].map((name) => [
+        name,
+        (...args) => calls.push({ name, args }),
+      ]),
+    ),
+    origin = [x, 31.1, 0.28],
+    slope = (37.4 - 30.65) / 16.7;
+  unfittedStatue(collector, x, kind, d);
+  let scale = 1;
+  for (const { args } of calls)
+    for (const p of args[2])
+      for (const sign of [-1, 1]) {
+        const rise = p[1] - origin[1] + sign * slope * (p[0] - x),
+          room = 37.4 - 0.6 - origin[1] - sign * slope * x;
+        if (rise > 0) scale = Math.min(scale, room / rise);
+      }
+  if (!(scale > 0)) throw new Error(`No pediment clearance for ${kind}`);
+  for (const { name, args } of calls) {
+    args[2] = args[2].map((p) => p.map((v, i) => origin[i] + (v - origin[i]) * scale));
+    o[name](...args);
   }
 }
 function leaf(o, x, y, z, a, d) {
@@ -823,7 +851,7 @@ function pediment(o, d) {
     [10.6, 'science'],
     [13.6, 'right-end'],
   ];
-  for (const [x, kind] of statues) statue(o, x, kind, d);
+  for (const [x, kind] of statues) newYorkStockExchangePedimentStatue(o, x, kind, d);
 }
 function portico(o, d, rear = false) {
   const w = 33.6;
@@ -1020,6 +1048,7 @@ export const newYorkStockExchangeModel = {
       district: { export: 'newYorkStockExchangeDistrict', errorMeters: 1.2, surfaces },
       street: { export: 'newYorkStockExchangeStreet', errorMeters: 0.5, surfaces },
     },
+    caps: { closeup: { triangles: 64000, errorMeters: 0.04, prune: true } },
   },
   limitations: [
     'Photographic medium-fi1903exterior with bounded independent source-ground preview, not surveyed facade/foundation or navigable trading floor.',

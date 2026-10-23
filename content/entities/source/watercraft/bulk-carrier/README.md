@@ -1,4 +1,6 @@
-# Geared bulk carrier
+# Bendy Bulk Carrier
+
+![Molen preview](preview.png)
 
 Original brief: add diverse cars, motorcycles, bicycles, boats, cargo ships and ferries to Molen.
 

@@ -2,6 +2,54 @@ import { expect, it } from 'vitest';
 import { componentIssues, getComponent } from '../src/components';
 import { vehicleInteriorSchema } from '../src/vehicle-interior';
 
+it('validates formula dependencies, arities, collisions and cyclic graphs in all adapters', () => {
+  const binding = { node: 'dial', source: 'knots', property: 'rotation', axis: 'z', scale: 1 };
+  const data = {
+    sources: { speed: { component: 'aircraftState', path: ['airspeed'] } },
+    derived: { knots: { op: 'multiply', args: ['speed', 3600 / 1852] } },
+    bindings: [binding],
+  };
+  expect(componentIssues('model.signals', data)).toEqual([]);
+  expect(componentIssues('model.signals', { ...data, sources: {} })).not.toEqual([]);
+  expect(vehicleInteriorSchema.safeParse({ nodes: ['panel'], ...data, sources: {} }).success).toBe(
+    true,
+  );
+  for (const derived of [
+    { knots: { op: 'divide', args: ['speed'] } },
+    { knots: { op: 'eval', args: ['speed'] } },
+    { knots: { op: 'add', args: ['knots', 1] } },
+    { knots: { op: 'add', args: ['other', 1] }, other: { op: 'add', args: ['knots', 1] } },
+    { knots: { op: 'multiply', args: ['speed', 2] }, speed: { op: 'abs', args: [1] } },
+  ]) {
+    expect(componentIssues('model.signals', { ...data, derived })).not.toEqual([]);
+    expect(vehicleInteriorSchema.safeParse({ nodes: ['panel'], ...data, derived }).success).toBe(
+      false,
+    );
+  }
+  const tooMany = Object.fromEntries(
+    Array.from({ length: 257 }, (_, i) => [`x${i}`, { op: 'abs', args: [1] }]),
+  );
+  expect(
+    vehicleInteriorSchema.safeParse({ nodes: ['panel'], bindings: [], derived: tooMany }).success,
+  ).toBe(false);
+});
+
+it('checks visibility ownership, response times and cyclic limits', () => {
+  const parse = (bindings: object[]) =>
+    vehicleInteriorSchema.safeParse({ nodes: ['panel'], bindings }).success;
+  const rotation = { node: 'dial', source: 'speed', property: 'rotation', axis: 'z', scale: 1 };
+  const visible = { node: 'lamp', source: 'on', property: 'visible', scale: 1, missing: 'rest' };
+  expect(parse([rotation, visible])).toBe(true);
+  expect(parse([visible, visible])).toBe(false);
+  expect(parse([{ ...visible, axis: 'x' }])).toBe(false);
+  expect(parse([{ ...visible, responseSeconds: 1 }])).toBe(false);
+  expect(parse([{ ...rotation, axis: undefined }])).toBe(false);
+  expect(parse([{ ...rotation, responseSeconds: -1 }])).toBe(false);
+  expect(parse([{ ...rotation, period: 2 * Math.PI, responseSeconds: 0.2 }])).toBe(true);
+  expect(parse([{ ...rotation, period: 0 }])).toBe(false);
+  expect(parse([{ ...rotation, period: 2 * Math.PI, min: 0 }])).toBe(false);
+});
+
 it('rejects contradictory instrument ranges and competing transform bindings', () => {
   const binding = { node: 'dial', source: 'speed', property: 'rotation', axis: 'z', scale: 1 };
   expect(vehicleInteriorSchema.safeParse({ nodes: ['cabin'], bindings: [binding] }).success).toBe(

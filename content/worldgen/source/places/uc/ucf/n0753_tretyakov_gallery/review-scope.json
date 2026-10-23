@@ -1,0 +1,846 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "plaster_lime",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "stone": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "metal_painted",
+      "slot": "roof",
+      "roughness": 0.7,
+      "metallic": 0.25
+    },
+    "glazed": {
+      "graph": "metal_painted",
+      "slot": "roof",
+      "roughness": 0.35,
+      "metallic": 0.15
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.3,
+      "metallic": 0.1
+    },
+    "frame": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    },
+    "frieze": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    },
+    "gold": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    },
+    "relief": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "door": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "flat": {
+      "graph": "metal_painted",
+      "slot": "roof",
+      "roughness": 0.7,
+      "metallic": 0.1
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      97.82417289021109,
+      105,
+      14.122011129654613
+    ],
+    "lookAt": [
+      -34.280985763867236,
+      6,
+      -16.8170751041176
+    ],
+    "fov": 52
+  },
+  "qaCameras": [
+    {
+      "name": "three-gables-arched-entrance-and-keeled-facade",
+      "position": [
+        30.280332366213234,
+        8,
+        -10.348984094666454
+      ],
+      "lookAt": [
+        -3.785041545776654,
+        7,
+        1.2936230118333067
+      ],
+      "fov": 58
+    },
+    {
+      "name": "north-wing-and-roof-lanterns",
+      "position": [
+        2.239859348562078,
+        33,
+        -80.02489006614542
+      ],
+      "lookAt": [
+        -45.75589476335128,
+        8,
+        -28.747140630071762
+      ],
+      "fov": 58
+    },
+    {
+      "name": "rear-connected-gallery-roofs",
+      "position": [
+        -86.54089482045819,
+        46,
+        55.99708495693676
+      ],
+      "lookAt": [
+        -41.20425734950389,
+        9,
+        -12.337308307562655
+      ],
+      "fov": 58
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        97.82417289021109,
+        105,
+        14.122011129654613
+      ],
+      "lookAt": [
+        -34.280985763867236,
+        6,
+        -16.8170751041176
+      ],
+      "fov": 52,
+      "name": "tretyakov-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        97.82417289021109,
+        105,
+        14.122011129654613
+      ],
+      "lookAt": [
+        -34.280985763867236,
+        6,
+        -16.8170751041176
+      ],
+      "fov": 52,
+      "name": "tretyakov-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        97.82417289021109,
+        105,
+        14.122011129654613
+      ],
+      "lookAt": [
+        -34.280985763867236,
+        6,
+        -16.8170751041176
+      ],
+      "fov": 52,
+      "name": "tretyakov-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        97.82417289021109,
+        105,
+        14.122011129654613
+      ],
+      "lookAt": [
+        -34.280985763867236,
+        6,
+        -16.8170751041176
+      ],
+      "fov": 52,
+      "name": "tretyakov-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/tretyakov-model.mjs",
+    "export": "buildTretyakovSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTretyakovDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glazed": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.35,
+            "metallic": 0.15
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "frieze": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "gold": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "relief": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "door": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "flat": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "buildTretyakovStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glazed": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.35,
+            "metallic": 0.15
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "frieze": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "gold": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "relief": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "door": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "flat": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTretyakovCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glazed": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.35,
+            "metallic": 0.15
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "frieze": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "gold": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "relief": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "door": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "flat": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      37.620723992586136,
+      55.74142573330042
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard Protomaps20261020 plus MapzenTerrarium, original201x201/6m grid. Uncovered front court control internal[0,-2.5], datum129.9305m; working floor0.3m above provider. Closed foundation to original lowest boundary grade; occupied mapped building footprints only cut ground, with no broad paving/court flattening. Approximate native exterior fit inspected; original boundary grades-2.034..+1.068m across the connected ranges leave a modest rear foundation/uphill burial. Exact historic paving, entrance thresholds and accessibility remain approximate. No bespoke terrain research.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 12
+    },
+    "bounds": [
+      37.61922102056691,
+      55.74106283142481,
+      37.62080807603226,
+      55.74209513665889
+    ],
+    "terrainReference": {
+      "anchor": [
+        37.620761743347856,
+        55.74143299630869
+      ],
+      "modelHeight": 0,
+      "basis": "Standard Protomaps20261020 plus MapzenTerrarium, original201x201/6m grid. Uncovered front court control internal[0,-2.5], datum129.9305m; working floor0.3m above provider. Closed foundation to original lowest boundary grade; occupied mapped building footprints only cut ground, with no broad paving/court flattening. Approximate native exterior fit inspected; original boundary grades-2.034..+1.068m across the connected ranges leave a modest rear foundation/uphill burial. Exact historic paving, entrance thresholds and accessibility remain approximate. No bespoke terrain research."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -79.081918,
+          -59.079876
+        ],
+        [
+          -76.89687,
+          -53.197136
+        ],
+        [
+          -61.769617,
+          -59.752188
+        ],
+        [
+          -61.265375,
+          -58.239485
+        ],
+        [
+          -25.800371,
+          -71.517641
+        ],
+        [
+          -10.168876,
+          -29.6661
+        ],
+        [
+          -28.636112,
+          -23.218078
+        ],
+        [
+          -22.102598,
+          -4.790295
+        ],
+        [
+          -7.143425,
+          -10.000779
+        ],
+        [
+          -5.462619,
+          -5.462616
+        ],
+        [
+          -2.269088,
+          -6.639177
+        ],
+        [
+          2.269088,
+          6.639177
+        ],
+        [
+          -0.924443,
+          7.647661
+        ],
+        [
+          0.924443,
+          12.690086
+        ],
+        [
+          -12.858165,
+          17.396355
+        ],
+        [
+          -9.496553,
+          26.640825
+        ],
+        [
+          -17.228261,
+          29.330129
+        ],
+        [
+          -18.572905,
+          25.632337
+        ],
+        [
+          -51.852862,
+          37.398052
+        ],
+        [
+          -70.341727,
+          -8.656139
+        ],
+        [
+          -91.183721,
+          -53.86945
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -79.081918,
+            -59.079876
+          ],
+          [
+            -76.89687,
+            -53.197136
+          ],
+          [
+            -61.769617,
+            -59.752188
+          ],
+          [
+            -61.265375,
+            -58.239485
+          ],
+          [
+            -25.800371,
+            -71.517641
+          ],
+          [
+            -10.168876,
+            -29.6661
+          ],
+          [
+            -28.636112,
+            -23.218078
+          ],
+          [
+            -22.102598,
+            -4.790295
+          ],
+          [
+            -7.143425,
+            -10.000779
+          ],
+          [
+            -5.462619,
+            -5.462616
+          ],
+          [
+            -2.269088,
+            -6.639177
+          ],
+          [
+            2.269088,
+            6.639177
+          ],
+          [
+            -0.924443,
+            7.647661
+          ],
+          [
+            0.924443,
+            12.690086
+          ],
+          [
+            -12.858165,
+            17.396355
+          ],
+          [
+            -9.496553,
+            26.640825
+          ],
+          [
+            -17.228261,
+            29.330129
+          ],
+          [
+            -18.572905,
+            25.632337
+          ],
+          [
+            -51.852862,
+            37.398052
+          ],
+          [
+            -70.341727,
+            -8.656139
+          ],
+          [
+            -91.183721,
+            -53.86945
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Q183334 and mapped museum POI on relation1907261/native52776560040509 identify the historic main gallery; contiguous northern relation1907269/native52776560040517 shares its gallery massing and boundary and is included. Both14m height tags are unqualified. Own anchor is the mapped central porch front midpoint; internalX follows its southeast-facing facade, internalZ southwest into the gallery ranges. Heading0, axes baked into native east/south coordinates. Only these two parents are owned; adjacent engineering building way53548436 and church way53548437 remain separate."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -79.082,
+          -59.08
+        ],
+        [
+          -76.897,
+          -53.197
+        ],
+        [
+          -61.77,
+          -59.752
+        ],
+        [
+          -61.265,
+          -58.239
+        ],
+        [
+          -25.8,
+          -71.518
+        ],
+        [
+          -10.169,
+          -29.666
+        ],
+        [
+          -28.636,
+          -23.218
+        ],
+        [
+          -22.103,
+          -4.79
+        ],
+        [
+          -7.143,
+          -10.001
+        ],
+        [
+          -5.463,
+          -5.463
+        ],
+        [
+          -2.269,
+          -6.639
+        ],
+        [
+          2.269,
+          6.639
+        ],
+        [
+          -0.924,
+          7.648
+        ],
+        [
+          0.924,
+          12.69
+        ],
+        [
+          -12.858,
+          17.396
+        ],
+        [
+          -9.497,
+          26.641
+        ],
+        [
+          -17.228,
+          29.33
+        ],
+        [
+          -18.573,
+          25.632
+        ],
+        [
+          -51.853,
+          37.398
+        ],
+        [
+          -70.342,
+          -8.656
+        ],
+        [
+          -91.184,
+          -53.869
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -79.082,
+            -59.08
+          ],
+          [
+            -76.897,
+            -53.197
+          ],
+          [
+            -61.77,
+            -59.752
+          ],
+          [
+            -61.265,
+            -58.239
+          ],
+          [
+            -25.8,
+            -71.518
+          ],
+          [
+            -10.169,
+            -29.666
+          ],
+          [
+            -28.636,
+            -23.218
+          ],
+          [
+            -22.103,
+            -4.79
+          ],
+          [
+            -7.143,
+            -10.001
+          ],
+          [
+            -5.463,
+            -5.463
+          ],
+          [
+            -2.269,
+            -6.639
+          ],
+          [
+            2.269,
+            6.639
+          ],
+          [
+            -0.924,
+            7.648
+          ],
+          [
+            0.924,
+            12.69
+          ],
+          [
+            -12.858,
+            17.396
+          ],
+          [
+            -9.497,
+            26.641
+          ],
+          [
+            -17.228,
+            29.33
+          ],
+          [
+            -18.573,
+            25.632
+          ],
+          [
+            -51.853,
+            37.398
+          ],
+          [
+            -70.342,
+            -8.656
+          ],
+          [
+            -91.184,
+            -53.869
+          ]
+        ]
+      ],
+      "basis": "Occupied gallery ranges only; retain original forecourt, church, engineering building and all independent buildings."
+    },
+    "notes": "Q183334 and mapped museum POI on relation1907261/native52776560040509 identify the historic main gallery; contiguous northern relation1907269/native52776560040517 shares its gallery massing and boundary and is included. Both14m height tags are unqualified. Own anchor is the mapped central porch front midpoint; internalX follows its southeast-facing facade, internalZ southwest into the gallery ranges. Heading0, axes baked into native east/south coordinates. Only these two parents are owned; adjacent engineering building way53548436 and church way53548437 remain separate. Standard Protomaps20261020 plus MapzenTerrarium, original201x201/6m grid. Uncovered front court control internal[0,-2.5], datum129.9305m; working floor0.3m above provider. Closed foundation to original lowest boundary grade; occupied mapped building footprints only cut ground, with no broad paving/court flattening. Approximate native exterior fit inspected; original boundary grades-2.034..+1.068m across the connected ranges leave a modest rear foundation/uphill burial. Exact historic paving, entrance thresholds and accessibility remain approximate. No bespoke terrain research."
+  }
+}

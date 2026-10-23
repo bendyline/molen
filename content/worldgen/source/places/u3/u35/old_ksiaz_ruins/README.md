@@ -20,7 +20,7 @@ Own mapped ruin envelope and four surviving wall centerlines; the envelope is no
 
 ## Build
 
-Run node packages/worldgen/scripts/generate-old-ksiaz.mjs --ids=KSI_R01 (or --check).
+Run node content/worldgen/source/places/u3/u35/old_ksiaz_ruins/models/generate-old-ksiaz.mjs --ids=KSI_R01 (or --check).
 
 2264 triangles;274080 source bytes;3 merged material groups;no embedded images. Three existing shared rubble, brick and limestone graphs use metric UVs and linear palette tints. Openings are real through-holes, not opaque panes. No roof or terrain fill is generated. Runtime LODs are separate generated outputs.
 

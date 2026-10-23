@@ -1,0 +1,537 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "base": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "rubble": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_travertine",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "column": {
+      "slot": "trim",
+      "graph": "stone_travertine",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "trim",
+      "graph": "brick_longformat",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.8,
+      "metallic": 0.4
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      25,
+      22.154231713206975,
+      28
+    ],
+    "lookAt": [
+      0,
+      7.754231713206973,
+      0
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "open-southwest-doorway-bare-cella-and-surviving-arc",
+      "position": [
+        -17,
+        10.154231713206974,
+        20
+      ],
+      "lookAt": [
+        0,
+        7.154231713206974,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "fluted-columns-floral-capitals-frieze-and-coffers",
+      "position": [
+        14,
+        8.154231713206974,
+        5
+      ],
+      "lookAt": [
+        5,
+        10.654231713206974,
+        1
+      ],
+      "fov": 49
+    },
+    {
+      "name": "roofless-cella-window-partial-annular-roof-and-missing-arc",
+      "position": [
+        -15,
+        20.154231713206975,
+        -19
+      ],
+      "lookAt": [
+        0,
+        8.154231713206974,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        25,
+        22.154231713206975,
+        28
+      ],
+      "lookAt": [
+        0,
+        7.754231713206973,
+        0
+      ],
+      "fov": 46,
+      "name": "tivoli-vesta-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        25,
+        22.154231713206975,
+        28
+      ],
+      "lookAt": [
+        0,
+        7.754231713206973,
+        0
+      ],
+      "fov": 46,
+      "name": "tivoli-vesta-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        25,
+        22.154231713206975,
+        28
+      ],
+      "lookAt": [
+        0,
+        7.754231713206973,
+        0
+      ],
+      "fov": 46,
+      "name": "tivoli-vesta-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        25,
+        22.154231713206975,
+        28
+      ],
+      "lookAt": [
+        0,
+        7.754231713206973,
+        0
+      ],
+      "fov": 46,
+      "name": "tivoli-vesta-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/tivoli-vesta-model.mjs",
+    "export": "buildTivoliVestaSkyline",
+    "errorMeters": 0.65,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTivoliVestaDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "column": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_longformat",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.4
+          }
+        }
+      },
+      "street": {
+        "export": "buildTivoliVestaStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "column": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_longformat",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.4
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTivoliVestaCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "base": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "column": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_longformat",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.4
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      12.800822243,
+      41.966639022
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain pinned standard6m Mapzen cliff terrain, paths/water and all independent buildings. Level occupied podium floor is at least0.2m above its sampled7.25m envelope and0.6m above the coarse southwest approach; narrow perimeter footing bottoms follow retained ground and southwest steps descend to sampled approach. No surrounding acropolis slab, native ground/water cutout or terrain flattening. Coarse DEM blurs the cliff edge and cannot resolve archaeological paving/thresholds; exposed podium depths are visualization fit, not a measured ancient foundation section. Only matching cella shell is replaced; neighboring Sibyl/restaurant remain independent.",
+    "replaceFootprint": false,
+    "bounds": [
+      12.800689344382738,
+      41.96654020731875,
+      12.800930978232307,
+      41.96671987037557
+    ],
+    "terrainReference": {
+      "anchor": [
+        12.800822243,
+        41.966639022
+      ],
+      "modelHeight": 0,
+      "basis": "Retain pinned standard6m Mapzen cliff terrain, paths/water and all independent buildings. Level occupied podium floor is at least0.2m above its sampled7.25m envelope and0.6m above the coarse southwest approach; narrow perimeter footing bottoms follow retained ground and southwest steps descend to sampled approach. No surrounding acropolis slab, native ground/water cutout or terrain flattening. Coarse DEM blurs the cliff edge and cannot resolve archaeological paving/thresholds; exposed podium depths are visualization fit, not a measured ancient foundation section. Only matching cella shell is replaced; neighboring Sibyl/restaurant remain independent."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -4.557549493687398,
+          -0.3639206893998526
+        ],
+        [
+          -4.33554342792544,
+          -1.6959568916689243
+        ],
+        [
+          -3.4475191648776096,
+          -3.0279928471545587
+        ],
+        [
+          -2.337488836067821,
+          -3.916016678267145
+        ],
+        [
+          -1.0054524414960746,
+          -4.582034477250164
+        ],
+        [
+          0.3665839530756722,
+          -4.582034477250164
+        ],
+        [
+          1.9206264134093765,
+          -4.1380226186438955
+        ],
+        [
+          3.2526628079811233,
+          -3.249998816006321
+        ],
+        [
+          4.140687071028953,
+          -2.1399689053058144
+        ],
+        [
+          4.584699202552869,
+          -0.5859267405127607
+        ],
+        [
+          4.584699202552869,
+          -0.5459267405127607
+        ],
+        [
+          4.362693136790911,
+          1.0081157659804367
+        ],
+        [
+          3.918681005266997,
+          2.562158614173778
+        ],
+        [
+          2.8086506764572072,
+          3.6721894297468882
+        ],
+        [
+          1.476614281885461,
+          4.338207997555231
+        ],
+        [
+          -0.07742817844824336,
+          4.56021420369876
+        ],
+        [
+          -0.11742817844824337,
+          4.56021420369876
+        ],
+        [
+          -1.6714706387819478,
+          4.338207997555231
+        ],
+        [
+          -3.0035070333536944,
+          3.6721894297468882
+        ],
+        [
+          -4.557549493687398,
+          1.2301218677155885
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -4.557549493687398,
+            -0.3639206893998526
+          ],
+          [
+            -4.33554342792544,
+            -1.6959568916689243
+          ],
+          [
+            -3.4475191648776096,
+            -3.0279928471545587
+          ],
+          [
+            -2.337488836067821,
+            -3.916016678267145
+          ],
+          [
+            -1.0054524414960746,
+            -4.582034477250164
+          ],
+          [
+            0.3665839530756722,
+            -4.582034477250164
+          ],
+          [
+            1.9206264134093765,
+            -4.1380226186438955
+          ],
+          [
+            3.2526628079811233,
+            -3.249998816006321
+          ],
+          [
+            4.140687071028953,
+            -2.1399689053058144
+          ],
+          [
+            4.584699202552869,
+            -0.5859267405127607
+          ],
+          [
+            4.584699202552869,
+            -0.5459267405127607
+          ],
+          [
+            4.362693136790911,
+            1.0081157659804367
+          ],
+          [
+            3.918681005266997,
+            2.562158614173778
+          ],
+          [
+            2.8086506764572072,
+            3.6721894297468882
+          ],
+          [
+            1.476614281885461,
+            4.338207997555231
+          ],
+          [
+            -0.07742817844824336,
+            4.56021420369876
+          ],
+          [
+            -0.11742817844824337,
+            4.56021420369876
+          ],
+          [
+            -1.6714706387819478,
+            4.338207997555231
+          ],
+          [
+            -3.0035070333536944,
+            3.6721894297468882
+          ],
+          [
+            -4.557549493687398,
+            1.2301218677155885
+          ]
+        ]
+      ],
+      "basis": "Replace only the corresponding Temple of Vesta cella control with two-centimeter numeric tolerance. Preserve all independent buildings and original native ground/water."
+    },
+    "notes": "Exact OSM way/432883964 carriesQ1219688 and agrees with named PMTiles cella building/POI35184804972796. Its approximately9.1m circular footprint identifies the cella, not the whole peristyle. Native anchor12.800822243,41.966639022, heading0/east-south axes; mapped cella center[0.013574854432735428,-0.01091013677570185]. Separate Temple of the Sibyl35184580229500 lies about15m north and remains untouched. Picture-led column ring radius6.25m/podium7.25m, ten surviving columns at approximately-80 through100degrees, doorway southwest and window southeast. Restaurant west/Sibyl north and ordinary pictures support approximate facing, with about30degree uncertainty; doorway/window/arc locations are not separately surveyed map controls. Retain pinned standard6m Mapzen cliff terrain, paths/water and all independent buildings. Level occupied podium floor is at least0.2m above its sampled7.25m envelope and0.6m above the coarse southwest approach; narrow perimeter footing bottoms follow retained ground and southwest steps descend to sampled approach. No surrounding acropolis slab, native ground/water cutout or terrain flattening. Coarse DEM blurs the cliff edge and cannot resolve archaeological paving/thresholds; exposed podium depths are visualization fit, not a measured ancient foundation section. Only matching cella shell is replaced; neighboring Sibyl/restaurant remain independent."
+  }
+}

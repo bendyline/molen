@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.vehicle.van": {
-      "doc": "Cargo van with a high center of mass and restrained road performance.",
+      "doc": "Bendy Van. Cargo van with a high center of mass and restrained road performance.",
       "components": {
         "transform": {
           "pos": [
@@ -23,7 +23,9 @@
           "kind": "molen.entities.vehicle.van",
           "color": "#d0d0ca",
           "spec": {
-            "label": "Van",
+            "label": "Bendy Van",
+            "bodyStyle": "van",
+            "genericLabel": "Van",
             "width": 1.95,
             "length": 4.95,
             "height": 2.05,
@@ -75,7 +77,8 @@
             "interior": {
               "nodes": [
                 "body",
-                "steering-wheel"
+                "steering-wheel",
+                "cabin"
               ],
               "bindings": [
                 {
@@ -84,6 +87,15 @@
                   "property": "rotation",
                   "axis": "z",
                   "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
                 }
               ]
             }
@@ -152,7 +164,7 @@
           "sound": "vehicle.engine.diesel",
           "loop": true,
           "pitch": 0.92,
-          "gain": 1.0,
+          "gain": 1,
           "when": {
             "self.occupied": true
           },

@@ -4,6 +4,8 @@ export {
   prepareAgricultureTile,
 } from './kernel/agriculture';
 export type { AgricultureCrop, AgricultureProfile } from './kernel/agriculture-types';
+export type { BuildingInfillOptions } from './kernel/building-infill';
+export { inferBuildingFootprints } from './kernel/building-infill';
 export type {
   BusinessCatalog,
   BusinessProfile,

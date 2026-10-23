@@ -116,6 +116,46 @@ function fakeWorker(): WorkerLike & { results: WorldgenWorkerResult[] } {
 }
 
 describe('worldgen worker protocol', () => {
+  it('recreates seeded infill after eviction and matches the in-thread path', async () => {
+    const source = createEmptyTerrainSemanticTile();
+    for (const n of [0.15, 0.35, 0.55, 0.75, 0.95])
+      source.transportation.push({
+        class: 'minor_road',
+        lines: [
+          [
+            [0, n],
+            [1, n],
+          ],
+          [
+            [n, 0],
+            [n, 1],
+          ],
+        ],
+      });
+    const request = {
+      tile: source,
+      geom: { ...geom, size: 480 },
+      ground,
+      resolution: 33,
+      buildingInfill: { seed: 42 },
+      features: { buildings: true, scatter: true },
+    };
+    const direct = await createInThreadWorldgenGenerator(pack, { atlas }).generate(
+      request,
+      new AbortController().signal,
+    );
+    expect(direct?.records.length).toBeGreaterThan(20);
+    const bridge = createWorldgenWorkerBridge(fakeWorker(), { pack, atlas, metersPerUnit: 1 });
+    for (let visit = 0; visit < 2; visit++) {
+      const replay = await bridge.generate(
+        { ...request, tile: structuredClone(source) },
+        new AbortController().signal,
+      );
+      expect(replay?.hash).toBe(direct?.hash);
+      expect(replay?.records).toEqual(direct?.records);
+    }
+    bridge.dispose();
+  });
   it.each([
     undefined,
     1,

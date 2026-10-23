@@ -32,3 +32,19 @@ Exact prior input reconstructed using HEAD tower generator; only validation guar
 Previous input: sha256:fc0800ab7cd3b75b39ad52dfb0d072913ea8aea60ae075e2171b09fedd1abce4
 
 Current input: sha256:2a39d51e640c8bfe9d81f3b6c0230d2ec5fd38764e34ca64d12bb3db6699ae55
+
+## Source binding maintenance — reusable category extension
+
+Only two spec metadata fields gained an opt-in reusableMapRules branch. These three geographic studies do not opt in. Selected --check reproduced source GLBs and every generated text document exactly. All18 approved source/runtime/LOD bytes and existing inspected image hashes are unchanged. The exact prior combined input was reconstructed before carrying acceptance; no new visual review is claimed.
+
+Previous input: sha256:2a39d51e640c8bfe9d81f3b6c0230d2ec5fd38764e34ca64d12bb3db6699ae55
+
+Current input: sha256:bc5d70862a33ea90c5d799053d4b2749f2e318940522793a7e133e61c420843f
+
+## Source binding maintenance — independent mapped collection members
+
+Only declared OSM collection members gained an attributed map-frame guard and their feature ID in the spec. These three older geographic studies are not OSM collection members. Selected --check reproduced source GLBs and every generated text document exactly. All18 approved source/runtime/LOD bytes and existing inspected image hashes are unchanged. The exact prior combined input was reconstructed before carrying acceptance; no new visual review is claimed.
+
+Previous input: sha256:bc5d70862a33ea90c5d799053d4b2749f2e318940522793a7e133e61c420843f
+
+Current input: sha256:f6c65f5df028b4f0b5f46519848c21247dfd3c71f8074dd6bcadde408c7b2ae4

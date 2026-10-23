@@ -64,6 +64,16 @@ Reusable sign or furniture geometry recipe, with colors, facade appearance and d
         "sign": {
           "type": "object",
           "properties": {
+            "font": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "letterSpacing": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 16
+            },
             "text": {
               "type": "string",
               "minLength": 1,

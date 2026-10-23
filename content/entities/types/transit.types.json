@@ -2,10 +2,10 @@
   "format": "molen/types@1",
   "namespace": "molen.entities",
   "owner": "@bendyline/molen-entities",
-  "doc": "Buses and rail cars for ambient traffic; models animate from their ambientRole bindings.",
+  "doc": "Bendy Bus and Bendy Light Rail: player controls, operator cabins and ambient traffic roles.",
   "types": {
     "molen.entities.transit.bus": {
-      "doc": "12 m low-floor city bus that drives with ambient traffic.",
+      "doc": "Bendy Bus. Player-drivable city bus with cockpit/chase views, passenger seat and ambient traffic role.",
       "components": {
         "transform": {
           "pos": [0, 0, 0],
@@ -13,7 +13,11 @@
         },
         "renderable": {
           "kind": "gltf",
-          "ref": "molen.entities.transit.bus"
+          "ref": "molen.entities.transit.bus",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
         },
         "ambientRole": {
           "role": "bus",
@@ -36,11 +40,102 @@
             "wheelbase": 5.9
           },
           "colors": ["#1f6fa8", "#d2372c", "#2e7d4f", "#f2b705"]
+        },
+        "vehicle": {
+          "kind": "molen.entities.transit.bus",
+          "color": "#5686a1",
+          "spec": {
+            "label": "Bendy Bus",
+            "bodyStyle": "bus",
+            "genericLabel": "City bus",
+            "width": 2.55,
+            "length": 12,
+            "height": 3.44,
+            "centerOfMass": [0, 1.4, 0],
+            "wheelbase": 5.9,
+            "wheelTrack": 2.15,
+            "wheelRadius": 0.5,
+            "mass": 12000,
+            "engineForce": 23000,
+            "maxSpeed": 23,
+            "reverseSpeed": 5,
+            "brakeDeceleration": 5,
+            "maxSteer": 0.5,
+            "grip": 7,
+            "driverEye": [0.55, 1.95, 4.7],
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.13,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.3,
+            "drive": "rear",
+            "rollStiffness": 0.035,
+            "pitchStiffness": 0.025
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": ["wheel-front-left", "wheel-front-right"],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": ["close-detail", "steering-wheel"],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.55, 1.95, 4.7]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-0.7, 1.5, 3]
+            }
+          ],
+          "entries": [[-1.35, 0, 4.7]],
+          "exits": [[-2, 0, 4.7]],
+          "reach": 3
         }
-      }
+      },
+      "assets": ["molen.entities.transit.bus"]
     },
     "molen.entities.transit.lightrail": {
-      "doc": "27 m two-section light-rail vehicle; ambient trains run consists of it on rail and tram lines.",
+      "doc": "Bendy Light Rail. Player-driven traction/braking/reversing on a straight track; steering is locked. Ambient consists retain network route following.",
       "components": {
         "transform": {
           "pos": [0, 0, 0],
@@ -48,7 +143,11 @@
         },
         "renderable": {
           "kind": "gltf",
-          "ref": "molen.entities.transit.lightrail"
+          "ref": "molen.entities.transit.lightrail",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
         },
         "ambientRole": {
           "role": "rail",
@@ -61,8 +160,107 @@
             "paintMaterial": "rail-livery-body"
           },
           "colors": ["#f3f3ef"]
+        },
+        "vehicle": {
+          "kind": "molen.entities.transit.lightrail",
+          "color": "#e6e7df",
+          "spec": {
+            "label": "Bendy Light Rail",
+            "bodyStyle": "light-rail",
+            "genericLabel": "Light rail car",
+            "width": 2.65,
+            "length": 27,
+            "height": 4.7,
+            "centerOfMass": [0, 1.4, 0],
+            "wheelbase": 18.6,
+            "wheelTrack": 1.44,
+            "wheelRadius": 0.34,
+            "mass": 36000,
+            "engineForce": 42000,
+            "maxSpeed": 26,
+            "reverseSpeed": 12,
+            "brakeDeceleration": 1.6,
+            "maxSteer": 0,
+            "grip": 4,
+            "driverEye": [0.55, 2.55, 12.2],
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.025,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.09,
+            "drive": "rear",
+            "rollStiffness": 0,
+            "pitchStiffness": 0
+          },
+          "visual": {
+            "wheelNodes": [
+              "bogie-front-wheel-front-left",
+              "bogie-front-wheel-front-right",
+              "bogie-front-wheel-rear-left",
+              "bogie-front-wheel-rear-right",
+              "bogie-middle-wheel-front-left",
+              "bogie-middle-wheel-front-right",
+              "bogie-middle-wheel-rear-left",
+              "bogie-middle-wheel-rear-right",
+              "bogie-rear-wheel-front-left",
+              "bogie-rear-wheel-front-right",
+              "bogie-rear-wheel-rear-left",
+              "bogie-rear-wheel-rear-right"
+            ],
+            "frontWheelNodes": ["bogie-front-wheel-front-left", "bogie-front-wheel-front-right"],
+            "paintMaterial": "rail-livery-body",
+            "interior": {
+              "nodes": ["close-detail", "traction-lever"],
+              "bindings": [
+                {
+                  "node": "traction-lever",
+                  "source": "throttle",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": 0.4
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.55, 2.55, 12.2]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-0.7, 2.1, 9]
+            }
+          ],
+          "entries": [[-1.35, 0, 9.75]],
+          "exits": [[-2, 0, 9.75]],
+          "reach": 3
         }
-      }
+      },
+      "assets": ["molen.entities.transit.lightrail"]
     }
   }
 }

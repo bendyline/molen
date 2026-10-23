@@ -9,6 +9,37 @@ import {
 import { gridDocument, streetFeature } from './helpers';
 
 describe('transport graph', () => {
+  it('requires two arterials for inferred lights and accepts mapped stop and signal controls', () => {
+    const build = (
+      subclass: string,
+      pois: Parameters<TransportNetwork['registerTile']>[0]['pois'] = [],
+    ) => {
+      const net = new TransportNetwork();
+      net.registerTile({
+        key: 'controls',
+        origin: [0, 0],
+        tileSize: 200,
+        heightAt: () => 0,
+        features: [
+          streetFeature([0, 0.5], [1, 0.5], { subclass: 'primary', width: 12 }),
+          streetFeature([0.5, 0], [0.5, 1], { subclass, width: 8 }),
+        ],
+        pois,
+      });
+      return [...net.junctionList()][0];
+    };
+    expect(build('residential')?.control).toBe('none');
+    expect(build('secondary')?.control).toBe('signal');
+    expect(build('residential', [{ class: 'traffic_signals', point: [0.5, 0.5] }])?.control).toBe(
+      'signal',
+    );
+    expect(
+      build('residential', [{ class: 'traffic_signals', point: [0.5, 0.5], layer: 1 }])?.control,
+    ).toBe('none');
+    const stopped = build('secondary', [{ class: 'stop', stop: 'all', point: [0.5, 0.5] }]);
+    expect(stopped?.control).toBe('yield');
+    expect(stopped?.arms.every((a) => a.yields)).toBe(true);
+  });
   it('keeps ground approach lane heights aligned with an authored deck through a graph split', () => {
     const net = new TransportNetwork();
     net.registerTile({

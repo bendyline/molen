@@ -4,9 +4,11 @@
 (`/kernel`: descriptors and presets, canonical rigs and sockets, deterministic gait and pose
 evaluation, locomotion state, attachments) and a **client half** (`/client`: the `figure`
 renderable kind that generates a skinned body from the descriptor and poses it every frame).
-The look is deliberately left of the uncanny valley: readable silhouettes, color blocks for
-clothing, disc eyes, no mouths or fingers, gently faceted surfaces (see the figure rules in
-[3D art guidelines](3d-art-guidelines.md)).
+Humans use modeled facial relief (jaw, cheeks, nose, lips, eyelids and ears), shaped palms
+and fingers, fitted clothing with collars, pockets and buttons, and rounded shoes. The
+target is the readable polygonal realism of early open-world games. Surfaces share one
+vertex-color material; no external texture downloads are required. See the figure rules in
+[3D art guidelines](3d-art-guidelines.md).
 
 Naming note: this is **not** `@bendyline/molen-kernel/kinematics` (the 2.5D collision layer) and
 not `/character` (the gravity/jump mover). Figures sit on top of whatever moves an entity.
@@ -94,8 +96,29 @@ figure` prints the full shape (the `molen/figure@1` file format wraps the same f
 | `seed` | detail jitter only (symmetry-safe) |
 
 Every rig stands with its feet at y = 0 and its reference point exactly at `height`, whatever
-the overrides. Bodies come in three detail tiers (near about 1,000 to 1,500 triangles, medium,
-and a rigid distant tier); the client picks a tier by camera distance unless `lod` pins one.
+the overrides. Bodies come in three detail tiers. Humans use roughly 7,400 triangles near, 2,200 at medium
+distance and 1,100 for the rigid distant tier. The six animal presets use about 4,100–6,500 near,
+2,100–2,900 medium and 1,100–1,500 distant triangles. The client
+picks a tier by camera distance unless `lod` pins one. Near humans include separate fingers
+with the default `hands: "fingers"`; `hands: "mitten"` keeps a joined finger silhouette. Medium
+and distant hands merge the fingers while retaining the thumb. Facial details and clothing
+use the canonical joint hierarchy, so gait, IK and attachment APIs are unchanged. The biped
+rest pose holds the arms five degrees from vertical; idle adds a slight elbow bend, leaving
+the hands beside the thighs. Idle rotates each forearm along the elbow-to-wrist axis so the
+back of the hand angles forward, with small wrist flexion and gently curled fingers. Walking,
+running and sitting use smaller forearm rotations. The rigid distant mesh retains the resting
+hand orientation; fingers remain a fixed curved shape on the hand joint. Shared shoulder vertices and blended skin weights connect the
+torso to the sleeves without separate shoulder caps.
+
+Quadrupeds have species-shaped ribcages, tucked or full bellies, muscular shoulders and haunches,
+and shaped joints. Dogs and cats have rounded paws with separate near/medium toes; horses have
+single hooves, while cows, deer and sheep have split hooves. Continuous skull/muzzle surfaces,
+eyelids, nostrils, lips and cupped ears replace the primitive heads. Cats have forward-facing eyes
+and near-tier whiskers; horses have a crest mane and hanging hair tail; cows have surface coat
+patches and a tufted tail; deer have branching antlers; sheep have a lightly rippled fleece.
+Palette and feature overrides still apply. The same 27-joint hierarchy drives all animal tiers;
+the distant tier is rigid and removes the small facial, toe and hair details. Animal proportions
+now give the torso more depth while keeping the withers at `height` and soles at ground level.
 
 ## Locomotion
 
@@ -165,8 +188,9 @@ interpolated render tick reaches the tick a state changed on, so poses and trans
 
 ## Limits
 
-- Hands are mittens (a thumb on the near tier with `hands: 'fingers'`); no faces beyond eyes and
-  brows.
+- Fingers share the hand joint; individual finger articulation and facial expressions are not
+  implemented. Hair is a solid modeled surface attached to the head, with no strand physics.
+- Clothing and skin use palette colors, without scanned skin textures or cloth simulation.
 - Foot planting on uneven ground and quadruped IK are not evaluated yet.
 - Imported skinned glTF figures and `molen figure bake` (skinned GLB export) are later phases.
 - Accessories follow kernel-evaluated sockets at tick rate; fast hand swings can lag a few

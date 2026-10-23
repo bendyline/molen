@@ -151,6 +151,12 @@ class ByteCache {
 
   constructor(private readonly limit: number) {}
 
+  delete(key: string): void {
+    this.entries.delete(key);
+    this.total -= this.sizes.get(key) ?? 0;
+    this.sizes.delete(key);
+  }
+
   get(key: string, load: () => Promise<Uint8Array>): Promise<Uint8Array> {
     const hit = this.entries.get(key);
     if (hit !== undefined) {
@@ -357,6 +363,10 @@ export function isDirectoryPackUrl(url: string | URL): boolean {
 
 /** A pack whose files sit loose beside its manifest; each read fetches one file. */
 class DirectoryPack extends BasePack {
+  private readonly flights = new Map<
+    string,
+    { controller: AbortController; users: number; settled: boolean }
+  >();
   private readonly cache: ByteCache;
   private active = 0;
   private readonly waiting: { high: boolean; start(): void }[] = [];
@@ -400,23 +410,46 @@ class DirectoryPack extends BasePack {
 
   private bytes(path: string, options?: ReadOptions): Promise<Uint8Array> {
     if (this.controller.signal.aborted) return Promise.reject(this.controller.signal.reason);
+    if (options?.signal?.aborted) return Promise.reject(options.signal.reason);
     const entry = this.entry(path);
-    // Loads are shared between callers, so they run under the pack's signal, not a caller's.
+    // Share one transfer, but cancel it when its last reader leaves the region.
     const load = this.cache.get(path, async () => {
       if (entry.size === 0) return new Uint8Array(0);
-      const bytes = await this.slot(options?.priority !== 'low', () =>
-        this.reader(this.url(path), entry).read(0, entry.size, this.controller.signal),
-      );
-      this.bytesRead += bytes.length;
-      this.requests++;
-      this.options.onProgress?.({
-        label: this.label,
-        bytes: this.bytesRead,
-        requests: this.requests,
-      });
-      return bytes;
+      const flight = { controller: new AbortController(), users: 0, settled: false };
+      this.flights.set(path, flight);
+      const signal = AbortSignal.any([this.controller.signal, flight.controller.signal]);
+      try {
+        const bytes = await this.slot(options?.priority !== 'low', async () => {
+          signal.throwIfAborted();
+          return this.reader(this.url(path), entry).read(0, entry.size, signal);
+        });
+        signal.throwIfAborted();
+        this.bytesRead += bytes.length;
+        this.requests++;
+        this.options.onProgress?.({
+          label: this.label,
+          bytes: this.bytesRead,
+          requests: this.requests,
+        });
+        return bytes;
+      } finally {
+        flight.settled = true;
+        if (this.flights.get(path) === flight) this.flights.delete(path);
+      }
     });
-    return untilAborted(load, options?.signal);
+    const flight = this.flights.get(path);
+    if (!flight) return untilAborted(load, options?.signal);
+    flight.users++;
+    return untilAborted(load, options?.signal).finally(() => {
+      flight.users--;
+      if (!flight.users && !flight.settled) {
+        flight.controller.abort(new DOMException('No remaining pack readers', 'AbortError'));
+        if (this.flights.get(path) === flight) {
+          this.flights.delete(path);
+          this.cache.delete(path);
+        }
+      }
+    });
   }
 
   async readBytes(path: string, options?: ReadOptions): Promise<ArrayBuffer> {

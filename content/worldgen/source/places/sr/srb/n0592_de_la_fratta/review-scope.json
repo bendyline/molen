@@ -1,0 +1,505 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "rock": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.69,
+      "metallic": 0.2
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -84.96791661174406,
+      42.82723748718361,
+      -37.060128799826224
+    ],
+    "lookAt": [
+      -0.3296741520018262,
+      13.827237487183606,
+      -0.9440947799357207
+    ],
+    "fov": 47
+  },
+  "qaCameras": [
+    {
+      "name": "pentagonal-keep-rounded-corbel-mouths-and-upper-crown",
+      "position": [
+        -34.39176116231377,
+        29.827237487183606,
+        -16.58935695421515
+      ],
+      "lookAt": [
+        1.2962941282195064,
+        22.827237487183606,
+        -4.477680374160669
+      ],
+      "fov": 46
+    },
+    {
+      "name": "lower-crenels-recessed-grilled-windows-and-hipped-wings",
+      "position": [
+        -18.192800038154523,
+        16.827237487183606,
+        32.83324575444415
+      ],
+      "lookAt": [
+        -0.6144206279338944,
+        10.827237487183606,
+        1.273768931937547
+      ],
+      "fov": 47
+    },
+    {
+      "name": "arched-gate-short-treads-and-bounded-rock-contact",
+      "position": [
+        -17.51827131463735,
+        10.327237487183606,
+        13.531820651588394
+      ],
+      "lookAt": [
+        -5.264466929605156,
+        7.527237487183607,
+        3.4271544971147208
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -84.96791661174406,
+        42.82723748718361,
+        -37.060128799826224
+      ],
+      "lookAt": [
+        -0.3296741520018262,
+        13.827237487183606,
+        -0.9440947799357207
+      ],
+      "fov": 47,
+      "name": "cesta-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -84.96791661174406,
+        42.82723748718361,
+        -37.060128799826224
+      ],
+      "lookAt": [
+        -0.3296741520018262,
+        13.827237487183606,
+        -0.9440947799357207
+      ],
+      "fov": 47,
+      "name": "cesta-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -84.96791661174406,
+        42.82723748718361,
+        -37.060128799826224
+      ],
+      "lookAt": [
+        -0.3296741520018262,
+        13.827237487183606,
+        -0.9440947799357207
+      ],
+      "fov": 47,
+      "name": "cesta-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -84.96791661174406,
+        42.82723748718361,
+        -37.060128799826224
+      ],
+      "lookAt": [
+        -0.3296741520018262,
+        13.827237487183606,
+        -0.9440947799357207
+      ],
+      "fov": 47,
+      "name": "cesta-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/cesta-model.mjs",
+    "export": "buildCestaSkyline",
+    "errorMeters": 1.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCestaDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.2
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildCestaStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.2
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCestaCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.2
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      12.451359066,
+      43.932622165
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain original6m standard Mapzen grid/native paths/water and every independent building. Only the three corresponding main castle/part shells are replaced with2cm pad. The court is level above sampled occupied-envelope maxima and nominally1.2m above the native approach endpoint; a narrowly bounded original faceted limestone outcrop extends down to sampled native grade around the castle, with buried contact skirts. It approximates the pictured cliff without changing terrain or claiming a surveyed rock face. Entrance treads follow the short mapped-side approach down to existing grade. No whole-ridge slab, terrain flattening or ground/water cutout. DEM greatly smooths the cliff: absolute court/foundation/rock levels and approach route are visualization fits.",
+    "replaceFootprint": false,
+    "bounds": [
+      12.451204495387852,
+      43.93247531168934,
+      12.451542533217621,
+      43.93278496471761
+    ],
+    "terrainReference": {
+      "anchor": [
+        12.451359066,
+        43.932622165
+      ],
+      "modelHeight": 0,
+      "basis": "Retain original6m standard Mapzen grid/native paths/water and every independent building. Only the three corresponding main castle/part shells are replaced with2cm pad. The court is level above sampled occupied-envelope maxima and nominally1.2m above the native approach endpoint; a narrowly bounded original faceted limestone outcrop extends down to sampled native grade around the castle, with buried contact skirts. It approximates the pictured cliff without changing terrain or claiming a surveyed rock face. Entrance treads follow the short mapped-side approach down to existing grade. No whole-ridge slab, terrain flattening or ground/water cutout. DEM greatly smooths the cliff: absolute court/foundation/rock levels and approach route are visualization fits."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.497263801011082,
+          -3.7912749490368847
+        ],
+        [
+          -3.7187799965545363,
+          -9.775695477223291
+        ],
+        [
+          -4.562031784532989,
+          -12.352295648409818
+        ],
+        [
+          -4.550511771943857,
+          -12.357095644291965
+        ],
+        [
+          -4.562031784532989,
+          -12.392295648409817
+        ],
+        [
+          -1.9817224292288669,
+          -13.467422449209227
+        ],
+        [
+          1.928741603727317,
+          -13.467422449209227
+        ],
+        [
+          4.724076738640116,
+          -2.5011208827829012
+        ],
+        [
+          6.874334534726886,
+          3.949653232499721
+        ],
+        [
+          10.314747008465716,
+          10.400433631268323
+        ],
+        [
+          10.296285491558331,
+          10.405818249448052
+        ],
+        [
+          10.314747008465716,
+          10.440433631268322
+        ],
+        [
+          5.15412829785747,
+          11.945616627183135
+        ],
+        [
+          5.126677317877148,
+          11.941956490170845
+        ],
+        [
+          5.114128297857471,
+          11.945616627183135
+        ],
+        [
+          -1.3366450904028364,
+          11.085512016958383
+        ],
+        [
+          -5.852186462185051,
+          2.484472043166224
+        ],
+        [
+          -6.497263801011082,
+          -3.7512749490368846
+        ],
+        [
+          -6.4938798521669,
+          -3.7585634467769
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -6.497263801011082,
+            -3.7912749490368847
+          ],
+          [
+            -3.7187799965545363,
+            -9.775695477223291
+          ],
+          [
+            -4.562031784532989,
+            -12.352295648409818
+          ],
+          [
+            -4.550511771943857,
+            -12.357095644291965
+          ],
+          [
+            -4.562031784532989,
+            -12.392295648409817
+          ],
+          [
+            -1.9817224292288669,
+            -13.467422449209227
+          ],
+          [
+            1.928741603727317,
+            -13.467422449209227
+          ],
+          [
+            4.724076738640116,
+            -2.5011208827829012
+          ],
+          [
+            6.874334534726886,
+            3.949653232499721
+          ],
+          [
+            10.314747008465716,
+            10.400433631268323
+          ],
+          [
+            10.296285491558331,
+            10.405818249448052
+          ],
+          [
+            10.314747008465716,
+            10.440433631268322
+          ],
+          [
+            5.15412829785747,
+            11.945616627183135
+          ],
+          [
+            5.126677317877148,
+            11.941956490170845
+          ],
+          [
+            5.114128297857471,
+            11.945616627183135
+          ],
+          [
+            -1.3366450904028364,
+            11.085512016958383
+          ],
+          [
+            -5.852186462185051,
+            2.484472043166224
+          ],
+          [
+            -6.497263801011082,
+            -3.7512749490368846
+          ],
+          [
+            -6.4938798521669,
+            -3.7585634467769
+          ]
+        ]
+      ],
+      "basis": "Retain original6m standard Mapzen grid/native paths/water and every independent building. Only the three corresponding main castle/part shells are replaced with2cm pad. The court is level above sampled occupied-envelope maxima and nominally1.2m above the native approach endpoint; a narrowly bounded original faceted limestone outcrop extends down to sampled native grade around the castle, with buried contact skirts. It approximates the pictured cliff without changing terrain or claiming a surveyed rock face. Entrance treads follow the short mapped-side approach down to existing grade. No whole-ridge slab, terrain flattening or ground/water cutout. DEM greatly smooths the cliff: absolute court/foundation/rock levels and approach route are visualization fits."
+    },
+    "notes": "Exact-QID OSMway59329686 is standard PMTiles primary35184431418518; two corresponding parts35185154011759/760 control the northern wing/polygonal end and central square room. Retain anchor12.451359066,43.932622165 and heading0/native east/south vertices. Mapped long-axis internal angle+1.23483791576rad places local+X towardSSE; this is opposite in sign to the engine heading convention. Photographs control the keep/corbel/crown and lower roofed-wing relationship; fine keep footprint across the northern/central mapped parts, side of the lower gate and room allocation remain picture/map approximations, about5m/30degrees. Main mapped enclosure remains26.6x12.6m. Other nearby map buildings are independent, including the unlabelled southern curved footprint; no attribution is invented for them. Retain original6m standard Mapzen grid/native paths/water and every independent building. Only the three corresponding main castle/part shells are replaced with2cm pad. The court is level above sampled occupied-envelope maxima and nominally1.2m above the native approach endpoint; a narrowly bounded original faceted limestone outcrop extends down to sampled native grade around the castle, with buried contact skirts. It approximates the pictured cliff without changing terrain or claiming a surveyed rock face. Entrance treads follow the short mapped-side approach down to existing grade. No whole-ridge slab, terrain flattening or ground/water cutout. DEM greatly smooths the cliff: absolute court/foundation/rock levels and approach route are visualization fits."
+  }
+}

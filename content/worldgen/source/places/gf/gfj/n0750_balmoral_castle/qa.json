@@ -1,0 +1,1244 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0750_balmoral_castle",
+  "reviewedOn": "2026-10-22",
+  "inputHash": "sha256:87d2b0cc09c12fa91c2dae4a7862073359289d5b8d4c2b76b5a7a6c866183647",
+  "sourceHash": "sha256:1c63dcf6c9040a4e141ed2602f0597637487b1abe5b6e688af038060ab0421ee",
+  "runtimeHash": "sha256:b1af795bc2f7798bfe6fc07fa556c75de2ede2f6d35394e3c74d93ffbfb415ac",
+  "captureReportHash": "sha256:09a63c2e30a456c6ec975fef0e28262aae1cfd777faef63e8bdeb0c82ba12eae",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/south-entrance-and-clock-tower.png",
+      "shots/west-stepped-gables-and-turrets.png",
+      "shots/rear-courtyard-roof-ranges.png"
+    ],
+    "notes": "Balmoral Castle medium-fi exterior follows its connected mapped outline, five integral parts and open courtyard. Pale granite residence, slate roof ranges, three west crow-step gables, conical end turrets and supported bartizans, genuine arched south entrance recess and separate treads, green rounded cupola, tall clock tower with corner cones/circular crown, schematic clocks, corbels and balcony. Two ordinary south/west photos guided one continuous pass. Corrected western window tiers, rounded the cupola, fixed initially flat stair tops and stabilized coincident map edges before final captures."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/south-entrance-and-clock-tower.png",
+      "shots/shared/west-stepped-gables-and-turrets.png",
+      "shots/shared/rear-courtyard-roof-ranges.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Five existing 256px graphs across eight authoring roles: stone_granite walls and trim, slate roofs, storefront opaque glazing, metal_painted frames/cupola/dials and wood_plain entrance. No new graph, private atlas or embedded image. Six textured draws near, one skyline draw. Palette colors are linear in the GLB, UVs are metric and each requested graph is read once. Every LOD unload releases all model geometry; shared graph lifetime remains managed by the viewer.",
+    "captureReportHash": "sha256:c8fcf1ac6af54194c43f9aa7b7d7b2f962a42020b6cb6ad81252d6a520059dee"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/south-entrance-and-clock-tower.png",
+      "medium-fi/west-stepped-gables-and-turrets.png",
+      "medium-fi/rear-courtyard-roof-ranges.png",
+      "medium-fi/balmoral-skyline.png",
+      "medium-fi/balmoral-district.png",
+      "medium-fi/balmoral-street.png",
+      "medium-fi/balmoral-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs contain 902 / 3,776 / 7,474 / 8,554 triangles. Initial skyline plus district geometry is 394,772 bytes; close-up is 696804 bytes. Separate POSITION/NORMAL streams and equal CPU/GPU accounting; six GLBs with zero Khronos errors/warnings, 46 mesh/contact probes, 31 actual PMTiles13/14/15 cases and 48 inspected frames. Economy/High, noon/late light, untextured silhouette and four-level transitions reviewed. Physical laptop/phone/tablet and dense-city timings remain pending.",
+    "captureReportHash": "sha256:8aead0bae29128346c3954d9d268d5baa5f60e4f669334978e5bfb7003a97c63"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:7d3646714f3b1378b5b2e2486f3acdacb6379951a2535613281a69ac805eb23a",
+    "mapFrameHash": "sha256:d24d291a326f1c9e49788761635aa80c7c79a73000c188019e0937d1baa94f71",
+    "notes": "Approximate exterior native fit accepted on the unchanged standard 201x201/6m terrain. Q42049 and named relation14213231/native52776572346479 identify the castle; integral ways1093652302/2304/2305/2306/2308 supply five body controls. Internal+X follows the mapped east-northeast facade edge and +Z faces the south-southeast lawn, with heading0 baked into world east/south geometry. Six owned records are replaced, preserving all 64 independent resident / 68 wider estate buildings. Boundary grades span -0.955 to +0.548m relative to the south control; working floor sits0.7m above it, with modest foundation exposure and three separate entrance treads. Only occupied floor partitions cut ground; mapped courtyard, approach/provider and all original roads/water119893.07m² remain intact. Coordinates rounded to one micrometre avoid an actual level14 clipping failure. Failure retains all70 original resident buildings; all LOD unloads restore ground/water and zero live geometry. Exact thresholds/accessibility and height semantics remain unverified; no custom terrain or broad flattening."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Recognizable medium-fi exterior completed using the mapped connected footprint and two ordinary south/west pictures. Map heights5/8/11/17/23m remain unqualified working body controls. Slate ridge rise4.6m, reconstructed6.5m rear ranges, approximate29m corner cones/27m crown/32m flagstaff, member diameters and window inventories are picture-led estimates. Hidden north/east roofs and openings, interior rooms, exact engineering dimensions and working clocks are unverified or omitted. Rear roofs/fenestration are explicitly simplified proxies. Static original dial marks replace fine inscriptions; royal flag artwork, foliage, garden walls/fountain and independent outbuildings remain outside this model. Physical device timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/models/source.glb\",\"hash\":\"sha256:1c63dcf6c9040a4e141ed2602f0597637487b1abe5b6e688af038060ab0421ee\",\"bytes\":870632,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/gf/gfj/n0750_balmoral_castle/model.glb\",\"hash\":\"sha256:b1af795bc2f7798bfe6fc07fa556c75de2ede2f6d35394e3c74d93ffbfb415ac\",\"bytes\":870068,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/gf/gfj/n0750_balmoral_castle/model.skyline.glb\",\"hash\":\"sha256:82bd1268602409b52ffae9d1f0f449dd67defdcfb7cbabef4828f074bbe816b9\",\"bytes\":81616,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/gf/gfj/n0750_balmoral_castle/model.district.glb\",\"hash\":\"sha256:89ecf26c48674694062a7ab1eb972e667c074df3521b20eac369cb91c4a66e32\",\"bytes\":313156,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/gf/gfj/n0750_balmoral_castle/model.street.glb\",\"hash\":\"sha256:d92b59a449e356339fa10453cb75b3460fd33da63cc70ce6de6c6bf98c4cfb22\",\"bytes\":616880,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/gf/gfj/n0750_balmoral_castle/model.closeup.glb\",\"hash\":\"sha256:c4b94576c08cab59812d90091f341f3c25d69dfc2e4e7fa5507672a68cb9ac16\",\"bytes\":696804,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "closed-roof-open-courtyard-true-arch-and-distinct-entrance-treads",
+        "passed": true,
+        "notes": "46 actual mesh/contact probes across six current GLBs; shared references, LOD budgets, separated vertex streams and source/runtime hashes pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Approximate exterior native fit accepted on the unchanged standard 201x201/6m terrain. Q42049 and named relation14213231/native52776572346479 identify the castle; integral ways1093652302/2304/2305/2306/2308 supply five body controls. Internal+X follows the mapped east-northeast facade edge and +Z faces the south-southeast lawn, with heading0 baked into world east/south geometry. Six owned records are replaced, preserving all 64 independent resident / 68 wider estate buildings. Boundary grades span -0.955 to +0.548m relative to the south control; working floor sits0.7m above it, with modest foundation exposure and three separate entrance treads. Only occupied floor partitions cut ground; mapped courtyard, approach/provider and all original roads/water119893.07m² remain intact. Coordinates rounded to one micrometre avoid an actual level14 clipping failure. Failure retains all70 original resident buildings; all LOD unloads restore ground/water and zero live geometry. Exact thresholds/accessibility and height semantics remain unverified; no custom terrain or broad flattening."
+    },
+    "inputHash": "sha256:87d2b0cc09c12fa91c2dae4a7862073359289d5b8d4c2b76b5a7a6c866183647",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:87d2b0cc09c12fa91c2dae4a7862073359289d5b8d4c2b76b5a7a6c866183647",
+      "reviewedOn": "2026-10-22",
+      "method": "Actually inspected all 48 current frames in six labeled contact sheets; native south, west and courtyard views and source south/west views inspected at full image resolution during the same authoring pass. Inspected actual south/west reference photographs before authoring. Approximate exterior native fit accepted; thresholds and hidden sections remain unverified.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/preview.png",
+          "hash": "sha256:8bdd108f2658c854b129b21dd2c8c550f64217039ad134961ef4808da4d9ec23"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/turntable/angle_0.png",
+          "hash": "sha256:b549880a7e68c0aeb45a0f21712ebabc778199b4e9e6d02e8b48e6465d8a18cc"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/turntable/angle_1.png",
+          "hash": "sha256:bd223cbf8adae20d037b405678c92cc1706e22eb61757714e305e34c3f3b3a6d"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/turntable/angle_2.png",
+          "hash": "sha256:a7282b8281b2391772333a1bb010d30c185c03719550b13f8936a3074aa5a163"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/turntable/angle_3.png",
+          "hash": "sha256:148de1d3e1da4e4d2ff581546d7ebcfef533717cd523f15c866bc40b6cca7325"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/south-entrance-and-clock-tower.png",
+          "hash": "sha256:14abdab298a95e528375ef243b8d19e9f2f77fdc782722b77cae90a8976a6b02"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/west-stepped-gables-and-turrets.png",
+          "hash": "sha256:b1da64f586d21e24a9424ef8d6eabb52cc50f32097c014e47f14a626e7669eab"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/rear-courtyard-roof-ranges.png",
+          "hash": "sha256:c479e3e3b4e7a07b0b37af2907043db8c6712037afddee826d6b1cb2df3d3909"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/shared/angle-0.png",
+          "hash": "sha256:a9ad7c33fdb3e95c1ed4bf8508e88f276c31b3f37a41fc2c558bf309d3e8c6bd"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/shared/angle-1.png",
+          "hash": "sha256:e0d3f346e3fa5e0c9a314463a0e29585ff9c474c8cbb4d93c1d651dc565089e8"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/shared/angle-2.png",
+          "hash": "sha256:7d730dc1096d968836acc5657dfa5ce201d15947773a5b1375a51e61805e2aa8"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/shared/angle-3.png",
+          "hash": "sha256:584e3e70f572d248f261672a737abc908e766ab1bc485c42ba898830a5eb98c5"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/shared/south-entrance-and-clock-tower.png",
+          "hash": "sha256:798a81f6868558e0f550f3b89b9b871fce3f1189cb2ad04a8c134c3813c643b8"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/shared/west-stepped-gables-and-turrets.png",
+          "hash": "sha256:0c3b17431b8604db6253dde4c06aaa0ffba3b4ab3719be83ad1be06051fbaa2c"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/shared/rear-courtyard-roof-ranges.png",
+          "hash": "sha256:220797110eb0c6c83e7ae437d1b83318184af06b25679223006364afa2164a51"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/shots/shared/placement.png",
+          "hash": "sha256:7172f6ab389c7410a35790d224854bb8366ffa7d091310dd10f73891b4e113c0"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/street-noon-economy.png",
+          "hash": "sha256:71fb648bcebe5501ca711a79d5feb35b47ba755d8c0a3c74e210364fe24009fe"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/street-noon-high.png",
+          "hash": "sha256:8b905eb37f1901c50ff73103583f2651f77d445a04adc73ae560a28464189101"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/street-late-economy.png",
+          "hash": "sha256:1aa50249db10ba9d0d0bcae4da8e88cd298db52393b2062b677deb1232286748"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/street-late-high.png",
+          "hash": "sha256:afd967d3a8c22e27a2773028d99110ab1211238fa639746e7ffa1d698a815aa4"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/block-noon-economy.png",
+          "hash": "sha256:fe5b6d7f66962feb0697adcf2a5c25bc767aa00deb9f1e79926823a669ac5047"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/block-noon-high.png",
+          "hash": "sha256:9106673a810bbd206625ef643a38a4c5502f2743b4fcc1333d00eecdf2278741"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/block-late-economy.png",
+          "hash": "sha256:7de4cd3c7ea3c10abe2f2dd3667cbc9f9aef15c48d41a2a6b22c106ad3f53d84"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/block-late-high.png",
+          "hash": "sha256:aaabaebe0ddd13988b14a256d9846058e42e846c95f3d177127b281d60cc9a7e"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:7da16fe75a57833ad8b7367c41234bc874ae423156352be0c2462a89a55ba01b"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:820441327e9f06c7e7335a6fad206dddb5e38b5304cb05af3f772a2bf901f775"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:d0462457640b4f76fe8159c81095412a6349305a34a0a7b7d6faa6c8a0df5b4d"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/skyline-late-high.png",
+          "hash": "sha256:a4ea17291b06e279605d74e6d215729aeb52f26eccae6a71eb0854cc8d40d290"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/silhouette.png",
+          "hash": "sha256:dfd268785bc75ae2eda83da76b1f6e20556b6a81343151e44f2ec96471e826ff"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/south-entrance-and-clock-tower.png",
+          "hash": "sha256:3086dad80b86ce34343184d8e344b9795974a2074dbab1db3656178f2c5aa57a"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/west-stepped-gables-and-turrets.png",
+          "hash": "sha256:7b3ef2b7028ca2b9f2f8e1f0ce5a472de48bc60fbda4c1e1e6ecdd832779ec12"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/rear-courtyard-roof-ranges.png",
+          "hash": "sha256:e5f474a4911c70cd6c174db5dcd9039a9707c233f127623bc345ecbc4bb1fa00"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/balmoral-skyline.png",
+          "hash": "sha256:ab8a8758f5ef5b329b018f3f0959c87e1ca31b50ceb83bbe553053ad805a36de"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/balmoral-district.png",
+          "hash": "sha256:7e6c89ad8eed68234a02d0bc092735a6dba96f1170a048b518752c81cfc3587d"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/balmoral-street.png",
+          "hash": "sha256:b4f6db862e6f03246dd5ffb25368285488ac88127c6ca05c9541f0b02fd2c5c3"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/balmoral-closeup.png",
+          "hash": "sha256:3bcfee19e87f6b297480c2f8d616876ed34bc09b5926090b28665f2043c0101d"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/transition-skyline.png",
+          "hash": "sha256:fea8fc10181fdf2869b801c4f5cc763412da76eb796c3f141dc722d2c3e4025e"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/transition-district.png",
+          "hash": "sha256:9106673a810bbd206625ef643a38a4c5502f2743b4fcc1333d00eecdf2278741"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/transition-street.png",
+          "hash": "sha256:ed7b42a9878972f255647e0a026ca1e514223e56045dc7d64170edcf4a560278"
+        },
+        {
+          "path": "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/medium-fi/transition-closeup.png",
+          "hash": "sha256:0b79fc9fdf261da7e9b4b1b68b874a9758f42a00fe251ed026c6bbd0003ff1fd"
+        },
+        {
+          "path": ".artifacts/balmoral-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:6a8e8063bce7922661f4316dd2dfb5e9ee381560af708c7b7243931a6bea51a0"
+        },
+        {
+          "path": ".artifacts/balmoral-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:b826985576a733fe805da32952d6368b3fb10759a4e1d49ff3760539b6e16dae"
+        },
+        {
+          "path": ".artifacts/balmoral-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:85824d4689f34a992ce637d9625fbab0763128b66f4cf091270459806dbfce0c"
+        },
+        {
+          "path": ".artifacts/balmoral-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:c92317fcd361720d81876f3c9602e5206cc5d0f072950e639abb634df62b074e"
+        },
+        {
+          "path": ".artifacts/balmoral-integration/shots/final-closeup-south-entrance-and-clock-tower.png",
+          "hash": "sha256:292b7368395a6699a939afe1cabd2f3f2f8580dc4479b7152b6b2f2bb00f7746"
+        },
+        {
+          "path": ".artifacts/balmoral-integration/shots/final-closeup-west-stepped-gables-and-turrets.png",
+          "hash": "sha256:b135b1556c3560767be65a5986feb8168397dde29f7669bd69630bca6c87270f"
+        },
+        {
+          "path": ".artifacts/balmoral-integration/shots/final-closeup-rear-courtyard-roof-ranges.png",
+          "hash": "sha256:80a38f1132b2b17bc0106277649f60896430b975e0eb4925aee44c25961aa018"
+        },
+        {
+          "path": ".artifacts/balmoral-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:9f529a6bd21bbf089ea13d30b2fedeff7ae2d4895a66636d06731c422c79bd33"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:87d2b0cc09c12fa91c2dae4a7862073359289d5b8d4c2b76b5a7a6c866183647",
+      "sourceHash": "sha256:1c63dcf6c9040a4e141ed2602f0597637487b1abe5b6e688af038060ab0421ee",
+      "runtimeHash": "sha256:b1af795bc2f7798bfe6fc07fa556c75de2ede2f6d35394e3c74d93ffbfb415ac",
+      "files": {
+        "content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/models/source.glb": "sha256:1c63dcf6c9040a4e141ed2602f0597637487b1abe5b6e688af038060ab0421ee",
+        "content/worldgen/assets/places/gf/gfj/n0750_balmoral_castle/model.glb": "sha256:b1af795bc2f7798bfe6fc07fa556c75de2ede2f6d35394e3c74d93ffbfb415ac",
+        "content/worldgen/assets/places/gf/gfj/n0750_balmoral_castle/model.skyline.glb": "sha256:82bd1268602409b52ffae9d1f0f449dd67defdcfb7cbabef4828f074bbe816b9",
+        "content/worldgen/assets/places/gf/gfj/n0750_balmoral_castle/model.district.glb": "sha256:89ecf26c48674694062a7ab1eb972e667c074df3521b20eac369cb91c4a66e32",
+        "content/worldgen/assets/places/gf/gfj/n0750_balmoral_castle/model.street.glb": "sha256:d92b59a449e356339fa10453cb75b3460fd33da63cc70ce6de6c6bf98c4cfb22",
+        "content/worldgen/assets/places/gf/gfj/n0750_balmoral_castle/model.closeup.glb": "sha256:c4b94576c08cab59812d90091f341f3c25d69dfc2e4e7fa5507672a68cb9ac16"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        52776572346479,
+        35185465741134,
+        35185465741136,
+        35185465741137,
+        35185465741138,
+        35185465741140
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4022,
+            2507
+          ],
+          "id": 35184675629990,
+          "owned": false,
+          "covered": 0.31733670591975816,
+          "area": 9382.317691292354,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            4022,
+            2508
+          ],
+          "id": 35184530329290,
+          "owned": false,
+          "covered": 0.23059930218306898,
+          "area": 14085.29375417348,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8044,
+            5015
+          ],
+          "id": 35185284975970,
+          "owned": false,
+          "covered": 0.5070845279248789,
+          "area": 4133.523922942115,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8044,
+            5015
+          ],
+          "id": 35185465741130,
+          "owned": false,
+          "covered": 0.9988317458754312,
+          "area": 272.05343736554653,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8044,
+            5015
+          ],
+          "id": 35185465741138,
+          "owned": true,
+          "covered": 0.9874496315152205,
+          "area": 146.18559339368244,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8045,
+            5015
+          ],
+          "id": 35184675629990,
+          "owned": false,
+          "covered": 0.19254503427149375,
+          "area": 9681.484842218275,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8045,
+            5015
+          ],
+          "id": 35185465741130,
+          "owned": false,
+          "covered": 0.9984497138871666,
+          "area": 180.2254444413859,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8045,
+            5015
+          ],
+          "id": 35185465741138,
+          "owned": true,
+          "covered": 0.9874496315152205,
+          "area": 146.18559339368244,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8044,
+            5016
+          ],
+          "id": 35184581546480,
+          "owned": false,
+          "covered": 0.39090222799628543,
+          "area": 6928.040206824683,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8044,
+            5016
+          ],
+          "id": 35185465741130,
+          "owned": false,
+          "covered": 0.9952614519848726,
+          "area": 1487.4079416640393,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8044,
+            5016
+          ],
+          "id": 35185465741138,
+          "owned": true,
+          "covered": 0.9874496315152205,
+          "area": 146.18559339368244,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8045,
+            5016
+          ],
+          "id": 35184530329290,
+          "owned": false,
+          "covered": 0.09394184753215244,
+          "area": 15993.36956182385,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8045,
+            5016
+          ],
+          "id": 35185465741130,
+          "owned": false,
+          "covered": 0.990168416109624,
+          "area": 448.42776258046536,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8045,
+            5016
+          ],
+          "id": 35185465741138,
+          "owned": true,
+          "covered": 0.9874496315152205,
+          "area": 146.18559339368244,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16089,
+            10031
+          ],
+          "id": 35185465741136,
+          "owned": true,
+          "covered": 0.999999983233394,
+          "area": 34.356254532961785,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16089,
+            10031
+          ],
+          "id": 35185465741138,
+          "owned": true,
+          "covered": 1.0000000245678733,
+          "area": 102.10556620791088,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16089,
+            10031
+          ],
+          "id": 52776572346479,
+          "owned": true,
+          "covered": 1.0000000008206158,
+          "area": 1479.9504634645289,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16090,
+            10031
+          ],
+          "id": 35185465741136,
+          "owned": true,
+          "covered": 1.0000000640492037,
+          "area": 32.37721003233348,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16090,
+            10031
+          ],
+          "id": 35185465741138,
+          "owned": true,
+          "covered": 0.9999999985882874,
+          "area": 108.55725620475114,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16090,
+            10031
+          ],
+          "id": 52776572346479,
+          "owned": true,
+          "covered": 0.9999999855657398,
+          "area": 1296.7816789148374,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16089,
+            10032
+          ],
+          "id": 35185465741134,
+          "owned": true,
+          "covered": 0.9999999927460913,
+          "area": 44.885347458386946,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16089,
+            10032
+          ],
+          "id": 35185465741136,
+          "owned": true,
+          "covered": 1.0000000136754243,
+          "area": 167.78381546505983,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16089,
+            10032
+          ],
+          "id": 35185465741137,
+          "owned": true,
+          "covered": 0.999999940420641,
+          "area": 13.048626970961323,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16089,
+            10032
+          ],
+          "id": 35185465741138,
+          "owned": true,
+          "covered": 1.0000000277271937,
+          "area": 136.93684046339524,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16089,
+            10032
+          ],
+          "id": 35185465741140,
+          "owned": true,
+          "covered": 0.999999991714177,
+          "area": 1320.0594846502204,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16089,
+            10032
+          ],
+          "id": 52776572346479,
+          "owned": true,
+          "covered": 0.9999999969997213,
+          "area": 2314.5429859282226,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16090,
+            10032
+          ],
+          "id": 35185465741136,
+          "owned": true,
+          "covered": 1.0000000350070521,
+          "area": 90.60084892870134,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16090,
+            10032
+          ],
+          "id": 35185465741137,
+          "owned": true,
+          "covered": 0.999999940420641,
+          "area": 13.048626970961323,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16090,
+            10032
+          ],
+          "id": 35185465741138,
+          "owned": true,
+          "covered": 0.9999999698970626,
+          "area": 147.25427323967364,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16090,
+            10032
+          ],
+          "id": 35185465741140,
+          "owned": true,
+          "covered": 0.9999999495066901,
+          "area": 33.78921119076526,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16090,
+            10032
+          ],
+          "id": 52776572346479,
+          "owned": true,
+          "covered": 0.9999999810445618,
+          "area": 581.496256250513,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 64,
+      "widerIndependent": 68,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.000009429861952625629,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 70,
+          "independentBuildings": 64,
+          "remainingBuildings": 64,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0750_balmoral_castle"
+          ],
+          "rawTerrainRange": {
+            "min": -12.274606763604822,
+            "max": 101.85529323639514
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 119893.07008456309,
+          "remainingWaterArea": 119893.07008456309,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:6a8e8063bce7922661f4316dd2dfb5e9ee381560af708c7b7243931a6bea51a0",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 12,
+              "triangles": 212029
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -42.861842286510864,
+                95.7,
+                150.20939543119889
+              ],
+              "lookAt": [
+                -4.571990098441589,
+                10.7,
+                2.024081653430038
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.000009429861952625629,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 70,
+          "independentBuildings": 64,
+          "remainingBuildings": 64,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.slate": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0750_balmoral_castle"
+          ],
+          "rawTerrainRange": {
+            "min": -12.274606763604822,
+            "max": 101.85529323639514
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 119893.07008456309,
+          "remainingWaterArea": 119893.07008456309,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:b826985576a733fe805da32952d6368b3fb10759a4e1d49ff3760539b6e16dae",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 214903
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -42.861842286510864,
+                95.7,
+                150.20939543119889
+              ],
+              "lookAt": [
+                -4.571990098441589,
+                10.7,
+                2.024081653430038
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.000009429861952625629,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 70,
+          "independentBuildings": 64,
+          "remainingBuildings": 64,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.slate": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0750_balmoral_castle"
+          ],
+          "rawTerrainRange": {
+            "min": -12.274606763604822,
+            "max": 101.85529323639514
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 119893.07008456309,
+          "remainingWaterArea": 119893.07008456309,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:85824d4689f34a992ce637d9625fbab0763128b66f4cf091270459806dbfce0c",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 218601
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -42.861842286510864,
+                95.7,
+                150.20939543119889
+              ],
+              "lookAt": [
+                -4.571990098441589,
+                10.7,
+                2.024081653430038
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.000009429861952625629,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 70,
+          "independentBuildings": 64,
+          "remainingBuildings": 64,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.slate": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0750_balmoral_castle"
+          ],
+          "rawTerrainRange": {
+            "min": -12.274606763604822,
+            "max": 101.85529323639514
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 119893.07008456309,
+          "remainingWaterArea": 119893.07008456309,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:c92317fcd361720d81876f3c9602e5206cc5d0f072950e639abb634df62b074e",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 219681
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -42.861842286510864,
+                95.7,
+                150.20939543119889
+              ],
+              "lookAt": [
+                -4.571990098441589,
+                10.7,
+                2.024081653430038
+              ],
+              "fov": 52
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-south-entrance-and-clock-tower.png",
+            "hash": "sha256:292b7368395a6699a939afe1cabd2f3f2f8580dc4479b7152b6b2f2bb00f7746",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 218663
+            },
+            "camera": {
+              "name": "south-entrance-and-clock-tower",
+              "position": [
+                4.429539072649561,
+                15.7,
+                96.46439334595885
+              ],
+              "lookAt": [
+                -8.572368457302172,
+                12.7,
+                30.041879086239774
+              ],
+              "fov": 58
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-west-stepped-gables-and-turrets.png",
+            "hash": "sha256:b135b1556c3560767be65a5986feb8168397dde29f7669bd69630bca6c87270f",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 219681
+            },
+            "camera": {
+              "name": "west-stepped-gables-and-turrets",
+              "position": [
+                -83.14818974105822,
+                13.7,
+                64.15121622218072
+              ],
+              "lookAt": [
+                -28.074777843126547,
+                10.7,
+                35.39501164089498
+              ],
+              "fov": 56
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-rear-courtyard-roof-ranges.png",
+            "hash": "sha256:80a38f1132b2b17bc0106277649f60896430b975e0eb4925aee44c25961aa018",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 219681
+            },
+            "camera": {
+              "name": "rear-courtyard-roof-ranges",
+              "position": [
+                44.84318863220329,
+                66.7,
+                -116.09086283294062
+              ],
+              "lookAt": [
+                4.286184228651086,
+                9.7,
+                -15.020939543119887
+              ],
+              "fov": 58
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 70,
+          "independentBuildings": 64,
+          "remainingBuildings": 70,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185465741136,
+              "area": 168.02780768511604
+            },
+            {
+              "id": 35185465741138,
+              "area": 147.51391538728953
+            },
+            {
+              "id": 52776572346479,
+              "area": 3479.434179202181
+            },
+            {
+              "id": 35185465741134,
+              "area": 44.88534745843431
+            },
+            {
+              "id": 35185465741137,
+              "area": 13.04862697089515
+            },
+            {
+              "id": 35185465741140,
+              "area": 1320.1782236502725
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0750_balmoral_castle"
+          ],
+          "rawTerrainRange": {
+            "min": -12.274606763604822,
+            "max": 101.85529323639514
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 119893.07008456309,
+          "remainingWaterArea": 119893.07008456309,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:9f529a6bd21bbf089ea13d30b2fedeff7ae2d4895a66636d06731c422c79bd33",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 11,
+              "triangles": 218986
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -42.861842286510864,
+                95.7,
+                150.20939543119889
+              ],
+              "lookAt": [
+                -4.571990098441589,
+                10.7,
+                2.024081653430038
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Balmoral Castle: full connected mapped castle and five height-tagged integral parts, open rear courtyard, pale granite main residence with slate roof ranges and stepped gables, conical/bartizan turrets, south arched entrance porch, small green-roofed southeast turret and tall clock tower with corner cones and round crown. Keep the separate estate offices/outbuildings, gardens, walls, fountain and all unrelated buildings as context.",
+    "Q42049 and named PMTiles relation14213231/native52776572346479 identify the connected castle. Integral ways1093652302/2304/2305/2306/2308 supply porch, link, southeast turret, clock tower and main residence, with heights5/8/17/23/11m. Internal+X points east-northeast along the southern residence facade; +Z south-southeast to the lawn. Orientation follows the mapped straight front edge and the inspected south/west photos. World heading0 with geometry baked into east/south coordinates.",
+    "Map heights5/8/11/17/23m are unqualified working body controls. Photo-led main slate ridges rise4.6m above11m eaves; tower corner cones reach about29m, circular crown27m and flagstaff32m. Lower rear wings use a reconstructed6.5m body and3m roof rise. Turret diameters, crow steps, openings, roof sections and unseen north/east details are approximations, not a measured survey. The clock is a static schematic face; no copied lettering, royal flag artwork or furnished interiors.",
+    "Unmodified standard Protomaps20261020 and Mapzen201x201/6m terrain. Uncovered south approach control internal[-43,48], datum286.25030676360484m. Closed castle floor0.7m above this datum and a short three-tread entrance flight; foundation reaches below occupied boundary grades. Ground is cut only beneath exact occupied castle floors; courtyard, approach and independent estate context remain original. Exact thresholds and accessibility remain unverified. Current native south entrance, western residence and rear courtyard views inspected. Approximate exterior fit accepted on the retained standard grid: boundary grades vary by1.50m, covered by the declared foundation/plinth, while entrance treads meet the uncovered south approach. The mapped courtyard remains open, six owned records are replaced and every independent estate building remains intact. Exact thresholds, accessibility, roof inventories and height semantics are unverified. Occupied cutout partitions retain the courtyard; mask coordinates are rounded to one micrometre to avoid coincident-edge polygon-clipping failures in the actual level14 extract.",
+    "Recognizable medium-fi exterior completed using the mapped connected footprint and two ordinary south/west pictures. Map heights5/8/11/17/23m remain unqualified working body controls. Slate ridge rise4.6m, reconstructed6.5m rear ranges, approximate29m corner cones/27m crown/32m flagstaff, member diameters and window inventories are picture-led estimates. Hidden north/east roofs and openings, interior rooms, exact engineering dimensions and working clocks are unverified or omitted. Rear roofs/fenestration are explicitly simplified proxies. Static original dial marks replace fine inscriptions; royal flag artwork, foliage, garden walls/fountain and independent outbuildings remain outside this model. Physical device timings remain pending.",
+    "Approximate exterior native fit accepted on the unchanged standard 201x201/6m terrain. Q42049 and named relation14213231/native52776572346479 identify the castle; integral ways1093652302/2304/2305/2306/2308 supply five body controls. Internal+X follows the mapped east-northeast facade edge and +Z faces the south-southeast lawn, with heading0 baked into world east/south geometry. Six owned records are replaced, preserving all 64 independent resident / 68 wider estate buildings. Boundary grades span -0.955 to +0.548m relative to the south control; working floor sits0.7m above it, with modest foundation exposure and three separate entrance treads. Only occupied floor partitions cut ground; mapped courtyard, approach/provider and all original roads/water119893.07m² remain intact. Coordinates rounded to one micrometre avoid an actual level14 clipping failure. Failure retains all70 original resident buildings; all LOD unloads restore ground/water and zero live geometry. Exact thresholds/accessibility and height semantics remain unverified; no custom terrain or broad flattening."
+  ]
+}

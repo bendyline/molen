@@ -1,0 +1,190 @@
+{
+  "format": "molen/scene@3",
+  "name": "Six drivable RVs — touring showroom",
+  "seed": "rv-showroom",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "winnebago-view-2022",
+      "type": "molen.entities.vehicle.winnebago_view_2022",
+      "components": {
+        "transform": {
+          "pos": [
+            -6.5,
+            0,
+            -8.5
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "bendy-class-c-family",
+      "type": "molen.entities.vehicle.bendy_class_c_family",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            -8.5
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "bendy-class-a-compact",
+      "type": "molen.entities.vehicle.bendy_class_a_compact",
+      "components": {
+        "transform": {
+          "pos": [
+            6.5,
+            0,
+            -8.5
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "bendy-class-a-touring",
+      "type": "molen.entities.vehicle.bendy_class_a_touring",
+      "components": {
+        "transform": {
+          "pos": [
+            -6.5,
+            0,
+            8.5
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "bendy-class-a-grand",
+      "type": "molen.entities.vehicle.bendy_class_a_grand",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            8.5
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "bendy-class-b-camper",
+      "type": "molen.entities.vehicle.bendy_class_b_camper",
+      "components": {
+        "transform": {
+          "pos": [
+            6.5,
+            0,
+            8.5
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.06,
+            0
+          ],
+          "scale": [
+            52,
+            0.1,
+            50
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#8b9495",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#e2ebef",
+            "ground": "#768076",
+            "intensity": 1.1
+          },
+          "sun": {
+            "direction": [
+              7,
+              12,
+              6
+            ],
+            "color": "#fff4df",
+            "intensity": 2,
+            "castShadow": true
+          },
+          "background": "#c5d7e0",
+          "toneMapping": "agx",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "physics": {
+    "engine": "none"
+  },
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      28,
+      31,
+      40
+    ],
+    "lookAt": [
+      0,
+      1,
+      0
+    ],
+    "fov": 50
+  }
+}

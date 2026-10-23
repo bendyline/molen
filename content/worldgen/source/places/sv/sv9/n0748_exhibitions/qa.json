@@ -1,0 +1,838 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0748_exhibitions",
+  "reviewedOn": "2026-10-22",
+  "inputHash": "sha256:ca1b200b60d4df7870fa1f934c3fc7153511fc47385d8200b61c6540767fa327",
+  "sourceHash": "sha256:ececada98c3f2e88b1800c1a9386e86a4681338ecf47d57d9eb69385a672e8f8",
+  "runtimeHash": "sha256:5c8712bf58f54327ca68b11f568bde2c36f3cdc8cd5bfac0d58db86a9444eca4",
+  "captureReportHash": "sha256:0e3c346cd2d6c2f9e8c5d6fb91868a902581e4adb67c89d073a82201c655085e",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/courtyard-portal-and-stair-window.png",
+      "shots/crescent-stair-and-planted-roof.png",
+      "shots/upper-notch-and-recessed-portal.png"
+    ],
+    "notes": "Authored the distinct nine-corner Pavilion range as an open courtyard and occupied L-shaped exterior: near-blank end wall with a genuine deep portal, upper stair notch and smaller real stair-window aperture; curved rising external stair with two closed continuous concrete guards; low-frequency green planted roof and restrained blue wayfinding cue. The existing ordinary campus aerial was actually zoomed to full3840px detail, with the already reviewed official courtyard photo. Corrected the curve that initially hid the stair window, aligned continuous guard sweeps with tread stations, and lowered the final courtyard camera to inspect the entrance in this author/inspect/fix pass. Courtyard paving, trees, benches, the Art Museum and independent upper plaza remain outside this model. No copied pixels, artwork, text or inscriptions."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/courtyard-portal-and-stair-window.png",
+      "shots/shared/crescent-stair-and-planted-roof.png",
+      "shots/shared/upper-notch-and-recessed-portal.png"
+    ],
+    "notes": "Four existing256px graphs across six roles/five textured draws: concrete_plain for walls, floors and stairs; storefront for recessed opaque glazing; metal_painted for frames and the plain blue banner; green-tinted stucco as a shared low-frequency substitute for the planted roof. The planting treatment reproduces the broad green area without claiming botanical grass detail or introducing a private roof texture. No new graph, private atlas or embedded image. Each requested graph reads once; all model geometry is released on unload.",
+    "captureReportHash": "sha256:6e35ca0ebcfd8c436bfd4af60329e39c1720026b85d5930576ddfc630ee53ff7"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/courtyard-portal-and-stair-window.png",
+      "medium-fi/crescent-stair-and-planted-roof.png",
+      "medium-fi/upper-notch-and-recessed-portal.png",
+      "medium-fi/yad-exhibitions-skyline.png",
+      "medium-fi/yad-exhibitions-district.png",
+      "medium-fi/yad-exhibitions-street.png",
+      "medium-fi/yad-exhibitions-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four distinct authored LODs:768/1304/1700/2020 triangles. Initial skyline plus district geometry is177136 bytes; close-up167232 bytes. One skyline draw/five textured draws. Separate POSITION/NORMAL buffer views and equal CPU/GPU accounting. Six GLBs have zero Khronos errors/warnings;180 actual mesh/contact probes;47 current inspected source/shared/medium-fi/native frames. The open court, portal and both stair apertures survive all levels; distance treads/guards simplify together. Physical phone/tablet/laptop and dense-city timings remain pending.",
+    "captureReportHash": "sha256:8d2ec39e2b5d9e79ae8c310e28dd84ba2facfce3286998ba932541cdd205ea57"
+  },
+  "geographicReview": {
+    "status": "pending-ground-contact",
+    "placementHash": "sha256:1d04e63728c239e0fca94f8d76f4bb9e406569f31531982a42568777fe10b018",
+    "mapFrameHash": "sha256:4cc4872a6cc836b0c9381ac4aa1598ff12bce9f3842b3e9c49c40546d9a1a250",
+    "notes": "Native terrain fit rejected; placement remains inactive draft. Shared campus Q156591 plus distinct way245190611/native35184617279443 fixes the independent mapped range. The ordinary pictures and official Pavilion page guide the courtyard-facing end, open court and curved planted stair assignment; internal+X follows the mapped southeast axis and the end-wall portal faces-X. Three actual PMTiles13/14/15 overlap cases pass. Replacement retains all152 independent resident/all256 wider records, including the four earlier Yad Vashem models. Original201x201/6m hill, roads and zero-water-area input remain unchanged. The mapped parent outline owns the building replacement, but only the occupied end and curved wing cut terrain. Open courtyard/anchor, original approach and uncovered attachment remain uncut. The floor sits1.4800885896520959m above the uncovered working control, sampled from the retained ground near the portal plus0.06m. Failure keeps153 originals; every LOD unload restores ground/water and zero live geometry. ModelWorldY is approximately0. The original hill still lacks the excavated level square and exact lower/upper stair landings: part of the lower approach/treads is embedded and footing exposure varies. Do not activate or count this member complete; no precinct flattening or custom terrain was used."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Source exterior reviewed as a medium-fi picture-led reconstruction; geographic completion pending. No mapped heights or internal plan exist. End wall6.8m, portal4.3m high/4m wide/3.8m recess, upper notch4.4..6.8m, window2.1..4.8m, stair rise about6.3m, curves, tread inventory, guard heights and roof planting extent are reconstructed estimates. Green stucco is an explicit broad vegetation substitute. Underlying nine-corner building geometry does not describe the courtyard void; the open volume comes from the actual photos. Hidden galleries, precise roof extent, threshold/accessibility levels, upper-plaza connection, escalator and underground circulation remain unverified. Keep the site QID rather than inventing a member QID. No exhibition interiors, copied imagery/art/text, independent courtyard objects/buildings or bespoke terrain research. Hall of Remembrance stays ready; History Museum, Visitors Centre, Art Museum and Pavilion remain inactive fit drafts."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sv/sv9/n0748_exhibitions/models/source.glb\",\"hash\":\"sha256:ececada98c3f2e88b1800c1a9386e86a4681338ecf47d57d9eb69385a672e8f8\",\"bytes\":192876,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sv/sv9/n0748_exhibitions/model.glb\",\"hash\":\"sha256:5c8712bf58f54327ca68b11f568bde2c36f3cdc8cd5bfac0d58db86a9444eca4\",\"bytes\":192348,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sv/sv9/n0748_exhibitions/model.skyline.glb\",\"hash\":\"sha256:1c6a2b17380b8dac91a9cdaa21d939aed8a5f7d3bea77de45d41ac8832713e9c\",\"bytes\":67100,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sv/sv9/n0748_exhibitions/model.district.glb\",\"hash\":\"sha256:64b8bc42e65355ced54080597bdeef13c38b2f1e7c763abc8ccd46e2f259ae75\",\"bytes\":110036,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sv/sv9/n0748_exhibitions/model.street.glb\",\"hash\":\"sha256:08aa245f81ac5f772b7ad53696473a9d046a617d7a2cb65198d421e59d165323\",\"bytes\":141732,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sv/sv9/n0748_exhibitions/model.closeup.glb\",\"hash\":\"sha256:e513dcc41f09de40d4b9b1a50f2ba584fea7f198ba7f6a49f039c349869398d4\",\"bytes\":167232,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "open-court-stair-apertures-closed-continuous-curved-guards-and-floor-caps",
+        "passed": true,
+        "notes": "180 actual mesh/contact probes over all six GLBs; material references, budgets and separate vertex streams checked."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "pending-ground-contact",
+    "visualFit": {
+      "status": "rejected",
+      "basis": "Native terrain fit rejected; placement remains inactive draft. Shared campus Q156591 plus distinct way245190611/native35184617279443 fixes the independent mapped range. The ordinary pictures and official Pavilion page guide the courtyard-facing end, open court and curved planted stair assignment; internal+X follows the mapped southeast axis and the end-wall portal faces-X. Three actual PMTiles13/14/15 overlap cases pass. Replacement retains all152 independent resident/all256 wider records, including the four earlier Yad Vashem models. Original201x201/6m hill, roads and zero-water-area input remain unchanged. The mapped parent outline owns the building replacement, but only the occupied end and curved wing cut terrain. Open courtyard/anchor, original approach and uncovered attachment remain uncut. The floor sits1.4800885896520959m above the uncovered working control, sampled from the retained ground near the portal plus0.06m. Failure keeps153 originals; every LOD unload restores ground/water and zero live geometry. ModelWorldY is approximately0. The original hill still lacks the excavated level square and exact lower/upper stair landings: part of the lower approach/treads is embedded and footing exposure varies. Do not activate or count this member complete; no precinct flattening or custom terrain was used."
+    },
+    "inputHash": "sha256:ca1b200b60d4df7870fa1f934c3fc7153511fc47385d8200b61c6540767fa327",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:ca1b200b60d4df7870fa1f934c3fc7153511fc47385d8200b61c6540767fa327",
+      "reviewedOn": "2026-10-22",
+      "method": "Actually inspected all47 current source/shared/medium-fi/native views in six labelled contact sheets, plus the native and shared courtyard entry views at full resolution. Corrected the curved wing so it leaves the smaller stair window visible, merged the stair guards into closed continuous sweeps and set the entry floor from retained nearby grade during this author/inspect/fix pass. Native fit remains rejected: lower stair/approach and level excavated courtyard are not represented by the original coarse hill.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/preview.png",
+          "hash": "sha256:a2302ddd0e7451ccc77b004ed8624ddf9099fab34df57cbb2cf07894559d5a39"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/shots/turntable/angle_0.png",
+          "hash": "sha256:3d0f8070de3073cf501e50151ee824ac89778f210236b7d221f644e9c5cee32b"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/shots/turntable/angle_1.png",
+          "hash": "sha256:db2eb06db92a7b07a6aae49f1d8a9f46592bb83f3156b5af2e026eb224e07799"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/shots/turntable/angle_2.png",
+          "hash": "sha256:e4f4803891f6a7c5f6b9315dc379786b1d9846510d9e97a64899e9a70790b699"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/shots/turntable/angle_3.png",
+          "hash": "sha256:520911879b1d1f6c743ecbcd83c785fad970e6e7b3e943946d7dbb6fa24cfce1"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/shots/courtyard-portal-and-stair-window.png",
+          "hash": "sha256:eb7585be6b542f5f67ae65bf12c7c1890c35c37d05214ec4c982742e2cc7aa10"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/shots/crescent-stair-and-planted-roof.png",
+          "hash": "sha256:615dc39a74e8472e0fcc6ab1332204579e2924f6c6114990af42d2dffde721b8"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/shots/upper-notch-and-recessed-portal.png",
+          "hash": "sha256:c8a7edda9fd81e9f5cb61b4c337ca08572f22951d711e9442d4068edde341c4e"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/shots/shared/angle-0.png",
+          "hash": "sha256:297db68d44a514564aa93afbeda5862cb9a9e8aca88f7d8b6f324e54ffc7fb69"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/shots/shared/angle-1.png",
+          "hash": "sha256:4e9da7b23102315f825f15eca60f824ba0f4229c54ce52f60f9ac396e5d81ebc"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/shots/shared/angle-2.png",
+          "hash": "sha256:95b93acf301fcc7bf7a4ba6eb6f991448dbdafdcd69b34db01c2e7b6119cba81"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/shots/shared/angle-3.png",
+          "hash": "sha256:6f835e6bde0d4f17c4d24e2e4a6cd50ef8418d1ed3993d957ca68313497e1459"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/shots/shared/courtyard-portal-and-stair-window.png",
+          "hash": "sha256:d4eed91fc1e498aea8b88ec3cd092712ab176ccbc517ffe5aefd79e4239609e7"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/shots/shared/crescent-stair-and-planted-roof.png",
+          "hash": "sha256:dc665058391a1d230cc941fef171c0f86dc2f57de451032fdf4c5b8b1b172524"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/shots/shared/upper-notch-and-recessed-portal.png",
+          "hash": "sha256:87931cecf5fd4a2a11c018dc5125fa9b8faa8b4e775fc37b217027a84641c9a0"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/street-noon-economy.png",
+          "hash": "sha256:66be9c4ce4dd384e17a3f9a00e28311bb8e8c076ce1004a5efb0351321fbb75e"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/street-noon-high.png",
+          "hash": "sha256:3d2cf13ce95d1b7dad522bc1cc5eb53c669e75d71830cc8e2af1d6939ea5813c"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/street-late-economy.png",
+          "hash": "sha256:baa6c2876a4f403a36e9c3347e7e739c8976373d7d70cf3044d62d7e8a79520e"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/street-late-high.png",
+          "hash": "sha256:c2f4f53cef9b4acd731715266e32e35b7443969757eb452a55477b3da5d29c79"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/block-noon-economy.png",
+          "hash": "sha256:d11468c57b4c22eeb846c3d97eb38ade3617e6a87c5b85f3383ecb2cdb583414"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/block-noon-high.png",
+          "hash": "sha256:e1b603c2aeeefb3d9ff5ec0de93c153e151b6ba85de494450207e06778713b4d"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/block-late-economy.png",
+          "hash": "sha256:ce8983a3a2ed888e725b3ed928bf8fb653b479bca9d4beb42338948649726a3e"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/block-late-high.png",
+          "hash": "sha256:ae56a35f340bd492fdb8bf57cd334851e3dc3d3e806aaad5fec6b272caa494d2"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:1a19d3662703267e8cbbfb073f253bccbe75bc10b861922a6d9eba13d33211f2"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:ee709751fc3b017e2c19a36460425c3165d3fc2e6b3d13cb060694ae0c341279"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:91f45d1cf5f9d4fbd99986520b62ac9fd5d1f054746331c7c8530ec2cc176e3e"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/skyline-late-high.png",
+          "hash": "sha256:19aa3f1866ce7866afbc5dc2a1cf37abe9179a51d80c180cdbcfb48dbb77b870"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/silhouette.png",
+          "hash": "sha256:b76fdfd9a7981ccb470ad388259e79fe5d636a526cb4a177b87c5a1aab2aeeb8"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/courtyard-portal-and-stair-window.png",
+          "hash": "sha256:301b4cb08cf78d16c5612016f3decea92b9dc7df03060bd4302c6c61fb368fd7"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/crescent-stair-and-planted-roof.png",
+          "hash": "sha256:b45c9625a428f3027d61a77c0f9ee4b36b616c39101a6336a3fa2a31612de27b"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/upper-notch-and-recessed-portal.png",
+          "hash": "sha256:95347b9f13106f2545c94d93b9e5ede3a06f9deb26a1dd0a245190fef2750c6e"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/yad-exhibitions-skyline.png",
+          "hash": "sha256:66eb3d482944a618721a26caf54acff37d8310ba489ee44125de1fe961fcd5f5"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/yad-exhibitions-district.png",
+          "hash": "sha256:6338bdc34146f46ea35dc5a81254342283894460c2f3c27845d9101a8085714d"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/yad-exhibitions-street.png",
+          "hash": "sha256:29cc8bb17d957d579e12a1c9526e8f29c717a7dfb1efbd5a7d61c0d547efcb04"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/yad-exhibitions-closeup.png",
+          "hash": "sha256:0ab074574be1e966fb1ceb3127e49d92b05e911d2c479926f988d056b803b358"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/transition-skyline.png",
+          "hash": "sha256:7102f930b5cc4aa547d9ec1dd1fd633f247c7be6d57a35e957b74d017f0cae72"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/transition-district.png",
+          "hash": "sha256:e1b603c2aeeefb3d9ff5ec0de93c153e151b6ba85de494450207e06778713b4d"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/transition-street.png",
+          "hash": "sha256:4828f072845af0a96f1bc5b79ae74ecd268e326afeac1b559e101520ad8ee5a9"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/n0748_exhibitions/medium-fi/transition-closeup.png",
+          "hash": "sha256:aea302b071bd65b3734b0f2492bf21d0f9ddadbfa713d2e3e5ade2c2fc0437b6"
+        },
+        {
+          "path": ".artifacts/yad-exhibitions-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:754c724631414dfd650ea20896cc841f90a57737a38b07490a95ab8be02be3f2"
+        },
+        {
+          "path": ".artifacts/yad-exhibitions-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:c7a8db6482216b3b63c1311f5c88817c0758fe50e72068268272be688d298fbc"
+        },
+        {
+          "path": ".artifacts/yad-exhibitions-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:1ba126d3b3453d434bf4d597267115e357899156d3f7d14524cc7ebe2c950b02"
+        },
+        {
+          "path": ".artifacts/yad-exhibitions-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:45273504c6deb2e74cf8b827cf226989af6ffff8f4fcba308f8fe73a43ae6e06"
+        },
+        {
+          "path": ".artifacts/yad-exhibitions-integration/shots/final-closeup-courtyard-portal-and-stair-window.png",
+          "hash": "sha256:4ba9bf3e77b4894110a7a146837ca6f7c1112707bccf13c51664a8c1c3aa9c33"
+        },
+        {
+          "path": ".artifacts/yad-exhibitions-integration/shots/final-closeup-crescent-stair-and-planted-roof.png",
+          "hash": "sha256:4bcee6798eb0ddc342db21fcf043f537e89cdcd7afa12a267adb6ac08b65bf2c"
+        },
+        {
+          "path": ".artifacts/yad-exhibitions-integration/shots/final-closeup-upper-notch-and-recessed-portal.png",
+          "hash": "sha256:a107a81c729507794bd37ec759b5da90ba5a057ca0be9ca143d1fc3be9024d23"
+        },
+        {
+          "path": ".artifacts/yad-exhibitions-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:392f3c59105ad98872ce6402ba16e6e880685a70794ec75f694bc759b6cd361c"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:ca1b200b60d4df7870fa1f934c3fc7153511fc47385d8200b61c6540767fa327",
+      "sourceHash": "sha256:ececada98c3f2e88b1800c1a9386e86a4681338ecf47d57d9eb69385a672e8f8",
+      "runtimeHash": "sha256:5c8712bf58f54327ca68b11f568bde2c36f3cdc8cd5bfac0d58db86a9444eca4",
+      "files": {
+        "content/worldgen/source/places/sv/sv9/n0748_exhibitions/models/source.glb": "sha256:ececada98c3f2e88b1800c1a9386e86a4681338ecf47d57d9eb69385a672e8f8",
+        "content/worldgen/assets/places/sv/sv9/n0748_exhibitions/model.glb": "sha256:5c8712bf58f54327ca68b11f568bde2c36f3cdc8cd5bfac0d58db86a9444eca4",
+        "content/worldgen/assets/places/sv/sv9/n0748_exhibitions/model.skyline.glb": "sha256:1c6a2b17380b8dac91a9cdaa21d939aed8a5f7d3bea77de45d41ac8832713e9c",
+        "content/worldgen/assets/places/sv/sv9/n0748_exhibitions/model.district.glb": "sha256:64b8bc42e65355ced54080597bdeef13c38b2f1e7c763abc8ccd46e2f259ae75",
+        "content/worldgen/assets/places/sv/sv9/n0748_exhibitions/model.street.glb": "sha256:08aa245f81ac5f772b7ad53696473a9d046a617d7a2cb65198d421e59d165323",
+        "content/worldgen/assets/places/sv/sv9/n0748_exhibitions/model.closeup.glb": "sha256:e513dcc41f09de40d4b9b1a50f2ba584fea7f198ba7f6a49f039c349869398d4"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184617279443
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4896,
+            3332
+          ],
+          "id": 35184416395930,
+          "owned": false,
+          "covered": 0.0009077570551105239,
+          "area": 1110536.7630691938,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9792,
+            6665
+          ],
+          "id": 35184446167120,
+          "owned": false,
+          "covered": 0.004337155191903087,
+          "area": 230544.02398039642,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19585,
+            13331
+          ],
+          "id": 35184617279443,
+          "owned": true,
+          "covered": 0.9999883817166207,
+          "area": 1011.721732918278,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 152,
+      "widerIndependent": 256,
+      "originalGridRetained": true,
+      "groundCutout": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.00004316455971320465,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 153,
+          "independentBuildings": 152,
+          "remainingBuildings": 152,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0748_exhibitions"
+          ],
+          "rawTerrainRange": {
+            "min": -190.88307130986766,
+            "max": 36.79352869013235
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:754c724631414dfd650ea20896cc841f90a57737a38b07490a95ab8be02be3f2",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 11,
+              "triangles": 382841
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                11.281977898055253,
+                43.4800885896521,
+                -72.36516409646146
+              ],
+              "lookAt": [
+                0,
+                4.480088589652096,
+                0
+              ],
+              "fov": 50
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.00004316455971320465,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 153,
+          "independentBuildings": 152,
+          "remainingBuildings": 152,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0748_exhibitions"
+          ],
+          "rawTerrainRange": {
+            "min": -190.88307130986766,
+            "max": 36.79352869013235
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:c7a8db6482216b3b63c1311f5c88817c0758fe50e72068268272be688d298fbc",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 15,
+              "triangles": 383377
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                11.281977898055253,
+                43.4800885896521,
+                -72.36516409646146
+              ],
+              "lookAt": [
+                0,
+                4.480088589652096,
+                0
+              ],
+              "fov": 50
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.00004316455971320465,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 153,
+          "independentBuildings": 152,
+          "remainingBuildings": 152,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0748_exhibitions"
+          ],
+          "rawTerrainRange": {
+            "min": -190.88307130986766,
+            "max": 36.79352869013235
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:1ba126d3b3453d434bf4d597267115e357899156d3f7d14524cc7ebe2c950b02",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 15,
+              "triangles": 383773
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                11.281977898055253,
+                43.4800885896521,
+                -72.36516409646146
+              ],
+              "lookAt": [
+                0,
+                4.480088589652096,
+                0
+              ],
+              "fov": 50
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.00004316455971320465,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 153,
+          "independentBuildings": 152,
+          "remainingBuildings": 152,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0748_exhibitions"
+          ],
+          "rawTerrainRange": {
+            "min": -190.88307130986766,
+            "max": 36.79352869013235
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:45273504c6deb2e74cf8b827cf226989af6ffff8f4fcba308f8fe73a43ae6e06",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 15,
+              "triangles": 384093
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                11.281977898055253,
+                43.4800885896521,
+                -72.36516409646146
+              ],
+              "lookAt": [
+                0,
+                4.480088589652096,
+                0
+              ],
+              "fov": 50
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-courtyard-portal-and-stair-window.png",
+            "hash": "sha256:4ba9bf3e77b4894110a7a146837ca6f7c1112707bccf13c51664a8c1c3aa9c33",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 387909
+            },
+            "camera": {
+              "name": "courtyard-portal-and-stair-window",
+              "position": [
+                2.778121021321291,
+                5.680088589652096,
+                -12.501281677927778
+              ],
+              "lookAt": [
+                11.518743399897318,
+                3.980088589652096,
+                14.398560708880662
+              ],
+              "fov": 55
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-crescent-stair-and-planted-roof.png",
+            "hash": "sha256:4bcee6798eb0ddc342db21fcf043f537e89cdcd7afa12a267adb6ac08b65bf2c",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 388741
+            },
+            "camera": {
+              "name": "crescent-stair-and-planted-roof",
+              "position": [
+                -42.78889697599378,
+                21.480088589652095,
+                -19.107859523708854
+              ],
+              "lookAt": [
+                -7.182330973163323,
+                5.480088589652096,
+                3.5233679614736255
+              ],
+              "fov": 52
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-upper-notch-and-recessed-portal.png",
+            "hash": "sha256:a107a81c729507794bd37ec759b5da90ba5a057ca0be9ca143d1fc3be9024d23",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 387909
+            },
+            "camera": {
+              "name": "upper-notch-and-recessed-portal",
+              "position": [
+                12.535180440481795,
+                13.480088589652096,
+                -1.6938864556287774
+              ],
+              "lookAt": [
+                16.905491629769813,
+                5.880088589652097,
+                11.756034737775444
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 153,
+          "independentBuildings": 152,
+          "remainingBuildings": 153,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184617279443,
+              "area": 1011.7102791870747
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0748_exhibitions"
+          ],
+          "rawTerrainRange": {
+            "min": -190.88307130986766,
+            "max": 36.79352869013235
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:392f3c59105ad98872ce6402ba16e6e880685a70794ec75f694bc759b6cd361c",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 381807
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                11.281977898055253,
+                43.4800885896521,
+                -72.36516409646146
+              ],
+              "lookAt": [
+                0,
+                4.480088589652096,
+                0
+              ],
+              "fov": 50
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Exhibition Pavilion, Yad Vashem: an open courtyard-facing L-shaped reconstruction inside the distinct nine-corner mapped range. Preserve the empty court; author the tall blank end wall with a deep entrance, actual stair-window aperture and upper stair notch, plus the curved rising exterior stair wing, solid low concrete guards and planted sloping roof. Keep Art Museum, independent upper plaza, courtyard paving/trees/benches and other campus buildings outside this asset. Internal room arrangements and exhibition displays are not modeled.",
+    "Shared campus Q156591 plus distinct way245190611/native35184617279443. The official Pavilion page places it between Art Museum and Book of Names. The existing PMTiles outline and ordinary campus aerial fix this independent range beside the Art Museum. The large mapped polygon includes the open Square of Hope area: do not fill it with a solid box or roof. Its courtyard/end-wall and curved-stair assignment is a picture-led reconstruction. Internal+X follows the mapped southeast axis; +Z faces southwest toward the curved planted wing. The end-wall portal faces-X into the courtyard. Heading0 bakes the signed axes into model east/south. No invented member Wikidata item; portal/notch/window positions are approximate.",
+    "No map heights or internal plan exist. Picture-led working end wall6.8m, portal4.3m high/4m wide with3.8m recess, stair window2.1..4.8m, upper notch4.4..6.8m. The curved exterior stair rises about6.3m with sparse low concrete guards; tread inventory varies by LOD. Sloped planted roof and closed underground mass are reconstructed from the aerial, not surveyed. Hidden galleries, rear enclosure, roof extent, internal circulation, escalator and exact dimensions/accessibility are unverified. Plain colour signage contains no copied art, photographs, lettering or memorial names.",
+    "Reuse the unmodified Protomaps20261020/Mapzen201x201/6m hill, with no custom terrain. Uncovered attachment internal[16,-20], datum802.3763713098676m; working floor sampled at the original courtyard ground near internal[16,-6.8], plus0.06m. Cut only the occupied end-wall/stair-wing floors and seal them; preserve original open-courtyard ground and all outside approaches. The main mapped footprint owns a building replacement but is not a ground-cutout polygon. Protective footings stay within occupied geometry. Original coarse hill does not describe the excavated, level Square of Hope or its upper plaza; inspect buried stairs, portal and footing before activating. Do not flatten the independent precinct.",
+    "Source exterior reviewed as a medium-fi picture-led reconstruction; geographic completion pending. No mapped heights or internal plan exist. End wall6.8m, portal4.3m high/4m wide/3.8m recess, upper notch4.4..6.8m, window2.1..4.8m, stair rise about6.3m, curves, tread inventory, guard heights and roof planting extent are reconstructed estimates. Green stucco is an explicit broad vegetation substitute. Underlying nine-corner building geometry does not describe the courtyard void; the open volume comes from the actual photos. Hidden galleries, precise roof extent, threshold/accessibility levels, upper-plaza connection, escalator and underground circulation remain unverified. Keep the site QID rather than inventing a member QID. No exhibition interiors, copied imagery/art/text, independent courtyard objects/buildings or bespoke terrain research. Hall of Remembrance stays ready; History Museum, Visitors Centre, Art Museum and Pavilion remain inactive fit drafts.",
+    "Native terrain fit rejected; placement remains inactive draft. Shared campus Q156591 plus distinct way245190611/native35184617279443 fixes the independent mapped range. The ordinary pictures and official Pavilion page guide the courtyard-facing end, open court and curved planted stair assignment; internal+X follows the mapped southeast axis and the end-wall portal faces-X. Three actual PMTiles13/14/15 overlap cases pass. Replacement retains all152 independent resident/all256 wider records, including the four earlier Yad Vashem models. Original201x201/6m hill, roads and zero-water-area input remain unchanged. The mapped parent outline owns the building replacement, but only the occupied end and curved wing cut terrain. Open courtyard/anchor, original approach and uncovered attachment remain uncut. The floor sits1.4800885896520959m above the uncovered working control, sampled from the retained ground near the portal plus0.06m. Failure keeps153 originals; every LOD unload restores ground/water and zero live geometry. ModelWorldY is approximately0. The original hill still lacks the excavated level square and exact lower/upper stair landings: part of the lower approach/treads is embedded and footing exposure varies. Do not activate or count this member complete; no precinct flattening or custom terrain was used."
+  ]
+}

@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.watercraft.container_ship": {
-      "doc": "Container feeder ship. Waterline origin; powered boat with driver and passenger seats.",
+      "doc": "Bendy Container Ship. Container feeder ship. Waterline origin; powered boat with driver and passenger seats.",
       "components": {
         "transform": {
           "pos": [
@@ -46,7 +46,7 @@
           "kind": "molen.entities.watercraft.container_ship",
           "color": "#668898",
           "spec": {
-            "label": "Container feeder ship",
+            "label": "Bendy Container Ship",
             "length": 150.2,
             "width": 26.400000000000002,
             "height": 25,
@@ -62,13 +62,28 @@
             "driverEye": [
               4.5600000000000005,
               19.25,
-              -45.0
+              -45
             ]
           },
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "helm",
+                "helm-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {
@@ -79,7 +94,7 @@
               "position": [
                 4.5600000000000005,
                 19.25,
-                -45.0
+                -45
               ]
             },
             {
@@ -88,14 +103,14 @@
               "position": [
                 -4.5600000000000005,
                 19.25,
-                -45.0
+                -45
               ]
             },
             {
               "id": "passenger-2",
               "role": "passenger",
               "position": [
-                6.0,
+                6,
                 6.95,
                 -37.5
               ]
@@ -105,24 +120,24 @@
             [
               13.8,
               6,
-              -45.0
+              -45
             ],
             [
               -13.8,
               6,
-              -45.0
+              -45
             ]
           ],
           "entries": [
             [
-              12.0,
+              12,
               7,
-              -45.0
+              -45
             ],
             [
-              -12.0,
+              -12,
               7,
-              -45.0
+              -45
             ]
           ],
           "reach": 3.5

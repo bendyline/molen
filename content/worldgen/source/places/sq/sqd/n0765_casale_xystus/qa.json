@@ -1,0 +1,3243 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+  "reviewedOn": "2026-10-23",
+  "inputHash": "sha256:ccaa842db824f2a52c74ac50c56c64f8e8d5189943aaa9c12372f9a97f08ea55",
+  "sourceHash": "sha256:b1ca297622a86e8661af98032b216c5b99c2b1f5c5fe9a8c55fe0c81f476164b",
+  "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+  "captureReportHash": "sha256:f534096e1366133bd22d4aff30ada85c7da39dbd5d05e89df48a688ec3b954f3",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/open-oval-court-and-column-remains.png",
+      "shots/north-shelter-recessed-door-and-grey-roof.png",
+      "shots/low-masonry-and-ground-following-bases.png"
+    ],
+    "notes": "Xystus north conservation rooms and related open oval court remains: exact mapped north rectangle, pale infill/stone base, grey metal gabled roof and timber trim, small opaque window proxies and a genuine0.65m south door recess/soffit/threshold. Photo-led oval perimeter uses16 low wall strips and24 short column/base remains, each following original ground. No floor or roof covers the outdoor court. Ordinary aerials and standard PMTiles/Mapzen guided one continuous author/inspect pass. Changed the outside terrain reference from a lower western point to open southern ground while preserving absolute model heights. Main villa/baths and Triclinium load together with this member; gate and latrines remain unapproved procedural context."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/open-oval-court-and-column-remains.png",
+      "shots/shared/north-shelter-recessed-door-and-grey-roof.png",
+      "shots/shared/low-masonry-and-ground-following-bases.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Seven roles use six existing256px graphs: plaster_lime, stone_limestone_raw (low masonry/column tint variants), metal_standing_seam, wood_plain, storefront and tile_mosaic. Canonical metric UVs, sRGB-to-linear tint and baked graph means for skyline; six textured draws/one skyline. No embedded image, private atlas or new graph. Separate vertex streams and equal CPU/GPU geometry bytes. All six graphs are already used by the completed main complex; the three-model scene still uses eight total graphs, each read once. Flat portable/shared/synthetic test grounds intersect some grade-specific bases and expose mask patches; native terrain captures supply the ground-fit evidence.",
+    "captureReportHash": "sha256:2c57bf1a5e912acc9a12aa08f751aedac6e605c57beb02ffecafc2a66f09eb1c"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/open-oval-court-and-column-remains.png",
+      "medium-fi/north-shelter-recessed-door-and-grey-roof.png",
+      "medium-fi/low-masonry-and-ground-following-bases.png",
+      "medium-fi/xystus-skyline.png",
+      "medium-fi/xystus-district.png",
+      "medium-fi/xystus-street.png",
+      "medium-fi/xystus-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 750 / 1636 / 2378 / 3818 triangles; initial skyline+district geometry 218964 bytes, closeup 318728 bytes. Six GLBs zero Khronos errors/warnings; 457 actual mesh/contact probes; two actual intersecting PMTiles14/15 cases, one detailed owned rectangle. No level13 building intersects that mask in this extract. Generalized-area checks retain a1e-3m² area tolerance and skip point probes in sub1e-4m² micrometre-rounding fragments. Inspected49 current portable/shared/medium-fi/native frames including a three-model native overview. Individual LOD/failure/unload preserves42 resident /43 wider independent buildings, original201x201/6m terrain/roads/empty water layer, open oval ground and approaches. Failure keeps all43 originals. Combined loading preserves40 other resident buildings and eight shared graphs read once; both scenes restore ground/water and dispose all model geometry.",
+    "captureReportHash": "sha256:ebdae0ada1d831fc3554aee036a296921f5621c3fd9b7ec039eb6014f07ecebe"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:e639d0aebdb41641b1f4270ab4bebcef90cb560271fe8f61699ea8dd7bd54d2e",
+    "mapFrameHash": "sha256:3cd5a07b8576183e46bb0637c90e48a64a9a716db3e72cdb3748090d224dad77",
+    "notes": "Shared site Q505617 and unique building way304818581/native35184676907413 identify the north Xystus conservation rooms. The mapped15.1m by5.7m rectangle sets scale and signed axes: internal +X east/slightly north, +Z south/slightly east toward the open oval court. Native +X east/+Y up/+Z south geometry is baked with heading0. Only this mapped rectangle is replaced. The unroofed oval remains and short column inventory are photo-led approximations within the surrounding open site, not claimed mapped building polygons. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m ground. South outside-building provider[0,28] supplies 545.1228036157049m datum. Covered north-room boundary grades -0.885..0.193m, working floor -0.183m and closed foundation -1.035m retain original heights. Minor downhill base exposure/uphill burial remain; the recessed south threshold stays exposed. Each low wall and short column pad follows bilinear samples of the retained grid, with no ground flattening. Forty-one occupied masks retain original terrain in the open oval and its approaches. All42 resident /43 wider independent buildings, roads and empty water layer remain. The approximate oval/column inventory does not overwrite any other mapped building. Exact archaeological layout, doorway/floor/paving levels, surviving wall heights and accessibility remain unverified. No bespoke terrain or survey research."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Photo-led medium-fi conservation exterior, with no qualified mapped heights. Working covered-room floor 544.940m absolute follows the south threshold sample+0.2m; eaves3.6m and ridge4.7m above floor are reconstructed. Approximate oval center internal[-1.5,15], radii11.5/9.4m;24 selected column stubs vary0.42–1.52m and surviving low wall tops follow the original standard ground+0.62m. Counts, surviving wall/gap extents, roof form, room inventories, door position and exact historic floor/paving/accessibility remain unverified. The outdoor court stays open with no copied mosaics or restored full-height colonnade. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m ground. South outside-building provider[0,28] supplies 545.1228036157049m datum. Covered north-room boundary grades -0.885..0.193m, working floor -0.183m and closed foundation -1.035m retain original heights. Minor downhill base exposure/uphill burial remain; the recessed south threshold stays exposed. Each low wall and short column pad follows bilinear samples of the retained grid, with no ground flattening. Forty-one occupied masks retain original terrain in the open oval and its approaches. All42 resident /43 wider independent buildings, roads and empty water layer remain. The approximate oval/column inventory does not overwrite any other mapped building. Exact archaeological layout, doorway/floor/paving levels, surviving wall heights and accessibility remain unverified. No bespoke terrain or survey research. Meets the current medium-fi exterior standard. Mapped north-room footprint is controlled; oval size, low-wall gaps/counts and surviving column inventory are approximate exterior interpretations, not a measured archaeological reconstruction. Windows/backed door are opaque proxies; no copied figurative mosaics or furnished rooms. Flat review terrain is not suitable for judging the native grade-specific low bases. Physical phone/laptop and dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sq/sqd/n0765_casale_xystus/models/source.glb\",\"hash\":\"sha256:b1ca297622a86e8661af98032b216c5b99c2b1f5c5fe9a8c55fe0c81f476164b\",\"bytes\":339396,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.glb\",\"hash\":\"sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf\",\"bytes\":338784,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.skyline.glb\",\"hash\":\"sha256:68b71933c4e616a3b153556aa31a1505f5266420af2d0e6289aad01a5f6a3416\",\"bytes\":77644,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.district.glb\",\"hash\":\"sha256:b8668294994a8c65a8a311e07e157e22720776961a01414f401cd7d07157f45e\",\"bytes\":141320,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.street.glb\",\"hash\":\"sha256:4b94073227470af7f33141245663c1c2723b266191f245040ec890199daa4c0b\",\"bytes\":197768,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.closeup.glb\",\"hash\":\"sha256:fb5015c97096cfdf923fb640f885b91c3bea3b11f97917de41958b0ab415f251\",\"bytes\":318728,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "open-oval-ground-24-grounded-column-stubs-low-walls-and-recessed-door",
+        "passed": true,
+        "notes": "457 actual mesh/contact probes over six current GLBs: open court/approaches, all24 individual column tops and closed grounded pads, all16 terrain-following wall caps, closed north-room foundation/roof, actual0.65m entrance recess/soffit/threshold and working ridge. Current shared material references, hashes, finite vertex attributes, separate vertex streams and LOD caps checked."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Shared site Q505617 and unique building way304818581/native35184676907413 identify the north Xystus conservation rooms. The mapped15.1m by5.7m rectangle sets scale and signed axes: internal +X east/slightly north, +Z south/slightly east toward the open oval court. Native +X east/+Y up/+Z south geometry is baked with heading0. Only this mapped rectangle is replaced. The unroofed oval remains and short column inventory are photo-led approximations within the surrounding open site, not claimed mapped building polygons. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m ground. South outside-building provider[0,28] supplies 545.1228036157049m datum. Covered north-room boundary grades -0.885..0.193m, working floor -0.183m and closed foundation -1.035m retain original heights. Minor downhill base exposure/uphill burial remain; the recessed south threshold stays exposed. Each low wall and short column pad follows bilinear samples of the retained grid, with no ground flattening. Forty-one occupied masks retain original terrain in the open oval and its approaches. All42 resident /43 wider independent buildings, roads and empty water layer remain. The approximate oval/column inventory does not overwrite any other mapped building. Exact archaeological layout, doorway/floor/paving levels, surviving wall heights and accessibility remain unverified. No bespoke terrain or survey research."
+    },
+    "inputHash": "sha256:ccaa842db824f2a52c74ac50c56c64f8e8d5189943aaa9c12372f9a97f08ea55",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:ccaa842db824f2a52c74ac50c56c64f8e8d5189943aaa9c12372f9a97f08ea55",
+      "reviewedOn": "2026-10-23",
+      "method": "Actually inspected49 current frames in ten labeled contact sheets plus full-resolution native three-model overview, low walls/column bases and covered-room doorway. Existing ordinary aerials plus standard PMTiles/Mapzen guide one continuous author/inspect pass. Moved the outside terrain reference to southern ground while preserving absolute heights; no model-specific survey research. Original open-court ground is retained. Flat synthetic fixtures visibly intersect some grade-specific bases; native terrain images establish the qualified ground fit",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/preview.png",
+          "hash": "sha256:55193c840d1fcc91b3ac4bdaa568a842c2298c509cb10152f96fc66646c57dfc"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/turntable/angle_0.png",
+          "hash": "sha256:c71ed31d6e8c0af388517e9da57145ab34f317b4fcbf083916036ff04aa805bd"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/turntable/angle_1.png",
+          "hash": "sha256:8348e6b548975360f687ec16916ec0fb043a1e7a2e213940d6cf4e8619ebcae0"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/turntable/angle_2.png",
+          "hash": "sha256:86c32f3a88ebd692de3061ef1586c9fcd7a49e6f3b51a35d4512e65279a3eaf9"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/turntable/angle_3.png",
+          "hash": "sha256:c20eec1cbc4c313991fddcb14d70a0ac9c58d171efd3b5138114e1ea29d1e285"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/open-oval-court-and-column-remains.png",
+          "hash": "sha256:b002011328b28bc593fb4a46fbc2dd7d85230ef1ceca2e2a3a394df79fa3ed48"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/north-shelter-recessed-door-and-grey-roof.png",
+          "hash": "sha256:da3fc81e98424d48fd0c6e099f3e5b0e8236e27ddedb1b19daa2155dba7c85c1"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/low-masonry-and-ground-following-bases.png",
+          "hash": "sha256:29a9c86d373cad6c37f732267ffc07a0d0f5e9a3c79b24022ec691dc231e48ea"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/shared/angle-0.png",
+          "hash": "sha256:9935c37907f30f660e24e4752cb2ae784796428f61926d6b7ea37a13aa065314",
+          "camera": {
+            "name": "angle-0",
+            "angle": 0.6
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0765_casale_xystus",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0765-xystus",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 3818,
+            "bounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "reviewGroundY": -0.18300949977212894,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0765_casale_main",
+              "molen.worldgen.structure.n0765_casale_triclinium",
+              "molen.worldgen.structure.n0765_casale_xystus"
+            ],
+            "selectionBounds": [
+              14.334010123113842,
+              37.36399290674355,
+              14.335456849237232,
+              37.36514275030722
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0765-main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-xystus",
+                "coordinate": [
+                  14.334773352511712,
+                  37.36431830617194
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0765-xystus"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 4307
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/shared/angle-1.png",
+          "hash": "sha256:59ba0cbc021a1a0433da8c44cdc627103004203315c956655b68c11e1ffcfb74",
+          "camera": {
+            "name": "angle-1",
+            "angle": 2.1707963267948966
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0765_casale_xystus",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0765-xystus",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 3818,
+            "bounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "reviewGroundY": -0.18300949977212894,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0765_casale_main",
+              "molen.worldgen.structure.n0765_casale_triclinium",
+              "molen.worldgen.structure.n0765_casale_xystus"
+            ],
+            "selectionBounds": [
+              14.334010123113842,
+              37.36399290674355,
+              14.335456849237232,
+              37.36514275030722
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0765-main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-xystus",
+                "coordinate": [
+                  14.334773352511712,
+                  37.36431830617194
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0765-xystus"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 4307
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/shared/angle-2.png",
+          "hash": "sha256:f7c20ae3102fe7c3e251129df950708419add6d6e5991bba0aa4e8b5ec336c54",
+          "camera": {
+            "name": "angle-2",
+            "angle": 3.741592653589793
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0765_casale_xystus",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0765-xystus",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 3818,
+            "bounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "reviewGroundY": -0.18300949977212894,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0765_casale_main",
+              "molen.worldgen.structure.n0765_casale_triclinium",
+              "molen.worldgen.structure.n0765_casale_xystus"
+            ],
+            "selectionBounds": [
+              14.334010123113842,
+              37.36399290674355,
+              14.335456849237232,
+              37.36514275030722
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0765-main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-xystus",
+                "coordinate": [
+                  14.334773352511712,
+                  37.36431830617194
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0765-xystus"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 4307
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/shared/angle-3.png",
+          "hash": "sha256:35920057663696d64ae53c6a3b6b0f8726372ccae3b6d5970afac1617c8394e9",
+          "camera": {
+            "name": "angle-3",
+            "angle": 5.312388980384689
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0765_casale_xystus",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0765-xystus",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 3818,
+            "bounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "reviewGroundY": -0.18300949977212894,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0765_casale_main",
+              "molen.worldgen.structure.n0765_casale_triclinium",
+              "molen.worldgen.structure.n0765_casale_xystus"
+            ],
+            "selectionBounds": [
+              14.334010123113842,
+              37.36399290674355,
+              14.335456849237232,
+              37.36514275030722
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0765-main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-xystus",
+                "coordinate": [
+                  14.334773352511712,
+                  37.36431830617194
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0765-xystus"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 4307
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/shared/open-oval-court-and-column-remains.png",
+          "hash": "sha256:41caf00f14355d2ac97f41bb21453d47dedb9cf0e0638c142892ae4c787f72aa",
+          "camera": {
+            "name": "open-oval-court-and-column-remains",
+            "position": [
+              -18.785675108220516,
+              9,
+              34.64243655876971
+            ],
+            "lookAt": [
+              0.4015285349485813,
+              1.5,
+              15.069464981731173
+            ],
+            "fov": 55
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0765_casale_xystus",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0765-xystus",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 3818,
+            "bounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "reviewGroundY": -0.18300949977212894,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0765_casale_main",
+              "molen.worldgen.structure.n0765_casale_triclinium",
+              "molen.worldgen.structure.n0765_casale_xystus"
+            ],
+            "selectionBounds": [
+              14.334010123113842,
+              37.36399290674355,
+              14.335456849237232,
+              37.36514275030722
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0765-main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-xystus",
+                "coordinate": [
+                  14.334773352511712,
+                  37.36431830617194
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0765-xystus"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 4307
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/shared/north-shelter-recessed-door-and-grey-roof.png",
+          "hash": "sha256:259f279be62be28f2836132aaaf1da505750342b0bc98c50c0eacf4fcc3bcaa1",
+          "camera": {
+            "name": "north-shelter-recessed-door-and-grey-roof",
+            "position": [
+              -9.76288250665128,
+              7,
+              18.37623805791932
+            ],
+            "lookAt": [
+              0.1259719493809702,
+              1.416990500227871,
+              0.9920338038439811
+            ],
+            "fov": 54
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0765_casale_xystus",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0765-xystus",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 3818,
+            "bounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "reviewGroundY": -0.18300949977212894,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0765_casale_main",
+              "molen.worldgen.structure.n0765_casale_triclinium",
+              "molen.worldgen.structure.n0765_casale_xystus"
+            ],
+            "selectionBounds": [
+              14.334010123113842,
+              37.36399290674355,
+              14.335456849237232,
+              37.36514275030722
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0765-main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-xystus",
+                "coordinate": [
+                  14.334773352511712,
+                  37.36431830617194
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0765-xystus"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 4307
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/shared/low-masonry-and-ground-following-bases.png",
+          "hash": "sha256:a90fe705a2d217026174949796f55713fbd64a5268c3e73af29fbde42cd519f6",
+          "camera": {
+            "name": "low-masonry-and-ground-following-bases",
+            "position": [
+              -16.329203285416234,
+              5,
+              22.234143115118055
+            ],
+            "lookAt": [
+              -6.660809145738366,
+              1,
+              18.990356013620392
+            ],
+            "fov": 52
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0765_casale_xystus",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0765-xystus",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 3818,
+            "bounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "reviewGroundY": -0.18300949977212894,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0765_casale_main",
+              "molen.worldgen.structure.n0765_casale_triclinium",
+              "molen.worldgen.structure.n0765_casale_xystus"
+            ],
+            "selectionBounds": [
+              14.334010123113842,
+              37.36399290674355,
+              14.335456849237232,
+              37.36514275030722
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0765-main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-xystus",
+                "coordinate": [
+                  14.334773352511712,
+                  37.36431830617194
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0765-xystus"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 4307
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/shots/shared/placement.png",
+          "hash": "sha256:0461e54267469a5dc386249d16a197a7cd47c9adfa4364229237a2684aefb55c",
+          "camera": {
+            "name": "placement",
+            "placement": true
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0765_casale_xystus",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0765-xystus",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 6,
+            "triangles": 3818,
+            "bounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -11.152498245239258,
+                -1.096577763557434,
+                -3.864948272705078
+              ],
+              "max": [
+                11.149821281433105,
+                4.516990661621094,
+                24.67967414855957
+              ]
+            },
+            "reviewGroundY": -0.18300949977212894,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "d1bf1168-100a-4192-a095-2654a12742c9",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "aed92455-f135-4919-9ca9-071cc50ca0f9",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "9a2dfc19-7364-40e5-8333-b9ff7b3cd3e0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "b51bad3e-33f2-434d-aa86-c2717b1ccffd",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "b23f71a7-df9f-419f-a89e-c0ddf4c7bb4e",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "9145bc33-ae64-4a29-9d0c-f7b61df41b26"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0765_casale_main",
+              "molen.worldgen.structure.n0765_casale_triclinium",
+              "molen.worldgen.structure.n0765_casale_xystus"
+            ],
+            "selectionBounds": [
+              14.334010123113842,
+              37.36399290674355,
+              14.335456849237232,
+              37.36514275030722
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0765-main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-triclinium",
+                "coordinate": [
+                  14.334992318886304,
+                  37.364308440308136
+                ],
+                "height": 0
+              },
+              {
+                "placementId": "next1000.n0765-xystus",
+                "coordinate": [
+                  14.334773352511712,
+                  37.36431830617194
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0765-xystus"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 4307
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/street-noon-economy.png",
+          "hash": "sha256:c271887cd6022a3448dc6fb326d4add90a9e4212cd4c390a7924f1769be1ffe4",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:fb5015c97096cfdf923fb640f885b91c3bea3b11f97917de41958b0ab415f251",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 11,
+            "triangles": 9526,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/street-noon-high.png",
+          "hash": "sha256:5d68495ec2810bec0d6bfd59e30341fdc89ece1db8eebaddf793524f68d8f0f4",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:fb5015c97096cfdf923fb640f885b91c3bea3b11f97917de41958b0ab415f251",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 9526,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/street-late-economy.png",
+          "hash": "sha256:b0d8a58bef11feafb8cf160e6a333ced060440af626c1b62feb8cd2f3611c944",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:fb5015c97096cfdf923fb640f885b91c3bea3b11f97917de41958b0ab415f251",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 11,
+            "triangles": 9526,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/street-late-high.png",
+          "hash": "sha256:e98cec07856106fbcb9e9143d9d7fee3d684ab198f0a56c167c34681fb349758",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:fb5015c97096cfdf923fb640f885b91c3bea3b11f97917de41958b0ab415f251",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 9526,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/block-noon-economy.png",
+          "hash": "sha256:a8e06367e8e2d9e2f7be9beda0a4f3f3bf4c7a9be287d182b1dd8aff2d2385f9",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:b8668294994a8c65a8a311e07e157e22720776961a01414f401cd7d07157f45e",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 11,
+            "triangles": 7344,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/block-noon-high.png",
+          "hash": "sha256:723bd57fdd049da0ca7c77ad89da706aeb2620756197a7adcbf042c279ad8488",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:b8668294994a8c65a8a311e07e157e22720776961a01414f401cd7d07157f45e",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 7344,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/block-late-economy.png",
+          "hash": "sha256:cd5704453808c500d07af2e0e929f06d834d19f892cca2a89691da45b430d89b",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:b8668294994a8c65a8a311e07e157e22720776961a01414f401cd7d07157f45e",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 11,
+            "triangles": 7344,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/block-late-high.png",
+          "hash": "sha256:f38770d84ac0dc8608caaecd90d9eea6af85fb505d086796d84cc26de7107bef",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:b8668294994a8c65a8a311e07e157e22720776961a01414f401cd7d07157f45e",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 7344,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:2ad8548a90976c30a314e1f7acd826d33b7e138de2a7ef6cefcf68ce18b4a1ba",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:68b71933c4e616a3b153556aa31a1505f5266420af2d0e6289aad01a5f6a3416",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 6458,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:e8a8adee31278710abe4366b3393cf9582c0b694f78be84cbf0ca5f2b7d554fe",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:68b71933c4e616a3b153556aa31a1505f5266420af2d0e6289aad01a5f6a3416",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6458,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:3510a302a64c3aa0005c903962b51d2a1b9aaa659e2a9a2f1525e3ea97813a62",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:68b71933c4e616a3b153556aa31a1505f5266420af2d0e6289aad01a5f6a3416",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 6458,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/skyline-late-high.png",
+          "hash": "sha256:b8ffc975b72200f3d30517a4c67f3db034d9f23f43765c7d9df3d5ab5d08280b",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:68b71933c4e616a3b153556aa31a1505f5266420af2d0e6289aad01a5f6a3416",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6458,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/silhouette.png",
+          "hash": "sha256:ccf4cc94a0a909664217e640a3f05d4ab0d24545d62590cbe26149eb8ad3157f",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:68b71933c4e616a3b153556aa31a1505f5266420af2d0e6289aad01a5f6a3416",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 2,
+            "triangles": 762,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/open-oval-court-and-column-remains.png",
+          "hash": "sha256:8c05a256ebf6537d0141d4660adab65d2883217fbd88095a792b1ffd22adacd6",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:fb5015c97096cfdf923fb640f885b91c3bea3b11f97917de41958b0ab415f251",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 9526,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              -18.785675108220516,
+              9,
+              34.64243655876971
+            ],
+            "lookAt": [
+              0.4015285349485813,
+              1.5,
+              15.069464981731173
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/north-shelter-recessed-door-and-grey-roof.png",
+          "hash": "sha256:6f1b4c587b951a9791ae1431e1dc67a2344e1071ca9fbae70d3248a88d351bfb",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:fb5015c97096cfdf923fb640f885b91c3bea3b11f97917de41958b0ab415f251",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 9526,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              -9.76288250665128,
+              7,
+              18.37623805791932
+            ],
+            "lookAt": [
+              0.1259719493809702,
+              1.416990500227871,
+              0.9920338038439811
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/low-masonry-and-ground-following-bases.png",
+          "hash": "sha256:d0d55b5b020f0858134cf271b31a01b43d08548baa4bf7aeacc8f0c631be0de6",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:fb5015c97096cfdf923fb640f885b91c3bea3b11f97917de41958b0ab415f251",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 9526,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              -16.329203285416234,
+              5,
+              22.234143115118055
+            ],
+            "lookAt": [
+              -6.660809145738366,
+              1,
+              18.990356013620392
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/xystus-skyline.png",
+          "hash": "sha256:b35b3c1b676af912f676bd75c8ef68e8b3261c4cc808846861778e4417d3d0e4",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:68b71933c4e616a3b153556aa31a1505f5266420af2d0e6289aad01a5f6a3416",
+            "level": "skyline",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6458,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              -30.028737425035878,
+              31,
+              57.2387537308269
+            ],
+            "lookAt": [
+              0.26768568996572095,
+              1.5,
+              10.04630998782078
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/xystus-district.png",
+          "hash": "sha256:6f544f5bedbdcb1b389484b6395cc4f257c2f04b7660abccd7dd8f1eb87ab4de",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:b8668294994a8c65a8a311e07e157e22720776961a01414f401cd7d07157f45e",
+            "level": "district",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 7344,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              -30.028737425035878,
+              31,
+              57.2387537308269
+            ],
+            "lookAt": [
+              0.26768568996572095,
+              1.5,
+              10.04630998782078
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/xystus-street.png",
+          "hash": "sha256:02409676c69f29481c959e351639281caa1a6e2d9ef4618a21cf4a437d6bc70a",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:4b94073227470af7f33141245663c1c2723b266191f245040ec890199daa4c0b",
+            "level": "street",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 8086,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              -30.028737425035878,
+              31,
+              57.2387537308269
+            ],
+            "lookAt": [
+              0.26768568996572095,
+              1.5,
+              10.04630998782078
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/xystus-closeup.png",
+          "hash": "sha256:7bc560ac955f23024a70be895d4684bfd389d39f3c80c24af432ae7746c4b9b8",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:fb5015c97096cfdf923fb640f885b91c3bea3b11f97917de41958b0ab415f251",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 9526,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              -30.028737425035878,
+              31,
+              57.2387537308269
+            ],
+            "lookAt": [
+              0.26768568996572095,
+              1.5,
+              10.04630998782078
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/transition-skyline.png",
+          "hash": "sha256:49290168a24f65b968228340ef3e690cdcbd3ed08e4a696f7e45404c5ec86d7a",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:68b71933c4e616a3b153556aa31a1505f5266420af2d0e6289aad01a5f6a3416",
+            "level": "skyline",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6458,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/transition-district.png",
+          "hash": "sha256:723bd57fdd049da0ca7c77ad89da706aeb2620756197a7adcbf042c279ad8488",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:b8668294994a8c65a8a311e07e157e22720776961a01414f401cd7d07157f45e",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 7344,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/transition-street.png",
+          "hash": "sha256:f9013b0bb06c1b7fefc811d0fae58e93058d9d4eec4d2e97dd50a555aa6eea85",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:4b94073227470af7f33141245663c1c2723b266191f245040ec890199daa4c0b",
+            "level": "street",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 8086,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/medium-fi/transition-closeup.png",
+          "hash": "sha256:95348c12752d4933d71ef6de0a92edaa1badaf40fd2289c6463caedd068202e8",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0765_casale_xystus",
+            "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+            "lodHash": "sha256:fb5015c97096cfdf923fb640f885b91c3bea3b11f97917de41958b0ab415f251",
+            "level": "closeup",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 11,
+            "triangles": 9526,
+            "groundY": -0.18300949977212894,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 4,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": ".artifacts/casale-xystus-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:1be5d1bc9e8cb35170bf4a07a308bad99d88e6131a10e0dce0640e0426a130fc",
+          "state": {
+            "level": "skyline",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 11,
+            "triangles": 157755
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -30.028737425035878,
+              31,
+              57.2387537308269
+            ],
+            "lookAt": [
+              0.26768568996572095,
+              1.5,
+              10.04630998782078
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-xystus-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:60d5e007be77c5773e97a2811eea818ea1cd9bbfa900ff6c8440496ddf9961fb",
+          "state": {
+            "level": "district",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 16,
+            "triangles": 158641
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -30.028737425035878,
+              31,
+              57.2387537308269
+            ],
+            "lookAt": [
+              0.26768568996572095,
+              1.5,
+              10.04630998782078
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-xystus-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:b4f3c2786c1261c97478824c7b4152e7a6ed5b7f8a189b5180703739660c2b83",
+          "state": {
+            "level": "street",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 16,
+            "triangles": 159383
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -30.028737425035878,
+              31,
+              57.2387537308269
+            ],
+            "lookAt": [
+              0.26768568996572095,
+              1.5,
+              10.04630998782078
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-xystus-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:4591c45b0f4492109e0177b2f9ff83dac090697800d51367648b91b96e1be3e6",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 16,
+            "triangles": 160823
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -30.028737425035878,
+              31,
+              57.2387537308269
+            ],
+            "lookAt": [
+              0.26768568996572095,
+              1.5,
+              10.04630998782078
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-xystus-integration/shots/final-closeup-open-oval-court-and-column-remains.png",
+          "hash": "sha256:562598e26e807d6ef7d917a3014cf8998a09fe9c6478f00ab5e93ef8355f5b32",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 16,
+            "triangles": 160823
+          },
+          "camera": {
+            "name": "open-oval-court-and-column-remains",
+            "position": [
+              -18.785675108220516,
+              9,
+              34.64243655876971
+            ],
+            "lookAt": [
+              0.4015285349485813,
+              1.5,
+              15.069464981731173
+            ],
+            "fov": 55
+          }
+        },
+        {
+          "path": ".artifacts/casale-xystus-integration/shots/final-closeup-north-shelter-recessed-door-and-grey-roof.png",
+          "hash": "sha256:aa55f4d15954c12004eb53060373637a13cd7995ef2d1f2157992165597e5fea",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 16,
+            "triangles": 160823
+          },
+          "camera": {
+            "name": "north-shelter-recessed-door-and-grey-roof",
+            "position": [
+              -9.76288250665128,
+              7,
+              18.37623805791932
+            ],
+            "lookAt": [
+              0.1259719493809702,
+              1.416990500227871,
+              0.9920338038439811
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-xystus-integration/shots/final-closeup-low-masonry-and-ground-following-bases.png",
+          "hash": "sha256:4fdef4bfb9e1717f15a40bee83efb69c7d8a05beb772b19f91010c5af0ff371e",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 14,
+            "triangles": 157823
+          },
+          "camera": {
+            "name": "low-masonry-and-ground-following-bases",
+            "position": [
+              -16.329203285416234,
+              5,
+              22.234143115118055
+            ],
+            "lookAt": [
+              -6.660809145738366,
+              1,
+              18.990356013620392
+            ],
+            "fov": 52
+          }
+        },
+        {
+          "path": ".artifacts/casale-xystus-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:577ce7b58ed1d0dc7afac5da59db995e36e02a2a3b13257623b61f6812e1bc85",
+          "state": {
+            "level": "failure",
+            "mode": "high",
+            "groundCutoutActive": false,
+            "draws": 10,
+            "triangles": 156789
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -30.028737425035878,
+              31,
+              57.2387537308269
+            ],
+            "lookAt": [
+              0.26768568996572095,
+              1.5,
+              10.04630998782078
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-xystus-integration/shots/ensemble-closeup-three-authored-casale-members.png",
+          "hash": "sha256:f80d650acbe35d4cce4aa42c75434dce15bb2379690fc1939a923cff72bdf442",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 28,
+            "triangles": 170411
+          },
+          "camera": {
+            "name": "three-authored-casale-members",
+            "position": [
+              -61.80534035020156,
+              78,
+              108.65127658797088
+            ],
+            "lookAt": [
+              -1.5116633925716423,
+              6,
+              -11.904405646127774
+            ],
+            "fov": 54
+          }
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:ccaa842db824f2a52c74ac50c56c64f8e8d5189943aaa9c12372f9a97f08ea55",
+      "sourceHash": "sha256:b1ca297622a86e8661af98032b216c5b99c2b1f5c5fe9a8c55fe0c81f476164b",
+      "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+      "files": {
+        "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/models/source.glb": "sha256:b1ca297622a86e8661af98032b216c5b99c2b1f5c5fe9a8c55fe0c81f476164b",
+        "content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.glb": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+        "content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.skyline.glb": "sha256:68b71933c4e616a3b153556aa31a1505f5266420af2d0e6289aad01a5f6a3416",
+        "content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.district.glb": "sha256:b8668294994a8c65a8a311e07e157e22720776961a01414f401cd7d07157f45e",
+        "content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.street.glb": "sha256:4b94073227470af7f33141245663c1c2723b266191f245040ec890199daa4c0b",
+        "content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.closeup.glb": "sha256:fb5015c97096cfdf923fb640f885b91c3bea3b11f97917de41958b0ab415f251"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184676907413
+      ],
+      "mapLevels": [
+        {
+          "level": 14,
+          "tile": [
+            8844,
+            6356
+          ],
+          "id": 35184589838920,
+          "owned": false,
+          "covered": 0.010586834352902447,
+          "area": 8170.705533690025,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17688,
+            12712
+          ],
+          "id": 35184676907413,
+          "owned": true,
+          "covered": 0.9999996995642322,
+          "area": 86.50152092190103,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 42,
+      "widerIndependent": 43,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.0000012147367343118276,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0765_casale_xystus"
+          ],
+          "rawTerrainRange": {
+            "min": -26.387003615704884,
+            "max": 144.3503963842951
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:1be5d1bc9e8cb35170bf4a07a308bad99d88e6131a10e0dce0640e0426a130fc",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 11,
+              "triangles": 157755
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -30.028737425035878,
+                31,
+                57.2387537308269
+              ],
+              "lookAt": [
+                0.26768568996572095,
+                1.5,
+                10.04630998782078
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.0000012147367343118276,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.tile_mosaic": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0765_casale_xystus"
+          ],
+          "rawTerrainRange": {
+            "min": -26.387003615704884,
+            "max": 144.3503963842951
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:60d5e007be77c5773e97a2811eea818ea1cd9bbfa900ff6c8440496ddf9961fb",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 158641
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -30.028737425035878,
+                31,
+                57.2387537308269
+              ],
+              "lookAt": [
+                0.26768568996572095,
+                1.5,
+                10.04630998782078
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.0000012147367343118276,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.tile_mosaic": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0765_casale_xystus"
+          ],
+          "rawTerrainRange": {
+            "min": -26.387003615704884,
+            "max": 144.3503963842951
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:b4f3c2786c1261c97478824c7b4152e7a6ed5b7f8a189b5180703739660c2b83",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 159383
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -30.028737425035878,
+                31,
+                57.2387537308269
+              ],
+              "lookAt": [
+                0.26768568996572095,
+                1.5,
+                10.04630998782078
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -0.0000012147367343118276,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.tile_mosaic": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0765_casale_xystus"
+          ],
+          "rawTerrainRange": {
+            "min": -26.387003615704884,
+            "max": 144.3503963842951
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:4591c45b0f4492109e0177b2f9ff83dac090697800d51367648b91b96e1be3e6",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 160823
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -30.028737425035878,
+                31,
+                57.2387537308269
+              ],
+              "lookAt": [
+                0.26768568996572095,
+                1.5,
+                10.04630998782078
+              ],
+              "fov": 54
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-oval-court-and-column-remains.png",
+            "hash": "sha256:562598e26e807d6ef7d917a3014cf8998a09fe9c6478f00ab5e93ef8355f5b32",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 160823
+            },
+            "camera": {
+              "name": "open-oval-court-and-column-remains",
+              "position": [
+                -18.785675108220516,
+                9,
+                34.64243655876971
+              ],
+              "lookAt": [
+                0.4015285349485813,
+                1.5,
+                15.069464981731173
+              ],
+              "fov": 55
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-north-shelter-recessed-door-and-grey-roof.png",
+            "hash": "sha256:aa55f4d15954c12004eb53060373637a13cd7995ef2d1f2157992165597e5fea",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 160823
+            },
+            "camera": {
+              "name": "north-shelter-recessed-door-and-grey-roof",
+              "position": [
+                -9.76288250665128,
+                7,
+                18.37623805791932
+              ],
+              "lookAt": [
+                0.1259719493809702,
+                1.416990500227871,
+                0.9920338038439811
+              ],
+              "fov": 54
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-low-masonry-and-ground-following-bases.png",
+            "hash": "sha256:4fdef4bfb9e1717f15a40bee83efb69c7d8a05beb772b19f91010c5af0ff371e",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 157823
+            },
+            "camera": {
+              "name": "low-masonry-and-ground-following-bases",
+              "position": [
+                -16.329203285416234,
+                5,
+                22.234143115118055
+              ],
+              "lookAt": [
+                -6.660809145738366,
+                1,
+                18.990356013620392
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 43,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184676907413,
+              "area": 86.50190146579195
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0765_casale_xystus"
+          ],
+          "rawTerrainRange": {
+            "min": -26.387003615704884,
+            "max": 144.3503963842951
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:577ce7b58ed1d0dc7afac5da59db995e36e02a2a3b13257623b61f6812e1bc85",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 156789
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -30.028737425035878,
+                31,
+                57.2387537308269
+              ],
+              "lookAt": [
+                0.26768568996572095,
+                1.5,
+                10.04630998782078
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ],
+    "ensembleReview": {
+      "status": "passed",
+      "sceneInputs": {
+        "inputHash": "sha256:ccaa842db824f2a52c74ac50c56c64f8e8d5189943aaa9c12372f9a97f08ea55",
+        "sourceHash": "sha256:b1ca297622a86e8661af98032b216c5b99c2b1f5c5fe9a8c55fe0c81f476164b",
+        "runtimeHash": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+        "files": {
+          "content/worldgen/source/places/sq/sqd/n0765_casale_xystus/models/source.glb": "sha256:b1ca297622a86e8661af98032b216c5b99c2b1f5c5fe9a8c55fe0c81f476164b",
+          "content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.glb": "sha256:3710896e2951881c2840ec35bcb21ddd6198cc2f7931ff50c121e4a7f48afebf",
+          "content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.skyline.glb": "sha256:68b71933c4e616a3b153556aa31a1505f5266420af2d0e6289aad01a5f6a3416",
+          "content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.district.glb": "sha256:b8668294994a8c65a8a311e07e157e22720776961a01414f401cd7d07157f45e",
+          "content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.street.glb": "sha256:4b94073227470af7f33141245663c1c2723b266191f245040ec890199daa4c0b",
+          "content/worldgen/assets/places/sq/sqd/n0765_casale_xystus/model.closeup.glb": "sha256:fb5015c97096cfdf923fb640f885b91c3bea3b11f97917de41958b0ab415f251",
+          "content/worldgen/source/places/sq/sqd/n0765_casale_main/models/source.glb": "sha256:9438959e6e82b460a05bf7f43a3e06bcd8533b35f93fc7bc157eaec3d8a0f5a5",
+          "content/worldgen/assets/places/sq/sqd/n0765_casale_main/model.glb": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+          "content/worldgen/assets/places/sq/sqd/n0765_casale_main/model.closeup.glb": "sha256:ae49d227301f7759204958ce06ca2d967077560614de22bbe00e961500be6053",
+          "content/worldgen/source/places/sq/sqd/n0765_casale_triclinium/models/source.glb": "sha256:d973727fefcb2eb85e12eb6a0a768859dcf3dc3102bc306993bb3920c312ad51",
+          "content/worldgen/assets/places/sq/sqd/n0765_casale_triclinium/model.glb": "sha256:212bac09fbe69184fe15d770850f982b37d403d3c2deb9f33931c191eca8e66b",
+          "content/worldgen/assets/places/sq/sqd/n0765_casale_triclinium/model.closeup.glb": "sha256:cf461e8e23a92d7f04272de5fbc74dd77715b61f7744a417117d1b668107a2d9"
+        },
+        "context": {
+          "assetId": "molen.worldgen.structure.n0765_casale_main",
+          "inputHash": "sha256:36333073ccf3ac94abf06d693fc15a148e549ac64547d222b108b137990d8749"
+        },
+        "contextOthers": [
+          {
+            "assetId": "molen.worldgen.structure.n0765_casale_triclinium",
+            "inputHash": "sha256:058f5bcc3dc2dd1f40d676374386a83d7cf32227fb5cc861042f049c7f44f55c"
+          }
+        ]
+      },
+      "reports": [
+        {
+          "level": "closeup",
+          "state": {
+            "ensemble": true,
+            "terrainAtAllCourtyards": true,
+            "terrainAtForecourtApproaches": [
+              true,
+              true
+            ],
+            "terrainAtUnderCanopy": true,
+            "terrainAtCourtyard": true,
+            "terrainAtPortico": true,
+            "terrainAtNorthApproach": true,
+            "terrainAtCoreFloor": false,
+            "terrainAtCoreCenter": false,
+            "modelWorldY": -0.0000012147367343118276,
+            "terrainAtAttachment": true,
+            "nativeRoadInputsUnchanged": true,
+            "level": "closeup",
+            "partial": false,
+            "groundOutsideResidentTile": true,
+            "terrainAtMapAnchor": false,
+            "failedLoad": false,
+            "sourceBuildings": 43,
+            "independentBuildings": 40,
+            "remainingBuildings": 40,
+            "changedIndependent": [],
+            "remainingAuthored": [],
+            "groundCutoutActive": true,
+            "modelLoaded": true,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.glass_frit_triangular": 1
+            },
+            "loads": [
+              "molen.worldgen.structure.n0765_casale_xystus",
+              "molen.worldgen.structure.n0765_casale_main",
+              "molen.worldgen.structure.n0765_casale_triclinium"
+            ],
+            "rawTerrainRange": {
+              "min": -26.387003615704884,
+              "max": 144.3503963842951
+            },
+            "sourceGridModified": false,
+            "waterCutoutActive": false,
+            "sourceWaterArea": 0,
+            "remainingWaterArea": 0,
+            "nativeWaterUnchanged": true
+          },
+          "frames": [
+            {
+              "path": "shots/site-integration/ensemble-closeup-three-authored-casale-members.png",
+              "hash": "sha256:f80d650acbe35d4cce4aa42c75434dce15bb2379690fc1939a923cff72bdf442",
+              "state": {
+                "level": "closeup",
+                "mode": "high",
+                "groundCutoutActive": true,
+                "draws": 28,
+                "triangles": 170411
+              },
+              "camera": {
+                "name": "three-authored-casale-members",
+                "position": [
+                  -61.80534035020156,
+                  78,
+                  108.65127658797088
+                ],
+                "lookAt": [
+                  -1.5116633925716423,
+                  6,
+                  -11.904405646127774
+                ],
+                "fov": 54
+              }
+            }
+          ],
+          "unloaded": {
+            "groundRestored": true,
+            "waterRestored": true,
+            "liveGeometries": 0
+          },
+          "errors": []
+        }
+      ],
+      "notes": "Three independently placed authored models,40 other resident buildings retained, eight shared graphs read once, original terrain/roads/water retained, all geometry disposed on unload."
+    }
+  },
+  "limitations": [
+    "Xystus north conservation rooms and related oval court remains only. Mapped north rectangle provides exact roof scale; ordinary aerial proportions guide a reconstructed open oval boundary, selected low stone wall remains and24 short column/base remains. The north shelter has pale infill/stone base, grey metal gabled roof, timber support trim and a real south door recess/soffit/threshold. No roof or floor fills the outdoor court: original terrain remains between individual occupied low walls and pads. Main villa/baths, Triclinium, gate piers and two latrines remain independent. No copied mosaics, furnished rooms or invented intact ancient colonnade.",
+    "Shared site Q505617 and unique building way304818581/native35184676907413 identify the north Xystus conservation rooms. The mapped15.1m by5.7m rectangle sets scale and signed axes: internal +X east/slightly north, +Z south/slightly east toward the open oval court. Native +X east/+Y up/+Z south geometry is baked with heading0. Only this mapped rectangle is replaced. The unroofed oval remains and short column inventory are photo-led approximations within the surrounding open site, not claimed mapped building polygons.",
+    "Photo-led medium-fi conservation exterior, with no qualified mapped heights. Working covered-room floor 544.940m absolute follows the south threshold sample+0.2m; eaves3.6m and ridge4.7m above floor are reconstructed. Approximate oval center internal[-1.5,15], radii11.5/9.4m;24 selected column stubs vary0.42–1.52m and surviving low wall tops follow the original standard ground+0.62m. Counts, surviving wall/gap extents, roof form, room inventories, door position and exact historic floor/paving/accessibility remain unverified. The outdoor court stays open with no copied mosaics or restored full-height colonnade.",
+    "Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m ground. South outside-building provider[0,28] supplies 545.1228036157049m datum. Covered north-room boundary grades -0.885..0.193m, working floor -0.183m and closed foundation -1.035m retain original heights. Minor downhill base exposure/uphill burial remain; the recessed south threshold stays exposed. Each low wall and short column pad follows bilinear samples of the retained grid, with no ground flattening. Forty-one occupied masks retain original terrain in the open oval and its approaches. All42 resident /43 wider independent buildings, roads and empty water layer remain. The approximate oval/column inventory does not overwrite any other mapped building. Exact archaeological layout, doorway/floor/paving levels, surviving wall heights and accessibility remain unverified. No bespoke terrain or survey research.",
+    "Photo-led medium-fi conservation exterior, with no qualified mapped heights. Working covered-room floor 544.940m absolute follows the south threshold sample+0.2m; eaves3.6m and ridge4.7m above floor are reconstructed. Approximate oval center internal[-1.5,15], radii11.5/9.4m;24 selected column stubs vary0.42–1.52m and surviving low wall tops follow the original standard ground+0.62m. Counts, surviving wall/gap extents, roof form, room inventories, door position and exact historic floor/paving/accessibility remain unverified. The outdoor court stays open with no copied mosaics or restored full-height colonnade. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m ground. South outside-building provider[0,28] supplies 545.1228036157049m datum. Covered north-room boundary grades -0.885..0.193m, working floor -0.183m and closed foundation -1.035m retain original heights. Minor downhill base exposure/uphill burial remain; the recessed south threshold stays exposed. Each low wall and short column pad follows bilinear samples of the retained grid, with no ground flattening. Forty-one occupied masks retain original terrain in the open oval and its approaches. All42 resident /43 wider independent buildings, roads and empty water layer remain. The approximate oval/column inventory does not overwrite any other mapped building. Exact archaeological layout, doorway/floor/paving levels, surviving wall heights and accessibility remain unverified. No bespoke terrain or survey research. Meets the current medium-fi exterior standard. Mapped north-room footprint is controlled; oval size, low-wall gaps/counts and surviving column inventory are approximate exterior interpretations, not a measured archaeological reconstruction. Windows/backed door are opaque proxies; no copied figurative mosaics or furnished rooms. Flat review terrain is not suitable for judging the native grade-specific low bases. Physical phone/laptop and dense-city timings remain pending.",
+    "Shared site Q505617 and unique building way304818581/native35184676907413 identify the north Xystus conservation rooms. The mapped15.1m by5.7m rectangle sets scale and signed axes: internal +X east/slightly north, +Z south/slightly east toward the open oval court. Native +X east/+Y up/+Z south geometry is baked with heading0. Only this mapped rectangle is replaced. The unroofed oval remains and short column inventory are photo-led approximations within the surrounding open site, not claimed mapped building polygons. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m ground. South outside-building provider[0,28] supplies 545.1228036157049m datum. Covered north-room boundary grades -0.885..0.193m, working floor -0.183m and closed foundation -1.035m retain original heights. Minor downhill base exposure/uphill burial remain; the recessed south threshold stays exposed. Each low wall and short column pad follows bilinear samples of the retained grid, with no ground flattening. Forty-one occupied masks retain original terrain in the open oval and its approaches. All42 resident /43 wider independent buildings, roads and empty water layer remain. The approximate oval/column inventory does not overwrite any other mapped building. Exact archaeological layout, doorway/floor/paving levels, surviving wall heights and accessibility remain unverified. No bespoke terrain or survey research."
+  ]
+}

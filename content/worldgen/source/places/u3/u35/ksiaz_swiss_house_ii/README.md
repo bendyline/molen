@@ -19,7 +19,7 @@ Own map footprint; native Y0 is estimated local ground contact. Heights, roof pr
 
 ## Build
 
-Run node packages/worldgen/scripts/generate-ksiaz-swiss-houses.mjs --ids=KSI_S03 (or --check).
+Run node content/worldgen/source/places/u3/u35/ksiaz-swiss-houses/models/generate-ksiaz-swiss-houses.mjs --ids=KSI_S03 (or --check).
 
 977 triangles;120896 source bytes;6 merged material groups;no embedded images. Five existing shared plaster, tile, rubble, brick and timber graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Runtime LODs are separate generated outputs.
 

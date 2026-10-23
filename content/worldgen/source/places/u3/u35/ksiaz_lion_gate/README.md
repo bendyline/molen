@@ -18,7 +18,7 @@ Own mapped gate point/path axis; native Y0 is estimated local ground contact. Wi
 
 ## Build
 
-Run node packages/worldgen/scripts/generate-ksiaz-park-gates.mjs --ids=KSI_G03 (or --check).
+Run node content/worldgen/source/places/u3/u35/ksiaz-park-gates/models/generate-ksiaz-park-gates.mjs --ids=KSI_G03 (or --check).
 
 3040 triangles;367248 source bytes;3 merged material groups;no embedded images. Shared coursed sandstone, raw sandstone carvings and painted metal use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.
 

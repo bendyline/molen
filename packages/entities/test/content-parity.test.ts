@@ -8,6 +8,7 @@ import {
   MOLEN_AMBIENT_AIRCRAFT_ENTITY_IDS,
   MOLEN_CYCLE_ENTITY_IDS,
   MOLEN_ENTITY_IDS,
+  MOLEN_RV_ENTITY_IDS,
   MOLEN_TRANSIT_ENTITY_IDS,
   MOLEN_VEHICLE_ENTITY_IDS,
   molenAircraft,
@@ -35,7 +36,7 @@ describe('entity content parity', () => {
     }
   });
 
-  it('gives every vehicle, aircraft and transit type an ambient role', () => {
+  it('gives vehicles ambient roles and keeps RVs in the large road-vehicle category', () => {
     const roles = new Set(types.idsWith('ambientRole'));
     for (const id of [
       ...MOLEN_VEHICLE_ENTITY_IDS,
@@ -44,6 +45,8 @@ describe('entity content parity', () => {
       ...MOLEN_TRANSIT_ENTITY_IDS,
     ])
       expect(roles.has(id), id).toBe(true);
+    for (const id of MOLEN_RV_ENTITY_IDS)
+      expect(types.component(id, 'ambientRole')).toMatchObject({ role: 'bus' });
   });
 
   it('names exactly the pack’s models, at the pack’s paths', () => {

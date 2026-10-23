@@ -1449,6 +1449,7 @@ export const treviFountainModel = {
       district: { export: 'treviFountainDistrict', errorMeters: 0.8, surfaces },
       street: { export: 'treviFountainStreet', errorMeters: 0.3, surfaces },
     },
+    caps: { closeup: { triangles: 64000, errorMeters: 0.06, prune: true } },
   },
   limitations: [
     ...frame.limitations,

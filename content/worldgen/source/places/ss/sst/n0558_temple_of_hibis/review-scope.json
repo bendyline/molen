@@ -1,0 +1,320 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "column": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "rubble": {
+      "slot": "wall",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "inset": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.98,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      94.27532936922381,
+      58.74966982050144,
+      9.116524625336467
+    ],
+    "lookAt": [
+      -16.183469530027242,
+      3.749669820501442,
+      -16.000277434934166
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "open-portico-varied-capitals-screen-walls-and-central-frame",
+      "position": [
+        1.5667323141988234,
+        7.749669820501442,
+        -0.7382220527376546
+      ],
+      "lookAt": [
+        -26.64551697153378,
+        4.749669820501442,
+        -10.12273004408596
+      ],
+      "fov": 49
+    },
+    {
+      "name": "roofed-rear-body-cavetto-door-and-square-wall-sockets",
+      "position": [
+        -35.98105085370699,
+        10.749669820501442,
+        28.385032902296626
+      ],
+      "lookAt": [
+        -39.99736399928932,
+        3.749669820501442,
+        0.8193072866589644
+      ],
+      "fov": 49
+    },
+    {
+      "name": "freestanding-open-gateway-winged-disc-and-cavetto",
+      "position": [
+        52.47281716039595,
+        4.773600391292357,
+        -26.126395247428185
+      ],
+      "lookAt": [
+        34.47281716039595,
+        1.8736003912923564,
+        -43.126395247428185
+      ],
+      "fov": 46
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        94.27532936922381,
+        58.74966982050144,
+        9.116524625336467
+      ],
+      "lookAt": [
+        -16.183469530027242,
+        3.749669820501442,
+        -16.000277434934166
+      ],
+      "fov": 46,
+      "name": "hibis-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        94.27532936922381,
+        58.74966982050144,
+        9.116524625336467
+      ],
+      "lookAt": [
+        -16.183469530027242,
+        3.749669820501442,
+        -16.000277434934166
+      ],
+      "fov": 46,
+      "name": "hibis-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        94.27532936922381,
+        58.74966982050144,
+        9.116524625336467
+      ],
+      "lookAt": [
+        -16.183469530027242,
+        3.749669820501442,
+        -16.000277434934166
+      ],
+      "fov": 46,
+      "name": "hibis-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        94.27532936922381,
+        58.74966982050144,
+        9.116524625336467
+      ],
+      "lookAt": [
+        -16.183469530027242,
+        3.749669820501442,
+        -16.000277434934166
+      ],
+      "fov": 46,
+      "name": "hibis-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/hibis-model.mjs",
+    "export": "buildHibisSkyline",
+    "errorMeters": 0.9,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHibisDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "column": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildHibisStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "column": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildHibisCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "column": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      30.555698636,
+      25.476418144
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Keep the retained standard6m Mapzen ground, native paths/water and zero native building-polygon set unchanged. Primary occupied platform and distant gate use independent level floors above sampled local envelope maxima; buried sides and short local approaches meet native grade. No precinct-wide platform, terrain flattening, ground/water cutout or removal of independent features. Coarse DEM does not resolve paving or thresholds; exposed footing heights/approach engineering and independent gate assignment are approximate.",
+    "replaceFootprint": false,
+    "bounds": [
+      30.55507624142936,
+      25.476268930896804,
+      30.556091419694106,
+      25.476850470764205
+    ],
+    "terrainReference": {
+      "anchor": [
+        30.555698636,
+        25.476418144
+      ],
+      "modelHeight": 0,
+      "basis": "Keep the retained standard6m Mapzen ground, native paths/water and zero native building-polygon set unchanged. Primary occupied platform and distant gate use independent level floors above sampled local envelope maxima; buried sides and short local approaches meet native grade. No precinct-wide platform, terrain flattening, ground/water cutout or removal of independent features. Coarse DEM does not resolve paving or thresholds; exposed footing heights/approach engineering and independent gate assignment are approximate."
+    },
+    "notes": "Exact-QID OSMway98894290/Q4115642 is a226.9x157.5m archaeological precinct boundary, not a temple roof. Standard PMTiles has no building polygons here. Named ruinsPOI35184470983133 fixes approximate primary body center[-38.851238986624736,-3.2655914214297206] relative to anchor30.555698636,25.476418144. Named attractionPOI35184470983122 and original eastern reference point align an approximately northeast approach; internal main bearing-0.5118553083174939rad follows that line, rather than the precinct boundary axis. Ordinary east/south photos support signed front facing. Main envelope/column/screen allocation remains picture-led, about10m/20degree uncertainty. The single pictured gateway is allocated at the original eastern reference point[34.47281716039595,-43.126395247428185] on that approach with about25m location uncertainty; exact gate association is not mapped. No native building shell is replaced. Keep the retained standard6m Mapzen ground, native paths/water and zero native building-polygon set unchanged. Primary occupied platform and distant gate use independent level floors above sampled local envelope maxima; buried sides and short local approaches meet native grade. No precinct-wide platform, terrain flattening, ground/water cutout or removal of independent features. Coarse DEM does not resolve paving or thresholds; exposed footing heights/approach engineering and independent gate assignment are approximate."
+  }
+}

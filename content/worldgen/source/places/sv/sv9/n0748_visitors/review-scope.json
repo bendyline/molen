@@ -1,0 +1,430 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "concrete": {
+      "graph": "concrete_plain",
+      "slot": "wall",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "floor": {
+      "graph": "concrete_plain",
+      "slot": "trim",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "metal_painted",
+      "slot": "roof",
+      "roughness": 0.7,
+      "metallic": 0.15
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.25,
+      "metallic": 0.1
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.65,
+      "metallic": 0.2
+    },
+    "screen": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      60.88630582698754,
+      32.06,
+      30.014292641049256
+    ],
+    "lookAt": [
+      0,
+      4.06,
+      0
+    ],
+    "fov": 43
+  },
+  "qaCameras": [
+    {
+      "name": "carpark-entry-and-notched-fascia",
+      "position": [
+        43.30643000732153,
+        7.06,
+        -3.090812194385446
+      ],
+      "lookAt": [
+        9.790395811107356,
+        4.06,
+        -2.2689534728265204
+      ],
+      "fov": 52
+    },
+    {
+      "name": "south-colonnade-and-deep-glazing",
+      "position": [
+        -11.451858964950679,
+        8.06,
+        44.021073660769325
+      ],
+      "lookAt": [
+        3.2158347068685704,
+        4.06,
+        9.468812340420499
+      ],
+      "fov": 54
+    },
+    {
+      "name": "gridded-roof-and-column-rhythm",
+      "position": [
+        -18.08002760324503,
+        32.06,
+        46.27215795557732
+      ],
+      "lookAt": [
+        0,
+        5.06,
+        0
+      ],
+      "fov": 52
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        60.88630582698754,
+        32.06,
+        30.014292641049256
+      ],
+      "lookAt": [
+        0,
+        4.06,
+        0
+      ],
+      "fov": 43,
+      "name": "yad-visitors-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        60.88630582698754,
+        32.06,
+        30.014292641049256
+      ],
+      "lookAt": [
+        0,
+        4.06,
+        0
+      ],
+      "fov": 43,
+      "name": "yad-visitors-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        60.88630582698754,
+        32.06,
+        30.014292641049256
+      ],
+      "lookAt": [
+        0,
+        4.06,
+        0
+      ],
+      "fov": 43,
+      "name": "yad-visitors-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        60.88630582698754,
+        32.06,
+        30.014292641049256
+      ],
+      "lookAt": [
+        0,
+        4.06,
+        0
+      ],
+      "fov": 43,
+      "name": "yad-visitors-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.06,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/yad-visitors-model.mjs",
+    "export": "buildYadVisitorsSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildYadVisitorsDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.1
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "screen": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "buildYadVisitorsStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.1
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "screen": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildYadVisitorsCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.1
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "screen": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "draft-proposal",
+    "anchor": [
+      35.176566392183304,
+      31.77420780449801
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": false,
+    "groundContactBasis": "Reuse the original Protomaps20261020 and unmodified Mapzen201x201/6m hill. Uncovered car-park control internal[16,2.3], datum792.7608351373401m; working floor0.06m above it. Seal the occupied recessed glass core with its floor and retain original ground in the exterior portico/forecourt. A footprint-limited protective foundation follows the lowest original boundary level. The coarse slope varies nearly6m across this small roof; inspect exposed footings and buried porch areas before any placement approval. No custom terrain or precinct flattening.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      35.17634559597005,
+      31.77402066911909,
+      35.17678718839656,
+      31.77439379965974
+    ],
+    "terrainReference": {
+      "anchor": [
+        35.17673429631775,
+        31.774234462082152
+      ],
+      "modelHeight": 0,
+      "basis": "Reuse the original Protomaps20261020 and unmodified Mapzen201x201/6m hill. Uncovered car-park control internal[16,2.3], datum792.7608351373401m; working floor0.06m above it. Seal the occupied recessed glass core with its floor and retain original ground in the exterior portico/forecourt. A footprint-limited protective foundation follows the lowest original boundary level. The coarse slope varies nearly6m across this small roof; inspect exposed footings and buried porch areas before any placement approval. No custom terrain or precinct flattening."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -17.895225805965637,
+          -8.820722743535372
+        ],
+        [
+          -9.011071150521701,
+          17.831815090754393
+        ],
+        [
+          17.895225805965623,
+          8.69379434694677
+        ],
+        [
+          9.011071150521694,
+          -17.704886694165783
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -17.895225805965637,
+            -8.820722743535372
+          ],
+          [
+            -9.011071150521701,
+            17.831815090754393
+          ],
+          [
+            17.895225805965623,
+            8.69379434694677
+          ],
+          [
+            9.011071150521694,
+            -17.704886694165783
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Shared campus Q156591 with distinct OSM way74078297/native35184446167129. The Commons category locates the Visitors Centre at31.774258,35.176556, about6m from the mapped roof centroid; its two ordinary exterior photographs and the annotated campus aerial identify this particular building. Internal+X points east-northeast toward the car park; internal+Z south-southeast toward the long colonnade. The east car-park photo fixes the fascia notch and entry on the+X face, offset toward+Z. Heading0 with these signed axes baked into model east/south coordinates. No invented member Wikidata identity; all other campus members remain independent."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -15.031989677011136,
+          -7.409407104569712
+        ],
+        [
+          -7.569299766438228,
+          14.978724676233691
+        ],
+        [
+          15.031989677011122,
+          7.302787251435286
+        ],
+        [
+          7.569299766438222,
+          -14.872104823099258
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -15.031989677011136,
+            -7.409407104569712
+          ],
+          [
+            -7.569299766438228,
+            14.978724676233691
+          ],
+          [
+            15.031989677011122,
+            7.302787251435286
+          ],
+          [
+            7.569299766438222,
+            -14.872104823099258
+          ]
+        ]
+      ],
+      "basis": "Occupied recessed glass core only; preserve original terrain in open exterior porticos and the forecourt."
+    },
+    "notes": "Shared campus Q156591 with distinct OSM way74078297/native35184446167129. The Commons category locates the Visitors Centre at31.774258,35.176556, about6m from the mapped roof centroid; its two ordinary exterior photographs and the annotated campus aerial identify this particular building. Internal+X points east-northeast toward the car park; internal+Z south-southeast toward the long colonnade. The east car-park photo fixes the fascia notch and entry on the+X face, offset toward+Z. Heading0 with these signed axes baked into model east/south coordinates. No invented member Wikidata identity; all other campus members remain independent. Reuse the original Protomaps20261020 and unmodified Mapzen201x201/6m hill. Uncovered car-park control internal[16,2.3], datum792.7608351373401m; working floor0.06m above it. Seal the occupied recessed glass core with its floor and retain original ground in the exterior portico/forecourt. A footprint-limited protective foundation follows the lowest original boundary level. The coarse slope varies nearly6m across this small roof; inspect exposed footings and buried porch areas before any placement approval. No custom terrain or precinct flattening."
+  }
+}

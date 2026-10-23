@@ -118,9 +118,8 @@ export function generateFigureBody(
   rig: FigureRig = deriveRig(descriptor),
 ): FigureBody {
   const builder = new SkinnedMeshBuilder();
-  const detail: FigureTier = tier === 0 ? 0 : 1;
-  if (descriptor.archetype === 'biped') buildBipedBody(descriptor, rig, detail, builder);
-  else buildQuadrupedBody(descriptor, rig, detail, builder);
+  if (descriptor.archetype === 'biped') buildBipedBody(descriptor, rig, tier, builder);
+  else buildQuadrupedBody(descriptor, rig, tier, builder);
   const buffers = builder.finalize(tier, tier !== 2);
   return { buffers, rig, inverseBind: rigInverseBind(rig), bounds: boundsOf(buffers.positions) };
 }

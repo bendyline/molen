@@ -56,6 +56,28 @@ export function addInterior(parent, layout, api) {
   for (const x of [-0.085, 0.085])
     sphere(cabin, `radio-knob-${x}`, [0.012, 0.012, 0.009], [x, 0.843, 1.295], rubber);
   for (let i = 0; i < 4; i++) toggle(cabin, `pedestal-switch-${i}`, [0.09 - i * 0.06, 0.94, 1.306]);
+  // Bezel corner hardware, microphone grille and the harness clamps are visible from the seats.
+  for (const x of [-0.095, 0.095])
+    for (const y of [0.833, 0.888]) screw(cabin, `radio-mount-${x}-${y}`, x, y, 1.294);
+  box(cabin, 'radio-microphone', [0.034, 0.065, 0.026], [-0.16, 0.93, 1.302], rubber);
+  for (let i = 0; i < 4; i++)
+    box(
+      cabin,
+      `microphone-grille-${i}`,
+      [0.024, 0.003, 0.002],
+      [-0.16, 0.945 - i * 0.009, 1.287],
+      silver,
+    );
+  for (let i = 0; i < 7; i++) {
+    const ring = mesh(
+      cabin,
+      `microphone-cord-${i}`,
+      new T.TorusGeometry(0.009, 0.002, 4, 10),
+      rubber,
+      [-0.16, 0.888 - i * 0.012, 1.302],
+    );
+    ring.rotation.x = Math.PI / 2;
+  }
   box(cabin, 'pedestal-body', [0.24, 0.27, 0.25], [0, 0.82, 1.465], gray);
   box(cabin, 'center-console', [0.23, 0.08, 0.63], [0, 0.72, 0.69], gray);
   for (let i = 0; i < 4; i++) toggle(cabin, `console-switch-${i}`, [0.075 - i * 0.05, 0.767, 0.84]);
@@ -85,6 +107,11 @@ export function addInterior(parent, layout, api) {
     }
     box(seat, 'lap-belt', [0.34, 0.028, 0.014], [x, 1.114, 0.4], white);
     box(seat, 'harness-buckle', [0.038, 0.035, 0.018], [x, 1.12, 0.408], silver);
+    for (const dx of [-0.095, 0.095]) {
+      box(seat, `harness-adjuster-${dx}`, [0.045, 0.027, 0.014], [x + dx, 1.45, 0.194], silver);
+      box(seat, `harness-webbing-${dx}`, [0.025, 0.031, 0.003], [x + dx, 1.45, 0.203], white);
+      rod(seat, `fabric-seam-${dx}`, [x + dx, 1.17, 0.179], [x + dx, 1.55, 0.135], 0.0017, dark);
+    }
     const stick = group(cabin, side === -1 ? 'control-stick' : 'control-stick_1', [x, 0.72, 0.88]);
     sphere(stick, 'cyclic-boot', [0.055, 0.045, 0.055], [0, 0, 0], rubber);
     const curve = new T.CatmullRomCurve3(

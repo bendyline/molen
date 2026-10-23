@@ -1,0 +1,328 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.bell_407": {
+      "doc": "Bell 407GX: original polygonal exterior and heli-glass cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.bell_407",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.bell_407",
+          "spec": {
+            "label": "Bell 407GX",
+            "genericLabel": "Helicopter with enclosed cockpit",
+            "model": "helicopter",
+            "mass": 1900,
+            "span": 10.67,
+            "length": 12.61,
+            "height": 3.16,
+            "centerOfMass": [
+              0,
+              1.1,
+              0
+            ],
+            "pilotEye": [
+              -0.36,
+              1.68,
+              1.14
+            ],
+            "hardLandingSpeed": 4.5,
+            "hardLandingRoll": 0.35,
+            "hardLandingPitch": 0.4,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [
+                0,
+                1.1,
+                5.4223
+              ],
+              [
+                0,
+                1.1,
+                -5.4223
+              ],
+              [
+                4.9082,
+                2.96,
+                0
+              ],
+              [
+                -4.9082,
+                2.96,
+                0
+              ]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "main-rotor",
+                  "axis": "y",
+                  "multiplier": 1
+                },
+                {
+                  "node": "tail-rotor",
+                  "axis": "x",
+                  "multiplier": 5
+                }
+              ],
+              "gearNodes": [],
+              "flaps": [],
+              "ailerons": [],
+              "animation": {
+                "bindings": []
+              },
+              "interior": {
+                "nodes": [
+                  "cockpit"
+                ],
+                "bindings": [
+                  {
+                    "node": "407-flight-horizon",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1
+                  },
+                  {
+                    "node": "407-flight-horizon",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.09,
+                    "min": -0.065,
+                    "max": 0.065
+                  },
+                  {
+                    "node": "407-standby-airspeed",
+                    "source": "airspeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.045,
+                    "offset": -1.7
+                  },
+                  {
+                    "node": "407-standby-altitude",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0206,
+                    "offset": -1.7
+                  },
+                  {
+                    "node": "407-cyclic--1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.15
+                  },
+                  {
+                    "node": "407-cyclic--1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.15
+                  },
+                  {
+                    "node": "407-collective--1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.4
+                  },
+                  {
+                    "node": "407-pedal--1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "407-pedal--1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  },
+                  {
+                    "node": "407-cyclic-1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.15
+                  },
+                  {
+                    "node": "407-cyclic-1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.15
+                  },
+                  {
+                    "node": "407-collective-1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.4
+                  },
+                  {
+                    "node": "407-pedal-1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "407-pedal-1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  }
+                ]
+              }
+            },
+            "engine": {
+              "position": [
+                0,
+                1.1,
+                0
+              ],
+              "thrustAxis": [
+                0,
+                1,
+                0
+              ],
+              "power": 399000,
+              "idleRpm": 1,
+              "spoolRate": 0.16,
+              "rotorAngularSpeed": 38
+            },
+            "helicopter": {
+              "rotorPosition": [
+                0,
+                2.9,
+                0
+              ],
+              "rotorRadius": 5.335,
+              "cyclicTilt": 0.5,
+              "cyclicResponse": 4,
+              "cyclicDamping": 2.4,
+              "groundLevelRate": 1,
+              "maxTilt": 0.65,
+              "yawRate": 0.85,
+              "liftMultiplier": 2.05,
+              "groundEffect": 0.12,
+              "translationalLift": 0.1,
+              "translationalLiftSpeed": 18,
+              "verticalDrag": 342,
+              "horizontalDrag": 30.400000000000002,
+              "quadraticDrag": 3.8000000000000003,
+              "groundDeceleration": 9
+            }
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                -0.36,
+                1.68,
+                1.14
+              ]
+            },
+            {
+              "id": "copilot",
+              "role": "passenger",
+              "position": [
+                0.36,
+                1.68,
+                1.14
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.55,
+              0,
+              1.16
+            ]
+          ],
+          "exits": [
+            [
+              2.25,
+              0,
+              1.16
+            ]
+          ],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.2,
+          "width": 8.03,
+          "height": 2.5,
+          "cruise": 45,
+          "weight": 0.35
+        }
+      },
+      "assets": [
+        "molen.entities.aircraft.bell_407"
+      ]
+    }
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.tesla_model_y_2024": {
+      "doc": "2024 Tesla Model Y, Long Range AWD (original body). Polygonal reference interpretation with a complete driving cabin; dimensions rounded for authoring and handling tuned for play.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.tesla_model_y_2024",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.tesla_model_y_2024",
+          "color": "#627780",
+          "spec": {
+            "label": "2024 Tesla Model Y",
+            "bodyStyle": "suv",
+            "genericLabel": "Compact SUV",
+            "width": 2.1510000000000002,
+            "length": 4.751,
+            "height": 1.624,
+            "centerOfMass": [
+              0,
+              0.5521600000000001,
+              0
+            ],
+            "wheelbase": 2.89,
+            "wheelTrack": 1.65206,
+            "wheelRadius": 0.358,
+            "mass": 1800,
+            "engineForce": 7500,
+            "maxSpeed": 60,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [
+              0.4418,
+              1.304,
+              -0.0925
+            ],
+            "drive": "rear",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.18,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.4418,
+                1.304,
+                -0.0925
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.4105,
+              0,
+              -0.0925
+            ]
+          ],
+          "exits": [
+            [
+              1.5105,
+              0,
+              -0.0925
+            ],
+            [
+              -1.5105,
+              0,
+              -0.0925
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.tesla_model_y_2024"
+      ]
+    }
+  }
+}

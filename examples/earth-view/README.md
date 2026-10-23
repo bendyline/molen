@@ -13,13 +13,14 @@ Play it at [molen.dev/play/earth-view](https://molen.dev/play/earth-view/).
 In the engine repository:
 
 ```sh
-pnpm install && pnpm -r build
+pnpm install && pnpm dev:prepare
 pnpm --filter @bendyline/molen-examples-earth-view dev
 ```
 
 It reuses the World Explorer's terrain package and content packs (`publicDir` points at
-`../world-explorer/public`, and `predev`/`prebuild` build the packs), so it adds no data of its
-own. It lists the World Explorer as a dev dependency only so `pnpm -r build` builds the two in
+`../world-explorer/public`). Development reuses prepared packs; run `pnpm dev:content` from the
+root to refresh them after asset edits. Production `prebuild` still builds the packs. This sample
+lists the World Explorer as a dev dependency so `pnpm -r build` builds the two in
 order instead of regenerating the shared packs concurrently.
 
 - **Orbit:** drag to rotate and tilt, wheel or pinch to zoom, right-drag or two fingers to pan.

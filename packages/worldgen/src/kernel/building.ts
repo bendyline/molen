@@ -5,6 +5,7 @@
 
 import { dmath } from '@bendyline/molen-kernel/determinism';
 import type { ArchStyleDoc } from './archstyle-types';
+import { buildBuildingAccess } from './building-access';
 import { buildFacade, buildOpeningFrames, type FacadeStats } from './facade';
 import {
   analyzeFootprint,
@@ -214,6 +215,8 @@ export function generateBuilding(
         ? fit.minGround
         : fit.base;
   const wallBase = base + recipe.minHeight;
+  if (input.request.access && recipe.minHeight === 0)
+    buildBuildingAccess(input.request.access, input.ground, out);
   let eave = wallBase + recipe.totalHeight;
   const foundationDepth = Math.max(0.05, recipe.foundationHeight);
   const bounds = ringBounds(outline);
@@ -530,7 +533,7 @@ export function generateBuilding(
   const keepWindows = recipe.lodKeep.includes('facade-texture');
   const keepBands = input.simplified !== true && recipe.lodKeep.includes('facade-bands');
   let facade: FacadeStats | undefined;
-  if (keepWindows || keepBands) {
+  if (keepWindows || keepBands || input.request.access) {
     facade = buildFacade(
       {
         rings: [outline, ...holes],
@@ -564,6 +567,21 @@ export function generateBuilding(
         trim: surfaces.trim,
         ...(keepBands && recipe.facade.details
           ? { details: recipe.facade.details, roof: surfaces.roof, raised: recipe.minHeight > 0 }
+          : {}),
+        ...(input.request.access
+          ? {
+              entranceAt: input.request.access.to,
+              details: {
+                ...(keepBands ? recipe.facade.details : {}),
+                entrance: {
+                  width: input.request.access.garage
+                    ? Math.min(2.8, input.request.access.width * 0.9)
+                    : 1.05,
+                  height: input.request.access.garage ? 2.3 : 2.15,
+                  style: input.request.access.garage ? 'service' : 'single',
+                },
+              },
+            }
           : {}),
         ...(seams !== undefined ? { seamEdges: seams } : {}),
       },

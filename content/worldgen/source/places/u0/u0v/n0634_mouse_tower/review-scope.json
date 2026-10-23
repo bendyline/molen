@@ -1,0 +1,457 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stucco",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "panel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.87,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      32.92079793673492,
+      24.079995797729495,
+      37.06257318430452
+    ],
+    "lookAt": [
+      -0.9476146934689381,
+      12.079995797729497,
+      -0.05791476925351979
+    ],
+    "fov": 43
+  },
+  "qaCameras": [
+    {
+      "name": "mapped-eastern-stair-turret-and-lower-dark-housing",
+      "position": [
+        17.832361873524732,
+        7.079995797729497,
+        14.649650635774217
+      ],
+      "lookAt": [
+        1.0446449958288966,
+        6.079995797729497,
+        0.11787297320566134
+      ],
+      "fov": 49
+    },
+    {
+      "name": "corbel-gallery-closed-windows-and-open-crenellated-deck",
+      "position": [
+        -17.120076560416965,
+        21.079995797729495,
+        12.569494987387463
+      ],
+      "lookAt": [
+        -0.9476146934689381,
+        16.579995797729495,
+        -0.05791476925351979
+      ],
+      "fov": 48
+    },
+    {
+      "name": "taller-lancet-head-and-supported-crenellated-crown",
+      "position": [
+        14.580290725889204,
+        26.079995797729495,
+        17.374358556032195
+      ],
+      "lookAt": [
+        3.1211126600494765,
+        22.579995797729495,
+        0.20789523405440036
+      ],
+      "fov": 43
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        32.92079793673492,
+        24.079995797729495,
+        37.06257318430452
+      ],
+      "lookAt": [
+        -0.9476146934689381,
+        12.079995797729497,
+        -0.05791476925351979
+      ],
+      "fov": 43,
+      "name": "mouse-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        32.92079793673492,
+        24.079995797729495,
+        37.06257318430452
+      ],
+      "lookAt": [
+        -0.9476146934689381,
+        12.079995797729497,
+        -0.05791476925351979
+      ],
+      "fov": 43,
+      "name": "mouse-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        32.92079793673492,
+        24.079995797729495,
+        37.06257318430452
+      ],
+      "lookAt": [
+        -0.9476146934689381,
+        12.079995797729497,
+        -0.05791476925351979
+      ],
+      "fov": 43,
+      "name": "mouse-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        32.92079793673492,
+        24.079995797729495,
+        37.06257318430452
+      ],
+      "lookAt": [
+        -0.9476146934689381,
+        12.079995797729497,
+        -0.05791476925351979
+      ],
+      "fov": 43,
+      "name": "mouse-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/mouse-model.mjs",
+    "export": "buildMouseSkyline",
+    "errorMeters": 1.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMouseDistrict",
+        "errorMeters": 0.34,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildMouseStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMouseCloseup",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      7.880397636,
+      49.972056547
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain the original6m standard Mapzen ground, native Rhine water polygons/island holes and all independent buildings/paths. Replace only the native tower shell. Bounded buried feet under the original outline meet coarse island grade; no whole-island mesh, broad slab, ground flattening or ground/water cutout. Native terrain/shore resolution and water level are not surveyed bank/flood measurements. Lower housing and roof are within the mapped tower envelope; separate Ehrenfels ruin is native context.",
+    "replaceFootprint": false,
+    "bounds": [
+      7.880146226606914,
+      49.97189485024886,
+      7.880649045393085,
+      49.97221824375114
+    ],
+    "terrainReference": {
+      "anchor": [
+        7.880397636,
+        49.972056547
+      ],
+      "modelHeight": 0,
+      "basis": "Retain the original6m standard Mapzen ground, native Rhine water polygons/island holes and all independent buildings/paths. Replace only the native tower shell. Bounded buried feet under the original outline meet coarse island grade; no whole-island mesh, broad slab, ground flattening or ground/water cutout. Native terrain/shore resolution and water level are not surveyed bank/flood measurements. Lower housing and roof are within the mapped tower envelope; separate Ehrenfels ruin is native context."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -4.477279537447292,
+          3.421749835295131
+        ],
+        [
+          -4.0932066778332254,
+          -4.067670512171509
+        ],
+        [
+          -4.043352769775058,
+          -4.064821719463605
+        ],
+        [
+          -4.043206677833225,
+          -4.067670512171509
+        ],
+        [
+          2.6780683654129316,
+          -3.683597927356731
+        ],
+        [
+          2.6780683654129316,
+          -1.1871254632256734
+        ],
+        [
+          4.4063962336762295,
+          -0.9950890711557425
+        ],
+        [
+          4.402582674544051,
+          -0.9455127998649395
+        ],
+        [
+          4.4063962336762295,
+          -0.9450890711557425
+        ],
+        [
+          4.214359803869197,
+          1.551384645875843
+        ],
+        [
+          2.2939955057988652,
+          1.551384645875843
+        ],
+        [
+          2.1019590759918327,
+          4.04785952721903
+        ],
+        [
+          2.052296154703912,
+          4.043477501690918
+        ],
+        [
+          2.051959075991833,
+          4.04785952721903
+        ],
+        [
+          -4.477279537447292,
+          3.471749835295131
+        ],
+        [
+          -4.474726984761967,
+          3.4219750606894266
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -4.477279537447292,
+            3.421749835295131
+          ],
+          [
+            -4.0932066778332254,
+            -4.067670512171509
+          ],
+          [
+            -4.043352769775058,
+            -4.064821719463605
+          ],
+          [
+            -4.043206677833225,
+            -4.067670512171509
+          ],
+          [
+            2.6780683654129316,
+            -3.683597927356731
+          ],
+          [
+            2.6780683654129316,
+            -1.1871254632256734
+          ],
+          [
+            4.4063962336762295,
+            -0.9950890711557425
+          ],
+          [
+            4.402582674544051,
+            -0.9455127998649395
+          ],
+          [
+            4.4063962336762295,
+            -0.9450890711557425
+          ],
+          [
+            4.214359803869197,
+            1.551384645875843
+          ],
+          [
+            2.2939955057988652,
+            1.551384645875843
+          ],
+          [
+            2.1019590759918327,
+            4.04785952721903
+          ],
+          [
+            2.052296154703912,
+            4.043477501690918
+          ],
+          [
+            2.051959075991833,
+            4.04785952721903
+          ],
+          [
+            -4.477279537447292,
+            3.471749835295131
+          ],
+          [
+            -4.474726984761967,
+            3.4219750606894266
+          ]
+        ]
+      ],
+      "basis": "Replace the single mapped tower only; keep native Rhine and island holes unchanged."
+    },
+    "notes": "Retained exact-QID OSMway50828644/native named building35184422917476 identify the tower. Own anchor7.880397636,49.972056547, global heading0/native east-south; body quadrilateral provides internal X/Z axes and centre[-0.9476146934689381,-0.05791476925351979]m. Eastward mapped footprint projection fixes the stair turret side and agrees with ordinary river-side pictures. Main body roughly6.830x7.702m; full asymmetric outline is retained. Fine facade/window/housing allocation retains20degree/2m approximation; the offset older reference point does not control placement. Retain the original6m standard Mapzen ground, native Rhine water polygons/island holes and all independent buildings/paths. Replace only the native tower shell. Bounded buried feet under the original outline meet coarse island grade; no whole-island mesh, broad slab, ground flattening or ground/water cutout. Native terrain/shore resolution and water level are not surveyed bank/flood measurements. Lower housing and roof are within the mapped tower envelope; separate Ehrenfels ruin is native context."
+  }
+}

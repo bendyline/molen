@@ -3,7 +3,9 @@
  * Signs are 4 x 1.35 m, centered on X, base Y=0, front +Z. Reuse through ModelLibrary
  * or encode the same buffers with encodeGlb for a static asset.
  */
+
 import { dmath } from '@bendyline/molen-kernel/determinism';
+import { buildTextMesh, type FontLibrary } from '@bendyline/molen-materials/text';
 import type { LandmarkDefinitions, SignDesign } from './landmark-types';
 import { MeshBufferBuilder } from './mesh-buffers';
 import { modelBox, modelStroke } from './model-primitives';
@@ -12,82 +14,6 @@ import type { MeshBuffers, Vec2 } from './types';
 
 export type { SignDesign } from './landmark-types';
 
-// A tiny deterministic block-letter alphabet; contiguous runs are quads, not tiny cubes.
-const FONT: Readonly<Record<string, string>> = {
-  A: '01110/10001/10001/11111/10001/10001/10001',
-  B: '11110/10001/10001/11110/10001/10001/11110',
-  C: '01111/10000/10000/10000/10000/10000/01111',
-  D: '11110/10001/10001/10001/10001/10001/11110',
-  E: '11111/10000/10000/11110/10000/10000/11111',
-  F: '11111/10000/10000/11110/10000/10000/10000',
-  G: '01111/10000/10000/10111/10001/10001/01111',
-  H: '10001/10001/10001/11111/10001/10001/10001',
-  I: '11111/00100/00100/00100/00100/00100/11111',
-  J: '00111/00010/00010/00010/10010/10010/01100',
-  K: '10001/10010/10100/11000/10100/10010/10001',
-  L: '10000/10000/10000/10000/10000/10000/11111',
-  M: '10001/11011/10101/10101/10001/10001/10001',
-  N: '10001/11001/10101/10011/10001/10001/10001',
-  O: '01110/10001/10001/10001/10001/10001/01110',
-  P: '11110/10001/10001/11110/10000/10000/10000',
-  Q: '01110/10001/10001/10001/10101/10010/01101',
-  R: '11110/10001/10001/11110/10100/10010/10001',
-  S: '01111/10000/10000/01110/00001/00001/11110',
-  T: '11111/00100/00100/00100/00100/00100/00100',
-  U: '10001/10001/10001/10001/10001/10001/01110',
-  V: '10001/10001/10001/10001/10001/01010/00100',
-  W: '10001/10001/10001/10101/10101/11011/10001',
-  X: '10001/10001/01010/00100/01010/10001/10001',
-  Y: '10001/10001/01010/00100/00100/00100/00100',
-  Z: '11111/00001/00010/00100/01000/10000/11111',
-};
-function lettering(
-  out: MeshBufferBuilder,
-  text: string,
-  x: number,
-  y: number,
-  width: number,
-  height: number,
-  z: number,
-  color: string,
-): void {
-  const cell = Math.min(width / Math.max(1, text.length * 6 - 1), height / 7);
-  let cursor = x - ((text.length * 6 - 1) * cell) / 2;
-  for (const character of text) {
-    const rows = FONT[character]?.split('/') ?? [];
-    rows.forEach((row, r) => {
-      for (let start = 0; start < 5; start++) {
-        if (row[start] !== '1') continue;
-        let end = start + 1;
-        while (end < 5 && row[end] === '1') end++;
-        const left = cursor + start * cell,
-          right = cursor + end * cell,
-          bottom = y + (2.5 - r) * cell,
-          top = bottom + cell;
-        out.addQuad(
-          'trim',
-          'palette:#ffffff',
-          [
-            [left, bottom, z],
-            [right, bottom, z],
-            [right, top, z],
-            [left, top, z],
-          ],
-          [0, 0, 1],
-          [
-            [0, 0],
-            [1, 0],
-            [1, 1],
-            [0, 1],
-          ],
-          parseColor(color),
-        );
-        start = end - 1;
-      }
-    });
-    cursor += 6 * cell;
-  }
-}
 function disc(
   out: MeshBufferBuilder,
   x: number,
@@ -118,7 +44,56 @@ function disc(
     );
   }
 }
-export function generateSignModel(design: SignDesign, detail: 0 | 1 | 2 = 0): MeshBuffers {
+export function generateSignModel(
+  design: SignDesign,
+  detail: 0 | 1 | 2 = 0,
+  fonts?: FontLibrary,
+): MeshBuffers {
+  const lettering = (
+    out: MeshBufferBuilder,
+    text: string,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    z: number,
+    color: string,
+  ): void => {
+    if (!fonts || !text) return;
+    const mesh = buildTextMesh(text, fonts, {
+      font: design.font ?? fonts.defaultFont,
+      size: height * 2,
+      maxWidth: width,
+      maxHeight: height,
+      align: 'center',
+      verticalAlign: 'center',
+      letterSpacing: design.letterSpacing,
+      maxCharacters: 80,
+    });
+    const tint = parseColor(color);
+    for (let i = 0; i < mesh.indices.length; i += 3) {
+      const at = (j: number): [number, number, number] => {
+        const index = (mesh.indices[i + j] as number) * 3;
+        return [
+          x + (mesh.positions[index] as number),
+          y + (mesh.positions[index + 1] as number),
+          z,
+        ];
+      };
+      out.addTriangle(
+        'trim',
+        'palette:#ffffff',
+        [at(0), at(1), at(2)],
+        [0, 0, 1],
+        [
+          [0, 0],
+          [1, 0],
+          [0, 1],
+        ],
+        tint,
+      );
+    }
+  };
   const out = new MeshBufferBuilder();
   modelBox(out, [0, 0.675, 0], [4, 1.35, 0.18], design.background);
   const x = -1.35,
@@ -354,17 +329,6 @@ export function generateSignModel(design: SignDesign, detail: 0 | 1 | 2 = 0): Me
     );
   } else lettering(out, design.letters ?? '', x, y, 0.85, 0.8, z, design.mark);
   if (detail < 2) lettering(out, design.text, 0.54, 0.69, 2.68, 0.6, z + 0.015, design.foreground);
-  else
-    modelStroke(
-      out,
-      [
-        [-0.72, 0.65],
-        [1.75, 0.65],
-      ],
-      0.12,
-      z,
-      design.foreground,
-    );
   return out.finalize();
 }
 
@@ -377,10 +341,11 @@ export function generateLandmarkModel(
   name: string,
   definitions: LandmarkDefinitions,
   detail: 0 | 1 | 2 = 0,
+  fonts?: FontLibrary,
 ): MeshBuffers | undefined {
   const doc = Object.hasOwn(definitions, name) ? definitions[name] : undefined;
   if (!doc) return undefined;
-  if (doc.generator === 'sign') return generateSignModel(doc.sign, detail);
+  if (doc.generator === 'sign') return generateSignModel(doc.sign, detail, fonts);
   const out = new MeshBufferBuilder();
   for (const part of doc.parts) {
     if (part.tiers && !part.tiers.includes(detail)) continue;

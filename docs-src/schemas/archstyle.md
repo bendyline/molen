@@ -373,6 +373,38 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "lotPlans": {
+      "minItems": 1,
+      "maxItems": 32,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "shape": {
+            "type": "string",
+            "enum": [
+              "cottage",
+              "ranch",
+              "front-garage",
+              "side-garage",
+              "courtyard",
+              "compact",
+              "shopfront"
+            ]
+          },
+          "weight": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        },
+        "required": [
+          "shape",
+          "weight"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Weighted resizable plans for vacant lots; supplied outlines remain authoritative."
+    },
     "format": {
       "type": "string",
       "const": "molen/archstyle@1",

@@ -1,4 +1,6 @@
-# Front-box cargo bicycle
+# Bendy Cargo Bicycle
+
+![Molen preview](preview.png)
 
 Original brief: add diverse cars, motorcycles, bicycles, boats, cargo ships and ferries to Molen.
 

@@ -21,6 +21,8 @@ export interface AircraftEngineSpec extends JsonObject {
   propellerRotation?: 'clockwise' | 'counterclockwise';
   /** Propeller polar moment of inertia in kg m², for gyroscopic precession; default 0. */
   propellerInertia?: number;
+  /** Rotate this engine's thrust from +Z toward +Y with the common vector lever. */
+  vectored?: boolean;
 }
 
 /** A named installation in an airplane's engine bank. Positions use aircraft-local meters. */
@@ -112,6 +114,8 @@ export interface AirplanePhysicsSpec extends JsonObject {
    * gear holds still while the wheels carry weight, and only a locked-down gear can land.
    */
   gearTransitTime?: number;
+  /** Fixed undercarriage stays down even if the pilot selects gear up. Default false. */
+  fixedGear?: boolean;
   /** Seconds for the flaps to travel fully up to fully down; default 0 (instant). */
   flapTransitTime?: number;
   /** Broadside separated-flow drag coefficient, blended by separation and sin(alpha)^2. */
@@ -179,6 +183,8 @@ export interface AircraftVisualSpec extends JsonObject {
 /** Complete data-driven tuning consumed by the generic aircraft solver and client. */
 export interface AircraftSpec extends JsonObject {
   label: string;
+  /** Name-free display label such as 'Light helicopter', for hosts that must not show the type name. */
+  genericLabel?: string;
   model: FlightModel;
   mass: number;
   span: number;
@@ -192,6 +198,19 @@ export interface AircraftSpec extends JsonObject {
   engines?: AircraftNamedEngineSpec[];
   airplane?: AirplanePhysicsSpec;
   helicopter?: HelicopterPhysicsSpec;
+  /** Assisted powered-lift controls for tiltrotors and vectored jets, blended into wing flight. */
+  poweredLift?: {
+    /** Seconds to travel from forward thrust to vertical thrust (90 degrees). */
+    transitTime: number;
+    /** Hover control fades to zero at this airspeed in m/s. */
+    controlFadeSpeed: number;
+    /** Body angular accelerations at full hover stick/pedal, rad/s². */
+    pitchAuthority: number;
+    rollAuthority: number;
+    yawAuthority: number;
+    /** Angular rate damping in 1/s. Requires running engine thrust. */
+    damping: number;
+  };
   hardLandingSpeed: number;
   hardLandingRoll: number;
   hardLandingPitch: number;
@@ -217,6 +236,8 @@ export interface AircraftInputData extends JsonObject {
   engines?: Record<string, AircraftEngineInputData>;
   gear: boolean;
   flaps: boolean;
+  /** Powered-lift lever: 0 forward, 1 vertical. Omitted selects forward thrust. */
+  thrustVector?: number;
 }
 export interface AircraftStateData extends JsonObject {
   velocity: [number, number, number];
@@ -238,6 +259,8 @@ export interface AircraftStateData extends JsonObject {
   gearPosition?: number;
   /** Flap position as a fraction of full travel, 0..1. Airplanes only; starts as commanded. */
   flapPosition?: number;
+  /** Actual powered-lift lever position, 0 forward to 1 vertical, after actuator travel. */
+  thrustVectorPosition?: number;
   /** Trimmed angle of attack in radians that the airframe flies with the stick centered. */
   pitchTrim?: number;
   /** Sideslip angle in radians, positive with the relative wind from the left. */

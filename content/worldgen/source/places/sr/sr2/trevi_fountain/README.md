@@ -24,4 +24,4 @@ Immediate4.2m backing facade is a bounded wall volume, not the complete Palazzo 
 
 Original Terrarium pixels may oversample much coarser composite source data;1m sampling does not imply survey accuracy. Provider-relative vertical reference only; default coarse host terrain compatibility not certified.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=trevi_fountain`. Add `--check` to verify exact regeneration. 39181 triangles; 5 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=trevi_fountain`. Add `--check` to verify exact regeneration. 106683 triangles; 5 materials; no embedded photographs.

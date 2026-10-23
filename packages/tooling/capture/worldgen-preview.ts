@@ -5,6 +5,7 @@ import {
   createViewer,
   MaterialResolver,
 } from '@bendyline/molen-client';
+import type { FontLibrary } from '@bendyline/molen-materials/text';
 import {
   buffersToObject3D,
   buildingBoxGeometry,
@@ -42,6 +43,7 @@ interface ScenePayload {
   assetIndex: Record<string, string>;
   materialRefs: string[];
   landmarks: LandmarkDefinitions;
+  fonts?: FontLibrary;
   ground: { y: number; minX: number; minZ: number; maxX: number; maxZ: number };
   clearColor: string;
 }
@@ -161,6 +163,9 @@ async function buildSession(scene: ScenePayload, size: [number, number]): Promis
   const models = new ModelLibrary(
     async (ref) => (await assets.instance(ref)).scene,
     scene.landmarks,
+    false,
+    {},
+    scene.fonts,
   );
   let instances = 0;
   for (const entry of scene.placements) {

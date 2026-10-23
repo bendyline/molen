@@ -62,7 +62,12 @@ export function* generateWorldgenTileSteps(
   input: WorldgenTileInput,
   step = 64,
 ): Generator<WorldgenProgress, WorldgenTileOutput, void> {
-  const batch = semanticTileToBatch(input.tile, input.geom, input);
+  const batch = semanticTileToBatch(
+    input.tile,
+    input.geom,
+    input,
+    tileGroundSampler(input.ground, input.geom),
+  );
   const output = yield* generateWorldgenBatchSteps(
     { ...batch, ground: tileGroundSampler(input.ground, input.geom) },
     step,
@@ -71,7 +76,12 @@ export function* generateWorldgenTileSteps(
 }
 
 export function generateWorldgenTile(input: WorldgenTileInput): WorldgenTileOutput {
-  const batch = semanticTileToBatch(input.tile, input.geom, input);
+  const batch = semanticTileToBatch(
+    input.tile,
+    input.geom,
+    input,
+    tileGroundSampler(input.ground, input.geom),
+  );
   return finish(
     batch,
     generateWorldgenBatch({ ...batch, ground: tileGroundSampler(input.ground, input.geom) }),

@@ -163,7 +163,7 @@ function placementSetFromBoxes(
   return { setId, modelRef, count: boxes.length, data };
 }
 
-/** The buildings, sorted by priority (area descending, then identity hash), with styles chosen. */
+/** Buildings sorted by explicit priority, area descending, then identity hash, with styles chosen. */
 export function queueBuildings(input: WorldgenBatchInput, stats: WorldgenStats): QueuedBuilding[] {
   const pack = input.pack;
   const rules = [...(input.rules ?? []), ...pack.root.defaults.rules];
@@ -193,6 +193,7 @@ export function queueBuildings(input: WorldgenBatchInput, stats: WorldgenStats):
   });
   queue.sort(
     (a, b) =>
+      (b.request.priority ?? 0) - (a.request.priority ?? 0) ||
       b.analysis.area - a.analysis.area ||
       hashString(a.request.identity) - hashString(b.request.identity) ||
       a.order - b.order,

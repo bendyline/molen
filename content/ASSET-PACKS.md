@@ -9,6 +9,12 @@ identical files.
 
 ## How the pieces fit
 
+`pnpm dev` reuses previously prepared browser packs and never invokes this GLB pipeline.
+Run `pnpm dev:prepare` explicitly for initial setup; its `assets:fetch` step may fall back to a
+local source build when the bundle for the current input hash is unpublished. After targeted
+model generation/import, `pnpm dev:content` repackages the current runtime assets for the browser.
+CI and production builds retain their normal restoration, packaging and verification checks.
+
 | Stage | Input in Git | Output (ignored by Git) |
 | --- | --- | --- |
 | Generate | The programs in [`asset-build.json`](../asset-build.json), plus the specs, material graphs and textures they read | `models/source.glb` in each source bundle, and a few direct runtime models |
@@ -16,8 +22,12 @@ identical files.
 | Verify | `asset-lock.json` | Nothing; any byte difference fails the build |
 | Derive landmark detail levels (after import, before verification) | The imported structure master and `packages/tooling/scripts/landmark-lods.mjs` | Separate `model.skyline.glb`, `model.district.glb`, `model.street.glb`, `model.closeup.glb`, plus hash/cost metadata in the sidecar |
 
-The generators are the source of truth. Most live in `packages/worldgen/scripts/` (landmarks,
-bridges, stadiums, towers, lighthouses, props). The others are the aircraft recipes in
+The generators are the source of truth. Dedicated place generators (including Willis Tower,
+Galata Tower, Gamla bron, Severn Bridge and Książ site components) live in the geographic
+`content/worldgen/source/places/<gh2>/<gh3>/<bundle>/models/` directories and are listed in
+their source manifests. Shared helpers and multi-place batch generators still live in
+`packages/worldgen/scripts/` (landmarks, bridges, stadiums, towers, lighthouses, props).
+The other generators include the aircraft recipes in
 `content/entities/source/aircraft/*/models/generate.mjs`,
 `packages/entities/scripts/generate-json-models.mjs` (trees and the boulder, from each bundle's
 `models/model.json`), the red barn's `scripts/generate-barn.mjs`, and Lantern Dungeon's
@@ -48,11 +58,25 @@ Keep these durable artifacts in Git:
 - One or two curated small summary previews per model, normally `preview.png` beside its
   source bundle. Prefer a web-sized image, roughly 1024 pixels on the long edge; do not promote
   an entire capture set. Source textures are separate assets, not review screenshots.
+  For the entity fleet, `node packages/entities/scripts/preview-fleet.mjs` composes each
+  bundle's `preview.png` (exterior and operator view, listed in `source.json` and linked from the
+  README) and the per-collection contact sheets in `content/entities/` from the local
+  `capture-fleet.mjs` output; rerun it after every capture pass so the tracked images match the
+  models.
 
 Reports and older `source.json` inventories may retain local capture paths and hashes. Their
 absence does not invalidate the source bundle or trigger a download. Required source files,
 reports and summary previews are still checked. Missing images also do not establish a new
 visual approval: re-render and inspect the affected model when performing a new visual review.
+
+Vehicle reviews aim for calibrated drawing/photo overlays of both exterior and interior,
+following the [vehicle reference overlay goal](../docs-src/guide/medium-fi.md#vehicle-reference-overlays).
+Keep bulk overlays and research images local with the other captures. The concise report retains
+reference provenance, calibration controls, camera settings, source/runtime hashes, independent
+landmark discrepancies and explicit gaps where useful reference material was unavailable.
+Required authored source inputs remain durable; a disposable overlay is not a replacement for
+them. Inspect the actual comparisons before accepting a model; merely producing overlays or
+listing reference URLs does not establish fidelity.
 
 `.gitignore` excludes bulk captures and `pnpm source:check` fails if capture images have been
 staged or tracked in Git, even when force-added. It runs in both CI and `pnpm verify`. Model
@@ -101,8 +125,28 @@ To build everything from source instead, with no network access for models (Node
 pnpm assets:build
 ```
 
-This compiles the packages if needed, moves the previous generated GLBs aside, runs every
-generator, imports every model, and compares all of it with the lock. The Lantern Dungeon
+This compiles packages if needed and builds only jobs whose recorded inputs or outputs changed.
+Successful local generators, imports and after-import jobs keep dependency records under
+`.artifacts/asset-build/jobs/`; an unpublished release does not invalidate those records.
+Node generators record the files and directories they read, including dynamically imported
+recipes. A shared recipe edit invalidates its dependents. Missing or changed output bytes also
+invalidate their job. Successful jobs survive a failed sibling, so retrying resumes the work.
+Existing batch generators remain one cache unit; imports are cached per model.
+
+Local builds use file size, modification/change timestamps and file identity as a fast hint,
+reusing saved content hashes when those are unchanged. A changed hint triggers hashing; merely
+touching a file without changing its contents does not rebuild its model. These hash hints live
+in `.artifacts/asset-build/file-hashes.json`. Missing or invalid hints are rebuilt automatically.
+Release integrity checks still read and hash the actual bytes.
+
+The first build after installing this cache records the dependencies. Later unchanged builds
+report zero generators and zero imports. `pnpm assets:build --force` explicitly rebuilds all
+generators and imports, including derived GLBs. Keep `.artifacts/asset-build/jobs/` to retain
+local build records; removing it requests a fresh baseline. Fresh CI checkouts build from source.
+Non-Node generators declare their output trees in `asset-build.json`; those authored trees and
+the generator's scripts and pinned requirements form their cache inputs.
+
+The Lantern Dungeon
 generator needs Python 3.10+. The build discovers a compatible installed interpreter, including
 versioned commands such as `python3.12`, so an older system `python3` does not block it. When
 the pinned packages are missing, it creates `.artifacts/asset-build/python/` and installs them
@@ -175,6 +219,8 @@ continue with a reasonable visualization fit; do not start a new research campai
 
 Structure bundles can keep per-model review scope in `review-scope.json` and attributed
 signed map controls in `map-frame.json`; the source generator preserves these documents.
+Declare the frame's signed axes in its `axis` text before capture, including positive `+X`
+and `+Z`. Numeric reconstruction axes and `nativeAxes` alone do not satisfy that declaration.
 Use `qaCameraOverrides`, keyed by existing camera name with `position` and `lookAt`, to move
 review cameras when a derivative changes the working floor. This preserves the original
 architectural recipe and avoids adding duplicate cameras through `qaCameras`.
@@ -187,6 +233,12 @@ Retain the mapped point; do not fabricate a footprint or describe the choice as 
 The source builder accepts point and centerline frames as well as outlines. For an ensemble
 located by a named constituent, preserve both the site and component identities and explain
 their reviewed association; do not claim that distinct Wikidata IDs are an exact match.
+Dense ensembles may use an `osm-members` collection: each member keeps its own attributed
+`featureId`; a member with a known independent Wikidata ID also records its exact `identitySource`.
+Other members retain the site ID plus their distinct map identity. A geographic proposal may
+set `mapIdentity.maxDistance` to a positive radius of at most 80 metres (default 80). Shared-site
+members still require disjoint matching radii and anchors within 2 metres of their recorded
+member controls; a small radius does not permit duplicate features or moved identities.
 A skyline that automatic reduction cannot represent can declare `runtimeLodOverlay` in
 that review scope: `level: "skyline"`, a `packages/worldgen/scripts/*.mjs` module, its exported
 builder and a conservative `errorMeters`. The registered runtime-LOD generator rebuilds

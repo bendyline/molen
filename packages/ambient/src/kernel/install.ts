@@ -65,6 +65,8 @@ export interface AmbientOptions {
   policy?: DeepPartial<AmbientPolicy>;
   /** Vehicle and pedestrian types per class (default: proxy dimensions). */
   types?: Partial<AmbientTypes>;
+  /** Deterministic local road fleet at a prospective spawn point. An empty list suppresses it. */
+  carsAt?: (x: number, z: number) => readonly import('./templates').AmbientVehicleType[];
   /** Extra components per class; `null` spawns bare agents (ambientAgent + transform only). */
   templates?: Partial<Record<AmbientKind, AmbientTemplate | null>>;
   /** Seed for spawn draws (default: 'ambient'). */
@@ -259,6 +261,7 @@ export function installAmbient(world: World, options: AmbientOptions = {}): Ambi
         templates,
         seed,
         ground,
+        ...(options.carsAt ? { carsAt: options.carsAt } : {}),
       };
       const removed = despawnAgents(w, env, observer);
       const counters = { nextSeq: state?.nextSeq ?? 0, spawned: state?.spawned ?? 0 };

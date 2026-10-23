@@ -1,5 +1,7 @@
 # P-51D Mustang
 
+![Molen preview](preview.png)
+
 Portable source bundle for `molen.entities.aircraft.p51d`. The entity definition owns all concrete flight tuning, seats, collision probes, visual bindings, and behavior-script attachment. Molen supplies the generic `airplane` or `helicopter` solver.
 
 - Editable model: `models/source.glb`

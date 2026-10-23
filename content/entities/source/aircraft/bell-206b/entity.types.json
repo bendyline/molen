@@ -1,0 +1,424 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.bell_206b": {
+      "doc": "Bell 206B JetRanger: original polygonal exterior and analog cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.bell_206b",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.bell_206b",
+          "spec": {
+            "label": "Bell 206B JetRanger",
+            "genericLabel": "Helicopter with enclosed cockpit",
+            "model": "helicopter",
+            "mass": 1200,
+            "span": 10.16,
+            "length": 11.96,
+            "height": 2.83,
+            "centerOfMass": [
+              0,
+              1.05,
+              0
+            ],
+            "pilotEye": [
+              -0.34,
+              1.62,
+              1.04
+            ],
+            "hardLandingSpeed": 4.5,
+            "hardLandingRoll": 0.35,
+            "hardLandingPitch": 0.4,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [
+                0,
+                1.05,
+                5.1428
+              ],
+              [
+                0,
+                1.05,
+                -5.1428
+              ],
+              [
+                4.6736,
+                2.63,
+                0
+              ],
+              [
+                -4.6736,
+                2.63,
+                0
+              ]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "main-rotor",
+                  "axis": "y",
+                  "multiplier": 1
+                },
+                {
+                  "node": "tail-rotor",
+                  "axis": "x",
+                  "multiplier": 5
+                }
+              ],
+              "gearNodes": [],
+              "flaps": [],
+              "ailerons": [],
+              "animation": {
+                "bindings": []
+              },
+              "interior": {
+                "nodes": [
+                  "cockpit"
+                ],
+                "bindings": [
+                  {
+                    "node": "206-ENG-OIL-pointer",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.8,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-TORQUE-pointer",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.8,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-KNOTS-pointer",
+                    "source": "airspeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.044,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-ATT-pointer",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 1,
+                    "offset": 0
+                  },
+                  {
+                    "node": "206-ALT-pointer",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0206,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-XMSN-pointer",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.8,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-TEMP-pointer",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.8,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-RPM-pointer",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.8,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-HDG-pointer",
+                    "source": "heading",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-CLIMB-pointer",
+                    "source": "verticalSpeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.8,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-FUEL-pointer",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.8,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-N1-pointer",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.8,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-VOR-pointer",
+                    "source": "heading",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-ADF-pointer",
+                    "source": "heading",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-TURN-pointer",
+                    "source": "yaw",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.8,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-FUEL-PSI-pointer",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 3.8,
+                    "offset": -1.8
+                  },
+                  {
+                    "node": "206-cyclic--1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.15
+                  },
+                  {
+                    "node": "206-cyclic--1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.15
+                  },
+                  {
+                    "node": "206-collective--1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.4
+                  },
+                  {
+                    "node": "206-pedal--1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "206-pedal--1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  },
+                  {
+                    "node": "206-cyclic-1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.15
+                  },
+                  {
+                    "node": "206-cyclic-1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.15
+                  },
+                  {
+                    "node": "206-collective-1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.4
+                  },
+                  {
+                    "node": "206-pedal-1--1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "206-pedal-1-1",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  }
+                ]
+              }
+            },
+            "engine": {
+              "position": [
+                0,
+                1.05,
+                0
+              ],
+              "thrustAxis": [
+                0,
+                1,
+                0
+              ],
+              "power": 252000,
+              "idleRpm": 1,
+              "spoolRate": 0.16,
+              "rotorAngularSpeed": 38
+            },
+            "helicopter": {
+              "rotorPosition": [
+                0,
+                2.83,
+                0
+              ],
+              "rotorRadius": 5.08,
+              "cyclicTilt": 0.5,
+              "cyclicResponse": 4,
+              "cyclicDamping": 2.4,
+              "groundLevelRate": 1,
+              "maxTilt": 0.65,
+              "yawRate": 0.85,
+              "liftMultiplier": 2.05,
+              "groundEffect": 0.12,
+              "translationalLift": 0.1,
+              "translationalLiftSpeed": 18,
+              "verticalDrag": 216,
+              "horizontalDrag": 19.2,
+              "quadraticDrag": 2.4,
+              "groundDeceleration": 9
+            }
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                -0.34,
+                1.62,
+                1.04
+              ]
+            },
+            {
+              "id": "copilot",
+              "role": "passenger",
+              "position": [
+                0.34,
+                1.62,
+                1.04
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.5750000000000002,
+              0,
+              1.06
+            ]
+          ],
+          "exits": [
+            [
+              2.275,
+              0,
+              1.06
+            ]
+          ],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.2,
+          "width": 8.03,
+          "height": 2.5,
+          "cruise": 45,
+          "weight": 0.35
+        }
+      },
+      "assets": [
+        "molen.entities.aircraft.bell_206b"
+      ]
+    }
+  }
+}

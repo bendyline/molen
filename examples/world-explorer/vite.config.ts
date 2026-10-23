@@ -9,7 +9,12 @@ export default defineConfig({
   build: {
     target: 'es2022',
     rollupOptions: {
-      input: { main: 'index.html', structures: 'structures.html', sky: 'sky.html' },
+      input: {
+        main: 'index.html',
+        structures: 'structures.html',
+        sky: 'sky.html',
+        signs: 'road-signs.html',
+      },
     },
   },
 });

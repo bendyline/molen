@@ -15,6 +15,7 @@ import {
   analyzeFootprint,
   type BuildingRequest,
   buildingMetrics,
+  type HeightSampler,
   type ResolvedStylePack,
   ringCentroid,
   type ScatterExclusion,
@@ -28,8 +29,14 @@ import {
 } from '@bendyline/molen-worldgen/kernel';
 import { prepareAgricultureTile, withAgricultureRules } from './agriculture';
 import { identityFor } from './building-identity';
+import {
+  type BuildingInfillOptions,
+  type InferredBuildingFeature,
+  inferBuildingFootprints,
+} from './building-infill';
 import { buildingPieces } from './building-parts';
 import { applyBusinessAppearance, associateBusinesses } from './businesses';
+import { corridor } from './infill-geometry';
 import { contextLabelForPolygon, isLandcoverDesignation, landcoverLabel } from './labels';
 import { mappedPropExclusions, mappedPropRequests } from './mapped-props';
 import type { PlacesContent } from './places';
@@ -55,6 +62,10 @@ export interface TileGeometry {
 }
 
 export interface SemanticAdapterOptions {
+  /** Synthetic homes in dense streets with missing outlines; opt in with true or seed/density. */
+  buildingInfill?: boolean | BuildingInfillOptions;
+  /** Additional occupied map polygons, e.g. original footprints replaced by landmarks. */
+  buildingInfillExclusions?: TerrainSemanticPolygon[];
   pack: ResolvedStylePack;
   atlas?: RegionAtlasDoc;
   regions?: RegionResolver;
@@ -196,9 +207,50 @@ export function semanticTileToBatch(
   tile: TerrainSemanticTile,
   geom: TileGeometry,
   options: SemanticAdapterOptions,
+  ground?: HeightSampler,
 ): SemanticBatch {
   const agriculture = prepareAgricultureTile(tile, geom, options.environment);
   tile = agriculture.tile;
+  let inferred: InferredBuildingFeature[] = [];
+  if (options.buildingInfill) {
+    inferred = inferBuildingFootprints(
+      tile,
+      geom,
+      options.buildingInfill,
+      ground,
+      options.buildingInfillExclusions,
+      (point, use, identity) => {
+        const world: Vec2 = [geom.originX + point[0], geom.originZ + point[1]];
+        const region = options.regions?.resolve(...world);
+        const request: BuildingRequest = {
+          identity: `f:${identity}`,
+          labels: [use],
+          context: use === 'house' ? 'residential' : 'commercial',
+          outline: [
+            [-7, 0],
+            [7, 0],
+            [7, 16],
+            [-7, 16],
+          ],
+          levels: 1,
+        };
+        const rules = [
+          ...(options.environment?.at(...world).buildings ?? []),
+          ...(options.atlas ? regionStyleRules(options.atlas, region) : []),
+          ...options.pack.root.defaults.rules,
+        ];
+        const selected = selectStyle(
+          rules,
+          buildingMetrics(request, analyzeFootprint(request.outline)),
+          options.pack.root.defaults.style,
+          request.identity,
+        );
+        return options.pack.archstyles[selected.style];
+      },
+    );
+    tile = { ...tile, buildings: [...tile.buildings, ...inferred] };
+  }
+  const infillById = new Map(inferred.map((feature) => [feature.id, feature.infill]));
   const buffer = buildingClipBuffer(tile, geom.level, options.buffer ?? PROTOMAPS_TILE_BUFFER);
   const size = geom.size;
   const tileBounds: [number, number, number, number] = [
@@ -220,7 +272,11 @@ export function semanticTileToBatch(
     const pieces = buildingPieces(tile.buildings);
     const businesses =
       geom.levelBelowMax === 0 && !tile.buildingsGeneralized && options.places !== undefined
-        ? associateBusinesses(tile, pieces, options.places.businesses)
+        ? associateBusinesses(
+            tile,
+            pieces.filter((piece) => piece.feature.tags?.['molen:inferred'] === undefined),
+            options.places.businesses,
+          )
         : new Map();
     for (const piece of pieces) {
       const { feature, labels, polygon: source, polygonIndex } = piece;
@@ -235,13 +291,22 @@ export function semanticTileToBatch(
       if (outline.length < 3) continue;
       const centroidUv = ringCentroid(polygon.outer);
       const context = contextLabelForPolygon(polygon, centroidUv, tile.landcover);
+      const infill = infillById.get(feature.id);
       const request: BuildingRequest = {
+        ...(feature.tags?.['molen:inferred'] !== undefined ? { priority: -1 } : {}),
         identity:
           identityFor(feature, polygonIndex, toMeters(source, size).outline, geom) +
           (piece.remainder !== undefined ? `|remainder:${piece.remainder}` : ''),
-        labels,
+        labels: feature.tags?.['molen:inferred'] !== undefined ? [...labels, 'inferred'] : labels,
         ...(context !== undefined ? { context } : {}),
         outline,
+        ...(infill
+          ? {
+              access: infill.access,
+              groundOutline: infill.groundOutline,
+              ...(infill.style ? { style: infill.style } : {}),
+            }
+          : {}),
         ...(piece.groundPolygon !== undefined
           ? { groundOutline: toMeters(piece.groundPolygon, size).outline }
           : {}),
@@ -259,8 +324,9 @@ export function semanticTileToBatch(
           : {}),
       };
       if (
-        (straddles && atlas !== undefined && options.regions !== undefined) ||
-        options.environment !== undefined
+        request.style === undefined &&
+        ((straddles && atlas !== undefined && options.regions !== undefined) ||
+          options.environment !== undefined)
       ) {
         const world: Vec2 = [
           geom.originX + centroidUv[0] * size,
@@ -305,6 +371,14 @@ export function semanticTileToBatch(
   let scatter: ScatterRequest | undefined;
   if (options.features?.scatter !== false && scatterDoc !== undefined) {
     scatter = scatterRequestFromTile(tile, geom, scatterDoc.defaults.avoid, options.keep ?? 1);
+    for (const feature of inferred) {
+      const access = feature.infill.access;
+      scatter.exclusions.push({
+        ring: corridor(access.from, access.to, access.width).outer,
+        radius: 0.5,
+        kind: 'roads',
+      });
+    }
     scatter.polygons.push(...residentialTreePolygons(tile, geom, options));
   }
   return {

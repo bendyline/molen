@@ -7,9 +7,27 @@ import {
   type TerrainSemanticPolygon,
   type TerrainSemanticTile,
 } from '../src/semantic-types';
+import { pickParkedVehicle } from '../src/surface-client';
 import { SurfaceNetwork } from '../src/surface-network';
 import { inferTerrainParkingAreas } from '../src/surface-parking';
+import type { TerrainParkedVehicle } from '../src/surface-styles';
 import { resolveTerrainSurfaceStyle } from '../src/surface-styles';
+
+it('uses regional parking prevalence and never chooses excluded or invalid weights', () => {
+  const vehicles = [
+    { id: 'common', weight: 9 },
+    { id: 'import', weight: 1 },
+    { id: 'excluded', weight: 0 },
+    { id: 'invalid', weight: Number.NaN },
+  ] as TerrainParkedVehicle[];
+  const ids = Array.from(
+    { length: 100 },
+    (_, i) => pickParkedVehicle(vehicles, (i + 0.5) / 100)?.id,
+  );
+  expect(ids.filter((id) => id === 'common')).toHaveLength(90);
+  expect(ids.filter((id) => id === 'import')).toHaveLength(10);
+  expect(pickParkedVehicle(vehicles.slice(2), 0.5)).toBeUndefined();
+});
 
 const rectangle = (x: number, z: number, w: number, h: number): TerrainSemanticPolygon => ({
   outer: [

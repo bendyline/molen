@@ -17,7 +17,7 @@ play without opening a browser.
 | `molen.audio.*` | scene scripts | `play`, `stop` and `music`, emitted as `audio.*` events |
 | `@bendyline/molen-client/audio` | the page | `createAudioLayer` loads banks and plays what the rules ask for |
 
-The `molen.sounds` content pack carries 63 CC0 sounds (ambience, vehicles, footsteps, impacts,
+The `molen.sounds` content pack carries 71 CC0 sounds (ambience, vehicles, footsteps, impacts,
 foley, UI, stings and six music tracks). Fetch it into a project with:
 
 ```sh
@@ -205,8 +205,17 @@ Every game sample does exactly this in its `src/audio.ts`. Hosts without a Worke
 `mountEarthView` plays the Earth soundscape on its own when its content includes the
 `molen.sounds` pack: weather and time-of-day ambience, footsteps in walk mode, traffic near
 streets, and engines on the cars and aircraft you board. Birds, crickets and traffic fade with
-height above the terrain, and traffic also fades with distance from the nearest street. Pass `audio: false` to turn it off, and
+height above the terrain and fade out while driving or piloting, or when the terrain height is
+unknown. Traffic also fades with distance from the nearest street. Pass `audio: false` to turn it off, and
 use `view.audio` for volume. See [Earth view](earth-view.md).
+
+Sound packs can also provide a `birdsong` document (`molen/earth-birdsong@1`). The default pack
+contains eight CC0 regional recordings, selected by geography, observed habitat, calendar month
+and local sunlight. Dawn choruses peak near sunrise, breeding songs quieten outside their authored
+season, and uncovered places stay quiet. The catalog's bounds are conservative playback areas,
+not surveyed species ranges. Composing hosts pass `EarthAudioFrame.location` (latitude, longitude,
+sky `utcMs` and `sunAltitudeDeg`) and `regionalAmbience.habitat`; the standard Earth view and
+World Explorer supply these automatically, including changes to the sky date/time controls.
 
 ## Make your own sounds
 

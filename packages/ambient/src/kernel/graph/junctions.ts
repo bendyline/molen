@@ -7,6 +7,7 @@
  */
 
 import { dmath } from '@bendyline/molen-kernel/determinism';
+import { isArterialRoad } from '@bendyline/molen-terrain/kernel';
 import { connectorLength, laneSample, sampleLaneBody } from './sample';
 import type {
   JunctionArm,
@@ -31,9 +32,14 @@ export interface GraphStore {
   setJunction(junction: TransportJunction): void;
   deleteJunction(id: string): void;
   /** Whether a mapped traffic-signal point lies within `radius` of a point. */
-  signalNear(x: number, z: number, radius: number): boolean;
+  signalNear(x: number, z: number, radius: number, layer?: number): boolean;
   /** Stop and yield signs within `radius` of a point. */
-  giveWayNear(x: number, z: number, radius: number): readonly { x: number; z: number }[];
+  giveWayNear(
+    x: number,
+    z: number,
+    radius: number,
+    layer?: number,
+  ): readonly { x: number; z: number; allWay?: boolean }[];
 }
 
 interface Arm {
@@ -370,23 +376,23 @@ function buildJunction(
     groups++;
   }
 
-  const major = arms.some(
-    (a) =>
-      a.edge.width >= 10 ||
-      a.edge.kind === 'trunk' ||
-      a.edge.kind === 'primary' ||
-      a.edge.kind === 'secondary' ||
-      a.edge.kind === 'tertiary',
-  );
+  const major = arms.filter((a) => isArterialRoad(a.edge.kind, a.edge.width)).length;
   const minor = arms.filter(
     (a) => a.edge.kind === 'service' || a.edge.kind === 'living' || a.edge.link,
   ).length;
   // A stop or yield sign makes the arm it stands on give way.
   let signed = 0;
-  for (const sign of store.giveWayNear(cx, cz, radius + 20)) {
+  for (const sign of store.giveWayNear(cx, cz, radius + 20, group[0]?.layer)) {
     const sx = sign.x - cx;
     const sz = sign.z - cz;
     const length = dmath.hypot(sx, sz);
+    if (sign.allWay && length <= 4) {
+      for (const arm of junctionArms) {
+        if (!arm.yields) signed++;
+        arm.yields = true;
+      }
+      continue;
+    }
     let best: JunctionArm | undefined;
     let bestDot = Number.NEGATIVE_INFINITY;
     for (const arm of junctionArms) {
@@ -402,9 +408,13 @@ function buildJunction(
     }
   }
   let control: JunctionControl = 'none';
-  if (groups >= 2 && ((n >= 4 && major) || store.signalNear(cx, cz, radius + 20)))
+  if (
+    groups >= 2 &&
+    (store.signalNear(cx, cz, radius + 20, group[0]?.layer) ||
+      (n >= 4 && major >= 4 && signed === 0))
+  )
     control = 'signal';
-  else if ((minor > 0 && minor < n) || (signed > 0 && signed < n)) control = 'yield';
+  else if ((minor > 0 && minor < n) || signed > 0) control = 'yield';
   return {
     id,
     x: cx,

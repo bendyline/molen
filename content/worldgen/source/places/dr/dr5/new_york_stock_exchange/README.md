@@ -18,4 +18,4 @@ Source-specific USGS NY_CMPG_2013ground unchanged;1msampling does not establish 
 
 Original photo pixels are not model textures. Ordinary catalog shared graphs, opaque exterior glass, no full-site terrain pad/cutout/generic parent-footprint replacement.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=new_york_stock_exchange`. Add `--check` to verify exact regeneration. 57027 triangles; 6 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=new_york_stock_exchange`. Add `--check` to verify exact regeneration. 118253 triangles; 6 materials; no embedded photographs.

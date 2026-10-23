@@ -1,0 +1,259 @@
+{
+  "variant": "Single-seat Rafale C, clean airframe; early three-display cockpit layout with simulator flight pages",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://www.dassault-aviation.com/en/defense/rafale/specifications-and-performance-data/",
+      "title": "Rafale specifications",
+      "author": "Dassault Aviation",
+      "license": "Factual dimensional reference",
+      "scope": "10.90m span, 15.30m length and 5.30m height."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Dassault_Rafale_3-view_line_drawing.svg",
+      "title": "Rafale B three-view, 2012/2013",
+      "author": "Kaboldy",
+      "license": "CC BY-SA 3.0; https://creativecommons.org/licenses/by-sa/3.0/",
+      "scope": "Shared wing, canards, body, fin and nozzle arrangement only. B canopy and rear cockpit are deliberately not reproduced. Illustrator drawing, not engineering data; detached gear cartoons excluded."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Dassault_Rafale_C_%27142_-_113-GU%27_%2814608203075%29.jpg",
+      "title": "Rafale C 142 / 113-GU, 23 June 2014",
+      "author": "Alan Wilson",
+      "license": "CC BY-SA 2.0, Flickr license reviewed 12 July 2014; https://creativecommons.org/licenses/by-sa/2.0/",
+      "scope": "C canopy profile and bow, body curvature, intake lip and canard placement. Oblique flight view, not dimensional metrology. Tiger paint and stores omitted."
+    },
+    {
+      "url": "https://www.dassault-aviation.com/en/defense/rafale/synthesise-and-facilitate/",
+      "title": "Rafale pilot interface",
+      "author": "Dassault Aviation",
+      "license": "Manufacturer description, factual reference",
+      "scope": "HUD, central head-level display, two lateral touch displays and HOTAS architecture."
+    },
+    {
+      "url": "https://omnirole-rafale.com/wp-content/uploads/2018/05/Fox-3-06.pdf",
+      "title": "Fox Three No.6, pages 2–3",
+      "author": "Rafale International / Dassault Aviation",
+      "license": "Manufacturer publication on third-party archive; copyright retained, local study only",
+      "scope": "Front cockpit photograph on page 3. Main display recess, lateral screens, HUD, control strips, right side-stick and left throttle. Early installation; exact block and physical dimensions unverified."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Martin-Baker_Mk.F16F_ejection_seat_PAS_2013.jpg",
+      "title": "F16F Rafale seat at Paris Air Show, 19 June 2013",
+      "author": "Julian Herzog",
+      "license": "CC BY 4.0; https://creativecommons.org/licenses/by/4.0/",
+      "scope": "Headbox, cushions, side shells, straps, buckles and pull handle; display seat, no measured scale."
+    }
+  ],
+  "excludedReferences": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Dassault_Rafale_3-view_line_drawing.jpg",
+      "reason": "Small drawing labels 15.80m length and 11.20m span, inconsistent with the production C; appears to depict the prototype. Not used for geometry."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      3,
+      4.07
+    ],
+    "lookAt": [
+      0,
+      2.58,
+      4.92
+    ],
+    "fov": 82
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2.56
+    ],
+    "viewHeight": 1.12,
+    "cameraHeight": 5.45
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 0,
+    "flapPosition": 0,
+    "loadFactor": 1,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "exteriorState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 0,
+    "flapPosition": 0,
+    "loadFactor": 1,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/rafale-b-three-view.png",
+      "crop": {
+        "left": 8,
+        "top": 0,
+        "width": 1155,
+        "height": 337
+      },
+      "referenceAnchor": [
+        20,
+        409.45
+      ],
+      "modelAnchor": [
+        -8.3,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 1130,
+        "meters": 15.3,
+        "description": "Published overall length; fin height independently places ground datum. B canopy is a variant mismatch, not a fit target."
+      },
+      "scope": "Shared body, intake, canard, fin, wing and exhaust profile. C canopy separately compared to C photograph."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/rafale-top.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 830,
+        "height": 1155
+      },
+      "referenceAnchor": [
+        414,
+        1142
+      ],
+      "modelAnchor": [
+        0,
+        8.3
+      ],
+      "scaleControls": {
+        "pixels": 1130,
+        "meters": 15.3,
+        "description": "One uniform length scale; independently retain 10.90m span."
+      },
+      "scope": "Delta wing, canards, engine shoulders and fin. B canopy and all external stores excluded."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/rafale-front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 830,
+        "height": 419
+      },
+      "referenceAnchor": [
+        419,
+        410
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 806,
+        "meters": 10.9,
+        "description": "Independent published span; fin height places ground datum."
+      },
+      "scope": "Fin height, semi-ventral intakes, wing anhedral and fuselage sections; detached gear cartoons excluded."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/rafale-panel-reference.png",
+      "crop": {
+        "left": 100,
+        "top": 380,
+        "width": 1000,
+        "height": 480
+      },
+      "referenceAnchor": [
+        592,
+        584
+      ],
+      "modelAnchor": [
+        0,
+        -2.51
+      ],
+      "scaleControls": {
+        "pixels": 240,
+        "meters": 0.254,
+        "description": "Provisional central display width, NOT independently measured. Used only for relative layout; perspective and optical recess prevent a metric whole-panel validation."
+      },
+      "scope": "Relative positions of HLD recess, lateral screens, coaming and lower keypad. Not an engineering-calibrated cockpit fit.",
+      "edgeMode": "photo"
+    }
+  ],
+  "additionalPhotoComparison": {
+    "sourceHash": "sha256:dbe48a0e1d328e57af6120615a9726dc9c3b1dd4d9d7b38b48d38ea71418f798",
+    "reference": "https://commons.wikimedia.org/wiki/File:Dassault_Rafale_C_%27142_-_113-GU%27_%2814608203075%29.jpg",
+    "rotationDegrees": 16.9,
+    "noseOn1800pxImage": [
+      68.4,
+      386.25
+    ],
+    "nozzleOn1800pxImage": [
+      1510,
+      792
+    ],
+    "modelNose": [
+      8.3,
+      1.625
+    ],
+    "modelNoseToNozzleLength": 14.24,
+    "uniformScale": 0.8209815362414495,
+    "translation": [
+      -57,
+      -278
+    ],
+    "scope": "Approximate side silhouette and C canopy comparison. Perspective, attitude and stores preclude exact dimensional acceptance.",
+    "output": ".artifacts\\aircraft\\rafale-c-photo-overlay.jpg",
+    "inspected": true
+  },
+  "reviewNotes": {
+    "corrections": [
+      "Dedicated C forebody, single-seat canopy and bow, ventral twin oval intakes, narrowed lower engine-body sections, delta wing, separate canards, swept elevons, single fin and paired petal nozzles replace the shared prototype.",
+      "B three-view used only for shared airframe features; C photo separately checked. Prototype drawing excluded because its dimensions disagree with production aircraft.",
+      "Cockpit has a recessed and inclined central HLD, two lateral touch displays, lower keypad, wide combiner, right side-stick, left twin throttles and a reclined F16F-style seat with harness.",
+      "Pilot-eye checks corrected the HLD casing gap and relocated the HUD projector forward so it clears the central display while remaining beneath the windscreen.",
+      "Live attitude, true heading, true airspeed, geometric altitude and vertical-speed pages use common model.signals expressions. Missing values blank; signed altitude is preserved. Swept elevons use fixed physical hinge axes and combine pitch/roll."
+    ],
+    "independentDimensions": "Manufacturer envelope: length 15.30m, span 10.90m, height 5.30m. Exterior overlays use uniform scales from independent span/length. Cockpit photo has no verified physical dimensions; its scale is explicitly provisional.",
+    "visual": "Personally inspected four drawing/photo-edge overlays, the separate C photo overlay, eight standard views and twelve detailed cockpit/control/exterior states at source dbe48a0e1d328e57af6120615a9726dc9c3b1dd4d9d7b38b48d38ea71418f798. Verified unobstructed HLD, recessed screens, canopy/HUD clearance, open intake/nozzle mouths, missing-data blanking, negative altitude and opposite control deflections.",
+    "limitations": [
+      "Shared-airframe illustrator three-view is Rafale B; C canopy is checked against an oblique photograph. The latter cannot certify dimensions, cross-sections or perspective-dependent tail alignment.",
+      "Fox Three cockpit photograph is small and from an early installation. Display sizes, coaming depth, console switches and seat placement are approximations; no production-block or engineering-drawing accuracy is claimed.",
+      "HLD and lateral screens show labeled simulator flight pages, without optical collimation or authentic mission software. Engine, fuel and sensor values remain unavailable rather than invented.",
+      "TAS and geometric altitude are labeled; pitot/static instruments, radar, fuel/electrical systems and Rafale flight-control laws are not simulated. Gear retraction and control scheduling remain simplified.",
+      "Selected panel boundaries, fasteners and markings are modeled; full maintenance-level skin details, exact intake curvature, inner engine machinery and all cockpit switch functions remain simplified."
+    ]
+  },
+  "sourceHash": "sha256:dbe48a0e1d328e57af6120615a9726dc9c3b1dd4d9d7b38b48d38ea71418f798",
+  "runtimeHash": "sha256:417ec7ea5267afd2291051940637316227c746f99d927093474e69c8a315b381",
+  "limitations": [
+    "Shared-airframe illustrator three-view is Rafale B; C canopy is checked against an oblique photograph. The latter cannot certify dimensions, cross-sections or perspective-dependent tail alignment.",
+    "Fox Three cockpit photograph is small and from an early installation. Display sizes, coaming depth, console switches and seat placement are approximations; no production-block or engineering-drawing accuracy is claimed.",
+    "HLD and lateral screens show labeled simulator flight pages, without optical collimation or authentic mission software. Engine, fuel and sensor values remain unavailable rather than invented.",
+    "TAS and geometric altitude are labeled; pitot/static instruments, radar, fuel/electrical systems and Rafale flight-control laws are not simulated. Gear retraction and control scheduling remain simplified.",
+    "Selected panel boundaries, fasteners and markings are modeled; full maintenance-level skin details, exact intake curvature, inner engine machinery and all cockpit switch functions remain simplified."
+  ]
+}

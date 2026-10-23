@@ -234,6 +234,11 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
           "buildingCutout": {
             "type": "object",
             "properties": {
+              "minimumCoverage": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1
+              },
               "outline": {
                 "minItems": 3,
                 "maxItems": 512,
@@ -541,6 +546,14 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
                   "minLength": 1
                 }
               },
+              "names": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
               "tags": {
                 "type": "object",
                 "propertyNames": {
@@ -578,6 +591,34 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
             "items": false,
             "minItems": 3,
             "maxItems": 3
+          },
+          "bounds": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              }
+            ],
+            "items": false,
+            "minItems": 4,
+            "maxItems": 4
           },
           "orientation": {
             "type": "string",

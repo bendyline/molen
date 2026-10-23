@@ -28,13 +28,41 @@ function digest(body: FigureBody): string {
   return hashBytes(bytes);
 }
 
-const BUDGET: Record<FigureTier, [number, number]> = {
-  0: [600, 4000],
-  1: [200, 1200],
-  2: [200, 1200],
+const ANIMAL_BUDGET: Record<FigureTier, [number, number]> = {
+  0: [2500, 8500],
+  1: [1200, 3400],
+  2: [600, 1800],
+};
+
+const HUMAN_BUDGET: Record<FigureTier, [number, number]> = {
+  0: [3000, 8500],
+  1: [1000, 2600],
+  2: [500, 1200],
 };
 
 describe('procedural bodies', () => {
+  it('keeps human clothing and hair variants finite and cheaper at every lower tier', () => {
+    for (const hair of ['none', 'cap', 'bob', 'long'] as const) {
+      for (const sleeves of ['none', 'short', 'long'] as const) {
+        for (const legs of ['shorts', 'long'] as const) {
+          const d = resolveFigureDescriptor({
+            preset: 'human.adult',
+            features: { hair, sleeves, legs },
+          });
+          let previous = Infinity;
+          for (const tier of [0, 1, 2] as const) {
+            const { buffers } = generateFigureBody(d, tier);
+            expect(buffers.triangleCount).toBeLessThan(previous);
+            expect(buffers.triangleCount).toBeLessThanOrEqual(HUMAN_BUDGET[tier][1]);
+            expect([...buffers.positions, ...buffers.normals].every(Number.isFinite)).toBe(true);
+            expect(buffers.weights?.every((w) => w >= 0 && w <= 1) ?? true).toBe(true);
+            previous = buffers.triangleCount;
+          }
+        }
+      }
+    }
+  });
+
   for (const preset of FIGURE_PRESET_IDS) {
     describe(preset, () => {
       const descriptor = resolveFigureDescriptor({ preset });
@@ -45,8 +73,9 @@ describe('procedural bodies', () => {
           const { buffers } = body;
           expect(buffers.tier).toBe(tier);
           expect(buffers.indices.length % 3).toBe(0);
-          expect(buffers.triangleCount).toBeGreaterThanOrEqual(BUDGET[tier][0]);
-          expect(buffers.triangleCount).toBeLessThanOrEqual(BUDGET[tier][1]);
+          const budget = descriptor.archetype === 'biped' ? HUMAN_BUDGET : ANIMAL_BUDGET;
+          expect(buffers.triangleCount).toBeGreaterThanOrEqual(budget[tier][0]);
+          expect(buffers.triangleCount).toBeLessThanOrEqual(budget[tier][1]);
           for (const index of buffers.indices) expect(index).toBeLessThan(buffers.vertexCount);
           for (const v of buffers.positions) expect(Number.isFinite(v)).toBe(true);
           for (let i = 0; i < buffers.normals.length; i += 3) {

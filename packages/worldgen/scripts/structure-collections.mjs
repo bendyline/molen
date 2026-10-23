@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 const qid = /^Q[1-9][0-9]*$/;
 const asset = /^molen\.worldgen\.structure\.[a-z0-9_]+$/;
 const id = /^N\d+(?:_[A-Z0-9]+)?$/;
+const featureId = /^(?:node|way|relation)\/[1-9][0-9]*$/;
 
 /** Keep the serialized wrapper bounded to explicit IDs and optional read-only verification. */
 export function structureImportArgs(args) {
@@ -44,11 +45,15 @@ export function validateStructureCollections(document, candidates = []) {
     )
       throw new Error(`${collection.id}: every required member must be declared`);
     const evidence = collection.membershipEvidence;
-    const expected = new Set(evidence?.wikidataIds ?? []);
+    const mappedMembers = collection.identityKind === 'osm-members';
+    if (collection.identityKind && !mappedMembers)
+      throw new Error(`${collection.id}: unsupported member identity kind`);
+    const identity = (member) => (mappedMembers ? member.featureId : member.wikidataId);
+    const expected = new Set((mappedMembers ? evidence?.featureIds : evidence?.wikidataIds) ?? []);
     if (
       !/^https?:\/\//.test(evidence?.source ?? '') ||
       expected.size !== collection.requiredCount ||
-      collection.members.some((member) => !expected.has(member.wikidataId))
+      collection.members.some((member) => !expected.has(identity(member)))
     )
       throw new Error(`${collection.id}: members differ from attributed membership evidence`);
     const localIds = new Set(),
@@ -58,7 +63,11 @@ export function validateStructureCollections(document, candidates = []) {
         !id.test(member.id) ||
         member.id === collection.id ||
         !qid.test(member.wikidataId) ||
-        member.wikidataId === collection.wikidataId ||
+        (mappedMembers
+          ? !featureId.test(member.featureId) ||
+            (member.wikidataId !== collection.wikidataId &&
+              member.identitySource !== `https://www.wikidata.org/wiki/${member.wikidataId}`)
+          : member.wikidataId === collection.wikidataId || member.featureId !== undefined) ||
         !member.title ||
         !asset.test(member.assetId) ||
         !/^[a-z0-9_]+$/.test(member.sourceKey) ||
@@ -67,21 +76,24 @@ export function validateStructureCollections(document, candidates = []) {
         !Number.isFinite(member.referenceCoordinate?.latitude)
       )
         throw new Error(`${collection.id}: invalid independent member ${member.id}`);
-      if (localIds.has(member.id) || localQids.has(member.wikidataId))
+      if (localIds.has(member.id) || localQids.has(identity(member)))
         throw new Error(`${collection.id}: duplicate member identity`);
       localIds.add(member.id);
-      localQids.add(member.wikidataId);
+      localQids.add(identity(member));
       // A named structure already in another candidate/collection must be referenced, not copied.
-      for (const existing of candidates.filter((entry) => entry.wikidataId === member.wikidataId)) {
+      for (const existing of candidates.filter(
+        (entry) =>
+          entry.wikidataId === member.wikidataId && (!mappedMembers || entry.id !== collection.id),
+      )) {
         if (
           existing.id !== member.id ||
           (existing.modelRef && existing.modelRef !== member.assetId)
         )
           throw new Error(`${member.id}: reuse existing identity ${existing.id}`);
       }
-      const signature = `${member.id}/${member.wikidataId}/${member.assetId}`;
+      const signature = `${member.id}/${identity(member)}/${member.assetId}`;
       for (const [map, key] of [
-        [identities, member.wikidataId],
+        [identities, identity(member)],
         [ids, member.id],
         [assets, member.assetId],
       ]) {
@@ -128,7 +140,12 @@ export function validateCollectionSpec(spec, collections) {
   const member = collectionMember(collections, spec.id);
   if (/^N\d+_/.test(spec.id) && !member)
     throw new Error(`${spec.id}: undeclared collection member`);
-  if (member && (spec.wikidataId !== member.wikidataId || spec.assetId !== member.assetId))
+  if (
+    member &&
+    (spec.wikidataId !== member.wikidataId ||
+      spec.assetId !== member.assetId ||
+      spec.mapFeatureId !== member.featureId)
+  )
     throw new Error(`${spec.id}: source differs from collection member identity`);
   if (
     spec.collectionId &&
@@ -146,5 +163,51 @@ export function validateCollectionSpec(spec, collections) {
 export function collectionModelRefs(collection, registeredAssets) {
   return collection.members
     .filter((member) => registeredAssets[member.assetId] !== undefined)
-    .map((member) => ({ id: member.id, wikidataId: member.wikidataId, asset: member.assetId }));
+    .map((member) => ({
+      id: member.id,
+      wikidataId: member.wikidataId,
+      ...(member.featureId ? { featureId: member.featureId } : {}),
+      asset: member.assetId,
+    }));
+}
+
+/** Dense mapped groups can use an explicit small radius; legacy authoring retains 80 metres. */
+export function authoredMapMatchRadius(proposal) {
+  const radius =
+    proposal.mapIdentity?.maxDistance === undefined ? 80 : proposal.mapIdentity.maxDistance;
+  if (!Number.isFinite(radius) || radius <= 0 || radius > 80)
+    throw new Error('Authored map match radius must be greater than zero and at most 80 metres');
+  return radius;
+}
+
+/** Shared site QIDs are safe only for declared distinct map members with disjoint match radii. */
+export function distinctMappedCollectionPlacement(spec, proposal, existing, collections) {
+  const collection = collections.find((entry) => entry.id === spec.collectionId);
+  if (collection?.identityKind !== 'osm-members') return false;
+  const member = collection.members.find((entry) => entry.id === spec.id);
+  const other = collection.members.find((entry) => entry.assetId === existing.asset);
+  if (
+    !member ||
+    !other ||
+    member.featureId === other.featureId ||
+    member.featureId !== spec.mapFeatureId ||
+    spec.wikidataId !== collection.wikidataId ||
+    existing.mapIdentity?.wikidata !== collection.wikidataId
+  )
+    return false;
+  const distance = ([lon, lat], [lon2, lat2]) =>
+    Math.hypot((lon2 - lon) * Math.cos(((lat + lat2) * Math.PI) / 360), lat2 - lat) * 111319.490793;
+  const coordinate = (entry) => [
+    entry.referenceCoordinate.longitude,
+    entry.referenceCoordinate.latitude,
+  ];
+  const existingRadius = existing.mapIdentity.maxDistance ?? 150;
+  if (!Number.isFinite(existingRadius) || existingRadius <= 0) return false;
+  return (
+    proposal.anchor?.every(Number.isFinite) &&
+    existing.anchor?.every(Number.isFinite) &&
+    distance(proposal.anchor, coordinate(member)) < 2 &&
+    distance(existing.anchor, coordinate(other)) < 2 &&
+    distance(proposal.anchor, existing.anchor) > authoredMapMatchRadius(proposal) + existingRadius
+  );
 }

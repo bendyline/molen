@@ -1,0 +1,316 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "concrete": {
+      "graph": "concrete_plain",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "floor": {
+      "graph": "concrete_plain",
+      "slot": "trim",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "facing": {
+      "graph": "concrete_plain",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -5.65685424949238,
+      17.179919033327064,
+      41.01219330881976
+    ],
+    "lookAt": [
+      -0.3535533905932738,
+      10.179919033327064,
+      0.3535533905932738
+    ],
+    "fov": 42
+  },
+  "qaCameras": [
+    {
+      "name": "concave-face-and-base-contact",
+      "position": [
+        -5.6568542494923815,
+        4.679919033327065,
+        12.727922061357857
+      ],
+      "lookAt": [
+        -0.3535533905932738,
+        4.979919033327064,
+        0.3535533905932738
+      ],
+      "fov": 48
+    },
+    {
+      "name": "curved-open-top-and-side-edges",
+      "position": [
+        -1.414213562373095,
+        24.179919033327064,
+        8.485281374238571
+      ],
+      "lookAt": [
+        -0.28284271247461906,
+        20.679919033327064,
+        0.28284271247461906
+      ],
+      "fov": 40
+    },
+    {
+      "name": "convex-rear-and-narrow-profile",
+      "position": [
+        6.363961030678929,
+        13.179919033327064,
+        -41.71930009000631
+      ],
+      "lookAt": [
+        -0.28284271247461906,
+        10.179919033327064,
+        0.28284271247461906
+      ],
+      "fov": 40
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -5.65685424949238,
+        17.179919033327064,
+        41.01219330881976
+      ],
+      "lookAt": [
+        -0.3535533905932738,
+        10.179919033327064,
+        0.3535533905932738
+      ],
+      "fov": 42,
+      "name": "yad-heroism-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -5.65685424949238,
+        17.179919033327064,
+        41.01219330881976
+      ],
+      "lookAt": [
+        -0.3535533905932738,
+        10.179919033327064,
+        0.3535533905932738
+      ],
+      "fov": 42,
+      "name": "yad-heroism-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -5.65685424949238,
+        17.179919033327064,
+        41.01219330881976
+      ],
+      "lookAt": [
+        -0.3535533905932738,
+        10.179919033327064,
+        0.3535533905932738
+      ],
+      "fov": 42,
+      "name": "yad-heroism-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -5.65685424949238,
+        17.179919033327064,
+        41.01219330881976
+      ],
+      "lookAt": [
+        -0.3535533905932738,
+        10.179919033327064,
+        0.3535533905932738
+      ],
+      "fov": 42,
+      "name": "yad-heroism-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.17991903332706444,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/yad-heroism-model.mjs",
+    "export": "buildYadHeroismSkyline",
+    "errorMeters": 0.25,
+    "authoredLevels": {
+      "district": {
+        "export": "buildYadHeroismDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "facing": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildYadHeroismStreet",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "facing": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildYadHeroismCloseup",
+        "errorMeters": 0.015,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "facing": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      35.175830125808716,
+      31.774442097494884
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Use the original Protomaps20261020/Mapzen201x201/6m hill. Uncovered attachment internal[0,3.5] has datum802.5362818088785m. A small closed footing follows the working local contact height, about0.075m above the sampled point; no precinct slab. Ground is cut only under this closed footing, never under its open surroundings. No building is owned or removed. Keep all roads, independent buildings and water input. Inspect native base contact before activation; exact forecourt/threshold/accessibility is unverified. Corrected native whole/base/top/rear views inspected during this authoring pass. Approximate exterior fit accepted: the small contact footing seats in original grade and its inset cutout is covered by the closed floor/edge. A modest exposed curb and slight uphill burial reflect the original coarse slope. Narrow curved section and open concavity survive every level; no broad plaza or independent footprint is replaced. Exact height/section, inscription, forecourt and accessibility are unverified. Pale concrete was selected from the actual photographed appearance after rejecting an overly dark metallic treatment.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      35.17577729167921,
+      31.774397181730677,
+      35.17588295993822,
+      31.77448701325909
+    ],
+    "terrainReference": {
+      "anchor": [
+        35.17580397424884,
+        31.774419865325868
+      ],
+      "modelHeight": 0,
+      "basis": "Use the original Protomaps20261020/Mapzen201x201/6m hill. Uncovered attachment internal[0,3.5] has datum802.5362818088785m. A small closed footing follows the working local contact height, about0.075m above the sampled point; no precinct slab. Ground is cut only under this closed footing, never under its open surroundings. No building is owned or removed. Keep all roads, independent buildings and water input. Inspect native base contact before activation; exact forecourt/threshold/accessibility is unverified."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -0.7622611101190981,
+          -0.8397600133371437
+        ],
+        [
+          0.8397600133371437,
+          0.7622611101190981
+        ],
+        [
+          -0.015556349186104157,
+          1.617577472642346
+        ],
+        [
+          -1.617577472642346,
+          0.015556349186104157
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -0.7622611101190981,
+            -0.8397600133371437
+          ],
+          [
+            0.8397600133371437,
+            0.7622611101190981
+          ],
+          [
+            -0.015556349186104157,
+            1.617577472642346
+          ],
+          [
+            -1.617577472642346,
+            0.015556349186104157
+          ]
+        ]
+      ],
+      "basis": "Only the small closed contact footing. Forecourt and independent structures remain uncut."
+    },
+    "notes": "Shared campus Q156591 plus distinct named node6406261262/native17598592305678. Ordinary photos explicitly identify the Pillar of Heroism; their Commons structured data also links independent artwork Q56696132. The existing collection retains its campus identity and unique node. The southwest approach in the standard map and the Children's Memorial behind/left in the base photo support a southwest-facing concavity. Heading0 bakes internal+X southeast/+Z southwest into world east/south; facing uncertainty25degrees is explicit, not a surveyed bearing. Use the original Protomaps20261020/Mapzen201x201/6m hill. Uncovered attachment internal[0,3.5] has datum802.5362818088785m. A small closed footing follows the working local contact height, about0.075m above the sampled point; no precinct slab. Ground is cut only under this closed footing, never under its open surroundings. No building is owned or removed. Keep all roads, independent buildings and water input. Inspect native base contact before activation; exact forecourt/threshold/accessibility is unverified. Corrected native whole/base/top/rear views inspected during this authoring pass. Approximate exterior fit accepted: the small contact footing seats in original grade and its inset cutout is covered by the closed floor/edge. A modest exposed curb and slight uphill burial reflect the original coarse slope. Narrow curved section and open concavity survive every level; no broad plaza or independent footprint is replaced. Exact height/section, inscription, forecourt and accessibility are unverified. Pale concrete was selected from the actual photographed appearance after rejecting an overly dark metallic treatment."
+  }
+}

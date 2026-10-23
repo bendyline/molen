@@ -213,7 +213,7 @@ export class SkinnedMeshBuilder {
     if (a.sides !== b.sides) throw new Error('loft rings must have the same side count');
     for (let i = 0; i < a.sides; i++) {
       const j = (i + 1) % a.sides;
-      this.quad(region, a.start + i, b.start + i, b.start + j, a.start + j);
+      this.quad(region, a.start + i, a.start + j, b.start + j, b.start + i);
     }
   }
 
@@ -229,8 +229,8 @@ export class SkinnedMeshBuilder {
     const center = this.vertex(apex ?? ring.center, color, s);
     for (let i = 0; i < ring.sides; i++) {
       const j = (i + 1) % ring.sides;
-      if (outward) this.triangle(region, center, ring.start + j, ring.start + i);
-      else this.triangle(region, center, ring.start + i, ring.start + j);
+      if (outward) this.triangle(region, center, ring.start + i, ring.start + j);
+      else this.triangle(region, center, ring.start + j, ring.start + i);
     }
     return center;
   }

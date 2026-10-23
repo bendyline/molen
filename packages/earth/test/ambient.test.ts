@@ -97,7 +97,9 @@ describe('earth ambient life', () => {
     const layer = new THREE.Group();
     parent.add(layer);
     const ambient = new EarthAmbient({ parent, settings: {} });
-    ambient.added(layer, tile(), context());
+    const mapped = tile();
+    mapped.pois = [{ class: 'traffic_signals', point: [0.5, 0.5] }];
+    ambient.added(layer, mapped, context());
     ambient.sync(0, { position: [5200, 2, -2800], direction: [0, 0, 1] });
     ambient.handle.flush();
     const junction = [...ambient.handle.network.junctionList()].find((j) => j.control === 'signal');

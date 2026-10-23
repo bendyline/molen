@@ -1,0 +1,174 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.chevrolet_onix_2024": {
+      "doc": "2024 Chevrolet Onix; left-hand drive regional configuration. Original polygonal reference interpretation, simplified trim and game handling.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.chevrolet_onix_2024",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.chevrolet_onix_2024",
+          "color": "#c4cbd0",
+          "spec": {
+            "label": "2024 Chevrolet Onix",
+            "bodyStyle": "hatchback",
+            "genericLabel": "Subcompact hatchback",
+            "width": 2.03,
+            "length": 4.343,
+            "height": 1.556,
+            "centerOfMass": [
+              0,
+              0.44279999999999997,
+              0
+            ],
+            "wheelbase": 2.551,
+            "wheelTrack": 1.4878,
+            "wheelRadius": 0.3,
+            "mass": 1222,
+            "engineForce": 4154.8,
+            "maxSpeed": 50,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [
+              0.3979,
+              1.206,
+              0.2412
+            ],
+            "drive": "front",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.17,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.3979,
+                1.206,
+                0.2412
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.315,
+              0,
+              0.2412
+            ]
+          ],
+          "exits": [
+            [
+              1.415,
+              0,
+              0.2412
+            ],
+            [
+              -1.415,
+              0,
+              0.2412
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1,
+          "colors": [
+            "#c4cbd0",
+            "#deded7",
+            "#555c63",
+            "#a8adb0",
+            "#314852"
+          ]
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.chevrolet_onix_2024"
+      ]
+    }
+  }
+}

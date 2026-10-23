@@ -19,7 +19,7 @@ Own map footprints; native Y0 is estimated local ground contact. Original exteri
 
 ## Build
 
-Run node packages/worldgen/scripts/generate-ksiaz-palm-services.mjs --ids=KSI_L03 (or --check).
+Run node content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/generate-ksiaz-palm-services.mjs --ids=KSI_L03 (or --check).
 
 3693 triangles;446828 source bytes;6 merged material groups;no embedded images. Five existing shared plaster, tile, rubble, brick and timber graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Runtime LODs are separate generated outputs. Research scans and photographs are not redistributed or used as textures.
 

@@ -13,14 +13,18 @@ import {
 } from './linear-features';
 import { normalizeRing, pointInPolygon, polygonBounds } from './polygon';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
+import { DEFAULT_ROAD_SIGN_PROFILE, type TerrainRoadSignProfile } from './road-sign-styles';
 import type {
   TerrainSemanticPoint,
   TerrainSemanticPolygon,
   TerrainSemanticTile,
 } from './semantic-types';
 import { appendBridgeStructure, bridgeDeckProfile } from './surface-bridges';
+import { incomingArm, surfaceJunctionControls } from './surface-controls';
 import { isSurfaceLink, SurfaceNetwork, type SurfaceRoad } from './surface-network';
 import { inferTerrainParkingAreas } from './surface-parking';
+import { appendSurfaceSign } from './surface-sign-mesh';
+import { planSurfaceSigns } from './surface-signage';
 import {
   appendTerrainSignalLenses,
   type TerrainSignalHead,
@@ -40,6 +44,7 @@ export interface TerrainSurfaceStats {
   junctions: number;
   streetlights: number;
   trafficSignals: number;
+  roadSigns: number;
   parkingBays: number;
   parkedCars: number;
   detailLimited: boolean;
@@ -79,6 +84,20 @@ function hash(x: number, z: number): number {
   return ((value ^ (value >>> 16)) >>> 0) / 4294967296;
 }
 
+/** Stable weighted selection, shared by synchronous and worker surface generation. */
+export function pickParkedVehicle(
+  vehicles: readonly TerrainParkedVehicle[],
+  u: number,
+): TerrainParkedVehicle | undefined {
+  const eligible = vehicles.filter((v) => Number.isFinite(v.weight ?? 1) && (v.weight ?? 1) > 0);
+  let draw = u * eligible.reduce((total, v) => total + (v.weight ?? 1), 0);
+  for (const v of eligible) {
+    draw -= v.weight ?? 1;
+    if (draw < 0) return v;
+  }
+  return eligible.at(-1);
+}
+
 /** Surface meshes are tile-local, clipped, batched and deterministic. */
 export function createTerrainSurfaceObject(
   tile: TerrainSemanticTile,
@@ -89,6 +108,7 @@ export function createTerrainSurfaceObject(
 ): THREE.Group {
   const style = resolveTerrainSurfaceStyle(options.style, options.details);
   const details = options.details ?? {};
+  const signProfile = options.signProfile ?? DEFAULT_ROAD_SIGN_PROFILE;
   const parkedVehicles = details.parkedVehicles ?? [];
   const detailed =
     context.pyramid.maxLevel - context.address.level <= (details.detailLevelsBelowMax ?? 0);
@@ -103,6 +123,7 @@ export function createTerrainSurfaceObject(
     junctions: 0,
     streetlights: 0,
     trafficSignals: 0,
+    roadSigns: 0,
     parkingBays: 0,
     parkedCars: 0,
     detailLimited: false,
@@ -110,6 +131,12 @@ export function createTerrainSurfaceObject(
   group.userData.surfaceStats = stats;
   const network = new SurfaceNetwork(tile, context.tileSize, style);
   if (detailed) network.findJunctions();
+  const controls = surfaceJunctionControls(
+    tile,
+    network.junctions,
+    context.tileSize,
+    details.inferStopSigns ?? signProfile.inferStopSigns,
+  );
   const pavement = new TerrainSurfaceMeshBuilder(context);
   const roads = new TerrainSurfaceMeshBuilder(context);
   const edges = new TerrainSurfaceMeshBuilder(context);
@@ -172,6 +199,33 @@ export function createTerrainSurfaceObject(
     ).some((p) => pointInPolygon([x / context.tileSize, z / context.tileSize], p));
   const inTile = (x: number, z: number): boolean =>
     x >= 0 && z >= 0 && x < context.tileSize && z < context.tileSize;
+  const signs =
+    detailed && style.roadSigns !== false && (style.roadSigns || style.id === 'modern')
+      ? planSurfaceSigns(
+          tile,
+          context,
+          network,
+          controls,
+          blocked,
+          maxFixtures,
+          bridgeProfiles,
+          signProfile,
+          options.routeShields,
+        )
+      : [];
+  group.userData.roadSigns = signs;
+  const signFaces = new TerrainSurfaceMeshBuilder(context);
+  for (const sign of signs)
+    appendSurfaceSign(
+      signFaces,
+      fixtures,
+      sign,
+      options.fonts,
+      options.signFont,
+      options.routeShields,
+    );
+  fixtureCount += signs.length;
+  stats.roadSigns = signs.length;
   const band = (
     builder: TerrainSurfaceMeshBuilder,
     road: SurfaceRoad,
@@ -213,7 +267,13 @@ export function createTerrainSurfaceObject(
     // Draw only the exposed shoulder edges, avoiding a second sheet beneath the asphalt. They
     // are a few decimeters wide: below a pixel on coarser tiles, which are kilometers away, yet
     // draped segment by segment they were most of those tiles' memory.
-    const shoulderWidth = road.unpaved ? 0.7 : 0.3;
+    const shoulderWidth = road.unpaved
+      ? 0.7
+      : road.kind === 'motorway'
+        ? isSurfaceLink(road)
+          ? 0.8
+          : 2
+        : 0.3;
     if (detailed)
       for (const sign of [-1, 1])
         appendTerrainLineBand(
@@ -222,7 +282,7 @@ export function createTerrainSurfaceObject(
           {
             width: shoulderWidth,
             offset: sign * (road.width / 2 + shoulderWidth / 2),
-            color: style.shoulder,
+            color: road.kind === 'motorway' ? style.road : style.shoulder,
             elevation: elevation - 0.04,
           },
           { spacing: 6, ...clipPath, heightAt: bridgeProfiles.get(road) },
@@ -273,6 +333,20 @@ export function createTerrainSurfaceObject(
       }
       continue;
     }
+    if (style.markings && road.kind === 'motorway' && isSurfaceLink(road)) {
+      for (const side of [-1, 1])
+        band(
+          marks,
+          road,
+          {
+            width: 0.13,
+            offset: side * (road.width / 2 - 0.2),
+            color: style.white,
+            elevation: elevation + 0.045,
+          },
+          (points) => points.every((p) => !network.occupied(p[0], p[1], 0.1, road)),
+        );
+    }
     if (
       !style.markings ||
       road.kind === 'path' ||
@@ -315,7 +389,13 @@ export function createTerrainSurfaceObject(
       band(
         marks,
         road,
-        { width: 0.12, offset, color: style.white, elevation: elevation + 0.045, dash: [3, 6] },
+        {
+          width: 0.12,
+          offset,
+          color: style.white,
+          elevation: elevation + 0.045,
+          dash: road.kind === 'motorway' ? [3.6, 9] : [3, 6],
+        },
         clearJunction,
       );
     }
@@ -327,7 +407,10 @@ export function createTerrainSurfaceObject(
           {
             width: 0.13,
             offset: sign * (road.width / 2 - 0.3),
-            color: style.white,
+            color:
+              road.kind === 'motorway' && road.feature.oneway && sign === -1
+                ? style.center
+                : style.white,
             elevation: elevation + 0.045,
           },
           clearJunction,
@@ -352,6 +435,7 @@ export function createTerrainSurfaceObject(
   for (const node of network.junctions) {
     if (!inTile(node.x, node.z)) continue;
     stats.junctions++;
+    const control = controls.get(node);
     if (style.crossings)
       for (const arm of node.arms) {
         const x = arm.x,
@@ -368,9 +452,21 @@ export function createTerrainSurfaceObject(
             arm.road.elevation + 0.055,
           );
         }
-        if (style.markings && remaining-- > 0)
+        if (
+          style.markings &&
+          incomingArm(arm) &&
+          (control?.signal || control?.stops.has(arm)) &&
+          remaining-- > 0
+        )
           marks.polygon(
-            rectangle(x + arm.dx * 2.3, z + arm.dz * 2.3, arm.dx, arm.dz, arm.width - 0.7, 0.35),
+            rectangle(
+              x + arm.dx * 2.3 + (arm.road.feature.oneway ? 0 : (arm.dz * arm.width) / 4),
+              z + arm.dz * 2.3 - (arm.road.feature.oneway ? 0 : (arm.dx * arm.width) / 4),
+              arm.dx,
+              arm.dz,
+              arm.width / (arm.road.feature.oneway ? 1 : 2) - 0.7,
+              0.35,
+            ),
             white,
             arm.road.elevation + 0.055,
           );
@@ -459,11 +555,7 @@ export function createTerrainSurfaceObject(
         );
       }
       // A curbside mast reaches across the approach, with heads facing arriving traffic.
-      if (
-        style.trafficSignals &&
-        arms.length >= 4 &&
-        arms.some((arm) => arm.road.width >= 10 || arm.road.feature.class === 'major_road')
-      ) {
+      if (style.trafficSignals && control?.signal && incomingArm(a)) {
         stats.trafficSignals++;
         const sx = x + dx * 0.35,
           sz = z + dz * 0.35;
@@ -680,19 +772,19 @@ export function createTerrainSurfaceObject(
               fixtureCount < maxFixtures &&
               seed < (details.parkingOccupancy ?? 0.7)
             ) {
-              fixtureCount++;
-              stats.parkedCars++;
               const x = center[0],
                 z = center[1];
               const yaw = -angle + (side < 0 ? Math.PI : 0);
-              const color = ['#b7c0c5', '#566d82', '#914c40', '#e0dccc', '#3e4b50', '#8d989b'][
-                Math.floor(seed * 79) % 6
-              ] as string;
               const wx = context.origin[0] + x,
                 wz = context.origin[1] + z;
-              const vehicle = parkedVehicles[
-                Math.floor(hash(wx + 19.7, wz - 37.1) * parkedVehicles.length)
-              ] as TerrainParkedVehicle;
+              const vehicle = pickParkedVehicle(parkedVehicles, hash(wx + 19.7, wz - 37.1));
+              if (!vehicle) continue;
+              fixtureCount++;
+              stats.parkedCars++;
+              const palette = vehicle.colors?.length
+                ? vehicle.colors
+                : ['#b7c0c5', '#566d82', '#914c40', '#e0dccc', '#3e4b50', '#8d989b'];
+              const color = palette[Math.floor(seed * 79) % palette.length] as string;
               const kind = vehicle.id;
               const spec = vehicle.spec;
               const heights = [spec.wheelbase / 2, -spec.wheelbase / 2].flatMap((wheelZ) =>
@@ -726,6 +818,7 @@ export function createTerrainSurfaceObject(
     edges.mesh('surface:edges'),
     roads.mesh('semantic:transportation', roadMaterial),
     marks.mesh('surface:markings'),
+    signFaces.mesh('surface:road-signs', undefined, false),
     createTerrainBoxInstances(fixtures, 'surface:street-fixtures'),
   ]) {
     if (mesh) group.add(mesh);
@@ -733,7 +826,7 @@ export function createTerrainSurfaceObject(
   if (renderVehicles && vehicles.length)
     group.add(createParkedVehicleBatch(vehicles, context.origin));
   appendTerrainSignalLenses(group, signalHeads);
-  stats.detailLimited = remaining <= 0 || fixtureCount >= maxFixtures;
+  stats.detailLimited = remaining <= 0 || fixtureCount >= maxFixtures || signs.length >= 48;
   return group;
 }
 
@@ -773,8 +866,24 @@ export interface TerrainSurfaceRenderer {
 export function createTerrainSurfaceRenderer(
   initial: TerrainSurfaceOptions = {},
   generator?: TerrainSurfaceGenerator,
+  /** Resolve a tile's regional fleet on the host before serializing its worker job. */
+  parkedVehiclesAt?: (x: number, z: number) => readonly TerrainParkedVehicle[],
+  /** Resolve one country appearance per tile before worker serialization. Explicit options win. */
+  signProfileAt?: (x: number, z: number) => Readonly<TerrainRoadSignProfile> | undefined,
 ): TerrainSurfaceRenderer {
   let options = initial;
+  const optionsAt = (context: TerrainPyramidTileLayerContext): TerrainSurfaceOptions => {
+    const x = context.origin[0] + context.tileSize / 2,
+      z = context.origin[1] + context.tileSize / 2;
+    const profile = options.signProfile ?? signProfileAt?.(x, z);
+    return {
+      ...options,
+      ...(profile ? { signProfile: profile } : {}),
+      ...(parkedVehiclesAt
+        ? { details: { ...options.details, parkedVehicles: parkedVehiclesAt(x, z) } }
+        : {}),
+    };
+  };
   resolveTerrainSurfaceStyle(options.style, options.details);
   interface Entry {
     tile: TerrainSemanticTile;
@@ -810,7 +919,7 @@ export function createTerrainSurfaceRenderer(
     entry.controller?.abort();
     const controller = new AbortController();
     entry.controller = controller;
-    const requested = options;
+    const requested = optionsAt(entry.context);
     const build = async (): Promise<void> => {
       const object = generator
         ? await generator.generate(
@@ -840,7 +949,7 @@ export function createTerrainSurfaceRenderer(
     createTile(tile, context) {
       const root = register(tile, context);
       try {
-        const object = createTerrainSurfaceObject(tile, context, options);
+        const object = createTerrainSurfaceObject(tile, context, optionsAt(context));
         root.add(object);
         updateTerrainSurfaceSignals(object, signalTime, signalResolver);
         geometryRevision++;
@@ -907,6 +1016,7 @@ export function createTerrainSurfaceRenderer(
         junctions: 0,
         streetlights: 0,
         trafficSignals: 0,
+        roadSigns: 0,
         parkingBays: 0,
         parkedCars: 0,
         detailLimited: false,
@@ -925,6 +1035,7 @@ export function createTerrainSurfaceRenderer(
           'junctions',
           'streetlights',
           'trafficSignals',
+          'roadSigns',
           'parkingBays',
           'parkedCars',
         ] as const)

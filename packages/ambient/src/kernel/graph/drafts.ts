@@ -244,7 +244,7 @@ export function featureDrafts(input: TileDraftInput, options: FeatureDraftOption
             : transportWidth(feature, kind);
     const lanes = classified.class === 'road' ? roadLanes(feature, width).total : 2;
     const link = isTransportLink(feature);
-    for (const line of joinTerrainLines(feature.lines)) {
+    for (const line of joinTerrainLines(feature.lines, feature.oneway === true)) {
       for (const piece of clipPolyline(toWorld(line), minX, minZ, maxX, maxZ)) {
         const draft: EdgeDraft = {
           class: classified.class,
@@ -291,6 +291,8 @@ export interface WorldPoi {
   name?: string;
   /** Stations: dwell time in seconds. */
   dwell?: number;
+  allWay?: boolean;
+  layer?: number;
 }
 
 const POI_KINDS: ReadonlySet<string> = new Set([
@@ -299,6 +301,8 @@ const POI_KINDS: ReadonlySet<string> = new Set([
   'tram_stop',
   'bus_stop',
   'traffic_signals',
+  'give_way',
+  'stop',
   'crossing',
   'aerodrome',
 ]);
@@ -314,13 +318,17 @@ export function tilePois(
     const kind = (poi.subclass ?? poi.class).toLowerCase();
     const matched = POI_KINDS.has(kind) ? kind : POI_KINDS.has(poi.class) ? poi.class : undefined;
     if (matched === undefined) continue;
+    if (['traffic_signals', 'stop', 'give_way'].includes(matched) && (poi.bridge || poi.tunnel))
+      continue;
     const [u, v] = poi.point;
     if (u < 0 || u > 1 || v < 0 || v > 1) continue;
     result.push({
-      kind: matched as WorldPoi['kind'],
+      kind: (matched === 'stop' ? 'give_way' : matched) as WorldPoi['kind'],
       x: origin[0] + u * tileSize,
       z: origin[1] + v * tileSize,
       ...(poi.name !== undefined ? { name: poi.name } : {}),
+      ...(poi.stop === 'all' ? { allWay: true } : {}),
+      layer: poi.layer ?? 0,
     });
   }
   return result;

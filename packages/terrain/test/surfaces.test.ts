@@ -284,7 +284,8 @@ describe('surface styles', () => {
       parkingAreas: 1,
       junctions: 1,
       streetlights: 4,
-      trafficSignals: 4,
+      trafficSignals: 0,
+      roadSigns: 2,
     });
     expect(stats(object).parkingBays).toBeGreaterThan(30);
     expect(stats(object).parkedCars).toBeGreaterThan(0);
@@ -327,26 +328,26 @@ describe('surface styles', () => {
   });
 
   it('pins parked-car placements, which the vehicle type specs drive', () => {
-    // The expanded eleven-vehicle content pool drives both kind selection and wheel-sampled poses.
+    // The registered vehicle catalog drives both kind selection and wheel-sampled poses.
     const object = createTerrainSurfaceObject(fixture(), context(), {
-      details: { maxFixturesPerTile: 30, parkedVehicles: PARKED_VEHICLES },
+      details: { maxFixturesPerTile: 30, parkedVehicles: PARKED_VEHICLES, roadSigns: false },
     });
     const cars = object.userData.vehicles as unknown[];
     const digest = createHash('sha256').update(JSON.stringify(cars)).digest('hex').slice(0, 16);
-    expect({ count: cars.length, digest }).toEqual({ count: 26, digest: '3f63e0f4f0076a51' });
+    expect({ count: cars.length, digest }).toEqual({ count: 26, digest: '25d434300085bb7c' });
   });
 
   it('draws parked cars from an injected vehicle list', () => {
     const fromLibrary = PARKED_VEHICLES;
     const place = (parkedVehicles: TerrainSurfaceDetails['parkedVehicles']) => {
       const object = createTerrainSurfaceObject(fixture(), context(), {
-        details: { maxFixturesPerTile: 30, parkedVehicles },
+        details: { maxFixturesPerTile: 30, parkedVehicles, roadSigns: false },
       });
       return { cars: object.userData.vehicles as { kind: string }[], stats: stats(object) };
     };
     const same = place(fromLibrary).cars;
     const digest = createHash('sha256').update(JSON.stringify(same)).digest('hex').slice(0, 16);
-    expect(digest).toBe('3f63e0f4f0076a51');
+    expect(digest).toBe('25d434300085bb7c');
     const van = fromLibrary.find((vehicle) => vehicle.id === 'molen.entities.vehicle.van');
     expect(van).toBeDefined();
     const vans = place([van as TerrainParkedVehicle]).cars;

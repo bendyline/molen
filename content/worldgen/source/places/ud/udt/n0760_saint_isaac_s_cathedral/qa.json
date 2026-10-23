@@ -1,0 +1,2883 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+  "reviewedOn": "2026-10-22",
+  "inputHash": "sha256:74ca6fc545c9cdd038f69d758fd1004fa0d39490692bfeadf783aa608c4fcec8",
+  "sourceHash": "sha256:e5f896b8a812cfd5e752e59b37f7e230c4cd9ebde7763f35a05a5e4f440210fc",
+  "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+  "captureReportHash": "sha256:e4b9425bacb5aeb67dfe2448004b5a41d5378de9e241b7623e7b7ef184185ede",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/southwest-portico-five-domes-and-pylons.png",
+      "shots/drum-colonnade-ribbed-gilded-dome-and-lantern.png",
+      "shots/granite-columns-recess-and-working-threshold.png"
+    ],
+    "notes": "Mapped cathedral exterior with four double-row granite-columned pediment porticos, four corner pylons/open belfries, main colonnaded drum and clerestory, five gilded domes, lanterns/crosses, raised dome ribs, balustrade and a real1.5m primary entrance recess/arched soffit/1.28m threshold and steps. Two ordinary photos plus standard PMTiles guided one author/inspect/fix pass. Window inventories, hidden elevations, caps and sculpture/relief fields are simplified exterior reconstructions."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/southwest-portico-five-domes-and-pylons.png",
+      "shots/shared/drum-colonnade-ribbed-gilded-dome-and-lantern.png",
+      "shots/shared/granite-columns-recess-and-working-threshold.png"
+    ],
+    "notes": "Seven textured roles use five existing256px graphs: stone_limestone_raw, stone_granite, metal_painted, metal_copper and storefront. Painted metal with a gold tint substitutes for gilding; dark opaque glass/bell/door proxies are deliberate. No embedded images/private atlas/new graph. At most seven textured draws, one skyline draw, separate POSITION/NORMAL buffers and equal CPU/GPU accounting. Every native textured run reads each of the five graphs once.",
+    "captureReportHash": "sha256:dfe3f15276dff0c70862e34eda201d901f8e3325085101a2a509097dc24701a6"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/southwest-portico-five-domes-and-pylons.png",
+      "medium-fi/drum-colonnade-ribbed-gilded-dome-and-lantern.png",
+      "medium-fi/granite-columns-recess-and-working-threshold.png",
+      "medium-fi/isaac-skyline.png",
+      "medium-fi/isaac-district.png",
+      "medium-fi/isaac-street.png",
+      "medium-fi/isaac-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 996 / 3956 / 15374 / 23950 triangles; initial skyline+district geometry 483948 bytes, closeup 2297568 bytes. Six current GLBs: zero Khronos errors/warnings,204 mesh/contact probes;21 actual PMTiles13/14/15 ownership cases pass. All47 current architecture/context/native frames inspected. All four LODs plus failed loading preserve independent map data; unload restores ground/water and zero live model geometry. Passing lifecycle checks do not cure the rejected visual terrain fit.",
+    "captureReportHash": "sha256:aa39858091ac4ad3d9e611295d66dced35d943711d148624fee42e4db438ffb7"
+  },
+  "geographicReview": {
+    "status": "pending-ground-contact",
+    "placementHash": "sha256:56f5bd27348d67fde3e11fed085dffe7458f36a457d67821bc13cda4ff8520e4",
+    "mapFrameHash": "sha256:2f03fd581fe64040d40358ec8597ab9c4a173e6b319f066c9c9438286069c3c1",
+    "notes": "GROUND CONTACT REJECTED; inactive draft, not a completed candidate. Q215423 and cathedral relation3229838/native52776561363086 plus13 integral parts identify the site. Anchor[30.30614274,59.934092874], internalX south-southeast/internalZ west-southwest, baked east/up/south geometry and heading0. Controlled placement owns14 records; preserves611 resident/760 wider independent buildings including both nearby5m structures, original201x201/6m terrain, roads and576110.50m² water. Standard Mapzen ground relative to the uncovered southwest attachment ranges-20.819..-0.356m around the cathedral boundary. A genuine1.2m architectural plinth cannot bridge that range: native renders show severe hovering/ground holes and approach burial. No fictional deep foundation, bespoke height source or terrain flattening was used. Keep automatic placement disabled until general standard-terrain handling produces a credible fit."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Standalone medium-fi exterior reviewed; geographic completion remains pending. Most mapped height tags, reconstructed wall/roof subdivisions, counts, ornament and unseen surfaces are approximate. Most columns use simple capitals; minor bells are static proxies. Pediment sculpture/relief, copied art/lettering, furnished religious interior and exact historic engineering dimensions are omitted. Skyline reduces columns and simplifies domes/portals; district flattens recesses and reduces rib/trim detail. Physical device/dense-city timings, exact paving, steps and accessibility remain unverified."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/models/source.glb\",\"hash\":\"sha256:e5f896b8a812cfd5e752e59b37f7e230c4cd9ebde7763f35a05a5e4f440210fc\",\"bytes\":2776376,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/ud/udt/n0760_saint_isaac_s_cathedral/model.glb\",\"hash\":\"sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a\",\"bytes\":2775708,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/ud/udt/n0760_saint_isaac_s_cathedral/model.skyline.glb\",\"hash\":\"sha256:204d889aa7a9a43475ad9be29e1db2232b28bf9899a361cbfec135463a377374\",\"bytes\":96860,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/ud/udt/n0760_saint_isaac_s_cathedral/model.district.glb\",\"hash\":\"sha256:1e0d1184c234e6d65fefa9df4d436d4bf3233f85f46871a8fe7388b943912f6c\",\"bytes\":387088,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/ud/udt/n0760_saint_isaac_s_cathedral/model.street.glb\",\"hash\":\"sha256:d066d6466199f897a9aabeebdadaad0285e6f2a71a126948debdca93d4b23c45\",\"bytes\":1450676,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/ud/udt/n0760_saint_isaac_s_cathedral/model.closeup.glb\",\"hash\":\"sha256:3c6ea90348609760ccd0bd021db335a047d91ffe5a0d188e35718574b80c8c98\",\"bytes\":2297568,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "five-domes-portico-columns-gaps-gables-drum-and-actual-recess-soffit-threshold",
+        "passed": true,
+        "notes": "204 actual mesh/contact probes over six current GLBs; shared material/LOD/layout/hash checks pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "pending-ground-contact",
+    "visualFit": {
+      "status": "rejected",
+      "basis": "GROUND CONTACT REJECTED; inactive draft, not a completed candidate. Q215423 and cathedral relation3229838/native52776561363086 plus13 integral parts identify the site. Anchor[30.30614274,59.934092874], internalX south-southeast/internalZ west-southwest, baked east/up/south geometry and heading0. Controlled placement owns14 records; preserves611 resident/760 wider independent buildings including both nearby5m structures, original201x201/6m terrain, roads and576110.50m² water. Standard Mapzen ground relative to the uncovered southwest attachment ranges-20.819..-0.356m around the cathedral boundary. A genuine1.2m architectural plinth cannot bridge that range: native renders show severe hovering/ground holes and approach burial. No fictional deep foundation, bespoke height source or terrain flattening was used. Keep automatic placement disabled until general standard-terrain handling produces a credible fit."
+    },
+    "lifecycleStatus": "passed",
+    "inputHash": "sha256:74ca6fc545c9cdd038f69d758fd1004fa0d39490692bfeadf783aa608c4fcec8",
+    "frameReview": {
+      "status": "inspected",
+      "reviewedOn": "2026-10-22",
+      "inputHash": "sha256:74ca6fc545c9cdd038f69d758fd1004fa0d39490692bfeadf783aa608c4fcec8",
+      "method": "Actually inspected all47 current frames in six labeled contact sheets, with portable overview/dome detail and native whole-site/entrance at full resolution. Raised dome ribs and the entrance framing were refined in the same author/inspect pass. Standalone architecture is coherent; native frames visibly fail ground contact and do not establish completed geographic placement.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/preview.png",
+          "hash": "sha256:f95ad10969be83f7376277fa1cefc7856c8bfd8df3d912c61215d6980387488c"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/shots/turntable/angle_0.png",
+          "hash": "sha256:a020f508ea4b8f53d5b1d2a722bb3c9adec2ceb5c0d7759bf076044f28fb1f88"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/shots/turntable/angle_1.png",
+          "hash": "sha256:b4c211c154f9cad35a3af8349c9f6366d6cab6bb899c0e0121a36e6e45b82755"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/shots/turntable/angle_2.png",
+          "hash": "sha256:3f70206d703f46f590fae1433cd20c2d5c86d789e7b1eded22f6598ed35ce088"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/shots/turntable/angle_3.png",
+          "hash": "sha256:84765f6ca2ae1d3a22a553d78a2fae9dadd092cf030e73034f25fc15e41e47b5"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/shots/southwest-portico-five-domes-and-pylons.png",
+          "hash": "sha256:405901e394c685268fb5f61b62be18f51bc536b7c2deab27cc90724669a5ecd7"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/shots/drum-colonnade-ribbed-gilded-dome-and-lantern.png",
+          "hash": "sha256:5f945420259a1e31f0853b486bfaae5ed6d50711301c0c39a81aa112f1208ef1"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/shots/granite-columns-recess-and-working-threshold.png",
+          "hash": "sha256:050a4ef124877151f3ed97f266a597d6e7f7dc222a914b6a383b9a3c62708d12"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/shots/shared/angle-0.png",
+          "hash": "sha256:28741a3d5362b5984ff872bf9a01dac18b788a67a44b69f59fec6e11d37418dd",
+          "camera": {
+            "name": "angle-0",
+            "angle": 0.6
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "mode": "asset-review",
+            "placementId": null,
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 23950,
+            "bounds": {
+              "min": [
+                -52.746829986572266,
+                -1.2000000476837158,
+                -48.523712158203125
+              ],
+              "max": [
+                54.256370544433594,
+                101.5,
+                50.50895309448242
+              ]
+            },
+            "reviewGroundY": 0,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_granite": "dd45ac6d-b03d-48a7-951a-132bd65ce19a",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a2c4b539-3d9d-45f9-9165-3491dc71bff6",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "1e67c9f5-158b-42e1-92ab-769c5bf85767",
+              "worldgen:matgraph:molen.worldgen.material.metal_copper": "77e8bf0a-7d95-42d7-bfbf-7ca1a89b9686",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "edb8269f-adcf-4081-90ca-1e5b8642f93f"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0760_saint_isaac_s_cathedral"
+            ],
+            "terrainSamples": [],
+            "visibleStructures": [],
+            "groundCutoutActive": false,
+            "groundCoversCutoutProbe": null,
+            "groundCutoutProbes": 0,
+            "surfaceReads": {
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 23952
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/shots/shared/angle-1.png",
+          "hash": "sha256:a0238fd45e059883f600418ca219cd282523acfb4819dc4c275ffd989b76ea77",
+          "camera": {
+            "name": "angle-1",
+            "angle": 2.1707963267948966
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "mode": "asset-review",
+            "placementId": null,
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 23950,
+            "bounds": {
+              "min": [
+                -52.746829986572266,
+                -1.2000000476837158,
+                -48.523712158203125
+              ],
+              "max": [
+                54.256370544433594,
+                101.5,
+                50.50895309448242
+              ]
+            },
+            "reviewGroundY": 0,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_granite": "dd45ac6d-b03d-48a7-951a-132bd65ce19a",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a2c4b539-3d9d-45f9-9165-3491dc71bff6",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "1e67c9f5-158b-42e1-92ab-769c5bf85767",
+              "worldgen:matgraph:molen.worldgen.material.metal_copper": "77e8bf0a-7d95-42d7-bfbf-7ca1a89b9686",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "edb8269f-adcf-4081-90ca-1e5b8642f93f"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0760_saint_isaac_s_cathedral"
+            ],
+            "terrainSamples": [],
+            "visibleStructures": [],
+            "groundCutoutActive": false,
+            "groundCoversCutoutProbe": null,
+            "groundCutoutProbes": 0,
+            "surfaceReads": {
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 23952
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/shots/shared/angle-2.png",
+          "hash": "sha256:29d0d5e363a49d857b81286509feaf743e650c8de8971fbc3159e7d8f1b2036d",
+          "camera": {
+            "name": "angle-2",
+            "angle": 3.741592653589793
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "mode": "asset-review",
+            "placementId": null,
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 23950,
+            "bounds": {
+              "min": [
+                -52.746829986572266,
+                -1.2000000476837158,
+                -48.523712158203125
+              ],
+              "max": [
+                54.256370544433594,
+                101.5,
+                50.50895309448242
+              ]
+            },
+            "reviewGroundY": 0,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_granite": "dd45ac6d-b03d-48a7-951a-132bd65ce19a",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a2c4b539-3d9d-45f9-9165-3491dc71bff6",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "1e67c9f5-158b-42e1-92ab-769c5bf85767",
+              "worldgen:matgraph:molen.worldgen.material.metal_copper": "77e8bf0a-7d95-42d7-bfbf-7ca1a89b9686",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "edb8269f-adcf-4081-90ca-1e5b8642f93f"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0760_saint_isaac_s_cathedral"
+            ],
+            "terrainSamples": [],
+            "visibleStructures": [],
+            "groundCutoutActive": false,
+            "groundCoversCutoutProbe": null,
+            "groundCutoutProbes": 0,
+            "surfaceReads": {
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 23952
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/shots/shared/angle-3.png",
+          "hash": "sha256:1bd9c7712dc363e347ecb08b5f2f46da44ba8c027006174bb3f46b2277a68397",
+          "camera": {
+            "name": "angle-3",
+            "angle": 5.312388980384689
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "mode": "asset-review",
+            "placementId": null,
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 23950,
+            "bounds": {
+              "min": [
+                -52.746829986572266,
+                -1.2000000476837158,
+                -48.523712158203125
+              ],
+              "max": [
+                54.256370544433594,
+                101.5,
+                50.50895309448242
+              ]
+            },
+            "reviewGroundY": 0,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_granite": "dd45ac6d-b03d-48a7-951a-132bd65ce19a",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a2c4b539-3d9d-45f9-9165-3491dc71bff6",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "1e67c9f5-158b-42e1-92ab-769c5bf85767",
+              "worldgen:matgraph:molen.worldgen.material.metal_copper": "77e8bf0a-7d95-42d7-bfbf-7ca1a89b9686",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "edb8269f-adcf-4081-90ca-1e5b8642f93f"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0760_saint_isaac_s_cathedral"
+            ],
+            "terrainSamples": [],
+            "visibleStructures": [],
+            "groundCutoutActive": false,
+            "groundCoversCutoutProbe": null,
+            "groundCutoutProbes": 0,
+            "surfaceReads": {
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 23952
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/shots/shared/southwest-portico-five-domes-and-pylons.png",
+          "hash": "sha256:0a3d025feb24f89531b575d2a1126a0362fd659e60519eee806f672c9aa04b05",
+          "camera": {
+            "name": "southwest-portico-five-domes-and-pylons",
+            "position": [
+              -135.82208642513254,
+              45,
+              102.24930727943263
+            ],
+            "lookAt": [
+              0.9502309497413841,
+              43,
+              1.2872688694105783
+            ],
+            "fov": 55
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "mode": "asset-review",
+            "placementId": null,
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 23950,
+            "bounds": {
+              "min": [
+                -52.746829986572266,
+                -1.2000000476837158,
+                -48.523712158203125
+              ],
+              "max": [
+                54.256370544433594,
+                101.5,
+                50.50895309448242
+              ]
+            },
+            "reviewGroundY": 0,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_granite": "dd45ac6d-b03d-48a7-951a-132bd65ce19a",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a2c4b539-3d9d-45f9-9165-3491dc71bff6",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "1e67c9f5-158b-42e1-92ab-769c5bf85767",
+              "worldgen:matgraph:molen.worldgen.material.metal_copper": "77e8bf0a-7d95-42d7-bfbf-7ca1a89b9686",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "edb8269f-adcf-4081-90ca-1e5b8642f93f"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0760_saint_isaac_s_cathedral"
+            ],
+            "terrainSamples": [],
+            "visibleStructures": [],
+            "groundCutoutActive": false,
+            "groundCoversCutoutProbe": null,
+            "groundCutoutProbes": 0,
+            "surfaceReads": {
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 23952
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/shots/shared/drum-colonnade-ribbed-gilded-dome-and-lantern.png",
+          "hash": "sha256:bf65fe490f7ce2e3da63a1fb3ac0bb351d037c1d28fe3a91a9ce7688dfc1ea10",
+          "camera": {
+            "name": "drum-colonnade-ribbed-gilded-dome-and-lantern",
+            "position": [
+              -32.75249807213506,
+              95,
+              98.7536018079077
+            ],
+            "lookAt": [
+              -0.5062504197053239,
+              77,
+              1.0821785954953018
+            ],
+            "fov": 55
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "mode": "asset-review",
+            "placementId": null,
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 23950,
+            "bounds": {
+              "min": [
+                -52.746829986572266,
+                -1.2000000476837158,
+                -48.523712158203125
+              ],
+              "max": [
+                54.256370544433594,
+                101.5,
+                50.50895309448242
+              ]
+            },
+            "reviewGroundY": 0,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_granite": "dd45ac6d-b03d-48a7-951a-132bd65ce19a",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a2c4b539-3d9d-45f9-9165-3491dc71bff6",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "1e67c9f5-158b-42e1-92ab-769c5bf85767",
+              "worldgen:matgraph:molen.worldgen.material.metal_copper": "77e8bf0a-7d95-42d7-bfbf-7ca1a89b9686",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "edb8269f-adcf-4081-90ca-1e5b8642f93f"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0760_saint_isaac_s_cathedral"
+            ],
+            "terrainSamples": [],
+            "visibleStructures": [],
+            "groundCutoutActive": false,
+            "groundCoversCutoutProbe": null,
+            "groundCutoutProbes": 0,
+            "surfaceReads": {
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 23952
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/shots/shared/granite-columns-recess-and-working-threshold.png",
+          "hash": "sha256:beaa0be68d3e405d1fad41f120ce9b979576b1ce3d92c1cb3315c63fd0cd7d46",
+          "camera": {
+            "name": "granite-columns-recess-and-working-threshold",
+            "position": [
+              -43.31329600614977,
+              7,
+              33.93295327677288
+            ],
+            "lookAt": [
+              -31.72787618145457,
+              6.5,
+              25.38087472910042
+            ],
+            "fov": 60
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "mode": "asset-review",
+            "placementId": null,
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 23950,
+            "bounds": {
+              "min": [
+                -52.746829986572266,
+                -1.2000000476837158,
+                -48.523712158203125
+              ],
+              "max": [
+                54.256370544433594,
+                101.5,
+                50.50895309448242
+              ]
+            },
+            "reviewGroundY": 0,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.stone_granite": "dd45ac6d-b03d-48a7-951a-132bd65ce19a",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "a2c4b539-3d9d-45f9-9165-3491dc71bff6",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "1e67c9f5-158b-42e1-92ab-769c5bf85767",
+              "worldgen:matgraph:molen.worldgen.material.metal_copper": "77e8bf0a-7d95-42d7-bfbf-7ca1a89b9686",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "edb8269f-adcf-4081-90ca-1e5b8642f93f"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0760_saint_isaac_s_cathedral"
+            ],
+            "terrainSamples": [],
+            "visibleStructures": [],
+            "groundCutoutActive": false,
+            "groundCoversCutoutProbe": null,
+            "groundCutoutProbes": 0,
+            "surfaceReads": {
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 23952
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/street-noon-economy.png",
+          "hash": "sha256:4c30f41512d70d17fe07df0a0eb0193dd32da0731b5608179a705aa9d0056575",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:3c6ea90348609760ccd0bd021db335a047d91ffe5a0d188e35718574b80c8c98",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 12,
+            "triangles": 29727,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/street-noon-high.png",
+          "hash": "sha256:011eb63b9c4246a20e12c1e377ef2799088307f312537109c5488e0d14e11958",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:3c6ea90348609760ccd0bd021db335a047d91ffe5a0d188e35718574b80c8c98",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 29727,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/street-late-economy.png",
+          "hash": "sha256:c847fe633ac17ac1f0084c66d9bc952a506800c2f8e0b51224b0029f495cb893",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:3c6ea90348609760ccd0bd021db335a047d91ffe5a0d188e35718574b80c8c98",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 12,
+            "triangles": 29727,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/street-late-high.png",
+          "hash": "sha256:51d0b05f604338efdb775686ccecc11a7f28596ec7e0312e6f46f76cbff99e6c",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:3c6ea90348609760ccd0bd021db335a047d91ffe5a0d188e35718574b80c8c98",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 29727,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/block-noon-economy.png",
+          "hash": "sha256:3abc0b3215cbe6c7261e4e69170acc94d9fd9a048bff433651e345392cb5b40e",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:1e0d1184c234e6d65fefa9df4d436d4bf3233f85f46871a8fe7388b943912f6c",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 12,
+            "triangles": 9733,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/block-noon-high.png",
+          "hash": "sha256:dfdc426fa82b3255fc58dda7afe56d78e6b932f4097a5754eecbc99ec2b14637",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:1e0d1184c234e6d65fefa9df4d436d4bf3233f85f46871a8fe7388b943912f6c",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 9733,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/block-late-economy.png",
+          "hash": "sha256:bb5bfffd483104a96e503b4ea3859af399431bf56f2d30d50e157f677c96ab16",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:1e0d1184c234e6d65fefa9df4d436d4bf3233f85f46871a8fe7388b943912f6c",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 12,
+            "triangles": 9733,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/block-late-high.png",
+          "hash": "sha256:06fb70ea4d4fe3161c06ef65160c74782635e0bf2f5ae739f8b69ef11d4ec54c",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:1e0d1184c234e6d65fefa9df4d436d4bf3233f85f46871a8fe7388b943912f6c",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 9733,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:873a02a7f2a8d0f96a651ac2476bced49860bf7c450952fb9b40895ce61c6359",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:204d889aa7a9a43475ad9be29e1db2232b28bf9899a361cbfec135463a377374",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 6773,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:46bf9f515503b10f67d1046373b768849cc7a50d1c6ec0ce8023f2da61698b85",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:204d889aa7a9a43475ad9be29e1db2232b28bf9899a361cbfec135463a377374",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6773,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:0b84cfc17a7337d45737be9b501707a788bc4d6957996600f8732a3121b6c604",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:204d889aa7a9a43475ad9be29e1db2232b28bf9899a361cbfec135463a377374",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 6773,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/skyline-late-high.png",
+          "hash": "sha256:ee67ecf741fa75d0830c67aeb356c64fbc75514f12e8023e2f35d193f8141883",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:204d889aa7a9a43475ad9be29e1db2232b28bf9899a361cbfec135463a377374",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6773,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/silhouette.png",
+          "hash": "sha256:4c7c2f143dd6311968091d15e1716a66f7d76ce60fdb53953d6a69e9d2a7e841",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:204d889aa7a9a43475ad9be29e1db2232b28bf9899a361cbfec135463a377374",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 2,
+            "triangles": 1077,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/southwest-portico-five-domes-and-pylons.png",
+          "hash": "sha256:9ce126e5a2c3c64bfa3ff3f581652ce71ff539cd60ef463e0e7b74abb0271a61",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:3c6ea90348609760ccd0bd021db335a047d91ffe5a0d188e35718574b80c8c98",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 29727,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              -135.82208642513254,
+              45,
+              102.24930727943263
+            ],
+            "lookAt": [
+              0.9502309497413841,
+              43,
+              1.2872688694105783
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/drum-colonnade-ribbed-gilded-dome-and-lantern.png",
+          "hash": "sha256:21fd3c7cc561faa64a0ea9b43d05d80ca9b72bc9195d7fa034e7b148c6a0750e",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:3c6ea90348609760ccd0bd021db335a047d91ffe5a0d188e35718574b80c8c98",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 29727,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              -32.75249807213506,
+              95,
+              98.7536018079077
+            ],
+            "lookAt": [
+              -0.5062504197053239,
+              77,
+              1.0821785954953018
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/granite-columns-recess-and-working-threshold.png",
+          "hash": "sha256:caa302d0f8c69e5f250b0e5c6f070dd46e8cf7ed9569f80d980750164f8a1a02",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:3c6ea90348609760ccd0bd021db335a047d91ffe5a0d188e35718574b80c8c98",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 29727,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              -43.31329600614977,
+              7,
+              33.93295327677288
+            ],
+            "lookAt": [
+              -31.72787618145457,
+              6.5,
+              25.38087472910042
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/isaac-skyline.png",
+          "hash": "sha256:c756f71301a8333cbb74a8497a5cec77235dc7deec380c007c49e8737744086b",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:204d889aa7a9a43475ad9be29e1db2232b28bf9899a361cbfec135463a377374",
+            "level": "skyline",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6773,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              -54.68035277146906,
+              125,
+              220.5902514182975
+            ],
+            "lookAt": [
+              0,
+              45,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/isaac-district.png",
+          "hash": "sha256:de71eab5458911b998bca156e8ebdff465c2ecd8352fa4759eedfc7179fca64c",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:1e0d1184c234e6d65fefa9df4d436d4bf3233f85f46871a8fe7388b943912f6c",
+            "level": "district",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 9733,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              -54.68035277146906,
+              125,
+              220.5902514182975
+            ],
+            "lookAt": [
+              0,
+              45,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/isaac-street.png",
+          "hash": "sha256:0eb5e3c17e2d9f0dab843d5a2eac828526e8c44528cc0323f5fdf132e2bbb5d9",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:d066d6466199f897a9aabeebdadaad0285e6f2a71a126948debdca93d4b23c45",
+            "level": "street",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 21151,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              -54.68035277146906,
+              125,
+              220.5902514182975
+            ],
+            "lookAt": [
+              0,
+              45,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/isaac-closeup.png",
+          "hash": "sha256:9a49be7fe46ad1ffe8fdf8e70c5fd31968a009172a432d17c581a9c8653e7a66",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:3c6ea90348609760ccd0bd021db335a047d91ffe5a0d188e35718574b80c8c98",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 29727,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              -54.68035277146906,
+              125,
+              220.5902514182975
+            ],
+            "lookAt": [
+              0,
+              45,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/transition-skyline.png",
+          "hash": "sha256:029b71bf68ac983eb97338fd5c946c39de0104f3cb553324f896f65876730d25",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:204d889aa7a9a43475ad9be29e1db2232b28bf9899a361cbfec135463a377374",
+            "level": "skyline",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6773,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/transition-district.png",
+          "hash": "sha256:dfdc426fa82b3255fc58dda7afe56d78e6b932f4097a5754eecbc99ec2b14637",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:1e0d1184c234e6d65fefa9df4d436d4bf3233f85f46871a8fe7388b943912f6c",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 9733,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/transition-street.png",
+          "hash": "sha256:470e29d4a24482111ef30b7cacf43b4111cac92cbe92ba8e3cd5989849d9a7f5",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:d066d6466199f897a9aabeebdadaad0285e6f2a71a126948debdca93d4b23c45",
+            "level": "street",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 21151,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/medium-fi/transition-closeup.png",
+          "hash": "sha256:35ecf390c7488f1f40cbe9da8eccdec4e775fea3c3bcad9c4dc1746613139db8",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0760_saint_isaac_s_cathedral",
+            "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+            "lodHash": "sha256:3c6ea90348609760ccd0bd021db335a047d91ffe5a0d188e35718574b80c8c98",
+            "level": "closeup",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 29727,
+            "groundY": 0,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.stone_granite": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_copper": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 20,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 9,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "shots/site-integration/final-skyline-whole-site.png",
+          "hash": "sha256:3fa008b2ee49d449e74727e66775415e81b98ab318752497a378660745ab03a5",
+          "state": {
+            "level": "skyline",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 16,
+            "triangles": 607392
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -54.68035277146906,
+              125,
+              220.5902514182975
+            ],
+            "lookAt": [
+              0,
+              45,
+              0
+            ],
+            "fov": 53
+          }
+        },
+        {
+          "path": "shots/site-integration/final-district-whole-site.png",
+          "hash": "sha256:815a0bb18d2b425328e7d0d113f85cc9a692de06c72176f422b3aa7711b364b4",
+          "state": {
+            "level": "district",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 610352
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -54.68035277146906,
+              125,
+              220.5902514182975
+            ],
+            "lookAt": [
+              0,
+              45,
+              0
+            ],
+            "fov": 53
+          }
+        },
+        {
+          "path": "shots/site-integration/final-street-whole-site.png",
+          "hash": "sha256:098c3a6f72b3e4924d74d4a7065ff1df3a8a7c221119fc4f1b7338f59590e497",
+          "state": {
+            "level": "street",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 621770
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -54.68035277146906,
+              125,
+              220.5902514182975
+            ],
+            "lookAt": [
+              0,
+              45,
+              0
+            ],
+            "fov": 53
+          }
+        },
+        {
+          "path": "shots/site-integration/final-closeup-whole-site.png",
+          "hash": "sha256:7cf3ca74b2180f1ee0b23a6695e27b8f3255d9d2b99a7b44554ca358abaf2aa9",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 630346
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -54.68035277146906,
+              125,
+              220.5902514182975
+            ],
+            "lookAt": [
+              0,
+              45,
+              0
+            ],
+            "fov": 53
+          }
+        },
+        {
+          "path": "shots/site-integration/final-closeup-southwest-portico-five-domes-and-pylons.png",
+          "hash": "sha256:48ba00cfe87899221967f4710ec2b0ded75781f200157719c5822520e4668ceb",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 630346
+          },
+          "camera": {
+            "name": "southwest-portico-five-domes-and-pylons",
+            "position": [
+              -135.82208642513254,
+              45,
+              102.24930727943263
+            ],
+            "lookAt": [
+              0.9502309497413841,
+              43,
+              1.2872688694105783
+            ],
+            "fov": 55
+          }
+        },
+        {
+          "path": "shots/site-integration/final-closeup-drum-colonnade-ribbed-gilded-dome-and-lantern.png",
+          "hash": "sha256:5017ab1a80982aff8ef2770810b753c1ee6c21a291968b9247c883bd4d36e07a",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 630346
+          },
+          "camera": {
+            "name": "drum-colonnade-ribbed-gilded-dome-and-lantern",
+            "position": [
+              -32.75249807213506,
+              95,
+              98.7536018079077
+            ],
+            "lookAt": [
+              -0.5062504197053239,
+              77,
+              1.0821785954953018
+            ],
+            "fov": 55
+          }
+        },
+        {
+          "path": "shots/site-integration/final-closeup-granite-columns-recess-and-working-threshold.png",
+          "hash": "sha256:b9d13af0e1276d3268effc8a8ff0fff6807db53993cfe321b653235872ebb43b",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 22,
+            "triangles": 630346
+          },
+          "camera": {
+            "name": "granite-columns-recess-and-working-threshold",
+            "position": [
+              -43.31329600614977,
+              7,
+              33.93295327677288
+            ],
+            "lookAt": [
+              -31.72787618145457,
+              6.5,
+              25.38087472910042
+            ],
+            "fov": 60
+          }
+        },
+        {
+          "path": "shots/site-integration/final-failure-whole-site.png",
+          "hash": "sha256:950636a496edd9157c804ad4290463ee187774dc5bf128af20a48dee6d8fa026",
+          "state": {
+            "level": "failure",
+            "mode": "high",
+            "groundCutoutActive": false,
+            "draws": 15,
+            "triangles": 606776
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -54.68035277146906,
+              125,
+              220.5902514182975
+            ],
+            "lookAt": [
+              0,
+              45,
+              0
+            ],
+            "fov": 53
+          }
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:74ca6fc545c9cdd038f69d758fd1004fa0d39490692bfeadf783aa608c4fcec8",
+      "sourceHash": "sha256:e5f896b8a812cfd5e752e59b37f7e230c4cd9ebde7763f35a05a5e4f440210fc",
+      "runtimeHash": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+      "files": {
+        "content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/models/source.glb": "sha256:e5f896b8a812cfd5e752e59b37f7e230c4cd9ebde7763f35a05a5e4f440210fc",
+        "content/worldgen/assets/places/ud/udt/n0760_saint_isaac_s_cathedral/model.glb": "sha256:f717f6c96f8e8a8584d559eebee26cd203cc140f8c89910d09fb3066c610158a",
+        "content/worldgen/assets/places/ud/udt/n0760_saint_isaac_s_cathedral/model.skyline.glb": "sha256:204d889aa7a9a43475ad9be29e1db2232b28bf9899a361cbfec135463a377374",
+        "content/worldgen/assets/places/ud/udt/n0760_saint_isaac_s_cathedral/model.district.glb": "sha256:1e0d1184c234e6d65fefa9df4d436d4bf3233f85f46871a8fe7388b943912f6c",
+        "content/worldgen/assets/places/ud/udt/n0760_saint_isaac_s_cathedral/model.street.glb": "sha256:d066d6466199f897a9aabeebdadaad0285e6f2a71a126948debdca93d4b23c45",
+        "content/worldgen/assets/places/ud/udt/n0760_saint_isaac_s_cathedral/model.closeup.glb": "sha256:3c6ea90348609760ccd0bd021db335a047d91ffe5a0d188e35718574b80c8c98"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        52776561363086,
+        52776561363144,
+        52776561363145,
+        52776561363146,
+        52776561363147,
+        52776561363149,
+        52776561363169,
+        52776561363170,
+        52776561363171,
+        52776561363172,
+        52776561363173,
+        52776561363174,
+        52776561363175,
+        52776561363176
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4785,
+            2381
+          ],
+          "id": 35184400655550,
+          "owned": false,
+          "covered": 0.021831801465452785,
+          "area": 289326.64083878376,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9571,
+            4763
+          ],
+          "id": 35184400655550,
+          "owned": false,
+          "covered": 0.06105928750094978,
+          "area": 103511.18140720481,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9571,
+            4763
+          ],
+          "id": 52776561363145,
+          "owned": true,
+          "covered": 1.0000000037881105,
+          "area": 1085.6279312065085,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9571,
+            4763
+          ],
+          "id": 52776561363146,
+          "owned": true,
+          "covered": 0.999999996343201,
+          "area": 888.1759145237194,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9571,
+            4763
+          ],
+          "id": 52776561363147,
+          "owned": true,
+          "covered": 0.999789254777334,
+          "area": 3562.416978428411,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9571,
+            4763
+          ],
+          "id": 52776561363160,
+          "owned": false,
+          "covered": 0.9979224176607788,
+          "area": 761.65810925705,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9571,
+            4763
+          ],
+          "id": 52776561363170,
+          "owned": true,
+          "covered": 0.9980271838026147,
+          "area": 2003.3389944426658,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19142,
+            9527
+          ],
+          "id": 52776561363086,
+          "owned": true,
+          "covered": 0.9999999977521362,
+          "area": 6337.796874067875,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19142,
+            9527
+          ],
+          "id": 52776561363144,
+          "owned": true,
+          "covered": 1.0000000563036566,
+          "area": 4.810990795434625,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19142,
+            9527
+          ],
+          "id": 52776561363145,
+          "owned": true,
+          "covered": 1.0000000028991614,
+          "area": 1107.2550158610838,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19142,
+            9527
+          ],
+          "id": 52776561363146,
+          "owned": true,
+          "covered": 1.000000005842832,
+          "area": 911.5707557647576,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19142,
+            9527
+          ],
+          "id": 52776561363147,
+          "owned": true,
+          "covered": 0.9999056730733288,
+          "area": 3565.4154871352557,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19142,
+            9527
+          ],
+          "id": 52776561363149,
+          "owned": true,
+          "covered": 1.0000008073084012,
+          "area": 0.04475340253470214,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19142,
+            9527
+          ],
+          "id": 52776561363169,
+          "owned": true,
+          "covered": 0.999363876210696,
+          "area": 186.42212183656565,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19142,
+            9527
+          ],
+          "id": 52776561363170,
+          "owned": true,
+          "covered": 0.9996774288334724,
+          "area": 301.39393783620346,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19142,
+            9527
+          ],
+          "id": 52776561363171,
+          "owned": true,
+          "covered": 1.0000000561937634,
+          "area": 198.04308543336168,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19142,
+            9527
+          ],
+          "id": 52776561363172,
+          "owned": true,
+          "covered": 1.0000000316100381,
+          "area": 189.53095110585141,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19142,
+            9527
+          ],
+          "id": 52776561363173,
+          "owned": true,
+          "covered": 0.9999999963961096,
+          "area": 194.1176114384401,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19142,
+            9527
+          ],
+          "id": 52776561363174,
+          "owned": true,
+          "covered": 0.9993129840032724,
+          "area": 541.5348273160598,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19142,
+            9527
+          ],
+          "id": 52776561363175,
+          "owned": true,
+          "covered": 0.9999999773775599,
+          "area": 522.1528631570361,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19142,
+            9527
+          ],
+          "id": 52776561363176,
+          "owned": true,
+          "covered": 0.9999999943607027,
+          "area": 637.5971488183874,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 611,
+      "widerIndependent": 760,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.00007932651621445075,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 625,
+          "independentBuildings": 611,
+          "remainingBuildings": 611,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0760_saint_isaac_s_cathedral"
+          ],
+          "rawTerrainRange": {
+            "min": -39.227842336887434,
+            "max": 7.891957663112571
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 576110.5042531868,
+          "remainingWaterArea": 576110.5042531868,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:3fa008b2ee49d449e74727e66775415e81b98ab318752497a378660745ab03a5",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 607392
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -54.68035277146906,
+                125,
+                220.5902514182975
+              ],
+              "lookAt": [
+                0,
+                45,
+                0
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.00007932651621445075,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 625,
+          "independentBuildings": 611,
+          "remainingBuildings": 611,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_copper": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0760_saint_isaac_s_cathedral"
+          ],
+          "rawTerrainRange": {
+            "min": -39.227842336887434,
+            "max": 7.891957663112571
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 576110.5042531868,
+          "remainingWaterArea": 576110.5042531868,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:815a0bb18d2b425328e7d0d113f85cc9a692de06c72176f422b3aa7711b364b4",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 610352
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -54.68035277146906,
+                125,
+                220.5902514182975
+              ],
+              "lookAt": [
+                0,
+                45,
+                0
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.00007932651621445075,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 625,
+          "independentBuildings": 611,
+          "remainingBuildings": 611,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_copper": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0760_saint_isaac_s_cathedral"
+          ],
+          "rawTerrainRange": {
+            "min": -39.227842336887434,
+            "max": 7.891957663112571
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 576110.5042531868,
+          "remainingWaterArea": 576110.5042531868,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:098c3a6f72b3e4924d74d4a7065ff1df3a8a7c221119fc4f1b7338f59590e497",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 621770
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -54.68035277146906,
+                125,
+                220.5902514182975
+              ],
+              "lookAt": [
+                0,
+                45,
+                0
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.00007932651621445075,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 625,
+          "independentBuildings": 611,
+          "remainingBuildings": 611,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_copper": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0760_saint_isaac_s_cathedral"
+          ],
+          "rawTerrainRange": {
+            "min": -39.227842336887434,
+            "max": 7.891957663112571
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 576110.5042531868,
+          "remainingWaterArea": 576110.5042531868,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:7cf3ca74b2180f1ee0b23a6695e27b8f3255d9d2b99a7b44554ca358abaf2aa9",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 630346
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -54.68035277146906,
+                125,
+                220.5902514182975
+              ],
+              "lookAt": [
+                0,
+                45,
+                0
+              ],
+              "fov": 53
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-southwest-portico-five-domes-and-pylons.png",
+            "hash": "sha256:48ba00cfe87899221967f4710ec2b0ded75781f200157719c5822520e4668ceb",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 630346
+            },
+            "camera": {
+              "name": "southwest-portico-five-domes-and-pylons",
+              "position": [
+                -135.82208642513254,
+                45,
+                102.24930727943263
+              ],
+              "lookAt": [
+                0.9502309497413841,
+                43,
+                1.2872688694105783
+              ],
+              "fov": 55
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-drum-colonnade-ribbed-gilded-dome-and-lantern.png",
+            "hash": "sha256:5017ab1a80982aff8ef2770810b753c1ee6c21a291968b9247c883bd4d36e07a",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 630346
+            },
+            "camera": {
+              "name": "drum-colonnade-ribbed-gilded-dome-and-lantern",
+              "position": [
+                -32.75249807213506,
+                95,
+                98.7536018079077
+              ],
+              "lookAt": [
+                -0.5062504197053239,
+                77,
+                1.0821785954953018
+              ],
+              "fov": 55
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-granite-columns-recess-and-working-threshold.png",
+            "hash": "sha256:b9d13af0e1276d3268effc8a8ff0fff6807db53993cfe321b653235872ebb43b",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 630346
+            },
+            "camera": {
+              "name": "granite-columns-recess-and-working-threshold",
+              "position": [
+                -43.31329600614977,
+                7,
+                33.93295327677288
+              ],
+              "lookAt": [
+                -31.72787618145457,
+                6.5,
+                25.38087472910042
+              ],
+              "fov": 60
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 625,
+          "independentBuildings": 611,
+          "remainingBuildings": 625,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 52776561363086,
+              "area": 6337.79687406784
+            },
+            {
+              "id": 52776561363144,
+              "area": 4.810990795385273
+            },
+            {
+              "id": 52776561363145,
+              "area": 1107.255015861006
+            },
+            {
+              "id": 52776561363146,
+              "area": 911.5707557647235
+            },
+            {
+              "id": 52776561363147,
+              "area": 3565.4154871352503
+            },
+            {
+              "id": 52776561363149,
+              "area": 0.04475340254384008
+            },
+            {
+              "id": 52776561363169,
+              "area": 186.4221218365447
+            },
+            {
+              "id": 52776561363170,
+              "area": 301.39393783620517
+            },
+            {
+              "id": 52776561363171,
+              "area": 198.04308543337922
+            },
+            {
+              "id": 52776561363172,
+              "area": 189.5309511058807
+            },
+            {
+              "id": 52776561363173,
+              "area": 194.1176114384402
+            },
+            {
+              "id": 52776561363174,
+              "area": 541.5348273160814
+            },
+            {
+              "id": 52776561363175,
+              "area": 522.152863156995
+            },
+            {
+              "id": 52776561363176,
+              "area": 637.5971488183895
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0760_saint_isaac_s_cathedral"
+          ],
+          "rawTerrainRange": {
+            "min": -39.227842336887434,
+            "max": 7.891957663112571
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 576110.5042531868,
+          "remainingWaterArea": 576110.5042531868,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:950636a496edd9157c804ad4290463ee187774dc5bf128af20a48dee6d8fa026",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 606776
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -54.68035277146906,
+                125,
+                220.5902514182975
+              ],
+              "lookAt": [
+                0,
+                45,
+                0
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Saint Isaac cathedral principal exterior: mapped central body/four corner pylons, four granite-columned pediment porticos with two column rows, real primary recessed arched doorway/threshold, colonnaded drum/clerestory, ribbed gilded main dome/lantern/cross and four open belfries/smaller gilded domes. Shared pale limestone, rose granite, painted-metal gold substitute, patinated copper and opaque glazing. Preserve all independent buildings and original roads/water. Historic sculpture, lettering, interior/operating religious fixtures and exact reliefs are omitted or abstracted.",
+    "Q215423 plus named cathedral relation3229838/native52776561363086 and13 integral height-tagged parts. Four porticos and four corner-tower positions follow actual parts; dome center/radius follow relation3229897. Own14 records only. Existing reviewed map-axis anchor[30.30614274,59.934092874]. InternalX south-southeast along broad southwest facade; internalZ west-southwest toward its portico. +Y up, geometry baked into native east/south coordinates, heading0. Two nearby5m buildings remain independent.",
+    "Most map parts have unqualified heights: main body/drum support50m, porticos45m, corner towers60m, central drum50..75m, dome75..96m, lantern90..99m and small cross100.4..100.8m. Reconstruct wall/roof subdivisions from ordinary photos rather than extruding every height tag as a solid box. Working main walls38m, corner-pylon cornice45m, portico column shafts1.28..24m/entablature29.5m/pediments42m, main drum50..75.5m, gilded cup75.5..93.5m/lantern to100m and overall cross101.5m. The existing retained Wikidata height101.5m has no qualified reference URL; overall height and exact historic dimensions remain approximate. Eight front columns/two rows at the broad pair and four/two at the side pair,24 drum columns and simplified Corinthian blocks follow photo-led reconstruction. Hidden elevations, exact counts, sculpture and bronze reliefs are simplified.",
+    "NATIVE FIT DRAFT. Standard Protomaps20261020 and unmodified MapzenTerrarium201x201/6m grid. Uncovered southwest approach fixes datum40.21964233688743m; original parent-boundary grades-20.819..-0.356m. The coarse urban elevation field varies about20m across the footprint and cannot establish a credible cathedral foundation. Preserve the architectural master plinth1.2m below floor instead of inventing a20m masonry pedestal. Inspect the native render; geographic readiness remains pending standard terrain recovery/grade handling. No bespoke terrain sources or custom per-artifact flattening.",
+    "GROUND CONTACT REJECTED; inactive draft, not a completed candidate. Q215423 and cathedral relation3229838/native52776561363086 plus13 integral parts identify the site. Anchor[30.30614274,59.934092874], internalX south-southeast/internalZ west-southwest, baked east/up/south geometry and heading0. Controlled placement owns14 records; preserves611 resident/760 wider independent buildings including both nearby5m structures, original201x201/6m terrain, roads and576110.50m² water. Standard Mapzen ground relative to the uncovered southwest attachment ranges-20.819..-0.356m around the cathedral boundary. A genuine1.2m architectural plinth cannot bridge that range: native renders show severe hovering/ground holes and approach burial. No fictional deep foundation, bespoke height source or terrain flattening was used. Keep automatic placement disabled until general standard-terrain handling produces a credible fit.",
+    "Standalone medium-fi exterior reviewed; geographic completion remains pending. Most mapped height tags, reconstructed wall/roof subdivisions, counts, ornament and unseen surfaces are approximate. Most columns use simple capitals; minor bells are static proxies. Pediment sculpture/relief, copied art/lettering, furnished religious interior and exact historic engineering dimensions are omitted. Skyline reduces columns and simplifies domes/portals; district flattens recesses and reduces rib/trim detail. Physical device/dense-city timings, exact paving, steps and accessibility remain unverified."
+  ]
+}

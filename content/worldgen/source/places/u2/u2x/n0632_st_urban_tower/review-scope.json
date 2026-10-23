@@ -1,0 +1,489 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stucco",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_glazed",
+      "roughness": 0.7,
+      "metallic": 0
+    },
+    "panel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.83,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.83,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -66.63309816677238,
+      29.22759143659114,
+      -26.97592301191705
+    ],
+    "lookAt": [
+      0.25360674849280684,
+      20.22759143659114,
+      0.15650602748593623
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "open-arcade-rounded-corners-and-central-portal",
+      "position": [
+        -32.42184511135883,
+        8.227591436591142,
+        -9.958574088584248
+      ],
+      "lookAt": [
+        0.25360674849280684,
+        3.2275914365911422,
+        0.15650602748593623
+      ],
+      "fov": 52
+    },
+    {
+      "name": "open-upper-belfry-roundels-and-flared-pyramidal-roof",
+      "position": [
+        -31.027270458137934,
+        30.22759143659114,
+        -14.760153155578127
+      ],
+      "lookAt": [
+        0.25360674849280684,
+        30.22759143659114,
+        0.15650602748593623
+      ],
+      "fov": 50
+    },
+    {
+      "name": "narrow-roof-vent-gilt-ball-and-iron-finial",
+      "position": [
+        -25.29008978203852,
+        42.22759143659114,
+        -13.718636045881155
+      ],
+      "lookAt": [
+        0.25360674849280684,
+        39.22759143659114,
+        0.15650602748593623
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -66.63309816677238,
+        29.22759143659114,
+        -26.97592301191705
+      ],
+      "lookAt": [
+        0.25360674849280684,
+        20.22759143659114,
+        0.15650602748593623
+      ],
+      "fov": 45,
+      "name": "urban-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -66.63309816677238,
+        29.22759143659114,
+        -26.97592301191705
+      ],
+      "lookAt": [
+        0.25360674849280684,
+        20.22759143659114,
+        0.15650602748593623
+      ],
+      "fov": 45,
+      "name": "urban-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -66.63309816677238,
+        29.22759143659114,
+        -26.97592301191705
+      ],
+      "lookAt": [
+        0.25360674849280684,
+        20.22759143659114,
+        0.15650602748593623
+      ],
+      "fov": 45,
+      "name": "urban-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -66.63309816677238,
+        29.22759143659114,
+        -26.97592301191705
+      ],
+      "lookAt": [
+        0.25360674849280684,
+        20.22759143659114,
+        0.15650602748593623
+      ],
+      "fov": 45,
+      "name": "urban-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/urban-model.mjs",
+    "export": "buildUrbanSkyline",
+    "errorMeters": 1.4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildUrbanDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildUrbanStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildUrbanCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.7,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      21.258135114,
+      48.7206616
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain original6m standard Mapzen terrain, native streets/paths/water and independent cathedral/surrounding buildings. Replace only seven corresponding native tower/arcade records. Bounded buried tower/arcade feet and narrow occupied arcade floors meet the coarse grid; no full-square slab, terrain flattening or ground/water cutout. Arcade openings extend to their occupied floors, and the upper belfry is hollow. Foundation/floor datum and obscured lower works remain coarse-map estimates.",
+    "replaceFootprint": false,
+    "bounds": [
+      21.257821936953096,
+      48.72045498748465,
+      21.258448291046907,
+      48.72086821251535
+    ],
+    "terrainReference": {
+      "anchor": [
+        21.258135114,
+        48.7206616
+      ],
+      "modelHeight": 0,
+      "basis": "Retain original6m standard Mapzen terrain, native streets/paths/water and independent cathedral/surrounding buildings. Replace only seven corresponding native tower/arcade records. Bounded buried tower/arcade feet and narrow occupied arcade floors meet the coarse grid; no full-square slab, terrain flattening or ground/water cutout. Arcade openings extend to their occupied floors, and the upper belfry is hollow. Foundation/floor datum and obscured lower works remain coarse-map estimates."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -9.497091757732461,
+          -2.798253086902342
+        ],
+        [
+          -8.906140333112749,
+          -4.374122544337256
+        ],
+        [
+          -7.724237483873321,
+          -5.162057103786585
+        ],
+        [
+          4.685742433140656,
+          -10.086645604826487
+        ],
+        [
+          10.201289062924648,
+          4.293164952994578
+        ],
+        [
+          -2.208690854089332,
+          9.217766103267584
+        ],
+        [
+          -2.405674662295903,
+          9.217766103267584
+        ],
+        [
+          -4.572496552568185,
+          8.823797850646676
+        ],
+        [
+          -5.360431785394469,
+          8.232845527083391
+        ],
+        [
+          -5.7543994018076114,
+          7.444909189527758
+        ],
+        [
+          -5.7543994018076114,
+          6.656972965872171
+        ],
+        [
+          -5.360431785394469,
+          5.672052838960392
+        ],
+        [
+          -4.038524440332789,
+          4.538988374366938
+        ],
+        [
+          -6.027146852219975,
+          -0.6314318595849339
+        ],
+        [
+          -7.921221292079894,
+          -0.6314318595849339
+        ],
+        [
+          -8.709156524906177,
+          -1.0253994193138833
+        ],
+        [
+          -9.300107949525891,
+          -1.8133344501828563
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -9.497091757732461,
+            -2.798253086902342
+          ],
+          [
+            -8.906140333112749,
+            -4.374122544337256
+          ],
+          [
+            -7.724237483873321,
+            -5.162057103786585
+          ],
+          [
+            4.685742433140656,
+            -10.086645604826487
+          ],
+          [
+            10.201289062924648,
+            4.293164952994578
+          ],
+          [
+            -2.208690854089332,
+            9.217766103267584
+          ],
+          [
+            -2.405674662295903,
+            9.217766103267584
+          ],
+          [
+            -4.572496552568185,
+            8.823797850646676
+          ],
+          [
+            -5.360431785394469,
+            8.232845527083391
+          ],
+          [
+            -5.7543994018076114,
+            7.444909189527758
+          ],
+          [
+            -5.7543994018076114,
+            6.656972965872171
+          ],
+          [
+            -5.360431785394469,
+            5.672052838960392
+          ],
+          [
+            -4.038524440332789,
+            4.538988374366938
+          ],
+          [
+            -6.027146852219975,
+            -0.6314318595849339
+          ],
+          [
+            -7.921221292079894,
+            -0.6314318595849339
+          ],
+          [
+            -8.709156524906177,
+            -1.0253994193138833
+          ],
+          [
+            -9.300107949525891,
+            -1.8133344501828563
+          ]
+        ]
+      ],
+      "basis": "Exact native seven-component union; independent cathedral must remain unchanged."
+    },
+    "notes": "Retained exact-QID OSMway25720529 and native parent35184397809361/core35185247715697/five arcade parts identify the tower. Native core quadrilateral supplies internal axes/center[0.25360674849280684,0.15650602748593623]m at anchor21.258135114,48.7206616. The older reference point is offset and does not control placement. Global heading0/native east-south retains mapped footprint; the west-side rounded arcade corners and central portal follow pictures/outline. Fine facade/reverse layout retains20degree/2m uncertainty. Retain original6m standard Mapzen terrain, native streets/paths/water and independent cathedral/surrounding buildings. Replace only seven corresponding native tower/arcade records. Bounded buried tower/arcade feet and narrow occupied arcade floors meet the coarse grid; no full-square slab, terrain flattening or ground/water cutout. Arcade openings extend to their occupied floors, and the upper belfry is hollow. Foundation/floor datum and obscured lower works remain coarse-map estimates."
+  }
+}

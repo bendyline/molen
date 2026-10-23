@@ -52,6 +52,7 @@ const placement = z
     replaceFootprint: z.boolean().optional(),
     buildingCutout: z
       .strictObject({
+        minimumCoverage: finite.gt(0).max(1).optional(),
         outline: z
           .array(z.tuple([finite, finite]))
           .min(3)
@@ -194,32 +195,50 @@ const placement = z
     'mapped orientation requires a confirmed source identity',
   );
 
-const mapRule = z.strictObject({
-  id: z.string().regex(/^[a-z0-9][a-z0-9.-]*$/),
-  title: z.string().min(1),
-  asset: z.string().regex(/^[a-z][a-z0-9_.-]*$/),
-  match: z
-    .strictObject({
-      classes: z.array(z.string().min(1)).min(1).optional(),
-      subclasses: z.array(z.string().min(1)).min(1).optional(),
-      tags: z.record(z.string().min(1), z.array(z.string().min(1)).min(1)).optional(),
-    })
-    .refine(
-      (match) =>
-        !!match.classes?.length ||
-        !!match.subclasses?.length ||
-        !!Object.keys(match.tags ?? {}).length,
-      'map rule needs a classification',
-    ),
-  dimensions: z.tuple([finite.positive(), finite.positive(), finite.positive()]),
-  orientation: z.enum(['direction', 'longest-edge', 'north']).optional(),
-  lengthAxis: z.enum(['x', 'z']).optional(),
-  fit: z.enum(['native', 'footprint']).optional(),
-  replaceFootprint: z.boolean().optional(),
-  minLevel: z.int().min(0).max(26).optional(),
-  maxPerTile: z.int().min(1).max(64).optional(),
-  source: z.string().url(),
-});
+const mapRule = z
+  .strictObject({
+    id: z.string().regex(/^[a-z0-9][a-z0-9.-]*$/),
+    title: z.string().min(1),
+    asset: z.string().regex(/^[a-z][a-z0-9_.-]*$/),
+    match: z
+      .strictObject({
+        classes: z.array(z.string().min(1)).min(1).optional(),
+        subclasses: z.array(z.string().min(1)).min(1).optional(),
+        names: z.array(z.string().trim().min(1)).min(1).optional(),
+        tags: z.record(z.string().min(1), z.array(z.string().min(1)).min(1)).optional(),
+      })
+      .refine(
+        (match) =>
+          !!match.classes?.length ||
+          !!match.subclasses?.length ||
+          !!Object.keys(match.tags ?? {}).length,
+        'map rule needs a classification',
+      ),
+    dimensions: z.tuple([finite.positive(), finite.positive(), finite.positive()]),
+    bounds: z
+      .tuple([
+        finite.min(-180).max(180),
+        finite.min(-90).max(90),
+        finite.min(-180).max(180),
+        finite.min(-90).max(90),
+      ])
+      .refine(
+        ([west, south, east, north]) => west < east && south < north,
+        'ordered regional bounds',
+      )
+      .optional(),
+    orientation: z.enum(['direction', 'longest-edge', 'north']).optional(),
+    lengthAxis: z.enum(['x', 'z']).optional(),
+    fit: z.enum(['native', 'footprint']).optional(),
+    replaceFootprint: z.boolean().optional(),
+    minLevel: z.int().min(0).max(26).optional(),
+    maxPerTile: z.int().min(1).max(64).optional(),
+    source: z.string().url(),
+  })
+  .refine(
+    (rule) => !rule.match.names || !!rule.bounds,
+    'exact category names require regional bounds',
+  );
 
 const catalog = z
   .strictObject({

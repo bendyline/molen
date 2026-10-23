@@ -1,0 +1,838 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0742_harem",
+  "reviewedOn": "2026-10-21",
+  "inputHash": "sha256:d4e01c579af5eb92a5ca239a86801626ec97e22d6afc97815bf51fa06e0a7705",
+  "sourceHash": "sha256:7e22c6fd6761ff86e4e35320732d357294434a10ba565c39012ce12babe2d622",
+  "runtimeHash": "sha256:72359c535333df60842bd02efbdb60a4de86d29ed51ab00ab5434da47f359d96",
+  "captureReportHash": "sha256:887dbe336577750444329534cc5d091a9c9d83f01b39ae4ec6f8a66f4b635329",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/twin-kiosk-open-undercroft-and-tiled-bay.png",
+      "shots/queen-mother-open-court-and-arcades.png",
+      "shots/three-courts-and-domed-roof-ranges.png"
+    ],
+    "notes": "Inspected all48 final source/shared/medium-fi/native views in one continuous author/build/inspect/fix pass. Exact notched Harem parent with three open mapped courts, stepped cream/stone ranges, closed lead roof slopes, seven picture-led principal domes, compact near bath domes and chimney groups. Twin Kiosk front faces the mapped Favourites court: deep open lower pointed arches/low balustrade, striped upper masonry, projecting muted blue-green tiled bay, paired window levels and shared pointed screens. Queen Mother court has open lower galleries, real circular pale shafts/capitals, tiled backs and upper windows. Removed a floating tile strip across an open arcade; columns reach sampled floor grade. Six earlier palace assets remain independently approved and unmodified; this native fixture renders the Harem against retained native context rather than claiming a combined seven-model scene."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/twin-kiosk-open-undercroft-and-tiled-bay.png",
+      "shots/shared/queen-mother-open-court-and-arcades.png",
+      "shots/shared/three-courts-and-domed-roof-ranges.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Eight existing256px graphs: plaster_lime, stone_limestone_raw, brick, metal_standing_seam, tile_ceramic, stone_marble, metal_rosette_screen and wood_plain. Ten roles merge into eight near draws/seven district draws/one skyline draw. Low-frequency shared tile and screen patterns substitute for bespoke decoration. Explicit metric UVs on wall/brick/roof/tile quads; no new graph, private atlas or embedded images. Each requested graph read once. Separate POSITION/NORMAL streams and equal CPU/GPU accounting.",
+    "captureReportHash": "sha256:04c73364dca4d7b4502d2f2e848690cb2de3387b79478756d8309f5ca3bd3721"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/twin-kiosk-open-undercroft-and-tiled-bay.png",
+      "medium-fi/queen-mother-open-court-and-arcades.png",
+      "medium-fi/three-courts-and-domed-roof-ranges.png",
+      "medium-fi/harem-skyline.png",
+      "medium-fi/harem-district.png",
+      "medium-fi/harem-street.png",
+      "medium-fi/harem-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored levels936/2975/14323/27055triangles. Initial skyline plus district331704bytes. Skyline retains the same seven stepped range caps as the closer levels, all three courtyard voids and seven principal domes with six-sided support/roof silhouettes; its conservative5m error estimate delays switching until farther away. District restores stepped roof zones, representative window levels, Twin arcade/tiled bay and near bath domes; street/closeup restore recessed openings, courtyard galleries/circular shafts, more window bays and finer curved roof/screen profiles. All levels meet triangle/download/draw/layout budgets. Physical ordinary-laptop/phone/tablet/dense-city timings remain pending.",
+    "captureReportHash": "sha256:6739e6177e7fd53bc955f4d9db6707c86410203ec3a28a4465c0aff95a9bf4f5"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:6eb913285c7199d7397f886e16850455e43f06090805f0f0a8effab9a85808f5",
+    "mapFrameHash": "sha256:6b3a3eda7a09bbfc5a8fb18828a812084793c3cda8f3ce9be024cc9ddd71a345",
+    "notes": "Independent Imperial Harem Q133817551 and OSM relation4743322/native52776562876570; parent includes three mapped holes and the apartment/service ranges, but excludes Council Hall/Tower and adjacent independent halls/mosques. Existing PMTiles labels locate Queen Mother court and the external Favourites court. Internal+X follows the range southwest, internal+Z faces northwest toward the outer gardens. World heading0/native+X east,+Z south. Three ordinary exterior/court pictures actually inspected; roof-room assignments not supplied by PMTiles remain an explicitly approximate visual interpretation. Retain original standard PMTiles/Mapzen samples, roads and water. Existing Queen Mother court internal[-14.2,-22.4] supplies nativeY0 as an open-ground provider reference. Occupied floors follow a compact sampled grade grid and share boundary splits with their foundations; separate roof zones stay level locally. All three courts remain native ground and open sky. No palace precinct slab or terrain flattening. Native exterior placement remains draft until the actual map scene is inspected; supplied elevation does not certify historical floor levels or accessibility. Only Imperial Harem relation4743322/native52776562876570 replaced. Partitioned occupied ranges retain all three original courtyard holes. All258 independent resident buildings of259/all572 wider records of573 remain unchanged. Sixteen actual overlapping PMTiles cases at13/14/15, including both detailed parent fragments, pass. Original161x161/6m terrain, roads and3400906.0006393427square metres native water unchanged. Three actual terrain probes within the courts remain present in every LOD. Failure keeps259 originals; all unloads restore ground/water/zero live geometry. Native exterior fit/facing accepted as approximate visualization. Open Queen Mother court internal[-14.2,-22.4] supplies the provider reference; occupied floor cells share sampled edge heights with enclosing foundations. Level roof zones and picture-led facade controls are independent of roof-biased elevation samples. There is no precinct slab, flattening or removal of independent Council/Tower/other members. Flat fixtures expose/bury terrain-dependent foundations; the retained original-map scene supplies site-fit evidence."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Three ordinary photos actually viewed: pale entry arcade(Yair Haklai2023), Twin Kiosk exterior(Giovanni DallOrto2006) and Queen Mother court(Karelj2013). Existing PMTiles supplies named parent/three holes and named Favourites/Queen Mother court context. No qualified native architectural height or roof/room subdivision. Picture-led working service eaves8.1-9.5m, Queen Mother/central apartment eaves9.2-9.7m and Twin Kiosk upper cornice12.8m above its local control; dominant hall domes rise4-7m above low drums. Seven principal/representative domes, a compact bath-dome group and chimney placement are footprint-led visual controls, not a surveyed inventory. Twin Kiosk undercroft and upper tile/window/brick proportions are guided by the actual exterior photo. Hidden interiors, exact roof-room assignments, fine ornament and historical thresholds remain unverified. Seven roof-zone assignments, all principal/bath dome placements and representative facade/roof proportions remain picture-led approximations because the ordinary extract supplies no surveyed room/roof plan or qualified height. Screens/tile fields use existing generic graphs; no copied art, inscriptions or furnished apartments. Native thresholds, hidden layouts and accessible routes remain unverified. This member completes7/18 Topkapi members, not the whole palace."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sx/sxk/n0742_harem/models/source.glb\",\"hash\":\"sha256:7e22c6fd6761ff86e4e35320732d357294434a10ba565c39012ce12babe2d622\",\"bytes\":2959396,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_harem/model.glb\",\"hash\":\"sha256:72359c535333df60842bd02efbdb60a4de86d29ed51ab00ab5434da47f359d96\",\"bytes\":2958680,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_harem/model.skyline.glb\",\"hash\":\"sha256:ecf4957b3663c5f786a11b47eef37549f80320759c08242e90c893531ffd921c\",\"bytes\":78904,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_harem/model.district.glb\",\"hash\":\"sha256:e02c2b465281c34e5ed9275024064c460d3bde3324310eafb3535d9e5edc5516\",\"bytes\":252800,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_harem/model.street.glb\",\"hash\":\"sha256:6ac17516212e296e6e6853a1d11b60963d67dbf7fbbb47da04fce3181c6477b9\",\"bytes\":1271296,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_harem/model.closeup.glb\",\"hash\":\"sha256:a1df5f891eeea978195fc7a88f8f075af17d83a610efee7367b7c829f3d51450\",\"bytes\":2429188,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "three-courts-seven-seated-domes-open-Twin-and-court-arcades-real-shafts-and-occupied-floor",
+        "passed": true,
+        "notes": "889 actual mesh/contact probes across six files. All courts stay open, seven principal domes are enclosed/seated, Twin lower arches and near court arcades have walking clearance, tiled bay/shared screens are present, circular shafts meet sampled floors and occupied cutouts are covered."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:d4e01c579af5eb92a5ca239a86801626ec97e22d6afc97815bf51fa06e0a7705",
+    "sceneInputs": {
+      "inputHash": "sha256:d4e01c579af5eb92a5ca239a86801626ec97e22d6afc97815bf51fa06e0a7705",
+      "sourceHash": "sha256:7e22c6fd6761ff86e4e35320732d357294434a10ba565c39012ce12babe2d622",
+      "runtimeHash": "sha256:72359c535333df60842bd02efbdb60a4de86d29ed51ab00ab5434da47f359d96",
+      "files": {
+        "content/worldgen/source/places/sx/sxk/n0742_harem/models/source.glb": "sha256:7e22c6fd6761ff86e4e35320732d357294434a10ba565c39012ce12babe2d622",
+        "content/worldgen/assets/places/sx/sxk/n0742_harem/model.glb": "sha256:72359c535333df60842bd02efbdb60a4de86d29ed51ab00ab5434da47f359d96",
+        "content/worldgen/assets/places/sx/sxk/n0742_harem/model.skyline.glb": "sha256:ecf4957b3663c5f786a11b47eef37549f80320759c08242e90c893531ffd921c",
+        "content/worldgen/assets/places/sx/sxk/n0742_harem/model.district.glb": "sha256:e02c2b465281c34e5ed9275024064c460d3bde3324310eafb3535d9e5edc5516",
+        "content/worldgen/assets/places/sx/sxk/n0742_harem/model.street.glb": "sha256:6ac17516212e296e6e6853a1d11b60963d67dbf7fbbb47da04fce3181c6477b9",
+        "content/worldgen/assets/places/sx/sxk/n0742_harem/model.closeup.glb": "sha256:a1df5f891eeea978195fc7a88f8f075af17d83a610efee7367b7c829f3d51450"
+      }
+    },
+    "preservedMembers": [
+      {
+        "asset": "molen.worldgen.structure.n0742_salutation",
+        "inputHash": "sha256:d47b20fa22b44b3062275cae8967cf37531045551823cc3b97d5302e61d6165a",
+        "sourceHash": "sha256:531f1f4b806f391653269bec502d96e6abf7647823f7a0bf395f5225c79ecdfe",
+        "runtimeHash": "sha256:92bca0aacb504f346d048aeb42dd68f499eb1800bdda2573f7f14568841bb00d"
+      },
+      {
+        "asset": "molen.worldgen.structure.n0742_imperial",
+        "inputHash": "sha256:03d5a1a0bb5be4069d9bb291b22265a62fa04fa591405571de5dee3b3a4a0f74",
+        "sourceHash": "sha256:7a56eaa1398cf42a46442536dbe45b6834596d9b3ed15429dd25f56c414c1c09",
+        "runtimeHash": "sha256:0ac29d303f82f04c2c8450f8cbd53f58ad967daa02ac4a6b634eaab32c91ebce"
+      },
+      {
+        "asset": "molen.worldgen.structure.n0742_felicity",
+        "inputHash": "sha256:dd0a0ec510c3fd51858dbcfe36c84732ecadabd80b881e9058bf374024137735",
+        "sourceHash": "sha256:337e05137e257792295fd557f29463ff21ba5a6e4e515eb0c9ef5c6d6f693143",
+        "runtimeHash": "sha256:b98b68a9ed89a363706253dff8a894f3a2fdc80cad028eaa3810e0b0e49f88b9"
+      },
+      {
+        "asset": "molen.worldgen.structure.n0742_council",
+        "inputHash": "sha256:14b0f85b1bdfd0163d739528d61c511be74c14082953a80c824dff26ebd14a0d",
+        "sourceHash": "sha256:2225c439d3cdabe44790b10d7abe72d7a361f9ea71719515fac54a4878a232ad",
+        "runtimeHash": "sha256:2c3d1cce002ff939daa4ef152b4488b43f327c9e5eabad5f1c2eca8d8562d383"
+      },
+      {
+        "asset": "molen.worldgen.structure.n0742_justice",
+        "inputHash": "sha256:90fec81d8ac93df55f901383b837384ea26bca4e518809ae776ff35175464a80",
+        "sourceHash": "sha256:dfdc0d06990acc65f05893e24e4a6f5b292661ad97b0b9f404e2300791e418f4",
+        "runtimeHash": "sha256:d7bff441bfbaff86a4578a449c1280e9ddf814a0de190865c98237ae3b86755c"
+      },
+      {
+        "asset": "molen.worldgen.structure.n0742_kitchens",
+        "inputHash": "sha256:d96c71ef61c856edd1f602049300b88ca5d215ebf527f8a25d3ff6f511edd280",
+        "sourceHash": "sha256:ad2bc7e06bef640a001ef60d029936252d91f74f94e4032c6dae671aa5bdbd92",
+        "runtimeHash": "sha256:693b3acba3c158ad3e1b0c388a3d4aa7edc088dfbc0ab9e82dd6074b9e51cccd"
+      }
+    ],
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "inputHash": "sha256:d4e01c579af5eb92a5ca239a86801626ec97e22d6afc97815bf51fa06e0a7705",
+      "ownerRemainder": 0,
+      "footprintQuantizationMeters": 0.0001,
+      "groundBoundaryRounding": {
+        "outsideArea": 0.000020674711088020103,
+        "maxDistanceMeters": 6.467661375495694e-7
+      },
+      "independentBuildingsUnchanged": 258,
+      "widerIndependentBuildingsUnchanged": 572,
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3070
+          ],
+          "id": 35184396323800,
+          "owned": false,
+          "covered": 0.00009984636517677293,
+          "area": 67259.93376832508,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3070
+          ],
+          "id": 35184396894810,
+          "owned": false,
+          "covered": 0.006071445929644508,
+          "area": 1516255.6688234978,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3071
+          ],
+          "id": 35184404484920,
+          "owned": false,
+          "covered": 0.014942670714698913,
+          "area": 620053.9502717628,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3071
+          ],
+          "id": 35184475996630,
+          "owned": false,
+          "covered": 0.0008817752338899295,
+          "area": 7616.067735506452,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6141
+          ],
+          "id": 35184404484940,
+          "owned": false,
+          "covered": 0.07104578403302601,
+          "area": 100453.09551906925,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6141
+          ],
+          "id": 35184475996630,
+          "owned": false,
+          "covered": 0.0001011465149655997,
+          "area": 1186.339480427061,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6142
+          ],
+          "id": 35184404484920,
+          "owned": false,
+          "covered": 0.11063999294577534,
+          "area": 64901.94318596975,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6142
+          ],
+          "id": 35184475996630,
+          "owned": false,
+          "covered": 0.00017713361122529813,
+          "area": 2390.6919708287787,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12283
+          ],
+          "id": 35184404485037,
+          "owned": false,
+          "covered": 0.00007701685919716568,
+          "area": 1536.0878559695116,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12283
+          ],
+          "id": 35184475996636,
+          "owned": false,
+          "covered": 0.00019025158536918705,
+          "area": 1182.5833113684257,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12283
+          ],
+          "id": 52776562876570,
+          "owned": true,
+          "covered": 0.9999952486851498,
+          "area": 5808.109619918848,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184404484986,
+          "owned": false,
+          "covered": 0.000569757002312089,
+          "area": 2296.0182138262853,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184475996636,
+          "owned": false,
+          "covered": 0.000020725875196441888,
+          "area": 157.4042256249386,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184707491484,
+          "owned": false,
+          "covered": 0.0014969265959774117,
+          "area": 480.64199677586464,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184707491485,
+          "owned": false,
+          "covered": 0.00000193274620539934,
+          "area": 73.32239951620014,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 52776562876570,
+          "owned": true,
+          "covered": 0.9999961728592413,
+          "area": 6102.9794109938675,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "method": "Only Imperial Harem relation4743322/native52776562876570 replaced. Partitioned occupied ranges retain all three original courtyard holes. All258 independent resident buildings of259/all572 wider records of573 remain unchanged. Sixteen actual overlapping PMTiles cases at13/14/15, including both detailed parent fragments, pass. Original161x161/6m terrain, roads and3400906.0006393427square metres native water unchanged. Three actual terrain probes within the courts remain present in every LOD. Failure keeps259 originals; all unloads restore ground/water/zero live geometry."
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "courtsRetained": true,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0742_harem"
+          ],
+          "rawTerrainRange": {
+            "min": -47.73330480643052,
+            "max": 8.480095193569483
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:976eb5e016fa0531f9a210688124c47b2a373eb77b4ba74bfbe118526af14b49",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 311471
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -277.4120311068102,
+                145,
+                36.98060298581066
+              ],
+              "lookAt": [
+                5.560842531470112,
+                7,
+                -8.311259251172055
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "courtsRetained": true,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0742_harem"
+          ],
+          "rawTerrainRange": {
+            "min": -47.73330480643052,
+            "max": 8.480095193569483
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:9f96db4f6a5327094ee057c80b981631191b57d63892747b69050f922b2331ab",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 313510
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -277.4120311068102,
+                145,
+                36.98060298581066
+              ],
+              "lookAt": [
+                5.560842531470112,
+                7,
+                -8.311259251172055
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "courtsRetained": true,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0742_harem"
+          ],
+          "rawTerrainRange": {
+            "min": -47.73330480643052,
+            "max": 8.480095193569483
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:7a8e14b7064eb7c89357c8bf55d13914bd9f911d06f28c913376d8596f04636e",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 324858
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -277.4120311068102,
+                145,
+                36.98060298581066
+              ],
+              "lookAt": [
+                5.560842531470112,
+                7,
+                -8.311259251172055
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "courtsRetained": true,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0742_harem"
+          ],
+          "rawTerrainRange": {
+            "min": -47.73330480643052,
+            "max": 8.480095193569483
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:960822f015f99eb1b2b455c741c47ec3e0cf7ec22939bbec208fbf85b6b259fb",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 337590
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -277.4120311068102,
+                145,
+                36.98060298581066
+              ],
+              "lookAt": [
+                5.560842531470112,
+                7,
+                -8.311259251172055
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-twin-kiosk-open-undercroft-and-tiled-bay.png",
+            "hash": "sha256:f8e47027eded50eaebb979ca6d5a16c1c88089a340c56b88d27baa52b30106af",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 335538
+            },
+            "camera": {
+              "name": "twin-kiosk-open-undercroft-and-tiled-bay",
+              "position": [
+                54.17920877199055,
+                8,
+                -57.598726868230884
+              ],
+              "lookAt": [
+                43.05752370905032,
+                8,
+                -40.97620836588677
+              ],
+              "fov": 68
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-queen-mother-open-court-and-arcades.png",
+            "hash": "sha256:4495f970a6d028bd8891aa4af498e8cad4f3e9ad9817e53db8775ee0c9d1085d",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 337590
+            },
+            "camera": {
+              "name": "queen-mother-open-court-and-arcades",
+              "position": [
+                26.06994989663668,
+                3.5,
+                0.5980906175933693
+              ],
+              "lookAt": [
+                32.46191835322399,
+                4.5,
+                -7.157084380431673
+              ],
+              "fov": 74
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-three-courts-and-domed-roof-ranges.png",
+            "hash": "sha256:aaae36511208a3b09edae22ae7c61998fd54c620d30d18bfda4259a5b354c9f9",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 337590
+            },
+            "camera": {
+              "name": "three-courts-and-domed-roof-ranges",
+              "position": [
+                -130.11671417565955,
+                160,
+                23.63558106181683
+              ],
+              "lookAt": [
+                2.780421265735056,
+                6,
+                -4.155629625586028
+              ],
+              "fov": 58
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "courtsRetained": true,
+          "failedLoad": true,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 259,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 52776562876570,
+              "area": 9537.951074773058
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0742_harem"
+          ],
+          "rawTerrainRange": {
+            "min": -47.73330480643052,
+            "max": 8.480095193569483
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:30fb83dcf7a1f73d26e615f135a1c5b890b86fd6a67cd692e55c2730fed469c8",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 310600
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -277.4120311068102,
+                145,
+                36.98060298581066
+              ],
+              "lookAt": [
+                5.560842531470112,
+                7,
+                -8.311259251172055
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Specific Imperial Harem relation4743322: exact notched multi-court footprint, stepped cream/stone service and apartment ranges, lead hip roofs, principal domed halls, smaller bath domes and chimney groups. Distinct Twin Kiosk frontage faces the mapped Courtyard of the Favourites with open lower pointed arches, striped brick/stone upper work, pale window screens and projecting muted blue-green tiled bay. Keep all three mapped courtyards open and retain independent Tower of Justice, Council Hall and every other palace member. No furnished apartments, copied wall/ceiling art or inscriptions, visitors, pool restoration or invented complete historic room inventory.",
+    "Independent Imperial Harem Q133817551 and OSM relation4743322/native52776562876570; parent includes three mapped holes and the apartment/service ranges, but excludes Council Hall/Tower and adjacent independent halls/mosques. Existing PMTiles labels locate Queen Mother court and the external Favourites court. Internal+X follows the range southwest, internal+Z faces northwest toward the outer gardens. World heading0/native+X east,+Z south. Three ordinary exterior/court pictures actually inspected; roof-room assignments not supplied by PMTiles remain an explicitly approximate visual interpretation.",
+    "No qualified native architectural height or roof/room subdivision. Picture-led working service eaves8.1-9.5m, Queen Mother/central apartment eaves9.2-9.7m and Twin Kiosk upper cornice12.8m above its local control; dominant hall domes rise4-7m above low drums. Seven principal/representative domes, a compact bath-dome group and chimney placement are footprint-led visual controls, not a surveyed inventory. Twin Kiosk undercroft and upper tile/window/brick proportions are guided by the actual exterior photo. Hidden interiors, exact roof-room assignments, fine ornament and historical thresholds remain unverified.",
+    "Retain original standard PMTiles/Mapzen samples, roads and water. Existing Queen Mother court internal[-14.2,-22.4] supplies nativeY0 as an open-ground provider reference. Occupied floors follow a compact sampled grade grid and share boundary splits with their foundations; separate roof zones stay level locally. All three courts remain native ground and open sky. No palace precinct slab or terrain flattening. Native exterior placement remains draft until the actual map scene is inspected; supplied elevation does not certify historical floor levels or accessibility."
+  ]
+}

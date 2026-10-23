@@ -1,0 +1,601 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0742_imperial",
+  "reviewedOn": "2026-10-21",
+  "inputHash": "sha256:03d5a1a0bb5be4069d9bb291b22265a62fa04fa591405571de5dee3b3a4a0f74",
+  "sourceHash": "sha256:7a56eaa1398cf42a46442536dbe45b6834596d9b3ed15429dd25f56c414c1c09",
+  "runtimeHash": "sha256:0ac29d303f82f04c2c8450f8cbd53f58ad967daa02ac4a6b634eaab32c91ebce",
+  "captureReportHash": "sha256:a6fdebacaf1875a8d2635a6ff9f59a6d1a8140999e4fba03aac19096a529c5b4",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/city-pointed-recess-and-open-vaulted-route.png",
+      "shots/court-marble-columns-and-neutral-panels.png",
+      "shots/low-current-profile-and-native-footprint.png"
+    ],
+    "notes": "Inspected all48 current source/shared/medium-fi/native views during one continuous author/build/inspect/fix pass. Broad low brick gatehouse, pale marble pointed portal recesses and blind niches on both elevations, four grey-green stone shafts with stepped capitals, genuinely open lower vaulted route and solid enclosure above. Opaque dark-green upper panels/fan and framed medallions use original neutral gold geometry. Low lead cap, fine coping/dentils, narrow wing slits and occupied inclined paving retained. No removed upper storey, Salutation towers/canopy, independent Sultan Ahmed III fountain, copied inscriptions/tughra or furnished guard rooms. The flat library stages judge appearance; the separate original PMTiles scene judges native placement.",
+    "metadataReview": "Corrected only the copied descriptive caption in pmtiles-fit.json from Salutation to the actual Imperial Gate. Numeric PMTiles data, geometry, cameras, scene, materials, placement and all 48 inspected images are unchanged."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/city-pointed-recess-and-open-vaulted-route.png",
+      "shots/shared/court-marble-columns-and-neutral-panels.png",
+      "shots/shared/low-current-profile-and-native-footprint.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Seven existing shared256px graphs: brick, stone_marble, stone_limestone_raw, metal_standing_seam, metal_painted, metal_bronze_cast and stone_granite. Nine surface roles merge into seven textured draws/one skyline draw. No new graph/private atlas/embedded images. Each requested graph read once. Muted brick, pale marble, dark lead, green painted panels and grey-green granite share the existing texture library. Separate POSITION/NORMAL streams and equal CPU/GPU accounting.",
+    "captureReportHash": "sha256:65a0b3bb327b404f142379257ce0e73a963198f5ef7c949dca8292cc4487e143"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/city-pointed-recess-and-open-vaulted-route.png",
+      "medium-fi/court-marble-columns-and-neutral-panels.png",
+      "medium-fi/low-current-profile-and-native-footprint.png",
+      "medium-fi/imperial-skyline.png",
+      "medium-fi/imperial-district.png",
+      "medium-fi/imperial-street.png",
+      "medium-fi/imperial-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored levels796/2770/4810/6322triangles; initial skyline plus district343380bytes. Skyline preserves the low brick silhouette, open passage and occupied floor with simplified portal detail. District adds pointed portal/column/niche profiles; street adds frames and coping detail; closeup refines arches/capitals/dentils/lead seams. Geometry/download/draw/layout budgets pass. Physical ordinary-laptop/phone/tablet/dense-city timings remain pending.",
+    "captureReportHash": "sha256:d516a7818edd49283f2c327b5828c6d187c05627b25192d6b569808c9024817b"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:10b0a6d4ab4f11fe49a1e1934dbf606b08c7d49f848ed9a96444f4d314fcc0e4",
+    "mapFrameHash": "sha256:095ef01e9dc07e9237a2d714d646f370b17acc24256b6fffcc22ca7c0f547086",
+    "notes": "Independent Q21097852/Bab-i Humayun and OSM way335364925, the named Imperial Gate in standard20261020 PMTiles. Its approximately41.1x14.8m four-corner parent lies at the city/First Courtyard entrance, distinct from Gate of Salutation and the separately mapped Sultan Ahmed III fountain. Internal+X follows the front wall southeast; internal+Z faces the city southwest, while internal-Z faces the First Courtyard northeast. World heading0/native east-south. Exact member anchor comes from native footprint bounds. Both ordinary exterior pictures were actually inspected; their gate front/back portal profiles inform the reconstruction. Original standard PMTiles/Mapzen terrain retained. Existing front path control internal[0,18] supplies nativeY0; rear control[0,-18] supplies only a modest slope for occupied paving and the vaulted passage ceiling. Walls remain vertical and roof/coping level; foundations reach original boundary minima. Ground opening stays tightly inside the occupied parent, while the route through the gate remains open. No precinct slab, neighbouring fountain geometry or terrain flattening. Original native terrain, footprint ownership, facing and open-route fit were visually inspected2026-10-21. Approximate exterior placement is accepted; exact thresholds and host terrain accuracy remain outside scope. Only Imperial Gate OSM way335364925/native parent35184707453757 replaced. All777 independent resident records of778 and1557 wider records of1558 retained. Two actual overlapping PMTiles cases at14/15 pass;13 was scanned and has no overlapping source building. Original161x161/6m samples, paths and2637446.8634741725square metres native water unchanged. Occupied inclined paving seals the bounded parent terrain opening; the true gate passage remains clear. Failure keeps778 originals; all LOD unloads restore terrain/water/zero live model geometry. Native exterior fit accepted at the named parent between city and First Courtyard. Signed internal front-wall axis southeast; internal+Z city southwest and-Z courtyard northeast. Approximate facade-bearing uncertainty10degrees; exact historical thresholds, optical properties, height datum and accessible routes are not certified. The shared placement view uses a flat control fixture; native evidence is the separate original PMTiles scene."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Two ordinary exterior pictures actually viewed: city-facing front2024 and First Courtyard detail2018. Standard PMTiles supplies the particular named four-corner gate footprint, paths and independent fountain context. The native parent has no qualified architectural height. Picture-led working wall10.7m/coping11.15m, open lower passage4.15m above its inclined floor with clear width3.8m, tall pointed recesses to about9m plus local grade, marble jambs to about9.7m plus grade. Working frontispiece/niche/panel/column proportions, dentil counts and low inaccessible roof cap remain approximate visualization geometry, not surveyed dimensions or present-condition/engineering/access certification. The current low single-volume profile is modelled; no removed upper storey is reconstructed. Fine wall and ceiling art is excluded. Fine inscriptions and tughra are replaced by neutral original geometric bands/panels. Topkapi Palace is an18-member collection; completion of this gate does not complete the palace."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sx/sxk/n0742_imperial/models/source.glb\",\"hash\":\"sha256:7a56eaa1398cf42a46442536dbe45b6834596d9b3ed15429dd25f56c414c1c09\",\"bytes\":762976,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_imperial/model.glb\",\"hash\":\"sha256:0ac29d303f82f04c2c8450f8cbd53f58ad967daa02ac4a6b634eaab32c91ebce\",\"bytes\":762328,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_imperial/model.skyline.glb\",\"hash\":\"sha256:4caddcc687237ed44c935a01c43b3995b738b5f975abc79bc7ba5fc2c4677c07\",\"bytes\":76108,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_imperial/model.district.glb\",\"hash\":\"sha256:e2d4f74450936d069bca3c31de121a97b3a51787375375a53d5b70cf466ead65\",\"bytes\":267272,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_imperial/model.street.glb\",\"hash\":\"sha256:eb4089783a4a8e88a9377eb64b7dda76d94efac4d1c148bc7eb7c766caf50d4c\",\"bytes\":457864,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_imperial/model.closeup.glb\",\"hash\":\"sha256:489a0547f36acdb0e8962a50485d57229acdb64858e60378e817ea7c5a93dbec\",\"bytes\":600044,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "true-vaulted-passage-low-gatehouse-pointed-portals-four-columns-and-inclined-paving",
+        "passed": true,
+        "notes": "156 actual mesh/contact probes across six GLBs. True full-depth route at walking height, enclosed vault/wall above, low closed roof, all four portal columns, blind pointed niches, opaque upper panels, sampled inclined paving and occupied terrain-opening coverage. Independent fountain and other palace members excluded."
+      }
+    ],
+    "reviewInputReuse": {
+      "reason": "Corrected only the copied descriptive caption in pmtiles-fit.json from Salutation to the actual Imperial Gate. Numeric PMTiles data, geometry, cameras, scene, materials, placement and all 48 inspected images are unchanged.",
+      "previousInputHash": "sha256:8298ce0f4d7091e500cc7049db80ec02e074787a9f94be8ce706da2e1eca1ad6",
+      "inputHash": "sha256:03d5a1a0bb5be4069d9bb291b22265a62fa04fa591405571de5dee3b3a4a0f74",
+      "unchangedGlbs": 6,
+      "imagesRetained": 48
+    }
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:03d5a1a0bb5be4069d9bb291b22265a62fa04fa591405571de5dee3b3a4a0f74",
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "inputHash": "sha256:03d5a1a0bb5be4069d9bb291b22265a62fa04fa591405571de5dee3b3a4a0f74",
+      "ownerRemainder": 0,
+      "independentBuildingsUnchanged": 777,
+      "widerIndependentBuildingsUnchanged": 1557,
+      "mapLevels": [
+        {
+          "level": 14,
+          "tile": [
+            9510,
+            6142
+          ],
+          "id": 35184404484980,
+          "owned": false,
+          "covered": 0.0006873202733204275,
+          "area": 866100.4629137634,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19021,
+            12284
+          ],
+          "id": 35184707453757,
+          "owned": true,
+          "covered": 0.9999976724001098,
+          "area": 605.0054002132715,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "method": "Only Imperial Gate OSM way335364925/native parent35184707453757 replaced. All777 independent resident records of778 and1557 wider records of1558 retained. Two actual overlapping PMTiles cases at14/15 pass;13 was scanned and has no overlapping source building. Original161x161/6m samples, paths and2637446.8634741725square metres native water unchanged. Occupied inclined paving seals the bounded parent terrain opening; the true gate passage remains clear. Failure keeps778 originals; all LOD unloads restore terrain/water/zero live model geometry."
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 778,
+          "independentBuildings": 777,
+          "remainingBuildings": 777,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0742_imperial"
+          ],
+          "rawTerrainRange": {
+            "min": -47.75387675131487,
+            "max": 8.078023248685135
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2637446.8634741725,
+          "remainingWaterArea": 2637446.8634741725,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:8730609d455de1f7eefe7164cf59fbf98d7d11b0f80f08f53abf71870006d353",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 15,
+              "triangles": 332969
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -10.291425399587808,
+                65,
+                135.3332426392153
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 778,
+          "independentBuildings": 777,
+          "remainingBuildings": 777,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0742_imperial"
+          ],
+          "rawTerrainRange": {
+            "min": -47.75387675131487,
+            "max": 8.078023248685135
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2637446.8634741725,
+          "remainingWaterArea": 2637446.8634741725,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:aa0f3a1b0fa53ee42bbe3c5011f26320a0348e75c8dc827ac872e48d7a9a03d6",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 334943
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -10.291425399587808,
+                65,
+                135.3332426392153
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 778,
+          "independentBuildings": 777,
+          "remainingBuildings": 777,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0742_imperial"
+          ],
+          "rawTerrainRange": {
+            "min": -47.75387675131487,
+            "max": 8.078023248685135
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2637446.8634741725,
+          "remainingWaterArea": 2637446.8634741725,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:ee94ce1f3e4408c6ca7193cd709e8ad35fe972041722b5f29b1667155d0a4b40",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 336983
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -10.291425399587808,
+                65,
+                135.3332426392153
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 778,
+          "independentBuildings": 777,
+          "remainingBuildings": 777,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0742_imperial"
+          ],
+          "rawTerrainRange": {
+            "min": -47.75387675131487,
+            "max": 8.078023248685135
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2637446.8634741725,
+          "remainingWaterArea": 2637446.8634741725,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:d98a049cf0e3ac34346a917f592eb8b01f2f7837e3ed4062b2d108ac3c35737b",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 338495
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -10.291425399587808,
+                65,
+                135.3332426392153
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-city-pointed-recess-and-open-vaulted-route.png",
+            "hash": "sha256:e76ce0beafcd24eb57895b18e38d96adf1d8cb59fab20060789f1bdba18b76da",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 338495
+            },
+            "camera": {
+              "name": "city-pointed-recess-and-open-vaulted-route",
+              "position": [
+                -33.14284835940521,
+                7.5,
+                34.7210541692713
+              ],
+              "lookAt": [
+                -4.142856044925651,
+                5.5,
+                4.340131771158912
+              ],
+              "fov": 58
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-court-marble-columns-and-neutral-panels.png",
+            "hash": "sha256:6f20980deb7c322a6dc1ffc43db0345d9de6c73f4ed8720fa663630f6e7a4fb3",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 338903
+            },
+            "camera": {
+              "name": "court-marble-columns-and-neutral-panels",
+              "position": [
+                4.471670853323474,
+                15,
+                -51.02944404732956
+              ],
+              "lookAt": [
+                2.0714280224628254,
+                6,
+                -2.170065885579456
+              ],
+              "fov": 65
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-low-current-profile-and-native-footprint.png",
+            "hash": "sha256:4c788012b76e6a7272e11cb82668f2434b11f27b8ec1a0e4baf7940c4a4d37ba",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 338495
+            },
+            "camera": {
+              "name": "low-current-profile-and-native-footprint",
+              "position": [
+                58.558921554282165,
+                85,
+                -6.31289999916272
+              ],
+              "lookAt": [
+                0,
+                6,
+                0
+              ],
+              "fov": 58
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 778,
+          "independentBuildings": 777,
+          "remainingBuildings": 778,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184707453757,
+              "area": 605.0054002132513
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0742_imperial"
+          ],
+          "rawTerrainRange": {
+            "min": -47.75387675131487,
+            "max": 8.078023248685135
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2637446.8634741725,
+          "remainingWaterArea": 2637446.8634741725,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:2fc143b1ad7bd81dd631ae3caebb0cba906fa9a0404d13f12a46ee87c2c31f37",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 332132
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -10.291425399587808,
+                65,
+                135.3332426392153
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Imperial Gate (Bab-i Humayun) only, second authored member of18 required Topkapi Palace structures. Broad low brick gatehouse on its particular native rectangular footprint, marble frontispieces/blind pointed niches, tall recessed pointed portals framing a genuinely open lower vaulted route, green-grey paired stone columns/stepped capitals, opaque dark-green upper panels with original geometric gold accents, stone plinth/coping and fine dentils. Inclined occupied paving follows existing front/rear standard-ground controls. No lost upper storey, twin Salutation towers, courtyard canopy, neighbouring fountain, copied calligraphy/tughra/inscription art, furnished guard rooms, visitors or temporary entry/security equipment.",
+    "Independent Q21097852/Bab-i Humayun and OSM way335364925, the named Imperial Gate in standard20261020 PMTiles. Its approximately41.1x14.8m four-corner parent lies at the city/First Courtyard entrance, distinct from Gate of Salutation and the separately mapped Sultan Ahmed III fountain. Internal+X follows the front wall southeast; internal+Z faces the city southwest, while internal-Z faces the First Courtyard northeast. World heading0/native east-south. Exact member anchor comes from native footprint bounds. Both ordinary exterior pictures were actually inspected; their gate front/back portal profiles inform the reconstruction.",
+    "The native parent has no qualified architectural height. Picture-led working wall10.7m/coping11.15m, open lower passage4.15m above its inclined floor with clear width3.8m, tall pointed recesses to about9m plus local grade, marble jambs to about9.7m plus grade. Working frontispiece/niche/panel/column proportions, dentil counts and low inaccessible roof cap remain approximate visualization geometry, not surveyed dimensions or present-condition/engineering/access certification. The current low single-volume profile is modelled; no removed upper storey is reconstructed. Fine wall and ceiling art is excluded.",
+    "Original standard PMTiles/Mapzen terrain retained. Existing front path control internal[0,18] supplies nativeY0; rear control[0,-18] supplies only a modest slope for occupied paving and the vaulted passage ceiling. Walls remain vertical and roof/coping level; foundations reach original boundary minima. Ground opening stays tightly inside the occupied parent, while the route through the gate remains open. No precinct slab, neighbouring fountain geometry or terrain flattening. Original native terrain, footprint ownership, facing and open-route fit were visually inspected2026-10-21. Approximate exterior placement is accepted; exact thresholds and host terrain accuracy remain outside scope."
+  ]
+}

@@ -6,7 +6,7 @@ The original M48 Severn suspension bridge: two white steel portal towers, paired
 
 ## Source and browser models
 
-The original detailed recipe is preserved at `packages/worldgen/scripts/severn-bridge-model.mjs#buildSevern`. Original master hash: `sha256:41a39bb8d560fad968924a5f1cd2dc687f8af781a35c039da0be20e415d29450`. The current shared-material master has 308648 triangles and 24002716 bytes. It binds reusable painted metal and concrete graphs with metric UVs and embeds no texture images. Independent silhouettes live in `severn-browser-model.mjs`; four browser levels follow the1k/4k/16k/64k budgets.
+The original detailed recipe is preserved at `content/worldgen/source/places/gc/gcn/n0005_severn_bridge/models/severn-bridge-model.mjs#buildSevern`. Original master hash: `sha256:41a39bb8d560fad968924a5f1cd2dc687f8af781a35c039da0be20e415d29450`. The current shared-material master has 308648 triangles and 24002716 bytes. It binds reusable painted metal and concrete graphs with metric UVs and embeds no texture images. Independent silhouettes live in `severn-browser-model.mjs`; four browser levels follow the1k/4k/16k/64k budgets.
 
 ## Approximate placement
 
@@ -19,4 +19,4 @@ Two inspected pictures confirm white portal towers, paired inclined hangers, con
 - Skyline uses representative suspension/hanger ribbons; district reconstructs broader cables. Street/closeup reductions simplify rails, fittings and narrow markings; source retains all authored geometry.
 - Separate approach bridges are excluded. Connected road fitting is requested, but exact host endpoint joins and tides are not surveyed. Mapped-water preview is not bathymetry. Footprint replacement off; physical-device timings remain pending.
 
-Regenerate with `node packages/worldgen/scripts/generate-severn-bridge.mjs`; use `--check` for the selected source. QA reports bind the final inspected images and placement.
+Regenerate with `node content/worldgen/source/places/gc/gcn/n0005_severn_bridge/models/generate-severn-bridge.mjs`; use `--check` for the selected source. QA reports bind the final inspected images and placement.

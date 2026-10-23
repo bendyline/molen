@@ -761,13 +761,25 @@ registerRenderableComponent();
 
 registerComponent('model.signals', modelSignalsSchema, {
   description:
-    'Bind same-entity simulation fields to named GLB transform channels. Visual only; no physics writes.',
+    'Bind same-entity simulation fields and named numeric expressions to GLB transforms and visibility. Supports calibration, cyclic needles and timed response. Visual only; no physics writes.',
   owner: 'client',
   examples: [
     {
       sources: { speed: { component: 'vehicleState', path: ['speed'] } },
+      derived: { speedKmh: { op: 'multiply', args: ['speed', 3.6] } },
       bindings: [
-        { node: 'speed-pointer', source: 'speed', property: 'rotation', axis: 'z', scale: 0.04 },
+        {
+          node: 'speed-pointer',
+          source: 'speedKmh',
+          property: 'rotation',
+          axis: 'z',
+          keys: [
+            [0, -2],
+            [60, 0],
+            [180, 2],
+          ],
+          responseSeconds: 0.2,
+        },
       ],
     },
   ],
@@ -1325,10 +1337,47 @@ function describedFields<T extends Record<string, z.ZodType>>(shape: T): T {
   ) as T;
 }
 
+/**
+ * Generic body styles, independent of any make or model name, so a host can classify or relabel
+ * a reference vehicle without showing what it depicts.
+ */
+const vehicleBodyStyleSchema = z
+  .enum([
+    'city',
+    'hatchback',
+    'sedan',
+    'fastback',
+    'coupe',
+    'roadster',
+    'wagon',
+    'crossover',
+    'suv',
+    'offroad',
+    'pickup',
+    'van',
+    'cargo-van',
+    'box-truck',
+    'motorhome',
+    'bus',
+    'light-rail',
+    'bicycle',
+    'motorcycle',
+    'scooter',
+  ])
+  .describe('Generic body style, independent of any make or model name.');
+const genericLabelSchema = z
+  .string()
+  .min(1)
+  .describe(
+    "Name-free display label such as 'Full-size pickup', for hosts that must not show a manufacturer, model or type name.",
+  );
+
 const vehicleSpecSchema = z
   .strictObject(
     describedFields({
       label: z.string().min(1),
+      bodyStyle: vehicleBodyStyleSchema.optional(),
+      genericLabel: genericLabelSchema.optional(),
       width: num.positive(),
       length: num.positive(),
       height: num.positive(),
@@ -1343,7 +1392,7 @@ const vehicleSpecSchema = z
         .nonnegative()
         .describe('Maximum reverse speed; zero disables powered reverse.'),
       brakeDeceleration: num.positive(),
-      maxSteer: num.positive(),
+      maxSteer: num.nonnegative(),
       grip: num
         .positive()
         .describe(
@@ -1867,6 +1916,10 @@ const airplanePhysicsSchema = z.strictObject(
     flapDrag: num
       .nonnegative()
       .describe('Drag coefficient of the flaps fully down; scales with the flap position.'),
+    fixedGear: z
+      .boolean()
+      .optional()
+      .describe('Fixed undercarriage stays down regardless of the gear selection.'),
     gearTransitTime: num
       .nonnegative()
       .optional()
@@ -1927,6 +1980,10 @@ const aircraftEngineSchema = z.strictObject(
     idleRpm: num.min(0).max(1),
     spoolRate: num.positive(),
     rotorAngularSpeed: num.positive(),
+    vectored: z
+      .boolean()
+      .optional()
+      .describe('Rotate +Z thrust toward +Y with the powered-lift lever.'),
     propellerEfficiency: num
       .min(0)
       .max(1)
@@ -1965,6 +2022,7 @@ const aircraftSpecSchema = z
   .strictObject(
     describedFields({
       label: z.string().min(1),
+      genericLabel: genericLabelSchema.optional(),
       model: z.enum(['airplane', 'helicopter']),
       mass: num.positive(),
       span: num.positive(),
@@ -1984,6 +2042,29 @@ const aircraftSpecSchema = z
         ),
       airplane: airplanePhysicsSchema.optional(),
       helicopter: helicopterPhysicsSchema.optional(),
+      poweredLift: z
+        .strictObject({
+          transitTime: num
+            .positive()
+            .describe('Seconds for thrust-vector travel from forward to vertical.'),
+          controlFadeSpeed: num
+            .positive()
+            .describe('Axial airspeed in m/s at which assisted hover controls fade to zero.'),
+          pitchAuthority: num
+            .positive()
+            .describe('Full-stick hover pitch angular acceleration in rad/s².'),
+          rollAuthority: num
+            .positive()
+            .describe('Full-stick hover roll angular acceleration in rad/s².'),
+          yawAuthority: num
+            .positive()
+            .describe('Full-pedal hover yaw angular acceleration in rad/s².'),
+          damping: num.positive().describe('Thrust-dependent hover angular-rate damping in 1/s.'),
+        })
+        .optional()
+        .describe(
+          'Assisted hover controls and 0–90 degree thrust-vector actuator; airplane model only.',
+        ),
       hardLandingSpeed: num.positive(),
       hardLandingRoll: num.positive(),
       hardLandingPitch: num.positive(),
@@ -2025,6 +2106,26 @@ const aircraftSpecSchema = z
     }),
   )
   .superRefine((value, ctx) => {
+    const installations = value.engines ?? (value.engine ? [value.engine] : []);
+    if (value.poweredLift && (value.model !== 'airplane' || !installations.some((e) => e.vectored)))
+      ctx.addIssue({
+        code: 'custom',
+        path: ['poweredLift'],
+        message: 'Powered lift requires an airplane with a vectored engine.',
+      });
+    for (const engine of installations)
+      if (
+        engine.vectored &&
+        (!value.poweredLift ||
+          engine.thrustAxis[0] !== 0 ||
+          engine.thrustAxis[1] !== 0 ||
+          (engine.thrustAxis[2] ?? 0) <= 0)
+      )
+        ctx.addIssue({
+          code: 'custom',
+          path: ['poweredLift'],
+          message: 'Vectored engines require poweredLift and a forward +Z thrust axis.',
+        });
     if ((value.engine === undefined) === (value.engines === undefined))
       ctx.addIssue({
         code: 'custom',
@@ -2182,6 +2283,11 @@ registerComponent(
       ),
     gear: z.boolean().describe('Landing gear extended; helicopter skids are fixed.'),
     flaps: z.boolean().describe('Plane landing flaps extended.'),
+    thrustVector: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe('Powered-lift lever: 0 forward to 1 vertical.'),
   }),
   {
     owner: 'kernel/aircraft',
@@ -2228,6 +2334,11 @@ registerComponent(
     pitchTrim: num
       .optional()
       .describe('Airplane trimmed angle of attack in radians, flown with the stick centered.'),
+    thrustVectorPosition: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe('Actual thrust-vector position after actuator travel, 0 forward to 1 vertical.'),
     sideslip: num
       .optional()
       .describe('Airplane sideslip in radians, positive with the relative wind from the left.'),

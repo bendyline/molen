@@ -284,6 +284,12 @@ for (let study of signatureTowers.filter(
     if (member && frame.wikidataId !== member.wikidataId)
       throw new Error(`${study.id}: source-local frame has a different member identity`);
     if (
+      member?.featureId &&
+      (!frame.elements?.some((p) => `${p.type}/${p.id}` === member.featureId) ||
+        frame.sourceUrl !== `https://www.openstreetmap.org/${member.featureId}`)
+    )
+      throw new Error(`${study.id}: source-local frame needs its own declared map member`);
+    if (
       !frame.anchor?.every(Number.isFinite) ||
       !Number.isFinite(frame.heading) ||
       (!frame.geometry?.outline?.length &&
@@ -404,14 +410,19 @@ for (let study of signatureTowers.filter(
     planId: study.id,
     id: study.id,
     ...(member
-      ? { collectionId: collections.find((entry) => entry.members.includes(member)).id }
+      ? {
+          collectionId: collections.find((entry) => entry.members.includes(member)).id,
+          ...(member.featureId ? { mapFeatureId: member.featureId } : {}),
+        }
       : {}),
     assetId,
     title: study.title,
     category: study.category ?? 'skyscraper',
     quality: 'detailed',
     wikidataId: study.wikidataId,
-    referenceCoordinate: candidate.referenceCoordinate,
+    ...(study.reusableMapRules
+      ? { usage: { kind: 'map-category', rules: study.reusableMapRules } }
+      : { referenceCoordinate: candidate.referenceCoordinate }),
     visualBrief: study.brief,
     ...(study.mediumFiContext ? { mediumFiContext: study.mediumFiContext } : {}),
     size,
@@ -439,7 +450,7 @@ for (let study of signatureTowers.filter(
     ...(study.appearance ? { appearance: study.appearance } : {}),
     reconstruction: study.reconstruction,
     referencePages: study.refs,
-    geographicProposal: geographicProposal(study, mapped),
+    ...(study.reusableMapRules ? {} : { geographicProposal: geographicProposal(study, mapped) }),
     scaleBasis:
       study.scaleBasis ??
       'Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.',

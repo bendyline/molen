@@ -10,6 +10,8 @@ export default defineConfig({
     'src/navigation.ts',
     'src/markers.ts',
     'src/audio.ts',
+    'src/instruments.ts',
+    'src/text.ts',
   ],
   format: 'esm',
   dts: true,

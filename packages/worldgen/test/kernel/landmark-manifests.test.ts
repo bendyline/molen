@@ -7,17 +7,23 @@ import { resolveLandmarkCatalogDocuments } from '../../src/kernel/landmark-docs'
 import { generateLandmarkModel } from '../../src/kernel/landmark-models';
 import { registerLandmarkSchemas } from '../../src/kernel/landmark-schema';
 import { LANDMARK_DEFINITIONS, LANDMARK_DOCS } from '../helpers/content';
+import { FONTS } from '../helpers/fonts';
 
 registerLandmarkSchemas();
 
 describe('external landmark manifests', () => {
-  it('preserves the prior geometry byte-for-byte at every detail level', async () => {
+  it('pins font-backed sign geometry and preserves furniture at every detail level', async () => {
     const hashes = JSON.parse(
       await readFile(new URL('../fixtures/landmark-geometry-hashes.json', import.meta.url), 'utf8'),
     ) as Record<string, string>;
     for (const [key, expected] of Object.entries(hashes)) {
       const [id, tier] = key.split('@');
-      const mesh = generateLandmarkModel(id ?? '', LANDMARK_DEFINITIONS, Number(tier) as 0 | 1 | 2);
+      const mesh = generateLandmarkModel(
+        id ?? '',
+        LANDMARK_DEFINITIONS,
+        Number(tier) as 0 | 1 | 2,
+        FONTS,
+      );
       if (!mesh) throw new Error(`Missing model ${id}`);
       const hash = createHash('sha256');
       for (const a of [mesh.positions, mesh.normals, mesh.uvs, mesh.colors, mesh.indices])
@@ -47,9 +53,11 @@ describe('external landmark manifests', () => {
       },
       async () => definition,
     );
-    expect(generateLandmarkModel('sign.testshop', defs)?.triangleCount).toBeGreaterThan(0);
+    expect(generateLandmarkModel('sign.testshop', defs, 0, FONTS)?.triangleCount).toBeGreaterThan(
+      0,
+    );
     expect(generateLandmarkModel('sign.testshop', LANDMARK_DEFINITIONS)).toBeUndefined();
-    const library = new ModelLibrary(undefined, defs);
+    const library = new ModelLibrary(undefined, defs, false, {}, FONTS);
     try {
       expect((await library.prepare('builtin:sign.testshop')).bounds.isEmpty()).toBe(false);
     } finally {

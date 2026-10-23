@@ -1,0 +1,57 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "bendy-transit-controls",
+  "path": "/?aircraft=airliner&quality=balanced&freeze=1",
+  "viewport": [1440, 1000],
+  "probes": [{ "name": "navigation", "selector": "#navigation-status" }],
+  "actions": [
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=grounded]",
+      "timeoutMs": 120000
+    },
+    { "type": "keys", "keys": ["e"], "durationMs": 100 },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-aircraft=airliner]",
+      "timeoutMs": 30000
+    },
+    { "type": "screenshot", "name": "airliner-cockpit" },
+    { "type": "keys", "keys": ["i"], "durationMs": 100 },
+    { "type": "keys", "keys": ["Shift"], "durationMs": 1500 },
+    { "type": "keys", "keys": ["v"], "durationMs": 100 },
+    { "type": "screenshot", "name": "airliner-taxi" },
+    { "type": "navigate", "path": "/?aircraft=p51d&quality=balanced&freeze=1" },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=grounded]",
+      "timeoutMs": 120000
+    },
+    { "type": "click", "selector": "button[data-transit=bus]" },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-vehicle=practice-bus]",
+      "timeoutMs": 30000
+    },
+    { "type": "screenshot", "name": "bus-cockpit" },
+    { "type": "keys", "keys": ["w"], "durationMs": 2000 },
+    { "type": "keys", "keys": ["v"], "durationMs": 100 },
+    { "type": "screenshot", "name": "bus-driving" },
+    { "type": "navigate", "path": "/?aircraft=p51d&quality=balanced&freeze=1" },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=grounded]",
+      "timeoutMs": 120000
+    },
+    { "type": "click", "selector": "button[data-transit=lightrail]" },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-vehicle=practice-lightrail]",
+      "timeoutMs": 30000
+    },
+    { "type": "screenshot", "name": "rail-cab" },
+    { "type": "keys", "keys": ["w"], "durationMs": 2000 },
+    { "type": "keys", "keys": ["v"], "durationMs": 100 },
+    { "type": "screenshot", "name": "rail-driving" }
+  ]
+}

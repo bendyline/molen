@@ -1,5 +1,9 @@
 # Fleet model review
 
+For the current 142-model cabin pass, references and validation, see the
+[interior review and citation ledger](source/INTERIORS.md). The counts and measurements below
+describe the original fleet batch and are retained as historical evidence.
+
 The brief was diverse cars, motorcycles, bicycles, boats, cargo ships and ferries, with sea traffic support. This batch adds 20 original, generic medium-fi models: six mountable road vehicles, six rideable cycles and eight ambient watercraft. Cycle riding with assisted lean and rider animation was subsequently added (see [the riding review](CYCLE-RIDING-REVIEW.md)). Boat helm physics and mounting were also added; see docs-src/guide/boats.md for that runtime extension.
 
 Each model owns its recipe in `source/<category>/<name>/models/recipe.json`; `packages/entities/scripts/fleet-geometry.mjs` is the shared authoring capability. No external model, texture, reference image or image-generation output is used. Models use flat PBR materials and metre units, +Y up and +Z forward. Cycle/car tires meet ground at Y=0; vessel origins use the waterline, with the hull below it.
@@ -41,6 +45,8 @@ Local captures are ignored build outputs: `source/<category>/<name>/shots/angle_
 node packages/entities/scripts/capture-fleet.mjs
 # Narrow a later review:
 node packages/entities/scripts/capture-fleet.mjs --ids=sports-coupe,tugboat
+# Then refresh the tracked preview.png files and contact sheets from the captures:
+node packages/entities/scripts/preview-fleet.mjs
 ```
 
 ## Reproduction and validation

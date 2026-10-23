@@ -1,0 +1,158 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.bmw_i3_2017": {
+      "doc": "2017 BMW i3, 94 Ah battery electric. Polygonal reference interpretation; rounded proportions, simplified trim and gameplay handling.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.bmw_i3_2017",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.bmw_i3_2017",
+          "color": "#c28d4e",
+          "spec": {
+            "label": "2017 BMW i3",
+            "bodyStyle": "city",
+            "genericLabel": "City car",
+            "width": 2.065,
+            "length": 3.999,
+            "height": 1.578,
+            "centerOfMass": [
+              0,
+              0.5049600000000001,
+              0
+            ],
+            "wheelbase": 2.57,
+            "wheelTrack": 1.5265,
+            "wheelRadius": 0.348,
+            "mass": 1100,
+            "engineForce": 4180,
+            "maxSpeed": 50,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [
+              0.4083,
+              1.308,
+              0.3799
+            ],
+            "drive": "rear",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.16,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.4083,
+                1.308,
+                0.3799
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.3375,
+              0,
+              0.3799
+            ]
+          ],
+          "exits": [
+            [
+              1.4375,
+              0,
+              0.3799
+            ],
+            [
+              -1.4375,
+              0,
+              0.3799
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.bmw_i3_2017"
+      ]
+    }
+  }
+}

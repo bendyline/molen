@@ -4,7 +4,7 @@
 composes:
 
 - streamed terrain from a `molen/terrain-package@1`;
-- worldgen buildings, street surfaces, trees and parked cars from content packs;
+- worldgen buildings, seeded infill for streets with missing outlines, street surfaces, trees and parked cars from content packs;
 - traffic, pedestrians, trains and aircraft that come and go around the viewer;
 - orbit, walk, drive and fly navigation, with cars and aircraft the host can put the viewer in;
 - markers placed by latitude/longitude;
@@ -121,7 +121,9 @@ added.
 `view.vehicleStatus()` describes the car or aircraft the viewer is in for a HUD: speed and
 heading for a car; airspeed, altitude and height above ground, vertical speed, attitude, load
 factor (g), sideslip, power, engine, gear, flaps and stall/impact flags for an aircraft (SI units,
-compass radians). An airplane started in flight is trimmed for level flight at its launch speed.
+compass radians). Both carry the type's `label` and, where the type declares them, its name-free
+`genericLabel` (`Full-size pickup`) and `bodyStyle`, so a HUD that must not show a real
+manufacturer or model name has something to show instead. An airplane started in flight is trimmed for level flight at its launch speed.
 `view.setThrottle(power)` sets an aircraft's throttle or collective from an on-screen lever.
 
 Listen for `modechange`. The input profile, clip planes and touch stick follow the mode
@@ -575,6 +577,16 @@ For separated buildings or precincts, `buildingCutout.outlines` provides up to 6
 simple masks and supersedes `outline`. Keep the primary `outline` for compatibility. Separate
 masks preserve intervening buildings without inventing connecting structure geometry.
 
+For a whole landmark whose source footprint slightly overlaps a neighboring building, set
+`buildingCutout.minimumCoverage` to a fraction in `(0, 1]`, for example `0.995`. This changes
+the mask to whole-building replacement: a mapped feature goes only when the union of that
+placement's masks covers at least that fraction of its occupied area. The calculation includes
+all components and subtracts holes; overlapping masks do not count twice. Lower-coverage
+neighbors keep their original polygons and attributes intact. Separate placements make separate
+coverage decisions. Generalized tiles fall back to area subtraction so a coarse merged block
+can retain the surrounding complex while the landmark occupies its part. Use ordinary
+subtraction when only part of a precise map building should go.
+
 ### Bridge elevations and terrain fit
 
 With the default `datum: 'terrain'`, a placement's origin Y is the sampled terrain height at
@@ -652,6 +664,14 @@ An Earth pack can list multiple `provides.structures` documents. Alongside geogr
 each document may contain `rules` for deliberately generic assets. The shipped
 `structures/map-rules.json` recognizes windmills and wind turbines from class, subclass, or
 explicit map tags. Unique named landmarks never become arbitrary category replacements.
+
+Regional types can set `bounds: [west, south, east, north]` in WGS84 degrees. An optional
+`match.names` array accepts exact category labels such as “Svan tower”; it requires regional
+bounds and a class, subclass or explicit tag match. Partial names and business names do not
+establish a type. Bounds use half-open east/north edges. With `fit: "footprint"`, an explicitly
+typed point can use its sole complete containing building for size and the undirected longest
+axis; the matcher never chooses the nearest house. Generalized, clipped or ambiguous footprints
+do not establish that fit. A footprint axis alone does not establish the entrance's facing.
 
 ```json
 {
@@ -911,8 +931,9 @@ These regional forms are visual priors, not surveyed attributes of individual bu
 With the `molen.sounds` pack in `content`, the view plays the Earth soundscape: rain and wind
 from the weather, birds by day and crickets at night, traffic near streets, footsteps while
 walking, and an engine on the car or aircraft you board. Birds, crickets and traffic come from
-the ground, so they fade as the view rises above the terrain and are gone a few hundred meters
-up. Traffic also fades with distance from the nearest street. Sound starts on the first click or
+the ground, so they fade as the view rises above the terrain: birds and crickets are silent by
+60 m and traffic by 100 m. They also fade out while driving or piloting, or while the terrain
+height is unknown. Traffic also fades with distance from the nearest street. Sound starts on the first click or
 key press. The `audioready` event fires once it has loaded, and then `view.audio` sets volume,
 mute and bus gains (`view.audio.setBusGain('music', 0)` turns music off).
 

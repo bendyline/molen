@@ -15,6 +15,36 @@ const twin = {
 const valid = (spec: unknown) => component.zod.safeParse({ kind: 'test.twin', spec }).success;
 
 describe('aircraft engine authoring', () => {
+  it('validates powered-lift geometry and finite actuator/control parameters', () => {
+    const poweredLift = {
+      transitTime: 12,
+      controlFadeSpeed: 75,
+      pitchAuthority: 1.4,
+      rollAuthority: 1.5,
+      yawAuthority: 0.8,
+      damping: 2.2,
+    };
+    const spec = {
+      ...twin,
+      poweredLift,
+      engines: twin.engines.map((e) => ({ ...e, thrustAxis: [0, 0, 1], vectored: true })),
+    };
+    expect(valid(spec)).toBe(true);
+    expect(valid({ ...spec, poweredLift: { ...poweredLift, transitTime: 0 } })).toBe(false);
+    expect(valid({ ...spec, poweredLift: { ...poweredLift, controlFadeSpeed: Number.NaN } })).toBe(
+      false,
+    );
+    expect(valid({ ...spec, engines: twin.engines })).toBe(false);
+    expect(valid({ ...spec, poweredLift: undefined })).toBe(false);
+    expect(
+      valid({ ...spec, engines: spec.engines.map((e) => ({ ...e, thrustAxis: [0, 1, 0] })) }),
+    ).toBe(false);
+    const input = getComponent('aircraftInput');
+    for (const value of [-1, 2, Number.NaN, Number.POSITIVE_INFINITY])
+      expect(input?.zod.safeParse({ ...input.meta.examples[0], thrustVector: value }).success).toBe(
+        false,
+      );
+  });
   it('accepts the original single engine and named multi-engine layouts', () => {
     expect(valid(sample.spec)).toBe(true);
     expect(valid(twin)).toBe(true);

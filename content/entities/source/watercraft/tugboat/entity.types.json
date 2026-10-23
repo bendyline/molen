@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.watercraft.tugboat": {
-      "doc": "Harbor tug. Waterline origin; powered boat with driver and passenger seats.",
+      "doc": "Bendy Tugboat. Harbor tug. Waterline origin; powered boat with driver and passenger seats.",
       "components": {
         "transform": {
           "pos": [
@@ -46,7 +46,7 @@
           "kind": "molen.entities.watercraft.tugboat",
           "color": "#af6750",
           "spec": {
-            "label": "Harbor tug",
+            "label": "Bendy Tugboat",
             "length": 24.2,
             "width": 9.02,
             "height": 8.5,
@@ -56,7 +56,7 @@
             "maxSpeed": 7.800000000000001,
             "reverseSpeed": 2.4000000000000004,
             "turnRate": 0.125,
-            "turnResponse": 2.0,
+            "turnResponse": 2,
             "lateralDrag": 1.4,
             "buoyancyFrequency": 1.2,
             "driverEye": [
@@ -68,7 +68,22 @@
           "visual": {
             "wheelNodes": [],
             "frontWheelNodes": [],
-            "paintMaterial": "vehicle-paint-and-trim"
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "helm",
+                "helm-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "helm-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2
+                }
+              ]
+            }
           }
         },
         "mountable": {
@@ -97,7 +112,7 @@
               "position": [
                 2.05,
                 2.8499999999999996,
-                -6.0
+                -6
               ]
             }
           ],

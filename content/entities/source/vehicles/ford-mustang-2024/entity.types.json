@@ -1,0 +1,158 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.ford_mustang_2024": {
+      "doc": "2024 Ford Mustang, GT fastback. Polygonal reference interpretation with a complete driving cabin; dimensions rounded for authoring and handling tuned for play.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.ford_mustang_2024",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.ford_mustang_2024",
+          "color": "#ab3c32",
+          "spec": {
+            "label": "2024 Ford Mustang",
+            "bodyStyle": "coupe",
+            "genericLabel": "Sports coupe",
+            "width": 2.145,
+            "length": 4.811,
+            "height": 1.398,
+            "centerOfMass": [
+              0,
+              0.47532,
+              0
+            ],
+            "wheelbase": 2.72,
+            "wheelTrack": 1.6469,
+            "wheelRadius": 0.346,
+            "mass": 1550,
+            "engineForce": 5800,
+            "maxSpeed": 65,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [
+              0.4405,
+              1.078,
+              -0.3084
+            ],
+            "drive": "rear",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.18,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.4405,
+                1.078,
+                -0.3084
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.4075,
+              0,
+              -0.3084
+            ]
+          ],
+          "exits": [
+            [
+              1.5075,
+              0,
+              -0.3084
+            ],
+            [
+              -1.5075,
+              0,
+              -0.3084
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.ford_mustang_2024"
+      ]
+    }
+  }
+}

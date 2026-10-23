@@ -1,0 +1,629 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0742_kitchens",
+  "reviewedOn": "2026-10-21",
+  "inputHash": "sha256:d96c71ef61c856edd1f602049300b88ca5d215ebf527f8a25d3ff6f511edd280",
+  "sourceHash": "sha256:ad2bc7e06bef640a001ef60d029936252d91f74f94e4032c6dae671aa5bdbd92",
+  "runtimeHash": "sha256:693b3acba3c158ad3e1b0c388a3d4aa7edc088dfbc0ab9e82dd6074b9e51cccd",
+  "captureReportHash": "sha256:73fa57217b7cdbbf88bfb04e66415d223ef3ed8f08ee993f4040dd55917894f0",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/service-court-chimneys-and-open-sky.png",
+      "shots/court-colonnade-open-arches.png",
+      "shots/east-domes-and-whole-long-range.png"
+    ],
+    "notes": "Inspected all48 current source/shared/medium-fi/native views during one continuous author/build/inspect/fix pass. Long stone kitchen range, ten picture-led cooking domes and tall open-topped cylindrical chimneys, true recessed lower openings and upper pointed shared screens, northern connecting block, low west courtyard range with open pale-column pointed arcade/brick backing and closed lead hip roof. The long central service court stays unoccupied and open to the sky. Corrected LOD density, stone pattern scale, brick arch surrounds the sampled long foundation seam and reflective window-slot misuse for the matte metal screens/door backs in this round. Separate palace members retained. No furnishings, visitors, pots, planted trees or copied decoration."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/service-court-chimneys-and-open-sky.png",
+      "shots/shared/court-colonnade-open-arches.png",
+      "shots/shared/east-domes-and-whole-long-range.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Seven existing shared256px graphs: stone_drywall, brick, stone_limestone_raw, stone_marble, metal_standing_seam, metal_rosette_screen and metal_painted. Eight roles merge into eight textured draws/one skyline draw. Matte screens and recess backing use trim semantics, not glazing. Explicit metric UVs on wall/brick/roof quad faces keep the pattern scale consistent. No new graph, private atlas or embedded images. Each requested graph read once; separate POSITION/NORMAL streams and equal CPU/GPU memory accounting.",
+    "captureReportHash": "sha256:719bbc607a228e3ae458e2cb4d49faa2191c57d70be848fb6f2f20e88426c76a"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/service-court-chimneys-and-open-sky.png",
+      "medium-fi/court-colonnade-open-arches.png",
+      "medium-fi/east-domes-and-whole-long-range.png",
+      "medium-fi/kitchens-skyline.png",
+      "medium-fi/kitchens-district.png",
+      "medium-fi/kitchens-street.png",
+      "medium-fi/kitchens-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored levels912/2740/15324/26176triangles. Initial skyline plus district342808bytes; all levels meet triangle/download/draw/layout budgets. Skyline retains all ten domes/chimneys, open U outline and seven grouped arcade spans. District adds fourteen spans, cylindrical columns and representative upper/lower openings; street/closeup restore28 spans, actual recess depth and finer arches/lead domes/chimney rims. Physical ordinary-laptop/phone/tablet/dense-city timing measurements remain pending.",
+    "captureReportHash": "sha256:ddaa3f32a24cb46d2699922139a2d2b51a2dae57147daebacfbfe7686e83c4d7"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:b4eae483c6d34ef96b4696ddbc5ffca9730de420da9a8a98605735deaa851a5d",
+    "mapFrameHash": "sha256:bbfe13b6c8f413fec79a2237877887faff9eaaf58c632772472b82cd6e79a0ea",
+    "notes": "Named Palace Kitchens OSM way32396096/native35184404484928, member of Topkapi Q170495. The single notched U-shaped parent includes the main eastern hall, northern connecting range and western court frontage. The narrow central service court is unoccupied and remains native terrain. Internal+X runs southwest along the range; internal+Z faces northwest toward the Second Courtyard. World heading0/native+X east,+Z south. Three ordinary exterior pictures inspected; the courtyard-facing colonnade is distinct from the actual kitchens behind it. Use the existing standard PMTiles/Mapzen grid without flattening. Native provider reference internal[0,0]. Occupied floor follows sampled original ground under each narrow range, with level roof bays at local sampled grade and enclosing foundations below original ground. The long central service court stays outside the ground cutout. No palace precinct slab or neighbouring replacement. Native fit remains draft until rendered inspection; standard terrain does not certify historical thresholds or accessible routes. Only Palace Kitchens OSM way32396096/native35184404484928 replaced. All258 independent resident records of259/all572 wider independent records of573 retained. Four actual overlapping PMTiles cases at13/14/15 pass. Original161x161/6m samples, paths and3400906.0006393427square metres water unchanged. Ground-opening boundary agrees within the source frame0.1mm coordinate quantization. Clipped occupied floor retains the unroofed service court; actual terrain probes there remain present in every LOD. Failure keeps259 originals; every unload restores ground/water and zero model geometry. Native exterior placement/facing accepted as approximate visualization. Provider reference internal[0,0] uses the retained original ground; floor cells follow the sampled narrow ranges, local roof bays remain level and foundations close the downslope side. The court is supplied by the host, not a new precinct slab. Standard terrain/historical thresholds/accessibility are not certified. The flat library fixtures can bury parts of this terrain-specific long building; the original native scene proves the site fit."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Three ordinary exterior photographs actually viewed: stone wall/chimney row, open service court and stitched Second Courtyard colonnade, all Gryffindor July2007/public domain. No pixels copied. Standard PMTiles supplies the named U footprint and independent context. No qualified native height. Picture-led working kitchen eave7.4m, shallow cooking domes about3.8m above their low drums and chimney rims14.4m above local kitchen grade. Western arcade shafts about3.6m/pointed crowns5m, broad lead hip roof6.0-7.7m. Ten major cooking domes/chimneys and28 near arcade bays are a footprint-led visual rhythm, not a verified room or structural inventory. Fine decoration, exact historic roof plan, inaccessible interiors and dimensions remain approximate. Roof/dome/chimney/bay counts, fine profiles and heights are explicit picture-led approximations. Topkapi is an18-member collection; this member does not complete the palace."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sx/sxk/n0742_kitchens/models/source.glb\",\"hash\":\"sha256:ad2bc7e06bef640a001ef60d029936252d91f74f94e4032c6dae671aa5bdbd92\",\"bytes\":2831484,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_kitchens/model.glb\",\"hash\":\"sha256:693b3acba3c158ad3e1b0c388a3d4aa7edc088dfbc0ab9e82dd6074b9e51cccd\",\"bytes\":2830768,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_kitchens/model.skyline.glb\",\"hash\":\"sha256:69c7ae8bab3bfcec8082e60eef086c3bf022e65ba9a4748d44e32b91cc1d3466\",\"bytes\":84588,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_kitchens/model.district.glb\",\"hash\":\"sha256:c360837a8c0d1018f6f22a233f07ba3eb37c28ee33a88a9e20759dcd87d682af\",\"bytes\":258220,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_kitchens/model.street.glb\",\"hash\":\"sha256:5c494ccd355f450211868107f12ddf29e0bd06ba5a64ccc92412eab6e263bbf6\",\"bytes\":1380360,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_kitchens/model.closeup.glb\",\"hash\":\"sha256:6f3509c6863315b0a86626841ff2f587d0509acd5e23a97b908bbc68e9c7afb9\",\"bytes\":2376996,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "ten-open-chimneys-domes-recesses-open-colonnade-court-and-occupied-floor",
+        "passed": true,
+        "notes": "502 actual mesh/contact probes across six files, including chimney throat/lip, roof enclosure, recessed door backs, shared upper screens, open arcade, uncovered court and bounded occupied floor coverage."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:d96c71ef61c856edd1f602049300b88ca5d215ebf527f8a25d3ff6f511edd280",
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "inputHash": "sha256:d96c71ef61c856edd1f602049300b88ca5d215ebf527f8a25d3ff6f511edd280",
+      "ownerRemainder": 0,
+      "footprintQuantizationMeters": 0.0001,
+      "groundBoundaryRounding": {
+        "outsideArea": 0.0024611837513077717,
+        "maxDistanceMeters": 0.00004443060424712775
+      },
+      "independentBuildingsUnchanged": 258,
+      "widerIndependentBuildingsUnchanged": 572,
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3071
+          ],
+          "id": 35184404484920,
+          "owned": false,
+          "covered": 0.00829501198258839,
+          "area": 620067.188810724,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6142
+          ],
+          "id": 35184404484920,
+          "owned": false,
+          "covered": 0.07971024173989034,
+          "area": 64903.32888297818,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184404484928,
+          "owned": true,
+          "covered": 0.9999750273497803,
+          "area": 5184.665146048641,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184404484943,
+          "owned": false,
+          "covered": 8.63327346178447e-7,
+          "area": 1440.5353535391055,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "method": "Only Palace Kitchens OSM way32396096/native35184404484928 replaced. All258 independent resident records of259/all572 wider independent records of573 retained. Four actual overlapping PMTiles cases at13/14/15 pass. Original161x161/6m samples, paths and3400906.0006393427square metres water unchanged. Ground-opening boundary agrees within the source frame0.1mm coordinate quantization. Clipped occupied floor retains the unroofed service court; actual terrain probes there remain present in every LOD. Failure keeps259 originals; every unload restores ground/water and zero model geometry."
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "serviceCourtRetained": true,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0742_kitchens"
+          ],
+          "rawTerrainRange": {
+            "min": -47.80901784516363,
+            "max": 8.40438215483637
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:5326f0946dbf5b7f6986ef5082339e383eb6ac5891760d1bd339fde742361b05",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 11,
+              "triangles": 309545
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -286.48042972096687,
+                150,
+                33.6000504001134
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "serviceCourtRetained": true,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.stone_drywall": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0742_kitchens"
+          ],
+          "rawTerrainRange": {
+            "min": -47.80901784516363,
+            "max": 8.40438215483637
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:a6dac0bad5e9791730d37f486ad12bbd45d3a8d12592f0a60e270064dc063837",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 311373
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -286.48042972096687,
+                150,
+                33.6000504001134
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "serviceCourtRetained": true,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.stone_drywall": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0742_kitchens"
+          ],
+          "rawTerrainRange": {
+            "min": -47.80901784516363,
+            "max": 8.40438215483637
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:0dadb5f85e2409e42e51536535dcf63bb305fbe4fc15992f8c235b9df8a0b8b6",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 323957
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -286.48042972096687,
+                150,
+                33.6000504001134
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "serviceCourtRetained": true,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.stone_drywall": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0742_kitchens"
+          ],
+          "rawTerrainRange": {
+            "min": -47.80901784516363,
+            "max": 8.40438215483637
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:bed5aa8f9eebf7f4112377c0088e1384851ecd4705ba1f503fc05be0e788f003",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 334809
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -286.48042972096687,
+                150,
+                33.6000504001134
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-service-court-chimneys-and-open-sky.png",
+            "hash": "sha256:225cd63ec9ab75711c3413480aab2ebf50960d6d9390a890d9fc18dfffc2caad",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 336861
+            },
+            "camera": {
+              "name": "service-court-chimneys-and-open-sky",
+              "position": [
+                -10.777016165536374,
+                4,
+                5.732008598019346
+              ],
+              "lookAt": [
+                29.510044265099594,
+                -1,
+                -57.91508687269547
+              ],
+              "fov": 70
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-court-colonnade-open-arches.png",
+            "hash": "sha256:3942304cb7d8544cdfaafe04085b856e0f07b01deb38794ad7a554be6a7baa06",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 334809
+            },
+            "camera": {
+              "name": "court-colonnade-open-arches",
+              "position": [
+                -66.76210014322533,
+                10,
+                16.48702473055565
+              ],
+              "lookAt": [
+                -16.03802405705413,
+                5,
+                -8.17201225802758
+              ],
+              "fov": 65
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-east-domes-and-whole-long-range.png",
+            "hash": "sha256:319291d79c90201eb6094b4002f4c3ed6d2d433d7c3ececb9eb6d3c60d261d64",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 336049
+            },
+            "camera": {
+              "name": "east-domes-and-whole-long-range",
+              "position": [
+                221.925332888249,
+                115,
+                -72.10510815774336
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 50
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "serviceCourtRetained": true,
+          "failedLoad": true,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 259,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184404484928,
+              "area": 5184.589093902739
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0742_kitchens"
+          ],
+          "rawTerrainRange": {
+            "min": -47.80901784516363,
+            "max": 8.40438215483637
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:3fbcc270d697a3cb6b4fd148f57f1810ccd1e762a46d10d240f5d9d43ea29d21",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 308616
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -286.48042972096687,
+                150,
+                33.6000504001134
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Specific Palace Kitchens range on OSM way32396096: long stone kitchen hall, ten approximate cooking roof bays with lead domes and tall pale open-topped chimneys, recessed arched upper screens and lower doors, northern connecting range and west courtyard range with brick rear wall and a genuinely open pale-column arcade. Preserve the long unroofed service court and all separate palace members. Original medium-fi interpretation; no furnished kitchens, copied inscriptions, people, trees, pots or museum cases.",
+    "Named Palace Kitchens OSM way32396096/native35184404484928, member of Topkapi Q170495. The single notched U-shaped parent includes the main eastern hall, northern connecting range and western court frontage. The narrow central service court is unoccupied and remains native terrain. Internal+X runs southwest along the range; internal+Z faces northwest toward the Second Courtyard. World heading0/native+X east,+Z south. Three ordinary exterior pictures inspected; the courtyard-facing colonnade is distinct from the actual kitchens behind it.",
+    "No qualified native height. Picture-led working kitchen eave7.4m, shallow cooking domes about3.8m above their low drums and chimney rims14.4m above local kitchen grade. Western arcade shafts about3.6m/pointed crowns5m, broad lead hip roof6.0-7.7m. Ten major cooking domes/chimneys and28 near arcade bays are a footprint-led visual rhythm, not a verified room or structural inventory. Fine decoration, exact historic roof plan, inaccessible interiors and dimensions remain approximate.",
+    "Use the existing standard PMTiles/Mapzen grid without flattening. Native provider reference internal[0,0]. Occupied floor follows sampled original ground under each narrow range, with level roof bays at local sampled grade and enclosing foundations below original ground. The long central service court stays outside the ground cutout. No palace precinct slab or neighbouring replacement. Native fit remains draft until rendered inspection; standard terrain does not certify historical thresholds or accessible routes."
+  ]
+}

@@ -1,0 +1,487 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "stone_limestone",
+      "slot": "wall"
+    },
+    "floor": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim"
+    },
+    "trim": {
+      "graph": "stone_marble",
+      "slot": "trim"
+    },
+    "column": {
+      "graph": "stone_marble",
+      "slot": "trim"
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof"
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim"
+    },
+    "tile": {
+      "graph": "tile_glazed",
+      "slot": "wall"
+    },
+    "gold": {
+      "graph": "metal_bronze_cast",
+      "slot": "trim"
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      5.84123273161455,
+      29.89017037678115,
+      53.44043413161157
+    ],
+    "lookAt": [
+      -0.7959524367483009,
+      6.89017037678115,
+      -0.6053591648223738
+    ],
+    "fov": 47
+  },
+  "qaCameras": [
+    {
+      "name": "open-pool-arcade-and-tiled-cross-room",
+      "position": [
+        -32.42076010805145,
+        9.89017037678115,
+        2.9823336527256465
+      ],
+      "lookAt": [
+        -5.190480513386252,
+        5.89017037678115,
+        -1.4348909506152676
+      ],
+      "fov": 57
+    },
+    {
+      "name": "garden-bay-and-stone-undercroft",
+      "position": [
+        13.497612075676521,
+        6.490170376781149,
+        15.29099304344068
+      ],
+      "lookAt": [
+        7.163571930734708,
+        5.59017037678115,
+        5.448232483401364
+      ],
+      "fov": 68
+    },
+    {
+      "name": "marble-capitals-gold-grilles-and-clear-entry",
+      "position": [
+        -17.768705578477732,
+        5.490170376781149,
+        -4.71943874474225
+      ],
+      "lookAt": [
+        -5.5716670572381055,
+        5.39017037678115,
+        -4.237514153756617
+      ],
+      "fov": 72
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        5.84123273161455,
+        29.89017037678115,
+        53.44043413161157
+      ],
+      "lookAt": [
+        -0.7959524367483009,
+        6.89017037678115,
+        -0.6053591648223738
+      ],
+      "fov": 47,
+      "name": "baghdad-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        5.84123273161455,
+        29.89017037678115,
+        53.44043413161157
+      ],
+      "lookAt": [
+        -0.7959524367483009,
+        6.89017037678115,
+        -0.6053591648223738
+      ],
+      "fov": 47,
+      "name": "baghdad-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        5.84123273161455,
+        29.89017037678115,
+        53.44043413161157
+      ],
+      "lookAt": [
+        -0.7959524367483009,
+        6.89017037678115,
+        -0.6053591648223738
+      ],
+      "fov": 47,
+      "name": "baghdad-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        5.84123273161455,
+        29.89017037678115,
+        53.44043413161157
+      ],
+      "lookAt": [
+        -0.7959524367483009,
+        6.89017037678115,
+        -0.6053591648223738
+      ],
+      "fov": 47,
+      "name": "baghdad-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.4,
+    "groundY": -0.6098296232188503,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/topkapi-baghdad-model.mjs",
+    "export": "buildTopkapiBaghdadSkyline",
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTopkapiBaghdadDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone",
+            "slot": "wall"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "tile": {
+            "graph": "tile_glazed",
+            "slot": "wall"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          }
+        }
+      },
+      "street": {
+        "export": "buildTopkapiBaghdadStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone",
+            "slot": "wall"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "tile": {
+            "graph": "tile_glazed",
+            "slot": "wall"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTopkapiBaghdadCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_limestone",
+            "slot": "wall"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          },
+          "tile": {
+            "graph": "tile_glazed",
+            "slot": "wall"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      28.984546065330505,
+      41.014153617391614
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Existing standard Protomaps20261020/Mapzen PMTiles and original161x161/6m heightfield retained. Open provider control internal[-18,0] is outside every original building record. Raised terrace/stone basement meet original coarse falling terrain; local protective foundations and bounded approach stair accommodate grade. No bespoke terrain or precinct flattening; historical thresholds/accessibility are unverified. Approximate native exterior fit inspected: the standard grid seats the raised basement, upper terrace and bounded stair. Some garden basement openings are buried by the coarse uphill grade; threshold heights remain unverified.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      28.98434043407038,
+      41.0139994742245,
+      28.98475169659063,
+      41.01430776055873
+    ],
+    "terrainReference": {
+      "anchor": [
+        28.984375495652227,
+        41.01425150200184
+      ],
+      "modelHeight": 0,
+      "basis": "Existing standard Protomaps20261020/Mapzen PMTiles and original161x161/6m heightfield retained. Open provider control internal[-18,0] is outside every original building record. Raised terrace/stone basement meet original coarse falling terrain; local protective foundations and bounded approach stair accommodate grade. No bespoke terrain or precinct flattening; historical thresholds/accessibility are unverified."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -6.308421315236948,
+          -16.108270233008124
+        ],
+        [
+          -2.027814381701198,
+          -12.954217872782444
+        ],
+        [
+          0.675726839479271,
+          -16.558849032685742
+        ],
+        [
+          16.671679064797072,
+          -4.6185015427413125
+        ],
+        [
+          0.6757268394792728,
+          16.55876634688966
+        ],
+        [
+          -15.320225385838523,
+          4.393094338627358
+        ],
+        [
+          -13.960971013673523,
+          2.5807963766597517
+        ],
+        [
+          -13.964657074035692,
+          2.5856429683986093
+        ],
+        [
+          -13.961091769693073,
+          2.5808893373445256
+        ],
+        [
+          -14.411538320181961,
+          3.173155962384718
+        ],
+        [
+          -16.24216059899532,
+          1.780881848199022
+        ],
+        [
+          -14.426181159544218,
+          -0.6068465350658832
+        ],
+        [
+          -13.733523728491196,
+          -0.08004806745485471
+        ],
+        [
+          -13.740967073214344,
+          -0.08583720130110706
+        ],
+        [
+          -13.733407523832469,
+          -0.08008780939153315
+        ],
+        [
+          -16.671995996428763,
+          -2.365603611716298
+        ]
+      ],
+      "additionalOutlines": [],
+      "basis": "Only occupied raised kiosk/terrace and its bounded six-tread approach; preserve pool court and independent neighbours."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -16.672170974032397,
+          -2.365609581009891
+        ],
+        [
+          -12.616778034402895,
+          0.7885117716715504
+        ],
+        [
+          -15.320373327489229,
+          4.393223545996306
+        ],
+        [
+          0.6758988232715826,
+          16.55913887256514
+        ],
+        [
+          16.672170974032397,
+          -4.618552570894705
+        ],
+        [
+          0.6758988232715826,
+          -16.55913887256517
+        ],
+        [
+          -2.0276964698147513,
+          -12.954435618596786
+        ],
+        [
+          -6.308389017201449,
+          -16.108551061131323
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -16.672170974032397,
+            -2.365609581009891
+          ],
+          [
+            -12.616778034402895,
+            0.7885117716715504
+          ],
+          [
+            -15.320373327489229,
+            4.393223545996306
+          ],
+          [
+            0.6758988232715826,
+            16.55913887256514
+          ],
+          [
+            16.672170974032397,
+            -4.618552570894705
+          ],
+          [
+            0.6758988232715826,
+            -16.55913887256517
+          ],
+          [
+            -2.0276964698147513,
+            -12.954435618596786
+          ],
+          [
+            -6.308389017201449,
+            -16.108551061131323
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only way32396296/native35184404485128; preserve every independent palace structure."
+    },
+    "notes": "Independent Q6096486 / OSM way32396296 / native35184404485128. OSM v23 explicitly names Baghdad Kiosk and repeats Q6096486. Exact eight-corner parent retained; internal+X southeast faces the garden, internal+Z southwest faces the pool court. Existing standard Protomaps20261020/Mapzen PMTiles and original161x161/6m heightfield retained. Open provider control internal[-18,0] is outside every original building record. Raised terrace/stone basement meet original coarse falling terrain; local protective foundations and bounded approach stair accommodate grade. No bespoke terrain or precinct flattening; historical thresholds/accessibility are unverified."
+  }
+}

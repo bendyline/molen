@@ -2,6 +2,7 @@
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { addBoatDetail, addCarDetail, addCycleDetail } from './vehicle-detail.mjs';
 
 export function fleetModel(s) {
   const root = new T.Group();
@@ -14,6 +15,12 @@ export function fleetModel(s) {
   const paint = material('vehicle-paint-and-trim', s.color, 0.12, 0.45);
   const cream = material('ivory', '#e8e5d9');
   const glass = material('glazing', '#4d6178', 0.15, 0.23);
+  if (s.family === 'car' || s.family === 'watercraft') {
+    glass.transparent = true;
+    glass.opacity = 0.24;
+    glass.depthWrite = false;
+    glass.side = T.DoubleSide;
+  }
   const dark = material('rubber-and-trim', '#30353a');
   const metal = material('brushed-metal', '#a4adb2', 0.65, 0.4);
   const deck = material('deck-and-seats', '#ae8963');
@@ -40,7 +47,7 @@ export function fleetModel(s) {
     return o;
   }
   // Loft rectangular cross-sections [z, half-width, bottom, top]. Consistent outward winding.
-  function loft(g, sections, m, name) {
+  function loft(g, sections, m, name, openTop = false, openBottom = false) {
     const points = sections.flatMap(([z, w, b, t]) => [
       [-w, b, z],
       [w, b, z],
@@ -51,6 +58,7 @@ export function fleetModel(s) {
     const tri = (a, b, c) => positions.push(...points[a], ...points[b], ...points[c]);
     for (let j = 0; j < sections.length - 1; j++) {
       for (let k = 0; k < 4; k++) {
+        if ((openTop && k === 2) || (openBottom && k === 0)) continue;
         const a = j * 4 + k;
         const b = j * 4 + ((k + 1) % 4);
         tri(a, b, b + 4);
@@ -115,6 +123,8 @@ export function fleetModel(s) {
     const sporty = s.shape === 'sports-coupe';
     const wagon = s.shape === 'station-wagon';
     const belt = truck ? H * 0.36 : H * 0.55;
+    const rear = truck ? L * 0.19 : wagon || offroad ? -L * 0.42 : -L * 0.23;
+    const front = truck ? L * 0.45 : L * 0.22;
     loft(
       body,
       [
@@ -124,9 +134,48 @@ export function fleetModel(s) {
         [L / 2, W * 0.44, r * 0.8, belt * 0.86],
       ],
       paint,
+      'body-shell',
+      true,
     );
-    const rear = truck ? L * 0.19 : wagon || offroad ? -L * 0.42 : -L * 0.23;
-    const front = truck ? L * 0.45 : L * 0.22;
+    // Open the actual cabin: seats and instruments must not intersect a solid body slab.
+    box(
+      body,
+      [W * 0.85, 0.035, front - rear],
+      [0, r * 0.72, (front + rear) / 2],
+      dark,
+      'cabin-floor',
+    );
+    for (const x of [-W * 0.46, W * 0.46])
+      box(body, [W * 0.08, 0.035, front - rear], [x, belt - 0.02, (front + rear) / 2], paint);
+    const deckSkin = (sections) => {
+      for (let i = 1; i < sections.length; i++) {
+        const [a, wa, ya] = sections[i - 1],
+          [b, wb, yb] = sections[i];
+        const geometry = new T.BufferGeometry();
+        geometry.setAttribute(
+          'position',
+          new T.Float32BufferAttribute(
+            [-wa, ya, a, wb, yb, b, wa, ya, a, -wa, ya, a, -wb, yb, b, wb, yb, b],
+            3,
+          ),
+        );
+        geometry.computeVertexNormals();
+        mesh(body, geometry, paint);
+      }
+    };
+    const edge = (z) => {
+      if (z < -L * 0.36) {
+        const t = (z + L / 2) / (L * 0.14);
+        return [z, W * (0.43 + 0.07 * t), belt * (0.84 + 0.16 * t)];
+      }
+      if (z > L * 0.32) {
+        const t = (z - L * 0.32) / (L * 0.18);
+        return [z, W * (0.5 - 0.06 * t), belt * (1 - 0.14 * t)];
+      }
+      return [z, W / 2, belt];
+    };
+    deckSkin([-L / 2, -L * 0.36, rear].filter((z) => z <= rear).map(edge));
+    deckSkin([front, L * 0.32, L / 2].filter((z) => z >= front).map(edge));
     loft(
       body,
       [
@@ -136,6 +185,9 @@ export function fleetModel(s) {
         [front, W * 0.43, belt, H * 0.65],
       ],
       glass,
+      'cabin-glazing',
+      false,
+      true,
     );
     box(
       body,
@@ -148,6 +200,22 @@ export function fleetModel(s) {
       for (const z of [rear + L * 0.065, (rear + front) / 2])
         box(body, [0.07, H * 0.37, 0.075], [x, belt + H * 0.18, z], paint);
       box(body, [0.08, 0.04, 0.22], [x * 1.22, belt - 0.06, truck ? L * 0.3 : -0.05], metal);
+    }
+    for (const side of [-1, 1]) {
+      rod(
+        body,
+        [side * W * 0.43, H * 0.65, front],
+        [side * W * 0.37, H * 0.96, front - L * 0.12],
+        0.035,
+        paint,
+      );
+      rod(
+        body,
+        [side * W * 0.44, H * 0.84, rear],
+        [side * W * 0.37, H * 0.96, rear + L * 0.09],
+        0.035,
+        paint,
+      );
     }
     for (const z of [-L / 2, L / 2]) {
       box(body, [W * 0.83, 0.13, 0.07], [0, r * 1.1, z], dark);
@@ -249,14 +317,23 @@ export function fleetModel(s) {
       loft(
         body,
         [
-          [-0.2, 0.18, r * 1.45, H * 0.77],
-          [0.2, 0.22, r * 1.5, H * 0.85],
-          [0.38, 0.11, r * 1.55, H * 0.68],
+          [-0.2, 0.15, H * 0.61, H * 0.77],
+          [0.1, 0.2, H * 0.62, H * 0.85],
+          [0.3, 0.14, H * 0.62, H * 0.8],
+          [0.38, 0.08, H * 0.62, H * 0.68],
         ],
         paint,
         'fuel-tank',
       );
       box(body, [0.32, 0.32, 0.38], [0, r * 1.45, -0.04], metal, 'engine');
+      for (const z of [-wb / 2, wb / 2]) {
+        const fender = mesh(body, new T.TorusGeometry(r * 1.13, 0.026, 4, 16, Math.PI), paint);
+        fender.rotation.y = Math.PI / 2;
+        fender.position.set(0, r, z);
+        fender.scale.z = 3.2;
+      }
+      box(body, [0.25, 0.06, 0.38], [0, H * 0.7, -wb * 0.42], paint, 'rear-tail');
+      rod(body, [0, H * 0.7, -wb * 0.5], [0, H * 0.68, -wb * 0.52], 0.03, dark);
       rod(body, [-0.23, r * 0.7, -wb * 0.46], [-0.23, r * 0.9, 0.25], 0.06, metal);
       if (s.shape === 'motor-scooter') {
         box(body, [0.38, 0.11, 0.63], [0, r * 0.9, 0.04], paint);
@@ -286,36 +363,77 @@ export function fleetModel(s) {
       [L * 0.43, W * 0.3],
       [L / 2, W * 0.025],
     ];
+    const sheer = (z) => Math.max(0, (z / L - 0.26) / 0.24) * Math.min(0.35, deckY * 0.25);
+    // A chine and narrow keel create hull volume, rather than stacking rectangular slabs.
+    const sections = outline.map(([z, w]) => [
+      [-w, deckY + sheer(z), z],
+      [-w * 0.9, 0, z],
+      [-w * 0.22, -draft, z],
+      [w * 0.22, -draft, z],
+      [w * 0.9, 0, z],
+      [w, deckY + sheer(z), z],
+    ]);
+    for (const [name, material, edges] of [
+      ['hull', paint, [0, 4]],
+      ['underwater-hull', dark, [1, 2, 3]],
+    ]) {
+      const positions = [];
+      for (let j = 0; j < sections.length - 1; j++)
+        for (const k of edges) {
+          const a = sections[j][k],
+            b = sections[j][k + 1];
+          const c = sections[j + 1][k],
+            d = sections[j + 1][k + 1];
+          positions.push(...a, ...b, ...d, ...a, ...d, ...c);
+        }
+      const geometry = new T.BufferGeometry();
+      geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
+      geometry.computeVertexNormals();
+      mesh(body, geometry, material, name);
+    }
+    // Transom and stem caps.
+    for (const [j, reverse] of [
+      [0, true],
+      [sections.length - 1, false],
+    ]) {
+      const positions = [],
+        points = sections[j];
+      for (let k = 1; k < points.length - 1; k++)
+        positions.push(
+          ...points[0],
+          ...points[reverse ? k + 1 : k],
+          ...points[reverse ? k : k + 1],
+        );
+      const geometry = new T.BufferGeometry();
+      geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
+      geometry.computeVertexNormals();
+      mesh(body, geometry, paint, 'transom-and-stem');
+    }
     loft(
       body,
-      outline.map(([z, w]) => [z, w * 0.72, -draft, 0]),
-      dark,
-      'underwater-hull',
-    );
-    loft(
-      body,
-      outline.map(([z, w]) => [z, w, 0, deckY]),
-      paint,
-      'hull',
-    );
-    loft(
-      body,
-      outline.map(([z, w]) => [z * 0.96, w * 0.93, deckY, deckY + 0.08]),
+      outline.map(([z, w]) => [z, w, deckY + sheer(z), deckY + 0.08 + sheer(z)]),
       deck,
       'deck',
     );
     const cabin = (z, len, width, y, height) => {
-      box(body, [width, height, len], [0, y + height / 2, z], cream);
-      box(body, [width * 1.015, height * 0.35, len * 0.91], [0, y + height * 0.63, z], glass);
+      const windowHeight = Math.min(1.4, height * 0.65);
+      const sill = height - windowHeight;
+      box(body, [width, sill, len], [0, y + sill / 2, z], cream);
+      box(
+        body,
+        [width * 1.015, windowHeight, len * 0.99],
+        [0, y + sill + windowHeight / 2, z],
+        glass,
+      );
       box(body, [width * 1.07, 0.12, len * 1.05], [0, y + height + 0.04, z], cream);
       for (let j = 0; j < Math.max(2, Math.floor(len / (big ? 3 : 1.1))); j++)
         for (const x of [-width / 2, width / 2])
           box(
             body,
-            [0.06, height * 0.4, big ? 0.25 : 0.08],
+            [0.06, windowHeight, big ? 0.25 : 0.08],
             [
               x * 1.02,
-              y + height * 0.63,
+              y + sill + windowHeight / 2,
               z - len * 0.4 + (j * len * 0.8) / Math.max(1, Math.floor(len / (big ? 3 : 1.1)) - 1),
             ],
             cream,
@@ -451,5 +569,8 @@ export function fleetModel(s) {
     }
   }
   consolidate(root);
+  if (s.family === 'car') addCarDetail(root, s);
+  else if (s.family === 'bicycle' || s.family === 'motorcycle') addCycleDetail(root, s);
+  else addBoatDetail(root, s);
   return root;
 }

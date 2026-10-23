@@ -96,10 +96,22 @@ export const architectureFamilies = [
     balcony: 0.9,
   },
   {
+    id: 'southwestern',
+    title: 'US Southwest stucco and tile',
+    regions: ['us.southwest'],
+    wall: 'stucco',
+    roof: 'tile_ceramic',
+    pitch: [18, 28],
+    eaves: [0.35, 0.6],
+    colors: ['#e3cfaf', '#d4b99b', '#e8dcca', '#d7b5a1'],
+    roofColors: ['#a5674b', '#b47c5e', '#856f5c'],
+    bay: 3,
+    window: 1.25,
+  },
+  {
     id: 'arid',
     title: 'Arid flat-roof masonry',
     regions: [
-      'us.southwest',
       'library.maghreb',
       'library.levant',
       'library.iran',

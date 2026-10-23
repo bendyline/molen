@@ -257,15 +257,25 @@ describe('navigation input source', () => {
     surface.emit('keydown', { code: 'KeyG' });
     surface.emit('keyup', { code: 'KeyG' });
     surface.emit('keydown', { code: 'KeyI' });
+    surface.emit('keydown', { code: 'KeyJ' });
     const frame = source.read(0);
     // S pulls the nose up (pitch = -forward), D banks right, Q is left rudder.
     expect(frame.move.forward).toBe(-1);
     expect(frame.move.right).toBe(1);
-    expect(frame.pilot).toEqual({ throttle: 1, yaw: -1, engine: 1, gear: 1, flaps: 0, recover: 0 });
+    expect(frame.pilot).toEqual({
+      throttle: 1,
+      yaw: -1,
+      engine: 1,
+      gear: 1,
+      flaps: 0,
+      vector: 1,
+      recover: 0,
+    });
     // Switches are presses, not holds; held axes persist.
     const next = source.read(0);
     expect(next.pilot?.gear).toBe(0);
     expect(next.pilot?.engine).toBe(0);
+    expect(next.pilot?.vector).toBe(0);
     expect(next.pilot?.throttle).toBe(1);
     source.dispose();
   });

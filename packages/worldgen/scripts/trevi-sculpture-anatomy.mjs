@@ -8,6 +8,7 @@ import {
   rigBindModel,
 } from '../../figures/dist/kernel.mjs';
 import { quatFromEuler, quatRotateVec3 } from '../../kernel/dist/determinism.mjs';
+import { simplifyStaticSculpture } from '../../tooling/scripts/static-sculpture-lod.mjs';
 
 const cache = new Map(),
   state = { mode: 'custom', speed: 0, strideRate: 0, phaseAt: 0, phaseAtTick: 0, modeAtTick: 0 };
@@ -172,6 +173,7 @@ function baked(d, kind) {
       0,
     ]).map((v, i) => (v + model[j + i]) * k + (i === 1 && crouch ? 1.1 : 0));
   const result = { ...geometry, head: center, headWidth: body.rig.metrics.headWidth * k, kind };
+  if (d === 2) result.triangles = simplifyStaticSculpture(result.triangles, 400, 0.08);
   cache.set(key, result);
   return result;
 }
@@ -247,6 +249,7 @@ export function treviHorseAnatomy(out, d, fierce, color, triangle) {
     // The old local frame has rear haunches in rock and the forequarters above them.
     for (const p of new Set(b.triangles.flat())) p[1] -= y;
     for (const p of Object.values(b.joints)) p[1] -= y;
+    if (d === 2) b.triangles = simplifyStaticSculpture(b.triangles, 640, 0.04);
     cache.set(key, b);
   }
   const b = cache.get(key);

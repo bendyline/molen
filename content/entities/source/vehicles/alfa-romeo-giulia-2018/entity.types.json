@@ -1,0 +1,167 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.alfa_romeo_giulia_2018": {
+      "doc": "2018 Alfa Romeo Giulia, Ti sedan. Polygonal reference interpretation; rounded proportions, simplified trim and gameplay handling.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.alfa_romeo_giulia_2018",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.alfa_romeo_giulia_2018",
+          "color": "#a42a35",
+          "spec": {
+            "label": "2018 Alfa Romeo Giulia",
+            "bodyStyle": "sedan",
+            "genericLabel": "Compact sedan",
+            "width": 2.15,
+            "length": 4.639,
+            "height": 1.438,
+            "centerOfMass": [
+              0,
+              0.46016,
+              0
+            ],
+            "wheelbase": 2.82,
+            "wheelTrack": 1.5996000000000001,
+            "wheelRadius": 0.33,
+            "mass": 1650,
+            "engineForce": 6270,
+            "maxSpeed": 50,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [
+              0.4278,
+              1.168,
+              -0.0704
+            ],
+            "drive": "rear",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.16,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": [
+                "cabin",
+                "steering-wheel"
+              ],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                },
+                {
+                  "node": "speed-needle",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 0.065,
+                  "min": 0,
+                  "max": 3.9
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.4278,
+                1.168,
+                -0.0704
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.3800000000000001,
+              0,
+              -0.0704
+            ]
+          ],
+          "exits": [
+            [
+              1.48,
+              0,
+              -0.0704
+            ],
+            [
+              -1.48,
+              0,
+              -0.0704
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.alfa_romeo_giulia_2018"
+      ]
+    }
+  }
+}

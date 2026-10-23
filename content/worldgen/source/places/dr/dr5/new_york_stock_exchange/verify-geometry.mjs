@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { createRequire } from 'node:module';
+import { pathToFileURL } from 'node:url';
 import { MeshBufferBuilder } from '../../../../../../../packages/worldgen/dist/kernel.mjs';
 import { validateAuthoredMesh } from '../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { hashBytes } from '../../../../../../../packages/worldgen/scripts/structure-model-files.mjs';
@@ -15,7 +16,9 @@ const dir = new URL('.', import.meta.url),
   side = JSON.parse(fs.readFileSync(new URL('asset.json', runtime))),
   req = createRequire(new URL('packages/worldgen/package.json', root)),
   T = req('three'),
-  { GLTFLoader } = await import(req.resolve('three/addons/loaders/GLTFLoader.js'));
+  { GLTFLoader } = await import(
+    pathToFileURL(req.resolve('three/addons/loaders/GLTFLoader.js')).href
+  );
 assert.equal(
   hashBytes(fs.readFileSync(new URL('terrain-grid.json', dir))),
   'sha256:e1074fc7974916ef14b607d53de83a380f9063ea7d5f16d2e8b6a0cc08d624dc',
@@ -72,7 +75,8 @@ for (let d = 0; d < 4; d++) {
   newYorkStockExchange(b, frame, d);
   const raw = b.finalize();
   validateAuthoredMesh(raw, `NYSE source${d}`);
-  assert(raw.triangleCount <= limits[d]);
+  // The detailed source master is retained; the generated close-up file has the runtime cap.
+  if (d < 3) assert(raw.triangleCount <= limits[d]);
   const level = side.runtimeLods.levels[d],
     bytes = fs.readFileSync(new URL(level.file, runtime));
   assert.equal(hashBytes(bytes), level.hash);
@@ -97,6 +101,7 @@ for (let d = 0; d < 4; d++) {
     triangles += idx.length / 3;
   });
   assert.equal(triangles, level.triangles);
+  assert(triangles <= limits[d]);
   assert(level.drawCalls <= 8);
   const controls = [],
     check = (name, pass, data = {}) => {

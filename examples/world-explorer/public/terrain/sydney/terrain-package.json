@@ -1,0 +1,153 @@
+{
+  "format": "molen/terrain-package@1",
+  "name": "Sydney, Australia",
+  "version": "2026-10-23",
+  "coordinateSpace": {
+    "kind": "geospatial",
+    "crs": "EPSG:3857",
+    "ellipsoid": "WGS84",
+    "bounds": [150.3, -34.5, 151.8, -33.2]
+  },
+  "tileMatrix": {
+    "scheme": "xyz",
+    "minLevel": 8,
+    "maxLevel": 15,
+    "rootTiles": [1, 1],
+    "tileResolution": 257
+  },
+  "elevation": {
+    "source": {
+      "kind": "pmtiles",
+      "path": "elevation.pmtiles"
+    },
+    "encoding": "png16",
+    "height": {
+      "min": 0,
+      "max": 5000
+    }
+  },
+  "surface": {
+    "seaLevel": 0,
+    "layers": [
+      {
+        "name": "soil",
+        "color": "#655b49",
+        "tiling": 10
+      },
+      {
+        "name": "lowland",
+        "color": "#668354",
+        "tiling": 14,
+        "auto": {
+          "heightMin": 0,
+          "heightMax": 900
+        }
+      },
+      {
+        "name": "alpine",
+        "color": "#7c786d",
+        "tiling": 18,
+        "auto": {
+          "heightMin": 900,
+          "heightMax": 2300
+        }
+      },
+      {
+        "name": "snow",
+        "color": "#dce5e4",
+        "tiling": 22,
+        "auto": {
+          "heightMin": 1900
+        }
+      }
+    ]
+  },
+  "landcover": {
+    "source": {
+      "kind": "pmtiles",
+      "path": "world.pmtiles"
+    },
+    "encoding": "mvt",
+    "layer": "landcover",
+    "profile": "protomaps-basemap@1"
+  },
+  "features": {
+    "source": {
+      "kind": "pmtiles",
+      "path": "world.pmtiles"
+    },
+    "encoding": "mvt",
+    "layers": ["water", "transportation", "building", "poi"],
+    "profile": "protomaps-basemap@1"
+  },
+  "attribution": [
+    {
+      "text": "Mapzen/USGS terrain tiles; Mapzen Terrain Tiles, with United States 3DEP, GMTED2010, and SRTM terrain data courtesy of the U.S. Geological Survey",
+      "license": "US public domain and source-specific open-data terms",
+      "licenseUrl": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "text": "NOAA ETOPO1; Global ETOPO1 terrain data, U.S. National Oceanic and Atmospheric Administration",
+      "license": "US public domain",
+      "licenseUrl": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md#etopo1"
+    },
+    {
+      "text": "Geoscience Australia; Australia terrain data © Commonwealth of Australia (Geoscience Australia) 2017",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "text": "© OpenStreetMap contributors; Protomaps Basemap",
+      "license": "ODbL-1.0",
+      "sourceUrl": "https://www.openstreetmap.org/copyright",
+      "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+    },
+    {
+      "text": "Daylight Landcover; © ESA WorldCover project, modified Copernicus Sentinel data",
+      "license": "CC-BY-4.0",
+      "sourceUrl": "https://esa-worldcover.org/en",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "text": "Natural Earth; public domain",
+      "license": "Public domain (Natural Earth terms of use)",
+      "sourceUrl": "https://www.naturalearthdata.com/about/terms-of-use/"
+    }
+  ],
+  "provenance": {
+    "compiler": "world-explorer-region-fixture",
+    "compilerVersion": "1",
+    "sources": [
+      {
+        "id": "mapzen-terrain-tiles",
+        "release": "AWS open-data snapshot accessed 2026-10-23"
+      },
+      {
+        "id": "protomaps-basemap",
+        "release": "2026-10-23 daily archive"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "elevation.pmtiles",
+      "bytes": 13464570,
+      "sha256": "e3467ca8746f0a3b5482adac3bc820ee41add18954887a82f7b6d99c6996d37c"
+    },
+    {
+      "path": "world.pmtiles",
+      "bytes": 21908409,
+      "sha256": "667b296d09c2c2395c34ffdd3e5aa74c48222cb69a26d76d8c38b1390d8fbf28"
+    },
+    {
+      "path": "SOURCES.json",
+      "bytes": 3352,
+      "sha256": "df2019f9d1346c9dcac018a19319cbbc9dbe93a8ca5f6bb70252242dc170ef2d"
+    },
+    {
+      "path": "LICENSES.md",
+      "bytes": 2437,
+      "sha256": "c29dbafc89561f90195a4e1638e3f4001e471f9809e355ebc3b4166751dbd35f"
+    }
+  ]
+}

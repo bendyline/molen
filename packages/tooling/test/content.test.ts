@@ -74,7 +74,36 @@ describe('project content packs', () => {
 
   it('downloads a pinned pack once, then works from the cache and offline', async () => {
     const out = join(dir, 'served');
-    const built = await buildContentPack({ sourceDir: ENTITIES, outDir: out });
+    // This tests transport/cache behavior, not compression of the entire growing vehicle fleet.
+    // The local-pack test above and packed-install smoke cover the actual content corpus.
+    const sourceDir = join(dir, 'remote-fixture');
+    await mkdir(sourceDir);
+    await writeFile(
+      join(sourceDir, 'molen-pack.source.json'),
+      JSON.stringify({
+        format: 'molen/pack-source@1',
+        id: 'molen.entities',
+        version: ENTITIES_VERSION,
+        title: 'Remote cache test',
+        license: 'MIT',
+        include: ['types.json'],
+        provides: { types: ['types.json'] },
+      }),
+    );
+    await writeFile(
+      join(sourceDir, 'types.json'),
+      JSON.stringify({
+        format: 'molen/types@1',
+        namespace: 'molen.entities',
+        owner: 'test',
+        types: {
+          'molen.entities.vehicle.sedan': { components: {} },
+          'molen.entities.aircraft.p51d': { components: {} },
+        },
+      }),
+    );
+    const built = await buildContentPack({ sourceDir, outDir: out });
+    expect(built.ok).toBe(true);
     let requests = 0;
     const server: Server = createServer(async (request, response) => {
       requests++;

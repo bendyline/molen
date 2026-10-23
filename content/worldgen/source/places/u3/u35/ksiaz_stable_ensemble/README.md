@@ -20,7 +20,7 @@ Own stable quadrangle and adjacent hall rings; Y0 estimated shared contact. Roof
 
 ## Build
 
-Run node packages/worldgen/scripts/generate-ksiaz-stables.mjs --ids=KSI_E01 (or --check).
+Run node content/worldgen/source/places/u3/u35/ksiaz_stable_ensemble/models/generate-ksiaz-stables.mjs --ids=KSI_E01 (or --check).
 
 9592 triangles;1155164 source bytes;7 merged material groups;no embedded images. Six existing shared plaster, tile, slate, rubble, timber and limestone graphs use metric UVs and linear palette tints. Flat muted glazing adds one material. Open courtyard, secondary entrance and main through-passage retained. Runtime LODs are separate generated outputs.
 

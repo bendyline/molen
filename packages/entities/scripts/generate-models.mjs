@@ -1,6 +1,6 @@
 /** Build/check aggregate runtime indexes from copyable logical source bundles. */
 import { execFileSync } from 'node:child_process';
-import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validate } from '@bendyline/molen-schema';
@@ -14,10 +14,20 @@ const check = process.argv.includes('--check');
 const biome = resolve(packageRoot, 'node_modules/@biomejs/biome/bin/biome');
 
 function formatJson(value, path) {
-  return execFileSync(process.execPath, [biome, 'format', '--stdin-file-path', path], {
-    input: JSON.stringify(value, null, 2),
-    encoding: 'utf8',
-  });
+  const formatted = execFileSync(
+    process.execPath,
+    [biome, 'format', '--files-max-size=16777216', '--stdin-file-path', path],
+    {
+      input: JSON.stringify(value, null, 2),
+      encoding: 'utf8',
+      maxBuffer: 16 * 1024 * 1024,
+    },
+  );
+  // Biome can skip oversized/ignored stdin with exit code 0. Never replace a catalog with
+  // empty output; preserve the previous file and surface an actionable generation failure.
+  if (!formatted.trim()) throw new Error(`Formatter produced no JSON for ${path}`);
+  JSON.parse(formatted);
+  return formatted;
 }
 
 function listedPaths(manifest) {
@@ -57,6 +67,16 @@ async function loadBundles() {
         definition.types[manifest.id] === undefined
       ) {
         throw new Error(`${definitionPath}: expected exactly the type ${manifest.id}`);
+      }
+      // Every mountable type carries a name-free identity beside its label, so a host can show
+      // or filter the fleet without any manufacturer, model or type name (NOTICE.md §4b).
+      const components = definition.types[manifest.id].components ?? {};
+      const spec = components.vehicle?.spec ?? components.aircraft?.spec;
+      if (spec !== undefined) {
+        if (typeof spec.genericLabel !== 'string')
+          throw new Error(`${definitionPath}: spec.genericLabel is required`);
+        if (components.vehicle !== undefined && typeof spec.bodyStyle !== 'string')
+          throw new Error(`${definitionPath}: vehicle spec.bodyStyle is required`);
       }
       // Model bytes are build outputs, so the committed sha256 pins and sidecar hashes are not
       // compared here; a copied runtime model must still be the same bytes as its source.
@@ -141,6 +161,11 @@ function projectDocument(bundles) {
       vehicles: 'scenes/vehicles.scene.json',
       transit: 'scenes/transit.scene.json',
       fleet: 'scenes/fleet.scene.json',
+      'us-vehicles': 'scenes/us-vehicles.scene.json',
+      'variety-vehicles': 'scenes/variety-vehicles.scene.json',
+      rvs: 'scenes/rvs.scene.json',
+      'regional-vehicles': 'scenes/regional-vehicles.scene.json',
+      'mini-acura': 'scenes/mini-acura.scene.json',
       cycles: 'scenes/cycles.scene.json',
       harbor: 'scenes/harbor.scene.json',
     },
@@ -253,7 +278,15 @@ async function emitBytes(path, bytes) {
   if (check)
     throw new Error(`${path} is stale; run pnpm --filter @bendyline/molen-entities generate`);
   await mkdir(dirname(destination), { recursive: true });
-  await writeFile(destination, bytes);
+  // Readers (including editor previews on Windows) can hold the previous catalog open.
+  // Publish the complete replacement atomically instead of truncating that live file.
+  const temporary = `${destination}.${process.pid}.tmp`;
+  try {
+    await writeFile(temporary, bytes);
+    await rename(temporary, destination);
+  } finally {
+    await rm(temporary, { force: true });
+  }
 }
 
 const bundles = await loadBundles();
@@ -290,7 +323,7 @@ await emit(
   aggregateTypes(
     bundles,
     'transit',
-    'Buses and rail cars for ambient traffic; models animate from their ambientRole bindings.',
+    'Bendy Bus and Bendy Light Rail: player controls, operator cabins and ambient traffic roles.',
   ),
 );
 await emit(

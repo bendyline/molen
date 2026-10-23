@@ -1,0 +1,235 @@
+{
+  "variant": "Single-seat MiG-29A 9.12, clean airframe, original analog cabin; simplified simulator readings",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://jasonblair.net/wp-content/uploads/2015/06/MIG29-Flight-Manual-Pt-1.pdf",
+      "title": "GAF T.O. 1F-MIG29-1, 30 September 1994 / Change 4, 20 September 2001",
+      "author": "German Federal Ministry of Defence / Luftwaffe",
+      "license": "Public archive of a copyrighted manual; local study only",
+      "scope": "Figure 1-0: 17.32m overall length, 16.28m without pitot, 11.36m span, 4.73m height, 6 degree fin cant, 7.78m tail span, 3.10m track, 3.645m wheelbase. Figure 1-7 intake cross-section. German G derives from 9.12A; avionics differences are not imported."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Mikoyan_MiG-29_3-view.svg",
+      "title": "MiG-29 three-view, 2009 / revised 2013",
+      "author": "Kaboldy, citing airwar.ru/other/draw/mig29-2.html",
+      "license": "CC BY-SA 3.0 as listed; https://creativecommons.org/licenses/by-sa/3.0/",
+      "scope": "External silhouettes and seams, cross-checked against manual dimensions and museum photograph; illustrator drawing, not engineering stations. Detached wheel silhouettes excluded."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:MiG-29_cockpit_3.jpg",
+      "title": "MiG-29 cockpit overview, circa 1995",
+      "author": "IrasD; color adjustment Hohum",
+      "license": "CC BY-SA 4.0; https://creativecommons.org/licenses/by-sa/4.0/",
+      "scope": "Gray panel, analog layout, original radar CRT, HUD, seat/console geometry. Perspective and obscuration limit dimensions; panel scale is estimated, not measured from a certified instrument drawing."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:MiG-29_cockpit_2.jpg",
+      "title": "MiG-29 engine/system instrument detail, circa 1995",
+      "author": "IrasD; color adjustment Hohum",
+      "license": "CC BY-SA 4.0; https://creativecommons.org/licenses/by-sa/4.0/",
+      "scope": "Paired RPM/EGT instruments, fuel tape and system gauges."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:MiG-29_cockpit_4.jpg",
+      "title": "MiG-29 console detail, circa 1995",
+      "author": "IrasD; color adjustment Hohum",
+      "license": "CC BY-SA 4.0; https://creativecommons.org/licenses/by-sa/4.0/",
+      "scope": "Gray console sections, black rotary knobs, white toggle tips and red switch covers."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:MiG-29_cockpit_1.jpg",
+      "title": "MiG-29 control-stick detail, circa 1995",
+      "author": "IrasD",
+      "license": "CC BY-SA 4.0; https://creativecommons.org/licenses/by-sa/4.0/",
+      "scope": "Distinctive wide five-control grip; local reference inherited from the initial catalog pass."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Mikoyan-Gurevich_MiG-29A_'Fulcrum',_National_Museum_of_the_US_Air_Force,_Dayton,_Ohio,_USA._(45512197805).jpg",
+      "title": "MiG-29A at NMUSAF, 3 May 2018",
+      "author": "Roland Turner",
+      "license": "CC BY-SA 2.0; https://creativecommons.org/licenses/by-sa/2.0/",
+      "scope": "Nose/IRST, canopy, intake lips and gear construction; museum restoration and wide-angle perspective noted."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      3.05,
+      3.4
+    ],
+    "lookAt": [
+      0,
+      2.43,
+      4.2
+    ],
+    "fov": 76
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2.49
+    ],
+    "viewHeight": 0.95,
+    "cameraHeight": 6.2
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 0,
+    "flapPosition": 0,
+    "loadFactor": 1,
+    "angleOfAttack": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "exteriorState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 0,
+    "flapPosition": 0,
+    "loadFactor": 1,
+    "angleOfAttack": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/mig29-side.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1080,
+        "height": 245
+      },
+      "referenceAnchor": [
+        83,
+        297.32
+      ],
+      "modelAnchor": [
+        -8.14,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 982,
+        "meters": 16.28,
+        "description": "Body excluding 1.04m pitot; independent overall height sets ground datum."
+      },
+      "scope": "Body, cockpit, intake, fin and stabilator silhouettes; detached wheel cartoons omitted."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/mig29-top.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 707,
+        "height": 1075
+      },
+      "referenceAnchor": [
+        351,
+        991
+      ],
+      "modelAnchor": [
+        0,
+        8.14
+      ],
+      "scaleControls": {
+        "pixels": 982,
+        "meters": 16.28,
+        "description": "Same uniform body scale as side; span independently 11.36m."
+      },
+      "scope": "LERX, body/engine spacing, wings, tails and cockpit."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/mig29-front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 705,
+        "height": 250
+      },
+      "referenceAnchor": [
+        350,
+        294
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 686,
+        "meters": 11.36,
+        "description": "Uniform wing span; independent 4.73m height and 6 degree fin cant."
+      },
+      "scope": "Cross-section, intake openings and twin-fin spacing/cant; wheel cartoons omitted."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/mig29-panel.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 740,
+        "height": 390
+      },
+      "referenceAnchor": [
+        201,
+        167
+      ],
+      "modelAnchor": [
+        -0.185,
+        -2.51
+      ],
+      "scaleControls": {
+        "pixels": 125,
+        "meters": 0.128,
+        "description": "Estimated 128mm ADI aperture mapped to photographed housing; no reliable metric cockpit drawing found yet. Perspective overlay is a layout check only."
+      },
+      "edgeMode": "photo",
+      "scope": "Analog arrangement, relative gauge sizes, CRT, lower system gauges. Stick, wires and oblique perspective obscure some instruments."
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Replaced the generic fighter with a dedicated 9.12 airframe: broad LERX, separated intake ducts, flattened twin engine pods, 6-degree canted finite-thickness fins, correctly swept wings and stabilators, nose IRST and pitot.",
+      "Overlay iterations moved the fins aft, corrected the stabilator leading edges, refined the pod cross-sections and rebuilt the canopy around a recessed gray analog cockpit. Closed the canopy sill gaps and moved the seat headbox inside the rear canopy.",
+      "Added actual panel apertures, original-style paired engine instruments, fuel/system instruments, radar hood, HUD structure, K-36-style seat, wide control grip and paired throttle levers. Unsupported engine and navigation data remains unavailable.",
+      "Added metric flight instruments, signed altitude digits, independent bank/pitch, true heading, load factor, moving stick/pedals/throttles, retracting gear, slats/flaps, ailerons, swept-hinge rudders and mixed stabilators. Surface lines and rivets follow the faceted wing surfaces."
+    ],
+    "independentDimensions": "GAF manual Figure 1-0: 17.32m overall, 16.28m without pitot, 11.36m span, 4.73m height, 7.78m stabilator span, 6-degree fin cant, 3.10m main track and 3.645m wheelbase. Uniform exterior overlay scale checked independently across three views. Cockpit scale estimated from an approximately 128mm ADI aperture; not a measured cockpit station drawing.",
+    "visual": "Personally inspected final-hash side/top/front/panel overlays, all eight standard captures and twelve close/detail/state captures. Checked zero, cruise, limits, below-sea-level and missing-data instruments, both control directions, gear-up clean flight, canopy fit, intake/nozzle depth and surface details. Targeted geometry and metric/hinge/cardinal tests passed; all 22 shared instrument tests passed before the final sill-only geometry correction.",
+    "limitations": [
+      "Exterior drawings are an illustrator reconstruction cross-checked against a manufacturer-derived service manual and museum photo; intake cross-sections and body stations remain approximations.",
+      "Cockpit layout follows circa-1995 analog MiG-29 photographs with estimated dimensions and perspective/occlusion. English labels, dial calibrations and the blue/brown artificial horizon are simulator adaptations.",
+      "Displays use true airspeed, geometric altitude and true heading; no pitot/static, magnetic compass, radar, fuel, engine-temperature/RPM, hydraulic, oxygen or failure-system simulation is implied. Unsupported readings are blank/INOP.",
+      "HUD is physical structure without collimated symbology. Intake geometry is the fixed open-main-inlet/closed-upper-louver flight configuration; FOD ramps do not transition with ground operations.",
+      "Gear and controls are simplified visual mechanisms. Seams and rivets are selective approximations, not a manufacturing fastener schedule. No external weapons, stores or unit markings."
+    ]
+  },
+  "sourceHash": "sha256:fe8e17c166231ac1bd7d4b2acc4070f2e59511b24199b88104699e9906fd890d",
+  "runtimeHash": "sha256:ecb458137c3258e1cda8ccd7c08b9bf6020d52f9bcf61df684ba28310648d14b",
+  "limitations": [
+    "Exterior drawings are an illustrator reconstruction cross-checked against a manufacturer-derived service manual and museum photo; intake cross-sections and body stations remain approximations.",
+    "Cockpit layout follows circa-1995 analog MiG-29 photographs with estimated dimensions and perspective/occlusion. English labels, dial calibrations and the blue/brown artificial horizon are simulator adaptations.",
+    "Displays use true airspeed, geometric altitude and true heading; no pitot/static, magnetic compass, radar, fuel, engine-temperature/RPM, hydraulic, oxygen or failure-system simulation is implied. Unsupported readings are blank/INOP.",
+    "HUD is physical structure without collimated symbology. Intake geometry is the fixed open-main-inlet/closed-upper-louver flight configuration; FOD ramps do not transition with ground operations.",
+    "Gear and controls are simplified visual mechanisms. Seams and rivets are selective approximations, not a manufacturing fastener schedule. No external weapons, stores or unit markings."
+  ]
+}

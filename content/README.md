@@ -68,6 +68,13 @@ Reusable runtime bundles use `worldgen/assets/reusable/urban/<source-key>/`,
 use matching `source/reusable/` folders; generic mapped-feature sources use `source/map-structures/`.
 Procedural architectural styles remain in `worldgen/styles/` and `worldgen/structures/`.
 
+Dedicated place generators and geometry recipes belong in the geographic source bundle's
+`models/` directory, listed in its `source.json`. Related components generated together, such as
+the Książ park gates, may share a geographic authoring bundle beside their individual model
+bundles. `asset-build.json` invokes those local generators directly. Shared mesh, material and
+triangulation helpers remain in `packages/worldgen/scripts/`; production-batch names do not
+determine the location of a place's source files.
+
 Folder changes preserve asset IDs such as `molen.worldgen.structure.space_needle`.
 `worldgen/source/structure-index.json` locates source bundles, `worldgen/project.json` maps IDs
 to runtime sidecars for authoring tools, and `worldgen/stylepack.json` provides those mappings
@@ -89,8 +96,10 @@ molen pack inspect dist-packs/molen.worldgen.default-<hash>.zip
 molen pack verify dist-packs/molen.worldgen.default-<hash>.zip
 ```
 
-The world explorer stages all five content libraries into `examples/world-explorer/public/packs/` (with an
-`index.json`) before `dev` and `build`. It and the docs site use a small worldgen core plus
+The world explorer stages the content libraries into `examples/world-explorer/public/packs/`
+(with an `index.json`) during production `build` or the explicit `pnpm dev:content` command.
+Normal development reuses those packs; `pnpm dev:prepare` restores the repository assets and
+packages content for first-time setup. It and the docs site use a small worldgen core plus
 bounded geographic model archives. The core retains sidecars and style metadata; archive routes
 load a model's archive on demand through the host's fetch function. Hosts need HTTP Range
 support for selective network reads; a server returning a full-file response still works but

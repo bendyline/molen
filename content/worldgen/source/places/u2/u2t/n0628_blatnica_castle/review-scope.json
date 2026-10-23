@@ -1,0 +1,481 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_drywall",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "gravel": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -59.45074729504685,
+      30,
+      -8.866151705248434
+    ],
+    "lookAt": [
+      0,
+      6,
+      0
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "southwest-rounded-broken-crown-and-open-room",
+      "position": [
+        -37.65127966542045,
+        17,
+        2.5260917553202695
+      ],
+      "lookAt": [
+        -13.780495042963365,
+        10,
+        9.954795646865996
+      ],
+      "fov": 48
+    },
+    {
+      "name": "roofless-palace-open-arches-and-thick-window-reveals",
+      "position": [
+        0,
+        4,
+        0
+      ],
+      "lookAt": [
+        10.53802562108963,
+        2.4,
+        -7.61249078877988
+      ],
+      "fov": 62
+    },
+    {
+      "name": "bounded-limestone-ridge-footing-on-lower-slope",
+      "position": [
+        4.415968091214685,
+        8,
+        21.482533040062428
+      ],
+      "lookAt": [
+        -7.745638481109706,
+        2,
+        8.062573070673688
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -59.45074729504685,
+        30,
+        -8.866151705248434
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 45,
+      "name": "blatnica-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -59.45074729504685,
+        30,
+        -8.866151705248434
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 45,
+      "name": "blatnica-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -59.45074729504685,
+        30,
+        -8.866151705248434
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 45,
+      "name": "blatnica-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -59.45074729504685,
+        30,
+        -8.866151705248434
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 45,
+      "name": "blatnica-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/blatnica-model.mjs",
+    "export": "buildBlatnicaSkyline",
+    "errorMeters": 1.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBlatnicaDistrict",
+        "errorMeters": 0.42,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildBlatnicaStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBlatnicaCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      18.947088674,
+      48.947190751
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain original6m standard Mapzen terrain, native paths/water and independent shelter. Replace only the native castle shell. A narrow faceted limestone footing follows the mapped core with about0.5m side margin; its bottom is buried below original grade and its top follows the local cross-ridge maxima plus0.20m. Bounded rock floor and short graded approach support the ruins without a broad mountain slab, terrain flattening or ground/water cutout. Exposed ridge/foundation engineering is a coarse-DEM visualization estimate.",
+    "replaceFootprint": false,
+    "bounds": [
+      18.94660994044693,
+      48.94692125641476,
+      18.94756740755307,
+      48.94746024558524
+    ],
+    "terrainReference": {
+      "anchor": [
+        18.947088674,
+        48.947190751
+      ],
+      "modelHeight": 0,
+      "basis": "Retain original6m standard Mapzen terrain, native paths/water and independent shelter. Replace only the native castle shell. A narrow faceted limestone footing follows the mapped core with about0.5m side margin; its bottom is buried below original grade and its top follows the local cross-ridge maxima plus0.20m. Bounded rock floor and short graded approach support the ruins without a broad mountain slab, terrain flattening or ground/water cutout. Exposed ridge/foundation engineering is a coarse-DEM visualization estimate."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -19.36980513834098,
+          8.097976035595261
+        ],
+        [
+          -18.193234393479717,
+          6.529212973002976
+        ],
+        [
+          -4.466575703431645,
+          -2.6872610924149507
+        ],
+        [
+          11.221034228051865,
+          -14.649045053589903
+        ],
+        [
+          11.241924648453722,
+          -14.626849033681552
+        ],
+        [
+          11.271034228051866,
+          -14.649045053589903
+        ],
+        [
+          14.381179786750494,
+          -11.344523104734778
+        ],
+        [
+          15.731222083353373,
+          -13.080287967586248
+        ],
+        [
+          15.775484379072743,
+          -13.072910935393395
+        ],
+        [
+          15.781222083353374,
+          -13.080287967586248
+        ],
+        [
+          18.1343635730759,
+          -12.688098628061693
+        ],
+        [
+          19.507029442080707,
+          -10.923246255337167
+        ],
+        [
+          19.497569965213582,
+          -10.88540841407561
+        ],
+        [
+          19.507029442080707,
+          -10.873246255337166
+        ],
+        [
+          18.918744069650078,
+          -8.520108883028168
+        ],
+        [
+          15.58512695920983,
+          -4.7943060065209355
+        ],
+        [
+          9.702273234903515,
+          -4.598211048844648
+        ],
+        [
+          -3.4361000827139256,
+          7.559689833732508
+        ],
+        [
+          -12.064285545029856,
+          13.246459058784675
+        ],
+        [
+          -13.829141662321751,
+          13.83474586178657
+        ],
+        [
+          -16.624473400331365,
+          13.83474586178657
+        ],
+        [
+          -18.38932951762326,
+          12.462076753917373
+        ],
+        [
+          -18.977614890053893,
+          10.501121466332652
+        ],
+        [
+          -19.36980513834098,
+          8.147976035595262
+        ],
+        [
+          -19.36298696750093,
+          8.138885129149534
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -19.36980513834098,
+            8.097976035595261
+          ],
+          [
+            -18.193234393479717,
+            6.529212973002976
+          ],
+          [
+            -4.466575703431645,
+            -2.6872610924149507
+          ],
+          [
+            11.221034228051865,
+            -14.649045053589903
+          ],
+          [
+            11.241924648453722,
+            -14.626849033681552
+          ],
+          [
+            11.271034228051866,
+            -14.649045053589903
+          ],
+          [
+            14.381179786750494,
+            -11.344523104734778
+          ],
+          [
+            15.731222083353373,
+            -13.080287967586248
+          ],
+          [
+            15.775484379072743,
+            -13.072910935393395
+          ],
+          [
+            15.781222083353374,
+            -13.080287967586248
+          ],
+          [
+            18.1343635730759,
+            -12.688098628061693
+          ],
+          [
+            19.507029442080707,
+            -10.923246255337167
+          ],
+          [
+            19.497569965213582,
+            -10.88540841407561
+          ],
+          [
+            19.507029442080707,
+            -10.873246255337166
+          ],
+          [
+            18.918744069650078,
+            -8.520108883028168
+          ],
+          [
+            15.58512695920983,
+            -4.7943060065209355
+          ],
+          [
+            9.702273234903515,
+            -4.598211048844648
+          ],
+          [
+            -3.4361000827139256,
+            7.559689833732508
+          ],
+          [
+            -12.064285545029856,
+            13.246459058784675
+          ],
+          [
+            -13.829141662321751,
+            13.83474586178657
+          ],
+          [
+            -16.624473400331365,
+            13.83474586178657
+          ],
+          [
+            -18.38932951762326,
+            12.462076753917373
+          ],
+          [
+            -18.977614890053893,
+            10.501121466332652
+          ],
+          [
+            -19.36980513834098,
+            8.147976035595262
+          ],
+          [
+            -19.36298696750093,
+            8.138885129149534
+          ]
+        ]
+      ],
+      "basis": "Retain original6m standard Mapzen terrain, native paths/water and independent shelter. Replace only the native castle shell. A narrow faceted limestone footing follows the mapped core with about0.5m side margin; its bottom is buried below original grade and its top follows the local cross-ridge maxima plus0.20m. Bounded rock floor and short graded approach support the ruins without a broad mountain slab, terrain flattening or ground/water cutout. Exposed ridge/foundation engineering is a coarse-DEM visualization estimate."
+    },
+    "notes": "Retained exact-QID OSM way111989326 and native named castle35184484078158 fix the irregular44.356x10.423m core. Anchor18.947088674,48.947190751/global heading0/native east-south axes; internal NE-SW axis0.625590709588rad follows retained/native footprint. The western aerial places the rounded broken end southwest and the opposite end northeast. Fine aperture/gateway allocation and hidden lower works retain20degree/2m uncertainty; no surveyed signed facade detail is claimed. Retain original6m standard Mapzen terrain, native paths/water and independent shelter. Replace only the native castle shell. A narrow faceted limestone footing follows the mapped core with about0.5m side margin; its bottom is buried below original grade and its top follows the local cross-ridge maxima plus0.20m. Bounded rock floor and short graded approach support the ruins without a broad mountain slab, terrain flattening or ground/water cutout. Exposed ridge/foundation engineering is a coarse-DEM visualization estimate."
+  }
+}

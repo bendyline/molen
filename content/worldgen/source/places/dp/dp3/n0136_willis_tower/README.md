@@ -37,4 +37,4 @@ The eight mapped upper tube parts fix the separate tower center and prove the we
 
 Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.
 
-Regenerate with `node packages/worldgen/scripts/generate-willis-tower.mjs --ids=N0136`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/willis-tower-model.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.
+Regenerate with `node content/worldgen/source/places/dp/dp3/n0136_willis_tower/models/generate-willis-tower.mjs --ids=N0136`; add `--check` for reproducibility. Editable component recipes are in `content/worldgen/source/places/dp/dp3/n0136_willis_tower/models/willis-tower-model.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.

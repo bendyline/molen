@@ -1,0 +1,3430 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+  "reviewedOn": "2026-10-22",
+  "inputHash": "sha256:f721671045783975d4fe11f058260010d21a5aea078b8658f66433413c23d135",
+  "sourceHash": "sha256:3f4b835b7de8ce59dda0e201bf4232a721b5098bf8631cf8c0521198f0abdec2",
+  "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+  "captureReportHash": "sha256:382c75e79419e1267ae75b44e16dd244b76cd95988f5a6b922b0086b3bdd572c",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/central-pavilion-stepped-wings-and-red-roofs.png",
+      "shots/southern-courtyards-and-open-gallery-passage.png",
+      "shots/recessed-east-entrance-soffit-threshold-and-steps.png",
+      "shots/southern-raised-gallery-and-clear-walking-passage.png"
+    ],
+    "notes": "Principal connected Nymphenburg Palace exterior: pale central Baroque pavilion with tall round-headed central windows, crossed casements/mezzanine panes, pilasters/cornices and original blank medallion fields/ochre accents; stepped side pavilions, lower galleries and red ceramic hip roofs with dormers/stacks. Both pairs of outer ranges retain their four mapped open courts. Two mapped bridge galleries retain lower passages between reconstructed piers. Real main east door recess/curved soffit/raised threshold and short treads; west stone terrace with closed balustrade. Corrected ownership, thin leftover walls, entrance trim and southern gallery clearance within one author/inspect/fix pass."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/central-pavilion-stepped-wings-and-red-roofs.png",
+      "shots/shared/southern-courtyards-and-open-gallery-passage.png",
+      "shots/shared/recessed-east-entrance-soffit-threshold-and-steps.png",
+      "shots/shared/southern-raised-gallery-and-clear-walking-passage.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Six textured roles use five existing256px shared graphs: plaster_lime, stone_limestone_raw, tile_ceramic, storefront and metal_painted. Neutral tile graph tinted red; painted metal supplies restrained ochre/dark accents. No embedded images/new graph/private atlas. One skyline draw, at most five textured draws, separate POSITION/NORMAL streams and equal CPU/GPU accounting. Each textured native run reads each graph once; all unloads release geometry.",
+    "captureReportHash": "sha256:49d945431ae74129164b23375466ec18913dad3e8a7d56d426d8dfe0513b00a6"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/central-pavilion-stepped-wings-and-red-roofs.png",
+      "medium-fi/southern-courtyards-and-open-gallery-passage.png",
+      "medium-fi/recessed-east-entrance-soffit-threshold-and-steps.png",
+      "medium-fi/southern-raised-gallery-and-clear-walking-passage.png",
+      "medium-fi/nymphenburg-skyline.png",
+      "medium-fi/nymphenburg-district.png",
+      "medium-fi/nymphenburg-street.png",
+      "medium-fi/nymphenburg-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 889 / 2248 / 13447 / 29645 triangles; initial skyline+district geometry 310368 bytes, closeup 2448372 bytes. Six GLBs zero Khronos errors/warnings;324 actual mesh/contact probes and23 actual PMTiles13/14/15 cases (14 owned records across17 detailed tile fragments). Inspected52 current portable/shared/medium-fi/native frames. Native all-LOD/failure/unload checks preserve730 resident/1014 wider independent buildings, original201x201/6m terrain/roads/144119.737m² water and all courts/passages. Failure keeps all744 originals; unload restores ground/water and zero live geometry.",
+    "captureReportHash": "sha256:82e3fc8e1755e1c6474dda83a9f5fe3d625a7f6e4264a1055d2d44222dabea11"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:da3a43ed85de0b94a0e2be488e41e8858e5615bf00e67c3eac5fee42def481da",
+    "mapFrameHash": "sha256:9dafba72c8428ffe09cca2848e2084a217cc4056fc64071c0249dd5b668c05bc",
+    "notes": "Q131631 and named parent relation2144986/native52776560278234 identify Nymphenburg Palace. Thirteen integral mapped parts, including northern/southern two-court ranges and two bridge galleries, bring explicit ownership to14 records. The exact83-vertex parent/four holes and actual part polygons supply horizontal geometry. Model origin at native[-73,4] places the main pavilion near internal[0,0]; anchor[11.50330081793603,48.15825002838863]. InternalX south along the ranges, internalZ east toward the front court/canal, native east/up/south geometry baked in and heading0. All unrelated buildings and mapped open courts remain independent. Qualified approximate native exterior fit on original standard Protomaps20261020/Mapzen201x201/6m terrain. Front court provider datum518.1923222222223m, working floor0.3m and closed foundation-2.805m. Boundary grades-2.655..5.484m leave low-side foundation exposure and uphill base/lower-window burial in the outer ranges. The main front approach/threshold and all four court voids remain visible; exact terrace grades, paving, step levels and accessibility are unverified. Four courts and gallery passages preserve original terrain; original independent buildings, roads, canals/ponds and water inputs remain. Native inspection, ownership, all LODs, failed loading and unload evidence are recorded separately in qa.json. No bespoke terrain or custom flattening."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Photo-led approximate exterior. Mapped unqualified height tags8/11/17m are working eave controls: central pavilion17m, inner pavilions11m, gallery/outer ranges8m, with distance-to-eave red hip roofs at slope0.65/rise capped10m. Most heights, roof junctions, bay/window/dormer/chimney inventories and unseen elevations are reconstructed, not surveyed. Two bridge tags lack reliable minimum height; a4m northern/8m southern gallery base (the southern8m base retains about2.8m clearance over the highest retained approach grade),11m working southern eave and four supporting pier rows per bridge are explicit schematic reconstruction. Main entrance0.5m above working floor has1.35m recess, arched soffit and five short treads. Western0.5m terrace/blank balustrade and original ochre accents abstract the photographed architecture without copying portrait medallions or arms. Qualified approximate medium-fi exterior fit. Boundary grades-2.655..+5.484m leave low-side foundations/uphill base and lower-window burial in outer ranges. Main entrance and both gallery crossings remain exposed in the inspected native views. Exact historic heights, floor connections, inventories, hidden elevations/roof junctions, paving/terrace/stair grades and accessibility are unverified. No furnished rooms, copied portraits/heraldic relief/inscriptions, garden/fountain sculpture or detached crescent/garden-pavilion models. Physical laptop/phone and dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/models/source.glb\",\"hash\":\"sha256:3f4b835b7de8ce59dda0e201bf4232a721b5098bf8631cf8c0521198f0abdec2\",\"bytes\":2774968,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/u2/u28/n0761_nymphenburg_palace/model.glb\",\"hash\":\"sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db\",\"bytes\":2774440,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/u2/u28/n0761_nymphenburg_palace/model.skyline.glb\",\"hash\":\"sha256:483f9a8196d161ca4feed16bcd806a5e7bb03efb1cbc7e42dba20ccb3b405a9c\",\"bytes\":88668,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/u2/u28/n0761_nymphenburg_palace/model.district.glb\",\"hash\":\"sha256:b8d385b9ddfe47fae437603c37648395f5b725768c1f8c3b3eae1b33541caf5d\",\"bytes\":221700,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/u2/u28/n0761_nymphenburg_palace/model.street.glb\",\"hash\":\"sha256:a2d98df3c663ff0a4cc7af79a8d1695d93e455640ae71cb2f7b68532f5f44607\",\"bytes\":1123028,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/u2/u28/n0761_nymphenburg_palace/model.closeup.glb\",\"hash\":\"sha256:af6b26d82270ec0b5b119050f5335e337ac88234d69f5b9111fd3768d1021a9d\",\"bytes\":2448372,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "open-courts-closed-hip-roofs-gallery-piers-clear-passages-and-real-arched-entrance",
+        "passed": true,
+        "notes": "324 actual mesh/contact probes over six current GLBs, including all four open court voids and six gallery passages/closed soffits. Current shared materials, hashes, vertex layout and LOD caps checked."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Q131631 and named parent relation2144986/native52776560278234 identify Nymphenburg Palace. Thirteen integral mapped parts, including northern/southern two-court ranges and two bridge galleries, bring explicit ownership to14 records. The exact83-vertex parent/four holes and actual part polygons supply horizontal geometry. Model origin at native[-73,4] places the main pavilion near internal[0,0]; anchor[11.50330081793603,48.15825002838863]. InternalX south along the ranges, internalZ east toward the front court/canal, native east/up/south geometry baked in and heading0. All unrelated buildings and mapped open courts remain independent. Qualified approximate native exterior fit on original standard Protomaps20261020/Mapzen201x201/6m terrain. Front court provider datum518.1923222222223m, working floor0.3m and closed foundation-2.805m. Boundary grades-2.655..5.484m leave low-side foundation exposure and uphill base/lower-window burial in the outer ranges. The main front approach/threshold and all four court voids remain visible; exact terrace grades, paving, step levels and accessibility are unverified. Four courts and gallery passages preserve original terrain; original independent buildings, roads, canals/ponds and water inputs remain. Native inspection, ownership, all LODs, failed loading and unload evidence are recorded separately in qa.json. No bespoke terrain or custom flattening."
+    },
+    "inputHash": "sha256:f721671045783975d4fe11f058260010d21a5aea078b8658f66433413c23d135",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:f721671045783975d4fe11f058260010d21a5aea078b8658f66433413c23d135",
+      "reviewedOn": "2026-10-22",
+      "method": "Actually inspected52 current frames in labeled contact sheets plus native main pavilion, court ranges, entrance and raised gallery passage at full resolution. Two ordinary pictures and standard PMTiles/Mapzen guided one author/inspect/fix pass. Corrected the exact parent/part ownership union, cleared thin remnant gallery walls caused by snapping boolean intersections, removed a facade course crossing the entrance and raised the inferred southern gallery to retain clearance over the original approach grade. No bespoke terrain research.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/preview.png",
+          "hash": "sha256:53c2523c8dfe81cf760a7ecb1b793d929754746c0f5a47dd0bde2b22e1fdfff8"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/turntable/angle_0.png",
+          "hash": "sha256:55ed584c7b52985c6450fdbfde09145c09db0f39b6855605743238abeb623344"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/turntable/angle_1.png",
+          "hash": "sha256:c200000936751784250699eacf7c62b6d901f0c53879813ab901c9abf207389f"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/turntable/angle_2.png",
+          "hash": "sha256:cbc85136a3717e695a7e39300a506e1dd93e1897f14211a23e8f7b038f88fc8c"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/turntable/angle_3.png",
+          "hash": "sha256:3b554d30e4e4ae99ce270c68ba0a164da9f49f788572aa6af59b14afb522b497"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/central-pavilion-stepped-wings-and-red-roofs.png",
+          "hash": "sha256:f49bf582d9d6593bab8f8dcd499c7c0a3a61d862ed444f4c4471e2dd7de236f3"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/southern-courtyards-and-open-gallery-passage.png",
+          "hash": "sha256:c8e352b41c4076fbbf5d166da8becb73a0586f8c275602fe60ed909194b5f07b"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/recessed-east-entrance-soffit-threshold-and-steps.png",
+          "hash": "sha256:960dcfb7a9dac5b3afc3a0e4c5930d6149b3be068914ca53b8ecfc73d319df28"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/southern-raised-gallery-and-clear-walking-passage.png",
+          "hash": "sha256:4471eb409b683d8aa2efd43b2123ab3061f7a328aa74efef674f63638fc7d9f2"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/shared/angle-0.png",
+          "hash": "sha256:7f3cadd52a612cd41566046a010f15f8990007d4e29e6f6f3b1915b443d3f3bc",
+          "camera": {
+            "name": "angle-0",
+            "angle": 0.6
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0761",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 29645,
+            "bounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "reviewGroundY": 0.3,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "427ff4ec-9e7f-4f75-a4c0-c2ea8a49b8ba",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "f3cfcba0-1850-4411-9732-19735485d02e",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "a66ac213-59c8-4120-afb0-7077cb197149",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "30b97c81-1817-4180-bbbf-3e67e1fe6d53",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "a2b68fd6-0796-47b2-a866-8a0d94e50f58"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0761_nymphenburg_palace"
+            ],
+            "selectionBounds": [
+              11.498755163440737,
+              48.15521764401937,
+              11.507846472431321,
+              48.161282233534045
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0761",
+                "coordinate": [
+                  11.503745211786866,
+                  48.15825002838863
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0761"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 30350
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/shared/angle-1.png",
+          "hash": "sha256:bf1692aac6a67ba3b4a210689d38b2577d19a4bf132049c00395659a13ef7c9d",
+          "camera": {
+            "name": "angle-1",
+            "angle": 2.1707963267948966
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0761",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 29645,
+            "bounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "reviewGroundY": 0.3,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "427ff4ec-9e7f-4f75-a4c0-c2ea8a49b8ba",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "f3cfcba0-1850-4411-9732-19735485d02e",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "a66ac213-59c8-4120-afb0-7077cb197149",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "30b97c81-1817-4180-bbbf-3e67e1fe6d53",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "a2b68fd6-0796-47b2-a866-8a0d94e50f58"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0761_nymphenburg_palace"
+            ],
+            "selectionBounds": [
+              11.498755163440737,
+              48.15521764401937,
+              11.507846472431321,
+              48.161282233534045
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0761",
+                "coordinate": [
+                  11.503745211786866,
+                  48.15825002838863
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0761"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 30350
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/shared/angle-2.png",
+          "hash": "sha256:442b9d7c22cd1057da4c0b545a40ba84f5551bbaf187c0901fe17fb42e81b091",
+          "camera": {
+            "name": "angle-2",
+            "angle": 3.741592653589793
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0761",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 29645,
+            "bounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "reviewGroundY": 0.3,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "427ff4ec-9e7f-4f75-a4c0-c2ea8a49b8ba",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "f3cfcba0-1850-4411-9732-19735485d02e",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "a66ac213-59c8-4120-afb0-7077cb197149",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "30b97c81-1817-4180-bbbf-3e67e1fe6d53",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "a2b68fd6-0796-47b2-a866-8a0d94e50f58"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0761_nymphenburg_palace"
+            ],
+            "selectionBounds": [
+              11.498755163440737,
+              48.15521764401937,
+              11.507846472431321,
+              48.161282233534045
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0761",
+                "coordinate": [
+                  11.503745211786866,
+                  48.15825002838863
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0761"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 30350
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/shared/angle-3.png",
+          "hash": "sha256:484d83aee9fafadf60959c477d1ee67ad9fc84eb6874955ff9ab73c6affaf4a3",
+          "camera": {
+            "name": "angle-3",
+            "angle": 5.312388980384689
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0761",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 29645,
+            "bounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "reviewGroundY": 0.3,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "427ff4ec-9e7f-4f75-a4c0-c2ea8a49b8ba",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "f3cfcba0-1850-4411-9732-19735485d02e",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "a66ac213-59c8-4120-afb0-7077cb197149",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "30b97c81-1817-4180-bbbf-3e67e1fe6d53",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "a2b68fd6-0796-47b2-a866-8a0d94e50f58"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0761_nymphenburg_palace"
+            ],
+            "selectionBounds": [
+              11.498755163440737,
+              48.15521764401937,
+              11.507846472431321,
+              48.161282233534045
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0761",
+                "coordinate": [
+                  11.503745211786866,
+                  48.15825002838863
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0761"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 30350
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/shared/central-pavilion-stepped-wings-and-red-roofs.png",
+          "hash": "sha256:938e6b15c81dc78895f34409dae8aca43548b099e2dddb93969c69095b077486",
+          "camera": {
+            "name": "central-pavilion-stepped-wings-and-red-roofs",
+            "position": [
+              110,
+              23,
+              8
+            ],
+            "lookAt": [
+              4,
+              12,
+              0
+            ],
+            "fov": 55
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0761",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 29645,
+            "bounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "reviewGroundY": 0.3,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "427ff4ec-9e7f-4f75-a4c0-c2ea8a49b8ba",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "f3cfcba0-1850-4411-9732-19735485d02e",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "a66ac213-59c8-4120-afb0-7077cb197149",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "30b97c81-1817-4180-bbbf-3e67e1fe6d53",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "a2b68fd6-0796-47b2-a866-8a0d94e50f58"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0761_nymphenburg_palace"
+            ],
+            "selectionBounds": [
+              11.498755163440737,
+              48.15521764401937,
+              11.507846472431321,
+              48.161282233534045
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0761",
+                "coordinate": [
+                  11.503745211786866,
+                  48.15825002838863
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0761"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 30350
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/shared/southern-courtyards-and-open-gallery-passage.png",
+          "hash": "sha256:f737cbc78e849792b1c9603541d28ec6f356c273e715feac4fe635aa721d7e07",
+          "camera": {
+            "name": "southern-courtyards-and-open-gallery-passage",
+            "position": [
+              215,
+              80,
+              270
+            ],
+            "lookAt": [
+              90,
+              8,
+              235
+            ],
+            "fov": 60
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0761",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 29645,
+            "bounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "reviewGroundY": 0.3,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "427ff4ec-9e7f-4f75-a4c0-c2ea8a49b8ba",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "f3cfcba0-1850-4411-9732-19735485d02e",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "a66ac213-59c8-4120-afb0-7077cb197149",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "30b97c81-1817-4180-bbbf-3e67e1fe6d53",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "a2b68fd6-0796-47b2-a866-8a0d94e50f58"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0761_nymphenburg_palace"
+            ],
+            "selectionBounds": [
+              11.498755163440737,
+              48.15521764401937,
+              11.507846472431321,
+              48.161282233534045
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0761",
+                "coordinate": [
+                  11.503745211786866,
+                  48.15825002838863
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0761"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 30350
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/shared/recessed-east-entrance-soffit-threshold-and-steps.png",
+          "hash": "sha256:045a147c34e3cb65eb9399b79be77b569ee1a16e0cb685598b976df1dfa455a5",
+          "camera": {
+            "name": "recessed-east-entrance-soffit-threshold-and-steps",
+            "position": [
+              25,
+              3.5,
+              0
+            ],
+            "lookAt": [
+              13.8,
+              2.5,
+              0
+            ],
+            "fov": 65
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0761",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 29645,
+            "bounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "reviewGroundY": 0.3,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "427ff4ec-9e7f-4f75-a4c0-c2ea8a49b8ba",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "f3cfcba0-1850-4411-9732-19735485d02e",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "a66ac213-59c8-4120-afb0-7077cb197149",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "30b97c81-1817-4180-bbbf-3e67e1fe6d53",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "a2b68fd6-0796-47b2-a866-8a0d94e50f58"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0761_nymphenburg_palace"
+            ],
+            "selectionBounds": [
+              11.498755163440737,
+              48.15521764401937,
+              11.507846472431321,
+              48.161282233534045
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0761",
+                "coordinate": [
+                  11.503745211786866,
+                  48.15825002838863
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0761"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 30350
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/shared/southern-raised-gallery-and-clear-walking-passage.png",
+          "hash": "sha256:e9d542a80dda8150b29467dae518cabff21601af492d1d795d97b3fd8563ea80",
+          "camera": {
+            "name": "southern-raised-gallery-and-clear-walking-passage",
+            "position": [
+              79,
+              6.6,
+              155.56
+            ],
+            "lookAt": [
+              61,
+              6.8,
+              155.56
+            ],
+            "fov": 65
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0761",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 29645,
+            "bounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "reviewGroundY": 0.3,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "427ff4ec-9e7f-4f75-a4c0-c2ea8a49b8ba",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "f3cfcba0-1850-4411-9732-19735485d02e",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "a66ac213-59c8-4120-afb0-7077cb197149",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "30b97c81-1817-4180-bbbf-3e67e1fe6d53",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "a2b68fd6-0796-47b2-a866-8a0d94e50f58"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0761_nymphenburg_palace"
+            ],
+            "selectionBounds": [
+              11.498755163440737,
+              48.15521764401937,
+              11.507846472431321,
+              48.161282233534045
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0761",
+                "coordinate": [
+                  11.503745211786866,
+                  48.15825002838863
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0761"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 6,
+            "renderedTriangles": 30350
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/shots/shared/placement.png",
+          "hash": "sha256:66db7b404b0807996359384b4dc8b7a36845ed6c8fc97cb071dc5de5155f28fa",
+          "camera": {
+            "name": "placement",
+            "placement": true
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "mode": "geographic-flat-terrain",
+            "placementId": "next1000.n0761",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 5,
+            "triangles": 29645,
+            "bounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -18.474353790283203,
+                -2.805312156677246,
+                -326.6438293457031
+              ],
+              "max": [
+                180.27682495117188,
+                26.82974624633789,
+                314.9038391113281
+              ]
+            },
+            "reviewGroundY": 0.3,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "427ff4ec-9e7f-4f75-a4c0-c2ea8a49b8ba",
+              "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "f3cfcba0-1850-4411-9732-19735485d02e",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "a66ac213-59c8-4120-afb0-7077cb197149",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "30b97c81-1817-4180-bbbf-3e67e1fe6d53",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "a2b68fd6-0796-47b2-a866-8a0d94e50f58"
+            },
+            "loads": [
+              "molen.worldgen.structure.n0761_nymphenburg_palace"
+            ],
+            "selectionBounds": [
+              11.498755163440737,
+              48.15521764401937,
+              11.507846472431321,
+              48.161282233534045
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "next1000.n0761",
+                "coordinate": [
+                  11.503745211786866,
+                  48.15825002838863
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "next1000.n0761"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 7,
+            "renderedTriangles": 30350
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/street-noon-economy.png",
+          "hash": "sha256:87165bf8236b863acfc17f963eb8918d27f691821f440ce0a9d40aaccd1c9cdd",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:af6b26d82270ec0b5b119050f5335e337ac88234d69f5b9111fd3768d1021a9d",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 10,
+            "triangles": 35441,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/street-noon-high.png",
+          "hash": "sha256:2783537fe91bffcbde40a887363ab82fabcbdc3ea21b3834ac8a0c5c8b9ceca6",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:af6b26d82270ec0b5b119050f5335e337ac88234d69f5b9111fd3768d1021a9d",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 35441,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/street-late-economy.png",
+          "hash": "sha256:e49fc98caf2e961b78655d5e7f9cb5d431efbca9ff5977370bc026ac0ab27b91",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:af6b26d82270ec0b5b119050f5335e337ac88234d69f5b9111fd3768d1021a9d",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 10,
+            "triangles": 35441,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/street-late-high.png",
+          "hash": "sha256:b3f161320e26c07b3789b83a406ed7f277dcaa7083cae12f365a065fbad5f68d",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:af6b26d82270ec0b5b119050f5335e337ac88234d69f5b9111fd3768d1021a9d",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 35441,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/block-noon-economy.png",
+          "hash": "sha256:bb27d61f467e80a542d8e00926731929726775481edb9ceec17816eb70fe3b96",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:b8d385b9ddfe47fae437603c37648395f5b725768c1f8c3b3eae1b33541caf5d",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 10,
+            "triangles": 8044,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/block-noon-high.png",
+          "hash": "sha256:bf1b575aa563612fc79b0687ccc0dd4aa4e56ff47bd81d20a5ee66ec96c5ee29",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:b8d385b9ddfe47fae437603c37648395f5b725768c1f8c3b3eae1b33541caf5d",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 8044,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/block-late-economy.png",
+          "hash": "sha256:967fc0a98336d3b767adb368faac80e871b39b80675857af69b0fbe9ae8f2962",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:b8d385b9ddfe47fae437603c37648395f5b725768c1f8c3b3eae1b33541caf5d",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 10,
+            "triangles": 8044,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/block-late-high.png",
+          "hash": "sha256:5e7197e11b090f648b9abb3219cc279dee34f96af727baeee6b031ce07f2a9c1",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:b8d385b9ddfe47fae437603c37648395f5b725768c1f8c3b3eae1b33541caf5d",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 8044,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:ed128d70e9795d7fdd6fe34afa7ced13ef284571e75fa432a689eec8ffec3e84",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:483f9a8196d161ca4feed16bcd806a5e7bb03efb1cbc7e42dba20ccb3b405a9c",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 6685,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:7c9ba0d82f63de743621af4498b60f85cb5be60763397f49a3dac1f06050d675",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:483f9a8196d161ca4feed16bcd806a5e7bb03efb1cbc7e42dba20ccb3b405a9c",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6685,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:0d38e2f2e3f39a53992d82e8900e2c22e913233b633e21bbe108b0de6be1cb19",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:483f9a8196d161ca4feed16bcd806a5e7bb03efb1cbc7e42dba20ccb3b405a9c",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 6685,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/skyline-late-high.png",
+          "hash": "sha256:05d3ae81096204bd179d4f3c5b47297426f2f6d8c55cfe8717c0062e3e029a52",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:483f9a8196d161ca4feed16bcd806a5e7bb03efb1cbc7e42dba20ccb3b405a9c",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6685,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/silhouette.png",
+          "hash": "sha256:83bd5504701e748fb2bb1319c6f349603d4095fdd2e6ee89d89dac17c54515c1",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:483f9a8196d161ca4feed16bcd806a5e7bb03efb1cbc7e42dba20ccb3b405a9c",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 2,
+            "triangles": 989,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/central-pavilion-stepped-wings-and-red-roofs.png",
+          "hash": "sha256:a483edcc6ea48701558f0aa54f2c1719925e749313299ea37de020d84cd562e3",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:af6b26d82270ec0b5b119050f5335e337ac88234d69f5b9111fd3768d1021a9d",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 35441,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              110,
+              23,
+              8
+            ],
+            "lookAt": [
+              4,
+              12,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/southern-courtyards-and-open-gallery-passage.png",
+          "hash": "sha256:ec755661b1354c8a9658e6a64740abce725b548ba75b7fa89766185ea69c6675",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:af6b26d82270ec0b5b119050f5335e337ac88234d69f5b9111fd3768d1021a9d",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 35441,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              215,
+              80,
+              270
+            ],
+            "lookAt": [
+              90,
+              8,
+              235
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/recessed-east-entrance-soffit-threshold-and-steps.png",
+          "hash": "sha256:6341f0c36d2391f2061b089d10d2d07f65eeb6fbb5c1b0cf9084b80528fc13fb",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:af6b26d82270ec0b5b119050f5335e337ac88234d69f5b9111fd3768d1021a9d",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 35441,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              25,
+              3.5,
+              0
+            ],
+            "lookAt": [
+              13.8,
+              2.5,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/southern-raised-gallery-and-clear-walking-passage.png",
+          "hash": "sha256:b93404ff13c4572205ae8fe20773547255ca61dc8a80c474107683c7fbf6eebb",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:af6b26d82270ec0b5b119050f5335e337ac88234d69f5b9111fd3768d1021a9d",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 9,
+            "triangles": 35383,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              79,
+              6.6,
+              155.56
+            ],
+            "lookAt": [
+              61,
+              6.8,
+              155.56
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/nymphenburg-skyline.png",
+          "hash": "sha256:0bc73a7d8be3198baa874690f9904f4401bd5206adf4acb74301e8e665d3f6ff",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:483f9a8196d161ca4feed16bcd806a5e7bb03efb1cbc7e42dba20ccb3b405a9c",
+            "level": "skyline",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6685,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              470,
+              260,
+              380
+            ],
+            "lookAt": [
+              50,
+              10,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/nymphenburg-district.png",
+          "hash": "sha256:a58ba638d5e1208849122b534ffcc3f233aeeea4781306383f979b14c93999df",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:b8d385b9ddfe47fae437603c37648395f5b725768c1f8c3b3eae1b33541caf5d",
+            "level": "district",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 8044,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              470,
+              260,
+              380
+            ],
+            "lookAt": [
+              50,
+              10,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/nymphenburg-street.png",
+          "hash": "sha256:3cf5163e61c94367a868f337767d54694cf839d5bf194511308048743a678aaf",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:a2d98df3c663ff0a4cc7af79a8d1695d93e455640ae71cb2f7b68532f5f44607",
+            "level": "street",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 19243,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              470,
+              260,
+              380
+            ],
+            "lookAt": [
+              50,
+              10,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/nymphenburg-closeup.png",
+          "hash": "sha256:94473d3f64f0b2a3c8cf7bed5d801a1eb52cfe42fc772aa2137730607a169980",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:af6b26d82270ec0b5b119050f5335e337ac88234d69f5b9111fd3768d1021a9d",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 35441,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              470,
+              260,
+              380
+            ],
+            "lookAt": [
+              50,
+              10,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/transition-skyline.png",
+          "hash": "sha256:1394bfc0874d448c362b1511c7aa16483ba6b47a1fecf3646b9552fc811640f4",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:483f9a8196d161ca4feed16bcd806a5e7bb03efb1cbc7e42dba20ccb3b405a9c",
+            "level": "skyline",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6685,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/transition-district.png",
+          "hash": "sha256:bf1b575aa563612fc79b0687ccc0dd4aa4e56ff47bd81d20a5ee66ec96c5ee29",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:b8d385b9ddfe47fae437603c37648395f5b725768c1f8c3b3eae1b33541caf5d",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 8044,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/transition-street.png",
+          "hash": "sha256:40ed9496d91af04fb7e2bbd261946bc26b55fa5110ff1ca40c319bb9a76e6459",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:a2d98df3c663ff0a4cc7af79a8d1695d93e455640ae71cb2f7b68532f5f44607",
+            "level": "street",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 19243,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/medium-fi/transition-closeup.png",
+          "hash": "sha256:092fe1e23cc0e6bc8323a55e81fcdca8bb3ca4a24ddd3162dd9e99f0b9cafe1f",
+          "state": {
+            "assetId": "molen.worldgen.structure.n0761_nymphenburg_palace",
+            "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+            "lodHash": "sha256:af6b26d82270ec0b5b119050f5335e337ac88234d69f5b9111fd3768d1021a9d",
+            "level": "closeup",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 10,
+            "triangles": 35441,
+            "groundY": 0.3,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.tile_ceramic": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 17,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 0,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": ".artifacts/nymphenburg-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:1d185b7236c345b3cfbb253e5f21db184838c243ff7ba8c2f5720a66a063677e",
+          "state": {
+            "level": "skyline",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 16,
+            "triangles": 543740
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              470,
+              260,
+              380
+            ],
+            "lookAt": [
+              50,
+              10,
+              0
+            ],
+            "fov": 53
+          }
+        },
+        {
+          "path": ".artifacts/nymphenburg-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:dbb7a0cb1c3445909930b8e3a91da682ec35219ca8f8d4b5fce11f5f27213b91",
+          "state": {
+            "level": "district",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 20,
+            "triangles": 545099
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              470,
+              260,
+              380
+            ],
+            "lookAt": [
+              50,
+              10,
+              0
+            ],
+            "fov": 53
+          }
+        },
+        {
+          "path": ".artifacts/nymphenburg-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:27ede712f002e545d7744678086b8b7a63d66b3f61738b193d7bfa07f3d2d41d",
+          "state": {
+            "level": "street",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 20,
+            "triangles": 556298
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              470,
+              260,
+              380
+            ],
+            "lookAt": [
+              50,
+              10,
+              0
+            ],
+            "fov": 53
+          }
+        },
+        {
+          "path": ".artifacts/nymphenburg-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:b393290ff56e45eb5039339ecf8adde63b15b48ede7d20e0daf4511f527f4dbc",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 20,
+            "triangles": 572496
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              470,
+              260,
+              380
+            ],
+            "lookAt": [
+              50,
+              10,
+              0
+            ],
+            "fov": 53
+          }
+        },
+        {
+          "path": ".artifacts/nymphenburg-integration/shots/final-closeup-central-pavilion-stepped-wings-and-red-roofs.png",
+          "hash": "sha256:bf3a2811c60b7af6b69a084df3497b334904d80514a88f33e084b459d167aa36",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 20,
+            "triangles": 572496
+          },
+          "camera": {
+            "name": "central-pavilion-stepped-wings-and-red-roofs",
+            "position": [
+              110,
+              23,
+              8
+            ],
+            "lookAt": [
+              4,
+              12,
+              0
+            ],
+            "fov": 55
+          }
+        },
+        {
+          "path": ".artifacts/nymphenburg-integration/shots/final-closeup-southern-courtyards-and-open-gallery-passage.png",
+          "hash": "sha256:7f272171307ecd4b07509d0aff0d43d1d1968b2f3f271314baf7adb7e71620d4",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 20,
+            "triangles": 572496
+          },
+          "camera": {
+            "name": "southern-courtyards-and-open-gallery-passage",
+            "position": [
+              215,
+              80,
+              270
+            ],
+            "lookAt": [
+              90,
+              8,
+              235
+            ],
+            "fov": 60
+          }
+        },
+        {
+          "path": ".artifacts/nymphenburg-integration/shots/final-closeup-recessed-east-entrance-soffit-threshold-and-steps.png",
+          "hash": "sha256:c97dd58d0b53e1dc2a5c60f073be8a481a5ed639709c199d438ebd7a5221622c",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 20,
+            "triangles": 572496
+          },
+          "camera": {
+            "name": "recessed-east-entrance-soffit-threshold-and-steps",
+            "position": [
+              25,
+              3.5,
+              0
+            ],
+            "lookAt": [
+              13.8,
+              2.5,
+              0
+            ],
+            "fov": 65
+          }
+        },
+        {
+          "path": ".artifacts/nymphenburg-integration/shots/final-closeup-southern-raised-gallery-and-clear-walking-passage.png",
+          "hash": "sha256:567cf6f45be59a59c95f957c3f002a71a91fb7eda9f02adf06d4bf57078cff7d",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 19,
+            "triangles": 572438
+          },
+          "camera": {
+            "name": "southern-raised-gallery-and-clear-walking-passage",
+            "position": [
+              79,
+              6.6,
+              155.56
+            ],
+            "lookAt": [
+              61,
+              6.8,
+              155.56
+            ],
+            "fov": 65
+          }
+        },
+        {
+          "path": ".artifacts/nymphenburg-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:bd104ec9dd56e9b5363fade4dc68b76aed08a78bc1042a818b1fefd2f60b96bd",
+          "state": {
+            "level": "failure",
+            "mode": "high",
+            "groundCutoutActive": false,
+            "draws": 15,
+            "triangles": 542203
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              470,
+              260,
+              380
+            ],
+            "lookAt": [
+              50,
+              10,
+              0
+            ],
+            "fov": 53
+          }
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:f721671045783975d4fe11f058260010d21a5aea078b8658f66433413c23d135",
+      "sourceHash": "sha256:3f4b835b7de8ce59dda0e201bf4232a721b5098bf8631cf8c0521198f0abdec2",
+      "runtimeHash": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+      "files": {
+        "content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/models/source.glb": "sha256:3f4b835b7de8ce59dda0e201bf4232a721b5098bf8631cf8c0521198f0abdec2",
+        "content/worldgen/assets/places/u2/u28/n0761_nymphenburg_palace/model.glb": "sha256:719f10e7c21b253e6d69ba18f9cbb92f466c439a1306a20ae12f59020031b7db",
+        "content/worldgen/assets/places/u2/u28/n0761_nymphenburg_palace/model.skyline.glb": "sha256:483f9a8196d161ca4feed16bcd806a5e7bb03efb1cbc7e42dba20ccb3b405a9c",
+        "content/worldgen/assets/places/u2/u28/n0761_nymphenburg_palace/model.district.glb": "sha256:b8d385b9ddfe47fae437603c37648395f5b725768c1f8c3b3eae1b33541caf5d",
+        "content/worldgen/assets/places/u2/u28/n0761_nymphenburg_palace/model.street.glb": "sha256:a2d98df3c663ff0a4cc7af79a8d1695d93e455640ae71cb2f7b68532f5f44607",
+        "content/worldgen/assets/places/u2/u28/n0761_nymphenburg_palace/model.closeup.glb": "sha256:af6b26d82270ec0b5b119050f5335e337ac88234d69f5b9111fd3768d1021a9d"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184684067737,
+        35184684067739,
+        35184684067747,
+        35184684089747,
+        52776560278234,
+        52776570260993,
+        35184532354367,
+        35184684067740,
+        35184684067741,
+        35184684067742,
+        35184684067743,
+        35184684067745,
+        35184684067746,
+        52776570260986
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4357,
+            2842
+          ],
+          "id": 35184380673820,
+          "owned": false,
+          "covered": 0.05433628127428421,
+          "area": 394109.6556431012,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8715,
+            5684
+          ],
+          "id": 35184380673820,
+          "owned": false,
+          "covered": 0.085418206695719,
+          "area": 252364.66122842627,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8715,
+            5684
+          ],
+          "id": 35184532354360,
+          "owned": false,
+          "covered": 0.15342916122315323,
+          "area": 6729.683145566486,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8715,
+            5684
+          ],
+          "id": 35184684067730,
+          "owned": false,
+          "covered": 0.9920301246869235,
+          "area": 20341.889444982153,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8715,
+            5684
+          ],
+          "id": 35184684067742,
+          "owned": true,
+          "covered": 0.9749615401735564,
+          "area": 139.5678259470078,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8715,
+            5684
+          ],
+          "id": 35184684067747,
+          "owned": true,
+          "covered": 0.968515727920869,
+          "area": 169.23348724993275,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11368
+          ],
+          "id": 35184684067737,
+          "owned": true,
+          "covered": 0.999992261687469,
+          "area": 482.45930450499884,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11368
+          ],
+          "id": 35184684067739,
+          "owned": true,
+          "covered": 0.9999950628889424,
+          "area": 541.3292140103455,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11368
+          ],
+          "id": 35184684067747,
+          "owned": true,
+          "covered": 0.9999268881563524,
+          "area": 165.54414534794114,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11368
+          ],
+          "id": 35184684089747,
+          "owned": true,
+          "covered": 0.9999745857724093,
+          "area": 736.2866748836191,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11368
+          ],
+          "id": 52776560278234,
+          "owned": true,
+          "covered": 0.9999839906664324,
+          "area": 10000.927036879737,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11368
+          ],
+          "id": 52776570260993,
+          "owned": true,
+          "covered": 0.9999821445015603,
+          "area": 8077.688409161667,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11369
+          ],
+          "id": 35184532354367,
+          "owned": true,
+          "covered": 0.9999862207886597,
+          "area": 1038.51826519616,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11369
+          ],
+          "id": 35184684067737,
+          "owned": true,
+          "covered": 0.9999948808047555,
+          "area": 591.8921034640466,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11369
+          ],
+          "id": 35184684067739,
+          "owned": true,
+          "covered": 0.9999970142234756,
+          "area": 166.7965116740943,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11369
+          ],
+          "id": 35184684067740,
+          "owned": true,
+          "covered": 0.9999827454635423,
+          "area": 249.2170565835974,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11369
+          ],
+          "id": 35184684067741,
+          "owned": true,
+          "covered": 0.9999722264392,
+          "area": 236.3610931177005,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11369
+          ],
+          "id": 35184684067742,
+          "owned": true,
+          "covered": 0.9999944605149805,
+          "area": 135.46172069262866,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11369
+          ],
+          "id": 35184684067743,
+          "owned": true,
+          "covered": 0.9999907219875463,
+          "area": 696.2862319521555,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11369
+          ],
+          "id": 35184684067745,
+          "owned": true,
+          "covered": 0.999975956913664,
+          "area": 575.1415171554486,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11369
+          ],
+          "id": 35184684067746,
+          "owned": true,
+          "covered": 0.9999837546957389,
+          "area": 575.1237036325106,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11369
+          ],
+          "id": 52776560278234,
+          "owned": true,
+          "covered": 0.9999847548903489,
+          "area": 12336.626736708075,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17431,
+            11369
+          ],
+          "id": 52776570260986,
+          "owned": true,
+          "covered": 0.9999837702652792,
+          "area": 8074.863769171401,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 730,
+      "widerIndependent": 1014,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtBridgePassages": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -6.797340184050427e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 744,
+          "independentBuildings": 730,
+          "remainingBuildings": 730,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0761_nymphenburg_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -5.1077222222222645,
+            "max": 13.660877777777728
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 144119.73701317064,
+          "remainingWaterArea": 144119.73701317064,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:1d185b7236c345b3cfbb253e5f21db184838c243ff7ba8c2f5720a66a063677e",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 543740
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                470,
+                260,
+                380
+              ],
+              "lookAt": [
+                50,
+                10,
+                0
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtBridgePassages": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -6.797340184050427e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 744,
+          "independentBuildings": 730,
+          "remainingBuildings": 730,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0761_nymphenburg_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -5.1077222222222645,
+            "max": 13.660877777777728
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 144119.73701317064,
+          "remainingWaterArea": 144119.73701317064,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:dbb7a0cb1c3445909930b8e3a91da682ec35219ca8f8d4b5fce11f5f27213b91",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 545099
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                470,
+                260,
+                380
+              ],
+              "lookAt": [
+                50,
+                10,
+                0
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtBridgePassages": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -6.797340184050427e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 744,
+          "independentBuildings": 730,
+          "remainingBuildings": 730,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0761_nymphenburg_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -5.1077222222222645,
+            "max": 13.660877777777728
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 144119.73701317064,
+          "remainingWaterArea": 144119.73701317064,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:27ede712f002e545d7744678086b8b7a63d66b3f61738b193d7bfa07f3d2d41d",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 556298
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                470,
+                260,
+                380
+              ],
+              "lookAt": [
+                50,
+                10,
+                0
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtBridgePassages": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -6.797340184050427e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 744,
+          "independentBuildings": 730,
+          "remainingBuildings": 730,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0761_nymphenburg_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -5.1077222222222645,
+            "max": 13.660877777777728
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 144119.73701317064,
+          "remainingWaterArea": 144119.73701317064,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:b393290ff56e45eb5039339ecf8adde63b15b48ede7d20e0daf4511f527f4dbc",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 572496
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                470,
+                260,
+                380
+              ],
+              "lookAt": [
+                50,
+                10,
+                0
+              ],
+              "fov": 53
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-central-pavilion-stepped-wings-and-red-roofs.png",
+            "hash": "sha256:bf3a2811c60b7af6b69a084df3497b334904d80514a88f33e084b459d167aa36",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 572496
+            },
+            "camera": {
+              "name": "central-pavilion-stepped-wings-and-red-roofs",
+              "position": [
+                110,
+                23,
+                8
+              ],
+              "lookAt": [
+                4,
+                12,
+                0
+              ],
+              "fov": 55
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-southern-courtyards-and-open-gallery-passage.png",
+            "hash": "sha256:7f272171307ecd4b07509d0aff0d43d1d1968b2f3f271314baf7adb7e71620d4",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 572496
+            },
+            "camera": {
+              "name": "southern-courtyards-and-open-gallery-passage",
+              "position": [
+                215,
+                80,
+                270
+              ],
+              "lookAt": [
+                90,
+                8,
+                235
+              ],
+              "fov": 60
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-recessed-east-entrance-soffit-threshold-and-steps.png",
+            "hash": "sha256:c97dd58d0b53e1dc2a5c60f073be8a481a5ed639709c199d438ebd7a5221622c",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 572496
+            },
+            "camera": {
+              "name": "recessed-east-entrance-soffit-threshold-and-steps",
+              "position": [
+                25,
+                3.5,
+                0
+              ],
+              "lookAt": [
+                13.8,
+                2.5,
+                0
+              ],
+              "fov": 65
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-southern-raised-gallery-and-clear-walking-passage.png",
+            "hash": "sha256:567cf6f45be59a59c95f957c3f002a71a91fb7eda9f02adf06d4bf57078cff7d",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 572438
+            },
+            "camera": {
+              "name": "southern-raised-gallery-and-clear-walking-passage",
+              "position": [
+                79,
+                6.6,
+                155.56
+              ],
+              "lookAt": [
+                61,
+                6.8,
+                155.56
+              ],
+              "fov": 65
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtBridgePassages": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 744,
+          "independentBuildings": 730,
+          "remainingBuildings": 744,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184684067737,
+              "area": 592.8948364533371
+            },
+            {
+              "id": 35184684067739,
+              "area": 541.3464664250566
+            },
+            {
+              "id": 35184684067747,
+              "area": 165.54402940196945
+            },
+            {
+              "id": 35184684089747,
+              "area": 736.2861591935665
+            },
+            {
+              "id": 52776560278234,
+              "area": 21689.303546181214
+            },
+            {
+              "id": 52776570260993,
+              "area": 8077.682751605369
+            },
+            {
+              "id": 35184532354367,
+              "area": 1038.517537825281
+            },
+            {
+              "id": 35184684067740,
+              "area": 249.21688203370485
+            },
+            {
+              "id": 35184684067741,
+              "area": 236.36092757203687
+            },
+            {
+              "id": 35184684067742,
+              "area": 135.46162581617781
+            },
+            {
+              "id": 35184684067743,
+              "area": 696.2857442781623
+            },
+            {
+              "id": 35184684067745,
+              "area": 575.1411143303509
+            },
+            {
+              "id": 35184684067746,
+              "area": 575.1233008198042
+            },
+            {
+              "id": 52776570260986,
+              "area": 8074.858113593518
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0761_nymphenburg_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -5.1077222222222645,
+            "max": 13.660877777777728
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 144119.73701317064,
+          "remainingWaterArea": 144119.73701317064,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:bd104ec9dd56e9b5363fade4dc68b76aed08a78bc1042a818b1fefd2f60b96bd",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 542203
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                470,
+                260,
+                380
+              ],
+              "lookAt": [
+                50,
+                10,
+                0
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Nymphenburg Palace principal connected exterior: central pale Baroque pavilion, stepped side pavilions, lower galleries and both pairs of outer courtyard ranges. Four mapped courts stay open. Two mapped bridge galleries have a clear lower passage between reconstructed supporting piers. Red ceramic hip roofs, dormers/stacks, crossed windows/tall central arched windows, pale pilasters/cornices, restrained original ochre detail, west terrace/balustrade and a true east entrance recess/soffit/threshold/steps. Detached crescent houses, garden pavilions, canals, fountains and gardens remain map context. No furnished rooms, copied portraits/arms/inscriptions or exact sculptural relief.",
+    "Q131631 and named parent relation2144986/native52776560278234 identify Nymphenburg Palace. Thirteen integral mapped parts, including northern/southern two-court ranges and two bridge galleries, bring explicit ownership to14 records. The exact83-vertex parent/four holes and actual part polygons supply horizontal geometry. Model origin at native[-73,4] places the main pavilion near internal[0,0]; anchor[11.50330081793603,48.15825002838863]. InternalX south along the ranges, internalZ east toward the front court/canal, native east/up/south geometry baked in and heading0. All unrelated buildings and mapped open courts remain independent.",
+    "Photo-led approximate exterior. Mapped unqualified height tags8/11/17m are working eave controls: central pavilion17m, inner pavilions11m, gallery/outer ranges8m, with distance-to-eave red hip roofs at slope0.65/rise capped10m. Most heights, roof junctions, bay/window/dormer/chimney inventories and unseen elevations are reconstructed, not surveyed. Two bridge tags lack reliable minimum height; a4m northern/8m southern gallery base (the southern8m base retains about2.8m clearance over the highest retained approach grade),11m working southern eave and four supporting pier rows per bridge are explicit schematic reconstruction. Main entrance0.5m above working floor has1.35m recess, arched soffit and five short treads. Western0.5m terrace/blank balustrade and original ochre accents abstract the photographed architecture without copying portrait medallions or arms.",
+    "Qualified approximate native exterior fit on original standard Protomaps20261020/Mapzen201x201/6m terrain. Front court provider datum518.1923222222223m, working floor0.3m and closed foundation-2.805m. Boundary grades-2.655..5.484m leave low-side foundation exposure and uphill base/lower-window burial in the outer ranges. The main front approach/threshold and all four court voids remain visible; exact terrace grades, paving, step levels and accessibility are unverified. Four courts and gallery passages preserve original terrain; original independent buildings, roads, canals/ponds and water inputs remain. Native inspection, ownership, all LODs, failed loading and unload evidence are recorded separately in qa.json. No bespoke terrain or custom flattening.",
+    "Photo-led approximate exterior. Mapped unqualified height tags8/11/17m are working eave controls: central pavilion17m, inner pavilions11m, gallery/outer ranges8m, with distance-to-eave red hip roofs at slope0.65/rise capped10m. Most heights, roof junctions, bay/window/dormer/chimney inventories and unseen elevations are reconstructed, not surveyed. Two bridge tags lack reliable minimum height; a4m northern/8m southern gallery base (the southern8m base retains about2.8m clearance over the highest retained approach grade),11m working southern eave and four supporting pier rows per bridge are explicit schematic reconstruction. Main entrance0.5m above working floor has1.35m recess, arched soffit and five short treads. Western0.5m terrace/blank balustrade and original ochre accents abstract the photographed architecture without copying portrait medallions or arms. Qualified approximate medium-fi exterior fit. Boundary grades-2.655..+5.484m leave low-side foundations/uphill base and lower-window burial in outer ranges. Main entrance and both gallery crossings remain exposed in the inspected native views. Exact historic heights, floor connections, inventories, hidden elevations/roof junctions, paving/terrace/stair grades and accessibility are unverified. No furnished rooms, copied portraits/heraldic relief/inscriptions, garden/fountain sculpture or detached crescent/garden-pavilion models. Physical laptop/phone and dense-city timings remain pending.",
+    "Q131631 and named parent relation2144986/native52776560278234 identify Nymphenburg Palace. Thirteen integral mapped parts, including northern/southern two-court ranges and two bridge galleries, bring explicit ownership to14 records. The exact83-vertex parent/four holes and actual part polygons supply horizontal geometry. Model origin at native[-73,4] places the main pavilion near internal[0,0]; anchor[11.50330081793603,48.15825002838863]. InternalX south along the ranges, internalZ east toward the front court/canal, native east/up/south geometry baked in and heading0. All unrelated buildings and mapped open courts remain independent. Qualified approximate native exterior fit on original standard Protomaps20261020/Mapzen201x201/6m terrain. Front court provider datum518.1923222222223m, working floor0.3m and closed foundation-2.805m. Boundary grades-2.655..5.484m leave low-side foundation exposure and uphill base/lower-window burial in the outer ranges. The main front approach/threshold and all four court voids remain visible; exact terrace grades, paving, step levels and accessibility are unverified. Four courts and gallery passages preserve original terrain; original independent buildings, roads, canals/ponds and water inputs remain. Native inspection, ownership, all LODs, failed loading and unload evidence are recorded separately in qa.json. No bespoke terrain or custom flattening."
+  ]
+}

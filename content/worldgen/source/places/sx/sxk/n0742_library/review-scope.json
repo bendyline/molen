@@ -1,0 +1,556 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "stone_marble",
+      "slot": "wall"
+    },
+    "trim": {
+      "graph": "stone_marble",
+      "slot": "trim"
+    },
+    "floor": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim"
+    },
+    "column": {
+      "graph": "stone_granite",
+      "slot": "trim"
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof"
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "gold": {
+      "graph": "metal_bronze_cast",
+      "slot": "trim"
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "door"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      46.71881985582858,
+      28,
+      -14.083744930899492
+    ],
+    "lookAt": [
+      0,
+      6,
+      0
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "three-open-arches-and-entrance",
+      "position": [
+        -19.814225775100994,
+        12,
+        2.7196427951705857
+      ],
+      "lookAt": [
+        -1.9425642457848258,
+        6,
+        3.4966332594366296
+      ],
+      "fov": 64
+    },
+    {
+      "name": "cross-plan-and-lead-dome-group",
+      "position": [
+        31.08113803895686,
+        18,
+        -4.46798144616883
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "paired-side-stairs-and-front-fountain",
+      "position": [
+        4.176559373125226,
+        4.2,
+        14.103061788234488
+      ],
+      "lookAt": [
+        -1.1655297389589236,
+        3.8,
+        6.2162320120473575
+      ],
+      "fov": 66
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        46.71881985582858,
+        28,
+        -14.083744930899492
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 45,
+      "name": "library-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        46.71881985582858,
+        28,
+        -14.083744930899492
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 45,
+      "name": "library-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        46.71881985582858,
+        28,
+        -14.083744930899492
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 45,
+      "name": "library-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        46.71881985582858,
+        28,
+        -14.083744930899492
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 45,
+      "name": "library-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 3.5,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/topkapi-library-model.mjs",
+    "export": "buildTopkapiLibrarySkyline",
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTopkapiLibraryDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_marble",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "door"
+          }
+        }
+      },
+      "street": {
+        "export": "buildTopkapiLibraryStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_marble",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "door"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTopkapiLibraryCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_marble",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_granite",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "door"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      28.98455411195755,
+      41.01302733308022
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Source vertical datum remains 51.31288038632903m, preserving authored geometry and its native position. Actual provider attachment uses the uncovered front gap internal[0,9.6], outside every one of the 573 retained native building records, with modelHeight=-0.29670710644687404m. This negative local attachment height compensates for the original grid slope. Original terrain/roads/water remain unchanged; occupied floorY2.2 and deep rear/east foundations are approximate accommodations, not verified historical basement heights. No precinct flattening/custom terrain; thresholds/accessibility remain unverified.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      28.984409972714726,
+      41.012922846701144,
+      28.98469000185007,
+      41.01311570240811
+    ],
+    "terrainReference": {
+      "anchor": [
+        28.984498608323825,
+        41.01295194718182
+      ],
+      "modelHeight": -0.29670710644687404,
+      "basis": "Source vertical datum remains 51.31288038632903m, preserving authored geometry and its native position. Actual provider attachment uses the uncovered front gap internal[0,9.6], outside every one of the 573 retained native building records, with modelHeight=-0.29670710644687404m. This negative local attachment height compensates for the original grid slope. Original terrain/roads/water remain unchanged; occupied floorY2.2 and deep rear/east foundations are approximate accommodations, not verified historical basement heights. No precinct flattening/custom terrain; thresholds/accessibility remain unverified."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -10.813443733556074,
+          -0.45026274579824
+        ],
+        [
+          -5.857348022034858,
+          -9.236010346267765
+        ],
+        [
+          -1.1265293883100647,
+          -6.757980037170687
+        ],
+        [
+          0.2251330784684491,
+          -9.236010346267765
+        ],
+        [
+          8.109830801343112,
+          -4.955775650855918
+        ],
+        [
+          6.758168334564592,
+          -2.252468239363849
+        ],
+        [
+          10.813155734900132,
+          0.00028869719178459263
+        ],
+        [
+          5.857060023378919,
+          8.786047363842577
+        ],
+        [
+          1.8020726230433823,
+          6.533287728758463
+        ],
+        [
+          0.450410156264867,
+          9.236599373112323
+        ],
+        [
+          -2.4033199239702485,
+          7.651201760701987
+        ],
+        [
+          -2.7136277623021066,
+          8.209758683866548
+        ],
+        [
+          -3.1288114393402497,
+          7.979102247630018
+        ],
+        [
+          -3.4153110127708866,
+          8.494804078056346
+        ],
+        [
+          -4.988638631020695,
+          7.620737582844235
+        ],
+        [
+          -4.702139057590059,
+          7.105035752417907
+        ],
+        [
+          -5.117322734628203,
+          6.874379316181377
+        ],
+        [
+          -4.807014896296345,
+          6.315822393016816
+        ],
+        [
+          -7.659564644406211,
+          4.731080517372263
+        ],
+        [
+          -6.0826250998312785,
+          2.2530463265700935
+        ]
+      ],
+      "additionalOutlines": [
+        [
+          [
+            -11.50704311578465,
+            2.3869530629349023
+          ],
+          [
+            -10.220222997833488,
+            0.07066518051157278
+          ],
+          [
+            -6.286903952208965,
+            2.2558314185418507
+          ],
+          [
+            -7.57372407016013,
+            4.572119300965181
+          ]
+        ],
+        [
+          [
+            0.5388374831749823,
+            9.079075234278152
+          ],
+          [
+            1.8256576011261463,
+            6.762787351854823
+          ],
+          [
+            5.339422615217385,
+            8.71486919116187
+          ],
+          [
+            4.052602497266221,
+            11.0311570735852
+          ]
+        ]
+      ],
+      "basis": "Source vertical datum remains 51.31288038632903m, preserving authored geometry and its native position. Actual provider attachment uses the uncovered front gap internal[0,9.6], outside every one of the 573 retained native building records, with modelHeight=-0.29670710644687404m. This negative local attachment height compensates for the original grid slope. Original terrain/roads/water remain unchanged; occupied floorY2.2 and deep rear/east foundations are approximate accommodations, not verified historical basement heights. No precinct flattening/custom terrain; thresholds/accessibility remain unverified."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -10.814381172345337,
+          -0.45060231945246443
+        ],
+        [
+          -6.083089409444252,
+          2.2529771108589003
+        ],
+        [
+          -7.660186663744614,
+          4.73125912986297
+        ],
+        [
+          0.45059921551438853,
+          9.237228582548298
+        ],
+        [
+          1.8023968620575586,
+          6.533646579994183
+        ],
+        [
+          5.857789801687058,
+          8.786631513571654
+        ],
+        [
+          10.814381172345337,
+          -5.816812175929442e-06
+        ],
+        [
+          6.758988232715835,
+          -2.2529880515912875
+        ],
+        [
+          8.110785879259009,
+          -4.956565820860283
+        ],
+        [
+          0.22529960775719537,
+          -9.237228582548301
+        ],
+        [
+          -1.1264980387859729,
+          -6.75895044563753
+        ],
+        [
+          -5.857789801687057,
+          -9.237228582548301
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -10.814381172345337,
+            -0.45060231945246443
+          ],
+          [
+            -6.083089409444252,
+            2.2529771108589003
+          ],
+          [
+            -7.660186663744614,
+            4.73125912986297
+          ],
+          [
+            0.45059921551438853,
+            9.237228582548298
+          ],
+          [
+            1.8023968620575586,
+            6.533646579994183
+          ],
+          [
+            5.857789801687058,
+            8.786631513571654
+          ],
+          [
+            10.814381172345337,
+            -5.816812175929442e-06
+          ],
+          [
+            6.758988232715835,
+            -2.2529880515912875
+          ],
+          [
+            8.110785879259009,
+            -4.956565820860283
+          ],
+          [
+            0.22529960775719537,
+            -9.237228582548301
+          ],
+          [
+            -1.1264980387859729,
+            -6.75895044563753
+          ],
+          [
+            -5.857789801687057,
+            -9.237228582548301
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only Library Chamber way32396231/native35184404485063; retain independent Audience Chamber/other palace members."
+    },
+    "notes": "Independent Library Q104549762, within Topkapi Q170495, OSM way32396231/native35184404485063. Existing parent has twelve cross-plan corners and two detailed tile fragments. Internal+X follows front elevation southeast; internal+Z faces southwest toward separate Audience Chamber. World heading0/+X east/+Z south. Ordinary photos show the same front portico, raised basement, window rows and lead roofs. Source vertical datum remains 51.31288038632903m, preserving authored geometry and its native position. Actual provider attachment uses the uncovered front gap internal[0,9.6], outside every one of the 573 retained native building records, with modelHeight=-0.29670710644687404m. This negative local attachment height compensates for the original grid slope. Original terrain/roads/water remain unchanged; occupied floorY2.2 and deep rear/east foundations are approximate accommodations, not verified historical basement heights. No precinct flattening/custom terrain; thresholds/accessibility remain unverified."
+  }
+}

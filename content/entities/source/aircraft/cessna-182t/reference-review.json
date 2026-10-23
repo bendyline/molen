@@ -1,0 +1,254 @@
+{
+  "variant": "2007 Cessna 182T Skylane, normally aspirated IO-540, three-blade 79-inch McCauley, NAV III / GFC700",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://www.aeroelectric.com/Reference_Docs/Cessna/cessna-poh/Cessna_182_C182T_2007_NavIII-G1000%2BGFC700_POH-PIM_fromCessna.pdf",
+      "title": "Cessna 182T NAV III / GFC700 Information Manual, Revision 1, December 2007",
+      "author": "Cessna Aircraft Company",
+      "license": "Copyright Cessna; local study only, no source pixels distributed.",
+      "scope": "Three-view sheets 1-3/1-4, engine/propeller specifications 1-5, panel image 7-14 and descriptions 7-10 through 7-13."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Cessna_182T_G-ZGZG_(6972142316).jpg",
+      "title": "File:Cessna 182T G-ZGZG (6972142316).jpg",
+      "author": "Alan Wilson",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "revision": 1163136936,
+      "scope": "182T G-ZGZG: cabin, wheel pants, wing struts, aft glazing and tail contours."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Cessna_T182T_Cockpit_-_Garmin_G1000.jpg",
+      "title": "File:Cessna T182T Cockpit - Garmin G1000.jpg",
+      "author": "Stahlkocher",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "revision": 853613278,
+      "scope": "T182T 2006 cockpit: physical panel controls, yokes and trim pedestal. Earlier turbo/KAP140 fit is secondary; 2007 normally aspirated 182T handbook defines avionics fit."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      1.7,
+      -0.25
+    ],
+    "lookAt": [
+      0,
+      1.22,
+      1.5
+    ],
+    "fov": 74
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -1.19
+    ],
+    "viewHeight": 0.92,
+    "cameraHeight": 9.05
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "propNormalized": 0,
+    "verticalSpeed": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "elevator": 0,
+    "flapPosition": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/c182t-dimensions2-small.png",
+      "crop": {
+        "left": 90,
+        "top": 340,
+        "width": 1010,
+        "height": 370
+      },
+      "referenceAnchor": [
+        429,
+        674
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 873,
+        "meters": 8.8392,
+        "description": "29-foot overall length, uniform scale."
+      },
+      "scope": "Handbook side drawing. Ground-attitude/schematic-height residual recorded; no anisotropic scaling."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/c182t-dimensions1-small.png",
+      "crop": {
+        "left": 190,
+        "top": 340,
+        "width": 940,
+        "height": 730
+      },
+      "referenceAnchor": [
+        660,
+        804
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 889,
+        "meters": 10.9728,
+        "description": "36-foot span including strobes."
+      },
+      "scope": "Handbook plan view with independent 11-foot-8-inch stabilizer width check."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/c182t-dimensions1-small.png",
+      "crop": {
+        "left": 180,
+        "top": 1190,
+        "width": 970,
+        "height": 320
+      },
+      "referenceAnchor": [
+        662,
+        1477
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 922,
+        "meters": 10.9728,
+        "description": "36-foot span, separate scale from plan view."
+      },
+      "scope": "Handbook front drawing; wheel track and 79-inch propeller checked independently."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/c182t-panel-small.png",
+      "crop": {
+        "left": 110,
+        "top": 420,
+        "width": 950,
+        "height": 770
+      },
+      "referenceAnchor": [
+        607,
+        550
+      ],
+      "modelAnchor": [
+        0,
+        -1.4
+      ],
+      "scaleControls": {
+        "pixels": 232,
+        "meters": 0.29972,
+        "description": "Average photographed GDU bezel width matched to physical 11.8-inch unit; perspective remains."
+      },
+      "edgeMode": "photo",
+      "scope": "Handbook Figure 7-2 panel photograph. Callout lines retained, no source-image warping."
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Replaced generic airframe with independently measured 2007 normally aspirated 182T: lofted cowling and hollow cabin, two side glazing bays, OmniVision aft glazing, single-piece windshield, low swept fin, three-blade 79-inch propeller and faired fixed gear.",
+      "Uniformly scaled side/front/top handbook overlays exposed an extra aft side window, overly high wing root and aft horizontal tail; corrected all three. Checked 36-foot wing span, 29-foot length, 11-foot-8-inch stabilizer span, 9-foot wheel track and 66.5-inch wheelbase independently.",
+      "Rebuilt the NAV III / GFC700 panel against the handbook image: paired GDU displays, audio strip, three lower standby gauges, switch and breaker rows, dual yokes, black/blue/red push-pull engine controls, flap control, rudder pedals and trim pedestal. Used the earlier turbo cockpit photo only for physical depth and controls.",
+      "Added four upholstered seats with headrests, posts, rear pockets and belts, side armrests and visors; wing panel seams, rivet rows, fuel vents, left-wing landing lights and separate flight-control pivots.",
+      "Wired shared named expressions to speed tape and digits, bank/pitch, standby airspeed and three-pointer altitude, true heading, climb, 2400-RPM propeller tachometer, throttle, flap, yokes and rudder pedals. Missing speed/RPM readings hide rather than reporting zero."
+    ],
+    "independentDimensions": {
+      "spanM": 10.9728,
+      "lengthM": 8.8392,
+      "heightM": 2.8448,
+      "stabilizerSpanM": 3.556,
+      "wheelTrackM": 2.7432,
+      "wheelbaseM": 1.6891,
+      "propellerDiameterM": 2.0066,
+      "propellerGroundClearanceM": 0.276225,
+      "wingAreaM2": 16.165128,
+      "maximumPropRpm": 2400
+    },
+    "visual": "Individually inspected four turntable views, three-quarter ground, operator, cabin and wide cabin, plus side/front/top/panel overlays. Inspected zero, 120-knot/3500-foot/2200-RPM cruise, 175-knot/12500-foot/2400-RPM upper-range and negative-altitude/missing-speed/RPM states. Opposing bank/pitch and absent pointers/tapes were checked in the rendered cockpit.",
+    "limitations": [
+      "The handbook three-view is schematic: uniform length/span scale gives approximately 3.15–3.2 m fin height while the printed height is 2.8448 m. Published height, propeller diameter and clearance take precedence; visible fin, nose-wheel and propeller-hub residuals remain. The reference was not stretched to conceal this disagreement.",
+      "The handbook panel photograph has perspective and callouts. GDU bezel width provides approximate absolute scale. Panel brow, upholstery, trim pedestal connection and small switch labels remain simplified; rivet rows follow visible skin divisions rather than a manufacturing fastener map.",
+      "The selected aircraft is the normally aspirated 2007 182T with NAV III/GFC700. The secondary 2006 T182T photograph has turbo and earlier KAP140 equipment, so its avionics fit was not copied.",
+      "Live glass displays are a subset of the Garmin interface. Speed is TAS, altitude geometric world elevation (GEO FT), heading true north and tachometer normalized simulated propeller speed scaled to 2400 RPM. IAS/pressure altitude, magnetic errors, navigation, oil/fuel/electrical systems and engine governor dynamics are not simulated; unavailable systems remain blank or INOP. Standby-speed scale is a coherent approximation.",
+      "Propeller/mixture knobs, trim, cowl flaps and most switches are modeled but not interactive. Source photos and handbook pixels remain local study inputs; no source pixels or photorealistic textures are distributed."
+    ]
+  },
+  "instrumentValidation": {
+    "sourceComponents": [
+      "aircraftState",
+      "aircraftInput",
+      "transform"
+    ],
+    "units": {
+      "speed": "TAS m/s to knots",
+      "altitude": "world elevation meters to feet",
+      "heading": "true north clockwise from yaw",
+      "rpm": "normalized engine-1 speed scaled to 2400 RPM",
+      "climb": "vertical speed m/s to ft/min"
+    },
+    "test": "packages/entities/test/aircraft-instruments.test.mjs",
+    "captureCommand": "node .artifacts/aircraft/skylane-instrument-cases.mjs",
+    "cases": [
+      "zero",
+      "cruise",
+      "limits",
+      "missing"
+    ],
+    "statesInspected": true,
+    "roundingCheck": "Digital airspeed now explicitly rounds to nearest knot; refreshed cruise and upper-range captures inspected. Geometry/source/runtime hashes unchanged."
+  },
+  "sourceHash": "sha256:b809f525e6fcd0fe422015feb2b5ce8b75a50c981bfbfa3eae9cdf6fadb54f96",
+  "runtimeHash": "sha256:fb2e644f04f97911c66631cf7675034e50c2e68174b3b0a39d4656fd8d32117c",
+  "limitations": [
+    "The handbook three-view is schematic: uniform length/span scale gives approximately 3.15–3.2 m fin height while the printed height is 2.8448 m. Published height, propeller diameter and clearance take precedence; visible fin, nose-wheel and propeller-hub residuals remain. The reference was not stretched to conceal this disagreement.",
+    "The handbook panel photograph has perspective and callouts. GDU bezel width provides approximate absolute scale. Panel brow, upholstery, trim pedestal connection and small switch labels remain simplified; rivet rows follow visible skin divisions rather than a manufacturing fastener map.",
+    "The selected aircraft is the normally aspirated 2007 182T with NAV III/GFC700. The secondary 2006 T182T photograph has turbo and earlier KAP140 equipment, so its avionics fit was not copied.",
+    "Live glass displays are a subset of the Garmin interface. Speed is TAS, altitude geometric world elevation (GEO FT), heading true north and tachometer normalized simulated propeller speed scaled to 2400 RPM. IAS/pressure altitude, magnetic errors, navigation, oil/fuel/electrical systems and engine governor dynamics are not simulated; unavailable systems remain blank or INOP. Standby-speed scale is a coherent approximation.",
+    "Propeller/mixture knobs, trim, cowl flaps and most switches are modeled but not interactive. Source photos and handbook pixels remain local study inputs; no source pixels or photorealistic textures are distributed."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:20acbebd9e84276ae5995babd96cae32f62d6bea8582475f5a96ae79902746b5",
+    "sourceHash": "sha256:b809f525e6fcd0fe422015feb2b5ce8b75a50c981bfbfa3eae9cdf6fadb54f96",
+    "runtimeHash": "sha256:fb2e644f04f97911c66631cf7675034e50c2e68174b3b0a39d4656fd8d32117c",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/cessna-182t-pair.png",
+        "sha256": "sha256:e03f12a28a460c611270e45a17f293dd724450df205d2c455996377019d00ca5",
+        "individuallyCompared": true
+      },
+      "exterior-pair": {
+        "path": ".artifacts/aircraft/control-audit/cessna-182t-exterior-pair.png",
+        "sha256": "sha256:bca842fba62409d04d447d3a23b0aabb0cc8cfe4584cc7fcefe6fa1158a11ff6",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

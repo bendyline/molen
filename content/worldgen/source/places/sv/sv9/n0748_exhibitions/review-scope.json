@@ -1,0 +1,678 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "concrete": {
+      "graph": "concrete_plain",
+      "slot": "wall",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "floor": {
+      "graph": "concrete_plain",
+      "slot": "trim",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "planting": {
+      "graph": "stucco",
+      "slot": "roof",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.25,
+      "metallic": 0.1
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    },
+    "banner": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.85,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      11.281977898055253,
+      43.4800885896521,
+      -72.36516409646146
+    ],
+    "lookAt": [
+      0,
+      4.480088589652096,
+      0
+    ],
+    "fov": 50
+  },
+  "qaCameras": [
+    {
+      "name": "courtyard-portal-and-stair-window",
+      "position": [
+        2.778121021321291,
+        5.680088589652096,
+        -12.501281677927778
+      ],
+      "lookAt": [
+        11.518743399897318,
+        3.980088589652096,
+        14.398560708880662
+      ],
+      "fov": 55
+    },
+    {
+      "name": "crescent-stair-and-planted-roof",
+      "position": [
+        -42.78889697599378,
+        21.480088589652095,
+        -19.107859523708854
+      ],
+      "lookAt": [
+        -7.182330973163323,
+        5.480088589652096,
+        3.5233679614736255
+      ],
+      "fov": 52
+    },
+    {
+      "name": "upper-notch-and-recessed-portal",
+      "position": [
+        12.535180440481795,
+        13.480088589652096,
+        -1.6938864556287774
+      ],
+      "lookAt": [
+        16.905491629769813,
+        5.880088589652097,
+        11.756034737775444
+      ],
+      "fov": 54
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        11.281977898055253,
+        43.4800885896521,
+        -72.36516409646146
+      ],
+      "lookAt": [
+        0,
+        4.480088589652096,
+        0
+      ],
+      "fov": 50,
+      "name": "yad-exhibitions-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        11.281977898055253,
+        43.4800885896521,
+        -72.36516409646146
+      ],
+      "lookAt": [
+        0,
+        4.480088589652096,
+        0
+      ],
+      "fov": 50,
+      "name": "yad-exhibitions-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        11.281977898055253,
+        43.4800885896521,
+        -72.36516409646146
+      ],
+      "lookAt": [
+        0,
+        4.480088589652096,
+        0
+      ],
+      "fov": 50,
+      "name": "yad-exhibitions-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        11.281977898055253,
+        43.4800885896521,
+        -72.36516409646146
+      ],
+      "lookAt": [
+        0,
+        4.480088589652096,
+        0
+      ],
+      "fov": 50,
+      "name": "yad-exhibitions-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 1.4800885896520959,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/yad-exhibitions-model.mjs",
+    "export": "buildYadExhibitionsSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildYadExhibitionsDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "planting": {
+            "graph": "stucco",
+            "slot": "roof",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.1
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "banner": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildYadExhibitionsStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "planting": {
+            "graph": "stucco",
+            "slot": "roof",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.1
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "banner": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildYadExhibitionsCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "floor": {
+            "graph": "concrete_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "planting": {
+            "graph": "stucco",
+            "slot": "roof",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.1
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "banner": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "draft-proposal",
+    "anchor": [
+      35.17427980899811,
+      31.773376468387273
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": false,
+    "groundContactBasis": "Reuse the unmodified Protomaps20261020/Mapzen201x201/6m hill, with no custom terrain. Uncovered attachment internal[16,-20], datum802.3763713098676m; working floor sampled at the original courtyard ground near internal[16,-6.8], plus0.06m. Cut only the occupied end-wall/stair-wing floors and seal them; preserve original open-courtyard ground and all outside approaches. The main mapped footprint owns a building replacement but is not a ground-cutout polygon. Protective footings stay within occupied geometry. Original coarse hill does not describe the excavated, level Square of Hope or its upper plaza; inspect buried stairs, portal and footing before activating. Do not flatten the independent precinct.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      35.17406571830739,
+      31.77311997395625,
+      35.174563637123214,
+      31.773570635873845
+    ],
+    "terrainReference": {
+      "anchor": [
+        35.17454400673217,
+        31.773326555815782
+      ],
+      "modelHeight": 0,
+      "basis": "Reuse the unmodified Protomaps20261020/Mapzen201x201/6m hill, with no custom terrain. Uncovered attachment internal[16,-20], datum802.3763713098676m; working floor sampled at the original courtyard ground near internal[16,-6.8], plus0.06m. Cut only the occupied end-wall/stair-wing floors and seal them; preserve original open-courtyard ground and all outside approaches. The main mapped footprint owns a building replacement but is not a ground-cutout polygon. Protective footings stay within occupied geometry. Original coarse hill does not describe the excavated, level Square of Hope or its upper plaza; inspect buried stairs, portal and footing before activating. Do not flatten the independent precinct."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -17.260643330576784,
+          -14.045587431262504
+        ],
+        [
+          -4.061327842488595,
+          12.86101258646596
+        ],
+        [
+          -9.64565362591054,
+          17.93773745750653
+        ],
+        [
+          -6.091991763732949,
+          25.552829452952665
+        ],
+        [
+          23.86030107462085,
+          12.353340238256692
+        ],
+        [
+          16.752977350265724,
+          -5.922847664706325
+        ],
+        [
+          6.091991763733006,
+          -15.060929452611873
+        ],
+        [
+          -3.0459958818664177,
+          -15.060929452611873
+        ],
+        [
+          -6.599657744044066,
+          -18.614625733989186
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -17.260643330576784,
+            -14.045587431262504
+          ],
+          [
+            -4.061327842488595,
+            12.86101258646596
+          ],
+          [
+            -9.64565362591054,
+            17.93773745750653
+          ],
+          [
+            -6.091991763732949,
+            25.552829452952665
+          ],
+          [
+            23.86030107462085,
+            12.353340238256692
+          ],
+          [
+            16.752977350265724,
+            -5.922847664706325
+          ],
+          [
+            6.091991763733006,
+            -15.060929452611873
+          ],
+          [
+            -3.0459958818664177,
+            -15.060929452611873
+          ],
+          [
+            -6.599657744044066,
+            -18.614625733989186
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Shared campus Q156591 plus distinct way245190611/native35184617279443. The official Pavilion page places it between Art Museum and Book of Names. The existing PMTiles outline and ordinary campus aerial fix this independent range beside the Art Museum. The large mapped polygon includes the open Square of Hope area: do not fill it with a solid box or roof. Its courtyard/end-wall and curved-stair assignment is a picture-led reconstruction. Internal+X follows the mapped southeast axis; +Z faces southwest toward the curved planted wing. The end-wall portal faces-X into the courtyard. Heading0 bakes the signed axes into model east/south. No invented member Wikidata item; portal/notch/window positions are approximate."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -17.260643330576787,
+          -14.045587431262508
+        ],
+        [
+          -11.455765670556508,
+          -16.533416361899032
+        ],
+        [
+          -11.011433601459405,
+          -15.622040819055469
+        ],
+        [
+          -10.286367245565758,
+          -14.074912019242658
+        ],
+        [
+          -9.584881941167986,
+          -12.516215286728212
+        ],
+        [
+          -8.906977688266085,
+          -10.945950621512129
+        ],
+        [
+          -8.25265448686006,
+          -9.364118023594411
+        ],
+        [
+          -7.62191233694991,
+          -7.770717492975059
+        ],
+        [
+          -7.0147512385356325,
+          -6.165749029654071
+        ],
+        [
+          -6.4311711916172305,
+          -4.549212633631449
+        ],
+        [
+          -5.871172196194701,
+          -2.921108304907189
+        ],
+        [
+          -5.334754252268047,
+          -1.281436043481297
+        ],
+        [
+          -4.821917359837267,
+          0.3698041506462295
+        ],
+        [
+          -4.33266151890236,
+          2.032612277475395
+        ],
+        [
+          -3.8669867294633278,
+          3.706988337006192
+        ],
+        [
+          -3.4248929915201693,
+          5.392932329238624
+        ],
+        [
+          -3.0063803050728852,
+          7.090444254172695
+        ],
+        [
+          -2.6114486701214754,
+          8.799524111808397
+        ],
+        [
+          -2.2400980866659395,
+          10.520171902145737
+        ],
+        [
+          -1.8993908699448463,
+          12.255852118165937
+        ],
+        [
+          -2.3141950112702885,
+          14.362156373013775
+        ],
+        [
+          -3.452678477365615,
+          16.82346912813852
+        ],
+        [
+          -4.578840519404297,
+          19.278737479166157
+        ],
+        [
+          -4.956680388559823,
+          21.366908521722706
+        ],
+        [
+          22.18725302749521,
+          8.051166640173124
+        ],
+        [
+          23.86030107462085,
+          12.353340238256695
+        ],
+        [
+          -6.091991763732949,
+          25.55282945295267
+        ],
+        [
+          -7.470027005567104,
+          22.59985712566895
+        ],
+        [
+          -9.64565362591054,
+          17.93773745750653
+        ],
+        [
+          -4.061327842488597,
+          12.861012586465964
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -17.260643330576787,
+            -14.045587431262508
+          ],
+          [
+            -11.455765670556508,
+            -16.533416361899032
+          ],
+          [
+            -11.011433601459405,
+            -15.622040819055469
+          ],
+          [
+            -10.286367245565758,
+            -14.074912019242658
+          ],
+          [
+            -9.584881941167986,
+            -12.516215286728212
+          ],
+          [
+            -8.906977688266085,
+            -10.945950621512129
+          ],
+          [
+            -8.25265448686006,
+            -9.364118023594411
+          ],
+          [
+            -7.62191233694991,
+            -7.770717492975059
+          ],
+          [
+            -7.0147512385356325,
+            -6.165749029654071
+          ],
+          [
+            -6.4311711916172305,
+            -4.549212633631449
+          ],
+          [
+            -5.871172196194701,
+            -2.921108304907189
+          ],
+          [
+            -5.334754252268047,
+            -1.281436043481297
+          ],
+          [
+            -4.821917359837267,
+            0.3698041506462295
+          ],
+          [
+            -4.33266151890236,
+            2.032612277475395
+          ],
+          [
+            -3.8669867294633278,
+            3.706988337006192
+          ],
+          [
+            -3.4248929915201693,
+            5.392932329238624
+          ],
+          [
+            -3.0063803050728852,
+            7.090444254172695
+          ],
+          [
+            -2.6114486701214754,
+            8.799524111808397
+          ],
+          [
+            -2.2400980866659395,
+            10.520171902145737
+          ],
+          [
+            -1.8993908699448463,
+            12.255852118165937
+          ],
+          [
+            -2.3141950112702885,
+            14.362156373013775
+          ],
+          [
+            -3.452678477365615,
+            16.82346912813852
+          ],
+          [
+            -4.578840519404297,
+            19.278737479166157
+          ],
+          [
+            -4.956680388559823,
+            21.366908521722706
+          ],
+          [
+            22.18725302749521,
+            8.051166640173124
+          ],
+          [
+            23.86030107462085,
+            12.353340238256695
+          ],
+          [
+            -6.091991763732949,
+            25.55282945295267
+          ],
+          [
+            -7.470027005567104,
+            22.59985712566895
+          ],
+          [
+            -9.64565362591054,
+            17.93773745750653
+          ],
+          [
+            -4.061327842488597,
+            12.861012586465964
+          ]
+        ]
+      ],
+      "basis": "Occupied Pavilion end and stair wing only; leave the open courtyard and original approaches uncut."
+    },
+    "notes": "Shared campus Q156591 plus distinct way245190611/native35184617279443. The official Pavilion page places it between Art Museum and Book of Names. The existing PMTiles outline and ordinary campus aerial fix this independent range beside the Art Museum. The large mapped polygon includes the open Square of Hope area: do not fill it with a solid box or roof. Its courtyard/end-wall and curved-stair assignment is a picture-led reconstruction. Internal+X follows the mapped southeast axis; +Z faces southwest toward the curved planted wing. The end-wall portal faces-X into the courtyard. Heading0 bakes the signed axes into model east/south. No invented member Wikidata item; portal/notch/window positions are approximate. Reuse the unmodified Protomaps20261020/Mapzen201x201/6m hill, with no custom terrain. Uncovered attachment internal[16,-20], datum802.3763713098676m; working floor sampled at the original courtyard ground near internal[16,-6.8], plus0.06m. Cut only the occupied end-wall/stair-wing floors and seal them; preserve original open-courtyard ground and all outside approaches. The main mapped footprint owns a building replacement but is not a ground-cutout polygon. Protective footings stay within occupied geometry. Original coarse hill does not describe the excavated, level Square of Hope or its upper plaza; inspect buried stairs, portal and footing before activating. Do not flatten the independent precinct."
+  }
+}

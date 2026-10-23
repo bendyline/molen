@@ -1,0 +1,274 @@
+{
+  "variant": "2020 PC-12/47E NGX MSN2001+, PT6E-67XP, 105-inch five-blade Hartzell, Honeywell ACE",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://s3728f283e85acd32.jimcontent.com/download/version/1616612118/module/9061527520/name/Pilatus%20PC-12%20Aircraft%20Pilot%20Information%20Manual%20Part%201.pdf",
+      "title": "Pilatus Pilot Information Manual 02406 issue003 revision01, 18 December 2020",
+      "author": "Pilatus Aircraft",
+      "license": "Copyright Pilatus; local study only, no source pixels distributed.",
+      "scope": "PDF37 dimensions and three-view; PDF41 propulsion; PDF42 cabin; PDF64 RPM limits; PDF603-607 controls and flap indication. PDF609 confirms aft nose gear and inward mains."
+    },
+    {
+      "url": "https://www.pilatus-aircraft.com/assets/files/Model-Building-Plans/PC-12-NGX-Model-Building-Plan.pdf",
+      "title": "PC-12 NGX Model Building Plan",
+      "author": "Pilatus Aircraft",
+      "license": "Copyright Pilatus; local study only.",
+      "scope": "Photos and NGX color elevations PDF1-8; fuselage sections PDF9-10. Legacy four-blade and 16.114m labels on detail sheet are superseded by POH."
+    },
+    {
+      "url": "https://aerospace.honeywell.com/content/dam/aerobt/en/documents/learn/platforms/brochures/N61-2135-000-000_Pilatus-PC12-NGX-br.pdf",
+      "title": "Pilatus PC-12 NGX Advanced Cockpit Environment N61-2135-000-000, October 2019",
+      "author": "Honeywell",
+      "license": "Copyright Honeywell; local study only.",
+      "scope": "PDF2 cockpit photograph and PDF3 touchscreen / single-lever system description."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      2.65,
+      1.55
+    ],
+    "lookAt": [
+      0,
+      2.12,
+      2.84
+    ],
+    "fov": 78
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2.16
+    ],
+    "viewHeight": 1,
+    "cameraHeight": 7.85
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "propNormalized": 0,
+    "verticalSpeed": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "flapPosition": 0,
+    "gear": 1
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/pc12-side.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 620,
+        "height": 210
+      },
+      "referenceAnchor": [
+        253,
+        199
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 582,
+        "meters": 14.4,
+        "description": "Printed 14.40m length; independently 3.48m wheelbase."
+      },
+      "scope": "Nose, cabin roof, tail and landing gear."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/pc12-top-overlay.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 660,
+        "height": 590
+      },
+      "referenceAnchor": [
+        331,
+        581
+      ],
+      "modelAnchor": [
+        0,
+        5.85
+      ],
+      "scaleControls": {
+        "pixels": 652,
+        "meters": 16.31,
+        "description": "POH fully fueled span 16.31m, uniformly scaled."
+      },
+      "scope": "Wing chord, taper, winglets, T-tail and cabin width."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/pc12-front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 680,
+        "height": 195
+      },
+      "referenceAnchor": [
+        342,
+        186
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 652,
+        "meters": 16.31,
+        "description": "POH span; separate 4.53m main wheel track and 2.67m prop diameter."
+      },
+      "scope": "Dihedral, body width, T-tail height, gear and prop."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/pc12-cockpit.png",
+      "crop": {
+        "left": 150,
+        "top": 60,
+        "width": 1070,
+        "height": 540
+      },
+      "referenceAnchor": [
+        682,
+        240
+      ],
+      "modelAnchor": [
+        0,
+        -2.32
+      ],
+      "scaleControls": {
+        "pixels": 165,
+        "meters": 0.211328,
+        "description": "10.4-inch 4:3 display active width; photograph perspective retained."
+      },
+      "edgeMode": "photo",
+      "scope": "Panel outline, four displays, standby, controllers, yokes, single power lever."
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Replaced the generic turboprop with an individually authored PC-12/47E NGX: five-blade 105-inch propeller, under-nose intake, twin exhausts, low tapered wing and winglets, swept T-tail, aft strakes and retractable single-wheel gear.",
+      "Uniform-scale side/top/front overlays drove window and door placement, wing/tail outline, gear track and cabin sections. The POH takes precedence over legacy four-blade callouts in the manufacturer model-building plan.",
+      "The Honeywell ACE photograph establishes four 10.4-inch displays, the separate standby display, arched panel, yokes, single power lever, touchscreen and cursor controller. Six individually shaped executive seats, cabinetry, headliner, reading lights and open window apertures complete the cabin.",
+      "Render iterations corrected standby-display bleed, footwell openings, cabinetry protrusion and the aft shoulder seam. Final current-hash exterior, cockpit and passenger views were individually inspected.",
+      "Named expressions drive both PFDs, standby attitude, propeller shaft RPM, gear/transit icons and measured flap angle. Fowler flap motion includes aft/down translation; nose gear folds aft and mains inward. Imported-model tests check units, missing sensors, control travel and open window sightlines."
+    ],
+    "independentDimensions": {
+      "lengthMeters": 14.4,
+      "spanFullyFueledMeters": 16.31,
+      "heightMeters": 4.26,
+      "fuselageWidthMeters": 1.69,
+      "wingAreaSqMeters": 25.81,
+      "mainGearTrackMeters": 4.53,
+      "wheelbaseMeters": 3.48,
+      "propellerDiameterMeters": 2.67,
+      "maxPropRpm": 1700,
+      "lowNoisePropRpm": 1550,
+      "cabinWidthMeters": 1.52,
+      "cabinFloorWidthMeters": 1.3,
+      "cabinHeightMeters": 1.45,
+      "entryDoorWidthMeters": 0.61,
+      "entryDoorHeightMeters": 1.35,
+      "cargoDoorWidthMeters": 1.35,
+      "cargoDoorHeightMeters": 1.32,
+      "flapDetentsDegrees": [
+        0,
+        15,
+        30,
+        40
+      ]
+    },
+    "visual": "Inspected final side/top/front/panel overlays, four turntables, three-quarter, operator, cabin and wide-cabin views. Also inspected zero, 270-knot/20000-foot/1550-RPM cruise, 1700-RPM upper range, missing TAS/RPM/flap, close exterior and passenger views. Factory photos and plans were compared without nonuniform stretching.",
+    "limitations": [
+      "The uniformly scaled POH drawing places the nose axle about 0.1m aft of the printed 3.48m wheelbase. Printed dimensions take precedence. Small tail, aft-strake, windshield and wingtip outline residuals remain; total geometry bounds include the simplified antenna/strake extremities.",
+      "Compound fuselage, cockpit shoulder, nacelle and fairing curvature remains a finite polygonal approximation. Cockpit glazing framing is simplified. Fine service stencils, flush fastener spacing and gear-door mechanisms are approximate rather than maintenance drawings.",
+      "The cockpit photograph is scaled by the 10.4-inch 4:3 display width. Perspective console depth, upholstery contours, switch shapes and small legends are approximate. Reference images are copyrighted manufacturer study material and no reference pixels are distributed.",
+      "Displays use true airspeed, geometric world altitude and true heading, labeled TAS/GEO FT/TRUE. NP uses simulated propeller shaft RPM only. Turbine core NG, ITT, torque, oil, fuel, electrical, FADEC, navigation, autopilot and touchscreen interactions are unavailable rather than fabricated. Flight tuning remains assisted, not validated PC-12 performance.",
+      "The stock flap command only selects up/down; expressions support intermediate 15/30/40-degree indications but not detent selection, green selected-position logic, delayed gray-on-ground logic or failure crosses. Three gear icons share measured common travel rather than independent downlock sensors. Exact control deflection schedules and the optional 1550-RPM mode are not simulated."
+    ]
+  },
+  "instrumentValidation": {
+    "sourceComponents": [
+      "aircraftState",
+      "aircraftInput",
+      "transform"
+    ],
+    "units": {
+      "speed": "TAS m/s to knots",
+      "altitude": "world meters to feet",
+      "heading": "true heading radians",
+      "rpm": "engine-1 normalized propeller shaft speed to 1700 RPM",
+      "flaps": "measured travel to 0/15/30/40 degrees"
+    },
+    "test": "packages/entities/test/aircraft-instruments.test.mjs",
+    "captureCommand": "node .artifacts/aircraft/pc12-instrument-cases.mjs",
+    "cases": [
+      "zero",
+      "cruise",
+      "limits",
+      "missing"
+    ],
+    "statesInspected": true
+  },
+  "sourceHash": "sha256:70d0c3f96f1f7e82c344f301e4ee0c5b8311bd09316c805b3d6a41f65b95e602",
+  "runtimeHash": "sha256:7610c472a137d1a3cc652e7c4fa09adee0efa3afba70a81c764eb7f04b5d69a5",
+  "limitations": [
+    "The uniformly scaled POH drawing places the nose axle about 0.1m aft of the printed 3.48m wheelbase. Printed dimensions take precedence. Small tail, aft-strake, windshield and wingtip outline residuals remain; total geometry bounds include the simplified antenna/strake extremities.",
+    "Compound fuselage, cockpit shoulder, nacelle and fairing curvature remains a finite polygonal approximation. Cockpit glazing framing is simplified. Fine service stencils, flush fastener spacing and gear-door mechanisms are approximate rather than maintenance drawings.",
+    "The cockpit photograph is scaled by the 10.4-inch 4:3 display width. Perspective console depth, upholstery contours, switch shapes and small legends are approximate. Reference images are copyrighted manufacturer study material and no reference pixels are distributed.",
+    "Displays use true airspeed, geometric world altitude and true heading, labeled TAS/GEO FT/TRUE. NP uses simulated propeller shaft RPM only. Turbine core NG, ITT, torque, oil, fuel, electrical, FADEC, navigation, autopilot and touchscreen interactions are unavailable rather than fabricated. Flight tuning remains assisted, not validated PC-12 performance.",
+    "The stock flap command only selects up/down; expressions support intermediate 15/30/40-degree indications but not detent selection, green selected-position logic, delayed gray-on-ground logic or failure crosses. Three gear icons share measured common travel rather than independent downlock sensors. Exact control deflection schedules and the optional 1550-RPM mode are not simulated."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:2ef595f8c059cfbb2df678be30d0c08cd52d2590d67ce661934b2a902084c5fe",
+    "sourceHash": "sha256:70d0c3f96f1f7e82c344f301e4ee0c5b8311bd09316c805b3d6a41f65b95e602",
+    "runtimeHash": "sha256:7610c472a137d1a3cc652e7c4fa09adee0efa3afba70a81c764eb7f04b5d69a5",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/pilatus-pc12-pair.png",
+        "sha256": "sha256:5c0ec830b59b5efcf9df14ff55905ad58e9103df56fb15f042282564218a22bd",
+        "individuallyCompared": true
+      },
+      "exterior-pair": {
+        "path": ".artifacts/aircraft/control-audit/pilatus-pc12-exterior-pair.png",
+        "sha256": "sha256:a0cd21f6952dd0eb0dd057c527a51174f0b176a3822938d1d352878db8aaec8c",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  },
+  "headingReview": {
+    "typeDefinitionHash": "sha256:64345dc659cb5de7d35d70e671e30fbbdb3b27cb1f0c22dd77c6edf30bc014ae",
+    "sourceHash": "sha256:70d0c3f96f1f7e82c344f301e4ee0c5b8311bd09316c805b3d6a41f65b95e602",
+    "runtimeHash": "sha256:7610c472a137d1a3cc652e7c4fa09adee0efa3afba70a81c764eb7f04b5d69a5",
+    "checked": "2026-10-22",
+    "checks": "Corrected rotation direction; four-cardinal imported-node test passes. Refreshed cruise at true285 degrees visually inspected; geometry unchanged.",
+    "capture": {
+      "path": ".artifacts/aircraft/pilatus-pc12-instruments/cruise.png",
+      "sha256": "sha256:4041ac2d3cac00714aaeb0668c97ebc90d08ad8404d1b250563a42665615ceeb",
+      "inspected": true
+    }
+  }
+}

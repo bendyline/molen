@@ -1,0 +1,416 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.52,
+      "metallic": 0.72
+    },
+    "yellow": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "maroon": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "pale": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "blue": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "pattern": {
+      "slot": "wall",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "trim",
+      "graph": "stone_checker_fine",
+      "roughness": 0.89,
+      "metallic": 0
+    },
+    "inset": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.82,
+      "metallic": 0.2
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      78.06795983580452,
+      76.74959047723252,
+      -124.39611588419957
+    ],
+    "lookAt": [
+      -8.060855339368683,
+      11.749590477232521,
+      0.1503702024052601
+    ],
+    "fov": 47
+  },
+  "qaCameras": [
+    {
+      "name": "round-gilded-shrine-portal-maroon-arcade-and-main-stupa",
+      "position": [
+        -0.8865213314244484,
+        15.54959047723252,
+        -34.223005127091476
+      ],
+      "lookAt": [
+        0,
+        14.749590477232521,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "eight-satellite-stupas-teardrop-terrace-canopy-and-paving",
+      "position": [
+        32.91677295446547,
+        62.74959047723252,
+        -31.00783865838073
+      ],
+      "lookAt": [
+        -1.2826823481153364,
+        10.749590477232521,
+        -8.90812696327535
+      ],
+      "fov": 49
+    },
+    {
+      "name": "mapped-upper-stair-gold-gateway-and-native-grade-contact",
+      "position": [
+        -50.00472569350054,
+        36.74959047723252,
+        52.66428968777388
+      ],
+      "lookAt": [
+        -19.682714326030954,
+        7.549590477232521,
+        31.214801302840524
+      ],
+      "fov": 49
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        78.06795983580452,
+        76.74959047723252,
+        -124.39611588419957
+      ],
+      "lookAt": [
+        -8.060855339368683,
+        11.749590477232521,
+        0.1503702024052601
+      ],
+      "fov": 47,
+      "name": "dhatu-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        78.06795983580452,
+        76.74959047723252,
+        -124.39611588419957
+      ],
+      "lookAt": [
+        -8.060855339368683,
+        11.749590477232521,
+        0.1503702024052601
+      ],
+      "fov": 47,
+      "name": "dhatu-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        78.06795983580452,
+        76.74959047723252,
+        -124.39611588419957
+      ],
+      "lookAt": [
+        -8.060855339368683,
+        11.749590477232521,
+        0.1503702024052601
+      ],
+      "fov": 47,
+      "name": "dhatu-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        78.06795983580452,
+        76.74959047723252,
+        -124.39611588419957
+      ],
+      "lookAt": [
+        -8.060855339368683,
+        11.749590477232521,
+        0.1503702024052601
+      ],
+      "fov": 47,
+      "name": "dhatu-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.2,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/dhatu-model.mjs",
+    "export": "buildDhatuSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDhatuDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.52,
+            "metallic": 0.72
+          },
+          "yellow": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "maroon": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "pattern": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "trim",
+            "graph": "stone_checker_fine",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "buildDhatuStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.52,
+            "metallic": 0.72
+          },
+          "yellow": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "maroon": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "pattern": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "trim",
+            "graph": "stone_checker_fine",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildDhatuCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.52,
+            "metallic": 0.72
+          },
+          "yellow": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "maroon": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "pattern": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "trim",
+            "graph": "stone_checker_fine",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      92.1977168,
+      22.2231095
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Keep original standard6m Mapzen hill grid, native paths/water and zero building-polygon set unchanged. Model terrace uses a level occupied floor above sampled terrace/upper landing maxima, individually buried retaining sides and grade-fitted stair treads along the mapped upper descent. No ground/water cutout or terrain flattening. Coarse DEM reverses part of the pictured upper stair slope and does not resolve the summit; short upper approach/long lower treads and deep exposed retaining faces are visualization contact estimates, not surveyed hill, retaining-wall or accessible-route engineering. Only the first three mapped stair controls are authored; the remaining route stays independent.",
+    "replaceFootprint": false,
+    "bounds": [
+      92.19742539919075,
+      22.222428028351672,
+      92.19791858770354,
+      22.223498417235188
+    ],
+    "terrainReference": {
+      "anchor": [
+        92.1977168,
+        22.2231095
+      ],
+      "modelHeight": 0,
+      "basis": "Keep original standard6m Mapzen hill grid, native paths/water and zero building-polygon set unchanged. Model terrace uses a level occupied floor above sampled terrace/upper landing maxima, individually buried retaining sides and grade-fitted stair treads along the mapped upper descent. No ground/water cutout or terrain flattening. Coarse DEM reverses part of the pictured upper stair slope and does not resolve the summit; short upper approach/long lower treads and deep exposed retaining faces are visualization contact estimates, not surveyed hill, retaining-wall or accessible-route engineering. Only the first three mapped stair controls are authored; the remaining route stays independent."
+    },
+    "notes": "Named standard PMTiles templePOI17593731024186 (encoded OSMnode1544979770) is within0.07m of retainedQ4984151 reference92.1977168,22.2231095. There are no building polygons here. Stairway35184513225530 starts[-10.285015840203268,15.736215813772516]m from that anchor and bends through[-19.68271432603095,31.214801302840527] to[-25.487175155512755,70.46414044439314]. Its first distance fixes about18.7992031472309m rounded terrace radius. The aerial upper-stair allocation at local-2.436rad fixes approximate signed terrace axis-1.7138035310009077rad: pointed canopy toward north-northwest, mapped approach toward south-southwest. Main circle/teardrop proportions, portal/canopy/figure placement and hidden inventory remain photo/map estimates with about10m/30degree uncertainty; the near-vertical aerial is not treated as an unrotated map. No generic building shell is replaced. Keep original standard6m Mapzen hill grid, native paths/water and zero building-polygon set unchanged. Model terrace uses a level occupied floor above sampled terrace/upper landing maxima, individually buried retaining sides and grade-fitted stair treads along the mapped upper descent. No ground/water cutout or terrain flattening. Coarse DEM reverses part of the pictured upper stair slope and does not resolve the summit; short upper approach/long lower treads and deep exposed retaining faces are visualization contact estimates, not surveyed hill, retaining-wall or accessible-route engineering. Only the first three mapped stair controls are authored; the remaining route stays independent."
+  }
+}

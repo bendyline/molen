@@ -1,0 +1,267 @@
+{
+  "variant": "2015 Beechcraft Bonanza G36, serial E-4063–4080 equipment, G1000 / GFC700 and stock three-blade 80-inch Hartzell",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://africair.com/wp-content/uploads/2016/03/Bonanza_G36_Specification_and_Description_E-4063_thru_E-4080.pdf",
+      "title": "Bonanza G36 Specification and Description (E-4063 through E-4080)",
+      "author": "Beechcraft Corporation",
+      "license": "Copyright 2015 Beechcraft; local study only, no source pixels distributed.",
+      "scope": "PDF pages 4–10: independent dimensions, three-view drawing, cabin/gear/engine descriptions and main panel diagram."
+    },
+    {
+      "url": "https://tadistributors.com/wp-content/uploads/2016/03/Bonanza-G36-Brochure.pdf",
+      "title": "Bonanza G36 brochure, 2013",
+      "author": "Beechcraft Corporation",
+      "license": "Copyright 2013 Beechcraft; local study only, no source pixels distributed.",
+      "scope": "PDF pages 6–7: actual cockpit, exterior in flight, club seating, overhead ventilation and sidewall details."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bonanza_G36_at_Oshkosh.jpg",
+      "title": "File:Bonanza G36 at Oshkosh.jpg",
+      "author": "Spartan7W",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "revision": 1133400925,
+      "scope": "Exterior at Oshkosh 2011: four windows, curved windscreen, gear doors, skin seams."
+    },
+    {
+      "url": "https://hartzellprop.com/hartzell-gains-stc-approval-for-top-prop-on-g36-bonanza/",
+      "title": "Hartzell Gains STC Approval for Top Prop on G36 Bonanza",
+      "author": "Hartzell Propeller",
+      "scope": "Manufacturer states replacement 82-inch propeller is two inches larger than the original; selected stock diameter is 80 inches."
+    },
+    {
+      "url": "https://www.bonanza.org/globalassets/maintenance/3a15_rev_96.pdf",
+      "title": "FAA Type Certificate Data Sheet 3A15, Revision 96",
+      "author": "Federal Aviation Administration",
+      "scope": "Section XVIII, pages 23–24: G36 IO-550-B, 2700 RPM limit, 12/30-degree flap positions and six-seat configuration."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      1.78,
+      -0.25
+    ],
+    "lookAt": [
+      0,
+      1.45,
+      1.12
+    ],
+    "fov": 74
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -1.54
+    ],
+    "viewHeight": 0.78,
+    "cameraHeight": 9.06
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "propNormalized": 0,
+    "verticalSpeed": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "elevator": 0,
+    "flapPosition": 0,
+    "gear": 1
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/g36-dimensions-small.png",
+      "crop": {
+        "left": 350,
+        "top": 1365,
+        "width": 663,
+        "height": 225
+      },
+      "referenceAnchor": [
+        601,
+        1582
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 603,
+        "meters": 8.382,
+        "description": "27-foot-six-inch overall length; uniform scale."
+      },
+      "scope": "Manufacturer side three-view; printed height and drawing residual retained."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/g36-top-level.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 780,
+        "height": 630
+      },
+      "referenceAnchor": [
+        394,
+        402
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 758,
+        "meters": 10.2108,
+        "description": "33-foot-six-inch wingspan; independent plan-view scale."
+      },
+      "scope": "Planform and cabin width, with separately checked horizontal tail span.",
+      "preparation": "Three-view crop [292,665,780,630] at 1376px page width, rigidly rotated 180 degrees to match +Z nose-down view. No nonuniform scaling."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/g36-dimensions-small.png",
+      "crop": {
+        "left": 300,
+        "top": 260,
+        "width": 770,
+        "height": 250
+      },
+      "referenceAnchor": [
+        683,
+        495
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 748,
+        "meters": 10.2108,
+        "description": "33-foot-six-inch wingspan; independent front-view scale."
+      },
+      "scope": "Front wing dihedral and nine-foot-seven-inch wheel track."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/g36-panel-small.png",
+      "crop": {
+        "left": 110,
+        "top": 315,
+        "width": 1160,
+        "height": 700
+      },
+      "referenceAnchor": [
+        690,
+        585
+      ],
+      "modelAnchor": [
+        0,
+        -1.61
+      ],
+      "scaleControls": {
+        "pixels": 318,
+        "meters": 0.29972,
+        "description": "11.8-inch GDU bezel width; uniform panel scale."
+      },
+      "scope": "Manufacturer panel diagram, yokes omitted by source; physical depth and controls checked with brochure photograph.",
+      "edgeMode": "photo"
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Replaced generic low-wing airframe with independently measured G36 stations, four true side-window apertures, wraparound windscreen, long six-seat fuselage, standard tail, three-blade stock propeller and retracting tricycle gear.",
+      "Used uniform side/front/top overlays. Expanded the pilot side window, raised all passenger-window lower edges, moved the wing aft 0.18 m and corrected rudder extent to match overall length. Wing planform now closely follows the manufacturer drawing with published six-degree dihedral; span, length, tail span and wheel track were checked separately.",
+      "Built the G1000/GFC700 panel from the manufacturer diagram, with twin 10.4-inch units, central audio strip, right-hand vertical standby stack, glareshield compass, switch/breaker subpanels, gear/flap controls and lamps, glovebox, dual Beechcraft yokes and quadrant pedestal. Brochure photographs supplied physical controls, panel depth and upholstery details.",
+      "Added six seats with the middle pair facing aft, headrests, belts, sidewall cupholders, folded table, overhead ventilation, cowl details, wingtip/landing lights, vortex generators, skin divisions and rivet rows.",
+      "Added reusable G1000 physical/display helpers while preserving independently authored panel placement. Wired live speed tape/digits, attitude, three-pointer standby altimeter, true heading, climb, 2700-RPM tachometer, throttle, yokes and pedals. Gear lamps distinguish down-locked, transit, up and missing data; legs rotate inward/aft with simulated travel."
+    ],
+    "independentDimensions": {
+      "spanM": 10.2108,
+      "lengthM": 8.382,
+      "heightM": 2.6162,
+      "stabilizerSpanM": 3.7084,
+      "wheelTrackM": 2.921,
+      "modelWheelbaseM": 2.46,
+      "propellerDiameterM": 2.032,
+      "wingAreaM2": 16.81545,
+      "dihedralDegrees": 6,
+      "maxPropRpm": 2700
+    },
+    "visual": "Individually inspected four turntables, three-quarter ground, pilot, cabin and wide cabin plus current side/front/top/panel overlays. Inspected zero, 120-knot/3500-foot/2500-RPM cruise with gear up, 205-knot/12500-foot/2700-RPM upper-range with gear in transit, and negative-altitude/missing speed/RPM/gear states. Confirmed independent pitch/bank, blank missing readouts and gear lamps in rendered images.",
+    "limitations": [
+      "Manufacturer views are schematic and disagree in fin height and horizontal-tail elevation. Model honors the printed 2.6162 m height; uniform side scale suggests approximately 2.8 m and front scale approximately 3.1 m. Horizontal-tail elevation follows the side drawing rather than the higher front-view depiction. No reference was stretched to conceal these residuals.",
+      "Wing root fillets, rounded tail tips, curved windscreen sections and exact cabin cross-sections remain polygonal approximations. Small door/window corner and gear-door contour residuals remain. Rivet lines follow visible skin divisions, not a manufacturing fastener map.",
+      "Panel diagram omits yokes and pedestal; their depth is estimated from brochure photographs. Fine switch legends, upholstery curvature and the pedestal connection remain simplified. Manufacturer cockpit imagery is local study only; no suitably licensed photograph of this exact G36 cockpit was verified for redistribution. The licensed exterior photo and all manufacturer pixels remain unshipped.",
+      "Live displays provide a useful subset rather than a complete Garmin simulation. Speed is TAS, altitude geometric world elevation (GEO FT), heading true and RPM normalized simulated propeller speed scaled to 2700. Pressure/IAS, magnetic errors, engine governor, oil/fuel/electrical systems, navigation, vacuum and warning logic beyond gear travel are not simulated; unavailable readings stay blank or INOP. Standby-speed calibration is approximate.",
+      "Propeller/mixture levers, trim and most switches are not interactive. Gear travel has simplified linked doors and no detailed wheel-well mechanism; three green lamps share the single simulated gear-position sensor. Flap approach lamp can indicate 40-percent travel but current pilot input selects only up/down."
+    ]
+  },
+  "instrumentValidation": {
+    "sourceComponents": [
+      "aircraftState",
+      "aircraftInput",
+      "transform"
+    ],
+    "units": {
+      "speed": "TAS m/s to knots",
+      "altitude": "world meters to feet",
+      "heading": "true heading in radians",
+      "rpm": "normalized engine-1 speed scaled to 2700 RPM",
+      "climb": "m/s to ft/min",
+      "gear": "actual travel 0–1, locked threshold 0.999"
+    },
+    "test": "packages/entities/test/aircraft-instruments.test.mjs",
+    "captureCommand": "node .artifacts/aircraft/bonanza-instrument-cases.mjs",
+    "cases": [
+      "zero",
+      "cruise",
+      "limits",
+      "missing"
+    ],
+    "statesInspected": true,
+    "roundingCheck": "Digital airspeed now explicitly rounds to nearest knot; refreshed cruise and upper-range captures inspected. Geometry/source/runtime hashes unchanged."
+  },
+  "sourceHash": "sha256:e6d07fbb7f4e9a8d076f9968f94392efa3dbf32354ba4b5f6a8b0ba7d6748faa",
+  "runtimeHash": "sha256:31116a8435b04e39dfd7da1623ea30d355722155aba936b00540dbd06fd3a698",
+  "limitations": [
+    "Manufacturer views are schematic and disagree in fin height and horizontal-tail elevation. Model honors the printed 2.6162 m height; uniform side scale suggests approximately 2.8 m and front scale approximately 3.1 m. Horizontal-tail elevation follows the side drawing rather than the higher front-view depiction. No reference was stretched to conceal these residuals.",
+    "Wing root fillets, rounded tail tips, curved windscreen sections and exact cabin cross-sections remain polygonal approximations. Small door/window corner and gear-door contour residuals remain. Rivet lines follow visible skin divisions, not a manufacturing fastener map.",
+    "Panel diagram omits yokes and pedestal; their depth is estimated from brochure photographs. Fine switch legends, upholstery curvature and the pedestal connection remain simplified. Manufacturer cockpit imagery is local study only; no suitably licensed photograph of this exact G36 cockpit was verified for redistribution. The licensed exterior photo and all manufacturer pixels remain unshipped.",
+    "Live displays provide a useful subset rather than a complete Garmin simulation. Speed is TAS, altitude geometric world elevation (GEO FT), heading true and RPM normalized simulated propeller speed scaled to 2700. Pressure/IAS, magnetic errors, engine governor, oil/fuel/electrical systems, navigation, vacuum and warning logic beyond gear travel are not simulated; unavailable readings stay blank or INOP. Standby-speed calibration is approximate.",
+    "Propeller/mixture levers, trim and most switches are not interactive. Gear travel has simplified linked doors and no detailed wheel-well mechanism; three green lamps share the single simulated gear-position sensor. Flap approach lamp can indicate 40-percent travel but current pilot input selects only up/down."
+  ],
+  "controlReview": {
+    "checked": "2026-10-22",
+    "typeDefinitionHash": "sha256:9117fb4f09c1431b963c8a010e508a653ad2feaf641d8480c7ef2a45375a8942",
+    "sourceHash": "sha256:e6d07fbb7f4e9a8d076f9968f94392efa3dbf32354ba4b5f6a8b0ba7d6748faa",
+    "runtimeHash": "sha256:31116a8435b04e39dfd7da1623ea30d355722155aba936b00540dbd06fd3a698",
+    "captures": {
+      "pair": {
+        "path": ".artifacts/aircraft/control-audit/bonanza-g36-pair.png",
+        "sha256": "sha256:8b0666ba3c8ebe22b49b3d92887a4c37bd409e57e1515495b3b729899a372cee",
+        "individuallyCompared": true
+      },
+      "exterior-pair": {
+        "path": ".artifacts/aircraft/control-audit/bonanza-g36-exterior-pair.png",
+        "sha256": "sha256:f55010aa7e0fd83e53da99ee3652dbbae4f4fd83eeca01dd9c5ee1b6465f5663",
+        "individuallyCompared": true
+      }
+    },
+    "checks": "Imported GLB control-point movement tested at positive and negative commands; all 20 aircraft pass. Cockpit pairs and all ten airplane exterior pairs visually inspected. Roll, pitch, rudder and declared pedal directions corrected; ailerons and full flap deployment corrected.",
+    "limitations": [
+      "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
+      "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
+      "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  }
+}

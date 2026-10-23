@@ -1,0 +1,36 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.entities.aircraft.cessna_172s",
+  "kind": "aircraft",
+  "title": "Cessna 172S Skyhawk",
+  "order": 14,
+  "files": {
+    "definitions": [
+      "entity.types.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.entities.aircraft.cessna_172s",
+        "output": "assets/molen/entities/aircraft/cessna_172s/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a939a7d802f835163ebe987cd756339a7213081d7b6c7994992cf4f614445a3a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "model",
+        "path": "models/generate.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "models/airframe.json",
+      "reference-review.json",
+      "preview.png"
+    ]
+  }
+}

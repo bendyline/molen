@@ -20,7 +20,7 @@ Own map footprint;native Y0 is estimated local ground contact. Heights,roof prof
 
 ## Build
 
-Run node packages/worldgen/scripts/generate-ksiaz-entrances.mjs --ids=KSI_A02 (or --check).
+Run node content/worldgen/source/places/u3/u35/ksiaz-entrances/models/generate-ksiaz-entrances.mjs --ids=KSI_A02 (or --check).
 
 2317 triangles;281256 source bytes;5 merged material groups;no embedded images. Shared plaster,tile,sandstone and gatehouse bronze use metric UVs and linear palette tints. Runtime LODs are separate generated outputs.
 

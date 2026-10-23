@@ -126,14 +126,19 @@ export class EarthWildlife {
       },
     );
   }
-  /** Regional levels for the existing generic sound bank; these are not species recordings. */
-  ambience(position: readonly [number, number, number]): { birds: number; insects: number } {
+  /** Observed habitat and regional levels for the sound bank's curated recordings. */
+  ambience(position: readonly [number, number, number]): {
+    birds: number;
+    insects: number;
+    habitat?: string;
+  } {
     const habitat = this.habitat.sample(position[0], position[2], 0);
     if (!this.enabled || habitat === undefined || !habitat.safe) return { birds: 0, insects: 0 };
     const choices = this.environment
       .wildlife(position[0], position[2], habitat)
       .filter((choice) => choice.habitats.includes(habitat.kind));
     return {
+      habitat: habitat.kind,
       birds: choices.some((choice) => choice.species.body.family === 'bird') ? 1 : 0,
       insects: choices.some((choice) => choice.species.body.family === 'insect') ? 1 : 0,
     };

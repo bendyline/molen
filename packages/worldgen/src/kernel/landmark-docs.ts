@@ -17,6 +17,8 @@ const base = {
   title: z.string().min(1),
 };
 const sign = z.strictObject({
+  font: z.string().min(1).max(100).optional(),
+  letterSpacing: z.number().min(0).max(16).optional(),
   text: z.string().min(1).max(40),
   background: color,
   foreground: color,

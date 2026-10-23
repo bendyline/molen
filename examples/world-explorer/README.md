@@ -4,7 +4,14 @@ Explore it in the browser at [molen.dev/play/world-explorer](https://molen.dev/p
 along with its [structure library](https://molen.dev/play/world-explorer/structures.html) and
 [sky observatory](https://molen.dev/play/world-explorer/sky.html). It is not an npm template: it
 streams terrain tiles and content packs that Molen's npm packages never carry. To run and change
-it, clone the engine repository and run `pnpm install && pnpm dev` from the root.
+it, clone the engine repository and run `pnpm install && pnpm dev:prepare` once, then `pnpm dev`
+from the root. Setup may generate models if the current asset bundle has not been published.
+
+The **Region** dropdown switches between Seattle/Bellevue/Sammamish, Sydney (Australia), Kyoto
+(Japan), Yuma (Arizona), and New Delhi (India). Each region bundles its own vector and elevation
+PMTiles. Selecting a region reloads at its starting location while retaining rendering preferences.
+Direct links use `?region=sydney`, `?region=kyoto`, `?region=yuma`, or `?region=new-delhi`.
+Explicit `?package=...` and `?synthetic=1` overrides remain available.
 
 **Living places** plays six scripted dioramas at registered geographic sites. Choose a place
 and press **Visit**, or open `?diorama=football`, `airport`, `little-league`, `fireworks`, `fair`
@@ -74,8 +81,11 @@ Run it from the repository root:
 pnpm --filter @bendyline/molen-examples-world-explorer dev
 ```
 
-Before `dev` and `build`, `scripts/build-content-packs.mjs` builds the repository's `content/`
-directories into `public/packs/` with an `index.json`. The page opens the entities, style,
+Development reuses the existing `public/packs/index.json` and its prepared content. Run
+`pnpm dev:content` from the repository root after changing and importing assets to package those
+edits for the browser. `dev` checks that the prepared packs are present; it never regenerates
+models or repackages them. Production `build` still runs `scripts/build-content-packs.mjs` to
+build the repository's `content/` directories into `public/packs/`. The page opens the entities, style,
 earth and sky packs in parallel: small packs arrive in one request each, and car and aircraft
 models are range-read from the entities pack only when one is shown.
 In real geography, the practice runway and parked aircraft appear only after choosing an aircraft
@@ -164,11 +174,26 @@ The builder downloads only the declared bounding box, adds a shared east/south b
 each elevation tile, emits source and license sidecars, and hashes every package file. It is a
 small real-data fixture; the size-preset production pipeline lives outside this repository.
 
+In the engine repository, rebuild the four additional regions (or one with `--region kyoto`):
+
+```sh
+pnpm --filter @bendyline/molen-examples-world-explorer data:regions -- \
+  --pmtiles-cli /path/to/pmtiles
+```
+
+The region catalog in `src/regions.ts` defines the starting locations and extraction bounds.
+The builder defaults to the 2026-10-23 Protomaps snapshot, vector zooms 0–15, and elevation zooms
+8–14 with wider overview coverage through zoom 10. Daily upstream archives expire; use
+`--version YYYY-MM-DD` to select an available date from [Protomaps builds](https://maps.protomaps.com/builds/),
+or `--vector-url URL` for a retained archive. Each output directory includes `SOURCES.json`,
+`LICENSES.md`, and a terrain manifest with file hashes. Update `--elevation-release` when rebuilding
+from a newer Mapzen snapshot so the recorded access date remains accurate.
+
 ## Data attribution
 
-The bundled package is third-party open data and is **not** covered by the repository's MIT
-license. The vector tiles are an ODbL 1.0 Derivative Database — share-alike — and the archive also
-carries CC BY 4.0 landcover. Per-source terms and the required credit strings are in
+The bundled packages are third-party open data and are **not** covered by the repository's MIT
+license. The vector tiles are ODbL 1.0 Derivative Databases — share-alike — and the archives also
+carry CC BY 4.0 landcover. Per-source terms and the required credit strings are in
 [the package's LICENSES.md](public/terrain/seattle-bellevue-sammamish/LICENSES.md), the machine-readable
 [SOURCES.json](public/terrain/seattle-bellevue-sammamish/SOURCES.json), and the repository root
 [NOTICE](../../NOTICE.md).

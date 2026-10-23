@@ -49,6 +49,10 @@ export interface EarthAmbientSettings {
   /** Habitat and range constrained animals when the wildlife content pack is loaded. */
   wildlife?: boolean;
   drivingSide?: 'right' | 'left';
+  /** Detailed vehicle residency and in-flight load limits. */
+  idleVehicleModels?: number;
+  vehicleModelBytes?: number;
+  vehicleLoads?: number;
 }
 
 /** Per-quality-tier caps (see `earthPerformanceTier(level).ambient`). */
@@ -83,7 +87,7 @@ export interface EarthAmbientContent {
   heights: Readonly<Record<string, number>>;
   vehicle(type: string): VehicleData | undefined;
   aircraft(type: string): AircraftSpec | undefined;
-  loadModel(type: string): Promise<THREE.Object3D | undefined>;
+  loadModel(type: string, signal?: AbortSignal): Promise<THREE.Object3D | undefined>;
 }
 
 export interface EarthAmbientOptions {
@@ -92,6 +96,8 @@ export interface EarthAmbientOptions {
   parent: THREE.Object3D;
   settings: EarthAmbientSettings;
   content?: EarthAmbientContent;
+  /** Geographic road fleet; ships, rail and aircraft retain their independent pools. */
+  carsAt?: (x: number, z: number) => readonly AmbientVehicleType[];
   prepare?: (object: THREE.Object3D) => Promise<void> | void;
   /** Ground height for aircraft altitudes (the stream's finest displayed heights). */
   ground?: (x: number, z: number) => number | undefined;
@@ -225,6 +231,7 @@ export class EarthAmbient implements SemanticTileObserver {
       classes,
       ...(ground !== undefined ? { ground: (x: number, z: number) => ground(x, z) ?? 0 } : {}),
       ...(options.content !== undefined ? { types: options.content.types } : {}),
+      ...(options.carsAt ? { carsAt: options.carsAt } : {}),
       policy: {
         car: { perLaneKm: BASE_DENSITY.car * density },
         pedestrian: { perLaneKm: BASE_DENSITY.pedestrian * density },
@@ -235,6 +242,15 @@ export class EarthAmbient implements SemanticTileObserver {
     });
     const content = options.content;
     this.renderer = createAmbientRenderer({
+      budget: {
+        ...(settings.idleVehicleModels !== undefined
+          ? { idleVehicleModels: settings.idleVehicleModels }
+          : {}),
+        ...(settings.vehicleModelBytes !== undefined
+          ? { vehicleModelBytes: settings.vehicleModelBytes }
+          : {}),
+        ...(settings.vehicleLoads !== undefined ? { vehicleLoads: settings.vehicleLoads } : {}),
+      },
       world: this.world,
       parent: options.parent,
       ...(options.prepare !== undefined ? { prepare: options.prepare } : {}),
@@ -242,7 +258,7 @@ export class EarthAmbient implements SemanticTileObserver {
         ? {
             heights: content.heights,
             vehicles: {
-              load: (type) => content.loadModel(type),
+              load: (type, signal) => content.loadModel(type, signal),
               vehicle: (type) => content.vehicle(type),
             },
             aircraft: {
@@ -476,7 +492,7 @@ export function ambientContentFromTypes(
     idsWith(component: string): string[];
     component<T>(id: string, component: string): T;
   },
-  loadModel: (type: string) => Promise<THREE.Object3D | undefined>,
+  loadModel: (type: string, signal?: AbortSignal) => Promise<THREE.Object3D | undefined>,
 ): EarthAmbientContent {
   const cars: AmbientVehicleType[] = [];
   const trains: AmbientVehicleType[] = [];

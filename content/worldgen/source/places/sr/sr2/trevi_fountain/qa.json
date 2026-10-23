@@ -1,12 +1,12 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.trevi_fountain",
-  "reviewedOn": "2026-10-18",
+  "reviewedOn": "2026-10-22",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:4f1d57541065f16929dd1f443962b0c155f5e66f1793e56a65bd92a87e1a2885",
-  "sourceHash": "sha256:ea62d621a1c4ba64d1cdbc601efa4b0a7fed0c1cdea40fb2ca2a96e6696967c7",
-  "runtimeHash": "sha256:526bda8f9136fc3787fe1552863d2a2d36530f0001bb3cfb06deeac9a09489bd",
-  "captureReportHash": "sha256:9d4c3d52fa7bcfba24a90060ef0ffb8414cb3e5b7f9df06fa897a62e228e5918",
+  "inputHash": "sha256:ba15f01f27efdb524d51ec5debf4eee994dc35f293b31a4de25bc97e09507eea",
+  "sourceHash": "sha256:b6b60191601b7f6cbbf0fb75206daf609aac87e218348198f7a800890642aa6e",
+  "runtimeHash": "sha256:5e7253b31b5232cae60896dff02cd4aae02a5af85d29f6e1afaab0bb90d00c01",
+  "captureReportHash": "sha256:7faac71df9717d087f7150f2b35e8fe2c621921a63b1fa9adaa7d87b6f105eb2",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -24,12 +24,12 @@
       "shots/basin-and-stairs.png",
       "shots/overhead.png"
     ],
-    "notes": "All13 current portable views actually inspected: lit overview, four turntables, full frontal/oblique plan and eight detail views. True niche depth, connected inner cornice, layered rock, opaque still-water interpretation and dry stairs reviewed. Rear is the explicitly bounded backing facade, not a modeled full palace. Six individually inspected local originals (2006–2022) plus28 contact thumbnails constrain the immediate present exterior. Native facade/site/water traces, four giant columns, deep coffered triumphal niche and four inner columns/continuous curved entablature, two allegory niches, three shutter-window bays per wing, four attic figures and papal shield/tiara/winged figures are retained. Static posed human/horse anatomy is baked from the public figures kernel then given photo-directed drapery, Oceanus forward leg/beard/shell chariot, different rearing horse poses, marine tails and seated trumpet figures. These are intentionally faceted medium-fi sculpture interpretations; facial carving, fingers, inscriptions and exact stone relief are generalized. Rough ledges and three curved ribbed spill drops are separate from the mapped main basin and nine dry amphitheatre steps. No photographic pixels copied.",
-    "captureReportHash": "sha256:9d4c3d52fa7bcfba24a90060ef0ffb8414cb3e5b7f9df06fa897a62e228e5918"
+    "captureReportHash": "sha256:7faac71df9717d087f7150f2b35e8fe2c621921a63b1fa9adaa7d87b6f105eb2",
+    "notes": "Current fountain exterior reviewed in 51 portable, shared-material and medium-fi views. Deep coffered niche, giant columns, Oceanus and flanking figures, distinct horses/tritons, papal crest, rough travertine ledges, stepped spillways, mapped basin and dry stairs remain readable. Poses and carving are faceted interpretations; full Palazzo Poli, inscriptions, precise anatomy and unseen surfaces remain outside the approved scope."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:aa8c8ffd5c2e7533e0c05cd9a082c6515574ac21eae251c60ac6c9ca22139af9",
+    "captureReportHash": "sha256:44f3c9c391539484dd89185a4eb2e67fa0ecb2042bd0c9d7cc61173f04450510",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -45,11 +45,11 @@
       "shots/shared/overhead.png",
       "shots/shared/placement.png"
     ],
-    "notes": "All13 current shared-material views actually inspected, with full-resolution niche/sculpture/spill/crest views rechecked. Three registered shared graphs and two local palette finishes: smooth pale stone avoids the rejected repeated masonry pattern; green shutters remain green. Shared geographic preview uses native heading/anchor and map overlay; hide/unload restores ground. Fine ornament and bodies remain deliberately faceted. No isolated-material substitution for shared stone."
+    "notes": "Current shared-material renders inspected. Existing architectural graphs retained; no new texture or atlas. No visible UV/material regression. Capture verifies eviction and ground restoration; bounded source-ground preview remains the geographic scope."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:7cc79495ef834802e73b51367ceab6cc1dabe35a3ce3e61bc9797e118f4b6bef",
+    "captureReportHash": "sha256:99df7d648436d7b0e1bba689a671a52f87ac853ed4b69bc3cd7945168eb82330",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -77,7 +77,7 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "All25 current original-field context images actually inspected: street/block/skyline, noon/late, economy/high, silhouette, eight details and four explicit LOD transitions. Current exact asset/runtime/LOD hashes checked in every frame. Nine actual downward ray probes per frame find no rendered ground over the physical opening; both original terrain and distant backdrop are cut, original source coordinates unchanged. Corrected review fixture bakes the horizontal backdrop orientation into its geometry so the X/Z cutout is meaningful. Basin and dry steps remain visible. Synthetic neighboring houses are context only; geographic placement separately checked."
+    "notes": "All 25 current medium-fi views inspected, including four actual LOD transitions, detail cameras, silhouette, noon/late lighting and economy/high settings. Synthetic context does not establish live map placement. Street sculpture reductions and close-up caps retain the main forms."
   },
   "geographicReview": {
     "status": "passed",
@@ -130,8 +130,72 @@
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:740b19c04b7c17a100e4ae1d1b81da190e6af8b8a47b680244a0b31733ca7595",
+    "recipeHash": "sha256:516823984af3dd0bc298c091dd57e210e9bd4941a090bfc3541cc12af9fe6597",
     "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:1275229e3726b21394817e290a7ecc5d630e384975245e6b705b109b40e52a40",
+        "bytes": 85744,
+        "gzipBytes": 19284,
+        "triangles": 997,
+        "cpuBytes": 84320,
+        "gpuBytes": 84320,
+        "errorMeters": 3.2,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:e6241872c3a053e3305d8cbc52189b18437883a67e572afe2e41be04ab3090dc",
+        "bytes": 346600,
+        "gzipBytes": 90503,
+        "triangles": 3943,
+        "cpuBytes": 340500,
+        "gpuBytes": 340500,
+        "errorMeters": 0.8,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:9bfd6017dcf0f40881b680f36298fdda44e867ac0d1c0a97e24a851d5ee01113",
+        "bytes": 1489060,
+        "gzipBytes": 464589,
+        "triangles": 15151,
+        "cpuBytes": 1482924,
+        "gpuBytes": 1482924,
+        "errorMeters": 0.3,
+        "drawCalls": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:28268fea2ca3bc3ed6b913c27ef0948cff8aa470d346d49402a319b68f79b116",
+        "bytes": 6896096,
+        "gzipBytes": 1785561,
+        "triangles": 60707,
+        "cpuBytes": 6889948,
+        "gpuBytes": 6889948,
+        "errorMeters": 0.08486312668102154,
+        "drawCalls": 5
+      }
+    ],
+    "notes": "Strict 1000/4000/16000/64000 triangle ceilings met. Detailed source master retained separately. Street anatomy uses position-welded static sculpture reductions (8cm human-space bound, 4cm horse-space bound; Trevi human scale at most1.26). Close-up cap permits removal of fine components within its declared 4cm NYSE/6cm Trevi reduction setting. Error figures are reducer settings, not surveyed global accuracy."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Current fountain exterior reviewed in 51 portable, shared-material and medium-fi views. Deep coffered niche, giant columns, Oceanus and flanking figures, distinct horses/tritons, papal crest, rough travertine ledges, stepped spillways, mapped basin and dry stairs remain readable. Poses and carving are faceted interpretations; full Palazzo Poli, inscriptions, precise anatomy and unseen surfaces remain outside the approved scope."
+  },
+  "geometryValidation": {
+    "status": "passed",
+    "script": "verify-geometry.mjs",
+    "scriptHash": "sha256:e6c2d81235a681c1cbe9388c66f92eef1351901df0c39ca671db24d86c446a79",
+    "reportHash": "sha256:82a75104413485306dcb772248ad2301c957216b39c82e3b2a3167ca61df5428",
+    "failures": 0,
+    "allFourLevelsChecked": true,
+    "results": [
       {
         "level": "skyline",
         "hash": "sha256:1275229e3726b21394817e290a7ecc5d630e384975245e6b705b109b40e52a40",
@@ -158,10 +222,10 @@
       },
       {
         "level": "street",
-        "hash": "sha256:4eac8b4cf218f13cc064a03bdbaf21a71f5a0ea9bf209c18d09d51b5b10757d4",
-        "triangles": 15567,
+        "hash": "sha256:9bfd6017dcf0f40881b680f36298fdda44e867ac0d1c0a97e24a851d5ee01113",
+        "triangles": 15151,
         "drawCalls": 5,
-        "sourceTriangles": 15567,
+        "sourceTriangles": 15151,
         "physicalOpeningProbes": 5486,
         "missingCoverage": 0,
         "negativeSpaceControls": 16,
@@ -170,10 +234,10 @@
       },
       {
         "level": "closeup",
-        "hash": "sha256:5f8d6c1a9f45684c82e2b7438ffe40e08710f907a8a464f4cd0bea3ebf5d8d58",
-        "triangles": 39181,
+        "hash": "sha256:28268fea2ca3bc3ed6b913c27ef0948cff8aa470d346d49402a319b68f79b116",
+        "triangles": 60707,
         "drawCalls": 5,
-        "sourceTriangles": 39181,
+        "sourceTriangles": 100407,
         "physicalOpeningProbes": 5486,
         "missingCoverage": 0,
         "negativeSpaceControls": 16,
@@ -181,20 +245,10 @@
         "nativeBasinMaximumFloat32ErrorMeters": 8.660340655479711e-7
       }
     ],
-    "notes": "997/3943/15567/39181 actual authored/runtime triangles;1/5/5/5 draws. All strict budgets, Float32 geometry/normals/UV/winding, native site/basin controls,64 niche depth rays and5486 half-metre opening-coverage probes per level pass. District thick sculptural profiles and skyline merging are intentional distance simplifications. These sampled controls do not certify full manifold topology or navigable interiors."
-  },
-  "fidelityReview": {
-    "target": "medium-fi",
-    "status": "passed",
-    "notes": "The cleared RoyFokker night exterior confirms the central giant arch, paired columns, lateral statue niches and layered rocky water basins. Current pale architectural composition and simplified statues preserve the recognizable hierarchy. Side palace fabric, anatomy, rock detail and precise hydraulic elements remain approximate; night lighting is not baked into materials. Accepted at the agreed approximate medium-fi exterior scope. No reference pixels are embedded. Previously used attribution/private imagery is excluded from this current review."
-  },
-  "geometryValidation": {
-    "reportHash": "sha256:bf4246fefb20e8a55509c31153b6e1d5c574f8136f82e046d21366650fc42559",
-    "allLevelsCovered": true,
-    "controls": 64,
-    "failures": 0,
-    "physicalOpeningProbesPerLevel": 5486,
-    "missingCoverage": 0
+    "scope": [
+      "Half-metre sampled physical coverage and specific rays prove these controls, not complete manifold topology or walkable interior/collision.",
+      "Native map width and basin traces are quantized controls; sculpture/ornament and vertical levels remain photo interpretations. Actual visual and geographic reviews are separate."
+    ]
   },
   "validation": {
     "schemas": [
@@ -215,14 +269,17 @@
     "lodBudgetCheck": true,
     "strictMediumFiAutomatedAudit": true,
     "targetedAuthoringLint": true,
-    "khronosValidated": false,
+    "khronosValidated": true,
     "inspectedCurrentFrames": 51,
     "contextRenderedGroundCoverageProbes": 225,
     "contextGroundCoverageFailures": 0,
-    "prior79ReadyModelInputsUnchanged": true,
     "next1000OwnershipConflicts": 0,
     "completed": true,
-    "storyAnnotation": true
+    "storyAnnotation": true,
+    "sourceHash": "sha256:b6b60191601b7f6cbbf0fb75206daf609aac87e218348198f7a800890642aa6e",
+    "runtimeHash": "sha256:5e7253b31b5232cae60896dff02cd4aae02a5af85d29f6e1afaab0bb90d00c01",
+    "khronosErrors": 0,
+    "khronosWarnings": 0
   },
   "limitations": [
     "Native map geometry is quantized and low-zoom; precise sculpted rock placement and facade heights are photographic interpretations, not a construction survey.",
@@ -302,25 +359,29 @@
     "inventoryStatus": "passed",
     "notes": "The cleared RoyFokker night exterior confirms the central giant arch, paired columns, lateral statue niches and layered rocky water basins. Current pale architectural composition and simplified statues preserve the recognizable hierarchy. Side palace fabric, anatomy, rock detail and precise hydraulic elements remain approximate; night lighting is not baked into materials. Exact published Qualla paths, metadata, public-domain/CC0 attribution and bytes agree. No supplemental imagery was needed."
   },
-  "coreFinalizationReview": {
+  "batchRebuildRepair": {
     "status": "passed",
-    "reviewedOn": "2026-10-18",
-    "inputHash": "sha256:4f1d57541065f16929dd1f443962b0c155f5e66f1793e56a65bd92a87e1a2885",
-    "sourceHash": "sha256:ea62d621a1c4ba64d1cdbc601efa4b0a7fed0c1cdea40fb2ca2a96e6696967c7",
-    "runtimeHash": "sha256:526bda8f9136fc3787fe1552863d2a2d36530f0001bb3cfb06deeac9a09489bd",
-    "notes": "The cleared RoyFokker night exterior confirms the central giant arch, paired columns, lateral statue niches and layered rocky water basins. Current pale architectural composition and simplified statues preserve the recognizable hierarchy. Side palace fabric, anatomy, rock detail and precise hydraulic elements remain approximate; night lighting is not baked into materials.",
-    "renderReuse": {
-      "reason": "Only reference selection, inventory and historical-source annotations changed. Graphics specification (apart from reference URLs/fingerprint), source/runtime/LOD bytes, scene, map, terrain, placement, material bindings, cameras and every image byte are unchanged. Retain the original inspected renders; no fresh capture is claimed.",
-      "originalInputHash": "sha256:aa94be7c939169b26617727205385f47dde09816b6872f7b9e25eaa3b10d8387",
-      "reviewInputHash": "sha256:4f1d57541065f16929dd1f443962b0c155f5e66f1793e56a65bd92a87e1a2885",
+    "reviewedOn": "2026-10-22",
+    "previous": {
+      "inputHash": "sha256:4f1d57541065f16929dd1f443962b0c155f5e66f1793e56a65bd92a87e1a2885",
       "sourceHash": "sha256:ea62d621a1c4ba64d1cdbc601efa4b0a7fed0c1cdea40fb2ca2a96e6696967c7",
       "runtimeHash": "sha256:526bda8f9136fc3787fe1552863d2a2d36530f0001bb3cfb06deeac9a09489bd",
-      "originalCaptureReports": {
-        "capture-report.json": "sha256:f3c1c81b005695234e09b8fbb14a36d98f86d5bc6f3bc79a917b06b9b39682ed",
-        "shared-capture-report.json": "sha256:edf96c3cfb027af5fb474e1999a7e8f66c50051c6be7035028579c3938f8db9c",
-        "medium-fi-report.json": "sha256:4188bb000ae2356c243b10eb000d85491653e1e1820ae03ce5abb7115aa8c07b"
-      }
+      "qaHash": "sha256:0aa8762cdd29c6833c45f8a6ecc8238386d14e057318f3197ed67b3b71b82af1"
     },
-    "previousImageryReview": null
+    "notes": "Current fountain exterior reviewed in 51 portable, shared-material and medium-fi views. Deep coffered niche, giant columns, Oceanus and flanking figures, distinct horses/tritons, papal crest, rough travertine ledges, stepped spillways, mapped basin and dry stairs remain readable. Poses and carving are faceted interpretations; full Palazzo Poli, inscriptions, precise anatomy and unseen surfaces remain outside the approved scope.",
+    "cause": "Current shared figure generation changed the baked sculpture masters; prior source/runtime pins no longer matched and both authored street exports exceeded16000 triangles.",
+    "changes": [
+      "Bounded street sculpture reduction; master detail preserved",
+      "Explicit close-up cap below64000",
+      "Windows file URL fix for the retained geometry checker",
+      "Checker applies the runtime cap to the actual close-up GLB, while validating the detailed master independently"
+    ],
+    "regressionTests": {
+      "file": "packages/tooling/test/sculptural-landmark-street-lods.test.mjs",
+      "passed": 4
+    },
+    "geographicScope": "Existing map frame, independent terrain heights, placement and original geographic limitations unchanged. Reused prior map/reference evidence and reran the existing geometry/contact controls. No new bespoke research or new placement activation.",
+    "inspectedFrames": 51,
+    "sourceAndRuntimeValidatedFiles": 6
   }
 }

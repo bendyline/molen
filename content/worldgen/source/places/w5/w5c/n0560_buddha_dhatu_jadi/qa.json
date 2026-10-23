@@ -1,0 +1,825 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0560_buddha_dhatu_jadi",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:b6bcb94b4d341e56f05130e743c633072dfcc4aaa120ccee1bb9e5ae0f2b4d80",
+  "sourceHash": "sha256:19b99c40e5909c21544bb9559995b67dfa1ebbfaec90dd5de4f9029d5aa6b842",
+  "runtimeHash": "sha256:7a7d90bf9a889feffcc244ba22c3f62aeff48b0e1cf6dacce56c1813a657a78f",
+  "captureReportHash": "sha256:ab266476859a4aecb8b0aba06d3241fd9fadb847aa5e793e47a718bd4760a58b",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/round-gilded-shrine-portal-maroon-arcade-and-main-stupa.png",
+      "shots/eight-satellite-stupas-teardrop-terrace-canopy-and-paving.png",
+      "shots/mapped-upper-stair-gold-gateway-and-native-grade-contact.png"
+    ],
+    "notes": "Inspected48 current source/shared/medium-fi/native/fallback views in one construction/inspection pass. Specific round gilded shrine, maroon/gold arcade, clear recessed closed entrance/original lobed heads and crest. Central bell/ringed neck/crown/open umbrella finial with eight smaller roof stupas. Teardrop paved terrace/original restrained meanders/blue-pale boundary rails, dark gold-edged pointed-end canopy, simple original seated figures/umbrellas and mapped upper gate/stair route. Corrected central doorway obstruction, long-edge contact sampling and canopy-finial seating. Actual rendered-terrain contact passed; fitted native shadow range removed an artificial light strip at the base. No copied deity/inscription atlas, forest/scaffold/solar fixtures or furnished interior."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/round-gilded-shrine-portal-maroon-arcade-and-main-stupa.png",
+      "shots/shared/eight-satellite-stupas-teardrop-terrace-canopy-and-paving.png",
+      "shots/shared/mapped-upper-stair-gold-gateway-and-native-grade-contact.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Five existing256-square graphs: metal_bronze_cast, plaster_lime, stone_sandstone_raw, stone_checker_fine and metal_painted. Each read once; metric UVs/linear tints, zero embedded images. Master27995triangles/3362848bytes; levels957/3890/15723/27995triangles, initial470804bytes and at most five runtime draws. Separate GPU streams/equal CPU-GPU accounting; unloading frees model geometry. Existing metric mesh/opening helpers unchanged.",
+    "captureReportHash": "sha256:4a5016fb79a193b2f8898b90e37004aae2a3b2e5eac25e73c1573d47b37e608f"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/round-gilded-shrine-portal-maroon-arcade-and-main-stupa.png",
+      "medium-fi/eight-satellite-stupas-teardrop-terrace-canopy-and-paving.png",
+      "medium-fi/mapped-upper-stair-gold-gateway-and-native-grade-contact.png",
+      "medium-fi/dhatu-skyline.png",
+      "medium-fi/dhatu-district.png",
+      "medium-fi/dhatu-street.png",
+      "medium-fi/dhatu-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected noon/late/economy/high context, silhouette, all four authored levels/transitions and three detail views. Skyline keeps the round shrine/eight smaller stupas/teardrop and upper stair; district restores molded arcade/full terrace route, street adds round wall recesses/lobed heads/meanders/figures and open crown; close-up refines bell/finial curves and rings. Skyline uses a closed hall proxy/dark door surface and simplified supports; its enclosed door state remains consistent. Flat shared stage exposes the terrain-bearing retaining faces; the native6m hill was inspected separately. Synthetic comparison buildings are context. Deep terrace retaining faces and upper-stair grade remain coarse-terrain visualization estimates.",
+    "captureReportHash": "sha256:de832130632b21d62f82f026a89eebe30ab1f1bc592021919248e04937959ed7"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:6f14002d51961cd11e3772cf050e04bdd41007dc42020af282d02b0b868923ae",
+    "mapFrameHash": "sha256:0b48d1a34fdd104d4a2e3d047f29f52c9914aa5f135234da7d0f653031f1fdf4",
+    "notes": "Named standard PMTiles templePOI17593731024186 (encoded OSMnode1544979770) is within0.07m of retainedQ4984151 reference92.1977168,22.2231095. There are no building polygons here. Stairway35184513225530 starts[-10.285015840203268,15.736215813772516]m from that anchor and bends through[-19.68271432603095,31.214801302840527] to[-25.487175155512755,70.46414044439314]. Its first distance fixes about18.7992031472309m rounded terrace radius. The aerial upper-stair allocation at local-2.436rad fixes approximate signed terrace axis-1.7138035310009077rad: pointed canopy toward north-northwest, mapped approach toward south-southwest. Main circle/teardrop proportions, portal/canopy/figure placement and hidden inventory remain photo/map estimates with about10m/30degree uncertainty; the near-vertical aerial is not treated as an unrotated map. No generic building shell is replaced. Keep original standard6m Mapzen hill grid, native paths/water and zero building-polygon set unchanged. Model terrace uses a level occupied floor above sampled terrace/upper landing maxima, individually buried retaining sides and grade-fitted stair treads along the mapped upper descent. No ground/water cutout or terrain flattening. Coarse DEM reverses part of the pictured upper stair slope and does not resolve the summit; short upper approach/long lower treads and deep exposed retaining faces are visualization contact estimates, not surveyed hill, retaining-wall or accessible-route engineering. Only the first three mapped stair controls are authored; the remaining route stays independent. Native fixture retains zero building polygons/zero water records, all original paths and unmodified6m hill through all loaded levels/failure/unloading.32 actual native-ground/retaining-wall contact probes pass across four loaded levels; no building shell removed. Terrace floor7.7495904772325215m is datum-relative to the retained DEM. Pointed terrace/canopy NNW, mapped upper approach SSW; geographic facing and envelope retain10m/30degree approximation."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi exterior from two useful2017/2020 whole front/aerial photographs and standard viewer PMTiles/Mapzen in the same pass. Reported18.288m is retained as an unqualified catalog fact and used as nominal18.3m terrace-to-finial height. Exact bell/cage/mini-stupa profiles, internal support/room/figure inventory, original simplified ornament, current finish, terrace geometry and footings remain picture/map estimates. Coarse DEM does not resolve the summit and reverses part of the upper stair slope; deep visible retaining faces and grade-fitted treads are contact estimates, not surveyed hill/wall/stair engineering. Forest/nearby fixtures and lower approach after the third map control remain host context. Physical device timings pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/w5/w5c/n0560_buddha_dhatu_jadi/models/source.glb\",\"hash\":\"sha256:19b99c40e5909c21544bb9559995b67dfa1ebbfaec90dd5de4f9029d5aa6b842\",\"bytes\":3362848,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/w5/w5c/n0560_buddha_dhatu_jadi/model.glb\",\"hash\":\"sha256:7a7d90bf9a889feffcc244ba22c3f62aeff48b0e1cf6dacce56c1813a657a78f\",\"bytes\":3362348,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/w5/w5c/n0560_buddha_dhatu_jadi/model.skyline.glb\",\"hash\":\"sha256:3fcf81e7c7c31fa0638cf48a5c51a9f830d03289e1cf3d539b153b85df65aa7f\",\"bytes\":101716,\"errors\":0,\"warnings\":0,\"triangles\":957,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/w5/w5c/n0560_buddha_dhatu_jadi/model.district.glb\",\"hash\":\"sha256:e66f75f129c061f2bc3e093be9b35394cca30af049120d10340c2bbeb2df0435\",\"bytes\":369088,\"errors\":0,\"warnings\":0,\"triangles\":3890,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/w5/w5c/n0560_buddha_dhatu_jadi/model.street.glb\",\"hash\":\"sha256:0ff6bb5caf1a7977460675e754d19d688efb9a2a915be9922e74fd915dcc4cc1\",\"bytes\":1463920,\"errors\":0,\"warnings\":0,\"triangles\":15723,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/w5/w5c/n0560_buddha_dhatu_jadi/model.closeup.glb\",\"hash\":\"sha256:6e3097a06b6dfc6530f6279ae36c0a9a5d1b57956013bb78c078474aae89da29\",\"bytes\":2653788,\"errors\":0,\"warnings\":0,\"triangles\":27995,\"draws\":5}"
+      },
+      {
+        "check": "specific-main-stupa-eight-smaller-stupas-arcade-portal-terrace-contact-and-stair-route",
+        "passed": true,
+        "notes": "323 actual mesh probes across source/runtime/four levels verify nominal18.3m main finial/eight distinct smaller stupas, actual maroon supports/clear closed recessed entry/gold jambs, round wall recesses/open umbrella cage, separate tiered canopy/seated finial, occupied teardrop floor, true upper gateway/pillars, grade-fitted stair treads, buried long-edge retaining sides and no slab beyond the authored site."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Five reused graphs, zero embedded images, separate GPU streams and all triangle/draw/download caps pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:19b99c40e5909c21544bb9559995b67dfa1ebbfaec90dd5de4f9029d5aa6b842"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:7a7d90bf9a889feffcc244ba22c3f62aeff48b0e1cf6dacce56c1813a657a78f"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:3fcf81e7c7c31fa0638cf48a5c51a9f830d03289e1cf3d539b153b85df65aa7f"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:e66f75f129c061f2bc3e093be9b35394cca30af049120d10340c2bbeb2df0435"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:0ff6bb5caf1a7977460675e754d19d688efb9a2a915be9922e74fd915dcc4cc1"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:6e3097a06b6dfc6530f6279ae36c0a9a5d1b57956013bb78c078474aae89da29"
+      }
+    ],
+    "reports": [
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "contactChecks": [
+            {
+              "edge": -1,
+              "t": 0.125,
+              "groundHeight": -1.8183905097245372,
+              "buriedWall": true,
+              "distance": 0.9999908406704823
+            },
+            {
+              "edge": -1,
+              "t": 0.375,
+              "groundHeight": -0.04854103279444644,
+              "buriedWall": true,
+              "distance": 1.0000053665922541
+            },
+            {
+              "edge": -1,
+              "t": 0.625,
+              "groundHeight": 1.4610552657256903,
+              "buriedWall": true,
+              "distance": 0.9999875060327024
+            },
+            {
+              "edge": -1,
+              "t": 0.875,
+              "groundHeight": 2.9736631662602804,
+              "buriedWall": true,
+              "distance": 1.00000576576794
+            },
+            {
+              "edge": 1,
+              "t": 0.125,
+              "groundHeight": -5.749093456608932,
+              "buriedWall": true,
+              "distance": 0.9999933279857922
+            },
+            {
+              "edge": 1,
+              "t": 0.375,
+              "groundHeight": -5.489527906632134,
+              "buriedWall": true,
+              "distance": 0.9999927213030445
+            },
+            {
+              "edge": 1,
+              "t": 0.625,
+              "groundHeight": -5.339281810340225,
+              "buriedWall": true,
+              "distance": 1.000002199974395
+            },
+            {
+              "edge": 1,
+              "t": 0.875,
+              "groundHeight": -5.486065478707616,
+              "buriedWall": true,
+              "distance": 0.9999948697563181
+            }
+          ],
+          "modelWorldOrigin": [
+            -480,
+            0,
+            -480
+          ],
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_checker_fine": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0560_buddha_dhatu_jadi"
+          ],
+          "rawTerrainRange": {
+            "min": -32.42518193993705,
+            "max": 71.11571806006296
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:d0febfbfaeb52a42d83ca6fac49e3555e5bf92043b7d564094283663f036e0bf",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 8,
+              "triangles": 79779
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                78.06795983580452,
+                76.74959047723252,
+                -124.39611588419957
+              ],
+              "lookAt": [
+                -8.060855339368683,
+                11.749590477232521,
+                0.1503702024052601
+              ],
+              "fov": 47
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-round-gilded-shrine-portal-maroon-arcade-and-main-stupa.png",
+            "hash": "sha256:a28180b359f7c1e3cc466c4795e4bad37e6d2ac7609e8361b1e29d249d095f49",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 8,
+              "triangles": 79779
+            },
+            "camera": {
+              "name": "round-gilded-shrine-portal-maroon-arcade-and-main-stupa",
+              "position": [
+                -0.8865213314244484,
+                15.54959047723252,
+                -34.223005127091476
+              ],
+              "lookAt": [
+                0,
+                14.749590477232521,
+                0
+              ],
+              "fov": 50
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-eight-satellite-stupas-teardrop-terrace-canopy-and-paving.png",
+            "hash": "sha256:98d3254540f4b07ba99810cafaff98ab9717fdaca533af317fcfdace0db40d01",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 8,
+              "triangles": 79779
+            },
+            "camera": {
+              "name": "eight-satellite-stupas-teardrop-terrace-canopy-and-paving",
+              "position": [
+                32.91677295446547,
+                62.74959047723252,
+                -31.00783865838073
+              ],
+              "lookAt": [
+                -1.2826823481153364,
+                10.749590477232521,
+                -8.90812696327535
+              ],
+              "fov": 49
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-mapped-upper-stair-gold-gateway-and-native-grade-contact.png",
+            "hash": "sha256:8d136029c30e940f77693c535f9116a9baa6b8f21da5ddbd7269bc29713ba796",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 8,
+              "triangles": 79779
+            },
+            "camera": {
+              "name": "mapped-upper-stair-gold-gateway-and-native-grade-contact",
+              "position": [
+                -50.00472569350054,
+                36.74959047723252,
+                52.66428968777388
+              ],
+              "lookAt": [
+                -19.682714326030954,
+                7.549590477232521,
+                31.214801302840524
+              ],
+              "fov": 49
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "contactChecks": [
+            {
+              "edge": -1,
+              "t": 0.125,
+              "groundHeight": -1.8183905097245372,
+              "buriedWall": true,
+              "distance": 0.9999908406704823
+            },
+            {
+              "edge": -1,
+              "t": 0.375,
+              "groundHeight": -0.04854103279444644,
+              "buriedWall": true,
+              "distance": 1.0000053665922541
+            },
+            {
+              "edge": -1,
+              "t": 0.625,
+              "groundHeight": 1.4610552657256903,
+              "buriedWall": true,
+              "distance": 0.9999875060327024
+            },
+            {
+              "edge": -1,
+              "t": 0.875,
+              "groundHeight": 2.9736631662602804,
+              "buriedWall": true,
+              "distance": 1.00000576576794
+            },
+            {
+              "edge": 1,
+              "t": 0.125,
+              "groundHeight": -5.749093456608932,
+              "buriedWall": true,
+              "distance": 0.9999933279857922
+            },
+            {
+              "edge": 1,
+              "t": 0.375,
+              "groundHeight": -5.489527906632134,
+              "buriedWall": true,
+              "distance": 0.9999927213030445
+            },
+            {
+              "edge": 1,
+              "t": 0.625,
+              "groundHeight": -5.339281810340225,
+              "buriedWall": true,
+              "distance": 1.000002199974395
+            },
+            {
+              "edge": 1,
+              "t": 0.875,
+              "groundHeight": -5.486065478707616,
+              "buriedWall": true,
+              "distance": 0.9999948697563181
+            }
+          ],
+          "modelWorldOrigin": [
+            -480,
+            0,
+            -480
+          ],
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_checker_fine": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0560_buddha_dhatu_jadi"
+          ],
+          "rawTerrainRange": {
+            "min": -32.42518193993705,
+            "max": 71.11571806006296
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:98f39c747a0166a2e008b45000274b409b565ad24bec1a2c9145c62e51be9174",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 8,
+              "triangles": 67507
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                78.06795983580452,
+                76.74959047723252,
+                -124.39611588419957
+              ],
+              "lookAt": [
+                -8.060855339368683,
+                11.749590477232521,
+                0.1503702024052601
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "contactChecks": [
+            {
+              "edge": -1,
+              "t": 0.125,
+              "groundHeight": -1.8183905097245372,
+              "buriedWall": true,
+              "distance": 0.9999937933823395
+            },
+            {
+              "edge": -1,
+              "t": 0.375,
+              "groundHeight": -0.04854103279444644,
+              "buriedWall": true,
+              "distance": 0.9999955553368493
+            },
+            {
+              "edge": -1,
+              "t": 0.625,
+              "groundHeight": 1.4610552657256903,
+              "buriedWall": true,
+              "distance": 0.9999973172912955
+            },
+            {
+              "edge": -1,
+              "t": 0.875,
+              "groundHeight": 2.9736631662602804,
+              "buriedWall": true,
+              "distance": 0.9999990792457495
+            },
+            {
+              "edge": 1,
+              "t": 0.125,
+              "groundHeight": -5.749093456608932,
+              "buriedWall": true,
+              "distance": 1.0000067751088246
+            },
+            {
+              "edge": 1,
+              "t": 0.375,
+              "groundHeight": -5.489527906632134,
+              "buriedWall": true,
+              "distance": 1.0000061684280865
+            },
+            {
+              "edge": 1,
+              "t": 0.625,
+              "groundHeight": -5.339281810340225,
+              "buriedWall": true,
+              "distance": 1.0000055617473531
+            },
+            {
+              "edge": 1,
+              "t": 0.875,
+              "groundHeight": -5.486065478707616,
+              "buriedWall": true,
+              "distance": 1.0000049550666188
+            }
+          ],
+          "modelWorldOrigin": [
+            -480,
+            0,
+            -480
+          ],
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_checker_fine": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0560_buddha_dhatu_jadi"
+          ],
+          "rawTerrainRange": {
+            "min": -32.42518193993705,
+            "max": 71.11571806006296
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:230b9860dc018a6e3728635a823fafeef7b31d7d4dc1283248d3871ffaf4ba0b",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 8,
+              "triangles": 55674
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                78.06795983580452,
+                76.74959047723252,
+                -124.39611588419957
+              ],
+              "lookAt": [
+                -8.060855339368683,
+                11.749590477232521,
+                0.1503702024052601
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "contactChecks": [
+            {
+              "edge": -1,
+              "t": 0.125,
+              "groundHeight": -1.8183905097245372,
+              "buriedWall": true,
+              "distance": 0.9999937933823395
+            },
+            {
+              "edge": -1,
+              "t": 0.375,
+              "groundHeight": -0.04854103279444644,
+              "buriedWall": true,
+              "distance": 0.9999955553368493
+            },
+            {
+              "edge": -1,
+              "t": 0.625,
+              "groundHeight": 1.4610552657256903,
+              "buriedWall": true,
+              "distance": 0.9999973172912955
+            },
+            {
+              "edge": -1,
+              "t": 0.875,
+              "groundHeight": 2.9736631662602804,
+              "buriedWall": true,
+              "distance": 0.9999990792457495
+            },
+            {
+              "edge": 1,
+              "t": 0.125,
+              "groundHeight": -5.749093456608932,
+              "buriedWall": true,
+              "distance": 1.0000067751088246
+            },
+            {
+              "edge": 1,
+              "t": 0.375,
+              "groundHeight": -5.489527906632134,
+              "buriedWall": true,
+              "distance": 1.0000061684280865
+            },
+            {
+              "edge": 1,
+              "t": 0.625,
+              "groundHeight": -5.339281810340225,
+              "buriedWall": true,
+              "distance": 1.0000055617473531
+            },
+            {
+              "edge": 1,
+              "t": 0.875,
+              "groundHeight": -5.486065478707616,
+              "buriedWall": true,
+              "distance": 1.0000049550666188
+            }
+          ],
+          "modelWorldOrigin": [
+            -480,
+            0,
+            -480
+          ],
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0560_buddha_dhatu_jadi"
+          ],
+          "rawTerrainRange": {
+            "min": -32.42518193993705,
+            "max": 71.11571806006296
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:9288b45ea5bb7381fbcccac10ebd690ce49ee7eb75af18207e3034583b74c942",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 4,
+              "triangles": 52741
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                78.06795983580452,
+                76.74959047723252,
+                -124.39611588419957
+              ],
+              "lookAt": [
+                -8.060855339368683,
+                11.749590477232521,
+                0.1503702024052601
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "contactChecks": [],
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0560_buddha_dhatu_jadi"
+          ],
+          "rawTerrainRange": {
+            "min": -32.42518193993705,
+            "max": 71.11571806006296
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:ebb9cf4e3619a3c7a76607c6be14036cfeebe2ea43a691bdd4642eb574f855fb",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 3,
+              "triangles": 51784
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                78.06795983580452,
+                76.74959047723252,
+                -124.39611588419957
+              ],
+              "lookAt": [
+                -8.060855339368683,
+                11.749590477232521,
+                0.1503702024052601
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Buddha Dhatu Jadi standing hilltop shrine: round yellow/gilded enclosed hall with maroon/gold columned outer arcade, true recessed closed portal, lobed original arcade heads/entry crest, round gray roof/maroon-gold parapet. Broad central bell/ringed conical neck/crown/open umbrella finial and eight smaller surrounding stupas. Pictured teardrop paved terrace/blue-pale boundary posts, dark gold-edged pointed-end tiered canopy, simplified original seated figures/lotus seats/small umbrellas. Upper approach/gold gateway and mapped stair descent to the retained third stair control. Exact rooms, fine copied sculpture/inscriptions, forest/solar fixtures/visitor objects and remaining lower path are not authored.",
+    "Named standard PMTiles templePOI17593731024186 (encoded OSMnode1544979770) is within0.07m of retainedQ4984151 reference92.1977168,22.2231095. There are no building polygons here. Stairway35184513225530 starts[-10.285015840203268,15.736215813772516]m from that anchor and bends through[-19.68271432603095,31.214801302840527] to[-25.487175155512755,70.46414044439314]. Its first distance fixes about18.7992031472309m rounded terrace radius. The aerial upper-stair allocation at local-2.436rad fixes approximate signed terrace axis-1.7138035310009077rad: pointed canopy toward north-northwest, mapped approach toward south-southwest. Main circle/teardrop proportions, portal/canopy/figure placement and hidden inventory remain photo/map estimates with about10m/30degree uncertainty; the near-vertical aerial is not treated as an unrotated map. No generic building shell is replaced.",
+    "Retained catalog height18.288m has no measured-point qualifier, and is used as nominal main-terrace-to-finial18.3m, not a survey. Picture-led estimates: circular shrine radius12m/roof5.5m, enclosed radius10m/outer supports about4.8m, central bell base radius6.4m from5.8m and umbrella crown to18.3m. Eight smaller stupas on8.7m ring rise about6.2m above the roof. Round terrace radius18.7992031472309m, pointed-end canopy near localX36m; outer canopy tiers about6m high. Main/fine finial profiles, support count, ornament, boundary/figure inventory and current finish remain simplified dated-picture estimates.",
+    "Keep original standard6m Mapzen hill grid, native paths/water and zero building-polygon set unchanged. Model terrace uses a level occupied floor above sampled terrace/upper landing maxima, individually buried retaining sides and grade-fitted stair treads along the mapped upper descent. No ground/water cutout or terrain flattening. Coarse DEM reverses part of the pictured upper stair slope and does not resolve the summit; short upper approach/long lower treads and deep exposed retaining faces are visualization contact estimates, not surveyed hill, retaining-wall or accessible-route engineering. Only the first three mapped stair controls are authored; the remaining route stays independent.",
+    "Two useful2017/2020 whole front/aerial pictures and standard PMTiles control approximate appearance and placement. No building polygons; named node/stair support10m/30degree estimated envelope/facing. Coarse hill grid does not resolve terrace/stair/foundation levels. No copied sculpture/inscription atlas, hidden furnished interior, forest or temporary equipment."
+  ]
+}

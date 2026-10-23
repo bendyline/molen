@@ -1,0 +1,1133 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0754_van_gogh_museum",
+  "reviewedOn": "2026-10-22",
+  "inputHash": "sha256:4e4b287820632487146d1b25e8649bc9b63d19d96b1afad2518793bae5858f35",
+  "sourceHash": "sha256:a501c74f81e51b4c3a0fb783b4a452b0dddf7cc8e7b87085ca5c62617b67f432",
+  "runtimeHash": "sha256:d91be38bb13518d908cba1c10259ada52db45bee6e872925421f9bb491840219",
+  "captureReportHash": "sha256:83fc3f11c2803490e2d794f3fd5b5938c85f8929354296eddaf21ea513f6a761",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/museumplein-stepped-main-block-and-curved-wing.png",
+      "shots/street-brick-front-frosted-atrium-and-canopy.png",
+      "shots/glazed-curved-entrance-roof-and-recess.png"
+    ],
+    "notes": "Complete mapped Van Gogh Museum exterior: stepped gray-beige long-format brick Rietveld block/low glazed perimeter, white-framed dark16m and frosted20m stacks, light roof strips and four modest schematic rooflights; Kurokawa rounded stone exhibition half with upper glazing slot, sloping closed metal roof/eave; northern curved glazed entrance with sloping framed opaque roof and a genuine1.2m deep doorway recess/soffit. Small mapped3m canopy remains a roof only. Three ordinary pictures plus standard map guided one author/inspect/fix pass. Normalized a ground-only snapped degeneracy, changed brick-like cladding to raw limestone with broad geometric joints, improved frost/frame contrast and street framing. No art posters, lettering, furnished galleries or unseen basement passages."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/museumplein-stepped-main-block-and-curved-wing.png",
+      "shots/shared/street-brick-front-frosted-atrium-and-canopy.png",
+      "shots/shared/glazed-curved-entrance-roof-and-recess.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Four existing256px shared graphs: brick_longformat neutral warm masonry; stone_limestone_raw panel faces/footings; metal_painted light roof membrane/eaves, opaque frosted glazing/roof, white framework and restrained joints; storefront opaque dark glazing. Raw limestone and broad modeled joints substitute for dressed panel cladding; painted metal substitutes for membrane/frosted glass. No new graph/private atlas/embedded image. Actual draw/triangle costs below. Linear tints, common surface bindings, separate POSITION/NORMAL streams and equal CPU/GPU byte accounting. Each native textured run reads each graph once; all LOD unloads release model geometry.",
+    "captureReportHash": "sha256:3f26ad7e0261d97dea52e55beeaa5cdc2cebc94f05355e936b896529980e5cff"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/museumplein-stepped-main-block-and-curved-wing.png",
+      "medium-fi/street-brick-front-frosted-atrium-and-canopy.png",
+      "medium-fi/glazed-curved-entrance-roof-and-recess.png",
+      "medium-fi/vangogh-skyline.png",
+      "medium-fi/vangogh-district.png",
+      "medium-fi/vangogh-street.png",
+      "medium-fi/vangogh-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 828 / 2044 / 2554 / 2554 triangles, within 1k / 4k / 16k / 64k caps. Initial skyline+district geometry 231492 bytes; shared material bakes cached separately. Six GLBs have zero Khronos errors/warnings; 141 actual geometry/contact probes and 20 actual PMTiles13/14/15 cases pass, including12 detailed owned records. Inspected 48 current portable/shared/medium-fi/native frames, all LODs, failed loading, Economy/High and noon/late light. Physical device/dense-city timings remain pending.",
+    "captureReportHash": "sha256:76107cd37bb123149d6ad77a4a8f25963bd9343a24eed4377579f3758bac9bac"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:dbc4a1c061b918b13cc3be2509ef5359ec5d3c49469669b8fda134ffcd03369a",
+    "mapFrameHash": "sha256:2061eb9657e7e9fdcfc8c788a57851188631ab3ce0d2f743e38c9a09b30881a8",
+    "notes": "Approximate native exterior fit reviewed. Q224124 and named museum relation6577680/native52776564710928 own both principal volumes. Also own duplicate elliptical way441830027, eight Rietveld height/roof parts and two elliptical parts:12 map records. Anchor[4.881111111,52.358333333], heading0; internalX east-northeast along mapped street wall/internalZ south-southeast toward ellipse, baked into native east/south coordinates. Existing201x201/6m terrain; uncovered east entrance approach fixes datum4.490051119627603m, working floor0.2m above provider. Boundary grades-0.690..+0.469m leave a modest foundation/slight uphill burial. Ground-only1mm snapped rings normalized to simple polygons; ownership remains1micrometer. Only occupied floors cut ground: original gap and ground beneath3m roof canopy retained. Preserve3,799 resident/4,602 wider independent buildings, including every Stedelijk/Moco record, original roads and295,370.976680m² water. Failure keeps3,811 originals; every LOD unload restores ground/water and zero live geometry. Controlled native fixture selects this complete asset; exact sunken entrance, paving, basement passage and accessibility remain approximate."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Medium-fi exterior of the complete mapped main block, elliptical wing and curved entrance. Main3/5/6/12/16/18/20m and wing8/10m tags unqualified; panels/glass role assignment and frame inventory are photo-led. Working Kurokawa wall7.8m, sloping roof around10m, glazed entrance5.6..8m and four small upper rooflights are reconstructed. Frosted roof/glass are opaque shared-material substitutes; stone panel joints are broad approximations. Skyline reduces curved halves and flattens the small entry; district/street/closeup preserve its real recess/soffit. Hidden elevations, rooflight count, canopy structure and exact underground access simplified. No furnished galleries, paintings, art posters, logos/signage, operating doors or surveyed engineering. Source map has two separate ground polygons; no invented above-ground connector crosses their gap. Physical device/dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/models/source.glb\",\"hash\":\"sha256:a501c74f81e51b4c3a0fb783b4a452b0dddf7cc8e7b87085ca5c62617b67f432\",\"bytes\":294696,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/u1/u17/n0754_van_gogh_museum/model.glb\",\"hash\":\"sha256:d91be38bb13518d908cba1c10259ada52db45bee6e872925421f9bb491840219\",\"bytes\":294104,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/u1/u17/n0754_van_gogh_museum/model.skyline.glb\",\"hash\":\"sha256:784948fbcd43f295baf6a3704776a4555ed106ffe4dd8377eef275153052ff37\",\"bytes\":63464,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/u1/u17/n0754_van_gogh_museum/model.district.glb\",\"hash\":\"sha256:889f0c56f46e8355a5005179d5076534e5eb272ce083cc1342ac30205b52d29b\",\"bytes\":168028,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/u1/u17/n0754_van_gogh_museum/model.street.glb\",\"hash\":\"sha256:03403bccc58b539ce1087ef7f13d5662a57dd85de79f25108e1139d2f1b30997\",\"bytes\":214040,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/u1/u17/n0754_van_gogh_museum/model.closeup.glb\",\"hash\":\"sha256:03403bccc58b539ce1087ef7f13d5662a57dd85de79f25108e1139d2f1b30997\",\"bytes\":214040,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "mapped-eight-part-heights-closed-wing-roofs-eaves-recess-soffit-and-open-under-canopy",
+        "passed": true,
+        "notes": "141 actual geometry/contact probes across six GLBs; current source/runtime hashes, shared references, LOD caps and vertex streams verified."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Approximate native exterior fit reviewed. Q224124 and named museum relation6577680/native52776564710928 own both principal volumes. Also own duplicate elliptical way441830027, eight Rietveld height/roof parts and two elliptical parts:12 map records. Anchor[4.881111111,52.358333333], heading0; internalX east-northeast along mapped street wall/internalZ south-southeast toward ellipse, baked into native east/south coordinates. Existing201x201/6m terrain; uncovered east entrance approach fixes datum4.490051119627603m, working floor0.2m above provider. Boundary grades-0.690..+0.469m leave a modest foundation/slight uphill burial. Ground-only1mm snapped rings normalized to simple polygons; ownership remains1micrometer. Only occupied floors cut ground: original gap and ground beneath3m roof canopy retained. Preserve3,799 resident/4,602 wider independent buildings, including every Stedelijk/Moco record, original roads and295,370.976680m² water. Failure keeps3,811 originals; every LOD unload restores ground/water and zero live geometry. Controlled native fixture selects this complete asset; exact sunken entrance, paving, basement passage and accessibility remain approximate."
+    },
+    "inputHash": "sha256:4e4b287820632487146d1b25e8649bc9b63d19d96b1afad2518793bae5858f35",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:4e4b287820632487146d1b25e8649bc9b63d19d96b1afad2518793bae5858f35",
+      "reviewedOn": "2026-10-22",
+      "method": "Actually inspected all48 current frames in six labeled contact sheets and the native Museumplein/street/curved-entry views at full resolution. Three ordinary photographs and standard PMTiles/Mapzen guided one continuous author/inspect/fix pass. Normalized a ground-only mask degeneracy after1mm quantization, refined cladding/frosted-glass contrast and moved the street camera to expose the glazed stacks.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/preview.png",
+          "hash": "sha256:a4b46769eece943e664812fb4a26101a83313248ac7b1f3c049b6d0b892da4e7"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/turntable/angle_0.png",
+          "hash": "sha256:9ed7814a216fa631eef04a273ece3c8036fc233846e63507ac6355528b7a0e41"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/turntable/angle_1.png",
+          "hash": "sha256:8eede7caddc25303618cd6fee2e74b9b866cb2d918736cca2061b2277e04430b"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/turntable/angle_2.png",
+          "hash": "sha256:1fc85bcc3b4fb45815bc29a30cc8af30da56c8a9d03d6c0aec0103a2222ebef2"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/turntable/angle_3.png",
+          "hash": "sha256:fcff249ad1609ac99468a8451cb29a6732f94d1b692ed8404b99bb1e86c971c9"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/museumplein-stepped-main-block-and-curved-wing.png",
+          "hash": "sha256:d0c491753edd93a4bbbac26a39a27b0896d990741be8ea8ca0deef9e6a0a8028"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/street-brick-front-frosted-atrium-and-canopy.png",
+          "hash": "sha256:57b69f1c56f0d148318c70f561d18f28c6e923bedf2af264e6c2cbc4e54dad80"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/glazed-curved-entrance-roof-and-recess.png",
+          "hash": "sha256:c311adfb159f9a5b501baa4fb03b726a6b607c6d979569551ff4a6420d41402f"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/shared/angle-0.png",
+          "hash": "sha256:35ce48ad25f41893ca53aedb44a78fdbf93a47d785174638e9e55714ffecbc07"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/shared/angle-1.png",
+          "hash": "sha256:a09f97275646aa773cb887abb9ad3d8816d4776dc05bf52988d1ed7cd878bb4b"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/shared/angle-2.png",
+          "hash": "sha256:2fe042c0ef02f6b728e4fe98af4549a0efc1eea2429a3f9743f57d3284e93cb1"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/shared/angle-3.png",
+          "hash": "sha256:8c707cc4991549285ca185a40694fcbde151ec763de8bbb4efa49d417e3699b0"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/shared/museumplein-stepped-main-block-and-curved-wing.png",
+          "hash": "sha256:964baea4cb3bf3957d74cbf66b7830773985b98e604ea8ffd43a47329273728f"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/shared/street-brick-front-frosted-atrium-and-canopy.png",
+          "hash": "sha256:093892cdb97fb868a83b91927e82a8b1d56ef99b1ed96e3c4205e3a640ede09e"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/shared/glazed-curved-entrance-roof-and-recess.png",
+          "hash": "sha256:32794e834282be3e6bf990b95fe719bafae472b7dd38004c125c1eea3daa297c"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/shots/shared/placement.png",
+          "hash": "sha256:b77db3e7d6bf9d16299359af2fe1ba207dc381037edac93218d361b23cb74e1d"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/street-noon-economy.png",
+          "hash": "sha256:4ec609df8be7b9e716782b694ae7e5e2016b3c6aa9a0642fe8725d8d19a0df84"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/street-noon-high.png",
+          "hash": "sha256:8a2d7b13e5131b014495a192ab8ce4f820634714bad12d9eac7208a87d3e2898"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/street-late-economy.png",
+          "hash": "sha256:8a9ba38e32208855a9dffdd0e36d200bb5c7d4ac042f95dbfa6e0cacb8e269fa"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/street-late-high.png",
+          "hash": "sha256:62e1f6c7e3c019e630d3f1895f686f647793dfcbecc045cc8e345e77af39f70c"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/block-noon-economy.png",
+          "hash": "sha256:be39dd7337e5a487e274331f461fa79280f712e0a0fd7680615d516526e0265b"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/block-noon-high.png",
+          "hash": "sha256:5ac70ef79d34a582bc94a2fd5d916c4a59bb920d472680dda82bd826b648a36c"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/block-late-economy.png",
+          "hash": "sha256:44097e96cf5c9b30678c5a280ebaa3fd3e3d49fddd784103346fb0a5c0251a91"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/block-late-high.png",
+          "hash": "sha256:61c2551505c4566fe4b584628605013d9fecdb4570336c995b98fc013b318a73"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:c78f3ae0a823842469b52326ca0b245342563bbc76e77d3a923e89b21f0c4bc7"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:2ef94bc53208451b9140d12324e81274e3ea11217d03ecb2187c1ccd987508a8"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:2a406f0a8f7194236a6d7d23a0772d8e92460cb59ab87deacbbd810b42690e43"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/skyline-late-high.png",
+          "hash": "sha256:be47eefe02323c15c6bce18920774f3a459a72055696ac3f77095260c77e28da"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/silhouette.png",
+          "hash": "sha256:0ed6286685fab86699336225ac32775a756bbf7393ed7b875ca36f839d0f67a9"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/museumplein-stepped-main-block-and-curved-wing.png",
+          "hash": "sha256:6948f12496e6ace5fd9ada8ee4aba40e25b9bda35fbbb9b236940fdbb831fa14"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/street-brick-front-frosted-atrium-and-canopy.png",
+          "hash": "sha256:dceccc4535f30b19b781fe42ab93894b327fee09dfba6cbc7a9c13912a139331"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/glazed-curved-entrance-roof-and-recess.png",
+          "hash": "sha256:195b24afdabd94fd21e7194e8a56ec7a8b0f2d1d16cc4327ebb2746c1110fa3b"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/vangogh-skyline.png",
+          "hash": "sha256:e7de9a7f1029736ef08a30ad9d42b9805b5a4d8c3fdbb61aa156b36615f12da1"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/vangogh-district.png",
+          "hash": "sha256:c621cae6d2559dd377e3d93eb8c3e9b58e54a6322752ba68922ca2e625334fd6"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/vangogh-street.png",
+          "hash": "sha256:e74d30b7789a61db52af242774c5a6a6cd0445394b11367668efcb318a049802"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/vangogh-closeup.png",
+          "hash": "sha256:08f349eff660897297902fd3471f7fd13c9127d5e877a5243f46ed72b8f0f9d7"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/transition-skyline.png",
+          "hash": "sha256:6e1c31ebf9b45ff111e0a72dde7900812edf8eeaed48507670227acd1691b004"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/transition-district.png",
+          "hash": "sha256:5ac70ef79d34a582bc94a2fd5d916c4a59bb920d472680dda82bd826b648a36c"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/transition-street.png",
+          "hash": "sha256:c694a91db29b4061ff1578b5cdc57a912cca20b7eeeed3a954e3a2d29279d0af"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/medium-fi/transition-closeup.png",
+          "hash": "sha256:226ef4728c73ea885820c21565146c5260a741cea1207dd67c888cc2de93a201"
+        },
+        {
+          "path": ".artifacts/vangogh-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:f3e03b8534aea7c266ec8dfafe97edcb7c3163eb9e478004ac3eecc3e472c538"
+        },
+        {
+          "path": ".artifacts/vangogh-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:56c119aba3e636cce92d0a75c03c433050cb73b7d89e9a15ce579e1ffc40495a"
+        },
+        {
+          "path": ".artifacts/vangogh-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:cb89bd9b27b12ba0b442b4d44982bb91684a5b2a727a969a36a86efb2844d885"
+        },
+        {
+          "path": ".artifacts/vangogh-integration/shots/reframed-closeup-whole-site.png",
+          "hash": "sha256:cb89bd9b27b12ba0b442b4d44982bb91684a5b2a727a969a36a86efb2844d885"
+        },
+        {
+          "path": ".artifacts/vangogh-integration/shots/reframed-closeup-museumplein-stepped-main-block-and-curved-wing.png",
+          "hash": "sha256:6164167962ddc21e1e49e03d1d928fc9c743282262a63e89117dd24c9147d980"
+        },
+        {
+          "path": ".artifacts/vangogh-integration/shots/reframed-closeup-street-brick-front-frosted-atrium-and-canopy.png",
+          "hash": "sha256:04cb20a1da0dc3efb5468934b993eca4fce5ddaa7d1c159b6c6f810dc406a4c0"
+        },
+        {
+          "path": ".artifacts/vangogh-integration/shots/reframed-closeup-glazed-curved-entrance-roof-and-recess.png",
+          "hash": "sha256:05f2f5bf09e737de10d4e111cf939a21113b42b7d352ee4f823e0159efe26950"
+        },
+        {
+          "path": ".artifacts/vangogh-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:05f354e8bf1c77a14b1ae6d70aa18d97261e683df4a7baa5454c490dd09bbe5e"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:4e4b287820632487146d1b25e8649bc9b63d19d96b1afad2518793bae5858f35",
+      "sourceHash": "sha256:a501c74f81e51b4c3a0fb783b4a452b0dddf7cc8e7b87085ca5c62617b67f432",
+      "runtimeHash": "sha256:d91be38bb13518d908cba1c10259ada52db45bee6e872925421f9bb491840219",
+      "files": {
+        "content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/models/source.glb": "sha256:a501c74f81e51b4c3a0fb783b4a452b0dddf7cc8e7b87085ca5c62617b67f432",
+        "content/worldgen/assets/places/u1/u17/n0754_van_gogh_museum/model.glb": "sha256:d91be38bb13518d908cba1c10259ada52db45bee6e872925421f9bb491840219",
+        "content/worldgen/assets/places/u1/u17/n0754_van_gogh_museum/model.skyline.glb": "sha256:784948fbcd43f295baf6a3704776a4555ed106ffe4dd8377eef275153052ff37",
+        "content/worldgen/assets/places/u1/u17/n0754_van_gogh_museum/model.district.glb": "sha256:889f0c56f46e8355a5005179d5076534e5eb272ce083cc1342ac30205b52d29b",
+        "content/worldgen/assets/places/u1/u17/n0754_van_gogh_museum/model.street.glb": "sha256:03403bccc58b539ce1087ef7f13d5662a57dd85de79f25108e1139d2f1b30997",
+        "content/worldgen/assets/places/u1/u17/n0754_van_gogh_museum/model.closeup.glb": "sha256:03403bccc58b539ce1087ef7f13d5662a57dd85de79f25108e1139d2f1b30997"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        52776564710928,
+        35184813918859,
+        35185126413510,
+        35185126413511,
+        35185126413512,
+        35185126413513,
+        35185126413514,
+        35185126413515,
+        35185126413516,
+        35185126413517,
+        35185602490073,
+        35185602490074
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4207,
+            2692
+          ],
+          "id": 35184397813710,
+          "owned": false,
+          "covered": 0.00896868822658793,
+          "area": 451537.0052410208,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            4207,
+            2692
+          ],
+          "id": 35184397813720,
+          "owned": false,
+          "covered": 0.0057812519616509675,
+          "area": 265081.66280544974,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8414,
+            5385
+          ],
+          "id": 35184416540200,
+          "owned": false,
+          "covered": 0.04396389751434885,
+          "area": 92368.65230066501,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8414,
+            5385
+          ],
+          "id": 35184416540320,
+          "owned": false,
+          "covered": 0.16149413855809702,
+          "area": 9534.599810681755,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8414,
+            5385
+          ],
+          "id": 35184889879870,
+          "owned": false,
+          "covered": 0.566473575821902,
+          "area": 1402.4300587029356,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8414,
+            5385
+          ],
+          "id": 35185121518810,
+          "owned": false,
+          "covered": 0.017184131086880022,
+          "area": 9466.16324944494,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8414,
+            5385
+          ],
+          "id": 35185121894580,
+          "owned": false,
+          "covered": 0.20656426059496583,
+          "area": 10331.413919189574,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8414,
+            5385
+          ],
+          "id": 35185121894580,
+          "owned": false,
+          "covered": 0.8751161716257166,
+          "area": 1098.1081719400968,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16828,
+            10770
+          ],
+          "id": 35184813918859,
+          "owned": true,
+          "covered": 0.9999999901755396,
+          "area": 1570.191387215906,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16828,
+            10770
+          ],
+          "id": 35185126413510,
+          "owned": true,
+          "covered": 0.9999999784207408,
+          "area": 22.145524662493216,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16828,
+            10770
+          ],
+          "id": 35185126413511,
+          "owned": true,
+          "covered": 0.9999999586848204,
+          "area": 326.74876512507336,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16828,
+            10770
+          ],
+          "id": 35185126413512,
+          "owned": true,
+          "covered": 1.0000000059218515,
+          "area": 152.44147774851416,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16828,
+            10770
+          ],
+          "id": 35185126413513,
+          "owned": true,
+          "covered": 1.000000005353463,
+          "area": 341.9590816194026,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16828,
+            10770
+          ],
+          "id": 35185126413514,
+          "owned": true,
+          "covered": 1.0000000163438296,
+          "area": 594.2398827083041,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16828,
+            10770
+          ],
+          "id": 35185126413515,
+          "owned": true,
+          "covered": 0.9999999592359925,
+          "area": 163.1000943719367,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16828,
+            10770
+          ],
+          "id": 35185126413516,
+          "owned": true,
+          "covered": 0.9999999758124749,
+          "area": 767.8295193051127,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16828,
+            10770
+          ],
+          "id": 35185126413517,
+          "owned": true,
+          "covered": 0.9999999888752474,
+          "area": 186.09335371504451,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16828,
+            10770
+          ],
+          "id": 35185602490073,
+          "owned": true,
+          "covered": 0.9999999858852371,
+          "area": 641.1969240426782,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16828,
+            10770
+          ],
+          "id": 35185602490074,
+          "owned": true,
+          "covered": 1.00000000453152,
+          "area": 930.4409337708852,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16828,
+            10770
+          ],
+          "id": 52776564710928,
+          "owned": true,
+          "covered": 0.9999999932387913,
+          "area": 4102.354297122011,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 3799,
+      "widerIndependent": 4602,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 7.79737914680112e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 3811,
+          "independentBuildings": 3799,
+          "remainingBuildings": 3799,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0754_van_gogh_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -3.498251119627603,
+            "max": 5.809748880372396
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 295370.9766800105,
+          "remainingWaterArea": 295370.9766800105,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:f3e03b8534aea7c266ec8dfafe97edcb7c3163eb9e478004ac3eecc3e472c538",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 13,
+              "triangles": 608425
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                128.31322120059463,
+                66,
+                58.28136293127739
+              ],
+              "lookAt": [
+                10.101957875782581,
+                6,
+                13.036504404015451
+              ],
+              "fov": 51
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 7.79737914680112e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 3811,
+          "independentBuildings": 3799,
+          "remainingBuildings": 3799,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0754_van_gogh_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -3.498251119627603,
+            "max": 5.809748880372396
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 295370.9766800105,
+          "remainingWaterArea": 295370.9766800105,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:56c119aba3e636cce92d0a75c03c433050cb73b7d89e9a15ce579e1ffc40495a",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 609641
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                128.31322120059463,
+                66,
+                58.28136293127739
+              ],
+              "lookAt": [
+                10.101957875782581,
+                6,
+                13.036504404015451
+              ],
+              "fov": 51
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 7.79737914680112e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 3811,
+          "independentBuildings": 3799,
+          "remainingBuildings": 3799,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0754_van_gogh_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -3.498251119627603,
+            "max": 5.809748880372396
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 295370.9766800105,
+          "remainingWaterArea": 295370.9766800105,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:cb89bd9b27b12ba0b442b4d44982bb91684a5b2a727a969a36a86efb2844d885",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 610151
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                128.31322120059463,
+                66,
+                58.28136293127739
+              ],
+              "lookAt": [
+                10.101957875782581,
+                6,
+                13.036504404015451
+              ],
+              "fov": 51
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 7.79737914680112e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 3811,
+          "independentBuildings": 3799,
+          "remainingBuildings": 3799,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0754_van_gogh_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -3.498251119627603,
+            "max": 5.809748880372396
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 295370.9766800105,
+          "remainingWaterArea": 295370.9766800105,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/reframed-closeup-whole-site.png",
+            "hash": "sha256:cb89bd9b27b12ba0b442b4d44982bb91684a5b2a727a969a36a86efb2844d885",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 610151
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                128.31322120059463,
+                66,
+                58.28136293127739
+              ],
+              "lookAt": [
+                10.101957875782581,
+                6,
+                13.036504404015451
+              ],
+              "fov": 51
+            }
+          },
+          {
+            "path": "shots/site-integration/reframed-closeup-museumplein-stepped-main-block-and-curved-wing.png",
+            "hash": "sha256:6164167962ddc21e1e49e03d1d928fc9c743282262a63e89117dd24c9147d980",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 610151
+            },
+            "camera": {
+              "name": "museumplein-stepped-main-block-and-curved-wing",
+              "position": [
+                99.03313134950362,
+                17,
+                16.53598787832047
+              ],
+              "lookAt": [
+                7.576468406836936,
+                10,
+                9.77737830301159
+              ],
+              "fov": 58
+            }
+          },
+          {
+            "path": "shots/site-integration/reframed-closeup-street-brick-front-frosted-atrium-and-canopy.png",
+            "hash": "sha256:04cb20a1da0dc3efb5468934b993eca4fce5ddaa7d1c159b6c6f810dc406a4c0",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 610151
+            },
+            "camera": {
+              "name": "street-brick-front-frosted-atrium-and-canopy",
+              "position": [
+                -53.74302059446808,
+                17,
+                -17.87981368422444
+              ],
+              "lookAt": [
+                -6.589654602276417,
+                10,
+                -2.5644594406418766
+              ],
+              "fov": 58
+            }
+          },
+          {
+            "path": "shots/site-integration/reframed-closeup-glazed-curved-entrance-roof-and-recess.png",
+            "hash": "sha256:05f2f5bf09e737de10d4e111cf939a21113b42b7d352ee4f823e0159efe26950",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 610151
+            },
+            "camera": {
+              "name": "glazed-curved-entrance-roof-and-recess",
+              "position": [
+                67.72736883134782,
+                12,
+                24.83955537409185
+              ],
+              "lookAt": [
+                31.03951025940596,
+                5,
+                33.32489764209684
+              ],
+              "fov": 58
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 3811,
+          "independentBuildings": 3799,
+          "remainingBuildings": 3811,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184813918859,
+              "area": 1570.191387215849
+            },
+            {
+              "id": 35185126413510,
+              "area": 22.14552466248465
+            },
+            {
+              "id": 35185126413511,
+              "area": 326.7487651249601
+            },
+            {
+              "id": 35185126413512,
+              "area": 152.44147774849503
+            },
+            {
+              "id": 35185126413513,
+              "area": 341.95908161941844
+            },
+            {
+              "id": 35185126413514,
+              "area": 594.2398827083717
+            },
+            {
+              "id": 35185126413515,
+              "area": 163.10009437193963
+            },
+            {
+              "id": 35185126413516,
+              "area": 767.8295193051343
+            },
+            {
+              "id": 35185126413517,
+              "area": 186.09335371505776
+            },
+            {
+              "id": 35185602490073,
+              "area": 641.1969240427151
+            },
+            {
+              "id": 35185602490074,
+              "area": 930.440933770833
+            },
+            {
+              "id": 52776564710928,
+              "area": 4102.354297121975
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0754_van_gogh_museum"
+          ],
+          "rawTerrainRange": {
+            "min": -3.498251119627603,
+            "max": 5.809748880372396
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 295370.9766800105,
+          "remainingWaterArea": 295370.9766800105,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:05f354e8bf1c77a14b1ae6d70aa18d97261e683df4a7baa5454c490dd09bbe5e",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 607040
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                128.31322120059463,
+                66,
+                58.28136293127739
+              ],
+              "lookAt": [
+                10.101957875782581,
+                6,
+                13.036504404015451
+              ],
+              "fov": 51
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Full mapped Van Gogh Museum exterior: stepped Rietveld gray-beige brick volumes and low glazed perimeter, two tall white-framed dark/frosted glazed stacks, light roof strips/clerestories, Kurokawa stone semicircular exhibition volume with sloping overhanging metal roof/clerestory, and northern curved glazed entrance with a real recessed doorway. One parent multipolygon owns both principal volumes; retain the intervening original ground and every independent Stedelijk/Moco building. Exterior only: no art posters, signs, furnished galleries, unseen basement rooms or connecting passages.",
+    "Q224124 and named museum POI on relation6577680/native52776564710928 identify the complete two-polygon museum. Include the duplicate elliptical way441830027 and eight Rietveld height parts/one roof canopy plus two ellipse height parts:12 owned map records total. Own candidate anchor[4.881111111,52.358333333]. InternalX follows the mapped east-northeast street wall; internalZ south-southeast toward the ellipse. Heading0, orientation baked into native east/south coordinates. Main height parts3/5/6/12/16/18/20m and wing8/10m are map tags, unqualified. Exact mapped part outlines, separated volumes and signed axes guide fit; the museum is one runtime asset to own the complete parent footprint.",
+    "Mapped height parts are unqualified: main5/6/12/16/18/20m and small3m canopy, wing8/10m. Reconstruct brick main blocks, glazed16/20m stacks, thin roof parapets/limited schematic rooflights, Kurokawa wall7.8m/clerestory/sloping roof about10m, northern glazed entrance from5.6 to8m. Three ordinary photos guide colors, white frame grids and curved facade/roof. Hidden elevations, exact panel/frame counts, roof profile/fixtures and below-ground access are simplified. Existing brick_longformat/limestone/painted-metal/storefront graphs; frosted glass/roof membrane use painted-metal substitutes. No private textures or copied imagery.",
+    "Standard Protomaps20261020 plus MapzenTerrarium original201x201/6m grid. Uncovered entrance approach fixes datum4.490051119627603m; working floor0.2m above provider. Closed occupied-footprint foundations follow minimum original boundary grade. The isolated roof canopy owns/replaces its mapped roof part but keeps the original ground below it. Original gap between principal volumes, roads/water and all independent neighbors retained. Approximate native exterior fit reviewed on original terrain; boundary grades-0.690..+0.469m leave a modest foundation/slight uphill burial. Exact sunken entrance, historic paving, basement passage and accessibility remain unverified. No bespoke terrain research or broad flattening.",
+    "Medium-fi exterior of the complete mapped main block, elliptical wing and curved entrance. Main3/5/6/12/16/18/20m and wing8/10m tags unqualified; panels/glass role assignment and frame inventory are photo-led. Working Kurokawa wall7.8m, sloping roof around10m, glazed entrance5.6..8m and four small upper rooflights are reconstructed. Frosted roof/glass are opaque shared-material substitutes; stone panel joints are broad approximations. Skyline reduces curved halves and flattens the small entry; district/street/closeup preserve its real recess/soffit. Hidden elevations, rooflight count, canopy structure and exact underground access simplified. No furnished galleries, paintings, art posters, logos/signage, operating doors or surveyed engineering. Source map has two separate ground polygons; no invented above-ground connector crosses their gap. Physical device/dense-city timings remain pending.",
+    "Approximate native exterior fit reviewed. Q224124 and named museum relation6577680/native52776564710928 own both principal volumes. Also own duplicate elliptical way441830027, eight Rietveld height/roof parts and two elliptical parts:12 map records. Anchor[4.881111111,52.358333333], heading0; internalX east-northeast along mapped street wall/internalZ south-southeast toward ellipse, baked into native east/south coordinates. Existing201x201/6m terrain; uncovered east entrance approach fixes datum4.490051119627603m, working floor0.2m above provider. Boundary grades-0.690..+0.469m leave a modest foundation/slight uphill burial. Ground-only1mm snapped rings normalized to simple polygons; ownership remains1micrometer. Only occupied floors cut ground: original gap and ground beneath3m roof canopy retained. Preserve3,799 resident/4,602 wider independent buildings, including every Stedelijk/Moco record, original roads and295,370.976680m² water. Failure keeps3,811 originals; every LOD unload restores ground/water and zero live geometry. Controlled native fixture selects this complete asset; exact sunken entrance, paving, basement passage and accessibility remain approximate."
+  ]
+}

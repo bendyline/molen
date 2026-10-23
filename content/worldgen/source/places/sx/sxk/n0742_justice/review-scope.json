@@ -1,0 +1,375 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "stone_ashlar",
+      "slot": "wall"
+    },
+    "trim": {
+      "graph": "stone_marble",
+      "slot": "trim"
+    },
+    "column": {
+      "graph": "stone_marble",
+      "slot": "trim"
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof"
+    },
+    "glass": {
+      "graph": "window_grid",
+      "slot": "window"
+    },
+    "rail": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "gold": {
+      "graph": "metal_bronze_cast",
+      "slot": "trim"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      73.9542631837963,
+      32,
+      -15.708817808536423
+    ],
+    "lookAt": [
+      0,
+      19,
+      0
+    ],
+    "fov": 42
+  },
+  "qaCameras": [
+    {
+      "name": "stone-shaft-balcony-and-steep-spire",
+      "position": [
+        58.675820795019156,
+        26,
+        27.966909983600225
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "arched-belvedere-paired-columns-and-corbels",
+      "position": [
+        26.743671034277305,
+        26,
+        -4.977555585863101
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "curved-pediments-closed-lead-pyramid-and-finial",
+      "position": [
+        -12.54508596568027,
+        36,
+        -24.81170727930047
+      ],
+      "lookAt": [
+        0,
+        31,
+        0
+      ],
+      "fov": 60
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        73.9542631837963,
+        32,
+        -15.708817808536423
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 42,
+      "name": "justice-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        73.9542631837963,
+        32,
+        -15.708817808536423
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 42,
+      "name": "justice-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        73.9542631837963,
+        32,
+        -15.708817808536423
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 42,
+      "name": "justice-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        73.9542631837963,
+        32,
+        -15.708817808536423
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 42,
+      "name": "justice-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 3.5,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/topkapi-justice-model.mjs",
+    "export": "buildTopkapiJusticeSkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTopkapiJusticeDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_ashlar",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "rail": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          }
+        }
+      },
+      "street": {
+        "export": "buildTopkapiJusticeStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_ashlar",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "rail": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTopkapiJusticeCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_ashlar",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "column": {
+            "graph": "stone_marble",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "rail": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "gold": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      28.98334041237831,
+      41.0124576059833
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Existing standard Protomaps20261020/Mapzen PMTiles retained. Reuse the already inspected Council Hall front-courtyard terrain reference at[28.98360076577049,41.01245133743805], with modelHeight0 for both buildings. This keeps adjoining structures on the same actual host-provider datum rather than sampling the tower roof. Foundation reaches the original tower-footprint minimum; only its occupied parent ground opens. Council Hall and its portico, all other independent buildings, original terrain samples, roads and water are retained. Native approximate exterior contact and signed facing were inspected2026-10-21 beside the completed Council Hall and accepted. Both use exactly the same host-provider reference; the completed Council geometry/source was retained unchanged. Exact hidden lower access, historical floor levels and terrain accuracy remain outside scope.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 5.33
+    },
+    "bounds": [
+      28.983255349643862,
+      41.01239341955962,
+      28.98342547511276,
+      41.01252179240698
+    ],
+    "terrainReference": {
+      "anchor": [
+        28.98360076577049,
+        41.01245133743805
+      ],
+      "modelHeight": 0,
+      "basis": "Shared already inspected Council Hall courtyard control; nativeY0 for both buildings, independent of tower-roof samples."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -5.727695725,
+          1.90908595
+        ],
+        [
+          -1.684461925,
+          -5.72813345
+        ],
+        [
+          5.728033675,
+          -2.1341478500000006
+        ],
+        [
+          1.909423975,
+          5.72779535
+        ]
+      ],
+      "additionalOutlines": [],
+      "basis": "Existing standard Protomaps20261020/Mapzen PMTiles retained. Reuse the already inspected Council Hall front-courtyard terrain reference at[28.98360076577049,41.01245133743805], with modelHeight0 for both buildings. This keeps adjoining structures on the same actual host-provider datum rather than sampling the tower roof. Foundation reaches the original tower-footprint minimum; only its occupied parent ground opens. Council Hall and its portico, all other independent buildings, original terrain samples, roads and water are retained. Native approximate exterior contact and signed facing were inspected2026-10-21 beside the completed Council Hall and accepted. Both use exactly the same host-provider reference; the completed Council geometry/source was retained unchanged. Exact hidden lower access, historical floor levels and terrain accuracy remain outside scope."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -5.7451,
+          1.915
+        ],
+        [
+          1.915,
+          5.7452
+        ],
+        [
+          5.7451,
+          -2.1404
+        ],
+        [
+          -1.6897,
+          -5.7452
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -5.7451,
+            1.915
+          ],
+          [
+            1.915,
+            5.7452
+          ],
+          [
+            5.7451,
+            -2.1404
+          ],
+          [
+            -1.6897,
+            -5.7452
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only named Tower of Justice OSM way335402653/native building35184707491485. All other palace members, independent buildings and native paths remain unchanged."
+    },
+    "notes": "Individual Q20470393 and OSM way335402653/native35184707491485. The particular approximately8.7x8.6m quadrilateral shaft footprint fixes the anchor/scale and is distinct from the adjacent Council Hall, attached portico and Harem. Native+X east/+Z south at heading0. Internal+X follows the palace wall north-northeast; internal+Z faces the Second Courtyard east-southeast. Both ordinary photographs show the same stone shaft, high arched lookout, segmental pediments and narrow lead pyramid; the2026 image informs the current balcony glazing. Existing standard Protomaps20261020/Mapzen PMTiles retained. Reuse the already inspected Council Hall front-courtyard terrain reference at[28.98360076577049,41.01245133743805], with modelHeight0 for both buildings. This keeps adjoining structures on the same actual host-provider datum rather than sampling the tower roof. Foundation reaches the original tower-footprint minimum; only its occupied parent ground opens. Council Hall and its portico, all other independent buildings, original terrain samples, roads and water are retained. Native approximate exterior contact and signed facing were inspected2026-10-21 beside the completed Council Hall and accepted. Both use exactly the same host-provider reference; the completed Council geometry/source was retained unchanged. Exact hidden lower access, historical floor levels and terrain accuracy remain outside scope."
+  }
+}

@@ -1,4 +1,7 @@
+import type { FontLibrary } from '@bendyline/molen-materials/text';
 import type { VehicleSpec } from '@bendyline/molen-schema';
+import type { TerrainRoadSignProfile } from './road-sign-styles';
+import type { TerrainRouteShieldLibrary } from './route-shields';
 
 /** Data-only surface art direction. The 1910 preset is an interpretation, not historical data. */
 export type TerrainSurfaceStyleId = 'modern' | '1910' | 'minimal';
@@ -25,6 +28,8 @@ export interface TerrainSurfaceStyle {
   crossings: boolean;
   streetlights: boolean;
   trafficSignals: boolean;
+  /** Physical road signs. Optional on custom styles for source compatibility. */
+  roadSigns?: boolean;
   parkingStalls: boolean;
   parkedCars: boolean;
 }
@@ -50,6 +55,7 @@ const MODERN: Readonly<TerrainSurfaceStyle> = Object.freeze({
   crossings: true,
   streetlights: true,
   trafficSignals: true,
+  roadSigns: true,
   parkingStalls: true,
   parkedCars: true,
 });
@@ -75,6 +81,7 @@ export const TERRAIN_SURFACE_STYLES: Readonly<
     crossings: false,
     streetlights: false,
     trafficSignals: false,
+    roadSigns: false,
     parkingStalls: false,
     parkedCars: false,
   }),
@@ -87,6 +94,7 @@ export const TERRAIN_SURFACE_STYLES: Readonly<
     crossings: false,
     streetlights: false,
     trafficSignals: false,
+    roadSigns: false,
     parkingStalls: false,
     parkedCars: false,
   }),
@@ -102,6 +110,9 @@ export interface TerrainSurfaceDetails {
   crossings?: boolean;
   streetlights?: boolean;
   trafficSignals?: boolean;
+  roadSigns?: boolean;
+  /** Infer decorative stop controls where no mapped controls exist. Defaults to the sign profile. */
+  inferStopSigns?: boolean;
   parkingStalls?: boolean;
   parkedCars?: boolean;
   /** Fraction of valid parking bays occupied, [0,1], default 0.7. */
@@ -123,9 +134,21 @@ export interface TerrainSurfaceDetails {
 export interface TerrainParkedVehicle {
   id: string;
   spec: VehicleSpec;
+  /** Relative regional prevalence (default 1); zero excludes a vehicle. */
+  weight?: number;
+  /** Optional model-specific paint palette. */
+  colors?: readonly string[];
 }
 
 export interface TerrainSurfaceOptions {
+  /** Host-loaded font content, shared by direct rendering and workers. No font means unlettered panels. */
+  fonts?: FontLibrary;
+  /** Host-loaded vector route artwork, shared with workers once per change. */
+  routeShields?: TerrainRouteShieldLibrary;
+  /** Face id or semantic role; defaults to the library's highway role. */
+  signFont?: string;
+  /** Country-specific appearance and conservative stop inference; data-only for workers. */
+  signProfile?: Readonly<TerrainRoadSignProfile>;
   style?: TerrainSurfaceStyleId | Readonly<TerrainSurfaceStyle>;
   details?: TerrainSurfaceDetails;
 }
@@ -143,6 +166,7 @@ export function resolveTerrainSurfaceStyle(
     'crossings',
     'streetlights',
     'trafficSignals',
+    'roadSigns',
     'parkingStalls',
     'parkedCars',
   ] as const) {

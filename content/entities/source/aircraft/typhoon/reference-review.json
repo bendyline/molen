@@ -1,0 +1,370 @@
+{
+  "variant": "Single-seat Typhoon clean airframe,three-display cockpit;generic non-tactical simulator display pages",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Eurofighter_Typhoon_line_drawing.svg",
+      "title": "Eurofighter Typhoon four-view illustration,2010",
+      "author": "Inductiveload",
+      "license": "Public domain author dedication",
+      "scope": "General arrangement only,not manufacturer engineering data. Red weapons and external pylons are excluded. Drawing dimensions disagree by about2% between length and span;manufacturer dimensions govern."
+    },
+    {
+      "url": "https://www.eurofighter.com/",
+      "title": "Eurofighter aircraft dimensions",
+      "author": "Eurofighter GmbH",
+      "license": "Copyright manufacturer;factual dimensions only",
+      "scope": "15.96m length and10.95m span."
+    },
+    {
+      "url": "https://www.raf.mod.uk/aircraft/current-aircraft/typhoon-fgr41/",
+      "title": "Typhoon FGR4",
+      "author": "Royal Air Force",
+      "license": "Factual reference",
+      "scope": "Independent15.96m length and5.29m height."
+    },
+    {
+      "url": "https://www.eurofighter.com/the-aircraft/features",
+      "title": "Airframe and cockpit features",
+      "author": "Eurofighter GmbH",
+      "license": "Manufacturer copyright;reference photographs used for local study only",
+      "scope": "features-video_125.jpg is an in-flight cockpit view;features-video_026.jpg supports the top planform. Three MHDDs,wide HUD,center stick,Mk16A seat and two EJ200 engines."
+    },
+    {
+      "url": "https://www.baesystems.com/en-uk/product/medulla",
+      "title": "Medulla:Typhoon mission system,2025",
+      "author": "BAE Systems",
+      "license": "Copyright manufacturer;factual dimensions only",
+      "scope": "Existing three6x6inch displays;proposed12x22inch replacement is not this model."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Two_Typhoon_FGR4_aircraft,_flown_by_29_(R)_Squadron_from_RAF_Coningsby_MOD_45164133.jpg",
+      "title": "Two Typhoon FGR4 aircraft,8June2018",
+      "author": "Sgt Paul Oldfield/MOD",
+      "license": "Open Government Licence;Commons statesv1.0,embeddedmetadata referencesv2.0;Crown copyright2018",
+      "scope": "Actual canard,canopy,intake,exhaust and fin proportions. No external stores reproduced."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Eurofighter_Cockpit.jpg",
+      "title": "Eurofighter cockpit on static display,27October2012",
+      "author": "tribp/Flickr",
+      "license": "CC BY2.0;Commons Flickr license review5June2013;https://creativecommons.org/licenses/by/2.0/",
+      "scope": "Distinct photographer image of three-display cockpit. Right MHDD square calibrates local panel rectification. Static display and unspecified aircraft block;not accepted as production systems documentation."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:RAF_MOD_45148993.jpg",
+      "title": "Typhoon in-flight cockpit,3November2006",
+      "author": "SAC Mark Dixon/MOD",
+      "license": "Open Government Licencev1.0;Crown copyright",
+      "scope": "Canopy inner bow and fasteners,mirrors,headrest and coaming. Panel mostly hidden,not a panel scale reference."
+    }
+  ],
+  "excludedReferences": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Eurofighter_cockpit_int.jpg",
+      "reason": "Credits Jrdemus1/CC BY-SA but pixels contain Andre Garcez/Airliners.net copyright. Not verified open-license evidence."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Eurofighter_Typhoon_Cockpit.png",
+      "reason": "Claims Adronadam own work/CC BY-SA but visual comparison shows a crop of the same Andre Garcez/Airliners.net image. Not used as licensed overlay evidence."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      3.12,
+      4.2
+    ],
+    "lookAt": [
+      0,
+      2.42,
+      5.35
+    ],
+    "fov": 82
+  },
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -2.61
+    ],
+    "viewHeight": 1.05,
+    "cameraHeight": 4.7
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 0,
+    "flapPosition": 0,
+    "loadFactor": 1,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "exteriorState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 0,
+    "flapPosition": 0,
+    "loadFactor": 1,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/typhoon-three-view.png",
+      "crop": {
+        "left": 900,
+        "top": 28,
+        "width": 1072,
+        "height": 322
+      },
+      "referenceAnchor": [
+        905,
+        392.02
+      ],
+      "modelAnchor": [
+        -9,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 1056,
+        "meters": 15.96,
+        "description": "Nose to rearmost fin15.96m;5.29m height sets ground datum. Detached wheel cartoons are not valid gear geometry."
+      },
+      "scope": "Body,canopy,chin intake,fin and exhaust profile;gear-up model."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/typhoon-top-clean.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 750,
+        "height": 1070
+      },
+      "referenceAnchor": [
+        373,
+        1059
+      ],
+      "modelAnchor": [
+        0,
+        9
+      ],
+      "scaleControls": {
+        "pixels": 1056,
+        "meters": 15.96,
+        "description": "Overall15.96m length,independent10.95m span retained despite drawing ratio discrepancy."
+      },
+      "scope": "Canards,wing/body/fin outline and DASS tip fairings;external stores intentionally excluded."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/typhoon-front-clean.png",
+      "crop": {
+        "left": 238,
+        "top": 741,
+        "width": 751,
+        "height": 311
+      },
+      "referenceAnchor": [
+        614,
+        1107.1
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 740,
+        "meters": 10.95,
+        "description": "Independent10.95mspan;5.29mheightplacesgrounddatum. Detached wheel cartoons excluded."
+      },
+      "scope": "Finheight,intake,body,canopy and flat wing. Original drawingnonuniform dimensions not corrected by distorting model."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/typhoon-panel-rectified.png",
+      "crop": {
+        "left": 110,
+        "top": 280,
+        "width": 1660,
+        "height": 840
+      },
+      "referenceAnchor": [
+        1450,
+        750
+      ],
+      "modelAnchor": [
+        0.218,
+        -2.574
+      ],
+      "scaleControls": {
+        "pixels": 300,
+        "meters": 0.1524,
+        "description": "BAE6x6in active right-display area after a four-corner planar perspective transform."
+      },
+      "edgeMode": "photo",
+      "scope": "Right MHDD area and nearby standby/body panel. Other screens offer approximate spacing checks;wide-angle lens,oblique view and projecting HUD prevent a precise whole-cockpit fit."
+    }
+  ],
+  "referencePreparation": {
+    "photoResize": [
+      1911,
+      1312
+    ],
+    "sourceCorners": [
+      [
+        1515,
+        498
+      ],
+      [
+        1635,
+        549
+      ],
+      [
+        1600,
+        695
+      ],
+      [
+        1477,
+        638
+      ]
+    ],
+    "targetCorners": [
+      [
+        1300,
+        600
+      ],
+      [
+        1600,
+        600
+      ],
+      [
+        1600,
+        900
+      ],
+      [
+        1300,
+        900
+      ]
+    ],
+    "outputSize": [
+      2000,
+      1500
+    ],
+    "method": "One planar projective transform,scale set by known6in display width;source pixel picks approximate. No model deformation. Local transformed photo retains CC BY2.0 attribution;not packaged in model.",
+    "diagramMasks": "White rectangles remove neighboring orthographic-view fragments only;aircraft geometry and external stores in target views preserved."
+  },
+  "reviewNotes": {
+    "corrections": [
+      "Replaced the shared fighter shape with a dedicated single-seat Typhoon: measured pointed radome, hollow canopy, split chin intake, narrow dorsal spine, delta wing, close-coupled canards, single swept fin and two open EJ200 exhausts. No external stores or pylons.",
+      "Uniform side, top and front overlays corrected the wing trailing edge and fin root. Close views narrowed the upper engine shoulders, filled a forebody join and conformed access-panel borders to the actual body skin. Added selected flush fasteners, DASS wingtip fairings, PIRATE housing and subdued roundels.",
+      "Rebuilt the three equal 6in MHDD housings, offset lower center display, projecting head-up control panel, wide HUD combiner, left keypad, upper-right standby, center stick, twin throttle, pedals, console plates and Mk16A-style seat. Added lower electrical panel, sloping front consoles, ventilation outlets, harness and guarded selectors.",
+      "Right-display photo rectification uses BAE dimensions. Checked remaining panel spacing approximately against the distinct tribp photograph and manufacturer in-flight cockpit image. Two other Commons cockpit images were excluded after discovering conflicting photographer credits.",
+      "Shared expressions drive true airspeed, geometric altitude, vertical speed, attitude and true heading; missing readings blank and negative altitude retains its sign. Canards, both pairs of elevons, leading slats, swept rudder, gear and pilot controls animate. Imported-node tests verify fixed hinge endpoints and opposite inputs."
+    ],
+    "independentDimensions": [
+      "Manufacturer 15.96m overall length and 10.95m span; RAF independently gives 15.96m length and 5.29m height. Final bounds span 10.9498m and extend from z=-6.96 to z=9.0, with a 5.29m fin.",
+      "Inductiveload public-domain four-view is an illustrative general arrangement, not an engineering drawing. Its length/span ratios disagree by about 2%; each view uses one uniform scale, published dimensions take precedence and detached wheel cartoons do not define landing gear.",
+      "Canopy approximately 4.04m long, 1.02m maximum width and 3.34m top height; canard tip span about 3.88m. These are photo/drawing reconstructions. Wheelbase 4.15m, track 2.34m and tire/retraction details remain approximations.",
+      "BAE specifies three existing 6x6in displays: each active area is 0.1524m square. Four-corner rectification of the right display is recorded. Off-axis lens distortion and HUD projection limit calibration to that plane; no precise whole-cockpit dimensions are claimed."
+    ],
+    "visual": "Personally inspected all 24 final-hash captures in six contact sheets: four exterior/panel overlays, eight standard views and twelve dynamic/detail views. Compared the drawing, manufacturer cockpit/top view, MOD exterior photograph, distinct tribp cockpit photo and MOD canopy photograph. Inspected clean gear-up flight, both control directions, zero/cruise/extreme/missing readings, negative altitude, canopy side, consoles and exhausts.",
+    "limitations": [
+      "Polygonal reconstruction, not an engineering replica. Compound body sections, intake internals, fin fillets, canopy curvature, gear mechanics and exact panel/fastener patterns remain simplified. General-arrangement drawing has scale inconsistencies; the model is not stretched to hide them.",
+      "The CC-BY cockpit photograph depicts a static display with unspecified production block. Known MHDD dimensions anchor the main panel. Console depths, switch legends, seat/harness, standby size and HUCP projection are approximations; the full panel cannot be metrically verified from this oblique photograph.",
+      "Flight pages are authored Molen simulator displays, not operational Typhoon avionics. TAS, geometric altitude and true heading are labeled accordingly. No calibrated IAS/Mach, pressure altitude, magnetic variation, radar, fuel or engine core gauges are invented. HUD has optical geometry only, without collimated symbology.",
+      "Assisted flight physics and control mixes are not Typhoon flight-control laws. Slats use the shared flap command; gear folds approximately and hides when retracted. Canopy, exhaust petals and systems switches are static; no combat functionality or external weapons.",
+      "Reference pixels remain local and are not model textures. CC-BY tribp and OGL MOD attribution is recorded. Manufacturer images are local study only. The two conflicting Commons credits remain explicitly excluded from verified open-license evidence."
+    ]
+  },
+  "instrumentReview": {
+    "typeDefinitionHash": "sha256:9e3809fbfd793f5dc1ad528f93444131e4d9c4e183158c78dc9a3e5dac7f3038",
+    "checks": "19 shared imported-instrument tests and targeted Typhoon geometry test passed at final source hash. Cardinal heading test covers 16 models. Canard/elevon signs, swept hinge endpoints, missing data, signed altitude and stick motion verified.",
+    "captures": {
+      "zero": {
+        "path": ".artifacts/aircraft/typhoon-instruments/zero.png",
+        "sha256": "sha256:ab8160da69d7d85867f4a23171bdff792a64c4f3d159fe4ca671c80ebd3502b6",
+        "inspected": true
+      },
+      "cruise": {
+        "path": ".artifacts/aircraft/typhoon-instruments/cruise.png",
+        "sha256": "sha256:d28279150aba83df3a3740a11bc621927c340a614866cfb15b15b6d730100d4f",
+        "inspected": true
+      },
+      "limits": {
+        "path": ".artifacts/aircraft/typhoon-instruments/limits.png",
+        "sha256": "sha256:926c871e076d5545934878fe0e12b77e7acbee471787412dfffe58938bc19b19",
+        "inspected": true
+      },
+      "below-sea-level": {
+        "path": ".artifacts/aircraft/typhoon-instruments/below-sea-level.png",
+        "sha256": "sha256:9258ec8f1fdadc2acfd36ad2ef3cbc69b66e8238c930390996b391d8a02ee39f",
+        "inspected": true
+      },
+      "missing": {
+        "path": ".artifacts/aircraft/typhoon-instruments/missing.png",
+        "sha256": "sha256:e9d547cc96cf94104542d78c6e7e7c29a2669d394a4d99e69289b72fe285504e",
+        "inspected": true
+      },
+      "controls": {
+        "path": ".artifacts/aircraft/typhoon-instruments/controls.png",
+        "sha256": "sha256:7b4d88e18d8ab23a570a48b1ebcc6f58693da21fcfbc30afdecdd7d5301dc30a",
+        "inspected": true
+      },
+      "close-exterior": {
+        "path": ".artifacts/aircraft/typhoon-instruments/close-exterior.png",
+        "sha256": "sha256:1bdb9a473fa1b2751a0273ab70d682b6b36ebf404bcc09f192499034801730a4",
+        "inspected": true
+      },
+      "clean-flight": {
+        "path": ".artifacts/aircraft/typhoon-instruments/clean-flight.png",
+        "sha256": "sha256:c0bd9062659d0208cbb36dcedf108287f658d01779f51a983657b5aa6cd05fb2",
+        "inspected": true
+      },
+      "canopy-side": {
+        "path": ".artifacts/aircraft/typhoon-instruments/canopy-side.png",
+        "sha256": "sha256:c55314a774cb78cc4f259375c3840f78653718def1584584447bc70b84525bad",
+        "inspected": true
+      },
+      "exhausts": {
+        "path": ".artifacts/aircraft/typhoon-instruments/exhausts.png",
+        "sha256": "sha256:c98923f2e3820f58ecb63812b5600cc8f4ecf74dd09735d5a5021be3017d164d",
+        "inspected": true
+      },
+      "controls-exterior-positive": {
+        "path": ".artifacts/aircraft/typhoon-instruments/controls-exterior-positive.png",
+        "sha256": "sha256:fd15b101400cf21600b55000e6b899a9f4f95f210fef6ebdd073bfa740ce8fb8",
+        "inspected": true
+      },
+      "controls-exterior-negative": {
+        "path": ".artifacts/aircraft/typhoon-instruments/controls-exterior-negative.png",
+        "sha256": "sha256:dcbaadb052a1ebaa175f734cd4df06ac2059330850b2450e1207aa403b96f556",
+        "inspected": true
+      }
+    }
+  },
+  "sourceHash": "sha256:951853569337924362c8a8d2929173145f598e1547bd2e76c63efdf7dc310bc3",
+  "runtimeHash": "sha256:8bbe519d38c1136e2c184adf2cfe6cf5a6a7897c3a614ac41d8efe68c849bc0f",
+  "limitations": [
+    "Polygonal reconstruction, not an engineering replica. Compound body sections, intake internals, fin fillets, canopy curvature, gear mechanics and exact panel/fastener patterns remain simplified. General-arrangement drawing has scale inconsistencies; the model is not stretched to hide them.",
+    "The CC-BY cockpit photograph depicts a static display with unspecified production block. Known MHDD dimensions anchor the main panel. Console depths, switch legends, seat/harness, standby size and HUCP projection are approximations; the full panel cannot be metrically verified from this oblique photograph.",
+    "Flight pages are authored Molen simulator displays, not operational Typhoon avionics. TAS, geometric altitude and true heading are labeled accordingly. No calibrated IAS/Mach, pressure altitude, magnetic variation, radar, fuel or engine core gauges are invented. HUD has optical geometry only, without collimated symbology.",
+    "Assisted flight physics and control mixes are not Typhoon flight-control laws. Slats use the shared flap command; gear folds approximately and hides when retracted. Canopy, exhaust petals and systems switches are static; no combat functionality or external weapons.",
+    "Reference pixels remain local and are not model textures. CC-BY tribp and OGL MOD attribution is recorded. Manufacturer images are local study only. The two conflicting Commons credits remain explicitly excluded from verified open-license evidence."
+  ]
+}

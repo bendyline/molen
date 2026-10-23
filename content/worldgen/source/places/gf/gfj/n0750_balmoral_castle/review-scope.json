@@ -1,0 +1,1838 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "stone_granite",
+      "slot": "wall",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "stone": {
+      "graph": "stone_granite",
+      "slot": "trim",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "slate",
+      "slot": "roof",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.3,
+      "metallic": 0.12
+    },
+    "frame": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.15
+    },
+    "green": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.15
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.15
+    },
+    "door": {
+      "graph": "wood_plain",
+      "slot": "door",
+      "roughness": 0.85,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -45.123944861731914,
+      76.7,
+      169.80232507276037
+    ],
+    "lookAt": [
+      -4.571990098441589,
+      10.7,
+      2.024081653430038
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "south-entrance-and-clock-tower",
+      "position": [
+        4.429539072649561,
+        15.7,
+        96.46439334595885
+      ],
+      "lookAt": [
+        -8.572368457302172,
+        12.7,
+        30.041879086239774
+      ],
+      "fov": 58
+    },
+    {
+      "name": "west-stepped-gables-and-turrets",
+      "position": [
+        -83.14818974105822,
+        13.7,
+        64.15121622218072
+      ],
+      "lookAt": [
+        -28.074777843126547,
+        10.7,
+        35.39501164089498
+      ],
+      "fov": 56
+    },
+    {
+      "name": "rear-courtyard-roof-ranges",
+      "position": [
+        44.84318863220329,
+        66.7,
+        -116.09086283294062
+      ],
+      "lookAt": [
+        4.286184228651086,
+        9.7,
+        -15.020939543119887
+      ],
+      "fov": 58
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -45.123944861731914,
+        76.7,
+        169.80232507276037
+      ],
+      "lookAt": [
+        -4.571990098441589,
+        10.7,
+        2.024081653430038
+      ],
+      "fov": 45,
+      "name": "balmoral-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -45.123944861731914,
+        76.7,
+        169.80232507276037
+      ],
+      "lookAt": [
+        -4.571990098441589,
+        10.7,
+        2.024081653430038
+      ],
+      "fov": 45,
+      "name": "balmoral-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -45.123944861731914,
+        76.7,
+        169.80232507276037
+      ],
+      "lookAt": [
+        -4.571990098441589,
+        10.7,
+        2.024081653430038
+      ],
+      "fov": 45,
+      "name": "balmoral-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -45.123944861731914,
+        76.7,
+        169.80232507276037
+      ],
+      "lookAt": [
+        -4.571990098441589,
+        10.7,
+        2.024081653430038
+      ],
+      "fov": 45,
+      "name": "balmoral-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.7,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/balmoral-model.mjs",
+    "export": "buildBalmoralSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBalmoralDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "green": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "door": {
+            "graph": "wood_plain",
+            "slot": "door",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildBalmoralStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "green": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "door": {
+            "graph": "wood_plain",
+            "slot": "door",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBalmoralCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "green": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "door": {
+            "graph": "wood_plain",
+            "slot": "door",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      -3.23016,
+      57.0407
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified standard Protomaps20261020 and Mapzen201x201/6m terrain. Uncovered south approach control internal[-43,48], datum286.25030676360484m. Closed castle floor0.7m above this datum and a short three-tread entrance flight; foundation reaches below occupied boundary grades. Ground is cut only beneath exact occupied castle floors; courtyard, approach and independent estate context remain original. Exact thresholds and accessibility remain unverified. Current native south entrance, western residence and rear courtyard views inspected. Approximate exterior fit accepted on the retained standard grid: boundary grades vary by1.50m, covered by the declared foundation/plinth, while entrance treads meet the uncovered south approach. The mapped courtyard remains open, six owned records are replaced and every independent estate building remains intact. Exact thresholds, accessibility, roof inventories and height semantics are unverified. Occupied cutout partitions retain the courtyard; mask coordinates are rounded to one micrometre to avoid coincident-edge polygon-clipping failures in the actual level14 extract.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 15
+    },
+    "bounds": [
+      -3.231017894353919,
+      57.0401085198,
+      -3.2293051413630915,
+      57.0412708911427
+    ],
+    "terrainReference": {
+      "anchor": [
+        -3.230488386312758,
+        57.04014934883615
+      ],
+      "modelHeight": 0,
+      "basis": "Unmodified standard Protomaps20261020 and Mapzen201x201/6m terrain. Uncovered south approach control internal[-43,48], datum286.25030676360484m. Closed castle floor0.7m above this datum and a short three-tread entrance flight; foundation reaches below occupied boundary grades. Ground is cut only beneath exact occupied castle floors; courtyard, approach and independent estate context remain original. Exact thresholds and accessibility remain unverified."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -46.306552,
+          25.105758
+        ],
+        [
+          -46.956318,
+          23.318891
+        ],
+        [
+          -46.793876,
+          22.506678
+        ],
+        [
+          -45.819227,
+          21.044696
+        ],
+        [
+          -44.357253,
+          20.557369
+        ],
+        [
+          -42.895279,
+          20.882254
+        ],
+        [
+          -42.407954,
+          21.369581
+        ],
+        [
+          -41.920629,
+          22.181793
+        ],
+        [
+          -17.716836,
+          11.460606
+        ],
+        [
+          -17.391953,
+          12.110374
+        ],
+        [
+          -7.320575,
+          7.562
+        ],
+        [
+          -9.269874,
+          3.01363
+        ],
+        [
+          -13.818238,
+          4.962931
+        ],
+        [
+          -22.102758,
+          -13.71783
+        ],
+        [
+          -21.982434,
+          -13.71783
+        ],
+        [
+          -23.402291,
+          -16.966649
+        ],
+        [
+          -12.681147,
+          -21.677433
+        ],
+        [
+          -15.117771,
+          -27.200414
+        ],
+        [
+          -7.970342,
+          -30.449222
+        ],
+        [
+          -7.320575,
+          -28.824818
+        ],
+        [
+          0.47662,
+          -32.316784
+        ],
+        [
+          0.47662,
+          -32.398506
+        ],
+        [
+          6.37167,
+          -35.01281
+        ],
+        [
+          9.948567,
+          -26.933327
+        ],
+        [
+          4.050335,
+          -24.276484
+        ],
+        [
+          8.689764,
+          -13.71783
+        ],
+        [
+          8.76114,
+          -13.71783
+        ],
+        [
+          8.76114,
+          -13.555389
+        ],
+        [
+          9.086023,
+          -13.71783
+        ],
+        [
+          9.118512,
+          -13.71783
+        ],
+        [
+          14.680077,
+          -16.245804
+        ],
+        [
+          18.333065,
+          -7.994444
+        ],
+        [
+          17.695426,
+          -7.707508
+        ],
+        [
+          18.670076,
+          -5.433329
+        ],
+        [
+          19.544312,
+          -5.258482
+        ],
+        [
+          21.075231,
+          -1.800448
+        ],
+        [
+          20.13205,
+          -0.722527
+        ],
+        [
+          23.705764,
+          7.074674
+        ],
+        [
+          23.662855,
+          7.074674
+        ],
+        [
+          24.030647,
+          7.886883
+        ],
+        [
+          13.634387,
+          12.435258
+        ],
+        [
+          12.275899,
+          9.537146
+        ],
+        [
+          0.47662,
+          14.709448
+        ],
+        [
+          0.47662,
+          14.680293
+        ],
+        [
+          -6.670809,
+          17.79585
+        ],
+        [
+          1.938594,
+          36.476753
+        ],
+        [
+          3.075685,
+          36.151867
+        ],
+        [
+          3.977552,
+          38.256242
+        ],
+        [
+          6.162075,
+          37.451411
+        ],
+        [
+          7.948932,
+          41.025159
+        ],
+        [
+          4.700101,
+          42.162262
+        ],
+        [
+          4.375218,
+          41.187602
+        ],
+        [
+          0.47662,
+          42.974478
+        ],
+        [
+          0.47662,
+          42.913564
+        ],
+        [
+          -20.299233,
+          52.111314
+        ],
+        [
+          -17.879277,
+          57.919284
+        ],
+        [
+          -24.214498,
+          60.843275
+        ],
+        [
+          -26.813563,
+          54.995296
+        ],
+        [
+          -27.950654,
+          55.482628
+        ],
+        [
+          -31.037044,
+          48.659996
+        ],
+        [
+          -32.499018,
+          49.30977
+        ],
+        [
+          -36.235174,
+          41.025159
+        ],
+        [
+          -34.610759,
+          40.375387
+        ],
+        [
+          -35.910291,
+          37.288968
+        ],
+        [
+          -36.884941,
+          37.126525
+        ],
+        [
+          -38.184473,
+          33.877665
+        ],
+        [
+          -37.697149,
+          32.903008
+        ],
+        [
+          -39.484006,
+          29.166824
+        ],
+        [
+          -41.758188,
+          30.14148
+        ],
+        [
+          -43.707487,
+          25.917971
+        ],
+        [
+          -44.844578,
+          25.917971
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -46.306552,
+            25.105758
+          ],
+          [
+            -46.956318,
+            23.318891
+          ],
+          [
+            -46.793876,
+            22.506678
+          ],
+          [
+            -45.819227,
+            21.044696
+          ],
+          [
+            -44.357253,
+            20.557369
+          ],
+          [
+            -42.895279,
+            20.882254
+          ],
+          [
+            -42.407954,
+            21.369581
+          ],
+          [
+            -41.920629,
+            22.181793
+          ],
+          [
+            -17.716836,
+            11.460606
+          ],
+          [
+            -17.391953,
+            12.110374
+          ],
+          [
+            -7.320575,
+            7.562
+          ],
+          [
+            -9.269874,
+            3.01363
+          ],
+          [
+            -13.818238,
+            4.962931
+          ],
+          [
+            -22.102758,
+            -13.71783
+          ],
+          [
+            -21.982434,
+            -13.71783
+          ],
+          [
+            -23.402291,
+            -16.966649
+          ],
+          [
+            -12.681147,
+            -21.677433
+          ],
+          [
+            -15.117771,
+            -27.200414
+          ],
+          [
+            -7.970342,
+            -30.449222
+          ],
+          [
+            -7.320575,
+            -28.824818
+          ],
+          [
+            0.47662,
+            -32.316784
+          ],
+          [
+            0.47662,
+            -32.398506
+          ],
+          [
+            6.37167,
+            -35.01281
+          ],
+          [
+            9.948567,
+            -26.933327
+          ],
+          [
+            4.050335,
+            -24.276484
+          ],
+          [
+            8.689764,
+            -13.71783
+          ],
+          [
+            8.76114,
+            -13.71783
+          ],
+          [
+            8.76114,
+            -13.555389
+          ],
+          [
+            9.086023,
+            -13.71783
+          ],
+          [
+            9.118512,
+            -13.71783
+          ],
+          [
+            14.680077,
+            -16.245804
+          ],
+          [
+            18.333065,
+            -7.994444
+          ],
+          [
+            17.695426,
+            -7.707508
+          ],
+          [
+            18.670076,
+            -5.433329
+          ],
+          [
+            19.544312,
+            -5.258482
+          ],
+          [
+            21.075231,
+            -1.800448
+          ],
+          [
+            20.13205,
+            -0.722527
+          ],
+          [
+            23.705764,
+            7.074674
+          ],
+          [
+            23.662855,
+            7.074674
+          ],
+          [
+            24.030647,
+            7.886883
+          ],
+          [
+            13.634387,
+            12.435258
+          ],
+          [
+            12.275899,
+            9.537146
+          ],
+          [
+            0.47662,
+            14.709448
+          ],
+          [
+            0.47662,
+            14.680293
+          ],
+          [
+            -6.670809,
+            17.79585
+          ],
+          [
+            1.938594,
+            36.476753
+          ],
+          [
+            3.075685,
+            36.151867
+          ],
+          [
+            3.977552,
+            38.256242
+          ],
+          [
+            6.162075,
+            37.451411
+          ],
+          [
+            7.948932,
+            41.025159
+          ],
+          [
+            4.700101,
+            42.162262
+          ],
+          [
+            4.375218,
+            41.187602
+          ],
+          [
+            0.47662,
+            42.974478
+          ],
+          [
+            0.47662,
+            42.913564
+          ],
+          [
+            -20.299233,
+            52.111314
+          ],
+          [
+            -17.879277,
+            57.919284
+          ],
+          [
+            -24.214498,
+            60.843275
+          ],
+          [
+            -26.813563,
+            54.995296
+          ],
+          [
+            -27.950654,
+            55.482628
+          ],
+          [
+            -31.037044,
+            48.659996
+          ],
+          [
+            -32.499018,
+            49.30977
+          ],
+          [
+            -36.235174,
+            41.025159
+          ],
+          [
+            -34.610759,
+            40.375387
+          ],
+          [
+            -35.910291,
+            37.288968
+          ],
+          [
+            -36.884941,
+            37.126525
+          ],
+          [
+            -38.184473,
+            33.877665
+          ],
+          [
+            -37.697149,
+            32.903008
+          ],
+          [
+            -39.484006,
+            29.166824
+          ],
+          [
+            -41.758188,
+            30.14148
+          ],
+          [
+            -43.707487,
+            25.917971
+          ],
+          [
+            -44.844578,
+            25.917971
+          ]
+        ],
+        [
+          [
+            6.37167,
+            -35.01281
+          ],
+          [
+            19.1574,
+            -40.682953
+          ],
+          [
+            18.832517,
+            -41.495153
+          ],
+          [
+            14.771478,
+            -39.708313
+          ],
+          [
+            13.309504,
+            -42.957112
+          ],
+          [
+            17.208102,
+            -44.74395
+          ],
+          [
+            16.883218,
+            -45.39371
+          ],
+          [
+            9.898231,
+            -42.307353
+          ],
+          [
+            6.974283,
+            -48.480064
+          ],
+          [
+            21.269141,
+            -54.977646
+          ],
+          [
+            21.269141,
+            -54.902309
+          ],
+          [
+            29.391219,
+            -58.551311
+          ],
+          [
+            32.477609,
+            -51.403977
+          ],
+          [
+            23.380881,
+            -47.342987
+          ],
+          [
+            35.401557,
+            -20.540348
+          ],
+          [
+            44.335844,
+            -24.438924
+          ],
+          [
+            46.772467,
+            -19.240821
+          ],
+          [
+            37.838181,
+            -15.179799
+          ],
+          [
+            38.163064,
+            -14.530035
+          ],
+          [
+            36.313035,
+            -13.71783
+          ],
+          [
+            36.376207,
+            -13.71783
+          ],
+          [
+            31.50296,
+            -11.606096
+          ],
+          [
+            30.690752,
+            -13.555389
+          ],
+          [
+            18.333065,
+            -7.994444
+          ],
+          [
+            14.680077,
+            -16.245804
+          ],
+          [
+            21.269141,
+            -19.240821
+          ],
+          [
+            21.269141,
+            -19.139294
+          ],
+          [
+            26.954596,
+            -21.677433
+          ],
+          [
+            22.081349,
+            -32.398506
+          ],
+          [
+            9.948567,
+            -26.933327
+          ]
+        ],
+        [
+          [
+            19.544312,
+            -5.258482
+          ],
+          [
+            20.294491,
+            -5.108447
+          ],
+          [
+            21.269141,
+            -3.808915
+          ],
+          [
+            21.269141,
+            -2.022059
+          ],
+          [
+            21.075231,
+            -1.800448
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Q42049 and named PMTiles relation14213231/native52776572346479 identify the connected castle. Integral ways1093652302/2304/2305/2306/2308 supply porch, link, southeast turret, clock tower and main residence, with heights5/8/17/23/11m. Internal+X points east-northeast along the southern residence facade; +Z south-southeast to the lawn. Orientation follows the mapped straight front edge and the inspected south/west photos. World heading0 with geometry baked into east/south coordinates."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -46.306552,
+          25.105758
+        ],
+        [
+          -46.956318,
+          23.318891
+        ],
+        [
+          -46.793876,
+          22.506678
+        ],
+        [
+          -45.819227,
+          21.044696
+        ],
+        [
+          -44.357253,
+          20.557369
+        ],
+        [
+          -42.895279,
+          20.882254
+        ],
+        [
+          -42.407954,
+          21.369581
+        ],
+        [
+          -41.920629,
+          22.181793
+        ],
+        [
+          -17.716836,
+          11.460606
+        ],
+        [
+          -17.391953,
+          12.110374
+        ],
+        [
+          -7.320575,
+          7.562
+        ],
+        [
+          -9.269874,
+          3.01363
+        ],
+        [
+          -13.818238,
+          4.962931
+        ],
+        [
+          -22.102758,
+          -13.71783
+        ],
+        [
+          -21.982434,
+          -13.71783
+        ],
+        [
+          -23.402291,
+          -16.966649
+        ],
+        [
+          -12.681147,
+          -21.677433
+        ],
+        [
+          -15.117771,
+          -27.200414
+        ],
+        [
+          -7.970342,
+          -30.449222
+        ],
+        [
+          -7.320575,
+          -28.824818
+        ],
+        [
+          0.47662,
+          -32.316784
+        ],
+        [
+          0.47662,
+          -32.398506
+        ],
+        [
+          6.37167,
+          -35.01281
+        ],
+        [
+          9.948567,
+          -26.933327
+        ],
+        [
+          4.050335,
+          -24.276484
+        ],
+        [
+          8.689764,
+          -13.71783
+        ],
+        [
+          8.76114,
+          -13.71783
+        ],
+        [
+          8.76114,
+          -13.555389
+        ],
+        [
+          9.086023,
+          -13.71783
+        ],
+        [
+          9.118512,
+          -13.71783
+        ],
+        [
+          14.680077,
+          -16.245804
+        ],
+        [
+          18.333065,
+          -7.994444
+        ],
+        [
+          17.695426,
+          -7.707508
+        ],
+        [
+          18.670076,
+          -5.433329
+        ],
+        [
+          19.544312,
+          -5.258482
+        ],
+        [
+          21.075231,
+          -1.800448
+        ],
+        [
+          20.13205,
+          -0.722527
+        ],
+        [
+          23.705764,
+          7.074674
+        ],
+        [
+          23.662855,
+          7.074674
+        ],
+        [
+          24.030647,
+          7.886883
+        ],
+        [
+          13.634387,
+          12.435258
+        ],
+        [
+          12.275899,
+          9.537146
+        ],
+        [
+          0.47662,
+          14.709448
+        ],
+        [
+          0.47662,
+          14.680293
+        ],
+        [
+          -6.670809,
+          17.79585
+        ],
+        [
+          1.938594,
+          36.476753
+        ],
+        [
+          3.075685,
+          36.151867
+        ],
+        [
+          3.977552,
+          38.256242
+        ],
+        [
+          6.162075,
+          37.451411
+        ],
+        [
+          7.948932,
+          41.025159
+        ],
+        [
+          4.700101,
+          42.162262
+        ],
+        [
+          4.375218,
+          41.187602
+        ],
+        [
+          0.47662,
+          42.974478
+        ],
+        [
+          0.47662,
+          42.913564
+        ],
+        [
+          -20.299233,
+          52.111314
+        ],
+        [
+          -17.879277,
+          57.919284
+        ],
+        [
+          -24.214498,
+          60.843275
+        ],
+        [
+          -26.813563,
+          54.995296
+        ],
+        [
+          -27.950654,
+          55.482628
+        ],
+        [
+          -31.037044,
+          48.659996
+        ],
+        [
+          -32.499018,
+          49.30977
+        ],
+        [
+          -36.235174,
+          41.025159
+        ],
+        [
+          -34.610759,
+          40.375387
+        ],
+        [
+          -35.910291,
+          37.288968
+        ],
+        [
+          -36.884941,
+          37.126525
+        ],
+        [
+          -38.184473,
+          33.877665
+        ],
+        [
+          -37.697149,
+          32.903008
+        ],
+        [
+          -39.484006,
+          29.166824
+        ],
+        [
+          -41.758188,
+          30.14148
+        ],
+        [
+          -43.707487,
+          25.917971
+        ],
+        [
+          -44.844578,
+          25.917971
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -46.306552,
+            25.105758
+          ],
+          [
+            -46.956318,
+            23.318891
+          ],
+          [
+            -46.793876,
+            22.506678
+          ],
+          [
+            -45.819227,
+            21.044696
+          ],
+          [
+            -44.357253,
+            20.557369
+          ],
+          [
+            -42.895279,
+            20.882254
+          ],
+          [
+            -42.407954,
+            21.369581
+          ],
+          [
+            -41.920629,
+            22.181793
+          ],
+          [
+            -17.716836,
+            11.460606
+          ],
+          [
+            -17.391953,
+            12.110374
+          ],
+          [
+            -7.320575,
+            7.562
+          ],
+          [
+            -9.269874,
+            3.01363
+          ],
+          [
+            -13.818238,
+            4.962931
+          ],
+          [
+            -22.102758,
+            -13.71783
+          ],
+          [
+            -21.982434,
+            -13.71783
+          ],
+          [
+            -23.402291,
+            -16.966649
+          ],
+          [
+            -12.681147,
+            -21.677433
+          ],
+          [
+            -15.117771,
+            -27.200414
+          ],
+          [
+            -7.970342,
+            -30.449222
+          ],
+          [
+            -7.320575,
+            -28.824818
+          ],
+          [
+            0.47662,
+            -32.316784
+          ],
+          [
+            0.47662,
+            -32.398506
+          ],
+          [
+            6.37167,
+            -35.01281
+          ],
+          [
+            9.948567,
+            -26.933327
+          ],
+          [
+            4.050335,
+            -24.276484
+          ],
+          [
+            8.689764,
+            -13.71783
+          ],
+          [
+            8.76114,
+            -13.71783
+          ],
+          [
+            8.76114,
+            -13.555389
+          ],
+          [
+            9.086023,
+            -13.71783
+          ],
+          [
+            9.118512,
+            -13.71783
+          ],
+          [
+            14.680077,
+            -16.245804
+          ],
+          [
+            18.333065,
+            -7.994444
+          ],
+          [
+            17.695426,
+            -7.707508
+          ],
+          [
+            18.670076,
+            -5.433329
+          ],
+          [
+            19.544312,
+            -5.258482
+          ],
+          [
+            21.075231,
+            -1.800448
+          ],
+          [
+            20.13205,
+            -0.722527
+          ],
+          [
+            23.705764,
+            7.074674
+          ],
+          [
+            23.662855,
+            7.074674
+          ],
+          [
+            24.030647,
+            7.886883
+          ],
+          [
+            13.634387,
+            12.435258
+          ],
+          [
+            12.275899,
+            9.537146
+          ],
+          [
+            0.47662,
+            14.709448
+          ],
+          [
+            0.47662,
+            14.680293
+          ],
+          [
+            -6.670809,
+            17.79585
+          ],
+          [
+            1.938594,
+            36.476753
+          ],
+          [
+            3.075685,
+            36.151867
+          ],
+          [
+            3.977552,
+            38.256242
+          ],
+          [
+            6.162075,
+            37.451411
+          ],
+          [
+            7.948932,
+            41.025159
+          ],
+          [
+            4.700101,
+            42.162262
+          ],
+          [
+            4.375218,
+            41.187602
+          ],
+          [
+            0.47662,
+            42.974478
+          ],
+          [
+            0.47662,
+            42.913564
+          ],
+          [
+            -20.299233,
+            52.111314
+          ],
+          [
+            -17.879277,
+            57.919284
+          ],
+          [
+            -24.214498,
+            60.843275
+          ],
+          [
+            -26.813563,
+            54.995296
+          ],
+          [
+            -27.950654,
+            55.482628
+          ],
+          [
+            -31.037044,
+            48.659996
+          ],
+          [
+            -32.499018,
+            49.30977
+          ],
+          [
+            -36.235174,
+            41.025159
+          ],
+          [
+            -34.610759,
+            40.375387
+          ],
+          [
+            -35.910291,
+            37.288968
+          ],
+          [
+            -36.884941,
+            37.126525
+          ],
+          [
+            -38.184473,
+            33.877665
+          ],
+          [
+            -37.697149,
+            32.903008
+          ],
+          [
+            -39.484006,
+            29.166824
+          ],
+          [
+            -41.758188,
+            30.14148
+          ],
+          [
+            -43.707487,
+            25.917971
+          ],
+          [
+            -44.844578,
+            25.917971
+          ]
+        ],
+        [
+          [
+            6.37167,
+            -35.01281
+          ],
+          [
+            19.1574,
+            -40.682953
+          ],
+          [
+            18.832517,
+            -41.495153
+          ],
+          [
+            14.771478,
+            -39.708313
+          ],
+          [
+            13.309504,
+            -42.957112
+          ],
+          [
+            17.208102,
+            -44.74395
+          ],
+          [
+            16.883218,
+            -45.39371
+          ],
+          [
+            9.898231,
+            -42.307353
+          ],
+          [
+            6.974283,
+            -48.480064
+          ],
+          [
+            21.269141,
+            -54.977646
+          ],
+          [
+            21.269141,
+            -54.902309
+          ],
+          [
+            29.391219,
+            -58.551311
+          ],
+          [
+            32.477609,
+            -51.403977
+          ],
+          [
+            23.380881,
+            -47.342987
+          ],
+          [
+            35.401557,
+            -20.540348
+          ],
+          [
+            44.335844,
+            -24.438924
+          ],
+          [
+            46.772467,
+            -19.240821
+          ],
+          [
+            37.838181,
+            -15.179799
+          ],
+          [
+            38.163064,
+            -14.530035
+          ],
+          [
+            36.313035,
+            -13.71783
+          ],
+          [
+            36.376207,
+            -13.71783
+          ],
+          [
+            31.50296,
+            -11.606096
+          ],
+          [
+            30.690752,
+            -13.555389
+          ],
+          [
+            18.333065,
+            -7.994444
+          ],
+          [
+            14.680077,
+            -16.245804
+          ],
+          [
+            21.269141,
+            -19.240821
+          ],
+          [
+            21.269141,
+            -19.139294
+          ],
+          [
+            26.954596,
+            -21.677433
+          ],
+          [
+            22.081349,
+            -32.398506
+          ],
+          [
+            9.948567,
+            -26.933327
+          ]
+        ],
+        [
+          [
+            19.544312,
+            -5.258482
+          ],
+          [
+            20.294491,
+            -5.108447
+          ],
+          [
+            21.269141,
+            -3.808915
+          ],
+          [
+            21.269141,
+            -2.022059
+          ],
+          [
+            21.075231,
+            -1.800448
+          ]
+        ]
+      ],
+      "basis": "Only exact occupied floor partitions, preserving mapped open courtyard and all original approach/garden ground."
+    },
+    "notes": "Q42049 and named PMTiles relation14213231/native52776572346479 identify the connected castle. Integral ways1093652302/2304/2305/2306/2308 supply porch, link, southeast turret, clock tower and main residence, with heights5/8/17/23/11m. Internal+X points east-northeast along the southern residence facade; +Z south-southeast to the lawn. Orientation follows the mapped straight front edge and the inspected south/west photos. World heading0 with geometry baked into east/south coordinates. Unmodified standard Protomaps20261020 and Mapzen201x201/6m terrain. Uncovered south approach control internal[-43,48], datum286.25030676360484m. Closed castle floor0.7m above this datum and a short three-tread entrance flight; foundation reaches below occupied boundary grades. Ground is cut only beneath exact occupied castle floors; courtyard, approach and independent estate context remain original. Exact thresholds and accessibility remain unverified. Current native south entrance, western residence and rear courtyard views inspected. Approximate exterior fit accepted on the retained standard grid: boundary grades vary by1.50m, covered by the declared foundation/plinth, while entrance treads meet the uncovered south approach. The mapped courtyard remains open, six owned records are replaced and every independent estate building remains intact. Exact thresholds, accessibility, roof inventories and height semantics are unverified. Occupied cutout partitions retain the courtyard; mask coordinates are rounded to one micrometre to avoid coincident-edge polygon-clipping failures in the actual level14 extract."
+  }
+}

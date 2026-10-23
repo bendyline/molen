@@ -1,0 +1,13 @@
+# Bell Boeing MV-22B Osprey
+
+**Visual status: Reviewed against exterior and cockpit references, with documented limitations.** See the hash-bound [review record](../../aircraft-expansion-review.json) and [batch review](../../AIRCRAFT-EXPANSION.md).
+
+Original unarmed polygonal aircraft, 17.48 m long, 25.78 m span/rotor diameter and 6.73 m nominal overall height. +Y up, +Z forward; ground-contact origin.
+
+Four main MFDs, offset standby cluster, lower center display, paired keypads, overhead, cyclics and thrust/nacelle controls. Main cockpit, seats, controls and instruments live in the exterior GLB. Live pointers, horizon cues, controls, rotors and gear use declared node bindings; screen maps and labels are diagrammatic.
+
+Regenerate: `node packages/entities/scripts/generate-aircraft.mjs --ids=mv-22b`. Use `--out .artifacts/mv-22b.glb` for a separate candidate. Edit `source/aircraft-expansion.json` in the entities pack (`models/airframe.json` is a generated snapshot), plus its builder in `packages/entities/scripts/aircraft/` when present, or shared `aircraft-geometry.mjs` / `aircraft-interiors.mjs`. Reference provenance and variant limitations: [aircraft ledger](../../AIRCRAFT-EXPANSION.md).
+
+Geometry is original MIT-licensed modeling; no reference image pixels or manufacturer logos are embedded. Dimensions and cockpit arrangement approximate the named variant; this is an assisted simulation, not a systems trainer. No external weapons, missiles, bombs, weapon pylons or gun pods. Target 15–100k triangles, under 4 MB optimized GLB, no textures.
+
+[Exterior and cockpit preview](preview.png)

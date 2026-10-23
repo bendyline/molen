@@ -1,4 +1,9 @@
-import { hashBytes, quatRotateVec3, yawOf } from '@bendyline/molen-kernel/determinism';
+import {
+  hashBytes,
+  quatFromAxisAngle,
+  quatRotateVec3,
+  yawOf,
+} from '@bendyline/molen-kernel/determinism';
 import { describe, expect, it } from 'vitest';
 import {
   deriveRig,
@@ -34,6 +39,65 @@ function bytes(pose: { local: Float32Array }): string {
 }
 
 describe('pose evaluation', () => {
+  it('turns resting forearms and hand backs forward without moving the wrists', () => {
+    for (const preset of ['human.adult', 'human.child', 'human.elder']) {
+      const rig = deriveRig(resolveFigureDescriptor({ preset }));
+      const opts = { tickRate: TICK_RATE, seed: 5 };
+      const model = poseModelSpace(evaluatePose(rig, undefined, 30, opts));
+      const unturned = poseModelSpace(
+        evaluatePose(rig, undefined, 30, {
+          ...opts,
+          overrides: {
+            'foreArm.l': quatFromAxisAngle([1, 0, 0], (-9 * Math.PI) / 180),
+            'foreArm.r': quatFromAxisAngle([1, 0, 0], (-9 * Math.PI) / 180),
+          },
+        }),
+      );
+      for (const side of ['l', 'r']) {
+        const hand = rig.index[`hand.${side}`] as number;
+        const forearm = jointTransform(model, rig.index[`foreArm.${side}`] as number);
+        const wrist = jointTransform(model, hand);
+        const before = jointTransform(unturned, hand);
+        for (let k = 0; k < 3; k++) expect(wrist.pos[k]).toBeCloseTo(before.pos[k] as number, 6);
+        const sign = side === 'l' ? 1 : -1;
+        const back = quatRotateVec3(wrist.rot ?? [0, 0, 0, 1], [sign, 0, 0]);
+        const lowerBack = quatRotateVec3(forearm.rot ?? [0, 0, 0, 1], [sign, 0, 0]);
+        expect(back[2]).toBeGreaterThan(0.7);
+        expect(back[0] * sign).toBeGreaterThan(0.35);
+        expect(back.reduce((sum, v, k) => sum + v * (lowerBack[k] as number), 0)).toBeGreaterThan(
+          0.98,
+        );
+      }
+    }
+  });
+
+  it('rests both hands beside the thighs with loose elbows, across human presets', () => {
+    for (const preset of ['human.adult', 'human.child', 'human.elder']) {
+      const rig = deriveRig(resolveFigureDescriptor({ preset }));
+      for (const tick of [0, 30, 120, 720]) {
+        const model = poseModelSpace(
+          evaluatePose(rig, undefined, tick, { tickRate: TICK_RATE, seed: 5 }),
+        );
+        for (const side of ['l', 'r']) {
+          const shoulder = jointTransform(model, rig.index[`upperArm.${side}`] as number).pos;
+          const elbow = jointTransform(model, rig.index[`foreArm.${side}`] as number).pos;
+          const wrist = jointTransform(model, rig.index[`hand.${side}`] as number).pos;
+          expect(Math.abs(wrist[0] - shoulder[0])).toBeLessThan(rig.height * 0.045);
+          expect(shoulder[1] - wrist[1]).toBeGreaterThan(
+            0.95 * (rig.metrics.upperArmLen + rig.metrics.foreArmLen),
+          );
+          const upper = elbow.map((v, i) => v - (shoulder[i] as number));
+          const lower = wrist.map((v, i) => v - (elbow[i] as number));
+          const cosine =
+            upper.reduce((sum, v, i) => sum + v * (lower[i] as number), 0) /
+            (Math.hypot(...upper) * Math.hypot(...lower));
+          expect(cosine).toBeGreaterThan(Math.cos((15 * Math.PI) / 180));
+          expect(cosine).toBeLessThan(Math.cos((3 * Math.PI) / 180));
+        }
+      }
+    }
+  });
+
   it('is a pure function of its inputs', () => {
     const state = walking(human, 1.4);
     const a = evaluatePose(human, state, 37.25, { tickRate: TICK_RATE, seed: 7 });

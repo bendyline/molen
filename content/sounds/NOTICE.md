@@ -28,3 +28,11 @@ loudness-normalized and re-encoded as MP3 by `tools/build.mjs`.
 | [Helicopter_Hover](https://freesound.org/people/Lydmakeren/sounds/541482/) | Lydmakeren | freesound | `aircraft.engine.helicopter` |
 | [car_idle_ext_loop.wav](https://freesound.org/people/AndrewAlexander/sounds/369054/) | AndrewAlexander | freesound | `vehicle.engine.car` |
 | [engine idle van diesel exhaust](https://freesound.org/people/kyles/sounds/453995/) | kyles | freesound | `vehicle.engine.diesel` |
+| [mourning_dove _2017-06-06.wav](https://freesound.org/people/nathankwright/sounds/456930/) | nathankwright | freesound | `ambience.birds.mourning_dove` |
+| [210504 American Robin, dawn song close, roof, urban residential, TORONTO 5am.wav](https://freesound.org/people/TRP/sounds/616969/) | TRP | freesound | `ambience.birds.american_robin` |
+| [Blackbird 252.wav](https://freesound.org/people/nigelcoop/sounds/116791/) | nigelcoop | freesound | `ambience.birds.common_blackbird` |
+| [Kookaburra Australian Jackass.wav](https://freesound.org/people/dbache/sounds/671250/) | dbache | freesound | `ambience.birds.perth_kookaburras` |
+| [Japanese bush warbler (uguisu) in a city ambiance](https://freesound.org/people/warukunai/sounds/524526/) | warukunai | freesound | `ambience.birds.japanese_bush_warbler` |
+| [Dawn in the Amazonian Rainforest](https://freesound.org/people/felix.blume/sounds/408048/) | felix.blume | freesound | `ambience.birds.amazon_dawn` |
+| [Bird Sounds of Knysna.mp3](https://freesound.org/people/hedgehog1/sounds/328915/) | hedgehog1 | freesound | `ambience.birds.knysna_morning` |
+| [Morning Birds.m4a](https://freesound.org/people/sandralaughs/sounds/612961/) | sandralaughs | freesound | `ambience.birds.mauritius_morning` |

@@ -17,6 +17,7 @@ import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
 import { architecturalMaterialCatalog } from './architectural-material-catalog.mjs';
 import { bridgePatternDescriptions, bridgePatternGraphs } from './bridge-pattern-materials.mjs';
 import { formatJson } from './format-json.mjs';
+import { rosettePatternDescription, rosettePatternGraph } from './rosette-pattern-materials.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const packDir = resolve(root, '../../content/worldgen');
@@ -1303,6 +1304,7 @@ for (const [name, graph] of Object.entries(bridgePatternGraphs))
     ...graph,
     doc: bridgePatternDescriptions[name],
   };
+MATERIALS.metal_rosette_screen = { ...rosettePatternGraph(), doc: rosettePatternDescription };
 
 function materialDocument(entry) {
   // A physical response travels with the shared material instead of depending on a wall/roof slot.

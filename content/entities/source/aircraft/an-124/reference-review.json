@@ -1,0 +1,241 @@
+{
+  "variant": "An-124-100, classic analog six-place flight deck",
+  "status": "reviewed-with-limitations",
+  "references": [
+    {
+      "url": "https://volga-dnepr.com/files/cargoguide_en_aug24.pdf",
+      "title": "Volga-Dnepr2024 Cargo Guide, PDF pages4–5",
+      "author": "Volga-Dnepr",
+      "license": "Copyright operator; local study only",
+      "scope": "Primary dimensions69.1m length,73.3m span,21.08m height; engine lateral stations9.932m/17.688m,main gear track8m,24wheel arrangement,hold36.5×6.4×4.4m. Drawings and dimension labels have local inconsistencies; not production station data. No brochure pixels shipped."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Antonov_An-124_3-view.svg",
+      "title": "An-124 general arrangement",
+      "author": "Krzysztof Zajaczkowski / Malyszkz, after Mo7amedsalim; top-view alignment by Ariadacapo",
+      "license": "Public domain, author dedication",
+      "scope": "Illustrative three-view silhouettes. Uniform length/span calibration. Not engineering-grade; independently cross-checked with operator dimensions."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:AN-124_flight_deck_(3940749148).jpg",
+      "title": "An-124 flight deck RA-82081,20September2009",
+      "author": "RAF-YYC",
+      "license": "CC BY-SA2.0 https://creativecommons.org/licenses/by-sa/2.0/; Flickr license verified by Commons in2014",
+      "scope": "Frontal panel, blue surfaces, analog gauges, twin vertical engine housings, four tall throttle handles, yokes, fans and overhead. Estimated3m panel width; qualitative layout, not measured cockpit dimensions. No photo pixels shipped."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Polet_Antonov_An-124_cockpit_Pashnin.jpg",
+      "title": "Polet An-124 cockpit,23July2004",
+      "author": "Yevgeny Pashnin",
+      "license": "GFDL1.2 or later; Commons VRT permission2008081610000422",
+      "scope": "Independent six-seat cabin and paired extensive side systems stations, desks and ceiling. Used for geometry comparison only; no pixels distributed."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Polet_Antonov_An-124-100_cockpit_Petrov.jpg",
+      "title": "Polet An-124-100 cockpit,2011",
+      "author": "Dmitry Petrov",
+      "license": "CC BY-SA3.0 https://creativecommons.org/licenses/by-sa/3.0/",
+      "scope": "Independent wider cabin view, side desks, system panels, seats and ceiling. Perspective reference only; no pixels distributed."
+    },
+    {
+      "url": "https://www.antonov.com/en/history/an-124-ruslan",
+      "title": "AN-124 Ruslan manufacturer history and dimensions",
+      "author": "Antonov",
+      "license": "Copyright manufacturer; factual dimension reference",
+      "scope": "Independent69.10m length,73.30m span,21.08m height. Corrects previous roster height20.78m."
+    },
+    {
+      "url": "https://www.dvidshub.net/image/1319389/antonov-arrives-angel-thunder",
+      "title": "An-124-100 arrival at Davis-Monthan,2May2014",
+      "author": "US Air Force / Airman1st Class Chris Massey",
+      "license": "Public domain US Air Force work; released",
+      "scope": "Independent frontal photograph checked for wing anhedral, nacelle spacing/heights, gear, elevated windshield and nose cross-section. Intake heights estimated from this photograph and operator drawing; no image pixels shipped."
+    }
+  ],
+  "cabinCamera": {
+    "mode": "fixed",
+    "position": [
+      0,
+      9.42,
+      26
+    ],
+    "lookAt": [
+      0,
+      8.7,
+      28.4
+    ],
+    "fov": 85
+  },
+  "panelOriginHeight": 45,
+  "panelCamera": {
+    "mode": "top-down-ortho",
+    "center": [
+      0,
+      -8.8
+    ],
+    "viewHeight": 2,
+    "cameraHeight": 17
+  },
+  "instrumentState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 1,
+    "flapPosition": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "engine1": 0,
+    "engine2": 0,
+    "engine3": 0,
+    "engine4": 0
+  },
+  "exteriorState": {
+    "trueAirspeed": 0,
+    "altitude": 0,
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 3.141592653589793,
+    "verticalSpeed": 0,
+    "gear": 1,
+    "flapPosition": 0,
+    "pitchInput": 0,
+    "rollInput": 0,
+    "yawInput": 0,
+    "power": 0,
+    "engine1": 0,
+    "engine2": 0,
+    "engine3": 0,
+    "engine4": 0
+  },
+  "overlays": [
+    {
+      "view": "side",
+      "reference": ".artifacts/aircraft/references/an124-side.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1105,
+        "height": 350
+      },
+      "referenceAnchor": [
+        16,
+        342
+      ],
+      "modelAnchor": [
+        -34.55,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 1074,
+        "meters": 69.1,
+        "description": "Uniform overall length. Fin height follows published21.08m rather than the illustrative drawing."
+      },
+      "scope": "Nose, body profile, gear stations, nacelles and fin; no silhouette warping.",
+      "referencePreparation": "Adjacent top-view fragment masked at(850,700)-(1200,850), outside the side silhouette, before crop(850,700)-(1955,1050)."
+    },
+    {
+      "view": "top",
+      "reference": ".artifacts/aircraft/references/an124-top.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1160,
+        "height": 1110
+      },
+      "referenceAnchor": [
+        580,
+        1096
+      ],
+      "modelAnchor": [
+        0,
+        34.55
+      ],
+      "scaleControls": {
+        "pixels": 1142,
+        "meters": 73.3,
+        "description": "Span, rotate180degrees to nose-down. Uniform scale."
+      },
+      "scope": "Wing/tail planform, fuselage taper, engine spacing. Primary operator engine stations take precedence.",
+      "referencePreparation": "2000×1150 rasterization of public-domain SVG. Adjacent front/side views masked at(780,0)-(1200,330) and(850,850)-(1200,1130), outside the top silhouette. Crop(20,20)-(1180,1130), rotate180degrees. No contour fitting."
+    },
+    {
+      "view": "front",
+      "reference": ".artifacts/aircraft/references/an124-front.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1185,
+        "height": 350
+      },
+      "referenceAnchor": [
+        594,
+        338
+      ],
+      "modelAnchor": [
+        0,
+        0
+      ],
+      "scaleControls": {
+        "pixels": 1160,
+        "meters": 73.3,
+        "description": "Span; illustrative front height and engine levels differ from published dimensions. Qualitative check."
+      },
+      "scope": "Anhedral, large fuselage, gear track, engine spacing and small elevated windshield.",
+      "referencePreparation": "Adjacent drawing fragment masked at(780,330)-(1200,375), outside the front silhouette, before crop(780,25)-(1965,375)."
+    },
+    {
+      "view": "panel",
+      "reference": ".artifacts/aircraft/references/an124-panel-crop.png",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1060,
+        "height": 400
+      },
+      "referenceAnchor": [
+        530,
+        255
+      ],
+      "modelAnchor": [
+        0,
+        -8.6
+      ],
+      "scaleControls": {
+        "pixels": 1040,
+        "meters": 3,
+        "description": "Estimated3m panel width. Perspective and yoke occlusion make this qualitative."
+      },
+      "edgeMode": "photo",
+      "scope": "Analog gauge clusters, central vertical engine indicators, raised radios and control columns. No metric cockpit claim."
+    }
+  ],
+  "reviewNotes": {
+    "corrections": [
+      "Dedicated An-124 geometry replaces the generic transport: distinct raised cockpit/visor, deep fuselage, swept anhedral wing, low horizontal tail, tall fin and four D-18T nacelles with recessed fans and stepped rear cores. Top overlay corrected the inboard trailing edge; frontal photo corrected engine-center heights. Published height corrected from20.78m to21.08m.",
+      "Twenty-four wheels: five twin-wheel main struts per side plus two twin-wheel nose struts; long side fairings, closed cargo seams, door outlines, selective skin seams/fasteners and an original geometric stripe. Swept control surfaces use fixed oriented mounts and separate moving hinge children.",
+      "Individual blue analog cockpit layout from frontal photo, including asymmetrical pilot/copilot gauge positions, vertical engine instruments, tall ivory four-lever quadrant, dual yokes and fans, overhead, six seats and paired radio/navigation/engineer stations. Side-panel rotation and placement corrected after close renders; imported-mesh raycasts confirm upper-panel and overhead roof clearance.",
+      "Metric TAS/geometric-altitude/vertical-speed instruments, three attitudes, true-heading cards and four independent normalized simulator RPM pointers use shared named sources/expressions. Controls and gear animate from real simulation data; unavailable instrument information is blank."
+    ],
+    "independentDimensions": "Manufacturer and operator agree69.1×73.3×21.08m. Main gear track8m and engine lateral stations9.932m/17.688m are independent operator dimensions. The illustrative front view disagrees locally with the published height and engine positions; it is qualitative. Engine-center heights4.65m/5.25m were estimated from the independent frontal USAF photograph and operator front drawing; ambiguous3.3/4m annotations are not interpreted as centerline heights. Cockpit span3m and cabin dimensions are estimates, not measurements.",
+    "visual": "Personally inspected final-hash four overlays, eight standard views and13 close/state views including cruise, limits, below-sea-level, missing data, overhead, pedestal, six seats, engine/visor close-up, gear-up and both control extremes. Targeted geometry and pilot-sightline check,25 instrument tests and byte-identical regeneration passed. Mesh raycasts found no upper-panel/overhead vertices outside the roof after correction.",
+    "limitations": [
+      "Exterior drawings are illustrative general arrangements with local inconsistencies, not production station data. Cross-sections, airfoils, glazing, fairings and nacelle details remain polygonal approximations. Front-photo alignment is qualitative because perspective, gear compression and camera height are not calibrated.",
+      "The frontal panel is supported by close photography, but cockpit dimensions and six-place cabin proportions are estimated. Overhead and side systems panels preserve visible grouping and volume with simplified switches; labels are original English simulator labels rather than exact Cyrillic placards. Upholstery and equipment details are simplified.",
+      "Live instruments are simulator adaptations, not certified Soviet instrument reproductions. Speed is TAS in km/h, altitude geometric meters with0–12000m dial limits, vertical speedm/s, and heading true. Engine pointers read normalized simulator RPM, not D-18T N1/N2/N3. Radar/navigation/radio/autopilot, temperature, pressure, fuel, electrical/hydraulic and warning systems are not simulated; their readings stay blank.",
+      "Gear retracts by translation/hiding; kneeling, steering and truck sequencing are not modeled. Flaps rotate without full multi-slot/Fowler extension. Cargo doors stay closed and the cargo hold is not furnished. Seams/fasteners are selective visual detail, not a manufacturing rivet schedule. Assisted flight tuning does not establish real An-124 performance."
+    ]
+  },
+  "sourceHash": "sha256:62529c58233f8d74205a425d5839f9419dc855d023e55ba262ac986770d0d70a",
+  "runtimeHash": "sha256:44267284b0c43c56d007302821b0fe58047a87552851b18d4de4b1cf69e2e908",
+  "limitations": [
+    "Exterior drawings are illustrative general arrangements with local inconsistencies, not production station data. Cross-sections, airfoils, glazing, fairings and nacelle details remain polygonal approximations. Front-photo alignment is qualitative because perspective, gear compression and camera height are not calibrated.",
+    "The frontal panel is supported by close photography, but cockpit dimensions and six-place cabin proportions are estimated. Overhead and side systems panels preserve visible grouping and volume with simplified switches; labels are original English simulator labels rather than exact Cyrillic placards. Upholstery and equipment details are simplified.",
+    "Live instruments are simulator adaptations, not certified Soviet instrument reproductions. Speed is TAS in km/h, altitude geometric meters with0–12000m dial limits, vertical speedm/s, and heading true. Engine pointers read normalized simulator RPM, not D-18T N1/N2/N3. Radar/navigation/radio/autopilot, temperature, pressure, fuel, electrical/hydraulic and warning systems are not simulated; their readings stay blank.",
+    "Gear retracts by translation/hiding; kneeling, steering and truck sequencing are not modeled. Flaps rotate without full multi-slot/Fowler extension. Cargo doors stay closed and the cargo hold is not furnished. Seams/fasteners are selective visual detail, not a manufacturing rivet schedule. Assisted flight tuning does not establish real An-124 performance."
+  ]
+}

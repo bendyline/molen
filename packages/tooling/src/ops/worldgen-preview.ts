@@ -8,6 +8,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, extname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import type { FontLibrary } from '@bendyline/molen-materials/text';
 import {
   type ArchStyleDoc,
   createLandmarkLibrary,
@@ -98,6 +99,7 @@ interface PreviewScenePayload {
   materialRefs: string[];
   /** Landmark models the placements may name as `builtin:<id>`. */
   landmarks: LandmarkDefinitions;
+  fonts?: FontLibrary;
   ground: { y: number; minX: number; minZ: number; maxX: number; maxZ: number };
   clearColor: string;
 }
@@ -286,6 +288,7 @@ async function previewWorldgenImpl(input: WorldgenPreviewInput): Promise<Worldge
       filesBaseUrl,
       assetIndex: stylePackAssetIndex(pack, filesBaseUrl),
       landmarks,
+      ...(loaded.fonts ? { fonts: loaded.fonts } : {}),
       // The style pack also contains materials for hundreds of structures absent from this
       // preview. Bake only refs actually used by its procedural meshes; props carry their
       // own GLB materials. Preparing the whole library dominated each lineup capture.

@@ -1,4 +1,6 @@
-# Container feeder ship
+# Bendy Container Ship
+
+![Molen preview](preview.png)
 
 Original brief: add diverse cars, motorcycles, bicycles, boats, cargo ships and ferries to Molen.
 

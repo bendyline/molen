@@ -1,0 +1,884 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0742_hasoda",
+  "reviewedOn": "2026-10-21",
+  "inputHash": "sha256:8a2bffbe74f9f1652f145bdbc49937728d94dc5ff5b531ffed7bf1e6e38ddb74",
+  "sourceHash": "sha256:9e0b02d7fe7179385b9eac3285f20183dfe8510261c5e304831a5da3c354e6a8",
+  "runtimeHash": "sha256:77606eb313350e3691f3d0cc8d324ef0e3eeb7f64e3b4c3c231397d0aa76cb9d",
+  "captureReportHash": "sha256:6983b664d89eed1818e4ad4dc29a6f78450722f16284e12275ca66b2ffe392ea",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/courtyard-pointed-arcade-and-low-lead-crowns.png",
+      "shots/open-colonnade-capitals-and-recessed-window-backs.png",
+      "shots/angled-southern-connector-and-exact-footprint.png"
+    ],
+    "notes": "Inspected47 current portable/shared/medium-fi/native views during one continuous author/build/inspect/fix pass. Irregular elongated dormitory range, pale walls, recessed rectangular lower windows with shared screens and smaller arched upper panes, open room entrance, grey circular shafts with pale capitals, nine actual open pointed bays, iron ties and shallow lead portico crowns. Preserved the angled southern connector. Corrected a real roof gap over its projecting spur by extending and clipping the hipped roof domain. All ten earlier palace members retain their exact current input/source/runtime pins. Source and flat shared/context views establish model quality; native terrain fit is rejected below."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/courtyard-pointed-arcade-and-low-lead-crowns.png",
+      "shots/shared/open-colonnade-capitals-and-recessed-window-backs.png",
+      "shots/shared/angled-southern-connector-and-exact-footprint.png"
+    ],
+    "notes": "Eight existing256px shared graphs: stone_limestone, stone_limestone_raw, stone_marble, stone_granite, metal_standing_seam, metal_painted, wood_plain and metal_rosette_screen. Eight roles merge to eight close draws/seven district draws/one skyline draw. Metric wall/roof quad UVs, linear palette tints and shared opaque metal window backs. Existing screen pattern substitutes for bespoke ironwork. Each requested graph read once. No new graph/private atlas/embedded images. Separate POSITION/NORMAL streams and equal CPU/GPU accounting.",
+    "captureReportHash": "sha256:47edbe8bdf9eb7f729963354091cd9f2fb03915155321137399f5c35e68c3d96"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/courtyard-pointed-arcade-and-low-lead-crowns.png",
+      "medium-fi/open-colonnade-capitals-and-recessed-window-backs.png",
+      "medium-fi/angled-southern-connector-and-exact-footprint.png",
+      "medium-fi/hasoda-skyline.png",
+      "medium-fi/hasoda-district.png",
+      "medium-fi/hasoda-street.png",
+      "medium-fi/hasoda-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored levels; exact counts/bytes/draws in the table below and qa.json. Initial geometry371916bytes. Skyline retains the notched mass, open colonnade, low roof crowns and lower-window rhythm. District restores upper windows, capitals and less angular crowns. Street/closeup restore actual recessed windows/opaque two-sided backs, shared screens, small frames, ties and finer arch/crown profiles. Every level meets triangle/draw/download/layout budgets. Synthetic context uses scale1 and ground at the authored occupied floor, so procedural-neighbor views are readable without treating a flat fixture as native-fit evidence. Only context framing changed; all six GLBs stayed byte-identical, with explicit continuity proof for reused geometry/portable/shared/native reports. Physical ordinary-laptop/phone/tablet and dense-city timings remain pending.",
+    "captureReportHash": "sha256:051dc9752d0b09173f2860e84b70a3d9ccd58eb6db7c11f27da8653a21dae0a8"
+  },
+  "geographicReview": {
+    "status": "pending-terrain-fit",
+    "placementHash": "sha256:5af224a9450186c9622fe8771d266570b1a31e0a8892aef40ef90135c7e6ba57",
+    "mapFrameHash": "sha256:50c8fb3e1675433c6aba0a08a71f919b56b8bdaa7e80ebccb8d409b4c854d3b4",
+    "notes": "Declared Topkapi Q170495 OSM member way103907804/native35184475996636. Existing standard PMTiles fixes the full irregular parent and angled southern connector. Internal+X follows the range northeast; internal+Z faces southeast into Third Courtyard. Ordinary courtyard photographs guide the arcade. Has Oda Kogusu is the dormitory, not the adjacent Sacred Relics chamber or the Harem private rooms. Existing standard Protomaps/Mapzen extract and original161x161/6m grid retained. Uncovered court attachment internal[8,19] is outside all573 original building records, verified before authoring. Level floor .18m above highest original boundary sample; bounded protective base follows only the actual mapped parent, leaving the exterior court open. Falling coarse ground may expose foundations; threshold/basement heights remain unverified. No precinct flattening or bespoke terrain. Initial native render exposes several metres of plain protective base along the courtyard arcade. Native elevation fit is not accepted; public placement must remain draft. Geometry/contact and XY ownership checks do not approve this visual fit. Native horizontal ownership/facing and load/disposal checks pass: one named parent removed,258 independent resident buildings of259 and572 wider independent records of573 retained, with original161x161/6m terrain/roads/3400906.0006393427 square metres water. Fourteen overlapping map cases13/14/15 pass, including both detailed parent fragments. Failed loading retains259 originals; every LOD unload restores terrain/water and zero live model geometry. Attachment internal[8,19] is outside all573 original records; native terrain remains there. HOWEVER, the original terrain falls from one end of the range to the other. The level source floor exposes several metres of plain protective base along the arcade, unlike the ordinary courtyard photos. This native visual fit is not approved. Keep the public placement inactive draft; do not count this member ready. No custom terrain or precinct flattening was introduced."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Two ordinary exterior photos actually viewed (Mark Ahsmann2013-12-04 and Maksym Kozlenko2013-01-02) plus existing PMTiles. Footprint/angled connector and courtyard-facing axis are map-led. Picture-led eaves5.8m, spring3.25m and shallow portico crowns above the authored occupied floor; nine representative open bays along the mapped straight courtyard leg. Hidden rear windows, the main hipped roof, window/door inventory and exact crown profiles are approximations. No measured architectural heights; native height5 is a coarse map hint. Nine arcade bays and crown count are representative picture-led controls, not a surveyed inventory. Rear elevations, hip roof, inaccessible windows and door position remain approximations. No copied inscriptions/artwork, large Sacred Relics dome, visitors/gardens or furnished museum interior. Agas Mosque and Sacred Relics chambers remain independent native context. Source geometry is authored and reviewed; this palace member remains incomplete because native terrain fit fails."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sx/sxk/n0742_hasoda/models/source.glb\",\"hash\":\"sha256:9e0b02d7fe7179385b9eac3285f20183dfe8510261c5e304831a5da3c354e6a8\",\"bytes\":1747156,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.glb\",\"hash\":\"sha256:77606eb313350e3691f3d0cc8d324ef0e3eeb7f64e3b4c3c231397d0aa76cb9d\",\"bytes\":1746440,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.skyline.glb\",\"hash\":\"sha256:0f12ad3e15c9b789816d458159706d542f7116fb7405a16d595c9de7a3e2a23a\",\"bytes\":90124,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.district.glb\",\"hash\":\"sha256:5d3120be28a2699f23be8546e2ff078b95b2288834d8a62f420867ea03a16d96\",\"bytes\":281792,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.street.glb\",\"hash\":\"sha256:0a74ff1b3b5403cf8df616b8e9b27feafaf20da359b1dfecaebee346c81090ac\",\"bytes\":995124,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.closeup.glb\",\"hash\":\"sha256:5db85b3d56ad24cae934ebbb9b7edb0ed4fdc698818f40a950549c1f81870596\",\"bytes\":1436696,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "open-pointed-arcade-shafts-entrance-opaque-window-backs-closed-hip-and-crown-roofs-and-cutout-seals",
+        "passed": true,
+        "notes": "376 actual mesh/contact probes. The projecting roof spur is covered by lead at every LOD; no exposed timber top. Map opening is sealed by occupied geometry. These checks do not approve native elevation fit."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "pending-terrain-fit",
+    "inputHash": "sha256:8a2bffbe74f9f1652f145bdbc49937728d94dc5ff5b531ffed7bf1e6e38ddb74",
+    "sceneInputs": {
+      "inputHash": "sha256:8a2bffbe74f9f1652f145bdbc49937728d94dc5ff5b531ffed7bf1e6e38ddb74",
+      "sourceHash": "sha256:9e0b02d7fe7179385b9eac3285f20183dfe8510261c5e304831a5da3c354e6a8",
+      "runtimeHash": "sha256:77606eb313350e3691f3d0cc8d324ef0e3eeb7f64e3b4c3c231397d0aa76cb9d",
+      "files": {
+        "content/worldgen/source/places/sx/sxk/n0742_hasoda/models/source.glb": "sha256:9e0b02d7fe7179385b9eac3285f20183dfe8510261c5e304831a5da3c354e6a8",
+        "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.glb": "sha256:77606eb313350e3691f3d0cc8d324ef0e3eeb7f64e3b4c3c231397d0aa76cb9d",
+        "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.skyline.glb": "sha256:0f12ad3e15c9b789816d458159706d542f7116fb7405a16d595c9de7a3e2a23a",
+        "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.district.glb": "sha256:5d3120be28a2699f23be8546e2ff078b95b2288834d8a62f420867ea03a16d96",
+        "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.street.glb": "sha256:0a74ff1b3b5403cf8df616b8e9b27feafaf20da359b1dfecaebee346c81090ac",
+        "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.closeup.glb": "sha256:5db85b3d56ad24cae934ebbb9b7edb0ed4fdc698818f40a950549c1f81870596"
+      },
+      "contextOnlyRebind": {
+        "method": "Only mediumFiContext scale and synthetic groundY changed. All six GLBs remain byte-identical. Portable/shared/native cameras, lighting, transforms, materials, terrain and controls are unchanged; their image hashes remain current. Only the medium-fi fixture requires new rendering.",
+        "previousInputHash": "sha256:ee0895ea34d3ca4777c31f9f4ae934a0f91b9f04673f1806f6fa2ffd7dd8fcac",
+        "inputHash": "sha256:8a2bffbe74f9f1652f145bdbc49937728d94dc5ff5b531ffed7bf1e6e38ddb74",
+        "files": {
+          "content/worldgen/source/places/sx/sxk/n0742_hasoda/models/source.glb": "sha256:9e0b02d7fe7179385b9eac3285f20183dfe8510261c5e304831a5da3c354e6a8",
+          "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.glb": "sha256:77606eb313350e3691f3d0cc8d324ef0e3eeb7f64e3b4c3c231397d0aa76cb9d",
+          "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.skyline.glb": "sha256:0f12ad3e15c9b789816d458159706d542f7116fb7405a16d595c9de7a3e2a23a",
+          "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.district.glb": "sha256:5d3120be28a2699f23be8546e2ff078b95b2288834d8a62f420867ea03a16d96",
+          "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.street.glb": "sha256:0a74ff1b3b5403cf8df616b8e9b27feafaf20da359b1dfecaebee346c81090ac",
+          "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.closeup.glb": "sha256:5db85b3d56ad24cae934ebbb9b7edb0ed4fdc698818f40a950549c1f81870596"
+        }
+      }
+    },
+    "preservedMembers": [
+      {
+        "asset": "molen.worldgen.structure.n0742_salutation",
+        "inputHash": "sha256:d47b20fa22b44b3062275cae8967cf37531045551823cc3b97d5302e61d6165a",
+        "sourceHash": "sha256:531f1f4b806f391653269bec502d96e6abf7647823f7a0bf395f5225c79ecdfe",
+        "runtimeHash": "sha256:92bca0aacb504f346d048aeb42dd68f499eb1800bdda2573f7f14568841bb00d"
+      },
+      {
+        "asset": "molen.worldgen.structure.n0742_imperial",
+        "inputHash": "sha256:03d5a1a0bb5be4069d9bb291b22265a62fa04fa591405571de5dee3b3a4a0f74",
+        "sourceHash": "sha256:7a56eaa1398cf42a46442536dbe45b6834596d9b3ed15429dd25f56c414c1c09",
+        "runtimeHash": "sha256:0ac29d303f82f04c2c8450f8cbd53f58ad967daa02ac4a6b634eaab32c91ebce"
+      },
+      {
+        "asset": "molen.worldgen.structure.n0742_felicity",
+        "inputHash": "sha256:dd0a0ec510c3fd51858dbcfe36c84732ecadabd80b881e9058bf374024137735",
+        "sourceHash": "sha256:337e05137e257792295fd557f29463ff21ba5a6e4e515eb0c9ef5c6d6f693143",
+        "runtimeHash": "sha256:b98b68a9ed89a363706253dff8a894f3a2fdc80cad028eaa3810e0b0e49f88b9"
+      },
+      {
+        "asset": "molen.worldgen.structure.n0742_council",
+        "inputHash": "sha256:14b0f85b1bdfd0163d739528d61c511be74c14082953a80c824dff26ebd14a0d",
+        "sourceHash": "sha256:2225c439d3cdabe44790b10d7abe72d7a361f9ea71719515fac54a4878a232ad",
+        "runtimeHash": "sha256:2c3d1cce002ff939daa4ef152b4488b43f327c9e5eabad5f1c2eca8d8562d383"
+      },
+      {
+        "asset": "molen.worldgen.structure.n0742_justice",
+        "inputHash": "sha256:90fec81d8ac93df55f901383b837384ea26bca4e518809ae776ff35175464a80",
+        "sourceHash": "sha256:dfdc0d06990acc65f05893e24e4a6f5b292661ad97b0b9f404e2300791e418f4",
+        "runtimeHash": "sha256:d7bff441bfbaff86a4578a449c1280e9ddf814a0de190865c98237ae3b86755c"
+      },
+      {
+        "asset": "molen.worldgen.structure.n0742_kitchens",
+        "inputHash": "sha256:d96c71ef61c856edd1f602049300b88ca5d215ebf527f8a25d3ff6f511edd280",
+        "sourceHash": "sha256:ad2bc7e06bef640a001ef60d029936252d91f74f94e4032c6dae671aa5bdbd92",
+        "runtimeHash": "sha256:693b3acba3c158ad3e1b0c388a3d4aa7edc088dfbc0ab9e82dd6074b9e51cccd"
+      },
+      {
+        "asset": "molen.worldgen.structure.n0742_harem",
+        "inputHash": "sha256:d4e01c579af5eb92a5ca239a86801626ec97e22d6afc97815bf51fa06e0a7705",
+        "sourceHash": "sha256:7e22c6fd6761ff86e4e35320732d357294434a10ba565c39012ce12babe2d622",
+        "runtimeHash": "sha256:72359c535333df60842bd02efbdb60a4de86d29ed51ab00ab5434da47f359d96"
+      },
+      {
+        "asset": "molen.worldgen.structure.n0742_audience",
+        "inputHash": "sha256:f3993da3eedbfb51804d20969405235326ddc943092dc71a3bab70c1e5da5366",
+        "sourceHash": "sha256:277459ee2d0e5178232fb43b261ff3ad035de68784f66ea72797afc60d16fdaa",
+        "runtimeHash": "sha256:1d3b436a3c5173dc569e41417e5db7e0f3bac8b7d459ae084e79a903a988e4d2"
+      },
+      {
+        "asset": "molen.worldgen.structure.n0742_library",
+        "inputHash": "sha256:feff0efbaa6fe51ae08eeacad243ca095e8ff9d597ae00ce6663c30a6ef40bd6",
+        "sourceHash": "sha256:210616d3e0c9c2cc40bd5168adaf2dffe4107eece9b41a20e979d01c4e046989",
+        "runtimeHash": "sha256:37c2231aafde4d9694dbb769870338a4b89b5ae1c1f64614242aadcd19f39b72"
+      },
+      {
+        "asset": "molen.worldgen.structure.n0742_agas",
+        "inputHash": "sha256:2467b5e746051d944c1d2991b5bfc7af1197c2fff32f9447abf7278d44050c1b",
+        "sourceHash": "sha256:8236de3f0f301528fc61003fd827059a37bb5bd7467cf61f4e23c51db35d323c",
+        "runtimeHash": "sha256:a470dc4b6eabace20803b51897087d54958efb3c64b039967cc182da45e75d36"
+      }
+    ],
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3070
+          ],
+          "id": 35184396323800,
+          "owned": false,
+          "covered": 0.017292548354592246,
+          "area": 67259.67651714981,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3070
+          ],
+          "id": 35184396894810,
+          "owned": false,
+          "covered": 0.000021347542019674766,
+          "area": 1516249.8695529255,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3071
+          ],
+          "id": 35184404484920,
+          "owned": false,
+          "covered": 0.000052202443978613665,
+          "area": 620051.578731986,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3071
+          ],
+          "id": 35184475996630,
+          "owned": false,
+          "covered": 0.15271603370766546,
+          "area": 7616.038606093429,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6141
+          ],
+          "id": 35184404484940,
+          "owned": false,
+          "covered": 0.00003524549089684984,
+          "area": 100452.7113129673,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6141
+          ],
+          "id": 35184475996630,
+          "owned": false,
+          "covered": 0.9917062234485435,
+          "area": 1186.3349429972789,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6142
+          ],
+          "id": 35184404484920,
+          "owned": false,
+          "covered": 0.000006669566972968005,
+          "area": 64901.6949534745,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6142
+          ],
+          "id": 35184475996630,
+          "owned": false,
+          "covered": 0.23284806774660272,
+          "area": 2390.6828270742944,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12283
+          ],
+          "id": 35184404485068,
+          "owned": false,
+          "covered": 0.002369738123784541,
+          "area": 375.2361205598792,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12283
+          ],
+          "id": 35184475996636,
+          "owned": true,
+          "covered": 0.9999997879454227,
+          "area": 1182.5787883049811,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12283
+          ],
+          "id": 52776562876570,
+          "owned": false,
+          "covered": 0.0000010814316350114208,
+          "area": 5808.087405459999,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184404485068,
+          "owned": false,
+          "covered": 0.0004023541112154758,
+          "area": 368.2060332704519,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184475996636,
+          "owned": true,
+          "covered": 0.9999907903272686,
+          "area": 157.40362359606485,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 52776562876570,
+          "owned": false,
+          "covered": 0.00003360908941487015,
+          "area": 6102.956068737287,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "ownedNativeIds": [
+        35184475996636
+      ],
+      "independentBuildingsUnchanged": 258,
+      "widerIndependentBuildingsUnchanged": 572,
+      "footprintQuantizationMeters": 0.0001,
+      "groundBoundaryRounding": {
+        "outsideArea": 2.2447701297778622e-7,
+        "maxDistanceMeters": 4.661112346707858e-7
+      },
+      "providerAttachment": {
+        "internal": [
+          8,
+          19
+        ],
+        "modelLocal": [
+          20.547933765066517,
+          1.6680581483987602
+        ],
+        "absoluteGroundMeters": 45.158878465138514,
+        "modelHeight": 0,
+        "buildingsContainingControl": []
+      }
+    },
+    "contextOnlyRebind": {
+      "method": "Only mediumFiContext scale and synthetic groundY changed. All six GLBs remain byte-identical. Portable/shared/native cameras, lighting, transforms, materials, terrain and controls are unchanged; their image hashes remain current. Only the medium-fi fixture requires new rendering.",
+      "previousInputHash": "sha256:ee0895ea34d3ca4777c31f9f4ae934a0f91b9f04673f1806f6fa2ffd7dd8fcac",
+      "inputHash": "sha256:8a2bffbe74f9f1652f145bdbc49937728d94dc5ff5b531ffed7bf1e6e38ddb74",
+      "files": {
+        "content/worldgen/source/places/sx/sxk/n0742_hasoda/models/source.glb": "sha256:9e0b02d7fe7179385b9eac3285f20183dfe8510261c5e304831a5da3c354e6a8",
+        "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.glb": "sha256:77606eb313350e3691f3d0cc8d324ef0e3eeb7f64e3b4c3c231397d0aa76cb9d",
+        "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.skyline.glb": "sha256:0f12ad3e15c9b789816d458159706d542f7116fb7405a16d595c9de7a3e2a23a",
+        "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.district.glb": "sha256:5d3120be28a2699f23be8546e2ff078b95b2288834d8a62f420867ea03a16d96",
+        "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.street.glb": "sha256:0a74ff1b3b5403cf8df616b8e9b27feafaf20da359b1dfecaebee346c81090ac",
+        "content/worldgen/assets/places/sx/sxk/n0742_hasoda/model.closeup.glb": "sha256:5db85b3d56ad24cae934ebbb9b7edb0ed4fdc698818f40a950549c1f81870596"
+      }
+    },
+    "visualFit": {
+      "status": "failed",
+      "reason": "Excessive exposed protective foundation along the arcade on original coarse terrain; differs from the photographs."
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "modelWorldY": 1.1282302381232512e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0742_hasoda"
+          ],
+          "rawTerrainRange": {
+            "min": -45.90577846513851,
+            "max": 10.30762153486149
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:4a09722fae354f171b05928ad78214a1ff74d5d313fc88d81326ee2b29e8de8e",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 311714
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                18.950624287568406,
+                33.770623599202736,
+                74.1004307619829
+              ],
+              "lookAt": [
+                -1.3840699407537074,
+                7.570623599202737,
+                2.66164430364052
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "modelWorldY": 1.1282302381232512e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0742_hasoda"
+          ],
+          "rawTerrainRange": {
+            "min": -45.90577846513851,
+            "max": 10.30762153486149
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:49749c47edc85cda134b580b8b1ec0b6b6f81f843e02dab9e940ae71c8d1a2e5",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 313686
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                18.950624287568406,
+                33.770623599202736,
+                74.1004307619829
+              ],
+              "lookAt": [
+                -1.3840699407537074,
+                7.570623599202737,
+                2.66164430364052
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "modelWorldY": 1.1282302381232512e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0742_hasoda"
+          ],
+          "rawTerrainRange": {
+            "min": -45.90577846513851,
+            "max": 10.30762153486149
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:9373ea71291cbee877fe7e26ce07ea293568e601e12a8fb1c0924c034d39d210",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 321958
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                18.950624287568406,
+                33.770623599202736,
+                74.1004307619829
+              ],
+              "lookAt": [
+                -1.3840699407537074,
+                7.570623599202737,
+                2.66164430364052
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "modelWorldY": 1.1282302381232512e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 258,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0742_hasoda"
+          ],
+          "rawTerrainRange": {
+            "min": -45.90577846513851,
+            "max": 10.30762153486149
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:8fc7ee716ad25b22c3089d4242bcf564e05b163b6bb90b0525971e3bcc4d1e7a",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 327018
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                18.950624287568406,
+                33.770623599202736,
+                74.1004307619829
+              ],
+              "lookAt": [
+                -1.3840699407537074,
+                7.570623599202737,
+                2.66164430364052
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-courtyard-pointed-arcade-and-low-lead-crowns.png",
+            "hash": "sha256:15e07d931f5d28c419d9b1977889fc84f5d3b71033d398609ca07f628a2f5322",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 326826
+            },
+            "camera": {
+              "name": "courtyard-pointed-arcade-and-low-lead-crowns",
+              "position": [
+                25.942095233753513,
+                16.770623599202736,
+                28.142631271486742
+              ],
+              "lookAt": [
+                7.204213720908282,
+                7.170623599202736,
+                -3.016505372691528
+              ],
+              "fov": 58
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-colonnade-capitals-and-recessed-window-backs.png",
+            "hash": "sha256:4f56e4aff01cb68b8e30b570579b7a1e6a6bcc571c6263362bee523de54a7456",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 326190
+            },
+            "camera": {
+              "name": "open-colonnade-capitals-and-recessed-window-backs",
+              "position": [
+                17.123257439137877,
+                6.170623599202736,
+                6.086382724821811
+              ],
+              "lookAt": [
+                7.807502376396057,
+                6.570623599202737,
+                1.2421379321838346
+              ],
+              "fov": 78
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-angled-southern-connector-and-exact-footprint.png",
+            "hash": "sha256:fb061ad6b1e02cc1867ec436813f06e2607311a184a352940ddcfc87f817bf4e",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 327018
+            },
+            "camera": {
+              "name": "angled-southern-connector-and-exact-footprint",
+              "position": [
+                -11.853402906548244,
+                20.770623599202736,
+                42.302444841108574
+              ],
+              "lookAt": [
+                -8.730277765484516,
+                6.770623599202736,
+                14.621294407045045
+              ],
+              "fov": 65
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 259,
+          "independentBuildings": 258,
+          "remainingBuildings": 259,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184475996636,
+              "area": 1183.2718445748085
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0742_hasoda"
+          ],
+          "rawTerrainRange": {
+            "min": -45.90577846513851,
+            "max": 10.30762153486149
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:275d14b94e0c998f445602331c8ed54c3568632ec2a4fcc4700f376429bfd333",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 310676
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                18.950624287568406,
+                33.770623599202736,
+                74.1004307619829
+              ],
+              "lookAt": [
+                -1.3840699407537074,
+                7.570623599202737,
+                2.66164430364052
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Specific Has Oda Kogusu/Dormitory of the Privy Chamber on OSM way103907804: irregular elongated footprint, pale stone rear range and short angled southern connector, open courtyard colonnade with slender grey shafts/pale capitals/pointed arches, two window rows, low lead main roof and repeated shallow polygonal portico crowns. Preserve the independent Agas Mosque and large domed Sacred Relics chambers. No copied inscriptions, visitors, garden props or furnished museum interior.",
+    "Declared Topkapi Q170495 OSM member way103907804/native35184475996636. Existing standard PMTiles fixes the full irregular parent and angled southern connector. Internal+X follows the range northeast; internal+Z faces southeast into Third Courtyard. Ordinary courtyard photographs guide the arcade. Has Oda Kogusu is the dormitory, not the adjacent Sacred Relics chamber or the Harem private rooms.",
+    "Picture-led eaves5.8m, spring3.25m and shallow portico crowns above the authored occupied floor; nine representative open bays along the mapped straight courtyard leg. Hidden rear windows, the main hipped roof, window/door inventory and exact crown profiles are approximations. No measured architectural heights; native height5 is a coarse map hint.",
+    "Existing standard Protomaps/Mapzen extract and original161x161/6m grid retained. Uncovered court attachment internal[8,19] is outside all573 original building records, verified before authoring. Level floor .18m above highest original boundary sample; bounded protective base follows only the actual mapped parent, leaving the exterior court open. Falling coarse ground may expose foundations; threshold/basement heights remain unverified. No precinct flattening or bespoke terrain.",
+    "Declared Topkapi Q170495 OSM member way103907804/native35184475996636. Existing standard PMTiles fixes the full irregular parent and angled southern connector. Internal+X follows the range northeast; internal+Z faces southeast into Third Courtyard. Ordinary courtyard photographs guide the arcade. Has Oda Kogusu is the dormitory, not the adjacent Sacred Relics chamber or the Harem private rooms. Existing standard Protomaps/Mapzen extract and original161x161/6m grid retained. Uncovered court attachment internal[8,19] is outside all573 original building records, verified before authoring. Level floor .18m above highest original boundary sample; bounded protective base follows only the actual mapped parent, leaving the exterior court open. Falling coarse ground may expose foundations; threshold/basement heights remain unverified. No precinct flattening or bespoke terrain. Initial native render exposes several metres of plain protective base along the courtyard arcade. Native elevation fit is not accepted; public placement must remain draft. Geometry/contact and XY ownership checks do not approve this visual fit. Native horizontal ownership/facing and load/disposal checks pass: one named parent removed,258 independent resident buildings of259 and572 wider independent records of573 retained, with original161x161/6m terrain/roads/3400906.0006393427 square metres water. Fourteen overlapping map cases13/14/15 pass, including both detailed parent fragments. Failed loading retains259 originals; every LOD unload restores terrain/water and zero live model geometry. Attachment internal[8,19] is outside all573 original records; native terrain remains there. HOWEVER, the original terrain falls from one end of the range to the other. The level source floor exposes several metres of plain protective base along the arcade, unlike the ordinary courtyard photos. This native visual fit is not approved. Keep the public placement inactive draft; do not count this member ready. No custom terrain or precinct flattening was introduced."
+  ]
+}

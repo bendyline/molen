@@ -3,7 +3,7 @@ import { expect, it } from 'vitest';
 import {
   buildKsiazPalmService,
   ksiazPalmServiceModels,
-} from '../../worldgen/scripts/ksiaz-palm-service-models.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/ksiaz-palm-service-models.mjs';
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 const frame = (m) =>

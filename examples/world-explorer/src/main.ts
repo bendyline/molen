@@ -19,7 +19,9 @@ import {
 } from '@bendyline/molen-client/navigation';
 import {
   ambientContentFromTypes,
+  createEarthFleet,
   createEarthFog,
+  createEarthRoadSigns,
   createEarthSky,
   createEarthWorldgen,
   createRegionalGroundColor,
@@ -27,6 +29,8 @@ import {
   EARTH_WATER_CONDITIONS,
   EarthAmbient,
   type EarthAudio,
+  type EarthFleet,
+  type EarthRoadSigns,
   EarthVehicles,
   EarthWildlife,
   type EarthWorldgen,
@@ -83,6 +87,12 @@ import { selectedAntialias, selectedRendererBackend } from './backend-options.js
 import { type ExplorerWorldgenContent, loadExplorerContent } from './content.js';
 import { createExplorerDioramas, DIORAMA_SITES, selectedDiorama } from './dioramas.js';
 import { formatCameraLocation } from './location-readout.js';
+import {
+  createRegionControls,
+  DEFAULT_WORLD_REGION,
+  regionPackagePath,
+  selectedRegion,
+} from './regions.js';
 import { createSkyControls } from './sky-controls.js';
 import { createSurfaceControls } from './surface-controls.js';
 import { syntheticFeatureTile, syntheticLandcoverTile } from './synthetic-footprints.js';
@@ -92,8 +102,7 @@ import { AIRCRAFT_HELP, aircraftBlocks, WorldAircraft } from './world-aircraft.j
 const DEMO_LEVEL = 13;
 const DEMO_MIN_LEVEL = 8;
 const DEMO_RESOLUTION = 33;
-const START = { longitude: -122.0356, latitude: 47.6163, label: 'Sammamish, Washington' };
-type AircraftKind = 'p51d' | 'oh6';
+type AircraftKind = string;
 const aircraftEntityId = (kind: AircraftKind) => `molen.entities.aircraft.${kind}` as const;
 
 const DEMO_PACKAGE: TerrainPackageDescriptor = {
@@ -460,6 +469,12 @@ async function loadWorldgen(options: {
   const materialStore =
     params.get('materialCache') !== '0' ? createIndexedDbMaterialStore() : undefined;
   const worldgen = createEarthWorldgen({
+    buildingInfill:
+      params.get('buildingInfill') === '0'
+        ? false
+        : {
+            seed: Number(params.get('infillSeed') ?? 0),
+          },
     // Freeze the host calendar for this mount; ?month=1..12 makes seasonal previews repeatable.
     // ?month=0 selects neutral leaf-on appearance.
     ...(params.get('month') !== '0'
@@ -549,7 +564,7 @@ async function loadPackage(): Promise<{
     };
   }
   const manifestParam =
-    params.get('package') ?? 'terrain/seattle-bellevue-sammamish/terrain-package.json';
+    params.get('package') ?? regionPackagePath(selectedRegion(params) ?? DEFAULT_WORLD_REGION);
   const manifestUrl =
     manifestParam === 'qualla' ? await quallaRelease() : new URL(manifestParam, location.href);
   const response = await fetch(manifestUrl);
@@ -599,17 +614,18 @@ function isPyramidStats(
 
 function selectedStart(): { longitude: number; latitude: number; label: string } {
   const params = new URLSearchParams(location.search);
+  const start = selectedRegion(params) ?? DEFAULT_WORLD_REGION;
   const place = selectedDiorama(params.get('diorama'));
   const framing = Math.max(1, window.innerHeight / window.innerWidth);
   const longitude = Number(
     params.get('lon') ??
       (place
         ? place.longitude + (0.0012 * place.overviewDistance * framing) / 134
-        : START.longitude),
+        : start.longitude),
   );
   const latitude = Number(
     params.get('lat') ??
-      (place ? place.latitude - (0.0009 * place.overviewDistance * framing) / 134 : START.latitude),
+      (place ? place.latitude - (0.0009 * place.overviewDistance * framing) / 134 : start.latitude),
   );
   if (!Number.isFinite(longitude) || longitude < -180 || longitude > 180) {
     throw new Error('longitude must be finite and between -180 and 180');
@@ -621,7 +637,7 @@ function selectedStart(): { longitude: number; latitude: number; label: string }
     longitude,
     latitude,
     label:
-      params.has('lon') || params.has('lat') ? 'Custom coordinates' : (place?.title ?? START.label),
+      params.has('lon') || params.has('lat') ? 'Custom coordinates' : (place?.title ?? start.label),
   };
 }
 
@@ -664,6 +680,7 @@ function createWaterSurface(size: number, seaLevel: number, material: THREE.Mate
 }
 
 async function main(): Promise<void> {
+  createRegionControls(document.getElementById('region') as HTMLSelectElement);
   const graphics = new GraphicsTelemetry();
   const canvas = document.getElementById('view') as HTMLCanvasElement;
   const sourceLabel = document.getElementById('source') as HTMLParagraphElement;
@@ -707,7 +724,24 @@ async function main(): Promise<void> {
     maxPixelError: automaticQuality ? earthPerformanceTier(performanceLevel).objectPixelError : 2,
   };
   const content = await contentLoad;
-  const surfaceRenderer = createSurfaceControls(quality, content.parkedVehicles);
+  const loadEntityModel = async (id: string, signal?: AbortSignal): Promise<THREE.Object3D> =>
+    (
+      await new GLTFLoader().parseAsync(
+        await content.packs.readBytes(id, signal ? { signal } : undefined),
+        '',
+      )
+    ).scene;
+  const roadContent = ambientContentFromTypes(content.types, loadEntityModel);
+  let fleet: EarthFleet | undefined;
+  let roadSigns: EarthRoadSigns | undefined;
+  const surfaceRenderer = createSurfaceControls(
+    quality,
+    content.parkedVehicles,
+    (x, z) => fleet?.parkedAt(x, z) ?? content.parkedVehicles,
+    content.fonts,
+    (x, z) => roadSigns?.profileAt(x, z),
+    content.roadSigns?.shields,
+  );
   const pyramidBudget = automaticQuality
     ? earthPerformanceTier(performanceLevel).terrain
     : terrainPyramidBudgetForQuality(quality);
@@ -790,6 +824,15 @@ async function main(): Promise<void> {
       ? webMercatorScaleAtLatitude((space.bounds[1] + space.bounds[3]) / 2)
       : 1;
   const useWorker = params.get('worker') !== '0';
+  if (content.roadSigns && space.kind === 'geospatial')
+    roadSigns = createEarthRoadSigns(content.roadSigns, metersPerUnit);
+  if (content.fleet)
+    fleet = createEarthFleet(
+      content.fleet,
+      roadContent.types.car ?? [],
+      content.parkedVehicles,
+      metersPerUnit,
+    );
   let worldgen: ExplorerWorldgen | undefined;
   let styleUnavailableReason: string | undefined = content.worldgenError;
   if (adaptive && content.worldgen !== undefined) {
@@ -1111,6 +1154,7 @@ async function main(): Promise<void> {
       'freeze',
       'level',
       'package',
+      'region',
       'navigation',
       'aircraft',
       'boat',
@@ -1270,8 +1314,6 @@ async function main(): Promise<void> {
     stream.sampleHeight(x, z);
   // Cars and aircraft: definitions from the entities pack's types, models read from the same pack
   // the first time each is shown.
-  const loadEntityModel = async (id: string): Promise<THREE.Object3D> =>
-    (await new GLTFLoader().parseAsync(await content.packs.readBytes(id), '')).scene;
   const vehicles: EarthVehicles = new EarthVehicles({
     root: stream.object,
     sampleHeight,
@@ -1318,9 +1360,10 @@ async function main(): Promise<void> {
       world: vehicles.world,
       parent: stream.object,
       settings: {},
-      content: ambientContentFromTypes(content.types, async (id) => {
+      ...(fleet ? { carsAt: fleet.carsAt } : {}),
+      content: ambientContentFromTypes(content.types, async (id, signal) => {
         try {
-          return await loadEntityModel(id);
+          return await loadEntityModel(id, signal);
         } catch {
           return undefined;
         }
@@ -1355,6 +1398,7 @@ async function main(): Promise<void> {
     wildlifeFeatures.attach(wildlife.features);
   }
   let visitingAircraft: AircraftKind | undefined;
+  let visitingTransit: 'bus' | 'lightrail' | undefined;
   // Sound loads beside everything else; the explorer runs silent until (or unless) it arrives.
   let audio: EarthAudio | undefined;
   void startExplorerAudio(new URL('./', location.href), vehicles.world, viewer.renderer, params)
@@ -1435,12 +1479,35 @@ async function main(): Promise<void> {
   const visitAircraft = (kind: AircraftKind): void => {
     if (vehicles.mountedId && !exitVehicle()) return;
     visitingAircraft = kind;
+    void flight.request(kind).catch((error) => {
+      help.textContent = String(error);
+      visitingAircraft = undefined;
+    });
     setNavigation('fly');
     camera.pos = [flight.center[0], camera.pos[1], flight.center[1] - 330];
     help.textContent = 'Loading practice airfield…';
   };
+  const aircraftCatalog = document.querySelector<HTMLSelectElement>('#aircraft-catalog');
+  if (aircraftCatalog) {
+    for (const choice of flight.choices) {
+      const option = document.createElement('option');
+      option.value = choice.kind;
+      option.textContent = choice.label;
+      aircraftCatalog.append(option);
+    }
+    aircraftCatalog.addEventListener('change', () => {
+      if (aircraftCatalog.value) visitAircraft(aircraftCatalog.value);
+    });
+  }
   for (const button of document.querySelectorAll<HTMLButtonElement>('[data-aircraft]')) {
     button.addEventListener('click', () => visitAircraft(button.dataset.aircraft as AircraftKind));
+  }
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-transit]')) {
+    button.addEventListener('click', () => {
+      if (vehicles.mountedId && !exitVehicle()) return;
+      visitAircraft('p51d');
+      visitingTransit = button.dataset.transit as 'bus' | 'lightrail';
+    });
   }
   window.addEventListener('keydown', (event) => {
     if (
@@ -1467,6 +1534,7 @@ async function main(): Promise<void> {
         'KeyI',
         'KeyG',
         'KeyF',
+        'KeyJ',
         'KeyZ',
         'ControlLeft',
         'ControlRight',
@@ -1554,7 +1622,7 @@ async function main(): Promise<void> {
   window.addEventListener('resize', resizeRenderer);
 
   if (params.get('navigation') === 'walk') setNavigation('walk');
-  if (params.get('aircraft') === 'p51d' || params.get('aircraft') === 'oh6')
+  if (flight.choices.some((choice) => choice.kind === params.get('aircraft')))
     visitAircraft(params.get('aircraft') as AircraftKind);
   let lastTime = performance.now();
   let statusTime = 0;
@@ -1634,7 +1702,7 @@ async function main(): Promise<void> {
     worldgen?.updateInteriors(camera.pos);
     // Keep the practice runway out of real geography until the visitor chooses an aircraft.
     if (loaded.synthetic || visitingAircraft !== undefined) flight.sync();
-    if (visitingAircraft && flight.ready) {
+    if (visitingAircraft && flight.ready && flight.has(visitingAircraft)) {
       const position = flight.visitPosition(visitingAircraft);
       setNavigation('walk');
       camera.pos = position;
@@ -1645,6 +1713,30 @@ async function main(): Promise<void> {
       walker.ready = true;
       walker.grounded = true;
       visitingAircraft = undefined;
+    }
+    if (visitingTransit && flight.ready) {
+      const kind = visitingTransit,
+        id = `practice-${kind}`;
+      const x = flight.center[0] + (kind === 'lightrail' ? -38 : 37);
+      const z = flight.center[1] - 150;
+      const existing = vehicles.world.exists(id);
+      const spawned = existing
+        ? id
+        : vehicles.spawn(
+            `molen.entities.transit.${kind}`,
+            [x, flight.groundHeight(x, z) ?? 0, z],
+            0,
+            { id, retain: true },
+          );
+      if (spawned && vehicles.board(spawned)) {
+        vehicles.view = 'cockpit';
+        help.textContent =
+          kind === 'lightrail'
+            ? 'W/S traction / reverse · Space brake · E exit when stopped · V view'
+            : 'W/S throttle / reverse · A/D steer · Space brake · E exit · V view';
+        canvas.focus();
+      }
+      visitingTransit = undefined;
     }
     vehicles.sync(now, camera.pos);
     if (requestedBoat && now >= boatAttemptAt && !vehicles.mountedId && !flight.mountedKind) {
@@ -1935,7 +2027,18 @@ async function main(): Promise<void> {
     const fog = viewer.renderer.scene.fog;
     if (fog instanceof THREE.Fog) updateEarthFog(fog, fogViewDistance, camera.pos[1]);
     const audioGround = audio ? sampleHeight(camera.pos[0], camera.pos[2]) : undefined;
+    const audioSky = viewer.renderer.sky?.frame.earth;
     audio?.update({
+      ...(space.kind === 'geospatial' && audioSky
+        ? {
+            location: {
+              latitude: skyLocation[1],
+              longitude: skyLocation[0],
+              utcMs: audioSky.utcMs,
+              sunAltitudeDeg: audioSky.sun.altitudeDeg,
+            },
+          }
+        : {}),
       ...(wildlife !== undefined ? { regionalAmbience: wildlife.ambience(camera.pos) } : {}),
       nowMs: now,
       ...(audioGround !== undefined ? { heightAboveGround: camera.pos[1] - audioGround } : {}),
@@ -2025,7 +2128,8 @@ async function main(): Promise<void> {
           ? 'crashed'
           : !flight.state.grounded
             ? 'airborne'
-            : flight.mountedKind === 'p51d' && flight.state.airspeed >= 42
+            : flight.mountedKind !== 'oh6' &&
+                flight.state.airspeed >= (flight.mountedKind === 'airliner' ? 65 : 42)
               ? 'rotation'
               : 'grounded';
       navigationStatus.dataset.view = vehicles.view;

@@ -57,6 +57,15 @@ const ring = z
   .describe('Open ring of [x, z] points (no repeated closing point).');
 
 const buildingRequest = z.strictObject({
+  priority: z.number().finite().optional(),
+  access: z
+    .strictObject({
+      from: point,
+      to: point,
+      width: z.number().positive().max(12),
+      garage: z.boolean().optional(),
+    })
+    .optional(),
   identity: z
     .string()
     .min(1)

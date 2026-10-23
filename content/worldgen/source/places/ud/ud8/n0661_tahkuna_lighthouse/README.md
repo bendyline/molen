@@ -6,7 +6,7 @@ White cast-iron taper with the distinctive staggered grid of raised joint-cover 
 
 ## Identity and evidence
 
-Exact catalog identity **Q3361471**. Source facts: `{"heightMeters":42.6,"baseDiameterApproxMeters":8.95,"topShaftDiameterApproxMeters":4,"year":1875,"basis":"Municipal destination and Lighthouse Society identify42.6m tower height. Current museum aerial and Society close photograph govern the red dome, cast-iron grid, pedimented openings and gallery arrangement. Diameter is photo-scaled, consistent with the2015 Estonian Post anniversary description reproduced by the philatelic society. Museum sea-height wording and Society live light-height table differ; those values are not substituted for tower height."}`. The source specification keeps published dimensions separate from reconstructed details.
+Exact catalog identity **Q3361471**. Source facts: `{"heightMeters":45.2,"baseDiameterApproxMeters":8.95,"topShaftDiameterApproxMeters":4,"year":1875,"basis":"Current national navigation aid645 record explicitly gives45.2m above ground; municipal/history42.6m is retained as conflicting earlier publication. Adopt current authority dimension;46.6m light height above chart zero is separate. Diameter and small fittings are photo-proportioned.","priorPublishedHeightMeters":42.6}`. The source specification keeps published dimensions separate from reconstructed details.
 
 - https://hiiumaa.ee/objekt/tahkuna-tuletorn/
 - https://hiiumaamuuseum.ee/en/tahkuna-lighthouse/

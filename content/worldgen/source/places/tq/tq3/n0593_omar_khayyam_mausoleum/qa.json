@@ -1,0 +1,573 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0593_omar_khayyam_mausoleum",
+  "reviewedOn": "2026-10-20",
+  "inputHash": "sha256:eb99b133fcf6abfa2d78c5e2f94bacb81a59aba5c0b8dabe3b43221b68f82af5",
+  "sourceHash": "sha256:32f376b2371f6260bac139ef19c58aca80467e978877345c084d862e8e9c55b4",
+  "runtimeHash": "sha256:9d3784ef5b055d1c677b0610a0f1e32cbeb182dbb405d5dcd40ac5c1db9879fb",
+  "captureReportHash": "sha256:03ea729ee6694159faca6b370e3ae3e0d7a1279b319587957724c4ae6a43d3a6",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/paired-stone-ribbons-tiled-diamonds-and-true-open-gaps.png",
+      "shots/ten-petal-crown-open-sky-and-central-rosette.png",
+      "shots/ten-feet-central-grave-marker-and-folded-edge-panels.png"
+    ],
+    "notes": "Inspected all47 current views:8 source,7 shared-material,24 medium-fi and8 native-map frames. Specific ten paired curving/crossing pale stone ribbons, broad turquoise tiled lower diamonds/upper petals, genuinely open elongated gaps, rounded crown and small closed rosette are present. Low central grave marker, separate feet, bounded paving and repeated folded edge panels are visible. Three ordinary whole/close/ceiling pictures carried through one construction round; the third resolved the roof/underside coverage gap. Added the actual central underside and seated the navy ornament inset on an existing leaf facet to remove coplanar flicker before final captures. The whole views contain the entire monument; close views intentionally frame ribbons, ceiling or feet. No separate research/QA restart."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/paired-stone-ribbons-tiled-diamonds-and-true-open-gaps.png",
+      "shots/shared/ten-petal-crown-open-sky-and-central-rosette.png",
+      "shots/shared/ten-feet-central-grave-marker-and-folded-edge-panels.png"
+    ],
+    "notes": "Four existing256-square shared graphs: stone_limestone_raw, tile_ceramic, stone_checker_fine and stone_marble. Body and foundation share limestone through separate semantic slots; all tiled colors/ivory leaf and navy/ochre motifs reuse the same ceramic graph with linear vertex tints. Original low-frequency geometric decoration substitutes for the pictured fine calligraphy/floral artwork; no inscription or image atlas copied. Shared graphs read once, at most five runtime draws, zero embedded images. Metric UVs/separate POSITION and NORMAL streams/equal CPU-GPU buffer accounting verified. Skyline uses averaged shared colors and simpler feet/rosette/paving facets; the principal paired ribbons and real openings remain geometry.",
+    "captureReportHash": "sha256:01493ee0b18639bd5fb466042c166bcdc3f195c870b875ff7deef6b0a8bb1573"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/paired-stone-ribbons-tiled-diamonds-and-true-open-gaps.png",
+      "medium-fi/ten-petal-crown-open-sky-and-central-rosette.png",
+      "medium-fi/ten-feet-central-grave-marker-and-folded-edge-panels.png",
+      "medium-fi/khayyam-skyline.png",
+      "medium-fi/khayyam-district.png",
+      "medium-fi/khayyam-street.png",
+      "medium-fi/khayyam-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored levels996/3988/10130/17478 triangles fit the1k/4k/16k/64k ceilings. Skyline+district561016bytes, below3MB phone/6MB laptop initial limits. Inspected noon/late, economy/high, silhouette/details and four transition views. Skyline has coarser ribbon cross-sections and simplified lower tile-tip/foot/paving/rosette detail; district restores the fuller tapered tile fields and street/closeup add original decoration. The repeating lattice silhouette/ten feet/open gaps remain recognizable. Synthetic context establishes style/LOD continuity; separate native-map views establish geographic fit. No physical-device performance measurement claimed.",
+    "captureReportHash": "sha256:f23b9fc70b02311b5fce2db3caf741069158d8fffd5831c4db8c8b8e54ab6129"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:e669788d1becfcc771a4413e44e46d6b7e7bbb82bb1232e7ea6e0ad12aff16aa",
+    "mapFrameHash": "sha256:9f6f3769e95251f34d233c91e591efe1f3e9639a29a0df78447782671e203c6f",
+    "notes": "Exact-QID OSMway857201546/PMTiles35185229290378 and named tomb point17593067583576 fix the approximately14m main envelope. Anchor58.82223871,36.165924484, heading0/native east-south axes; circle center[-.023790075,.104523011]m/mean radius7.035820m. Internal phase-.296868600746rad is a repeatable approximation: a circle supplies no directed facade, and tenfold symmetry leaves18degree/2m phase/envelope uncertainty. Only the corresponding circle shell replaced with2cm pad, zero residual. All34 independent resident building records retained from35 originals; native6m grid/paths/58.046447m2 water unchanged through every level/failure/unload. Failure restores35 originals; unload disposes all model geometry. Paving floor.836934m relative to DEM datum1178.976980m has buried retaining contacts and supported feet. No garden-wide slab, terrain flattening or ground/water cutout. Shared isolated review uses asset mode; native fixture verifies actual position/replacement."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Map22m building height/retained2m roof tag have no qualified measurement point; use nominal paved-floor-to-crown22m and picture-led taper/crown/stone thickness. The three2008/2009/2020 photos establish the ten-base open ribbon/petal topology and tiled character; actual rib sections, intersection engineering, fine tile/repair schedule and current finish remain approximate. Lower diamonds close near14.72m and upper petals curl to the rosette; these are visual reconstruction parameters, not structural plans. Paving radius11.8m, repeated3m folded edge panels and1.6m central marker are original simplified picture-proportion estimates; their full inventory, exact arrangement and grave profile remain unverified. Coarse DEM does not resolve foundations/garden paving. No copied calligraphy/floral atlas, opaque generic tower/dome, furnishings, trees/visitor equipment or whole garden authored. Medium-fi style and browser budgets govern simplification."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/tq/tq3/n0593_omar_khayyam_mausoleum/models/source.glb\",\"hash\":\"sha256:32f376b2371f6260bac139ef19c58aca80467e978877345c084d862e8e9c55b4\",\"bytes\":2100820,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/tq/tq3/n0593_omar_khayyam_mausoleum/model.glb\",\"hash\":\"sha256:9d3784ef5b055d1c677b0610a0f1e32cbeb182dbb405d5dcd40ac5c1db9879fb\",\"bytes\":2100316,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/tq/tq3/n0593_omar_khayyam_mausoleum/model.skyline.glb\",\"hash\":\"sha256:fffe20c71d9bbd31f2d98d2ceed7f960db322eb8632d087e16e6621931e230f2\",\"bytes\":112464,\"errors\":0,\"warnings\":0,\"triangles\":996,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/tq/tq3/n0593_omar_khayyam_mausoleum/model.district.glb\",\"hash\":\"sha256:1c90839a663247424d8de86524f569c25245018dcee678a49c61a2b104b846e6\",\"bytes\":448552,\"errors\":0,\"warnings\":0,\"triangles\":3988,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/tq/tq3/n0593_omar_khayyam_mausoleum/model.street.glb\",\"hash\":\"sha256:0b517f4aa7d0701ff6552eb9496c8a9e23311205c826b321a2361cd18934ad4a\",\"bytes\":1133360,\"errors\":0,\"warnings\":0,\"triangles\":10130,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/tq/tq3/n0593_omar_khayyam_mausoleum/model.closeup.glb\",\"hash\":\"sha256:6e8757794a43ce493833cdc699d72bac81a727cf5316c1e2a1502ff744910d0f\",\"bytes\":1968344,\"errors\":0,\"warnings\":0,\"triangles\":17478,\"draws\":5}"
+      },
+      {
+        "check": "actual-ten-feet-tiled-diamonds-open-gaps-closed-rosette-grave-and-ground-contact",
+        "passed": true,
+        "notes": "210 actual mesh/material/contact checks across six source/runtime/LOD files verify ten supported feet, lower tiled diamonds/upper petals, clear lower/upper cross-monument openings, closed renderable central underside, low central grave marker, folded edge panels and buried paving contacts. No whole-garden slab."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Four existing256-square shared graphs: stone_limestone_raw, tile_ceramic, stone_checker_fine and stone_marble. Body and foundation share limestone through separate semantic slots; all tiled colors/ivory leaf and navy/ochre motifs reuse the same ceramic graph with linear vertex tints. Original low-frequency geometric decoration substitutes for the pictured fine calligraphy/floral artwork; no inscription or image atlas copied. Shared graphs read once, at most five runtime draws, zero embedded images. Metric UVs/separate POSITION and NORMAL streams/equal CPU-GPU buffer accounting verified. Skyline uses averaged shared colors and simpler feet/rosette/paving facets; the principal paired ribbons and real openings remain geometry. Four authored levels996/3988/10130/17478 triangles fit the1k/4k/16k/64k ceilings. Skyline+district561016bytes, below3MB phone/6MB laptop initial limits. Inspected noon/late, economy/high, silhouette/details and four transition views. Skyline has coarser ribbon cross-sections and simplified lower tile-tip/foot/paving/rosette detail; district restores the fuller tapered tile fields and street/closeup add original decoration. The repeating lattice silhouette/ten feet/open gaps remain recognizable. Synthetic context establishes style/LOD continuity; separate native-map views establish geographic fit. No physical-device performance measurement claimed."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:32f376b2371f6260bac139ef19c58aca80467e978877345c084d862e8e9c55b4"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:9d3784ef5b055d1c677b0610a0f1e32cbeb182dbb405d5dcd40ac5c1db9879fb"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:fffe20c71d9bbd31f2d98d2ceed7f960db322eb8632d087e16e6621931e230f2"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:1c90839a663247424d8de86524f569c25245018dcee678a49c61a2b104b846e6"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:0b517f4aa7d0701ff6552eb9496c8a9e23311205c826b321a2361cd18934ad4a"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:6e8757794a43ce493833cdc699d72bac81a727cf5316c1e2a1502ff744910d0f"
+      }
+    ],
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 35,
+          "independentBuildings": 34,
+          "remainingBuildings": 34,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0593_omar_khayyam_mausoleum"
+          ],
+          "rawTerrainRange": {
+            "min": -10.157279740719787,
+            "max": 9.2404202592802
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 58.0464468030259,
+          "remainingWaterArea": 58.0464468030259,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:5e49116e2c4268d882e6133a286503c2b5ef4175837398fd1bca3eb0e79d617d",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 97787
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                53.51658885347102,
+                25.836934016174563,
+                34.96750946122906
+              ],
+              "lookAt": [
+                -0.02379007493297669,
+                9.836934016174563,
+                0.10452301137204989
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 35,
+          "independentBuildings": 34,
+          "remainingBuildings": 34,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.stone_checker_fine": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0593_omar_khayyam_mausoleum"
+          ],
+          "rawTerrainRange": {
+            "min": -10.157279740719787,
+            "max": 9.2404202592802
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 58.0464468030259,
+          "remainingWaterArea": 58.0464468030259,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:cadc0e16e80ffd2ab7c43ab51ba3d65e6a33a451868484a1ceae46e9707e214a",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 100779
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                53.51658885347102,
+                25.836934016174563,
+                34.96750946122906
+              ],
+              "lookAt": [
+                -0.02379007493297669,
+                9.836934016174563,
+                0.10452301137204989
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 35,
+          "independentBuildings": 34,
+          "remainingBuildings": 34,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.stone_checker_fine": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0593_omar_khayyam_mausoleum"
+          ],
+          "rawTerrainRange": {
+            "min": -10.157279740719787,
+            "max": 9.2404202592802
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 58.0464468030259,
+          "remainingWaterArea": 58.0464468030259,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:70a6dce0d1d6b545dc6d9f3d83d5d4d6704cf11f94aafe12e1e73735a7b7ba3b",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 106921
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                53.51658885347102,
+                25.836934016174563,
+                34.96750946122906
+              ],
+              "lookAt": [
+                -0.02379007493297669,
+                9.836934016174563,
+                0.10452301137204989
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 35,
+          "independentBuildings": 34,
+          "remainingBuildings": 34,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.stone_checker_fine": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0593_omar_khayyam_mausoleum"
+          ],
+          "rawTerrainRange": {
+            "min": -10.157279740719787,
+            "max": 9.2404202592802
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 58.0464468030259,
+          "remainingWaterArea": 58.0464468030259,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:e5ad9e0a5ae9c72a4f8ddf8f9c6dff150a4ae7970c948213416e2f5b6609ec25",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 114269
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                53.51658885347102,
+                25.836934016174563,
+                34.96750946122906
+              ],
+              "lookAt": [
+                -0.02379007493297669,
+                9.836934016174563,
+                0.10452301137204989
+              ],
+              "fov": 47
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-paired-stone-ribbons-tiled-diamonds-and-true-open-gaps.png",
+            "hash": "sha256:20a81c98a6dad72b1a14cb9d83f7a52970c5efb59cd29b42437795efbc3518d7",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 114265
+            },
+            "camera": {
+              "name": "paired-stone-ribbons-tiled-diamonds-and-true-open-gaps",
+              "position": [
+                17.087989029956976,
+                9.836934016174563,
+                11.601784244615889
+              ],
+              "lookAt": [
+                -0.02379007493297669,
+                10.836934016174563,
+                0.10452301137204989
+              ],
+              "fov": 49
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-ten-petal-crown-open-sky-and-central-rosette.png",
+            "hash": "sha256:471a0a410caf05c0af58701b625a38f1b455d141dcf3e368a81314804b327187",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 114233
+            },
+            "camera": {
+              "name": "ten-petal-crown-open-sky-and-central-rosette",
+              "position": [
+                0.36940538803791423,
+                3.836934016174564,
+                0.19338992253197906
+              ],
+              "lookAt": [
+                -0.02379007493297669,
+                22.836934016174563,
+                0.10452301137204989
+              ],
+              "fov": 75
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-ten-feet-central-grave-marker-and-folded-edge-panels.png",
+            "hash": "sha256:43fb5b31e63c14e173fe4a61c63dd90a442c120836a47aff3923faa94331920b",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 114269
+            },
+            "camera": {
+              "name": "ten-feet-central-grave-marker-and-folded-edge-panels",
+              "position": [
+                9.347105072005572,
+                8.836934016174563,
+                -20.539757652896284
+              ],
+              "lookAt": [
+                -0.02379007493297669,
+                2.336934016174564,
+                0.10452301137204989
+              ],
+              "fov": 50
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 35,
+          "independentBuildings": 34,
+          "remainingBuildings": 35,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185229290378,
+              "area": 152.6986555444111
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0593_omar_khayyam_mausoleum"
+          ],
+          "rawTerrainRange": {
+            "min": -10.157279740719787,
+            "max": 9.2404202592802
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 58.0464468030259,
+          "remainingWaterArea": 58.0464468030259,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:d6e85c63b30d52f931fb3b28d629aa60e78e7440a1b60987dfb786d5818f6864",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 9,
+              "triangles": 97678
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                53.51658885347102,
+                25.836934016174563,
+                34.96750946122906
+              ],
+              "lookAt": [
+                -0.02379007493297669,
+                9.836934016174563,
+                0.10452301137204989
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Standing Omar Khayyam Mausoleum: ten paired curving/crossing pale stone ribbon legs around broad turquoise/ivory tiled lower diamonds and upper petals, true elongated open gaps and rounded ten-petal crown/small closed central rosette. Deep ribbon sides, metric shared tile/stone surfaces and original restrained geometric leaf/lozenge decoration imply the tile fields without reproducing inscriptions. Separate ten feet, occupied circular paving/short perimeter step, low central grave marker and simplified folded edge panels. No opaque generic tower/dome, traced calligraphy/photo atlas, furnished visitor facilities, trees/temporary equipment or whole garden.",
+    "Exact-QID OSMway857201546/PMTiles35185229290378 is the circular mausoleum envelope. Its quantized circle fixes center[-0.02379007493297669,0.10452301137204989]m and mean radius7.0358198980497315m relative to anchor58.82223871,36.165924484; named Khayyam tomb POI17593067583576 lies about0.1m from anchor. Geometry uses heading0/native east-south axes, internal phase-.296868600746rad as a repeatable approximation. A circle supplies no directed facade or verified leg phase: tenfold repetition limits phase uncertainty to18degrees, with about2m envelope/internal uncertainty. Exact rib curves, repeated tile schedule and folded-panel allocation are picture-led estimates, not measured structural sections.",
+    "Map reports22m building height and retained mapped tags report2m roof height, with no measured-point qualifier. Use nominal paved-floor-to-crown22m; taper/crown profile, stone thickness and10-base paired-ribbon allocation follow the three ordinary pictures. Lower tiled diamonds close near14.72m, upper petals curve inward above roughly19m to a small central rosette. Main outer feet fit about14m envelope. Paving radius11.8m, low folded edge panel rhythm/1.6m central marker and step/plinth heights are picture-proportion estimates; full folded-panel inventory/current repairs and actual grave profile are unverified. No literal calligraphy is reproduced.",
+    "Retain original6m standard Mapzen grid, independent buildings/native paths/water unchanged. Replace only the exact-QID circular generic shell with2cm pad. A bounded occupied paving disk/perimeter step uses a level floor above sampled edge maxima and buried individual retaining sides; outer folded panels have supported feet on this same small paved envelope. No whole-garden slab, ground/water cutout or flattening. Coarse DEM does not resolve paving/foundations; absolute datum-relative floor, central marker and perimeter-panel allocation are visualization estimates, not a surveyed memorial/garden plan.",
+    "Three ordinary2008/2009/2020 whole/close/ceiling photographs carried through this construction round. Exact-QID circle/named tomb point and map22m height guide fit. A circle supplies no directed phase; tenfold orientation retains18degree/2m approximation. Curves, original tile decoration, central marker and folded-panel inventory remain picture-led estimates; no copied inscriptions/photo atlas or whole garden."
+  ]
+}

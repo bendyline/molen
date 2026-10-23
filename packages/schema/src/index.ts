@@ -98,6 +98,12 @@ export type {
 export { blockingIssues, formatIssues, noticeIssues } from './issues';
 export type { JsonObject, JsonPrimitive, JsonValue } from './json';
 export { deepMergeJson } from './merge';
+export type {
+  ModelSignalExpression,
+  ModelSignalOperand,
+  ModelSignalOperator,
+} from './model-signal-expressions';
+export { modelSignalDerivedSchema, modelSignalExpressionSchema } from './model-signal-expressions';
 export type { ModelSignalBinding, ModelSignalSource, ModelSignalSpec } from './model-signals';
 export { modelSignalSpecSchema, modelSignalsSchema } from './model-signals';
 export type {
@@ -202,6 +208,7 @@ export type { VehicleInteriorBinding, VehicleInteriorSpec } from './vehicle-inte
 export { vehicleInteriorSchema } from './vehicle-interior';
 export type {
   CycleSpec,
+  VehicleBodyStyle,
   VehicleData,
   VehicleKind,
   VehiclePlacement,

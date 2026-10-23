@@ -28,18 +28,17 @@ import * as THREE from 'three';
 import { OBB } from 'three/addons/math/OBB.js';
 
 const PLAYER = 'world-player';
-type AircraftChoice = 'p51d' | 'oh6';
-const KINDS: AircraftChoice[] = ['p51d', 'oh6'];
-const ENTITY_IDS: Record<AircraftChoice, string> = {
-  p51d: 'molen.entities.aircraft.p51d',
-  oh6: 'molen.entities.aircraft.oh6',
-};
+type AircraftChoice = string;
+const KINDS: AircraftChoice[] = ['p51d', 'oh6', 'airliner'];
+const entityId = (kind: AircraftChoice): string => `molen.entities.aircraft.${kind}`;
 const choiceForId = (id: string): AircraftChoice | undefined =>
-  KINDS.find((choice) => ENTITY_IDS[choice] === id);
+  id.startsWith('molen.entities.aircraft.')
+    ? id.slice('molen.entities.aircraft.'.length)
+    : undefined;
 export const AIRCRAFT_HELP: string =
-  'I engine · Shift/Ctrl power · W/S pitch · A/D bank · Q/Z pedals · Space brakes · G gear · F flaps · V view · E exit · R recover after impact';
+  'I engine · Shift/Ctrl power · W/S pitch · A/D bank · Q/Z pedals · Space brakes · G gear · F flaps · J nozzle/nacelles · V view · E exit · R recover after impact';
 
-/** Two persistent ECS aircraft on a session-local practice airfield, under the floating origin. */
+/** Persistent ECS aircraft on a session-local practice airfield, under the floating origin. */
 /** Whether `box` overlaps any parked or flying aircraft other than `except`: an obstacle for cars. */
 export function aircraftBlocks(world: World, box: OBB, except?: string): boolean {
   for (const [id, t, aircraft] of world.query(Transform, Aircraft)) {
@@ -68,6 +67,9 @@ export class WorldAircraft {
   private visuals = new Map<AircraftChoice, AircraftVisual>();
   private loading = false;
   private disposed = false;
+  private requested: AircraftChoice | undefined;
+  private readonly requests = new Map<AircraftChoice, Promise<void>>();
+  private extraLoading: Promise<void> | undefined;
   // An airframe moves tens of meters a second: a wider neighborhood rebuilt every 24 m, bounded
   // vertically so the ground far below never enters the tree, and rescanned at 5 Hz while hovering.
   private collision = new WalkCollision({
@@ -99,6 +101,61 @@ export class WorldAircraft {
   private aircraftData(id: string): AircraftData {
     return this.types.component<AircraftData>(id, 'aircraft');
   }
+  get choices(): { kind: string; label: string }[] {
+    return this.types
+      .idsWith('aircraft')
+      .filter((id) => choiceForId(id) !== undefined)
+      .map((id) => ({ kind: choiceForId(id) as string, label: this.aircraftData(id).spec.label }));
+  }
+  has(kind: AircraftChoice): boolean {
+    return this.visuals.has(kind);
+  }
+  /** Only the selected addition is resident beside the original three practice aircraft. */
+  async request(kind: AircraftChoice): Promise<void> {
+    if (!this.choices.some((choice) => choice.kind === kind))
+      throw new Error(`Unknown aircraft ${kind}`);
+    this.requested = kind;
+    if (this.ready) await this.loadChoice(kind);
+  }
+  private loadChoice(kind: AircraftChoice): Promise<void> {
+    if (this.visuals.has(kind)) return Promise.resolve();
+    const existing = this.requests.get(kind);
+    if (existing) return existing;
+    if (!KINDS.includes(kind) && this.extraLoading) {
+      return this.extraLoading
+        .catch(() => {})
+        .then(() => {
+          if (!this.disposed && this.requested === kind) return this.loadChoice(kind);
+        });
+    }
+    const request = (async () => {
+      const model = await this.loadModel(entityId(kind));
+      const visual = createAircraftVisual(model, this.aircraftData(entityId(kind)).spec);
+      if (this.disposed || (!KINDS.includes(kind) && this.requested !== kind)) {
+        visual.dispose();
+        return;
+      }
+      for (const [previous, oldVisual] of this.visuals) {
+        if (KINDS.includes(previous) || previous === this.mountedKind || KINDS.includes(kind))
+          continue;
+        oldVisual.dispose();
+        this.visuals.delete(previous);
+        if (this.world.exists(`aircraft-${previous}`)) this.world.destroy(`aircraft-${previous}`);
+      }
+      this.visuals.set(kind, visual);
+      this.object.add(visual.object);
+      const components = this.types.components(entityId(kind));
+      components.transform = { pos: this.spawnPosition(kind), rot: [0, 0, 0, 1] };
+      this.world.spawnRaw(components, `aircraft-${kind}`);
+      this.render();
+    })().finally(() => {
+      this.requests.delete(kind);
+      if (this.extraLoading === request) this.extraLoading = undefined;
+    });
+    this.requests.set(kind, request);
+    if (!KINDS.includes(kind)) this.extraLoading = request;
+    return request;
+  }
   get mountedKind(): AircraftChoice | undefined {
     const id = this.world.get(PLAYER, Mounted)?.vehicle;
     const kind = id ? this.world.get(id, Aircraft)?.kind : undefined;
@@ -115,16 +172,30 @@ export class WorldAircraft {
     if (
       this.elevation !== undefined &&
       Math.abs(x - this.center[0]) < 48 &&
-      Math.abs(z - this.center[1]) < 450
+      z - this.center[1] > -900 &&
+      z - this.center[1] < 3600
     )
       return this.elevation;
     return this.terrainHeight(x, z, y);
   }
   spawnPosition(kind: AircraftChoice): [number, number, number] {
-    return [this.center[0] + (kind === 'p51d' ? 0 : 23), this.elevation ?? 0, this.center[1] - 330];
+    if (!KINDS.includes(kind)) return [this.center[0], this.elevation ?? 0, this.center[1] - 600];
+    return [
+      this.center[0] + (kind === 'p51d' ? -25 : kind === 'oh6' ? 23 : 0),
+      this.elevation ?? 0,
+      this.center[1] - (kind === 'airliner' ? 800 : 330),
+    ];
   }
   visitPosition(kind: AircraftChoice): [number, number, number] {
     const p = this.world.get(`aircraft-${kind}`, Transform)?.pos ?? this.spawnPosition(kind);
+    if (!KINDS.includes(kind)) {
+      const mounts = this.types.components(entityId(kind)).mountable as {
+        entries: [number, number, number][];
+      };
+      const entry = mounts.entries[0] ?? [0, 0, 0];
+      return [p[0] + entry[0], p[1] + 1.7, p[2] + entry[2]];
+    }
+    if (kind === 'airliner') return [p[0] + 2.8, p[1] + 1.7, p[2] + 11.5];
     return [
       p[0] + (kind === 'p51d' ? 1.8 : -1.7),
       p[1] + 1.7,
@@ -135,7 +206,7 @@ export class WorldAircraft {
     if (this.loading || this.ready || this.disposed) return;
     const heights: number[] = [];
     for (const x of [-48, 0, 48])
-      for (const z of [-450, -225, 0, 225, 450]) {
+      for (const z of [-900, -450, 0, 450, 900]) {
         const h = this.terrainHeight(this.center[0] + x, this.center[1] + z);
         if (h === undefined) return;
         heights.push(h);
@@ -143,25 +214,14 @@ export class WorldAircraft {
     this.elevation = Math.max(...heights) + 35;
     this.buildApron(Math.min(...heights));
     this.loading = true;
-    void Promise.all(
-      KINDS.map(async (kind) => {
-        const model = await this.loadModel(ENTITY_IDS[kind]);
-        const aircraft = this.aircraftData(ENTITY_IDS[kind]);
-        const visual = createAircraftVisual(model, aircraft.spec);
-        if (this.disposed) {
-          visual.dispose();
-          return;
-        }
-        this.visuals.set(kind, visual);
-        this.object.add(visual.object);
-        const components = this.types.components(ENTITY_IDS[kind]);
-        components.transform = { pos: this.spawnPosition(kind), rot: [0, 0, 0, 1] };
-        this.world.spawnRaw(components, `aircraft-${kind}`);
-      }),
-    )
+    void Promise.all(KINDS.map((kind) => this.loadChoice(kind)))
       .then(() => {
         if (!this.disposed) {
           this.ready = true;
+          if (this.requested)
+            void this.loadChoice(this.requested).catch((error) => {
+              this.message = String(error);
+            });
           this.render();
         }
       })
@@ -186,24 +246,36 @@ export class WorldAircraft {
       mesh.receiveShadow = true;
       this.object.add(mesh);
     };
-    add('practice-airfield', [96, y - low + 1, 900], [0, (y + low - 1) / 2, 0], pavement);
-    for (const x of [-14, 14]) add('runway-edge', [0.18, 0.012, 880], [x, y + 0.008, 0], paint);
-    for (let z = -400; z <= 400; z += 36)
+    add('practice-airfield', [96, y - low + 1, 4500], [0, (y + low - 1) / 2, 1350], pavement);
+    for (const x of [-20, 20]) add('runway-edge', [0.18, 0.012, 4480], [x, y + 0.008, 1350], paint);
+    for (let z = -850; z <= 3550; z += 36)
       add('runway-centerline', [0.35, 0.012, 15], [0, y + 0.008, z], paint);
-    for (const z of [-414, 414])
+    for (const z of [-864, 3564])
       for (let x = -10; x <= 10; x += 4)
         add('threshold-marking', [1.5, 0.012, 12], [x, y + 0.008, z], paint);
     for (const x of [20.5, 25.5]) add('helipad-H', [0.4, 0.012, 6], [x, y + 0.008, -330], paint);
     add('helipad-H-crossbar', [5.4, 0.012, 0.4], [23, y + 0.008, -330], paint);
+    const steel = new THREE.MeshStandardMaterial({
+      color: '#889296',
+      metalness: 0.6,
+      roughness: 0.45,
+    });
+    for (const x of [-38 - 0.72, -38 + 0.72])
+      add('practice-rail', [0.065, 0.06, 760], [x, y + 0.015, 0], steel);
+    for (const z of [-382, 382])
+      add('rail-buffer-stop', [2.4, 0.8, 0.25], [-38, y + 0.4, z], paint);
   }
   nearest(position: [number, number, number]): AircraftChoice | undefined {
-    for (const kind of KINDS) {
+    for (const kind of this.visuals.keys()) {
       const t = this.world.get(`aircraft-${kind}`, Transform);
       if (!t) continue;
-      const components = this.types.components(ENTITY_IDS[kind]);
-      const aircraft = this.aircraftData(ENTITY_IDS[kind]);
-      const mountable = components.mountable as { reach: number };
-      const eye = vehicleLocalPoint(t, aircraft.spec.pilotEye);
+      const components = this.types.components(entityId(kind));
+      const aircraft = this.aircraftData(entityId(kind));
+      const mountable = components.mountable as {
+        reach: number;
+        entries?: [number, number, number][];
+      };
+      const eye = vehicleLocalPoint(t, mountable.entries?.[0] ?? aircraft.spec.pilotEye);
       if (Math.hypot(...eye.map((v, i) => v - (position[i] ?? 0))) < mountable.reach) return kind;
     }
     return undefined;
@@ -216,8 +288,16 @@ export class WorldAircraft {
     if (!t) return false;
     this.collision.update(this.root, position[0], position[2], position[1]);
     const a = new THREE.Vector3().fromArray(position).sub(this.collision.origin);
+    const mountable = this.types.components(entityId(kind)).mountable as {
+      entries?: [number, number, number][];
+    };
     const b = new THREE.Vector3()
-      .fromArray(vehicleLocalPoint(t, this.aircraftData(ENTITY_IDS[kind]).spec.pilotEye))
+      .fromArray(
+        vehicleLocalPoint(
+          t,
+          mountable.entries?.[0] ?? this.aircraftData(entityId(kind)).spec.pilotEye,
+        ),
+      )
       .sub(this.collision.origin);
     const hit = this.collision.octree.rayIntersect(new THREE.Ray(a, b.clone().sub(a).normalize()));
     if (hit && hit.distance < a.distanceTo(b) - 0.1) return false;
@@ -235,14 +315,21 @@ export class WorldAircraft {
     if (code === 'KeyI') this.inputs.engine = !this.inputs.engine;
     if (code === 'KeyG' && !this.state?.grounded) this.inputs.gear = !this.inputs.gear;
     if (code === 'KeyF') this.inputs.flaps = !this.inputs.flaps;
+    if (code === 'KeyJ' && this.aircraftData(entityId(this.mountedKind)).spec.poweredLift)
+      this.inputs.thrustVector = ((Math.round((this.inputs.thrustVector ?? 0) * 4) + 1) % 5) / 4;
     if (code === 'KeyR' && this.state?.crashed) {
       const kind = this.mountedKind;
       this.world.set(`aircraft-${kind}`, Transform, {
         pos: this.spawnPosition(kind),
         rot: [0, 0, 0, 1],
       });
-      this.world.set(`aircraft-${kind}`, AircraftState, initialAircraftState());
-      this.inputs = { ...IDLE_AIRCRAFT_INPUT };
+      this.inputs = { ...this.types.component<AircraftInputData>(entityId(kind), 'aircraftInput') };
+      this.world.set(`aircraft-${kind}`, AircraftState, {
+        ...initialAircraftState(),
+        ...(this.inputs.thrustVector === undefined
+          ? {}
+          : { thrustVectorPosition: this.inputs.thrustVector }),
+      });
       this.message = '';
     }
   }
@@ -279,14 +366,20 @@ export class WorldAircraft {
       if (!t || !s || !input) continue;
       visual.object.position.fromArray(t.pos);
       visual.object.quaternion.fromArray(t.rot);
+      const channels = this.world.get(`aircraft-${kind}`, Aircraft)?.spec.visual;
       visual.update(
         s,
         input,
         t.pos[1],
-        readModelSignals(
-          this.world.get(`aircraft-${kind}`, Aircraft)?.spec.visual.interior?.sources,
-          (name) => this.world.get(`aircraft-${kind}`, { name }),
-        ),
+        {
+          ...readModelSignals(channels?.interior?.sources, (name) =>
+            this.world.get(`aircraft-${kind}`, { name }),
+          ),
+          ...readModelSignals(channels?.animation?.sources, (name) =>
+            this.world.get(`aircraft-${kind}`, { name }),
+          ),
+        },
+        this.world.tick / this.world.tickRate,
       );
     }
   }
@@ -299,7 +392,7 @@ export class WorldAircraft {
     if (!kind) return;
     const t = this.world.get(`aircraft-${kind}`, Transform);
     if (!t) return;
-    return aircraftCameraPose(t, this.aircraftData(ENTITY_IDS[kind]).spec, {
+    return aircraftCameraPose(t, this.aircraftData(entityId(kind)).spec, {
       view,
       lookYaw,
       lookPitch,
@@ -315,6 +408,8 @@ export class WorldAircraft {
     const s = this.state,
       kind = this.mountedKind;
     if (!s || !kind) return this.message;
+    const spec = this.aircraftData(entityId(kind)).spec;
+    const airplane = spec.model === 'airplane';
     const alert = s.crashed
       ? 'Impact — R recover'
       : s.waitingForTerrain
@@ -323,12 +418,10 @@ export class WorldAircraft {
           ? 'STALL — nose down, power up, wings level'
           : this.message ||
             (s.grounded
-              ? kind === 'p51d' && s.airspeed >= 42
+              ? airplane && s.airspeed >= (kind === 'airliner' ? 65 : 42)
                 ? 'Rotate gently — S'
                 : 'On ground'
               : 'Airborne');
-    const spec = this.aircraftData(ENTITY_IDS[kind]).spec;
-    const airplane = spec.model === 'airplane';
     const load = airplane && !s.grounded ? `${(s.loadFactor ?? 1).toFixed(1)} g · ` : '';
     // The selection, until the gear and flaps actually get there.
     const gearPosition = s.gearPosition ?? Number(this.inputs.gear);
@@ -347,7 +440,7 @@ export class WorldAircraft {
         : flapPosition === 0
           ? 'up'
           : `${Math.round(flapPosition * 100)}%`;
-    return `${spec.label} · ${(s.airspeed * 1.94384).toFixed(0)} kt · ${(s.altitudeAGL * 3.28084).toFixed(0)} ft AGL · ${(s.verticalSpeed * 196.85).toFixed(0)} ft/min · ${load}${airplane ? 'Throttle' : 'Collective'} ${(this.inputs.power * 100).toFixed(0)}% · RPM ${(s.rpm * 100).toFixed(0)}% · ${this.inputs.engine ? 'Engine on' : 'Engine off'} · ${airplane ? `Gear ${gear} · Flaps ${flaps} · ` : ''}${alert}`;
+    return `${spec.label} · ${(s.airspeed * 1.94384).toFixed(0)} kt · ${(s.altitudeAGL * 3.28084).toFixed(0)} ft AGL · ${(s.verticalSpeed * 196.85).toFixed(0)} ft/min · ${load}${airplane ? 'Throttle' : 'Collective'} ${(this.inputs.power * 100).toFixed(0)}% · RPM ${(s.rpm * 100).toFixed(0)}% · ${this.inputs.engine ? 'Engine on' : 'Engine off'} · ${airplane ? `Gear ${gear} · Flaps ${flaps} · ` : ''}${spec.poweredLift ? `Vector ${Math.round((s.thrustVectorPosition ?? 0) * 90)}° · ` : ''}${alert}`;
   }
   exitHint(): void {
     this.message =
@@ -403,7 +496,7 @@ export class WorldAircraft {
         for (const m of Array.isArray(o.material) ? o.material : [o.material]) m.dispose();
       }
     });
-    for (const kind of KINDS)
+    for (const kind of this.visuals.keys())
       if (this.world.exists(`aircraft-${kind}`)) this.world.destroy(`aircraft-${kind}`);
     this.object.removeFromParent();
     this.collision.clear();

@@ -11,6 +11,10 @@ import type { StructurePlacement } from '../kernel/structure-index';
 
 type Point = [number, number];
 type Context = { origin: readonly [number, number]; tileSize: number };
+export type WholeBuildingCutout = {
+  outlines: readonly (readonly Point[])[];
+  minimumCoverage: number;
+};
 
 /** Same scale/yaw/translation as the model, in absolute world coordinates. */
 export function structureBuildingCutout(
@@ -56,19 +60,73 @@ export function withoutBuildingCutouts(
   tile: TerrainSemanticTile,
   context: Context,
   worldOutlines: readonly (readonly Point[])[],
+  wholeBuildings: readonly WholeBuildingCutout[] = [],
 ): TerrainSemanticTile {
-  if (!worldOutlines.length) return tile;
-  const masks = worldOutlines.map((outline) => {
-    const outer = outline.map(
-      ([x, z]): Point => [
-        (x - context.origin[0]) / context.tileSize,
-        (z - context.origin[1]) / context.tileSize,
-      ],
-    );
-    return { polygon: [outer] as Polygon, bounds: polygonBounds({ outer }) };
-  });
+  if (!worldOutlines.length && !wholeBuildings.length) return tile;
+  const normalize = (outlines: readonly (readonly Point[])[]) =>
+    outlines.map((outline) => {
+      const outer = outline.map(
+        ([x, z]): Point => [
+          (x - context.origin[0]) / context.tileSize,
+          (z - context.origin[1]) / context.tileSize,
+        ],
+      );
+      return { polygon: [outer] as Polygon, bounds: polygonBounds({ outer }) };
+    });
+  const validWhole = wholeBuildings.filter(
+    (cutout) =>
+      Number.isFinite(cutout.minimumCoverage) &&
+      cutout.minimumCoverage > 0 &&
+      cutout.minimumCoverage <= 1,
+  );
+  // Coarse sources merge the landmark with its neighbors; trim only the occupied area there.
+  const masks = normalize([
+    ...worldOutlines,
+    ...(tile.buildingsGeneralized ? validWhole.flatMap((cutout) => cutout.outlines) : []),
+  ]);
+  const wholeMasks = (tile.buildingsGeneralized ? [] : validWhole).map((cutout) => ({
+    minimumCoverage: cutout.minimumCoverage,
+    masks: normalize(cutout.outlines),
+  }));
   let changed = false;
   const buildings = tile.buildings.flatMap((feature) => {
+    // A tiny source overlap with a neighboring building must not trim that neighbor or
+    // leave a thin procedural wall from the building the landmark replaces. Evaluate
+    // all polygons and holes together, using the union of this placement's masks.
+    if (
+      wholeMasks.some((group) => {
+        const originalArea = feature.polygons.reduce((sum, p) => sum + polygonArea(p), 0);
+        if (!(originalArea > 1e-12)) return false;
+        try {
+          let remainingArea = 0;
+          for (const polygon of feature.polygons) {
+            const bounds = polygonBounds(polygon);
+            const near = group.masks.filter(
+              (m) =>
+                m.bounds[0] < bounds[2] &&
+                m.bounds[2] > bounds[0] &&
+                m.bounds[1] < bounds[3] &&
+                m.bounds[3] > bounds[1],
+            );
+            if (!near.length) {
+              remainingArea += polygonArea(polygon);
+              continue;
+            }
+            const remaining: MultiPolygon = polygonClipping.difference(
+              [polygon.outer, ...(polygon.holes ?? [])],
+              ...near.map((m) => m.polygon),
+            );
+            remainingArea += remaining.reduce((sum, p) => sum + polygonArea(semantic(p)), 0);
+          }
+          return (originalArea - remainingArea) / originalArea + 1e-12 >= group.minimumCoverage;
+        } catch {
+          return false;
+        }
+      })
+    ) {
+      changed = true;
+      return [];
+    }
     let featureChanged = false;
     const polygons = feature.polygons.flatMap((polygon) => {
       const bounds = polygonBounds(polygon);

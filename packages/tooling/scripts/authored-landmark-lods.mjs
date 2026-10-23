@@ -338,7 +338,7 @@ import {
   buildKsiazEntrance,
   buildKsiazEntranceSkyline,
   ksiazEntranceSurfaces,
-} from '../../worldgen/scripts/ksiaz-entrance-models.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-entrances/models/ksiaz-entrance-models.mjs';
 
 const entranceData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_gatehouse/map-frame.json',
@@ -352,7 +352,7 @@ import {
   buildKsiazPark,
   buildKsiazParkSkyline,
   ksiazParkSurfaces,
-} from '../../worldgen/scripts/ksiaz-park-models.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-park-structures/models/ksiaz-park-models.mjs';
 
 const parkData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_hochberg_mausoleum/map-frame.json',
@@ -364,7 +364,7 @@ import {
   buildKsiazGate,
   buildKsiazGateSkyline,
   ksiazGateSurfaces,
-} from '../../worldgen/scripts/ksiaz-gate-models.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-park-gates/models/ksiaz-gate-models.mjs';
 
 const gateData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_lion_gate/map-frame.json',
@@ -378,7 +378,7 @@ import {
   buildKsiazService,
   buildKsiazServiceSkyline,
   ksiazServiceSurfaces,
-} from '../../worldgen/scripts/ksiaz-service-models.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz_forester_house/models/ksiaz-service-models.mjs';
 
 const serviceData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_forester_house/map-frame.json',
@@ -389,7 +389,7 @@ import {
   buildKsiazSwiss,
   buildKsiazSwissSkyline,
   ksiazSwissSurfaces,
-} from '../../worldgen/scripts/ksiaz-swiss-models.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-swiss-houses/models/ksiaz-swiss-models.mjs';
 
 const swissData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_swiss_house_i/map-frame.json',
@@ -401,7 +401,7 @@ import {
   buildOldKsiaz,
   buildOldKsiazSkyline,
   oldKsiazSurfaces,
-} from '../../worldgen/scripts/old-ksiaz-model.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/old_ksiaz_ruins/models/old-ksiaz-model.mjs';
 
 const oldKsiazData = [
   '../../../content/worldgen/source/places/u3/u35/old_ksiaz_ruins/map-frame.json',
@@ -412,7 +412,7 @@ import {
   buildKsiazStable,
   buildKsiazStableSkyline,
   ksiazStableSurfaces,
-} from '../../worldgen/scripts/ksiaz-stable-model.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz_stable_ensemble/models/ksiaz-stable-model.mjs';
 
 const ksiazStableData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_stable_ensemble/map-frame.json',
@@ -423,7 +423,7 @@ import {
   buildKsiazPalm,
   buildKsiazPalmSkyline,
   ksiazPalmSurfaces,
-} from '../../worldgen/scripts/ksiaz-palm-model.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_house/models/ksiaz-palm-model.mjs';
 
 const ksiazPalmData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_house/map-frame.json',
@@ -434,7 +434,7 @@ import {
   buildKsiazPalmService,
   buildKsiazPalmServiceSkyline,
   ksiazPalmServiceSurfaces,
-} from '../../worldgen/scripts/ksiaz-palm-service-models.mjs';
+} from '../../../content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/ksiaz-palm-service-models.mjs';
 
 const ksiazPalmServiceData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_administration/map-frame.json',
@@ -458,7 +458,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_palm_administration': {
     build: (o) => buildKsiazPalmServiceSkyline(o, 'ksiaz_palm_administration'),
     levels: (o, level) => buildKsiazPalmService(o, 'ksiaz_palm_administration', level),
-    source: '../../worldgen/scripts/ksiaz-palm-service-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/ksiaz-palm-service-models.mjs',
     data: ksiazPalmServiceData,
     errorMeters: 1,
     surfaces: ksiazPalmServiceSurfaces,
@@ -466,7 +467,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_palm_utility': {
     build: (o) => buildKsiazPalmServiceSkyline(o, 'ksiaz_palm_utility'),
     levels: (o, level) => buildKsiazPalmService(o, 'ksiaz_palm_utility', level),
-    source: '../../worldgen/scripts/ksiaz-palm-service-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/ksiaz-palm-service-models.mjs',
     data: ksiazPalmServiceData,
     errorMeters: 1,
     surfaces: ksiazPalmServiceSurfaces,
@@ -474,7 +476,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_palm_residence': {
     build: (o) => buildKsiazPalmServiceSkyline(o, 'ksiaz_palm_residence'),
     levels: (o, level) => buildKsiazPalmService(o, 'ksiaz_palm_residence', level),
-    source: '../../worldgen/scripts/ksiaz-palm-service-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/ksiaz-palm-service-models.mjs',
     data: ksiazPalmServiceData,
     errorMeters: 1,
     surfaces: ksiazPalmServiceSurfaces,
@@ -482,7 +485,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_palm_boiler_range': {
     build: (o) => buildKsiazPalmServiceSkyline(o, 'ksiaz_palm_boiler_range'),
     levels: (o, level) => buildKsiazPalmService(o, 'ksiaz_palm_boiler_range', level),
-    source: '../../worldgen/scripts/ksiaz-palm-service-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-palm-services/models/ksiaz-palm-service-models.mjs',
     data: ksiazPalmServiceData,
     errorMeters: 1,
     surfaces: ksiazPalmServiceSurfaces,
@@ -490,7 +494,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_palm_house': {
     build: (o) => buildKsiazPalmSkyline(o, 'ksiaz_palm_house'),
     levels: (o, level) => buildKsiazPalm(o, 'ksiaz_palm_house', level),
-    source: '../../worldgen/scripts/ksiaz-palm-model.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_house/models/ksiaz-palm-model.mjs',
     data: ksiazPalmData,
     errorMeters: 1,
     surfaces: ksiazPalmSurfaces,
@@ -498,7 +503,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_stable_ensemble': {
     build: (o) => buildKsiazStableSkyline(o, 'ksiaz_stable_ensemble'),
     levels: (o, level) => buildKsiazStable(o, 'ksiaz_stable_ensemble', level),
-    source: '../../worldgen/scripts/ksiaz-stable-model.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_stable_ensemble/models/ksiaz-stable-model.mjs',
     data: ksiazStableData,
     errorMeters: 1,
     surfaces: ksiazStableSurfaces,
@@ -506,7 +512,8 @@ const recipes = {
   'molen.worldgen.structure.old_ksiaz_ruins': {
     build: (o) => buildOldKsiazSkyline(o),
     levels: (o, level) => buildOldKsiaz(o, 'old_ksiaz_ruins', level),
-    source: '../../worldgen/scripts/old-ksiaz-model.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/old_ksiaz_ruins/models/old-ksiaz-model.mjs',
     data: oldKsiazData,
     errorMeters: 1,
     surfaces: oldKsiazSurfaces,
@@ -514,7 +521,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_swiss_house_i': {
     build: (o) => buildKsiazSwissSkyline(o, 'ksiaz_swiss_house_i'),
     levels: (o, level) => buildKsiazSwiss(o, 'ksiaz_swiss_house_i', level),
-    source: '../../worldgen/scripts/ksiaz-swiss-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-swiss-houses/models/ksiaz-swiss-models.mjs',
     data: swissData,
     errorMeters: 1,
     surfaces: ksiazSwissSurfaces,
@@ -522,7 +530,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_swiss_house_ii': {
     build: (o) => buildKsiazSwissSkyline(o, 'ksiaz_swiss_house_ii'),
     levels: (o, level) => buildKsiazSwiss(o, 'ksiaz_swiss_house_ii', level),
-    source: '../../worldgen/scripts/ksiaz-swiss-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-swiss-houses/models/ksiaz-swiss-models.mjs',
     data: swissData,
     errorMeters: 1,
     surfaces: ksiazSwissSurfaces,
@@ -530,7 +539,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_forester_house': {
     build: (o) => buildKsiazServiceSkyline(o, 'ksiaz_forester_house'),
     levels: (o, level) => buildKsiazService(o, 'ksiaz_forester_house', level),
-    source: '../../worldgen/scripts/ksiaz-service-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz_forester_house/models/ksiaz-service-models.mjs',
     data: serviceData,
     errorMeters: 1,
     surfaces: ksiazServiceSurfaces,
@@ -538,7 +548,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_lion_gate': {
     build: (o) => buildKsiazGateSkyline(o, 'ksiaz_lion_gate'),
     levels: (o, level) => buildKsiazGate(o, 'ksiaz_lion_gate', level),
-    source: '../../worldgen/scripts/ksiaz-gate-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-park-gates/models/ksiaz-gate-models.mjs',
     data: gateData,
     errorMeters: 1,
     surfaces: ksiazGateSurfaces,
@@ -546,7 +557,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_jezdziecka_park_gate': {
     build: (o) => buildKsiazGateSkyline(o, 'ksiaz_jezdziecka_park_gate'),
     levels: (o, level) => buildKsiazGate(o, 'ksiaz_jezdziecka_park_gate', level),
-    source: '../../worldgen/scripts/ksiaz-gate-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-park-gates/models/ksiaz-gate-models.mjs',
     data: gateData,
     errorMeters: 1,
     surfaces: ksiazGateSurfaces,
@@ -554,7 +566,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_hochberg_alley_gate': {
     build: (o) => buildKsiazGateSkyline(o, 'ksiaz_hochberg_alley_gate'),
     levels: (o, level) => buildKsiazGate(o, 'ksiaz_hochberg_alley_gate', level),
-    source: '../../worldgen/scripts/ksiaz-gate-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-park-gates/models/ksiaz-gate-models.mjs',
     data: gateData,
     errorMeters: 1,
     surfaces: ksiazGateSurfaces,
@@ -562,7 +575,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_hochberg_mausoleum': {
     build: (o) => buildKsiazParkSkyline(o, 'ksiaz_hochberg_mausoleum'),
     levels: (o, level) => buildKsiazPark(o, 'ksiaz_hochberg_mausoleum', level),
-    source: '../../worldgen/scripts/ksiaz-park-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-park-structures/models/ksiaz-park-models.mjs',
     data: parkData,
     errorMeters: 1,
     surfaces: ksiazParkSurfaces,
@@ -570,7 +584,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_forge': {
     build: (o) => buildKsiazParkSkyline(o, 'ksiaz_forge'),
     levels: (o, level) => buildKsiazPark(o, 'ksiaz_forge', level),
-    source: '../../worldgen/scripts/ksiaz-park-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-park-structures/models/ksiaz-park-models.mjs',
     data: parkData,
     errorMeters: 1,
     surfaces: ksiazParkSurfaces,
@@ -578,7 +593,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_gatehouse': {
     build: (o) => buildKsiazEntranceSkyline(o, 'ksiaz_gatehouse'),
     levels: (o, level) => buildKsiazEntrance(o, 'ksiaz_gatehouse', level),
-    source: '../../worldgen/scripts/ksiaz-entrance-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-entrances/models/ksiaz-entrance-models.mjs',
     data: entranceData,
     errorMeters: 1,
     surfaces: ksiazEntranceSurfaces,
@@ -586,7 +602,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_north_officina': {
     build: (o) => buildKsiazEntranceSkyline(o, 'ksiaz_north_officina'),
     levels: (o, level) => buildKsiazEntrance(o, 'ksiaz_north_officina', level),
-    source: '../../worldgen/scripts/ksiaz-entrance-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-entrances/models/ksiaz-entrance-models.mjs',
     data: entranceData,
     errorMeters: 1,
     surfaces: ksiazEntranceSurfaces,
@@ -594,7 +611,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_south_officina': {
     build: (o) => buildKsiazEntranceSkyline(o, 'ksiaz_south_officina'),
     levels: (o, level) => buildKsiazEntrance(o, 'ksiaz_south_officina', level),
-    source: '../../worldgen/scripts/ksiaz-entrance-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-entrances/models/ksiaz-entrance-models.mjs',
     data: entranceData,
     errorMeters: 1,
     surfaces: ksiazEntranceSurfaces,
@@ -602,7 +620,8 @@ const recipes = {
   'molen.worldgen.structure.ksiaz_zamkowy_hotel': {
     build: (o) => buildKsiazEntranceSkyline(o, 'ksiaz_zamkowy_hotel'),
     levels: (o, level) => buildKsiazEntrance(o, 'ksiaz_zamkowy_hotel', level),
-    source: '../../worldgen/scripts/ksiaz-entrance-models.mjs',
+    source:
+      '../../../content/worldgen/source/places/u3/u35/ksiaz-entrances/models/ksiaz-entrance-models.mjs',
     data: entranceData,
     errorMeters: 1,
     surfaces: ksiazEntranceSurfaces,

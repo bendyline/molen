@@ -1,0 +1,1455 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.pa_28_180": {
+      "doc": "Piper PA-28-180 Cherokee: original polygonal exterior and six-pack cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.pa_28_180",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.pa_28_180",
+          "spec": {
+            "label": "Piper PA-28-180 Cherokee",
+            "genericLabel": "General aviation aircraft with enclosed cockpit",
+            "model": "airplane",
+            "mass": 950,
+            "span": 9.144,
+            "length": 7.1628,
+            "height": 2.23,
+            "centerOfMass": [
+              0,
+              1.1,
+              0
+            ],
+            "pilotEye": [
+              0.25,
+              1.56,
+              0.43
+            ],
+            "hardLandingSpeed": 4,
+            "hardLandingRoll": 0.2,
+            "hardLandingPitch": 0.28,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [
+                0,
+                1.1,
+                3.0800039999999997
+              ],
+              [
+                0,
+                1.1,
+                -3.0800039999999997
+              ],
+              [
+                4.20624,
+                1.1,
+                0
+              ],
+              [
+                -4.20624,
+                1.1,
+                0
+              ]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "Cherokee-propeller",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "engine-1"
+                }
+              ],
+              "gearNodes": [],
+              "flaps": [
+                {
+                  "node": "Cherokee-flap--1",
+                  "axis": "x",
+                  "multiplier": -0.6981317007977318
+                },
+                {
+                  "node": "Cherokee-flap-1",
+                  "axis": "x",
+                  "multiplier": -0.6981317007977318
+                }
+              ],
+              "ailerons": [
+                {
+                  "node": "Cherokee-aileron--1",
+                  "axis": "x",
+                  "multiplier": 0.35
+                },
+                {
+                  "node": "Cherokee-aileron-1",
+                  "axis": "x",
+                  "multiplier": -0.35
+                }
+              ],
+              "animation": {
+                "bindings": [
+                  {
+                    "node": "Cherokee-stabilator",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.25
+                  },
+                  {
+                    "node": "Cherokee-rudder",
+                    "source": "yawInput",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": 0.35
+                  }
+                ]
+              },
+              "interior": {
+                "nodes": [
+                  "cockpit"
+                ],
+                "sources": {
+                  "trueAirspeed": {
+                    "component": "aircraftState",
+                    "path": [
+                      "airspeed"
+                    ]
+                  },
+                  "altitude": {
+                    "component": "transform",
+                    "path": [
+                      "pos",
+                      1
+                    ]
+                  },
+                  "roll": {
+                    "component": "aircraftState",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "pitch": {
+                    "component": "aircraftState",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "yaw": {
+                    "component": "aircraftState",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "yawRate": {
+                    "component": "aircraftState",
+                    "path": [
+                      "yawRate"
+                    ]
+                  },
+                  "propNormalized": {
+                    "component": "aircraftState",
+                    "path": [
+                      "engines",
+                      "engine-1",
+                      "rpm"
+                    ]
+                  },
+                  "verticalSpeed": {
+                    "component": "aircraftState",
+                    "path": [
+                      "verticalSpeed"
+                    ]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "power": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "power"
+                    ]
+                  }
+                },
+                "derived": {
+                  "mph": {
+                    "op": "divide",
+                    "args": [
+                      "trueAirspeed",
+                      0.44704
+                    ]
+                  },
+                  "feet": {
+                    "op": "divide",
+                    "args": [
+                      "altitude",
+                      0.3048
+                    ]
+                  },
+                  "propHundreds": {
+                    "op": "multiply",
+                    "args": [
+                      "propNormalized",
+                      27
+                    ]
+                  },
+                  "northYaw": {
+                    "op": "subtract",
+                    "args": [
+                      3.141592653589793,
+                      "yaw"
+                    ]
+                  },
+                  "trueHeading": {
+                    "op": "modulo",
+                    "args": [
+                      "northYaw",
+                      6.283185307179586
+                    ]
+                  },
+                  "climbHundreds": {
+                    "op": "multiply",
+                    "args": [
+                      "verticalSpeed",
+                      1.9685039370078738
+                    ]
+                  },
+                  "rightYawDegrees": {
+                    "op": "multiply",
+                    "args": [
+                      "yawRate",
+                      -57.29577951308232
+                    ]
+                  },
+                  "Cherokee.airspeed.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "mph",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.airspeed.available": {
+                    "op": "greater",
+                    "args": [
+                      "Cherokee.airspeed.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.altimeter-0.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.altimeter-0.available": {
+                    "op": "greater",
+                    "args": [
+                      "Cherokee.altimeter-0.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.altimeter-1.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.altimeter-1.available": {
+                    "op": "greater",
+                    "args": [
+                      "Cherokee.altimeter-1.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.altimeter-2.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "feet",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.altimeter-2.available": {
+                    "op": "greater",
+                    "args": [
+                      "Cherokee.altimeter-2.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.compass.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "trueHeading",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.compass.available": {
+                    "op": "greater",
+                    "args": [
+                      "Cherokee.compass.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.heading.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "trueHeading",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.heading.available": {
+                    "op": "greater",
+                    "args": [
+                      "Cherokee.heading.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.attitude-bank.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "roll",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.attitude-bank.available": {
+                    "op": "greater",
+                    "args": [
+                      "Cherokee.attitude-bank.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.attitude-pitch.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "pitch",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.attitude-pitch.available": {
+                    "op": "greater",
+                    "args": [
+                      "Cherokee.attitude-pitch.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.tachometer.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "propHundreds",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.tachometer.available": {
+                    "op": "greater",
+                    "args": [
+                      "Cherokee.tachometer.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.climb.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "climbHundreds",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.climb.available": {
+                    "op": "greater",
+                    "args": [
+                      "Cherokee.climb.availableValue",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.turn.availableValue": {
+                    "op": "coalesce",
+                    "args": [
+                      "rightYawDegrees",
+                      -100000000000000000000
+                    ]
+                  },
+                  "Cherokee.turn.available": {
+                    "op": "greater",
+                    "args": [
+                      "Cherokee.turn.availableValue",
+                      -100000000000000000000
+                    ]
+                  }
+                },
+                "bindings": [
+                  {
+                    "node": "Cherokee-airspeed",
+                    "source": "mph",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        40,
+                        0.35
+                      ],
+                      [
+                        60,
+                        0.85
+                      ],
+                      [
+                        80,
+                        1.45
+                      ],
+                      [
+                        100,
+                        2.1
+                      ],
+                      [
+                        120,
+                        2.75
+                      ],
+                      [
+                        140,
+                        3.45
+                      ],
+                      [
+                        160,
+                        4.15
+                      ],
+                      [
+                        180,
+                        4.8
+                      ],
+                      [
+                        200,
+                        5.45
+                      ]
+                    ],
+                    "responseSeconds": 0.2,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Cherokee-airspeed",
+                    "source": "Cherokee.airspeed.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Cherokee-altimeter-0",
+                    "source": "Cherokee.altimeter-0.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Cherokee-altimeter-1",
+                    "source": "Cherokee.altimeter-1.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Cherokee-altimeter-2",
+                    "source": "Cherokee.altimeter-2.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Cherokee-altimeter-0",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.006283185307179587,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Cherokee-altimeter-1",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Cherokee-altimeter-2",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.00006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Cherokee-compass-drum",
+                    "source": "trueHeading",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Cherokee-compass-drum",
+                    "source": "Cherokee.compass.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Cherokee-heading-drum",
+                    "source": "trueHeading",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Cherokee-heading-drum",
+                    "source": "Cherokee.heading.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Cherokee-attitude-bank",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "Cherokee-attitude-pitch",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.06341701704545456,
+                    "min": -0.01811914772727273,
+                    "max": 0.01811914772727273,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "Cherokee-attitude-bank",
+                    "source": "Cherokee.attitude-bank.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Cherokee-attitude-pitch",
+                    "source": "Cherokee.attitude-pitch.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Cherokee-tachometer",
+                    "source": "propHundreds",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        -2.45
+                      ],
+                      [
+                        35,
+                        2.45
+                      ]
+                    ],
+                    "responseSeconds": 0.1,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Cherokee-tachometer",
+                    "source": "Cherokee.tachometer.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Cherokee-climb",
+                    "source": "climbHundreds",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -20,
+                        -4.2
+                      ],
+                      [
+                        0,
+                        -1.5707963267948966
+                      ],
+                      [
+                        20,
+                        1.05
+                      ]
+                    ],
+                    "responseSeconds": 0.7,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Cherokee-climb",
+                    "source": "Cherokee.climb.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Cherokee-turn",
+                    "source": "rightYawDegrees",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        -6,
+                        -0.7
+                      ],
+                      [
+                        -3,
+                        -0.35
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        3,
+                        0.35
+                      ],
+                      [
+                        6,
+                        0.7
+                      ]
+                    ],
+                    "responseSeconds": 0.25,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Cherokee-turn",
+                    "source": "Cherokee.turn.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Cherokee-yoke-409",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.65
+                  },
+                  {
+                    "node": "Cherokee-yoke-409",
+                    "source": "pitchInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  },
+                  {
+                    "node": "Cherokee-yoke-1084",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.65
+                  },
+                  {
+                    "node": "Cherokee-yoke-1084",
+                    "source": "pitchInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  }
+                ]
+              }
+            },
+            "airplane": {
+              "wingPosition": [
+                0,
+                1.1,
+                0
+              ],
+              "wingArea": 14.8644864,
+              "controlAuthoritySpeed": 45,
+              "maxControlAuthority": 1.8,
+              "pitchAuthority": 0.18,
+              "pitchResponse": 2.5,
+              "stallPitchRate": 0.18,
+              "rollAuthority": 1.05,
+              "rollResponse": 2,
+              "rudderAuthority": 1,
+              "groundSteerSpeed": 8,
+              "groundLevelRate": 2,
+              "maxGroundPitch": 0.22,
+              "camberAngle": 0.045,
+              "flapLift": 0.33,
+              "postStallFlapEffect": 0.4,
+              "stallAngle": 0.28,
+              "stallTransitionAngle": 0.12,
+              "pitchFrequency": 3.5,
+              "pitchDamping": 0.7,
+              "maxLoadFactor": 3.8,
+              "minLoadFactor": -1.5,
+              "autoTrim": 1,
+              "directionalStability": 4,
+              "yawDamping": 1.2,
+              "dihedralEffect": 2.5,
+              "propellerEffects": 0.08,
+              "stallSpeed": 26,
+              "liftSlope": 4.8,
+              "postStallLift": 0.2,
+              "postStallDecay": 3.8,
+              "profileDrag": 0.028,
+              "inducedDrag": 0.06,
+              "gearDrag": 0.018,
+              "flapDrag": 0.035,
+              "gearTransitTime": 0,
+              "flapTransitTime": 4,
+              "stallDrag": 1.1,
+              "propellerEfficiency": 0.85,
+              "maxThrust": 3990,
+              "minPropellerSpeed": 25,
+              "lateralDamping": 0.35,
+              "brakeDeceleration": 4,
+              "rollingDeceleration": 0.22,
+              "groundTrackRate": 12,
+              "fixedGear": true
+            },
+            "engines": [
+              {
+                "id": "engine-1",
+                "position": [
+                  0,
+                  1.25,
+                  2.37
+                ],
+                "thrustAxis": [
+                  0,
+                  0,
+                  1
+                ],
+                "power": 211235.29411764708,
+                "idleRpm": 0.18,
+                "spoolRate": 0.25,
+                "rotorAngularSpeed": 282.7433388230814,
+                "maxThrust": 3990,
+                "minPropellerSpeed": 25,
+                "propellerEfficiency": 0.85
+              }
+            ]
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.25,
+                1.56,
+                0.43
+              ]
+            },
+            {
+              "id": "copilot",
+              "role": "passenger",
+              "position": [
+                -0.25,
+                1.56,
+                0.43
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.35,
+              0,
+              0.43
+            ]
+          ],
+          "exits": [
+            [
+              2.05,
+              0,
+              0.43
+            ]
+          ],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.83,
+          "width": 11.28,
+          "height": 4.1,
+          "cruise": 90,
+          "weight": 0.35
+        },
+        "model.signals": {
+          "sources": {
+            "trueAirspeed": {
+              "component": "aircraftState",
+              "path": [
+                "airspeed"
+              ]
+            },
+            "altitude": {
+              "component": "transform",
+              "path": [
+                "pos",
+                1
+              ]
+            },
+            "roll": {
+              "component": "aircraftState",
+              "path": [
+                "roll"
+              ]
+            },
+            "pitch": {
+              "component": "aircraftState",
+              "path": [
+                "pitch"
+              ]
+            },
+            "yaw": {
+              "component": "aircraftState",
+              "path": [
+                "yaw"
+              ]
+            },
+            "yawRate": {
+              "component": "aircraftState",
+              "path": [
+                "yawRate"
+              ]
+            },
+            "propNormalized": {
+              "component": "aircraftState",
+              "path": [
+                "engines",
+                "engine-1",
+                "rpm"
+              ]
+            },
+            "verticalSpeed": {
+              "component": "aircraftState",
+              "path": [
+                "verticalSpeed"
+              ]
+            },
+            "pitchInput": {
+              "component": "aircraftInput",
+              "path": [
+                "pitch"
+              ]
+            },
+            "rollInput": {
+              "component": "aircraftInput",
+              "path": [
+                "roll"
+              ]
+            },
+            "yawInput": {
+              "component": "aircraftInput",
+              "path": [
+                "yaw"
+              ]
+            },
+            "power": {
+              "component": "aircraftInput",
+              "path": [
+                "power"
+              ]
+            }
+          },
+          "derived": {
+            "mph": {
+              "op": "divide",
+              "args": [
+                "trueAirspeed",
+                0.44704
+              ]
+            },
+            "feet": {
+              "op": "divide",
+              "args": [
+                "altitude",
+                0.3048
+              ]
+            },
+            "propHundreds": {
+              "op": "multiply",
+              "args": [
+                "propNormalized",
+                27
+              ]
+            },
+            "northYaw": {
+              "op": "subtract",
+              "args": [
+                3.141592653589793,
+                "yaw"
+              ]
+            },
+            "trueHeading": {
+              "op": "modulo",
+              "args": [
+                "northYaw",
+                6.283185307179586
+              ]
+            },
+            "climbHundreds": {
+              "op": "multiply",
+              "args": [
+                "verticalSpeed",
+                1.9685039370078738
+              ]
+            },
+            "rightYawDegrees": {
+              "op": "multiply",
+              "args": [
+                "yawRate",
+                -57.29577951308232
+              ]
+            },
+            "Cherokee.airspeed.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "mph",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.airspeed.available": {
+              "op": "greater",
+              "args": [
+                "Cherokee.airspeed.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.altimeter-0.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.altimeter-0.available": {
+              "op": "greater",
+              "args": [
+                "Cherokee.altimeter-0.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.altimeter-1.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.altimeter-1.available": {
+              "op": "greater",
+              "args": [
+                "Cherokee.altimeter-1.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.altimeter-2.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "feet",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.altimeter-2.available": {
+              "op": "greater",
+              "args": [
+                "Cherokee.altimeter-2.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.compass.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "trueHeading",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.compass.available": {
+              "op": "greater",
+              "args": [
+                "Cherokee.compass.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.heading.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "trueHeading",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.heading.available": {
+              "op": "greater",
+              "args": [
+                "Cherokee.heading.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.attitude-bank.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "roll",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.attitude-bank.available": {
+              "op": "greater",
+              "args": [
+                "Cherokee.attitude-bank.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.attitude-pitch.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "pitch",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.attitude-pitch.available": {
+              "op": "greater",
+              "args": [
+                "Cherokee.attitude-pitch.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.tachometer.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "propHundreds",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.tachometer.available": {
+              "op": "greater",
+              "args": [
+                "Cherokee.tachometer.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.climb.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "climbHundreds",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.climb.available": {
+              "op": "greater",
+              "args": [
+                "Cherokee.climb.availableValue",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.turn.availableValue": {
+              "op": "coalesce",
+              "args": [
+                "rightYawDegrees",
+                -100000000000000000000
+              ]
+            },
+            "Cherokee.turn.available": {
+              "op": "greater",
+              "args": [
+                "Cherokee.turn.availableValue",
+                -100000000000000000000
+              ]
+            }
+          },
+          "bindings": [
+            {
+              "node": "Cherokee-airspeed",
+              "source": "mph",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  40,
+                  0.35
+                ],
+                [
+                  60,
+                  0.85
+                ],
+                [
+                  80,
+                  1.45
+                ],
+                [
+                  100,
+                  2.1
+                ],
+                [
+                  120,
+                  2.75
+                ],
+                [
+                  140,
+                  3.45
+                ],
+                [
+                  160,
+                  4.15
+                ],
+                [
+                  180,
+                  4.8
+                ],
+                [
+                  200,
+                  5.45
+                ]
+              ],
+              "responseSeconds": 0.2,
+              "missing": "hold"
+            },
+            {
+              "node": "Cherokee-airspeed",
+              "source": "Cherokee.airspeed.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Cherokee-altimeter-0",
+              "source": "Cherokee.altimeter-0.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Cherokee-altimeter-1",
+              "source": "Cherokee.altimeter-1.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Cherokee-altimeter-2",
+              "source": "Cherokee.altimeter-2.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Cherokee-altimeter-0",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.006283185307179587,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Cherokee-altimeter-1",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.0006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Cherokee-altimeter-2",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.00006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Cherokee-compass-drum",
+              "source": "trueHeading",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Cherokee-compass-drum",
+              "source": "Cherokee.compass.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Cherokee-heading-drum",
+              "source": "trueHeading",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Cherokee-heading-drum",
+              "source": "Cherokee.heading.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Cherokee-attitude-bank",
+              "source": "roll",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "Cherokee-attitude-pitch",
+              "source": "pitch",
+              "property": "position",
+              "axis": "y",
+              "scale": -0.06341701704545456,
+              "min": -0.01811914772727273,
+              "max": 0.01811914772727273,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "Cherokee-attitude-bank",
+              "source": "Cherokee.attitude-bank.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Cherokee-attitude-pitch",
+              "source": "Cherokee.attitude-pitch.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Cherokee-tachometer",
+              "source": "propHundreds",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  -2.45
+                ],
+                [
+                  35,
+                  2.45
+                ]
+              ],
+              "responseSeconds": 0.1,
+              "missing": "hold"
+            },
+            {
+              "node": "Cherokee-tachometer",
+              "source": "Cherokee.tachometer.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Cherokee-climb",
+              "source": "climbHundreds",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -20,
+                  -4.2
+                ],
+                [
+                  0,
+                  -1.5707963267948966
+                ],
+                [
+                  20,
+                  1.05
+                ]
+              ],
+              "responseSeconds": 0.7,
+              "missing": "hold"
+            },
+            {
+              "node": "Cherokee-climb",
+              "source": "Cherokee.climb.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Cherokee-turn",
+              "source": "rightYawDegrees",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  -6,
+                  -0.7
+                ],
+                [
+                  -3,
+                  -0.35
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  3,
+                  0.35
+                ],
+                [
+                  6,
+                  0.7
+                ]
+              ],
+              "responseSeconds": 0.25,
+              "missing": "hold"
+            },
+            {
+              "node": "Cherokee-turn",
+              "source": "Cherokee.turn.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Cherokee-yoke-409",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.65
+            },
+            {
+              "node": "Cherokee-yoke-409",
+              "source": "pitchInput",
+              "property": "position",
+              "axis": "z",
+              "scale": -0.04
+            },
+            {
+              "node": "Cherokee-yoke-1084",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.65
+            },
+            {
+              "node": "Cherokee-yoke-1084",
+              "source": "pitchInput",
+              "property": "position",
+              "axis": "z",
+              "scale": -0.04
+            },
+            {
+              "node": "Cherokee-stabilator",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.25
+            },
+            {
+              "node": "Cherokee-rudder",
+              "source": "yawInput",
+              "property": "rotation",
+              "axis": "y",
+              "scale": 0.35
+            }
+          ]
+        }
+      },
+      "assets": [
+        "molen.entities.aircraft.pa_28_180"
+      ]
+    }
+  }
+}

@@ -111,9 +111,13 @@
     <button id="hud-toggle" type="button" aria-controls="hud" aria-expanded="false">Show controls</button>
     <aside id="hud">
       <h1>World explorer</h1>
+      <a href="road-signs.html" style="display:inline-block;margin:6px 12px 6px 0;color:#bde5c8;font-size:12px;pointer-events:auto">Road sign library ↗</a>
       <a href="sky.html" style="display:inline-block;margin:6px 12px 6px 0;color:#bde5c8;font-size:12px;pointer-events:auto">Sky observatory ↗</a>
       <a href="structures.html" style="display:inline-block;margin:6px 0;color:#bde5c8;font-size:12px;pointer-events:auto">Explore 120 structures ↗</a>
       <p id="source">Starting terrain…</p>
+      <label for="region" style="display:block;margin:10px 0;pointer-events:auto">Region
+        <select id="region" style="display:block;width:100%;margin-top:6px"></select>
+      </label>
       <fieldset id="diorama-controls" style="border:0;padding:8px 0;margin:0" aria-label="Living places">
         <div class="sky-heading">
           <label><input id="dioramas-enabled" type="checkbox" checked /> Living places</label>
@@ -207,6 +211,12 @@
       <fieldset id="aircraft-picker" aria-label="Visit practice airfield" style="display:flex;gap:7px;border:0;padding:0;margin-top:8px;pointer-events:auto">
         <button type="button" data-aircraft="p51d" title="Visit the P-51D at the practice runway">P-51 Mustang</button>
         <button type="button" data-aircraft="oh6" title="Visit the OH-6 helipad">OH-6</button>
+        <button type="button" data-aircraft="airliner" title="Visit the Bendy Small Airliner at the practice runway">Bendy Small Airliner</button>
+      </fieldset>
+      <label style="display:block;pointer-events:auto;margin:8px 0">Aircraft catalog <select id="aircraft-catalog" aria-label="Choose an aircraft"><option value="">Choose aircraft…</option></select></label>
+      <fieldset aria-label="Drive Bendy transit" style="display:flex;gap:7px;border:0;padding:0;pointer-events:auto">
+        <button type="button" data-transit="bus">Bendy Bus</button>
+        <button type="button" data-transit="lightrail">Bendy Light Rail</button>
       </fieldset>
       <pre id="status"></pre>
       <pre id="performance-status"></pre>

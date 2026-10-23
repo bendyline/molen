@@ -1,0 +1,478 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "brick",
+      "slot": "wall",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "stone": {
+      "graph": "stone_drywall",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "render": {
+      "graph": "plaster_lime",
+      "slot": "wall",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "tile_ceramic",
+      "slot": "roof",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.83,
+      "metallic": 0
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.64,
+      "metallic": 0.1
+    }
+  },
+  "previewGround": true,
+  "camera": {
+    "position": [
+      21.737272414396642,
+      17,
+      27.064570714909017
+    ],
+    "lookAt": [
+      0,
+      4,
+      0
+    ],
+    "fov": 50
+  },
+  "qaCameras": [
+    {
+      "name": "south-stone-annex-brick-church-and-exterior-stair",
+      "position": [
+        6.992076278763126,
+        7,
+        21.35675231190262
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "upper-door-recess-landing-and-stair",
+      "position": [
+        -1.4745199508752735,
+        4.4,
+        9.941116180513673
+      ],
+      "lookAt": [
+        -1.073883363493049,
+        3.5,
+        4.681320808954207
+      ],
+      "fov": 58
+    },
+    {
+      "name": "octagonal-drum-tiled-cap-and-cross",
+      "position": [
+        9.370334002901112,
+        11,
+        13.460937585252939
+      ],
+      "lookAt": [
+        0,
+        8.3,
+        0
+      ],
+      "fov": 45
+    },
+    {
+      "name": "eastern-roof-and-northern-reconstructed-wall",
+      "position": [
+        20.785970808913902,
+        10,
+        -16.029454686014088
+      ],
+      "lookAt": [
+        0.9988681361981387,
+        4,
+        0.04756518146771349
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        21.737272414396642,
+        17,
+        27.064570714909017
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 50,
+      "name": "boyana-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        21.737272414396642,
+        17,
+        27.064570714909017
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 50,
+      "name": "boyana-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        21.737272414396642,
+        17,
+        27.064570714909017
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 50,
+      "name": "boyana-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        21.737272414396642,
+        17,
+        27.064570714909017
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 50,
+      "name": "boyana-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.15,
+    "neighborStyle": "molen.worldgen.catalog.balkan_konak"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/boyana-model.mjs",
+    "export": "buildBoyanaSkyline",
+    "errorMeters": 0.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBoyanaDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "render": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "buildBoyanaStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "render": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBoyanaCloseup",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "render": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      23.26619580388069,
+      42.644641196931296
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Qualified approximate native exterior fit on original standard Protomaps20261020/Mapzen 201x201/6m terrain. Uncovered western approach datum 775.2697762814635m, floor +0.15m and foundation -1.554m. Boundary grades -1.404..-0.007m leave an exposed downhill foundation; inspected stair/doorway and approach remain clear. Original samples are retained. Only one owned parent is replaced; 880 resident / 994 wider independent buildings, roads and 289.053m² water remain. Exact historic terrain, paving, step levels and accessibility are unverified. Apse projection and unseen elevations are approximate. No bespoke terrain or flattening.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 8
+    },
+    "bounds": [
+      23.26607464480694,
+      42.64457178319617,
+      23.26631696295444,
+      42.64471061066642
+    ],
+    "terrainReference": {
+      "anchor": [
+        23.26609307997948,
+        42.64464479505599
+      ],
+      "modelHeight": 0,
+      "basis": "Original standard Protomaps20261020/Mapzen 201x201/6m terrain. Uncovered western approach gives datum 775.2697762814635m; working floor +0.15m. Boundary grades -1.404..-0.007m, closed foundation -1.554m. Native fit remains draft pending actual current inspection. No bespoke terrain research, flattening or altered source heights. Exact paving, steps and accessibility remain unverified."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -7.1379071853965765,
+          4.3925580224792355
+        ],
+        [
+          6.69865135860294,
+          5.051442207672053
+        ],
+        [
+          7.137907185396576,
+          -4.392558470169701
+        ],
+        [
+          -6.69865135860294,
+          -5.051441759981586
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -7.1379071853965765,
+            4.3925580224792355
+          ],
+          [
+            6.69865135860294,
+            5.051442207672053
+          ],
+          [
+            7.137907185396576,
+            -4.392558470169701
+          ],
+          [
+            -6.69865135860294,
+            -5.051441759981586
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Q276553 and named church way44890267/native35184416979099 establish the single owned building. Current standard PMTiles supplies the approximately 13.9 x 9.5m rectangular footprint; the older georeference has the same identity and long axis. Internal +X points east/slightly south toward the lower church; +Z south toward the photographed stair. Native east/up/south coordinates are baked with heading 0. Three construction volumes and local roof treatment are picture-led approximations from the mapped perimeter and photographs. Unrelated buildings remain independent."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -7.1379071853965765,
+          4.3925580224792355
+        ],
+        [
+          6.69865135860294,
+          5.051442207672053
+        ],
+        [
+          7.137907185396576,
+          -4.392558470169701
+        ],
+        [
+          -6.69865135860294,
+          -5.051441759981586
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -7.1379071853965765,
+            4.3925580224792355
+          ],
+          [
+            6.69865135860294,
+            5.051442207672053
+          ],
+          [
+            7.137907185396576,
+            -4.392558470169701
+          ],
+          [
+            -6.69865135860294,
+            -5.051441759981586
+          ]
+        ],
+        [
+          [
+            6.982031208259377,
+            -1.119165161100057
+          ],
+          [
+            7.531044132596205,
+            -0.9825219223314903
+          ],
+          [
+            7.9859748328537306,
+            -0.6461818804791462
+          ],
+          [
+            8.277564233874813,
+            -0.16134975798497214
+          ],
+          [
+            8.361420492618494,
+            0.3981631495154286
+          ],
+          [
+            8.224777253849926,
+            0.9471760738522566
+          ],
+          [
+            7.888437211997583,
+            1.4021067741097821
+          ],
+          [
+            7.403605089503409,
+            1.693696175130864
+          ],
+          [
+            6.844092182003008,
+            1.7775524338745452
+          ]
+        ]
+      ],
+      "basis": "Occupied mapped church rectangle plus reconstructed rounded apse; approaches, garden and external stair keep original ground. An additional ordinary eastern exterior photo shows the rounded brick apse and curved roof crown. The source map simplifies this as a rectangle: the added 1.45m apse projection and its 3.55m wall/4.05m roof are picture-led approximations, not surveyed map geometry. Only the owned parent is replaced; the added apse has its own occupied ground mask. Upper doorway back uses shared dark painted metal; triangle and quad brick UVs now use the same metric repeat."
+    },
+    "notes": "Q276553 and named church way44890267/native35184416979099 establish the single owned building. Current standard PMTiles supplies the approximately 13.9 x 9.5m rectangular footprint; the older georeference has the same identity and long axis. Internal +X points east/slightly south toward the lower church; +Z south toward the photographed stair. Native east/up/south coordinates are baked with heading 0. Three construction volumes and local roof treatment are picture-led approximations from the mapped perimeter and photographs. Unrelated buildings remain independent. Qualified approximate native exterior fit on original standard Protomaps20261020/Mapzen 201x201/6m terrain. Uncovered western approach datum 775.2697762814635m, floor +0.15m and foundation -1.554m. Boundary grades -1.404..-0.007m leave an exposed downhill foundation; inspected stair/doorway and approach remain clear. Original samples are retained. Only one owned parent is replaced; 880 resident / 994 wider independent buildings, roads and 289.053m² water remain. Exact historic terrain, paving, step levels and accessibility are unverified. Apse projection and unseen elevations are approximate. No bespoke terrain or flattening."
+  }
+}

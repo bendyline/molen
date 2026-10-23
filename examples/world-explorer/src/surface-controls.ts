@@ -1,3 +1,4 @@
+import type { FontLibrary } from '@bendyline/molen-materials/text';
 import {
   createTerrainSurfaceRenderer,
   createTerrainSurfaceWorkerBridge,
@@ -5,6 +6,8 @@ import {
   TERRAIN_SURFACE_STYLES,
   type TerrainParkedVehicle,
   type TerrainQualityPreset,
+  type TerrainRoadSignProfile,
+  type TerrainRouteShieldLibrary,
   type TerrainSurfaceDetails,
   type TerrainSurfaceRenderer,
   type TerrainSurfaceStyleId,
@@ -19,6 +22,10 @@ export interface SurfaceControls extends TerrainSurfaceRenderer {
 export function createSurfaceControls(
   quality: TerrainQualityPreset,
   parkedVehicles: readonly TerrainParkedVehicle[],
+  parkedVehiclesAt?: (x: number, z: number) => readonly TerrainParkedVehicle[],
+  fonts?: FontLibrary,
+  signProfileAt?: (x: number, z: number) => Readonly<TerrainRoadSignProfile> | undefined,
+  routeShields?: TerrainRouteShieldLibrary,
 ): SurfaceControls {
   const select = document.getElementById('surface-style') as HTMLSelectElement;
   const status = document.getElementById('surface-status') as HTMLParagraphElement;
@@ -53,6 +60,8 @@ export function createSurfaceControls(
   let budgets = budgetsForQuality(quality);
   let performanceScale = 1;
   const options = () => ({
+    fonts,
+    routeShields,
     style,
     details: {
       ...details,
@@ -69,7 +78,12 @@ export function createSurfaceControls(
           new Worker(new URL('./surface-worker.ts', import.meta.url), { type: 'module' }),
         )
       : undefined;
-  const renderer = createTerrainSurfaceRenderer(options(), generator);
+  const renderer = createTerrainSurfaceRenderer(
+    options(),
+    generator,
+    parkedVehiclesAt,
+    signProfileAt,
+  );
   let revision = 0;
   const sync = (): void => {
     select.value = style;

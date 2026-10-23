@@ -1,0 +1,661 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0556_osireion",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:cb17b365c1930b12eb15c5f91320a57c43def3a1db82f8d52dfc05d0f910ede3",
+  "sourceHash": "sha256:24b60143ca9d7f946c7ed5e54ddb6ef1e19115c0010ce842c9900c9cd9df9639",
+  "runtimeHash": "sha256:92c9391abd49833db4bac66885cc9b45914f70cc9ac0a99c30c5cea220214b32",
+  "captureReportHash": "sha256:b249916b6e234b5828431ca4980b428d72e67b683b4837d9ce4ebcb45c750389",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/massive-square-piers-incomplete-lintels-and-open-hall.png",
+      "shots/wet-island-recesses-green-moat-and-perimeter-doorways.png",
+      "shots/supported-timber-descent-broken-caps-and-fitted-pit-rim.png"
+    ],
+    "notes": "Inspected49 current source/shared/medium-fi/native/fallback/small-resident-tile views during the same construction pass. Specific open Osireion hall: ten massive plain granite square piers in two rows, worn bases/broken tops, incomplete longitudinal lintels/cap fragments, coursed masonry and actual shaded rectangular recesses with closed backs. Wet central island/two floor depressions, low opaque green moat and narrow supported timber descent. Construction fixed open inner earth sides, coarse-boundary skirts, excessive corner bevels, block-course scale and a stair/wall interference using a supported middle landing. No complete ancient roof, copied relief/graffiti atlas or speculative covered rooms."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/massive-square-piers-incomplete-lintels-and-open-hall.png",
+      "shots/shared/wet-island-recesses-green-moat-and-perimeter-doorways.png",
+      "shots/shared/supported-timber-descent-broken-caps-and-fitted-pit-rim.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Four existing256-square graphs: stone_granite, stone_sandstone_raw, wood_plain and metal_painted. Wall/soil/wet and water/metal reuse graphs with separate semantic roles/tints; at most five draws. Stone courses are broad original geometry over the shared raw sandstone, avoiding a small-brick texture scale or bespoke atlas. Metric UVs/linear tints, each graph read once in the full near view, zero embedded images and separate GPU streams. Current counts/bytes are in the table; initial skyline plus district geometry274940bytes. Matching CPU/GPU accounting and unload disposal pass.",
+    "captureReportHash": "sha256:56336775420ba6276c074e8c5d43929781aeb6b7c86dfdac4b40e6641f0a0ac9"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/massive-square-piers-incomplete-lintels-and-open-hall.png",
+      "medium-fi/wet-island-recesses-green-moat-and-perimeter-doorways.png",
+      "medium-fi/supported-timber-descent-broken-caps-and-fitted-pit-rim.png",
+      "medium-fi/osireion-skyline.png",
+      "medium-fi/osireion-district.png",
+      "medium-fi/osireion-street.png",
+      "medium-fi/osireion-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected noon/late/economy/high context, silhouette, four levels/transitions and three details. Skyline retains all ten piers, incomplete lintel rows, closed excavation bed/rim, shallow moat and coarser timber descent; district restores pier bevels/base steps, recess bays, floor depressions and treads; street/close-up add separate large stone courses, worn blocks/loose caps and stair rails. Street and close-up share geometry because it fits the street budget. A synthetic review initially lacked a marked terrain input; supplying the retained terrain made its opening/unchanged-source-elevation checks pass, with no model change for that configuration fix. Source/flat shared stages show an isolated excavation cutaway; native/medium-fi terrain views establish actual opening contact.",
+    "captureReportHash": "sha256:f4d24b9df34d0d8f40d3fe300d914981791912d61c774a5afec6ec52b2442897"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:7cec957da5dd2bac2bdcbba1c26a68bfcb3e52bf7b8c9b459d185730c35cb0a0",
+    "mapFrameHash": "sha256:40f45e7daf882eaa3617f3af111b266afef848bc9b46b2a7b222f89ed8d90dc4",
+    "notes": "Exact-QID OSMway90456113/Q2033435 gives38.96x31.31m archaeological envelope; named standard PMTilesOsireionPOI35184462544945 coincides within0.16m. Anchor31.918428132,26.18413313, heading0/native east-south; internal NE/SW long axis-.97476887509rad is map-controlled. Signed bridge/recess/surviving-lintel arrangement is picture-led and may be reversed180degrees; this uncertainty is recorded rather than claiming a surveyed pier plan. A1219.68142m2 ground opening follows only that extent. Full opaque bed at-6.3m covers it at every LOD; fitted soil rim/skirts retain the native edge.624 native opening probes are covered by the model at each loaded level and in a10m resident tile. All eight independent native buildings, paths, original6m grid and zero native water records remain unchanged; no building shell replaced. Failure restores original ground/eight buildings, unloading restores original ground/water and releases geometry. Neighboring Seti I temple is independent."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi standing open hall/excavation in the pictured2004 low-water state, informed by two ordinary2004/2011 photographs and standard PMTiles/Mapzen in one continuous build/inspect/fix round. Low-water opaque algae surface is a static visualization, not a live water level or hydrology. Exact pier/lintel/fracture/niche inventory, bridge routing, signed facing and floor/depths are approximate; the coarse DEM rises about4m across the opening and does not resolve the real excavation section. Complete ancient roof, covered subterranean rooms/long passage and neighboring temple are not claimed authored. Physical phone/laptop/dense-city timing remains pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/ss/ssw/n0556_osireion/models/source.glb\",\"hash\":\"sha256:24b60143ca9d7f946c7ed5e54ddb6ef1e19115c0010ce842c9900c9cd9df9639\",\"bytes\":916852,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/ss/ssw/n0556_osireion/model.glb\",\"hash\":\"sha256:92c9391abd49833db4bac66885cc9b45914f70cc9ac0a99c30c5cea220214b32\",\"bytes\":916364,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/ss/ssw/n0556_osireion/model.skyline.glb\",\"hash\":\"sha256:575091291add5535dc203a90af949990b7ab6e81f1142da2324fc2019bff1280\",\"bytes\":98204,\"errors\":0,\"warnings\":0,\"triangles\":924,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/ss/ssw/n0556_osireion/model.district.glb\",\"hash\":\"sha256:a0c965aa56befe55cd247b2d8f8bf045ad16379d1fb317c831e04191377a1cfe\",\"bytes\":176736,\"errors\":0,\"warnings\":0,\"triangles\":1832,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/ss/ssw/n0556_osireion/model.street.glb\",\"hash\":\"sha256:3a534d94576606d570157b7a13f54f579821092b39e77099a14736acffd973d5\",\"bytes\":735572,\"errors\":0,\"warnings\":0,\"triangles\":7612,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/ss/ssw/n0556_osireion/model.closeup.glb\",\"hash\":\"sha256:3a534d94576606d570157b7a13f54f579821092b39e77099a14736acffd973d5\",\"bytes\":735572,\"errors\":0,\"warnings\":0,\"triangles\":7612,\"draws\":5}"
+      },
+      {
+        "check": "complete-bed-and-edge-skirts-ten-square-piers-incomplete-lintels-recesses-low-water-and-supported-descent",
+        "passed": true,
+        "notes": "3868 actual mesh probes across source/runtime/four levels verify the complete opaque excavation bed and edge skirts, ten massive square piers, incomplete longitudinal lintels/open central roof, recessed perimeter doorways and floor depressions, low static green water/emergent island, supported lower stringers and open surrounding ground."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Four reused graphs, zero embedded images, separate GPU streams and all triangle/draw/download caps pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:24b60143ca9d7f946c7ed5e54ddb6ef1e19115c0010ce842c9900c9cd9df9639"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:92c9391abd49833db4bac66885cc9b45914f70cc9ac0a99c30c5cea220214b32"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:575091291add5535dc203a90af949990b7ab6e81f1142da2324fc2019bff1280"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:a0c965aa56befe55cd247b2d8f8bf045ad16379d1fb317c831e04191377a1cfe"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:3a534d94576606d570157b7a13f54f579821092b39e77099a14736acffd973d5"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:3a534d94576606d570157b7a13f54f579821092b39e77099a14736acffd973d5"
+      }
+    ],
+    "reports": [
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "openingCoverage": {
+            "tested": 624,
+            "uncovered": 0
+          },
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 8,
+          "independentBuildings": 8,
+          "remainingBuildings": 8,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0556_osireion"
+          ],
+          "rawTerrainRange": {
+            "min": -10.086453534260926,
+            "max": 52.51754646573907
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:b9c4ab811b298d05693516c96df8dde9f12be9b76c93a1607a26c456cb861cb4",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 13,
+              "triangles": 67108
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                7.8706499880042635,
+                30,
+                56.08968593927344
+              ],
+              "lookAt": [
+                0,
+                -2,
+                0
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-massive-square-piers-incomplete-lintels-and-open-hall.png",
+            "hash": "sha256:3310ec9efac15876cdb26806dd8cabc8c38ff80c14d31750da24254b75b7ee3f",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 13,
+              "triangles": 67108
+            },
+            "camera": {
+              "name": "massive-square-piers-incomplete-lintels-and-open-hall",
+              "position": [
+                3.165620209778016,
+                10,
+                20.272613267347772
+              ],
+              "lookAt": [
+                0,
+                -2.7,
+                0
+              ],
+              "fov": 49
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-wet-island-recesses-green-moat-and-perimeter-doorways.png",
+            "hash": "sha256:34d546ea7abdf740ee1f9bd674e40f8cb2e7a7c22999ede2e4f64b264dad785b",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 13,
+              "triangles": 67108
+            },
+            "camera": {
+              "name": "wet-island-recesses-green-moat-and-perimeter-doorways",
+              "position": [
+                -4.82076454206832,
+                3,
+                -21.39533194951499
+              ],
+              "lookAt": [
+                0.5613593410836071,
+                -4.7,
+                -0.8275721661451516
+              ],
+              "fov": 49
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-supported-timber-descent-broken-caps-and-fitted-pit-rim.png",
+            "hash": "sha256:4ef4de75eb0b0ff35a418e28a2d1043864bd5c2a3ceedc2a7f196f203848077d",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 13,
+              "triangles": 67108
+            },
+            "camera": {
+              "name": "supported-timber-descent-broken-caps-and-fitted-pit-rim",
+              "position": [
+                6.684254317499132,
+                8,
+                31.1178525001163
+              ],
+              "lookAt": [
+                5.0198374831665955,
+                -2.2,
+                10.413511974477949
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "openingCoverage": {
+            "tested": 624,
+            "uncovered": 0
+          },
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 8,
+          "independentBuildings": 8,
+          "remainingBuildings": 8,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0556_osireion"
+          ],
+          "rawTerrainRange": {
+            "min": -10.086453534260926,
+            "max": 52.51754646573907
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:b9c4ab811b298d05693516c96df8dde9f12be9b76c93a1607a26c456cb861cb4",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 13,
+              "triangles": 67108
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                7.8706499880042635,
+                30,
+                56.08968593927344
+              ],
+              "lookAt": [
+                0,
+                -2,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "openingCoverage": {
+            "tested": 624,
+            "uncovered": 0
+          },
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 8,
+          "independentBuildings": 8,
+          "remainingBuildings": 8,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0556_osireion"
+          ],
+          "rawTerrainRange": {
+            "min": -10.086453534260926,
+            "max": 52.51754646573907
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:5a2e9ed20345f4dbecc4d687ba14bf6159bc7a752e8383de7b13aba1a0d39dce",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 13,
+              "triangles": 61328
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                7.8706499880042635,
+                30,
+                56.08968593927344
+              ],
+              "lookAt": [
+                0,
+                -2,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "openingCoverage": {
+            "tested": 624,
+            "uncovered": 0
+          },
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 8,
+          "independentBuildings": 8,
+          "remainingBuildings": 8,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0556_osireion"
+          ],
+          "rawTerrainRange": {
+            "min": -10.086453534260926,
+            "max": 52.51754646573907
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:ccb90ffa843910328e33b2593b8287fc1d6177505c7330e1a410b0b1f5359be0",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 9,
+              "triangles": 60420
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                7.8706499880042635,
+                30,
+                56.08968593927344
+              ],
+              "lookAt": [
+                0,
+                -2,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "openingCoverage": {
+            "tested": 624,
+            "uncovered": 624
+          },
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 8,
+          "independentBuildings": 8,
+          "remainingBuildings": 8,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0556_osireion"
+          ],
+          "rawTerrainRange": {
+            "min": -10.086453534260926,
+            "max": 52.51754646573907
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:d6c498f79134d62f1e00c84022e095f4a81aacf1f7ec0a869fa7225146d7f2a5",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 8,
+              "triangles": 59498
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                7.8706499880042635,
+                30,
+                56.08968593927344
+              ],
+              "lookAt": [
+                0,
+                -2,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": true,
+          "openingCoverage": {
+            "tested": 624,
+            "uncovered": 0
+          },
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0556_osireion"
+          ],
+          "rawTerrainRange": {
+            "min": -10.086453534260926,
+            "max": 52.51754646573907
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/partial-closeup-whole-site.png",
+            "hash": "sha256:08344b46dd62be28409e10e33a2f087b89237745e6f6613db0d98aacce3d1e04",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 6,
+              "triangles": 58810
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                7.8706499880042635,
+                30,
+                56.08968593927344
+              ],
+              "lookAt": [
+                0,
+                -2,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Standing Osireion open megalithic hall/excavation: two rows of five massive plain square granite piers with worn bases/fractured surviving heights, incomplete longitudinal lintels and loose cap blocks. Coursed perimeter masonry with recessed rectangular door/niche bays, exposed central wet stone island/rectangular floor recesses and shallow opaque green-water moat in the pictured low-water state. Narrow timber side stair/bridge with simple rails. Complete opaque excavation floor and fitted retaining/earth rim meet a bounded mapped ground opening. No intact ancient roof, covered underground rooms/long passage, copied relief/graffiti or neighboring Seti I temple reconstruction.",
+    "Exact-QID OSMway90456113/Q2033435 gives approximately38.96x31.31m archaeological envelope and undirected long axis; standard PMTiles named OsireionPOI35184462544945 lies within0.16m of anchor31.918428132,26.18413313. Anchor heading0/native east-south; internal long axis-.97476887509rad points NE toward independently mapped Seti I temple, which remains untouched. Two five-pier rows are parallel to that axis. Signed bridge, recess and surviving-lintel allocation is picture-led and may be reversed by180degrees despite its fixed mapped long axis; mapped outline is an archaeological extent, not a measured pier/foundation plan. No PMTiles building shell corresponds to Osireion; replace none.",
+    "Picture/map estimates: occupied low-water island22.5x10.2m, floor-5.45m relative to coarse anchor datum, excavation bed-6.3m, shallow water-5.5m. Ten square piers approximately2.4m across and3.5-4.2m tall, uneven broken tops, incomplete1m-deep longitudinal lintels. Main chamber outer28x21m/perimeter wall1.4m thick with three end recesses/five side bays. Outer excavation39x31.3m follows mapped envelope; perimeter meets retained6m terrain. Missing roof/covered subterranean chambers are not restored. Absolute pit depth, low/high-water levels, hidden foundations, exact surviving lintel/block inventory and stair engineering remain visualization estimates.",
+    "Keep the original standard6m Mapzen height grid, native water/paths and every independent building. A bounded approximately39x31m opening follows only the exact mapped archaeological envelope. A complete opaque authored bed at-6.3m covers the whole opening at every LOD; retaining walls/sloping rim meet the native edge and original terrain returns on failure/unload. No broad precinct flattening, neighboring-temple cutout or deletion. Coarse DEM rises about4m across the pit and cannot resolve its true excavation/terrace sections; native-edge wall heights/depth and the small visitor stair are approximate. The opaque green surface is a static pictured low-water/algae visualization, not hydrology or a replacement for native mapped water.",
+    "Two ordinary standing photographs. Opaque low-water/algae surface is a dated visual state, not hydrology. Depths, worn-block/lintel inventory and bridge/recess allocation are approximate. No intact full roof, covered underground rooms or neighboring Seti temple restoration."
+  ]
+}

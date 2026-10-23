@@ -1,0 +1,979 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "stucco",
+      "slot": "wall"
+    },
+    "trim": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim"
+    },
+    "floor": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim"
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof"
+    },
+    "glass": {
+      "graph": "window_grid",
+      "slot": "window"
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim"
+    },
+    "figure": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim"
+    },
+    "door": {
+      "graph": "wood_plain",
+      "slot": "trim"
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      -5.142186527703188,
+      117.94890660088787,
+      238.9530454246489
+    ],
+    "lookAt": [
+      0,
+      -10.05109339911213,
+      0
+    ],
+    "fov": 45
+  },
+  "qaCameras": [
+    {
+      "name": "atlas-portico-ten-supports-steps-and-balcony",
+      "position": [
+        34.960617645732896,
+        -12.05109339911213,
+        81.24689397683409
+      ],
+      "lookAt": [
+        36.95877406303189,
+        -17.05109339911213,
+        45.83494029382882
+      ],
+      "fov": 60
+    },
+    {
+      "name": "two-open-courts-and-raised-green-roofs",
+      "position": [
+        52.07372334051914,
+        122.94890660088787,
+        -81.32236677234052
+      ],
+      "lookAt": [
+        7.073157352397825,
+        -12.05109339911213,
+        9.693835415779484
+      ],
+      "fov": 65
+    },
+    {
+      "name": "millionnaya-pavilions-and-canal-elevation",
+      "position": [
+        151.84223400453527,
+        22.94890660088787,
+        12.997537171016532
+      ],
+      "lookAt": [
+        42.85678101138275,
+        -9.05109339911213,
+        -4.036870240964241
+      ],
+      "fov": 65
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        -5.142186527703188,
+        117.94890660088787,
+        238.9530454246489
+      ],
+      "lookAt": [
+        0,
+        -10.05109339911213,
+        0
+      ],
+      "fov": 45,
+      "name": "new-hermitage-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        -5.142186527703188,
+        117.94890660088787,
+        238.9530454246489
+      ],
+      "lookAt": [
+        0,
+        -10.05109339911213,
+        0
+      ],
+      "fov": 45,
+      "name": "new-hermitage-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        -5.142186527703188,
+        117.94890660088787,
+        238.9530454246489
+      ],
+      "lookAt": [
+        0,
+        -10.05109339911213,
+        0
+      ],
+      "fov": 45,
+      "name": "new-hermitage-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        -5.142186527703188,
+        117.94890660088787,
+        238.9530454246489
+      ],
+      "lookAt": [
+        0,
+        -10.05109339911213,
+        0
+      ],
+      "fov": 45,
+      "name": "new-hermitage-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 3.5,
+    "groundY": -22.05109339911213,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/new-hermitage-model.mjs",
+    "export": "buildNewHermitageSkyline",
+    "errorMeters": 8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildNewHermitageDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "figure": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "door": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          }
+        }
+      },
+      "street": {
+        "export": "buildNewHermitageStreet",
+        "errorMeters": 1,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "figure": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "door": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildNewHermitageCloseup",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall"
+          },
+          "trim": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "floor": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof"
+          },
+          "glass": {
+            "graph": "window_grid",
+            "slot": "window"
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim"
+          },
+          "figure": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim"
+          },
+          "door": {
+            "graph": "wood_plain",
+            "slot": "trim"
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "draft-proposal",
+    "anchor": [
+      30.316944122314453,
+      59.941599748307425
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": -22.05109339911213,
+    "groundContactReviewed": false,
+    "groundContactBasis": "PENDING NATIVE TERRAIN FIT: current standard main-site elevation is roof/tree influenced and neighboring Hermitage fits have failed. Keep original6m Mapzen samples, roads, water and independent buildings unchanged. Main ground opening is partitioned around both actual courts; northern recess remains open. Separate tightly bounded entrance-floor/step/ramp outlines remain occupied at all levels. No precinct slab, flattening, courtyard filling or bespoke elevation data. Public placement stays inactive draft until native ground fit is approved.",
+    "replaceFootprint": false,
+    "bounds": [
+      30.313715884869932,
+      59.93998278079601,
+      30.320172359758974,
+      59.94321671581884
+    ],
+    "terrainReference": {
+      "anchor": [
+        30.315047028387312,
+        59.93964319761939
+      ],
+      "modelHeight": -22.05109339911213,
+      "basis": "Shared existing Winter Palace south-plaza control, internal[0,110]. modelHeight is this member's actual native floor Y, not its raw map-anchor datum. The host samples this ground point and subtracts modelHeight, so all five floors coincide even when the host uses a clean or vertically translated ground provider. Original model geometry and standard PMTiles/elevation samples remain unchanged. This corrects reference semantics; native roof/tree-influenced terrain still requires a separate fit review."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -59.98238039572132,
+          8.78760170025743
+        ],
+        [
+          -58.34221557831957,
+          7.594751889487277
+        ],
+        [
+          -79.36614716407901,
+          -20.1388971681658
+        ],
+        [
+          -63.46498966223167,
+          -31.73031289602034
+        ],
+        [
+          -42.92215770887653,
+          -4.786587210378162
+        ],
+        [
+          -42.86977156726411,
+          -4.826381766343101
+        ],
+        [
+          -42.83520286911746,
+          -4.781041887095288
+        ],
+        [
+          7.41348314793829,
+          -42.95190323177534
+        ],
+        [
+          7.379224577832986,
+          -42.99747869637681
+        ],
+        [
+          7.477727965201446,
+          -43.072305710558766
+        ],
+        [
+          -9.18664296903081,
+          -65.24154526971547
+        ],
+        [
+          9.202754014024194,
+          -78.73672617907036
+        ],
+        [
+          57.123754234042444,
+          -15.726268315999196
+        ],
+        [
+          39.549767914957876,
+          -2.9033179344162505
+        ],
+        [
+          28.56492078014592,
+          -17.34913295133835
+        ],
+        [
+          28.462896519693366,
+          -17.272389263954143
+        ],
+        [
+          28.437414384437933,
+          -17.305899990832597
+        ],
+        [
+          11.588448586090157,
+          -4.6319363841373065
+        ],
+        [
+          22.423127276163434,
+          9.593224348422112
+        ],
+        [
+          5.606937215715752,
+          21.863244754561887
+        ],
+        [
+          -5.084854972526188,
+          7.776000736725834
+        ],
+        [
+          -5.086220875921598,
+          7.777049559425167
+        ],
+        [
+          -5.1114120409761625,
+          7.743858296167401
+        ],
+        [
+          -21.81127205100669,
+          20.56701424779611
+        ],
+        [
+          -21.78618342990402,
+          20.60028425046165
+        ],
+        [
+          -21.834965313579875,
+          20.637741911880006
+        ],
+        [
+          -11.498794485450395,
+          34.34453072247709
+        ],
+        [
+          -28.832374993636748,
+          46.99206775568135
+        ],
+        [
+          -39.10755551062509,
+          33.39021532744445
+        ],
+        [
+          -40.449508752996074,
+          34.433965923248934
+        ]
+      ],
+      "additionalOutlines": [
+        [
+          [
+            -28.847399345888668,
+            47.12805188380568
+          ],
+          [
+            -11.46413037365509,
+            34.4442594047711
+          ],
+          [
+            -9.044637079778635,
+            37.65274774724
+          ],
+          [
+            -26.425147359965344,
+            50.33452733229636
+          ]
+        ],
+        [
+          [
+            5.693312260373396,
+            21.92524228615169
+          ],
+          [
+            22.51089371435414,
+            9.654206642494835
+          ],
+          [
+            24.945987899570078,
+            12.851311713580541
+          ],
+          [
+            8.122879223243164,
+            25.126380323725822
+          ]
+        ],
+        [
+          [
+            39.63750708708715,
+            -2.8423157455202066
+          ],
+          [
+            57.31464307887388,
+            -15.740529821459162
+          ],
+          [
+            59.74741091763923,
+            -12.541727319604782
+          ],
+          [
+            42.07005420156812,
+            0.35664780895452
+          ]
+        ],
+        [
+          [
+            -19.626906578681158,
+            61.991259658053806
+          ],
+          [
+            -18.284954228355968,
+            60.94750107383025
+          ],
+          [
+            -26.31324020487974,
+            50.319993272500966
+          ],
+          [
+            -8.985836183961984,
+            37.67696294530751
+          ],
+          [
+            -1.1964366877645425,
+            48.00648009736402
+          ],
+          [
+            0.29910904081836165,
+            49.801158982226006
+          ],
+          [
+            0.3508282582955289,
+            49.7614455460119
+          ],
+          [
+            0.3532828831620378,
+            49.76439113526003
+          ],
+          [
+            17.053143028719933,
+            36.94113388145686
+          ],
+          [
+            8.131995587886143,
+            25.186848097982047
+          ],
+          [
+            24.955104264213055,
+            12.911779487836768
+          ],
+          [
+            33.60389717559036,
+            24.26702802138886
+          ],
+          [
+            50.303757164513776,
+            11.443858509110473
+          ],
+          [
+            50.30148806745946,
+            11.440874493411425
+          ],
+          [
+            50.39988565200365,
+            11.365318835636703
+          ],
+          [
+            42.07628430604185,
+            0.4192215579319445
+          ],
+          [
+            59.653404875641485,
+            -12.406015745815871
+          ],
+          [
+            79.37940695941154,
+            13.531348194827146
+          ],
+          [
+            62.0329468486385,
+            26.726591194441806
+          ],
+          [
+            60.27048722860817,
+            24.376628856491656
+          ],
+          [
+            60.171475327279225,
+            24.451772699768203
+          ],
+          [
+            60.144746936388486,
+            24.416134599902872
+          ],
+          [
+            10.045166163735033,
+            62.43858437887971
+          ],
+          [
+            10.070870576099335,
+            62.47499961443151
+          ],
+          [
+            10.020155460650845,
+            62.51348921654866
+          ],
+          [
+            11.783655573649717,
+            65.01182573170881
+          ],
+          [
+            -6.5055879416446345,
+            78.84054781322688
+          ],
+          [
+            -11.426082683270856,
+            72.4288631923328
+          ]
+        ],
+        [
+          [
+            25.984610211462044,
+            50.39757395079742
+          ],
+          [
+            44.30563404444887,
+            36.492909115211475
+          ],
+          [
+            48.174758172611924,
+            41.59093313830347
+          ],
+          [
+            29.853734339625085,
+            55.49559797388942
+          ]
+        ],
+        [
+          [
+            35.82798124168602,
+            50.96146813619835
+          ],
+          [
+            42.200511270551,
+            46.12506297599454
+          ],
+          [
+            43.65143281861214,
+            48.03682198465403
+          ],
+          [
+            37.27890278974716,
+            52.87322714485785
+          ]
+        ],
+        [
+          [
+            15.462135630687559,
+            60.517720934800636
+          ],
+          [
+            27.012346308005345,
+            51.75173658193123
+          ],
+          [
+            28.70508811407668,
+            53.982122092033975
+          ],
+          [
+            17.15487743675889,
+            62.748106444903385
+          ]
+        ]
+      ],
+      "basis": "PENDING NATIVE TERRAIN FIT: current standard main-site elevation is roof/tree influenced and neighboring Hermitage fits have failed. Keep original6m Mapzen samples, roads, water and independent buildings unchanged. Main ground opening is partitioned around both actual courts; northern recess remains open. Separate tightly bounded entrance-floor/step/ramp outlines remain occupied at all levels. No precinct slab, flattening, courtyard filling or bespoke elevation data. Public placement stays inactive draft until native ground fit is approved."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -60.1209,
+          8.8229
+        ],
+        [
+          -58.4758,
+          7.6264
+        ],
+        [
+          -79.563,
+          -20.1907
+        ],
+        [
+          -63.5607,
+          -31.8558
+        ],
+        [
+          -42.9222,
+          -4.7866
+        ],
+        [
+          7.4777,
+          -43.0723
+        ],
+        [
+          -9.2724,
+          -65.3556
+        ],
+        [
+          9.2724,
+          -78.9648
+        ],
+        [
+          57.3376,
+          -15.7647
+        ],
+        [
+          39.6073,
+          -2.8277
+        ],
+        [
+          28.5649,
+          -17.3491
+        ],
+        [
+          11.6653,
+          -4.637
+        ],
+        [
+          22.5325,
+          9.6309
+        ],
+        [
+          5.6644,
+          21.9389
+        ],
+        [
+          -5.0849,
+          7.776
+        ],
+        [
+          -21.835,
+          20.6377
+        ],
+        [
+          -11.4416,
+          34.4204
+        ],
+        [
+          -28.8772,
+          47.1423
+        ],
+        [
+          -39.1833,
+          33.4995
+        ],
+        [
+          -40.5293,
+          34.5464
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -60.1209,
+            8.8229
+          ],
+          [
+            -58.4758,
+            7.6264
+          ],
+          [
+            -79.563,
+            -20.1907
+          ],
+          [
+            -63.5607,
+            -31.8558
+          ],
+          [
+            -42.9222,
+            -4.7866
+          ],
+          [
+            7.4777,
+            -43.0723
+          ],
+          [
+            -9.2724,
+            -65.3556
+          ],
+          [
+            9.2724,
+            -78.9648
+          ],
+          [
+            57.3376,
+            -15.7647
+          ],
+          [
+            39.6073,
+            -2.8277
+          ],
+          [
+            28.5649,
+            -17.3491
+          ],
+          [
+            11.6653,
+            -4.637
+          ],
+          [
+            22.5325,
+            9.6309
+          ],
+          [
+            5.6644,
+            21.9389
+          ],
+          [
+            -5.0849,
+            7.776
+          ],
+          [
+            -21.835,
+            20.6377
+          ],
+          [
+            -11.4416,
+            34.4204
+          ],
+          [
+            -28.8772,
+            47.1423
+          ],
+          [
+            -39.1833,
+            33.4995
+          ],
+          [
+            -40.5293,
+            34.5464
+          ]
+        ],
+        [
+          [
+            -28.8772,
+            47.1423
+          ],
+          [
+            -11.4416,
+            34.4204
+          ],
+          [
+            -9.0148,
+            37.6385
+          ],
+          [
+            -26.4477,
+            50.3584
+          ]
+        ],
+        [
+          [
+            5.6644,
+            21.9389
+          ],
+          [
+            22.5325,
+            9.6309
+          ],
+          [
+            24.975,
+            12.8377
+          ],
+          [
+            8.1012,
+            25.1497
+          ]
+        ],
+        [
+          [
+            39.6073,
+            -2.8277
+          ],
+          [
+            57.3376,
+            -15.7647
+          ],
+          [
+            59.7777,
+            -12.5563
+          ],
+          [
+            42.0471,
+            0.3809
+          ]
+        ],
+        [
+          [
+            -19.7412,
+            62.0648
+          ],
+          [
+            -18.3952,
+            61.0179
+          ],
+          [
+            -26.4477,
+            50.3584
+          ],
+          [
+            -9.0148,
+            37.6385
+          ],
+          [
+            -1.1964,
+            48.0065
+          ],
+          [
+            0.2991,
+            49.8012
+          ],
+          [
+            17.0492,
+            36.9393
+          ],
+          [
+            8.1012,
+            25.1497
+          ],
+          [
+            24.975,
+            12.8377
+          ],
+          [
+            33.6498,
+            24.2271
+          ],
+          [
+            50.3999,
+            11.3653
+          ],
+          [
+            42.0471,
+            0.3809
+          ],
+          [
+            59.7777,
+            -12.5563
+          ],
+          [
+            79.563,
+            13.4591
+          ],
+          [
+            62.0651,
+            26.7695
+          ],
+          [
+            60.2705,
+            24.3766
+          ],
+          [
+            10.0202,
+            62.5135
+          ],
+          [
+            11.8148,
+            65.056
+          ],
+          [
+            -6.5804,
+            78.9648
+          ],
+          [
+            -11.5157,
+            72.5338
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Only New Hermitage parent52776559336166 and three integrated parts52776566343852/853/854; both courtyards and all independent neighbors retained."
+    },
+    "notes": "Independent N0741_NEW/Q3345111 member of the five-building main Hermitage complex. Exact native parent52776559336166/relation1202918 supplies the approximately110x123m irregular plan, two holes and northern open recess. Integrated parts52776566343852/853/854 identify raised southwest/southeast and transverse halls. +Z internal faces Millionnaya Street/Atlas portico, +X toward Winter Canal, world heading0/native east-south/internal main-site axis0.630352782657rad. Portico axis follows the signed southern map edge rather than a generic institution facing. Anchor[30.316944122314453,59.941599748307425]. Three ordinary exterior pictures actually viewed; specific body layout from PMTiles and visible forms from photographs. PENDING NATIVE TERRAIN FIT: current standard main-site elevation is roof/tree influenced and neighboring Hermitage fits have failed. Keep original6m Mapzen samples, roads, water and independent buildings unchanged. Main ground opening is partitioned around both actual courts; northern recess remains open. Separate tightly bounded entrance-floor/step/ramp outlines remain occupied at all levels. No precinct slab, flattening, courtyard filling or bespoke elevation data. Public placement stays inactive draft until native ground fit is approved."
+  }
+}

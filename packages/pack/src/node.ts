@@ -2,6 +2,7 @@
 
 import { mkdir, open, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, relative, resolve, sep } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import {
   PACK_MANIFEST_ENTRY,
   type PackIndex,
@@ -11,7 +12,13 @@ import {
   validate,
 } from '@bendyline/molen-schema';
 import { createPack, type PackFile, type PackOptions, sha256 } from './build';
-import { type OpenPackOptions, openPack, type Pack, packFromFiles } from './pack';
+import {
+  type OpenPackOptions,
+  openDirectoryPack,
+  openPack,
+  type Pack,
+  packFromFiles,
+} from './pack';
 import type { RangeReader } from './source';
 
 /** Build settings file in a pack's source directory. */
@@ -151,6 +158,18 @@ export async function openDirPack(
 /** Open a pack from a URL, a built pack file, or a pack source directory. */
 export async function openPackAt(source: string, options: OpenPackOptions = {}): Promise<Pack> {
   if (/^https?:\/\//.test(source)) return openPack(source, options);
+  if (source.endsWith(PACK_MANIFEST_ENTRY)) {
+    const base = pathToFileURL(resolve(source));
+    return openDirectoryPack(base, {
+      ...options,
+      fetch: async (input) => {
+        const url = new URL(String(input));
+        if (url.protocol !== 'file:' || !url.href.startsWith(new URL('.', base).href))
+          throw new Error('Pack file outside its directory');
+        return new Response(await readFile(fileURLToPath(url)));
+      },
+    });
+  }
   const info = await stat(source);
   return info.isDirectory() ? openDirPack(source, options) : openFilePack(source, options);
 }
@@ -374,7 +393,7 @@ export async function hostPacks(
     if (manifestBytes === undefined) {
       // Missing or interrupted: write the version directory from scratch.
       await rm(dir, { recursive: true, force: true });
-      const pack = await openFilePack(join(dirname(source), ...entry.file.split('/')), {
+      const pack = await openPackAt(join(dirname(source), ...entry.file.split('/')), {
         expect: { contentHash: entry.contentHash },
       });
       try {

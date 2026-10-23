@@ -117,6 +117,7 @@ import { type EarthCredit, earthCredits, regionalEarthAttribution } from './attr
 import { createEarthAudio, type EarthAudio, type EarthAudioOptions } from './audio';
 import type { EarthContent } from './content';
 import { EarthDioramaDirector, type EarthDioramaOptions, type EarthDioramas } from './dioramas';
+import { createEarthFleet, type EarthFleetOptions } from './fleet';
 import {
   EARTH_EXPOSURE,
   EARTH_LIGHTING,
@@ -142,9 +143,15 @@ import {
   type EarthPrefetchStats,
 } from './prefetch';
 import { createRegionalGroundColor } from './regional-ground';
+import { createEarthRoadSigns } from './road-signs';
 import { EarthVehicles } from './vehicles';
 import { EarthWildlife, type EarthWildlifeStats } from './wildlife';
-import { createEarthWorldgen, type EarthViewWorkers, type EarthWorldgen } from './worldgen';
+import {
+  type CreateEarthWorldgenOptions,
+  createEarthWorldgen,
+  type EarthViewWorkers,
+  type EarthWorldgen,
+} from './worldgen';
 
 export type EarthViewMode = 'orbit' | 'walk' | 'drive' | 'fly';
 
@@ -187,6 +194,10 @@ export type EarthVehicleStatus =
       anchored?: boolean;
       grounded?: boolean;
       label: string;
+      /** The spec's name-free label ('Full-size pickup'), for a HUD that must not show the real name. */
+      genericLabel?: string;
+      /** The spec's generic body style ('pickup', 'suv', …), when it declares one. */
+      bodyStyle?: string;
       /** m/s, reversing negative. */
       speed: number;
       heading: number;
@@ -317,6 +328,8 @@ export interface EarthViewOptions {
    * it).
    */
   ambient?: EarthAmbientSettings | false;
+  /** Regional road model diversity. Omitted uses the content pack's profiles, at most 16 types. */
+  fleet?: EarthFleetOptions;
   /** Actors (see {@link EarthView.actors}): how many near the viewer walk with full collision. */
   actors?: EarthActorSettings;
   /** Bounded scripted set pieces. Content loads only while nearby and scheduled active. */
@@ -329,6 +342,8 @@ export interface EarthViewOptions {
   quality?: 'auto' | TerrainQualityPreset;
   /** Worker factories; each piece of work runs in-thread without its worker. */
   workers?: EarthViewWorkers;
+  /** Seeded synthetic homes where street density suggests missing outlines (default true). */
+  buildingInfill?: CreateEarthWorldgenOptions['buildingInfill'];
   /**
    * Keep baked building materials across visits, e.g. `createIndexedDbMaterialStore()` from
    * `@bendyline/molen-client`; a later visit reads them instead of baking.
@@ -952,9 +967,14 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       viewportHeight: height,
       maxPixelError: tier.objectPixelError,
     };
-    const loadModel = async (id: string): Promise<THREE.Object3D> => {
+    const loadModel = async (id: string, signal?: AbortSignal): Promise<THREE.Object3D> => {
       if (content === undefined) throw new Error('no content packs');
-      return (await new GLTFLoader().parseAsync(await content.packs.readBytes(id), '')).scene;
+      return (
+        await new GLTFLoader().parseAsync(
+          await content.packs.readBytes(id, signal ? { signal } : undefined),
+          '',
+        )
+      ).scene;
     };
 
     let stack: EarthStack | undefined;
@@ -964,9 +984,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     let ambientOn = ambientSettings !== undefined;
     const ambientContent =
       content?.types !== undefined
-        ? ambientContentFromTypes(content.types, async (id) => {
+        ? ambientContentFromTypes(content.types, async (id, signal) => {
             try {
-              return await loadModel(id);
+              return await loadModel(id, signal);
             } catch {
               return undefined;
             }
@@ -984,6 +1004,19 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       const pkg = selected.terrain;
       const frame = { latitude: frameLatitude };
       const metersPerUnit = terrainPackageMetersPerUnit(pkg, frame);
+      const fleet =
+        content?.fleet && ambientContent
+          ? createEarthFleet(
+              content.fleet,
+              ambientContent.types.car ?? [],
+              content.parkedVehicles,
+              metersPerUnit,
+              options.fleet,
+            )
+          : undefined;
+      const roadSigns = content?.roadSigns
+        ? createEarthRoadSigns(content.roadSigns, metersPerUnit)
+        : undefined;
       const parts: Array<() => void> = [];
       const cleanup = (): void => {
         while (parts.length > 0) {
@@ -1002,6 +1035,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         const surface = createTerrainSurfaceRenderer(
           {
             style: 'modern',
+            fonts: content?.fonts,
+            routeShields: content?.roadSigns?.shields,
             details: {
               preferMappedProps: content?.worldgen !== undefined,
               parkedVehicles: content?.parkedVehicles ?? [],
@@ -1009,11 +1044,16 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             },
           },
           surfaceWorker,
+          fleet?.parkedAt,
+          roadSigns?.profileAt,
         );
         parts.push(() => surface.dispose());
         const worldgen =
           content?.worldgen !== undefined
             ? createEarthWorldgen({
+                ...(options.buildingInfill !== undefined
+                  ? { buildingInfill: options.buildingInfill }
+                  : {}),
                 ...(options.viewingDate !== undefined ? { viewingDate: options.viewingDate } : {}),
                 ...(options.vegetationMonth !== undefined
                   ? { vegetationMonth: options.vegetationMonth }
@@ -1280,6 +1320,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             world,
             parent: stream.object,
             settings: ambientSettings,
+            ...(fleet ? { carsAt: fleet.carsAt } : {}),
             ...(ambientContent !== undefined ? { content: ambientContent } : {}),
             prepare: (object) => renderer.prepareObject(object),
             ground: (x, z) => stream.sampleHeight(x, z),
@@ -2454,6 +2495,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         void current.surface
           .setOptions({
             style: 'modern',
+            fonts: content?.fonts,
+            routeShields: content?.roadSigns?.shields,
             details: {
               preferMappedProps: current.worldgen !== undefined,
               parkedVehicles: content?.parkedVehicles ?? [],
@@ -2788,7 +2831,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         throttle: pilot?.throttle ?? 0,
         brake: frameInput.jump,
         ...(pilot !== undefined
-          ? { engine: pilot.engine, gear: pilot.gear, flaps: pilot.flaps }
+          ? { engine: pilot.engine, gear: pilot.gear, flaps: pilot.flaps, vector: pilot.vector }
           : {}),
       });
       // Cars hold still; the shared world step runs the flight model.
@@ -2996,8 +3039,18 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           audio.attachWorld(current?.world);
         }
         const ground = groundHeight(pose.position[0], pose.position[2]);
+        const audioSky = renderer.sky?.frame.earth;
         audio.update({
           nowMs: now,
+          ...(audioSky
+            ? {
+                location: {
+                  ...toLatLon(pose.position[0], pose.position[2]),
+                  utcMs: audioSky.utcMs,
+                  sunAltitudeDeg: audioSky.sun.altitudeDeg,
+                },
+              }
+            : {}),
           position: pose.position,
           forward: pose.direction,
           // The sound rules call flying an aircraft 'pilot'.
@@ -3114,6 +3167,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 }
               : {}),
             label: vehicles.label(vehicles.mountedId as string),
+            ...vehicles.genericIdentity(vehicles.mountedId as string),
             speed: vehicles.speed,
             heading: vehicles.heading ?? 0,
             view: vehicles.view,

@@ -1,0 +1,577 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0553_temple_of_the_sun",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:b2401479176c27d42f94ae1c93dc65c3f5eb374b152cb91ee02ceb239844e75f",
+  "sourceHash": "sha256:5e543af225b608803b28687b1de08203c450d326f928c32fa6bbde9f7cee018f",
+  "runtimeHash": "sha256:4658183a077844bca59b4d4f5bd5881372885eeffed3b3e38ae94f03d62da5a2",
+  "captureReportHash": "sha256:25c735f7337efd9641adc8cd7520b28aef30a873729241a75ee61dbfa65b1af4",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/west-three-open-stone-portals-and-red-curved-wall.png",
+      "shots/low-altar-pale-coping-four-stairs-and-open-court.png",
+      "shots/east-closed-red-leaves-finials-and-green-coping.png"
+    ],
+    "notes": "Inspected48 current source/shared/medium-fi/native/fallback views in the same construction round. Specific Ritan ritual core: low roofless gray altar with pale coping/corner strips, four straight stair flights and solid splayed stone cheeks; circular low red wall with green tiled coping; three open west stone portals and closed red leaves on the other three cardinal gates. Original simplified pointed finials/lintel registers/scroll ends, no copied sculpture or text. Initial skyline exceeded its cap; merged distant lintel bands and simplified finials while retaining the curve with four segments per quadrant. Current close-up geometry5640triangles and all staircase openings/contact checks pass. No roofed central shrine or invented altar balustrade."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/west-three-open-stone-portals-and-red-curved-wall.png",
+      "shots/shared/low-altar-pale-coping-four-stairs-and-open-court.png",
+      "shots/shared/east-closed-red-leaves-finials-and-green-coping.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Five existing256-square graphs: stone_ashlar, stone_limestone_raw, plaster_lime, tile_ceramic and wood_plain. Each is read once, metric UVs and linear tints, zero embedded images. Master5640triangles/680196bytes. Four levels940/2452/4552/5640triangles;100208/256780/469416/588848bytes, initial356988bytes, at most five draws. Separate GPU streams and matching CPU/GPU accounting; eviction releases model geometry.",
+    "captureReportHash": "sha256:d8994484dcfc01f6aee76762ee18268dd5f88ef7d1b3c80ff301ee5515a92a5d"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/west-three-open-stone-portals-and-red-curved-wall.png",
+      "medium-fi/low-altar-pale-coping-four-stairs-and-open-court.png",
+      "medium-fi/east-closed-red-leaves-finials-and-green-coping.png",
+      "medium-fi/ritan-skyline.png",
+      "medium-fi/ritan-district.png",
+      "medium-fi/ritan-street.png",
+      "medium-fi/ritan-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected current noon/late/economy/high context, silhouette, all four levels/transitions and three detail angles. Skyline retains the altar/four broader stair flights, circular enclosure, three open west passages and closed other gates; district restores nine stair rises/molded piers/finials, street/close-up add coping ribs/studs. Consistent palette through upgrades. Flat shared stage at anchor datum can bury the negative-offset north gate and expose higher southern footings; source/native/medium-fi terrain-bearing views establish intended contact. Synthetic context does not reproduce the whole park. Native fixture uses ordinary park ground/paths/water; the photographed paved courtyard remains a host landcover surface, not an authored broad slab.",
+    "captureReportHash": "sha256:ecc1bd92684e36974e72ca58fbad1cb8ca3892931ffdd80e57e9c68cb019206f"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:282d8494954d964bb11ab0401a96727f9eb78cc1314b0719534df8dd8d2a64c6",
+    "mapFrameHash": "sha256:a8234f3a34a498c44f35d263a11bf5c8b81d9a1ff079ee55bb5f318179a1067b",
+    "notes": "Named Altar of the Sun POI35184495982750 and central platform35185801754351 correlateQ964720. Actual four platform corners fix15.8434x16.7744m envelope, native center[1.891951470026,-6.183890072934] and two explicit slightly skewed near-cardinal axis vectors. Circular pedestrian boundary35184495982750 and four approaches35185801754350 support radius37.3m/layout. Anchor116.438111111,39.914416666, heading0; west triple gates face west. Gate foundations/details remain approximate with roughly3m/5degree uncertainty; no exact-QID footprint/surveyed-facing claim. Only central platform shell replaced with2cm numeric tolerance, zero residual. All182 independent resident inputs, original6m terrain/paths and3994.032075393945m2 of native water retained. Loaded182/failure183 original building records; unload restores surfaces/frees geometry. No native ground/water cutout or flattening."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi pictured2009/2012 ritual-core state from two inspected ordinary photographs plus standard PMTiles/Mapzen; brief carried through construction/inspection, no bespoke research campaign. This asset covers altar/enclosure/gates. Other park pavilions, northwest auxiliary halls, Sun Worship mural and landscaping remain separate host context, not claimed authored. Gate dimensions/open-closed assignments, repeated details and heights/absolute thresholds are picture/map estimates. Coarse DEM varies by several meters across the court and cannot resolve archaeological paving. Flat stages can expose or bury individual footings; terrain-bearing views and actual geometry probes establish contact. Whole-court paving stays host landcover. Physical-device/dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/wx/wx4/n0553_temple_of_the_sun/models/source.glb\",\"hash\":\"sha256:5e543af225b608803b28687b1de08203c450d326f928c32fa6bbde9f7cee018f\",\"bytes\":680196,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/wx/wx4/n0553_temple_of_the_sun/model.glb\",\"hash\":\"sha256:4658183a077844bca59b4d4f5bd5881372885eeffed3b3e38ae94f03d62da5a2\",\"bytes\":679704,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/wx/wx4/n0553_temple_of_the_sun/model.skyline.glb\",\"hash\":\"sha256:bb2c775d4471f276960fa594c87f71cbf2f0080e5a8bf1ed7096f28e541c1771\",\"bytes\":100208,\"errors\":0,\"warnings\":0,\"triangles\":940,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/wx/wx4/n0553_temple_of_the_sun/model.district.glb\",\"hash\":\"sha256:3f9143f5892142d6c62cda4bd09e8c0db0d854b53ecf0e384795158e7fe65fd6\",\"bytes\":256780,\"errors\":0,\"warnings\":0,\"triangles\":2452,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/wx/wx4/n0553_temple_of_the_sun/model.street.glb\",\"hash\":\"sha256:07e210b34a55dbd8654657e62e33b664c86c8853099740c59cbd38371ce82ba2\",\"bytes\":469416,\"errors\":0,\"warnings\":0,\"triangles\":4552,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/wx/wx4/n0553_temple_of_the_sun/model.closeup.glb\",\"hash\":\"sha256:5997d21d22c01ea0f43cd87decfadf335ea3ef47417af140fdd2cd17a6935cf7\",\"bytes\":588848,\"errors\":0,\"warnings\":0,\"triangles\":5640,\"draws\":5}"
+      },
+      {
+        "check": "roofless-low-altar-four-cardinal-stairs-three-west-passages-closed-other-gates-buried-wall-and-open-court",
+        "passed": true,
+        "notes": "276 actual mesh probes across source/runtime/four levels verify the low roofless altar, every LOD-appropriate cardinal stair tread, three real west passages, closed other gate leaves, buried curved wall and open native courtyard."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Five reused graphs, zero embedded images, separate GPU streams and all triangle/draw/download caps pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:5e543af225b608803b28687b1de08203c450d326f928c32fa6bbde9f7cee018f"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:4658183a077844bca59b4d4f5bd5881372885eeffed3b3e38ae94f03d62da5a2"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:bb2c775d4471f276960fa594c87f71cbf2f0080e5a8bf1ed7096f28e541c1771"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:3f9143f5892142d6c62cda4bd09e8c0db0d854b53ecf0e384795158e7fe65fd6"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:07e210b34a55dbd8654657e62e33b664c86c8853099740c59cbd38371ce82ba2"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:5997d21d22c01ea0f43cd87decfadf335ea3ef47417af140fdd2cd17a6935cf7"
+      }
+    ],
+    "reports": [
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 183,
+          "independentBuildings": 182,
+          "remainingBuildings": 182,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0553_temple_of_the_sun"
+          ],
+          "rawTerrainRange": {
+            "min": -7.148376611843496,
+            "max": 14.468223388156503
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3994.032075393945,
+          "remainingWaterArea": 3994.032075393945,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:e71edfe40d603450cc06ec9412047eebc1c7dec59b39a4f6a8a601fd66434006",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 221887
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -69.51464529578692,
+                60,
+                77.19135451210146
+              ],
+              "lookAt": [
+                1.8919514700261626,
+                1,
+                -6.183890072933991
+              ],
+              "fov": 47
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-west-three-open-stone-portals-and-red-curved-wall.png",
+            "hash": "sha256:88fecc86ab19dd1eceaf0fb9b6df302f4e0e81d203fe3cdca13b848ab35891e8",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 221887
+            },
+            "camera": {
+              "name": "west-three-open-stone-portals-and-red-curved-wall",
+              "position": [
+                -54.13982630109758,
+                4.517900654992386,
+                7.902127652533222
+              ],
+              "lookAt": [
+                -35.31050179065554,
+                2.5179006549923852,
+                -3.488065266535713
+              ],
+              "fov": 49
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-low-altar-pale-coping-four-stairs-and-open-court.png",
+            "hash": "sha256:cf1a0678e95a30f17ae4ec7f5cfe3efabc4b7adbfbc8841b70d8f3772e4b1868",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 221887
+            },
+            "camera": {
+              "name": "low-altar-pale-coping-four-stairs-and-open-court",
+              "position": [
+                26.71586118815875,
+                8.512023440142212,
+                15.076508264917415
+              ],
+              "lookAt": [
+                1.8919514700261626,
+                1.1120234401422122,
+                -6.183890072933991
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-east-closed-red-leaves-finials-and-green-coping.png",
+            "hash": "sha256:796c7db0d282edf9107bdb6b5f452f5024a209ad795e323aad948d37a900b913",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 221887
+            },
+            "camera": {
+              "name": "east-closed-red-leaves-finials-and-green-coping",
+              "position": [
+                54.41128631056778,
+                5.910025871959792,
+                -1.9690303457632243
+              ],
+              "lookAt": [
+                39.09440473070787,
+                3.9100258719597916,
+                -8.879714879332269
+              ],
+              "fov": 49
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 183,
+          "independentBuildings": 182,
+          "remainingBuildings": 182,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0553_temple_of_the_sun"
+          ],
+          "rawTerrainRange": {
+            "min": -7.148376611843496,
+            "max": 14.468223388156503
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3994.032075393945,
+          "remainingWaterArea": 3994.032075393945,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:6f79f2a64d077fc110346615c4ef57a1873e3e27b516362f94ec79fb71c677a8",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 220799
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -69.51464529578692,
+                60,
+                77.19135451210146
+              ],
+              "lookAt": [
+                1.8919514700261626,
+                1,
+                -6.183890072933991
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 183,
+          "independentBuildings": 182,
+          "remainingBuildings": 182,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.n0553_temple_of_the_sun"
+          ],
+          "rawTerrainRange": {
+            "min": -7.148376611843496,
+            "max": 14.468223388156503
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3994.032075393945,
+          "remainingWaterArea": 3994.032075393945,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:cd7d986bbda4be05a35524e20381c0d98933569859373afd98224d0c1451c035",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 218699
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -69.51464529578692,
+                60,
+                77.19135451210146
+              ],
+              "lookAt": [
+                1.8919514700261626,
+                1,
+                -6.183890072933991
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 183,
+          "independentBuildings": 182,
+          "remainingBuildings": 182,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0553_temple_of_the_sun"
+          ],
+          "rawTerrainRange": {
+            "min": -7.148376611843496,
+            "max": 14.468223388156503
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3994.032075393945,
+          "remainingWaterArea": 3994.032075393945,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:8e67c4b726dbfa0bb577b7f844b010f7e199989a4186884e444d9ccdb28725f5",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 9,
+              "triangles": 217187
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -69.51464529578692,
+                60,
+                77.19135451210146
+              ],
+              "lookAt": [
+                1.8919514700261626,
+                1,
+                -6.183890072933991
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 183,
+          "independentBuildings": 182,
+          "remainingBuildings": 183,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185801754351,
+              "area": 265.7499298127959
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.n0553_temple_of_the_sun"
+          ],
+          "rawTerrainRange": {
+            "min": -7.148376611843496,
+            "max": 14.468223388156503
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3994.032075393945,
+          "remainingWaterArea": 3994.032075393945,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:8a78c1812ee50ca86ea4b1ffdbb10f8f7b71cb0d362d7f147cf8faa01e8406ca",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 8,
+              "triangles": 216237
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -69.51464529578692,
+                60,
+                77.19135451210146
+              ],
+              "lookAt": [
+                1.8919514700261626,
+                1,
+                -6.183890072933991
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Specific standing Ritan ritual core: mapped low square gray altar/pale coping and corner strips, four straight cardinal stair flights with splayed pale cheeks, circular low red enclosure/green tiled coping, three open west stone portals and one closed red-leaf stone portal on each other cardinal approach. Original simplified pointed finials/scroll ends and shallow stone decoration. No roofed central temple, invented altar balustrade or copied inscriptions/sculpture/mural atlas. Other park pavilions, northwest auxiliary halls, Sun Worship mural and landscaping remain separate host context, not claimed authored in this ritual-core model.",
+    "Named standard PMTiles Altar of the Sun POI35184495982750 and its central platform building35185801754351 correlate candidateQ964720. Platform four measured corners fix15.843x16.774m envelope/center[1.891951470026,-6.183890072934] and near-east-west cross axis; retain its slight mapped skew through explicit x/z vectors rather than inventing an orthogonal survey. Pedestrian courtyard35184495982750 supplies the approximately74.6m circular boundary. Native approaches35185801754350 support four cardinal portals and the west axis. Anchor116.438111111,39.914416666, heading0/native east-south axes. Circular wall/gates approximately centered on the altar, west triple facing west. Fine gate foundations lack separate footprints; radius37.3m, portal positions/open/closed assignments are picture/map approximations with about3m/5degree uncertainty, not exact-QID footprint registration.",
+    "Two ordinary pictured-state references: altar top about1.2m above its sampled upper ground envelope, nine nearby stair rises/four cardinal approaches. Enclosure red body1.55m above sampled grade plus green coping0.24m; west center stone portal4.7m, side portals4.3m, other three4.0m above their local threshold. Three west openings3.4m wide/2.65m tall; other gates3.2m wide with closed red leaves. Counts, leaf studs/scroll relief, heights and absolute threshold levels are estimates. The central altar has no roof/balustrade; old intact ceremonial interiors are not reconstructed.",
+    "Original standard6m Mapzen grid, native pedestrian courtyard/paths/water and all independent buildings remain unchanged. Only corresponding central platform shell35185801754351 is replaced. Altar occupied footing is buried below sampled ground and each narrow cardinal approach descends to sampled grade. Circular wall footings and coping follow the retained ground; gate footings are individually buried. No broad court/park slab, ground or water cutout, terrain flattening or invented whole-park reconstruction. Native coarse park ground cannot resolve archaeological paving and actual altar/stair thresholds; courtyard paving stays a host surface.",
+    "Two ordinary2009/2012 photographs establish the standing ritual core. Gate/relief inventories, heights and later alterations are approximate. Other park pavilions, auxiliary halls, Sun Worship mural and landscaping stay separate host context, not claimed authored. No roofed central shrine, invented altar balustrade or copied text/sculpture/mural atlas."
+  ]
+}

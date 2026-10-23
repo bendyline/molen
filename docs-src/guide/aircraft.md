@@ -1,17 +1,28 @@
 # Aircraft in the world explorer
 
-The world explorer includes a P-51D Mustang and OH-6 interpretation, each with an editable
-GLB, reusable entity type, flight physics, an instrumented cockpit and a chase camera.
+The world explorer includes 53 aircraft: the P-51D Mustang, OH-6 interpretation, Bendy Small Airliner
+and fifty additional real-type interpretations. Each has an editable GLB, reusable entity type,
+flight physics, an instrumented cockpit and a chase camera. The additions include ten helicopters,
+ten general aviation aircraft, ten fighters, five cargo transports, the MV-22B Osprey, AV-8B Harrier
+and thirteen utility, regional, historic and business aircraft. All use clean configurations without
+external weapons.
 
-Use the **P-51 Mustang** or **OH-6** buttons to visit the practice airfield, then press **E** to
+Use the **P-51 Mustang**, **OH-6** or **Bendy Small Airliner** buttons to visit the practice airfield, then press **E** to
 board. The aircraft buttons also work from the example hub's world view. A direct link can use
-`?aircraft=p51d` or `?aircraft=oh6`. See [Vehicle interiors and instruments](vehicle-interiors.md)
+`?aircraft=p51d`, `?aircraft=oh6` or `?aircraft=airliner`. The **Aircraft catalog** selector visits
+the additional models; direct links also accept suffixes such as `?aircraft=uh_1h`,
+`?aircraft=f_16b`, `?aircraft=c_17a` and `?aircraft=mv_22b`.
+The three original practice models load initially. Additional GLBs load on selection, with one
+additional request in flight and intermediate selections coalesced. Replacing a selection releases
+its model and ECS entity; an occupied aircraft is retained. The host's content-pack byte cache
+still follows its own cache budget. The catalog does not download all fifty new models on entry.
+See [Vehicle interiors and instruments](vehicle-interiors.md)
 for cockpit source files, per-model instrument bindings and the shared exterior/seated GLB
 contract.
 
-The practice airfield is a raised 900-meter runway and helipad near the initial camera position.
+The practice airfield is a raised 4,500-meter runway and helipad near the initial camera position.
 Its foundation clears streamed buildings; it is a fictional practice location, not a mapped airport.
-Both aircraft stay in the ECS and retain their position throughout the session, across terrain
+The aircraft stay in the ECS and retain their position throughout the session, across terrain
 streaming and floating-origin changes. Reloading starts a fresh session.
 
 ## Controls
@@ -25,8 +36,9 @@ streaming and floating-origin changes. Reloading starts a fresh session.
 | A / D | Bank left / right; helicopter cyclic |
 | Q / Z | Left / right rudder or anti-torque pedals; ground steering in the Mustang |
 | Space | Wheel brakes |
-| G | Retract/extend Mustang gear while airborne |
-| F | Toggle Mustang flaps |
+| G | Retract/extend airplane gear while airborne |
+| F | Toggle airplane flaps |
+| J | Cycle powered-lift lever: forward, 22.5°, 45°, 67.5°, vertical; Osprey/Harrier only |
 | V | Cockpit / chase |
 | Mouse | Look around the cockpit |
 | R | Recover at the airfield after an impact |
@@ -56,6 +68,22 @@ cyclic inputs tilt rotor thrust to travel. Lower collective gently to land. Swit
 and wait for the rotor to stop before exiting. An aircraft cannot be exited or switched to free
 flight while airborne. After an impact, R resets its aircraft state and places it on the airfield.
 
+Bendy Small Airliner: the generic 39-meter twin uses the same airplane controls, with slower
+responses and a lower load-factor limit than the Mustang. Its two independently named engines
+use the existing assisted solver's thrust approximation; this is not a dedicated turbofan
+simulation or a certified real aircraft. The flight deck has an animated yoke; its display
+markings are decorative, while live flight readings come from the HUD. Board at the forward
+entry point. Its larger footprint needs substantially more runway and clearance.
+
+Osprey and Harrier: use J to select vertical thrust (the parked Osprey starts there), allow the nacelles/nozzles to
+reach 90°, start the engine and increase power smoothly. W/S, A/D and Q/Z provide powered pitch,
+roll and yaw control in a hover. Transition toward forward thrust gradually while gaining airspeed;
+the nacelles take 12 seconds for full travel and Harrier nozzles take 3. These are simplified
+powered-lift dynamics, with finite travel, vertical thrust, engine-dependent hover authority and
+airspeed blending. They do not simulate a real conversion corridor, transmission cross-shaft,
+vortex-ring state, hot-gas ingestion or a certified nozzle schedule. Fixed landing gear remains
+down regardless of G. Cargo aircraft have larger clearance and runway requirements.
+
 Cockpit needles show airspeed, altitude, heading, vertical speed and RPM; the artificial horizon
 banks with the aircraft. The HUD supplies precise knot/feet/feet-per-minute readings, AGL height,
 g load, power, engine/gear/flap state, stall alerts and terrain waiting status. Propellers, both helicopter
@@ -66,11 +94,12 @@ them. Its flaps take 13 seconds to run down to 50°.
 
 ## Reuse in another experience
 
-Both aircraft ship in the `molen.entities` content pack, with their type documents and models.
+All 53 aircraft are registered in the `molen.entities` content pack, with their type documents and models.
 `npx molen pack fetch https://molen.dev/packs/index.json molen.entities` downloads it and lists it
 in your project.json `packs`, and the CLI then resolves the types; in a browser, open it with `openPack` from `@bendyline/molen-pack` and pass
 `createPackSet([pack]).assetProvider()` as the client's asset provider. The entity type IDs and
-glTF refs are `molen.entities.aircraft.p51d` and `molen.entities.aircraft.oh6`. Fly both in
+glTF refs are `molen.entities.aircraft.p51d`, `molen.entities.aircraft.oh6` and
+`molen.entities.aircraft.airliner`. Fly them in
 [World Explorer](https://molen.dev/play/world-explorer/) to see the finished integration.
 
 These are not kernel presets. Each type document contains the concrete aircraft's mass and center
@@ -105,6 +134,15 @@ ownership of a loaded GLB and animates the nodes named by `spec.visual` from air
 `aircraftState.gearPosition` and `flapPosition` as they travel. `spec.visual.animation` adds
 exterior moving parts as [model-signal bindings](vehicle-interiors.md#exterior-animation), with
 keyframed curves so one gear position can sequence doors and legs.
+
+For powered lift, declare `spec.poweredLift` with positive `transitTime`, `controlFadeSpeed`,
+`pitchAuthority`, `rollAuthority`, `yawAuthority` and `damping`, and mark the participating
+forward-facing engine installations `vectored: true`. `aircraftInput.thrustVector` is 0–1;
+`aircraftState.thrustVectorPosition` is its actual actuator position. The model signal
+`thrustVector` follows that position, so visuals and forces remain synchronized. Thrust rotates
+from local +Z to +Y; off-center engines generate moments. Hover controls require available
+engine thrust and fade with axial airspeed. `spec.airplane.fixedGear` keeps fixed undercarriage
+extended independently of the pilot's selection.
 
 The deterministic airplane solver is a six-degree-of-freedom rigid body. The transform's
 quaternion is the attitude, with no pitch or bank stops, so loops, rolls, inverted flight and

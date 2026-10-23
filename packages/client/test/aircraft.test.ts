@@ -64,6 +64,50 @@ const SPEC: AircraftSpec = {
   },
 };
 
+it('publishes individual shaft RPM without confusing normalized RPM with revolutions per minute', () => {
+  const model = new THREE.Group(),
+    needle = new THREE.Group();
+  needle.name = 'tach';
+  model.add(needle);
+  const spec: AircraftSpec = {
+    ...SPEC,
+    engine: undefined,
+    engines: [
+      { ...SPEC.engine!, id: 'left', rotorAngularSpeed: 100 },
+      { ...SPEC.engine!, id: 'right', rotorAngularSpeed: 200 },
+    ],
+    visual: {
+      ...SPEC.visual,
+      rotors: [],
+      interior: {
+        nodes: ['tach'],
+        derived: {
+          difference: { op: 'subtract', args: ['engines.right.rotorRpm', 'engines.left.rotorRpm'] },
+        },
+        bindings: [
+          { node: 'tach', source: 'difference', property: 'rotation', axis: 'z', scale: 0.01 },
+        ],
+      },
+    },
+  };
+  const visual = createAircraftVisual(model, spec);
+  const state = {
+    rpm: 0.8,
+    engines: {
+      left: { rpm: 0.5, failed: false, thrust: 100, rotorAngle: 0 },
+      right: { rpm: 0.8, failed: false, thrust: 200, rotorAngle: 0 },
+    },
+  } as unknown as AircraftStateData;
+  visual.update(
+    state,
+    { power: 1, pitch: 0, roll: 0, yaw: 0, engine: true, gear: true, flaps: false, brake: false },
+    0,
+  );
+  expect(needle.rotation.z).toBeCloseTo((((160 - 50) * 60) / (2 * Math.PI)) * 0.01);
+  expect(visual.interior?.missingSignals).toEqual([]);
+  visual.dispose();
+});
+
 it('retains bank in the cockpit quaternion and shortens obstructed chase views', () => {
   const transform = {
     pos: [100000, 200, 300000] as [number, number, number],
@@ -109,6 +153,50 @@ it('keeps the chase view upright and defined through the vertical of a loop', ()
   expect(vertical.z).toBeLessThan(-0.9);
 });
 
+it('poses thrust-vector geometry from actuator state instead of the requested lever', () => {
+  const model = new THREE.Group(),
+    nozzle = new THREE.Group();
+  nozzle.name = 'nozzle';
+  model.add(nozzle);
+  const spec = {
+    ...SPEC,
+    visual: {
+      ...SPEC.visual,
+      rotors: [],
+      interior: undefined,
+      animation: {
+        bindings: [
+          {
+            node: 'nozzle',
+            source: 'thrustVector',
+            property: 'rotation' as const,
+            axis: 'x' as const,
+            scale: -Math.PI / 2,
+          },
+        ],
+      },
+    },
+  };
+  const visual = createAircraftVisual(model, spec);
+  visual.update(
+    { rotorAngle: 0, rpm: 1, thrustVectorPosition: 0.5 } as AircraftStateData,
+    {
+      power: 1,
+      pitch: 0,
+      roll: 0,
+      yaw: 0,
+      engine: true,
+      gear: true,
+      flaps: false,
+      brake: false,
+      thrustVector: 1,
+    },
+    100,
+  );
+  expect(nozzle.rotation.x).toBeCloseTo(-Math.PI / 4);
+  visual.dispose();
+});
+
 it('drives externally named rotor and instrument nodes without moving their pivots', () => {
   const model = new THREE.Group();
   const rotor = new THREE.Group();
@@ -147,6 +235,15 @@ it('drives externally named rotor and instrument nodes without moving their pivo
   );
   expect(needle.rotation.z).toBeCloseTo(-2.3 + 0.3 * 4.6);
   expect(state.rpm).toBe(0.8);
+  // A declared sensor that is missing must not silently reuse the host's normalized RPM.
+  visual.update(
+    state,
+    { power: 0.5, pitch: 0, roll: 0, yaw: 0, engine: true, gear: true, flaps: false, brake: false },
+    100,
+    { rpm: undefined },
+  );
+  expect(visual.interior?.missingSignals).toEqual(['rpm']);
+  expect(needle.rotation.z).toBeCloseTo(-2.3 + 0.3 * 4.6);
   visual.dispose();
 });
 

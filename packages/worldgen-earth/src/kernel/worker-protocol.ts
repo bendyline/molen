@@ -24,7 +24,7 @@ import {
   type RegionalEnvironment,
   type RegionalEnvironmentDocs,
 } from './regional-environment';
-import type { TileGeometry } from './semantic-adapter';
+import type { SemanticAdapterOptions, TileGeometry } from './semantic-adapter';
 import { worldgenBuildingCellSize } from './tile-budgets';
 import { generateWorldgenTileSteps, type WorldgenTileOutput } from './tile-generate';
 
@@ -39,6 +39,8 @@ export interface WorldgenWorkerConfigure {
 }
 
 export interface WorldgenWorkerGenerate {
+  buildingInfill?: SemanticAdapterOptions['buildingInfill'];
+  buildingInfillExclusions?: SemanticAdapterOptions['buildingInfillExclusions'];
   renderCellsOnly?: boolean;
   kind: 'generate';
   id: number;
@@ -109,6 +111,12 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
       const steps = generateWorldgenTileSteps(
         {
           tile: request.tile,
+          ...(request.buildingInfill !== undefined
+            ? { buildingInfill: request.buildingInfill }
+            : {}),
+          ...(request.buildingInfillExclusions !== undefined
+            ? { buildingInfillExclusions: request.buildingInfillExclusions }
+            : {}),
           geom: request.geom,
           ground: createHeightSampler(request.ground),
           pack,

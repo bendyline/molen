@@ -1,0 +1,838 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "brick",
+      "slot": "wall",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "plinth": {
+      "graph": "brick",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "stone": {
+      "graph": "stone_limestone_raw",
+      "slot": "trim",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "metal_painted",
+      "slot": "roof",
+      "roughness": 0.7,
+      "metallic": 0.25
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.3,
+      "metallic": 0.1
+    },
+    "frame": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    },
+    "dark": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.7,
+      "metallic": 0.1
+    },
+    "arch": {
+      "graph": "brick",
+      "slot": "wall",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "seam": {
+      "graph": "metal_painted",
+      "slot": "roof",
+      "roughness": 0.7,
+      "metallic": 0.25
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      18,
+      13.2,
+      -20
+    ],
+    "lookAt": [
+      0,
+      4.4,
+      0
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "north-shaped-gable-and-recessed-portal",
+      "position": [
+        8,
+        4.7,
+        -14
+      ],
+      "lookAt": [
+        0,
+        4,
+        -2
+      ],
+      "fov": 58
+    },
+    {
+      "name": "south-curved-gable-and-entry-soffit",
+      "position": [
+        -6,
+        3.4000000000000004,
+        14
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        3
+      ],
+      "fov": 56
+    },
+    {
+      "name": "ribbed-dome-portholes-and-comet-vane",
+      "position": [
+        13,
+        11.2,
+        -9
+      ],
+      "lookAt": [
+        0,
+        6.2,
+        0
+      ],
+      "fov": 58
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "position": [
+        18,
+        13.2,
+        -20
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        0
+      ],
+      "fov": 46,
+      "name": "altazimuth-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        18,
+        13.2,
+        -20
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        0
+      ],
+      "fov": 46,
+      "name": "altazimuth-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        18,
+        13.2,
+        -20
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        0
+      ],
+      "fov": 46,
+      "name": "altazimuth-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        18,
+        13.2,
+        -20
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        0
+      ],
+      "fov": 46,
+      "name": "altazimuth-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.2,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/altazimuth-model.mjs",
+    "export": "buildAltazimuthSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAltazimuthDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plinth": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "arch": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "seam": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          }
+        }
+      },
+      "street": {
+        "export": "buildAltazimuthStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plinth": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "arch": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "seam": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAltazimuthCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plinth": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "trim",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.1
+          },
+          "frame": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "dark": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7,
+            "metallic": 0.1
+          },
+          "arch": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "seam": {
+            "graph": "metal_painted",
+            "slot": "roof",
+            "roughness": 0.7,
+            "metallic": 0.25
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      -0.0008725297720465719,
+      51.477339259593734
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Existing standard Protomaps20261020/Mapzen201x201/6m Observatory extract reused. Uncovered south entry approach internal[0,6.95], datum47.73069916666667m; floor0.2m above control. Closed footing unions mapped floor with reconstructed circular body and north/south portals. Only the occupied mapped footprint cuts ground; retain original approaches/provider, all independent buildings, roads and water. Approximate native exterior fit reviewed on the original hill; boundary grade -0.46..+0.002m leaves a modest base. Exact historic thresholds, steps and accessibility remain approximate. Ground-cutout coordinates are quantized to1mm to avoid Float32 boundary ambiguity; original elevations and the mapped building-ownership mask remain unchanged.",
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 7
+    },
+    "bounds": [
+      -0.0009686323461552776,
+      51.47725493922959,
+      -0.0007748035109324082,
+      51.477420764628796
+    ],
+    "terrainReference": {
+      "anchor": [
+        -0.0008725297720465719,
+        51.47727682668149
+      ],
+      "modelHeight": 0,
+      "basis": "Existing standard Protomaps20261020/Mapzen201x201/6m Observatory extract reused. Uncovered south entry approach internal[0,6.95], datum47.73069916666667m; floor0.2m above control. Closed footing unions mapped floor with reconstructed circular body and north/south portals. Only the occupied mapped footprint cuts ground; retain original approaches/provider, all independent buildings, roads and water. Approximate native exterior fit reviewed on the original hill; boundary grade -0.46..+0.002m leaves a modest base. Exact historic thresholds, steps and accessibility remain approximate. Ground-cutout coordinates are quantized to1mm to avoid Float32 boundary ambiguity; original elevations and the mapped building-ownership mask remain unchanged."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -3.662956,
+          -0.12225
+        ],
+        [
+          -3.476994,
+          1.737392
+        ],
+        [
+          -2.547184,
+          3.225106
+        ],
+        [
+          -1.617373,
+          3.782999
+        ],
+        [
+          -1.617373,
+          5.828606
+        ],
+        [
+          -0.873524,
+          5.828606
+        ],
+        [
+          -0.873524,
+          6.3865
+        ],
+        [
+          1.172059,
+          6.3865
+        ],
+        [
+          1.172059,
+          5.828606
+        ],
+        [
+          1.915908,
+          5.828606
+        ],
+        [
+          1.915908,
+          3.782999
+        ],
+        [
+          3.217643,
+          2.481249
+        ],
+        [
+          3.589567,
+          1.737392
+        ],
+        [
+          3.775529,
+          -0.494178
+        ],
+        [
+          3.403605,
+          -1.423999
+        ],
+        [
+          1.915908,
+          -2.911712
+        ],
+        [
+          1.915908,
+          -5.515208
+        ],
+        [
+          0.986097,
+          -5.515208
+        ],
+        [
+          0.986097,
+          -6.073099
+        ],
+        [
+          -0.873524,
+          -6.073099
+        ],
+        [
+          -0.873524,
+          -5.515208
+        ],
+        [
+          -1.617373,
+          -5.515208
+        ],
+        [
+          -1.617373,
+          -3.097676
+        ],
+        [
+          -2.919108,
+          -1.795927
+        ],
+        [
+          -3.476994,
+          -1.052071
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -3.662956,
+            -0.12225
+          ],
+          [
+            -3.476994,
+            1.737392
+          ],
+          [
+            -2.547184,
+            3.225106
+          ],
+          [
+            -1.617373,
+            3.782999
+          ],
+          [
+            -1.617373,
+            5.828606
+          ],
+          [
+            -0.873524,
+            5.828606
+          ],
+          [
+            -0.873524,
+            6.3865
+          ],
+          [
+            1.172059,
+            6.3865
+          ],
+          [
+            1.172059,
+            5.828606
+          ],
+          [
+            1.915908,
+            5.828606
+          ],
+          [
+            1.915908,
+            3.782999
+          ],
+          [
+            3.217643,
+            2.481249
+          ],
+          [
+            3.589567,
+            1.737392
+          ],
+          [
+            3.775529,
+            -0.494178
+          ],
+          [
+            3.403605,
+            -1.423999
+          ],
+          [
+            1.915908,
+            -2.911712
+          ],
+          [
+            1.915908,
+            -5.515208
+          ],
+          [
+            0.986097,
+            -5.515208
+          ],
+          [
+            0.986097,
+            -6.073099
+          ],
+          [
+            -0.873524,
+            -6.073099
+          ],
+          [
+            -0.873524,
+            -5.515208
+          ],
+          [
+            -1.617373,
+            -5.515208
+          ],
+          [
+            -1.617373,
+            -3.097676
+          ],
+          [
+            -2.919108,
+            -1.795927
+          ],
+          [
+            -3.476994,
+            -1.052071
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Shared campus Q192988 plus unique way268533441/native35184640622273. The mapped rounded body with two north/south projecting entrances establishes identity and orientation. Own anchor raw[35.8,55], internalX east,Z south, heading0 baked into geometry. Photos from opposite ends establish different north/south gables; the vane bearing and exact ornamental inventories remain approximate. Parent plus its five contained building parts are owned; retain all other campus buildings, including the southern planetarium."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -3.663,
+          -0.122
+        ],
+        [
+          -3.477,
+          1.737
+        ],
+        [
+          -2.547,
+          3.225
+        ],
+        [
+          -1.617,
+          3.783
+        ],
+        [
+          -1.617,
+          5.829
+        ],
+        [
+          -0.874,
+          5.829
+        ],
+        [
+          -0.874,
+          6.387
+        ],
+        [
+          1.172,
+          6.387
+        ],
+        [
+          1.172,
+          5.829
+        ],
+        [
+          1.916,
+          5.829
+        ],
+        [
+          1.916,
+          3.783
+        ],
+        [
+          3.218,
+          2.481
+        ],
+        [
+          3.59,
+          1.737
+        ],
+        [
+          3.776,
+          -0.494
+        ],
+        [
+          3.404,
+          -1.424
+        ],
+        [
+          1.916,
+          -2.912
+        ],
+        [
+          1.916,
+          -5.515
+        ],
+        [
+          0.986,
+          -5.515
+        ],
+        [
+          0.986,
+          -6.073
+        ],
+        [
+          -0.874,
+          -6.073
+        ],
+        [
+          -0.874,
+          -5.515
+        ],
+        [
+          -1.617,
+          -5.515
+        ],
+        [
+          -1.617,
+          -3.098
+        ],
+        [
+          -2.919,
+          -1.796
+        ],
+        [
+          -3.477,
+          -1.052
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -3.663,
+            -0.122
+          ],
+          [
+            -3.477,
+            1.737
+          ],
+          [
+            -2.547,
+            3.225
+          ],
+          [
+            -1.617,
+            3.783
+          ],
+          [
+            -1.617,
+            5.829
+          ],
+          [
+            -0.874,
+            5.829
+          ],
+          [
+            -0.874,
+            6.387
+          ],
+          [
+            1.172,
+            6.387
+          ],
+          [
+            1.172,
+            5.829
+          ],
+          [
+            1.916,
+            5.829
+          ],
+          [
+            1.916,
+            3.783
+          ],
+          [
+            3.218,
+            2.481
+          ],
+          [
+            3.59,
+            1.737
+          ],
+          [
+            3.776,
+            -0.494
+          ],
+          [
+            3.404,
+            -1.424
+          ],
+          [
+            1.916,
+            -2.912
+          ],
+          [
+            1.916,
+            -5.515
+          ],
+          [
+            0.986,
+            -5.515
+          ],
+          [
+            0.986,
+            -6.073
+          ],
+          [
+            -0.874,
+            -6.073
+          ],
+          [
+            -0.874,
+            -5.515
+          ],
+          [
+            -1.617,
+            -5.515
+          ],
+          [
+            -1.617,
+            -3.098
+          ],
+          [
+            -2.919,
+            -1.796
+          ],
+          [
+            -3.477,
+            -1.052
+          ]
+        ]
+      ],
+      "basis": "Occupied Altazimuth footprint only; retain original approaches and independent buildings. Ground-cutout coordinates are quantized to1mm to avoid Float32 boundary ambiguity; original elevations and the mapped building-ownership mask remain unchanged."
+    },
+    "notes": "Shared campus Q192988 plus unique way268533441/native35184640622273. The mapped rounded body with two north/south projecting entrances establishes identity and orientation. Own anchor raw[35.8,55], internalX east,Z south, heading0 baked into geometry. Photos from opposite ends establish different north/south gables; the vane bearing and exact ornamental inventories remain approximate. Parent plus its five contained building parts are owned; retain all other campus buildings, including the southern planetarium. Existing standard Protomaps20261020/Mapzen201x201/6m Observatory extract reused. Uncovered south entry approach internal[0,6.95], datum47.73069916666667m; floor0.2m above control. Closed footing unions mapped floor with reconstructed circular body and north/south portals. Only the occupied mapped footprint cuts ground; retain original approaches/provider, all independent buildings, roads and water. Approximate native exterior fit reviewed on the original hill; boundary grade -0.46..+0.002m leaves a modest base. Exact historic thresholds, steps and accessibility remain approximate. Ground-cutout coordinates are quantized to1mm to avoid Float32 boundary ambiguity; original elevations and the mapped building-ownership mask remain unchanged."
+  }
+}

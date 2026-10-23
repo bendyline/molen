@@ -20,7 +20,7 @@ Own map footprint; native Y0 is estimated local ground contact. Heights, roof pr
 
 ## Build
 
-Run node packages/worldgen/scripts/generate-ksiaz-park-structures.mjs --ids=KSI_P01 (or --check).
+Run node content/worldgen/source/places/u3/u35/ksiaz-park-structures/models/generate-ksiaz-park-structures.mjs --ids=KSI_P01 (or --check).
 
 1343 triangles;165288 source bytes;7 merged material groups;no embedded images. Shared plaster, tile, sandstone, rubble, brick, timber and metal use metric UVs and linear palette tints as appropriate to each building. Runtime LODs are separate generated outputs.
 

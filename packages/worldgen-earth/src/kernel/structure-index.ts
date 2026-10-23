@@ -58,6 +58,8 @@ export interface StructurePlacement {
     outline: [number, number][];
     /** Complete set of independent occupied masks; supersedes outline when present. */
     outlines?: [number, number][][];
+    /** Replace a whole mapped building only above this covered-area fraction; preserve others intact. */
+    minimumCoverage?: number;
     basis: string;
   };
   /** Replace only native water in these model-local X/Z polygons while the model is resident. */
@@ -83,8 +85,16 @@ export interface StructureMapRule {
   title: string;
   asset: string;
   /** All supplied fields must match; values within each array are alternatives. */
-  match: { classes?: string[]; subclasses?: string[]; tags?: Record<string, string[]> };
-  /** Native model dimensions in meters, in +X,+Y,+Z order. Base must be Y=0. */
+  match: {
+    classes?: string[];
+    subclasses?: string[];
+    tags?: Record<string, string[]>;
+    /** Exact category labels, never substring or fuzzy name inference. Requires bounds. */
+    names?: string[];
+  };
+  /** Optional regional scope [west, south, east, north], WGS84 degrees. */
+  bounds?: [number, number, number, number];
+  /** Ground-relative model dimensions in meters, +X,+Y,+Z. Attachment plane is Y=0; footings may extend below. */
   dimensions: [number, number, number];
   orientation?: 'direction' | 'longest-edge' | 'north';
   lengthAxis?: 'x' | 'z';
@@ -237,6 +247,23 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
     )
       throw new Error(`invalid structure map rule ${rule.id}`);
     if (
+      rule.bounds &&
+      (rule.bounds.length !== 4 ||
+        rule.bounds.some((n) => !Number.isFinite(n)) ||
+        rule.bounds[0] < -180 ||
+        rule.bounds[2] > 180 ||
+        rule.bounds[1] < -90 ||
+        rule.bounds[3] > 90 ||
+        rule.bounds[0] >= rule.bounds[2] ||
+        rule.bounds[1] >= rule.bounds[3])
+    )
+      throw new Error(`invalid structure map rule bounds ${rule.id}`);
+    if (
+      rule.match.names &&
+      (!rule.bounds || !rule.match.names.length || rule.match.names.some((name) => !name.trim()))
+    )
+      throw new Error(`exact category names require regional bounds ${rule.id}`);
+    if (
       rule.maxPerTile !== undefined &&
       (!Number.isInteger(rule.maxPerTile) || rule.maxPerTile < 1 || rule.maxPerTile > 64)
     )
@@ -299,6 +326,10 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
       entry.buildingCutout &&
       (!entry.bounds ||
         !entry.buildingCutout.basis?.trim() ||
+        (entry.buildingCutout.minimumCoverage !== undefined &&
+          (!Number.isFinite(entry.buildingCutout.minimumCoverage) ||
+            entry.buildingCutout.minimumCoverage <= 0 ||
+            entry.buildingCutout.minimumCoverage > 1)) ||
         entry.buildingCutout.outline.length < 3 ||
         entry.buildingCutout.outline.length > 512 ||
         entry.buildingCutout.outline.some(

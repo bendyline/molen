@@ -91,6 +91,20 @@ export interface TerrainTransportationFeature extends TerrainStructureIdentity {
   surface?: string;
   lanes?: number;
   oneway?: boolean;
+  /** Source network and literal route legend (e.g. Protomaps US:WA + 520). */
+  network?: string;
+  shieldText?: string;
+  /** Source route reference (not an exit number). */
+  ref?: string;
+  /** Signposted destinations, separated by semicolons in OSM. */
+  destination?: string;
+  destinationRef?: string;
+  /** Destination colours, aligned with semicolon-separated destination names. */
+  destinationColour?: string;
+  /** Explicit exit number from junction:ref; never inferred from the road ref. */
+  junctionRef?: string;
+  /** OSM maxspeed, including units; unitless numeric values mean km/h. */
+  maxspeed?: string;
   /** Turning connector or ramp, rather than an independent junction approach. */
   link?: boolean;
   /** Source service subtype, for example parking_aisle or driveway. */
@@ -151,6 +165,15 @@ export interface TerrainPoiFeature extends TerrainStructureIdentity {
   species?: string;
   genus?: string;
   capacity?: number;
+  /** Exit number on a motorway_junction node. */
+  ref?: string;
+  exitTo?: string;
+  /** All approaches stop, or only the approach carrying this node. */
+  stop?: 'all' | 'minor';
+  /** Source grade; controls on another level must not affect a ground junction. */
+  layer?: number;
+  bridge?: boolean;
+  tunnel?: boolean;
 }
 
 export interface TerrainSemanticTile {
@@ -267,6 +290,8 @@ export function assertTerrainSemanticTile(tile: TerrainSemanticTile): void {
       'leafType',
       'species',
       'genus',
+      'ref',
+      'exitTo',
     ] as const)
       if (feature[key] !== undefined) assertClass(feature[key], `${path}/${key}`);
     for (const key of ['height', 'crownDiameter', 'capacity'] as const) {
@@ -275,6 +300,12 @@ export function assertTerrainSemanticTile(tile: TerrainSemanticTile): void {
       if (feature[key] <= 0) throw new Error(`${path}/${key} must be positive`);
     }
     if (feature.heading !== undefined) assertFinite(feature.heading, `${path}/heading`);
+    if (feature.layer !== undefined) assertFinite(feature.layer, `${path}/layer`);
+    if (feature.stop !== undefined && feature.stop !== 'all' && feature.stop !== 'minor')
+      throw new Error(`${path}/stop must be all or minor`);
+    for (const key of ['bridge', 'tunnel'] as const)
+      if (feature[key] !== undefined && typeof feature[key] !== 'boolean')
+        throw new Error(`${path}/${key} must be boolean`);
   }
   for (let index = 0; index < tile.landcover.length; index++) {
     const feature = tile.landcover[index] as TerrainLandcoverFeature;
@@ -399,6 +430,17 @@ export function assertTerrainSemanticTile(tile: TerrainSemanticTile): void {
       throw new Error('transportation link must be boolean');
     if (feature.oneway !== undefined && typeof feature.oneway !== 'boolean')
       throw new Error('transportation oneway must be boolean');
+    for (const key of [
+      'ref',
+      'destination',
+      'destinationRef',
+      'destinationColour',
+      'network',
+      'shieldText',
+      'junctionRef',
+      'maxspeed',
+    ] as const)
+      if (feature[key] !== undefined) assertClass(feature[key], `/transportation/${index}/${key}`);
     if (feature.lanes !== undefined && (!Number.isSafeInteger(feature.lanes) || feature.lanes <= 0))
       throw new Error('transportation lanes must be a positive safe integer');
     if (!Array.isArray(feature.lines) || feature.lines.length === 0) {

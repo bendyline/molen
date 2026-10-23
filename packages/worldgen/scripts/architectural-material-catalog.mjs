@@ -35,6 +35,7 @@ export const MATERIAL_PREVIEW_TINTS = {
   metal_perforated_round_open: '#e5e8e9',
   metal_expanded_diamond: '#e5e8e9',
   metal_asanoha: '#c6cbca',
+  metal_rosette_screen: '#c5b596',
   metal_stainless: '#e4e7e8',
   metal_stainless_polished: '#e4e7e8',
   metal_stainless_beadblasted: '#e4e7e8',
@@ -138,6 +139,7 @@ const families = [
       'metal_perforated_round_open',
       'metal_expanded_diamond',
       'metal_asanoha',
+      'metal_rosette_screen',
       'metal_bronze_cast',
     ],
   ],
@@ -277,6 +279,9 @@ export function architecturalMaterialCatalog(materialDocuments, descriptions) {
       if (key === 'stone_checker_fine')
         uvOrientation =
           'Metric U/V divided by0.2m; each repeat contains four100mm squares. Larger paving joints remain outside this reusable surface.';
+      if (key === 'metal_rosette_screen')
+        uvOrientation =
+          'Surface-aligned U/V meters divided by2m. Analytic circular/eight-point-star rosette uses100mm working strips and filtered alpha coverage. Repeat pitch and motifs are visual approximations; support frames and stand-off brackets remain geometry.';
       if (key === 'glass_frit_triangular')
         uvOrientation =
           'Metric U/V divided by 0.05m and 0.08660254m. Equilateral ceramic-frit triangles on opaque backed glass, with no baked lighting or relief normal. Pattern pitch is a photograph reconstruction; panel joints and retaining trims remain geometry.';
