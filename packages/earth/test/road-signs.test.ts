@@ -32,13 +32,27 @@ describe('Earth road-sign conventions', () => {
     ['Rome', 12.5, 41.9, 'it'],
     ['Zürich', 8.54, 47.38, 'ch'],
     ['Vienna', 16.37, 48.21, 'generic'],
-    ['Tokyo', 139.7, 35.7, 'generic'],
+    ['Tokyo', 139.7, 35.7, 'generic-left'],
+    ['Sydney', 151.2, -33.87, 'generic-left'],
+    ['Melbourne', 144.96, -37.81, 'generic-left'],
+    ['Auckland', 174.76, -36.85, 'generic-left'],
+    ['Delhi', 77.21, 28.61, 'generic-left'],
+    ['Bangkok', 100.5, 13.75, 'generic-left'],
+    ['Jakarta', 106.85, -6.21, 'generic-left'],
+    ['Dublin', -6.26, 53.35, 'generic-left'],
+    ['Cape Town', 18.42, -33.92, 'generic-left'],
+    ['Nairobi', 36.82, -1.29, 'generic-left'],
+    ['Hong Kong', 114.17, 22.3, 'generic-left'],
+    ['Shenzhen', 114.06, 22.55, 'generic'],
+    ['Seoul', 126.98, 37.57, 'generic'],
+    ['Yangon', 96.2, 16.87, 'generic'],
     ['Open ocean', -140, 0, 'generic'],
   ] as const)('resolves %s using country outlines, not architectural envelopes', (_name, lon, lat, id) => {
     for (const scale of [1, 0.67]) {
       const signs = createEarthRoadSigns({ catalog, atlas }, scale);
       const [x, z] = wgs84ToWorld(scale, lon, lat);
       expect(signs.profileAt(x, z).id).toBe(id);
+      expect(signs.drivingSideAt(x, z)).toBe(id === 'gb' || id === 'generic-left' ? 'left' : 'right');
       expect(signs.profileAt(x, z)).toBe(signs.profileAt(x, z));
     }
   });
@@ -60,7 +74,7 @@ describe('Earth road-sign conventions', () => {
       readBytes,
     } as unknown as Pack;
     const content = await loadEarthContent([pack], { stylePack: false });
-    expect(content.roadSigns?.catalog.profiles).toHaveLength(57);
+    expect(content.roadSigns?.catalog.profiles).toHaveLength(58);
     expect(Object.keys(content.roadSigns?.shields?.shields ?? {})).toHaveLength(50);
     expect(readJson.mock.calls.map((args) => args[0])).toEqual([
       'signs/us-states.json',

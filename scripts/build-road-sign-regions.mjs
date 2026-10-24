@@ -7,7 +7,17 @@ const read = async (path) => JSON.parse(await readFile(new URL(path, root), 'utf
 const catalog = await read('signs/catalog.json');
 const source = await read('source/architecture-countries.json');
 const codes = new Set(catalog.profiles.flatMap((profile) => profile.countries));
-const countries = source.countries.filter((country) => codes.has(country.code));
+// Some ISO codes have several source features (Australia includes island territories).
+// Cyprus's separate northern outline follows the same traffic rule.
+const byCode = new Map();
+for (const country of source.countries) {
+  const code = country.code === 'CYN' ? 'CY' : country.code;
+  if (!codes.has(code)) continue;
+  const existing = byCode.get(code);
+  if (existing) existing.polygons.push(...country.polygons);
+  else byCode.set(code, { ...country, code, polygons: [...country.polygons] });
+}
+const countries = [...byCode.values()];
 const states = (await read('source/signs/us-state-boundaries.json')).states;
 const stateProfiles = (await read('signs/us-states.json')).profiles;
 if (

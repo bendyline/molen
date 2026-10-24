@@ -48,6 +48,7 @@ export interface EarthAmbientSettings {
   boats?: boolean;
   /** Habitat and range constrained animals when the wildlife content pack is loaded. */
   wildlife?: boolean;
+  /** Override geographic road rules (otherwise resolved per tile, falling back to right). */
   drivingSide?: 'right' | 'left';
   /** Detailed vehicle residency and in-flight load limits. */
   idleVehicleModels?: number;
@@ -91,6 +92,8 @@ export interface EarthAmbientContent {
 }
 
 export interface EarthAmbientOptions {
+  /** Road rule at a terrain tile's centre, in the same world frame as surface generation. */
+  drivingSideAt?: (x: number, z: number) => 'right' | 'left';
   /** A world to share (the Earth vehicles world); a private one is stepped otherwise. */
   world?: World;
   parent: THREE.Object3D;
@@ -150,6 +153,7 @@ export class EarthAmbient implements SemanticTileObserver {
   readonly renderer: AmbientRenderer;
   private readonly ownsWorld: boolean;
   private readonly root: THREE.Object3D;
+  private readonly drivingSideAt: (x: number, z: number) => 'right' | 'left';
   private readonly entries = new Map<THREE.Object3D, Entry>();
   private accumulator = 0;
   private lastSync = Number.NEGATIVE_INFINITY;
@@ -218,6 +222,7 @@ export class EarthAmbient implements SemanticTileObserver {
     this.root = options.parent;
     this.world = options.world ?? new World({ tickRate: 60, seed: 'earth-ambient' });
     const settings = options.settings;
+    this.drivingSideAt = (x, z) => settings.drivingSide ?? options.drivingSideAt?.(x, z) ?? 'right';
     const density = Math.max(0, Math.min(1, settings.density ?? 0.6));
     const classes: AmbientKind[] = [];
     if (settings.cars !== false) classes.push('car');
@@ -348,6 +353,10 @@ export class EarthAmbient implements SemanticTileObserver {
         key: nearest.key,
         origin: context.origin,
         tileSize: context.tileSize,
+        drivingSide: this.drivingSideAt(
+          context.origin[0] + context.tileSize / 2,
+          context.origin[1] + context.tileSize / 2,
+        ),
         features: tile.transportation,
         ...(tile.pois !== undefined ? { pois: tile.pois } : {}),
         heightAt: renderedGroundSampler(

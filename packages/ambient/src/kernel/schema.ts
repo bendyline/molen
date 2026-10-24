@@ -147,6 +147,7 @@ const ambientStateSchema = z.strictObject({
 const point = z.union([vec2, vec3]);
 
 const waySchema = z.strictObject({
+  drivingSide: z.enum(['right', 'left']).describe('Overrides the document road driving side.').optional(),
   id: z.string().min(1).describe('Optional stable id.').optional(),
   class: z.enum(['road', 'rail', 'path', 'air', 'water']).describe('What moves on it.'),
   subclass: z

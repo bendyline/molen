@@ -120,7 +120,11 @@ it('reconstitutes the original instanced master and independently reprojects exa
   expect(bytes.byteLength).toBe(1959180);
   execFileSync(
     process.execPath,
-    ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=gran_torre_costanera', '--check'],
+    [
+      'packages/worldgen/scripts/generate-signature-towers.mjs',
+      '--ids=gran_torre_costanera',
+      '--check',
+    ],
     { cwd: resolve('../..'), stdio: 'pipe' },
   );
   const spec = await read(`${source}/spec.json`);

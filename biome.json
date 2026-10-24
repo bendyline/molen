@@ -1,5 +1,10 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.5.0/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
   "files": {
     "includes": [
       "**",
@@ -17,6 +22,10 @@
       "!examples/*/public/packs",
       "!content/entities/gen",
       "!content/entities/types/generated-scripts",
+      "!content/earth/source/signs/americana/*.svg",
+      "!content/worldgen/source/places/**/reference-rights/**/*.html",
+      "!content/worldgen/source/places/**/references/**/*.html",
+      "!content/worldgen/source/places/**/map-sources/**/*.html",
       "!content/worldgen/source/material-library/texture-audit.json",
       "!content/earth/structures/evidence/bridge-terrain/gugik/poniatowski_bridge.json",
       "!content/earth/structures/evidence/osm-features.json",

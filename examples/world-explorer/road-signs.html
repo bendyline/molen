@@ -16,7 +16,7 @@
     <main>
       <section class="region-bar" aria-label="Regional sign appearance"><label for="view">Collection</label><select id="view"><option value="patterns">Road sign patterns</option><option value="states">All 50 U.S. states</option></select><label for="region">Sign convention</label><select id="region"></select><p id="region-note"></p><span id="region-sources"></span></section>
       <section class="toolbar" aria-label="Filter signs">
-        <div id="filters" role="group" aria-label="Sign families"><button data-family="all" aria-pressed="true">All patterns <span>9</span></button><button data-family="highway" aria-pressed="false">Highways</button><button data-family="junction" aria-pressed="false">Junctions</button><button data-family="speed" aria-pressed="false">Speed limits</button></div>
+        <fieldset id="filters" aria-label="Sign families"><button type="button" data-family="all" aria-pressed="true">All patterns <span>9</span></button><button type="button" data-family="highway" aria-pressed="false">Highways</button><button type="button" data-family="junction" aria-pressed="false">Junctions</button><button type="button" data-family="speed" aria-pressed="false">Speed limits</button></fieldset>
         <label class="search">Find a pattern<input id="search" type="search" placeholder="Name or map cue…" /></label>
       </section>
       <p id="status" role="status">Loading the road-sign library…</p>
@@ -25,9 +25,9 @@
       <footer><span>Overpass fallback · country font roles supported · <a href="https://overpassfont.org/">OFL font</a></span><span>Sources: <a href="https://wiki.openstreetmap.org/wiki/Key:destination">OSM destinations</a> · <a href="https://wiki.openstreetmap.org/wiki/Key:destination:colour">destination colours</a> · <a href="https://mutcd.fhwa.dot.gov/pdfs/11th_Edition/mutcd11thedition.pdf">FHWA signs</a></span></footer>
     </main>
     <dialog id="detail" aria-labelledby="detail-title">
-      <button id="close" aria-label="Close sign details">×</button>
-      <div id="preview" aria-label="Interactive sign preview"></div>
-      <div class="detail-copy"><p class="eyebrow" id="detail-family"></p><h2 id="detail-title"></h2><p id="detail-caption"></p><p class="hint">Drag to rotate · scroll to zoom · <button id="reset">Reset view</button></p><dl id="facts"></dl><details><summary>Detection record & sample map tags</summary><pre id="record"></pre></details></div>
+      <button type="button" id="close" aria-label="Close sign details">×</button>
+      <section id="preview" aria-label="Interactive sign preview"></section>
+      <div class="detail-copy"><p class="eyebrow" id="detail-family"></p><h2 id="detail-title">Sign details</h2><p id="detail-caption"></p><p class="hint">Drag to rotate · scroll to zoom · <button type="button" id="reset">Reset view</button></p><dl id="facts"></dl><details><summary>Detection record & sample map tags</summary><pre id="record"></pre></details></div>
     </dialog>
     <script type="module" src="/src/road-sign-gallery.ts"></script>
   </body>

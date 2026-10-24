@@ -141,6 +141,8 @@ export interface TerrainParkedVehicle {
 }
 
 export interface TerrainSurfaceOptions {
+  /** Override regional handedness for road markings, signals and signs together. */
+  drivingSide?: 'left' | 'right';
   /** Host-loaded font content, shared by direct rendering and workers. No font means unlettered panels. */
   fonts?: FontLibrary;
   /** Host-loaded vector route artwork, shared with workers once per change. */

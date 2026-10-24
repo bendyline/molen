@@ -121,7 +121,11 @@ it('reconstitutes the original large instanced master and independently reprojec
   expect(bytes.byteLength).toBe(40771324);
   execFileSync(
     process.execPath,
-    ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=china_world_trade_center_tower_iii', '--check'],
+    [
+      'packages/worldgen/scripts/generate-signature-towers.mjs',
+      '--ids=china_world_trade_center_tower_iii',
+      '--check',
+    ],
     { cwd: resolve('../..'), stdio: 'pipe' },
   );
   const spec = await read(`${source}/spec.json`);

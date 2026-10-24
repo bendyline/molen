@@ -23,6 +23,7 @@ export type Point2 = [number, number];
 
 /** A polyline awaiting the planar split, in world metres. */
 export interface EdgeDraft {
+  drivingSide?: 'right' | 'left';
   class: TransportClass;
   kind: RoadKind;
   points: Point2[];

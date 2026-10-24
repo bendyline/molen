@@ -9,8 +9,11 @@ import { terrainRoadSignCatalogSchema } from '../src/road-sign-styles';
 import { createTerrainRoadSignObject } from '../src/road-signs';
 import { assertTerrainSemanticTile, createEmptyTerrainSemanticTile } from '../src/semantic-types';
 import { createTerrainSurfaceObject, disposeTerrainSurfaceObject } from '../src/surface-client';
+import { SurfaceNetwork } from '../src/surface-network';
+import type { TerrainSignalHead } from '../src/surface-signals';
 import type { SurfaceSign } from '../src/surface-sign-mesh';
 import { postedSpeed } from '../src/surface-signage';
+import { resolveTerrainSurfaceStyle } from '../src/surface-styles';
 
 function context(): TerrainPyramidTileLayerContext {
   return {
@@ -117,6 +120,57 @@ function profile(id: string) {
   return found;
 }
 describe('road signage', () => {
+  it.each(['right', 'left'] as const)('aligns %s-driving stop lines, signal heads and signs with approaching lanes', (drivingSide) => {
+    const tile = cross();
+    tile.pois = [{ class: 'traffic_signals', point: [0.5, 0.5] }];
+    const object = createTerrainSurfaceObject(tile, context(), { drivingSide });
+    const side = drivingSide === 'right' ? 1 : -1;
+    const heads = object.userData.trafficSignalHeads as TerrainSignalHead[];
+    expect(heads).toHaveLength(4);
+    for (const head of heads) {
+      const [dx, dz] = head.direction;
+      expect(((head.x - 200) * dz - (head.z - 200) * dx) * side).toBeGreaterThan(0.5);
+    }
+    const network = new SurfaceNetwork(tile, 400, resolveTerrainSurfaceStyle());
+    const positions = (object.getObjectByName('surface:markings') as THREE.Mesh).geometry.getAttribute('position');
+    for (const arm of network.junctions.flatMap((j) => j.arms)) {
+      const offsets: number[] = [];
+      for (let i = 0; i < positions.count; i++) {
+        const x = positions.getX(i) - arm.x, z = positions.getZ(i) - arm.z;
+        const along = x * arm.dx + z * arm.dz;
+        const across = x * arm.dz - z * arm.dx;
+        if (along > 2.1 && along < 2.5 && Math.abs(across) < 4) offsets.push(across * side);
+      }
+      expect(offsets.length).toBeGreaterThan(0);
+      expect(Math.min(...offsets)).toBeGreaterThan(0.3);
+    }
+    disposeTerrainSurfaceObject(object);
+    tile.pois = [{ class: 'stop', stop: 'all', point: [0.5, 0.5] }];
+    const stops = signs(tile, { drivingSide }).list.filter((s) => s.kind === 'stop');
+    expect(stops).toHaveLength(4);
+    for (const sign of stops) {
+      expect(((sign.x - 200) * sign.dz - (sign.z - 200) * sign.dx) * side).toBeGreaterThan(4);
+      expect(sign.appearance.drivingSide).toBe(drivingSide);
+    }
+  });
+
+  it('mirrors the inner motorway edge while preserving mapped one-way sign direction', () => {
+    const tile = freeway();
+    tile.transportation.length = 1;
+    for (const drivingSide of ['right', 'left'] as const) {
+      const object = createTerrainSurfaceObject(tile, context(), { drivingSide });
+      const mesh = object.getObjectByName('surface:markings') as THREE.Mesh;
+      const positions = mesh.geometry.getAttribute('position');
+      const colors = mesh.geometry.getAttribute('color');
+      const yellowZ: number[] = [];
+      for (let i = 0; i < positions.count; i++)
+        if (colors.getX(i) > colors.getZ(i) * 2) yellowZ.push(positions.getZ(i));
+      expect(yellowZ.length).toBeGreaterThan(0);
+      expect(yellowZ.every((z) => drivingSide === 'left' ? z > 160 : z < 160)).toBe(true);
+      for (const sign of object.userData.roadSigns as SurfaceSign[]) expect(sign.dx).toBeLessThan(-0.99);
+      disposeTerrainSurfaceObject(object);
+    }
+  });
   it('keeps global pattern identities while localizing labels, shapes, driving side and conservative controls', () => {
     const tile = freeway();
     const us = signs(tile, { signProfile: profile('us') }).list;

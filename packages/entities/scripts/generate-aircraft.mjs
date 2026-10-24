@@ -283,7 +283,17 @@ for (const s of aircraft) {
   await emit(`${directory}/models/airframe.json`, s);
   await emit(
     `${directory}/models/generate.mjs`,
-    `// Profile snapshot: airframe.json; authoritative roster: source/aircraft-expansion.json; shared deterministic mesh builder.\nimport {spawnSync} from 'node:child_process';\nimport {fileURLToPath} from 'node:url';\nconst command=fileURLToPath(new URL('../../../../../../packages/entities/scripts/generate-aircraft.mjs',import.meta.url));\nconst result=spawnSync(process.execPath,[command,'--ids=${s.slug}',...process.argv.slice(2)],{stdio:'inherit'});\nprocess.exitCode=result.status??1;\n`,
+    `// Profile snapshot: airframe.json; authoritative roster: source/aircraft-expansion.json; shared deterministic mesh builder.
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+
+const command = fileURLToPath(
+  new URL('../../../../../../packages/entities/scripts/generate-aircraft.mjs', import.meta.url),
+);
+const args = [command, '--ids=${s.slug}', ...process.argv.slice(2)];
+const result = spawnSync(process.execPath, args, { stdio: 'inherit' });
+process.exitCode = result.status ?? 1;
+`,
   );
   const reviewed = reviews.find((r) => r.slug === s.slug);
   const visualStatus =

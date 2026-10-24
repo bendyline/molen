@@ -294,11 +294,11 @@ function buildJunction(
   cx /= group.length;
   cz /= group.length;
   const n = arms.length;
-  const side = store.traffic === 'right' ? 1 : -1;
   // Each arm has an entry and an exit point on the core's rim; movements are chords between
   // them and two movements conflict when their chords cross.
   const rim: { angle: number; arm: number; exit: boolean }[] = [];
   arms.forEach((arm, k) => {
+    const side = arm.edge.drivingSide === 'right' ? 1 : -1;
     const bx = arm.node.x + arm.dx * radius - cx;
     const bz = arm.node.z + arm.dz * radius - cz;
     const q = arm.edge.width / 4;
@@ -476,8 +476,8 @@ function buildRoadMovements(
   junction: TransportJunction | undefined,
 ): void {
   const n = arms.length;
-  const left = store.traffic === 'left';
   arms.forEach((inArm, i) => {
+    const left = inArm.edge.drivingSide === 'left';
     const incoming = lanesAt(store, inArm, 'road', true);
     const nIn = incoming.length;
     for (const lane of incoming) {

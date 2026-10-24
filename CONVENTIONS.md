@@ -54,6 +54,10 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   packed-install CI job tests Node 22 independently of the regression fixtures.
 - `pnpm build` compiles and bundles; it does not execute unit or browser assertions.
   `pnpm verify` adds the headless checks, while `pnpm all` includes the browser golden tests.
+- Biome respects Git ignore files and checks authored source, including app HTML and inline SVG
+  accessibility. Pinned Americana SVG inputs and archived reference/licensing HTML under model
+  source bundles are excluded: they are upstream evidence, not maintained UI. Preserve their
+  original bytes and hashes; fix accessibility in the application that presents the content.
 - **Build before typecheck/test.** Packages import each other's `dist`. Use the root scripts
   (`pnpm typecheck`, `pnpm test:unit`) which rebuild the library packages first via `pre*`
   hooks, or run `pnpm -r --filter './packages/**' build` before invoking `tsc`/`vitest`

@@ -8,13 +8,13 @@ import {
   normalFor,
   validateAuthoredMesh,
 } from '../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import { hashBytes } from '../../../../../../../packages/worldgen/scripts/structure-model-files.mjs';
 import {
   stoweDistrict,
   stoweModel,
   stoweSkyline,
   stoweStreet,
 } from '../../../../../../../packages/worldgen/scripts/structure-stowe-house.mjs';
-import { hashBytes } from '../../../../../../../packages/worldgen/scripts/structure-model-files.mjs';
 
 const dir = new URL('.', import.meta.url),
   root = new URL('../../../../../../../', dir),

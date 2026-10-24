@@ -19,6 +19,7 @@ export interface EarthRoadSignContent {
 }
 
 export interface EarthRoadSigns {
+  drivingSideAt(x: number, z: number): 'left' | 'right';
   profileAt(x: number, z: number): Readonly<TerrainRoadSignProfile>;
   profileForCountry(code: string | undefined): Readonly<TerrainRoadSignProfile>;
   profileForSubdivision(code: string | undefined): Readonly<TerrainRoadSignProfile>;
@@ -59,9 +60,12 @@ export function createEarthRoadSigns(
     countries.get(code?.toUpperCase() ?? '') ?? fallback;
   const profileForSubdivision = (code: string | undefined): TerrainRoadSignProfile =>
     subdivisions.get(code?.toUpperCase() ?? '') ?? profileForCountry(code?.split('-')[0]);
+  const profileAt = (x: number, z: number): TerrainRoadSignProfile =>
+    profileForSubdivision(regions?.resolve(x, z)?.id);
   return {
+    drivingSideAt: (x, z) => profileAt(x, z).drivingSide,
     profileForCountry,
     profileForSubdivision,
-    profileAt: (x, z) => profileForSubdivision(regions?.resolve(x, z)?.id),
+    profileAt,
   };
 }

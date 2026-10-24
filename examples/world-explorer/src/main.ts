@@ -1360,6 +1360,7 @@ async function main(): Promise<void> {
       world: vehicles.world,
       parent: stream.object,
       settings: {},
+      ...(roadSigns ? { drivingSideAt: roadSigns.drivingSideAt } : {}),
       ...(fleet ? { carsAt: fleet.carsAt } : {}),
       content: ambientContentFromTypes(content.types, async (id, signal) => {
         try {

@@ -261,7 +261,11 @@ test('a new structure catalog reservation rejects a stale local selection before
   const f = fixture(t);
   f.put('content/worldgen/source/structure-catalog/candidates.json', {
     candidates: [
-      { id: 'kensington_palace', title: f.entry.name, referenceCoordinate: { longitude: 0, latitude: 0 } },
+      {
+        id: 'kensington_palace',
+        title: f.entry.name,
+        referenceCoordinate: { longitude: 0, latitude: 0 },
+      },
     ],
   });
   assert.throws(() => f.run(), /Other-device work cannot enter the local batch/);
@@ -274,7 +278,12 @@ test('collection member aliases remain reserved even when a model is already rea
   f.structure.existing = [{ candidateId: 'msu_main_building', basis: 'editorial-identity' }];
   f.put('structures.jsonl', `${JSON.stringify(f.structure)}\n`);
   f.put('content/worldgen/source/structure-catalog/collections.json', {
-    collections: [{ id: 'seven_sisters', members: [{ id: 'msu_main_building', title: 'Different named alias' }] }],
+    collections: [
+      {
+        id: 'seven_sisters',
+        members: [{ id: 'msu_main_building', title: 'Different named alias' }],
+      },
+    ],
   });
   assert.throws(() => f.run(), /Other-device work cannot enter the local batch/);
 });

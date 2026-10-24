@@ -91,6 +91,24 @@ describe('semantic tile observation', () => {
 });
 
 describe('earth ambient life', () => {
+  it.each([undefined, 'right'] as const)('resolves tile driving sides with explicit override %s', (override) => {
+    const parent = new THREE.Group();
+    const layer = new THREE.Group();
+    parent.add(layer);
+    const drivingSideAt = vi.fn(() => 'left' as const);
+    const ambient = new EarthAmbient({
+      parent, settings: override ? { drivingSide: override } : {}, drivingSideAt,
+    });
+    ambient.added(layer, tile(), context());
+    ambient.sync(0, { position: [5200, 2, -2800], direction: [0, 0, 1] });
+    ambient.handle.flush();
+    const roads = [...ambient.handle.network.edgeList()].filter((e) => e.class === 'road');
+    expect(roads.length).toBeGreaterThan(0);
+    expect(roads.every((e) => e.drivingSide === (override ?? 'left'))).toBe(true);
+    if (!override) expect(drivingSideAt).toHaveBeenCalledWith(5200, -2800);
+    else expect(drivingSideAt).not.toHaveBeenCalled();
+    ambient.dispose();
+  });
   // A full signal cycle steps a live traffic world: 6 s on CI, beyond Vitest's 5 s default.
   it('shows the same signal colour as NPC control and invalidates matches on tile unload', () => {
     const parent = new THREE.Group();

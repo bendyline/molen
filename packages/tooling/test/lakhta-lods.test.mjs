@@ -44,9 +44,7 @@ it('keeps the five-petal skin samples within the declared one-metre skyline rese
 });
 
 it('reproduces four levels while preserving the exact original tower master', async () => {
-  const path = resolve(
-    '../../content/worldgen/assets/places/ud/udt/lakhta_centre/asset.json',
-  );
+  const path = resolve('../../content/worldgen/assets/places/ud/udt/lakhta_centre/asset.json');
   const asset = JSON.parse(await readFile(path)),
     master = await readFile(resolve(path, '../model.glb'));
   await buildModelLandmarkLods(path, { force: true });

@@ -16,7 +16,8 @@ const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex
 const require = createRequire(resolve(root, 'packages/tooling/package.json'));
 const { chromium } = require('playwright');
 const ids = (
-  process.argv.find((arg) => arg.startsWith('--ids='))?.slice(6) ?? 'mes_bridge,kazarma_mycenaean_bridge,haghtanak_bridge'
+  process.argv.find((arg) => arg.startsWith('--ids='))?.slice(6) ??
+  'mes_bridge,kazarma_mycenaean_bridge,haghtanak_bridge'
 ).split(',');
 const terrainSet = process.argv.find((arg) => arg.startsWith('--terrain-set='))?.slice(14) ?? '';
 const reviewRoads = process.argv.includes('--with-roads');

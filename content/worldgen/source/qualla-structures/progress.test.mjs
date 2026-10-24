@@ -123,7 +123,13 @@ test('a resolved other-device alias stays unresolved without blocking unrelated 
       ],
     });
     put('content/worldgen/source/structure-catalog/candidates.json', {
-      candidates: [{ id: 'friday_mosque_of_herat', title: 'Friday Mosque of Herat', modelRef: 'reserved.asset' }],
+      candidates: [
+        {
+          id: 'friday_mosque_of_herat',
+          title: 'Friday Mosque of Herat',
+          modelRef: 'reserved.asset',
+        },
+      ],
     });
     put('content/worldgen/source/structure-catalog/collections.json', { collections: [] });
     put('content/worldgen/project.json', { assets: {} });

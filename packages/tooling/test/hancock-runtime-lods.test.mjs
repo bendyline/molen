@@ -7,9 +7,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineGlobal } from '../../worldgen/scripts/signature-tower-global-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve(
-    '../../content/worldgen/source/places/dp/dp3/875_north_michigan_avenue',
-  ),
+const source = resolve('../../content/worldgen/source/places/dp/dp3/875_north_michigan_avenue'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2'),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {

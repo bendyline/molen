@@ -108,7 +108,10 @@ export function createTerrainSurfaceObject(
 ): THREE.Group {
   const style = resolveTerrainSurfaceStyle(options.style, options.details);
   const details = options.details ?? {};
-  const signProfile = options.signProfile ?? DEFAULT_ROAD_SIGN_PROFILE;
+  const regionalProfile = options.signProfile ?? DEFAULT_ROAD_SIGN_PROFILE;
+  const signProfile = options.drivingSide === undefined ? regionalProfile
+    : { ...regionalProfile, drivingSide: options.drivingSide };
+  const side = signProfile.drivingSide === 'left' ? -1 : 1;
   const parkedVehicles = details.parkedVehicles ?? [];
   const detailed =
     context.pyramid.maxLevel - context.address.level <= (details.detailLevelsBelowMax ?? 0);
@@ -408,7 +411,7 @@ export function createTerrainSurfaceObject(
             width: 0.13,
             offset: sign * (road.width / 2 - 0.3),
             color:
-              road.kind === 'motorway' && road.feature.oneway && sign === -1
+              road.kind === 'motorway' && road.feature.oneway && sign === -side
                 ? style.center
                 : style.white,
             elevation: elevation + 0.045,
@@ -460,8 +463,8 @@ export function createTerrainSurfaceObject(
         )
           marks.polygon(
             rectangle(
-              x + arm.dx * 2.3 + (arm.road.feature.oneway ? 0 : (arm.dz * arm.width) / 4),
-              z + arm.dz * 2.3 - (arm.road.feature.oneway ? 0 : (arm.dx * arm.width) / 4),
+              x + arm.dx * 2.3 + (arm.road.feature.oneway ? 0 : (side * arm.dz * arm.width) / 4),
+              z + arm.dz * 2.3 - (arm.road.feature.oneway ? 0 : (side * arm.dx * arm.width) / 4),
               arm.dx,
               arm.dz,
               arm.width / (arm.road.feature.oneway ? 1 : 2) - 0.7,
@@ -555,22 +558,24 @@ export function createTerrainSurfaceObject(
         );
       }
       // A curbside mast reaches across the approach, with heads facing arriving traffic.
-      if (style.trafficSignals && control?.signal && incomingArm(a)) {
+      const approach = side === 1 ? a : b;
+      const approachIndex = side === 1 ? i : (i + 1) % arms.length;
+      if (style.trafficSignals && control?.signal && incomingArm(approach)) {
         stats.trafficSignals++;
         const sx = x + dx * 0.35,
           sz = z + dz * 0.35;
-        const acrossX = a.dz,
-          acrossZ = -a.dx;
-        const lateral = (sx - a.x) * -a.dz + (sz - a.z) * a.dx;
-        const reach = Math.max(2, lateral + a.width / 2 + 0.6);
+        const acrossX = side * approach.dz,
+          acrossZ = -side * approach.dx;
+        const lateral = side * ((sx - approach.x) * -approach.dz + (sz - approach.z) * approach.dx);
+        const reach = Math.max(2, lateral + approach.width / 2 + 0.6);
         const armYaw = Math.atan2(acrossX, acrossZ);
-        const headYaw = Math.atan2(a.dx, a.dz);
+        const headYaw = Math.atan2(approach.dx, approach.dz);
         // Include road grade when choosing mast height, retaining truck clearance.
         const roadHeight = context.heightfield.sampleHeight(
           context.origin[0] + sx + acrossX * reach,
           context.origin[1] + sz + acrossZ * reach,
         );
-        const top = Math.max(y + 7.4, roadHeight + a.road.elevation + 7.4);
+        const top = Math.max(y + 7.4, roadHeight + approach.road.elevation + 7.4);
         fixtures.push(
           {
             x: sx,
@@ -591,21 +596,23 @@ export function createTerrainSurfaceObject(
             color: '#626d73',
           },
         );
+        const oneway = approach.road.feature.oneway === true;
         const lanes = Math.min(
           3,
-          Math.max(1, Math.floor(inferLaneCount(a.road.feature, a.width) / 2)),
+          Math.max(1, Math.floor(inferLaneCount(approach.road.feature, approach.width) / (oneway ? 1 : 2))),
         );
         for (let lane = 0; lane < lanes; lane++) {
-          const distance = lateral + (a.width * (lane + 0.5)) / (lanes * 2);
+          const distance = lateral + (oneway ? -approach.width / 2 : 0)
+            + (approach.width * (lane + 0.5)) / (lanes * (oneway ? 1 : 2));
           const head: TerrainSignalHead = {
             x: sx + acrossX * distance,
             z: sz + acrossZ * distance,
             y: top - 1.05,
             yaw: headYaw,
             junction: [context.origin[0] + node.x, context.origin[1] + node.z],
-            direction: [a.dx, a.dz],
+            direction: [approach.dx, approach.dz],
             radius: node.radius,
-            group: phaseGroups[i] as number,
+            group: phaseGroups[approachIndex] as number,
             groups: phaseCount,
             offset: hash(context.origin[0] + node.x, context.origin[1] + node.z) * phaseCount * 29,
           };
@@ -619,8 +626,8 @@ export function createTerrainSurfaceObject(
           for (let light = 0; light < 3; light++)
             fixtures.push({
               ...head,
-              x: head.x + a.dx * 0.3,
-              z: head.z + a.dz * 0.3,
+              x: head.x + approach.dx * 0.3,
+              z: head.z + approach.dz * 0.3,
               y: head.y + 0.58 - light * 0.38,
               size: [0.43, 0.07, 0.32],
               color: '#20272b',

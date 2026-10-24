@@ -1035,6 +1035,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         const surface = createTerrainSurfaceRenderer(
           {
             style: 'modern',
+            ...(ambientSettings?.drivingSide ? { drivingSide: ambientSettings.drivingSide } : {}),
             fonts: content?.fonts,
             routeShields: content?.roadSigns?.shields,
             details: {
@@ -1320,6 +1321,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             world,
             parent: stream.object,
             settings: ambientSettings,
+            ...(roadSigns ? { drivingSideAt: roadSigns.drivingSideAt } : {}),
             ...(fleet ? { carsAt: fleet.carsAt } : {}),
             ...(ambientContent !== undefined ? { content: ambientContent } : {}),
             prepare: (object) => renderer.prepareObject(object),
@@ -2499,6 +2501,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         void current.surface
           .setOptions({
             style: 'modern',
+            ...(ambientSettings?.drivingSide ? { drivingSide: ambientSettings.drivingSide } : {}),
             fonts: content?.fonts,
             routeShields: content?.roadSigns?.shields,
             details: {

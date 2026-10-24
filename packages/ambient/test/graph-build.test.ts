@@ -9,6 +9,63 @@ import {
 import { gridDocument, streetFeature } from './helpers';
 
 describe('transport graph', () => {
+  it('keeps regional lanes and turn permissions in one network, including export and reload', () => {
+    const net = new TransportNetwork();
+    for (const [index, drivingSide] of (['left', 'right'] as const).entries()) {
+      net.registerTile({
+        key: drivingSide, origin: [index * 1000, 0], tileSize: 200, drivingSide,
+        features: [
+          streetFeature([0, 0.5], [1, 0.5], { lanes: 4, width: 12 }),
+          streetFeature([0.5, 0], [0.5, 1], { lanes: 4, width: 12 }),
+        ],
+      });
+    }
+    const check = (network: TransportNetwork) => {
+      let turns = 0;
+      for (const edge of network.edgeList()) {
+        const expected = (edge.path.points[0]?.[0] ?? 0) < 500 ? 'left' : 'right';
+        expect(edge.drivingSide).toBe(expected);
+        for (const id of edge.lanes) {
+          const lane = network.lane(id);
+          if (!lane || lane.class !== 'road') continue;
+          expect(Math.sign(lane.offset)).toBe(expected === 'left' ? -1 : 1);
+          for (const move of lane.next) {
+            if (move.turn !== 'left' && move.turn !== 'right') continue;
+            turns++;
+            expect(lane.index).toBe(move.turn === expected ? 1 : 0);
+          }
+        }
+      }
+      expect(turns).toBeGreaterThan(0);
+    };
+    check(net);
+    const restored = new TransportNetwork();
+    restored.addDocument(networkToDocument(net));
+    check(restored);
+    net.unregisterTile('right');
+    check(net);
+  });
+
+  it('honours document and way driving sides without reversing one-way travel', () => {
+    const net = new TransportNetwork();
+    net.addDocument({
+      format: 'molen/transport-network@1', drivingSide: 'left', ways: [
+        { class: 'road', points: [[0, 0], [100, 0]], lanes: 2 },
+        { class: 'road', points: [[0, 50], [100, 50]], lanes: 2, drivingSide: 'right' },
+        { class: 'road', points: [[0, 100], [100, 100]], lanes: 2, oneway: true },
+      ],
+    });
+    const edges = [...net.edgeList()];
+    expect(edges.map((e) => e.drivingSide)).toEqual(['left', 'right', 'left']);
+    const oneway = edges.find((e) => e.oneway);
+    expect(oneway).toBeDefined();
+    for (const id of oneway?.lanes ?? []) {
+      const lane = net.lane(id);
+      expect(lane?.dir).toBe(1);
+      expect(net.sampleLane(id, 20)?.dx).toBeGreaterThan(0.99);
+    }
+    expect(net.lane(oneway?.lanes[0] ?? '')?.offset).toBeGreaterThan(0);
+  });
   it('requires two arterials for inferred lights and accepts mapped stop and signal controls', () => {
     const build = (
       subclass: string,

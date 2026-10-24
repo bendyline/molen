@@ -676,8 +676,9 @@ export function scan({
     structureCount: backlog.length,
     statuses,
     workOwners: {
-      'structure-catalog-other-device': backlog.filter((r) => !r.workAssignment.localAuthoringAllowed)
-        .length,
+      'structure-catalog-other-device': backlog.filter(
+        (r) => !r.workAssignment.localAuthoringAllowed,
+      ).length,
       'qualla-local': backlog.filter((r) => r.workAssignment.localAuthoringAllowed).length,
     },
     categories: byCategory,
