@@ -129,10 +129,18 @@ describe('curated Earth birdsong', () => {
       format: 'molen/soundbank@1',
       id: 'molen.sounds',
       sounds: Object.fromEntries(
-        ['ambience.birds', ...catalog.profiles.map((p) => p.sound)].map((id) => [
-          id,
-          { clips: [`${id}.mp3`], source: { license: 'CC0-1.0' } },
-        ]),
+        ['ambience.birds', 'world.birds.europe.test', ...catalog.profiles.map((p) => p.sound)].map(
+          (id) => [
+            id,
+            {
+              clips: [`${id}.mp3`],
+              source: { license: 'CC0-1.0' },
+              ...(id.startsWith('world.')
+                ? { loop: true, tags: ['earth:category:birds', 'earth:region:europe'] }
+                : {}),
+            },
+          ],
+        ),
       ),
     };
     const packs = {
@@ -167,6 +175,9 @@ describe('curated Earth birdsong', () => {
     expect(sounds(toronto)).not.toContain('ambience.birds');
     expect(sounds(at(51.5, -0.1, 5))).toContain('ambience.birds.common_blackbird');
     expect(sounds(at(51.5, -0.1, 5))).not.toContain('ambience.birds.american_robin');
+    expect(sounds(at(51.5, -0.1, 5))).not.toContain('world.birds.europe.test');
+    // The broad European palette cannot fill a gap in the curated playback areas.
+    expect(sounds(at(65, 25, 5))).toEqual([]);
     expect(sounds(toronto, 'drive')).toEqual([]);
     expect(sounds(toronto, 'fly', 100)).toEqual([]);
     expect(sounds(at(-75, 0, 5))).toEqual([]);
