@@ -2,7 +2,7 @@
 import { dmath } from '@bendyline/molen-kernel/determinism';
 import type { FacadeInput } from './facade';
 import { type MeshBufferBuilder, normalize3 } from './mesh-buffers';
-import type { Vec2, Vec3 } from './types';
+import type { RGB, Vec2, Vec3 } from './types';
 
 export interface FacadeDetailEdge {
   a: Vec2;
@@ -206,41 +206,88 @@ export function buildFacadeDetails(
       }
     }
   }
+  // Trim boards up the wall's ends: with the neighboring wall's board each outside corner reads as
+  // a cased corner rather than two siding planes meeting. A board stands 2 cm proud, so its face
+  // alone carries it (four vertices: dense suburbs spend their whole building budget).
+  if (details.cornerBoards && edge.key < 4096 && edge.length >= 1.2) {
+    const width = 0.13,
+      depth = 0.02;
+    for (const [s0, s1] of [
+      [0, width],
+      [edge.length - width, edge.length],
+    ] as const) {
+      if (blocked(s0, s1, input.base, edge.top)) continue;
+      quad(
+        [
+          point(s0, input.base, depth),
+          point(s1, input.base, depth),
+          point(s1, edge.top, depth),
+          point(s0, edge.top, depth),
+        ],
+        edge.normal,
+        width,
+        edge.top - input.base,
+      );
+    }
+  }
+  // Painted the dark tone of the trim, like the fallback entrance door, so they read on pale siding.
+  const painted = {
+    ...trim,
+    color: [trim.color[0] * 0.42, trim.color[1] * 0.42, trim.color[2] * 0.42] as RGB,
+  };
+  // Hung on the wall against the window's 10 cm trim, about 5 cm thick: set off by a gap and
+  // standing proud of the siding, they read as boards floating beside the window.
+  const shutters = (s0: number, s1: number, y0: number, y1: number): void => {
+    const width = Math.min((s1 - s0) * 0.35, (input.bayWidth - (s1 - s0)) * 0.36, 0.55);
+    for (const [a, b, side] of [
+      [s0 - width - 0.1, s0 - 0.1, -1],
+      [s1 + 0.1, s1 + width + 0.1, 1],
+    ]) {
+      if (
+        a === undefined ||
+        b === undefined ||
+        side === undefined ||
+        width < 0.13 ||
+        a < corner ||
+        b > edge.length - corner ||
+        // Its own window's clearance is the trim the leaf hangs against: test the leaf less its
+        // inner 4 cm, which still keeps it off any neighboring window.
+        blocked(side > 0 ? a + 0.04 : a, side < 0 ? b - 0.04 : b, y0, y1)
+      )
+        continue;
+      box(a, b, y0, y1, 0.008, 0.055, painted);
+      for (let row = 1; row < 4; row++) {
+        const y = y0 + ((y1 - y0) * row) / 4;
+        quad(
+          [
+            point(a + 0.03, y, 0.065),
+            point(b - 0.03, y, 0.065),
+            point(b - 0.03, y + 0.025, 0.065),
+            point(a + 0.03, y + 0.025, 0.065),
+          ],
+          edge.normal,
+          b - a,
+          0.025,
+          painted,
+        );
+      }
+    }
+  };
+  if (details.shutters && input.windows?.style === 'punched')
+    // Interior-backed houses replace the punched grid with structural windows; frame those too.
+    for (const o of input.structuralOpenings ?? [])
+      if (
+        o.kind === 'window' &&
+        o.edge === edge.key &&
+        o.start !== undefined &&
+        o.end !== undefined
+      )
+        shutters(o.start, o.end, o.bottom, o.top);
   let balconies = 0;
   for (const window of windows.slice(0, 40)) {
     const { s0, s1, y0, y1 } = window;
-    if (details.shutters && !window.storefront && input.windows?.style === 'punched') {
-      const width = Math.min((s1 - s0) * 0.35, (input.bayWidth - (s1 - s0)) * 0.36, 0.55);
-      for (const [a, b] of [
-        [s0 - width - 0.14, s0 - 0.14],
-        [s1 + 0.14, s1 + width + 0.14],
-      ]) {
-        if (
-          a === undefined ||
-          b === undefined ||
-          width < 0.13 ||
-          a < corner ||
-          b > edge.length - corner ||
-          blocked(a, b, y0, y1)
-        )
-          continue;
-        box(a, b, y0, y1, 0.025, 0.12);
-        for (let row = 1; row < 4; row++) {
-          const y = y0 + ((y1 - y0) * row) / 4;
-          quad(
-            [
-              point(a + 0.03, y, 0.145),
-              point(b - 0.03, y, 0.145),
-              point(b - 0.03, y + 0.025, 0.145),
-              point(a + 0.03, y + 0.025, 0.145),
-            ],
-            edge.normal,
-            b - a,
-            0.025,
-          );
-        }
-      }
-    }
+    if (details.shutters && !window.storefront && input.windows?.style === 'punched')
+      shutters(s0, s1, y0, y1);
     if (
       details.awnings &&
       y1 + 0.25 < edge.top &&

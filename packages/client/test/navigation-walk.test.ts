@@ -182,6 +182,46 @@ describe('streamed walk collision', () => {
     expect(walker.feet.x).toBeLessThan(2);
   });
 
+  it('collides with each instance as its box when asked to', () => {
+    const root = new THREE.Group();
+    // A crown-like sphere: many triangles, and a ray along its axis meets it 2 m out.
+    const plants = new THREE.InstancedMesh(
+      new THREE.SphereGeometry(2, 24, 16),
+      new THREE.MeshBasicMaterial(),
+      3,
+    );
+    plants.setMatrixAt(0, new THREE.Matrix4().makeTranslation(10, 5, 0));
+    // Mirrored: its faces must still face out.
+    plants.setMatrixAt(1, new THREE.Matrix4().makeScale(-1, 1, 1).setPosition(-10, 5, 0));
+    // Hidden by collapsing it to a point.
+    plants.setMatrixAt(2, new THREE.Matrix4().makeScale(0, 0, 0).setPosition(0, 5, 10));
+    root.add(plants);
+    const collision = new WalkCollision({ radius: 30, instanceBounds: true });
+    collision.update(root, 0, 0);
+    const count = (node: { triangles: unknown[]; subTrees: (typeof node)[] }): number =>
+      node.triangles.length + node.subTrees.reduce((sum, child) => sum + count(child), 0);
+    expect(count(collision.octree)).toBe(24);
+    for (const [direction, distance] of [
+      [1, 8],
+      [-1, 8],
+    ] as const) {
+      const hit = collision.octree.rayIntersect(
+        new THREE.Ray(new THREE.Vector3(0, 5.5, 0), new THREE.Vector3(direction, 0, 0)),
+      );
+      expect(hit ? hit.distance : undefined).toBeCloseTo(distance);
+    }
+    // The diagonal misses the sphere but meets its box's corner region.
+    const corner = collision.octree.rayIntersect(
+      new THREE.Ray(new THREE.Vector3(0, 6.9, 0), new THREE.Vector3(1, 0, 0)),
+    );
+    expect(corner ? corner.distance : undefined).toBeCloseTo(8);
+    expect(
+      collision.octree.rayIntersect(
+        new THREE.Ray(new THREE.Vector3(0, 5, 0), new THREE.Vector3(0, 0, 1)),
+      ),
+    ).toBe(false);
+  });
+
   it('keeps meter-scale precision through floating-origin rebases', () => {
     const { root, walker, collision } = scene();
     const worldRoot = new THREE.Group();

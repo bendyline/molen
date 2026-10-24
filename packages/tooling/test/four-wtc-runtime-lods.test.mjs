@@ -1,6 +1,8 @@
-import { readFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { copyFile, mkdtemp, readFile, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { dirname, join, resolve } from 'node:path';
 import { expect, it } from 'vitest';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
@@ -8,7 +10,7 @@ import { fourWorldTradeCenterStudy } from '../../worldgen/scripts/four-world-tra
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/dr/dr5/4_world_trade_center'),
-  runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
+  runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
   const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12))),
@@ -190,28 +192,39 @@ it('retains outward office plates, northwest terrace void and closed roof', asyn
   }
 }, 120000);
 it('rebuilds four levels within download/triangle/draw budgets, with separate vertex streams', async () => {
-  const p = resolve(runtime, 'asset.json');
-  await buildModelLandmarkLods(p, { force: true });
-  const next = await read(p);
-  expect(next.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThanOrEqual(
-    3000000,
-  );
-  for (const [i, l] of next.runtimeLods.levels.entries()) {
-    const bytes = await readFile(`${runtime}/${l.file}`);
-    expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
-    expect(l.drawCalls).toBeLessThanOrEqual(4);
-    const { g } = decode(bytes);
-    expect(g.images ?? []).toHaveLength(0);
-    expect(g.materials.filter((m) => m.alphaMode === 'BLEND')).toHaveLength(
-      l.name === 'skyline' ? 0 : 1,
-    );
-    for (const m of g.meshes)
-      for (const p of m.primitives) {
-        const a = g.accessors[p.attributes.POSITION],
-          n = g.accessors[p.attributes.NORMAL];
-        expect(a.bufferView).not.toBe(n.bufferView);
-        expect(g.bufferViews[a.bufferView].byteStride ?? 12).toBe(12);
-        expect(g.bufferViews[n.bufferView].byteStride ?? 12).toBe(12);
-      }
+  // Rebuild a scratch copy: an interrupted in-place rebuild leaves committed content half-written.
+  const directory = await mkdtemp(join(tmpdir(), 'molen-four-wtc-lod-'));
+  if (dirname(resolve(directory)) !== resolve(tmpdir()))
+    throw new Error('Unexpected test directory');
+  try {
+    const p = join(directory, 'asset.json');
+    const { files } = await read(resolve(runtime, 'asset.json'));
+    await copyFile(resolve(runtime, 'asset.json'), p);
+    await copyFile(resolve(runtime, files.main), join(directory, files.main));
+    await buildModelLandmarkLods(p, { force: true });
+    const next = await read(p);
+    expect(
+      next.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0),
+    ).toBeLessThanOrEqual(3000000);
+    for (const [i, l] of next.runtimeLods.levels.entries()) {
+      const bytes = await readFile(join(directory, l.file));
+      expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
+      expect(l.drawCalls).toBeLessThanOrEqual(4);
+      const { g } = decode(bytes);
+      expect(g.images ?? []).toHaveLength(0);
+      expect(g.materials.filter((m) => m.alphaMode === 'BLEND')).toHaveLength(
+        l.name === 'skyline' ? 0 : 1,
+      );
+      for (const m of g.meshes)
+        for (const p of m.primitives) {
+          const a = g.accessors[p.attributes.POSITION],
+            n = g.accessors[p.attributes.NORMAL];
+          expect(a.bufferView).not.toBe(n.bufferView);
+          expect(g.bufferViews[a.bufferView].byteStride ?? 12).toBe(12);
+          expect(g.bufferViews[n.bufferView].byteStride ?? 12).toBe(12);
+        }
+    }
+  } finally {
+    await rm(directory, { recursive: true, force: true });
   }
 }, 120000);

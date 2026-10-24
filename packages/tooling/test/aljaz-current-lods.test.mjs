@@ -1,11 +1,14 @@
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/u2/u21/aljaz_tower'),
-  runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
+  runtime = await runtimeLodFixture(
+    source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
+  );
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
   const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12))),

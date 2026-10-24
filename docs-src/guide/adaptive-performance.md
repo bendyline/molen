@@ -34,9 +34,14 @@ ultrawide displays. CPU caches and resident geometry have separate limits:
 
 Each tier also names its sun shadow quality (`EarthPerformanceTier.shadows`): off at Minimum and
 Low, medium at Medium, and high from Balanced up. On WebGPU the main pass keeps its render bundles
-while shadows are on, but every bundled object refreshes each frame, because that refresh is what
-redraws the shadow map and keeps receivers in step with it; shadows therefore cost real CPU time
-on WebGPU, and the controller accounts for it like any other work. Bundles exist only inside
+while shadows are on. In a replayed bundle that has not changed since it was recorded, only the
+first object of each material refreshes in a render: that refresh redraws the shadow map and
+updates the material's shared uniforms, and the snapshot of transforms and material properties
+re-records the bundle when anything else changes. Node materials whose owners set `uniform()`
+values each frame (terrain water's time, the ground's origin) still refresh every object. A node
+material without such values sets `userData.bundleStatic` to refresh like the rest (the scatter
+and building materials do); three.js would otherwise refresh every node-material object each
+frame, about 1,500 refreshes a frame at street level. Bundles exist only inside
 the frame. Between frames, warm-up compiles run the sun's shadow pass over the scene, and there
 the groups draw normally, so a tile that an admission job swapped and disposed is never replayed
 from a stale bundle. Once a WebGPU shadow map
@@ -63,7 +68,10 @@ to preserve drape alignment; newly admitted terrain uses the current cap.
 viewport height, camera field of view/zoom, conservative spatial bounds and a configurable pixel
 error. The same mutable policy updates resident objects without generation or instance uploads.
 Perspective and orthographic cameras are supported, including parent scale and floating origins.
-Transitions have 15% hysteresis.
+Transitions have 15% hysteresis. World Explorer scales the tier's pixel error with height above
+the ground, from 100 m up (three times the budget at 300 m, at most four), so a flying camera
+spends no GPU time on tree and building detail below a pixel; street and rooftop views keep the
+tier's budget.
 
 Builtin vegetation uses three shared models in spatial cells; the far fir/conifer is 12 triangles
 and the far broadleaf crown is 20. Building cells use authored materials nearby, a single

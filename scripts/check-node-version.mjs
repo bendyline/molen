@@ -3,7 +3,6 @@ import { resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const versionFile = new URL('../.node-version', import.meta.url);
-
 const major = (version) => version.replace(/^v/, '').split('.')[0];
 
 // Only the major matters: a Node release line keeps one V8 line, and V8 is what decides the bits

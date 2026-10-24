@@ -8,9 +8,12 @@ import {
 } from '../../worldgen/scripts/jeddah-skyline-model.mjs';
 import { landmarkLodRecipeHash as baseHash } from '../scripts/authored-landmark-lods.mjs';
 import { buildModelLandmarkLods, landmarkLodRecipeHash } from '../scripts/source-runtime-lods.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 const source = resolve('../../content/worldgen/source/places/sg/sgg/jeddah_light');
-const runtime = resolve('../../content/worldgen/assets/places/sg/sgg/jeddah_light');
+const runtime = await runtimeLodFixture(
+  resolve('../../content/worldgen/assets/places/sg/sgg/jeddah_light'),
+);
 const faces = [];
 const add = (_slot, _ref, points, normal, _uv, color) => faces.push({ points, normal, color });
 buildJeddahSkyline({ addQuad: add, addTriangle: add, addConvexPolygon: add });

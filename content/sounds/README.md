@@ -1,6 +1,6 @@
 # molen.sounds
 
-The default sound pack: a `molen/soundbank@1` document (`sounds.soundbank.json`) naming 71
+The default sound pack: a `molen/soundbank@1` document (`sounds.soundbank.json`) naming 165
 sounds, and the MP3 clips it points at. Every recording is CC0 1.0, so an app built on it owes no
 attribution; [NOTICE.md](NOTICE.md) still credits each source. See the audio guide
 (`docs-src/guide/audio.md`) for how experiences use it.
@@ -8,12 +8,40 @@ attribution; [NOTICE.md](NOTICE.md) still credits each source. See the audio gui
 | Group | Sounds |
 | --- | --- |
 | `ambience.*` | rain, thunder, wind, birds (park, forest and eight regional recordings), crickets, river, city traffic, dungeon |
+| `world.*` | 88 regional bird, night insect/frog, daytime cicada, wind, gust, ocean, rain, river and traffic beds |
 | `vehicle.*`, `aircraft.*` | petrol and diesel engine idles, start, stop, accelerate, horn, doors; a Rolls-Royce Merlin (the P-51's engine) and a helicopter hover |
-| `footstep.*` | grass, concrete, wood, snow, carpet, stone (several variations each) |
+| `footstep.*` | grass, concrete, wood, snow, carpet, stone, gravel, sand, dirt, leaves, mud and metal (43 clips) |
 | `impact.*` | metal heavy/light, wood, soft, punch, glass, bell, explosion |
 | `foley.*`, `weapon.*` | doors, latch, creak, coins; blade draw, slash, chop, laser |
 | `game.*`, `sting.*`, `ui.*` | jump, pickup, power-up, zap; short jingles; clicks, confirm, error, toggles |
 | `music.*` | two calm ambient tracks, dungeon, racing, heroic and arena chiptunes |
+
+## World soundscape
+
+The World soundscape inventory has **100 sound choices**: 88 recorded ambience beds and 12 walking
+surfaces, totaling 131 distinct MP3 clips. These sit alongside the pack's existing vehicle, aircraft,
+interface and music sounds. All 100 have distinct source audio; variants are not counted as
+extra sound choices. The complete inventory and per-clip source recipes are in `sources.json`.
+
+The `earth:category:*` and `earth:region:*` tags drive World playback. Birds favor daylight and
+the morning; crickets and frogs favor warm nights, while cicadas favor warm days. Rain reduces
+wildlife. Latitude and longitude select broad recording palettes for Europe, North America,
+Latin America, Africa, Asia and Oceania, with global weather/water fallbacks. These palettes
+are not exact species-range maps. Polar locations suppress birds and insects. A `birdsong`
+catalog replaces the broad bird palettes with curated coverage; the default pack includes eight
+additional regional recordings, described below.
+
+Ocean beds require a mapped shoreline within 600 m; river beds require nearby flowing water.
+Road distance, mapped ground material and snow/rain choose traffic and footsteps. An enclosed
+cockpit reduces outdoor ambience to 18%, with a gradual transition; open boats and exterior
+cameras retain outside sound. Ground ambience requires a known terrain height and fades with altitude. The mix uses one recording
+per category, staggered rotation every 83–119 seconds, five-second crossfades, conservative
+gains and a master peak compressor. Audio remains independent of wildlife rendering density.
+
+Footsteps follow horizontal walking distance, skip jumps/teleports/camera bob, and vary clip,
+pitch and gain. Hosts can override the floor material for interiors and bridge decks; without
+mapped material, walking falls back to grass or pavement. The decoded-audio cache retains
+96 MiB of recent clips, allowing active/fading voices to finish before eviction.
 
 ## Pipeline
 
@@ -29,10 +57,17 @@ molen pack build content/sounds --out-dir dist-packs
 ```
 
 `build.mjs` needs `ffmpeg` and `ffprobe` with `libmp3lame`. It makes loops seamless by
-crossfading each clip's tail into its head, sets `loopStart`/`loopEnd` clear of MP3 encoder
-padding, targets -20 LUFS for ambience and -18 LUFS for music and engines, and peak-normalizes
+crossfading each clip's tail into its head. World clips add `loopPadding: 0.1`: a short repeated
+guard outside the playback loop, with 5 ms boundary ramps to suppress residual clicks after
+normalization. `loopStart`/`loopEnd` avoid encoder edges. The build targets -20 LUFS for ambience
+and -18 LUFS for music and engines, and peak-normalizes
 one-shots. Unchanged recipes are skipped; `--force` rebuilds everything.
-Pass sound IDs to rebuild only those recordings while retaining existing clips for other sounds.
+Both scripts accept positional IDs for targeted work: `fetch.mjs <origin-id>` and
+`build.mjs <sound-id>`. A targeted build preserves the other existing bank entries. World
+recordings include a verified CC0 license URL/date and a SHA-256 source hash; fetching rejects
+changed bytes. `downloadBytes` pins only the leading preview bytes needed by the trim, keeping
+long field recordings small. Raw sources stay in the ignored `.cache/` directory.
+
 Per-clip `highpass` removes low-frequency wind/traffic before normalization; it does not remove
 every background sound. Downloaded originals stay in the ignored `.cache/` directory.
 
@@ -56,7 +91,8 @@ profile's `evidence`/`coverage` fields. The eight recording licenses were checke
 These are conservative playback areas, not surveyed range polygons. Coverage is intentionally
 incomplete: a loaded catalog gives silence where no profile fits, rather than the legacy park
 chorus everywhere. No nocturnal species recordings are included yet. Older sound packs without
-a catalog retain their generic birds. Altitude, rain, street masking and vehicle suppression
+a catalog use broad bird palettes when present, or legacy generic birds. Altitude, rain, street
+masking and vehicle suppression
 also apply to the new recordings.
 
 ## Adding sounds

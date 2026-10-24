@@ -9,6 +9,7 @@ import {
 } from '../../worldgen/scripts/seven-wtc-runtime-model.mjs';
 import { skylineNext } from '../../worldgen/scripts/signature-tower-next-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 const source = resolve('../../content/worldgen/source/places/dr/dr5/7_world_trade_center');
 const frame = JSON.parse(await readFile(resolve(source, 'map-frame.json')));
@@ -58,8 +59,8 @@ it('preserves the full tower and asymmetric rooftop volume within the authored b
 });
 
 it('reproduces all browser bytes and keeps recess and glass as separate material slots', async () => {
-  const sidecarPath = resolve(
-    '../../content/worldgen/assets/places/dr/dr5/7_world_trade_center/asset.json',
+  const sidecarPath = await runtimeLodFixture(
+    resolve('../../content/worldgen/assets/places/dr/dr5/7_world_trade_center/asset.json'),
   );
   const asset = JSON.parse(await readFile(sidecarPath));
   const master = await readFile(resolve(sidecarPath, '../model.glb'));

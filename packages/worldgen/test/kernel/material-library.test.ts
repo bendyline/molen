@@ -10,6 +10,9 @@ const materialDir = resolve(
   '../../../../content/worldgen/materials',
 );
 
+/** Materials baked finer than 256 px because they are seen at arm's length from the street. */
+const FINE: ReadonlySet<string> = new Set(['siding_lap']);
+
 async function material(id: string, size = 64): Promise<MatGraphDoc> {
   const input: unknown = JSON.parse(
     await readFile(resolve(materialDir, `${id}.matgraph.json`), 'utf8'),
@@ -17,9 +20,18 @@ async function material(id: string, size = 64): Promise<MatGraphDoc> {
   const result = validateByKind('matgraph' as never, input);
   if (!result.ok) throw new Error(result.formatted);
   const doc = result.value as MatGraphDoc;
-  expect(doc.size).toEqual([256, 256]);
+  expect(doc.size).toEqual(FINE.has(id) ? [512, 512] : [256, 256]);
   return { ...doc, size: [size, size] };
 }
+
+/** Smallest center roughness (0–255) for materials that are glossy on purpose. */
+const GLOSSY: Readonly<Record<string, number>> = {
+  metal_stainless_polished: 19,
+  storefront: 15,
+  window_grid: 15,
+  window_punched: 15,
+  window_sliding: 15,
+};
 
 function value(image: RGBAImage, u: number, v: number): number {
   const x = Math.min(image.width - 1, Math.floor(u * image.width));
@@ -28,7 +40,7 @@ function value(image: RGBAImage, u: number, v: number): number {
 }
 
 describe('canonical construction material library', () => {
-  it('ships 71 shared 256-square materials with independently usable surface response', async () => {
+  it('ships 71 shared square materials with independently usable surface response', async () => {
     const files = (await readdir(materialDir)).filter((name) => name.endsWith('.matgraph.json'));
     expect(files.length).toBe(71);
     const style = JSON.parse(await readFile(resolve(materialDir, '../stylepack.json'), 'utf8'));
@@ -42,9 +54,8 @@ describe('canonical construction material library', () => {
       const roughness = baked.slots.roughness;
       expect(roughness, id).toBeDefined();
       if (roughness !== undefined) {
-        expect(value(roughness, 0.5, 0.5), id).toBeGreaterThanOrEqual(
-          id === 'metal_stainless_polished' ? 19 : 50,
-        );
+        // Polished steel and window panes are glossy by design; everything else stays satin.
+        expect(value(roughness, 0.5, 0.5), id).toBeGreaterThanOrEqual(GLOSSY[id] ?? 50);
         expect(value(roughness, 0.5, 0.5), id).toBeLessThanOrEqual(253);
       }
     }
@@ -54,10 +65,11 @@ describe('canonical construction material library', () => {
     const lap = bakeMatGraph(await material('siding_lap', 256)).slots.baseColor;
     const ceramic = bakeMatGraph(await material('tile_ceramic', 256)).slots.baseColor;
     if (lap === undefined || ceramic === undefined) throw new Error('missing surface');
-    for (let course = 0; course < 8; course++) {
+    for (let board = 0; board < 14; board++)
       expect(
-        value(lap, 0.37, (course + 0.5) / 8) - value(lap, 0.37, (course + 0.01) / 8),
+        value(lap, 0.37, (board + 0.5) / 14) - value(lap, 0.37, (board + 0.01) / 14),
       ).toBeGreaterThan(30);
+    for (let course = 0; course < 8; course++) {
       expect(
         value(ceramic, (course + 0.5) / 8, 0.06) - value(ceramic, (course + 0.1) / 8, 0.06),
       ).toBeGreaterThan(20);

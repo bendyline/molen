@@ -77,11 +77,16 @@ shared resources share pending preparation promises. A cancelled tile cannot can
 tile waiting on the same resource; queued work is dropped once every tile waiting for it has
 cancelled. Prepared static batches replace ordinary meshes only when ready; stale batch results
 are discarded.
-Instanced LOD meshes each prepare their own WebGPU node builder even when every buffer is
-shared. When `prepareObject` receives the parent the object will join, it evaluates LODs for
-the current camera and waits only for the selected levels. The other levels prepare in the
-queue's background lane (`priority: 'background'`), which runs only in budget that normal jobs
-leave, and are dropped if their mesh or geometry is disposed first. Resident world-generation
+When `prepareObject` receives the parent the object will join, it evaluates LODs for the current
+camera and waits only for the selected levels. The other levels prepare in the queue's background
+lane (`priority: 'background'`), which runs only in budget that normal jobs leave, and are dropped
+if their mesh or geometry is disposed first. A mesh that swaps its own material (an instanced
+detail switch's opaque and shadow-free twins) lists every material in `userData.materialVariants`,
+and the renderer sets `userData.materialReady(material)`, which the mesh's owner asks before
+switching. Until it returns true the owner keeps what it shows; the first question queues that
+material's build ahead of other work, so variants a mesh never switches to are never built. Shadow
+flags are part of what a mesh's shaders are built for, so set `castShadow` and `receiveShadow`
+before preparing (the terrain stream marks layers and surfaces first). Resident world-generation
 quality replacements use the same preparation/publication path when supplied with
 `WorldgenRendererOptions.prepareObject` (enabled in World Explorer).
 
@@ -135,13 +140,18 @@ by the resolved Three material, including groups with different authored referen
 to the same material. Transparent group order is preserved.
 
 World props (trees, ground cover, rocks, rooftop and street props) keep one batch per model per
-terrain tile: the tile is already the culling unit. On WebGPU, three.js builds a separate shader
-for every `InstancedMesh`, about 6 ms on the main thread even when the material and geometry are
-shared, so splitting each tile into culling cells multiplied that cost by cells times LOD levels
-and starved terrain publication during fast flight. Every prop placement remains intact; whole-tile
-batches trade some culling precision (more instanced triangles drawn) for far fewer shader builds
-and draw submissions. `createInstancedPlacementLod` still accepts a finite `cellSize` for callers
-that want spatial cells.
+coarse terrain tile, and four per finest tile, so near detail stays around the camera's own quarter.
+On WebGPU, three.js keys an `InstancedMesh`'s node state by the mesh (about 11 ms of main thread
+for a plant batch, per draw target and material) and declared its matrices as a uniform array sized
+to the batch and named after its node, so every batch also compiled a GPU pipeline of its own; when a
+frame created one, it stalled the browser's GPU process, for seconds in fast flight. The WebGPU
+driver reads instance matrices from one named, runtime-sized storage buffer instead, so a material's
+batches share one shader and one pipeline. `createInstancedPlacementLod` accepts any `cellSize`.
+
+Lights are compiled into every lit shader: a light that joins or leaves the scene rebuilds every
+object in view at once. Keep a streamed world's light set fixed. Earth hosts mount dioramas with
+`localLights: false`, which keeps a diorama's own point and spot lights out of the world scene; a
+football field's scoreboard glow, loading and unloading as an aircraft passed, froze its takeoff.
 
 Terrain palettes compile once per mesh. Terrain index topology is immutable and shared in a
 bounded CPU cache; use a copy before editing or transferring it. Grids and building cells use
@@ -202,6 +212,11 @@ with `update(root, x, z, y)` so the ground far below an airframe never enters th
 flies high the tree is empty and rebuilds are free. World Explorer's aircraft use 48 m / 24 m / 40 m,
 its cars 32 m / 12 m / 24 m; walkers keep the 24 m / 6 m default and the whole column, which their
 placement ray needs. The kernel's own ground contact (`groundHeight`) does not depend on this tree.
+Low over a forest an aircraft's neighborhood still held 100k triangles of crowns and shrubs; with
+`instanceBounds: true` each instance of an instanced mesh enters the tree as its bounding box,
+twelve triangles, which is all an airframe's probes and its chase camera need. Ground cover (plant
+models drawn only at near detail) is never solid, and the tree splits at each level by selecting a
+median rather than sorting, so a rebuild of that size takes milliseconds rather than most of a second.
 
 ## Measurement
 

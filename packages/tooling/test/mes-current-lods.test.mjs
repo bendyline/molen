@@ -12,9 +12,12 @@ import {
 } from '../../worldgen/scripts/mes-bridge-current-model.mjs';
 import { mesStudy } from '../../worldgen/scripts/mes-bridge-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 const source = resolve('../../content/worldgen/source/places/sr/srm/mes_bridge');
-const runtime = resolve('../../content/worldgen/assets/places/sr/srm/mes_bridge');
+const runtime = await runtimeLodFixture(
+  resolve('../../content/worldgen/assets/places/sr/srm/mes_bridge'),
+);
 const read = async (p) => JSON.parse(await readFile(p));
 const awaitFrame = await readFile(source + '/map-frame.json', 'utf8');
 const centerline = JSON.parse(awaitFrame).centerline;

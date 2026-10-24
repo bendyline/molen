@@ -9,9 +9,12 @@ import {
   sorveOpenings,
 } from '../../worldgen/scripts/sorve-skyline-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 const source = resolve('../../content/worldgen/source/places/u6/u6r/sorve_lighthouse'),
-  runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
+  runtime = await runtimeLodFixture(
+    source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
+  );
 const read = async (p) => JSON.parse(await readFile(p));
 const sub = (a, b) => a.map((v, i) => v - b[i]);
 const dot = (a, b) => a.reduce((s, v, i) => s + v * b[i], 0);

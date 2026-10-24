@@ -63,6 +63,7 @@ export {
   type EarthAudioFrame,
   type EarthAudioOptions,
 } from './client/audio';
+export { EarthAudioTerrain, type EarthAudioTerrainSample } from './client/audio-terrain';
 export {
   EARTH_PACK_IDS,
   type EarthContent,
@@ -110,6 +111,8 @@ export { createEarthFleet } from './client/fleet';
 export {
   EARTH_EXPOSURE,
   EARTH_LIGHTING,
+  EARTH_SHADOW_CASTER_HEIGHT,
+  EARTH_SKY_DOME,
   EARTH_SKY_PALETTE,
   EARTH_TONE_MAPPING,
   EARTH_WATER_COLOR,

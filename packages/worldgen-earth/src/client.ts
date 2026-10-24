@@ -23,6 +23,10 @@ export type {
   WorldgenGenerator,
   WorldgenWorkerBridgeOptions,
 } from './client/worker-bridge';
-export { createWorldgenWorkerBridge, tileHeightGrid } from './client/worker-bridge';
+export {
+  createWorldgenWorkerBridge,
+  createWorldgenWorkerPool,
+  tileHeightGrid,
+} from './client/worker-bridge';
 export type { RegionResolver, RegionResolverOptions } from './kernel/region';
 export { createRegionResolver } from './kernel/region';

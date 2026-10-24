@@ -9,6 +9,7 @@ import {
 } from '../../worldgen/scripts/montparnasse-runtime-model.mjs';
 import { localGeographic } from '../../worldgen/scripts/signature-tower-expansion-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 it('retains the signed native perimeter against the attributed raw map coordinates', async () => {
   const frame = JSON.parse(
@@ -50,7 +51,9 @@ it('keeps the full height and an open district observation terrace within the st
 });
 
 it('reproduces four derivatives while preserving the exact original detailed source hash', async () => {
-  const path = resolve('../../content/worldgen/assets/places/u0/u09/montparnasse_tower/asset.json');
+  const path = await runtimeLodFixture(
+    resolve('../../content/worldgen/assets/places/u0/u09/montparnasse_tower/asset.json'),
+  );
   const asset = JSON.parse(await readFile(path)),
     master = await readFile(resolve(path, '../model.glb'));
   await buildModelLandmarkLods(path, { force: true });

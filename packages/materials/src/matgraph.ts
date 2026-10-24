@@ -51,7 +51,7 @@ const REQUIRED_PARAMS = new Map<string, readonly string[]>([
   ['worley', ['scale', 'jitter', 'output']],
   ['gradient', ['kind', 'angleDeg']],
   ['checker', ['scale']],
-  ['bricks', ['rows', 'cols', 'mortarWidth', 'offset']],
+  ['bricks', ['rows', 'cols', 'mortarWidth', 'offset', 'output']],
   ['ramp', ['stops']],
   ['blend', ['mode', 'factor']],
   ['threshold', ['edge', 'smoothness']],
@@ -255,15 +255,25 @@ class GraphEvaluator {
         return { t: 's', v: (cx + cy) % 2 === 0 ? 0 : 1 };
       }
       case 'bricks': {
-        const { rows, cols, mortarWidth, offset } = node.params;
+        const { rows, cols, mortarWidth, offset, output } = node.params;
         const ry = v * rows;
         const row = Math.floor(ry);
         const shift = row % 2 === 0 ? 0 : offset;
         const rx = (u * cols + shift) % 1;
         const fy = ry - row;
+        if (output === 'row') return { t: 's', v: fy };
         const inMortar =
           rx < mortarWidth || rx > 1 - mortarWidth || fy < mortarWidth || fy > 1 - mortarWidth;
-        return { t: 's', v: inMortar ? 0 : 1 };
+        if (output !== 'random' || inMortar) return { t: 's', v: inMortar ? 0 : 1 };
+        // Wrap both indices so the texture stays seamless; the hash is integer-only, so the bytes
+        // match in every environment.
+        const col = (((Math.floor(u * cols + shift) % cols) + cols) % cols) >>> 0;
+        const wrappedRow = (((row % rows) + rows) % rows) >>> 0;
+        let h =
+          (seed ^ Math.imul(wrappedRow + 1, 0x9e3779b1) ^ Math.imul(col + 1, 0x85ebca6b)) >>> 0;
+        h = Math.imul(h ^ (h >>> 16), 0x7feb352d) >>> 0;
+        h = Math.imul(h ^ (h >>> 15), 0x846ca68b) >>> 0;
+        return { t: 's', v: ((h ^ (h >>> 16)) >>> 0) / 4294967296 };
       }
       case 'ramp': {
         const t = clamp01(asScalar(this.input(node, u, v) ?? { t: 's', v: 0 }));

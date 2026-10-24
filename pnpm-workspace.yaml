@@ -3,6 +3,11 @@ packages:
   - examples/*
   - docs-site
 
+# esbuild uses its platform-specific optional package; keep skipping its install script.
+# pnpm 11 requires an explicit decision for dependencies with build scripts.
+allowBuilds:
+  esbuild: false
+
 catalog:
   tsdown: ^0.22.2
   typescript: ^6.0.3

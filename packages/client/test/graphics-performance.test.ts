@@ -71,6 +71,21 @@ describe('sparse graphics work', () => {
     queue.dispose();
   });
 
+  it('promotes a background job ahead of queued normal work on request', async () => {
+    const queue = new FrameAdmissionQueue({ maxJobs: 1, schedule: () => {} });
+    const order: string[] = [];
+    const urgent = queue.run(() => order.push('b'), { priority: 'background' });
+    for (const name of ['n1', 'n2']) void queue.run(() => order.push(name));
+    queue.promote(urgent, { front: true });
+    queue.flush();
+    await urgent;
+    expect(order).toEqual(['b']);
+    queue.flush();
+    queue.flush();
+    expect(order).toEqual(['b', 'n1', 'n2']);
+    queue.dispose();
+  });
+
   it('runs background admission only in budget normal work leaves, and promotes on demand', async () => {
     const samples: AdmissionSample[] = [];
     const queue = new FrameAdmissionQueue({

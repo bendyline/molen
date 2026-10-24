@@ -213,8 +213,16 @@ describe('resolved material set', () => {
       'window',
       'matgraph:molen.worldgen.material.window_punched',
     ) as THREE.MeshStandardMaterial;
-    expect(window.roughnessMap).toBeNull();
-    expect(window.roughness).toBe(77 / 255);
+    // Satin frames and smooth panes: the roughness varies across the window, so it is a map.
+    expect(window.roughnessMap).not.toBeNull();
+    // A uniform roughness stays a scalar; the shingle's stepped courses arrive as a normal map.
+    const shingle = set.materialFor(
+      'roof',
+      'matgraph:molen.worldgen.material.shingle_asphalt',
+    ) as THREE.MeshStandardMaterial;
+    expect(shingle.roughnessMap).toBeNull();
+    expect(shingle.roughness).toBe(230 / 255);
+    expect(shingle.normalMap).not.toBeNull();
     for (const ref of porousRefs) {
       const screen = set.materialFor('wall', ref) as THREE.MeshStandardMaterial;
       expect(screen.transparent).toBe(true);

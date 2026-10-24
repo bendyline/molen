@@ -54,6 +54,7 @@ interface Result {
     colors: Float32Array;
     agricultureRows: Float32Array;
     agricultureSoil: Float32Array;
+    landcoverBlend: Float32Array;
     indices: Uint16Array | Uint32Array;
   };
   error?: string;
@@ -81,6 +82,7 @@ export function installTerrainLandcoverWorker(
           colors: mesh.geometry.getAttribute('color').array as Float32Array,
           agricultureRows: mesh.geometry.getAttribute('agricultureRows').array as Float32Array,
           agricultureSoil: mesh.geometry.getAttribute('agricultureSoil').array as Float32Array,
+          landcoverBlend: mesh.geometry.getAttribute('landcoverBlend').array as Float32Array,
           indices: mesh.geometry.index?.array as Uint16Array | Uint32Array,
         };
         mesh.geometry.dispose();
@@ -146,6 +148,7 @@ export function createTerrainLandcoverWorkerBridge(
       geometry.setAttribute('color', new THREE.BufferAttribute(data.colors, 3));
       geometry.setAttribute('agricultureRows', new THREE.BufferAttribute(data.agricultureRows, 4));
       geometry.setAttribute('agricultureSoil', new THREE.BufferAttribute(data.agricultureSoil, 3));
+      geometry.setAttribute('landcoverBlend', new THREE.BufferAttribute(data.landcoverBlend, 4));
       geometry.setIndex(new THREE.BufferAttribute(data.indices, 1));
       const mesh = new THREE.Mesh(geometry, job.options.materials?.landcover ?? material);
       markTerrainGroundSurface(mesh);

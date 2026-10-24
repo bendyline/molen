@@ -12,7 +12,29 @@ import type { LandmarkDefinitions } from '../kernel/landmark-types';
 import type { PlantPreset } from '../kernel/plant-types';
 import { packedColorAttribute } from './color-attribute';
 import { createPlantGeometry } from './plant-geometry';
+import { createScatterMaterial, setScatterCanopy } from './scatter-material';
 import { createVegetationGeometry } from './vegetation';
+
+/**
+ * Builtins drawn with the procedural plant generator: a garden shrub, about 1.9 m and 2.6 m
+ * across at scale 1, gets leaf clusters and leaf cards like the trees rather than three lumps.
+ */
+const BUILTIN_PLANTS: Readonly<Record<string, PlantPreset>> = {
+  'builtin:shrub': {
+    id: 'molen.builtin.shrub',
+    version: 1,
+    title: 'Garden shrub',
+    family: 'broadleaf',
+    form: 'round',
+    height: 1.9,
+    width: 2.6,
+    crownBase: 0.08,
+    stemRadius: 0.05,
+    lean: 0,
+    foliage: '#628247',
+    bark: '#5b4a39',
+  },
+};
 
 export interface PreparedModel {
   ref: string;
@@ -179,7 +201,8 @@ export class ModelLibrary {
   private readonly prepared = new Map<string, PreparedModel>();
   private readonly pending = new Map<string, Promise<PreparedModel>>();
   private readonly references = new Map<string, number>();
-  private readonly material: THREE.MeshStandardMaterial;
+  private readonly material: THREE.Material;
+  private readonly ownsMaterial: boolean;
 
   constructor(
     private readonly loadModel: ModelLoader | undefined = undefined,
@@ -190,9 +213,15 @@ export class ModelLibrary {
     /** Pack-authored recipes share the same instancing path and have three independent LODs. */
     private readonly plants: Readonly<Record<string, PlantPreset>> = {},
     private readonly fonts: FontLibrary | undefined = undefined,
+    /**
+     * Material for every prepared model, owned by the caller; usually
+     * `createScatterMaterialAsync` for the renderer's backend. Default: the WebGL scatter
+     * material, which other backends draw as a plain vertex-color material.
+     */
+    material?: THREE.Material,
   ) {
-    this.material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.92 });
-    this.material.name = 'worldgen:models';
+    this.ownsMaterial = material === undefined;
+    this.material = material ?? createScatterMaterial();
   }
 
   private key(ref: string, coarse: boolean | 'distant'): string {
@@ -260,15 +289,16 @@ export class ModelLibrary {
   }
 
   private async load(ref: string, coarse: boolean | 'distant'): Promise<PreparedModel> {
-    const plant = this.plants[ref];
+    const plant = this.plants[ref] ?? BUILTIN_PLANTS[ref];
     if (plant !== undefined) {
       const geometry = createPlantGeometry(plant, coarse);
+      setScatterCanopy(geometry, true);
       return {
         ref,
         geometry,
         material: this.material,
         bounds: geometry.boundingBox ?? new THREE.Box3(),
-        builtin: false,
+        builtin: ref.startsWith('builtin:'),
       };
     }
     if (ref.startsWith('builtin:')) {
@@ -279,7 +309,10 @@ export class ModelLibrary {
         this.fonts,
       );
       if (geometry === undefined) throw new Error(`unknown builtin model "${ref}"`);
+      // Primitive texture coordinates would sample the leaf atlas; builtins draw solid.
+      geometry.deleteAttribute('uv');
       geometry.computeBoundingBox();
+      setScatterCanopy(geometry, /^(tree|shrub|bush|hedge)/.test(ref.slice('builtin:'.length)));
       return {
         ref,
         geometry,
@@ -315,6 +348,7 @@ export class ModelLibrary {
       }
     }
     if (geometry === undefined) throw new Error(`model "${ref}" has no mesh geometry`);
+    setScatterCanopy(geometry, false);
     return {
       ref,
       geometry,
@@ -329,6 +363,6 @@ export class ModelLibrary {
     this.references.clear();
     for (const model of this.prepared.values()) model.geometry.dispose();
     this.prepared.clear();
-    this.material.dispose();
+    if (this.ownsMaterial) this.material.dispose();
   }
 }

@@ -14,6 +14,12 @@ export interface DioramaVisualOptions {
   root: THREE.Object3D;
   camera?: THREE.Camera;
   assets?: AssetCache;
+  /**
+   * Light the host scene with the diorama's own point and spot lights (default true). A host that
+   * streams a large world turns them off: three builds every lit shader for the lights in the
+   * scene, so a light arriving or leaving with a diorama rebuilt every object in view in one frame.
+   */
+  localLights?: boolean;
 }
 
 /** Lazy-load the scripting runtime only when a placement is admitted by the director. */
@@ -41,6 +47,11 @@ export async function createDioramaVisual(
     if (options.camera) backend.updateLiveAnimations(renderTick, playback.tickRate, options.camera);
     else backend.setAnimationTick(renderTick, playback.tickRate);
     backend.prepareFrame();
+    // A hidden light never enters the scene's light list. The backend adds lights to this root and
+    // shows each one that reaches the view, every frame, so they are hidden again here, last.
+    if (options.localLights === false)
+      for (const object of root.children)
+        if ((object as THREE.Light).isLight === true) object.visible = false;
   };
   const dispose = (): void => {
     root.removeFromParent();

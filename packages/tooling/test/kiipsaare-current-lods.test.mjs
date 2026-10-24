@@ -6,9 +6,12 @@ import {
   kiipsaareRadius,
 } from '../../worldgen/scripts/kiipsaare-browser-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 const source = resolve('../../content/worldgen/source/places/u6/u6r/kiipsaare_lighthouse'),
-  runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
+  runtime = await runtimeLodFixture(
+    source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
+  );
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
   const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12))),

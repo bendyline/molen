@@ -232,14 +232,15 @@ type MolenAircraftStateData = {
   crashed: boolean;
   waitingForTerrain: boolean;
 };
-/** Kernel-owned state of an ambient NPC (car, pedestrian, train car or aircraft): its lane, position along it, speed and routing. Read it; the ambient systems write it. */
+/** Kernel-owned state of an ambient NPC (car, pedestrian, train car, aircraft or boat): its lane, position along it, speed and routing. Read it; the ambient systems write it. */
 type MolenAmbientAgentData = {
-  kind: 'car' | 'pedestrian' | 'train' | 'aircraft';
+  kind: 'car' | 'pedestrian' | 'train' | 'aircraft' | 'boat';
   type: string;
   color?: string;
   lane: string;
   s: number;
   speed: number;
+  cruise?: number;
   prev?: string;
   next?: string;
   seed: number;
@@ -270,9 +271,9 @@ type MolenAmbientObserverData = {
   despawnRadius?: number;
   density?: number;
 };
-/** On an entity type: makes it an ambient NPC candidate (car, bus, rail car or aircraft) with dimensions, speeds and spawn weight. */
+/** On an entity type: makes it an ambient NPC candidate (car, bus, rail car, aircraft, boat or ferry) with dimensions, speeds and spawn weight. */
 type MolenAmbientRoleData = {
-  role: 'car' | 'bus' | 'rail' | 'aircraft';
+  role: 'car' | 'bus' | 'rail' | 'aircraft' | 'boat' | 'ferry';
   length?: number;
   width?: number;
   height?: number;
@@ -436,6 +437,91 @@ type MolenAudioZoneData = {
       exists: boolean;
     }>;
 };
+/** Waterline-aligned powered hull with data-driven handling and shared seats. */
+type MolenBoatData = {
+  kind: string;
+  spec: {
+    label: string;
+    length: number;
+    width: number;
+    height: number;
+    draft: number;
+    mass: number;
+    thrust: number;
+    maxSpeed: number;
+    reverseSpeed: number;
+    turnRate: number;
+    turnResponse: number;
+    lateralDrag: number;
+    buoyancyFrequency: number;
+    driverEye: [number, number, number];
+  };
+  visual: {
+    wheelNodes: string[];
+    frontWheelNodes: string[];
+    steeringWheelNode?: string;
+    paintMaterial: string;
+    interior?: {
+      nodes: string[];
+      sources?: Record<string, {
+          component: string;
+          path: (string | number)[];
+        }>;
+      bindings: {
+        node: string;
+        source: string;
+        property: 'rotation' | 'position';
+        axis: 'x' | 'y' | 'z';
+        scale?: number;
+        offset?: number;
+        keys?: [number, number][];
+        ease?: 'linear' | 'smooth';
+        min?: number;
+        max?: number;
+      }[];
+    };
+    animation?: {
+      sources?: Record<string, {
+          component: string;
+          path: (string | number)[];
+        }>;
+      bindings: {
+        node: string;
+        source: string;
+        property: 'rotation' | 'position';
+        axis: 'x' | 'y' | 'z';
+        scale?: number;
+        offset?: number;
+        keys?: [number, number][];
+        ease?: 'linear' | 'smooth';
+        min?: number;
+        max?: number;
+      }[];
+    };
+  };
+  color?: string;
+};
+/** Helm intent: signed thrust, steering and low-speed anchor. Only the driver controls it. */
+type MolenBoatInputData = {
+  throttle: number;
+  steering: number;
+  anchor: boolean;
+};
+/** Snapshot-safe hull motion, buoyancy and anchoring; owned by installBoats. */
+type MolenBoatStateData = {
+  speed: number;
+  lateralSpeed: number;
+  velocity: [number, number];
+  yaw: number;
+  yawRate: number;
+  steer: number;
+  pitch: number;
+  roll: number;
+  vy: number;
+  anchored: boolean;
+  grounded: boolean;
+  waitingForWater: boolean;
+};
 /** Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). */
 type MolenCharacterData = {
   speed: number;
@@ -516,7 +602,11 @@ type MolenEnvironmentData = {
       moonIntensity?: number;
       dayAmbient?: number;
       nightAmbient?: number;
+      skyLightSaturation?: number;
       castShadow?: boolean;
+    };
+    dome?: {
+      brightness?: number;
     };
     stars?: {
       enabled?: boolean;
@@ -560,7 +650,11 @@ type MolenEnvironmentData = {
       moonIntensity?: number;
       dayAmbient?: number;
       nightAmbient?: number;
+      skyLightSaturation?: number;
       castShadow?: boolean;
+    };
+    dome?: {
+      brightness?: number;
     };
     stars?: {
       enabled?: boolean;
@@ -779,6 +873,7 @@ type MolenMountableData = {
     role: 'driver' | 'passenger';
     position: [number, number, number];
   }[];
+  entries?: [number, number, number][];
   exits: [number, number, number][];
   reach: number;
 };
@@ -934,6 +1029,19 @@ type MolenVehicleData = {
     pitchStiffness?: number;
     suspensionFrequency?: number;
     suspensionDamping?: number;
+    cycle?: {
+      maxLean: number;
+      riderLean: number;
+      handlebarPivot: [number, number, number];
+      grips: [[number, number, number], [number, number, number]];
+      footrests: [[number, number, number], [number, number, number]];
+      pedals?: {
+        center: [number, number, number];
+        radius: number;
+        halfWidth: number;
+        ratio: number;
+      };
+    };
   };
   visual: {
     wheelNodes: string[];
@@ -997,6 +1105,7 @@ type MolenVehicleStateData = {
   grounded: boolean;
   waitingForTerrain: boolean;
   wheelAngle: number;
+  pedalAngle?: number;
   lateralSpeed?: number;
   yawRate?: number;
   bodyPitch?: number;
@@ -1009,6 +1118,16 @@ type MolenVehicleStateData = {
 type MolenVelocityData = {
   linear: [number, number, number];
   angular: [number, number, number];
+};
+/** Deterministic swells and current for boats; heights and coverage come from the host water field. */
+type MolenWaterData = {
+  waves?: {
+    amplitude: number;
+    wavelength: number;
+    direction: number;
+    speed: number;
+  }[];
+  current?: [number, number];
 };
 /** Singleton physical atmosphere and visual weather: temperature, pressure, humidity, wind, independent cloud cover, precipitation and visibility. Readable by scripts and physics; see guide/weather.md. */
 type MolenWeatherData = {
@@ -1074,11 +1193,11 @@ interface MolenComponentData {
   'aircraftInput': MolenAircraftInputData;
   /** Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. */
   'aircraftState': MolenAircraftStateData;
-  /** Kernel-owned state of an ambient NPC (car, pedestrian, train car or aircraft): its lane, position along it, speed and routing. Read it; the ambient systems write it. */
+  /** Kernel-owned state of an ambient NPC (car, pedestrian, train car, aircraft or boat): its lane, position along it, speed and routing. Read it; the ambient systems write it. */
   'ambientAgent': MolenAmbientAgentData;
   /** Marks the entity ambient NPCs spawn around (usually the player or camera rig), with optional radius and density overrides. */
   'ambientObserver': MolenAmbientObserverData;
-  /** On an entity type: makes it an ambient NPC candidate (car, bus, rail car or aircraft) with dimensions, speeds and spawn weight. */
+  /** On an entity type: makes it an ambient NPC candidate (car, bus, rail car, aircraft, boat or ferry) with dimensions, speeds and spawn weight. */
   'ambientRole': MolenAmbientRoleData;
   /** Kernel-owned ambient bookkeeping on the `$ambient` entity: observer, spawn sequence and policy overrides. */
   'ambientState': MolenAmbientStateData;
@@ -1088,6 +1207,12 @@ interface MolenComponentData {
   'audioSource': MolenAudioSourceData;
   /** Area ambience: a looping sound that fades in as the listener enters a sphere or box around the entity (a waterfall, a machine room, a market). */
   'audioZone': MolenAudioZoneData;
+  /** Waterline-aligned powered hull with data-driven handling and shared seats. */
+  'boat': MolenBoatData;
+  /** Helm intent: signed thrust, steering and low-speed anchor. Only the driver controls it. */
+  'boatInput': MolenBoatInputData;
+  /** Snapshot-safe hull motion, buoyancy and anchoring; owned by installBoats. */
+  'boatState': MolenBoatStateData;
   /** Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). */
   'character': MolenCharacterData;
   /** 2.5D kinematic collider (circle or XZ AABB) with layer/mask bitmasks. */
@@ -1160,6 +1285,8 @@ interface MolenComponentData {
   'vehicleState': MolenVehicleStateData;
   /** Opt-in per-tick body velocity mirror (presence = subscription; plugin-written). */
   'velocity': MolenVelocityData;
+  /** Deterministic swells and current for boats; heights and coverage come from the host water field. */
+  'water': MolenWaterData;
   /** Singleton physical atmosphere and visual weather: temperature, pressure, humidity, wind, independent cloud cover, precipitation and visibility. Readable by scripts and physics; see guide/weather.md. */
   'weather': MolenWeatherData;
   /** A building generated at runtime from an outline in the entity frame, styled by a molen/archstyle@1 in the loaded pack; rendered by the worldgen client entity layer. */
@@ -1174,7 +1301,7 @@ type MolenEntityId = string;
 /** Prefab names declared in the scene. */
 type MolenPrefabName = string;
 /** Registry type ids this project declares (`molen.spawnType`). */
-type MolenTypeId = 'molen.entities.aircraft.airliner' | 'molen.entities.aircraft.oh6' | 'molen.entities.aircraft.p51d' | 'molen.entities.nature.boulder' | 'molen.entities.transit.bus' | 'molen.entities.transit.lightrail' | 'molen.entities.tree.conifer.fir' | 'molen.entities.tree.conifer.pine' | 'molen.entities.tree.deciduous.birch' | 'molen.entities.tree.deciduous.oak' | 'molen.entities.vegetation.shrub' | 'molen.entities.vehicle.compact' | 'molen.entities.vehicle.pickup' | 'molen.entities.vehicle.sedan' | 'molen.entities.vehicle.suv' | 'molen.entities.vehicle.van';
+type MolenTypeId = 'molen.entities.aircraft.airliner' | 'molen.entities.aircraft.oh6' | 'molen.entities.aircraft.p51d' | 'molen.entities.cycle.cargo_bicycle' | 'molen.entities.cycle.city_bicycle' | 'molen.entities.cycle.cruiser_motorcycle' | 'molen.entities.cycle.motor_scooter' | 'molen.entities.cycle.road_bicycle' | 'molen.entities.cycle.standard_motorcycle' | 'molen.entities.nature.boulder' | 'molen.entities.transit.bus' | 'molen.entities.transit.lightrail' | 'molen.entities.tree.conifer.fir' | 'molen.entities.tree.conifer.pine' | 'molen.entities.tree.deciduous.birch' | 'molen.entities.tree.deciduous.oak' | 'molen.entities.vegetation.shrub' | 'molen.entities.vehicle.box_truck' | 'molen.entities.vehicle.compact' | 'molen.entities.vehicle.electric_hatchback' | 'molen.entities.vehicle.offroad' | 'molen.entities.vehicle.pickup' | 'molen.entities.vehicle.sedan' | 'molen.entities.vehicle.sports_coupe' | 'molen.entities.vehicle.station_wagon' | 'molen.entities.vehicle.suv' | 'molen.entities.vehicle.taxi' | 'molen.entities.vehicle.van' | 'molen.entities.watercraft.bulk_carrier' | 'molen.entities.watercraft.car_ferry' | 'molen.entities.watercraft.container_ship' | 'molen.entities.watercraft.fishing_boat' | 'molen.entities.watercraft.passenger_ferry' | 'molen.entities.watercraft.sailboat' | 'molen.entities.watercraft.speedboat' | 'molen.entities.watercraft.tugboat';
 
 /** Command types this scene accepts; this script directory has none. */
 type MolenCommands = Record<never, never>;

@@ -109,6 +109,45 @@ describe('bakeMatGraph', () => {
     expect(a.slots.roughness).toBeDefined();
   });
 
+  it('bricks give each brick a stable random tone and a row phase', () => {
+    const bake = (output: 'random' | 'row') =>
+      bakeMatGraph(
+        validatedGraph({
+          format: 'molen/matgraph@1',
+          size: [16, 16],
+          seed: 5,
+          nodes: [
+            {
+              id: 'b',
+              type: 'bricks',
+              params: { rows: 2, cols: 2, mortarWidth: 0, offset: 0, output },
+            },
+          ],
+          outputs: { baseColor: 'b' },
+        }),
+      ).slots.baseColor?.data ?? new Uint8Array();
+    const random = bake('random');
+    const at = (data: ArrayLike<number>, x: number, y: number): number =>
+      data[(y * 16 + x) * 4] as number;
+    // Uniform within a brick, different between bricks, identical on a re-bake.
+    expect(at(random, 1, 1)).toBe(at(random, 6, 6));
+    expect(at(random, 9, 1)).toBe(at(random, 14, 6));
+    const tones = new Set([at(random, 1, 1), at(random, 9, 1), at(random, 1, 9), at(random, 9, 9)]);
+    expect(tones.size).toBeGreaterThan(1);
+    expect(Array.from(bake('random'))).toEqual(Array.from(random));
+    // The row phase rises across each row and restarts at the next.
+    const row = bake('row');
+    expect(at(row, 3, 1)).toBeLessThan(at(row, 3, 6));
+    expect(at(row, 3, 9)).toBeLessThan(at(row, 3, 6));
+    // The schema default keeps existing graphs a mask.
+    const mask = validatedGraph({
+      format: 'molen/matgraph@1',
+      nodes: [{ id: 'b', type: 'bricks', params: {} }],
+      outputs: { baseColor: 'b' },
+    });
+    expect((mask.nodes[0] as { params: { output: string } }).params.output).toBe('mask');
+  });
+
   it('different seeds give different output', () => {
     const mk = (seed: number) =>
       bakeMatGraph(

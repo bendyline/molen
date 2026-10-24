@@ -3,6 +3,7 @@
 import type { MaterialResolver } from '@bendyline/molen-client';
 import * as THREE from 'three';
 import type { MaterialSlot } from '../kernel/types';
+import type { BuildingMaterialDecorator } from './building-weathering';
 import type { WorldgenMaterialSet } from './upload';
 
 const SLOT_ROUGHNESS: Readonly<Record<MaterialSlot, number>> = {
@@ -28,7 +29,11 @@ export const TEXTURED_SURFACE_MEAN = 0.65;
  * (usually {@link TEXTURED_SURFACE_MEAN}) when the set stands in for textured surfaces.
  */
 export function createVertexColorMaterialSet(
-  options: { surfaceMean?: number } = {},
+  options: {
+    surfaceMean?: number;
+    /** Adds detail to each material it creates, e.g. `createBuildingWeatheringAsync`. */
+    decorate?: BuildingMaterialDecorator;
+  } = {},
 ): WorldgenMaterialSet {
   const materials = new Map<MaterialSlot, THREE.MeshStandardMaterial>();
   return {
@@ -42,6 +47,7 @@ export function createVertexColorMaterialSet(
         });
         if (options.surfaceMean !== undefined) material.color.setScalar(options.surfaceMean);
         material.name = `worldgen:${slot}`;
+        options.decorate?.(material, slot);
         materials.set(slot, material);
       }
       return material;
@@ -74,6 +80,8 @@ export interface ResolvedMaterialSetOptions {
   /** Keep flat placeholders when adding a texture would exceed this shared library budget. */
   maxTextureBytes?: number;
   concurrency?: number;
+  /** Adds detail to each building material, e.g. `createBuildingWeatheringAsync`. */
+  decorate?: BuildingMaterialDecorator;
 }
 
 const TEXTURE_KEYS = [
@@ -95,7 +103,9 @@ export function createResolvedMaterialSet(
   resolver: MaterialResolver,
   options: ResolvedMaterialSetOptions = {},
 ): ResolvedMaterialSet {
-  const flat = createVertexColorMaterialSet();
+  const flat = createVertexColorMaterialSet(
+    options.decorate !== undefined ? { decorate: options.decorate } : {},
+  );
   const prepared = new Map<string, THREE.Material>();
   const sources = new Map<string, THREE.Material>();
   const pending = new Map<string, Promise<void>>();
@@ -166,6 +176,8 @@ export function createResolvedMaterialSet(
       material.copy(source as THREE.MeshStandardMaterial);
       material.vertexColors = true;
       material.name = `worldgen:${ref}`;
+      // A placeholder was decorated when created; copy() keeps its hooks. Glass is a variant.
+      options.decorate?.(material, 'wall');
       for (const key of TEXTURE_KEYS) {
         const texture = material[key];
         if (texture === null || texture === undefined) continue;
@@ -177,7 +189,9 @@ export function createResolvedMaterialSet(
           texture.generateMipmaps = !(material.alphaTest > 0);
           texture.minFilter =
             material.alphaTest > 0 ? THREE.LinearFilter : THREE.LinearMipmapLinearFilter;
-          texture.anisotropy = 4;
+          // Roofs and lots are mostly seen at grazing angles from above; 16x keeps shingles and
+          // seams sharp there instead of falling to a blurred mip, at little cost on current GPUs.
+          texture.anisotropy = 16;
         }
         texture.needsUpdate = true;
       }
@@ -245,6 +259,7 @@ export function createResolvedMaterialSet(
       if (!placeholder) {
         placeholder = flat.materialFor(slot, ref).clone() as THREE.MeshStandardMaterial;
         placeholder.name = `worldgen:${ref}`;
+        options.decorate?.(placeholder, slot);
         // As bright as the texture that replaces it (the upgrade copies the textured color).
         placeholder.color.setScalar(TEXTURED_SURFACE_MEAN);
         placeholders.set(ref, placeholder);

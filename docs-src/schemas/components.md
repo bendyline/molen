@@ -1832,9 +1832,28 @@ Required: none
                   "type": "number",
                   "minimum": 0
                 },
+                "skyLightSaturation": {
+                  "description": "Saturation of the light the sky casts (fill and reflections) relative to the dome colors: 1 (default) lights with the dome palette, lower values toward its luminance. A saturated zenith otherwise tints every surface in shade blue.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
                 "castShadow": {
                   "description": "Sun shadows; also requires environment.shadows. Default true.",
                   "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "dome": {
+              "description": "Sky dome drawing. Filmic tone mapping renders a physically bright clear sky pale; below 1 deepens it.",
+              "type": "object",
+              "properties": {
+                "brightness": {
+                  "description": "Multiplier on the drawn dome color, default 1. Lighting and reflections keep the palette.",
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 4
                 }
               },
               "additionalProperties": false
@@ -2047,9 +2066,28 @@ Required: none
                   "type": "number",
                   "minimum": 0
                 },
+                "skyLightSaturation": {
+                  "description": "Saturation of the light the sky casts (fill and reflections) relative to the dome colors: 1 (default) lights with the dome palette, lower values toward its luminance. A saturated zenith otherwise tints every surface in shade blue.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
                 "castShadow": {
                   "description": "Sun shadows; also requires environment.shadows. Default true.",
                   "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "dome": {
+              "description": "Sky dome drawing. Filmic tone mapping renders a physically bright clear sky pale; below 1 deepens it.",
+              "type": "object",
+              "properties": {
+                "brightness": {
+                  "description": "Multiplier on the drawn dome color, default 1. Lighting and reflections keep the palette.",
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 4
                 }
               },
               "additionalProperties": false

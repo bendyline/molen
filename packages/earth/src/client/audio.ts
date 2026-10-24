@@ -12,6 +12,7 @@ import {
   type AudioRendererLike,
   attachAutoplayUnlock,
   createAudioLayer,
+  listenerFromCamera,
   loadPackSoundbanks,
 } from '@bendyline/molen-client/audio';
 import { Aircraft } from '@bendyline/molen-kernel/aircraft';
@@ -22,6 +23,13 @@ import type {
   AudioSignalBinding,
   WeatherData,
 } from '@bendyline/molen-schema';
+import {
+  earthAudioRegion,
+  earthSoundscapeClips,
+  earthSoundscapeEnvironment,
+  earthSoundscapeSelection,
+} from './audio-soundscape';
+import type { EarthAudioTerrainSample } from './audio-terrain';
 import { type BirdsongLocation, birdsongLevel, loadBirdsongProfiles } from './birdsong';
 
 /** Sources in trees and grass (birds, crickets): full on the ground, gone by 60 m up. */
@@ -47,9 +55,8 @@ const GROUND_AMBIENCE: AudioSignalBinding = {
 
 /**
  * Soundscape rules for Earth views: every decision is data the audio director evaluates. Ground
- * sounds require `host.groundAmbience` (known terrain height, outside a vehicle) and fade with
- * `listener.heightAboveGround` and `host.streetDistance` (meters to the nearest street, measured
- * to the nearest car).
+ * sounds require a known terrain height and fade with `listener.heightAboveGround` and
+ * `host.streetDistance` (meters to the nearest mapped street, with nearby cars as a fallback).
  */
 export const EARTH_AUDIO_ENVIRONMENT: AudioEnvironmentData = {
   buses: { music: 0.45, ambience: 0.85 },
@@ -177,8 +184,21 @@ export const EARTH_AUDIO_ENVIRONMENT: AudioEnvironmentData = {
   ],
   footsteps: {
     sound: 'footstep.grass',
-    surfaces: { concrete: 'footstep.concrete', snow: 'footstep.snow', wood: 'footstep.wood' },
-    strideM: 0.8,
+    surfaces: {
+      concrete: 'footstep.concrete',
+      snow: 'footstep.snow',
+      wood: 'footstep.wood',
+      stone: 'footstep.stone',
+      gravel: 'footstep.gravel',
+      sand: 'footstep.sand',
+      dirt: 'footstep.dirt',
+      leaves: 'footstep.leaves',
+      mud: 'footstep.mud',
+      metal: 'footstep.metal',
+      carpet: 'footstep.carpet',
+    },
+    strideM: 0.75,
+    gain: 0.45,
     when: { 'listener.mode': 'walk' },
   },
   music: {
@@ -211,7 +231,7 @@ export interface EarthAudioFrame {
   /** Listener pose in world meters; default the renderer's camera. */
   position?: [number, number, number];
   forward?: [number, number, number];
-  /** walk, drive, pilot, fly or orbit — drive/pilot suppress outdoor ground ambience. */
+  /** walk, drive, pilot, fly or orbit — drive/pilot default to an enclosed cabin. */
   mode: string;
   grounded?: boolean;
   /**
@@ -225,7 +245,17 @@ export interface EarthAudioFrame {
   /** Optional habitat levels (0..1); omission preserves generic legacy ambience. */
   regionalAmbience?: { birds: number; insects: number; habitat?: string };
   /** Geographic listener and sky clock for recordings supplied by a pack's `birdsong` role. */
-  location?: BirdsongLocation;
+  location?: Pick<BirdsongLocation, 'latitude' | 'longitude'> &
+    Partial<Pick<BirdsongLocation, 'utcMs' | 'sunAltitudeDeg'>>;
+  /** Local solar hour from the rendered sky clock (0..24). */
+  solarHour?: number;
+  /** Mapped surface, streets and water; sampled by the host at a modest cadence. */
+  terrain?: EarthAudioTerrainSample;
+  /** Override the mapped walking surface, e.g. an interior floor or a bridge deck. */
+  surface?: string;
+  /** Enclosed cabin: defaults to drive/pilot. Set false for open boats or outside cameras. */
+  inVehicle?: boolean;
+  indoors?: boolean;
 }
 
 export interface EarthAudio {
@@ -284,8 +314,12 @@ export async function createEarthAudio(
         new Set(banks.flatMap(({ doc }) => Object.keys(doc.sounds))),
         warn,
       );
+  // Curated coverage wins over broad bird palettes, including uncovered places.
+  const clips = earthSoundscapeClips(banks).filter(
+    (clip) => !curatedBirds || clip.category !== 'birds',
+  );
   const birdLayer = EARTH_AUDIO_ENVIRONMENT.ambience?.find((a) => a.sound === 'ambience.birds');
-  const environment = options.environment ?? {
+  const environment = {
     ...EARTH_AUDIO_ENVIRONMENT,
     ambience: [
       ...(EARTH_AUDIO_ENVIRONMENT.ambience ?? []),
@@ -315,7 +349,7 @@ export async function createEarthAudio(
   const layer = createAudioLayer({
     banks,
     provider: packs.assetProvider(),
-    environment,
+    environment: options.environment ?? earthSoundscapeEnvironment(environment, clips),
     renderer,
     ...(options.volume !== undefined ? { volume: options.volume } : {}),
     ...(options.muted !== undefined ? { muted: options.muted } : {}),
@@ -355,24 +389,57 @@ export async function createEarthAudio(
 
   let street = Number.POSITIVE_INFINITY;
   let streetCheckedAt = Number.NEGATIVE_INFINITY;
-  let lastPosition: readonly number[] = [0, 0, 0];
+  let startedAt: number | undefined;
   return {
     layer,
     attachWorld,
     update(frame) {
-      const position = frame.position ?? lastPosition;
-      if (frame.position) lastPosition = frame.position;
+      const position =
+        frame.position ?? listenerFromCamera(renderer.camera, renderer.getWorldOrigin()).position;
+      startedAt ??= frame.nowMs;
       if (frame.nowMs - streetCheckedAt > STREET_CHECK_MS) {
         streetCheckedAt = frame.nowMs;
         street = streetDistance(world, position);
       }
-      const urban = street < PAVEMENT_M;
+      const distance = frame.terrain?.streetDistance ?? street;
+      const urban = distance < PAVEMENT_M;
       const weather = frame.weather ?? renderer.weather?.data;
+      const snow = weather?.precipitation?.kind === 'snow';
+      const rain =
+        weather?.precipitation?.kind === 'rain' ? (weather.precipitation.intensity ?? 0) : 0;
+      const mapped = frame.surface ?? frame.terrain?.surface;
+      const baseSurface = mapped ?? (urban ? 'concrete' : 'grass');
       const surface =
-        weather?.precipitation?.kind === 'snow' ? 'snow' : urban ? 'concrete' : 'grass';
+        frame.surface ??
+        (snow && !frame.indoors
+          ? 'snow'
+          : rain > 0.5 && ['dirt', 'leaves'].includes(baseSurface)
+            ? 'mud'
+            : baseSurface);
+      const daylight = renderer.sky?.frame?.daylight ?? 1;
+      const hour = frame.solarHour ?? 12;
+      const dawn = hour >= 4 && hour <= 9 ? 1 : 0.65;
+      const warm = Math.max(
+        0,
+        Math.min(1, ((weather?.atmosphere?.temperatureK ?? 288.15) - 278.15) / 12),
+      );
+      const cabin = frame.inVehicle ?? ['drive', 'pilot'].includes(frame.mode);
+      const region = earthAudioRegion(frame.location?.latitude, frame.location?.longitude);
+      const birdLocation =
+        frame.location?.utcMs !== undefined && frame.location.sunAltitudeDeg !== undefined
+          ? {
+              ...frame.location,
+              utcMs: frame.location.utcMs,
+              sunAltitudeDeg: frame.location.sunAltitudeDeg,
+            }
+          : undefined;
+      const barren = ['sand', 'beach', 'rock', 'bare_rock', 'snow', 'ice', 'glacier'].includes(
+        frame.terrain?.habitat ?? '',
+      );
       const listener: Partial<AudioListenerState> = {
         mode: frame.mode,
         surface,
+        indoors: frame.indoors ?? false,
         ...(frame.position ? { position: frame.position, up: [0, 1, 0] } : {}),
         ...(frame.forward ? { forward: frame.forward } : {}),
         ...(frame.grounded !== undefined ? { grounded: frame.grounded } : {}),
@@ -386,11 +453,23 @@ export async function createEarthAudio(
           urban,
           // Streamed tiles may not cover the camera (especially when looking down from high
           // above). An absent height otherwise resolves to zero in the generic audio layer.
-          groundAmbience:
-            Number.isFinite(frame.heightAboveGround) &&
-            frame.mode !== 'drive' &&
-            frame.mode !== 'pilot',
-          streetDistance: street,
+          groundAmbience: Number.isFinite(frame.heightAboveGround) && !cabin,
+          terrainKnown: Number.isFinite(frame.heightAboveGround),
+          streetDistance: distance,
+          coastDistance: frame.terrain?.coastDistance ?? Number.MAX_VALUE,
+          riverDistance: frame.terrain?.riverDistance ?? Number.MAX_VALUE,
+          outdoorGain: cabin ? 0.18 : frame.indoors ? 0.28 : 1,
+          birdActivity:
+            Math.max(0, Math.min(1, (daylight - 0.15) / 0.4)) *
+            dawn *
+            (1 - rain) *
+            (urban ? 0.5 : 1) *
+            (barren ? 0.1 : 1),
+          nightActivity: Math.max(0, 1 - daylight / 0.3) * warm * (1 - rain) * (barren ? 0 : 1),
+          insectActivity: daylight * warm * (1 - rain) * 0.75 * (barren ? 0 : 1),
+          rainActivity: rain,
+          trafficActivity: 0.4 + 0.6 * daylight,
+          ...earthSoundscapeSelection(clips, region, (frame.nowMs - startedAt) / 1000),
           regionalBirds: Math.max(0, Math.min(1, frame.regionalAmbience?.birds ?? 1)),
           regionalInsects: Math.max(0, Math.min(1, frame.regionalAmbience?.insects ?? 1)),
           // Once a curated catalog is present, uncovered places/seasons stay quiet.
@@ -398,7 +477,7 @@ export async function createEarthAudio(
           ...Object.fromEntries(
             birdProfiles.map((p, i) => [
               `birdsong${i}`,
-              birdsongLevel(p, frame.location, frame.regionalAmbience?.habitat) *
+              birdsongLevel(p, birdLocation, frame.regionalAmbience?.habitat) *
                 Math.max(0, Math.min(1, frame.regionalAmbience?.birds ?? 0)),
             ]),
           ),

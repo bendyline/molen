@@ -8,9 +8,12 @@ import {
   buildKopuSkyline,
 } from '../../worldgen/scripts/kopu-current-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 const source = resolve('../../content/worldgen/source/places/u6/u6r/kopu_lighthouse'),
-  runtime = source.replace('\\source\\', '\\assets\\').replace('/source/', '/assets/');
+  runtime = await runtimeLodFixture(
+    source.replace('\\source\\', '\\assets\\').replace('/source/', '/assets/'),
+  );
 const read = async (p) => JSON.parse(await readFile(p));
 it('matches every mapped ground vertex, maintains four buttresses and the37.7m upper tower', async () => {
   const f = await read(source + '/map-frame.json');

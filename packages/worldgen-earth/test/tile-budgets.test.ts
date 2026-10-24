@@ -22,4 +22,21 @@ describe('tile budgets', () => {
       worldgenTileBudgetForQuality('economy', 0).maxInstances,
     );
   });
+
+  it('holds High building geometry under half when asked for compact buildings', () => {
+    for (const level of [0, 1]) {
+      const full = worldgenTileBudgetForQuality('high', level);
+      const compact = worldgenTileBudgetForQuality('high', level, { compactBuildings: true });
+      expect(compact.maxBuildingVertices).toBeLessThan(full.maxBuildingVertices);
+      expect(compact.maxBuildingVertices).toBeGreaterThan(
+        worldgenTileBudgetForQuality('balanced', level).maxBuildingVertices,
+      );
+      // Only the geometry budget changes; counts, detail and scatter stay with the preset.
+      expect({ ...compact, maxBuildingVertices: 0 }).toEqual({ ...full, maxBuildingVertices: 0 });
+    }
+    for (const quality of ['economy', 'balanced'] as const)
+      expect(worldgenTileBudgetForQuality(quality, 0, { compactBuildings: true })).toEqual(
+        worldgenTileBudgetForQuality(quality, 0),
+      );
+  });
 });

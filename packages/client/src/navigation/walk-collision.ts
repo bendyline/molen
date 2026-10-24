@@ -30,6 +30,13 @@ export interface WalkCollisionOptions {
   rescanIntervalMs?: number;
   /** Clock for the rescan interval, ms (default `performance.now`). */
   now?: () => number;
+  /**
+   * Collide with each instance of an instanced mesh as its bounding box, twelve triangles, instead
+   * of its own triangles (default false). An aircraft's neighborhood over a forest held 100k
+   * triangles of shrubs and crowns, about 110 ms to rebuild every 24 m; its probes and camera
+   * rays need the trees' extent, not their leaves.
+   */
+  instanceBounds?: boolean;
 }
 
 interface CollisionMesh {
@@ -66,6 +73,7 @@ export class WalkCollision {
   private readonly verticalRadius: number | undefined;
   private readonly rescanIntervalMs: number;
   private readonly now: () => number;
+  private readonly instanceBounds: boolean;
   private meshes: CollisionMesh[] = [];
   private initialized = false;
   /** Vertical center of the current neighborhood, or undefined when it spans the whole column. */
@@ -90,6 +98,7 @@ export class WalkCollision {
         : requireFinite(resolved.verticalRadius, 'verticalRadius', false);
     this.rescanIntervalMs = requireFinite(resolved.rescanIntervalMs ?? 0, 'rescanIntervalMs', true);
     this.now = resolved.now ?? (() => performance.now());
+    this.instanceBounds = resolved.instanceBounds ?? false;
   }
 
   /**
@@ -253,7 +262,8 @@ export class WalkCollision {
       const start = geometry.drawRange.start;
       const end = Math.min(index?.count ?? position.count, start + geometry.drawRange.count);
       const doubleSided = mesh.userData.walkDoubleSided === true;
-      const spatial = triangleIndexFor(geometry);
+      const boxes = this.instanceBounds && mesh instanceof THREE.InstancedMesh;
+      const spatial = boxes ? undefined : triangleIndexFor(geometry);
       const visit = (vertex: number): void => {
         if (vertex < start || vertex + 2 >= end) return;
         a.fromBufferAttribute(position, index?.getX(vertex) ?? vertex).applyMatrix4(transform);
@@ -285,6 +295,10 @@ export class WalkCollision {
         } else transform.copy(local);
         bounds.copy(geometry.boundingBox as THREE.Box3).applyMatrix4(transform);
         if (!inside()) continue;
+        if (boxes) {
+          addBox(this.octree, geometry.boundingBox as THREE.Box3, transform);
+          continue;
+        }
         if (spatial === undefined) {
           for (let vertex = start; vertex + 2 < end; vertex += 3) visit(vertex);
           continue;
@@ -300,5 +314,54 @@ export class WalkCollision {
       }
     }
     this.octree.build();
+  }
+}
+
+const BOX_FACES = [
+  [0, 2, 6, 4],
+  [1, 5, 7, 3],
+  [0, 4, 5, 1],
+  [2, 3, 7, 6],
+  [0, 1, 3, 2],
+  [4, 6, 7, 5],
+] as const;
+const corners = Array.from({ length: 8 }, () => new THREE.Vector3());
+const boxCenter = new THREE.Vector3();
+const faceCenter = new THREE.Vector3();
+const edge = new THREE.Vector3();
+const across = new THREE.Vector3();
+
+/**
+ * Add `box`, placed by `transform`, as twelve outward-facing triangles: rays test front faces only.
+ * A box collapsed to a point (a hidden instance) adds nothing.
+ */
+function addBox(tree: CollisionTree, box: THREE.Box3, transform: THREE.Matrix4): void {
+  corners.forEach((corner, index) => {
+    corner
+      .set(
+        index & 1 ? box.max.x : box.min.x,
+        index & 2 ? box.max.y : box.min.y,
+        index & 4 ? box.max.z : box.min.z,
+      )
+      .applyMatrix4(transform);
+  });
+  const [first] = corners as [THREE.Vector3];
+  if (corners.every((corner) => corner.equals(first))) return;
+  boxCenter.set(0, 0, 0);
+  for (const corner of corners) boxCenter.add(corner);
+  boxCenter.multiplyScalar(1 / 8);
+  for (const face of BOX_FACES) {
+    const [a, b, c, d] = face.map((index) => corners[index] as THREE.Vector3) as [
+      THREE.Vector3,
+      THREE.Vector3,
+      THREE.Vector3,
+      THREE.Vector3,
+    ];
+    faceCenter.copy(a).add(b).add(c).add(d).multiplyScalar(0.25).sub(boxCenter);
+    // A mirroring transform reverses every face; wind each one to face away from the center.
+    const outward = edge.subVectors(b, a).cross(across.subVectors(c, a)).dot(faceCenter) >= 0;
+    const [p, q, r, t] = outward ? [a, b, c, d] : [a, d, c, b];
+    tree.addTriangle(new THREE.Triangle(p.clone(), q.clone(), r.clone()));
+    tree.addTriangle(new THREE.Triangle(p.clone(), r.clone(), t.clone()));
   }
 }

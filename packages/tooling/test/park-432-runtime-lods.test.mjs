@@ -1,12 +1,13 @@
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { park432Center } from '../../worldgen/scripts/park-432-runtime-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/dr/dr5/432_park_avenue'),
-  runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
+  runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
   const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12))),

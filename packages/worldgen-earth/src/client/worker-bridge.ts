@@ -37,6 +37,8 @@ export interface WorldgenGenerateRequest {
   budgets?: Partial<WorldgenBudgets>;
   features?: { buildings?: boolean; scatter?: boolean; interiors?: boolean };
   tierOffset?: number;
+  /** Extra keep multiplier on the plant scatter (default 1). */
+  keep?: number;
 }
 
 /** Produces tile output somewhere: in a worker, in-thread, or from a cache in front of either. */
@@ -137,6 +139,7 @@ export function createWorldgenWorkerBridge(
         ...(request.budgets !== undefined ? { budgets: request.budgets } : {}),
         ...(request.features !== undefined ? { features: request.features } : {}),
         ...(request.tierOffset !== undefined ? { tierOffset: request.tierOffset } : {}),
+        ...(request.keep !== undefined ? { keep: request.keep } : {}),
       };
       return new Promise((resolve, reject) => {
         const onAbort = (): void => {
@@ -163,6 +166,35 @@ export function createWorldgenWorkerBridge(
       for (const waiter of pending.values()) waiter.resolve(undefined);
       pending.clear();
       if (options.ownsWorker !== false) worker.terminate?.();
+    },
+  };
+}
+
+/**
+ * Several identically configured workers behind one generator: each tile goes to the worker with
+ * the fewest tiles in flight. Generation is deterministic per tile, so which worker builds it
+ * does not change the output; a city's first view no longer waits on one worker's queue.
+ */
+export function createWorldgenWorkerPool(
+  workers: readonly WorkerLike[],
+  options: WorldgenWorkerBridgeOptions,
+): WorldgenGenerator {
+  if (workers.length === 0) throw new Error('A worldgen worker pool needs at least one worker');
+  const members = workers.map((worker) => ({
+    bridge: createWorldgenWorkerBridge(worker, options),
+    busy: 0,
+  }));
+  return {
+    generate(request, signal) {
+      let target = members[0] as (typeof members)[number];
+      for (const member of members) if (member.busy < target.busy) target = member;
+      target.busy++;
+      return target.bridge.generate(request, signal).finally(() => {
+        target.busy--;
+      });
+    },
+    dispose(): void {
+      for (const member of members) member.bridge.dispose();
     },
   };
 }

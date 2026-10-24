@@ -158,8 +158,10 @@ collision, splash, accumulation or wet-material response.
 
 ## World explorer
 
-The Weather dropdown includes Sunny / clear, Partly cloudy, Overcast, Rain, Snow and Fog.
-Weather details mixes cloud coverage/density/altitude, precipitation, intensity, visibility,
+The Weather dropdown includes Fair, Sunny / clear, Partly cloudy, Overcast, Rain, Snow and Fog.
+The explorer opens on Fair, its own preset: Sunny with scattered fair-weather cumulus (30%
+coverage at 45% density, in 24 km cells rather than the default 16 km), so a street-level sky is
+not a bare gradient and the deck breaks into separate clouds instead of streaks at the horizon. Weather details mixes cloud coverage/density/altitude, precipitation, intensity, visibility,
 temperature, pressure and wind, marking the profile Custom. Temperature and pressure controls
 refer to sea level, displayed in °C and hPa and stored in kelvin and pascals. The same component
 is installed in the explorer's vehicle/aircraft simulation.

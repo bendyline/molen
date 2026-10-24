@@ -9,10 +9,103 @@
       "params": { "kind": "simplex", "octaves": 4, "scale": 10, "seedOffset": 8 }
     },
     {
-      "id": "out",
+      "id": "base",
       "type": "ramp",
       "input": "sheet",
-      "params": { "stops": [{ "t": 0, "color": "#d3d3d1" }, { "t": 1, "color": "#ebebe8" }] }
+      "params": { "stops": [{ "t": 0, "color": "#cdcdc9" }, { "t": 1, "color": "#f0f0ed" }] }
+    },
+    {
+      "id": "roll",
+      "type": "bricks",
+      "params": { "rows": 2, "cols": 1, "mortarWidth": 0, "offset": 0.5, "output": "row" }
+    },
+    {
+      "id": "seams",
+      "type": "ramp",
+      "input": "roll",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#a8a8a4" },
+          { "t": 0.02, "color": "#c6c6c2" },
+          { "t": 0.04, "color": "#f6f6f4" },
+          { "t": 0.055, "color": "#ffffff" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "laps",
+      "type": "bricks",
+      "params": { "rows": 2, "cols": 1, "mortarWidth": 0.004, "offset": 0.5 }
+    },
+    {
+      "id": "end-laps",
+      "type": "ramp",
+      "input": "laps",
+      "params": { "stops": [{ "t": 0, "color": "#b4b4b0" }, { "t": 1, "color": "#ffffff" }] }
+    },
+    {
+      "id": "ponding-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 3, "scale": 3, "seedOffset": 21 }
+    },
+    {
+      "id": "ponding",
+      "type": "levels",
+      "input": "ponding-noise",
+      "params": { "outMin": 0.82, "outMax": 1 }
+    },
+    {
+      "id": "grime-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 3, "scale": 5, "seedOffset": 13 }
+    },
+    {
+      "id": "grime",
+      "type": "levels",
+      "input": "grime-noise",
+      "params": { "outMin": 0.8, "outMax": 1 }
+    },
+    {
+      "id": "speck-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 2, "scale": 48, "seedOffset": 33 }
+    },
+    {
+      "id": "speck",
+      "type": "levels",
+      "input": "speck-noise",
+      "params": { "outMin": 0.88, "outMax": 1 }
+    },
+    {
+      "id": "seamed",
+      "type": "blend",
+      "inputs": { "a": "base", "b": "seams" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "lapped",
+      "type": "blend",
+      "inputs": { "a": "seamed", "b": "end-laps" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "stained",
+      "type": "blend",
+      "inputs": { "a": "lapped", "b": "ponding" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "grimed",
+      "type": "blend",
+      "inputs": { "a": "stained", "b": "grime" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "grimed", "b": "speck" },
+      "params": { "mode": "multiply", "factor": 1 }
     },
     { "id": "rough", "type": "const", "params": { "value": 0.88 } }
   ],

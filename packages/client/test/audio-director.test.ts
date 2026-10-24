@@ -335,6 +335,34 @@ describe('events and scripts', () => {
 });
 
 describe('footsteps and music', () => {
+  it('varies all footstep clips with a paused simulation tick and ignores bob, jumps and teleports', () => {
+    const d = director({
+      footsteps: { sound: 'footstep.grass', strideM: 0.75, when: { 'listener.mode': 'walk' } },
+    });
+    const source = new FakeSource();
+    const refs: string[] = [];
+    for (let i = 0; i < 60; i++)
+      refs.push(
+        ...starts(
+          d.update({
+            nowMs: i * 300,
+            source,
+            listener: { position: [i * 0.8, 2, 0], mode: 'walk', grounded: true },
+          }),
+        ).map((s) => s.ref),
+      );
+    expect(new Set(refs).size).toBe(3);
+    expect(refs.every((ref, i) => i === 0 || ref !== refs[i - 1])).toBe(true);
+    const update = (nowMs: number, x: number, y: number, grounded = true) =>
+      starts(
+        d.update({ nowMs, source, listener: { position: [x, y, 0], mode: 'walk', grounded } }),
+      );
+    expect(update(19000, 47.2, 4)).toEqual([]);
+    expect(update(19300, 47.2, 2)).toEqual([]);
+    expect(update(19600, 49, 3, false)).toEqual([]);
+    expect(update(19900, 51, 2)).toEqual([]);
+    expect(update(20200, 5000, 2)).toEqual([]);
+  });
   it('steps every stride while walking, with surface overrides', () => {
     const d = director({
       footsteps: {

@@ -101,6 +101,14 @@ describe('ambient renderer', () => {
     const world = busyWorld();
     const parent = new THREE.Group();
     const loads: string[] = [];
+    // Nearly clear authored glazing, as the shipped car models have.
+    const glazing = new THREE.MeshStandardMaterial({
+      name: 'vehicle-glass',
+      color: '#6b919f',
+      transparent: true,
+      opacity: 0.16,
+      roughness: 0.3,
+    });
     const renderer = createAmbientRenderer({
       world,
       parent,
@@ -114,7 +122,7 @@ describe('ambient renderer', () => {
             new THREE.MeshStandardMaterial({ name: 'paint' }),
           );
           body.name = 'body';
-          model.add(body);
+          model.add(body, new THREE.Mesh(new THREE.BoxGeometry(1, 0.4, 1), glazing));
           return model;
         },
         vehicle: (type) =>
@@ -146,6 +154,21 @@ describe('ambient renderer', () => {
     expect(loads.length).toBeGreaterThan(0);
     expect(renderer.stats().detailedCars).toBeGreaterThan(0);
     expect(renderer.stats().detailedCars).toBeLessThanOrEqual(3);
+    // Traffic glass reads tinted and glossy; the loaded model's own material is untouched.
+    const glass: THREE.MeshStandardMaterial[] = [];
+    parent.traverse((o) => {
+      const material = (o as THREE.Mesh).material as THREE.MeshStandardMaterial | undefined;
+      if ((o as THREE.Mesh).isMesh && material?.name === 'vehicle-glass') glass.push(material);
+    });
+    expect(glass.length).toBeGreaterThan(0);
+    for (const material of glass) {
+      expect(material.opacity).toBeGreaterThanOrEqual(0.62);
+      expect(material.roughness).toBeLessThanOrEqual(0.08);
+      expect(material.color.getHSL({ h: 0, s: 0, l: 0 }).l).toBeLessThan(
+        glazing.color.getHSL({ h: 0, s: 0, l: 0 }).l,
+      );
+    }
+    expect(glazing.opacity).toBe(0.16);
     renderer.update([99_999, 0, 99_999], 0.25);
     renderer.update([99_999, 0, 99_999], 0.25);
     expect(renderer.stats().detailedCars).toBe(0);

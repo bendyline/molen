@@ -140,7 +140,10 @@ export class EarthVehicles {
 
   constructor(options: EarthVehiclesOptions) {
     this.ownsWorld = options.world === undefined;
-    this.world = options.world ?? new World({ tickRate: 60, seed: 'earth-vehicles' });
+    // A main-thread render-side world: the dev freeze and finiteness walk on every write cost
+    // more than the whole traffic simulation at city scale.
+    this.world =
+      options.world ?? new World({ tickRate: 60, seed: 'earth-vehicles', devFreeze: false });
     this.root = options.root;
     this.sampleHeight = options.sampleHeight;
     this.loadModel = options.loadModel;
@@ -734,7 +737,12 @@ export class EarthVehicles {
   }
   /** Advance the world by `dt` seconds in fixed ticks (the shared world's owner calls this). */
   step(dt: number): void {
-    this.accumulator += Math.min(0.1, Math.max(0, dt));
+    // At most three ticks per frame: below 20 FPS the world runs slow instead of spending each
+    // slow frame catching up, which made the next frame slower still.
+    this.accumulator = Math.min(
+      this.accumulator + Math.min(0.1, Math.max(0, dt)),
+      this.world.dt * 3,
+    );
     while (this.accumulator >= this.world.dt) {
       this.world.step();
       this.accumulator -= this.world.dt;

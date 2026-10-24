@@ -7,6 +7,7 @@ import type { MeshPhysicalNodeMaterial, Node } from 'three/webgpu';
 import { appendAgricultureAttributes } from './agriculture-surface';
 import { markTerrainWaterSurface } from './ground-cutout';
 import { createTerrainGroundMaterial } from './ground-material';
+import { applyLandcoverBlend, type LandcoverBlendRange } from './landcover-blend';
 import { visibleLandcoverPolygons } from './landcover-surface';
 import { appendTerrainSurfaceArea, TerrainSurfaceMeshBuilder } from './linear-features';
 import {
@@ -649,6 +650,8 @@ export function createLandcoverMesh(
 ): THREE.Mesh | undefined {
   const builder = new TerrainSurfaceMeshBuilder(context);
   const visible = visibleLandcoverPolygons(tile.landcover);
+  const ranges: LandcoverBlendRange[] = [];
+  const colorsAt: ((x: number, z: number) => THREE.Color)[] = [];
   for (let featureIndex = 0; featureIndex < tile.landcover.length; featureIndex++) {
     const feature = tile.landcover[featureIndex];
     if (feature === undefined) continue;
@@ -674,20 +677,31 @@ export function createLandcoverMesh(
               )?.color ?? color
             );
           };
-    // Retain the authored layer heights below pavement; covered faces were removed above.
-    const offset =
-      (options.landcoverOffset ?? 0.18) +
-      (featureIndex / Math.max(1, tile.landcover.length - 1)) * 0.064;
+    // One height for every class: covered faces were removed above, so neighbors meet edge to
+    // edge. Staggered layers left a sliver at each boundary that a grazing view saw through
+    // once the covered terrain beneath stopped drawing.
+    const offset = options.landcoverOffset ?? 0.18;
     const start = builder.vertexCount;
     for (const polygon of visible[featureIndex] ?? [])
       appendTerrainSurfaceArea(builder, polygon, colorAt, offset);
     appendAgricultureAttributes(builder, start, feature);
+    colorsAt[featureIndex] = typeof colorAt === 'function' ? colorAt : () => colorAt;
+    if (builder.vertexCount > start)
+      ranges.push({ start, end: builder.vertexCount, feature: featureIndex });
   }
   const mesh = builder.mesh(
     'semantic:landcover',
     options.materials?.landcover ?? DEFAULT_LANDCOVER_MATERIAL,
   );
   if (mesh) {
+    applyLandcoverBlend(
+      mesh.geometry,
+      tile.landcover,
+      ranges,
+      context.tileSize,
+      (feature, x, z) => (colorsAt[feature] as (x: number, z: number) => THREE.Color)(x, z),
+      (array, size) => new THREE.BufferAttribute(array, size),
+    );
     mesh.userData.shadowCaster = false;
     // Grid interiors share vertices; retain indexed buffers for broad land-cover footprints.
     const geometry = mesh.geometry;

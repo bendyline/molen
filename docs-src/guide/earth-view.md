@@ -57,14 +57,19 @@ Pass `reflections: false` for the legacy light-only appearance. A host-assigned
 `view.viewer.renderer.scene.environment` takes precedence if you supply your own HDR environment.
 
 Without a `style`, the view uses the shared medium-fi look: a strong warm sun over a sky fill,
-Khronos PBR Neutral tone mapping, and haze in the sky's horizon color. Its values are exported as
+ACES filmic tone mapping, and haze in the sky's horizon color. Its values are exported as
 `EARTH_SKY_PALETTE`, `EARTH_LIGHTING`, `EARTH_TONE_MAPPING`, `EARTH_EXPOSURE` and
 `EARTH_WATER_COLOR`, so a host that builds its own viewer can match it. `earthHazeColor` converts
 a sky color into the fog color for the backend. Terrain and landcover share one ground material
 from `createTerrainGroundMaterialAsync` (`@bendyline/molen-terrain/client`) with world-space
 variation; a custom host passes it to the terrain stream's `material` and to `createEarthWorldgen`
-as `groundMaterial`, and calls `setTerrainGroundOrigin` with the world origin each frame. The
-[medium-fi style guide](medium-fi.md) explains the look and the rules models follow inside it.
+as `groundMaterial`, and calls `setTerrainGroundOrigin` with the world origin each frame. Roads,
+sidewalks and lots take `createTerrainPavementMaterialAsync` through the surface renderer's
+`setMaterial`, with the same origin call. Trees, shrubs and props take
+`createScatterMaterialAsync` (`@bendyline/molen-worldgen/client`) as `createEarthWorldgen`'s
+`modelMaterial`, and generated buildings `createBuildingWeatheringAsync` as its
+`buildingDecorator`. The [medium-fi style guide](medium-fi.md) explains the look and the rules
+models follow inside it.
 
 `style` sets the look: `sky.sunElevation` and `sky.sunAzimuth` (degrees; the azimuth is a
 compass bearing, 0 north and clockwise) place the sun, and unless `environment.sun.direction` is
@@ -78,7 +83,9 @@ neutral olive.
 Buildings, trees and landmarks cast sun shadows onto everything around what the camera frames:
 the orbit target (sized to the view), or a little ahead of the walker, car or aircraft. The
 shadow map follows that focus in whole texels, so edges hold still as it moves. Adaptive quality
-turns shadows off at its two lowest levels; `shadows: false` turns them off entirely.
+turns shadows off at its two lowest levels; `shadows: false` turns them off entirely. Only layer
+parts taller than `EARTH_SHADOW_CASTER_HEIGHT` (3.5 m) cast: shrubs, brambles and saplings stay
+out of the shadow pass, where their shadows would mostly fall inside the canopy's.
 
 `touchJoystickContainer` adds an on-screen movement stick while walking, driving or flying. By default it
 appears only on touch devices; pass `touchJoystick: 'always'` to show it everywhere.
@@ -954,12 +961,15 @@ These regional forms are visual priors, not surveyed attributes of individual bu
 
 ## Sound
 
-With the `molen.sounds` pack in `content`, the view plays the Earth soundscape: rain and wind
-from the weather, birds by day and crickets at night, traffic near streets, footsteps while
-walking, and an engine on the car or aircraft you board. Birds, crickets and traffic come from
-the ground, so they fade as the view rises above the terrain: birds and crickets are silent by
-60 m and traffic by 100 m. They also fade out while driving or piloting, or while the terrain
-height is unknown. Traffic also fades with distance from the nearest street. Sound starts on the first click or
+With the `molen.sounds` pack in `content`, the view plays 100 contextual sounds: 88 recorded
+ambience beds and 12 walking surfaces, alongside vehicle engines and music. Rain and wind
+follow weather, morning birds and warm-night crickets/frogs follow the rendered sky clock,
+and broad regional palettes follow geographic location. Surf fades away from mapped ocean
+shores; rivers and traffic follow nearby watercourses and streets. Enclosed cockpits smoothly
+reduce outdoor ambience to 18%; open boats and exterior cameras retain outside sound.
+Mapped ground materials, rain and snow select walking sounds. Birds, crickets and traffic come from
+the ground, so they fade as the view rises above the terrain and are gone a few hundred meters
+up. Unknown terrain height silences ground ambience. Traffic also fades with distance from the nearest street. Sound starts on the first click or
 key press. The `audioready` event fires once it has loaded, and then `view.audio` sets volume,
 mute and bus gains (`view.audio.setBusGain('music', 0)` turns music off).
 
@@ -969,9 +979,19 @@ view.on('audioready', () => view.audio?.setMuted(localStorage.getItem('muted') =
 ```
 
 Pass `audio: false` to keep the view silent, or `audio: { environment }` to replace the rules.
-The default rules are exported as `EARTH_AUDIO_ENVIRONMENT`, and `createEarthAudio` builds the
-same soundscape for a host that composes its own view. See [Sound and music](audio.md) for the
-rule format.
+The legacy/default rules are exported as `EARTH_AUDIO_ENVIRONMENT`; `createEarthAudio` extends
+them using bank tags `earth:category:*` and `earth:region:*` unless given a custom environment.
+A composing host passes `location`, `solarHour`, `terrain`, and `inVehicle` to `update`.
+`EarthAudioTerrain.observer` can wrap water, landcover and features renderers with
+`observeSemanticTiles`; sample it at about 4 Hz for coast/river/street distances and ground
+material. `surface` overrides the mapped walking material, and `indoors` attenuates outdoor
+ambience for a host that detects interiors. Missing mapped data uses conservative fallbacks;
+lakes do not produce surf, and wildlife rendering density does not mute regional ambience.
+A pack's `birdsong` catalog replaces broad bird palettes with curated recordings selected by
+geography, habitat, season and sunlight; uncovered places stay quiet. The default pack includes
+eight such recordings. Hosts pass the sky's `utcMs` and `sunAltitudeDeg` in `location`, along with
+`regionalAmbience.habitat` and habitat levels. Curated birds fade out inside enclosed vehicles.
+See [Sound and music](audio.md) for the rule format.
 
 The composing pieces are exported too, for hosts that build their own view: `createEarthWorldgen`,
 `EarthVehicles`, `EarthAmbient` with `observeSemanticTiles`, `createEarthSky`/`createEarthFog`,

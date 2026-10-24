@@ -18,8 +18,14 @@ function clip(
       db = distance(b);
     if (da >= 0) result.push(a);
     if (da >= 0 !== db >= 0) {
-      const t = da / (da - db);
-      result.push([a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]);
+      // Cut from the edge's lower endpoint whichever way this polygon walks it, so a neighbor
+      // walking the shared edge the other way gets the bit-identical point. Otherwise the two
+      // meshes differ in the last bit there and the gap sparkles as a dotted line.
+      const forward = a[0] < b[0] || (a[0] === b[0] && a[1] <= b[1]);
+      const p = forward ? a : b,
+        q = forward ? b : a;
+      const t = forward ? da / (da - db) : db / (db - da);
+      result.push([p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t]);
     }
   }
   return result;

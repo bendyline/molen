@@ -51,6 +51,7 @@ export interface WorldgenWorkerGenerate {
   budgets?: Partial<WorldgenBudgets>;
   features?: { buildings?: boolean; scatter?: boolean; interiors?: boolean };
   tierOffset?: number;
+  keep?: number;
 }
 
 export interface WorldgenWorkerCancel {
@@ -127,6 +128,7 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
           ...(request.budgets !== undefined ? { budgets: request.budgets } : {}),
           ...(request.features !== undefined ? { features: request.features } : {}),
           ...(request.tierOffset !== undefined ? { tierOffset: request.tierOffset } : {}),
+          ...(request.keep !== undefined ? { keep: request.keep } : {}),
         },
         STEP_EVERY_BUILDINGS,
       );

@@ -55,6 +55,7 @@ import {
   createProfiledTerrainPackageSemanticLayers,
   createTerrainGroundMaterialAsync,
   createTerrainPackagePyramidStream,
+  createTerrainPavementMaterialAsync,
   createTerrainSurfaceRenderer,
   createTerrainSurfaceWorkerBridge,
   createTerrainWaterMaterialAsync,
@@ -78,10 +79,11 @@ import {
   wgs84ToWorld,
   worldToWgs84,
 } from '@bendyline/molen-terrain/kernel';
-import type {
-  ScreenSpaceLodPolicy,
-  StructureStreamingOptions,
-  StructureStreamingStats,
+import {
+  createScatterMaterialAsync,
+  type ScreenSpaceLodPolicy,
+  type StructureStreamingOptions,
+  type StructureStreamingStats,
 } from '@bendyline/molen-worldgen/client';
 import type { StructureTerrainSampler } from '@bendyline/molen-worldgen-earth/client';
 import { isStructureViewingDate } from '@bendyline/molen-worldgen-earth/kernel';
@@ -115,12 +117,14 @@ import {
 } from './atmosphere';
 import { type EarthCredit, earthCredits, regionalEarthAttribution } from './attribution';
 import { createEarthAudio, type EarthAudio, type EarthAudioOptions } from './audio';
+import { EarthAudioTerrain, type EarthAudioTerrainSample } from './audio-terrain';
 import type { EarthContent } from './content';
 import { EarthDioramaDirector, type EarthDioramaOptions, type EarthDioramas } from './dioramas';
 import { createEarthFleet, type EarthFleetOptions } from './fleet';
 import {
   EARTH_EXPOSURE,
   EARTH_LIGHTING,
+  EARTH_SHADOW_CASTER_HEIGHT,
   EARTH_SKY_PALETTE,
   EARTH_TONE_MAPPING,
   EARTH_WATER_COLOR,
@@ -760,6 +764,7 @@ interface EarthStack {
   aircraft: EarthAircraft | undefined;
   ambient: EarthAmbient | undefined;
   wildlife: EarthWildlife | undefined;
+  audioTerrain: EarthAudioTerrain;
   viewDistance: number;
   dispose(): void;
 }
@@ -936,6 +941,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       renderer.backend,
     );
     disposers.push(() => fieldMaterial.dispose());
+    // Roads, sidewalks, markings and lots: asphalt, concrete slabs and worn paint.
+    const pavementMaterial = await createTerrainPavementMaterialAsync({}, renderer.backend);
+    disposers.push(() => pavementMaterial.dispose());
+    // Trees, shrubs and props: leaf speckle and crown occlusion.
+    const scatterMaterial = await createScatterMaterialAsync(renderer.backend);
+    disposers.push(() => scatterMaterial.dispose());
     void content?.stars().then(
       (stars) => {
         if (!disposed) renderer.setStarCatalog(stars);
@@ -1048,6 +1059,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           fleet?.parkedAt,
           roadSigns?.profileAt,
         );
+        surface.setMaterial(pavementMaterial);
         parts.push(() => surface.dispose());
         const worldgen =
           content?.worldgen !== undefined
@@ -1063,6 +1075,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                   ? { landcoverColors: options.style.landcover }
                   : {}),
                 groundMaterial: fieldMaterial,
+                modelMaterial: scatterMaterial,
                 ...(options.sampleStructureTerrain
                   ? { sampleStructureTerrain: options.sampleStructureTerrain }
                   : {}),
@@ -1071,6 +1084,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 surfaceRenderer: surface,
                 metersPerUnit,
                 quality: quality(),
+                // WebGL pays full price for every building and plant draw; the WebGPU path
+                // affords High's full scene, WebGL keeps a compact one.
+                compact: renderer.backend === 'webgl',
                 lodPolicy,
                 ...(options.landmarkStreaming !== undefined
                   ? { landmarkStreaming: options.landmarkStreaming }
@@ -1094,6 +1110,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         let sidecars: Omit<EarthPrefetchArchives, 'elevation'> = {};
         // Ambient life reads the decoded road tiles as the features layer builds them.
         const ambientTiles = ambientSettings !== undefined ? new SemanticTileBuffer() : undefined;
+        const audioTerrain = new EarthAudioTerrain();
+        parts.push(() => audioTerrain.clear());
         const wildlifeWanted =
           ambientSettings !== undefined &&
           ambientSettings.wildlife !== false &&
@@ -1123,15 +1141,21 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 : {}),
               waterLayer: {
                 visible: true,
-                mesh: {
-                  materials: { water },
-                  waterOffset: 0.65,
-                  // Earth packages have a sea: harbors and coasts draw at one flat level.
-                  ...(pkg.coordinateSpace.kind === 'geospatial' ||
-                  pkg.surface?.seaLevel !== undefined
-                    ? { seaLevel: pkg.surface?.seaLevel ?? 0 }
-                    : {}),
-                },
+                renderer: observeSemanticTiles(
+                  createDefaultTerrainSemanticRenderer({
+                    renderLandcover: false,
+                    renderTransportation: false,
+                    renderBuildings: false,
+                    materials: { water },
+                    waterOffset: 0.65,
+                    // Earth packages have a sea: harbors and coasts draw at one flat level.
+                    ...(pkg.coordinateSpace.kind === 'geospatial' ||
+                    pkg.surface?.seaLevel !== undefined
+                      ? { seaLevel: pkg.surface?.seaLevel ?? 0 }
+                      : {}),
+                  }),
+                  audioTerrain.observer,
+                ),
               },
               landcoverLayer:
                 worldgen !== undefined
@@ -1139,10 +1163,23 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                       visible: true,
                       renderer:
                         wildlifeCover !== undefined
-                          ? observeSemanticTiles(worldgen.classification, wildlifeCover)
-                          : worldgen.classification,
+                          ? observeSemanticTiles(
+                              observeSemanticTiles(worldgen.classification, wildlifeCover),
+                              audioTerrain.observer,
+                            )
+                          : observeSemanticTiles(worldgen.classification, audioTerrain.observer),
                     }
-                  : { visible: true },
+                  : {
+                      visible: true,
+                      renderer: observeSemanticTiles(
+                        createDefaultTerrainSemanticRenderer({
+                          renderWater: false,
+                          renderTransportation: false,
+                          renderBuildings: false,
+                        }),
+                        audioTerrain.observer,
+                      ),
+                    },
               featuresLayer: (() => {
                 const sourceRenderer =
                   worldgen !== undefined
@@ -1158,8 +1195,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                     : observeSemanticTiles(sourceRenderer, wildlifeFeatures);
                 return {
                   visible: true,
-                  renderer:
+                  renderer: observeSemanticTiles(
                     ambientTiles !== undefined ? observeSemanticTiles(inner, ambientTiles) : inner,
+                    audioTerrain.observer,
+                  ),
                 };
               })(),
             });
@@ -1214,6 +1253,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             createTileGroup: () => renderer.createRenderGroup(),
             morphMilliseconds: 180,
             shadows: shadowsOn,
+            shadowCasterHeight: EARTH_SHADOW_CASTER_HEIGHT,
             layers,
             initialView: {
               position: view.position,
@@ -1273,10 +1313,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         }
         // One world for everything that moves: cars, aircraft and ambient life. The frame loop
         // steps it once (stepWorld); each piece applies its inputs before and poses models after.
-        const world = new World({ tickRate: 60, seed: 'earth' });
+        const world = new World({ tickRate: 60, seed: 'earth', devFreeze: false });
         let accumulator = 0;
         const stepWorld = (dt: number): void => {
-          accumulator = Math.min(accumulator + Math.min(0.1, Math.max(0, dt)), world.dt * 6);
+          accumulator = Math.min(accumulator + Math.min(0.1, Math.max(0, dt)), world.dt * 3);
           while (accumulator >= world.dt) {
             world.step();
             accumulator -= world.dt;
@@ -1373,6 +1413,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           aircraft,
           ambient,
           wildlife,
+          audioTerrain,
           viewDistance: budget.viewDistance,
           dispose: cleanup,
         };
@@ -2858,6 +2899,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
 
     let audio: EarthAudio | undefined;
     let audioStack: EarthStack | undefined;
+    let audioTerrainSample: EarthAudioTerrainSample | undefined;
+    let audioTerrainAt = -Infinity;
     if (options.audio !== false && content !== undefined) {
       void createEarthAudio(content.packs, renderer, options.audio ?? {})
         .then((started) => {
@@ -3044,24 +3087,40 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         if (audioStack !== current) {
           audioStack = current;
           audio.attachWorld(current?.world);
+          audioTerrainAt = -Infinity;
+        }
+        if (now - audioTerrainAt >= 250) {
+          audioTerrainSample = current?.audioTerrain.sample(pose.position[0], pose.position[2]);
+          audioTerrainAt = now;
         }
         const ground = groundHeight(pose.position[0], pose.position[2]);
         const audioSky = renderer.sky?.frame.earth;
+        const audioLocation = toLatLon(pose.position[0], pose.position[2]);
+        const skyUtc = renderer.sky?.frame?.earth?.utcMs;
         audio.update({
           nowMs: now,
-          ...(audioSky
-            ? {
-                location: {
-                  ...toLatLon(pose.position[0], pose.position[2]),
+          location: {
+            ...audioLocation,
+            ...(audioSky
+              ? {
                   utcMs: audioSky.utcMs,
                   sunAltitudeDeg: audioSky.sun.altitudeDeg,
-                },
-              }
-            : {}),
+                }
+              : {}),
+          },
           position: pose.position,
           forward: pose.direction,
           // The sound rules call flying an aircraft 'pilot'.
           mode: mode === 'fly' ? 'pilot' : mode,
+          inVehicle:
+            (mode === 'drive' &&
+              current?.vehicles?.view === 'cockpit' &&
+              !current.vehicles.isBoat(current.vehicles.mountedId ?? '')) ||
+            (mode === 'fly' && current?.aircraft?.view === 'cockpit'),
+          ...(audioTerrainSample ? { terrain: audioTerrainSample } : {}),
+          ...(skyUtc !== undefined
+            ? { solarHour: (((skyUtc / 3600000 + audioLocation.longitude / 15) % 24) + 24) % 24 }
+            : {}),
           ...(current?.wildlife !== undefined
             ? { regionalAmbience: current.wildlife.ambience(pose.position) }
             : {}),
@@ -3076,6 +3135,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       ]);
       setTerrainGroundOrigin(groundMaterial, [origin[0], origin[2]]);
       setTerrainGroundOrigin(fieldMaterial, [origin[0], origin[2]]);
+      setTerrainGroundOrigin(pavementMaterial, [origin[0], origin[2]]);
       const timing = gpuTimer?.begin() === true;
       viewer.renderFrame();
       if (timing) gpuTimer?.end();

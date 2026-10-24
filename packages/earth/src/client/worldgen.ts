@@ -17,10 +17,12 @@ import { sha256 } from '@bendyline/molen-pack';
 import type { AssetSidecar } from '@bendyline/molen-schema';
 import {
   createTerrainLandcoverWorkerBridge,
+  type TerrainLandcoverGenerator,
   type TerrainQualityPreset,
   type TerrainSurfaceRenderer,
 } from '@bendyline/molen-terrain/client';
 import {
+  type BuildingMaterialDecorator,
   createResolvedMaterialSet,
   ModelLibrary,
   type ScreenSpaceLodPolicy,
@@ -35,7 +37,7 @@ import {
   createRegionResolver,
   createWorldgenSemanticRenderers,
   createWorldgenTileCache,
-  createWorldgenWorkerBridge,
+  createWorldgenWorkerPool,
   type StructureTerrainSampler,
   type WorldgenSemanticRenderers,
 } from '@bendyline/molen-worldgen-earth/client';
@@ -89,6 +91,8 @@ export interface CreateEarthWorldgenOptions {
   surfaceRenderer: TerrainSurfaceRenderer;
   metersPerUnit: number;
   quality: TerrainQualityPreset;
+  /** A compact scene (see `compact` on the semantic renderers); for WebGL. */
+  compact?: boolean;
   lodPolicy: ScreenSpaceLodPolicy;
   workers?: EarthViewWorkers;
   prepareObject?: (
@@ -108,6 +112,18 @@ export interface CreateEarthWorldgenOptions {
    * terrain surface; the host owns and disposes it.
    */
   groundMaterial?: THREE.Material;
+  /**
+   * Material for scatter (trees, shrubs, ground cover) and props, usually
+   * `createScatterMaterialAsync` from `@bendyline/molen-worldgen/client` for the renderer's
+   * backend: leaf speckle and crown occlusion. Caller-owned. Default: the WebGL variant.
+   */
+  modelMaterial?: THREE.Material;
+  /**
+   * Detail for generated building materials, usually `createBuildingWeatheringAsync` from
+   * `@bendyline/molen-worldgen/client` for the renderer's backend: facade tone drift, rain
+   * streaks and weathered roofs. Default: none.
+   */
+  buildingDecorator?: BuildingMaterialDecorator;
   /** Distance LOD for street props and landmarks (default true). */
   propLod?: boolean;
   /** Per-tile generation telemetry. */
@@ -164,6 +180,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     false,
     environment?.library.plants,
     options.content.fonts,
+    options.modelMaterial,
   );
   // Geographic assets are loaded only when a visible tile asks for them. Their source glTF
   // resources leave memory when the last tile using the asset is evicted. Keep the original
@@ -192,6 +209,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     progressive: true,
     prepareOnUse: true,
     concurrency: 2,
+    ...(options.buildingDecorator !== undefined ? { decorate: options.buildingDecorator } : {}),
     maxTextureBytes:
       streamingOptions.budget?.maxTextureBytes ?? structureStreamingBudget(mobile).maxTextureBytes,
   });
@@ -277,7 +295,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
   };
   const generator =
     workers.worldgen !== undefined
-      ? createWorldgenWorkerBridge(workers.worldgen(), {
+      ? createWorldgenWorkerPool(Array.from({ length: generationWorkers() }, workers.worldgen), {
           pack,
           atlas,
           metersPerUnit: options.metersPerUnit,
@@ -300,8 +318,12 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     models,
     structureObjects,
     materials,
+    ...(options.buildingDecorator !== undefined
+      ? { materialDecorator: options.buildingDecorator }
+      : {}),
     metersPerUnit: options.metersPerUnit,
     quality: options.quality,
+    ...(options.compact === true ? { compact: true } : {}),
     lodPolicy: options.lodPolicy,
     interiors: options.interiors ?? true,
     propLod: options.propLod ?? true,
@@ -319,7 +341,13 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       : {}),
     ...(options.onTileStats !== undefined ? { onTileStats: options.onTileStats } : {}),
     ...(workers.landcover !== undefined
-      ? { landcoverGenerator: createTerrainLandcoverWorkerBridge(workers.landcover()) }
+      ? {
+          landcoverGenerator: landcoverPool(
+            Array.from({ length: Math.min(2, generationWorkers()) }, () =>
+              createTerrainLandcoverWorkerBridge((workers.landcover as () => Worker)()),
+            ),
+          ),
+        }
       : {}),
     roads: { surfaceRenderer: options.surfaceRenderer },
     ...(generator !== undefined ? { generator } : {}),
@@ -344,6 +372,37 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       materials.dispose();
       models.dispose();
       assets.dispose();
+    },
+  };
+}
+
+/**
+ * Generation workers per kind: half the logical cores, at most four. Tile generation is the
+ * slowest part of revealing a new view, and one worker per kind left most cores idle while it
+ * worked through a city's tiles one at a time.
+ */
+function generationWorkers(): number {
+  const cores = typeof navigator !== 'undefined' ? (navigator.hardwareConcurrency ?? 4) : 4;
+  return Math.max(1, Math.min(4, Math.floor(cores / 2)));
+}
+
+/** Landcover tiles go to whichever worker has the fewest in flight. */
+function landcoverPool(members: readonly TerrainLandcoverGenerator[]): TerrainLandcoverGenerator {
+  const busy = members.map(() => 0);
+  return {
+    generate(tile, context, options) {
+      let index = 0;
+      for (let i = 1; i < members.length; i++)
+        if ((busy[i] as number) < (busy[index] as number)) index = i;
+      busy[index] = (busy[index] as number) + 1;
+      return (members[index] as TerrainLandcoverGenerator)
+        .generate(tile, context, options)
+        .finally(() => {
+          busy[index] = (busy[index] as number) - 1;
+        });
+    },
+    dispose(): void {
+      for (const member of members) member.dispose();
     },
   };
 }

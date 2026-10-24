@@ -8,9 +8,12 @@ import {
 } from '../../worldgen/scripts/leeds-castle-current-model.mjs';
 import { leedsPlanPoint } from '../../worldgen/scripts/leeds-castle-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 
 const source = resolve('../../content/worldgen/source/places/u1/u10/leeds_castle'),
-  runtime = resolve('../../content/worldgen/assets/places/u1/u10/leeds_castle');
+  runtime = await runtimeLodFixture(
+    resolve('../../content/worldgen/assets/places/u1/u10/leeds_castle'),
+  );
 const read = async (p) => JSON.parse(await readFile(p));
 const triangles = (level) => {
   const ts = [];

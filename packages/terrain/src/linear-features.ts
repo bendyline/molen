@@ -9,6 +9,7 @@ import {
 } from './line-path';
 import { normalizeRing } from './polygon';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
+import { renderedGroundSampler } from './rendered-ground';
 import type {
   TerrainSemanticLine,
   TerrainSemanticPoint,
@@ -26,10 +27,57 @@ export {
   terrainLinePath,
 } from './line-path';
 
+/**
+ * Surface kinds for draped bands and areas, read by the pavement material through the
+ * `surfaceDetail` attribute (x: meters along the band, y: meters across it from its edge,
+ * z: `kind * 128 + width`, w: a road's lane width, otherwise its fraying edges; see
+ * `TerrainLineBand.fray`).
+ */
+export const TERRAIN_SURFACE_KIND: {
+  readonly plain: 0;
+  readonly road: 1;
+  readonly sidewalk: 2;
+  readonly curb: 3;
+  readonly paint: 4;
+  readonly parking: 5;
+  readonly plaza: 6;
+  readonly dirt: 7;
+  readonly shoulder: 8;
+  readonly ballast: 9;
+} = {
+  plain: 0,
+  road: 1,
+  sidewalk: 2,
+  curb: 3,
+  paint: 4,
+  parking: 5,
+  plaza: 6,
+  dirt: 7,
+  shoulder: 8,
+  ballast: 9,
+};
+export type TerrainSurfaceKind = (typeof TERRAIN_SURFACE_KIND)[keyof typeof TERRAIN_SURFACE_KIND];
+
+/** `userData` flag on draped pavement meshes that a host pavement material may replace. */
+export const TERRAIN_PAVEMENT: 'terrainPavement' = 'terrainPavement';
+
 export interface TerrainLineBand {
   width: number;
   offset?: number;
   color: string;
+  /** Write `surfaceDetail` for the pavement material: the kind, and a road's lane count. */
+  surface?: TerrainSurfaceKind;
+  lanes?: number;
+  /**
+   * Edges the pavement material frays into the ground beneath, for a band that meets bare
+   * ground: the one away from the line (`outer`), toward it (`inner`) or both. Not for roads.
+   */
+  fray?: 'outer' | 'inner' | 'both';
+  /**
+   * Height of a vertical face dropping from the band's inner edge (the one toward the line), as
+   * a curb's face drops to the road beside it. Draped bands only; 0 or absent for none.
+   */
+  riser?: number;
   /** Distance above terrain, or absolute Y when elevationMode is absolute. */
   elevation?: number;
   elevationMode?: 'terrain' | 'absolute';
@@ -68,8 +116,55 @@ export class TerrainSurfaceMeshBuilder {
   private readonly colors: number[] = [];
   private readonly normals: number[] = [];
   private readonly attributes = new Map<string, { size: number; values: number[] }>();
+  private groundAt?: (x: number, z: number) => number;
   get vertexCount(): number {
     return this.positions.length / 3;
+  }
+
+  /** Emit `name` on the finished mesh even if nothing wrote it (zeros). */
+  ensureAttribute(name: string, size: number): void {
+    if (!this.attributes.has(name)) this.attributes.set(name, { size, values: [] });
+  }
+
+  /**
+   * Tag everything appended since `start` with a surface kind and band coordinates. `fray` marks
+   * the band edges that fray into the ground: 1 at across 0, 2 at the full width, 3 both.
+   */
+  surfaceSince(
+    start: number,
+    kind: TerrainSurfaceKind,
+    sample: (x: number, z: number) => readonly [along: number, across: number] = () => [0, 0],
+    width = 0,
+    laneWidth = 0,
+    fray = 0,
+  ): void {
+    if (this.vertexCount <= start) return;
+    const code = kind * 128 + Math.min(127, Math.max(0, width));
+    const w = kind === TERRAIN_SURFACE_KIND.road ? laneWidth : fray;
+    const entry = this.attributes.get('surfaceDetail') ?? { size: 4, values: [] };
+    while (entry.values.length < start * 4) entry.values.push(0);
+    for (let i = start; i < this.vertexCount; i++) {
+      const [along, across] = sample(this.positions[i * 3] ?? 0, this.positions[i * 3 + 2] ?? 0);
+      entry.values.push(along, across, code, w);
+    }
+    this.attributes.set('surfaceDetail', entry);
+  }
+
+  /**
+   * Stop everything appended since `start` fraying wherever `ground` rejects a vertex: there the
+   * band's edge lies over other paving, not bare ground, and a ragged margin would show a seam.
+   * Whole triangles at a time: the fray flag is interpolated, and a triangle blending two flags
+   * would decode a third (2 and 0 pass through 1, the other edge) and cut holes in the band.
+   */
+  unfraySince(start: number, ground: (x: number, z: number) => boolean): void {
+    const entry = this.attributes.get('surfaceDetail');
+    if (entry === undefined) return;
+    for (let t = start; t + 2 < this.vertexCount; t += 3) {
+      let paved = false;
+      for (let i = t; i < t + 3 && !paved; i++)
+        paved = !ground(this.positions[i * 3] ?? 0, this.positions[i * 3 + 2] ?? 0);
+      if (paved) for (let i = t; i < t + 3; i++) entry.values[i * 4 + 3] = 0;
+    }
   }
 
   /** Decorate a just-appended feature without coupling the draper to its semantic meaning. */
@@ -85,11 +180,19 @@ export class TerrainSurfaceMeshBuilder {
       const x = this.positions[i * 3],
         z = this.positions[i * 3 + 2];
       if (x === undefined || z === undefined) throw new Error('Missing terrain surface vertex');
-      entry.values.push(...sample(x, z));
+      const values = sample(x, z);
+      for (let k = 0; k < values.length; k++) entry.values.push(values[k] as number);
     }
     this.attributes.set(name, entry);
   }
   constructor(readonly context: TerrainPyramidTileLayerContext) {}
+
+  /** Height of the rendered ground (the grid draped bands follow) at a tile-local point. */
+  groundHeight(x: number, z: number): number {
+    const { heightfield, origin, tileSize, surfaceResolution } = this.context;
+    this.groundAt ??= renderedGroundSampler(heightfield, origin, tileSize, surfaceResolution);
+    return this.groundAt(origin[0] + x, origin[1] + z);
+  }
 
   /** Clip a convex 3D face to this tile, interpolating heights at its boundaries. */
   face(points: readonly (readonly [number, number, number])[], color: THREE.Color): void {
@@ -217,6 +320,64 @@ export type TerrainLineBandFilter = (
   distance: number,
 ) => boolean;
 
+/**
+ * A vertical face along `offset` from `from` to `to` on the path, from `top` above the rendered
+ * ground down by `height`, facing the side `toward` (+1: increasing offset). Split every few
+ * meters, finer than the ground grid it rests on, so its edges follow the draped ground within
+ * millimeters; tagged like the band above it, so a curb face carries the curb's slab joints.
+ */
+function appendRiser(
+  builder: TerrainSurfaceMeshBuilder,
+  path: TerrainLinePath,
+  from: number,
+  to: number,
+  offset: number,
+  face: { top: number; height: number; toward: number; color: THREE.Color },
+): void {
+  const pieces = Math.max(1, Math.ceil((to - from) / 3));
+  for (let i = 0; i < pieces; i++) {
+    const d0 = from + ((to - from) * i) / pieces,
+      d1 = from + ((to - from) * (i + 1)) / pieces;
+    const a = sampleTerrainLine(path, d0, offset),
+      b = sampleTerrainLine(path, d1, offset);
+    const ya = builder.groundHeight(a.x, a.z) + face.top,
+      yb = builder.groundHeight(b.x, b.z) + face.top;
+    const quad: [number, number, number][] = [
+      [a.x, ya - face.height, a.z],
+      [b.x, yb - face.height, b.z],
+      [b.x, yb, b.z],
+      [a.x, ya, a.z],
+    ];
+    // Wind it to face `toward`: as listed, its normal is (b - a) x up.
+    const side = sampleTerrainLine(path, d0, offset + 1);
+    const nx = side.x - a.x,
+      nz = side.z - a.z;
+    const rightX = -(b.z - a.z),
+      rightZ = b.x - a.x;
+    if ((rightX * nx + rightZ * nz) * face.toward < 0) quad.reverse();
+    builder.face(quad, face.color);
+  }
+}
+
+/** Distance from the line through `a` and `b`, positive toward the middle of `quad`. */
+function insideDistance(
+  a: TerrainSemanticPoint,
+  b: TerrainSemanticPoint,
+  quad: readonly TerrainSemanticPoint[],
+): (x: number, z: number) => number {
+  const dx = b[0] - a[0],
+    dz = b[1] - a[1];
+  const length = Math.hypot(dx, dz) || 1;
+  let cx = 0,
+    cz = 0;
+  for (const point of quad) {
+    cx += point[0] / quad.length;
+    cz += point[1] / quad.length;
+  }
+  const sign = Math.sign((cx - a[0]) * dz - (cz - a[1]) * dx) || 1;
+  return (x, z) => (sign * ((x - a[0]) * dz - (z - a[1]) * dx)) / length;
+}
+
 /** Append one profile band, preserving source bends and arc-length dash spacing. */
 export function appendTerrainLineBand(
   builder: TerrainSurfaceMeshBuilder,
@@ -242,6 +403,26 @@ export function appendTerrainLineBand(
   }
   const period = dash ? dash[0] + dash[1] : 0;
   const color = new THREE.Color(band.color);
+  // Across runs from the band's edge on the line's negative side (0) to its positive side.
+  const offset = band.offset ?? 0;
+  const outerEnd = offset > 0;
+  const innerSide = outerEnd ? -1 : 1;
+  const riser =
+    offset !== 0 &&
+    band.riser !== undefined &&
+    band.riser > 0 &&
+    !options.heightAt &&
+    band.elevationMode !== 'absolute'
+      ? band.riser
+      : 0;
+  const fray =
+    band.fray === undefined
+      ? 0
+      : band.fray === 'both' || offset === 0
+        ? 3
+        : (band.fray === 'outer') === outerEnd
+          ? 2
+          : 1;
   let count = 0;
   let distance = Math.max(0, options.start ?? 0);
   const end = Math.min(path.length, options.end ?? path.length);
@@ -268,6 +449,7 @@ export function appendTerrainLineBand(
       edge(distance, -1),
     ];
     if (painted && (!options.filter || options.filter(points, (distance + next) / 2))) {
+      const start = builder.vertexCount;
       for (const piece of options.clip ? options.clip(points) : [points]) {
         const heightAt = options.heightAt;
         if (heightAt)
@@ -277,6 +459,47 @@ export function appendTerrainLineBand(
           );
         else
           builder.polygon(piece, color, band.elevation ?? 0.25, band.elevationMode === 'absolute');
+      }
+      if (riser > 0 && builder.vertexCount > start)
+        appendRiser(builder, path, distance, next, offset + innerSide * (band.width / 2), {
+          top: band.elevation ?? 0.25,
+          height: riser,
+          toward: innerSide,
+          color,
+        });
+      if (band.surface !== undefined && builder.vertexCount > start) {
+        // Band coordinates from the quad's own corners: across is the share of the way from its
+        // negative-side edge to its positive-side edge, along the share from its start rung to
+        // its end rung. Both are exact on the quad's sides, which its neighbors share, so the
+        // coordinates (and the joints and frayed edges drawn from them) run on through a bend
+        // instead of stepping at every quad.
+        const [plus0, plus1, minus1, minus0] = points as [
+          TerrainSemanticPoint,
+          TerrainSemanticPoint,
+          TerrainSemanticPoint,
+          TerrainSemanticPoint,
+        ];
+        const fromMinus = insideDistance(minus0, minus1, points),
+          fromPlus = insideDistance(plus0, plus1, points),
+          fromStart = insideDistance(minus0, plus0, points),
+          fromEnd = insideDistance(minus1, plus1, points);
+        builder.surfaceSince(
+          start,
+          band.surface,
+          (x, z) => {
+            const a = fromMinus(x, z),
+              b = fromPlus(x, z),
+              s = fromStart(x, z),
+              e = fromEnd(x, z);
+            return [
+              distance + ((next - distance) * s) / Math.max(1e-9, s + e),
+              (band.width * a) / Math.max(1e-9, a + b),
+            ];
+          },
+          band.width,
+          band.lanes !== undefined && band.lanes > 0 ? band.width / band.lanes : 0,
+          fray,
+        );
       }
     }
     count++;

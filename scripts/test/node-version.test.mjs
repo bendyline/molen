@@ -6,11 +6,11 @@ import { checkNodeVersion } from '../check-node-version.mjs';
 const read = (path) => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8');
 
 test('accepts any release of the pinned major and rejects another major before regression tests', () => {
-  for (const actual of ['24.0.0', '24.18.0', '24.21.0']) {
+  for (const actual of ['24.0.0', '24.18.0', '24.21.0', 'v24.0.0']) {
     assert.doesNotThrow(() => checkNodeVersion(actual, '24'));
     assert.doesNotThrow(() => checkNodeVersion(actual, '24.18.0'));
   }
-  for (const actual of ['22.23.3', '25.0.0']) {
+  for (const actual of ['22.23.3', '23.11.0', '25.0.0']) {
     assert.throws(() => checkNodeVersion(actual, '24'), /Pinned simulation hashes.*native math/);
   }
 });

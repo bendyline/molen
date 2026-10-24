@@ -40,7 +40,8 @@ to explore different lunar phases. `?date=2024-03-25T05:00:00Z` opens a reproduc
 `?sky=daylight` retains the old fixed daylight rig for terrain image comparisons.
 
 The Weather dropdown combines independent cloud, precipitation and visibility settings in
-Sunny, Partly cloudy, Overcast, Rain, Snow and Fog profiles. Expand Weather details to mix
+Fair, Sunny, Partly cloudy, Overcast, Rain, Snow and Fog profiles. It opens on Fair: sunny
+conditions with scattered fair-weather cumulus; `?weather=sunny` gives a clear sky. Expand Weather details to mix
 those variables and change temperature, pressure or wind. These conditions also drive the
 aircraft simulation's wind and air density. Use `?weather=rain` to open a preset; `?freeze=1`
 freezes cloud/particle motion. See [weather and atmosphere](https://molen.dev/guide/weather).
@@ -57,6 +58,12 @@ loading message indicates the baking. Baked materials are kept in IndexedDB, so 
 them instead of baking; `?materialCache=0` bakes every time. Startup milestones (milliseconds since
 navigation) are available in `#performance-status`'s `data-startup` attribute, alongside the
 existing graphics diagnostics.
+
+The ground, roads and sidewalks are shaded procedurally: grass carries hue drift, grain and a few
+centimeters of sunlit relief, neighboring land classes meet along ragged blended edges instead of
+polygon lines, roads show asphalt wear, wheel tracks and repaired sections, and sidewalks show
+saw-cut slabs. `?ground=flat` turns all of it off for comparison. Tile generation runs on a pool
+of workers (half the logical cores, up to four).
 
 This browser example exercises molen's large-world terrain foundation in three modes:
 

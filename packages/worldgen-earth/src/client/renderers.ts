@@ -12,6 +12,7 @@ import {
   disposeTerrainSemanticObject,
   setTerrainGroundCutouts,
   setTerrainWaterCutout,
+  TERRAIN_COVERS_GROUND,
   type TerrainLandcoverGenerator,
   type TerrainPyramidTileLayerContext,
   type TerrainSemanticMeshOptions,
@@ -26,6 +27,7 @@ import {
   worldToWgs84,
 } from '@bendyline/molen-terrain/kernel';
 import {
+  type BuildingMaterialDecorator,
   buffersToObject3D,
   buildingBoxGeometry,
   createBuildingCellLod,
@@ -87,6 +89,8 @@ import type { WorldgenGenerator } from './worker-bridge';
  * for a source outline a little wider than the model, never a merged city block.
  */
 const FOOTPRINT_SIZE_RATIO = 1.6;
+/** Share of the plant scatter a compact scene keeps (see `compact`). */
+const COMPACT_SCATTER_KEEP = 0.5;
 const FOOTPRINT_SLACK = 12;
 
 export interface WorldgenRendererOptions {
@@ -109,6 +113,11 @@ export interface WorldgenRendererOptions {
   /** Fine or cross-tile ground samples; undefined coverage leaves the procedural fallback. */
   sampleStructureTerrain?: StructureTerrainSampler;
   materials?: WorldgenMaterialSet;
+  /**
+   * Detail for the building materials this layer creates itself (its default and distant-level
+   * sets), e.g. `createBuildingWeatheringAsync`; pass the same one to a supplied `materials` set.
+   */
+  materialDecorator?: BuildingMaterialDecorator;
   /** Prepared prop models; without it the classification layer keeps the default tree cones. */
   models?: ModelLibrary;
   /** Streamed geographic models; defaults to `models` when no separate library is supplied. */
@@ -116,6 +125,11 @@ export interface WorldgenRendererOptions {
   /** Full glTF hierarchy and PBR materials for authored structures; preferred over flattened props. */
   structureObjects?: StructureModelSource;
   quality?: WorldgenQualityPreset;
+  /**
+   * A compact scene for renderers without the WebGPU path's draw optimizations, such as WebGL:
+   * High's building geometry at its compact budget (under half) and half the plant scatter.
+   */
+  compact?: boolean;
   budgets?: Partial<WorldgenBudgets>;
   /** cos(center latitude) factor of the terrain package (1 for local packages). */
   metersPerUnit?: number;
@@ -209,7 +223,9 @@ export function createWorldgenSemanticRenderers(
   const viewingDate = options.viewingDate;
   if (viewingDate !== undefined && !isStructureViewingDate(viewingDate))
     throw new Error('viewingDate must be a valid YYYY-MM-DD calendar date');
-  const materials = options.materials ?? createVertexColorMaterialSet();
+  const decorate =
+    options.materialDecorator !== undefined ? { decorate: options.materialDecorator } : {};
+  const materials = options.materials ?? createVertexColorMaterialSet(decorate);
   const ownsMaterials = options.materials === undefined;
   const metersPerUnit = options.metersPerUnit ?? 1;
   const interiors =
@@ -238,7 +254,7 @@ export function createWorldgenSemanticRenderers(
   let disposed = false;
   // Distant levels stand in for textured buildings, so they carry the textures' mean brightness.
   const flatMaterials = options.lodPolicy
-    ? createVertexColorMaterialSet({ surfaceMean: TEXTURED_SURFACE_MEAN })
+    ? createVertexColorMaterialSet({ surfaceMean: TEXTURED_SURFACE_MEAN, ...decorate })
     : undefined;
   const models = options.models;
   const structureModels = options.structureModels ?? models;
@@ -286,6 +302,7 @@ export function createWorldgenSemanticRenderers(
             variant: hashJson({
               budgets: request.budgets ?? {},
               tierOffset: request.tierOffset ?? 0,
+              keep: request.keep ?? 1,
               interiors: request.features?.interiors ?? false,
               buildingInfill: request.buildingInfill ?? false,
               buildingInfillExclusions: request.buildingInfillExclusions ?? [],
@@ -326,11 +343,14 @@ export function createWorldgenSemanticRenderers(
         resolution: context.pyramid.tileResolution,
         renderCellsOnly: options.lodPolicy !== undefined,
         budgets: {
-          ...worldgenTileBudgetForQuality(preset, geom.levelBelowMax),
+          ...worldgenTileBudgetForQuality(preset, geom.levelBelowMax, {
+            compactBuildings: options.compact === true,
+          }),
           ...options.budgets,
         },
         features: { ...features, interiors: interiors !== undefined && features.buildings },
         tierOffset: preset === 'economy' ? 1 : 0,
+        ...(options.compact === true ? { keep: COMPACT_SCATTER_KEEP } : {}),
       },
       context.signal,
     );
@@ -371,11 +391,20 @@ export function createWorldgenSemanticRenderers(
                 set,
                 [prepared, medium, distant],
                 {
-                  // One batch per tile: the terrain tile is already the culling unit. On WebGPU
-                  // every InstancedMesh pays its own shader build (about 6 ms on the main
+                  // One batch per coarser tile: the terrain tile is already the culling unit. On
+                  // WebGPU every InstancedMesh pays its own shader build (about 6 ms on the main
                   // thread, shared material or not), so four cells per tile times each model's
                   // three LOD levels starved terrain and building publication in fast flight.
-                  cellSize: Number.POSITIVE_INFINITY,
+                  // A batch picks one detail level for all its plants, though: a camera inside a
+                  // finest tile drew every tree in it at near detail, leaf cards and all, which
+                  // cost a rooftop view a third of its frame time on an Apple M2. Finest tiles
+                  // split into quarters, so near detail stays round the camera's own quarter.
+                  ...(coarse
+                    ? { cellSize: Number.POSITIVE_INFINITY }
+                    : {
+                        cellSize: context.tileSize / 2,
+                        cellGrid: { cellsPerAxis: 2 },
+                      }),
                   ...(options.lodPolicy ? { screenSpace: options.lodPolicy } : {}),
                 },
                 `${name}:${set.setId}`,
@@ -1222,9 +1251,17 @@ export function createWorldgenSemanticRenderers(
         disposeTerrainSemanticObject(surface);
         throw error;
       }
+      // The regional background polygon spans the whole tile, so its landcover hides the bare
+      // terrain beneath completely; the stream can then skip drawing that terrain.
+      const coversGround =
+        surfaceTile !== tile &&
+        surface.getObjectByName('semantic:landcover') !== undefined &&
+        meshOptions.renderLandcover !== false;
+      if (coversGround) surface.userData[TERRAIN_COVERS_GROUND] = true;
       if (models === undefined) return surface;
       const group = new THREE.Group();
       group.name = `worldgen-scatter:${context.address.level}/${context.address.x}/${context.address.z}`;
+      if (coversGround) group.userData[TERRAIN_COVERS_GROUND] = true;
       group.add(surface);
       try {
         const generated = await generate(tile, context, { buildings: false, scatter: true });

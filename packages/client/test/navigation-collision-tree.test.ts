@@ -65,6 +65,47 @@ describe('collision tree', () => {
     expect(contact ? contact.depth : undefined).toBeCloseTo(0.1);
   });
 
+  it('stores scattered triangles once and finds the same nearest front-face hits as a brute-force scan', () => {
+    let seed = 7;
+    const random = (): number => {
+      seed = (seed * 16807) % 2147483647;
+      return seed / 2147483647;
+    };
+    const tree = new CollisionTree();
+    const triangles: THREE.Triangle[] = [];
+    for (let i = 0; i < 3000; i++) {
+      // Plant-like clumps on a coarse grid, so many centers tie along an axis.
+      const x = Math.round(random() * 40) - 20;
+      const z = Math.round(random() * 40) - 20;
+      const y = random() * 3;
+      const triangle = new THREE.Triangle(
+        new THREE.Vector3(x, y, z),
+        new THREE.Vector3(x + random(), y + random(), z),
+        new THREE.Vector3(x, y + random(), z + random()),
+      );
+      triangles.push(triangle);
+      tree.addTriangle(triangle);
+    }
+    tree.build();
+    const stored = inventory(tree);
+    expect(stored.triangles).toHaveLength(triangles.length);
+    expect(new Set(stored.triangles)).toEqual(new Set(triangles));
+    const point = new THREE.Vector3();
+    for (let i = 0; i < 64; i++) {
+      const ray = new THREE.Ray(
+        new THREE.Vector3(random() * 40 - 20, 5, random() * 40 - 20),
+        new THREE.Vector3(random() - 0.5, -1, random() - 0.5).normalize(),
+      );
+      let nearest = Number.POSITIVE_INFINITY;
+      for (const { a, b, c } of triangles)
+        if (ray.intersectTriangle(a, b, c, true, point))
+          nearest = Math.min(nearest, point.distanceTo(ray.origin));
+      const hit = tree.rayIntersect(ray);
+      if (nearest === Number.POSITIVE_INFINITY) expect(hit).toBe(false);
+      else expect(hit ? hit.distance : undefined).toBeCloseTo(nearest, 9);
+    }
+  });
+
   it('clears evicted geometry and supports empty and single-leaf rebuilds', () => {
     const tree = new CollisionTree();
     const ray = new THREE.Ray(new THREE.Vector3(0, 2, 0), new THREE.Vector3(0, -1, 0));

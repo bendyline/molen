@@ -1315,6 +1315,10 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
               "type": "boolean",
               "description": "Paired louvered shutters beside punched windows."
             },
+            "cornerBoards": {
+              "type": "boolean",
+              "description": "Trim boards up each outside wall corner, as on lap-sided houses."
+            },
             "balconies": {
               "type": "object",
               "properties": {

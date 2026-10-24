@@ -8,11 +8,14 @@ import {
   buildMaiden,
   lighthouseExpansionStudies,
 } from '../../worldgen/scripts/lighthouse-expansion-models.mjs';
+import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/sx/sxk/maidens_tower'),
-  runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
+  runtime = await runtimeLodFixture(
+    source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\'),
+  );
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
   const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12))),

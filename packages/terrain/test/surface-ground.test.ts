@@ -181,3 +181,89 @@ it('keeps mapped shopping-center footways above the inferred Sammamish parking p
   expect(overlaps).toBeGreaterThan(0);
   disposeTerrainSurfaceObject(object);
 });
+
+it('paves a turning circle inside the footway ring at a dead end, and only there', () => {
+  // A 100 m tile: a residential street ending at x = 50 m, and a 2.4 m footway ringing a 9 m
+  // circle centered 6 m beyond the end, open toward the street.
+  const size = 100;
+  const center: [number, number] = [56, 50];
+  const ring: [number, number][] = [];
+  for (let degrees = -140; degrees <= 140; degrees += 10) {
+    const angle = (degrees * Math.PI) / 180;
+    ring.push([
+      (center[0] + Math.cos(angle) * 10.2) / size,
+      (center[1] + Math.sin(angle) * 10.2) / size,
+    ]);
+  }
+  const deadEnd: TerrainTransportationFeature = {
+    ...street,
+    lines: [
+      [
+        [0, 0.5],
+        [0.5, 0.5],
+      ],
+    ],
+  };
+  const tile = createEmptyTerrainSemanticTile();
+  tile.transportation = [deadEnd, { ...footpath, lines: [ring] }];
+  const network = new SurfaceNetwork(tile, size, resolveTerrainSurfaceStyle());
+  network.findTurningCircles();
+  expect(network.turningCircles).toHaveLength(1);
+  const circle = network.turningCircles[0];
+  if (!circle) throw Error('Missing circle');
+  // It ends at the footway's inner edge (10.2 - 1.2 m), never under the footway.
+  expect(circle.radius).toBeGreaterThan(8);
+  expect(circle.radius).toBeLessThanOrEqual(9.05);
+  expect(Math.hypot(circle.center[0] - center[0], circle.center[1] - center[1])).toBeLessThan(2.5);
+  // Inside it counts as paving; the lawn beyond the footway does not.
+  expect(network.occupied(center[0], center[1])).toBe(true);
+  expect(network.occupied(center[0] + 14, center[1])).toBe(false);
+  // A sidewalk wrapped tightly round a plain stub (3.3 m beyond its end, 4 m to each side) gets
+  // a rounded asphalt end that stops at the sidewalk's inner edge.
+  const wrap: [number, number][] = [
+    [46, 20],
+    [46, 49],
+    [47, 52.6],
+    [50, 53.3],
+    [53, 52.6],
+    [54, 49],
+    [54, 20],
+  ].map(([x, z]) => [(x as number) / size, (z as number) / size]);
+  const stubTile = createEmptyTerrainSemanticTile();
+  stubTile.transportation = [
+    {
+      ...street,
+      width: 6,
+      lines: [
+        [
+          [0.5, 0],
+          [0.5, 0.5],
+        ],
+      ],
+    },
+    { ...footpath, lines: [wrap] },
+    // A connector from the end to the wrap, which is not the ring.
+    {
+      ...footpath,
+      lines: [
+        [
+          [0.5, 0.5],
+          [0.5, 0.533],
+        ],
+      ],
+    },
+  ];
+  const stub = new SurfaceNetwork(stubTile, size, resolveTerrainSurfaceStyle());
+  stub.findTurningCircles();
+  expect(stub.turningCircles).toHaveLength(1);
+  const cap = stub.turningCircles[0];
+  if (!cap) throw Error('Missing cap');
+  expect(cap.radius).toBeGreaterThan(1.5);
+  expect(cap.center[1] + cap.radius).toBeLessThanOrEqual(53.3 - 1.1);
+  // A dead end with only a straight footway nearby keeps its plain end.
+  const lone = createEmptyTerrainSemanticTile();
+  lone.transportation = [deadEnd, footpath];
+  const plain = new SurfaceNetwork(lone, size, resolveTerrainSurfaceStyle());
+  plain.findTurningCircles();
+  expect(plain.turningCircles).toHaveLength(0);
+});

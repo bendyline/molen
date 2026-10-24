@@ -25,10 +25,12 @@ import {
   createEarthSky,
   createEarthWorldgen,
   createRegionalGroundColor,
+  EARTH_SHADOW_CASTER_HEIGHT,
   EARTH_WATER_COLOR,
   EARTH_WATER_CONDITIONS,
   EarthAmbient,
   type EarthAudio,
+  EarthAudioTerrain,
   type EarthFleet,
   type EarthRoadSigns,
   EarthVehicles,
@@ -52,6 +54,7 @@ import {
   createTerrainGroundMaterialAsync,
   createTerrainPackagePyramidStream,
   createTerrainPackageStream,
+  createTerrainPavementMaterialAsync,
   createTerrainSemanticPyramidLayer,
   createTerrainWaterMaterialAsync,
   sampleTerrainTunnel,
@@ -77,7 +80,12 @@ import {
   webMercatorToWgs84,
   wgs84ToWebMercator,
 } from '@bendyline/molen-terrain/kernel';
-import type { ScreenSpaceLodPolicy } from '@bendyline/molen-worldgen/client';
+import {
+  type BuildingMaterialDecorator,
+  createBuildingWeatheringAsync,
+  createScatterMaterialAsync,
+  type ScreenSpaceLodPolicy,
+} from '@bendyline/molen-worldgen/client';
 import type { WorldgenSemanticRenderers } from '@bendyline/molen-worldgen-earth/client';
 import type { PlacesContent } from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
@@ -459,10 +467,14 @@ async function loadWorldgen(options: {
   surfaceRenderer: TerrainSurfaceRenderer;
   metersPerUnit: number;
   quality: TerrainQualityPreset;
+  /** Compact scene for renderers without the WebGPU path's draw optimizations (WebGL). */
+  compact: boolean;
   lodPolicy: ScreenSpaceLodPolicy;
   /** Generate tiles in a Worker by default; `?worker=0` enables in-thread diagnostics. */
   worker: boolean;
   groundMaterial?: THREE.Material;
+  modelMaterial?: THREE.Material;
+  buildingDecorator?: BuildingMaterialDecorator;
 }): Promise<ExplorerWorldgen> {
   const params = new URLSearchParams(location.search);
   // Baked building materials persist across visits; ?materialCache=0 bakes every time.
@@ -489,6 +501,7 @@ async function loadWorldgen(options: {
     surfaceRenderer: options.surfaceRenderer,
     metersPerUnit: options.metersPerUnit,
     quality: options.quality,
+    compact: options.compact,
     lodPolicy: options.lodPolicy,
     ...(options.prepareObject ? { prepareObject: options.prepareObject } : {}),
     // Shared texture work starts after the first camera frame; buildings gain textures as it finishes.
@@ -511,6 +524,8 @@ async function loadWorldgen(options: {
       : {},
     ...(materialStore !== undefined ? { materialStore } : {}),
     ...(options.groundMaterial ? { groundMaterial: options.groundMaterial } : {}),
+    ...(options.modelMaterial ? { modelMaterial: options.modelMaterial } : {}),
+    ...(options.buildingDecorator ? { buildingDecorator: options.buildingDecorator } : {}),
     propLod: params.get('propLod') !== '0',
     interiors: params.get('interiors') !== '0',
     onMaterialBakeTiming: (ms) => options.telemetry.record('material-bake', ms),
@@ -719,9 +734,13 @@ async function main(): Promise<void> {
   let performanceLevel = automaticQuality ? 3 : earthQualityLevel(quality);
   const qualityController = new AdaptiveQualityController({ initialLevel: performanceLevel });
   const memoryBudget = earthMemoryBudget();
+  // The tier's object error; the frame loop scales it with height above the ground.
+  let objectPixelError = automaticQuality
+    ? earthPerformanceTier(performanceLevel).objectPixelError
+    : 2;
   const lodPolicy: ScreenSpaceLodPolicy = {
     viewportHeight: window.innerHeight,
-    maxPixelError: automaticQuality ? earthPerformanceTier(performanceLevel).objectPixelError : 2,
+    maxPixelError: objectPixelError,
   };
   const content = await contentLoad;
   const loadEntityModel = async (id: string, signal?: AbortSignal): Promise<THREE.Object3D> =>
@@ -793,6 +812,11 @@ async function main(): Promise<void> {
     },
   });
   startupStage('renderer');
+  // Ambient occlusion (WebGPU): creases, corners and the ground at building and tree bases darken
+  // a little. `?ao=0` turns it off for comparison.
+  const occlusionWanted = params.get('ao') !== '0';
+  viewer.renderer.setAmbientOcclusion(occlusionWanted);
+  let occlusionOn = occlusionWanted;
   const waterMaterial = await createTerrainWaterMaterialAsync(
     {
       color: EARTH_WATER_COLOR,
@@ -812,6 +836,20 @@ async function main(): Promise<void> {
       : await createTerrainGroundMaterialAsync({}, viewer.renderer.backend);
   const fieldMaterial = groundMaterial
     ? await createTerrainGroundMaterialAsync({ agriculture: true }, viewer.renderer.backend)
+    : undefined;
+  // Roads, sidewalks, markings and lots: asphalt wear, concrete slabs and worn paint from the
+  // bands' own coordinates. `?ground=flat` keeps the plain vertex colors here too.
+  const pavementMaterial = groundMaterial
+    ? await createTerrainPavementMaterialAsync({}, viewer.renderer.backend)
+    : undefined;
+  surfaceRenderer.setMaterial(pavementMaterial);
+  // Trees, shrubs and props: leaf speckle and crown occlusion (also off with `?ground=flat`).
+  const scatterMaterial = groundMaterial
+    ? await createScatterMaterialAsync(viewer.renderer.backend)
+    : undefined;
+  // Buildings: facade tone drift, rain streaks and weathered roofs (also off with `?ground=flat`).
+  const buildingDecorator = groundMaterial
+    ? await createBuildingWeatheringAsync(viewer.renderer.backend)
     : undefined;
   performanceStatus.dataset.backend = viewer.renderer.backend;
   performanceStatus.dataset.fallbackReason = viewer.renderer.fallbackReason ?? '';
@@ -853,8 +891,12 @@ async function main(): Promise<void> {
         assets: content.assets,
         metersPerUnit,
         quality,
+        // WebGL pays full price for every building and plant draw, so it keeps a compact scene.
+        compact: viewer.renderer.backend === 'webgl',
         worker: useWorker,
         ...(fieldMaterial ? { groundMaterial: fieldMaterial } : {}),
+        ...(scatterMaterial ? { modelMaterial: scatterMaterial } : {}),
+        ...(buildingDecorator ? { buildingDecorator } : {}),
         lodPolicy,
         surfaceRenderer,
       });
@@ -880,6 +922,9 @@ async function main(): Promise<void> {
     ? params.get('ambient') !== '0'
     : !params.has('freeze');
   const ambientTiles = ambientWanted ? new SemanticTileBuffer() : undefined;
+  const audioTerrain = new EarthAudioTerrain();
+  let audioTerrainSample: ReturnType<EarthAudioTerrain['sample']> | undefined;
+  let audioTerrainAt = -Infinity;
   const wildlifeWanted =
     ambientWanted &&
     params.get('wildlife') !== '0' &&
@@ -893,7 +938,10 @@ async function main(): Promise<void> {
   ): WorldgenSemanticRenderers['humanFeatures'] => {
     const observed =
       wildlifeFeatures !== undefined ? observeSemanticTiles(renderer, wildlifeFeatures) : renderer;
-    return ambientTiles !== undefined ? observeSemanticTiles(observed, ambientTiles) : observed;
+    return observeSemanticTiles(
+      ambientTiles !== undefined ? observeSemanticTiles(observed, ambientTiles) : observed,
+      audioTerrain.observer,
+    );
   };
   if (adaptive && !semanticDemo && declaredSemantics.length > 0) {
     try {
@@ -906,29 +954,48 @@ async function main(): Promise<void> {
         ...(loaded.baseUrl !== undefined ? { baseUrl: loaded.baseUrl } : {}),
         waterLayer: {
           visible: true,
-          mesh: {
-            materials: { water: waterMaterial },
-            waterOffset: 0.65,
-            // The elevation carries Puget Sound bathymetry. Without a sea level each bay polygon
-            // sits at its lower-quartile depth and shallower seabed shows through as ground, as
-            // mountEarthView avoids the same way.
-            ...(loaded.descriptor.coordinateSpace.kind === 'geospatial' ||
-            loaded.descriptor.surface?.seaLevel !== undefined
-              ? { seaLevel: loaded.descriptor.surface?.seaLevel ?? 0 }
-              : {}),
-          },
+          renderer: observeSemanticTiles(
+            createDefaultTerrainSemanticRenderer({
+              renderLandcover: false,
+              renderTransportation: false,
+              renderBuildings: false,
+              materials: { water: waterMaterial },
+              waterOffset: 0.65,
+              // The elevation carries Puget Sound bathymetry. Without a sea level each bay polygon
+              // sits at its lower-quartile depth and shallower seabed shows through as ground, as
+              // mountEarthView avoids the same way.
+              ...(loaded.descriptor.coordinateSpace.kind === 'geospatial' ||
+              loaded.descriptor.surface?.seaLevel !== undefined
+                ? { seaLevel: loaded.descriptor.surface?.seaLevel ?? 0 }
+                : {}),
+            }),
+            audioTerrain.observer,
+          ),
         },
         ...(worldgen !== undefined
           ? {
               landcoverLayer: {
                 renderer:
                   wildlifeCover !== undefined
-                    ? observeSemanticTiles(worldgen.classification, wildlifeCover)
-                    : worldgen.classification,
+                    ? observeSemanticTiles(
+                        observeSemanticTiles(worldgen.classification, wildlifeCover),
+                        audioTerrain.observer,
+                      )
+                    : observeSemanticTiles(worldgen.classification, audioTerrain.observer),
               },
               featuresLayer: { renderer: observeRoads(worldgen.humanFeatures) },
             }
           : {
+              landcoverLayer: {
+                renderer: observeSemanticTiles(
+                  createDefaultTerrainSemanticRenderer({
+                    renderWater: false,
+                    renderTransportation: false,
+                    renderBuildings: false,
+                  }),
+                  audioTerrain.observer,
+                ),
+              },
               featuresLayer: {
                 renderer: observeRoads(
                   createDefaultTerrainSemanticRenderer({
@@ -1098,6 +1165,7 @@ async function main(): Promise<void> {
         ...(groundMaterial ? { material: groundMaterial } : {}),
         // Ground, roads and buildings receive sun shadows; tall layer parts cast them.
         shadows: shadowsWanted,
+        shadowCasterHeight: EARTH_SHADOW_CASTER_HEIGHT,
         layers: adaptiveLayers,
         onParentFallback: () => {
           parentFallbacks++;
@@ -1198,7 +1266,8 @@ async function main(): Promise<void> {
   const applyPerformanceLevel = (): void => {
     const tier = earthPerformanceTier(performanceLevel);
     if (automaticQuality) quality = tier.quality;
-    lodPolicy.maxPixelError = automaticQuality ? tier.objectPixelError : 2;
+    objectPixelError = automaticQuality ? tier.objectPixelError : 2;
+    lodPolicy.maxPixelError = objectPixelError;
     const budget = automaticQuality ? tier.terrain : terrainPyramidBudgetForQuality(quality);
     // Explicit undefined clears the automatic byte cap when the user takes manual control.
     pyramidEarth?.stream.setBudget({ ...budget, maxResidentBytes: budget.maxResidentBytes });
@@ -1436,6 +1505,7 @@ async function main(): Promise<void> {
       wildlifeCover?.detach();
       wildlifeFeatures?.detach();
       wildlife?.dispose();
+      audioTerrain.clear();
       flight.dispose();
       vehicles.dispose();
     }
@@ -1997,6 +2067,8 @@ async function main(): Promise<void> {
     );
     if (groundMaterial) setTerrainGroundOrigin(groundMaterial, [waterOrigin[0], waterOrigin[2]]);
     if (fieldMaterial) setTerrainGroundOrigin(fieldMaterial, [waterOrigin[0], waterOrigin[2]]);
+    if (pavementMaterial)
+      setTerrainGroundOrigin(pavementMaterial, [waterOrigin[0], waterOrigin[2]]);
     const skyLocation = webMercatorToWgs84(
       camera.pos[0] / metersPerUnit,
       camera.pos[2] / metersPerUnit,
@@ -2024,28 +2096,63 @@ async function main(): Promise<void> {
         ),
       );
     }
+    const above = camera.pos[1] - (sampleHeight(camera.pos[0], camera.pos[2]) ?? 0);
+    // From high up a two-pixel error budget buys detail nobody can see, paid for on the GPU. Above
+    // 100 m over the ground the budget grows with height (up to four times), so the trees and
+    // buildings below hand over to their coarser levels sooner; street and rooftop views keep it.
+    lodPolicy.maxPixelError = objectPixelError * Math.min(4, Math.max(1, above / 100));
+    // Ambient occlusion darkens creases a meter or two across, under shrubs and along wall bases:
+    // it grounds what a walker or driver sees up close. From rooftop height up the same creases
+    // are small, while the passes cost a full-screen share of the frame (about 3 ms of 44 on an
+    // Apple M2 at High, which put a rooftop view behind the explorer's frame rate before this
+    // detail). Suspended above 24 m over the ground, back on below 18 m. Suspending keeps drawing
+    // into the occlusion target: switching it off and on changed the target every object's shaders
+    // were built for, and a takeoff or landing rebuilt everything in view mid-frame.
+    if (occlusionWanted) {
+      const on = occlusionOn ? above < 24 : above < 18;
+      if (on !== occlusionOn) {
+        viewer.renderer.suspendAmbientOcclusion(!on);
+        occlusionOn = on;
+      }
+    }
     if (firstFrame) startupStage('sky');
     const fog = viewer.renderer.scene.fog;
     if (fog instanceof THREE.Fog) updateEarthFog(fog, fogViewDistance, camera.pos[1]);
     const audioGround = audio ? sampleHeight(camera.pos[0], camera.pos[2]) : undefined;
     const audioSky = viewer.renderer.sky?.frame.earth;
+    if (audio && now - audioTerrainAt >= 250) {
+      audioTerrainSample = audioTerrain.sample(camera.pos[0], camera.pos[2]);
+      audioTerrainAt = now;
+    }
     audio?.update({
-      ...(space.kind === 'geospatial' && audioSky
-        ? {
-            location: {
-              latitude: skyLocation[1],
-              longitude: skyLocation[0],
+      location: {
+        latitude: skyLocation[1],
+        longitude: skyLocation[0],
+        ...(space.kind === 'geospatial' && audioSky
+          ? {
               utcMs: audioSky.utcMs,
               sunAltitudeDeg: audioSky.sun.altitudeDeg,
-            },
-          }
-        : {}),
+            }
+          : {}),
+      },
       ...(wildlife !== undefined ? { regionalAmbience: wildlife.ambience(camera.pos) } : {}),
       nowMs: now,
+      ...(audioTerrainSample ? { terrain: audioTerrainSample } : {}),
+      ...(viewer.renderer.sky?.frame?.earth
+        ? {
+            solarHour:
+              (((viewer.renderer.sky.frame.earth.utcMs / 3600000 + skyLocation[0] / 15) % 24) +
+                24) %
+              24,
+          }
+        : {}),
       ...(audioGround !== undefined ? { heightAboveGround: camera.pos[1] - audioGround } : {}),
       position: [camera.pos[0], camera.pos[1], camera.pos[2]],
       forward: [viewDirection[0], viewDirection[1], viewDirection[2]],
       mode: flight.mountedKind ? 'pilot' : vehicles.mountedId ? 'drive' : navigation,
+      inVehicle:
+        vehicles.view === 'cockpit' &&
+        (!!flight.mountedKind || (!!vehicles.mountedId && !vehicles.isBoat(vehicles.mountedId))),
       ...(navigation === 'walk' && !vehicleCamera ? { grounded: walker.grounded } : {}),
       ...(viewer.renderer.weather ? { weather: viewer.renderer.weather.data } : {}),
     });
@@ -2275,8 +2382,37 @@ hud.addEventListener('keydown', (event) => {
   }
 });
 
+// On a wide viewport the panel folds down to its title bar. The narrow layout ignores this (its CSS
+// hides #hud-collapse and never hides #hud-body) because #hud-toggle already hides the whole panel.
+const HUD_COLLAPSED_KEY = 'molen.world-explorer.hud-collapsed';
+const hudCollapse = document.getElementById('hud-collapse') as HTMLButtonElement;
+const setControlsCollapsed = (collapsed: boolean): void => {
+  hud.toggleAttribute('data-collapsed', collapsed);
+  hudCollapse.setAttribute('aria-expanded', String(!collapsed));
+  const label = collapsed ? 'Expand controls' : 'Collapse controls';
+  hudCollapse.setAttribute('aria-label', label);
+  hudCollapse.title = label;
+};
+try {
+  setControlsCollapsed(localStorage.getItem(HUD_COLLAPSED_KEY) === '1');
+} catch {
+  // Private windows may refuse storage; the panel just starts expanded.
+}
+// The whole bar is the hit target, not just the chevron; the button stays the keyboard control.
+document.getElementById('hud-titlebar')?.addEventListener('click', () => {
+  if (!hudCollapse.checkVisibility()) return;
+  const collapsed = !hud.hasAttribute('data-collapsed');
+  setControlsCollapsed(collapsed);
+  try {
+    localStorage.setItem(HUD_COLLAPSED_KEY, collapsed ? '1' : '0');
+  } catch {
+    // The setting just does not persist.
+  }
+});
+
 void main().catch((error: unknown) => {
   setControlsOpen(true);
+  setControlsCollapsed(false);
   const source = document.getElementById('source') as HTMLParagraphElement;
   source.id = 'error';
   source.textContent = (error as Error).message;

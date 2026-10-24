@@ -559,7 +559,7 @@ A small node graph (noise, gradients, ramps, blends) CPU-rasterized to textures.
               "type": {
                 "type": "string",
                 "const": "bricks",
-                "description": "Brick/mortar mask (1 = brick, 0 = mortar)."
+                "description": "Running-bond bricks: a brick/mortar mask, a per-brick random value or the position within a row."
               },
               "params": {
                 "type": "object",
@@ -591,6 +591,16 @@ A small node graph (noise, gradients, ramps, blends) CPU-rasterized to textures.
                     "minimum": 0,
                     "maximum": 1,
                     "description": "Horizontal shift of alternate rows as a fraction of a brick, 0..1 (default 0.5)."
+                  },
+                  "output": {
+                    "default": "mask",
+                    "type": "string",
+                    "enum": [
+                      "mask",
+                      "random",
+                      "row"
+                    ],
+                    "description": "mask (default): 1 on a brick, 0 on mortar. random: a stable 0..1 value per brick (0 on mortar), for per-tile tone variation. row: position within the row, 0 at its top (v) edge to 1 at its bottom, for course shading and normals."
                   }
                 },
                 "additionalProperties": false,
