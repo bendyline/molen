@@ -91,13 +91,18 @@ describe('semantic tile observation', () => {
 });
 
 describe('earth ambient life', () => {
-  it.each([undefined, 'right'] as const)('resolves tile driving sides with explicit override %s', (override) => {
+  it.each([
+    undefined,
+    'right',
+  ] as const)('resolves tile driving sides with explicit override %s', (override) => {
     const parent = new THREE.Group();
     const layer = new THREE.Group();
     parent.add(layer);
     const drivingSideAt = vi.fn(() => 'left' as const);
     const ambient = new EarthAmbient({
-      parent, settings: override ? { drivingSide: override } : {}, drivingSideAt,
+      parent,
+      settings: override ? { drivingSide: override } : {},
+      drivingSideAt,
     });
     ambient.added(layer, tile(), context());
     ambient.sync(0, { position: [5200, 2, -2800], direction: [0, 0, 1] });

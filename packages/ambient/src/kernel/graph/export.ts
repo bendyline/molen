@@ -48,8 +48,9 @@ export function networkToDocument(
           : ([round(p[0]), round(p[1])] as [number, number]),
       ),
       ...(edge.class === 'road' ? { lanes: roadLanes, oneway: edge.oneway } : {}),
-      ...(edge.class === 'road' && edge.drivingSide !== network.traffic
-        ? { drivingSide: edge.drivingSide } : {}),
+      ...((edge.class === 'road' || edge.class === 'walk') && edge.drivingSide !== network.traffic
+        ? { drivingSide: edge.drivingSide }
+        : {}),
       ...(edge.class === 'water' ? { oneway: edge.oneway, speed: edge.speed } : {}),
       width: round(edge.width),
       ...(edge.layer !== 0 ? { layer: edge.layer } : {}),

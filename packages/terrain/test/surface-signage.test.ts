@@ -10,9 +10,9 @@ import { createTerrainRoadSignObject } from '../src/road-signs';
 import { assertTerrainSemanticTile, createEmptyTerrainSemanticTile } from '../src/semantic-types';
 import { createTerrainSurfaceObject, disposeTerrainSurfaceObject } from '../src/surface-client';
 import { SurfaceNetwork } from '../src/surface-network';
-import type { TerrainSignalHead } from '../src/surface-signals';
 import type { SurfaceSign } from '../src/surface-sign-mesh';
 import { postedSpeed } from '../src/surface-signage';
+import type { TerrainSignalHead } from '../src/surface-signals';
 import { resolveTerrainSurfaceStyle } from '../src/surface-styles';
 
 function context(): TerrainPyramidTileLayerContext {
@@ -120,7 +120,10 @@ function profile(id: string) {
   return found;
 }
 describe('road signage', () => {
-  it.each(['right', 'left'] as const)('aligns %s-driving stop lines, signal heads and signs with approaching lanes', (drivingSide) => {
+  it.each([
+    'right',
+    'left',
+  ] as const)('aligns %s-driving stop lines, signal heads and signs with approaching lanes', (drivingSide) => {
     const tile = cross();
     tile.pois = [{ class: 'traffic_signals', point: [0.5, 0.5] }];
     const object = createTerrainSurfaceObject(tile, context(), { drivingSide });
@@ -132,11 +135,14 @@ describe('road signage', () => {
       expect(((head.x - 200) * dz - (head.z - 200) * dx) * side).toBeGreaterThan(0.5);
     }
     const network = new SurfaceNetwork(tile, 400, resolveTerrainSurfaceStyle());
-    const positions = (object.getObjectByName('surface:markings') as THREE.Mesh).geometry.getAttribute('position');
+    const positions = (
+      object.getObjectByName('surface:markings') as THREE.Mesh
+    ).geometry.getAttribute('position');
     for (const arm of network.junctions.flatMap((j) => j.arms)) {
       const offsets: number[] = [];
       for (let i = 0; i < positions.count; i++) {
-        const x = positions.getX(i) - arm.x, z = positions.getZ(i) - arm.z;
+        const x = positions.getX(i) - arm.x,
+          z = positions.getZ(i) - arm.z;
         const along = x * arm.dx + z * arm.dz;
         const across = x * arm.dz - z * arm.dx;
         if (along > 2.1 && along < 2.5 && Math.abs(across) < 4) offsets.push(across * side);
@@ -166,8 +172,9 @@ describe('road signage', () => {
       for (let i = 0; i < positions.count; i++)
         if (colors.getX(i) > colors.getZ(i) * 2) yellowZ.push(positions.getZ(i));
       expect(yellowZ.length).toBeGreaterThan(0);
-      expect(yellowZ.every((z) => drivingSide === 'left' ? z > 160 : z < 160)).toBe(true);
-      for (const sign of object.userData.roadSigns as SurfaceSign[]) expect(sign.dx).toBeLessThan(-0.99);
+      expect(yellowZ.every((z) => (drivingSide === 'left' ? z > 160 : z < 160))).toBe(true);
+      for (const sign of object.userData.roadSigns as SurfaceSign[])
+        expect(sign.dx).toBeLessThan(-0.99);
       disposeTerrainSurfaceObject(object);
     }
   });

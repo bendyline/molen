@@ -11,8 +11,15 @@ driving-side placement, stop/yield/exit labels and font roles. The speed and des
 always comes from semantic map data. Missing speed limits and exit numbers stay unknown.
 Only the U.S. preset currently enables inferred stop controls; mapped controls work globally.
 Uniform mapped destination colours override guide defaults. Mixed destination panels, detailed
-national layouts and route shields are still approximate. These conventions affect sign
-rendering, not vehicle traffic rules or pavement markings.
+national layouts and route shields are still approximate. Driving side is shared with ambient
+road lanes, junction turns, stop lines and signal heads; one-way point order is preserved.
+
+The `generic-left` profile adds left-driving countries and territories, including Japan,
+Australia, New Zealand, Ireland, India, Thailand, South Africa, Hong Kong and Macao. Its source
+links document driving side; its neutral colours, legends and shapes do not claim a national
+sign standard. A dedicated country profile can replace a binding without changing simulation
+rules. Unknown regions retain the right-driving `generic` fallback. Explicit host overrides
+apply to traffic, markings, signals and signs together.
 
 `sign.us`, `sign.gb`, `sign.de`, `sign.fr`, `sign.it` and `sign.ch` are optional font roles.
 They fall back to the Earth catalog's Overpass highway face until a host provides a matching
@@ -24,7 +31,11 @@ It is a separate atlas so an architectural overlay cannot change traffic signage
 Its public-domain Natural Earth outlines are reused from
 `../source/architecture-countries.json`; see `../architecture-geography.NOTICE.txt` for the
 upstream revision and source hash. Simplification makes borders/coasts approximate. Selection
-uses each terrain tile's centre, with no nearest-country fallback.
+uses each terrain tile's centre for both surfaces and traffic, with a bounded 2.5 km coastal fallback when no outline contains the point. Exact containment
+always wins; right-driving countries are also included so a nearby left-driving region cannot
+override them.
+Repeated source features for a country are combined; Cyprus includes the separate northern
+outline because it follows the same road rule.
 
 Reproduce or check it from the repository root:
 

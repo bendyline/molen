@@ -74,7 +74,8 @@ const context = {
   }),
   signal: new AbortController().signal,
 } as TerrainPyramidTileLayerContext;
-const options = { details: { streetlights: false } };
+const drivingSide = params.get('drivingSide') === 'left' ? 'left' : 'right';
+const options = { drivingSide, details: { streetlights: false } } as const;
 const bridge = params.has('worker')
   ? createTerrainSurfaceWorkerBridge(
       new Worker(new URL('../../src/surface-worker.ts', import.meta.url), { type: 'module' }),
@@ -109,7 +110,16 @@ const api = {
     await frame();
     renderer.render();
     await frame();
-    return { backend: renderer.backend, heads: heads.length };
+    return {
+      backend: renderer.backend,
+      heads: heads.length,
+      correctLane: heads.every(
+        (head) =>
+          ((head.x - 100) * head.direction[1] - (head.z - 100) * head.direction[0]) *
+            (drivingSide === 'left' ? -1 : 1) >
+          0,
+      ),
+    };
   },
 };
 (window as unknown as { trafficSignalsQA: typeof api }).trafficSignalsQA = api;

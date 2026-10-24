@@ -372,8 +372,10 @@ light panels receive dark lettering. Mixed-colour panels remain approximate. The
 The Earth pack provides `road-signs` (`signs/catalog.json`) and `road-sign-regions`
 (`signs/regions.atlas.json`). `loadEarthContent` loads these independently of buildings and
 fonts. World explorer and `mountEarthView` select a profile from the terrain tile's centre,
-using dedicated country and U.S. state outlines in the same Mercator coordinate frame. Architectural
-regions do not select signs. These simplified outlines can be imprecise near borders and
+using dedicated country and U.S. state outlines in the same Mercator coordinate frame.
+Exact containment wins; a bounded 2.5 km nearest-outline fallback fills coastal gaps.
+Right-driving countries are included too, so their interiors cannot inherit a nearby left-driving rule.
+Architectural regions do not select signs. These simplified outlines can be imprecise near borders and
 coasts. Countries without a preset use the neutral `generic` profile; it is not a national
 standard and keeps source units visible. Country coverage is deliberately explicit.
 
@@ -382,7 +384,16 @@ Posted values are never converted or guessed from the profile: `50` means 50 km/
 it matches the country's convention. All presets except the U.S. require mapped stop controls
 by default; a local crossroad alone does not establish an all-way stop. Explicit mapped
 signals still win. `details.inferStopSigns` can override the profile's inference default.
-This layer changes sign placement, not vehicle traffic rules or pavement-marking conventions.
+The same regional driving side controls roadside signs, approach stop lines, signal heads and
+the inner edge of a one-way motorway. Mapped one-way direction is preserved. Marking colours
+and sign hardware remain medium-fi approximations rather than complete national standards.
+
+Earth uses these country outlines for ambient traffic too. Japan, Australia, New Zealand,
+Ireland, India, Thailand, South Africa and other left-driving countries and territories use
+the `generic-left` profile where a national sign appearance is not supplied. It retains neutral
+panels and explicit source units while placing signs on the left. Hong Kong and Macao have
+separate outlines from mainland China. Selection uses the same terrain tile centre for roads
+and traffic; simplified borders and coastal outlines can be imprecise.
 
 Custom hosts can pass `signProfile` in `TerrainSurfaceOptions`. It takes precedence over the
 optional fourth argument to `createTerrainSurfaceRenderer`, a `(x, z) => profile` resolver.
@@ -390,6 +401,12 @@ The host resolves the profile before dispatching a serializable worker job. To s
 selection, call `createEarthRoadSigns(content.roadSigns, metersPerUnit)` from
 `@bendyline/molen-earth/client` and pass its `profileAt` callback. Without sign content or an
 explicit profile, standalone terrain rendering keeps its existing U.S. appearance.
+
+`TerrainSurfaceOptions.drivingSide` overrides handedness for markings, signals and signs together.
+`mountEarthView({ ambient: { drivingSide: 'left' } })` applies this override to its surfaces as
+well as its traffic. Without an override, the Earth sign content selects the rule automatically;
+without that content, the default remains right. Custom hosts can share
+`createEarthRoadSigns(...).drivingSideAt` with `EarthAmbient`.
 
 Profiles request roles such as `sign.gb` or `sign.de`; hosts can bind those roles to additional
 compiled font faces. The shipped catalog currently falls back to Overpass for every country.

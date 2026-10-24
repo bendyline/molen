@@ -238,6 +238,15 @@ describe('surface worker', () => {
     thread.run();
     const actual = await pending;
     expect(actual?.userData.roadSigns).toEqual(direct.userData.roadSigns);
+    expect(actual?.userData.trafficSignalHeads).toEqual(direct.userData.trafficSignalHeads);
+    for (const name of ['surface:markings', 'surface:fixtures']) {
+      const expectedMesh = direct.getObjectByName(name) as THREE.Mesh;
+      const actualMesh = actual?.getObjectByName(name) as THREE.Mesh;
+      if (expectedMesh?.geometry.getAttribute('position'))
+        expect(actualMesh.geometry.getAttribute('position').array).toEqual(
+          expectedMesh.geometry.getAttribute('position').array,
+        );
+    }
     expect(
       actual?.userData.roadSigns.some(
         (s: { appearance: { id: string } }) => s.appearance.id === profile.id,

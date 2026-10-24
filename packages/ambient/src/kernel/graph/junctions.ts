@@ -1,5 +1,5 @@
 /**
- * Node groups → junctions and movements. A node group is a node plus the node it is stitched to
+ * Node groups â†’ junctions and movements. A node group is a node plus the node it is stitched to
  * across a tile border. For every lane arriving at the group this computes its outgoing
  * movements (turn class, target lane, connector curve), trims lanes back from junction cores, and
  * builds the junction record: arms in angular order, a conflict matrix between arm-pair
@@ -204,13 +204,13 @@ class EndCache {
   }
 }
 
-function roadWeight(turn: TurnKind, target: TransportEdge): number {
+function roadWeight(turn: TurnKind, target: TransportEdge, drivingSide: 'right' | 'left'): number {
   const base =
     turn === 'straight'
       ? 3
-      : turn === 'right'
+      : turn === drivingSide
         ? 2
-        : turn === 'left'
+        : turn === 'left' || turn === 'right'
           ? 1.5
           : turn === 'merge'
             ? 2
@@ -509,7 +509,7 @@ function buildRoadMovements(
           lane,
           target,
           moveTurn,
-          roadWeight(moveTurn, outArm.edge),
+          roadWeight(moveTurn, outArm.edge, inArm.edge.drivingSide),
           n >= 3 ? junction : undefined,
           i * n + o,
         );
@@ -522,7 +522,7 @@ function buildRoadMovements(
             lane,
             f.lane,
             f.turn,
-            roadWeight(f.turn, store.edge(f.lane.edge) ?? inArm.edge),
+            roadWeight(f.turn, store.edge(f.lane.edge) ?? inArm.edge, inArm.edge.drivingSide),
             n >= 3 ? junction : undefined,
             i * n + f.o,
           );

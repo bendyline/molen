@@ -319,7 +319,10 @@ export class TransportNetwork implements GraphStore {
   /** Add a transport-network document's ways, stations, signals and aerodromes. */
   addDocument(doc: TransportNetworkDocument): void {
     for (const way of doc.ways) {
-      const draft = wayDraft({ ...way, drivingSide: way.drivingSide ?? doc.drivingSide ?? this.traffic });
+      const draft = wayDraft({
+        ...way,
+        drivingSide: way.drivingSide ?? doc.drivingSide ?? this.traffic,
+      });
       if (draft !== undefined) this.docDrafts.push(draft);
     }
     this.docPois.push(...documentPois(doc));

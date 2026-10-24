@@ -32,8 +32,9 @@ const atlas = {
   format: 'molen/region-atlas@1',
   id: 'molen.earth.roadsigns.regions',
   title: 'Road sign countries and U.S. states',
-  doc: `${source.source.title}; public-domain country outlines, simplified at 0.02 degrees. Approximate visual selection, not surveyed boundaries. No nearest-country fallback.`,
+  doc: `${source.source.title}; public-domain country outlines, simplified at 0.02 degrees. Approximate visual selection, not surveyed boundaries. Exact containment wins; a bounded coastal fallback covers simplification gaps.`,
   version: 1,
+  fallbackDistanceMeters: 2500,
   regions: [
     ...countries.map((country) => ({
       id: country.code.toLowerCase(),

@@ -52,7 +52,9 @@ describe('Earth road-sign conventions', () => {
       const signs = createEarthRoadSigns({ catalog, atlas }, scale);
       const [x, z] = wgs84ToWorld(scale, lon, lat);
       expect(signs.profileAt(x, z).id).toBe(id);
-      expect(signs.drivingSideAt(x, z)).toBe(id === 'gb' || id === 'generic-left' ? 'left' : 'right');
+      expect(signs.drivingSideAt(x, z)).toBe(
+        id === 'gb' || id === 'generic-left' ? 'left' : 'right',
+      );
       expect(signs.profileAt(x, z)).toBe(signs.profileAt(x, z));
     }
   });

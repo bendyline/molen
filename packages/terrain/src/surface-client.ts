@@ -109,8 +109,10 @@ export function createTerrainSurfaceObject(
   const style = resolveTerrainSurfaceStyle(options.style, options.details);
   const details = options.details ?? {};
   const regionalProfile = options.signProfile ?? DEFAULT_ROAD_SIGN_PROFILE;
-  const signProfile = options.drivingSide === undefined ? regionalProfile
-    : { ...regionalProfile, drivingSide: options.drivingSide };
+  const signProfile =
+    options.drivingSide === undefined
+      ? regionalProfile
+      : { ...regionalProfile, drivingSide: options.drivingSide };
   const side = signProfile.drivingSide === 'left' ? -1 : 1;
   const parkedVehicles = details.parkedVehicles ?? [];
   const detailed =
@@ -599,11 +601,16 @@ export function createTerrainSurfaceObject(
         const oneway = approach.road.feature.oneway === true;
         const lanes = Math.min(
           3,
-          Math.max(1, Math.floor(inferLaneCount(approach.road.feature, approach.width) / (oneway ? 1 : 2))),
+          Math.max(
+            1,
+            Math.floor(inferLaneCount(approach.road.feature, approach.width) / (oneway ? 1 : 2)),
+          ),
         );
         for (let lane = 0; lane < lanes; lane++) {
-          const distance = lateral + (oneway ? -approach.width / 2 : 0)
-            + (approach.width * (lane + 0.5)) / (lanes * (oneway ? 1 : 2));
+          const distance =
+            lateral +
+            (oneway ? -approach.width / 2 : 0) +
+            (approach.width * (lane + 0.5)) / (lanes * (oneway ? 1 : 2));
           const head: TerrainSignalHead = {
             x: sx + acrossX * distance,
             z: sz + acrossZ * distance,

@@ -83,8 +83,9 @@ The initial expansion adds 24 shared models, predominantly 2024 plus the 2025 fo
 Hongguang MINI EV. Profiles also reuse older and US-market models. Country-specific trim,
 steering variants, fleet age distributions and local commercial coverage remain approximate.
 The atlas groups the Korean peninsula; that fleet profile primarily represents South Korea.
-Some shared models use export-market bodies or steering layouts. Road driving side remains the
-host's ambient setting; fleet prevalence does not change traffic rules. Unbound regions fall back.
+Some shared models use export-market bodies or steering layouts. Road driving side comes from
+Earth's country sign geography, shared by traffic, markings and signals; an explicit ambient
+`drivingSide` overrides it. Fleet prevalence does not change traffic rules. Unbound regions fall back.
 
 Add a model once and reference its ID in appropriate profiles. Preserve older cars and several
 body classes. Every drivable model follows [Medium-fi](medium-fi.md) close-view requirements:
