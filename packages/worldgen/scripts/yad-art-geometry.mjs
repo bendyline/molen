@@ -1,4 +1,4 @@
-/** 'N0748_ART': mapped narrow Art Museum gallery and deep courtyard portal. */
+/** 'museum_of_holocaust_art_yad_vashem': mapped narrow Art Museum gallery and deep courtyard portal. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildYadArt(face, detail, r) {

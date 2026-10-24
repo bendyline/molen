@@ -7,7 +7,7 @@ import { egeskovParts, egeskovPlanPoint } from './egeskov-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u1/u1z/n0298_egeskov_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u1/u1z/egeskov_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

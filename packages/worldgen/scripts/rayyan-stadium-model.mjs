@@ -1,4 +1,4 @@
-/** 'N0726': own Ahmad bin Ali envelope, flying roof truss, rosette screen and mapped ancillary forms. */
+/** 'ahmad_bin_ali_stadium': own Ahmad bin Ali envelope, flying roof truss, rosette screen and mapped ancillary forms. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
@@ -17,7 +17,7 @@ export function rayyanRadius(poly, a) {
       u = cross(p, d) / den;
     if (t > 0 && u >= -1e-8 && u <= 1 + 1e-8) hits.push(t);
   }
-  if (!hits.length) throw Error('N0726: missing own radial boundary');
+  if (!hits.length) throw Error('ahmad_bin_ali_stadium: missing own radial boundary');
   return Math.min(...hits);
 }
 export function rayyanFoundationOutline(r, d) {
@@ -68,7 +68,7 @@ export function rayyanDunePoint(d, a, t, floorY) {
       u = cross(p, direction) / den;
     if (R > 0 && u >= -1e-7 && u <= 1 + 1e-7) hits.push(R);
   }
-  if (!hits.length) throw Error('N0726: missing crescent roof boundary');
+  if (!hits.length) throw Error('ahmad_bin_ali_stadium: missing crescent roof boundary');
   const R = Math.min(...hits) * (1 - t) + Math.max(...hits) * t;
   return [
     R * direction[0],

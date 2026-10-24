@@ -1,11 +1,11 @@
-/** N0633 eastern member: roofless Maneckji dakhma, broken pit and supported approach. */
+/** towers_of_silence_in_yazd eastern member: roofless Maneckji dakhma, broken pit and supported approach. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildYazdEastDakhma } from './yazd-east-dakhma-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/tj/tjw/n0633_east_maneckji_tower_of_silence/',
+    '../../../content/worldgen/source/places/tj/tjw/east_maneckji_tower_of_silence/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -88,7 +88,7 @@ export const buildYazdEastSkyline = (o) => build(o, 0),
   buildYazdEastStreet = (o) => build(o, 2),
   buildYazdEastCloseup = (o) => build(o, 3);
 export const yazdEastStudy = {
-  id: 'N0633_EAST',
+  id: 'east_maneckji_tower_of_silence',
   key: 'east_maneckji_tower_of_silence',
   title: 'Maneckji Tower of Silence, Yazd (east)',
   category: 'tower',

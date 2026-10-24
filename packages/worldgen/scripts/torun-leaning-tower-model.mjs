@@ -421,8 +421,8 @@ function buildTorun(out) {
 }
 
 export const torunLeaningTower = {
-  id: 'n0595_leaning_tower_of_torun',
-  planId: 'N0595',
+  id: 'leaning_tower_of_torun',
+  planId: 'leaning_tower_of_torun',
   title: 'Leaning Tower of Toruń',
   wikidata: 'Q2234463',
   authoringFile: 'torun-leaning-tower-model.mjs',

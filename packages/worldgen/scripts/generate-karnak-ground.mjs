@@ -7,13 +7,13 @@ import { buildKarnakBody, buildKarnakUnposed, karnakGround } from './karnak-mode
 
 const dir = fileURLToPath(
     new URL(
-      '../../../content/worldgen/source/places/ss/ssx/n0489_karnak_temple_complex',
+      '../../../content/worldgen/source/places/ss/ssx/karnak_temple_complex',
       import.meta.url,
     ),
   ),
   read = async (p) => JSON.parse(await readFile(p, 'utf8')),
   scope = await read(`${dir}/review-scope.json`);
-const candidateId = 'N0489';
+const candidateId = 'karnak_temple_complex';
 if ((await read(`${dir}/map-frame.json`)).candidateId !== candidateId)
   throw new Error('Karnak ground identity changed');
 const collect = (build) => {
@@ -215,7 +215,7 @@ export async function generateKarnakGround() {
   }
   const result = {
     format: 'molen/structure-grade-foundations@1',
-    candidateId: 'N0489',
+    candidateId: 'karnak_temple_complex',
     basis:
       'Boundary panels join the original occupied floor/basin pockets to the retained unmodified DEM. Below-floor panels face outward;excavation faces point inward. Twelve-meter maximum segments sample the terrain between their ends. Distant variants reuse their extended slab skirts where verified present. Skyline omits subpixel below-grade faces under its20m error allowance.',
     levels,
@@ -225,7 +225,7 @@ export async function generateKarnakGround() {
     assert.equal(
       await readFile(`${dir}/grade-foundations.json`, 'utf8'),
       bytes,
-      'Karnak ground joins are stale;run this script before generating N0489',
+      'Karnak ground joins are stale;run this script before generating karnak_temple_complex',
     );
   else {
     await writeFile(`${dir}/grade-foundations.json`, bytes);

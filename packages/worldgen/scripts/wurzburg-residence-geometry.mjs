@@ -1,4 +1,4 @@
-/** 'N0771': Würzburg Residence, four open courts, western colonnades and shaped slate roofs. */
+/** 'wurzburg_residence': Würzburg Residence, four open courts, western colonnades and shaped slate roofs. */
 import './install-deterministic-math.mjs';
 import { createRequire } from 'node:module';
 import earcut from 'earcut';

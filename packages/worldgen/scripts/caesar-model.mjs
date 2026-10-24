@@ -1,11 +1,11 @@
-/** N0511: reproducible surviving Temple of Caesar architecture. */
+/** temple_of_caesar: reproducible surviving Temple of Caesar architecture. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildCaesarRuins } from './caesar-ruins-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0511_temple_of_caesar/',
+    '../../../content/worldgen/source/places/sr/sr2/temple_of_caesar/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -83,7 +83,7 @@ export const buildCaesarSkyline = (o) => build(o, 0),
   buildCaesarStreet = (o) => build(o, 2),
   buildCaesarCloseup = (o) => build(o, 3);
 export const caesarStudy = {
-  id: 'N0511',
+  id: 'temple_of_caesar',
   key: 'temple_of_caesar',
   title: 'Temple of Caesar',
   category: 'temple',

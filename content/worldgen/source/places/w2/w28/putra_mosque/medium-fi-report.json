@@ -1,0 +1,1227 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.putra_mosque",
+  "sourceHash": "sha256:a2a17bacda29ade07d5d1d0828d674987dbe4d1e2d404792f4f1863edf41c89b",
+  "runtimeHash": "sha256:ed2a5d422b7e0d339d936ee1a2640eadc6344fa572d4c113b3062830ce601d48",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5990,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:0e4b1230ec60dde4d84586d04bdd6a935bb3034a327ffd0b0d55d97298a51cf2",
+      "bytes": 96740,
+      "gzipBytes": 17674,
+      "triangles": 974,
+      "cpuBytes": 95304,
+      "gpuBytes": 95304,
+      "errorMeters": 3,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:181f264169e267ac0c3b4742e1ce364933dc0f2353593a721e131af6f4c3a5bc",
+      "bytes": 367768,
+      "gzipBytes": 95695,
+      "triangles": 3880,
+      "cpuBytes": 359160,
+      "gpuBytes": 359160,
+      "errorMeters": 1.1,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:0380cb9dbcb39aa5cb9709e6b8e83452c6c26a8c44a08d1dada72f731e7007c7",
+      "bytes": 1001172,
+      "gzipBytes": 285922,
+      "triangles": 10398,
+      "cpuBytes": 992520,
+      "gpuBytes": 992520,
+      "errorMeters": 0.45,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:cc3c920cd4c82acffb53265d4ee8497f988e22e941ab7a447e9742f69ad9cd23",
+      "bytes": 1735336,
+      "gzipBytes": 530545,
+      "triangles": 17278,
+      "cpuBytes": 1726656,
+      "gpuBytes": 1726656,
+      "errorMeters": 0.22,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:ac66d6f750d5d86c2d3a4bf71ad4460b68179e005d94be5531965314bba81793"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:34cde62a9e89a39913f918bb66bf9cae4648fbc72b4485ba4623bb77113e3318"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:e2df7ecb41070de2d6f7a1e5ad7cf3db4ac8a6d47c83bfff23e01bd6bdf8ee3c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 44070,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          66.6074,
+          66.1138,
+          82.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:32896d1013c1b010f49271561b4c60c5f96f8ce2036061ecfb4afa21c88e50fc",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 44070,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          66.6074,
+          66.1138,
+          82.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:2d1bcc08bdf5714110ff0f4db9c6aeb09e56013ac19f6762c9e3929ecb9ada5e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 44070,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          66.6074,
+          66.1138,
+          82.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:2f570afe8f26428852584c338747697f2d173ba54c50ad4b6772cf9a3ca516f1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 44070,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          66.6074,
+          66.1138,
+          82.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:293dda6f5402dd87ce75fe047e96c83fac0eecea2bbba78e5acde6a1c1f3e0bb",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 30672,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          115.6074,
+          102.1138,
+          167.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:b00a9d6d141cdc027dd793a10bab61f2fd11af0c8679906180b1cae6128122ff",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 30672,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          115.6074,
+          102.1138,
+          167.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:746612d964ce922fe25e418d875997673635010304ae4cea1905db2fd71c90ac",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 30672,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          115.6074,
+          102.1138,
+          167.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:d3e3a8c428a71ec20dfcc819acd0501d93903c37c2370ff18727654d467f5f00",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 30672,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          115.6074,
+          102.1138,
+          167.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:5d293206c97d431d7629481659c8ee998145b417c4407e305be0b063976ad7c2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 27766,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          212.60739999999998,
+          140.1138,
+          335.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:c3292b6f35b32feef7fc91db4965a341565942cf3a6531d5eee769f995141679",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27766,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          212.60739999999998,
+          140.1138,
+          335.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:99e7b1c1e12475b3c4b0631fe7d9dadda39eb4bb731553e55528dfe18c40bfe1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 27766,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          212.60739999999998,
+          140.1138,
+          335.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:6b27b58b941e3bbf324ec7c1d5e6ba37583e7b2e969a7d1aaf9e08408d72d2b8",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27766,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          212.60739999999998,
+          140.1138,
+          335.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:2a225170329f96a22f0820274e1488e8683e3d9a05f47adf66f33b580b67deb2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21776,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          212.60739999999998,
+          140.1138,
+          335.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/pink-main-dome-and-pavilions.png",
+      "hash": "sha256:e0f5a88d160368ac4d88e7757a6f322ca8f66894ecce893ceef6ef09ee814c14",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 44070,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          90,
+          63,
+          95
+        ],
+        "lookAt": [
+          0,
+          37,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/pointed-arcade-and-upper-lattice.png",
+      "hash": "sha256:fd61a85b79c726010fd966e743fc6a410eda2cc5fa5d64d7d3e0b6bf31ee06e0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 44070,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          70,
+          12,
+          2
+        ],
+        "lookAt": [
+          43,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/cream-diamond-dome-rhythm.png",
+      "hash": "sha256:9af053d21eff28205b76599fafaeab230d467cc441990eccb1f0bfedd213b35f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 44070,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          62,
+          47
+        ],
+        "lookAt": [
+          1,
+          47,
+          -1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/outer-domed-pavilion.png",
+      "hash": "sha256:6f110023fd35517bc3de07e27e90abd502c8d0838df794b6a0e4c022132a5bbe",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 44070,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          64,
+          32,
+          57
+        ],
+        "lookAt": [
+          37.5,
+          25,
+          34
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/tiered-minaret.png",
+      "hash": "sha256:1ef3b61569a5d5abd84d6f3fa2a4b72885021a27a3e8b7381cbba771eac64e90",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 44070,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          124,
+          71,
+          63
+        ],
+        "lookAt": [
+          79,
+          65,
+          23
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mapped-hall-podium-and-minaret.png",
+      "hash": "sha256:e4e933533ab4f04307a1f80e3c7107b78c47e89b8461cf1258dd7d63e9032720",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 44070,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          16,
+          280,
+          0.1
+        ],
+        "lookAt": [
+          16,
+          12,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-putra-skyline.png",
+      "hash": "sha256:d7d1f6dfb9ce16d28629b20758aa52f6cf97f46dced5ffe7f7b56b39a5b2b9b0",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27766,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          175,
+          125,
+          155
+        ],
+        "lookAt": [
+          12,
+          30,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-putra-district.png",
+      "hash": "sha256:d9d8c7aff99dda85b487848cefce342d09214e91dc0921d80d0a06c0a1f4067d",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 30672,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          175,
+          125,
+          155
+        ],
+        "lookAt": [
+          12,
+          30,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-putra-street.png",
+      "hash": "sha256:4e0e0ad82230efc3b3d187aebbb4f04d5ec26321e9a0e81c91d2f07224b4080d",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 37190,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          175,
+          125,
+          155
+        ],
+        "lookAt": [
+          12,
+          30,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-putra-closeup.png",
+      "hash": "sha256:d6ee198172ba064b8951bc9277954303973ca8ca7e2ee135ec1518c3a65f1bef",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 44070,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          175,
+          125,
+          155
+        ],
+        "lookAt": [
+          12,
+          30,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:917e3f07c89a0033e4f86adf320896ab6127372423adb33061fc296d3ff10845",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27766,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          115.6074,
+          102.1138,
+          167.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:b00a9d6d141cdc027dd793a10bab61f2fd11af0c8679906180b1cae6128122ff",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 30672,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          115.6074,
+          102.1138,
+          167.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:75d7e36710921947713439d703c5b04c500286dbe649441793f636c8c5a35f9a",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 37190,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          115.6074,
+          102.1138,
+          167.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:d1739bb39787fc3e936f3308d840c423a19687711d751dce15785cdb13e1afe6",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 44070,
+        "groundY": -35,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w2/w28/putra_mosque/terrain-review.height.png"
+        },
+        "position": [
+          115.6074,
+          102.1138,
+          167.9968
+        ],
+        "lookAt": [
+          18.6074,
+          51.1138,
+          -0.0032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.tropical_masonry.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

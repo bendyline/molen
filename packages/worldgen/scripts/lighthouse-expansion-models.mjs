@@ -783,7 +783,7 @@ export const lighthouseStudy = (data) => ({
 });
 export const lighthouseExpansionStudies = [
   lighthouseStudy({
-    id: 'N0638',
+    id: 'maidens_tower',
     key: 'maiden_s_tower',
     title: "Maiden's Tower",
     wikidataId: 'Q848397',
@@ -824,7 +824,7 @@ export const lighthouseExpansionStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0639',
+    id: 'cordouan_lighthouse',
     key: 'cordouan_lighthouse',
     title: 'Cordouan Lighthouse',
     wikidataId: 'Q199234',
@@ -865,7 +865,7 @@ export const lighthouseExpansionStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0640',
+    id: 'keri_lighthouse',
     key: 'keri_lighthouse',
     title: 'Keri Lighthouse',
     wikidataId: 'Q2984041',

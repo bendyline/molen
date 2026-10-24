@@ -1,4 +1,4 @@
-/** 'N0752_FLAMSTEED': independent mapped house, Octagon Room, turrets and time ball. */
+/** 'flamsteed_house_royal_observatory_greenwich': independent mapped house, Octagon Room, turrets and time ball. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildFlamsteed(face, detail, r) {

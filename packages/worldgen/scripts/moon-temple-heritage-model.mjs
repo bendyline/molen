@@ -1,4 +1,4 @@
-/** 'N0551': Yuetan's mapped bell tower, triple-arch gate and hall, with surviving enclosure forms. */
+/** 'temple_of_the_moon': Yuetan's mapped bell tower, triple-arch gate and hall, with surviving enclosure forms. */
 import { normalFor } from './authored-structure-mesh.mjs';
 import {
   openingBuilder,

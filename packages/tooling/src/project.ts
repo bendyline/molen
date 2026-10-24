@@ -1,5 +1,4 @@
-import { randomUUID } from 'node:crypto';
-import { mkdir, open, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { open, readFile, rm, stat } from 'node:fs/promises';
 import { dirname, isAbsolute, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { stripScriptTypes } from '@bendyline/molen-client/vite';
@@ -24,6 +23,7 @@ import {
   validate,
 } from '@bendyline/molen-schema';
 import { openProjectPacks, packTypeDocuments } from './content';
+import { retryFileOperation, writeFileAtomic } from './file-io';
 import { parseJson } from './ops/parse';
 
 export const PROJECT_FILENAME = 'project.json';
@@ -178,19 +178,22 @@ export async function updateProjectFile(
   const lockPath = `${projectPath}.lock`;
   const start = Date.now();
   const staleAfterMs = 30_000;
-  const waitLimitMs = 5_000;
+  const waitLimitMs = 30_000;
   for (;;) {
     try {
-      const handle = await open(lockPath, 'wx');
-      await handle.writeFile(`${JSON.stringify({ pid: process.pid, createdAt: Date.now() })}\n`);
-      await handle.close();
+      const handle = await retryFileOperation(() => open(lockPath, 'wx'));
+      try {
+        await handle.writeFile(`${JSON.stringify({ pid: process.pid, createdAt: Date.now() })}\n`);
+      } finally {
+        await handle.close();
+      }
       break;
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== 'EEXIST') throw error;
       try {
         const info = await stat(lockPath);
         if (Date.now() - info.mtimeMs > staleAfterMs) {
-          await rm(lockPath, { force: true });
+          await retryFileOperation(() => rm(lockPath, { force: true }));
           continue;
         }
       } catch (statError) {
@@ -203,25 +206,25 @@ export async function updateProjectFile(
       await new Promise((r) => setTimeout(r, 25));
     }
   }
-  const tmpPath = `${projectPath}.${process.pid}.${randomUUID()}.tmp`;
   try {
-    const raw = parseJson(await readFile(projectPath, 'utf8'));
+    const raw = parseJson(await retryFileOperation(() => readFile(projectPath, 'utf8')));
     const parsed = validate('project', raw);
     if (!parsed.ok) throw new Error(parsed.formatted);
     const manifest = parsed.value;
+    const before = JSON.stringify(manifest);
     const mutated = mutate(manifest);
     const next = (mutated ?? manifest) as ProjectManifest;
     const reparsed = validate('project', JSON.parse(JSON.stringify(next)));
     if (!reparsed.ok) {
       throw new Error(`project.json update produced an invalid manifest:\n${reparsed.formatted}`);
     }
-    await mkdir(dirname(projectPath), { recursive: true });
-    await writeFile(tmpPath, `${JSON.stringify(reparsed.value, null, 2)}\n`);
-    await rename(tmpPath, projectPath);
+    // Reimports normally retain the same registration. Preserve the original bytes and avoid
+    // replacing a shared manifest thousands of times while other imports are reading it.
+    if (JSON.stringify(reparsed.value) !== before)
+      await writeFileAtomic(projectPath, `${JSON.stringify(reparsed.value, null, 2)}\n`);
     return reparsed.value;
   } finally {
-    await rm(tmpPath, { force: true });
-    await rm(lockPath, { force: true });
+    await retryFileOperation(() => rm(lockPath, { force: true }));
   }
 }
 

@@ -43,7 +43,7 @@ async function json<T>(path: string): Promise<T> {
 const pack = await resolveStylePackDocuments(await json('worldgen/stylepack.json'), (path) =>
   json(`worldgen/${path}`),
 );
-const catalog = await json<StructureCatalogDoc>('earth/structures/placements.json');
+const catalog = await json<StructureCatalogDoc>('earth/structures/placements/authoring.json');
 const reads: Record<string, number> = {};
 const loads: string[] = [];
 const resources: Array<{ asset: string; disposed: boolean }> = [];

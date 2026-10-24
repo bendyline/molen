@@ -1,11 +1,11 @@
-/** 'N0548': Romulus's tiled rotunda, arched lantern and bronze entrance. */
+/** 'temple_of_romulus': Romulus's tiled rotunda, arched lantern and bronze entrance. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildRomulusRotunda } from './romulus-rotunda-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0548_temple_of_romulus/',
+    '../../../content/worldgen/source/places/sr/sr2/temple_of_romulus/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -86,7 +86,7 @@ export const buildRomulusSkyline = (o) => build(o, 0),
   buildRomulusStreet = (o) => build(o, 2),
   buildRomulusCloseup = (o) => build(o, 3);
 export const romulusStudy = {
-  id: 'N0548',
+  id: 'temple_of_romulus',
   key: 'temple_of_romulus',
   title: 'Temple of Romulus',
   category: 'temple',

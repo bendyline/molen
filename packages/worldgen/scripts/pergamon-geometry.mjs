@@ -1,4 +1,4 @@
-/** 'N0751': Pergamon's three mapped wings, courtyard pilasters and stepped hall roof. */
+/** 'pergamon_museum': Pergamon's three mapped wings, courtyard pilasters and stepped hall roof. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildPergamon(face, detail, r) {

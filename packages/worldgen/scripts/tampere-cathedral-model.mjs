@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/ud/udb/n0398_tampere_cathedral/',
+  '../../../content/worldgen/source/places/ud/udb/tampere_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -967,7 +967,7 @@ export const buildTampereCathedralSkyline = (o) => build(o, 0),
   buildTampereCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const tampereCathedralStudy = {
-  id: 'N0398',
+  id: 'tampere_cathedral',
   key: 'tampere_cathedral',
   title: 'Tampere Cathedral',
   category: 'cathedral',

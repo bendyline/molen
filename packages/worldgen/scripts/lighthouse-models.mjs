@@ -699,7 +699,7 @@ const commonLimitations = [
 ];
 export const lighthouseStudies = [
   {
-    id: 'N0637',
+    id: 'tower_of_hercules',
     key: 'tower_of_hercules',
     title: 'Tower of Hercules',
     wikidataId: 'Q245151',
@@ -750,7 +750,7 @@ export const lighthouseStudies = [
     ],
   },
   {
-    id: 'N0641',
+    id: 'kopu_lighthouse',
     key: 'kopu_lighthouse',
     title: 'Kõpu Lighthouse',
     wikidataId: 'Q1795607',
@@ -799,7 +799,7 @@ export const lighthouseStudies = [
     ],
   },
   {
-    id: 'N0643',
+    id: 'kiipsaare_lighthouse',
     key: 'kiipsaare_lighthouse',
     title: 'Kiipsaare Lighthouse',
     wikidataId: 'Q498583',

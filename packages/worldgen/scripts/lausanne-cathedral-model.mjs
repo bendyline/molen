@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u0/u0k/n0403_lausanne_cathedral/',
+  '../../../content/worldgen/source/places/u0/u0k/lausanne_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -959,7 +959,7 @@ export const buildLausanneSkyline = (o) => build(o, 0),
   buildLausanneCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const lausanneCathedralStudy = {
-  id: 'N0403',
+  id: 'lausanne_cathedral',
   key: 'lausanne_cathedral',
   title: 'Lausanne Cathedral',
   category: 'cathedral',

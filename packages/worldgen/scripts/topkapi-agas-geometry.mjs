@@ -1,4 +1,4 @@
-/** 'N0742_AGAS': Banded masonry hall, pointed windows and shallow lead barrel roof. */
+/** 'mosque_of_the_agas_topkapi_palace': Banded masonry hall, pointed windows and shallow lead barrel roof. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

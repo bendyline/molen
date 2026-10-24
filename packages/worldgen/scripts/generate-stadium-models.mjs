@@ -52,7 +52,10 @@ for (const arg of process.argv.slice(2))
   if (arg !== '--check' && !arg.startsWith('--ids=')) throw new Error(`Unknown argument ${arg}`);
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const candidates = JSON.parse(
-  await readFile(resolve(root, 'content/worldgen/source/next-1000/candidates.json'), 'utf8'),
+  await readFile(
+    resolve(root, 'content/worldgen/source/structure-catalog/candidates.json'),
+    'utf8',
+  ),
 ).candidates;
 const studies = [
   ...stadiumStudies,
@@ -205,7 +208,7 @@ for (const originalAsset of studies.filter((study) => !selected || selected.incl
   const asset = { ...originalAsset };
   if (candidates.find((candidate) => candidate.id === asset.id)?.wikidataId !== asset.wikidataId)
     throw new Error(`${asset.id}: catalog identity changed`);
-  const key = `${asset.id.toLowerCase()}_${asset.key}`,
+  const key = asset.id,
     assetId = `molen.worldgen.structure.${key}`,
     dir = structureSourceDirectory(key),
     modelPath = resolve(dir, 'models/source.glb');

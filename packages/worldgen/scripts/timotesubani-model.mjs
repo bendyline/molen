@@ -1,11 +1,11 @@
-/** 'N0555': Timotesubani brick cross-domed church, open stone porch and mapped gateway. */
+/** 'timotesubani': Timotesubani brick cross-domed church, open stone porch and mapped gateway. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTimotesubaniChurch } from './timotesubani-church-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sz/szq/n0555_timotesubani/',
+    '../../../content/worldgen/source/places/sz/szq/timotesubani/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -87,7 +87,7 @@ export const buildTimotesubaniSkyline = (o) => build(o, 0),
   buildTimotesubaniStreet = (o) => build(o, 2),
   buildTimotesubaniCloseup = (o) => build(o, 3);
 export const timotesubaniStudy = {
-  id: 'N0555',
+  id: 'timotesubani',
   key: 'timotesubani',
   title: 'Timotesubani',
   category: 'church',

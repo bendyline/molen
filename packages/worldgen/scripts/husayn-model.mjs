@@ -42,7 +42,7 @@ const openingShape = (h, d) => {
 };
 const prepareOpening = (h, b, d) => ({ ...basePrepareOpening(h, b, d), ring: openingShape(h, d) });
 const source = new URL(
-  '../../../content/worldgen/source/places/sv/svz/n0463_imam_husayn_mausoleum/',
+  '../../../content/worldgen/source/places/sv/svz/imam_husayn_mausoleum/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -709,7 +709,7 @@ export const buildHusaynSkyline = (o) => build(o, 0),
   buildHusaynCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const husaynStudy = {
-  id: 'N0463',
+  id: 'imam_husayn_mausoleum',
   key: 'imam_husayn_mausoleum',
   title: 'Imam Husayn Mausoleum',
   category: 'mosque',

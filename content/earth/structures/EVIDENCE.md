@@ -1,6 +1,6 @@
 # Structure evidence and production readiness
 
-The next-1,000 candidate inventory is an authoring queue. It must not be interpreted as 1,000
+The structure catalog candidate inventory is an authoring queue. It must not be interpreted as 1,000
 finished or geographically verified assets. This directory records the evidence needed to
 turn each identity into an authored model and a reviewed world-viewer placement.
 
@@ -37,7 +37,7 @@ Point-only data keeps `heading` absent. Distant, very large, obsolete, missing o
 geometry remains in the review queue. A generic rectangle fit never promotes an entry into
 the runtime placement catalog.
 
-`alignments/n0002_pont_de_normandie.json` is a more specific registration study. It uses the
+`alignments/pont_de_normandie.json` is a more specific registration study. It uses the
 mean endpoints of the two mapped main-span carriageways, so the authored origin lies midway
 between pylons, with +X toward the south bank. The asymmetric approach extents are recorded
 separately. The operator drawing uses CMH (Cote Marine du Havre).

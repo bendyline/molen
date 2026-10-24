@@ -344,8 +344,8 @@ still requires actually looking at current renders. In the engine repository, `p
 rejects tracked bulk captures while allowing required source images and summary previews.
 
 For a landmark collection whose buildings occupy separate sites, keep each building as an
-independent asset and geographic placement. The repository's next-1,000 catalog declares
-required members in `content/worldgen/source/next-1000/collections.json`; the authoring/import
+independent asset and geographic placement. The repository's structure catalog catalog declares
+required members in `content/worldgen/source/structure-catalog/collections.json`; the authoring/import
 commands expand a collection ID to its authored members, while readiness requires every
 declared member's own current source, import and inspected render/placement evidence. A
 collection never supplies a composite GLB or centroid placement. Reuse an existing exact

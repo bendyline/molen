@@ -5,7 +5,9 @@ import { readPackSource } from '../src/node';
 it('ships runtime Earth catalogs without the structure research snapshots and ledgers', async () => {
   const source = await readPackSource(resolve(import.meta.dirname, '../../../content/earth'));
   const paths = source.files.map((file) => file.path);
-  expect(paths).toContain('structures/placements.json');
+  expect(paths).toContain('structures/placements/index.json');
+  expect(paths).not.toContain('structures/placements/authoring.json');
+  expect(paths.some((path) => path.startsWith('source/placements/'))).toBe(false);
   expect(paths).toContain('structures/map-rules.json');
   expect(paths).toContain('world.atlas.json');
   expect(paths).toContain('businesses/catalog.json');

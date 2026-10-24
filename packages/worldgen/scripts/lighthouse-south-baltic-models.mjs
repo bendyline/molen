@@ -379,7 +379,7 @@ export function buildKlaipeda(out) {
 }
 export const lighthouseSouthBalticStudies = [
   lighthouseStudy({
-    id: 'N0676',
+    id: 'klaipeda_lighthouse',
     key: 'klaipeda_lighthouse',
     title: 'Klaipėda Lighthouse',
     wikidataId: 'Q5764622',
@@ -920,7 +920,7 @@ export function buildKolobrzeg(out) {
 }
 lighthouseSouthBalticStudies.push(
   lighthouseStudy({
-    id: 'N0677',
+    id: 'kolobrzeg_lighthouse',
     key: 'kolobrzeg_lighthouse',
     title: 'Kołobrzeg Lighthouse',
     wikidataId: 'Q11309665',
@@ -1545,7 +1545,7 @@ export function buildSkagen(out) {
 }
 lighthouseSouthBalticStudies.push(
   lighthouseStudy({
-    id: 'N0678',
+    id: 'skagen_lighthouse',
     key: 'skagen_lighthouse',
     title: 'Skagen Lighthouse',
     wikidataId: 'Q12000806',

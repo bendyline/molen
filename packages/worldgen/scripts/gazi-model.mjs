@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sr/srv/n0484_gazi_husrev_beg_mosque/',
+  '../../../content/worldgen/source/places/sr/srv/gazi_husrev_beg_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -714,7 +714,7 @@ export const buildGaziSkyline = (o) => build(o, 0),
   buildGaziCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const gaziStudy = {
-  id: 'N0484',
+  id: 'gazi_husrev_beg_mosque',
   key: 'gazi_husrev_beg_mosque',
   title: 'Gazi Husrev-beg Mosque',
   category: 'mosque',

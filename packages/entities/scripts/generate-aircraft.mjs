@@ -1,11 +1,13 @@
 /** Targeted deterministic aircraft batch: --ids=uh-1h,f-14d; --out <candidate.glb> with one ID. */
+import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validate } from '@bendyline/molen-schema';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 import { buildAircraft } from './aircraft-geometry.mjs';
+import { tuneAircraftPerformance } from './aircraft-performance.mjs';
 
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '../../..'),
   root = resolve(repo, 'content/entities');
@@ -39,7 +41,16 @@ async function emit(path, value) {
   const current = await readFile(path, 'utf8').catch((e) => {
     if (e.code !== 'ENOENT') throw e;
   });
-  if (current !== bytes) await writeFile(path, bytes);
+  if (current !== bytes) {
+    // Replace rather than truncate: Windows editors may memory-map live type documents.
+    const temporary = `${path}.${process.pid}.tmp`;
+    try {
+      await writeFile(temporary, bytes);
+      await rename(temporary, path);
+    } finally {
+      await rm(temporary, { force: true });
+    }
+  }
 }
 
 for (const s of aircraft) {
@@ -205,6 +216,7 @@ for (const s of aircraft) {
         damping: 2.2,
       };
   }
+  tuneAircraftPerformance(s.id, spec);
   components.aircraft = { kind: s.id, spec };
   if (modelSignals) components['model.signals'] = modelSignals;
   components.aircraftInput = {

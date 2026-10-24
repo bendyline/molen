@@ -1,11 +1,11 @@
-/** N0627: mapped roofless broch, east passage and surviving low settlement. */
+/** broch_of_gurness: mapped roofless broch, east passage and surviving low settlement. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildGurnessMasonry } from './gurness-masonry-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gf/gft/n0627_broch_of_gurness/',
+    '../../../content/worldgen/source/places/gf/gft/broch_of_gurness/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -87,7 +87,7 @@ export const buildGurnessSkyline = (o) => build(o, 0),
   buildGurnessStreet = (o) => build(o, 2),
   buildGurnessCloseup = (o) => build(o, 3);
 export const gurnessStudy = {
-  id: 'N0627',
+  id: 'broch_of_gurness',
   key: 'broch_of_gurness',
   title: 'Broch of Gurness',
   category: 'tower',

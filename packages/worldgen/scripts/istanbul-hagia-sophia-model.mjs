@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sxk/n0411_hagia_sophia/',
+  '../../../content/worldgen/source/places/sx/sxk/hagia_sophia_istanbul/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1055,7 +1055,7 @@ export const buildIstanbulSophiaSkyline = (o) => build(o, 0),
   buildIstanbulSophiaCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const istanbulHagiaSophiaStudy = {
-  id: 'N0411',
+  id: 'hagia_sophia_istanbul',
   key: 'hagia_sophia',
   title: 'Hagia Sophia — Istanbul',
   category: 'mosque',

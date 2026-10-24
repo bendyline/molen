@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u3/u3w/n0353_konigsberg_cathedral/',
+  '../../../content/worldgen/source/places/u3/u3w/konigsberg_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -787,7 +787,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const konigsbergStudy = {
-  id: 'N0353',
+  id: 'konigsberg_cathedral',
   key: 'konigsberg_cathedral',
   title: 'Königsberg Cathedral',
   category: 'cathedral',

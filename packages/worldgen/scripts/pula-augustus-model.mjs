@@ -1,11 +1,11 @@
-/** N0536: specific six-column Pula temple and deep open portico. */
+/** temple_of_augustus: specific six-column Pula temple and deep open portico. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildPulaAugustusTemple } from './pula-augustus-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/src/n0536_temple_of_augustus/',
+    '../../../content/worldgen/source/places/sr/src/temple_of_augustus/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -83,7 +83,7 @@ export const buildPulaAugustusSkyline = (o) => build(o, 0),
   buildPulaAugustusStreet = (o) => build(o, 2),
   buildPulaAugustusCloseup = (o) => build(o, 3);
 export const pulaAugustusStudy = {
-  id: 'N0536',
+  id: 'temple_of_augustus',
   key: 'temple_of_augustus',
   title: 'Temple of Augustus',
   category: 'temple',

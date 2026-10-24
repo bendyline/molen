@@ -11,7 +11,7 @@ import { buildHeavenSkylineSite as buildHeavenRemoteHalls } from './heaven-skyli
 import { buildHeavenVault } from './heaven-vault-model.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/wx/wx4/n0488_temple_of_heaven/',
+  '../../../content/worldgen/source/places/wx/wx4/temple_of_heaven/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -629,7 +629,7 @@ export const buildHeavenSkyline = (o) => build(o, 0),
   buildHeavenStreet = (o) => build(o, 2),
   buildHeavenCloseup = (o) => build(o, 3);
 export const heavenStudy = {
-  id: 'N0488',
+  id: 'temple_of_heaven',
   key: 'temple_of_heaven',
   title: 'Temple of Heaven',
   category: 'temple',

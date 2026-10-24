@@ -5,7 +5,7 @@ import { beam, normalFor, normalize } from './authored-structure-mesh.mjs';
 import { quad } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const map = JSON.parse(readFileSync(structureSourcePath('n0141_the_shard', 'map-evidence.json')));
+const map = JSON.parse(readFileSync(structureSourcePath('the_shard', 'map-evidence.json')));
 const ref = 'palette:#ffffff';
 const glass = [0.37, 0.5, 0.55],
   steel = [0.66, 0.7, 0.71];

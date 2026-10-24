@@ -27,7 +27,7 @@ const ring = (cx, y, r, n) =>
 const fit = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/xn/xn7/n0796_tokyo_station/pmtiles-fit.json',
+      '../../../content/worldgen/source/places/xn/xn7/tokyo_station/pmtiles-fit.json',
       import.meta.url,
     ),
   ),

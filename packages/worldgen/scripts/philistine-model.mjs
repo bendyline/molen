@@ -1,11 +1,11 @@
-/** 'N0757': Ashdod museum, folded roofs and recessed canopy entrance. */
+/** 'museum_of_philistine_culture': Ashdod museum, folded roofs and recessed canopy entrance. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildPhilistine } from './philistine-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sv/sv8/n0757_museum_of_philistine_culture/',
+    '../../../content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -102,7 +102,7 @@ export const buildPhilistineSkyline = (o) => build(o, 0),
   buildPhilistineStreet = (o) => build(o, 2),
   buildPhilistineCloseup = (o) => build(o, 3);
 export const philistineStudy = {
-  id: 'N0757',
+  id: 'museum_of_philistine_culture',
   key: 'museum_of_philistine_culture',
   title: 'Museum of Philistine Culture, Ashdod',
   category: 'museum',

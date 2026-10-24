@@ -1,11 +1,11 @@
-/** 'N0761': Nymphenburg Palace, four courts and red roofs. */
+/** 'nymphenburg_palace': Nymphenburg Palace, four courts and red roofs. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildNymphenburg } from './nymphenburg-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u2/u28/n0761_nymphenburg_palace/',
+    '../../../content/worldgen/source/places/u2/u28/nymphenburg_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -101,7 +101,7 @@ export const buildNymphenburgSkyline = (o) => build(o, 0),
   buildNymphenburgStreet = (o) => build(o, 2),
   buildNymphenburgCloseup = (o) => build(o, 3);
 export const nymphenburgStudy = {
-  id: 'N0761',
+  id: 'nymphenburg_palace',
   key: 'nymphenburg_palace',
   title: 'Nymphenburg Palace, four courts and red roofs',
   category: 'museum',

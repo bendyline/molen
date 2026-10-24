@@ -1,4 +1,4 @@
-/** 'N0767': Neues Museum colonnade, pediments, twin glazed courts and low corner domes. */
+/** 'neues_museum': Neues Museum colonnade, pediments, twin glazed courts and low corner domes. */
 import './install-deterministic-math.mjs';
 import { createRequire } from 'node:module';
 import earcut from 'earcut';

@@ -1,4 +1,4 @@
-/** 'N0558': Hibis's roofed body, open varied-capital portico and pictured entrance gate. */
+/** 'temple_of_hibis': Hibis's roofed body, open varied-capital portico and pictured entrance gate. */
 
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 import { denderaCavetto } from './dendera-temple-model.mjs';

@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/uc/ucf/n0457_moscow_cathedral_mosque/',
+  '../../../content/worldgen/source/places/uc/ucf/moscow_cathedral_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -930,7 +930,7 @@ export const buildMoscowSkyline = (o) => build(o, 0),
   buildMoscowCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const moscowStudy = {
-  id: 'N0457',
+  id: 'moscow_cathedral_mosque',
   key: 'moscow_cathedral_mosque',
   title: 'Moscow Cathedral Mosque',
   category: 'mosque',

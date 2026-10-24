@@ -1,11 +1,11 @@
-/** 'N0550': Mars Ultor's mapped standing columns, broad stairs and rear firewall. */
+/** 'temple_of_mars_ultor': Mars Ultor's mapped standing columns, broad stairs and rear firewall. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMarsUltorRemains } from './mars-ultor-remains-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0550_temple_of_mars_ultor/',
+    '../../../content/worldgen/source/places/sr/sr2/temple_of_mars_ultor/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -82,7 +82,7 @@ export const buildMarsUltorSkyline = (o) => build(o, 0),
   buildMarsUltorStreet = (o) => build(o, 2),
   buildMarsUltorCloseup = (o) => build(o, 3);
 export const marsUltorStudy = {
-  id: 'N0550',
+  id: 'temple_of_mars_ultor',
   key: 'temple_of_mars_ultor',
   title: 'Temple of Mars Ultor',
   category: 'temple',

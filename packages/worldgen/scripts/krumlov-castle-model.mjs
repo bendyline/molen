@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u2d/n0321_cesky_krumlov_castle/',
+  '../../../content/worldgen/source/places/u2/u2d/cesky_krumlov_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -798,7 +798,7 @@ export const buildKrumlovDistrict = (out) => build(out, 1);
 export const buildKrumlovStreet = (out) => build(out, 2);
 export const buildKrumlovCloseup = (out) => build(out, 3);
 export const krumlovStudy = {
-  id: 'N0321',
+  id: 'cesky_krumlov_castle',
   key: 'cesky_krumlov_castle',
   title: 'Český Krumlov Castle',
   category: 'castle',

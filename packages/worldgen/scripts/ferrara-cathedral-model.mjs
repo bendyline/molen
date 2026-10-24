@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sr/srb/n0395_ferrara_cathedral/',
+  '../../../content/worldgen/source/places/sr/srb/ferrara_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -928,7 +928,7 @@ export const buildFerraraCathedralSkyline = (o) => build(o, 0),
   buildFerraraCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const ferraraCathedralStudy = {
-  id: 'N0395',
+  id: 'ferrara_cathedral',
   key: 'ferrara_cathedral',
   title: 'Ferrara Cathedral',
   category: 'cathedral',

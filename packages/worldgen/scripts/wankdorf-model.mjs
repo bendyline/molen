@@ -1,11 +1,11 @@
-/** 'N0730': Stadion Wankdorf with solar canopy, screened facade and two tiers. */
+/** 'stadion_wankdorf': Stadion Wankdorf with solar canopy, screened facade and two tiers. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildWankdorfStadium } from './wankdorf-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u0/u0m/n0730_stadion_wankdorf/',
+    '../../../content/worldgen/source/places/u0/u0m/stadion_wankdorf/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -78,7 +78,7 @@ export const buildWankdorfSkyline = (o) => build(o, 0),
   buildWankdorfStreet = (o) => build(o, 2),
   buildWankdorfCloseup = (o) => build(o, 3);
 export const wankdorfStudy = {
-  id: 'N0730',
+  id: 'stadion_wankdorf',
   key: 'stadion_wankdorf',
   title: 'Stadion Wankdorf',
   category: 'stadium',

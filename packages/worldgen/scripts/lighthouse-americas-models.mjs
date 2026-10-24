@@ -290,7 +290,7 @@ export function buildCalifornia(out) {
 
 export const lighthouseAmericasStudies = [
   lighthouseStudy({
-    id: 'N0668',
+    id: 'california_lighthouse',
     key: 'california_lighthouse',
     title: 'California Lighthouse',
     wikidataId: 'Q2279321',

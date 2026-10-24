@@ -556,7 +556,7 @@ function approachBounds({ anchor, heading }) {
   ];
 }
 export const sanjoOhashiStudy = {
-  id: 'N0021',
+  id: 'sanjo_ohashi_bridge',
   key: 'sanjo_ohashi_bridge',
   title: 'Sanjō Ōhashi Bridge',
   wikidataId: 'Q3087620',

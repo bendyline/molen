@@ -1,0 +1,433 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/woolworth-runtime-model.mjs",
+    "export": "buildWoolworthReviewedMaster"
+  },
+  "brief": "Complete Woolworth exterior: U-shaped western court, cream Gothic tower and tourelles, compound green copper crown and recessed Broadway Tudor portal.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X toward Broadway southeast",
+    "front": "+X Broadway portal",
+    "origin": "Ground contact in exact-Q217652 mapped parcel frame"
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.brownstone",
+    "scale": 2
+  },
+  "appearance": {
+    "identity": "Cream Gothic vertical piers, western U-shaped light court, Broadway tall tower, green compound copper crown and Tudor portal.",
+    "scope": "Whole medium-fi Woolworth parcel retains the U-shaped base, open western light court, Broadway tower, two setbacks, eight mapped corner tourelles and241.4016m published792ft height. Original137916-triangle master recipe is preserved unchanged and reproducible. Reviewed source corrects the false sharp entrance to a genuinely recessed depressed Tudor arch with three-bay transom, center revolving enclosure, side doors and balcony. Compound crown now has large green copper pyramid, dormers, octagonal window lantern, smaller pyramid and finial; lower western wings have shallow copper mansard/dormer ribbons. These shapes follow inspected primary city/owner/restoration images; individual roof and doorway dimensions are reconstructed, not a surveyed plan. The published1983 designation describes historic tourelles and730ft gallery; current owner and2019 restoration photographs distinguish the recognizable compound roof from restoration details. Roof subdivisions194/224/236.2/237.8m are fitted within the published total using the mapped envelope. Seven-foot2.1336m granite water table and lower four-story limestone have separate shared bindings; glazed cream terra cotta uses generic shared ceramic coating with blue accents, copper and bronze use existing shared graphs. No embedded or copied reference images. Continuous piers, pointed upper windows, sill courses and finials are explicit source geometry; street drops tiny frames, district merges window bands, skyline keeps all principal masses and the crown lantern. Sculptural faces, heraldic carving, exact polychrome motifs, interior, current hardware, lower chateau roof layouts and temporary barriers are simplified or omitted. Lower roof ribbons and dormer counts are illustrative. Opaque glass and graphic window overlays are medium-fi abstractions; only the Broadway portal is cut through the facade layers. Ground grade, night, physical-device timing and full-scene memory remain unmeasured."
+  },
+  "sourceFacts": {
+    "heightFeet": 792,
+    "heightMeters": 241.4016,
+    "completion": 1913,
+    "architect": "Cass Gilbert",
+    "facade": "Limestone lower four stories, architectural terra cotta above",
+    "originalMasterHash": "sha256:c7c9911e8b6166634508a892bace711ef53d2b5f1d4b28b20a44f46f3e636e94",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-next-models.mjs#skylineNext[woolworth_building].build",
+    "mappedComponents": 12,
+    "graniteWaterTableMeters": 2.1336,
+    "surfaceMeans": {
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ],
+      "stone_limestone": [
+        0.7539,
+        0.710243,
+        0.616244
+      ],
+      "tile_ceramic": [
+        0.559267,
+        0.552465,
+        0.529503
+      ],
+      "metal_copper": [
+        0.635757,
+        0.680369,
+        0.617469
+      ],
+      "metal_bronze_cast": [
+        0.799457,
+        0.813803,
+        0.772519
+      ]
+    }
+  },
+  "reconstruction": {
+    "plans": "Unchanged exact-Q217652 U-shaped base and eleven individual upper parts.",
+    "crown": "Current owner-photo compound copper roof with reconstructed dormers and octagonal upper window lantern; total241.4016m fixed.",
+    "entrance": "Published Broadway depressed Tudor arch cut through all forward facade layers; reconstructed revolving enclosure, side doors, transom and balcony."
+  },
+  "limitations": [
+    "Whole medium-fi Woolworth parcel retains the U-shaped base, open western light court, Broadway tower, two setbacks, eight mapped corner tourelles and241.4016m published792ft height. Original137916-triangle master recipe is preserved unchanged and reproducible. Reviewed source corrects the false sharp entrance to a genuinely recessed depressed Tudor arch with three-bay transom, center revolving enclosure, side doors and balcony. Compound crown now has large green copper pyramid, dormers, octagonal window lantern, smaller pyramid and finial; lower western wings have shallow copper mansard/dormer ribbons. These shapes follow inspected primary city/owner/restoration images; individual roof and doorway dimensions are reconstructed, not a surveyed plan. The published1983 designation describes historic tourelles and730ft gallery; current owner and2019 restoration photographs distinguish the recognizable compound roof from restoration details. Roof subdivisions194/224/236.2/237.8m are fitted within the published total using the mapped envelope. Seven-foot2.1336m granite water table and lower four-story limestone have separate shared bindings; glazed cream terra cotta uses generic shared ceramic coating with blue accents, copper and bronze use existing shared graphs. No embedded or copied reference images. Continuous piers, pointed upper windows, sill courses and finials are explicit source geometry; street drops tiny frames, district merges window bands, skyline keeps all principal masses and the crown lantern. Sculptural faces, heraldic carving, exact polychrome motifs, interior, current hardware, lower chateau roof layouts and temporary barriers are simplified or omitted. Lower roof ribbons and dormer counts are illustrative. Opaque glass and graphic window overlays are medium-fi abstractions; only the Broadway portal is cut through the facade layers. Ground grade, night, physical-device timing and full-scene memory remain unmeasured."
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "graph": "stone_granite",
+      "slot": "foundation",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "limestone": {
+      "graph": "stone_limestone",
+      "slot": "wall",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "cladding": {
+      "graph": "tile_ceramic",
+      "slot": "wall",
+      "roughness": 0.72,
+      "metallic": 0
+    },
+    "patina": {
+      "graph": "metal_copper",
+      "slot": "roof",
+      "roughness": 0.8,
+      "metallic": 0.05
+    },
+    "bronze": {
+      "graph": "metal_bronze_cast",
+      "slot": "trim",
+      "roughness": 0.65,
+      "metallic": 0.7
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    },
+    "recess": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.88,
+      "metallic": 0
+    }
+  },
+  "geographic": {
+    "heading": -0.546670875127,
+    "reviewStatus": "reviewed medium-fi signed placement",
+    "orientationConfidence": "footprint-directed",
+    "notes": "Fresh public OSM API2026-10-10 confirms exact Q217652 base75363809 and eleven upper tower/tourelle/crown parts unchanged. Retain anchor and heading without scale change: native+X southeast toward Broadway and tall tower; -X northwest to the U-shaped open light court; -Z northeast Park Place; +Z southwest Barclay Street. Published Broadway portal and asymmetric western light court resolve the signed frame. The two API entrance nodes belong to the neighboring30Park Place/27Barclay parcel and are explicitly excluded. Accepted map/reconstruction tolerance2m/1degree. GroundY0 is contact datum; terrain slope/absolute grade unmeasured. Footprint replacement disabled.",
+    "evidence": "Fresh public OSM API2026-10-10 confirms exact Q217652 base75363809 and eleven upper tower/tourelle/crown parts unchanged. Retain anchor and heading without scale change: native+X southeast toward Broadway and tall tower; -X northwest to the U-shaped open light court; -Z northeast Park Place; +Z southwest Barclay Street. Published Broadway portal and asymmetric western light court resolve the signed frame. The two API entrance nodes belong to the neighboring30Park Place/27Barclay parcel and are explicitly excluded. Accepted map/reconstruction tolerance2m/1degree. GroundY0 is contact datum; terrain slope/absolute grade unmeasured. Footprint replacement disabled.",
+    "replaceFootprint": false
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/woolworth-runtime-model.mjs",
+    "export": "buildWoolworthSkyline",
+    "errorMeters": 4.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWoolworthDistrict",
+        "errorMeters": 1.8,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "tile_ceramic",
+            "slot": "wall",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "patina": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "bronze": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.7
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildWoolworthStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "tile_ceramic",
+            "slot": "wall",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "patina": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "bronze": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.7
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildWoolworthCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "tile_ceramic",
+            "slot": "wall",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "patina": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "bronze": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.7
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-broadway-parcel",
+      "position": [
+        350,
+        230,
+        420
+      ],
+      "lookAt": [
+        5,
+        118,
+        0
+      ]
+    },
+    {
+      "name": "upper-window-lantern",
+      "position": [
+        43,
+        232,
+        38
+      ],
+      "lookAt": [
+        14,
+        230,
+        0
+      ]
+    },
+    {
+      "name": "depressed-tudor-portal",
+      "position": [
+        58,
+        8,
+        7
+      ],
+      "lookAt": [
+        28.7,
+        6,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-parcel-skyline",
+      "position": [
+        350,
+        230,
+        420
+      ],
+      "lookAt": [
+        5,
+        118,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-parcel-district",
+      "position": [
+        350,
+        230,
+        420
+      ],
+      "lookAt": [
+        5,
+        118,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-parcel-street",
+      "position": [
+        350,
+        230,
+        420
+      ],
+      "lookAt": [
+        5,
+        118,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-parcel-closeup",
+      "position": [
+        350,
+        230,
+        420
+      ],
+      "lookAt": [
+        5,
+        118,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "street-open-light-court",
+      "position": [
+        -65,
+        76,
+        0
+      ],
+      "lookAt": [
+        -1,
+        64,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-portal",
+      "position": [
+        48,
+        7,
+        2
+      ],
+      "lookAt": [
+        28.5,
+        5.6,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-compound-crown",
+      "position": [
+        70,
+        240,
+        72
+      ],
+      "lookAt": [
+        14,
+        220,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "street-gothic-window-bays",
+      "position": [
+        53,
+        144,
+        49
+      ],
+      "lookAt": [
+        28,
+        139,
+        12
+      ],
+      "reviewLod": "street"
+    }
+  ]
+}

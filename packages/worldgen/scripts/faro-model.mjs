@@ -1,11 +1,11 @@
-/** N0635: El Faro compound, two separately angled shafts and connecting bridges. */
+/** el_faro_towers: El Faro compound, two separately angled shafts and connecting bridges. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildFaroTowers } from './faro-twin-towers-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/69/69y/n0635_el_faro_towers/',
+    '../../../content/worldgen/source/places/69/69y/el_faro_towers/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -89,7 +89,7 @@ export const buildFaroSkyline = (o) => build(o, 0),
   buildFaroStreet = (o) => build(o, 2),
   buildFaroCloseup = (o) => build(o, 3);
 export const faroStudy = {
-  id: 'N0635',
+  id: 'el_faro_towers',
   key: 'el_faro_towers',
   title: 'El Faro Towers',
   category: 'tower',

@@ -1,6 +1,6 @@
-/** N0525: surviving fluted Corinthian corner of Vespasian and Titus. */
+/** temple_of_vespasian_and_titus: surviving fluted Corinthian corner of Vespasian and Titus. */
 import earcut from 'earcut';
-export const vespasianCandidateId = 'N0525';
+export const vespasianCandidateId = 'temple_of_vespasian_and_titus';
 function prism(f, role, p, lo, hi) {
   const rings = [p.outline, ...(p.holes ?? [])],
     flat = rings.flat(),

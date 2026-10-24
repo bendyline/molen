@@ -13,7 +13,7 @@ import { buildKarnakSouth, karnakSouthCandidateId } from './karnak-south-model.m
 import { buildKarnakWest, karnakWestCandidateId } from './karnak-west-model.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/ss/ssx/n0489_karnak_temple_complex/',
+  '../../../content/worldgen/source/places/ss/ssx/karnak_temple_complex/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -579,7 +579,7 @@ export const buildKarnakUnposed = (o) => build(o, 4, false);
 /** Authoring tools derive ground joins from the graded body, avoiding a circular dependency. */
 export const buildKarnakBody = (o, detail) => build(o, detail, true, false);
 export const karnakStudy = {
-  id: 'N0489',
+  id: 'karnak_temple_complex',
   key: 'karnak_temple_complex',
   title: 'Karnak Temple Complex',
   category: 'temple',

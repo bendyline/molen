@@ -1,6 +1,6 @@
-/** N0520: dated surviving six-column porch and roofless cella. */
+/** temple_of_baalshamin: dated surviving six-column porch and roofless cella. */
 import earcut from 'earcut';
-export const baalshaminCandidateId = 'N0520';
+export const baalshaminCandidateId = 'temple_of_baalshamin';
 function prism(f, role, p, lo, hi) {
   const rings = [p.outline, ...(p.holes ?? [])],
     flat = rings.flat(),

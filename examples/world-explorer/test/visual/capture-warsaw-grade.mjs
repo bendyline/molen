@@ -12,13 +12,13 @@ import {
 
 const here = dirname(fileURLToPath(import.meta.url)),
   root = resolve(here, '../../../..'),
-  dir = resolve(root, 'content/worldgen/source/places/u3/u3q/n0261_royal_castle_in_warsaw'),
+  dir = resolve(root, 'content/worldgen/source/places/u3/u3q/royal_castle_in_warsaw'),
   runtime = dir.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p)),
   spec = await read(`${dir}/spec.json`),
   asset = await read(`${runtime}/asset.json`),
   grade = await read(`${dir}/site-grade.json`),
-  placements = await read(resolve(root, 'content/earth/structures/placements.json')),
+  placements = await read(resolve(root, 'content/earth/structures/placements/authoring.json')),
   placement = placements.entries.find((p) => p.asset === spec.assetId),
   inputHash = await modelInputHash(dir, spec.assetId);
 const fixtureHash = hashBytes(
@@ -136,7 +136,7 @@ try {
     `${JSON.stringify(
       {
         format: 'molen/structure-grade-review@1',
-        candidateId: 'N0261',
+        candidateId: 'royal_castle_in_warsaw',
         status: 'awaiting-actual-image-inspection',
         inputHash,
         sourceHash: spec.mesh.sha256,

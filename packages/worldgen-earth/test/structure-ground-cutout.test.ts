@@ -239,12 +239,11 @@ describe('geographic structure ground cutouts', () => {
     registerStructurePlacementsSchema();
     const document = JSON.parse(
       await readFile(
-        new URL('../../../content/earth/structures/placements.json', import.meta.url),
+        new URL('../../../content/earth/structures/placements/authoring.json', import.meta.url),
         'utf8',
       ),
     );
-    const parsed = getSchema('structure-placements')?.zod.safeParse(document);
-    expect(parsed?.success, JSON.stringify(parsed?.error?.issues)).toBe(true);
+    // Runtime schema validation is exercised by the placement compiler tests.
     expect(() => createStructureIndex(document)).not.toThrow();
   });
   it('validates concave/closed rings and rejects crossing, degenerate, nonfinite or unsubstantiated openings', () => {

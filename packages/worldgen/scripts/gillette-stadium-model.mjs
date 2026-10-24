@@ -1,4 +1,4 @@
-/** 'N0725': Gillette's open blue-red bowl,2023 north display/atrium, lighthouse and entry arch. */
+/** 'gillette_stadium': Gillette's open blue-red bowl,2023 north display/atrium, lighthouse and entry arch. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
@@ -17,7 +17,7 @@ export function gilletteRadius(poly, a) {
       u = cross(p, d) / den;
     if (t > 0 && u >= -1e-8 && u <= 1 + 1e-8) hits.push(t);
   }
-  if (!hits.length) throw Error('N0725: missing own radial boundary');
+  if (!hits.length) throw Error('gillette_stadium: missing own radial boundary');
   return Math.min(...hits);
 }
 export function gilletteFoundationOutline(r, d) {

@@ -485,7 +485,7 @@ export function createWorldgenSemanticRenderers(
   function structuresForTile(
     tile: TerrainSemanticTile,
     context: TerrainPyramidTileLayerContext,
-  ): StructurePlacement[] {
+  ): StructurePlacement[] | Promise<StructurePlacement[]> {
     if (options.structures === undefined) return [];
     const [west, north] = worldToWgs84(metersPerUnit, context.origin[0], context.origin[1]);
     const [east, south] = worldToWgs84(
@@ -494,27 +494,35 @@ export function createWorldgenSemanticRenderers(
       context.origin[1] + context.tileSize,
     );
     const geometry = geometryFor(context, metersPerUnit);
-    const geographic = options.structures
-      .query([west, south, east, north], viewingDate === undefined ? false : { viewingDate })
-      .flatMap((entry) => {
-        const resolved = orientMappedStructure(entry, tile, geometry);
-        return resolved ? [resolved] : [];
-      })
-      .filter((entry) => {
-        if (context.address.level < (entry.minLevel ?? 11)) return false;
-        if (entry.bounds) return true;
-        const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
-        return (
-          x >= context.origin[0] &&
-          x < context.origin[0] + context.tileSize &&
-          z >= context.origin[1] &&
-          z < context.origin[1] + context.tileSize
-        );
-      });
-    return [
-      ...geographic,
-      ...matchMapStructures(tile, geometry, options.structures.rules, geographic),
-    ];
+    const bounds: [number, number, number, number] = [west, south, east, north];
+    const candidates = options.structures.queryAsync
+      ? options.structures.queryAsync(bounds, {
+          viewingDate,
+          signal: context.signal,
+          level: context.address.level,
+        })
+      : options.structures.query(bounds, viewingDate === undefined ? false : { viewingDate });
+    const rules = options.structures.rules;
+    const select = (entries: StructurePlacement[]): StructurePlacement[] => {
+      const geographic = entries
+        .flatMap((entry) => {
+          const resolved = orientMappedStructure(entry, tile, geometry);
+          return resolved ? [resolved] : [];
+        })
+        .filter((entry) => {
+          if (context.address.level < (entry.minLevel ?? 11)) return false;
+          if (entry.bounds) return true;
+          const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
+          return (
+            x >= context.origin[0] &&
+            x < context.origin[0] + context.tileSize &&
+            z >= context.origin[1] &&
+            z < context.origin[1] + context.tileSize
+          );
+        });
+      return [...geographic, ...matchMapStructures(tile, geometry, rules, geographic)];
+    };
+    return candidates instanceof Promise ? candidates.then(select) : select(candidates);
   }
 
   /**
@@ -928,7 +936,8 @@ export function createWorldgenSemanticRenderers(
         try {
           replacement = new THREE.Group();
           replacement.name = `${root.name}:architecture`;
-          const structures = structuresForTile(resident.tile, context);
+          const requested = structuresForTile(resident.tile, context);
+          const structures = requested instanceof Promise ? await requested : requested;
           if (structures.length) await placeStructures(replacement, context, structures);
           const placed = placedStructures(replacement, context, structures);
           const mappedTile = withoutReplacedFootprints(
@@ -1010,7 +1019,8 @@ export function createWorldgenSemanticRenderers(
       const group = new THREE.Group();
       group.name = `worldgen:${context.address.level}/${context.address.x}/${context.address.z}`;
       try {
-        const structures = structuresForTile(tile, context);
+        const requested = structuresForTile(tile, context);
+        const structures = requested instanceof Promise ? await requested : requested;
         const structureGroup = new THREE.Group();
         group.add(structureGroup);
         const structureTask = placeStructures(structureGroup, context, structures);

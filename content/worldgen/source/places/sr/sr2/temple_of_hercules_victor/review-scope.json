@@ -1,0 +1,561 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick_longformat",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_standing_seam",
+      "roughness": 0.83,
+      "metallic": 0.55
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      30.254177739702467,
+      18.97596019439522,
+      24.719680108181805
+    ],
+    "lookAt": [
+      1.2541777397024658,
+      4.775960194395219,
+      -1.2803198918181937
+    ],
+    "fov": 44
+  },
+  "qaCameras": [
+    {
+      "name": "east-entrance-and-nineteen-column-ring",
+      "position": [
+        24.254177739702467,
+        4.975960194395219,
+        3.719680108181806
+      ],
+      "lookAt": [
+        1.2541777397024658,
+        4.675960194395219,
+        -1.2803198918181937
+      ],
+      "fov": 46
+    },
+    {
+      "name": "corinthian-capitals-and-timber-soffit",
+      "position": [
+        13.254177739702467,
+        7.575960194395218,
+        0.7196801081818063
+      ],
+      "lookAt": [
+        7.754177739702466,
+        7.625960194395219,
+        -1.2803198918181937
+      ],
+      "fov": 48
+    },
+    {
+      "name": "missing-shaft-base-and-complete-roof",
+      "position": [
+        -9.745822260297533,
+        14.975960194395219,
+        -21.280319891818195
+      ],
+      "lookAt": [
+        1.2541777397024658,
+        4.275960194395219,
+        -1.2803198918181937
+      ],
+      "fov": 47
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-round-temple-skyline",
+      "position": [
+        30.254177739702467,
+        18.97596019439522,
+        24.719680108181805
+      ],
+      "lookAt": [
+        1.2541777397024658,
+        4.775960194395219,
+        -1.2803198918181937
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-round-temple-district",
+      "position": [
+        30.254177739702467,
+        18.97596019439522,
+        24.719680108181805
+      ],
+      "lookAt": [
+        1.2541777397024658,
+        4.775960194395219,
+        -1.2803198918181937
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-round-temple-street",
+      "position": [
+        30.254177739702467,
+        18.97596019439522,
+        24.719680108181805
+      ],
+      "lookAt": [
+        1.2541777397024658,
+        4.775960194395219,
+        -1.2803198918181937
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-round-temple-closeup",
+      "position": [
+        30.254177739702467,
+        18.97596019439522,
+        24.719680108181805
+      ],
+      "lookAt": [
+        1.2541777397024658,
+        4.775960194395219,
+        -1.2803198918181937
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.3,
+    "groundY": -1.024039805604781,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/hercules-victor-model.mjs",
+    "export": "buildHerculesVictorSkyline",
+    "errorMeters": 0.65,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHerculesVictorDistrict",
+        "errorMeters": 0.27,
+        "surfaces": {
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.55
+          }
+        }
+      },
+      "street": {
+        "export": "buildHerculesVictorStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.55
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildHerculesVictorCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.55
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      12.48075,
+      41.88873
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Reused pinned temple_of_portunus standard Rome PMTiles/Mapzen extract. The lower datum clears the actual standard-grid triangles beneath each mapped entrance tread and podium, using retained footprint intersections. Foundations extend below the minimum local grade. Native ground and water stay unchanged with no cutout. Exact archaeological floor and modern fence/garden levels remain approximate.",
+    "replaceFootprint": false,
+    "bounds": [
+      12.480639073266147,
+      41.888649652932884,
+      12.480896559344174,
+      41.888831352829726
+    ],
+    "terrainReference": {
+      "anchor": [
+        12.48075,
+        41.88873
+      ],
+      "modelHeight": 0,
+      "basis": "Reused pinned temple_of_portunus standard Rome PMTiles/Mapzen extract. The lower datum clears the actual standard-grid triangles beneath each mapped entrance tread and podium, using retained footprint intersections. Foundations extend below the minimum local grade. Native ground and water stay unchanged with no cutout. Exact archaeological floor and modern fence/garden levels remain approximate."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -8.212597341580103,
+          -1.6144413011947687
+        ],
+        [
+          -7.989925678017907,
+          -3.173689882583931
+        ],
+        [
+          -7.321883274292719,
+          -4.955773008304429
+        ],
+        [
+          -6.208257014472057,
+          -6.737918362512381
+        ],
+        [
+          -4.648810901209939,
+          -8.519829287730937
+        ],
+        [
+          -3.3123018953742935,
+          -9.410875094052656
+        ],
+        [
+          -1.753184463348776,
+          -9.856864660008315
+        ],
+        [
+          -0.1937943789537797,
+          -10.302292684174471
+        ],
+        [
+          1.3655633114498746,
+          -10.302543871575386
+        ],
+        [
+          3.1477427307655126,
+          -10.079820778766397
+        ],
+        [
+          4.7071165044536665,
+          -9.634197603503443
+        ],
+        [
+          6.266569323927989,
+          -8.743208781335522
+        ],
+        [
+          7.38044249535582,
+          -7.852126963664987
+        ],
+        [
+          10.274769931996898,
+          -5.178104877403461
+        ],
+        [
+          11.165418491116863,
+          -2.2825799448221553
+        ],
+        [
+          11.165458397902444,
+          -0.5007810650689033
+        ],
+        [
+          10.942684263855307,
+          1.0582850885292672
+        ],
+        [
+          9.828926965598006,
+          3.953618924406494
+        ],
+        [
+          6.043501532292217,
+          6.627636307029088
+        ],
+        [
+          4.484248463556705,
+          7.296078399000639
+        ],
+        [
+          2.924899675030641,
+          7.741582640742715
+        ],
+        [
+          1.8110737621279167,
+          7.9641584074366
+        ],
+        [
+          -1.0847537137499481,
+          7.741276938862999
+        ],
+        [
+          -2.643952003637251,
+          7.295569153555153
+        ],
+        [
+          -4.20319742935918,
+          6.404558101986449
+        ],
+        [
+          -5.539657383377984,
+          5.290768381935582
+        ],
+        [
+          -6.430697501147211,
+          4.177056381183543
+        ],
+        [
+          -7.321707701710254,
+          2.6178102126829086
+        ],
+        [
+          -7.98960611444163,
+          1.2812105702461574
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -8.212597341580103,
+            -1.6144413011947687
+          ],
+          [
+            -7.989925678017907,
+            -3.173689882583931
+          ],
+          [
+            -7.321883274292719,
+            -4.955773008304429
+          ],
+          [
+            -6.208257014472057,
+            -6.737918362512381
+          ],
+          [
+            -4.648810901209939,
+            -8.519829287730937
+          ],
+          [
+            -3.3123018953742935,
+            -9.410875094052656
+          ],
+          [
+            -1.753184463348776,
+            -9.856864660008315
+          ],
+          [
+            -0.1937943789537797,
+            -10.302292684174471
+          ],
+          [
+            1.3655633114498746,
+            -10.302543871575386
+          ],
+          [
+            3.1477427307655126,
+            -10.079820778766397
+          ],
+          [
+            4.7071165044536665,
+            -9.634197603503443
+          ],
+          [
+            6.266569323927989,
+            -8.743208781335522
+          ],
+          [
+            7.38044249535582,
+            -7.852126963664987
+          ],
+          [
+            10.274769931996898,
+            -5.178104877403461
+          ],
+          [
+            11.165418491116863,
+            -2.2825799448221553
+          ],
+          [
+            11.165458397902444,
+            -0.5007810650689033
+          ],
+          [
+            10.942684263855307,
+            1.0582850885292672
+          ],
+          [
+            9.828926965598006,
+            3.953618924406494
+          ],
+          [
+            6.043501532292217,
+            6.627636307029088
+          ],
+          [
+            4.484248463556705,
+            7.296078399000639
+          ],
+          [
+            2.924899675030641,
+            7.741582640742715
+          ],
+          [
+            1.8110737621279167,
+            7.9641584074366
+          ],
+          [
+            -1.0847537137499481,
+            7.741276938862999
+          ],
+          [
+            -2.643952003637251,
+            7.295569153555153
+          ],
+          [
+            -4.20319742935918,
+            6.404558101986449
+          ],
+          [
+            -5.539657383377984,
+            5.290768381935582
+          ],
+          [
+            -6.430697501147211,
+            4.177056381183543
+          ],
+          [
+            -7.321707701710254,
+            2.6178102126829086
+          ],
+          [
+            -7.98960611444163,
+            1.2812105702461574
+          ]
+        ]
+      ],
+      "basis": "Conservative convex envelope of the eleven authored temple records with a2cm margin. No independent building is within this small circular temple envelope; Portunus and nearby monuments stay native."
+    },
+    "notes": "Q576929/way251342364 fixes the circular temple. Eleven pinned standard PMTiles records supply the main footprint, podium, nineteen separate standing shaft polygons in one feature, isolated base, C-shaped cella, roof, roof cap and four east stair parts. The open east sector of the mapped cella and stair projection resolve the entrance facing east, independently of the circle bounding-box axis. Raw+X east/+Z south at runtime heading0; each mapped shaft keeps its individual center. Reused pinned temple_of_portunus standard Rome PMTiles/Mapzen extract. The lower datum clears the actual standard-grid triangles beneath each mapped entrance tread and podium, using retained footprint intersections. Foundations extend below the minimum local grade. Native ground and water stay unchanged with no cutout. Exact archaeological floor and modern fence/garden levels remain approximate."
+  }
+}

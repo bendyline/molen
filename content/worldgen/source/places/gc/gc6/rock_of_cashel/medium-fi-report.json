@@ -1,0 +1,1119 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.rock_of_cashel",
+  "sourceHash": "sha256:95cbb71f44a369add0038d47fd5abeb75c79bc3baf0cac84ea11e61b9030e90e",
+  "runtimeHash": "sha256:bef9de1009c4f2b70562d56ae11cb54320d0fe5f805a8d7aed635e04331c2cd6",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5312,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:11a2cd9176509611e0e1f3789a9e41d32af5078c9a018f14330ec57c87f1d92e",
+      "bytes": 93748,
+      "gzipBytes": 19656,
+      "triangles": 998,
+      "cpuBytes": 92316,
+      "gpuBytes": 92316,
+      "errorMeters": 2,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:57fe013addf507139d582a5bed65aecce13ade3c69e5c1aad9a31a9a0b8ca558",
+      "bytes": 352220,
+      "gzipBytes": 104408,
+      "triangles": 3750,
+      "cpuBytes": 348300,
+      "gpuBytes": 348300,
+      "errorMeters": 0.8,
+      "drawCalls": 3
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:7a842f8c1664ca0b8024038441e5989e819dd387e9ac878bfc91de392d0994ee",
+      "bytes": 813844,
+      "gzipBytes": 259814,
+      "triangles": 8684,
+      "cpuBytes": 808752,
+      "gpuBytes": 808752,
+      "errorMeters": 0.25,
+      "drawCalls": 4
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:021d0d5c907541ef41b1a7ffdf5ece51a2e9ea64c2812f548cd7daf101fb81cb",
+      "bytes": 1632820,
+      "gzipBytes": 450423,
+      "triangles": 17460,
+      "cpuBytes": 1627704,
+      "gpuBytes": 1627704,
+      "errorMeters": 0.1,
+      "drawCalls": 4
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:9476c78649ee22d02aee963ca80363ac064e71126447c7701104e13b9c2df48a"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:e3e0f8fa459aef2f911e0d6f30be5bebe2fca7132ffe4460b38f3d4482d87b3d"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:e5572eaa525468df00e415e64a6eca46ab86455e86a5ace93b1c2732c640528c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 68974,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          44.0679,
+          37.5035,
+          80.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:c1f89a5539a92bc8e1738f1b949c30aeb84659e961279bf014eda947f82152fd",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 68974,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          44.0679,
+          37.5035,
+          80.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:ec023b410074aa8a2301d99851b55212979c3167a9272be6bfeb43f8e896fbdf",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 68974,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          44.0679,
+          37.5035,
+          80.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:76f935b42c61648e9f9656475efe337ea043131efb8cd15d9f73caa7a0caaf48",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 68974,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          44.0679,
+          37.5035,
+          80.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:c90983255f36ec4f2943e262f9032d08b7d32d44d72903d942fc882fba997d82",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 55264,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          93.0679,
+          73.5035,
+          165.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:e5d0cdfccc9396bcdee81b83e2f4a3dcddc6e458a6fe8b4da2309a526c12f0c5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 55264,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          93.0679,
+          73.5035,
+          165.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:e766f5c16401afcbd7fe67648057d769b4ac38df070d403762cda77f2158f9b2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 55264,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          93.0679,
+          73.5035,
+          165.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:be5f6b748719ece524a054b835ecf2210b49daf4a6487b77bdb121dd584c83b2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 55264,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          93.0679,
+          73.5035,
+          165.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:752914f28a149cb388abba9099cd761169f19dacedb22965838ccd3eadc016c4",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 52512,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          190.0679,
+          111.5035,
+          333.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:3bc96db2995f3de3664074b2896643a23e3e9aac863ca9e447f5e10a3235b13e",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 52512,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          190.0679,
+          111.5035,
+          333.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:bd002d3551d656810d6eeeb67900ed437932bf086bba6e4c96cf9ffe7fbabefa",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 52512,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          190.0679,
+          111.5035,
+          333.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:caac5fa9d5a8d2f2ce578ee2ff1d63418d27857958899613ca50b263af697478",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 52512,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          190.0679,
+          111.5035,
+          333.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:025ba44cee4110664a570a2c727e8e04d7ceead53aeb35a5497b9a2431ecf04b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 47200,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          190.0679,
+          111.5035,
+          333.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-transept-and-round-tower.png",
+      "hash": "sha256:9aeac1a227513c4b730ce7b3a90ea4968912f919e19debf14cffadde44940292",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 68974,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          44,
+          19,
+          -54
+        ],
+        "lookAt": [
+          10,
+          11,
+          -5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-chapel-and-vicars-ranges.png",
+      "hash": "sha256:eafa6c18f68d333002bcdf975f254c299607cfe68401d6436d92794c3419dc44",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 68974,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          62,
+          31,
+          73
+        ],
+        "lookAt": [
+          11,
+          10,
+          23
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-tower-house.png",
+      "hash": "sha256:3f4aeedf12a73c83d9ac70b97ce26b7be3c7de126f564c8d784adc49ad823a77",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 68974,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          -58,
+          34,
+          18
+        ],
+        "lookAt": [
+          -6,
+          13,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roofless-crossing-and-nave.png",
+      "hash": "sha256:67eaa3bf40a08daa391a58c8b247c040fde0a0db831535f23b079f65d2d3235d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 68974,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          8,
+          35,
+          5
+        ],
+        "lookAt": [
+          18,
+          0.8,
+          9
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mapped-compound-plan.png",
+      "hash": "sha256:bee24d54d1375824af9c32933b7d828623dedb45df16d14c1c61921af55da07e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 68974,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          176,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/cormac-chapel-belfries.png",
+      "hash": "sha256:27108d96308846441d234a990e27d96905f583450a36f948f2e7055fc1b523a9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 68974,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          38,
+          17,
+          35
+        ],
+        "lookAt": [
+          23,
+          10,
+          22
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-cashel-skyline.png",
+      "hash": "sha256:e6a2a1b35099480d1c7b0f7a45860d0b287487ee8f8c72db29d1bf4c76123ece",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 52512,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          95,
+          65,
+          108
+        ],
+        "lookAt": [
+          0,
+          9,
+          5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-cashel-district.png",
+      "hash": "sha256:68b019ee2444ece082d1357dc25095fc83e3f9e3d71ddfff103317e37c54cea4",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 55264,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          95,
+          65,
+          108
+        ],
+        "lookAt": [
+          0,
+          9,
+          5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-cashel-street.png",
+      "hash": "sha256:24d02ee5b1c775a37555c029e929b055c191589528202e6950821b2251712cc3",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 60198,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          95,
+          65,
+          108
+        ],
+        "lookAt": [
+          0,
+          9,
+          5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-cashel-closeup.png",
+      "hash": "sha256:809691dfdc2c65e3d879396ef92ecfe9691fc4c6c4bfb8a4df3de9a9e12a30d6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 68974,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          95,
+          65,
+          108
+        ],
+        "lookAt": [
+          0,
+          9,
+          5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:cba5a058fbd16c98d33f125be21f8d5c6c999ccf3bf0482471f40307523401e2",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 52512,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          93.0679,
+          73.5035,
+          165.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:e5d0cdfccc9396bcdee81b83e2f4a3dcddc6e458a6fe8b4da2309a526c12f0c5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 55264,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          93.0679,
+          73.5035,
+          165.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:3985527c5c3e1b83ffdc32a0df652cb678562c839a3617cf1ccd86c9c52117aa",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 60198,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          93.0679,
+          73.5035,
+          165.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:fabe3b3a73ee06a02d97a9b7737aeab9cf252d77df3b9d7f1efd9dd91c0468fd",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 68974,
+        "groundY": -32,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc6/rock_of_cashel/terrain-review.height.png"
+        },
+        "position": [
+          93.0679,
+          73.5035,
+          165.3579
+        ],
+        "lookAt": [
+          -3.9321,
+          22.503500000000003,
+          -2.6421
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

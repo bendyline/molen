@@ -1,11 +1,11 @@
-/** N0527: reproducible granite entrance, red arch hall and pagoda compound. */
+/** a_ma_temple: reproducible granite entrance, red arch hall and pagoda compound. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { buildAmaTemple } from './ama-temple-model.mjs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/we/web/n0527_a_ma_temple/',
+    '../../../content/worldgen/source/places/we/web/a_ma_temple/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -85,7 +85,7 @@ export const buildAmaSkyline = (o) => build(o, 0),
   buildAmaStreet = (o) => build(o, 2),
   buildAmaCloseup = (o) => build(o, 3);
 export const amaStudy = {
-  id: 'N0527',
+  id: 'a_ma_temple',
   key: 'a_ma_temple',
   title: 'A-Ma Temple',
   category: 'temple',

@@ -1,11 +1,11 @@
-/** 'N0742_COUNCIL': Council hall, lead domes, open portico and shared window screens. */
+/** 'imperial_council_hall_topkapi_palace': Council hall, lead domes, open portico and shared window screens. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiCouncil } from './topkapi-council-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_council/',
+    '../../../content/worldgen/source/places/sx/sxk/imperial_council_hall_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -88,7 +88,7 @@ export const buildTopkapiCouncilSkyline = (o) => build(o, 0),
   buildTopkapiCouncilStreet = (o) => build(o, 2),
   buildTopkapiCouncilCloseup = (o) => build(o, 3);
 export const topkapiCouncilStudy = {
-  id: 'N0742_COUNCIL',
+  id: 'imperial_council_hall_topkapi_palace',
   key: 'council',
   title: 'Imperial Council Hall, Topkapi Palace',
   category: 'castle',

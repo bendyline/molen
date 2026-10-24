@@ -98,10 +98,20 @@ export function createAircraftVisual(model: THREE.Object3D, spec: AircraftSpec):
         engineSignals[`${prefix}failed`] =
           reading === undefined ? undefined : Number(reading.failed);
         engineSignals[`${prefix}thrustN`] = reading?.thrust;
+        engineSignals[`${prefix}afterburner`] = reading?.afterburner ?? 0;
       }
       const telemetry: ModelSignals = {
         airspeed: state.airspeed,
         trueAirspeed: state.airspeed,
+        equivalentAirspeed: state.equivalentAirspeed,
+        mach: state.mach,
+        overspeed: Number(state.overspeed ?? false),
+        departure: state.departure ?? 0,
+        vortexRing: state.vortexRing ?? 0,
+        afterburner: Math.max(
+          0,
+          ...Object.values(state.engines ?? {}).map((engine) => engine.afterburner ?? 0),
+        ),
         altitude,
         altitudeAGL: state.altitudeAGL,
         heading: state.yaw,

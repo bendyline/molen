@@ -1,6 +1,6 @@
-/** N0517: present-day shafts, stepped base and roofless Forum of Peace ruins. */
+/** temple_of_peace: present-day shafts, stepped base and roofless Forum of Peace ruins. */
 import earcut from 'earcut';
-export const peaceCandidateId = 'N0517';
+export const peaceCandidateId = 'temple_of_peace';
 const area = (p) =>
   p.reduce((n, a, i) => {
     const b = p[(i + 1) % p.length];

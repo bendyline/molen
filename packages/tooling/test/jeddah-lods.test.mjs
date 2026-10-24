@@ -9,8 +9,8 @@ import {
 import { landmarkLodRecipeHash as baseHash } from '../scripts/authored-landmark-lods.mjs';
 import { buildModelLandmarkLods, landmarkLodRecipeHash } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/sg/sgg/n0644_jeddah_light');
-const runtime = resolve('../../content/worldgen/assets/places/sg/sgg/n0644_jeddah_light');
+const source = resolve('../../content/worldgen/source/places/sg/sgg/jeddah_light');
+const runtime = resolve('../../content/worldgen/assets/places/sg/sgg/jeddah_light');
 const faces = [];
 const add = (_slot, _ref, points, normal, _uv, color) => faces.push({ points, normal, color });
 buildJeddahSkyline({ addQuad: add, addTriangle: add, addConvexPolygon: add });
@@ -64,7 +64,7 @@ it('round trips the independently mapped base and retains its signed south wing'
 });
 
 it('leaves unrelated recipe fingerprints unchanged', async () => {
-  const other = 'molen.worldgen.structure.n0643_phare_du_fournier';
+  const other = 'molen.worldgen.structure.phare_du_fournier';
   expect(await landmarkLodRecipeHash(other)).toBe(await baseHash(other));
   expect(await landmarkLodRecipeHash(jeddahRuntimeAssetId)).not.toBe(
     await baseHash(jeddahRuntimeAssetId),

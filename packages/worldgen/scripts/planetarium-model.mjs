@@ -1,11 +1,11 @@
-/** 'N0752_PLANETARIUM': Peter Harrison Planetarium, oblique bronze cone and sloping reflective cap. */
+/** 'peter_harrison_planetarium_royal_observatory_greenwich': Peter Harrison Planetarium, oblique bronze cone and sloping reflective cap. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildPlanetarium } from './planetarium-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gc/gcp/n0752_planetarium/',
+    '../../../content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -99,7 +99,7 @@ export const buildPlanetariumSkyline = (o) => build(o, 0),
   buildPlanetariumStreet = (o) => build(o, 2),
   buildPlanetariumCloseup = (o) => build(o, 3);
 export const planetariumStudy = {
-  id: 'N0752_PLANETARIUM',
+  id: 'peter_harrison_planetarium_royal_observatory_greenwich',
   key: 'planetarium',
   title: 'Peter Harrison Planetarium, Royal Observatory Greenwich',
   category: 'museum',

@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u8/u8c/n0324_pidhirtsi_castle/',
+    '../../../content/worldgen/source/places/u8/u8c/pidhirtsi_castle/',
     import.meta.url,
   ),
   read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -708,7 +708,7 @@ export const buildPidhirtsiDistrict = (out) => build(out, 1);
 export const buildPidhirtsiStreet = (out) => build(out, 2);
 export const buildPidhirtsiCloseup = (out) => build(out, 3);
 export const pidhirtsiStudy = {
-  id: 'N0324',
+  id: 'pidhirtsi_castle',
   key: 'pidhirtsi_castle',
   title: 'Pidhirtsi Castle',
   category: 'castle',

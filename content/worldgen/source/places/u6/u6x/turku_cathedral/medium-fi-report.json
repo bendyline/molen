@@ -1,0 +1,1173 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.turku_cathedral",
+  "sourceHash": "sha256:9af99423276080968726eaf543e0a8bef7b5ba57636dc2e72df3a1ee958a6c0d",
+  "runtimeHash": "sha256:42bd25bae707a4b8ca3e36cb58ccf8bd09905c83ab542527a859986ac0193655",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4268,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:b6816314eab5ac07d4938e4b83fcfc35b23cbb3ca9767a29af28fe6460cc336b",
+      "bytes": 86496,
+      "gzipBytes": 16413,
+      "triangles": 846,
+      "cpuBytes": 85068,
+      "gpuBytes": 85068,
+      "errorMeters": 1.25,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:811a5a3438c5c34d1a8fd08d0b62466e525e19a96ebc3c70db16d2c91e2adaa5",
+      "bytes": 267256,
+      "gzipBytes": 81340,
+      "triangles": 2671,
+      "cpuBytes": 257520,
+      "gpuBytes": 257520,
+      "errorMeters": 0.5,
+      "drawCalls": 8
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:79390abd73d0639f72801c4e54c361eb8dd8563fd47ee56e270c095177c57f2d",
+      "bytes": 680756,
+      "gzipBytes": 201522,
+      "triangles": 6647,
+      "cpuBytes": 670968,
+      "gpuBytes": 670968,
+      "errorMeters": 0.15,
+      "drawCalls": 8
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:db4ad8a139cc85b84ced4a9648b0c8c505776fa3e22316940400a78278aa2925",
+      "bytes": 974244,
+      "gzipBytes": 295272,
+      "triangles": 9515,
+      "cpuBytes": 964440,
+      "gpuBytes": 964440,
+      "errorMeters": 0.06,
+      "drawCalls": 8
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:65ca1c3bd873d78b618c6ea7f4e116c627258ea456f954fdc94e273517c4a47a"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:64ea4ffde79f26f2da6e3945499fd65e7fde00f88597b3b6300628bc2e9d69b7"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:ce5c1959baffbcbd4e12026ae3fdb41afcd0e69cc0c70deeefd431b7e92f5607",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 34585,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          50.467600000000004,
+          65.5279,
+          87.1165
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:6c177a4aec21a49dea6a2bc6853db62fd2b264e5ea00896c1168e0a0845f0732",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34585,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          50.467600000000004,
+          65.5279,
+          87.1165
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:ca30094f97b2c0365a8b211b7e6a3e3e5cbf1cd32c1380b9e31fa913c9c17780",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 34585,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          50.467600000000004,
+          65.5279,
+          87.1165
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:ff96c18aa341802d41cff77df92d3717907195f0b8daac6bde2dfb1f4517cd64",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34585,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          50.467600000000004,
+          65.5279,
+          87.1165
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:a87f96d278e1298928537bdd4124144687ee6b86d5bf7fe6e1e829275a47e010",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 27741,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          101.91760000000001,
+          103.3279,
+          176.3665
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:9726756fdf5ce4699a7dcbe22761f74771013cebef60e5ae449a45e65837caa1",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 27741,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          101.91760000000001,
+          103.3279,
+          176.3665
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:fe2aa6e08b36a99e19906b2f4477eb0a173a20125b16a86fdad140641d1b8b48",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 27741,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          101.91760000000001,
+          103.3279,
+          176.3665
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:1831e22635a1e9b89310d0132c1092b9b0bba8a51582cd641f89bc77733b4535",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 27741,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          101.91760000000001,
+          103.3279,
+          176.3665
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:d1c792d55560b7bb8d157fa06a1a989f45010cf728ef433af5aea5e7ada84bc1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25916,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          203.76760000000002,
+          143.2279,
+          352.7665
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:880b9c25d83ed6796fd7f5c6cc1cad87a1c6c7b365f334863570277dc509abf5",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25916,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          203.76760000000002,
+          143.2279,
+          352.7665
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:a36607f703522cedd08c995168373a8ab3154806ea98175e0c04fa5e078aeb8f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25916,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          203.76760000000002,
+          143.2279,
+          352.7665
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:255e93492f61e50401a528d45cb96f9e4c380dc97b9aa608522392bb13e46feb",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25916,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          203.76760000000002,
+          143.2279,
+          352.7665
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:b9a85009a7873dfae4aae7e110c5d65a6d2e5c8ed78af30931145637c734e70f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21648,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          203.76760000000002,
+          143.2279,
+          352.7665
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/brick-west-tower-and-entry.png",
+      "hash": "sha256:af3cbcd95ef915927655e73c11f43200ce47c3e419d46daa3934d4aa4b02371f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34585,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -91,
+          31.1,
+          24
+        ],
+        "lookAt": [
+          -34,
+          24.1,
+          4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/clock-dark-belfry-and-copper-spire.png",
+      "hash": "sha256:3817fa39a13db9709541eea8c48b751b96e1a07aff0aa12f1ee2d1218862881e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34585,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -86,
+          75.1,
+          46
+        ],
+        "lookAt": [
+          -37,
+          67.1,
+          4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/long-south-clerestory-and-aisle.png",
+      "hash": "sha256:591ce3cbf1f7ad020403287f27dd760b809a49bcfa97bebeb391c0125012e7ca",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34585,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -3,
+          41.1,
+          71
+        ],
+        "lookAt": [
+          -4,
+          28.1,
+          16
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/polygonal-eastern-choir.png",
+      "hash": "sha256:e417933fc4532455ba00ef73d2e2f45c7c9f8bda754d2cf8b46622229edb77f4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34585,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          84,
+          37.1,
+          45
+        ],
+        "lookAt": [
+          32,
+          27.1,
+          6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/projecting-north-chapel-and-rounded-apse.png",
+      "hash": "sha256:25781d6c86f52576ea32a924fce59893086a129680b7ee78c61ed7e19e2ce903",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33711,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          12,
+          39.1,
+          -61
+        ],
+        "lookAt": [
+          9,
+          25.1,
+          -10
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/closed-south-portal-and-pale-niches.png",
+      "hash": "sha256:587afed2b04c33993a3bb1a368816cd9cc8c8b1f603a8e1c9fdada03fcffadaa",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33165,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -1,
+          15.1,
+          44
+        ],
+        "lookAt": [
+          -4,
+          9.1,
+          24
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-turku-cathedral-skyline.png",
+      "hash": "sha256:9a51ac6e52c337d2a36aad59a60f6cb8a3fbae3c9a100f40ec9854ece28c84b9",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25916,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -135,
+          100,
+          120
+        ],
+        "lookAt": [
+          0,
+          35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-turku-cathedral-district.png",
+      "hash": "sha256:ed369f53e67aef910e03726badfac51964a6bdc260b828c2c1e314262eb6a886",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 27741,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -135,
+          100,
+          120
+        ],
+        "lookAt": [
+          0,
+          35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-turku-cathedral-street.png",
+      "hash": "sha256:56a78ee474d5685b3c8990a50c63e0fad6de430e5cff78546e60123304895009",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 31717,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -135,
+          100,
+          120
+        ],
+        "lookAt": [
+          0,
+          35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-turku-cathedral-closeup.png",
+      "hash": "sha256:754470031117aae18c8c4d57ad6f7816c8693aaa456ed49ef204f94d9297707b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34585,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -135,
+          100,
+          120
+        ],
+        "lookAt": [
+          0,
+          35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:25a1bd60014bb70b90492cf355c88005cc65591f8a1abf990df52edcec1d1a06",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25916,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          101.91760000000001,
+          103.3279,
+          176.3665
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:9726756fdf5ce4699a7dcbe22761f74771013cebef60e5ae449a45e65837caa1",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 27741,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          101.91760000000001,
+          103.3279,
+          176.3665
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:06ab3b25967ddc958a607298ed00bbf21ef875d609729374c9a81ae9f79c14f5",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 31717,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          101.91760000000001,
+          103.3279,
+          176.3665
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:58c90d8e350dbfa6a0d9ceeaa2fbe90805522b0292106f56d5874c24a8d2f95b",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34585,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6x/turku_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          101.91760000000001,
+          103.3279,
+          176.3665
+        ],
+        "lookAt": [
+          0.0676,
+          49.7779,
+          -0.0335
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

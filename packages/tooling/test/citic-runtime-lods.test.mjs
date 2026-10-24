@@ -7,7 +7,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineGlobal } from '../../worldgen/scripts/signature-tower-global-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/ws/ws0/n0164_citic_plaza'),
+const source = resolve('../../content/worldgen/source/places/ws/ws0/citic_plaza'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2'),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -75,7 +75,7 @@ it('reproduces the preserved master and binds independently mapped crown, mast a
       metal: { graph: 'metal_painted', slot: 'trim', roughness: 0.48, metallic: 0.24 },
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
     });
-  skylineGlobal.find((p) => p.id === 'N0164').build(a.wrap(b), m);
+  skylineGlobal.find((p) => p.id === 'citic_plaza').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`),
     f = await read(`${source}/map-frame.json`);
   expect(f.identityStatus).toContain('no exact-QID tag');

@@ -1,11 +1,11 @@
-/** 'N0738': Forbidden City native palace compounds, halls, gates and corner towers. */
+/** 'forbidden_city': Forbidden City native palace compounds, halls, gates and corner towers. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildForbiddenCity } from './forbidden-city-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/wx/wx4/n0738_forbidden_city/',
+    '../../../content/worldgen/source/places/wx/wx4/forbidden_city/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -74,7 +74,7 @@ export const buildForbiddenSkyline = (o) => build(o, 0),
   buildForbiddenStreet = (o) => build(o, 2),
   buildForbiddenCloseup = (o) => build(o, 3);
 export const forbiddenStudy = {
-  id: 'N0738',
+  id: 'forbidden_city',
   key: 'forbidden_city',
   title: 'Forbidden City',
   category: 'museum',

@@ -1,6 +1,6 @@
 /** Fangze square altar, Lingxing gates and mapped Huangqi hall court. */
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';
-export const earthTempleCandidateId = 'N0533';
+export const earthTempleCandidateId = 'temple_of_earth';
 const pose = (f, x, Y, z, a = 0) => {
   const c = Math.cos(a),
     s = Math.sin(a);

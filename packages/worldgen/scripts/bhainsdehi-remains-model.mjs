@@ -1,4 +1,4 @@
-/** 'N0552': pictured Bhainsdehi hall, carved stumps and low sanctuary, not a restored tower. */
+/** 'bhainsdehi': pictured Bhainsdehi hall, carved stumps and low sanctuary, not a restored tower. */
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';
 
 export function buildBhainsdehiRemains(face, detail, r, sample) {

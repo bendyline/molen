@@ -1,4 +1,4 @@
-/** 'N0767': Neues Museum. */
+/** 'neues_museum': Neues Museum. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
@@ -6,7 +6,7 @@ import { buildNeuesMuseum } from './neues-museum-geometry.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u3/u33/n0767_neues_museum/',
+    '../../../content/worldgen/source/places/u3/u33/neues_museum/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -104,7 +104,7 @@ export const buildNeuesMuseumSkyline = (o) => build(o, 0),
   buildNeuesMuseumStreet = (o) => build(o, 2),
   buildNeuesMuseumCloseup = (o) => build(o, 3);
 export const neuesMuseumStudy = {
-  id: 'N0767',
+  id: 'neues_museum',
   key: 'neues_museum',
   title: 'Neues Museum',
   category: 'museum',

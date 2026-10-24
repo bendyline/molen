@@ -1,4 +1,4 @@
-/** 'N0765_POLYGONALLATRINE': Polygonal latrine remains, Villa Romana del Casale. */
+/** 'casale_polygonal_latrine': Polygonal latrine remains, Villa Romana del Casale. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
@@ -6,7 +6,7 @@ import { buildCasalePolygonalLatrine } from './casale-polygonal-latrine-geometry
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sq/sqd/n0765_casale_polygonal_latrine/',
+    '../../../content/worldgen/source/places/sq/sqd/casale_polygonal_latrine/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -97,7 +97,7 @@ export const buildCasalePolygonalLatrineSkyline = (o) => build(o, 0),
   buildCasalePolygonalLatrineStreet = (o) => build(o, 2),
   buildCasalePolygonalLatrineCloseup = (o) => build(o, 3);
 export const casalePolygonalLatrineStudy = {
-  id: 'N0765_POLYGONALLATRINE',
+  id: 'casale_polygonal_latrine',
   key: 'casale_polygonal_latrine',
   title: 'Polygonal latrine remains, Villa Romana del Casale',
   category: 'museum',

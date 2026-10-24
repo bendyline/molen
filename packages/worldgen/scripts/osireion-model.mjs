@@ -1,13 +1,10 @@
-/** 'N0556': Osireion open granite hall and bounded below-grade excavation. */
+/** 'osireion': Osireion open granite hall and bounded below-grade excavation. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildOsireionHall } from './osireion-hall-model.mjs';
 
-const source = new URL(
-    '../../../content/worldgen/source/places/ss/ssw/n0556_osireion/',
-    import.meta.url,
-  ),
+const source = new URL('../../../content/worldgen/source/places/ss/ssw/osireion/', import.meta.url),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
   frame = read('map-frame.json'),
   r = frame.reconstruction,
@@ -85,7 +82,7 @@ export const buildOsireionSkyline = (o) => build(o, 0),
   buildOsireionStreet = (o) => build(o, 2),
   buildOsireionCloseup = (o) => build(o, 3);
 export const osireionStudy = {
-  id: 'N0556',
+  id: 'osireion',
   key: 'osireion',
   title: 'Osireion',
   category: 'temple',

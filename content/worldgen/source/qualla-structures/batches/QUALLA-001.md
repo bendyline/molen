@@ -111,6 +111,6 @@ A draft is not ready coverage. Before activation: refine photographic fidelity, 
 
 ## Reserved for the other device
 
-All next-1,000 candidates and collection members are excluded from local production. Preparation rechecks current list identities and rejects overlaps before writing evidence.
+All structure catalog candidates and collection members are excluded from local production. Preparation rechecks current list identities and rejects overlaps before writing evidence.
 
-- Kensington Palace (N0904): User reserves every next-1,000 list entry for production on a separate device; keep N0904 coverage and reference work. Retained references: [QS-f647bb4f58c0](../references/QS-f647bb4f58c0.json).
+- Kensington Palace (kensington_palace): User reserves every structure catalog list entry for production on a separate device; keep kensington_palace coverage and reference work. Retained references: [QS-f647bb4f58c0](../references/QS-f647bb4f58c0.json).

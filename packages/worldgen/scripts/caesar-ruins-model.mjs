@@ -1,6 +1,6 @@
-/** N0511: surviving podium, eroded cores and the modern altar canopy. */
+/** temple_of_caesar: surviving podium, eroded cores and the modern altar canopy. */
 import earcut from 'earcut';
-export const caesarCandidateId = 'N0511';
+export const caesarCandidateId = 'temple_of_caesar';
 
 function box(f, role, x, y, z, w, h, d) {
   const a = [

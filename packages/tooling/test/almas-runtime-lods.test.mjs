@@ -7,7 +7,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineGlobal } from '../../worldgen/scripts/signature-tower-global-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/th/thr/n0175_almas_tower'),
+const source = resolve('../../content/worldgen/source/places/th/thr/almas_tower'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2'),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -76,7 +76,7 @@ it('reproduces the Almas master and independently checks signed eight-tip placem
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
       recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
     });
-  skylineGlobal.find((p) => p.id === 'N0175').build(a.wrap(b), m);
+  skylineGlobal.find((p) => p.id === 'almas_tower').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`);
   expect(m.elements).toHaveLength(2);
   expect(m.elements.find((p) => p.id === 1137607706).tags['name:en']).toBe('Almas Tower');

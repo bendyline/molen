@@ -11,7 +11,7 @@ the [source build guide](../AUTHORING.md). The GLBs below are generated outputs 
 ```text
 content/worldgen/source/
   places/
-    sr/srs/n0001_stari_most/
+    sr/srs/stari_most/
       spec.json
       models/source.glb
       source.json
@@ -36,7 +36,7 @@ Imported runtime bundles mirror this organization under `content/worldgen/assets
 
 ```text
 assets/
-  places/6g/6gy/n0148_edificio_altino_arantes/
+  places/6g/6gy/edificio_altino_arantes/
     asset.json
     model.glb
   places/9q/9q8/golden-gate-bridge/
@@ -48,7 +48,7 @@ assets/
 The existing leaf keys and runtime asset IDs remain stable. `project.json` and `stylepack.json`
 map those IDs to their bundle sidecars; consumers resolve each model relative to its sidecar.
 The world viewer's geographic query, loading and unloading use
-`content/earth/structures/placements.json`, independently of these source folders.
+`content/earth/source/placements/`, independently of these model source folders.
 
 ## Geographic meaning
 
@@ -98,7 +98,7 @@ the source and runtime bundles and update `sourcePath`, organizational anchor, g
 project/stylepack registration and `source.json` output together; then refresh and check the
 index. Never edit a capture or QA report merely to relocate files.
 
-The [next-1,000 catalog](../next-1000/README.md) and [original structure catalog](../site-structures/README.md)
+The [structure catalog catalog](../structure-catalog/README.md) and [original structure catalog](../site-structures/README.md)
 remain as planning/history views, with links to these canonical sources. Their names do not
 determine storage or runtime identity.
 
@@ -113,5 +113,5 @@ is a research-only draft. Geometry, images, sidecars, material references and ha
 evidence were retained; creation remains paused for the results review.
 
 Registry-based discovery also recovered three already-existing models whose current asset IDs
-differed from old research aliases (N0654, N0681 and N0682). This corrects the inventory count;
+differed from old research aliases (vieille_lighthouse, maracana and santiago_bernabeu_stadium). This corrects the inventory count;
 it is not a new modeling batch.

@@ -1,4 +1,4 @@
-/** 'N0742_KITCHENS': Stone cooking halls, lead domes and chimneys, unroofed court and open colonnade. */
+/** 'palace_kitchens_topkapi_palace': Stone cooking halls, lead domes and chimneys, unroofed court and open colonnade. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function kitchenGrade(r, x, z) {

@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { edinburghStudy } from '../../worldgen/scripts/edinburgh-castle-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/gc/gcv/n0242_edinburgh_castle'),
+const source = resolve('../../content/worldgen/source/places/gc/gcv/edinburgh_castle'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;

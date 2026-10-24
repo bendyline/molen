@@ -1,11 +1,11 @@
-/** N0537: specific mapped Baidicheng core and decorated arched gateway. */
+/** baidicheng: specific mapped Baidicheng core and decorated arched gateway. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBaidichengTemple } from './baidicheng-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/wm/wmt/n0537_baidicheng/',
+    '../../../content/worldgen/source/places/wm/wmt/baidicheng/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -85,7 +85,7 @@ export const buildBaidichengSkyline = (o) => build(o, 0),
   buildBaidichengStreet = (o) => build(o, 2),
   buildBaidichengCloseup = (o) => build(o, 3);
 export const baidichengStudy = {
-  id: 'N0537',
+  id: 'baidicheng',
   key: 'baidicheng',
   title: 'Baidicheng',
   category: 'temple',

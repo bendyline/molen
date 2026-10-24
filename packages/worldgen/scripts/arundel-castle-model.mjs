@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/gc/gcp/n0303_arundel_castle/',
+  '../../../content/worldgen/source/places/gc/gcp/arundel_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
@@ -870,7 +870,7 @@ const camera = (name, position, lookAt) => ({
   lookAt: native(lookAt),
 });
 export const arundelStudy = {
-  id: 'N0303',
+  id: 'arundel_castle',
   key: 'arundel_castle',
   title: 'Arundel Castle',
   category: 'castle',

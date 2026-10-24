@@ -2,7 +2,7 @@
  * Course dimensions and broken profiles are interpreted; this is not a surveyed
  * plan of the complete buried temple. Geographic activation stays disabled.
  */
-export const jupiterCandidateId = 'N0507';
+export const jupiterCandidateId = 'temple_of_jupiter_optimus_maximus';
 
 function stone(face, role, x, y, z, width, height, depth, seed, chipped) {
   const cut = chipped ? 0.08 + (seed % 5) * 0.016 : 0;

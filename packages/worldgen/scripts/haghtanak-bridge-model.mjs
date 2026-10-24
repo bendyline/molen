@@ -5,9 +5,7 @@ import { loft, normalFor, sphere } from './authored-structure-mesh.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0014_haghtanak_bridge', 'map-frame.json')),
-);
+const frame = JSON.parse(readFileSync(structureSourcePath('haghtanak_bridge', 'map-frame.json')));
 const basalt = [0.16, 0.164, 0.153],
   smooth = [0.23, 0.235, 0.215],
   iron = [0.105, 0.13, 0.119],
@@ -613,7 +611,7 @@ function roadSurface(out) {
   }
 }
 export const haghtanakStudy = {
-  id: 'N0014',
+  id: 'haghtanak_bridge',
   key: 'haghtanak_bridge',
   title: 'Haghtanak (Victory) Bridge',
   wikidataId: 'Q2471370',

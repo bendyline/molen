@@ -458,7 +458,7 @@ function shutter(o, x, y, z, detail) {
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/wx/wxj/n0259_shanhai_pass/site-grade.json',
+      '../../../content/worldgen/source/places/wx/wxj/shanhai_pass/site-grade.json',
       import.meta.url,
     ),
   ),

@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sxk/n0447_new_mosque/',
+  '../../../content/worldgen/source/places/sx/sxk/new_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -936,7 +936,7 @@ export const buildYeniSkyline = (o) => build(o, 0),
   buildYeniCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const yeniStudy = {
-  id: 'N0447',
+  id: 'new_mosque',
   key: 'new_mosque',
   title: 'New Mosque',
   category: 'mosque',

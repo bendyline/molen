@@ -35,6 +35,7 @@ import {
   resolveStylePackDocuments,
   stylePackAssetIndex,
 } from '@bendyline/molen-worldgen/kernel';
+import { createStructureStream } from '@bendyline/molen-worldgen-earth/client';
 import {
   checkEcologyAtlas,
   createPlacesContent,
@@ -48,6 +49,7 @@ import {
   type RegionalEnvironmentDocs,
   regionalCatalogSchema,
   type StructureCatalogDoc,
+  type StructureDirectory,
   type StructureIndex,
   type WildlifeRangesDoc,
   wildlifeRangesSchema,
@@ -172,11 +174,38 @@ async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenCon
     earth.readJson<RegionAtlasDoc>(earth.manifest.provides.atlas?.[0] ?? 'world.atlas.json'),
     styles.readJson<{ models: Record<string, string> }>(landmarkPath),
     earth.readJson(earth.manifest.provides.businesses?.[0] ?? 'businesses/catalog.json'),
-    Promise.all(structuresPaths.map((path) => earth.readJson<StructureCatalogDoc>(path))),
+    Promise.all(
+      structuresPaths.map((path) => earth.readJson<StructureCatalogDoc | StructureDirectory>(path)),
+    ),
   ]);
   for (const doc of structures)
-    if (doc.format !== 'molen/structure-placements@1')
+    if (
+      ![
+        'molen/structure-placements@1',
+        'molen/structure-placement-data@1',
+        'molen/structure-placement-index@1',
+      ].includes(doc.format)
+    )
       throw new Error('invalid structure catalog format');
+  const flat = structures.filter(
+    (doc): doc is StructureCatalogDoc => doc.format !== 'molen/structure-placement-index@1',
+  );
+  const directories = structures.filter(
+    (doc): doc is StructureDirectory => doc.format === 'molen/structure-placement-index@1',
+  );
+  if (directories.length > 1)
+    throw new Error('Earth pack must provide at most one placement directory');
+  for (const doc of flat) createStructureIndex(doc);
+  const base = createStructureIndex({
+    format: 'molen/structure-placement-data@1',
+    title: 'Earth structures',
+    entries: flat.flatMap((doc) => doc.entries),
+    rules: flat.flatMap((doc) => doc.rules ?? []),
+  });
+  const directory = directories[0];
+  const structureIndex = directory
+    ? createStructureStream(directory, (path, signal) => earth.readJson(path, { signal }), base)
+    : base;
   const models: Record<string, unknown> = {};
   await Promise.all(
     Object.entries(catalog.models).map(async ([key, path]) => {
@@ -190,12 +219,7 @@ async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenCon
     atlas,
     places: createPlacesContent(placesDocs),
     placesDocs,
-    structures: createStructureIndex({
-      format: 'molen/structure-placements@1',
-      title: 'Earth structures',
-      entries: structures.flatMap((doc) => doc.entries),
-      rules: structures.flatMap((doc) => doc.rules ?? []),
-    }),
+    structures: structureIndex,
   };
 }
 
@@ -409,6 +433,11 @@ export async function loadEarthContent(
   }
   const styleIndex =
     worldgen === undefined ? {} : stylePackAssetIndex(worldgen.pack, `pack:${worldgen.styleId}/`);
+  const closePacks = packs.close.bind(packs);
+  packs.close = () => {
+    worldgen?.structures.dispose?.();
+    closePacks();
+  };
   let stars: Promise<SkyStar[]> | undefined;
   const fleetCatalogs = await Promise.all(
     opened.flatMap((pack) =>

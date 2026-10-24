@@ -587,7 +587,7 @@ export function buildVolgograd(out) {
   roof(out);
 }
 export const volgogradStudy = {
-  id: 'N0704',
+  id: 'volgograd_arena',
   key: 'volgograd_arena',
   wikidataId: 'Q4366184',
   title: 'Volgograd Arena',

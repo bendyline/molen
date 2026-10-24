@@ -1,4 +1,4 @@
-/** 'N0593': ten paired stone ribbons, tiled diamonds and an open petal crown. */
+/** 'omar_khayyam_mausoleum': ten paired stone ribbons, tiled diamonds and an open petal crown. */
 import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';

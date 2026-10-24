@@ -1,4 +1,4 @@
-/** 'N0728': individual Donbass Arena, inclined saucer roof and three-tier bowl. */
+/** 'donbass_arena': individual Donbass Arena, inclined saucer roof and three-tier bowl. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
@@ -17,7 +17,7 @@ export function donbassRadius(poly, a) {
       u = cross(p, d) / den;
     if (t > 0 && u >= -1e-8 && u <= 1 + 1e-8) hits.push(t);
   }
-  if (!hits.length) throw Error('N0728: missing native radial boundary');
+  if (!hits.length) throw Error('donbass_arena: missing native radial boundary');
   return Math.min(...hits);
 }
 export function donbassFoundationOutline(r, detail) {

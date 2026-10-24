@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sv/sv8/n0428_cavern_of_the_patriarchs/',
+  '../../../content/worldgen/source/places/sv/sv8/cavern_of_the_patriarchs/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -799,7 +799,7 @@ export const buildPatriarchsSkyline = (o) => build(o, 0),
   buildPatriarchsCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const patriarchsStudy = {
-  id: 'N0428',
+  id: 'cavern_of_the_patriarchs',
   key: 'cavern_of_the_patriarchs',
   title: 'Cavern of the Patriarchs',
   category: 'mosque',

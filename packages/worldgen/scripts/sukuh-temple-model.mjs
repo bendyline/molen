@@ -1,4 +1,4 @@
-/** 'N0538': Sukuh's west stair pyramid, detached platforms and lower stone gateway. */
+/** 'sukuh': Sukuh's west stair pyramid, detached platforms and lower stone gateway. */
 import earcut from 'earcut';
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';
 

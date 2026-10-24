@@ -1,11 +1,11 @@
-/** 'N0545': Philae's differently aligned pylons, sanctuary and colonnades. */
+/** 'temple_of_isis_in_philae': Philae's differently aligned pylons, sanctuary and colonnades. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildPhilaeTemple } from './philae-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ss/ssr/n0545_temple_of_isis_in_philae/',
+    '../../../content/worldgen/source/places/ss/ssr/temple_of_isis_in_philae/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -81,7 +81,7 @@ export const buildPhilaeSkyline = (o) => build(o, 0),
   buildPhilaeStreet = (o) => build(o, 2),
   buildPhilaeCloseup = (o) => build(o, 3);
 export const philaeStudy = {
-  id: 'N0545',
+  id: 'temple_of_isis_in_philae',
   key: 'temple_of_isis_in_philae',
   title: 'Temple of Isis in Philae',
   category: 'temple',

@@ -1,4 +1,4 @@
-/** 'N0764': Palazzo Vecchio's mapped courtyard palace and open Torre di Arnolfo. */
+/** 'palazzo_vecchio': Palazzo Vecchio's mapped courtyard palace and open Torre di Arnolfo. */
 import './install-deterministic-math.mjs';
 import { createRequire } from 'node:module';
 import earcut from 'earcut';

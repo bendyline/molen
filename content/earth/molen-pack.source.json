@@ -12,7 +12,8 @@
     "structures/readiness.json",
     "structures/georeferencing.json",
     "structures/identity-review.json",
-    "structures/EVIDENCE.md"
+    "structures/EVIDENCE.md",
+    "structures/placements/authoring.json"
   ],
   "provides": {
     "road-signs": "signs/catalog.json",
@@ -22,6 +23,7 @@
     "fonts": "fonts/catalog.json",
     "atlas": "world.atlas.json",
     "businesses": "businesses/catalog.json",
-    "structures": ["structures/placements.json", "structures/map-rules.json"]
-  }
+    "structures": ["structures/placements/index.json", "structures/map-rules.json"]
+  },
+  "independent": ["structures/placements/"]
 }

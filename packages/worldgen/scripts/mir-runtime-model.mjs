@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u9/u9d/n0250_mir_castle_complex/map-parts.json',
+      '../../../content/worldgen/source/places/u9/u9d/mir_castle_complex/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -16,7 +16,7 @@ const map = JSON.parse(
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u9/u9d/n0250_mir_castle_complex/site-grade.json',
+      '../../../content/worldgen/source/places/u9/u9d/mir_castle_complex/site-grade.json',
       import.meta.url,
     ),
   ),
@@ -24,7 +24,7 @@ const grade = JSON.parse(
 const mappedFrame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u9/u9d/n0250_mir_castle_complex/map-frame.json',
+      '../../../content/worldgen/source/places/u9/u9d/mir_castle_complex/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -32,7 +32,7 @@ const mappedFrame = JSON.parse(
 const approaches = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u9/u9d/n0250_mir_castle_complex/approach-map.json',
+      '../../../content/worldgen/source/places/u9/u9d/mir_castle_complex/approach-map.json',
       import.meta.url,
     ),
   ),

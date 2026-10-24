@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sx0/n0361_hagia_sophia/',
+  '../../../content/worldgen/source/places/sx/sx0/hagia_sophia_thessaloniki/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -844,7 +844,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const thessSophiaStudy = {
-  id: 'N0361',
+  id: 'hagia_sophia_thessaloniki',
   key: 'hagia_sophia',
   title: 'Hagia Sophia',
   category: 'cathedral',

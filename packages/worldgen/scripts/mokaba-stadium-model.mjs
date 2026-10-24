@@ -1,8 +1,8 @@
-/** N0713: one western canopy, green arch girder and four rounded baobab ramp cores. */
+/** peter_mokaba_stadium: one western canopy, green arch girder and four rounded baobab ramp cores. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
-const candidateId = 'N0713';
+const candidateId = 'peter_mokaba_stadium';
 export function mokabaRadius(poly, angle) {
   const d = [Math.cos(angle), Math.sin(angle)],
     cross = (a, b) => a[0] * b[1] - a[1] * b[0],

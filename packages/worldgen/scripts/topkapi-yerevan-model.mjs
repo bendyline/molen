@@ -1,11 +1,11 @@
-/** 'N0742_YEREVAN': Faceted blue chamber, pointed portico, broad lead canopy and garden stair. */
+/** 'yerevan_kiosk_topkapi_palace': Faceted blue chamber, pointed portico, broad lead canopy and garden stair. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiYerevan } from './topkapi-yerevan-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_yerevan/',
+    '../../../content/worldgen/source/places/sx/sxk/yerevan_kiosk_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -105,7 +105,7 @@ export const buildTopkapiYerevanSkyline = (o) => build(o, 0),
   buildTopkapiYerevanStreet = (o) => build(o, 2),
   buildTopkapiYerevanCloseup = (o) => build(o, 3);
 export const topkapiYerevanStudy = {
-  id: 'N0742_YEREVAN',
+  id: 'yerevan_kiosk_topkapi_palace',
   key: 'yerevan',
   title: 'Yerevan Kiosk, Topkapi Palace',
   category: 'castle',

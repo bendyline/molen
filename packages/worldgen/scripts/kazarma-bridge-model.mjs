@@ -7,7 +7,7 @@ import { quad } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
 const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0012_kazarma_mycenaean_bridge', 'map-frame.json')),
+  readFileSync(structureSourcePath('kazarma_mycenaean_bridge', 'map-frame.json')),
 );
 const stone = [0.655, 0.64, 0.57],
   fill = [0.43, 0.388, 0.303];
@@ -210,7 +210,7 @@ export function buildKazarma(out) {
     );
 }
 export const kazarmaStudy = {
-  id: 'N0012',
+  id: 'kazarma_mycenaean_bridge',
   key: 'kazarma_mycenaean_bridge',
   title: 'Kazarma Mycenaean Bridge',
   wikidataId: 'Q254087',

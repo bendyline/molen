@@ -379,7 +379,7 @@ export function buildCayan(out) {
   crown(out);
 }
 export const cayanStudy = {
-  id: 'N0202',
+  id: 'cayan_tower',
   key: 'cayan_tower',
   title: 'Cayan Tower',
   wikidataId: 'Q391648',

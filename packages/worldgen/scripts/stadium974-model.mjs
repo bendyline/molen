@@ -1,11 +1,11 @@
-/** N0714: Stadium 974 container frame, full roof ring and two-tier bowl. */
+/** stadium_974: Stadium 974 container frame, full roof ring and two-tier bowl. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildStadium974 } from './stadium974-container-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/th/thk/n0714_stadium_974/',
+    '../../../content/worldgen/source/places/th/thk/stadium_974/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -75,7 +75,7 @@ export const buildStadium974Skyline = (o) => build(o, 0),
   buildStadium974Street = (o) => build(o, 2),
   buildStadium974Closeup = (o) => build(o, 3);
 export const stadium974Study = {
-  id: 'N0714',
+  id: 'stadium_974',
   key: 'stadium_974',
   title: 'Stadium 974',
   category: 'stadium',

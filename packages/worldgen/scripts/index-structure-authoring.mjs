@@ -1,7 +1,8 @@
 /** Navigate from each generated landmark back to its registered generator and editable recipes. */
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { writeIndex as writeFile } from './structure-model-files.mjs';
 import { knownSourceEntries } from './structure-source-paths.mjs';
 
 const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');

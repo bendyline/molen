@@ -1,11 +1,11 @@
-/** 'N0742_IMPERIAL': Low brick gatehouse, marble portals and open vaulted route. */
+/** 'imperial_gate_topkapi_palace': Low brick gatehouse, marble portals and open vaulted route. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiImperial } from './topkapi-imperial-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_imperial/',
+    '../../../content/worldgen/source/places/sx/sxk/imperial_gate_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -75,7 +75,7 @@ export const buildTopkapiImperialSkyline = (o) => build(o, 0),
   buildTopkapiImperialStreet = (o) => build(o, 2),
   buildTopkapiImperialCloseup = (o) => build(o, 3);
 export const topkapiImperialStudy = {
-  id: 'N0742_IMPERIAL',
+  id: 'imperial_gate_topkapi_palace',
   key: 'imperial',
   title: 'Imperial Gate, Topkapi Palace',
   category: 'castle',

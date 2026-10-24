@@ -351,7 +351,7 @@ function buildBitexco(out, mapped) {
     mappedCap(out, 'metal', topPlan, deckY, [0.24, 0.29, 0.28]);
     if (!far) padRing(out, 'metal', deckY + 0.005, 0.993, 0.965, white);
     if (far) return;
-    const p = partsEvidence('n0209_bitexco_financial_tower').find((e) => e.id === 1231606415);
+    const p = partsEvidence('bitexco_financial_tower').find((e) => e.id === 1231606415);
     const square = clockwise(
       p.geometry.slice(0, -1).map((g) => localGeographic(mapped, g.lon, g.lat)),
     );
@@ -453,7 +453,7 @@ function buildBitexco(out, mapped) {
   }
 
   function podium(out, mapped) {
-    const part = partsEvidence('n0209_bitexco_financial_tower').find((e) => e.id === 1222241873);
+    const part = partsEvidence('bitexco_financial_tower').find((e) => e.id === 1222241873);
     const plan = clockwise(
       part.geometry.slice(0, -1).map((g) => localGeographic(mapped, g.lon, g.lat)),
     );
@@ -586,10 +586,7 @@ function buildBitexco(out, mapped) {
 
 function build(out, detail, m) {
   m ??= JSON.parse(
-    readFileSync(
-      resolve(structureSourcePath('n0209_bitexco_financial_tower'), 'map-frame.json'),
-      'utf8',
-    ),
+    readFileSync(resolve(structureSourcePath('bitexco_financial_tower'), 'map-frame.json'), 'utf8'),
   );
   const target = { detail },
     means = {

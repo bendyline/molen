@@ -1,11 +1,11 @@
-/** 'N0742_JUSTICE': Stone tower, paired-column belvedere, segmental pediments and lead pyramid. */
+/** 'tower_of_justice_topkapi_palace': Stone tower, paired-column belvedere, segmental pediments and lead pyramid. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiJustice } from './topkapi-justice-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_justice/',
+    '../../../content/worldgen/source/places/sx/sxk/tower_of_justice_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -73,7 +73,7 @@ export const buildTopkapiJusticeSkyline = (o) => build(o, 0),
   buildTopkapiJusticeStreet = (o) => build(o, 2),
   buildTopkapiJusticeCloseup = (o) => build(o, 3);
 export const topkapiJusticeStudy = {
-  id: 'N0742_JUSTICE',
+  id: 'tower_of_justice_topkapi_palace',
   key: 'justice',
   title: 'Tower of Justice, Topkapi Palace',
   category: 'tower',

@@ -5,7 +5,7 @@ import { loft, normalFor } from './authored-structure-mesh.mjs';
 import { box, quad } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(readFileSync(structureSourcePath('n0017_red_bridge', 'map-frame.json')));
+const frame = JSON.parse(readFileSync(structureSourcePath('red_bridge_yerevan', 'map-frame.json')));
 const centerZ = -1.92,
   deckY = 9.9;
 const red = [0.44, 0.205, 0.105],
@@ -464,7 +464,7 @@ export function buildRedYerevan(out) {
   walkway(out);
 }
 export const redYerevanStudy = {
-  id: 'N0017',
+  id: 'red_bridge_yerevan',
   key: 'red_bridge',
   title: 'Red Bridge, Yerevan — restored crossing',
   wikidataId: 'Q3107472',

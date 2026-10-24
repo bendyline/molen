@@ -1,11 +1,11 @@
-/** N0512: reproducible surviving Templo Mayor architecture. */
+/** templo_mayor: reproducible surviving Templo Mayor architecture. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMayorExcavation } from './mayor-excavation-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/9g/9g3/n0512_templo_mayor/',
+    '../../../content/worldgen/source/places/9g/9g3/templo_mayor/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -82,7 +82,7 @@ export const buildMayorSkyline = (o) => build(o, 0),
   buildMayorStreet = (o) => build(o, 2),
   buildMayorCloseup = (o) => build(o, 3);
 export const mayorStudy = {
-  id: 'N0512',
+  id: 'templo_mayor',
   key: 'templo_mayor',
   title: 'Templo Mayor',
   category: 'temple',

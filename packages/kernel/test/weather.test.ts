@@ -5,6 +5,36 @@ import { sampleAtmosphere, Weather, weatherOf } from '../src/weather';
 import { World } from '../src/world';
 
 describe('physical weather', () => {
+  it('matches independent standard-atmosphere checkpoints and remains continuous at the tropopause', () => {
+    const sea = sampleAtmosphere({}),
+      high = sampleAtmosphere({}, 11000);
+    expect(sea.speedOfSound).toBeCloseTo(340.294, 2);
+    expect(high.temperatureK).toBeCloseTo(216.774, 2);
+    expect(high.pressurePa).toBeCloseTo(22699.8, 0);
+    expect(high.densityKgM3).toBeCloseTo(0.3648, 3);
+    expect(high.speedOfSound).toBeCloseTo(295.153, 2);
+    const boundary = (11000 * 6356766) / (6356766 - 11000);
+    expect(
+      Math.abs(
+        sampleAtmosphere({}, boundary - 0.01).pressurePa -
+          sampleAtmosphere({}, boundary + 0.01).pressurePa,
+      ),
+    ).toBeLessThan(0.1);
+    expect(
+      sampleAtmosphere(
+        { atmosphere: { referenceAltitude: 3000, temperatureK: 280, pressurePa: 70000 } },
+        3000,
+      ).pressurePa,
+    ).toBe(70000);
+    expect(sampleAtmosphere({ atmosphere: { model: 'isothermal' } }, 11000).temperatureK).toBe(
+      288.15,
+    );
+    const humid = sampleAtmosphere({
+      atmosphere: { moistAir: true, relativeHumidity: 1, temperatureK: 305 },
+    });
+    const dry = sampleAtmosphere({ atmosphere: { moistAir: false, temperatureK: 305 } });
+    expect(humid.densityKgM3).toBeLessThan(dry.densityKgM3);
+  });
   it('samples ideal-gas density, pressure at altitude and alternate gas constants', () => {
     expect(sampleAtmosphere({}).densityKgM3).toBeCloseTo(1.225, 3);
     const warm = sampleAtmosphere({ atmosphere: { temperatureK: 320 } });

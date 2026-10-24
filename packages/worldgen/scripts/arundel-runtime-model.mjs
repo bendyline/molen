@@ -7,7 +7,7 @@ import { normalFor } from './authored-structure-mesh.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/gc/gcp/n0303_arundel_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/gc/gcp/arundel_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

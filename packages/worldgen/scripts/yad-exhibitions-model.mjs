@@ -1,11 +1,11 @@
-/** 'N0748_EXHIBITIONS': Exhibition Pavilion open court, stepped end wall and curved planted stair wing. */
+/** 'exhibitions_pavilion_yad_vashem': Exhibition Pavilion open court, stepped end wall and curved planted stair wing. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildYadExhibitions } from './yad-exhibitions-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sv/sv9/n0748_exhibitions/',
+    '../../../content/worldgen/source/places/sv/sv9/exhibitions_pavilion_yad_vashem/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -100,7 +100,7 @@ export const buildYadExhibitionsSkyline = (o) => build(o, 0),
   buildYadExhibitionsStreet = (o) => build(o, 2),
   buildYadExhibitionsCloseup = (o) => build(o, 3);
 export const yadExhibitionsStudy = {
-  id: 'N0748_EXHIBITIONS',
+  id: 'exhibitions_pavilion_yad_vashem',
   key: 'exhibitions',
   title: 'Exhibition Pavilion, Yad Vashem',
   category: 'museum',

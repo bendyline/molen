@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { mkdir, mkdtemp, readFile, rm, stat, utimes, writeFile } from 'node:fs/promises';
+import { writeFileSync } from 'node:fs';
+import { mkdir, mkdtemp, readdir, readFile, rm, stat, utimes, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve, sep } from 'node:path';
 import { afterEach, test } from 'node:test';
+import { pathToFileURL } from 'node:url';
 import { createAssetFileCache } from '../asset-file-cache.mjs';
 import { assetInputs } from '../asset-inputs.mjs';
 import { createJobCache } from '../asset-job-cache.mjs';
@@ -71,6 +73,46 @@ const runIds = (report) =>
     .filter((job) => !job.cached)
     .map((job) => job.id)
     .sort();
+
+test('child traces preserve earlier records when a process ID is reused', async () => {
+  const root = await fixture();
+  const directory = join(root, '.artifacts/pid-reuse');
+  await mkdir(directory, { recursive: true });
+  execFileSync(
+    process.execPath,
+    [
+      '--import',
+      pathToFileURL(resolve('scripts/trace-asset-job.mjs')).href,
+      '--input-type=module',
+      '-e',
+      `
+      import {mkdirSync, writeFileSync} from 'node:fs';
+      import {join} from 'node:path';
+      // Simulate the retained trace of an earlier child with this child's PID.
+      writeFileSync(join(process.env.MOLEN_ASSET_TRACE_DIRECTORY, process.pid + '.json'),
+        JSON.stringify({dependencies: [], writes: ['assets/previous.glb']}));
+      mkdirSync('assets', {recursive: true});
+      writeFileSync('assets/current.glb', 'current model');
+    `,
+    ],
+    {
+      cwd: root,
+      env: {
+        ...process.env,
+        MOLEN_ASSET_TRACE_ROOT: root,
+        MOLEN_ASSET_TRACE_DIRECTORY: directory,
+      },
+    },
+  );
+  const traces = await readdir(directory);
+  assert.equal(traces.length, 2, 'a later child must not overwrite an earlier trace');
+  const records = await Promise.all(
+    traces.map(async (name) => JSON.parse(await readFile(join(directory, name), 'utf8'))),
+  );
+  const writes = records.flatMap((record) => record.writes);
+  assert.ok(writes.includes('assets/previous.glb'));
+  assert.ok(writes.includes('assets/current.glb'));
+});
 
 test('a second local build does no generation, including after an unrelated input edit', async () => {
   const root = await fixture();
@@ -176,6 +218,64 @@ test('successful jobs remain cached when a sibling fails', async () => {
   assert.deepEqual(runIds(await build(root)), []);
 });
 
+test('after-import progress and its log are visible before the job exits', async () => {
+  const root = await fixture();
+  const plan = JSON.parse(await readFile(join(root, 'asset-build.json'), 'utf8'));
+  plan.afterImport = [{ id: 'lods', command: ['node', 'scripts/lods.mjs'] }];
+  await put(root, 'asset-build.json', JSON.stringify(plan));
+  await put(
+    root,
+    'scripts/lods.mjs',
+    `
+    import {existsSync, readFileSync, writeFileSync} from 'node:fs';
+    console.log('1/2 model-one complete');
+    const deadline = Date.now() + 5000;
+    while (!existsSync('.artifacts/progress-seen') ||
+      !existsSync('.artifacts/asset-build/logs/lods.log') ||
+      !readFileSync('.artifacts/asset-build/logs/lods.log', 'utf8').includes('1/2 model-one complete')) {
+      if (Date.now() > deadline) throw Error('progress was buffered until exit');
+      await new Promise(resolve => setTimeout(resolve, 10));
+    }
+    writeFileSync('assets/one/lod.glb', 'derived model');
+    console.error('2/2 model-two complete');
+  `,
+  );
+  const messages = [];
+  await build(root, {
+    log: (message) => {
+      messages.push(message);
+      if (message.includes('1/2 model-one complete'))
+        writeFileSync(join(root, '.artifacts/progress-seen'), 'seen while running');
+    },
+  });
+  assert.ok(messages.some((message) => message.startsWith('Running lods (log: ')));
+  assert.ok(messages.includes('  1/2 model-one complete'));
+  assert.ok(messages.includes('  2/2 model-two complete'));
+  const log = await readFile(join(root, '.artifacts/asset-build/logs/lods.log'), 'utf8');
+  assert.match(log, /1\/2 model-one complete/);
+  assert.match(log, /2\/2 model-two complete/);
+});
+
+test('a deterministic after-import failure runs once and preserves successful generator caches', async () => {
+  const root = await fixture();
+  const plan = JSON.parse(await readFile(join(root, 'asset-build.json'), 'utf8'));
+  plan.afterImport = [{ id: 'lods', command: ['node', 'scripts/lods.mjs'] }];
+  await put(root, 'asset-build.json', JSON.stringify(plan));
+  await put(
+    root,
+    'scripts/lods.mjs',
+    `
+    import {appendFileSync} from 'node:fs';
+    appendFileSync('.artifacts/lod-attempts.txt', 'attempt\\n');
+    throw Error('street: authored derivative exceeds its triangle ceiling');
+  `,
+  );
+  await assert.rejects(build(root), /authored derivative exceeds its triangle ceiling/);
+  assert.equal(await readFile(join(root, '.artifacts/lod-attempts.txt'), 'utf8'), 'attempt\n');
+  const cache = await createJobCache(root, plan);
+  for (const job of plan.generators) assert.equal(await cache.current(job), true);
+});
+
 test('directory discoveries, optional files and generated metadata remain cache-correct', async () => {
   const root = await fixture();
   await mkdir(join(root, 'inputs/parts'));
@@ -203,7 +303,7 @@ test('directory discoveries, optional files and generated metadata remain cache-
   assert.deepEqual(runIds(await build(root)), ['one']);
 });
 
-test('imports reuse local output even when source-build metadata is restored, and repair missing runtime files', async () => {
+test('imports retain matching runtime metadata, preserve authored text, and repair missing runtime files', async () => {
   const root = await fixture();
   const plan = JSON.parse(await readFile(join(root, 'asset-build.json'), 'utf8'));
   plan.afterImport = [{ id: 'derived', command: ['node', 'scripts/derived.mjs'] }];
@@ -227,8 +327,10 @@ test('imports reuse local output even when source-build metadata is restored, an
   await put(
     root,
     'scripts/one.mjs',
-    script.replaceAll('assets/one', 'content/library/source/one/models'),
+    `${script.replaceAll('assets/one', 'content/library/source/one/models')}
+    await writeFile('content/library/source/one/README.md', 'generated notes');`,
   );
+  await put(root, 'content/library/source/one/README.md', 'authored notes');
   await put(root, 'content/library/project.json', '{}');
   await put(
     root,
@@ -254,10 +356,28 @@ test('imports reuse local output even when source-build metadata is restored, an
       2,
     ),
   );
-  assert.equal((await build(root)).imports.run, 1);
+  const first = await build(root);
+  assert.equal(first.imports.run, 1);
+  assert.deepEqual(first.metadata.updated, ['content/library/assets/one/asset.json']);
+  assert.ok(first.metadata.changed.includes('content/library/source/one/README.md'));
+  const assertMetadata = async () => {
+    const metadata = JSON.parse(
+      await readFile(join(root, 'content/library/assets/one/asset.json'), 'utf8'),
+    );
+    const model = await readFile(join(root, 'content/library/assets/one/model.glb'));
+    assert.equal(metadata.hash, `sha256:${createHash('sha256').update(model).digest('hex')}`);
+    assert.equal(metadata.stats.sizeBytes, model.length);
+    assert.equal(metadata.derived, true);
+    assert.equal(
+      await readFile(join(root, 'content/library/source/one/README.md'), 'utf8'),
+      'authored notes',
+    );
+  };
+  await assertMetadata();
   let next = await build(root);
   assert.deepEqual(runIds(next), []);
   assert.equal(next.imports.run, 0);
+  await assertMetadata();
   await rm(join(root, 'content/library/assets/one/lod.glb'));
   next = await build(root);
   assert.deepEqual(runIds(next), []);
@@ -272,6 +392,20 @@ test('imports reuse local output even when source-build metadata is restored, an
   assert.deepEqual(runIds(next), ['one']);
   assert.equal(next.imports.run, 1);
   assert.equal((await build(root)).imports.run, 0);
+  await assertMetadata();
+  const beforeFailure = await readFile(join(root, 'content/library/assets/one/asset.json'));
+  await put(
+    root,
+    'scripts/derived.mjs',
+    `import {writeFileSync} from 'node:fs';
+    writeFileSync('content/library/assets/one/asset.json', '{"broken":true}');
+    throw Error('failed after writing runtime metadata');`,
+  );
+  await assert.rejects(build(root), /failed after writing runtime metadata/);
+  assert.deepEqual(
+    await readFile(join(root, 'content/library/assets/one/asset.json')),
+    beforeFailure,
+  );
 });
 
 test('after-import outputs survive repeat builds and only their missing files need regeneration', async () => {

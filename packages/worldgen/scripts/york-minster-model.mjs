@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/gc/gcx/n0335_york_minster/',
+  '../../../content/worldgen/source/places/gc/gcx/york_minster/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -856,7 +856,7 @@ export const buildYorkDistrict = (o) => build(o, 1);
 export const buildYorkStreet = (o) => build(o, 2);
 export const buildYorkCloseup = (o) => build(o, 3);
 export const yorkStudy = {
-  id: 'N0335',
+  id: 'york_minster',
   key: 'york_minster',
   title: 'York Minster',
   category: 'cathedral',

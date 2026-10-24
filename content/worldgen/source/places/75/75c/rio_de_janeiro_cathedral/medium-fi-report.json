@@ -1,0 +1,1146 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.rio_de_janeiro_cathedral",
+  "sourceHash": "sha256:9b410b1841ed9fa3f2fefff6625a8e4f940a456c4e57bca55ff2dd68d4c7781b",
+  "runtimeHash": "sha256:96506b8ecdf4b771167c72edc573cf67e91049354b9ced3cf5fef88c9bbc94aa",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4268,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:d5677dd72be3c79f6ebd978517120123ea65759acc488778e491327140aebae1",
+      "bytes": 80316,
+      "gzipBytes": 15681,
+      "triangles": 758,
+      "cpuBytes": 78888,
+      "gpuBytes": 78888,
+      "errorMeters": 4,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:2be7a3dab21af5710627cf21eec8d60eb1e70eaf51670a84704c7b598993ce13",
+      "bytes": 285088,
+      "gzipBytes": 97104,
+      "triangles": 3182,
+      "cpuBytes": 278976,
+      "gpuBytes": 278976,
+      "errorMeters": 2,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:7fde23ad1852cc8eca539ca31d54e307f6960e763d415f36a7d2c4a5fe7309bf",
+      "bytes": 777192,
+      "gzipBytes": 260191,
+      "triangles": 9066,
+      "cpuBytes": 771048,
+      "gpuBytes": 771048,
+      "errorMeters": 1,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:b9c07d1a4012622e000aa9b8c9347f7d8f4804020374b16985f65359c1c60073",
+      "bytes": 1656688,
+      "gzipBytes": 570932,
+      "triangles": 20022,
+      "cpuBytes": 1650528,
+      "gpuBytes": 1650528,
+      "errorMeters": 0.35,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:0b71cca6cccd7f23eab33c05898844b80374969362f33e00430d1d78caef2b4c"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:cd5a1b4146c92937d5229393ff3e0fe5e4ef947180ea1e940bbdfcaf84c5285a"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:b5944a66437793956bb1f8e08dec61916d3335f526e6ea3b6b5c830093789aaa",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 45092,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          51.0161,
+          61.4613,
+          74.30680000000001
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:09a225a4eec4ac65a70bddb14a2cd0332463604fc129c71bb2720ccf76a7ae79",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 45092,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          51.0161,
+          61.4613,
+          74.30680000000001
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:f9a18978c179f255e4000e97e267ede56d5e1639c85e8a425faa115b5291c09a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 45092,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          51.0161,
+          61.4613,
+          74.30680000000001
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:b3f7c294a98c4ab97baad3093871085e954c7ece4e9fa714cacdc6c55244963d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 45092,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          51.0161,
+          61.4613,
+          74.30680000000001
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:a960ea35c809a716b842177848ba9d7e4efeea031758ba3e301ea5242b93261e",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 28252,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          104.9161,
+          101.0613,
+          167.8068
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:b2400221a3913e5edc84bb5f9c1a081ba6d087dfa22a0b07218ef3d0a11f844d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 28252,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          104.9161,
+          101.0613,
+          167.8068
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:dd051caa68995b2536e2e45d486ad0c4481628cfd9f3a0ed6b1b55aea9f700c5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 28252,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          104.9161,
+          101.0613,
+          167.8068
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:7a1b548e383b7134db06c87a7a4aab323a43fe19f8a0e4ec2fe2b27634a8192f",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 28252,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          104.9161,
+          101.0613,
+          167.8068
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:b3f59402df2e9f81098381c82c8b748d579ba811ad141b604e801ee110973303",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25828,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          211.61610000000002,
+          142.86130000000003,
+          352.6068
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:1bc9fc0019f8562e6495084164667da29670da1e64d382bd72ecd60ad234f134",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25828,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          211.61610000000002,
+          142.86130000000003,
+          352.6068
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:5a2a13b85de522d94b516f2f6bad4506c9d97e3f31148db06b59185e45306fd4",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25828,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          211.61610000000002,
+          142.86130000000003,
+          352.6068
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:df092eafa220fca0320c1c0f8104d39b1528cbfc05fb84cf267749817ed65e79",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25828,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          211.61610000000002,
+          142.86130000000003,
+          352.6068
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:e1b32a02f9762c25ffb851d1948f546925800b230e37ec5668b5f0e6d8cbc161",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21560,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          211.61610000000002,
+          142.86130000000003,
+          352.6068
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/concrete-louver-grid.png",
+      "hash": "sha256:e06092f7cf4962a52f7015895f6be95520dca16730e2cf93aacdd4d6e2eb7d17",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 45092,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          92,
+          47,
+          82
+        ],
+        "lookAt": [
+          32,
+          34,
+          28
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/inset-window-and-bronze-portal.png",
+      "hash": "sha256:c4a4d661e22fe82845c8021055ae0621635af60c343cb2d893325b13c31f0df1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 45092,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          110,
+          25,
+          0
+        ],
+        "lookAt": [
+          47,
+          19,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/cross-skylight-and-crown.png",
+      "hash": "sha256:3208d07f55b679a2398b81ec37ecd5a76b85baba8f526aa2df5cc5f1af092f0b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 45092,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          14,
+          128,
+          28
+        ],
+        "lookAt": [
+          0,
+          72,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-campanile-and-bells.png",
+      "hash": "sha256:ad20f65c5f3617f652ff20e89188f0a24dd1054442b18d09a984bb1c403639d2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 45092,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -94,
+          43,
+          -133
+        ],
+        "lookAt": [
+          -50.6,
+          34,
+          -80.7
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/main-and-detached-tower.png",
+      "hash": "sha256:c7cf97229d203ef0cfe7a76abd99bee97158d98fdd722a24d5ffa264ac36e1ab",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 45092,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -165,
+          108,
+          -183
+        ],
+        "lookAt": [
+          -17,
+          32,
+          -23
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roof-and-signed-plan.png",
+      "hash": "sha256:70f4d26de832633fdc11f23ae5f1e9bdf4110c798ec8f8effad5a3d7019ba3e8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 45092,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -12,
+          265,
+          -12
+        ],
+        "lookAt": [
+          -12,
+          30,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-rio-cathedral-skyline.png",
+      "hash": "sha256:65311c48f28cce96c4fffe5d3ee3c9e65823b12ea5f923b47c03385fc5fd8ba9",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25828,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          195,
+          165,
+          205
+        ],
+        "lookAt": [
+          -12,
+          33,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-rio-cathedral-district.png",
+      "hash": "sha256:d979e40133e0f8ed1cf4b679ffa349c024c93ed28a5d6766770f9583ba93d7dc",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 28252,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          195,
+          165,
+          205
+        ],
+        "lookAt": [
+          -12,
+          33,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-rio-cathedral-street.png",
+      "hash": "sha256:b21590d775efaf52d855c3488ec0c315d3b28c08414edea13fd18550da905edd",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 34136,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          195,
+          165,
+          205
+        ],
+        "lookAt": [
+          -12,
+          33,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-rio-cathedral-closeup.png",
+      "hash": "sha256:5d5aacc8566e96923cbca765e3d5b5b740c5bb0004bebb258ade7472e35a337d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 45092,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          195,
+          165,
+          205
+        ],
+        "lookAt": [
+          -12,
+          33,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:9a93c56811c139393d536381d3954ed780c7f92443e43dc303911b38b1e5755c",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25828,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          104.9161,
+          101.0613,
+          167.8068
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:b2400221a3913e5edc84bb5f9c1a081ba6d087dfa22a0b07218ef3d0a11f844d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 28252,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          104.9161,
+          101.0613,
+          167.8068
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:5e5c26a802ee5dbcb9b3c6ac173b34ba6295b56e69bcc959c9b9feae514b53c6",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 34136,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          104.9161,
+          101.0613,
+          167.8068
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:7f180939aeceeba3be82179a0573d81bbc5512c2f0cef26f3359e332e9cc8a44",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 45092,
+        "groundY": -13,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          104.9161,
+          101.0613,
+          167.8068
+        ],
+        "lookAt": [
+          -1.7839,
+          44.9613,
+          -16.9932
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

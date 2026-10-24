@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, stat } from 'node:fs/promises';
 import { basename, dirname, extname, join, relative, resolve } from 'node:path';
 import type { AssetHull, AssetSidecar } from '@bendyline/molen-schema';
 import { encodeCollisionTrimesh, validate } from '@bendyline/molen-schema';
@@ -15,6 +15,7 @@ import type {
 import { getBounds, Node, NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
 import { dedup, listTextureInfoByMaterial, prune, quantize, weld } from '@gltf-transform/functions';
+import { retryFileOperation, writeFileAtomic } from '../file-io';
 import { findProjectFile, updateProjectFile } from '../project';
 import { parseJson } from './parse';
 
@@ -382,7 +383,10 @@ export async function importAsset(input: ImportAssetInput): Promise<ImportAssetO
     if (resolved.warning !== undefined) warnings.push(resolved.warning);
     let registeredAssets: Record<string, string> = {};
     if (projectPath !== undefined) {
-      const project = validate('project', parseJson(await readFile(projectPath, 'utf8')));
+      const project = validate(
+        'project',
+        parseJson(await retryFileOperation(() => readFile(projectPath, 'utf8'))),
+      );
       if (!project.ok) return { ok: false, error: project.formatted };
       registeredAssets = project.value.assets;
     }
@@ -428,7 +432,7 @@ export async function importAsset(input: ImportAssetInput): Promise<ImportAssetO
       // An explicit directory must not silently replace a different asset's bundle.
       let existing: unknown;
       try {
-        existing = parseJson(await readFile(sidecarPath, 'utf8'));
+        existing = parseJson(await retryFileOperation(() => readFile(sidecarPath, 'utf8')));
       } catch (error) {
         if ((error as NodeJS.ErrnoException).code !== 'ENOENT' && !(error instanceof SyntaxError))
           throw error;
@@ -585,7 +589,7 @@ export async function importAsset(input: ImportAssetInput): Promise<ImportAssetO
     await mkdir(dir, { recursive: true });
 
     const glb = await io.writeBinary(doc);
-    await writeFile(join(dir, 'model.glb'), glb);
+    await writeFileAtomic(join(dir, 'model.glb'), glb);
 
     // Optional whole-asset trimesh -> external binary.
     let trimeshHeader: AssetSidecar['collision']['trimesh'];
@@ -603,7 +607,7 @@ export async function importAsset(input: ImportAssetInput): Promise<ImportAssetO
       const indices = new Uint32Array(allIndices);
       const encoded = encodeCollisionTrimesh(positions, indices);
       collisionFile = 'collision.bin';
-      await writeFile(join(dir, collisionFile), encoded.bin);
+      await writeFileAtomic(join(dir, collisionFile), encoded.bin);
       trimeshHeader = {
         bin: collisionFile,
         positions: encoded.positions,
@@ -644,7 +648,7 @@ export async function importAsset(input: ImportAssetInput): Promise<ImportAssetO
     const checked = validate('asset', sidecar);
     if (!checked.ok)
       return { ok: false, error: `sidecar failed self-validation:\n${checked.formatted}` };
-    await writeFile(sidecarPath, `${JSON.stringify(checked.value, null, 2)}\n`);
+    await writeFileAtomic(sidecarPath, `${JSON.stringify(checked.value, null, 2)}\n`);
     try {
       await stat(sidecarPath);
     } catch (e) {

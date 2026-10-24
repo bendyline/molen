@@ -531,7 +531,7 @@ export function buildBirdsNest(out) {
   roofTrusses(out);
 }
 export const birdsNestStudy = {
-  id: 'N0686',
+  id: 'beijing_national_stadium',
   key: 'beijing_national_stadium',
   title: 'Beijing National Stadium',
   wikidataId: 'Q133525',

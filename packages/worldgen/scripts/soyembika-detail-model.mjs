@@ -1,4 +1,4 @@
-/** N0574 complete medium-fi reconstruction; the original detailed heritage recipe is preserved. */
+/** soyembika_tower complete medium-fi reconstruction; the original detailed heritage recipe is preserved. */
 import { beam, loft, normalFor, radialRing, sphere } from './authored-structure-mesh.mjs';
 import {
   cornice,

@@ -1,4 +1,4 @@
-/** 'N0769': Galleria Borghese. */
+/** 'galleria_borghese': Galleria Borghese. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
@@ -6,7 +6,7 @@ import { buildBorgheseGallery } from './borghese-gallery-geometry.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0769_galleria_borghese/',
+    '../../../content/worldgen/source/places/sr/sr2/galleria_borghese/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -104,7 +104,7 @@ export const buildBorgheseGallerySkyline = (o) => build(o, 0),
   buildBorgheseGalleryStreet = (o) => build(o, 2),
   buildBorgheseGalleryCloseup = (o) => build(o, 3);
 export const borgheseGalleryStudy = {
-  id: 'N0769',
+  id: 'galleria_borghese',
   key: 'galleria_borghese',
   title: 'Galleria Borghese',
   category: 'museum',

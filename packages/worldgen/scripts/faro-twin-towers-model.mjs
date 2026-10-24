@@ -1,4 +1,4 @@
-/** N0635: mapped angled El Faro shafts, stepped crowns and open inter-tower space. */
+/** el_faro_towers: mapped angled El Faro shafts, stepped crowns and open inter-tower space. */
 import { box, prism, rect } from './khmer-structure-geometry.mjs';
 
 export function buildFaroTowers(face, detail, r, sample) {

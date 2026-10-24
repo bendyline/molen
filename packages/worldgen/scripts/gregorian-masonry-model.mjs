@@ -1,4 +1,4 @@
-/** 'N0624': notched stepped tower, real recessed shutters and open terrace rails. */
+/** 'gregorian_tower': notched stepped tower, real recessed shutters and open terrace rails. */
 import earcut from 'earcut';
 import { cross, normalize } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';

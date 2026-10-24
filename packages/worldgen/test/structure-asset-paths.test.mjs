@@ -21,9 +21,9 @@ describe('geographic runtime structure asset paths', () => {
         resolve(structureAssetPackRoot, expected, '..'),
       );
     }
-    expect(
-      structureAssetSidecarPath('molen.worldgen.structure.n0148_edificio_altino_arantes'),
-    ).toBe('assets/places/6g/6gy/n0148_edificio_altino_arantes/asset.json');
+    expect(structureAssetSidecarPath('molen.worldgen.structure.edificio_altino_arantes')).toBe(
+      'assets/places/6g/6gy/edificio_altino_arantes/asset.json',
+    );
     expect(structureAssetSidecarPath('molen.worldgen.structure.space_needle')).toBe(
       'assets/places/c2/c22/space-needle/asset.json',
     );
@@ -33,11 +33,7 @@ describe('geographic runtime structure asset paths', () => {
   });
 
   it('uses proposed source geography for forthcoming IDs, without changing the filesystem', () => {
-    for (const key of [
-      'n0031_asset_path_test',
-      'n9999_unknown_asset_path_test',
-      'n0208_collection_parent_test',
-    ])
+    for (const key of ['asset_path_test', 'unknown_asset_path_test', 'collection_parent_test'])
       expect(structureAssetSidecarPath(`molen.worldgen.structure.${key}`)).toBe(
         structureAssetPathFromSource(proposedStructureSourcePath(key)),
       );

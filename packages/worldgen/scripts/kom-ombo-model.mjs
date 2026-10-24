@@ -1,11 +1,11 @@
-/** N0515: reproducible surviving Temple of Kom Ombo architecture. */
+/** temple_of_kom_ombo: reproducible surviving Temple of Kom Ombo architecture. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildKomOmboTemple } from './kom-ombo-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ss/ssr/n0515_temple_of_kom_ombo/',
+    '../../../content/worldgen/source/places/ss/ssr/temple_of_kom_ombo/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -76,7 +76,7 @@ export const buildKomOmboSkyline = (o) => build(o, 0),
   buildKomOmboStreet = (o) => build(o, 2),
   buildKomOmboCloseup = (o) => build(o, 3);
 export const komOmboStudy = {
-  id: 'N0515',
+  id: 'temple_of_kom_ombo',
   key: 'temple_of_kom_ombo',
   title: 'Temple of Kom Ombo',
   category: 'temple',

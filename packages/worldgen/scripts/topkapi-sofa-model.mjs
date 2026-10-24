@@ -1,11 +1,11 @@
-/** 'N0742_SOFA': Two raised timber wings, distinct glazing, stone supports and arched stair. */
+/** 'sofa_pavilion_topkapi_palace': Two raised timber wings, distinct glazing, stone supports and arched stair. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiSofa } from './topkapi-sofa-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_sofa/',
+    '../../../content/worldgen/source/places/sx/sxk/sofa_pavilion_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -103,7 +103,7 @@ export const buildTopkapiSofaSkyline = (o) => build(o, 0),
   buildTopkapiSofaStreet = (o) => build(o, 2),
   buildTopkapiSofaCloseup = (o) => build(o, 3);
 export const topkapiSofaStudy = {
-  id: 'N0742_SOFA',
+  id: 'sofa_pavilion_topkapi_palace',
   key: 'sofa',
   title: 'Sofa Pavilion, Topkapi Palace',
   category: 'castle',

@@ -1,11 +1,11 @@
-/** 'N0750': Balmoral mapped residence, clock tower and shared surfaces. */
+/** 'balmoral_castle': Balmoral mapped residence, clock tower and shared surfaces. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBalmoral } from './balmoral-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gf/gfj/n0750_balmoral_castle/',
+    '../../../content/worldgen/source/places/gf/gfj/balmoral_castle/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -102,7 +102,7 @@ export const buildBalmoralSkyline = (o) => build(o, 0),
   buildBalmoralStreet = (o) => build(o, 2),
   buildBalmoralCloseup = (o) => build(o, 3);
 export const balmoralStudy = {
-  id: 'N0750',
+  id: 'balmoral_castle',
   key: 'balmoral_castle',
   title: 'Balmoral Castle',
   category: 'museum',

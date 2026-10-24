@@ -1,0 +1,1394 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.guggenheim_museum_bilbao",
+  "reviewedOn": "2026-10-21",
+  "inputHash": "sha256:74e099c9baed8f5b9166411ec7730882837f82c08443467fd688997d46cba3be",
+  "sourceHash": "sha256:6aff3cd0b38fc5aa51fbb1e153d54237708b6c294ee0c3db408cd6a129aaff06",
+  "runtimeHash": "sha256:1eb4636aebc9385acb5103fa1a1ab97536c9e1693622eddecc0ea11ad8fc5f85",
+  "captureReportHash": "sha256:3d1b236f248e3b2df02e6e133cdebcda5266975df98e5b75c7b50bdb695e35b6",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/river-atrium-canopy-and-titanium-cluster.png",
+      "shots/limestone-gallery-and-curved-entry.png"
+    ],
+    "notes": "Specific asymmetric Guggenheim Bilbao museum: mapped long eastern gallery with two swept pointed fins; flared/leaning titanium masses and glazed crown, warm curved and angular limestone galleries, tall north river glazing/raised canopy/sloping pale support and south entry glazing/closed curved treads. Twenty mapped parts plus parent and separate overhead roof control the geometry. Removed overlapping lower gallery surfaces, attached entry glass to its actual parent edge and closed tread supports during this authoring pass. Three ordinary photographs viewed; independent bridge, promenade, surrounding buildings, pools, artwork and interiors excluded."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/river-atrium-canopy-and-titanium-cluster.png",
+      "shots/shared/limestone-gallery-and-curved-entry.png"
+    ],
+    "notes": "Five existing256px shared graphs across six roles: beadblasted stainless for titanium, coursed limestone for galleries and floor/steps, standing-seam metal for gallery roofs, storefront glass and painted metal for mullions/rails. No private atlas, new graph or embedded image. Shared renders request each graph once and release all model geometry on unload. Generic stainless approximates titanium optics; no bespoke panel texture.",
+    "captureReportHash": "sha256:09d5884c72e59b34cb57f0a90b2dd8bd48f3e3ec069c9a71c60417ae1cfd67c0"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/river-atrium-canopy-and-titanium-cluster.png",
+      "medium-fi/limestone-gallery-and-curved-entry.png",
+      "medium-fi/bilbao-skyline.png",
+      "medium-fi/bilbao-district.png",
+      "medium-fi/bilbao-street.png",
+      "medium-fi/bilbao-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four explicit authored LODs, each inside the medium-fi triangle/draw budget. Initial skyline plus district307768bytes; six textured near draws and one flat skyline draw. POSITION and NORMAL use separate buffer views and CPU/GPU accounting matches.43 current source/shared/lighting/LOD/native views inspected, plus176 geometry/contact probes over six GLBs. Physical laptop/phone/tablet and dense-city timings remain pending. Flat synthetic views do not approve real-world grade.",
+    "captureReportHash": "sha256:9e220479e76d35aabda68b870974c3b55f7a55faf3386d9060824916ef42c4ff"
+  },
+  "geographicReview": {
+    "status": "pending-terrain-fit",
+    "placementHash": "sha256:80e667491922f54725f936bf97fa2b53715c8e51db9cb951a0974d2540790b8f",
+    "mapFrameHash": "sha256:eeb505ceade57cab8be14bc0b7ba56a68ea0df60940c4b6acfd6d53431b96078",
+    "notes": "Placement remains inactive draft. Q179199/OSM way118499485v50 and its20 integrated mapped parts, plus raised museum canopy way118506112v6, establish the22 owned native records. Native east/south coordinates, heading0, east gallery/+X, south entry/+Z and river/-Z retained.40 actual overlapping PMTiles13/14/15 cases pass.365 resident records become343 unchanged independent records on success; all365 survive load failure. Original201x201/6m terrain, roads, river/pools171565.30333634533m² and all514 wider independent records remain. Uncovered provider[20,50] gives modelWorldY approximately0; each unload restores ground/water/zero live geometry. However, coarse native terrain exposes an excessive front retaining face at the reconstructed curved entry stairs. This is not accepted as native fit; no custom DEM or precinct flattening."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Medium-fi source silhouette/material/LOD review complete, with reconstructed shell flare, roof slopes, mullion inventory, entry stair shape/count and9.7m working absolute floor. Exact CAD profiles, panel inventory, interior layout and historical/current accessibility not verified. Native entry placement remains unfinished; the source is not counted as a completed candidate."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/models/source.glb\",\"hash\":\"sha256:6aff3cd0b38fc5aa51fbb1e153d54237708b6c294ee0c3db408cd6a129aaff06\",\"bytes\":1101692,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.glb\",\"hash\":\"sha256:1eb4636aebc9385acb5103fa1a1ab97536c9e1693622eddecc0ea11ad8fc5f85\",\"bytes\":1101120,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.skyline.glb\",\"hash\":\"sha256:8fbea3bf7401fa417150a157d69b31cbaaedf8376cb15a1436d043bdcb47c5d2\",\"bytes\":58564,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.district.glb\",\"hash\":\"sha256:7b90d1223502cc0e137a7596011514ceeb607e8cc0d662740b57ac6d9227164f\",\"bytes\":249204,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.street.glb\",\"hash\":\"sha256:58b7572047fe44c4817c10ab1f04ab331f8f4a3472ab78f679c2a7d0df0e41c1\",\"bytes\":588292,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.closeup.glb\",\"hash\":\"sha256:19c64682032af6e715c63d1528057f43111a29fd2cd22e28d5cc0d2cd7a79b3d\",\"bytes\":834420,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "closed-roofs-floor-and-treads-shared-materials-budgets-and-separated-vertex-streams",
+        "passed": true,
+        "notes": "176 actual mesh/contact probes. Native terrain fit is separately rejected."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "pending-terrain-fit",
+    "visualFit": {
+      "status": "failed",
+      "reason": "Native coarse ground exposes an excessive front retaining face on the reconstructed entry stair."
+    },
+    "inputHash": "sha256:74e099c9baed8f5b9166411ec7730882837f82c08443467fd688997d46cba3be",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:74e099c9baed8f5b9166411ec7730882837f82c08443467fd688997d46cba3be",
+      "reviewedOn": "2026-10-21",
+      "method": "Actually inspected all43 current views using four labeled contact sheets; initial and corrected native entrance/river views inspected at full resolution. Source/shared/LOD appearance reviewed; native stair fit explicitly rejected.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/preview.png",
+          "hash": "sha256:230ab953a31ff9c8b379dc18ca32861bcb0ac4687fa24efc64385d69d523bd93"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/shots/turntable/angle_0.png",
+          "hash": "sha256:7d6e469fdbbdd941346d46aa346ba55716c5bf3a0dcbcc5e76b6370459d31c25"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/shots/turntable/angle_1.png",
+          "hash": "sha256:21f8403b55fc081f2c8fb08c0e7be19e1b71c7a2b57514a19bfdd1df213f04c9"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/shots/turntable/angle_2.png",
+          "hash": "sha256:34c55c5d112e909ad8b114ccd51f2b58da5ac532991bffe1ea98bcf902bccd0f"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/shots/turntable/angle_3.png",
+          "hash": "sha256:a33154770ad5c0f62a858846c8f9d119564ca968e09d5d6eeaa669d1b1f480ab"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/shots/river-atrium-canopy-and-titanium-cluster.png",
+          "hash": "sha256:d3b714a5ee28edc13dc583264b424b4b5d1e10e2f47cbfeee9eba107a1ce046f"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/shots/limestone-gallery-and-curved-entry.png",
+          "hash": "sha256:e8aa53e0a9fd95a8fca9649dc0ccd9a327a35f6e359f706659b3f7611abb146c"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/shots/shared/angle-0.png",
+          "hash": "sha256:918b7f2001a70c52574099ffb0ad749eca719222905f108b4a9936064399373c"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/shots/shared/angle-1.png",
+          "hash": "sha256:964adf4e78f63fa5ba44061e62df5bd700c8cab45f053c171f37059acfbf9bee"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/shots/shared/angle-2.png",
+          "hash": "sha256:55cbeed0ad68eb2ec60d6bcf8868731b6fcc3609966c4466811ea235de488bf9"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/shots/shared/angle-3.png",
+          "hash": "sha256:eb48c9777a8ebb12839d375e00e4d33cf51254c87d7bf66374d803e348c8d8c2"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/shots/shared/river-atrium-canopy-and-titanium-cluster.png",
+          "hash": "sha256:dc52f89dc94a1ace50efa3adc5d87316cb9a79e286bced5c2888a7c3ca44f128"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/shots/shared/limestone-gallery-and-curved-entry.png",
+          "hash": "sha256:68812210042bf3da7739452a2eceeb62a7fca8e5414439a2a62489e9443c77cc"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/street-noon-economy.png",
+          "hash": "sha256:732bf5747a5f99bad95356fa1381e762cb3decc3b7bc71557836ba0c867fc53b"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/street-noon-high.png",
+          "hash": "sha256:aad6c45021d7319820d61f9dd17b16c5dbfb0b6828862b038958e1dfea395c3c"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/street-late-economy.png",
+          "hash": "sha256:be3384fbec8f6dca9e6e821b7347c776182c458d3ebeeab5b829cde2b9ea9f38"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/street-late-high.png",
+          "hash": "sha256:db73f603f5f2087afdc7801f73b294d711e860e1207b736f2658ac4d2146df2c"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/block-noon-economy.png",
+          "hash": "sha256:eaf24ef87bed7f5fb2dc2fa404caba9205ea8a8a2c092ffcba5c1f219fa0d0b8"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/block-noon-high.png",
+          "hash": "sha256:257024dc74d26b91cea8d92159246165ff99e0727140b732c41517a710e9367b"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/block-late-economy.png",
+          "hash": "sha256:df0aa702376789fb2f7c6134022d0855b7ec0bc935b5eab2c258147088eafc8a"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/block-late-high.png",
+          "hash": "sha256:a218f35af3e1f279bf016174786cdf6f498f9e99e5eab66cd449a751b3d32790"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:030ae1791db02f9808c8c1ee09da54ce50e521f12a1ee4626471cb6a93386bdd"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:47d3bdb92bb6b39415353c6b4924c4cb2d8f6edcb56c007eaa81675a4d713aba"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:f771defc687153b8db78de05fe466f29a2f5b0532972458f047b6648c0040340"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/skyline-late-high.png",
+          "hash": "sha256:989f493f345ebe70a426e25b513fbfe19659e5e583bb90e682d8c22ffb82815a"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/silhouette.png",
+          "hash": "sha256:d854c5c01a6d454c4e2e3be392684c851c400bedf2827bc8ad1e9cb9194dd315"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/river-atrium-canopy-and-titanium-cluster.png",
+          "hash": "sha256:3c7eb94e8b5ffe5abe8a5ca8c84624f5d3b006d70cbe4cf64adb87fe21ee2c92"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/limestone-gallery-and-curved-entry.png",
+          "hash": "sha256:2031a1a0ddf5c16874362081c665d4c3cc6d347d9e6810e7ac661a4c1610cb06"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/bilbao-skyline.png",
+          "hash": "sha256:43825d0bec6dcb9b118bcf54006d69e4cd65992256be93405b7666e4425ad4f9"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/bilbao-district.png",
+          "hash": "sha256:4c97542a1594a7e2773c93e3e44ceabb7a971c2c99f3faa47ba1d55ae2c82e35"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/bilbao-street.png",
+          "hash": "sha256:872209b9a8cd2f652531326e6b3b9341ffeaf100df509641bf753064dcda2ca3"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/bilbao-closeup.png",
+          "hash": "sha256:1c7cfc4f540be52da41c91f06791598500d748ee40f2c5b19916faae9823d5c0"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/transition-skyline.png",
+          "hash": "sha256:01f3fc4ee6c1ee2a0b588e2b0933e2ab3b8897816917745339c7c2e5db626f38"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/transition-district.png",
+          "hash": "sha256:257024dc74d26b91cea8d92159246165ff99e0727140b732c41517a710e9367b"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/transition-street.png",
+          "hash": "sha256:f8727c0e72eb39ec8a443f057838fd45d0a5c7ff1542575218b2cd8cd1205ccd"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/medium-fi/transition-closeup.png",
+          "hash": "sha256:4ca22b406fb3cf8c9e2cf65f319e5bf108f427e8f06daf49120881ae5abb9da0"
+        },
+        {
+          "path": ".artifacts/bilbao-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:8df67da451c897feb2f100908ddcbc559a17481a626459672508adc591e61785"
+        },
+        {
+          "path": ".artifacts/bilbao-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:11fb20ac8b1789cbb0bb876690b74900d1dc8762c2c0415c4bb55b404be3df6b"
+        },
+        {
+          "path": ".artifacts/bilbao-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:906f4d29e71a5ef4aff9c87dc6b6614b872bad8a20b5b10a4ddcb85fcaaf5ec8"
+        },
+        {
+          "path": ".artifacts/bilbao-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:d1284dfb901c95b28b5c012668720afffccf1be08d510ce4714a07195e4654f0"
+        },
+        {
+          "path": ".artifacts/bilbao-integration/shots/final-closeup-river-atrium-canopy-and-titanium-cluster.png",
+          "hash": "sha256:67a27e6cbe1f57b2516fd8d9c02a801be61b4507b317b8feac1872a19c834352"
+        },
+        {
+          "path": ".artifacts/bilbao-integration/shots/final-closeup-limestone-gallery-and-curved-entry.png",
+          "hash": "sha256:3685b5d0de02a456e7b468923cf05c785b2c786629154aab47f640aba4fcb931"
+        },
+        {
+          "path": ".artifacts/bilbao-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:b9dab08c4c9eb4ea0e7d50fce2bd6432a40c625d5fa68d1409b70e830acbca8a"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:74e099c9baed8f5b9166411ec7730882837f82c08443467fd688997d46cba3be",
+      "sourceHash": "sha256:6aff3cd0b38fc5aa51fbb1e153d54237708b6c294ee0c3db408cd6a129aaff06",
+      "runtimeHash": "sha256:1eb4636aebc9385acb5103fa1a1ab97536c9e1693622eddecc0ea11ad8fc5f85",
+      "files": {
+        "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/models/source.glb": "sha256:6aff3cd0b38fc5aa51fbb1e153d54237708b6c294ee0c3db408cd6a129aaff06",
+        "content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.glb": "sha256:1eb4636aebc9385acb5103fa1a1ab97536c9e1693622eddecc0ea11ad8fc5f85",
+        "content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.skyline.glb": "sha256:8fbea3bf7401fa417150a157d69b31cbaaedf8376cb15a1436d043bdcb47c5d2",
+        "content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.district.glb": "sha256:7b90d1223502cc0e137a7596011514ceeb607e8cc0d662740b57ac6d9227164f",
+        "content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.street.glb": "sha256:58b7572047fe44c4817c10ab1f04ab331f8f4a3472ab78f679c2a7d0df0e41c1",
+        "content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.closeup.glb": "sha256:19c64682032af6e715c63d1528057f43111a29fd2cd22e28d5cc0d2cd7a79b3d"
+      },
+      "inputRebinding": {
+        "from": "sha256:a5bb0b47abfd9ea4b8a34c7bc0ec31f30240536830c0e15c243d82e920c17d0e",
+        "to": "sha256:74e099c9baed8f5b9166411ec7730882837f82c08443467fd688997d46cba3be",
+        "reason": "First authoring-index registration adds the two Bilbao recipe files to input hashing. Geometry module gains only a quoted identity comment for recipe discovery. Targeted source regeneration --check and import verification pass; all six actual GLB hashes and every inspected image remain identical. No camera, geometry, material, placement or terrain change.",
+        "recipes": {
+          "packages/worldgen/scripts/bilbao-geometry.mjs": "sha256:c3ff0e101cb666e3380c027d19177ad994cfb768f5f9fffd11ce3b75511371a7",
+          "packages/worldgen/scripts/bilbao-model.mjs": "sha256:228340bcc4e4686bb84de82bbc5924f12e09caa21cb3fc7dfbf4209698ad8e5e"
+        },
+        "files": {
+          "content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/models/source.glb": "sha256:6aff3cd0b38fc5aa51fbb1e153d54237708b6c294ee0c3db408cd6a129aaff06",
+          "content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.glb": "sha256:1eb4636aebc9385acb5103fa1a1ab97536c9e1693622eddecc0ea11ad8fc5f85",
+          "content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.skyline.glb": "sha256:8fbea3bf7401fa417150a157d69b31cbaaedf8376cb15a1436d043bdcb47c5d2",
+          "content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.district.glb": "sha256:7b90d1223502cc0e137a7596011514ceeb607e8cc0d662740b57ac6d9227164f",
+          "content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.street.glb": "sha256:58b7572047fe44c4817c10ab1f04ab331f8f4a3472ab78f679c2a7d0df0e41c1",
+          "content/worldgen/assets/places/ez/ezt/guggenheim_museum_bilbao/model.closeup.glb": "sha256:19c64682032af6e715c63d1528057f43111a29fd2cd22e28d5cc0d2cd7a79b3d"
+        }
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184490588317,
+        35184490594835,
+        35184490594836,
+        35184490589072,
+        35184490589075,
+        35184490589081,
+        35184490589084,
+        35184490589087,
+        35184490589514,
+        35184490589516,
+        35184490590797,
+        35184490594839,
+        35184490594841,
+        35184490594843,
+        35184490594845,
+        35184490594846,
+        35184490594847,
+        35184490594976,
+        35184490595609,
+        35184490596129,
+        35184490596131,
+        35184490594944
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4029,
+            3001
+          ],
+          "id": 35184490588317,
+          "owned": true,
+          "covered": 0.9899139230240547,
+          "area": 12406.887129480136,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8058,
+            6003
+          ],
+          "id": 35184377013680,
+          "owned": false,
+          "covered": 0.0000062119603155063505,
+          "area": 584757.6747007313,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8058,
+            6003
+          ],
+          "id": 35184416104930,
+          "owned": false,
+          "covered": 0.005024598068894013,
+          "area": 77684.56550290291,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8058,
+            6003
+          ],
+          "id": 35184490588317,
+          "owned": true,
+          "covered": 0.9942866749425793,
+          "area": 12467.86269005356,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8058,
+            6003
+          ],
+          "id": 35184490589070,
+          "owned": false,
+          "covered": 0.8126337017007926,
+          "area": 5280.372402158762,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8058,
+            6003
+          ],
+          "id": 35184490589070,
+          "owned": false,
+          "covered": 0.40032360824810126,
+          "area": 4825.677816985448,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8058,
+            6003
+          ],
+          "id": 35184490589080,
+          "owned": false,
+          "covered": 0.4015480721884083,
+          "area": 3416.4917571140186,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8058,
+            6003
+          ],
+          "id": 35184490589510,
+          "owned": false,
+          "covered": 0.9934500350255923,
+          "area": 1377.3859762861666,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8058,
+            6003
+          ],
+          "id": 35184490594840,
+          "owned": false,
+          "covered": 0.5578312942466418,
+          "area": 1109.689454496826,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8058,
+            6003
+          ],
+          "id": 35184490594843,
+          "owned": true,
+          "covered": 0.998941848334491,
+          "area": 699.6563479876502,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8058,
+            6003
+          ],
+          "id": 35184490596131,
+          "owned": true,
+          "covered": 0.9958512590270405,
+          "area": 670.456145534156,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12006
+          ],
+          "id": 35184490588317,
+          "owned": true,
+          "covered": 0.9999996832351632,
+          "area": 26.51710813099794,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12006
+          ],
+          "id": 35184490594835,
+          "owned": true,
+          "covered": 0.9999996680702926,
+          "area": 25.855362060351354,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12006
+          ],
+          "id": 35184490594836,
+          "owned": true,
+          "covered": 1.0000002757482678,
+          "area": 0.6617460706465863,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12006
+          ],
+          "id": 35184490594944,
+          "owned": true,
+          "covered": 0.999999980303559,
+          "area": 278.6421050198179,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490588317,
+          "owned": true,
+          "covered": 0.9999999999250296,
+          "area": 9838.06859694622,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490589072,
+          "owned": true,
+          "covered": 0.9999999906191989,
+          "area": 1691.9866875523003,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490589075,
+          "owned": true,
+          "covered": 1.000000032664874,
+          "area": 735.468138050718,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490589081,
+          "owned": true,
+          "covered": 0.9999999914310747,
+          "area": 375.54580057640345,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490589084,
+          "owned": true,
+          "covered": 0.9999999850088905,
+          "area": 818.3533625692371,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490589087,
+          "owned": true,
+          "covered": 0.999999984111293,
+          "area": 196.7771200766199,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490589514,
+          "owned": true,
+          "covered": 1.000000004112953,
+          "area": 363.93879076571477,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490589516,
+          "owned": true,
+          "covered": 0.9999999932982785,
+          "area": 1370.130371401593,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490590797,
+          "owned": true,
+          "covered": 0.9999999996611451,
+          "area": 617.5322033522052,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490594835,
+          "owned": true,
+          "covered": 1.0000000056804335,
+          "area": 794.3569025548522,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490594836,
+          "owned": true,
+          "covered": 1.0000000024874118,
+          "area": 198.64228787350123,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490594839,
+          "owned": true,
+          "covered": 0.9999999982660122,
+          "area": 406.8567709808764,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490594841,
+          "owned": true,
+          "covered": 1.0000000099046213,
+          "area": 117.7914892333524,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490594843,
+          "owned": true,
+          "covered": 1.0000000115428642,
+          "area": 702.7287658153458,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490594845,
+          "owned": true,
+          "covered": 0.9999999829554669,
+          "area": 86.33444548958937,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490594846,
+          "owned": true,
+          "covered": 1.0000000043400368,
+          "area": 275.52428850285696,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490594847,
+          "owned": true,
+          "covered": 1.0000000217546792,
+          "area": 425.149755505498,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490594944,
+          "owned": true,
+          "covered": 0.9999999960151056,
+          "area": 398.67820584010985,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490594976,
+          "owned": true,
+          "covered": 0.9999999575761523,
+          "area": 90.96817483391283,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490595609,
+          "owned": true,
+          "covered": 0.9999999842795502,
+          "area": 1006.4982795618055,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490596129,
+          "owned": true,
+          "covered": 0.9999999717484656,
+          "area": 227.09814844951825,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16116,
+            12007
+          ],
+          "id": 35184490596131,
+          "owned": true,
+          "covered": 1.0000000060775003,
+          "area": 677.4518869585221,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16117,
+            12007
+          ],
+          "id": 35184490588317,
+          "owned": true,
+          "covered": 0.9999999913509657,
+          "area": 3522.65959639455,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16117,
+            12007
+          ],
+          "id": 35184490590797,
+          "owned": true,
+          "covered": 0.9999992302214614,
+          "area": 3.4032938648700792,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16117,
+            12007
+          ],
+          "id": 35184765537484,
+          "owned": false,
+          "covered": 0.009363070245599106,
+          "area": 389.8895500894628,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 343,
+      "widerIndependent": 514,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtQuarterCourt": false,
+          "terrainAtOccupiedWing": false,
+          "modelWorldY": -0.000016220650449483287,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 365,
+          "independentBuildings": 343,
+          "remainingBuildings": 343,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.guggenheim_museum_bilbao"
+          ],
+          "rawTerrainRange": {
+            "min": -13.412188888888885,
+            "max": 134.9432111111111
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 171565.30333634533,
+          "remainingWaterArea": 171565.30333634533,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:8df67da451c897feb2f100908ddcbc559a17481a626459672508adc591e61785",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 590914
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                200,
+                142.9911111111111,
+                -210
+              ],
+              "lookAt": [
+                0,
+                12.991111111111115,
+                17
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtQuarterCourt": false,
+          "terrainAtOccupiedWing": false,
+          "modelWorldY": -0.000016220650449483287,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 365,
+          "independentBuildings": 343,
+          "remainingBuildings": 343,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_stainless_beadblasted": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.guggenheim_museum_bilbao"
+          ],
+          "rawTerrainRange": {
+            "min": -13.412188888888885,
+            "max": 134.9432111111111
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 171565.30333634533,
+          "remainingWaterArea": 171565.30333634533,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:11fb20ac8b1789cbb0bb876690b74900d1dc8762c2c0415c4bb55b404be3df6b",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 593240
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                200,
+                142.9911111111111,
+                -210
+              ],
+              "lookAt": [
+                0,
+                12.991111111111115,
+                17
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtQuarterCourt": false,
+          "terrainAtOccupiedWing": false,
+          "modelWorldY": -0.000016220650449483287,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 365,
+          "independentBuildings": 343,
+          "remainingBuildings": 343,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_stainless_beadblasted": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.guggenheim_museum_bilbao"
+          ],
+          "rawTerrainRange": {
+            "min": -13.412188888888885,
+            "max": 134.9432111111111
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 171565.30333634533,
+          "remainingWaterArea": 171565.30333634533,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:906f4d29e71a5ef4aff9c87dc6b6614b872bad8a20b5b10a4ddcb85fcaaf5ec8",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 597803
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                200,
+                142.9911111111111,
+                -210
+              ],
+              "lookAt": [
+                0,
+                12.991111111111115,
+                17
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtQuarterCourt": false,
+          "terrainAtOccupiedWing": false,
+          "modelWorldY": -0.000016220650449483287,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 365,
+          "independentBuildings": 343,
+          "remainingBuildings": 343,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_stainless_beadblasted": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.guggenheim_museum_bilbao"
+          ],
+          "rawTerrainRange": {
+            "min": -13.412188888888885,
+            "max": 134.9432111111111
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 171565.30333634533,
+          "remainingWaterArea": 171565.30333634533,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:d1284dfb901c95b28b5c012668720afffccf1be08d510ce4714a07195e4654f0",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 600722
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                200,
+                142.9911111111111,
+                -210
+              ],
+              "lookAt": [
+                0,
+                12.991111111111115,
+                17
+              ],
+              "fov": 44
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-river-atrium-canopy-and-titanium-cluster.png",
+            "hash": "sha256:67a27e6cbe1f57b2516fd8d9c02a801be61b4507b317b8feac1872a19c834352",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 600722
+            },
+            "camera": {
+              "name": "river-atrium-canopy-and-titanium-cluster",
+              "position": [
+                -25,
+                15.991111111111115,
+                -120
+              ],
+              "lookAt": [
+                -36,
+                14.991111111111115,
+                -15
+              ],
+              "fov": 54
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-limestone-gallery-and-curved-entry.png",
+            "hash": "sha256:3685b5d0de02a456e7b468923cf05c785b2c786629154aab47f640aba4fcb931",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 600722
+            },
+            "camera": {
+              "name": "limestone-gallery-and-curved-entry",
+              "position": [
+                -115,
+                18.991111111111117,
+                100
+              ],
+              "lookAt": [
+                -48,
+                6.991111111111115,
+                57
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtQuarterCourt": true,
+          "terrainAtOccupiedWing": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 365,
+          "independentBuildings": 343,
+          "remainingBuildings": 365,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184490588317,
+              "area": 12463.287884360563
+            },
+            {
+              "id": 35184490594835,
+              "area": 794.406225382418
+            },
+            {
+              "id": 35184490594836,
+              "area": 198.76187089439057
+            },
+            {
+              "id": 35184490594944,
+              "area": 398.6782058400973
+            },
+            {
+              "id": 35184490589072,
+              "area": 1691.9866875522293
+            },
+            {
+              "id": 35184490589075,
+              "area": 735.4681380507233
+            },
+            {
+              "id": 35184490589081,
+              "area": 375.5458005763934
+            },
+            {
+              "id": 35184490589084,
+              "area": 818.3533625692086
+            },
+            {
+              "id": 35184490589087,
+              "area": 196.77712007665437
+            },
+            {
+              "id": 35184490589514,
+              "area": 363.9387907656855
+            },
+            {
+              "id": 35184490589516,
+              "area": 1370.1303714015567
+            },
+            {
+              "id": 35184490590797,
+              "area": 617.5355796520931
+            },
+            {
+              "id": 35184490594839,
+              "area": 406.8567709808835
+            },
+            {
+              "id": 35184490594841,
+              "area": 117.79148923334093
+            },
+            {
+              "id": 35184490594843,
+              "area": 702.728765815357
+            },
+            {
+              "id": 35184490594845,
+              "area": 86.33444548960645
+            },
+            {
+              "id": 35184490594846,
+              "area": 275.5242885027953
+            },
+            {
+              "id": 35184490594847,
+              "area": 425.14975550554277
+            },
+            {
+              "id": 35184490594976,
+              "area": 90.96817483393416
+            },
+            {
+              "id": 35184490595609,
+              "area": 1006.4982795617872
+            },
+            {
+              "id": 35184490596129,
+              "area": 227.09814844947607
+            },
+            {
+              "id": 35184490596131,
+              "area": 677.4518869584912
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.guggenheim_museum_bilbao"
+          ],
+          "rawTerrainRange": {
+            "min": -13.412188888888885,
+            "max": 134.9432111111111
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 171565.30333634533,
+          "remainingWaterArea": 171565.30333634533,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:b9dab08c4c9eb4ea0e7d50fce2bd6432a40c625d5fa68d1409b70e830acbca8a",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 590680
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                200,
+                142.9911111111111,
+                -210
+              ],
+              "lookAt": [
+                0,
+                12.991111111111115,
+                17
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Guggenheim Museum Bilbao: complete mapped asymmetric museum with long eastern fish-like gallery and pointed roof fins, clustered flared/leaning titanium lobes, 41m central lantern, tall river-facing glazed atrium and raised canopy, warm limestone south/west gallery ranges and curved entrance steps. Specific mapped parts guide plan/height; curved shell profiles, mullion inventory and hidden roofs are picture-led approximations. Independent La Salve bridge, surrounding buildings, promenade, pools and contemporary artworks are excluded.",
+    "Q179199 and named museum OSM way118499485 v50/native35184490588317. Standard Protomaps20261020 detailed parent and20 integrated building parts; independently mapped overhead atrium canopy way118506112 v6/building=roof/min_level6 belongs to the museum, with original ground retained beneath it. All other native records retained. East arm is +X; main entrance is south/+Z and river front is north/-Z. Heading0 with full geographic east/south controls.",
+    "Mapped body11m and distinct part heights17/20/23/26/29/32/35/41m retained as silhouette controls above working museum floor9.7m absolute. Canopy is raised16..23m above that floor. Titanium flare/lean/top slopes and glass roof profiles are approximate reconstructions from three ordinary pictures, not exact CAD/survey. Entrance has a reconstructed curved descending flight to the lower museum level; accessibility and hidden interiors unverified.",
+    "Standard unmodified Mapzen6m grid retained. Uncovered provider[20,50] datum11.708888888888884m; level museum floor9.7m absolute. Foundation below local lowest boundary, occupied parent ground opening sealed by the model floor in every LOD. Overhead canopy ground, independent buildings, roads, pools and river remain original; no precinct flattening or bespoke terrain. Coarse grade and absolute floor are approximate and require current native render review.",
+    "Medium-fi source silhouette/material/LOD review complete, with reconstructed shell flare, roof slopes, mullion inventory, entry stair shape/count and9.7m working absolute floor. Exact CAD profiles, panel inventory, interior layout and historical/current accessibility not verified. Native entry placement remains unfinished; the source is not counted as a completed candidate.",
+    "Placement remains inactive draft. Q179199/OSM way118499485v50 and its20 integrated mapped parts, plus raised museum canopy way118506112v6, establish the22 owned native records. Native east/south coordinates, heading0, east gallery/+X, south entry/+Z and river/-Z retained.40 actual overlapping PMTiles13/14/15 cases pass.365 resident records become343 unchanged independent records on success; all365 survive load failure. Original201x201/6m terrain, roads, river/pools171565.30333634533m² and all514 wider independent records remain. Uncovered provider[20,50] gives modelWorldY approximately0; each unload restores ground/water/zero live geometry. However, coarse native terrain exposes an excessive front retaining face at the reconstructed curved entry stairs. This is not accepted as native fit; no custom DEM or precinct flattening."
+  ]
+}

@@ -283,7 +283,7 @@ function shaft(out) {
 function podium(out, m, cx, cz) {
   const original = partPlan(
     m,
-    partsEvidence('n0197_432_park_avenue').find((p) => p.id === 463386820),
+    partsEvidence('432_park_avenue').find((p) => p.id === 463386820),
   );
   const minX = Math.min(...original.map((p) => p[0])),
     maxX = Math.max(...original.map((p) => p[0])),
@@ -356,7 +356,7 @@ function podium(out, m, cx, cz) {
 export function build432(out, m) {
   const shaftPlan = partPlan(
     m,
-    partsEvidence('n0197_432_park_avenue').find((p) => p.id === 463593207),
+    partsEvidence('432_park_avenue').find((p) => p.id === 463593207),
   );
   const cx =
       (Math.min(...shaftPlan.map((p) => p[0])) + Math.max(...shaftPlan.map((p) => p[0]))) / 2,
@@ -365,7 +365,7 @@ export function build432(out, m) {
   podium(out, m, cx, cz);
 }
 export const park432Study = {
-  id: 'N0197',
+  id: '432_park_avenue',
   key: '432_park_avenue',
   wikidataId: 'Q233940',
   title: '432 Park Avenue',

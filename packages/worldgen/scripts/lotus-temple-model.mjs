@@ -1,5 +1,5 @@
-/** N0492: the three specific ninefold shell families of Delhi's Lotus Temple. */
-export const lotusCandidateId = 'N0492';
+/** lotus_temple: the three specific ninefold shell families of Delhi's Lotus Temple. */
+export const lotusCandidateId = 'lotus_temple';
 
 const polar = (radius, theta, y) => [Math.cos(theta) * radius, y, Math.sin(theta) * radius];
 function box(f, role, center, width, height, depth, angle = 0) {

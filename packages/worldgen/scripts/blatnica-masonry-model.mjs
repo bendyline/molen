@@ -1,4 +1,4 @@
-/** N0628: hollow ridge castle with broken crowns and genuine masonry openings. */
+/** blatnica_castle: hollow ridge castle with broken crowns and genuine masonry openings. */
 import earcut from 'earcut';
 import { box } from './khmer-structure-geometry.mjs';
 

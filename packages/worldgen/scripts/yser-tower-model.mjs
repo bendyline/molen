@@ -8,7 +8,7 @@ import { face, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const bytes = readFileSync(structureSourcePath('n0604_yser_tower', 'map-frame.json'));
+const bytes = readFileSync(structureSourcePath('yser_tower', 'map-frame.json'));
 const map = JSON.parse(bytes);
 const brick = [0.53, 0.405, 0.335],
   coping = [0.47, 0.49, 0.48],
@@ -636,8 +636,8 @@ function build(out) {
   carillon(out);
 }
 export const yserTower = {
-  id: 'n0604_yser_tower',
-  planId: 'N0604',
+  id: 'yser_tower',
+  planId: 'yser_tower',
   title: 'Yser Tower',
   wikidata: 'Q1708620',
   authoringFile: 'yser-tower-model.mjs',

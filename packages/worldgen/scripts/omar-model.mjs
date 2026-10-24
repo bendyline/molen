@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/w8/w8c/n0451_omar_ali_saifuddien_mosque/',
+  '../../../content/worldgen/source/places/w8/w8c/omar_ali_saifuddien_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1230,7 +1230,7 @@ export const buildOmarSkyline = (o) => build(o, 0),
   buildOmarCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const omarStudy = {
-  id: 'N0451',
+  id: 'omar_ali_saifuddien_mosque',
   key: 'omar_ali_saifuddien_mosque',
   title: 'Omar Ali Saifuddien Mosque',
   category: 'mosque',

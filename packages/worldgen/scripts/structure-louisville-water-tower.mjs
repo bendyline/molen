@@ -865,6 +865,7 @@ export const louisvilleWaterModel = {
       district: { export: 'louisvilleDistrict', errorMeters: 0.9, surfaces },
       street: { export: 'louisvilleStreet', errorMeters: 0.35, surfaces },
     },
+    caps: { closeup: { triangles: 64000, errorMeters: 0.06, prune: true } },
   },
   limitations: [
     plan.geometryBasis,

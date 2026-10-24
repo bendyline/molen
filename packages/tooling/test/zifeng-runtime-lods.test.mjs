@@ -7,7 +7,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineGlobal } from '../../worldgen/scripts/signature-tower-global-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/wt/wts/n0168_zifeng_tower'),
+const source = resolve('../../content/worldgen/source/places/wt/wts/zifeng_tower'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2'),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -75,7 +75,7 @@ it('reproduces the preserved master and verifies independent signed tower and an
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
       recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
     });
-  skylineGlobal.find((p) => p.id === 'N0168').build(a.wrap(b), m);
+  skylineGlobal.find((p) => p.id === 'zifeng_tower').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`);
   expect(m.elements).toHaveLength(3);
   expect(m.elements.find((p) => p.id === 140809508).tags.wikidata).toBe('Q382121');

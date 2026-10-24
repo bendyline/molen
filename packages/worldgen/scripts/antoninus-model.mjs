@@ -5,7 +5,7 @@ import { antoninusCandidateId, buildAntoninus } from './antoninus-temple-model.m
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0504_temple_of_antoninus_and_faustina/',
+    '../../../content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -70,7 +70,7 @@ export const buildAntoninusSkyline = (o) => build(o, 0),
   buildAntoninusStreet = (o) => build(o, 2),
   buildAntoninusCloseup = (o) => build(o, 3);
 export const antoninusStudy = {
-  id: 'N0504',
+  id: 'temple_of_antoninus_and_faustina',
   key: 'temple_of_antoninus_and_faustina',
   title: 'Temple of Antoninus and Faustina',
   category: 'temple',

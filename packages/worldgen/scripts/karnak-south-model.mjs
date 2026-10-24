@@ -1,7 +1,7 @@
 /** Sacred lake and independently mapped southern processional pylons. */
 import './install-deterministic-math.mjs';
 import earcut from 'earcut';
-export const karnakSouthCandidateId = 'N0489';
+export const karnakSouthCandidateId = 'karnak_temple_complex';
 
 function surface(f, role, polygons, y, up = true) {
   for (const poly of polygons) {

@@ -1,4 +1,4 @@
-/** 'N0536': Specific six-column Pula temple, smooth shafts, rubble cella and plain pediment. */
+/** 'temple_of_augustus': Specific six-column Pula temple, smooth shafts, rubble cella and plain pediment. */
 import { buildCorinthianColumn } from './corinthian-column-geometry.mjs';
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';
 

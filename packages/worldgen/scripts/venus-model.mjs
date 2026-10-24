@@ -1,11 +1,11 @@
-/** N0514: reproducible surviving Temple of Venus and Roma architecture. */
+/** temple_of_venus_and_roma: reproducible surviving Temple of Venus and Roma architecture. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildVenusTemple } from './venus-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0514_temple_of_venus_and_roma/',
+    '../../../content/worldgen/source/places/sr/sr2/temple_of_venus_and_roma/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -81,7 +81,7 @@ export const buildVenusSkyline = (o) => build(o, 0),
   buildVenusStreet = (o) => build(o, 2),
   buildVenusCloseup = (o) => build(o, 3);
 export const venusStudy = {
-  id: 'N0514',
+  id: 'temple_of_venus_and_roma',
   key: 'temple_of_venus_and_roma',
   title: 'Temple of Venus and Roma',
   category: 'temple',

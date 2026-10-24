@@ -2,9 +2,7 @@
 import { readFileSync } from 'node:fs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const mapped = JSON.parse(
-  readFileSync(structureSourcePath('n0191_flame_towers', 'map-frame.json')),
-);
+const mapped = JSON.parse(readFileSync(structureSourcePath('flame_towers', 'map-frame.json')));
 
 import { loft, radialRing } from './authored-structure-mesh.mjs';
 import {

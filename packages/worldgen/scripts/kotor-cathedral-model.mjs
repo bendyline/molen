@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sr/srt/n0405_kotor_cathedral/',
+  '../../../content/worldgen/source/places/sr/srt/kotor_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -940,7 +940,7 @@ export const buildKotorSkyline = (o) => build(o, 0),
   buildKotorCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const kotorCathedralStudy = {
-  id: 'N0405',
+  id: 'kotor_cathedral',
   key: 'kotor_cathedral',
   title: 'Kotor Cathedral',
   category: 'cathedral',

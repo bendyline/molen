@@ -1,4 +1,4 @@
-/** 'N0748_CHILDREN': rock-cut portal, hewn approach and unfinished pillar field. */
+/** 'childrens_memorial_yad_vashem': rock-cut portal, hewn approach and unfinished pillar field. */
 import earcut from 'earcut';
 import { prism, rect } from './khmer-structure-geometry.mjs';
 

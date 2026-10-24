@@ -1,7 +1,7 @@
 /** Surviving Ankara cella, portal, rear remnants and open conservation steelwork. */
 import { box, prism, rect } from './khmer-structure-geometry.mjs';
 
-export const ankaraCandidateId = 'N0531';
+export const ankaraCandidateId = 'temple_of_augustus_in_ankara';
 
 function elevation(f, role, outline, holes, z, thickness) {
   prism(

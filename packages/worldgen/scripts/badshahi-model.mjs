@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tt/tts/n0419_badshahi_mosque/',
+  '../../../content/worldgen/source/places/tt/tts/badshahi_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -949,7 +949,7 @@ export const buildBadshahiSkyline = (o) => build(o, 0),
   buildBadshahiCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const badshahiStudy = {
-  id: 'N0419',
+  id: 'badshahi_mosque',
   key: 'badshahi_mosque',
   title: 'Badshahi Mosque',
   category: 'mosque',

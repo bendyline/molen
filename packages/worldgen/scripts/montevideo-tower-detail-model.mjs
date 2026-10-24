@@ -4,11 +4,9 @@ import { beam, loft, normalFor, radialRing, torus } from './authored-structure-m
 import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frameBytes = readFileSync(structureSourcePath('n0619_montevideo', 'map-frame.json'));
+const frameBytes = readFileSync(structureSourcePath('montevideo', 'map-frame.json'));
 const _frame = JSON.parse(frameBytes);
-const survey = JSON.parse(
-  readFileSync(structureSourcePath('n0619_montevideo', 'roof-envelope.json')),
-);
+const survey = JSON.parse(readFileSync(structureSourcePath('montevideo', 'roof-envelope.json')));
 const height = (id) => {
   const h = survey.roofs.find((roof) => roof.id === id).height;
   return (h[0] + h[1]) / 2;

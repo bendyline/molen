@@ -7,7 +7,7 @@ import { face, transform } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const mapBytes = readFileSync(structureSourcePath('n0606_tyholttarnet', 'map-frame.json'));
+const mapBytes = readFileSync(structureSourcePath('tyholttarnet', 'map-frame.json'));
 const map = JSON.parse(mapBytes);
 const tau = Math.PI * 2;
 const concrete = [0.66, 0.65, 0.6],
@@ -324,8 +324,8 @@ function build(out) {
   mast(out);
 }
 export const tyholtTower = {
-  id: 'n0606_tyholttarnet',
-  planId: 'N0606',
+  id: 'tyholttarnet',
+  planId: 'tyholttarnet',
   title: 'Tyholttårnet',
   wikidata: 'Q1935277',
   authoringFile: 'tyholt-tower-model.mjs',

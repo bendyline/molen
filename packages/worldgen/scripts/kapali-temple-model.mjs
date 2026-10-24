@@ -1,4 +1,4 @@
-/** 'N0539': Kapaleeshwarar's mapped gateways, shrine roofs and open mandapas. */
+/** 'kapaleeshwarar_temple': Kapaleeshwarar's mapped gateways, shrine roofs and open mandapas. */
 
 import { buildDravidianTower } from './dravidian-tower-geometry.mjs';
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';

@@ -1,11 +1,11 @@
-/** 'N0748_CATTLECAR': Wooden wagon with raised brake cabin and mapped cantilever track. */
+/** 'cattle_car_memorial_to_the_deportees_yad_vashem': Wooden wagon with raised brake cabin and mapped cantilever track. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildYadCattlecar } from './yad-cattlecar-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sv/sv9/n0748_cattlecar/',
+    '../../../content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -101,7 +101,7 @@ export const buildYadCattlecarSkyline = (o) => build(o, 0),
   buildYadCattlecarStreet = (o) => build(o, 2),
   buildYadCattlecarCloseup = (o) => build(o, 3);
 export const yadCattlecarStudy = {
-  id: 'N0748_CATTLECAR',
+  id: 'cattle_car_memorial_to_the_deportees_yad_vashem',
   key: 'cattlecar',
   title: 'Cattle Car Memorial to the Deportees, Yad Vashem',
   category: 'memorial',

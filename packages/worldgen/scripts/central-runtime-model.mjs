@@ -15,10 +15,8 @@ import {
 } from './signature-tower-expansion-models.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const scope = JSON.parse(
-    readFileSync(structureSourcePath('n0181_central_plaza', 'review-scope.json')),
-  ),
-  map = JSON.parse(readFileSync(structureSourcePath('n0181_central_plaza', 'map-frame.json')));
+const scope = JSON.parse(readFileSync(structureSourcePath('central_plaza', 'review-scope.json'))),
+  map = JSON.parse(readFileSync(structureSourcePath('central_plaza', 'map-frame.json')));
 const settings = {
   skyline: { mult: 0, sides: 4, rings: false, roof: 0 },
   district: { mult: 12, sides: 8, rings: false, roof: 8 },

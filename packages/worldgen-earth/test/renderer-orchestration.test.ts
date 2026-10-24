@@ -1316,3 +1316,27 @@ describe('worldgen human-feature tile orchestration', () => {
     f.dispose();
   });
 });
+
+it('awaits regional placement coverage before generating a terrain tile', async () => {
+  const ready = deferred<[]>();
+  const index = createStructureIndex({
+    format: 'molen/structure-placement-data@1',
+    title: 'empty',
+    entries: [],
+  });
+  const queryAsync = vi.fn(() => ready.promise);
+  const generate = vi.fn(async () => output());
+  const renderers = createWorldgenSemanticRenderers(pack, {
+    structures: { ...index, queryAsync },
+    generator: { generate, dispose: vi.fn() },
+  });
+  const tileContext = context(new AbortController().signal);
+  const task = renderers.humanFeatures.createTile(createEmptyTerrainSemanticTile(), tileContext);
+  expect(queryAsync).toHaveBeenCalledTimes(1);
+  expect(generate).not.toHaveBeenCalled();
+  ready.resolve([]);
+  const object = await task;
+  expect(generate).toHaveBeenCalled();
+  if (object) renderers.humanFeatures.disposeTile?.(object);
+  renderers.dispose();
+});

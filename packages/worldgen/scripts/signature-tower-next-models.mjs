@@ -98,7 +98,7 @@ function roofService(out, plan, y) {
   bandPlan(out, plan, y + 2, 0.18, 0.2, metal, 'metal');
 }
 function buildSevenWtc(out, m) {
-  const key = 'n0153_7_world_trade_center',
+  const key = '7_world_trade_center',
     plan = partPlan(m, part(key, 1530740418));
   mappedSolid(out, 'stone', plan, 0, 0.3, [0.49, 0.51, 0.51]);
   glazedOutline(out, plan, 0.3, 8, 4, [0.24, 0.36, 0.41], metal, 0.045);
@@ -150,7 +150,7 @@ function buildSevenWtc(out, m) {
     box(out, 'metal', [x, 223.05, -8], [x + 3.4, 224.1, 1], [0.46, 0.51, 0.53]);
 }
 function buildTrump(out, m) {
-  const key = 'n0152_trump_tower';
+  const key = 'trump_tower';
   const tiers = [
     [265345374, 0, 20],
     [159831423, 20, 25],
@@ -205,7 +205,7 @@ function buildTrump(out, m) {
   roofService(out, roof, 199.9);
 }
 function buildNyt(out, m) {
-  const key = 'n0155_new_york_times_building',
+  const key = 'new_york_times_building',
     base = localOutline(m);
   const holes = (m.geometry.holes ?? []).slice(0, 1).map((r) => clockwise(r.slice(0, -1)));
   mappedSolid(out, 'stone', base, 0, 0.25, [0.64, 0.64, 0.61], holes);
@@ -301,7 +301,7 @@ function buildNyt(out, m) {
 
 export const skylineNext = [
   {
-    id: 'N0153',
+    id: '7_world_trade_center',
     key: '7_world_trade_center',
     wikidataId: 'Q270066',
     title: '7 World Trade Center',
@@ -347,7 +347,7 @@ export const skylineNext = [
     ],
   },
   {
-    id: 'N0152',
+    id: 'trump_tower',
     key: 'trump_tower',
     wikidataId: 'Q868772',
     title: 'Trump Tower',
@@ -393,7 +393,7 @@ export const skylineNext = [
     ],
   },
   {
-    id: 'N0155',
+    id: 'new_york_times_building',
     key: 'new_york_times_building',
     wikidataId: 'Q192680',
     title: 'New York Times Building',
@@ -597,7 +597,7 @@ function slopedGlass(
   }
 }
 function buildBoc(out, m) {
-  const key = 'n0156_bank_of_china_tower',
+  const key = 'bank_of_china_tower',
     plan = localOutline(m);
   mappedSolid(out, 'stone', plan, 0, 0.35, [0.47, 0.49, 0.48]);
   for (const id of [279949066, 279949067, 279949068, 279949069]) {
@@ -632,7 +632,7 @@ function buildBoc(out, m) {
   bandPlan(out, plan, 8, 0.7, 0.9, [0.63, 0.69, 0.71], 'metal');
 }
 function buildIcc(out, m) {
-  const key = 'n0154_international_commerce_centre',
+  const key = 'international_commerce_centre',
     plan = localOutline(m);
   mappedSolid(out, 'stone', plan, 0, 0.35, [0.45, 0.48, 0.49]);
   floorCurtain(out, plan, 0.35, 20, 4, [0.26, 0.37, 0.44], [0.54, 0.61, 0.66], 0.65);
@@ -775,7 +775,7 @@ function gothicFinial(out, x, z, y, h = 5, r = 0.65) {
   );
 }
 function buildWoolworth(out, m) {
-  const key = 'n0157_woolworth_building',
+  const key = 'woolworth_building',
     base = localOutline(m);
   gothicWall(out, base, 0, 17.6, 4.2, [0.69, 0.67, 0.59]);
   gothicWall(out, base, 17.6, 120, 3.77);
@@ -866,7 +866,7 @@ function buildWoolworth(out, m) {
 
 skylineNext.push(
   {
-    id: 'N0154',
+    id: 'international_commerce_centre',
     key: 'international_commerce_centre',
     wikidataId: 'Q317034',
     title: 'International Commerce Centre',
@@ -910,7 +910,7 @@ skylineNext.push(
     ],
   },
   {
-    id: 'N0156',
+    id: 'bank_of_china_tower',
     key: 'bank_of_china_tower',
     wikidataId: 'Q214855',
     title: 'Bank of China Tower',
@@ -955,7 +955,7 @@ skylineNext.push(
     ],
   },
   {
-    id: 'N0157',
+    id: 'woolworth_building',
     key: 'woolworth_building',
     wikidataId: 'Q217652',
     title: 'Woolworth Building',
@@ -1004,7 +1004,7 @@ skylineNext.push(
 );
 
 function buildQ1(out, m) {
-  const key = 'n0162_q1_tower',
+  const key = 'q1_tower',
     plan = localOutline(m),
     podium = partPlan(m, part(key, 492716887));
   const white = [0.79, 0.81, 0.78],
@@ -1160,7 +1160,7 @@ function buildQ1(out, m) {
 }
 
 function buildLandmark81(out, m) {
-  const key = 'n0163_landmark_81',
+  const key = 'landmark_81',
     podium = localOutline(m);
   const low = partPlan(m, part(key, 622296616)),
     top = partPlan(m, part(key, 622296618));
@@ -1275,7 +1275,7 @@ function buildLandmark81(out, m) {
 
 skylineNext.push(
   {
-    id: 'N0162',
+    id: 'q1_tower',
     key: 'q1_tower',
     wikidataId: 'Q125846',
     title: 'Q1 Tower',
@@ -1326,7 +1326,7 @@ skylineNext.push(
     ],
   },
   {
-    id: 'N0163',
+    id: 'landmark_81',
     key: 'landmark_81',
     wikidataId: 'Q18640924',
     title: 'Landmark 81',
@@ -1535,7 +1535,7 @@ function turnedProfile(out, slot, profile, center, color, sides = 96) {
   );
 }
 function buildKlTower(out, m) {
-  const key = 'n0161_kuala_lumpur_tower',
+  const key = 'kuala_lumpur_tower',
     base = localOutline(m),
     pale = [0.8, 0.8, 0.76];
   const core = partPlan(m, part(key, 546282150));
@@ -1871,7 +1871,7 @@ function buildKlTower(out, m) {
 
 skylineNext.push(
   {
-    id: 'N0160',
+    id: 'lakhta_centre',
     key: 'lakhta_centre',
     wikidataId: 'Q4255374',
     title: 'Lakhta Centre',
@@ -1918,7 +1918,7 @@ skylineNext.push(
     ],
   },
   {
-    id: 'N0161',
+    id: 'kuala_lumpur_tower',
     key: 'kuala_lumpur_tower',
     wikidataId: 'Q745016',
     title: 'Kuala Lumpur Tower',
@@ -1982,7 +1982,7 @@ function rotatePlan(plan, center, angle) {
   ]);
 }
 function buildTurningTorso(out, m) {
-  const key = 'n0158_turning_torso',
+  const key = 'turning_torso',
     base = localOutline(m);
   const core = partPlan(m, part(key, 940786326));
   const center = core.reduce((s, p) => s.map((v, i) => v + p[i] / core.length), [0, 0]);
@@ -2116,7 +2116,7 @@ function gardenTree(out, x, y, z, height = 5) {
   );
 }
 function buildCommerzbank(out, m) {
-  const key = 'n0159_commerzbank_tower',
+  const key = 'commerzbank_tower',
     base = localOutline(m);
   const silver = [0.72, 0.75, 0.72],
     greenGlass = [0.35, 0.44, 0.39];
@@ -2218,7 +2218,7 @@ function buildCommerzbank(out, m) {
 
 skylineNext.push(
   {
-    id: 'N0158',
+    id: 'turning_torso',
     key: 'turning_torso',
     wikidataId: 'Q206435',
     title: 'Turning Torso',
@@ -2267,7 +2267,7 @@ skylineNext.push(
     ],
   },
   {
-    id: 'N0159',
+    id: 'commerzbank_tower',
     key: 'commerzbank_tower',
     wikidataId: 'Q151765',
     title: 'Commerzbank Tower',

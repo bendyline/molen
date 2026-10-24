@@ -6,7 +6,7 @@ import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingShape, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u9/u99/n0306_gediminas_tower/',
+  '../../../content/worldgen/source/places/u9/u99/gediminas_tower/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
@@ -461,7 +461,7 @@ export function buildGediminasRuntime(o, level = 'closeup') {
 }
 export const buildGediminasSkyline = (o) => buildGediminasRuntime(o, 'skyline');
 export const gediminasStudy = {
-  id: 'N0306',
+  id: 'gediminas_tower',
   key: 'gediminas_tower',
   title: "Gediminas' Tower",
   category: 'castle',

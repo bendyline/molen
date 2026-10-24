@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sr/srv/n0385_serbian_orthodox_cathedral_in_sarajevo/',
+  '../../../content/worldgen/source/places/sr/srv/serbian_orthodox_cathedral_in_sarajevo/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -958,7 +958,7 @@ export const buildSarajevoOrthodoxSkyline = (o) => build(o, 0),
   buildSarajevoOrthodoxCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const sarajevoOrthodoxStudy = {
-  id: 'N0385',
+  id: 'serbian_orthodox_cathedral_in_sarajevo',
   key: 'serbian_orthodox_cathedral_in_sarajevo',
   title: 'Serbian Orthodox Cathedral in Sarajevo',
   category: 'cathedral',

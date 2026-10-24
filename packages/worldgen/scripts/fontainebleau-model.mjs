@@ -1,11 +1,11 @@
-/** 'N0759': Palace of Fontainebleau, principal exterior and horseshoe stairs. */
+/** 'palace_of_fontainebleau': Palace of Fontainebleau, principal exterior and horseshoe stairs. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildFontainebleau } from './fontainebleau-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u0/u09/n0759_palace_of_fontainebleau/',
+    '../../../content/worldgen/source/places/u0/u09/palace_of_fontainebleau/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -101,7 +101,7 @@ export const buildFontainebleauSkyline = (o) => build(o, 0),
   buildFontainebleauStreet = (o) => build(o, 2),
   buildFontainebleauCloseup = (o) => build(o, 3);
 export const fontainebleauStudy = {
-  id: 'N0759',
+  id: 'palace_of_fontainebleau',
   key: 'palace_of_fontainebleau',
   title: 'Palace of Fontainebleau, principal exterior and horseshoe stairs',
   category: 'museum',

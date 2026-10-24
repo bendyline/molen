@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/wx/wx4/n0406_cathedral_of_the_immaculate_conception/',
+  '../../../content/worldgen/source/places/wx/wx4/cathedral_of_the_immaculate_conception/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -992,7 +992,7 @@ export const buildBeijingImmaculateSkyline = (o) => build(o, 0),
   buildBeijingImmaculateCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const beijingImmaculateStudy = {
-  id: 'N0406',
+  id: 'cathedral_of_the_immaculate_conception',
   key: 'cathedral_of_the_immaculate_conception',
   title: 'Cathedral of the Immaculate Conception',
   category: 'cathedral',

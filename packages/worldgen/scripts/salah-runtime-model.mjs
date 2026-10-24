@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/sy/sy3/n0257_citadel_of_salah_ed_din/map-parts.json',
+      '../../../content/worldgen/source/places/sy/sy3/citadel_of_salah_ed_din/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -118,7 +118,7 @@ function simplify(p, tolerance = 3) {
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/sy/sy3/n0257_citadel_of_salah_ed_din/site-grade.json',
+      '../../../content/worldgen/source/places/sy/sy3/citadel_of_salah_ed_din/site-grade.json',
       import.meta.url,
     ),
   ),

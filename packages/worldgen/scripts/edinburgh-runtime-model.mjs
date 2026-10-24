@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/gc/gcv/n0242_edinburgh_castle/review-map-parts.json',
+      '../../../content/worldgen/source/places/gc/gcv/edinburgh_castle/review-map-parts.json',
       import.meta.url,
     ),
   ),
@@ -15,7 +15,7 @@ const map = JSON.parse(
 const road = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/gc/gcv/n0242_edinburgh_castle/road-surface.json',
+      '../../../content/worldgen/source/places/gc/gcv/edinburgh_castle/road-surface.json',
       import.meta.url,
     ),
   ),
@@ -1114,7 +1114,7 @@ function _originalSkyline(out) {
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/gc/gcv/n0242_edinburgh_castle/site-grade.json',
+      '../../../content/worldgen/source/places/gc/gcv/edinburgh_castle/site-grade.json',
       import.meta.url,
     ),
   ),

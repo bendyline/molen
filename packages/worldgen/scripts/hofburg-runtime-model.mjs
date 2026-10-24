@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/map-parts.json',
+      '../../../content/worldgen/source/places/u2/u2e/hofburg_palace/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -15,7 +15,7 @@ const map = JSON.parse(
 const roofPlans = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/roof-plans.json',
+        '../../../content/worldgen/source/places/u2/u2e/hofburg_palace/roof-plans.json',
         import.meta.url,
       ),
     ),
@@ -23,7 +23,7 @@ const roofPlans = JSON.parse(
   grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/site-grade.json',
+        '../../../content/worldgen/source/places/u2/u2e/hofburg_palace/site-grade.json',
         import.meta.url,
       ),
     ),

@@ -10,7 +10,7 @@ import { MATERIAL_REPEAT_METERS } from '../../worldgen/scripts/standard-material
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/v1/v1f/n0574_soyembika_tower'),
+const source = resolve('../../content/worldgen/source/places/v1/v1f/soyembika_tower'),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
@@ -83,12 +83,12 @@ it('reproduces the unchanged Söyembikä draft and binds the reviewed directed m
     )(surfaces, normalize, meshCross, MATERIAL_REPEAT_METERS),
     b = new MeshBufferBuilder(),
     used = new Map(),
-    draft = nextHeritageTowers.find((s) => s.planId === 'N0574');
+    draft = nextHeritageTowers.find((s) => s.planId === 'soyembika_tower');
   draft.build(wrap(b, used, draft.componentMap));
   const s = await read(`${source}/spec.json`),
     scope = await read(`${source}/review-scope.json`),
     frame = await read(`${source}/map-frame.json`),
-    live = (await read('../../content/earth/structures/placements.json')).entries.find(
+    live = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(s.sourceGeometry.export).toBe('buildSoyembikaReviewed');

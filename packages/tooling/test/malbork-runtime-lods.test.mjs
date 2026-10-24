@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { malborkStudy } from '../../worldgen/scripts/malbork-castle-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u3/u3t/n0243_malbork_castle'),
+const source = resolve('../../content/worldgen/source/places/u3/u3t/malbork_castle'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;

@@ -1,0 +1,1146 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.citadel_of_aleppo",
+  "sourceHash": "sha256:92037456ef21df1a6877f47d4684a4a45d891cffd055fa4a13ff5f915079fc10",
+  "runtimeHash": "sha256:668c9eb6b2d2dc380fb4c1a9ab32dd319a8125f4c845b9888d57bddae5fb466d",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 3536,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:de3da2612c70ed956a13d371ef9424c1f6be66ab54ac799160a67847cab7d44b",
+      "bytes": 101204,
+      "gzipBytes": 21136,
+      "triangles": 998,
+      "cpuBytes": 99768,
+      "gpuBytes": 99768,
+      "errorMeters": 4,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:e54576b26606ce8a3fe56aba4b309743485eddda8ac4e111b0ec7a6f8ea74690",
+      "bytes": 381700,
+      "gzipBytes": 122891,
+      "triangles": 3968,
+      "cpuBytes": 378948,
+      "gpuBytes": 378948,
+      "errorMeters": 1.5,
+      "drawCalls": 2
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:928c14668ac4645639725793efd5c92a3f636d529a553afcfb7df7e838f8c036",
+      "bytes": 1406648,
+      "gzipBytes": 463665,
+      "triangles": 14896,
+      "cpuBytes": 1401504,
+      "gpuBytes": 1401504,
+      "errorMeters": 0.45,
+      "drawCalls": 4
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:bea23f0fb567d39325153344dafff63295822723f1eae4694831da0e8f422efa",
+      "bytes": 3015856,
+      "gzipBytes": 888983,
+      "triangles": 30198,
+      "cpuBytes": 3010704,
+      "gpuBytes": 3010704,
+      "errorMeters": 0.15,
+      "drawCalls": 4
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:ce284ab02f2f1ff097e9a033aaecdc885313786fdd3b8eb1ba282a0956a8b1da"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:d003383277bcc6a2e7f4db043f3dacb9b2b432a42c8e9754829c1866fbc4cbef"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:8710e339f4e85bd797257d0d306ca962bd5bf85b924d8dbc8f69fa28a06267ef",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 54498,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          76.4134,
+          17.5287,
+          84.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:053f8d7f67a6dfbc2bd097f4d410ac2ab3ff3147a015b6fbcfdf14615b9e1f1f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 54498,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          76.4134,
+          17.5287,
+          84.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:e48920c85c6114726398dcdd824869bbcd0994e267b997500e132ba20c7071f6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 54498,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          76.4134,
+          17.5287,
+          84.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:be763dcbf79685c2634484f3d715980fc2a75e7fbade79a7b5a8f2831318831d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 54498,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          76.4134,
+          17.5287,
+          84.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:8991ecdd4a5392bebba8bb717a146aa2e5004c033b66e956560105d592157253",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 28306,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          125.4134,
+          53.5287,
+          169.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:2b466dfd01bb74a5fe47f3b2e17025c0bda8a5ff2940cec6552f9c8f1880f846",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 28306,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          125.4134,
+          53.5287,
+          169.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:551e418ee77a4c3c63c1c4d87b1dd4871878e925de04f43fa9ee8c409c9e9a9c",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 28306,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          125.4134,
+          53.5287,
+          169.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:386289ec53a5ec987c8726fbda23f89de0fa071ee4abef12c74934d5cbcc2668",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 28306,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          125.4134,
+          53.5287,
+          169.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:4cdb7290989d1b2f44d63b36b53cabeed2c315bac442aaff2fd883af607467af",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25336,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          222.4134,
+          91.5287,
+          337.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:1fbec7b84c4f8e49259cb16ccbed106304c31c8bfdfa690bbad3701c0dcdabd1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25336,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          222.4134,
+          91.5287,
+          337.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:17ffe157e77fff9cfb96fa1146a75e158c29edef9a679cde45df52d29a128052",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25336,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          222.4134,
+          91.5287,
+          337.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:9b0373278d0076fdb52e513ff92c38cf8856e19f514afa58ce860eaacaae36d4",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25336,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          222.4134,
+          91.5287,
+          337.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:5475bd0a7c8ea547dff5c73c6450d94e41d8626fceb980b5477e81ddf03ac9e0",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21800,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          222.4134,
+          91.5287,
+          337.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/southwest-entry-arches.png",
+      "hash": "sha256:eb608fafe1c8e79674f47f13e0694b8b281437281ed0be37b2ce602f404412e0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 54536,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          214.4185332404793,
+          3,
+          77.42540024437385
+        ],
+        "lookAt": [
+          157.4646602792833,
+          -12,
+          41.33861104500133
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/upper-pointed-gate.png",
+      "hash": "sha256:abe4a12c1e429dbc5b2894fb1d6eb5a706ffc9d0e0c8f6538bafb67a1c44b709",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 54536,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          186.57238762126596,
+          11,
+          35.88515260243544
+        ],
+        "lookAt": [
+          125.53437120788938,
+          -3,
+          42.5455243878817
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mosques-and-minarets.png",
+      "hash": "sha256:b7fb606720c7bc58ef46722a6cfe48e943ec43bc690c85a26f3dc4cecee57f7c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 54536,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          -67.48292166359107,
+          54,
+          183.3195441946811
+        ],
+        "lookAt": [
+          -9.494508587700135,
+          7,
+          61.17887140735834
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/bath-and-palace-ruins.png",
+      "hash": "sha256:a596ece0a4962f0b11e04916d1036c84eb7653ad98a8d71dfedc95f2532255e2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 54516,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          62.06483981284309,
+          53,
+          -80.57887849186119
+        ],
+        "lookAt": [
+          39.07175257628864,
+          -4,
+          -12.782728606102937
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-up-compound-plan.png",
+      "hash": "sha256:1099189a8aef7fb14ed658deef8d1abbd316380eb420d32942b51b46d46605fb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 54536,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          0.0925203354916879,
+          650,
+          -0.037947167489886774
+        ],
+        "lookAt": [
+          9.25203354916879,
+          -10,
+          -3.7947167489886766
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/east-curtain-and-bastion.png",
+      "hash": "sha256:619089d99db4a859ecdccbd8574923e41d8bf1349c720f70dad04465f1d5854b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 54536,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          6.546525294764066,
+          41,
+          -250.1982074407509
+        ],
+        "lookAt": [
+          -18.514038679018086,
+          -8,
+          -142.64371830470427
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-aleppo-skyline.png",
+      "hash": "sha256:492bc8ddc050ee75436c6d65f91f913f0f8a6af3bfb3d88c85ddca54ee9c28f7",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25336,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          446.9147102397367,
+          185,
+          140.9512035114713
+        ],
+        "lookAt": [
+          9.25203354916879,
+          -8,
+          -3.7947167489886766
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-aleppo-district.png",
+      "hash": "sha256:4f190c1b96da6e97b154dce5f612f96c0ada2546ba37366e8f485f57352f365b",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 28306,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          446.9147102397367,
+          185,
+          140.9512035114713
+        ],
+        "lookAt": [
+          9.25203354916879,
+          -8,
+          -3.7947167489886766
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-aleppo-street.png",
+      "hash": "sha256:edb576d194bd248d27a0bd5d94eef3d6315dc17ce17032e5e781f8b8d3aae663",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 39234,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          446.9147102397367,
+          185,
+          140.9512035114713
+        ],
+        "lookAt": [
+          9.25203354916879,
+          -8,
+          -3.7947167489886766
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-aleppo-closeup.png",
+      "hash": "sha256:14512c3533adac04327e050612d1de9dd069e8b25767dc3ad9c0cc5337edb114",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 54536,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          446.9147102397367,
+          185,
+          140.9512035114713
+        ],
+        "lookAt": [
+          9.25203354916879,
+          -8,
+          -3.7947167489886766
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:8212185613ac32a3e90c00aee47f02e19044c8b1f1f875eb7440101d7b965c81",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25336,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          125.4134,
+          53.5287,
+          169.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:2b466dfd01bb74a5fe47f3b2e17025c0bda8a5ff2940cec6552f9c8f1880f846",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 28306,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          125.4134,
+          53.5287,
+          169.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:65333cb26b6000b176579084082e291e22465ca4336be04a6ade958f09a93027",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 39234,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          125.4134,
+          53.5287,
+          169.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:5850c8ccecffe6cdd4f23527b2b13db36b66fcab4a285fda0161b8d0a2c84acf",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 54536,
+        "groundY": -40,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/sy6/citadel_of_aleppo/terrain-review.height.png"
+        },
+        "position": [
+          125.4134,
+          53.5287,
+          169.2815
+        ],
+        "lookAt": [
+          28.4134,
+          2.5287000000000006,
+          1.2815
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_tadelakt": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

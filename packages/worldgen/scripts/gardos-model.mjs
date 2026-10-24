@@ -1,11 +1,11 @@
-/** N1005: Gardoš brick shaft, columned gallery and two capped turrets. */
+/** gardos_tower: Gardoš brick shaft, columned gallery and two capped turrets. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildGardosTower } from './gardos-tower-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sry/n1005_gardos_tower/',
+    '../../../content/worldgen/source/places/sr/sry/gardos_tower/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -91,7 +91,7 @@ export const buildGardosSkyline = (o) => build(o, 0),
   buildGardosStreet = (o) => build(o, 2),
   buildGardosCloseup = (o) => build(o, 3);
 export const gardosStudy = {
-  id: 'N1005',
+  id: 'gardos_tower',
   key: 'gardos_tower',
   title: 'Gardoš Tower',
   category: 'tower',

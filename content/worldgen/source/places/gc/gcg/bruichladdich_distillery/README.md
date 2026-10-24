@@ -8,7 +8,7 @@ Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.js
 
 - [Bruichladdich Distillery](https://qualla.com/bruichladdich-distillery/)
 
-Original named industrialsite366391920/Q51908 establishes Bruichladdich identity and bounded compound, not a single roof/building to extrude.22originalindividualbuildingperimeters inside it carry all actual near/master building plans. Named visitorcentre366391925east-southeast facade edge fixes signed native frame, original hipped/gabled/round roof tags and1/2/3level metadata retained. Outside villagehouses/hall/shop and every next1000candidate/member excluded. Sitecourts remain open; hidden roofpartitions/section heights and unmapped outdoorstill registration are explicit photo/nativebased estimates.
+Original named industrialsite366391920/Q51908 establishes Bruichladdich identity and bounded compound, not a single roof/building to extrude.22originalindividualbuildingperimeters inside it carry all actual near/master building plans. Named visitorcentre366391925east-southeast facade edge fixes signed native frame, original hipped/gabled/round roof tags and1/2/3level metadata retained. Outside villagehouses/hall/shop and every structureCatalogcandidate/member excluded. Sitecourts remain open; hidden roofpartitions/section heights and unmapped outdoorstill registration are explicit photo/nativebased estimates.
 
 Original dry visitor pavement datum and complete raw field frozen before geometry. Explicit approximate per-building floor terraces retain inland rise; no source terrain flattening or fitted replacement surface. Provider pixels may blend structures/vegetation, and exact foundations/host terrain/shore contact remain unverified.
 

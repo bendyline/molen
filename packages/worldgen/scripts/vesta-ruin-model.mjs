@@ -1,5 +1,5 @@
 /** Existing Temple of Vesta: the roofless ruin and surviving northwest sector. */
-export const vestaCandidateId = 'N0501';
+export const vestaCandidateId = 'temple_of_vesta_rome';
 function box(f, role, x, y, z, w, h, depth, angle = 0) {
   const c = Math.cos(angle),
     s = Math.sin(angle),

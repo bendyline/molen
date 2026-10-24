@@ -1,11 +1,11 @@
-/** 'N0748_ART': Art Museum gallery, courtyard portal and shared surfaces. */
+/** 'museum_of_holocaust_art_yad_vashem': Art Museum gallery, courtyard portal and shared surfaces. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildYadArt } from './yad-art-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sv/sv9/n0748_art/',
+    '../../../content/worldgen/source/places/sv/sv9/museum_of_holocaust_art_yad_vashem/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -100,7 +100,7 @@ export const buildYadArtSkyline = (o) => build(o, 0),
   buildYadArtStreet = (o) => build(o, 2),
   buildYadArtCloseup = (o) => build(o, 3);
 export const yadArtStudy = {
-  id: 'N0748_ART',
+  id: 'museum_of_holocaust_art_yad_vashem',
   key: 'art',
   title: 'Museum of Holocaust Art, Yad Vashem',
   category: 'museum',

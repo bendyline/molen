@@ -1,8 +1,8 @@
-/** N0719: Education City's folded silver shell, chevron vents and green bowl. */
+/** education_city_stadium: Education City's folded silver shell, chevron vents and green bowl. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
-const candidateId = 'N0719',
+const candidateId = 'education_city_stadium',
   tau = Math.PI * 2;
 export const educationSegments = [12, 24, 40, 96];
 export function educationRadius(poly, a) {

@@ -5,7 +5,7 @@ import { sourceLocalFootprint } from '../../../examples/world-explorer/test/visu
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u3/u3c/n0620_karnan'),
+const source = resolve('../../content/worldgen/source/places/u3/u3c/karnan'),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
@@ -68,7 +68,7 @@ const nearest = (ts, o, d) =>
 it('preserves exact detailed source bytes and resolves the southwest entrance and northwest privy from the actual map frame', async () => {
   const s = await read(source + '/spec.json'),
     frame = await read(source + '/map-frame.json'),
-    live = (await read('../../content/earth/structures/placements.json')).entries.find(
+    live = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(s.mesh.triangles).toBe(76762);

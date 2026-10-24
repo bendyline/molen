@@ -1,0 +1,501 @@
+{
+  "planId": "rose_tower",
+  "id": "rose_tower",
+  "assetId": "molen.worldgen.structure.rose_tower",
+  "title": "Rose Rayhaan by Rotana",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q648338",
+  "referenceCoordinate": {
+    "latitude": 25.21174,
+    "longitude": 55.27666
+  },
+  "visualBrief": "Dubai’s slender four-lobed blue-glass hotel with silver vertical recesses, physical gold eye rings and cornices, four curved silver crown petals, crossing tip ribbons, a sphere and offset northeast spire.",
+  "size": [
+    30.200814247131348,
+    333,
+    25.561519622802734
+  ],
+  "actualBounds": {
+    "min": [
+      -16.850000381469727,
+      0,
+      -12.061519622802734
+    ],
+    "max": [
+      13.350813865661621,
+      333,
+      13.5
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X northeast",
+    "front": "-X southwest road/entry",
+    "origin": "Mapped rectangular envelope at reconstructed street datum"
+  },
+  "sourceFacts": {
+    "architecturalHeightMeters": 333,
+    "occupiedHeightMeters": 237.1,
+    "operatorStoreys": 72,
+    "cvuStoreys": 71,
+    "architect": "Khatib & Alami",
+    "engineer": "Khatib & Alami",
+    "contractor": "Arabian Construction Company",
+    "completionYear": 2007,
+    "originalMasterHash": "sha256:92bd2855ca55789898064916bbc330b6aa266eaee9af9a4e2e64ddf2c4f7c836",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-rose-model.mjs#buildRose",
+    "surfaceMeans": {
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ]
+    }
+  },
+  "reconstruction": {
+    "massing": "The exact-QID footprint supplies the narrow rectangular site envelope. Four intersecting convex glass lobes reconstruct the paired curved bays visible in the operator’s completed-building aerial photograph; the map rectangle is not extruded as the tower facade.",
+    "facade": "Operator daytime photographs and the facade-access contractor establish blue/silver mirrored glass, narrow gold rings and gold cornices. Repeated glass panes, thin physical frames, inset strips and elliptical gold ornament remain geometry at metric scale.",
+    "crown": "The current operator aerial establishes four silver tapering petals bordered by pale ribs, neighboring black/white horizontal bands, interlaced tip ribbons, a sphere and offset mast. Intermediate crown heights and curve profiles are photo reconstructions within the verified333m final envelope.",
+    "entry": "The southwest road-facing entry has a small canopy and glazed door bays. Fine canopy/door dimensions are approximate; adjacent neighboring towers and rear parking remain separate map context."
+  },
+  "referencePages": [
+    "https://www.rotana.com/rayhaanhotelandresorts/unitedarabemirates/dubai/roserayhaanbyrotana",
+    "https://www.manntech.com/project/the-rose-rayhaan-by-rotana/",
+    "https://gxulighting.com/product/rose-rayhaan-hotel-by-rotana-2/",
+    "https://www.skyscrapercenter.com/building/wd/369",
+    "https://www.openstreetmap.org/way/64890199"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed medium-fi signed envelope placement",
+    "anchor": [
+      55.276592317,
+      25.211670612
+    ],
+    "heading": 1.011171401094,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/64890199",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/64890199"
+    ],
+    "wikidataId": "Q648338",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:29f4a0aec91795f2d454ba693df8f048ad30acd96e7f0e0c92cabaa2e06667ce",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "orientationConfidence": "exact identity plus operator aerial direction and reconstructed northeast mast",
+    "notes": "Fresh OSM API on 2026-10-10 confirms exact Q648338 whole 64890199 and sub-millimeter agreement with the stored prior georeferencing outline. Signed heading 1.011171401094 puts +X northeast, -X southwest toward Sheikh Zayed Road and +Z southeast. Operator aerial 0 looks southeast along the road toward the independently identified Burj Khalifa, fixing the northeast offset mast behind its petal. Mast [5.7,0], doorway/canopy and lobed radii remain photo reconstructions, not separately surveyed mapped features. Source Y=0 is reconstructed street entry and tip 333 m follows current operator/CVU; mapped 315 m is a roof-era envelope. Accept 2 m main-envelope / 1 degree reconstruction allowance, excluding projecting canopy; automatic footprint replacement disabled.",
+    "evidence": "Fresh OSM API on 2026-10-10 confirms exact Q648338 whole 64890199 and sub-millimeter agreement with the stored prior georeferencing outline. Signed heading 1.011171401094 puts +X northeast, -X southwest toward Sheikh Zayed Road and +Z southeast. Operator aerial 0 looks southeast along the road toward the independently identified Burj Khalifa, fixing the northeast offset mast behind its petal. Mast [5.7,0], doorway/canopy and lobed radii remain photo reconstructions, not separately surveyed mapped features. Source Y=0 is reconstructed street entry and tip 333 m follows current operator/CVU; mapped 315 m is a roof-era envelope. Accept 2 m main-envelope / 1 degree reconstruction allowance, excluding projecting canopy; automatic footprint replacement disabled.",
+    "replaceFootprint": false
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Original 623480-triangle, 52717200-byte master remains exactly reproducible from unchanged recipe. Reviewed source/four browser levels retain four intersecting convex blue-glass lobes, silver vertical recesses, gold eyes/cornices, four curved silver crown petals and pale boundary ribs, alternating dark/light neighboring bands, crossing tip ribbons, sphere, offset northeast mast and southwest entry canopy. The original 245–246 m gap is closed with a shoulder panel. Whole facade backing panels and continuous strips replace per-pane beams; thin eye rings use planar ribbons rather than tubular segments. Skyline averages trim colour and omits small eyes/collars/door frames, district/street aggregate eyes and panel cadence and omit/aggregate fine crown seams; skyline/district use shallow curved petal boundary strips while street/close-up retain solid ribs; close-up retains all 248 eye rings at reduced arc sampling, 128 angular samples and closed boundary ribs. Two canonical shared graphs approximate stone and silver/gold coated metal; three draw groups and zero embedded images. Lobed radii, intermediate crown heights, leaf phase, entry/canopy and 5.7 m mast offset are photo reconstructions; only rectangular site envelope is mapped. Operator 72 / CVU 71 storeys remain distinct; their shared 333 m architectural height sets tip. Moving access equipment, signage, interiors and animated lighting excluded. Finite along-ray 1.5/.75/.3/.1 m allowances exclude omitted narrow eyes, mullions and collars; no global surface-distance, surveyed grade or physical-device claim."
+  ],
+  "qaCameras": [
+    {
+      "name": "silver-petal-crown",
+      "position": [
+        -45,
+        287,
+        -73
+      ],
+      "lookAt": [
+        0,
+        278,
+        0
+      ]
+    },
+    {
+      "name": "crown-sphere",
+      "position": [
+        22,
+        323,
+        -30
+      ],
+      "lookAt": [
+        0,
+        311,
+        0
+      ]
+    },
+    {
+      "name": "offset-spire",
+      "position": [
+        25,
+        332,
+        20
+      ],
+      "lookAt": [
+        5.7,
+        319,
+        0
+      ]
+    },
+    {
+      "name": "gold-cornice",
+      "position": [
+        -41,
+        247,
+        -44
+      ],
+      "lookAt": [
+        -7,
+        243,
+        -7
+      ]
+    },
+    {
+      "name": "gold-eye-rings",
+      "position": [
+        39,
+        135,
+        6
+      ],
+      "lookAt": [
+        11,
+        132,
+        0
+      ]
+    },
+    {
+      "name": "paired-convex-bays",
+      "position": [
+        48,
+        168,
+        53
+      ],
+      "lookAt": [
+        5,
+        166,
+        5
+      ]
+    },
+    {
+      "name": "street-entry",
+      "position": [
+        -38,
+        9,
+        -18
+      ],
+      "lookAt": [
+        -13,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "lower-ribbon-glass",
+      "position": [
+        -40,
+        27,
+        38
+      ],
+      "lookAt": [
+        -7,
+        20,
+        8
+      ]
+    },
+    {
+      "name": "far-sheikh-zayed",
+      "position": [
+        -530,
+        236,
+        -260
+      ],
+      "lookAt": [
+        0,
+        157,
+        0
+      ]
+    },
+    {
+      "name": "whole-reviewed-hotel",
+      "position": [
+        260,
+        214,
+        440
+      ],
+      "lookAt": [
+        0,
+        155,
+        0
+      ]
+    },
+    {
+      "name": "above-petal-crown",
+      "position": [
+        42,
+        343,
+        54
+      ],
+      "lookAt": [
+        1,
+        295,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/rose-runtime-model.mjs",
+    "export": "buildRoseReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/rose-runtime-model.mjs",
+    "export": "buildRoseSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRoseDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildRoseStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildRoseCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-hotel-skyline",
+      "position": [
+        260,
+        214,
+        440
+      ],
+      "lookAt": [
+        0,
+        155,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-hotel-district",
+      "position": [
+        260,
+        214,
+        440
+      ],
+      "lookAt": [
+        0,
+        155,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-hotel-street",
+      "position": [
+        260,
+        214,
+        440
+      ],
+      "lookAt": [
+        0,
+        155,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-hotel-closeup",
+      "position": [
+        260,
+        214,
+        440
+      ],
+      "lookAt": [
+        0,
+        155,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-four-petals",
+      "position": [
+        -45,
+        301,
+        -73
+      ],
+      "lookAt": [
+        0,
+        278,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-road-canopy",
+      "position": [
+        -43,
+        11,
+        30
+      ],
+      "lookAt": [
+        -13,
+        4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-gold-eyes",
+      "position": [
+        -35,
+        199,
+        -23
+      ],
+      "lookAt": [
+        -12,
+        194,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-shoulder-and-petals",
+      "position": [
+        29,
+        254,
+        39
+      ],
+      "lookAt": [
+        0,
+        246,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 61560,
+    "vertices": 174400,
+    "materials": 3,
+    "bytes": 7019452,
+    "sha256": "sha256:d0e0109e26ce749bfe49417a7ffbc79233ef8364aedccd37a0d844251684417e"
+  }
+}

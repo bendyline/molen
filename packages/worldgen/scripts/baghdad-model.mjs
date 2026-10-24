@@ -1,11 +1,11 @@
-/** 'N0598': mapped Baghdad tower, native profile, blue glazing and segmented205m mast. */
+/** 'baghdad_tower': mapped Baghdad tower, native profile, blue glazing and segmented205m mast. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBaghdadTower } from './baghdad-tower-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sv/svz/n0598_baghdad_tower/',
+    '../../../content/worldgen/source/places/sv/svz/baghdad_tower/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -90,7 +90,7 @@ export const buildBaghdadSkyline = (o) => build(o, 0),
   buildBaghdadStreet = (o) => build(o, 2),
   buildBaghdadCloseup = (o) => build(o, 3);
 export const baghdadStudy = {
-  id: 'N0598',
+  id: 'baghdad_tower',
   key: 'baghdad_tower',
   title: 'Baghdad Tower',
   category: 'tower',

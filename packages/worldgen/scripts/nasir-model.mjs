@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tj/tjm/n0438_nasir_ol_molk_mosque/',
+  '../../../content/worldgen/source/places/tj/tjm/nasir_ol_molk_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -850,7 +850,7 @@ export const buildNasirSkyline = (o) => build(o, 0),
   buildNasirCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const nasirStudy = {
-  id: 'N0438',
+  id: 'nasir_ol_molk_mosque',
   key: 'nasir_ol_molk_mosque',
   title: 'Nasir-ol-Molk Mosque',
   category: 'mosque',

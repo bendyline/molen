@@ -1,4 +1,4 @@
-/** 'N0742_FELICITY': Mapped gate, lead dome, four-column canopy and flanking arcades. */
+/** 'gate_of_felicity_topkapi_palace': Mapped gate, lead dome, four-column canopy and flanking arcades. */
 import earcut from 'earcut';
 import { beam } from './authored-structure-mesh.mjs';
 import { box } from './khmer-structure-geometry.mjs';

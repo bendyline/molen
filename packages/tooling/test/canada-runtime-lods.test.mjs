@@ -7,7 +7,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { oneCanadaSquareStudy } from '../../worldgen/scripts/one-canada-square-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/gc/gcp/n0222_one_canada_square'),
+const source = resolve('../../content/worldgen/source/places/gc/gcp/one_canada_square'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {

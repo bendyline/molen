@@ -1,0 +1,618 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.temple_of_hercules_victor",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:e6e14b42226e305a09271e6e061c59fc585745cf6eef5b7e12f1f4307f200e7e",
+  "sourceHash": "sha256:db356c324a6aba533ddf443839aed5b8558aa65f1374c7483a6c26f411b9ee5c",
+  "runtimeHash": "sha256:485fd42120d57fb3e2236138a7fafe49380bb8d725e0c7f7fd769cfb7c9da853",
+  "captureReportHash": "sha256:58c1efa9438e6aa101813237c9a5bcd1f3b2204649c303865636b5ca8ec069e1",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/east-entrance-and-nineteen-column-ring.png",
+      "shots/corinthian-capitals-and-timber-soffit.png",
+      "shots/missing-shaft-base-and-complete-roof.png"
+    ],
+    "notes": "Inspected current source, shared-material, medium-fi and retained-terrain site renders during the same authoring round. Nineteen individually mapped fluted Corinthian columns, isolated surviving twentieth base, low circular podium and four east access treads, round pale lower/brick upper cella, closed recessed arched door, shallow present tiled roof, timber underside/ring beams, small summit cap and selected shaft tie bands. Corrected panel side winding before captures and moved the protective bands outside the flutes after the first render exposed dotted intersections. No lost ancient architrave, entablature or original roof is invented."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/east-entrance-and-nineteen-column-ring.png",
+      "shots/shared/corinthian-capitals-and-timber-soffit.png",
+      "shots/shared/missing-shaft-base-and-complete-roof.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Five reused 256² graphs: raw limestone, long-format brick, ceramic tile, plain wood and standing-seam metal. Metric UVs and linear pale stone/grey-brown roof tints, zero embedded images and no unique atlas. Shared graphs load once, at most five model draws, separate GPU attribute streams, geometry disposal on eviction. Flat shared/context stages expose buried retaining foundations; native-grade evidence comes from the actual-site fixture.",
+    "captureReportHash": "sha256:774ef182249cc9c34d1060486d375183cf6f60563ae5521e453211ebdd9abe4c"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/east-entrance-and-nineteen-column-ring.png",
+      "medium-fi/corinthian-capitals-and-timber-soffit.png",
+      "medium-fi/missing-shaft-base-and-complete-roof.png",
+      "medium-fi/whole-round-temple-skyline.png",
+      "medium-fi/whole-round-temple-district.png",
+      "medium-fi/whole-round-temple-street.png",
+      "medium-fi/whole-round-temple-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected 24 current medium-fi views: noon/late, Economy/High, street/block/skyline, untextured silhouette, three model details, four explicit authored levels and transitions. Levels 956 / 3,852 / 13,460 / 19,764 triangles. Initial geometry totals 477,588 bytes. The round cella, column ring, east steps and present roof survive at skyline distance; fluting, broad leaf masses, mouldings, timber and protective bands resolve nearer. Physical laptop/phone and dense-city timing measurements remain pending.",
+    "captureReportHash": "sha256:d59a660ab3974148a3e14bd6f24b3952c92f34bdc712690cf05473816d602c40"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:f71bcbb70b104c521ab4f0d2956c1a2d8a0496dda1a67719a99ef52863b775bb",
+    "mapFrameHash": "sha256:c6a19f6652ac8a05effe0a404bd5f04f1d1fadcbf1151d419ada206b84845c41",
+    "notes": "Q576929/way251342364 fixes the circular temple. Eleven pinned standard PMTiles records supply the main footprint, podium, nineteen separate standing shaft polygons in one feature, isolated base, C-shaped cella, roof, roof cap and four east stair parts. The open east sector of the mapped cella and stair projection resolve the entrance facing east, independently of the circle bounding-box axis. Raw+X east/+Z south at runtime heading0; each mapped shaft keeps its individual center. Reused pinned temple_of_portunus standard Rome PMTiles/Mapzen extract. The lower datum clears the actual standard-grid triangles beneath each mapped entrance tread and podium, using retained footprint intersections. Foundations extend below the minimum local grade. Native ground and water stay unchanged with no cutout. Exact archaeological floor and modern fence/garden levels remain approximate. The original union had degenerate slivers, so the replacement mask is a clean 29-vertex convex envelope of only the eleven temple records, with a2cm margin. All 1,290 independent in-tile buildings, including neighboring Portunus, remain unchanged. All eleven authored native records are replaced completely. Native ground and original Tiber/water geometry stay unchanged. Failed loading restores all 1,301 original records; unloading releases model geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted as the medium-fi present-day exterior and approximate standard-map fit. The map fixes nineteen individual shaft centers, one base, C-shaped cella, east treads and approximate roof/height envelope. Flute/drum profiles, capital leaf/corner forms, repairs, tie-band inventory, timber members, roof tiles and door joinery are simplified picture-led visualization estimates. The model includes the present roof and a closed door, with no intact lost ancient entablature, exact archaeological reconstruction or navigable interior. Modern garden, fence and street furniture remain context."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/models/source.glb\",\"hash\":\"sha256:db356c324a6aba533ddf443839aed5b8558aa65f1374c7483a6c26f411b9ee5c\",\"bytes\":2375120,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sr/sr2/temple_of_hercules_victor/model.glb\",\"hash\":\"sha256:485fd42120d57fb3e2236138a7fafe49380bb8d725e0c7f7fd769cfb7c9da853\",\"bytes\":2374616,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/sr2/temple_of_hercules_victor/model.skyline.glb\",\"hash\":\"sha256:7ad31ecf03f042570476227c7684eb865f68d63f22bdd451ce43fffbaa927307\",\"bytes\":100016,\"errors\":0,\"warnings\":0,\"triangles\":956,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/sr2/temple_of_hercules_victor/model.district.glb\",\"hash\":\"sha256:83db2adb9df4dbee1631625d6039c854159e61aca17c3542b76e1722868a86bd\",\"bytes\":377572,\"errors\":0,\"warnings\":0,\"triangles\":3852,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/sr2/temple_of_hercules_victor/model.street.glb\",\"hash\":\"sha256:a7134a97d0732add1d415ee23a4d4baa070e5dffb6dbd2d9dbc5b2b594f272cb\",\"bytes\":1303784,\"errors\":0,\"warnings\":0,\"triangles\":13460,\"draws\":5}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/sr2/temple_of_hercules_victor/model.closeup.glb\",\"hash\":\"sha256:ce15b9722f9b1c30f0670ba01babb962d486a6a0496904a180c683f0824080d5\",\"bytes\":1942968,\"errors\":0,\"warnings\":0,\"triangles\":19764,\"draws\":5}"
+      },
+      {
+        "check": "seated-treads-nineteen-shafts-base-only-closed-door-and-roof",
+        "passed": true,
+        "notes": "2,982 actual mesh probes across source/runtime/four levels confirm sealed mapped treads above native grade, buried foundations, nineteen shaft crowns, base-only twentieth position, closed arched door and complete present roof."
+      },
+      {
+        "check": "shared-materials-GPU-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Five shared graphs, zero embedded images, separate GPU streams, triangle/draw/download caps pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:db356c324a6aba533ddf443839aed5b8558aa65f1374c7483a6c26f411b9ee5c"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:485fd42120d57fb3e2236138a7fafe49380bb8d725e0c7f7fd769cfb7c9da853"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:7ad31ecf03f042570476227c7684eb865f68d63f22bdd451ce43fffbaa927307"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:83db2adb9df4dbee1631625d6039c854159e61aca17c3542b76e1722868a86bd"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:a7134a97d0732add1d415ee23a4d4baa070e5dffb6dbd2d9dbc5b2b594f272cb"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:ce15b9722f9b1c30f0670ba01babb962d486a6a0496904a180c683f0824080d5"
+      }
+    ],
+    "reports": [
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1301,
+          "independentBuildings": 1290,
+          "remainingBuildings": 1290,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_hercules_victor"
+          ],
+          "rawTerrainRange": {
+            "min": -11.201081609026485,
+            "max": 32.38321839097352
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 201763.08787643566,
+          "remainingWaterArea": 201763.08787643566,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:c8cb56f98ea3a12dea88541944616348a2a8eb7158b620a1f6a47079805182d4",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 321061
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                30.254177739702467,
+                18.97596019439522,
+                24.719680108181805
+              ],
+              "lookAt": [
+                1.2541777397024658,
+                4.775960194395219,
+                -1.2803198918181937
+              ],
+              "fov": 44
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-east-entrance-and-nineteen-column-ring.png",
+            "hash": "sha256:af0ee5239eb47b0a8467901adce66ca1d315d773690ee50c771b014e9f2bc6b5",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 321061
+            },
+            "camera": {
+              "name": "east-entrance-and-nineteen-column-ring",
+              "position": [
+                24.254177739702467,
+                4.975960194395219,
+                3.719680108181806
+              ],
+              "lookAt": [
+                1.2541777397024658,
+                4.675960194395219,
+                -1.2803198918181937
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-corinthian-capitals-and-timber-soffit.png",
+            "hash": "sha256:663d3728e1cfe93774c559aa8a66eed24d9eb4c7c7fe2606f76cbab1af61c99d",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 321061
+            },
+            "camera": {
+              "name": "corinthian-capitals-and-timber-soffit",
+              "position": [
+                13.254177739702467,
+                7.575960194395218,
+                0.7196801081818063
+              ],
+              "lookAt": [
+                7.754177739702466,
+                7.625960194395219,
+                -1.2803198918181937
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-missing-shaft-base-and-complete-roof.png",
+            "hash": "sha256:0a1dd4e82fbbb8fc93e4e8e34eb3e47f96f280f3c7362fb1fb13e22f86003f55",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 321061
+            },
+            "camera": {
+              "name": "missing-shaft-base-and-complete-roof",
+              "position": [
+                -9.745822260297533,
+                14.975960194395219,
+                -21.280319891818195
+              ],
+              "lookAt": [
+                1.2541777397024658,
+                4.275960194395219,
+                -1.2803198918181937
+              ],
+              "fov": 47
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1301,
+          "independentBuildings": 1290,
+          "remainingBuildings": 1290,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_hercules_victor"
+          ],
+          "rawTerrainRange": {
+            "min": -11.201081609026485,
+            "max": 32.38321839097352
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 201763.08787643566,
+          "remainingWaterArea": 201763.08787643566,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:633a635d355b14e149ccd2c10e62cc563447afcf35ef61ebac18686a90234759",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 314757
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                30.254177739702467,
+                18.97596019439522,
+                24.719680108181805
+              ],
+              "lookAt": [
+                1.2541777397024658,
+                4.775960194395219,
+                -1.2803198918181937
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1301,
+          "independentBuildings": 1290,
+          "remainingBuildings": 1290,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick_longformat": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_hercules_victor"
+          ],
+          "rawTerrainRange": {
+            "min": -11.201081609026485,
+            "max": 32.38321839097352
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 201763.08787643566,
+          "remainingWaterArea": 201763.08787643566,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:c75d8df4a67e5eef32ec2cf1c6cca12bf758bc5555c8c98d9b62b21956503112",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 305149
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                30.254177739702467,
+                18.97596019439522,
+                24.719680108181805
+              ],
+              "lookAt": [
+                1.2541777397024658,
+                4.775960194395219,
+                -1.2803198918181937
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 1301,
+          "independentBuildings": 1290,
+          "remainingBuildings": 1290,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.temple_of_hercules_victor"
+          ],
+          "rawTerrainRange": {
+            "min": -11.201081609026485,
+            "max": 32.38321839097352
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 201763.08787643566,
+          "remainingWaterArea": 201763.08787643566,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:02bf4cbae0ca5f02aacc0bf98e67eb4f996e5edc13a1f5c1d6f174414749fe91",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 302253
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                30.254177739702467,
+                18.97596019439522,
+                24.719680108181805
+              ],
+              "lookAt": [
+                1.2541777397024658,
+                4.775960194395219,
+                -1.2803198918181937
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 1301,
+          "independentBuildings": 1290,
+          "remainingBuildings": 1301,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184623431196,
+              "area": 268.2564687586307
+            },
+            {
+              "id": 35184623431213,
+              "area": 0.2470358270329598
+            },
+            {
+              "id": 35184623431226,
+              "area": 177.3966001446155
+            },
+            {
+              "id": 35184623431227,
+              "area": 259.43727851947926
+            },
+            {
+              "id": 35184623431228,
+              "area": 0.24703606473082118
+            },
+            {
+              "id": 35184623431233,
+              "area": 13.043504286757468
+            },
+            {
+              "id": 52776561506287,
+              "area": 4.693685679343673
+            },
+            {
+              "id": 52776561506288,
+              "area": 4.1749099067828865
+            },
+            {
+              "id": 52776561506289,
+              "area": 6.175901783910831
+            },
+            {
+              "id": 52776561506290,
+              "area": 5.632422805405213
+            },
+            {
+              "id": 52776561506291,
+              "area": 5.731237481168705
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.temple_of_hercules_victor"
+          ],
+          "rawTerrainRange": {
+            "min": -11.201081609026485,
+            "max": 32.38321839097352
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 201763.08787643566,
+          "remainingWaterArea": 201763.08787643566,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:07ea844940a256d0a3633343ce57227cf7d1dbe9e6aade220b4387a6b2582bd8",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 9,
+              "triangles": 301375
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                30.254177739702467,
+                18.97596019439522,
+                24.719680108181805
+              ],
+              "lookAt": [
+                1.2541777397024658,
+                4.775960194395219,
+                -1.2803198918181937
+              ],
+              "fov": 44
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Temple of Hercules Victor present-day medium-fi exterior: nineteen individually mapped fluted Corinthian shafts and the isolated surviving twentieth base, low circular stepped podium and east entrance steps, round brick/marble cella with a closed recessed arched door, broad shallow tiled conical roof with visible timber underside and small summit cap. Include simplified capital leaf/corner silhouettes and selected protective shaft bands. No lost ancient entablature or original roof is reconstructed. Neighboring Portunus, churches, modern streets and gardens stay independent.",
+    "Q576929/way251342364 fixes the circular temple. Eleven pinned standard PMTiles records supply the main footprint, podium, nineteen separate standing shaft polygons in one feature, isolated base, C-shaped cella, roof, roof cap and four east stair parts. The open east sector of the mapped cella and stair projection resolve the entrance facing east, independently of the circle bounding-box axis. Raw+X east/+Z south at runtime heading0; each mapped shaft keeps its individual center.",
+    "Standard-map parts give podium0.8m, nineteen shaft tops8m, cella8.5m, roof8–10m and cap10.5m above the lower datum. The model follows this approximate envelope: fluted shaft1.0–7.0m, Corinthian crown7.0–8.0m, timber support8.0–8.25m and shallow roof8.25–10.15m. Ordinary frontal and capital pictures guide the present roof, leaf masses, flute/drum/band treatment, brick upper cella and pale lower panels. Exact carvings, repairs, tie bands, door joinery and surveyed heights are not claimed.",
+    "Reused pinned temple_of_portunus standard Rome PMTiles/Mapzen extract. The lower datum clears the actual standard-grid triangles beneath each mapped entrance tread and podium, using retained footprint intersections. Foundations extend below the minimum local grade. Native ground and water stay unchanged with no cutout. Exact archaeological floor and modern fence/garden levels remain approximate.",
+    "Mapped column centers, cella and entrance treads control placement. Capitals, flute profiles, repairs, tie bands, roof construction and exact levels are simplified. The twentieth shaft is absent and only its surviving base remains; no lost ancient entablature or navigable interior is claimed.",
+    "Accepted as the medium-fi present-day exterior and approximate standard-map fit. The map fixes nineteen individual shaft centers, one base, C-shaped cella, east treads and approximate roof/height envelope. Flute/drum profiles, capital leaf/corner forms, repairs, tie-band inventory, timber members, roof tiles and door joinery are simplified picture-led visualization estimates. The model includes the present roof and a closed door, with no intact lost ancient entablature, exact archaeological reconstruction or navigable interior. Modern garden, fence and street furniture remain context."
+  ]
+}

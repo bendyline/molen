@@ -1,5 +1,7 @@
 // Preloaded only in asset-generator processes. Record actual file/directory dependencies,
 // including dynamically imported recipes; child Node processes inherit the same trace directory.
+
+import { randomUUID } from 'node:crypto';
 import fs from 'node:fs';
 import promises from 'node:fs/promises';
 import { registerHooks, syncBuiltinESMExports } from 'node:module';
@@ -140,7 +142,8 @@ if (root && directory) {
   process.on('exit', (code) => {
     if (code === 0)
       write(
-        join(directory, `${process.pid}.json`),
+        // Windows can reuse a PID before a large batch's trace directory is collected.
+        join(directory, `${process.pid}-${randomUUID()}.json`),
         JSON.stringify({ dependencies: [...dependencies.values()], writes: [...writes] }),
       );
   });

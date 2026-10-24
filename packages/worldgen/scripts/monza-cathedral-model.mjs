@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u0/u0n/n0397_monza_cathedral/',
+  '../../../content/worldgen/source/places/u0/u0n/monza_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1080,7 +1080,7 @@ export const buildMonzaCathedralSkyline = (o) => build(o, 0),
   buildMonzaCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const monzaCathedralStudy = {
-  id: 'N0397',
+  id: 'monza_cathedral',
   key: 'monza_cathedral',
   title: 'Monza Cathedral',
   category: 'cathedral',

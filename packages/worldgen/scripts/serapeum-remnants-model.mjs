@@ -1,6 +1,6 @@
-/** N0523: surviving column and sphinx group at the Serapeum of Alexandria. */
+/** serapeum_of_alexandria: surviving column and sphinx group at the Serapeum of Alexandria. */
 import earcut from 'earcut';
-export const serapeumCandidateId = 'N0523';
+export const serapeumCandidateId = 'serapeum_of_alexandria';
 function prism(f, role, p, lo, hi) {
   const rings = [p.outline, ...(p.holes ?? [])],
     flat = rings.flat(),

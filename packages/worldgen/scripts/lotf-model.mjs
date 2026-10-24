@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tj/tju/n0458_sheikh_lotfollah_mosque/',
+  '../../../content/worldgen/source/places/tj/tju/sheikh_lotfollah_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -798,7 +798,7 @@ export const buildLotfSkyline = (o) => build(o, 0),
   buildLotfCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const lotfStudy = {
-  id: 'N0458',
+  id: 'sheikh_lotfollah_mosque',
   key: 'sheikh_lotfollah_mosque',
   title: 'Sheikh Lotfollah Mosque',
   category: 'mosque',

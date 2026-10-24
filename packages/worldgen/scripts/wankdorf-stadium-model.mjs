@@ -1,4 +1,4 @@
-/** 'N0730': Wankdorf's rectangular solar canopy, screened base and two-tier bowl. */
+/** 'stadion_wankdorf': Wankdorf's rectangular solar canopy, screened base and two-tier bowl. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

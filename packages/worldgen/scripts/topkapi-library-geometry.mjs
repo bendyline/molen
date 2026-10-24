@@ -1,4 +1,4 @@
-/** 'N0742_LIBRARY': Cross-plan marble library, pointed portico, lead domes and paired stairs. */
+/** 'library_of_ahmed_iii_topkapi_palace': Cross-plan marble library, pointed portico, lead domes and paired stairs. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildTopkapiLibrary(face, detail, r) {

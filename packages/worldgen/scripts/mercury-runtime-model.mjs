@@ -14,7 +14,7 @@ import {
 } from './signature-tower-expansion-models.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0169_mercury_city_tower',
+const key = 'mercury_city_tower',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'))),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json')));
 const settings = {
@@ -198,7 +198,7 @@ function validPolygon(poly) {
 }
 function buildMercury(out, m, level) {
   const c = settings[level];
-  const key = 'n0169_mercury_city_tower',
+  const key = 'mercury_city_tower',
     gold = [0.66, 0.29, 0.085],
     dark = [0.15, 0.12, 0.095],
     white = [0.84, 0.86, 0.85];

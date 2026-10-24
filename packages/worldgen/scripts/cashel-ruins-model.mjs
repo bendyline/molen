@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/gc/gc6/n0313_rock_of_cashel/',
+  '../../../content/worldgen/source/places/gc/gc6/rock_of_cashel/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -656,7 +656,7 @@ export const buildCashelDistrict = (out) => build(out, 1);
 export const buildCashelStreet = (out) => build(out, 2);
 export const buildCashelCloseup = (out) => build(out, 3);
 export const cashelStudy = {
-  id: 'N0313',
+  id: 'rock_of_cashel',
   key: 'rock_of_cashel',
   title: 'Rock of Cashel',
   category: 'castle',

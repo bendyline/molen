@@ -6,7 +6,7 @@ import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const dir = new URL(
-  '../../../content/worldgen/source/places/u2/u2s/n0292_devin_castle/',
+  '../../../content/worldgen/source/places/u2/u2s/devin_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, dir)));

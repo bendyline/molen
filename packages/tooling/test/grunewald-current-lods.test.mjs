@@ -9,7 +9,7 @@ import { MATERIAL_REPEAT_METERS } from '../../worldgen/scripts/standard-material
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u3/u33/n0616_grunewald_tower'),
+const source = resolve('../../content/worldgen/source/places/u3/u33/grunewald_tower'),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
@@ -89,7 +89,7 @@ it('reproduces the untouched historical draft and binds the signed northeast ent
     s = await read(source + '/spec.json'),
     scope = await read(source + '/review-scope.json'),
     frame = await read(source + '/map-frame.json'),
-    live = (await read('../../content/earth/structures/placements.json')).entries.find(
+    live = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(m.triangleCount).toBe(296070);

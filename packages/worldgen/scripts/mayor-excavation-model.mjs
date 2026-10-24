@@ -1,6 +1,6 @@
-/** N0512: the exposed, low archaeological layers and modern protective structures. */
+/** templo_mayor: the exposed, low archaeological layers and modern protective structures. */
 import earcut from 'earcut';
-export const mayorCandidateId = 'N0512';
+export const mayorCandidateId = 'templo_mayor';
 function box(f, role, x, y, z, w, h, d) {
   const a = [
       [-w / 2, -d / 2],

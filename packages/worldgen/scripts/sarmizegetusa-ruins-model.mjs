@@ -1,6 +1,6 @@
-/** N0509: source-controlled surviving sanctuary and fortification forms. */
+/** sarmizegetusa_regia: source-controlled surviving sanctuary and fortification forms. */
 import earcut from 'earcut';
-export const sarmizegetusaCandidateId = 'N0509';
+export const sarmizegetusaCandidateId = 'sarmizegetusa_regia';
 
 function box(face, role, x, y, z, w, h, d) {
   const a = [

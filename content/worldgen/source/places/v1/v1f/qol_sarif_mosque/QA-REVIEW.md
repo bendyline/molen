@@ -1,0 +1,54 @@
+# qol_sarif_mosque — Qol Şärif Mosque
+
+Reviewed2026-10-17 against current bytes. Accepted for the stated medium-fi exterior and approximate horizontal fit. Tagged component envelopes retained;untagged profiles/entry facing,current finish,unseen roofs and exact terrain joins remain approximate or unverified.
+
+![Molen summary preview](preview.png)
+
+## Exterior and shared surfaces
+
+Inspected all11 current portable views,including the1024×640 summary. Four tall faceted minarets with pointed gallery heads/blue lanterns and spires/gold crescents,two shorter side turrets,blue faceted dome with eight white pointed collar frames,folded blue roof and pale gables,paired tall recessed lancets,rounded two-storey podium/closed windows and projecting entry with closed timber back. Corrected the initial protruding brown gabled entry roof to the flat blue roof/parapet shown in the inspected2017 picture,raised its two gold pinnacles and strengthened the white collar frames. Profiles,subdivisions,unseen roofs/current finish and exact terrain contacts remain approximate or unverified.
+
+Inspected all11 current shared/geographic-flat views. Five existing256² limestone,standing-seam metal,mosaic,plain wood and bronze graphs;eight merged groups. Pale walls/trim,turquoise roofs/dome and sparse gold use metric UVs/linear tints. Retained whole roof colour#7C5A51 is confined to the low podium;upper blue follows pictures. Glass stays local blue-grey. No embedded images,baked light/weathering or copied inscriptions. Five graphs read once;unload zero live model geometries. The geographic fixture is flat;portable/medium-fi use standard DEM. Detached pavilion,approaches and Kremlin ranges remain host context.
+
+## Browser levels
+
+| Level | Triangles | Bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 941 | 97,408 | 1 |
+| district | 3,573 | 343,004 | 8 |
+| street | 9,535 | 931,720 | 8 |
+| closeup | 12,267 | 1,216,664 | 8 |
+
+Initial skyline plus district: **440,412 bytes**. Master **1,666,844 bytes /13,851 triangles**;runtime **1,666,140 bytes**. Five shared256² graphs,eight material groups,zero embedded images;shared textures additional.
+
+Inspected all27 current medium-fi frames:Economy/High,noon/late,three distances,silhouette,six details,four matched levels and four transitions. Skyline941 retains all six tower locations/four tall spires,central dome,white collar teeth,folded blue roof,gables and entry;uses solid gallery heads,coarse caps,finial rods/closed glazing proxies and omits podium windows. District3573 opens coarse pointed heads to closed wood cores,adds broad collar frames/main lancets and flat podium panes. Street9535/close12267 use recessed podium windows,selected mullions/flutes,pointed gallery bays and crescents. Small inward gallery faces join the body/roof;exposed sides are checked. One/eight draws,initial440412bytes plus shared textures. Separate POSITION/NORMAL,CPU/GPU reservations equal. Synthetic neighbours and physical-device performance remain unverified.
+
+## Placement and scope
+
+Retained exact way/230132591 /Q121198 matches current PMTiles whole35184602221423 (2*2^44+230132591). Anchor[49.1051597,55.79834865] and heading−0.715370228567rad unchanged,no horizontal rescale. Earlier30-vertex closed outer retained separately from current29-point whole. Nine exact current controls/111 raw points locate8m whole,31m core,31–39m dome,four58m minarets and two35m turrets. Main architectural corners derive from current core vertices0/1/6/7;its internal basis remains separate from the whole-map axes. Entry on the+v main face is picture-based facing,approximately south-southwest,not an extra mapped doorway. Detached pavilion,curved approaches and neighbouring Kremlin ranges remain host context. Retained height/width/length fact arrays are empty. Current map components specify whole8m,main core31m,central dome min_height31/top39m,two shorter turrets35m and four full minarets58m. Keep8m as the low podium envelope,not a cap on the taller mapped components. Working main facade shoulders22.5m/gable peaks31m,white petal collar31–34m,blue dome to38.4m/crescent39m;large shafts to44m/gallery44–49.6m/blue lantern and spire to57.3m/crescent58m,small turret gallery29.5–32m/blue cap/crescent35m. These untagged subdivisions,openings,fluting,crescents and portico are picture estimates within about2m/facing about4°. The whole roof colour#7C5A51 is retained as a low-podium working tint;blue upper roofs/dome/spires follow inspected pictures. Exact material/finish/roof details,interiors and engineering unverified. Standard viewer DEM datum82.214506m;perimeter-2.74..2.48m relative to anchor. Working floor2.725m is maximum bilinear whole-footprint sample at1m spacing plus0.25m,not surveyed paving. Raw DEM retained without cutout/flattening;adaptive footings crossY=0 below terrain. Exact altitude,podium/approach thresholds and terrain joins,walking and exterior ramp levels remain unverified. All114 actual viewer-footprint checks cover nine selected controls and preserve ten separate hosts across source,runtime and four levels. Nine raw polygons/properties independently reunited from PMTiles;111 current vertices and retained earlier closed30-vertex plan remain separate.1440 bilinear DEM samples checked. Approximate horizontal fit accepted. No per-component survey or exact doorway/terrain approval.
+
+Individual medium-fi Qol Şärif Mosque:four58m white faceted minarets/pointed gallery heads/blue lanterns and spires,two35m side turrets,blue central dome/white pointed petal collar,folded blue upper roof and pale pointed gables with tall paired lancet glazing,8m rounded two-storey podium/closed lower windows and projecting upper entry portico with selected gold pinnacles. Five existing shared256² graphs,eight merged groups,four authored budgeted levels. Nine current map components retain exact plan/height envelopes;profiles,subdivisions,doorway facing and portico are picture estimates. Fine inscriptions/carvings,unseen roofs/interiors,current finish and precise podium/terrain joins unverified or omitted. Retained height/width/length fact arrays are empty. Current map components specify whole8m,main core31m,central dome min_height31/top39m,two shorter turrets35m and four full minarets58m. Keep8m as the low podium envelope,not a cap on the taller mapped components. Working main facade shoulders22.5m/gable peaks31m,white petal collar31–34m,blue dome to38.4m/crescent39m;large shafts to44m/gallery44–49.6m/blue lantern and spire to57.3m/crescent58m,small turret gallery29.5–32m/blue cap/crescent35m. These untagged subdivisions,openings,fluting,crescents and portico are picture estimates within about2m/facing about4°. The whole roof colour#7C5A51 is retained as a low-podium working tint;blue upper roofs/dome/spires follow inspected pictures. Exact material/finish/roof details,interiors and engineering unverified. Standard viewer DEM datum82.214506m;perimeter-2.74..2.48m relative to anchor. Working floor2.725m is maximum bilinear whole-footprint sample at1m spacing plus0.25m,not surveyed paving. Raw DEM retained without cutout/flattening;adaptive footings crossY=0 below terrain. Exact altitude,podium/approach thresholds and terrain joins,walking and exterior ramp levels remain unverified. The map supplies8/31/39/35/58m envelopes. Untagged shoulders22.5m,main gallery45.1–49.6m,small gallery29.2–31.6m,collar31.4–34.5m,entry roof19.1m and gold pinnacles22.7m are working picture estimates,not measured facts. Facing is estimated within4° and vertical subdivisions within about2m. Dome/roof/crescent/leaf shapes,fluting and trim are abstractions. Gallery heads close on dark wood cores;glazing/entry close before interiors. Raw DEM remains without cutout or flattening. Exact altitude,podium/ramp/threshold/terrain joins,walking,unseen rooms/stairs,current finish,engineering and physical-device timing unverified. Fine carvings,inscriptions,motifs,railings and street fixtures omitted. No bespoke surveys or redistributed pictures.
+
+## Verification
+
+**49 current views inspected;674 geometry probes;114 footprint checks.** Six Khronos validations:zero errors/warnings/images. Targeted byte reproduction,scene validation,30-tick simulation and current input/recipe/model/LOD/capture/material bindings pass. Five graphs read once;unload zero live model geometries. Current package builds reused;next routine full source checkpoint great_mosque_of_aleppo–great_mosque_of_xi_an.
+
+Source: sha256:8f94d6c1078b5e02685a16258777e1d2163a1fcc9c1e3936ac8a4f083c82ba90
+
+Runtime: sha256:dc1a9b58dccd57c55e816a7899505d1ae3c0ee6a18acb91d1b056177f9f97441
+
+Input: sha256:43b4691f2a977267083557c53131de0542ba319d6ce605b5b6b7be516b58afa8
+
+Simulation: sha256:c2349433756555629c02a8d5a5a4cfb7b713611248c25fdeda06288acbe7ce6d
+
+Commands:targeted generate/import/LOD/register --ids=qol_sarif_mosque;generate --check;portable reflections/antialias/fitted shadows;shared reflections/adaptive clipping/bounded placement;medium-fi reflections;scene validate/sim30. Bulk captures ignored.
+
+## Inspected pictures
+
+[Yulesha — 2014-09-23](https://commons.wikimedia.org/wiki/File:Kul-Sharfif_Mosque_Kazan_overview.jpg). CC-BY-SA-3.0. Four tall slender white minarets/blue spires,two shorter white turrets with blue caps,central blue dome with white pointed petal collar,tall paired lancet glazing and folded blue roof. Two-storey rounded podium has smaller dark rectangular windows. Detached blue pavilion,curved approach and Kremlin ranges are neighbouring context.
+
+[amanderson2 — 2014-06-17](https://commons.wikimedia.org/wiki/File:Front_view_of_Kul_Sharif_Mosque_Kazan_Tartarstan_Russia_(14422822426).jpg). CC-BY-2.0. Low-angle daytime view shows paired tall pointed glazed fields framed in pale stone,white pointed gables,blue roof folds,petal collar and blue central dome. Tall minarets have faceted/fluted shafts,projecting gallery rings and narrow blue conical spires/finials. Lower rounded bays have two rows of small dark windows.
+
+[Rafael Mukhametdinov — 2014-08-10](https://commons.wikimedia.org/wiki/File:Minaret_of_Qol_Sharif_mosque.jpg). CC-BY-SA-4.0. Night detail clarifies upper minaret heads:pointed white gallery apertures and diamond-like panels under a broad flared blue eave,short blue lantern collar,faceted tapered spire and gold finial/crescent. Warm dark inner surfaces are visible through the head openings. Moon and illumination are not baked into materials.
+
+[Alexxx1979 — 2017-08-11](https://commons.wikimedia.org/wiki/File:Kazan_Kremlin._Qolşärif_Mosque_P8111900_2900.jpg). CC-BY-SA-4.0. Opposite daylight view shows the projecting upper entry portico with pointed arch and paired gold pinnacles,large lancet glazing,white/blue folded upper profile,two shorter turrets and four tall minarets. Forecourt ramps/railings,people,lighting and exact podium approaches are separate context or uncertain.

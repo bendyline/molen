@@ -1,0 +1,1259 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.ortakoy_mosque",
+  "sourceHash": "sha256:24e91fa8636c9db8c42e3e8a9f0d4784fa61494aa67220641702d861ebf283cc",
+  "runtimeHash": "sha256:851baed331b830c2785755bdd3373d8de659fdc77f237d93905b93046c08a502",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 10478,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:9c96ffd93b901ec9c3d449da03fb10cf3c066065ce67fdf8191f47d210845e6d",
+      "bytes": 81756,
+      "gzipBytes": 12490,
+      "triangles": 787,
+      "cpuBytes": 80324,
+      "gpuBytes": 80324,
+      "errorMeters": 0.65,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:ded17ee970765c9b0bb093299646560de930cda17303346f3e41a43d754cd12b",
+      "bytes": 238784,
+      "gzipBytes": 53544,
+      "triangles": 2597,
+      "cpuBytes": 230216,
+      "gpuBytes": 230216,
+      "errorMeters": 0.28,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:ea2dadedb75c308b81dcdf131e8b20aa5349d0444e4e0852c663758577e61f68",
+      "bytes": 1197148,
+      "gzipBytes": 275667,
+      "triangles": 13054,
+      "cpuBytes": 1188496,
+      "gpuBytes": 1188496,
+      "errorMeters": 0.1,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:afa808d166611485d7e3742fb80e04f48cfeee01d333fde252ef3d7a55cb2d1e",
+      "bytes": 1671000,
+      "gzipBytes": 442045,
+      "triangles": 17908,
+      "cpuBytes": 1662328,
+      "gpuBytes": 1662328,
+      "errorMeters": 0.05,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:4db17fede83d0521b2bc64eaf95e3c385c84018534c44a72e8c7ca5b60f5f2e1"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:f2bec7ec005d9eeeec119f20338bd8bf22701389b2913aa9e9d432a178fcdef6"
+    }
+  },
+  "fixtureEntities": [
+    {
+      "id": "review-bosphorus-water",
+      "components": {
+        "transform": {
+          "pos": [
+            25,
+            -0.4345512807612056,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            300,
+            0.12,
+            300
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#507c8f",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:89d6ab77020fabe8ef58c0b8fd89926b7be65234a6257a1efd4bad1caeac793b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 49200,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          48.4272,
+          47.5591,
+          83.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:02c464f9635fe110248240e822c6573dc82265b4085b4b32a20e05fbb661c9fd",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49200,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          48.4272,
+          47.5591,
+          83.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:693461096e48f251a431a9a64617f33dff28720e17d4a0c51f5c1c288a8969f7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 49200,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          48.4272,
+          47.5591,
+          83.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:629043e6168c5c53a1b5808a4f599658cdcf85ce7a163b15b8f62a3ad7399fd4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49200,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          48.4272,
+          47.5591,
+          83.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:d6d3af592a7e113afda9820b89425399f8f034ccbdce6973803aeada409ea20c",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 33889,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.4272,
+          83.5591,
+          168.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:dbfe00fc32770e86868d7afb26b75115054dee300fc537776849c593099edee1",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 33889,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.4272,
+          83.5591,
+          168.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:dd7abe2d1f227f00d46290b50ea5b25e8b39b76f08c4c25551c2c027830e2adb",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 33889,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.4272,
+          83.5591,
+          168.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:abbef6f97c9f45a883f1a4e6ecf995538b1bf4a8ecd50b5ffbf31b3f1c0f62ec",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 33889,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.4272,
+          83.5591,
+          168.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:f9a906762e9ced8855f213005f151a9d5890f54fc3bcd4eddb225340d0c4d5fe",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 32079,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.4272,
+          121.5591,
+          336.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:b4123a166f381c8dc8229bd46ab6d17e7429ef08f7c4bfd00f58439edb54b77b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 32079,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.4272,
+          121.5591,
+          336.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:34c5ce7df33a605fd30ee0f440b67b66cb1beb241a3986be1d343279b48697cd",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 32079,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.4272,
+          121.5591,
+          336.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:000d3d23e14337af1cdab68841a946ba6b928d51bcb56c6e6dfc9b9f97d8cb63",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 32079,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.4272,
+          121.5591,
+          336.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:ce418b5e7d42ff9230715d0579a5c70f0468feaaba2b6c9a6ac3fcf757428fe7",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 4,
+        "triangles": 21601,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          194.4272,
+          121.5591,
+          336.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/waterfront-three-bay-facade.png",
+      "hash": "sha256:52b6edabdc39eae373a55550b2e4ad5ee24311a6d11ceaa2178627fccd4dd8f0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49200,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          61,
+          21,
+          24
+        ],
+        "lookAt": [
+          19,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/pink-entry-courtyard.png",
+      "hash": "sha256:d5d4241250f80aced5b4f6ad843f7be208dba91b0bd62d9e862c4099c3324e8e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49200,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -35,
+          8,
+          0
+        ],
+        "lookAt": [
+          -10,
+          4,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/curved-pediment-and-dome.png",
+      "hash": "sha256:fca3731f8cc77017ff4b6085fe8755b90afdeb7d05036d5c1d075f54ab14a175",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49200,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          42,
+          30,
+          40
+        ],
+        "lookAt": [
+          10,
+          20,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/corner-medallions-and-upper-windows.png",
+      "hash": "sha256:711b499f8e1975397fe2b15f2c05342c8ccb088dc88b57ccb92aa6f225145ef1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49200,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          39,
+          18,
+          29
+        ],
+        "lookAt": [
+          19,
+          16,
+          9
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/single-balcony-twin-minarets.png",
+      "hash": "sha256:753a2f763846ef7093b7531cafa2db12c843f351aa52fedab7892bce837863f3",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49198,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -24,
+          30,
+          44
+        ],
+        "lookAt": [
+          -3,
+          27,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-up-footprint-and-rear-wings.png",
+      "hash": "sha256:d6cb7b160da2125ed789c9affd1528d83ea38c86ec62edff0a52ca50e9af2d50",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49200,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          175,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          3,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-ortakoy-skyline.png",
+      "hash": "sha256:290e381145a6a5fb70c0be711015e6295e919c74ca9e5b863f067ca3e8068b33",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 32079,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          82,
+          53,
+          85
+        ],
+        "lookAt": [
+          0,
+          17,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-ortakoy-district.png",
+      "hash": "sha256:508a2e671ba6c94cc9798b79907711f76642b57f9d94fb860b48b0fa3f466c97",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 33889,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          82,
+          53,
+          85
+        ],
+        "lookAt": [
+          0,
+          17,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-ortakoy-street.png",
+      "hash": "sha256:bed7069f5b3c37dce4038c7ddeb9924389b9de4e702d7902b7552ebfde79da91",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 44346,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          82,
+          53,
+          85
+        ],
+        "lookAt": [
+          0,
+          17,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-ortakoy-closeup.png",
+      "hash": "sha256:69ad0afd1b05bf9bece3bf38fdfbd7c4733c703cada9236b59c486c1a30147a8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49200,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          82,
+          53,
+          85
+        ],
+        "lookAt": [
+          0,
+          17,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:a351ade140aeed2aa653ba88e00c5194ffa7c83208cc4ec2e24cf5ed05f8fa36",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 32079,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.4272,
+          83.5591,
+          168.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:dbfe00fc32770e86868d7afb26b75115054dee300fc537776849c593099edee1",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 33889,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.4272,
+          83.5591,
+          168.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:04c5c1d225476de82798625e2169425b3e86b36ff510e93da9e2c262660f56ae",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 44346,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.4272,
+          83.5591,
+          168.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:2b92be3e99fbb336cc50003f648aaa8703e1515a60486c04104b8e4c539e3f28",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49200,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sx/sxk/ortakoy_mosque/terrain-review.height.png"
+        },
+        "position": [
+          97.4272,
+          83.5591,
+          168.0254
+        ],
+        "lookAt": [
+          0.4272,
+          32.5591,
+          0.0254
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

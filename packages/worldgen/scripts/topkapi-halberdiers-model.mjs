@@ -1,11 +1,11 @@
-/** 'N0742_HALBERDIERS': Notched service range, narrow timber court and pierced chimney cowls. */
+/** 'halberdiers_quarters_topkapi_palace': Notched service range, narrow timber court and pierced chimney cowls. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiHalberdiers } from './topkapi-halberdiers-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_halberdiers/',
+    '../../../content/worldgen/source/places/sx/sxk/halberdiers_quarters_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -102,7 +102,7 @@ export const buildTopkapiHalberdiersSkyline = (o) => build(o, 0),
   buildTopkapiHalberdiersStreet = (o) => build(o, 2),
   buildTopkapiHalberdiersCloseup = (o) => build(o, 3);
 export const topkapiHalberdiersStudy = {
-  id: 'N0742_HALBERDIERS',
+  id: 'halberdiers_quarters_topkapi_palace',
   key: 'halberdiers',
   title: 'Halberdiers Quarters, Topkapi Palace',
   category: 'castle',

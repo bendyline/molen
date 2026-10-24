@@ -1,4 +1,4 @@
-/** 'N0594': reusable Svanetian defensive tower; never a unique-site reconstruction. */
+/** 'svanetian_tower': reusable Svanetian defensive tower; never a unique-site reconstruction. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { box } from './khmer-structure-geometry.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/map-structures/n0594_svanetian_tower/',
+  '../../../content/worldgen/source/map-structures/svanetian_tower/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source), 'utf8'));
@@ -252,7 +252,7 @@ export const buildSvanetianSkyline = (o) => build(o, 0),
   buildSvanetianStreet = (o) => build(o, 2),
   buildSvanetianCloseup = (o) => build(o, 3);
 export const svanetianStudy = {
-  id: 'N0594',
+  id: 'svanetian_tower',
   key: 'svanetian_tower',
   title: 'Svanetian tower',
   category: 'tower',

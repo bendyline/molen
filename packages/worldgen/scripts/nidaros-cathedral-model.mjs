@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u5/u5r/n0336_nidaros_cathedral/',
+  '../../../content/worldgen/source/places/u5/u5r/nidaros_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -919,7 +919,7 @@ export const buildNidarosDistrict = (o) => build(o, 1);
 export const buildNidarosStreet = (o) => build(o, 2);
 export const buildNidarosCloseup = (o) => build(o, 3);
 export const nidarosStudy = {
-  id: 'N0336',
+  id: 'nidaros_cathedral',
   key: 'nidaros_cathedral',
   title: 'Nidaros Cathedral',
   category: 'cathedral',

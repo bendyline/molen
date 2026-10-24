@@ -1,4 +1,4 @@
-/** 'N0592': Cesta's polygonal keep, arched corbels and mapped stone enclosure. */
+/** 'de_la_fratta': Cesta's polygonal keep, arched corbels and mapped stone enclosure. */
 import {
   openingBuilder,
   openingReveals,

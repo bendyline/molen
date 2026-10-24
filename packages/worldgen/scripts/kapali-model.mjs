@@ -1,11 +1,11 @@
-/** N0539: specific Kapaleeshwarar gateways, shrine roofs and open mandapas. */
+/** kapaleeshwarar_temple: specific Kapaleeshwarar gateways, shrine roofs and open mandapas. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildKapaliTemple } from './kapali-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/tf/tf3/n0539_kapaleeshwarar_temple/',
+    '../../../content/worldgen/source/places/tf/tf3/kapaleeshwarar_temple/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -86,7 +86,7 @@ export const buildKapaliSkyline = (o) => build(o, 0),
   buildKapaliStreet = (o) => build(o, 2),
   buildKapaliCloseup = (o) => build(o, 3);
 export const kapaliStudy = {
-  id: 'N0539',
+  id: 'kapaleeshwarar_temple',
   key: 'kapaleeshwarar_temple',
   title: 'Kapaleeshwarar Temple',
   category: 'temple',

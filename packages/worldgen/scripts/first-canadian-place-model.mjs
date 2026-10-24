@@ -5,9 +5,7 @@ import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frameBytes = readFileSync(
-  structureSourcePath('n0227_first_canadian_place', 'map-frame.json'),
-);
+const frameBytes = readFileSync(structureSourcePath('first_canadian_place', 'map-frame.json'));
 const frame = JSON.parse(frameBytes);
 const module = 3.048,
   interval = 3.8608;
@@ -524,7 +522,7 @@ const parts = [
 ];
 
 export const firstCanadianPlaceStudy = {
-  id: 'N0227',
+  id: 'first_canadian_place',
   key: 'first_canadian_place',
   title: 'First Canadian Place',
   wikidataId: 'Q1052475',

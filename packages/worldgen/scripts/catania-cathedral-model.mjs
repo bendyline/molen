@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sq/sqd/n0401_catania_cathedral/',
+  '../../../content/worldgen/source/places/sq/sqd/catania_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1060,7 +1060,7 @@ export const buildCataniaSkyline = (o) => build(o, 0),
   buildCataniaCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const cataniaCathedralStudy = {
-  id: 'N0401',
+  id: 'catania_cathedral',
   key: 'catania_cathedral',
   title: 'Catania Cathedral',
   category: 'cathedral',

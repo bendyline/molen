@@ -1,4 +1,4 @@
-/** 'N0530': N0530: four laterite tiers, four steep stairs and the surviving east-facing brick shrine. */
+/** 'baksei_chamkrong': baksei_chamkrong: four laterite tiers, four steep stairs and the surviving east-facing brick shrine. */
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';
 
 function pose(f, x, y, z, angle = 0) {

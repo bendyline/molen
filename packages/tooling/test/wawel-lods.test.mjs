@@ -6,7 +6,7 @@ import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lo
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2y/n0299_wawel_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u2/u2y/wawel_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -44,7 +44,7 @@ function vertical(x, z, triangles) {
     .map((v) => 100 - v);
 }
 it('reproduces four browser levels with six shared graphs and homogeneous GPU attributes', async () => {
-  const id = 'molen.worldgen.structure.n0299_wawel_castle',
+  const id = 'molen.worldgen.structure.wawel_castle',
     sizes = [];
   for (const [level, limit] of Object.entries({
     skyline: 1000,

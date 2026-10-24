@@ -1,4 +1,4 @@
-/** Original medium-fi interpretation of the surviving Stonehenge ensemble (N0946).
+/** Original medium-fi interpretation of the surviving Stonehenge ensemble (stonehenge).
  * Layout controls are factual measurements read from EH's current-site plan; contours are
  * authored, not copied scan meshes. Missing uprights and lintels are never reconstructed.
  */

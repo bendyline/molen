@@ -1,11 +1,11 @@
-/** N0530: four mapped laterite tiers, steep stairs and the east-facing brick shrine. */
+/** baksei_chamkrong: four mapped laterite tiers, steep stairs and the east-facing brick shrine. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBakseiTemple } from './baksei-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/w6/w63/n0530_baksei_chamkrong/',
+    '../../../content/worldgen/source/places/w6/w63/baksei_chamkrong/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -82,7 +82,7 @@ export const buildBakseiSkyline = (o) => build(o, 0),
   buildBakseiStreet = (o) => build(o, 2),
   buildBakseiCloseup = (o) => build(o, 3);
 export const bakseiStudy = {
-  id: 'N0530',
+  id: 'baksei_chamkrong',
   key: 'baksei_chamkrong',
   title: 'Baksei Chamkrong',
   category: 'temple',

@@ -1,4 +1,4 @@
-/** 'N0729': Tottenham's silver shell, single South Stand and branching south atrium. */
+/** 'tottenham_hotspur_stadium': Tottenham's silver shell, single South Stand and branching south atrium. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
@@ -17,7 +17,7 @@ export function tottenhamRadius(poly, a) {
       u = cross(p, d) / den;
     if (t > 0 && u >= -1e-8 && u <= 1 + 1e-8) hits.push(t);
   }
-  if (!hits.length) throw Error('N0729: missing native radial boundary');
+  if (!hits.length) throw Error('tottenham_hotspur_stadium: missing native radial boundary');
   return Math.min(...hits);
 }
 export function tottenhamSouth(a) {

@@ -1,6 +1,6 @@
 /** Explicitly scoped authoring refreshes retain the last checked records for other models. */
 export function readinessRefresh(candidates, previous, ids, collectionManifest) {
-  const selected = new Set(ids.map((id) => id.trim().toUpperCase()));
+  const selected = new Set(ids.map((id) => id.trim().toLowerCase()));
   const catalog = new Map(candidates.map((candidate) => [candidate.id, candidate]));
   if (!selected.size || selected.has('')) throw new Error('Readiness --ids must not be empty.');
   for (const id of selected)

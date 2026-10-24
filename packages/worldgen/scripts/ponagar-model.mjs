@@ -1,13 +1,10 @@
-/** 'N0543': Po Nagar's four distinct brick shrines and unroofed mandapa pillars. */
+/** 'po_nagar': Po Nagar's four distinct brick shrines and unroofed mandapa pillars. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildPoNagarTemples } from './ponagar-temples-model.mjs';
 
-const source = new URL(
-    '../../../content/worldgen/source/places/w6/w6j/n0543_po_nagar/',
-    import.meta.url,
-  ),
+const source = new URL('../../../content/worldgen/source/places/w6/w6j/po_nagar/', import.meta.url),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
   frame = read('map-frame.json'),
   r = frame.reconstruction,
@@ -82,7 +79,7 @@ export const buildPoNagarSkyline = (o) => build(o, 0),
   buildPoNagarStreet = (o) => build(o, 2),
   buildPoNagarCloseup = (o) => build(o, 3);
 export const ponagarStudy = {
-  id: 'N0543',
+  id: 'po_nagar',
   key: 'po_nagar',
   title: 'Po Nagar',
   category: 'temple',

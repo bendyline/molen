@@ -1,11 +1,11 @@
-/** N0746: Guggenheim Bilbao, mapped titanium shells and limestone galleries. */
+/** guggenheim_museum_bilbao: Guggenheim Bilbao, mapped titanium shells and limestone galleries. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBilbao } from './bilbao-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ez/ezt/n0746_guggenheim_museum_bilbao/',
+    '../../../content/worldgen/source/places/ez/ezt/guggenheim_museum_bilbao/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -100,7 +100,7 @@ export const buildBilbaoSkyline = (o) => build(o, 0),
   buildBilbaoStreet = (o) => build(o, 2),
   buildBilbaoCloseup = (o) => build(o, 3);
 export const bilbaoStudy = {
-  id: 'N0746',
+  id: 'guggenheim_museum_bilbao',
   key: 'guggenheim_museum_bilbao',
   title: 'Guggenheim Museum Bilbao',
   category: 'museum',

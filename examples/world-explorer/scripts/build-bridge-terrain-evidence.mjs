@@ -4,6 +4,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import pngjs from 'pngjs';
+import { structureKeyPattern } from '../../../packages/worldgen/scripts/structure-identity.mjs';
 import { modelInputHash } from '../../../packages/worldgen/scripts/structure-model-files.mjs';
 import {
   knownSourceEntries,
@@ -16,7 +17,8 @@ const content = resolve(root, 'content');
 const cache = resolve(root, '.artifacts/bridge-terrain');
 const output = resolve(content, 'earth/structures/evidence/bridge-terrain');
 const ids = (
-  process.argv.find((arg) => arg.startsWith('--ids='))?.slice(6) ?? 'N0011,N0012,N0014'
+  process.argv.find((arg) => arg.startsWith('--ids='))?.slice(6) ??
+  'mes_bridge,kazarma_mycenaean_bridge,haghtanak_bridge'
 ).split(',');
 const offline = process.argv.includes('--offline');
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
@@ -28,7 +30,7 @@ await mkdir(cache, { recursive: true });
 await mkdir(output, { recursive: true });
 
 for (const id of ids) {
-  if (!/^N\d{4}$/.test(id)) throw new Error(`Invalid candidate id ${id}`);
+  if (!structureKeyPattern.test(id)) throw new Error(`Invalid candidate id ${id}`);
   const folder = knownSourceEntries().find((entry) => entry.candidateId === id)?.key;
   if (!folder) throw new Error(`No authored source for ${id}`);
   const specBytes = await readFile(structureSourcePath(folder, 'spec.json'));
@@ -43,7 +45,7 @@ for (const id of ids) {
     ((anchor[0] * Math.PI * radius) / 180) * factor,
     -radius * Math.asinh(Math.tan((anchor[1] * Math.PI) / 180)) * factor,
   ];
-  const size = id === 'N0012' ? 128 : 512;
+  const size = id === 'kazarma_mycenaean_bridge' ? 128 : 512;
   const resolution = 129;
   const origin = center.map((value) => value - size / 2);
   const pixelAt = (x, z) => [

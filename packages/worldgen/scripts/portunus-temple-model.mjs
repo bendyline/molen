@@ -1,5 +1,5 @@
 /** Temple of Portunus: mapped podium/stairs, six free and twelve engaged Ionic columns. */
-export const portunusCandidateId = 'N0506';
+export const portunusCandidateId = 'temple_of_portunus';
 function box(f, role, x, y, z, w, h, depth) {
   const a = [
       [-w / 2, 0, -depth / 2],

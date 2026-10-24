@@ -5,7 +5,7 @@ import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 
-const root = '../../../content/worldgen/source/places/u2/u21/n0276_miramare_castle/';
+const root = '../../../content/worldgen/source/places/u2/u21/miramare_castle/';
 const frame = JSON.parse(readFileSync(new URL(`${root}map-frame.json`, import.meta.url)));
 export const miramarePalette = {
   stone: '#e0d9c8',
@@ -487,7 +487,7 @@ export const buildMiramareSkyline = (o) =>
     0,
   );
 export const miramareStudy = {
-  id: 'N0276',
+  id: 'miramare_castle',
   key: 'miramare_castle',
   title: 'Miramare Castle',
   category: 'castle',

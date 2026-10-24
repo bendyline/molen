@@ -1,11 +1,11 @@
-/** N0726: Ahmad bin Ali Stadium with flying canopy, shared rosette screen and own mapped ancillary forms. */
+/** ahmad_bin_ali_stadium: Ahmad bin Ali Stadium with flying canopy, shared rosette screen and own mapped ancillary forms. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildRayyanStadium } from './rayyan-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/th/ths/n0726_ahmad_bin_ali_stadium/',
+    '../../../content/worldgen/source/places/th/ths/ahmad_bin_ali_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -71,7 +71,7 @@ export const buildRayyanSkyline = (o) => build(o, 0),
   buildRayyanStreet = (o) => build(o, 2),
   buildRayyanCloseup = (o) => build(o, 3);
 export const rayyanStudy = {
-  id: 'N0726',
+  id: 'ahmad_bin_ali_stadium',
   key: 'ahmad_bin_ali_stadium',
   title: 'Ahmad bin Ali Stadium',
   category: 'stadium',

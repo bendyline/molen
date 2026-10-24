@@ -1,11 +1,11 @@
-/** N0709: Ernst-Happel annular roof, collar truss, concrete frame and blue track. */
+/** ernst_happel_stadion: Ernst-Happel annular roof, collar truss, concrete frame and blue track. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildHappelStadium } from './happel-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u2/u2e/n0709_ernst_happel_stadion/',
+    '../../../content/worldgen/source/places/u2/u2e/ernst_happel_stadion/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -96,7 +96,7 @@ export const buildHappelSkyline = (o) => build(o, 0),
   buildHappelStreet = (o) => build(o, 2),
   buildHappelCloseup = (o) => build(o, 3);
 export const happelStudy = {
-  id: 'N0709',
+  id: 'ernst_happel_stadion',
   key: 'ernst_happel_stadion',
   title: 'Ernst-Happel-Stadion',
   category: 'stadium',

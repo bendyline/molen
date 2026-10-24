@@ -1,11 +1,11 @@
-/** 'N0758': Castel Sant Angelo, keep and connected fortifications. */
+/** 'castel_sant_angelo': Castel Sant Angelo, keep and connected fortifications. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildCastel } from './castel-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0758_castel_sant_angelo/',
+    '../../../content/worldgen/source/places/sr/sr2/castel_sant_angelo/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -102,7 +102,7 @@ export const buildCastelSkyline = (o) => build(o, 0),
   buildCastelStreet = (o) => build(o, 2),
   buildCastelCloseup = (o) => build(o, 3);
 export const castelStudy = {
-  id: 'N0758',
+  id: 'castel_sant_angelo',
   key: 'castel_sant_angelo',
   title: 'Castel Sant Angelo, keep and connected fortifications',
   category: 'museum',

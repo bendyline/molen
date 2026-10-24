@@ -1,11 +1,11 @@
-/** 'N0549': West Mebon's specific pictured east gateways, pool wall and causeway. */
+/** 'west_mebon': West Mebon's specific pictured east gateways, pool wall and causeway. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildWestMebonRemains } from './west-mebon-remains-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/w6/w63/n0549_west_mebon/',
+    '../../../content/worldgen/source/places/w6/w63/west_mebon/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -81,7 +81,7 @@ export const buildWestMebonSkyline = (o) => build(o, 0),
   buildWestMebonStreet = (o) => build(o, 2),
   buildWestMebonCloseup = (o) => build(o, 3);
 export const westMebonStudy = {
-  id: 'N0549',
+  id: 'west_mebon',
   key: 'west_mebon',
   title: 'West Mebon',
   category: 'temple',

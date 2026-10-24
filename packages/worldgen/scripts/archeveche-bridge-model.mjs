@@ -6,7 +6,7 @@ import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
 const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0019_pont_de_l_archeveche', 'map-frame.json')),
+  readFileSync(structureSourcePath('pont_de_l_archeveche', 'map-frame.json')),
 );
 const stone = [0.56, 0.505, 0.39],
   mortar = [0.38, 0.35, 0.285],
@@ -591,7 +591,7 @@ export function buildArchevecheBridge(out) {
   box(out, 'marking', [7.88, y - 0.34, -5.762], [8.12, y + 0.08, -5.755], [0.9, 0.9, 0.85]);
 }
 export const archevecheStudy = {
-  id: 'N0019',
+  id: 'pont_de_l_archeveche',
   key: 'pont_de_l_archeveche',
   title: "Pont de l'Archeveche",
   wikidataId: 'Q2073308',

@@ -1,4 +1,4 @@
-/** 'N0752_EASTPAVILION': independent brick Camera Obscura pavilion and rounded lead cap. */
+/** 'eastern_pavilion_and_camera_obscura_royal_observatory_greenwich': independent brick Camera Obscura pavilion and rounded lead cap. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildEastPavilion(face, detail, r) {

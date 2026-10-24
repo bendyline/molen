@@ -16,7 +16,7 @@ This is an initial discovery backlog. “Scanned” records an automated pass; i
 
 Existing-ready means the current registry reports readiness and an active placement. Imported assets, previews, and old simplified models remain separate. Generic styles and reusable models do not count as accurate versions of named buildings.
 
-**182 targets are reserved for the other device** because they match the next-1,000 lists. They remain in coverage tracking but are excluded from local batches. See [other-device ownership](OTHER-DEVICE.md).
+**182 targets are reserved for the other device** because they match the structure catalog lists. They remain in coverage tracking but are excluded from local batches. See [other-device ownership](OTHER-DEVICE.md).
 
 ## Reviewed starting batch
 

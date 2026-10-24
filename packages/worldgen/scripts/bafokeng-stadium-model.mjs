@@ -1,4 +1,4 @@
-/** 'N0723': Royal Bafokeng's single west cantilever, uncovered bowl and athletics track. */
+/** 'royal_bafokeng_stadium': Royal Bafokeng's single west cantilever, uncovered bowl and athletics track. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
@@ -17,7 +17,7 @@ export function bafokengRadius(poly, a) {
       u = cross(p, d) / den;
     if (t > 0 && u >= -1e-8 && u <= 1 + 1e-8) hits.push(t);
   }
-  if (!hits.length) throw Error('N0723: nonradial native boundary');
+  if (!hits.length) throw Error('royal_bafokeng_stadium: nonradial native boundary');
   return Math.min(...hits);
 }
 export function bafokengFoundationOutline(r, d) {

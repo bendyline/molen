@@ -1,4 +1,4 @@
-/** N0627: present-day roofless broch and surviving settlement wall fragments. */
+/** broch_of_gurness: present-day roofless broch and surviving settlement wall fragments. */
 import earcut from 'earcut';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

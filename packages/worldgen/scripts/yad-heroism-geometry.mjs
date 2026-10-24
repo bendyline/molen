@@ -1,4 +1,4 @@
-/** 'N0748_HEROISM': curved open-section pillar with near-level facing joints. */
+/** 'pillar_of_heroism_yad_vashem': curved open-section pillar with near-level facing joints. */
 import { prism } from './khmer-structure-geometry.mjs';
 
 export function buildYadHeroism(face, detail, r) {

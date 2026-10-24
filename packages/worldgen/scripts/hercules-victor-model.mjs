@@ -1,11 +1,11 @@
-/** N0518: reproducible surviving Temple of Hercules Victor architecture. */
+/** temple_of_hercules_victor: reproducible surviving Temple of Hercules Victor architecture. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildHerculesVictorTemple } from './hercules-victor-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0518_temple_of_hercules_victor/',
+    '../../../content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -82,7 +82,7 @@ export const buildHerculesVictorSkyline = (o) => build(o, 0),
   buildHerculesVictorStreet = (o) => build(o, 2),
   buildHerculesVictorCloseup = (o) => build(o, 3);
 export const herculesVictorStudy = {
-  id: 'N0518',
+  id: 'temple_of_hercules_victor',
   key: 'temple_of_hercules_victor',
   title: 'Temple of Hercules Victor',
   category: 'temple',

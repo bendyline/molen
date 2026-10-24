@@ -1,0 +1,289 @@
+{
+  "id": "kopu_lighthouse",
+  "key": "kopu_lighthouse",
+  "title": "Kõpu Lighthouse",
+  "wikidataId": "Q1795607",
+  "size": [
+    22.05,
+    37.7,
+    24.7
+  ],
+  "visualBrief": "Massive white square stone lighthouse with four broad sloping buttresses, tall square upper block, red anchor plates, roof balcony, red lantern cupola and south entrance porch.",
+  "sourceFacts": {
+    "heightMeters": 37.7,
+    "operatorCoordinate": [
+      22.1996445,
+      58.9159645
+    ],
+    "form": "White four-sided buttressed stone tower, balcony and red lantern room.",
+    "basis": "Estonian Transport Administration current navigation-aid668 record. Operator-submitted IALA2020 photographs and current record photograph inspected."
+  },
+  "referencePages": [
+    "https://nma.transpordiamet.ee/aton/2684/",
+    "https://heritage.iala.int/lighthouses/kopu-lighthouse/",
+    "https://www.openstreetmap.org/way/249448393"
+  ],
+  "referenceRights": "Operator and IALA-submitted photographs are visual research only, not redistributed. OSM footprint dimensions/axes ©OpenStreetMap contributors, ODbL1.0.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z (south entrance)",
+    "origin": "Central shaft at local terrain contact. Buttress arms follow +X/-X and +Z/-Z."
+  },
+  "geographicProposal": {
+    "anchor": [
+      22.1996445,
+      58.9159645
+    ],
+    "heading": -0.087025590763,
+    "elevationMode": "terrain-contact",
+    "source": "https://nma.transpordiamet.ee/aton/2684/",
+    "axisSource": "https://www.openstreetmap.org/way/249448393",
+    "status": "preview-proposal",
+    "notes": "Authority aid668 fixes the tower center. Exact-QID mapped cross edges resolve heading-.087025590763rad; main entrance node11157582818 selects the south-facing arm. Current leaf follows all21 ground-outline vertices and moves the porch/entry to the marked point. Higher buttress/core profiles and porch dimensions are photo-proportioned. Y=0 contacts host terrain; OSMele67 and published69m hill description are not adopted as surveyed foundation elevations.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:67ff92e2bfc49d5a1fa8dbc6a11f5199d3d868c8ea01c0b16c42a15d026ac1c8",
+    "mapGeometryLicense": "ODbL 1.0",
+    "attribution": "© OpenStreetMap contributors"
+  },
+  "limitations": [
+    "Original exterior reconstruction from documented main dimensions and inspected references. Individual moldings, sections, weathering, openings and fittings are photo-proportioned estimates.",
+    "No interior visitor route, surveyed collision model, operating navigation-light simulation or exact optical assembly is included. Lantern glazing is a restrained opaque PBR approximation.",
+    "Shared material references use metric UVs with portable vertex-color PBR fallback. Maximum-fidelity, lit shared-surface and geographic fit reviews remain separate pending gates.",
+    "Height37.7m is authoritative; core width, buttress profile stations, terrace details and porch sizes are photo/map reconstructions. The restored irregular shell and exposed boulders are simplified; annex buildings are omitted."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-buttresses",
+      "position": [
+        27,
+        12,
+        29
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "near-lantern",
+      "position": [
+        12,
+        36,
+        16
+      ],
+      "lookAt": [
+        0,
+        33.5,
+        0
+      ]
+    },
+    {
+      "name": "near-entry",
+      "position": [
+        8,
+        5,
+        21
+      ],
+      "lookAt": [
+        0,
+        2,
+        10
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        49,
+        29,
+        62
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    }
+  ],
+  "assetId": "molen.worldgen.structure.kopu_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "appearance": {
+    "identity": "White square tower above four asymmetric sloping buttresses, red anchor plates/gallery/lantern roof, mapped south porch.",
+    "epoch": "Authority exterior and2020 operator-submitted IALA photographs; no interior or operational optic.",
+    "master": "Original9798-triangle master remains reproducible. Separate current leaf aligns ground edges/entry with source-local map and retains upper windows and fittings.",
+    "browser": "Hand skyline/district preserve four buttresses, square upper tower and red lantern; street and closeup retain the current detailed mesh.",
+    "exclusions": "Survey-level ground elevations, restored boulder-by-boulder relief, detached station buildings, interiors and navigation apparatus."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/kopu-current-model.mjs",
+    "export": "buildKopuCurrent"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kopu-current-model.mjs",
+    "export": "buildKopuSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKopuDistrict",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "buttresses-district",
+      "position": [
+        27,
+        12,
+        29
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "lantern-district",
+      "position": [
+        6,
+        38,
+        8
+      ],
+      "lookAt": [
+        0,
+        35.4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "entry-district",
+      "position": [
+        8,
+        5,
+        20
+      ],
+      "lookAt": [
+        -0.76,
+        1.5,
+        12.44
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-skyline",
+      "position": [
+        37,
+        28,
+        47
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "reviewLod": "skyline"
+    }
+  ],
+  "actualBounds": {
+    "min": [
+      -10.229125022888184,
+      0,
+      -9.860447883605957
+    ],
+    "max": [
+      11.814698219299316,
+      37.70000076293945,
+      14.797374725341797
+    ]
+  },
+  "mesh": {
+    "triangles": 9889,
+    "vertices": 19903,
+    "materials": 5,
+    "bytes": 838440,
+    "sha256": "sha256:7c2fbc0351009e8e22a5a758ee29b7331851dff57f9d6c8d38d268a10f7b0f9c"
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

@@ -147,7 +147,7 @@ for (const model of ksiazEntranceModels.filter(
     category: 'historic-entrance-building',
     quality: 'detailed',
     sitePart: {
-      candidateId: 'N0291',
+      candidateId: 'ksiaz_castle_and_park_complex',
       componentKey: 'entrance-buildings',
       identity: { type: 'way', id: model.way },
     },
@@ -173,7 +173,7 @@ for (const model of ksiazEntranceModels.filter(
       mappedTags: frame.elements[0].tags,
       independentWikidataIdKnown: false,
       roofAndDatumSurveyed: false,
-      parentSite: 'N0291',
+      parentSite: 'ksiaz_castle_and_park_complex',
       primaryDescription:
         'The hotel operator identifies three palace annexes;official heritage designation includes entrance buildings. This fourth nearby mapped Hotel Zamkowy is separately identified,with its role in the designated ensemble unconfirmed.',
     },
@@ -210,7 +210,7 @@ for (const model of ksiazEntranceModels.filter(
     sourceLicense:
       'Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.',
     limitations: [
-      'One component only;N0291 full site remains incomplete.',
+      'One component only;ksiaz_castle_and_park_complex full site remains incomplete.',
       'Footprint is attributed map geometry;heights,openings,dormers and roof profiles are photographic interpretations.',
       'No independent Wikidata identity.',
       ...(model.id === 'KSI_A04'
@@ -305,7 +305,7 @@ for (const model of ksiazEntranceModels.filter(
     '\n\n![Shared Molen preview](shots/shared/angle-0.png)\n\n' +
     spec.visualBrief +
     '\n\n' +
-    'Independent component of [Książ Castle and park complex](../n0291_ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
+    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
     '## Sources and reconstruction\n\n' +
     refs.map((url) => `- [Reference](${url})`).join('\n') +
     '\n\n' +

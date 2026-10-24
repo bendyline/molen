@@ -18,6 +18,15 @@ type MolenAircraftData = {
     centerOfMass: [number, number, number];
     pilotEye: [number, number, number];
     engine?: {
+      propulsion?: 'propeller' | 'jet';
+      dryThrust?: number;
+      afterburnerThrust?: number;
+      afterburnerDetent?: number;
+      densityExponent?: number;
+      highAltitudeDensityRatio?: number;
+      highAltitudeExponent?: number;
+      ratedDensityRatio?: number;
+      ramRise?: number;
       position: [number, number, number];
       thrustAxis: [number, number, number];
       power: number;
@@ -32,6 +41,15 @@ type MolenAircraftData = {
       propellerInertia?: number;
     };
     engines?: {
+      propulsion?: 'propeller' | 'jet';
+      dryThrust?: number;
+      afterburnerThrust?: number;
+      afterburnerDetent?: number;
+      densityExponent?: number;
+      highAltitudeDensityRatio?: number;
+      highAltitudeExponent?: number;
+      ratedDensityRatio?: number;
+      ramRise?: number;
       position: [number, number, number];
       thrustAxis: [number, number, number];
       power: number;
@@ -64,6 +82,22 @@ type MolenAircraftData = {
       flapLift: number;
       postStallFlapEffect: number;
       stallAngle: number;
+      criticalMach?: number;
+      waveDrag?: number;
+      maxEquivalentAirspeed?: number;
+      maxMach?: number;
+      gearLimitSpeed?: number;
+      flapLimitSpeed?: number;
+      groundEffect?: boolean;
+      departure?: {
+        onsetAngle: number;
+        fullAngle: number;
+        yawInstability: number;
+        yawSaturationRate: number;
+        rudderBlanking: number;
+        pitchBlanking: number;
+        aileronReversal: number;
+      };
       stallTransitionAngle?: number;
       pitchFrequency?: number;
       pitchDamping?: number;
@@ -100,6 +134,12 @@ type MolenAircraftData = {
     helicopter?: {
       rotorPosition: [number, number, number];
       rotorRadius: number;
+      powerLimitedRotor?: boolean;
+      rotorEfficiency?: number;
+      profilePowerFraction?: number;
+      vortexRing?: boolean;
+      retreatingBladeSpeed?: number;
+      rotorDiscs?: number;
       cyclicTilt: number;
       cyclicResponse: number;
       cyclicDamping: number;
@@ -224,11 +264,16 @@ type MolenAircraftInputData = {
       enabled?: boolean;
     }>;
   gear: boolean;
-  flaps: boolean;
+  flaps: boolean | number;
   thrustVector?: number;
 };
 /** Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. */
 type MolenAircraftStateData = {
+  mach?: number;
+  equivalentAirspeed?: number;
+  overspeed?: boolean;
+  departure?: number;
+  vortexRing?: number;
   velocity: [number, number, number];
   yaw: number;
   pitch: number;
@@ -247,6 +292,7 @@ type MolenAircraftStateData = {
       rpm: number;
       rotorAngle: number;
       failed: boolean;
+      afterburner?: number;
       thrust: number;
     }>;
   rpm: number;
@@ -1209,6 +1255,8 @@ type MolenWaterData = {
 /** Singleton physical atmosphere and visual weather: temperature, pressure, humidity, wind, independent cloud cover, precipitation and visibility. Readable by scripts and physics; see guide/weather.md. */
 type MolenWeatherData = {
   atmosphere?: {
+    model?: 'standard' | 'isothermal';
+    moistAir?: boolean;
     temperatureK?: number;
     pressurePa?: number;
     relativeHumidity?: number;

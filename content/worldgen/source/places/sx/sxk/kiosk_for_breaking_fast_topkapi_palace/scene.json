@@ -1,0 +1,77 @@
+{
+  "format": "molen/scene@3",
+  "name": "Kiosk for Breaking Fast, Topkapi Palace asset preview",
+  "seed": "kiosk_for_breaking_fast_topkapi_palace",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.kiosk_for_breaking_fast_topkapi_palace",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      1.5051896295485836,
+      5.499142346193806,
+      9.784395953716274
+    ],
+    "lookAt": [
+      0,
+      1.9991423461938065,
+      0
+    ],
+    "fov": 46
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

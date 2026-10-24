@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/tf/tf3/n0369_san_thome_basilica/',
+  '../../../content/worldgen/source/places/tf/tf3/san_thome_basilica/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -891,7 +891,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const sanThomeStudy = {
-  id: 'N0369',
+  id: 'san_thome_basilica',
   key: 'san_thome_basilica',
   title: 'San Thome Basilica',
   category: 'cathedral',

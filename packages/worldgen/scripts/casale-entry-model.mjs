@@ -1,4 +1,4 @@
-/** 'N0765_ENTRY': Monumental entrance remains, Villa Romana del Casale. */
+/** 'casale_entry': Monumental entrance remains, Villa Romana del Casale. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
@@ -6,7 +6,7 @@ import { buildCasaleEntry } from './casale-entry-geometry.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sq/sqd/n0765_casale_entry/',
+    '../../../content/worldgen/source/places/sq/sqd/casale_entry/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -97,7 +97,7 @@ export const buildCasaleEntrySkyline = (o) => build(o, 0),
   buildCasaleEntryStreet = (o) => build(o, 2),
   buildCasaleEntryCloseup = (o) => build(o, 3);
 export const casaleEntryStudy = {
-  id: 'N0765_ENTRY',
+  id: 'casale_entry',
   key: 'casale_entry',
   title: 'Monumental entrance remains, Villa Romana del Casale',
   category: 'museum',

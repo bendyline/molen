@@ -1,11 +1,11 @@
-/** 'N0742_FELICITY': Mapped lead-domed gate, four-column canopy and connected arcades. */
+/** 'gate_of_felicity_topkapi_palace': Mapped lead-domed gate, four-column canopy and connected arcades. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiFelicity } from './topkapi-felicity-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_felicity/',
+    '../../../content/worldgen/source/places/sx/sxk/gate_of_felicity_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -75,7 +75,7 @@ export const buildTopkapiFelicitySkyline = (o) => build(o, 0),
   buildTopkapiFelicityStreet = (o) => build(o, 2),
   buildTopkapiFelicityCloseup = (o) => build(o, 3);
 export const topkapiFelicityStudy = {
-  id: 'N0742_FELICITY',
+  id: 'gate_of_felicity_topkapi_palace',
   key: 'felicity',
   title: 'Gate of Felicity, Topkapi Palace',
   category: 'castle',

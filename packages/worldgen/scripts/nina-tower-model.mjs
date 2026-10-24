@@ -498,7 +498,7 @@ export function buildNinaSkyline(out) {
 }
 
 export const ninaTowerStudy = {
-  id: 'N0230',
+  id: 'nina_tower',
   key: 'nina_tower',
   title: 'Nina Tower',
   wikidataId: 'Q520839',

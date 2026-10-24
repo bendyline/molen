@@ -5,7 +5,7 @@ import earcut from 'earcut';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/wx/wx4/n0470_niujie_mosque/',
+  '../../../content/worldgen/source/places/wx/wx4/niujie_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -605,7 +605,7 @@ export const buildNiujieSkyline = (o) => build(o, 0),
   buildNiujieCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const niujieStudy = {
-  id: 'N0470',
+  id: 'niujie_mosque',
   key: 'niujie_mosque',
   title: 'Niujie Mosque',
   category: 'mosque',

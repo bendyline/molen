@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tp/tp8/n0454_akhmad_kadyrov_mosque/',
+  '../../../content/worldgen/source/places/tp/tp8/akhmad_kadyrov_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -982,7 +982,7 @@ export const buildKadyrovSkyline = (o) => build(o, 0),
   buildKadyrovCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const kadyrovStudy = {
-  id: 'N0454',
+  id: 'akhmad_kadyrov_mosque',
   key: 'akhmad_kadyrov_mosque',
   title: 'Akhmad Kadyrov Mosque',
   category: 'mosque',

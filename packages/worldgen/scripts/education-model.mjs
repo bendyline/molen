@@ -1,11 +1,11 @@
-/** N0719: Education City silver diamond shell, chevron vents and green-white bowl. */
+/** education_city_stadium: Education City silver diamond shell, chevron vents and green-white bowl. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildEducationStadium } from './education-facet-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/th/thk/n0719_education_city_stadium/',
+    '../../../content/worldgen/source/places/th/thk/education_city_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -75,7 +75,7 @@ export const buildEducationSkyline = (o) => build(o, 0),
   buildEducationStreet = (o) => build(o, 2),
   buildEducationCloseup = (o) => build(o, 3);
 export const educationStudy = {
-  id: 'N0719',
+  id: 'education_city_stadium',
   key: 'education_city_stadium',
   title: 'Education City Stadium',
   category: 'stadium',

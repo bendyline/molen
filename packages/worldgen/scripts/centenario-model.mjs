@@ -1,11 +1,11 @@
-/** 'N0732': Estadio Centenario with three banks and the Torre de los Homenajes. */
+/** 'estadio_centenario': Estadio Centenario with three banks and the Torre de los Homenajes. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildCentenarioStadium } from './centenario-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/6c/6cb/n0732_estadio_centenario/',
+    '../../../content/worldgen/source/places/6c/6cb/estadio_centenario/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -78,7 +78,7 @@ export const buildCentenarioSkyline = (o) => build(o, 0),
   buildCentenarioStreet = (o) => build(o, 2),
   buildCentenarioCloseup = (o) => build(o, 3);
 export const centenarioStudy = {
-  id: 'N0732',
+  id: 'estadio_centenario',
   key: 'estadio_centenario',
   title: 'Estadio Centenario',
   category: 'stadium',

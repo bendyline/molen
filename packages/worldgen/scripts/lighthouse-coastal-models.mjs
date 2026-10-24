@@ -710,7 +710,7 @@ function buildRubjerg(out) {
 
 export const lighthouseCoastalStudies = [
   lighthouseStudy({
-    id: 'N0642',
+    id: 'lighthouse_of_genoa',
     key: 'lighthouse_of_genoa',
     title: 'Lighthouse of Genoa',
     wikidataId: 'Q776666',
@@ -752,7 +752,7 @@ export const lighthouseCoastalStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0644',
+    id: 'jeddah_light',
     key: 'jeddah_light',
     title: 'Jeddah Light',
     wikidataId: 'Q1151131',
@@ -800,7 +800,7 @@ export const lighthouseCoastalStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0645',
+    id: 'rubjerg_knude_lighthouse',
     key: 'rubjerg_knude_lighthouse',
     title: 'Rubjerg Knude lighthouse',
     wikidataId: 'Q2206180',

@@ -4014,6 +4014,60 @@ Required: `kind`, `spec`
           "description": "Single engine, implicitly named main. Supply exactly one of engine or engines.",
           "type": "object",
           "properties": {
+            "propulsion": {
+              "description": "Installed propulsion type; omitted preserves the legacy constant-power model.",
+              "type": "string",
+              "enum": [
+                "propeller",
+                "jet"
+              ]
+            },
+            "dryThrust": {
+              "description": "Sea-level static dry jet thrust in newtons, per engine.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "afterburnerThrust": {
+              "description": "Total sea-level static augmented thrust in newtons, per engine; must exceed dry thrust.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "afterburnerDetent": {
+              "description": "Throttle fraction where reheat starts; default 0.85.",
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 0.99
+            },
+            "densityExponent": {
+              "description": "Installed power/thrust density lapse exponent.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 3
+            },
+            "highAltitudeDensityRatio": {
+              "description": "Density ratio where upper-altitude engine lapse begins; continuous at this knee.",
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1
+            },
+            "highAltitudeExponent": {
+              "description": "Density lapse exponent below highAltitudeDensityRatio; defaults to densityExponent.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 3
+            },
+            "ratedDensityRatio": {
+              "description": "Lowest density ratio retaining flat-rated power or thrust; default 1.",
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1
+            },
+            "ramRise": {
+              "description": "Jet net-thrust multiplier per Mach squared, representing inlet ram recovery; default 0.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 2
+            },
             "position": {
               "minItems": 3,
               "maxItems": 3,
@@ -4035,7 +4089,7 @@ Required: `kind`, `spec`
             "power": {
               "type": "number",
               "exclusiveMinimum": 0,
-              "description": "Maximum shaft power in watts, for this engine only."
+              "description": "Maximum shaft power in watts, per engine; retained as compatibility metadata for jets."
             },
             "idleRpm": {
               "type": "number",
@@ -4104,6 +4158,60 @@ Required: `kind`, `spec`
           "items": {
             "type": "object",
             "properties": {
+              "propulsion": {
+                "description": "Installed propulsion type; omitted preserves the legacy constant-power model.",
+                "type": "string",
+                "enum": [
+                  "propeller",
+                  "jet"
+                ]
+              },
+              "dryThrust": {
+                "description": "Sea-level static dry jet thrust in newtons, per engine.",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "afterburnerThrust": {
+                "description": "Total sea-level static augmented thrust in newtons, per engine; must exceed dry thrust.",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "afterburnerDetent": {
+                "description": "Throttle fraction where reheat starts; default 0.85.",
+                "type": "number",
+                "minimum": 0.1,
+                "maximum": 0.99
+              },
+              "densityExponent": {
+                "description": "Installed power/thrust density lapse exponent.",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 3
+              },
+              "highAltitudeDensityRatio": {
+                "description": "Density ratio where upper-altitude engine lapse begins; continuous at this knee.",
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1
+              },
+              "highAltitudeExponent": {
+                "description": "Density lapse exponent below highAltitudeDensityRatio; defaults to densityExponent.",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 3
+              },
+              "ratedDensityRatio": {
+                "description": "Lowest density ratio retaining flat-rated power or thrust; default 1.",
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1
+              },
+              "ramRise": {
+                "description": "Jet net-thrust multiplier per Mach squared, representing inlet ram recovery; default 0.",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 2
+              },
               "position": {
                 "minItems": 3,
                 "maxItems": 3,
@@ -4125,7 +4233,7 @@ Required: `kind`, `spec`
               "power": {
                 "type": "number",
                 "exclusiveMinimum": 0,
-                "description": "Maximum shaft power in watts, for this engine only."
+                "description": "Maximum shaft power in watts, per engine; retained as compatibility metadata for jets."
               },
               "idleRpm": {
                 "type": "number",
@@ -4285,6 +4393,96 @@ Required: `kind`, `spec`
               "type": "number",
               "exclusiveMinimum": 0,
               "description": "External stallAngle setting."
+            },
+            "criticalMach": {
+              "description": "Mach at which compressibility wave drag begins; omitted disables wave drag.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "waveDrag": {
+              "description": "Wave drag coefficient at criticalMach + 0.25; default 0.",
+              "type": "number",
+              "minimum": 0
+            },
+            "maxEquivalentAirspeed": {
+              "description": "Airframe operating limit in m/s equivalent airspeed; alert only.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "maxMach": {
+              "description": "Airframe Mach operating limit; alert only.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "gearLimitSpeed": {
+              "description": "Maximum equivalent airspeed with gear extended, m/s; alert only.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "flapLimitSpeed": {
+              "description": "Maximum equivalent airspeed with flaps extended, m/s; alert only.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "groundEffect": {
+              "description": "Reduce wing induced drag near the ground; default false.",
+              "type": "boolean"
+            },
+            "departure": {
+              "description": "External departure setting.",
+              "type": "object",
+              "properties": {
+                "onsetAngle": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1.5707963267948966,
+                  "description": "High-alpha departure onset, radians."
+                },
+                "fullAngle": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 1.5707963267948966,
+                  "description": "Fully developed departure incidence, radians; greater than onsetAngle."
+                },
+                "yawInstability": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Separated-flow yaw growth rate, per second."
+                },
+                "yawSaturationRate": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Autorotation saturation scale, radians per second."
+                },
+                "rudderBlanking": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "Fraction of rudder authority lost at full departure."
+                },
+                "pitchBlanking": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "Fraction of pitch stability and control lost at full departure."
+                },
+                "aileronReversal": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "Aileron reversal: 0 unchanged, 0.5 ineffective, 1 reversed."
+                }
+              },
+              "required": [
+                "onsetAngle",
+                "fullAngle",
+                "yawInstability",
+                "yawSaturationRate",
+                "rudderBlanking",
+                "pitchBlanking",
+                "aileronReversal"
+              ],
+              "additionalProperties": false
             },
             "stallTransitionAngle": {
               "description": "Radians beyond stallAngle over which flow separates smoothly. Default 0.12.",
@@ -4500,6 +4698,37 @@ Required: `kind`, `spec`
               "type": "number",
               "exclusiveMinimum": 0,
               "description": "External rotorRadius setting."
+            },
+            "powerLimitedRotor": {
+              "description": "Govern rotor RPM and limit thrust using installed shaft power and actuator-disc momentum theory.",
+              "type": "boolean"
+            },
+            "rotorEfficiency": {
+              "description": "Rotor induced-power efficiency; default 0.75.",
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1
+            },
+            "profilePowerFraction": {
+              "description": "Installed shaft-power fraction spent on rotor profile drag at governed RPM; default 0.12.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "vortexRing": {
+              "description": "Enable estimated powered-descent vortex-ring loss of lift; default false.",
+              "type": "boolean"
+            },
+            "retreatingBladeSpeed": {
+              "description": "Sea-level TAS for estimated retreating-blade onset, m/s; decreases with density and rotor RPM.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "rotorDiscs": {
+              "description": "Effective lifting-disc count, 2 for a tandem rotor; default 1.",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2
             },
             "cyclicTilt": {
               "type": "number",
@@ -5433,8 +5662,17 @@ Required: `power`, `pitch`, `roll`, `yaw`, `brake`, `engine`, `gear`, `flaps`
       "description": "Landing gear extended; helicopter skids are fixed."
     },
     "flaps": {
-      "type": "boolean",
-      "description": "Plane landing flaps extended."
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      ],
+      "description": "Plane flap selection: boolean up/down or fraction 0..1."
     },
     "thrustVector": {
       "description": "Powered-lift lever: 0 forward to 1 vertical.",
@@ -5498,6 +5736,32 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "mach": {
+      "description": "True airspeed divided by local speed of sound.",
+      "type": "number",
+      "minimum": 0
+    },
+    "equivalentAirspeed": {
+      "description": "Airspeed normalized to standard sea-level density, m/s; not calibrated IAS.",
+      "type": "number",
+      "minimum": 0
+    },
+    "overspeed": {
+      "description": "An airframe, surface or rotor speed limit is exceeded; informational, not a speed clamp.",
+      "type": "boolean"
+    },
+    "departure": {
+      "description": "Developed high-alpha departure fraction.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "vortexRing": {
+      "description": "Rotor vortex-ring severity in powered slow descent.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
     "velocity": {
       "minItems": 3,
       "maxItems": 3,
@@ -5588,6 +5852,11 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
           },
           "failed": {
             "type": "boolean"
+          },
+          "afterburner": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
           },
           "thrust": {
             "type": "number",
@@ -8596,6 +8865,18 @@ Required: none
       "description": "Physical atmospheric state; independent of the visual weather profile.",
       "type": "object",
       "properties": {
+        "model": {
+          "description": "Standard layered Earth lapse rates (default), or a uniform-temperature isothermal atmosphere.",
+          "type": "string",
+          "enum": [
+            "standard",
+            "isothermal"
+          ]
+        },
+        "moistAir": {
+          "description": "Apply water-vapor ideal-gas density correction. Default false (dry reference air).",
+          "type": "boolean"
+        },
         "temperatureK": {
           "description": "Temperature at referenceAltitude in kelvin; default 288.15 (15 °C).",
           "type": "number",

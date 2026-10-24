@@ -1,7 +1,7 @@
 /** Mapped northern chapels and the separate, point-located Montu ruin precinct. */
 import './install-deterministic-math.mjs';
 import earcut from 'earcut';
-export const karnakNorthCandidateId = 'N0489';
+export const karnakNorthCandidateId = 'karnak_temple_complex';
 const linear = (hex) =>
   hex.match(/../g).map((v) => {
     const q = parseInt(v, 16) / 255;

@@ -1,13 +1,10 @@
-/** N0538: specific west stair pyramid, upper court platforms and western gate. */
+/** sukuh: specific west stair pyramid, upper court platforms and western gate. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildSukuhTemple } from './sukuh-temple-model.mjs';
 
-const source = new URL(
-    '../../../content/worldgen/source/places/qq/qqx/n0538_sukuh/',
-    import.meta.url,
-  ),
+const source = new URL('../../../content/worldgen/source/places/qq/qqx/sukuh/', import.meta.url),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
   frame = read('map-frame.json'),
   r = frame.reconstruction,
@@ -81,7 +78,7 @@ export const buildSukuhSkyline = (o) => build(o, 0),
   buildSukuhStreet = (o) => build(o, 2),
   buildSukuhCloseup = (o) => build(o, 3);
 export const sukuhStudy = {
-  id: 'N0538',
+  id: 'sukuh',
   key: 'sukuh',
   title: 'Sukuh',
   category: 'temple',

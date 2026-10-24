@@ -1,11 +1,11 @@
-/** 'N0741_SMALL': Small Hermitage classical pavilions, raised garden, galleries and open passages. */
+/** 'small_hermitage': Small Hermitage classical pavilions, raised garden, galleries and open passages. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildSmallHermitage } from './small-hermitage-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ud/udt/n0741_small_hermitage/',
+    '../../../content/worldgen/source/places/ud/udt/small_hermitage/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -73,7 +73,7 @@ export const buildSmallHermitageSkyline = (o) => build(o, 0),
   buildSmallHermitageStreet = (o) => build(o, 2),
   buildSmallHermitageCloseup = (o) => build(o, 3);
 export const smallHermitageStudy = {
-  id: 'N0741_SMALL',
+  id: 'small_hermitage',
   key: 'small_hermitage',
   title: 'Small Hermitage',
   category: 'museum',

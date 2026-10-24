@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/st/stq/n0435_mosque_of_ibn_tulun/',
+  '../../../content/worldgen/source/places/st/stq/mosque_of_ibn_tulun/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -836,7 +836,7 @@ export const buildTulunSkyline = (o) => build(o, 0),
   buildTulunCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const tulunStudy = {
-  id: 'N0435',
+  id: 'mosque_of_ibn_tulun',
   key: 'mosque_of_ibn_tulun',
   title: 'Mosque of Ibn Tulun',
   category: 'mosque',

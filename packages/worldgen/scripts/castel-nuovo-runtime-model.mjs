@@ -7,7 +7,7 @@ import { buildCastelNuovoRuntime } from './castel-nuovo-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/sr/sr6/castel_nuovo/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

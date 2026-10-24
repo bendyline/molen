@@ -1,5 +1,5 @@
 /** Specific Edfu exterior, with independently mapped hall and southern column controls. */
-export const edfuCandidateId = 'N0495';
+export const edfuCandidateId = 'temple_of_edfu';
 
 export function edfuGrade(z, r) {
   const a = r.grade;

@@ -5,7 +5,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildLuxorTemple, luxorCandidateId } from './luxor-temple-model.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/ss/ssx/n0491_luxor_temple/',
+  '../../../content/worldgen/source/places/ss/ssx/luxor_temple/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source))),
@@ -78,7 +78,7 @@ export const buildLuxorSkyline = (o) => build(o, 0),
   buildLuxorStreet = (o) => build(o, 2),
   buildLuxorCloseup = (o) => build(o, 3);
 export const luxorStudy = {
-  id: 'N0491',
+  id: 'luxor_temple',
   key: 'luxor_temple',
   title: 'Luxor Temple',
   category: 'temple',

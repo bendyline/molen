@@ -1,5 +1,5 @@
 /** Surviving Temple of Bel precinct and doorway; the destroyed cella is not restored. */
-export const belCandidateId = 'N0505';
+export const belCandidateId = 'temple_of_bel';
 function box(f, role, x, y, z, w, h, depth) {
   const a = [
     [-w / 2, 0, -depth / 2],

@@ -1,11 +1,11 @@
-/** 'N0544': standing Deogarh sanctuary, carved west entrance and broken stone crown. */
+/** 'dashavatara_temple_deogarh': standing Deogarh sanctuary, carved west entrance and broken stone crown. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildDeogarhTemple } from './deogarh-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ts/tsr/n0544_dashavatara_temple_deogarh/',
+    '../../../content/worldgen/source/places/ts/tsr/dashavatara_temple_deogarh/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -82,7 +82,7 @@ export const buildDeogarhSkyline = (o) => build(o, 0),
   buildDeogarhStreet = (o) => build(o, 2),
   buildDeogarhCloseup = (o) => build(o, 3);
 export const deogarhStudy = {
-  id: 'N0544',
+  id: 'dashavatara_temple_deogarh',
   key: 'dashavatara_temple_deogarh',
   title: 'Dashavatara Temple, Deogarh',
   category: 'temple',

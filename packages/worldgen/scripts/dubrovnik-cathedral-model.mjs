@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sr/srs/n0380_dubrovnik_cathedral/',
+  '../../../content/worldgen/source/places/sr/srs/dubrovnik_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -917,7 +917,7 @@ export const buildDubrovnikCathedralSkyline = (o) => build(o, 0),
   buildDubrovnikCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const dubrovnikCathedralStudy = {
-  id: 'N0380',
+  id: 'dubrovnik_cathedral',
   key: 'dubrovnik_cathedral',
   title: 'Dubrovnik Cathedral',
   category: 'cathedral',

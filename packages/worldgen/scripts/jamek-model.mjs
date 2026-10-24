@@ -5,7 +5,7 @@ import earcut from 'earcut';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/w2/w28/n0474_sultan_abdul_samad_jamek_mosque/',
+    '../../../content/worldgen/source/places/w2/w28/sultan_abdul_samad_jamek_mosque/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -564,7 +564,7 @@ export const buildJamekSkyline = (o) => build(o, 0),
   buildJamekCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const jamekStudy = {
-  id: 'N0474',
+  id: 'sultan_abdul_samad_jamek_mosque',
   key: 'sultan_abdul_samad_jamek_mosque',
   title: 'Sultan Abdul Samad Jamek Mosque',
   category: 'mosque',

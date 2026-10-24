@@ -352,7 +352,7 @@ function crown(out) {
 function podium(out, m) {
   const plan = partPlan(
     m,
-    partsEvidence('n0200_marina_101').find((p) => p.id === 1074877791),
+    partsEvidence('marina_101').find((p) => p.id === 1074877791),
   );
   mappedSolid(out, 'stone', plan, 0, 12.5, [0.43, 0.415, 0.39]);
   for (let i = 0; i < plan.length; i++) {
@@ -459,7 +459,7 @@ export function buildMarina101(out, m) {
   crown(out);
 }
 export const marina101Study = {
-  id: 'N0200',
+  id: 'marina_101',
   key: 'marina_101',
   title: 'Marina 101',
   wikidataId: 'Q1165269',

@@ -1,11 +1,11 @@
-/** 'N0742_SALUTATION': Paired octagonal towers, true passage and open court-facing arcade. */
+/** 'gate_of_salutation_topkapi_palace': Paired octagonal towers, true passage and open court-facing arcade. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiSalutation } from './topkapi-salutation-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_salutation/',
+    '../../../content/worldgen/source/places/sx/sxk/gate_of_salutation_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -74,7 +74,7 @@ export const buildTopkapiSalutationSkyline = (o) => build(o, 0),
   buildTopkapiSalutationStreet = (o) => build(o, 2),
   buildTopkapiSalutationCloseup = (o) => build(o, 3);
 export const topkapiSalutationStudy = {
-  id: 'N0742_SALUTATION',
+  id: 'gate_of_salutation_topkapi_palace',
   key: 'salutation',
   title: 'Gate of Salutation, Topkapi Palace',
   category: 'castle',

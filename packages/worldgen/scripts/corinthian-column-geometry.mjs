@@ -1,4 +1,4 @@
-/** 'N0532', 'N0536': Reusable original metric Corinthian bases, flutes, leafy capitals and volutes. */
+/** 'temple_of_venus_genetrix', 'temple_of_augustus': Reusable original metric Corinthian bases, flutes, leafy capitals and volutes. */
 import { prism, rect } from './khmer-structure-geometry.mjs';
 
 function lathe(f, role, x, z, profile, n, flutes = 0) {

@@ -417,7 +417,7 @@ const camera = (name, s, z, h, targetS = s, targetZ = 0, targetH = 10) => ({
   lookAt: deck(targetS, targetZ, targetH),
 });
 export const jamunaStudy = {
-  id: 'N0023',
+  id: 'jamuna_bridge',
   key: 'jamuna_bridge',
   title: 'Jamuna Bridge',
   wikidataId: 'Q10729282',

@@ -9,7 +9,7 @@ import {
 } from '../../worldgen/scripts/pont-aval-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u0/u09/n0026_pont_aval'),
+const source = resolve('../../content/worldgen/source/places/u0/u09/pont_aval'),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
 const nearest = (ts, o, d) =>
@@ -101,7 +101,7 @@ it('retains continuous curved road slabs, four separate boxes and outward-facing
 });
 it('preserves the detailed master, signed mapped plan and archival vertical controls', async () => {
   const s = await read(source + '/spec.json'),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(s.sourceFacts.spanControlWestToEastMeters).toEqual([67.47, 92, 81.48, 71.55]);

@@ -7,7 +7,7 @@ import { archBay, face, transform, triangle } from './heritage-tower-detail-mesh
 import { box, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const bytes = readFileSync(structureSourcePath('n0620_karnan', 'map-frame.json'));
+const bytes = readFileSync(structureSourcePath('karnan', 'map-frame.json'));
 const map = JSON.parse(bytes);
 const brick = [0.52, 0.31, 0.24],
   stone = [0.69, 0.65, 0.53];
@@ -574,8 +574,8 @@ function decorateMesh(mesh) {
 }
 
 export const karnan = {
-  id: 'n0620_karnan',
-  planId: 'N0620',
+  id: 'karnan',
+  planId: 'karnan',
   title: 'Kärnan',
   wikidata: 'Q1779457',
   authoringFile: 'karnan-model.mjs',

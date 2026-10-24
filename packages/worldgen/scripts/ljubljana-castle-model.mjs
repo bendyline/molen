@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u2/u24/n0307_ljubljana_castle/',
+  '../../../content/worldgen/source/places/u2/u24/ljubljana_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
@@ -690,7 +690,7 @@ export function buildLjubljanaRuntime(o, level = 'closeup') {
 }
 export const buildLjubljanaSkyline = (o) => buildLjubljanaRuntime(o, 'skyline');
 export const ljubljanaStudy = {
-  id: 'N0307',
+  id: 'ljubljana_castle',
   key: 'ljubljana_castle',
   title: 'Ljubljana Castle',
   category: 'castle',

@@ -1,8 +1,8 @@
-/** N0718: Estádio da Luz's four red arches, wave roof and three-tier red bowl. */
+/** estadio_da_luz: Estádio da Luz's four red arches, wave roof and three-tier red bowl. */
 import { beam, cross } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
-const candidateId = 'N0718',
+const candidateId = 'estadio_da_luz',
   tau = Math.PI * 2,
   corner = Math.atan2(64, 94);
 export const luzSegments = [12, 16, 40, 96];

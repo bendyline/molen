@@ -1,4 +1,4 @@
-/** 'N0566': standing rebuilt Dharahara and separately preserved earlier remains. */
+/** 'dharahara': standing rebuilt Dharahara and separately preserved earlier remains. */
 import { openingBuilder, prepareOpening } from './authored-wall-openings.mjs';
 import { loft, prism } from './khmer-structure-geometry.mjs';
 

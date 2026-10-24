@@ -8,7 +8,7 @@ import { skylineGlobal } from '../../worldgen/scripts/signature-tower-global-mod
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve(
-    '../../content/worldgen/source/places/dp/dp3/n0174_trump_international_hotel_and_tower',
+    '../../content/worldgen/source/places/dp/dp3/trump_international_hotel_and_tower',
   ),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2'),
   read = async (p) => JSON.parse(await readFile(p));
@@ -87,7 +87,7 @@ it('reproduces the Chicago Trump detailed master and eight independent signed ma
         doubleSided: true,
       },
     });
-  skylineGlobal.find((p) => p.id === 'N0174').build(a.wrap(b), m);
+  skylineGlobal.find((p) => p.id === 'trump_international_hotel_and_tower').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`);
   expect(m.elements).toHaveLength(8);
   expect(m.elements.find((p) => p.id === 64594680).tags.wikidata).toBe('Q546221');

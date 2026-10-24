@@ -1,4 +1,4 @@
-/** 'N0765_MAIN': Villa Romana del Casale, main villa and bath conservation complex. */
+/** 'casale_main': Villa Romana del Casale, main villa and bath conservation complex. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
@@ -6,7 +6,7 @@ import { buildCasaleMain } from './casale-main-geometry.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sq/sqd/n0765_casale_main/',
+    '../../../content/worldgen/source/places/sq/sqd/casale_main/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -107,7 +107,7 @@ export const buildCasaleMainSkyline = (o) => build(o, 0),
   buildCasaleMainStreet = (o) => build(o, 2),
   buildCasaleMainCloseup = (o) => build(o, 3);
 export const casaleMainStudy = {
-  id: 'N0765_MAIN',
+  id: 'casale_main',
   key: 'casale_main',
   title: 'Villa Romana del Casale, main villa and bath conservation complex',
   category: 'museum',

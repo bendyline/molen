@@ -1,4 +1,4 @@
-/** 'N0549': pictured West Mebon east gateways, open wall and mapped pool causeway. */
+/** 'west_mebon': pictured West Mebon east gateways, open wall and mapped pool causeway. */
 import { box, loft } from './khmer-structure-geometry.mjs';
 
 function pose(f, x, y, z, angle = 0) {

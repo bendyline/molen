@@ -1,11 +1,11 @@
-/** 'N0753': South Building, Vasnetsov facade, three-gable porch and connected gallery lanterns. */
+/** 'tretyakov_gallery': South Building, Vasnetsov facade, three-gable porch and connected gallery lanterns. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTretyakov } from './tretyakov-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/uc/ucf/n0753_tretyakov_gallery/',
+    '../../../content/worldgen/source/places/uc/ucf/tretyakov_gallery/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -106,7 +106,7 @@ export const buildTretyakovSkyline = (o) => build(o, 0),
   buildTretyakovStreet = (o) => build(o, 2),
   buildTretyakovCloseup = (o) => build(o, 3);
 export const tretyakovStudy = {
-  id: 'N0753',
+  id: 'tretyakov_gallery',
   key: 'tretyakov_gallery',
   title: 'Tretyakov Gallery, historic Lavrushinsky Lane complex',
   category: 'museum',

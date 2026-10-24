@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u29/n0409_st_stephan_s_cathedral_passau/',
+  '../../../content/worldgen/source/places/u2/u29/st_stephans_cathedral_passau/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1033,7 +1033,7 @@ export const buildPassauSkyline = (o) => build(o, 0),
   buildPassauCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const passauCathedralStudy = {
-  id: 'N0409',
+  id: 'st_stephans_cathedral_passau',
   key: 'st_stephan_s_cathedral_passau',
   title: "St. Stephan's Cathedral, Passau",
   category: 'cathedral',

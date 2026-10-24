@@ -1,11 +1,11 @@
-/** N0535: specific octagonal Quba Mere Diwane and open east portico. */
+/** quba_mere_diwane: specific octagonal Quba Mere Diwane and open east portico. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildQubaDiwaneTemple } from './quba-diwane-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sz/szp/n0535_quba_mere_diwane/',
+    '../../../content/worldgen/source/places/sz/szp/quba_mere_diwane/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -84,7 +84,7 @@ export const buildQubaDiwaneSkyline = (o) => build(o, 0),
   buildQubaDiwaneStreet = (o) => build(o, 2),
   buildQubaDiwaneCloseup = (o) => build(o, 3);
 export const qubaDiwaneStudy = {
-  id: 'N0535',
+  id: 'quba_mere_diwane',
   key: 'quba_mere_diwane',
   title: 'Quba Mere Diwane',
   category: 'temple',

@@ -8,7 +8,7 @@ import { buildNosyAlanana } from '../../worldgen/scripts/lighthouse-final-coasta
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/mh/mhg/n0662_nosy_alanana_light'),
+const source = resolve('../../content/worldgen/source/places/mh/mhg/nosy_alanana_light'),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
@@ -80,7 +80,7 @@ it('preserves the historical source recipe while binding reviewed repair and an 
   const s = await read(source + '/spec.json'),
     scope = await read(source + '/review-scope.json'),
     f = await read(source + '/map-frame.json'),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(s.mesh.sha256).not.toBe(scope.sourceFacts.originalMasterHash);

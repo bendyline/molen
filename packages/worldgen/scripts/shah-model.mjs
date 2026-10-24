@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tj/tju/n0431_shah_mosque/',
+  '../../../content/worldgen/source/places/tj/tju/shah_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -937,7 +937,7 @@ export const buildShahSkyline = (o) => build(o, 0),
   buildShahCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const shahStudy = {
-  id: 'N0431',
+  id: 'shah_mosque',
   key: 'shah_mosque',
   title: 'Shah Mosque',
   category: 'mosque',

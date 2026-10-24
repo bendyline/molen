@@ -18,6 +18,7 @@ import {
   historicalIdentityResolved,
 } from './historical-placement.mjs';
 import { reviewedMediumFi } from './medium-fi-readiness.mjs';
+import { readStructurePlacements } from './placement-sources.mjs';
 import { readinessRefresh } from './readiness-refresh.mjs';
 import { readinessSourceIdentity } from './readiness-source-identity.mjs';
 import { reviewedCategoryRules } from './reviewed-category-rules.mjs';
@@ -25,11 +26,11 @@ import { reviewedSourceMapFrame } from './reviewed-source-map-frame.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
-const catalog = await readJson('content/worldgen/source/next-1000/candidates.json');
+const catalog = await readJson('content/worldgen/source/structure-catalog/candidates.json');
 const details = await readJson('content/earth/structures/evidence/wikidata-details.json');
 const geographic = await readJson('content/earth/structures/georeferencing.json');
 const identityReview = await readJson('content/earth/structures/identity-review.json');
-const placements = await readJson('content/earth/structures/placements.json');
+const placements = await readStructurePlacements();
 const mapRules = await readJson('content/earth/structures/map-rules.json');
 const project = await readJson('content/worldgen/project.json');
 const geoById = new Map(geographic.candidates.map((entry) => [entry.candidateId, entry]));
@@ -59,12 +60,14 @@ async function imageFiles(directory) {
   }
   return paths;
 }
-const collectionPath = 'content/worldgen/source/next-1000/collections.json';
+const collectionPath = 'content/worldgen/source/structure-catalog/collections.json';
 const collectionBytes = await bytes(collectionPath);
 const collections = validateStructureCollections(JSON.parse(collectionBytes), catalog.candidates);
 const selectedArguments = process.argv.filter((argument) => argument.startsWith('--ids='));
 if (process.argv.includes('--ids') || selectedArguments.length > 1)
-  throw new Error('Use one --ids=N0001,N0002 argument for a selected readiness refresh.');
+  throw new Error(
+    'Use one --ids=stari_most,pont_de_normandie argument for a selected readiness refresh.',
+  );
 const selectedArgument = selectedArguments[0];
 if (selectedArgument && process.argv.includes('--check'))
   throw new Error('--check always verifies the full ledger; omit --ids.');
@@ -393,7 +396,7 @@ const counts = {
 };
 const output = {
   format: 'molen/structure-readiness@1',
-  title: 'Next 1,000 structure production and placement readiness',
+  title: 'structure catalog structure production and placement readiness',
   policy:
     'All current catalog identities remain visible. Missing geometry, undirected map axes, missing datum/facade review and unbound screenshots remain explicit blockers. ready requires hash-bound fidelity, visual and geographic review plus an active runtime placement, or a deliberately reusable type with hash-bound current map rules and inspected real-map integration including negative matches, all four LODs, failure and eviction. Reusable types never receive a fabricated unique anchor. New medium-fi reviews bind all four runtime LODs and the required context captures; legacy maximum-fidelity reviews retain their original meaning.',
   counts,
@@ -407,7 +410,7 @@ if (process.argv.includes('--check')) {
       'Structure readiness ledger is stale: run node packages/worldgen-earth/scripts/build-structure-readiness.mjs',
     );
 } else await writeIndex(path, serialized);
-const progressPath = resolve(root, 'content/worldgen/source/next-1000/PROGRESS.md');
+const progressPath = resolve(root, 'content/worldgen/source/structure-catalog/PROGRESS.md');
 const reviewed = (value) => (value ? 'Passed' : 'Pending');
 const cells = (text) => String(text).replaceAll('|', '\\|');
 const progress = `# All 1,000 structure models — production progress

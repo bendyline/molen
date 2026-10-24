@@ -7,7 +7,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineWorld } from '../../worldgen/scripts/signature-tower-world-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/th/thr/n0184_rose_tower'),
+const source = resolve('../../content/worldgen/source/places/th/thr/rose_tower'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2'),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -87,7 +87,7 @@ it('reproduces the original Rose master and verifies fresh identity plus prior s
       stainless: { graph: 'metal_stainless', slot: 'trim', roughness: 0.3, metallic: 1 },
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
     });
-  skylineWorld.find((p) => p.id === 'N0184').build(a.wrap(b), m);
+  skylineWorld.find((p) => p.id === 'rose_tower').build(a.wrap(b), m);
   const baseline = await read(`${source}/georeferencing-baseline.json`),
     spec = await read(`${source}/spec.json`);
   expect(m.elements).toHaveLength(1);

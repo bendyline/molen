@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sq/sqc/n0349_cattedrale_di_monreale/',
+  '../../../content/worldgen/source/places/sq/sqc/cattedrale_di_monreale/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1027,7 +1027,7 @@ const cam = (name, p, look, fov = 48) => ({
   fov,
 });
 export const monrealeStudy = {
-  id: 'N0349',
+  id: 'cattedrale_di_monreale',
   key: 'cattedrale_di_monreale',
   title: 'Cattedrale di Monreale',
   category: 'cathedral',

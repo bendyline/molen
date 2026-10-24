@@ -1,0 +1,857 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.museum_of_philistine_culture",
+  "reviewedOn": "2026-10-22",
+  "inputHash": "sha256:11d7038cfbd8ef5f0e1d257c9d2c75bf0f7086b7029adb9d8d6f84a72d07fe8d",
+  "sourceHash": "sha256:fc02460b1a5b88c782ae60d460e11a266408be901d63ea90b5cba4e273131a63",
+  "runtimeHash": "sha256:bbb07620fc669a687421ffd7f28421378a9ea6040cc026a7f3cb3d915819fd23",
+  "captureReportHash": "sha256:8f7ca853818ff723e9c8d189be1f151d3529eb5c4e528188e0d3ddded74b9c8e",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/front-recess-canopy-and-folded-roof.png",
+      "shots/roof-bays-clerestories-and-retained-neighbors.png",
+      "shots/recess-soffit-and-abstract-sign-plaques.png"
+    ],
+    "notes": "Mapped blue-gray Ashdod museum exterior, largely blank front wall/raised coping, three reconstructed stepped folded white sheet-roof bays and dark opaque glazed ends. Actual1.1m recessed entrance/closed soffit/threshold under a slim projecting canopy/two slender posts. Two blank low-frequency banner fields, three irregular pale sign plaques and six schematic wall lights. One author/inspect/fix pass refined wall hue, neutral unseen roof ends and native whole-site framing. Original neighboring school/residential/tile-roof buildings retained. Text, logo/bird art, exhibition imagery and flags omitted."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/front-recess-canopy-and-folded-roof.png",
+      "shots/shared/roof-bays-clerestories-and-retained-neighbors.png",
+      "shots/shared/recess-soffit-and-abstract-sign-plaques.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Four existing256px graphs: plaster_lime blue-gray render/blank pale sign fields; stone_limestone_raw footing/plinth/threshold; metal_painted light sheet roofs/canopy, dark frames, blank blue banner and lights; storefront opaque glazing. Generic limestone substitutes for concrete footing and plaster/painted metal for blank signs/banner substrate. No new graph/private atlas/embedded image. Six textured draws/one skyline draw; linear tints, separate POSITION/NORMAL streams and equal CPU/GPU byte accounting. Each native textured run reads each graph once; all LOD unloads dispose model geometry.",
+    "captureReportHash": "sha256:91ceccdf603bedb4ba3f0ffa4ebb29cf6c7c5c879211bf650d37ee5416d76468"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/front-recess-canopy-and-folded-roof.png",
+      "medium-fi/roof-bays-clerestories-and-retained-neighbors.png",
+      "medium-fi/recess-soffit-and-abstract-sign-plaques.png",
+      "medium-fi/philistine-skyline.png",
+      "medium-fi/philistine-district.png",
+      "medium-fi/philistine-street.png",
+      "medium-fi/philistine-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 128 / 328 / 904 / 904 triangles within1k/4k/16k/64k caps. Initial skyline+district geometry 50836 bytes, shared cached material bakes separate. Six GLBs have zero Khronos errors/warnings;112 actual mesh/contact probes and3 actual PMTiles13/14/15 cases (one detailed owned parent) pass. Inspected48 current portable/shared/medium-fi/native frames, all LODs, failure/loading lifecycle and Economy/High noon/late light. Physical device timings remain pending.",
+    "captureReportHash": "sha256:4297d525becde72e95459199081389e3ae84e0aa9dd2d16bfddb5eb420f85b68"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:3b8f548030f70838c68c8dd62de7f740004802bce29a11c5238e1e25cce66a19",
+    "mapFrameHash": "sha256:4e057568d0ad47a7cd1ef910c54991eb722d47899455b7a4035fa1536dd43b67",
+    "notes": "Q23894294 identifies the candidate project; named museum POI and rectangle on way236735359/native35184608824191 identify the actual building. Use the existing reviewed map-axis anchor[34.640361389,31.798977432], about166m southwest of the candidate reference, rather than that displaced reference point. InternalX east-southeast along short front wall/internalZ south-southwest toward entrance approach, heading0/native axes baked in. Own this single parent only; preserve428 resident/516 wider independent buildings, including southern way236736164. Original201x201/6m Mapzen grid, roads and23,429.121163m² water retained. Uncovered approach datum32.137921627028405m/floor0.2m; boundary grades-0.641..+0.770m leave modest foundation/slight burial. Ground beneath roof-only canopy/approach retained. Failure keeps429 originals; every LOD unload restores ground/water and zero live geometry. Exact paving/thresholds/accessibility unverified."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Medium-fi exterior from two ordinary front oblique pictures and the actual mapped rectangle. No height/levels tag: working wall5.5m/raised coping about5.8m, entrance3.35m/canopy3.55m, three folded bays rising7.4/8.6/9.4m above floor. Roof bay inventory/profile, side/rear/clerestory layout and small rear service hatch reconstructed; hidden elevations are simplified. Skyline omits facade fields and flattens entrance recess; district/street/closeup retain recess/soffit and identity fields, finer LODs add broad seams/wall lights. Blank plaques/banner fields preserve arrangement without text/logo/bird/art. Shared plaster/painted-metal/stone substitute for original render, sheet roof, signboard/banner and concrete. No furnished exhibition, artifacts, copied graphics, flags or authored surrounding school. Physical phone/laptop/dense-city timing remains pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/models/source.glb\",\"hash\":\"sha256:fc02460b1a5b88c782ae60d460e11a266408be901d63ea90b5cba4e273131a63\",\"bytes\":109832,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sv/sv8/museum_of_philistine_culture/model.glb\",\"hash\":\"sha256:bbb07620fc669a687421ffd7f28421378a9ea6040cc026a7f3cb3d915819fd23\",\"bytes\":109252,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sv/sv8/museum_of_philistine_culture/model.skyline.glb\",\"hash\":\"sha256:5bb03dc2bfc0af91d73629c764e1f4b6428552801bf7b132b00c1029d6fba313\",\"bytes\":13064,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sv/sv8/museum_of_philistine_culture/model.district.glb\",\"hash\":\"sha256:ea9671ab0277f4e55e3c9a2bbf7f507e054499d4e86e2dcbd32a627c1eca4271\",\"bytes\":37772,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sv/sv8/museum_of_philistine_culture/model.street.glb\",\"hash\":\"sha256:b5d2a1e0ab01373fc416236f5a05c293298f43504d06d7ac3724494198e8d582\",\"bytes\":94880,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sv/sv8/museum_of_philistine_culture/model.closeup.glb\",\"hash\":\"sha256:b5d2a1e0ab01373fc416236f5a05c293298f43504d06d7ac3724494198e8d582\",\"bytes\":94880,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "folded-roof-bays-foundation-canopy-recess-soffit-and-threshold",
+        "passed": true,
+        "notes": "112 actual geometry/contact probes across six current GLBs; hash/material/LOD/vertex layout checks pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Q23894294 identifies the candidate project; named museum POI and rectangle on way236735359/native35184608824191 identify the actual building. Use the existing reviewed map-axis anchor[34.640361389,31.798977432], about166m southwest of the candidate reference, rather than that displaced reference point. InternalX east-southeast along short front wall/internalZ south-southwest toward entrance approach, heading0/native axes baked in. Own this single parent only; preserve428 resident/516 wider independent buildings, including southern way236736164. Original201x201/6m Mapzen grid, roads and23,429.121163m² water retained. Uncovered approach datum32.137921627028405m/floor0.2m; boundary grades-0.641..+0.770m leave modest foundation/slight burial. Ground beneath roof-only canopy/approach retained. Failure keeps429 originals; every LOD unload restores ground/water and zero live geometry. Exact paving/thresholds/accessibility unverified."
+    },
+    "inputHash": "sha256:11d7038cfbd8ef5f0e1d257c9d2c75bf0f7086b7029adb9d8d6f84a72d07fe8d",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:11d7038cfbd8ef5f0e1d257c9d2c75bf0f7086b7029adb9d8d6f84a72d07fe8d",
+      "reviewedOn": "2026-10-22",
+      "method": "Actually inspected48 current frames in six labeled contact sheets and current native front/roof/recess views at full resolution. Two ordinary exterior pictures and standard PMTiles/Mapzen guided one continuous author/inspect/fix pass. Refined blue-gray wall tint, neutral unseen roof ends and whole-site framing clear of a foreground neighbor.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/preview.png",
+          "hash": "sha256:1c63a8a1d66aad5b76c3f08c2f878d0b67f44ab996a2d45fce42e906f2cb981c"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/turntable/angle_0.png",
+          "hash": "sha256:e19034b2c0f21c9d969e01f68ec0259b556fe95cf8000582a0091d779468d5c2"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/turntable/angle_1.png",
+          "hash": "sha256:7dc3fde71aee3b3cb4de64a92df7c79cbf3f79611991445a23afd59baeb4960e"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/turntable/angle_2.png",
+          "hash": "sha256:b4ceb832b376391b491e62f30ac27d2c6e30df347fd5280d0f24a51b3fb65161"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/turntable/angle_3.png",
+          "hash": "sha256:16545c3009857ef154bd20747040bcf6a9ea91c80c69a75df3592b3b592c9bb5"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/front-recess-canopy-and-folded-roof.png",
+          "hash": "sha256:a5c4a0098104cc08f95ede5e9fc88e9ccbc53ba16f595e77808a4925a12e991b"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/roof-bays-clerestories-and-retained-neighbors.png",
+          "hash": "sha256:57f3856b125a96845b04c49bea6241436dd36b929120b681c394889977b6d2e3"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/recess-soffit-and-abstract-sign-plaques.png",
+          "hash": "sha256:ec50f65405ee89668b14194ea01826b533a5afcbf9c2ae2dc4940f8b28b59e62"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/shared/angle-0.png",
+          "hash": "sha256:bcd8f20d70d63c0cba51194a935af1d9747c82446e6bde04d29da626fba540da"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/shared/angle-1.png",
+          "hash": "sha256:cfb8c4166fa4cfcab05f5394c2a6c4eed9ba9859ab50c58c32a165cc3e9bcb22"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/shared/angle-2.png",
+          "hash": "sha256:1d916669160566c50aed3f497361a45b0a3cf5f8f99c248359697e10586b3f62"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/shared/angle-3.png",
+          "hash": "sha256:2350284b2f0b79836a4c7df5ae2d24d632647339a03e65981e3da01f82c4073e"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/shared/front-recess-canopy-and-folded-roof.png",
+          "hash": "sha256:06e39b4ec4d77f6411799c5b3b29ff0842da21d91fb02e0cb441743024e15dd7"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/shared/roof-bays-clerestories-and-retained-neighbors.png",
+          "hash": "sha256:391605d541b14d5482b47f6911674b07afadb3a2814ee571805acf882c5665ee"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/shared/recess-soffit-and-abstract-sign-plaques.png",
+          "hash": "sha256:fa893310f58bfdfd7ca4d063262adf1a471faca74c03202d7dad2c5f2af6bb63"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/shared/placement.png",
+          "hash": "sha256:f0507a8eb861c1e5945bc0b529926398408562bf00dc6b9ec75ad3625f4967a1"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/street-noon-economy.png",
+          "hash": "sha256:e717c65b169caa7fb698ab52d0de3dd073cefcd89cd812283383e919f54aca75"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/street-noon-high.png",
+          "hash": "sha256:8de0a0cb1f50b9afc6b2dd129b64c3f382ea07bb81c86756914a6e0c53a540b2"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/street-late-economy.png",
+          "hash": "sha256:ee89b9356b32dc1422e53327be809f73deb05d7a5c030fbf888b1c963d88ad18"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/street-late-high.png",
+          "hash": "sha256:5a3d5d46a18f6cc6c334740e3f3c140f229d375f3b8615c21361a11bcdb08951"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/block-noon-economy.png",
+          "hash": "sha256:60f4fe0b294fafd4864837d7b7f3c9729300ca50e107812ca67048bf06230c99"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/block-noon-high.png",
+          "hash": "sha256:a930364059cca8d206ad8835e5a81ab8ffea001fc7f9ce5623aebed7207758f1"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/block-late-economy.png",
+          "hash": "sha256:5d0bd3130f01801a704175dd27ca2faad4d309eff91656200d16aac8168c6f40"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/block-late-high.png",
+          "hash": "sha256:74b18df6cac0bba4432180960d21338ccfb5828169b3621bc1b76ab08e1b3d3c"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:3ccb867d6dd1e0ea54449f1aee4429be6cf5bad618cd0554e0875cc1ee027c82"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:291ec32d20cfc311b7d03e8dfcc4afdf25cbc31e6af8cf54ed953d014ed3bea8"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:a2714a9703509b9223b152df23eb4e94266fe22aac9fe1cd1c094325bf3e9c32"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/skyline-late-high.png",
+          "hash": "sha256:4537b014c9d7d6fded63da59717faa8004c98cf6d6716b57675a6d1b0fd8295e"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/silhouette.png",
+          "hash": "sha256:4b01430626f917b29a08f1bd51a61cd0a32d01c25956810841ac69bcbab522ee"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/front-recess-canopy-and-folded-roof.png",
+          "hash": "sha256:e5d86c4fea4882d8b9d6308fcc724f7cccd4b18384672b0a4c7c3722cfd66143"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/roof-bays-clerestories-and-retained-neighbors.png",
+          "hash": "sha256:faa60ea962c31ae1df944b06e609b352c8d7291280ed34748c7afc9a4613d4cf"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/recess-soffit-and-abstract-sign-plaques.png",
+          "hash": "sha256:f751fc28d1ffa8f8f4ca7e82280da9e5414b8b625c2171e972177e971ed8d297"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/philistine-skyline.png",
+          "hash": "sha256:121c2ea41655b3c5d6492e12a3db28010cbd3dd3f4be6efaf223172faf7b507f"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/philistine-district.png",
+          "hash": "sha256:05333cd130284e570b4c6dbeb79354afcdc4a4556985cc3822aa748eb9b458f2"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/philistine-street.png",
+          "hash": "sha256:130055081ced110230d08ee09f7840a962515419666fcc3081c4d7b42f42153d"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/philistine-closeup.png",
+          "hash": "sha256:21bc3a09d430ce4f8eef1c92ec24ee950e6d9d60e0975e914cb43ebf2d155e15"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/transition-skyline.png",
+          "hash": "sha256:e070257ae153bdd59147087d87612e03b90a2d20eb2bd9e334c934f74297f11d"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/transition-district.png",
+          "hash": "sha256:a930364059cca8d206ad8835e5a81ab8ffea001fc7f9ce5623aebed7207758f1"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/transition-street.png",
+          "hash": "sha256:052d1397842e23bccdd01dad05ec90f2e243ed5a7df1332a706d8aa958a2e012"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/medium-fi/transition-closeup.png",
+          "hash": "sha256:3fb5f1bac5866aea54f864a5d380a0fc03b528eeea6883a8a02f467feaf504fb"
+        },
+        {
+          "path": ".artifacts/philistine-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:560bb617cdcf21a4a9c6ba5e3ac4f6a2f3353cba729396517d3a671a560dc53d"
+        },
+        {
+          "path": ".artifacts/philistine-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:e43f6ddbdf2312fe341c506d699dafc01149abe449fd4f9ce8ac00eb1fc21059"
+        },
+        {
+          "path": ".artifacts/philistine-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:3bf1750ea19a94c9ac5e90ad69cb39299c6033f2dec6c0e5709b17d0785136a6"
+        },
+        {
+          "path": ".artifacts/philistine-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:3bf1750ea19a94c9ac5e90ad69cb39299c6033f2dec6c0e5709b17d0785136a6"
+        },
+        {
+          "path": ".artifacts/philistine-integration/shots/final-closeup-front-recess-canopy-and-folded-roof.png",
+          "hash": "sha256:69c9942752d578d335cb25e8f1fce4edbe1bc150919dbdb3cc746f6d541b9d80"
+        },
+        {
+          "path": ".artifacts/philistine-integration/shots/final-closeup-roof-bays-clerestories-and-retained-neighbors.png",
+          "hash": "sha256:e9a965dbc4c73abba02658f8afa8eb1e896687574cb07969e2c88b78500d87e6"
+        },
+        {
+          "path": ".artifacts/philistine-integration/shots/final-closeup-recess-soffit-and-abstract-sign-plaques.png",
+          "hash": "sha256:c249b1050f9550596eca250f3b01abdb22898c074cea9008580da006adb0400a"
+        },
+        {
+          "path": ".artifacts/philistine-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:70b474eb96f71e40bc982ea32b10a1b5572d1e84d995cbe411cc4e4598e3da31"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:11d7038cfbd8ef5f0e1d257c9d2c75bf0f7086b7029adb9d8d6f84a72d07fe8d",
+      "sourceHash": "sha256:fc02460b1a5b88c782ae60d460e11a266408be901d63ea90b5cba4e273131a63",
+      "runtimeHash": "sha256:bbb07620fc669a687421ffd7f28421378a9ea6040cc026a7f3cb3d915819fd23",
+      "files": {
+        "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/models/source.glb": "sha256:fc02460b1a5b88c782ae60d460e11a266408be901d63ea90b5cba4e273131a63",
+        "content/worldgen/assets/places/sv/sv8/museum_of_philistine_culture/model.glb": "sha256:bbb07620fc669a687421ffd7f28421378a9ea6040cc026a7f3cb3d915819fd23",
+        "content/worldgen/assets/places/sv/sv8/museum_of_philistine_culture/model.skyline.glb": "sha256:5bb03dc2bfc0af91d73629c764e1f4b6428552801bf7b132b00c1029d6fba313",
+        "content/worldgen/assets/places/sv/sv8/museum_of_philistine_culture/model.district.glb": "sha256:ea9671ab0277f4e55e3c9a2bbf7f507e054499d4e86e2dcbd32a627c1eca4271",
+        "content/worldgen/assets/places/sv/sv8/museum_of_philistine_culture/model.street.glb": "sha256:b5d2a1e0ab01373fc416236f5a05c293298f43504d06d7ac3724494198e8d582",
+        "content/worldgen/assets/places/sv/sv8/museum_of_philistine_culture/model.closeup.glb": "sha256:b5d2a1e0ab01373fc416236f5a05c293298f43504d06d7ac3724494198e8d582"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184608824191
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4884,
+            3332
+          ],
+          "id": 35184468737250,
+          "owned": false,
+          "covered": 0.0005218545832651597,
+          "area": 1276264.8112627738,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9768,
+            6664
+          ],
+          "id": 35184468737250,
+          "owned": false,
+          "covered": 0.0011247423194817945,
+          "area": 592157.5366030344,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19537,
+            13328
+          ],
+          "id": 35184608824191,
+          "owned": true,
+          "covered": 1.000000015628426,
+          "area": 669.3099485866584,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 428,
+      "widerIndependent": 516,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 4.7278592063548786e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 429,
+          "independentBuildings": 428,
+          "remainingBuildings": 428,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.museum_of_philistine_culture"
+          ],
+          "rawTerrainRange": {
+            "min": -33.541821627028405,
+            "max": 23.474078372971597
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 23429.121163304175,
+          "remainingWaterArea": 23429.121163304175,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:560bb617cdcf21a4a9c6ba5e3ac4f6a2f3353cba729396517d3a671a560dc53d",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 450127
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -48.30051717375271,
+                29,
+                21.332136338117195
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 4.7278592063548786e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 429,
+          "independentBuildings": 428,
+          "remainingBuildings": 428,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.museum_of_philistine_culture"
+          ],
+          "rawTerrainRange": {
+            "min": -33.541821627028405,
+            "max": 23.474078372971597
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 23429.121163304175,
+          "remainingWaterArea": 23429.121163304175,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:e43f6ddbdf2312fe341c506d699dafc01149abe449fd4f9ce8ac00eb1fc21059",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 450327
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -48.30051717375271,
+                29,
+                21.332136338117195
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 4.7278592063548786e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 429,
+          "independentBuildings": 428,
+          "remainingBuildings": 428,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.museum_of_philistine_culture"
+          ],
+          "rawTerrainRange": {
+            "min": -33.541821627028405,
+            "max": 23.474078372971597
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 23429.121163304175,
+          "remainingWaterArea": 23429.121163304175,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:3bf1750ea19a94c9ac5e90ad69cb39299c6033f2dec6c0e5709b17d0785136a6",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 450903
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -48.30051717375271,
+                29,
+                21.332136338117195
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 4.7278592063548786e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 429,
+          "independentBuildings": 428,
+          "remainingBuildings": 428,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.museum_of_philistine_culture"
+          ],
+          "rawTerrainRange": {
+            "min": -33.541821627028405,
+            "max": 23.474078372971597
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 23429.121163304175,
+          "remainingWaterArea": 23429.121163304175,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:3bf1750ea19a94c9ac5e90ad69cb39299c6033f2dec6c0e5709b17d0785136a6",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 450903
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -48.30051717375271,
+                29,
+                21.332136338117195
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 52
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-front-recess-canopy-and-folded-roof.png",
+            "hash": "sha256:69c9942752d578d335cb25e8f1fce4edbe1bc150919dbdb3cc746f6d541b9d80",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 450903
+            },
+            "camera": {
+              "name": "front-recess-canopy-and-folded-roof",
+              "position": [
+                -13.96697139288155,
+                8,
+                35.69206788784349
+              ],
+              "lookAt": [
+                -0.9655619501275922,
+                3,
+                1.7514822638170795
+              ],
+              "fov": 59
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-roof-bays-clerestories-and-retained-neighbors.png",
+            "hash": "sha256:e9a965dbc4c73abba02658f8afa8eb1e896687574cb07969e2c88b78500d87e6",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 20,
+              "triangles": 451263
+            },
+            "camera": {
+              "name": "roof-bays-clerestories-and-retained-neighbors",
+              "position": [
+                -8.106198541270047,
+                21,
+                -43.29306578667664
+              ],
+              "lookAt": [
+                0,
+                4,
+                0
+              ],
+              "fov": 55
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-recess-soffit-and-abstract-sign-plaques.png",
+            "hash": "sha256:c249b1050f9550596eca250f3b01abdb22898c074cea9008580da006adb0400a",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 450903
+            },
+            "camera": {
+              "name": "recess-soffit-and-abstract-sign-plaques",
+              "position": [
+                -14.303787615475777,
+                3.2,
+                21.80370747949444
+              ],
+              "lookAt": [
+                -8.848362597254882,
+                2.5,
+                11.907832688927941
+              ],
+              "fov": 66
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 429,
+          "independentBuildings": 428,
+          "remainingBuildings": 429,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184608824191,
+              "area": 669.3099485866627
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.museum_of_philistine_culture"
+          ],
+          "rawTerrainRange": {
+            "min": -33.541821627028405,
+            "max": 23.474078372971597
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 23429.121163304175,
+          "remainingWaterArea": 23429.121163304175,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:70b474eb96f71e40bc982ea32b10a1b5572d1e84d995cbe411cc4e4598e3da31",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 450003
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -48.30051717375271,
+                29,
+                21.332136338117195
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Mapped exterior of the Corinne Mamane Museum of Philistine Culture in Ashdod: compact blue-gray rendered rectangular building, three reconstructed folded white sheet-roof bays/clerestory ends, largely blank front facade and raised coping, actual recessed glazed entrance under a projecting dark-edged canopy, two restrained blank banner fields and three abstract pale sign plaques. Preserve independent nearby school/tile-roof buildings and original approach. No furnished exhibition, copied inscriptions, bird logo, banner artwork, archaeological artifacts or flags.",
+    "Q23894294 identifies the museum project, while the standard map gives a named museum POI on way236735359/native35184608824191 at[34.6403619647,31.7989785706]. Use the reviewed map-axis coordinate[34.640361389,31.798977432], about166m southwest of the candidate reference, and this one matching footprint. InternalX east-southeast along the short front wall; internalZ south-southwest toward the entrance approach. Heading0; signed native east/south geometry baked in. Keep way236736164 and all other nearby buildings independent.",
+    "No mapped height/levels. Two ordinary exterior pictures guide a working5.5m wall body/5.9m coping,3.35m entrance mouth/3.55m canopy, and three folded roof bays rising to7.4/8.6/9.4m. Exact roof section/bay inventory, hidden rear/side elevations and dimensions are reconstructed from front oblique views and map rectangle. Blank sign/banner fields preserve approximate arrangement while omitting text/logo/artwork. Existing plaster_lime, stone_limestone_raw, metal_painted and storefront graphs; no private textures/copied pixels.",
+    "Standard Protomaps20261020 plus original MapzenTerrarium201x201/6m grid. Uncovered south-southwest entrance approach fixes datum32.137921627028405m; working floor0.2m above provider. Only mapped occupied main building floor cuts ground; roof-only entrance canopy projects over retained original approach. Original roads, water and independent buildings retained. Approximate native exterior fit inspected on the original grid; boundary grades-0.641..+0.770m leave a modest base/slight uphill burial. Exact pavement slope, paving and accessibility remain unverified. No bespoke terrain research or custom flattening.",
+    "Medium-fi exterior from two ordinary front oblique pictures and the actual mapped rectangle. No height/levels tag: working wall5.5m/raised coping about5.8m, entrance3.35m/canopy3.55m, three folded bays rising7.4/8.6/9.4m above floor. Roof bay inventory/profile, side/rear/clerestory layout and small rear service hatch reconstructed; hidden elevations are simplified. Skyline omits facade fields and flattens entrance recess; district/street/closeup retain recess/soffit and identity fields, finer LODs add broad seams/wall lights. Blank plaques/banner fields preserve arrangement without text/logo/bird/art. Shared plaster/painted-metal/stone substitute for original render, sheet roof, signboard/banner and concrete. No furnished exhibition, artifacts, copied graphics, flags or authored surrounding school. Physical phone/laptop/dense-city timing remains pending.",
+    "Q23894294 identifies the candidate project; named museum POI and rectangle on way236735359/native35184608824191 identify the actual building. Use the existing reviewed map-axis anchor[34.640361389,31.798977432], about166m southwest of the candidate reference, rather than that displaced reference point. InternalX east-southeast along short front wall/internalZ south-southwest toward entrance approach, heading0/native axes baked in. Own this single parent only; preserve428 resident/516 wider independent buildings, including southern way236736164. Original201x201/6m Mapzen grid, roads and23,429.121163m² water retained. Uncovered approach datum32.137921627028405m/floor0.2m; boundary grades-0.641..+0.770m leave modest foundation/slight burial. Ground beneath roof-only canopy/approach retained. Failure keeps429 originals; every LOD unload restores ground/water and zero live geometry. Exact paving/thresholds/accessibility unverified."
+  ]
+}

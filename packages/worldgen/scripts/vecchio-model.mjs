@@ -1,11 +1,11 @@
-/** 'N0764': Palazzo Vecchio, fortress palace and Torre di Arnolfo. */
+/** 'palazzo_vecchio': Palazzo Vecchio, fortress palace and Torre di Arnolfo. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildVecchio } from './vecchio-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/srb/n0764_palazzo_vecchio/',
+    '../../../content/worldgen/source/places/sr/srb/palazzo_vecchio/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -101,7 +101,7 @@ export const buildVecchioSkyline = (o) => build(o, 0),
   buildVecchioStreet = (o) => build(o, 2),
   buildVecchioCloseup = (o) => build(o, 3);
 export const vecchioStudy = {
-  id: 'N0764',
+  id: 'palazzo_vecchio',
   key: 'palazzo_vecchio',
   title: 'Palazzo Vecchio, fortress palace and Torre di Arnolfo',
   category: 'museum',

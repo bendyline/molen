@@ -1,4 +1,4 @@
-/** 'N0555': specific Timotesubani church/porch and separately mapped brick gateway. */
+/** 'timotesubani': specific Timotesubani church/porch and separately mapped brick gateway. */
 
 import {
   openingBuilder,

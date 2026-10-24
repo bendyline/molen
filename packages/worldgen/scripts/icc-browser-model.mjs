@@ -17,7 +17,7 @@ import {
 import { structureSourcePath } from './structure-source-paths.mjs';
 
 const map = JSON.parse(
-    readFileSync(structureSourcePath('n0154_international_commerce_centre', 'map-frame.json')),
+    readFileSync(structureSourcePath('international_commerce_centre', 'map-frame.json')),
   ),
   MEANS = {
     stone: [0.7011092892788303, 0.7011092892788303, 0.7011092892788303],
@@ -274,7 +274,7 @@ function build(target, level) {
   tier = level;
   const out = writer(target, tier === 0),
     m = map;
-  const key = 'n0154_international_commerce_centre',
+  const key = 'international_commerce_centre',
     plan = localOutline(m);
   mappedSolid(out, 'stone', plan, 0, 0.35, [0.45, 0.48, 0.49]);
   floorCurtain(out, plan, 0.35, 20, 4, [0.26, 0.37, 0.44], [0.54, 0.61, 0.66], 0.65);

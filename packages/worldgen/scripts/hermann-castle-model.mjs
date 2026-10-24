@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/ud/uds/n0274_hermann_castle/map-frame.json',
+      '../../../content/worldgen/source/places/ud/uds/hermann_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -550,7 +550,7 @@ export const buildHermannSkyline = (o) =>
     'skyline',
   );
 export const hermannStudy = {
-  id: 'N0274',
+  id: 'hermann_castle',
   key: 'hermann_castle',
   title: 'Hermann Castle',
   category: 'castle',

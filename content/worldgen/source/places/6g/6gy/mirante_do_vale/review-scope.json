@@ -1,0 +1,250 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "identity": "Thin clipped-end gray slab with dense window/AC grid and exposed upper frame.",
+    "exclusions": "Neighboring city blocks, interior floors and exact current AC/roof inventory."
+  },
+  "brief": "Mirante do Vale compact exterior: mapped thin slab, metal/glass window grid, floor bands, scattered AC and observation box impressions, with pictured exposed roof structure. Original source master independently preserved.",
+  "sourceFacts": {
+    "heightMeters": 170,
+    "observationDeckMeters": 150,
+    "observationFloor": 42,
+    "originalMasterHash": "sha256:9fa87eae77102ff0a966019c354fe4caf4f7cfc24c9163f6ffb2476a8c5fba75",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-expansion-models.mjs#skylineExpansion[mirante_do_vale].build",
+    "reviewScope": "Original23200-triangle2005972-byte source reproduced exactly. Independent compact source preserves slab controls and changes the upper roof to the exposed structure visible in the picture."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/mirante-browser-model.mjs",
+    "export": "buildMiranteCloseup"
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed-approximation",
+    "anchor": [
+      -46.635418088,
+      -23.542174092
+    ],
+    "heading": -0.422946671446,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/182007184",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/182007184"
+    ],
+    "wikidataId": "Q42258",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "One inspected facade picture establishes the narrow gray slab, dense window/AC grid and exposed upper roof frame. Preserve original170m source height, existing69.938�18.472m mapped perimeter and clipped southeast end. Standard viewer PMTiles confirms the exact-QID slab and surrounding downtown roads. Native long axis retained; observation boxes at150m are existing authored approximations, not certified by this older picture. PMTiles off-footprint point[-60,0]755.7122m sets approximate ground contact; center788.1688m contains urban building imprint. Bounded preview contacts preserve raw samples. Roof frame is a picture-led reconstruction; exact current roof occupancy, AC/window states, box bay offsets and thresholds remain unverified.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "One inspected facade picture establishes the narrow gray slab, dense window/AC grid and exposed upper roof frame. Preserve original170m source height, existing69.938�18.472m mapped perimeter and clipped southeast end. Standard viewer PMTiles confirms the exact-QID slab and surrounding downtown roads. Native long axis retained; observation boxes at150m are existing authored approximations, not certified by this older picture. PMTiles off-footprint point[-60,0]755.7122m sets approximate ground contact; center788.1688m contains urban building imprint. Bounded preview contacts preserve raw samples. Roof frame is a picture-led reconstruction; exact current roof occupancy, AC/window states, box bay offsets and thresholds remain unverified.",
+    "terrainReference": {
+      "anchor": [
+        -46.635954206410204,
+        -23.54195286429814
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate PMTiles off-footprint ground contact; urban DEM has building imprint."
+    }
+  },
+  "geographicNote": "One inspected facade picture establishes the narrow gray slab, dense window/AC grid and exposed upper roof frame. Preserve original170m source height, existing69.938�18.472m mapped perimeter and clipped southeast end. Standard viewer PMTiles confirms the exact-QID slab and surrounding downtown roads. Native long axis retained; observation boxes at150m are existing authored approximations, not certified by this older picture. PMTiles off-footprint point[-60,0]755.7122m sets approximate ground contact; center788.1688m contains urban building imprint. Bounded preview contacts preserve raw samples. Roof frame is a picture-led reconstruction; exact current roof occupancy, AC/window states, box bay offsets and thresholds remain unverified.",
+  "camera": {
+    "position": [
+      176,
+      119,
+      268
+    ],
+    "lookAt": [
+      0,
+      85,
+      0
+    ],
+    "fov": 44
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-fit.terrain.json",
+    "heightmap": "terrain-fit.height.png"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/mirante-browser-model.mjs",
+    "export": "buildMiranteSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMiranteDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildMiranteStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMiranteCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-mirante-skyline",
+      "position": [
+        176,
+        119,
+        268
+      ],
+      "lookAt": [
+        0,
+        85,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-mirante-district",
+      "position": [
+        176,
+        119,
+        268
+      ],
+      "lookAt": [
+        0,
+        85,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-mirante-street",
+      "position": [
+        176,
+        119,
+        268
+      ],
+      "lookAt": [
+        0,
+        85,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-mirante-closeup",
+      "position": [
+        176,
+        119,
+        268
+      ],
+      "lookAt": [
+        0,
+        85,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "One inspected facade picture establishes the narrow gray slab, dense window/AC grid and exposed upper roof frame. Preserve original170m source height, existing69.938�18.472m mapped perimeter and clipped southeast end. Standard viewer PMTiles confirms the exact-QID slab and surrounding downtown roads. Native long axis retained; observation boxes at150m are existing authored approximations, not certified by this older picture. PMTiles off-footprint point[-60,0]755.7122m sets approximate ground contact; center788.1688m contains urban building imprint. Bounded preview contacts preserve raw samples. Roof frame is a picture-led reconstruction; exact current roof occupancy, AC/window states, box bay offsets and thresholds remain unverified.",
+    "Three shared stone/concrete/painted-metal graphs reused; glass uses opaque PBR parameters without photographic textures. Low tiers merge window and floor grids and omit AC/louvers; closeup restores representative AC louvers. Roof frame, current observation boxes and local ground contacts remain approximations. Physical-device timings unmeasured."
+  ],
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-fit.terrain.json",
+    "terrain-fit.height.png"
+  ]
+}

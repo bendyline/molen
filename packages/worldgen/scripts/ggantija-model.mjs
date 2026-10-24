@@ -4,10 +4,7 @@ import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildGgantija, ggantijaCandidateId } from './ggantija-temple-model.mjs';
 
-const source = new URL(
-    '../../../content/worldgen/source/places/sq/sq6/n0494_ggantija/',
-    import.meta.url,
-  ),
+const source = new URL('../../../content/worldgen/source/places/sq/sq6/ggantija/', import.meta.url),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
   frame = read('map-frame.json'),
   r = frame.reconstruction,
@@ -66,7 +63,7 @@ export const buildGgantijaSkyline = (o) => build(o, 0),
   buildGgantijaStreet = (o) => build(o, 2),
   buildGgantijaCloseup = (o) => build(o, 3);
 export const ggantijaStudy = {
-  id: 'N0494',
+  id: 'ggantija',
   key: 'ggantija',
   title: 'Ġgantija',
   category: 'temple',

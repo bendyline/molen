@@ -1,4 +1,4 @@
-/** 'N0742_AUDIENCE': Enclosed audience pavilion, round arcade, granite shafts and broad coffered canopy. */
+/** 'audience_chamber_topkapi_palace': Enclosed audience pavilion, round arcade, granite shafts and broad coffered canopy. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildTopkapiAudience(face, detail, r) {

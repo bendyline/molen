@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sxk/n0455_fatih_istanbul_mosque/',
+  '../../../content/worldgen/source/places/sx/sxk/fatih_istanbul_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -874,7 +874,7 @@ export const buildFatihSkyline = (o) => build(o, 0),
   buildFatihCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const fatihStudy = {
-  id: 'N0455',
+  id: 'fatih_istanbul_mosque',
   key: 'fatih_istanbul_mosque',
   title: 'Fatih Istanbul Mosque',
   category: 'mosque',

@@ -1,7 +1,7 @@
 /** Mut's separate open ruin ranges and the concave Isheru lake. */
 import './install-deterministic-math.mjs';
 import earcut from 'earcut';
-export const karnakMutCandidateId = 'N0489';
+export const karnakMutCandidateId = 'karnak_temple_complex';
 
 function localFace(f, { origin, u, v }) {
   return (role, points, normal, tint) =>

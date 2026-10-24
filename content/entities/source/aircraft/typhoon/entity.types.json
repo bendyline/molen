@@ -5807,13 +5807,13 @@
               "groundLevelRate": 2,
               "maxGroundPitch": 0.22,
               "camberAngle": 0.045,
-              "flapLift": 0.33,
+              "flapLift": 0.6,
               "postStallFlapEffect": 0.4,
               "stallAngle": 0.28,
               "stallTransitionAngle": 0.12,
               "pitchFrequency": 3.5,
               "pitchDamping": 0.7,
-              "maxLoadFactor": 7.5,
+              "maxLoadFactor": 9,
               "minLoadFactor": -3,
               "autoTrim": 1,
               "directionalStability": 4,
@@ -5824,10 +5824,10 @@
               "liftSlope": 4.8,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.025,
-              "inducedDrag": 0.06,
+              "profileDrag": 0.018,
+              "inducedDrag": 0.18878146564234002,
               "gearDrag": 0.018,
-              "flapDrag": 0.035,
+              "flapDrag": 0.065,
               "gearTransitTime": 6,
               "flapTransitTime": 4,
               "stallDrag": 1.1,
@@ -5837,7 +5837,14 @@
               "lateralDamping": 0.35,
               "brakeDeceleration": 4,
               "rollingDeceleration": 0.22,
-              "groundTrackRate": 12
+              "groundTrackRate": 12,
+              "groundEffect": true,
+              "criticalMach": 0.85,
+              "waveDrag": 0.021878165636130386,
+              "maxMach": 2,
+              "maxEquivalentAirspeed": 425.3653585815963,
+              "gearLimitSpeed": 130,
+              "flapLimitSpeed": 125
             },
             "engines": [
               {
@@ -5856,9 +5863,17 @@
                 "idleRpm": 0.18,
                 "spoolRate": 0.2,
                 "rotorAngularSpeed": 150,
-                "maxThrust": 45675,
+                "maxThrust": 90000,
                 "minPropellerSpeed": 160,
-                "propellerEfficiency": 0.85
+                "propellerEfficiency": 0.85,
+                "propulsion": "jet",
+                "densityExponent": 0.5722506029296568,
+                "dryThrust": 60000,
+                "ramRise": 0.2,
+                "afterburnerThrust": 90000,
+                "afterburnerDetent": 0.85,
+                "highAltitudeDensityRatio": 0.29779561455293435,
+                "highAltitudeExponent": 1.2
               },
               {
                 "id": "engine-2",
@@ -5876,9 +5891,17 @@
                 "idleRpm": 0.18,
                 "spoolRate": 0.2,
                 "rotorAngularSpeed": 150,
-                "maxThrust": 45675,
+                "maxThrust": 90000,
                 "minPropellerSpeed": 160,
-                "propellerEfficiency": 0.85
+                "propellerEfficiency": 0.85,
+                "propulsion": "jet",
+                "densityExponent": 0.5722506029296568,
+                "dryThrust": 60000,
+                "ramRise": 0.2,
+                "afterburnerThrust": 90000,
+                "afterburnerDetent": 0.85,
+                "highAltitudeDensityRatio": 0.29779561455293435,
+                "highAltitudeExponent": 1.2
               }
             ]
           }

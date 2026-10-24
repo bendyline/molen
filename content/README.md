@@ -31,8 +31,8 @@ into a shared core and regional model archives while retaining that logical pack
 | [sky/](sky/) | `molen.sky` | The Bright Star Catalogue as `molen/stars@1` binary columns |
 | [sounds/](sounds/) | `molen.sounds` | 63 CC0 sounds and six music tracks behind a `molen/soundbank@1` bank; provenance in `sources.json` and `NOTICE.md` |
 
-The worldgen authoring source also carries a [next 1,000 structure candidate catalog](worldgen/source/next-1000/README.md).
-See its generated [progress report](worldgen/source/next-1000/PROGRESS.md) for current readiness
+The worldgen authoring source also carries a [structure catalog structure candidate catalog](worldgen/source/structure-catalog/README.md).
+See its generated [progress report](worldgen/source/structure-catalog/PROGRESS.md) for current readiness
 and the [structure gallery](worldgen/source/places/gallery.html) for registered model bundles.
 Candidate metadata is excluded from the runtime pack.
 
@@ -61,6 +61,13 @@ collision data live at `worldgen/assets/places/<gh2>/<gh3>/<source-key>/`. Legac
 an organizational coordinate use `places/unlocated/<source-key>/` under the corresponding root.
 These reference coordinates classify folders; placement approval remains in the Earth catalog
 and each model's geographic review.
+
+Geographic placements are edited individually in
+`earth/source/placements/<gh2>/<gh3>/<placement-id>.json`. Those files retain notes and review
+bases. The [placement compiler and authoring helpers](earth/source/placements/README.md) generate
+compact regional files under `earth/structures/placements/`; the Earth view reads only regions
+needed by its terrain tiles. Generated files are ignored by Git, and source evidence is excluded
+from runtime packs.
 
 Reusable runtime bundles use `worldgen/assets/reusable/urban/<source-key>/`,
 `worldgen/assets/reusable/infrastructure/<source-key>/`, or

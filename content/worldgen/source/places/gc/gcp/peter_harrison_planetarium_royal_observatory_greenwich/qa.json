@@ -1,0 +1,2075 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich",
+  "reviewedOn": "2026-10-22",
+  "inputHash": "sha256:038a02e9aec7e1ec00e12174cacfe6b839dc08a70a76f83b71445e8f9619b81b",
+  "sourceHash": "sha256:5d5e99a2fab239d318333e40f10a2f9c823abff3da10b7496fe0537d838ad5c6",
+  "runtimeHash": "sha256:06c1126d5ece1da5ed2f9f9a8b97f4105b44499bfc2953a377eead22f1630326",
+  "captureReportHash": "sha256:96ad1b926725a5219523e9efb5de10e3b4895917037b463803ff5daf4e918f73",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/north-reflective-disc-and-rim.png",
+      "shots/east-oblique-profile-and-base.png",
+      "shots/south-high-shell-and-cap.png"
+    ],
+    "notes": "Exposed Peter Harrison Planetarium: low circular mapped footing, oblique bronze cone, north-facing inclined reflective metal cap, continuous dark perimeter rim and restrained broad panel divisions. North shell generatrix is near vertical, north cap rim lower than south. Closed footing/shell/cap; no fabricated exterior door. Two ordinary pictures and the existing map guided one author/inspect/fix pass. Corrected reversed footing faces and trimmed the central cap joint inside the rim before final captures."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/north-reflective-disc-and-rim.png",
+      "shots/shared/east-oblique-profile-and-base.png",
+      "shots/shared/south-high-shell-and-cap.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Two existing256px shared graphs: metal_painted tinted patinated bronze on the shell, pale reflective metal on the cap and dark metal on its rim/joints; stone_limestone_raw on the modest mapped footing. Painted metal is an explicit shared substitute for bronze/polished cap. Four textured draws/one skyline draw. No new graph/private atlas/embedded image. Linear tints and separate POSITION/NORMAL streams; equal CPU/GPU accounting. Each native textured run reads each graph once; all LOD unloads release geometry.",
+    "captureReportHash": "sha256:107e35045b955a3688cccbe6fc31051d41c99379efc2c33594bef18e65873620"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/north-reflective-disc-and-rim.png",
+      "medium-fi/east-oblique-profile-and-base.png",
+      "medium-fi/south-high-shell-and-cap.png",
+      "medium-fi/planetarium-skyline.png",
+      "medium-fi/planetarium-district.png",
+      "medium-fi/planetarium-street.png",
+      "medium-fi/planetarium-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 112 / 174 / 222 / 270 triangles, within 1k / 4k / 16k / 64k caps. Initial skyline+district geometry 30444 bytes; shared material bakes cached separately. Six GLBs have zero Khronos errors/warnings; 90 actual geometry/contact probes and two actual PMTiles 14/15 cases pass, including one detailed owned record. No matching level 13 record. Inspected 48 current portable/shared/medium-fi/native frames, all LODs, failed loading, Economy/High and noon/late light. Physical device/dense-city timings remain pending.",
+    "captureReportHash": "sha256:2be0d555b6ddf638b1d6a711a3663cd397acdf4f54a41cd827b23f844b65fb57"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:26b64971b1dfd6d5fd6678937539d581de02de94d54797efb958f3008f17d6f7",
+    "mapFrameHash": "sha256:bf3dcda6c79ef3e753dc82cffec58069213474b5e6d43f382b08ff16a3f3e7d0",
+    "notes": "Approximate native exterior fit reviewed. Shared Q192988 plus unique way268533449/native35184640622281; parent has no contained mapped parts. Anchor[-0.000744161385767647,51.47714612180765], heading0, X east/Z south. Uncovered north control[0,-9.5], datum47.67441333333333m, footing0.2m above provider. Original boundary grades -0.714..+0.105m leave a modest low-side base. Occupied parent footprint only cuts ground/replaces its mapped record; all1,301 resident/1,838 wider independent buildings retained, including South Building, Altazimuth and southwest annex. Original201x201/6m hill, roads and9,681.379312m² water retained. Ground-only mask quantized1mm; mapped ownership/elevations unchanged. Failure keeps1,302 originals; each LOD unload restores ground/water and zero live geometry. Exact paving, underground theater and entrance levels remain unverified."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Photo-led medium-fi exterior. No mapped heights; working7.4m cone radius, about3.3m north rim/9.6m high south rim and38.5degree top incline are reconstructed, not surveyed engineering. Profile, panel inventory, hidden surface and patina simplified using shared materials. Underground theater/entry passages, furnished interior, projector, cafe, temporary barriers and signs omitted. No copied pixels or inscriptions. All seven declared Observatory exterior members are now authored and inspected; this is not a reconstruction of every underground or historic campus feature. Physical device/dense-city timings and exact walking access remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/models/source.glb\",\"hash\":\"sha256:5d5e99a2fab239d318333e40f10a2f9c823abff3da10b7496fe0537d838ad5c6\",\"bytes\":31832,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.glb\",\"hash\":\"sha256:06c1126d5ece1da5ed2f9f9a8b97f4105b44499bfc2953a377eead22f1630326\",\"bytes\":31380,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.skyline.glb\",\"hash\":\"sha256:9b0414f7cdcd593b61268f5a74d9bc3f6cfb4f3218ff940efacdc0ef4e97af77\",\"bytes\":11128,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.district.glb\",\"hash\":\"sha256:9471572875f0dd266e16aacea25fa9b71b8115d0c2e80116bdbb5875a85c1efb\",\"bytes\":19316,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.street.glb\",\"hash\":\"sha256:e587aa8edad684517e6acce0639b5c8872ccdc77f78794ee7b2501e95f37a344\",\"bytes\":23656,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.closeup.glb\",\"hash\":\"sha256:267ddb8da591db68176ff7d4d8d0427478d85839623a8096158a69d9d0332626\",\"bytes\":27980,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "closed-oblique-shell-cap-footing-and-north-south-profile",
+        "passed": true,
+        "notes": "90 actual geometry/contact probes across six GLBs; current source/runtime hashes, shared references, LOD caps and vertex streams verified."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Approximate native exterior fit reviewed. Shared Q192988 plus unique way268533449/native35184640622281; parent has no contained mapped parts. Anchor[-0.000744161385767647,51.47714612180765], heading0, X east/Z south. Uncovered north control[0,-9.5], datum47.67441333333333m, footing0.2m above provider. Original boundary grades -0.714..+0.105m leave a modest low-side base. Occupied parent footprint only cuts ground/replaces its mapped record; all1,301 resident/1,838 wider independent buildings retained, including South Building, Altazimuth and southwest annex. Original201x201/6m hill, roads and9,681.379312m² water retained. Ground-only mask quantized1mm; mapped ownership/elevations unchanged. Failure keeps1,302 originals; each LOD unload restores ground/water and zero live geometry. Exact paving, underground theater and entrance levels remain unverified."
+    },
+    "inputHash": "sha256:038a02e9aec7e1ec00e12174cacfe6b839dc08a70a76f83b71445e8f9619b81b",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:038a02e9aec7e1ec00e12174cacfe6b839dc08a70a76f83b71445e8f9619b81b",
+      "reviewedOn": "2026-10-22",
+      "method": "Actually inspected all48 current frames in six labeled contact sheets and the native north-cap/east-profile/south-shell views at full resolution. Two ordinary exterior pictures and the existing standard map/terrain extract guided one continuous author/inspect/fix pass. Corrected reversed footing faces and trimmed the central cap joint inside the rim.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/preview.png",
+          "hash": "sha256:bec783957947a4875d6c0e05ed44aecfea798bf64fd5550513dcd0ceda0f1ed2"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/turntable/angle_0.png",
+          "hash": "sha256:c89934f38cf48f86e7dc08daa63cbd4e1ed1e40ac9869dbb1dc07b916dc7934b"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/turntable/angle_1.png",
+          "hash": "sha256:8eb4b2c65816789be2537040624fb241246de5a296f6dd6158c825e13074bdde"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/turntable/angle_2.png",
+          "hash": "sha256:c229f0fee0abdc4b72cea2044cee6f3e2a11c12c2a3beb947ad47d5858cef2aa"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/turntable/angle_3.png",
+          "hash": "sha256:95b2a3cb26c4ba33a2940ca148028b1ba772102c4952a84ca92de4c8e2d56163"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/north-reflective-disc-and-rim.png",
+          "hash": "sha256:af406c96776d2e40bc034097730ded93a9847155ab020b58eec8374c060786a7"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/east-oblique-profile-and-base.png",
+          "hash": "sha256:bf849e52fa1b0a8459945b39f089e7a39a15fcbe546e739cb3fe96e769a8f703"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/south-high-shell-and-cap.png",
+          "hash": "sha256:8fa4be9270876efcc0168f29c0e4f298a6466c50c2c4a4b8230a4fddbe076ca2"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/shared/angle-0.png",
+          "hash": "sha256:374e1bc0abe7955b5c9c05c590503b88de93213fea11b808a4724092f01f87fd"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/shared/angle-1.png",
+          "hash": "sha256:57a71b1b17358af5f3d613ab9095a553eef299f009fce4c2f90941effa3abda9"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/shared/angle-2.png",
+          "hash": "sha256:de85b2d5572b617c2baf4a1fcebea2f26a0661df4bcc5d1d59ea6fed06ef751f"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/shared/angle-3.png",
+          "hash": "sha256:e9912be9a55219441f3dcbbb90efdd1fcee3c1bd7d20e1296d908943b4777a04"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/shared/north-reflective-disc-and-rim.png",
+          "hash": "sha256:307c9f2fd79cc757f5df6f857030ccdf3e01b0dd2da3c691df9097f886b2323f"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/shared/east-oblique-profile-and-base.png",
+          "hash": "sha256:a7a6a02e1658a61786336bb310ee1223b582408536272df6f791c57b9861c52b"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/shared/south-high-shell-and-cap.png",
+          "hash": "sha256:3aa87f3f1c2c8a82dc951daaa61779f65103669b10f6bd7cbf94e1ccac11515c"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/shots/shared/placement.png",
+          "hash": "sha256:2647f69dfa83dd56848afe462f568b80e37776638edb66f00af751d3233aa3c0"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/street-noon-economy.png",
+          "hash": "sha256:54a08a8545b4b35e5ecfaeb5e02988f0c6f017b0c2a79cac147f83f7d9f667cc"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/street-noon-high.png",
+          "hash": "sha256:1c5499c84dd153326d6db8fb14765da6c6e9fcf552e1bf15c23bc07534c120d3"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/street-late-economy.png",
+          "hash": "sha256:725c9ef1b05be6e2b068566e5a43e38cd19797b620501d5f12d67c30a541e9d2"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/street-late-high.png",
+          "hash": "sha256:cf843ec40caa7f56e7af74eb20a6e72952702cb6978374937add572521efd8e5"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/block-noon-economy.png",
+          "hash": "sha256:6d49846a9d8da6391a5017058160f8ad1eccf57ff95979975d115b1d6d5053aa"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/block-noon-high.png",
+          "hash": "sha256:587bea9418d5d0fbdfa0feb1760b3590ce4636d2fb2dd52fe883921a66dfc352"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/block-late-economy.png",
+          "hash": "sha256:1c0eadd847925831e6f5f9a438b63b145de878e9178e71ac87794d7a0ffdd830"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/block-late-high.png",
+          "hash": "sha256:1fded664944cf0b7b3b8131d7eff5e66e4828bacbfda7e54b21f06660183c650"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:fb6b8d7407f98687f0447c390c0e0757a1937a261b9720b89f20dd763a6f2c77"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:859d5c23b110fb80d9b64cd00e9d6bec2345eef9de636aaa28808b5cc8a4f9ef"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:494a9dd3e598ed4f4d59f3f06d6d8cb549109cde19c0727a14f5d3e305121aab"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/skyline-late-high.png",
+          "hash": "sha256:6ec9c0823ae6c308021cce6385ce45174971404d04c8f2cea3a294b474c9ccf9"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/silhouette.png",
+          "hash": "sha256:f8fa99d75a0330f892ad3e62ecb0a2d8cf44fad967998bbdd96461033e3efc67"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/north-reflective-disc-and-rim.png",
+          "hash": "sha256:49a8529072cefbcd1c40518a46d09749d4050f136069b161593fc56cf1ee6114"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/east-oblique-profile-and-base.png",
+          "hash": "sha256:c83366271e2bd741fb1494c254668211a7bc4af997a76be39a31c2a1d164f02d"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/south-high-shell-and-cap.png",
+          "hash": "sha256:c9f56a7585f30fbb3fc6cb3ba67ff7fbe5fe4effab05678650ef7ddc876c64dd"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/planetarium-skyline.png",
+          "hash": "sha256:21069a5787037918c09aced6691afdcaf1b8ae5113ee08824ffeca0d601f87f7"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/planetarium-district.png",
+          "hash": "sha256:acbf54c144aa0d0debe5130447f04b3759ec00b0d6b63b8726ef4e0b29cd4ba6"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/planetarium-street.png",
+          "hash": "sha256:56ceba5764418a4fc46812eaa3eaf8cd960a3c6bdfd14ef9598a83a79bbc5ff6"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/planetarium-closeup.png",
+          "hash": "sha256:563d5766c11d95b4279c9fa52595e920a803c110b801afc9838d297758e5cc8d"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/transition-skyline.png",
+          "hash": "sha256:0b0924019d960f19d6a734b8c67955896dd3227a8f49ba8fbe7cf7d0fdf71277"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/transition-district.png",
+          "hash": "sha256:587bea9418d5d0fbdfa0feb1760b3590ce4636d2fb2dd52fe883921a66dfc352"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/transition-street.png",
+          "hash": "sha256:52b889ad1890adc087d844b6483ba03b3167ea94d703f824b0125805a79bd2bc"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/medium-fi/transition-closeup.png",
+          "hash": "sha256:5aedb1c300ef23be3f6a1ad85b8978b2cc63740c94b9af766a98ba9878eef13b"
+        },
+        {
+          "path": ".artifacts/planetarium-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:f7249206b9072bad7237ed4b1799320c715ab75ddc233984d52f2cd139da17fe"
+        },
+        {
+          "path": ".artifacts/planetarium-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:031c88bd32e28152e957da2983818efc67371d8955724ffbd9415edcadece75b"
+        },
+        {
+          "path": ".artifacts/planetarium-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:2628af7b04342051d2c5cca5be3b9f609ec64861a4798a6bb10e250b58dd58e2"
+        },
+        {
+          "path": ".artifacts/planetarium-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:fc04792d24f615ba4fe41d566662d79a667f3adaeb7f6e63e469b40cf17f887e"
+        },
+        {
+          "path": ".artifacts/planetarium-integration/shots/final-closeup-north-reflective-disc-and-rim.png",
+          "hash": "sha256:cb0272a9493a1c45af9cb02a0630ba6f0dc76989cac954c71288340fb7b74fb5"
+        },
+        {
+          "path": ".artifacts/planetarium-integration/shots/final-closeup-east-oblique-profile-and-base.png",
+          "hash": "sha256:3a18105861365197138c30431b8598229ecbf3b51bdab6d2a7e4fee927a33729"
+        },
+        {
+          "path": ".artifacts/planetarium-integration/shots/final-closeup-south-high-shell-and-cap.png",
+          "hash": "sha256:5a3cc47f4a589efc39f66ccbea997d50a6dec5c183c19b4586f390e4a28a9c08"
+        },
+        {
+          "path": ".artifacts/planetarium-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:f4074f49f59d8e7246c82445f44a10dd1f188ac080d07c82d27e5a41f5764c3e"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:038a02e9aec7e1ec00e12174cacfe6b839dc08a70a76f83b71445e8f9619b81b",
+      "sourceHash": "sha256:5d5e99a2fab239d318333e40f10a2f9c823abff3da10b7496fe0537d838ad5c6",
+      "runtimeHash": "sha256:06c1126d5ece1da5ed2f9f9a8b97f4105b44499bfc2953a377eead22f1630326",
+      "files": {
+        "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/models/source.glb": "sha256:5d5e99a2fab239d318333e40f10a2f9c823abff3da10b7496fe0537d838ad5c6",
+        "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.glb": "sha256:06c1126d5ece1da5ed2f9f9a8b97f4105b44499bfc2953a377eead22f1630326",
+        "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.skyline.glb": "sha256:9b0414f7cdcd593b61268f5a74d9bc3f6cfb4f3218ff940efacdc0ef4e97af77",
+        "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.district.glb": "sha256:9471572875f0dd266e16aacea25fa9b71b8115d0c2e80116bdbb5875a85c1efb",
+        "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.street.glb": "sha256:e587aa8edad684517e6acce0639b5c8872ccdc77f78794ee7b2501e95f37a344",
+        "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.closeup.glb": "sha256:267ddb8da591db68176ff7d4d8d0427478d85839623a8096158a69d9d0332626"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184640622281
+      ],
+      "mapLevels": [
+        {
+          "level": 14,
+          "tile": [
+            8191,
+            5450
+          ],
+          "id": 35184400299900,
+          "owned": false,
+          "covered": 0.000493992238266986,
+          "area": 373296.3679032121,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            16383,
+            10900
+          ],
+          "id": 35184640622281,
+          "owned": true,
+          "covered": 0.9999849082412005,
+          "area": 190.89794099483242,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 1301,
+      "widerIndependent": 1838,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -2.5363075906170707e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1302,
+          "independentBuildings": 1301,
+          "remainingBuildings": 1301,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
+          ],
+          "rawTerrainRange": {
+            "min": -45.765313333333324,
+            "max": 2.12578666666667
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:f7249206b9072bad7237ed4b1799320c715ab75ddc233984d52f2cd139da17fe",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 15,
+              "triangles": 512810
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -20,
+                19,
+                -26
+              ],
+              "lookAt": [
+                0,
+                4,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -2.5363075906170707e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1302,
+          "independentBuildings": 1301,
+          "remainingBuildings": 1301,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
+          ],
+          "rawTerrainRange": {
+            "min": -45.765313333333324,
+            "max": 2.12578666666667
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:031c88bd32e28152e957da2983818efc67371d8955724ffbd9415edcadece75b",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 512872
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -20,
+                19,
+                -26
+              ],
+              "lookAt": [
+                0,
+                4,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -2.5363075906170707e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1302,
+          "independentBuildings": 1301,
+          "remainingBuildings": 1301,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
+          ],
+          "rawTerrainRange": {
+            "min": -45.765313333333324,
+            "max": 2.12578666666667
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:2628af7b04342051d2c5cca5be3b9f609ec64861a4798a6bb10e250b58dd58e2",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 512920
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -20,
+                19,
+                -26
+              ],
+              "lookAt": [
+                0,
+                4,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -2.5363075906170707e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 1302,
+          "independentBuildings": 1301,
+          "remainingBuildings": 1301,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
+          ],
+          "rawTerrainRange": {
+            "min": -45.765313333333324,
+            "max": 2.12578666666667
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:fc04792d24f615ba4fe41d566662d79a667f3adaeb7f6e63e469b40cf17f887e",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 512968
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -20,
+                19,
+                -26
+              ],
+              "lookAt": [
+                0,
+                4,
+                0
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-north-reflective-disc-and-rim.png",
+            "hash": "sha256:cb0272a9493a1c45af9cb02a0630ba6f0dc76989cac954c71288340fb7b74fb5",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 512968
+            },
+            "camera": {
+              "name": "north-reflective-disc-and-rim",
+              "position": [
+                0,
+                7,
+                -21
+              ],
+              "lookAt": [
+                0,
+                5,
+                0
+              ],
+              "fov": 55
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-east-oblique-profile-and-base.png",
+            "hash": "sha256:3a18105861365197138c30431b8598229ecbf3b51bdab6d2a7e4fee927a33729",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 513808
+            },
+            "camera": {
+              "name": "east-oblique-profile-and-base",
+              "position": [
+                21,
+                8,
+                1
+              ],
+              "lookAt": [
+                0,
+                5,
+                0
+              ],
+              "fov": 55
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-south-high-shell-and-cap.png",
+            "hash": "sha256:5a3cc47f4a589efc39f66ccbea997d50a6dec5c183c19b4586f390e4a28a9c08",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 513808
+            },
+            "camera": {
+              "name": "south-high-shell-and-cap",
+              "position": [
+                0,
+                17,
+                23
+              ],
+              "lookAt": [
+                0,
+                4,
+                0
+              ],
+              "fov": 55
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 1302,
+          "independentBuildings": 1301,
+          "remainingBuildings": 1302,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184640622281,
+              "area": 190.8950648538399
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
+          ],
+          "rawTerrainRange": {
+            "min": -45.765313333333324,
+            "max": 2.12578666666667
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:f4074f49f59d8e7246c82445f44a10dd1f188ac080d07c82d27e5a41f5764c3e",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 512600
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -20,
+                19,
+                -26
+              ],
+              "lookAt": [
+                0,
+                4,
+                0
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Independent exposed Peter Harrison Planetarium: mapped circular footing, oblique truncated bronze cone, sloping reflective metal cap with dark continuous rim and restrained panel seams. North rim is lower than south; X east/Z south. Preserve the independent South Building, Altazimuth Pavilion and every other campus building. Exterior above-ground cone only: underground theater, entry passages, interiors, furniture, barriers, signs and cafe are outside the mapped shell and omitted.",
+    "Shared campus Q192988 plus unique way268533449/native35184640622281, the mapped rounded planetarium cone. Own anchor raw[44.7,76.5], X east/Z south, heading0 baked into footprint. Only this parent footprint is owned; South Building, Altazimuth Pavilion and all other campus buildings remain independent. Photo-led north-facing sloped cap and near-vertical north shell establish working orientation; no surveyed engineering claim.",
+    "No mapped height. Working cone base radius about7.4m, low north rim about3.3m/high south rim9.6m, vertical north generatrix and cap inclination about38.5degrees are photo-led geometric approximations. Profile, cap/weld panels and bronze patina are simplified; shared painted-metal graph substitutes for patinated bronze and reflective cap, raw limestone for low exposed base. No unique texture or copied pixels. Underground volume and entrance are not established by this footprint and remain omitted.",
+    "Existing standard Protomaps20261020/Mapzen201x201/6m Observatory extract reused. Uncovered north approach internal[0,-9.5] fixes datum47.67441333333333m. Working footing top0.2m above provider, with closed foundation to original minimum boundary grade. Only mapped occupied parent cuts ground. Approximate native exterior fit inspected on the original hill; boundary grades -0.714..+0.105m leave a modest closed footing on the lower side. Exact paving, buried theater and access levels remain unverified. No bespoke terrain acquisition or broad flattening.",
+    "Photo-led medium-fi exterior. No mapped heights; working7.4m cone radius, about3.3m north rim/9.6m high south rim and38.5degree top incline are reconstructed, not surveyed engineering. Profile, panel inventory, hidden surface and patina simplified using shared materials. Underground theater/entry passages, furnished interior, projector, cafe, temporary barriers and signs omitted. No copied pixels or inscriptions. All seven declared Observatory exterior members are now authored and inspected; this is not a reconstruction of every underground or historic campus feature. Physical device/dense-city timings and exact walking access remain pending.",
+    "Approximate native exterior fit reviewed. Shared Q192988 plus unique way268533449/native35184640622281; parent has no contained mapped parts. Anchor[-0.000744161385767647,51.47714612180765], heading0, X east/Z south. Uncovered north control[0,-9.5], datum47.67441333333333m, footing0.2m above provider. Original boundary grades -0.714..+0.105m leave a modest low-side base. Occupied parent footprint only cuts ground/replaces its mapped record; all1,301 resident/1,838 wider independent buildings retained, including South Building, Altazimuth and southwest annex. Original201x201/6m hill, roads and9,681.379312m² water retained. Ground-only mask quantized1mm; mapped ownership/elevations unchanged. Failure keeps1,302 originals; each LOD unload restores ground/water and zero live geometry. Exact paving, underground theater and entrance levels remain unverified."
+  ],
+  "campusIntegrationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-22",
+    "basis": "Actually inspected all eight current combined-campus frames, all four LODs plus failed loading. Seven independent placements coexist with expected terrain heights and anchors, despite shared Q192988. Own18 mapped records only;1,284 resident and1,821 wider independent buildings retained. Five shared graphs read once per textured run. Original hill/roads/water retained; unload restores ground/water and zero live model geometry. Controlled native fixture forces the selected LOD; physical device timings and underground access are outside this check.",
+    "inputs": {
+      "inputHash": "sha256:038a02e9aec7e1ec00e12174cacfe6b839dc08a70a76f83b71445e8f9619b81b",
+      "sourceHash": "sha256:5d5e99a2fab239d318333e40f10a2f9c823abff3da10b7496fe0537d838ad5c6",
+      "runtimeHash": "sha256:06c1126d5ece1da5ed2f9f9a8b97f4105b44499bfc2953a377eead22f1630326",
+      "files": {
+        "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/models/source.glb": "sha256:5d5e99a2fab239d318333e40f10a2f9c823abff3da10b7496fe0537d838ad5c6",
+        "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.glb": "sha256:06c1126d5ece1da5ed2f9f9a8b97f4105b44499bfc2953a377eead22f1630326",
+        "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.skyline.glb": "sha256:9b0414f7cdcd593b61268f5a74d9bc3f6cfb4f3218ff940efacdc0ef4e97af77",
+        "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.district.glb": "sha256:9471572875f0dd266e16aacea25fa9b71b8115d0c2e80116bdbb5875a85c1efb",
+        "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.street.glb": "sha256:e587aa8edad684517e6acce0639b5c8872ccdc77f78794ee7b2501e95f37a344",
+        "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.closeup.glb": "sha256:267ddb8da591db68176ff7d4d8d0427478d85839623a8096158a69d9d0332626"
+      },
+      "members": [
+        {
+          "key": "flamsteed",
+          "assetId": "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+          "inputHash": "sha256:faf45fca0db0a32dff6f22659eb4d8db782618fb2ffb06dd7d3042fc5efa4933",
+          "sourceHash": "sha256:0705ebee85144a42187ccecbd1a349bfa63ae130ca6564c9158084be786c3ef5",
+          "runtimeHash": "sha256:20e8de868ed8134f4f94a4253360076370d464d81aad6c460bd9ba5f98584727",
+          "files": {
+            "content/worldgen/source/places/gc/gcp/flamsteed_house_royal_observatory_greenwich/models/source.glb": "sha256:0705ebee85144a42187ccecbd1a349bfa63ae130ca6564c9158084be786c3ef5",
+            "content/worldgen/assets/places/gc/gcp/flamsteed_house_royal_observatory_greenwich/model.glb": "sha256:20e8de868ed8134f4f94a4253360076370d464d81aad6c460bd9ba5f98584727",
+            "content/worldgen/assets/places/gc/gcp/flamsteed_house_royal_observatory_greenwich/model.skyline.glb": "sha256:51035e403d0873651c86e1ba5f4708abd44465be0c21ddc8e00d13b076bfdcd7",
+            "content/worldgen/assets/places/gc/gcp/flamsteed_house_royal_observatory_greenwich/model.district.glb": "sha256:6af58fcfad2efafed6a2590ccffc84fc0069cc59c757c41adba9297b929478c7",
+            "content/worldgen/assets/places/gc/gcp/flamsteed_house_royal_observatory_greenwich/model.street.glb": "sha256:7ca6499ac58009f70d8800c7ffb42067b2e8499f756f3242a27ed5dc4a3df8c8",
+            "content/worldgen/assets/places/gc/gcp/flamsteed_house_royal_observatory_greenwich/model.closeup.glb": "sha256:e7b6d48e3a83c7094e98c6c0048580ec2a45469743e7cc96bbc2a917275ca14e"
+          }
+        },
+        {
+          "key": "eastpavilion",
+          "assetId": "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
+          "inputHash": "sha256:aaf19dafa15f3862effa8b1d3bd8bc4a01d304d1148fb899b9b9f788b2608979",
+          "sourceHash": "sha256:cfa4d42eb2103bd27e90e0bd68a68e20ef8c1621c0817461123c009455df360f",
+          "runtimeHash": "sha256:71278a8765a54a58d15b044319fdaccef04b2f8def0e67420eaec59caa90294a",
+          "files": {
+            "content/worldgen/source/places/gc/gcp/eastern_pavilion_and_camera_obscura_royal_observatory_greenwich/models/source.glb": "sha256:cfa4d42eb2103bd27e90e0bd68a68e20ef8c1621c0817461123c009455df360f",
+            "content/worldgen/assets/places/gc/gcp/eastern_pavilion_and_camera_obscura_royal_observatory_greenwich/model.glb": "sha256:71278a8765a54a58d15b044319fdaccef04b2f8def0e67420eaec59caa90294a",
+            "content/worldgen/assets/places/gc/gcp/eastern_pavilion_and_camera_obscura_royal_observatory_greenwich/model.skyline.glb": "sha256:eae4db310f68b510349c7fcc49bfc7cb54acaf09ef89094124de86c411b23f04",
+            "content/worldgen/assets/places/gc/gcp/eastern_pavilion_and_camera_obscura_royal_observatory_greenwich/model.district.glb": "sha256:11a4d736378e4ec11a441b1d4379b3b6954f47f55324b765551097904b4a85d8",
+            "content/worldgen/assets/places/gc/gcp/eastern_pavilion_and_camera_obscura_royal_observatory_greenwich/model.street.glb": "sha256:68f54bdbd73cc44fdae7f9c44f018b81bb6058ccb8ee7fbfe2d5a37addb197ab",
+            "content/worldgen/assets/places/gc/gcp/eastern_pavilion_and_camera_obscura_royal_observatory_greenwich/model.closeup.glb": "sha256:68f54bdbd73cc44fdae7f9c44f018b81bb6058ccb8ee7fbfe2d5a37addb197ab"
+          }
+        },
+        {
+          "key": "meridian",
+          "assetId": "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+          "inputHash": "sha256:f911f89b19c43f37a9b8d9d105f847e918eaf630e809aecc18e61d207eec68bd",
+          "sourceHash": "sha256:268011c3249bfa6400e5401e9839d0f52c2663d794fef5f516b26e5d4b253374",
+          "runtimeHash": "sha256:869568ab63587c2e394e0573725a1d7af2d8a7cbaf64b1109d188e8f6d397c77",
+          "files": {
+            "content/worldgen/source/places/gc/gcp/meridian_building_royal_observatory_greenwich/models/source.glb": "sha256:268011c3249bfa6400e5401e9839d0f52c2663d794fef5f516b26e5d4b253374",
+            "content/worldgen/assets/places/gc/gcp/meridian_building_royal_observatory_greenwich/model.glb": "sha256:869568ab63587c2e394e0573725a1d7af2d8a7cbaf64b1109d188e8f6d397c77",
+            "content/worldgen/assets/places/gc/gcp/meridian_building_royal_observatory_greenwich/model.skyline.glb": "sha256:5964f433560f479c1b82da8353fdb068f25cd9974e176421b75a0c1b62fdc881",
+            "content/worldgen/assets/places/gc/gcp/meridian_building_royal_observatory_greenwich/model.district.glb": "sha256:405f5efe85e33c92fc257cb25bbb8cde92ef338db3d408574d923cc1ad026f92",
+            "content/worldgen/assets/places/gc/gcp/meridian_building_royal_observatory_greenwich/model.street.glb": "sha256:9b70ed76d08e6ef8a49eb6512a34932c7778e5b27c69c22489c0c95610051a20",
+            "content/worldgen/assets/places/gc/gcp/meridian_building_royal_observatory_greenwich/model.closeup.glb": "sha256:c3014475b4852d8e8ea1325b3df37784c0dc50512c36e6976796a1ffd2d43dc0"
+          }
+        },
+        {
+          "key": "equatorial",
+          "assetId": "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+          "inputHash": "sha256:7f7afaae08590be81e5c4e8ab2b685af7c59435f042c2cea0d4fccd17d4d73cb",
+          "sourceHash": "sha256:3735c90c74279b1da12cf50aacc5078acb48dd96b305454c227ec39d9bdc9800",
+          "runtimeHash": "sha256:6800984c47cea8a71b7111b86888b588395cf5e4c23b626f2f8b5b6652da46d7",
+          "files": {
+            "content/worldgen/source/places/gc/gcp/great_equatorial_building_royal_observatory_greenwich/models/source.glb": "sha256:3735c90c74279b1da12cf50aacc5078acb48dd96b305454c227ec39d9bdc9800",
+            "content/worldgen/assets/places/gc/gcp/great_equatorial_building_royal_observatory_greenwich/model.glb": "sha256:6800984c47cea8a71b7111b86888b588395cf5e4c23b626f2f8b5b6652da46d7",
+            "content/worldgen/assets/places/gc/gcp/great_equatorial_building_royal_observatory_greenwich/model.skyline.glb": "sha256:3c8b6b17ace3d166c3ed3de4fae2c2a460f2265609095376cc2948308ee1d9e6",
+            "content/worldgen/assets/places/gc/gcp/great_equatorial_building_royal_observatory_greenwich/model.district.glb": "sha256:c0ac916bec2630c4bbee904d0896a2a15286ce1f054909fe7d6422f2bbfc4454",
+            "content/worldgen/assets/places/gc/gcp/great_equatorial_building_royal_observatory_greenwich/model.street.glb": "sha256:6acc0e9bcfc6208071973be17fb053b609d8bc158ca83b0ede26496ac35fd88d",
+            "content/worldgen/assets/places/gc/gcp/great_equatorial_building_royal_observatory_greenwich/model.closeup.glb": "sha256:fca13f1feca04d68a1578a362e7f7e7875203899bce2f5c9d4f34324a2cfb92b"
+          }
+        },
+        {
+          "key": "altazimuth",
+          "assetId": "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
+          "inputHash": "sha256:1974bcb3612686ac775ecd1f5044e356ca9d6afc75180a0744f5a5cfbb1abe1d",
+          "sourceHash": "sha256:28a04fb80b78e4b0b703ff2cf4b7a4ec707a9c8f592df813d5c550d76df39035",
+          "runtimeHash": "sha256:64ffd2340016d51a36a938b0ce5406c4a5bfe13f192d2b799d0dd5c8bb7cb160",
+          "files": {
+            "content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/models/source.glb": "sha256:28a04fb80b78e4b0b703ff2cf4b7a4ec707a9c8f592df813d5c550d76df39035",
+            "content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.glb": "sha256:64ffd2340016d51a36a938b0ce5406c4a5bfe13f192d2b799d0dd5c8bb7cb160",
+            "content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.skyline.glb": "sha256:33d3f2e11f69f57782843079fb4f4122199bd93acf156af7b74cc531578f5e88",
+            "content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.district.glb": "sha256:c09562968ed8f8bd246920936e42bf96e386853881133de86f2d712c3948ecfb",
+            "content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.street.glb": "sha256:8f33d97cf1e7dda5dc1c217852caa517f6d1fdae5ca7f2b1bf97ffe98ad39811",
+            "content/worldgen/assets/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/model.closeup.glb": "sha256:3b4fd0aecb8ce2a811855cac37c32ac190a882b414535bafae06f38cd43ad31b"
+          }
+        },
+        {
+          "key": "south",
+          "assetId": "molen.worldgen.structure.south_building_royal_observatory_greenwich",
+          "inputHash": "sha256:ad2bffbd4d3f72be61a087e3c315f8c17d0304785168b2e6390ec2d97f975c59",
+          "sourceHash": "sha256:c2811cc698eb8c4554286bf48792110c7fb43ebfc4fe45c1b82cd38d2d2b034e",
+          "runtimeHash": "sha256:c477cde899c638f614fe62144664f289345f62e113a27fb56ea41e76cce1ec15",
+          "files": {
+            "content/worldgen/source/places/gc/gcp/south_building_royal_observatory_greenwich/models/source.glb": "sha256:c2811cc698eb8c4554286bf48792110c7fb43ebfc4fe45c1b82cd38d2d2b034e",
+            "content/worldgen/assets/places/gc/gcp/south_building_royal_observatory_greenwich/model.glb": "sha256:c477cde899c638f614fe62144664f289345f62e113a27fb56ea41e76cce1ec15",
+            "content/worldgen/assets/places/gc/gcp/south_building_royal_observatory_greenwich/model.skyline.glb": "sha256:5d3af2b54a99bf64f999726f10b4add9546026d91a1bdc7e703b76c7e4e232b1",
+            "content/worldgen/assets/places/gc/gcp/south_building_royal_observatory_greenwich/model.district.glb": "sha256:e66c685db4b054c904c56370cb958c62b9a5758fd46f54f13dc9c3b9a0531e13",
+            "content/worldgen/assets/places/gc/gcp/south_building_royal_observatory_greenwich/model.street.glb": "sha256:ccff32218eddd7bacf009b56a73cb34c9cea032447188f9ad32da9a76d7a5bcf",
+            "content/worldgen/assets/places/gc/gcp/south_building_royal_observatory_greenwich/model.closeup.glb": "sha256:c3eb64d4c24c33b4257ab0b7b38d79da83ecdfa3a2cebad6b828a10878e13233"
+          }
+        },
+        {
+          "key": "planetarium",
+          "assetId": "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich",
+          "inputHash": "sha256:038a02e9aec7e1ec00e12174cacfe6b839dc08a70a76f83b71445e8f9619b81b",
+          "sourceHash": "sha256:5d5e99a2fab239d318333e40f10a2f9c823abff3da10b7496fe0537d838ad5c6",
+          "runtimeHash": "sha256:06c1126d5ece1da5ed2f9f9a8b97f4105b44499bfc2953a377eead22f1630326",
+          "files": {
+            "content/worldgen/source/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/models/source.glb": "sha256:5d5e99a2fab239d318333e40f10a2f9c823abff3da10b7496fe0537d838ad5c6",
+            "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.glb": "sha256:06c1126d5ece1da5ed2f9f9a8b97f4105b44499bfc2953a377eead22f1630326",
+            "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.skyline.glb": "sha256:9b0414f7cdcd593b61268f5a74d9bc3f6cfb4f3218ff940efacdc0ef4e97af77",
+            "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.district.glb": "sha256:9471572875f0dd266e16aacea25fa9b71b8115d0c2e80116bdbb5875a85c1efb",
+            "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.street.glb": "sha256:e587aa8edad684517e6acce0639b5c8872ccdc77f78794ee7b2501e95f37a344",
+            "content/worldgen/assets/places/gc/gcp/peter_harrison_planetarium_royal_observatory_greenwich/model.closeup.glb": "sha256:267ddb8da591db68176ff7d4d8d0427478d85839623a8096158a69d9d0332626"
+          }
+        }
+      ]
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "targets": [
+            {
+              "asset": "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+              "id": "flamsteed.house.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -84.70127614185571,
+                -0.7190307290761879,
+                -89.50078880274668
+              ],
+              "expected": [
+                -84.70127614185569,
+                -0.7190307290761879,
+                -89.50078880274668
+              ],
+              "heading": 0,
+              "bounds": [
+                29.621207237243652,
+                24.887409687042236,
+                24.13185405731201
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
+              "id": "eastern.pavilion.and.camera.obscura.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -72.0010847959104,
+                -1.966972901032328,
+                -103.60105692222714
+              ],
+              "expected": [
+                -72.0010847959104,
+                -1.966972901032328,
+                -103.60105692222714
+              ],
+              "heading": 0,
+              "bounds": [
+                6.458373785018921,
+                10.061736583709717,
+                6.833468914031982
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+              "id": "meridian.building.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -61.70092960982879,
+                -1.1193778040248077,
+                -75.50056132627651
+              ],
+              "expected": [
+                -61.70092960982873,
+                -1.1193778040248077,
+                -75.50056132627651
+              ],
+              "heading": 0,
+              "bounds": [
+                40.35378551483154,
+                10.687623143196106,
+                11.789999961853027
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+              "id": "great.equatorial.building.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -27.700417345093342,
+                -1.8207901485607252,
+                -63.50039707124233
+              ],
+              "expected": [
+                -27.700417345093307,
+                -1.8207901485607252,
+                -63.50039707124233
+              ],
+              "heading": 0,
+              "bounds": [
+                12.100000381469727,
+                17.840588569641113,
+                12.130132675170898
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
+              "id": "altazimuth.pavilion.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -8.900134092827784,
+                0.0562779616710003,
+                -21.500045517925173
+              ],
+              "expected": [
+                -8.900134092827805,
+                0.0562779616710003,
+                -21.500045517925173
+              ],
+              "heading": 0,
+              "bounds": [
+                7.7274065017700195,
+                11.38519287109375,
+                13.460000038146973
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.south_building_royal_observatory_greenwich",
+              "id": "south.building.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                14.800222985826053,
+                -3.314110478994536,
+                33.49988948972896
+              ],
+              "expected": [
+                14.800222985826018,
+                -3.314110478994536,
+                33.49988948972896
+              ],
+              "heading": 0,
+              "bounds": [
+                31.983336448669434,
+                21.28732657432556,
+                32.45811462402344
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich",
+              "id": "peter.harrison.planetarium.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                0,
+                -2.5363075906170707e-7,
+                0
+              ],
+              "expected": [
+                0,
+                -2.5363075906170707e-7,
+                0
+              ],
+              "heading": 0,
+              "bounds": [
+                15.806782245635986,
+                10.300810694694519,
+                15.621055603027344
+              ]
+            }
+          ],
+          "sourceBuildings": 1302,
+          "independentBuildings": 1284,
+          "remainingBuildings": 1284,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "loads": [
+            "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+            "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
+            "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
+            "molen.worldgen.structure.south_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
+          ],
+          "surfaceReads": {},
+          "sourceGridModified": false,
+          "nativeRoadInputsUnchanged": true,
+          "nativeWaterUnchanged": true,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "groundCutoutActive": true
+        },
+        "frames": [
+          {
+            "path": "shots/campus/final-skyline-whole-campus-northwest.png",
+            "hash": "sha256:c28ee4fc7c7f07984fb260392483b198d7ddbad41bc7508e2a236855871c39ac",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 22,
+              "triangles": 519235
+            },
+            "camera": {
+              "name": "whole-campus-northwest",
+              "position": [
+                -140,
+                120,
+                -160
+              ],
+              "lookAt": [
+                -35,
+                3,
+                -40
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "targets": [
+            {
+              "asset": "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+              "id": "flamsteed.house.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -84.70127614185571,
+                -0.7190307290761879,
+                -89.50078880274668
+              ],
+              "expected": [
+                -84.70127614185569,
+                -0.7190307290761879,
+                -89.50078880274668
+              ],
+              "heading": 0,
+              "bounds": [
+                29.621207237243652,
+                24.887409687042236,
+                24.490888595581055
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
+              "id": "eastern.pavilion.and.camera.obscura.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -72.0010847959104,
+                -1.966972901032328,
+                -103.60105692222714
+              ],
+              "expected": [
+                -72.0010847959104,
+                -1.966972901032328,
+                -103.60105692222714
+              ],
+              "heading": 0,
+              "bounds": [
+                6.458373785018921,
+                10.061736583709717,
+                6.833468914031982
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+              "id": "meridian.building.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -61.70092960982879,
+                -1.1193778040248077,
+                -75.50056132627651
+              ],
+              "expected": [
+                -61.70092960982873,
+                -1.1193778040248077,
+                -75.50056132627651
+              ],
+              "heading": 0,
+              "bounds": [
+                40.47000026702881,
+                10.687623143196106,
+                11.980000019073486
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+              "id": "great.equatorial.building.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -27.700417345093342,
+                -1.8207901485607252,
+                -63.50039707124233
+              ],
+              "expected": [
+                -27.700417345093307,
+                -1.8207901485607252,
+                -63.50039707124233
+              ],
+              "heading": 0,
+              "bounds": [
+                12.100000381469727,
+                17.860589027404785,
+                12.130132675170898
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
+              "id": "altazimuth.pavilion.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -8.900134092827784,
+                0.0562779616710003,
+                -21.500045517925173
+              ],
+              "expected": [
+                -8.900134092827805,
+                0.0562779616710003,
+                -21.500045517925173
+              ],
+              "heading": 0,
+              "bounds": [
+                8.09000015258789,
+                11.38519287109375,
+                13.460000038146973
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.south_building_royal_observatory_greenwich",
+              "id": "south.building.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                14.800222985826053,
+                -3.314110478994536,
+                33.49988948972896
+              ],
+              "expected": [
+                14.800222985826018,
+                -3.314110478994536,
+                33.49988948972896
+              ],
+              "heading": 0,
+              "bounds": [
+                32.02333641052246,
+                21.28732657432556,
+                32.53811264038086
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich",
+              "id": "peter.harrison.planetarium.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                0,
+                -2.5363075906170707e-7,
+                0
+              ],
+              "expected": [
+                0,
+                -2.5363075906170707e-7,
+                0
+              ],
+              "heading": 0,
+              "bounds": [
+                15.806782245635986,
+                10.300810694694519,
+                15.621055603027344
+              ]
+            }
+          ],
+          "sourceBuildings": 1302,
+          "independentBuildings": 1284,
+          "remainingBuildings": 1284,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "loads": [
+            "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+            "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
+            "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
+            "molen.worldgen.structure.south_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
+          ],
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1,
+            "molen.worldgen.material.slate": 1
+          },
+          "sourceGridModified": false,
+          "nativeRoadInputsUnchanged": true,
+          "nativeWaterUnchanged": true,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "groundCutoutActive": true
+        },
+        "frames": [
+          {
+            "path": "shots/campus/final-district-whole-campus-northwest.png",
+            "hash": "sha256:32f24e15015e20ad12b7dd4d5b6f0325444a2221e062e5e83fd67fd9f25590e9",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 51,
+              "triangles": 533087
+            },
+            "camera": {
+              "name": "whole-campus-northwest",
+              "position": [
+                -140,
+                120,
+                -160
+              ],
+              "lookAt": [
+                -35,
+                3,
+                -40
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "targets": [
+            {
+              "asset": "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+              "id": "flamsteed.house.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -84.70127614185571,
+                -0.7190307290761879,
+                -89.50078880274668
+              ],
+              "expected": [
+                -84.70127614185569,
+                -0.7190307290761879,
+                -89.50078880274668
+              ],
+              "heading": 0,
+              "bounds": [
+                29.621207237243652,
+                24.887409687042236,
+                24.490888595581055
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
+              "id": "eastern.pavilion.and.camera.obscura.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -72.0010847959104,
+                -1.966972901032328,
+                -103.60105692222714
+              ],
+              "expected": [
+                -72.0010847959104,
+                -1.966972901032328,
+                -103.60105692222714
+              ],
+              "heading": 0,
+              "bounds": [
+                6.458373785018921,
+                10.061736583709717,
+                6.833468914031982
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+              "id": "meridian.building.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -61.70092960982879,
+                -1.1193778040248077,
+                -75.50056132627651
+              ],
+              "expected": [
+                -61.70092960982873,
+                -1.1193778040248077,
+                -75.50056132627651
+              ],
+              "heading": 0,
+              "bounds": [
+                40.5699987411499,
+                10.687623143196106,
+                11.980000019073486
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+              "id": "great.equatorial.building.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -27.700417345093342,
+                -1.8207901485607252,
+                -63.50039707124233
+              ],
+              "expected": [
+                -27.700417345093307,
+                -1.8207901485607252,
+                -63.50039707124233
+              ],
+              "heading": 0,
+              "bounds": [
+                12.149999618530273,
+                17.860589027404785,
+                12.155132293701172
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
+              "id": "altazimuth.pavilion.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -8.900134092827784,
+                0.0562779616710003,
+                -21.500045517925173
+              ],
+              "expected": [
+                -8.900134092827805,
+                0.0562779616710003,
+                -21.500045517925173
+              ],
+              "heading": 0,
+              "bounds": [
+                8.09000015258789,
+                11.38519287109375,
+                13.460000038146973
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.south_building_royal_observatory_greenwich",
+              "id": "south.building.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                14.800222985826053,
+                -3.314110478994536,
+                33.49988948972896
+              ],
+              "expected": [
+                14.800222985826018,
+                -3.314110478994536,
+                33.49988948972896
+              ],
+              "heading": 0,
+              "bounds": [
+                32.03333568572998,
+                21.28732657432556,
+                32.55811309814453
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich",
+              "id": "peter.harrison.planetarium.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                0,
+                -2.5363075906170707e-7,
+                0
+              ],
+              "expected": [
+                0,
+                -2.5363075906170707e-7,
+                0
+              ],
+              "heading": 0,
+              "bounds": [
+                15.806782245635986,
+                10.300810694694519,
+                15.621055603027344
+              ]
+            }
+          ],
+          "sourceBuildings": 1302,
+          "independentBuildings": 1284,
+          "remainingBuildings": 1284,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "loads": [
+            "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+            "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
+            "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
+            "molen.worldgen.structure.south_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
+          ],
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1,
+            "molen.worldgen.material.slate": 1
+          },
+          "sourceGridModified": false,
+          "nativeRoadInputsUnchanged": true,
+          "nativeWaterUnchanged": true,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "groundCutoutActive": true
+        },
+        "frames": [
+          {
+            "path": "shots/campus/final-street-whole-campus-northwest.png",
+            "hash": "sha256:a3c997eae125aef095970aa8ae9becfc13a6340b8e87a35124089b822f7638ab",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 51,
+              "triangles": 548725
+            },
+            "camera": {
+              "name": "whole-campus-northwest",
+              "position": [
+                -140,
+                120,
+                -160
+              ],
+              "lookAt": [
+                -35,
+                3,
+                -40
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "targets": [
+            {
+              "asset": "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+              "id": "flamsteed.house.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -84.70127614185571,
+                -0.7190307290761879,
+                -89.50078880274668
+              ],
+              "expected": [
+                -84.70127614185569,
+                -0.7190307290761879,
+                -89.50078880274668
+              ],
+              "heading": 0,
+              "bounds": [
+                29.621207237243652,
+                24.887409687042236,
+                24.490888595581055
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
+              "id": "eastern.pavilion.and.camera.obscura.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -72.0010847959104,
+                -1.966972901032328,
+                -103.60105692222714
+              ],
+              "expected": [
+                -72.0010847959104,
+                -1.966972901032328,
+                -103.60105692222714
+              ],
+              "heading": 0,
+              "bounds": [
+                6.458373785018921,
+                10.061736583709717,
+                6.833468914031982
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+              "id": "meridian.building.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -61.70092960982879,
+                -1.1193778040248077,
+                -75.50056132627651
+              ],
+              "expected": [
+                -61.70092960982873,
+                -1.1193778040248077,
+                -75.50056132627651
+              ],
+              "heading": 0,
+              "bounds": [
+                40.5699987411499,
+                10.687623143196106,
+                11.980000019073486
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+              "id": "great.equatorial.building.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -27.700417345093342,
+                -1.8207901485607252,
+                -63.50039707124233
+              ],
+              "expected": [
+                -27.700417345093307,
+                -1.8207901485607252,
+                -63.50039707124233
+              ],
+              "heading": 0,
+              "bounds": [
+                12.149999618530273,
+                17.860589027404785,
+                12.155132293701172
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
+              "id": "altazimuth.pavilion.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                -8.900134092827784,
+                0.0562779616710003,
+                -21.500045517925173
+              ],
+              "expected": [
+                -8.900134092827805,
+                0.0562779616710003,
+                -21.500045517925173
+              ],
+              "heading": 0,
+              "bounds": [
+                8.09000015258789,
+                11.38519287109375,
+                13.460000038146973
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.south_building_royal_observatory_greenwich",
+              "id": "south.building.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                14.800222985826053,
+                -3.314110478994536,
+                33.49988948972896
+              ],
+              "expected": [
+                14.800222985826018,
+                -3.314110478994536,
+                33.49988948972896
+              ],
+              "heading": 0,
+              "bounds": [
+                32.03333568572998,
+                21.28732657432556,
+                32.55811309814453
+              ]
+            },
+            {
+              "asset": "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich",
+              "id": "peter.harrison.planetarium.royal.observatory.greenwich",
+              "loaded": true,
+              "position": [
+                0,
+                -2.5363075906170707e-7,
+                0
+              ],
+              "expected": [
+                0,
+                -2.5363075906170707e-7,
+                0
+              ],
+              "heading": 0,
+              "bounds": [
+                15.806782245635986,
+                10.300810694694519,
+                15.621055603027344
+              ]
+            }
+          ],
+          "sourceBuildings": 1302,
+          "independentBuildings": 1284,
+          "remainingBuildings": 1284,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "loads": [
+            "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+            "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
+            "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
+            "molen.worldgen.structure.south_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
+          ],
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.storefront": 1,
+            "molen.worldgen.material.slate": 1
+          },
+          "sourceGridModified": false,
+          "nativeRoadInputsUnchanged": true,
+          "nativeWaterUnchanged": true,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "groundCutoutActive": true
+        },
+        "frames": [
+          {
+            "path": "shots/campus/final-closeup-whole-campus-northwest.png",
+            "hash": "sha256:a7c3ca73cdedd13d7859d7a1e351648504ad2ce40ad259a70a9ff750ab5cb095",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 51,
+              "triangles": 553341
+            },
+            "camera": {
+              "name": "whole-campus-northwest",
+              "position": [
+                -140,
+                120,
+                -160
+              ],
+              "lookAt": [
+                -35,
+                3,
+                -40
+              ],
+              "fov": 53
+            }
+          },
+          {
+            "path": "shots/campus/final-closeup-whole-campus-southeast.png",
+            "hash": "sha256:8d9b7dd744bb9cbad9b34954a3a9fc296f02ecddfa1e334b3a3fb3f5bf032c17",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 51,
+              "triangles": 553341
+            },
+            "camera": {
+              "name": "whole-campus-southeast",
+              "position": [
+                80,
+                115,
+                125
+              ],
+              "lookAt": [
+                -35,
+                3,
+                -40
+              ],
+              "fov": 53
+            }
+          },
+          {
+            "path": "shots/campus/final-closeup-northern-court-four-buildings.png",
+            "hash": "sha256:9d20a64e97c3ac6e1f2d448e091bbc9848d2fb210574c4bd7ecd2cb350c0b353",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 51,
+              "triangles": 553341
+            },
+            "camera": {
+              "name": "northern-court-four-buildings",
+              "position": [
+                -108,
+                34,
+                -130
+              ],
+              "lookAt": [
+                -58,
+                5,
+                -81
+              ],
+              "fov": 57
+            }
+          },
+          {
+            "path": "shots/campus/final-closeup-southern-three-buildings.png",
+            "hash": "sha256:ed9e955440726821b86d47ef4c9b59aa3d86d7332b980adb4d3fcd09696e0d76",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 29,
+              "triangles": 526957
+            },
+            "camera": {
+              "name": "southern-three-buildings",
+              "position": [
+                -36,
+                30,
+                -44
+              ],
+              "lookAt": [
+                3,
+                7,
+                3
+              ],
+              "fov": 63
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "targets": [
+            {
+              "asset": "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+              "id": "flamsteed.house.royal.observatory.greenwich",
+              "loaded": false,
+              "expected": [
+                -84.70127614185569,
+                -0.7190307290761879,
+                -89.50078880274668
+              ],
+              "heading": 0,
+              "bounds": null
+            },
+            {
+              "asset": "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
+              "id": "eastern.pavilion.and.camera.obscura.royal.observatory.greenwich",
+              "loaded": false,
+              "expected": [
+                -72.0010847959104,
+                -1.966972901032328,
+                -103.60105692222714
+              ],
+              "heading": 0,
+              "bounds": null
+            },
+            {
+              "asset": "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+              "id": "meridian.building.royal.observatory.greenwich",
+              "loaded": false,
+              "expected": [
+                -61.70092960982873,
+                -1.1193778040248077,
+                -75.50056132627651
+              ],
+              "heading": 0,
+              "bounds": null
+            },
+            {
+              "asset": "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+              "id": "great.equatorial.building.royal.observatory.greenwich",
+              "loaded": false,
+              "expected": [
+                -27.700417345093307,
+                -1.8207901485607252,
+                -63.50039707124233
+              ],
+              "heading": 0,
+              "bounds": null
+            },
+            {
+              "asset": "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
+              "id": "altazimuth.pavilion.royal.observatory.greenwich",
+              "loaded": false,
+              "expected": [
+                -8.900134092827805,
+                0.0562779616710003,
+                -21.500045517925173
+              ],
+              "heading": 0,
+              "bounds": null
+            },
+            {
+              "asset": "molen.worldgen.structure.south_building_royal_observatory_greenwich",
+              "id": "south.building.royal.observatory.greenwich",
+              "loaded": false,
+              "expected": [
+                14.800222985826018,
+                -3.314110478994536,
+                33.49988948972896
+              ],
+              "heading": 0,
+              "bounds": null
+            },
+            {
+              "asset": "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich",
+              "id": "peter.harrison.planetarium.royal.observatory.greenwich",
+              "loaded": false,
+              "expected": [
+                0,
+                -2.5363075906170707e-7,
+                0
+              ],
+              "heading": 0,
+              "bounds": null
+            }
+          ],
+          "sourceBuildings": 1302,
+          "independentBuildings": 1284,
+          "remainingBuildings": 1302,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            35184640622273,
+            35184640622274,
+            35184640622275,
+            35184640622276,
+            35184640622278,
+            35184640622281,
+            35184640622286,
+            35184640622289,
+            35184640622291,
+            35184640622349,
+            35185831121774,
+            35185831121775,
+            35185831121776,
+            35185834412178,
+            35185834412179,
+            35185834412181,
+            35185834412182,
+            35185834412183
+          ],
+          "loads": [
+            "molen.worldgen.structure.flamsteed_house_royal_observatory_greenwich",
+            "molen.worldgen.structure.eastern_pavilion_and_camera_obscura_royal_observatory_greenwich",
+            "molen.worldgen.structure.meridian_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.great_equatorial_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.altazimuth_pavilion_royal_observatory_greenwich",
+            "molen.worldgen.structure.south_building_royal_observatory_greenwich",
+            "molen.worldgen.structure.peter_harrison_planetarium_royal_observatory_greenwich"
+          ],
+          "surfaceReads": {},
+          "sourceGridModified": false,
+          "nativeRoadInputsUnchanged": true,
+          "nativeWaterUnchanged": true,
+          "sourceWaterArea": 9681.379312085919,
+          "remainingWaterArea": 9681.379312085919,
+          "groundCutoutActive": false
+        },
+        "frames": [
+          {
+            "path": "shots/campus/final-failure-whole-campus-northwest.png",
+            "hash": "sha256:dc09a355fd8e1c2e8150496eaacd707540a34989a16655789f53fb8fc239dbed",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 513440
+            },
+            "camera": {
+              "name": "whole-campus-northwest",
+              "position": [
+                -140,
+                120,
+                -160
+              ],
+              "lookAt": [
+                -35,
+                3,
+                -40
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ],
+    "nativeOverlapAudit": {
+      "ownedNativeIds": [
+        35184640622276,
+        35184640622275,
+        35184640622286,
+        35184640622278,
+        35184640622289,
+        35184640622291,
+        35185831121774,
+        35185831121775,
+        35185831121776,
+        35184640622349,
+        35184640622273,
+        35185834412178,
+        35185834412179,
+        35185834412181,
+        35185834412182,
+        35185834412183,
+        35184640622274,
+        35184640622281
+      ],
+      "sourceBuildings": 1839,
+      "retainedIndependent": 1821,
+      "independentRecordsUnchanged": true,
+      "originalInputsUnmodified": true
+    }
+  }
+}

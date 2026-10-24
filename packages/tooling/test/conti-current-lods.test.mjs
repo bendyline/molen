@@ -10,7 +10,7 @@ import { createStructureIndex } from '../../worldgen-earth/dist/kernel.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/sr/sr2/n0584_torre_dei_conti'),
+const source = resolve('../../content/worldgen/source/places/sr/sr2/torre_dei_conti'),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
@@ -88,7 +88,7 @@ it('reproduces the unchanged Conti draft and binds the reviewed directed map fra
   const s = await read(`${source}/spec.json`),
     scope = await read(`${source}/review-scope.json`),
     frame = await read(`${source}/map-frame.json`),
-    live = (await read('../../content/earth/structures/placements.json')).entries.find(
+    live = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(s.sourceGeometry.export).toBe('buildContiReviewed');

@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/ef/efk/n0423_great_mosque_of_djenne/',
+  '../../../content/worldgen/source/places/ef/efk/great_mosque_of_djenne/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -917,7 +917,7 @@ export const buildDjenneSkyline = (o) => build(o, 0),
   buildDjenneCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const djenneStudy = {
-  id: 'N0423',
+  id: 'great_mosque_of_djenne',
   key: 'great_mosque_of_djenne',
   title: 'Great Mosque of Djenné',
   category: 'mosque',

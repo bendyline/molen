@@ -7,7 +7,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { buildEmirates } from '../../worldgen/scripts/signature-tower-emirates-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/th/thr/n0194_emirates_office_tower'),
+const source = resolve('../../content/worldgen/source/places/th/thr/emirates_office_tower'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {

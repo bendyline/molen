@@ -1,11 +1,11 @@
-/** 'N0742_KITCHENS': Long stone cooking range, lead domes and chimney row, open service court and west colonnade. */
+/** 'palace_kitchens_topkapi_palace': Long stone cooking range, lead domes and chimney row, open service court and west colonnade. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiKitchens } from './topkapi-kitchens-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_kitchens/',
+    '../../../content/worldgen/source/places/sx/sxk/palace_kitchens_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -99,7 +99,7 @@ export const buildTopkapiKitchensSkyline = (o) => build(o, 0),
   buildTopkapiKitchensStreet = (o) => build(o, 2),
   buildTopkapiKitchensCloseup = (o) => build(o, 3);
 export const topkapiKitchensStudy = {
-  id: 'N0742_KITCHENS',
+  id: 'palace_kitchens_topkapi_palace',
   key: 'kitchens',
   title: 'Palace Kitchens, Topkapi Palace',
   category: 'castle',

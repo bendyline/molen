@@ -1,4 +1,4 @@
-/** 'N0557': Amman's two complete plain-shaft columns, broken portico and low temple remains. */
+/** 'temple_of_hercules': Amman's two complete plain-shaft columns, broken portico and low temple remains. */
 import { buildCorinthianColumn } from './corinthian-column-geometry.mjs';
 import { box, loft, rect } from './khmer-structure-geometry.mjs';
 

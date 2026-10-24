@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/ud/ud9/n0354_st_mary_s_cathedral/',
+  '../../../content/worldgen/source/places/ud/ud9/st_marys_cathedral_tallinn/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -880,7 +880,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const tallinnMaryStudy = {
-  id: 'N0354',
+  id: 'st_marys_cathedral_tallinn',
   key: 'st_mary_s_cathedral',
   title: "St. Mary's Cathedral",
   category: 'cathedral',

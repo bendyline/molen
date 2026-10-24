@@ -608,7 +608,7 @@ function buildAtlanta(out, m) {
   crown(out);
 }
 export const atlantaStudy = {
-  id: 'N0207',
+  id: 'bank_of_america_plaza',
   key: 'bank_of_america_plaza',
   title: 'Bank of America Plaza',
   wikidataId: 'Q499486',

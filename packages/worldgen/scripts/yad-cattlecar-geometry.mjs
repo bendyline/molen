@@ -1,4 +1,4 @@
-/** 'N0748_CATTLECAR': two-axle wagon, raised brake cabin and mapped cantilever railway. */
+/** 'cattle_car_memorial_to_the_deportees_yad_vashem': two-axle wagon, raised brake cabin and mapped cantilever railway. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildYadCattlecar(face, detail, r) {

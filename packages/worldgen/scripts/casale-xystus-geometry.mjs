@@ -1,4 +1,4 @@
-/** 'N0765_XYSTUS': mapped covered rooms beside a genuinely unroofed oval ruin court. */
+/** 'casale_xystus': mapped covered rooms beside a genuinely unroofed oval ruin court. */
 import './install-deterministic-math.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

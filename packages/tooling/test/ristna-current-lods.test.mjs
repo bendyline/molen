@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u6/u6r/n0674_ristna_lighthouse'),
+const source = resolve('../../content/worldgen/source/places/u6/u6r/ristna_lighthouse'),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {

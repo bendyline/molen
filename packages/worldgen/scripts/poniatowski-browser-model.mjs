@@ -15,9 +15,7 @@ import {
 import { box, quad } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0029_poniatowski_bridge', 'map-frame.json')),
-);
+const frame = JSON.parse(readFileSync(structureSourcePath('poniatowski_bridge', 'map-frame.json')));
 const iron = [0.42, 0.48, 0.5],
   darkIron = [0.09, 0.115, 0.12],
   stone = [0.54, 0.52, 0.46],

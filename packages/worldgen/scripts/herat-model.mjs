@@ -67,7 +67,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tq/tqh/n0475_friday_mosque_of_herat/',
+  '../../../content/worldgen/source/places/tq/tqh/friday_mosque_of_herat/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -685,7 +685,7 @@ export const buildHeratSkyline = (o) => build(o, 0),
   buildHeratCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const heratStudy = {
-  id: 'N0475',
+  id: 'friday_mosque_of_herat',
   key: 'friday_mosque_of_herat',
   title: 'Friday Mosque of Herat',
   category: 'mosque',

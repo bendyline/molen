@@ -1,7 +1,7 @@
 /** Picture-guided eastern Amun exterior; controls live in the Karnak source frame. */
 import './install-deterministic-math.mjs';
 
-export const karnakEastCandidateId = 'N0489';
+export const karnakEastCandidateId = 'karnak_temple_complex';
 
 /** A battered wall follows its own mapped run, with a coarse broken top. */
 function wallRun(f, path, width, height, detail, floor, seed = 0) {

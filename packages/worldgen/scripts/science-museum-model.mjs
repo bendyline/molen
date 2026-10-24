@@ -1,4 +1,4 @@
-/** 'N0768': Science Museum. */
+/** 'science_museum': Science Museum. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
@@ -6,7 +6,7 @@ import { buildScienceMuseum } from './science-museum-geometry.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gc/gcp/n0768_science_museum/',
+    '../../../content/worldgen/source/places/gc/gcp/science_museum/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -105,7 +105,7 @@ export const buildScienceMuseumSkyline = (o) => build(o, 0),
   buildScienceMuseumStreet = (o) => build(o, 2),
   buildScienceMuseumCloseup = (o) => build(o, 3);
 export const scienceMuseumStudy = {
-  id: 'N0768',
+  id: 'science_museum',
   key: 'science_museum',
   title: 'Science Museum',
   category: 'museum',

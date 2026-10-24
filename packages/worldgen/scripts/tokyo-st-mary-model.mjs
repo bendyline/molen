@@ -5,7 +5,7 @@ import earcut from 'earcut';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/xn/xn7/n0371_st_mary_s_cathedral/',
+  '../../../content/worldgen/source/places/xn/xn7/st_marys_cathedral_tokyo/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -566,7 +566,7 @@ export const buildTokyoMarySkyline = (o) => build(o, 0),
   buildTokyoMaryCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const tokyoMaryStudy = {
-  id: 'N0371',
+  id: 'st_marys_cathedral_tokyo',
   key: 'st_mary_s_cathedral',
   title: "St. Mary's Cathedral",
   category: 'cathedral',

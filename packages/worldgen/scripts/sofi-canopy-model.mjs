@@ -3,7 +3,7 @@ import earcut from 'earcut';
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
-const candidateId = 'N0710';
+const candidateId = 'sofi_stadium';
 
 export const sofiRoofHeight = (x, z) =>
   Math.max(14, 55 - 0.0004 * (x - 25) ** 2 - 0.0008 * (z + 5) ** 2);

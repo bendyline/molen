@@ -8,6 +8,7 @@ import { matchesEvidenceText } from '../../../../packages/worldgen/scripts/evide
 import { modelInputHash } from '../../../../packages/worldgen/scripts/structure-model-files.mjs';
 import { hasUsableStructurePlacement } from '../../../../packages/worldgen-earth/scripts/historical-placement.mjs';
 import { reviewedMediumFi } from '../../../../packages/worldgen-earth/scripts/medium-fi-readiness.mjs';
+import { readPlacementSources } from '../../../../packages/worldgen-earth/scripts/placement-sources.mjs';
 import { reviewedSourceMapFrame } from '../../../../packages/worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 import { inspectImageryInventory } from './imagery-inventory.mjs';
 import {
@@ -16,7 +17,7 @@ import {
   publicDomainReviewMatches,
   verifiedSupplementalSelection,
 } from './imagery-policy.mjs';
-import { next1000Entries, next1000Matches } from './work-ownership.mjs';
+import { structureCatalogEntries, structureCatalogMatches } from './work-ownership.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '../../../..');
@@ -278,19 +279,21 @@ export async function buildProgress({
     .trim()
     .split('\n')
     .map(JSON.parse);
-  const reserved = next1000Entries(
-    read(path.join(repository, 'content/worldgen/source/next-1000/candidates.json')),
-    read(path.join(repository, 'content/worldgen/source/next-1000/collections.json')),
+  const reserved = structureCatalogEntries(
+    read(path.join(repository, 'content/worldgen/source/structure-catalog/candidates.json')),
+    read(path.join(repository, 'content/worldgen/source/structure-catalog/collections.json')),
   );
   const project = read(path.join(repository, 'content/worldgen/project.json')),
     stylepack = read(path.join(repository, 'content/worldgen/stylepack.json')),
-    placements = read(path.join(repository, 'content/earth/structures/placements.json'));
+    placements = (
+      await readPlacementSources(path.join(repository, 'content/earth/source/placements'))
+    ).catalog;
   const rows = [];
   for (const entry of batch.entries) {
     const structure = structures.find((s) => s.id === entry.structureId);
     if (!structure) throw Error(`Structure identity unavailable: ${entry.name}`);
-    const otherDevice = next1000Matches(structure, reserved, entry.modelIdentity);
-    if (otherDevice.length || entry.workOwner === 'next-1000-other-device') {
+    const otherDevice = structureCatalogMatches(structure, reserved, entry.modelIdentity);
+    if (otherDevice.length || entry.workOwner === 'structure-catalog-other-device') {
       // A newly resolved alias must remain visible without inspecting or approving
       // the other device's asset, or preventing unrelated local progress updates.
       rows.push({
@@ -302,7 +305,7 @@ export async function buildProgress({
         order: entry.order,
         pilot: !!entry.pilot,
         readiness: 'reserved-other-device',
-        blockers: ['next-1000-other-device'],
+        blockers: ['structure-catalog-other-device'],
         reservedCandidateIds: [...new Set(otherDevice.map((m) => m.id))].sort(),
         geographic: { activePlacement: null },
         fidelityQa: { target: 'medium-fi', hashBoundReviewPassed: false },
@@ -343,14 +346,14 @@ export async function buildProgress({
     format: 'molen/structure-readiness@1',
     title: `${batch.title ?? 'Qualla compat'} — verified completion ledger`,
     policy:
-      'A source or import is not completion. Ready requires current image references, exact source/runtime/LOD bytes, inspected portable/shared/context captures, photographic fidelity and terrain/placement evidence. Next-1,000 work is excluded.' +
+      'A source or import is not completion. Ready requires current image references, exact source/runtime/LOD bytes, inspected portable/shared/context captures, photographic fidelity and terrain/placement evidence. structure catalog work is excluded.' +
       (batch.policy?.imagery?.id === PUBLIC_DOMAIN_POLICY
         ? ' Imagery must be public domain, match published Qualla media and original attribution, and have current bytes. Conflicting or incomplete records are excluded.'
         : ''),
     counts,
     candidates: rows,
   };
-  const text = `# Qualla compat — local 100 — completion progress\n\n**${counts.ready} / ${counts.target} completed. ${rows.some((r) => r.pilot) ? `${counts.pilotsReady} / ${rows.filter((r) => r.pilot).length} pilots completed.` : ''}** ${counts.started} models started; ${counts.target - counts.started} not started.${counts.technicallyValidated === undefined ? '' : `\n\n${counts.technicallyValidated} models retain their technical validation; ${counts.publicDomainImageryVerified} reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.`}\n\nFinish each model using Qualla photographs, current renders and story synchronization in the same authoring pass. Every next-1,000 candidate and collection member remains assigned to the other device.\n\nCompletion is recomputed from current evidence; editing geometry, source references, material graphs, terrain or placement invalidates the affected approval. [Machine-readable ledger](readiness.json).\n\n| # | Structure and story | Completion | Remaining checks |\n| ---: | --- | --- | --- |\n${rows
+  const text = `# Qualla compat — local 100 — completion progress\n\n**${counts.ready} / ${counts.target} completed. ${rows.some((r) => r.pilot) ? `${counts.pilotsReady} / ${rows.filter((r) => r.pilot).length} pilots completed.` : ''}** ${counts.started} models started; ${counts.target - counts.started} not started.${counts.technicallyValidated === undefined ? '' : `\n\n${counts.technicallyValidated} models retain their technical validation; ${counts.publicDomainImageryVerified} reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.`}\n\nFinish each model using Qualla photographs, current renders and story synchronization in the same authoring pass. Every structure catalog candidate and collection member remains assigned to the other device.\n\nCompletion is recomputed from current evidence; editing geometry, source references, material graphs, terrain or placement invalidates the affected approval. [Machine-readable ledger](readiness.json).\n\n| # | Structure and story | Completion | Remaining checks |\n| ---: | --- | --- | --- |\n${rows
     .map((r) => {
       const s = structures.find((s) => s.id === r.backlogTargetId);
       return `| ${r.order}${r.pilot ? ' · pilot' : ''} | [${r.title.replaceAll('|', '/')}](https://qualla.com/${s.stories[0].url.split('qualla.com/')[1]}) | ${r.readiness === 'ready' ? 'Complete' : r.readiness === 'not-started' ? 'Not started' : r.readiness === 'reserved-other-device' ? 'Other device' : 'In review'} | ${r.blockers.join('; ') || 'All required evidence current'} |`;

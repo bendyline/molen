@@ -13,12 +13,12 @@ import {
 import { box, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-export const altinoArantesRuntimeAssetId = 'molen.worldgen.structure.n0148_edificio_altino_arantes';
+export const altinoArantesRuntimeAssetId = 'molen.worldgen.structure.edificio_altino_arantes';
 const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0148_edificio_altino_arantes', 'map-frame.json'), 'utf8'),
+  readFileSync(structureSourcePath('edificio_altino_arantes', 'map-frame.json'), 'utf8'),
 );
 const parts = JSON.parse(
-  readFileSync(structureSourcePath('n0148_edificio_altino_arantes', 'map-parts.json'), 'utf8'),
+  readFileSync(structureSourcePath('edificio_altino_arantes', 'map-parts.json'), 'utf8'),
 );
 const pale = [0.91, 0.9, 0.865],
   glass = [0.23, 0.31, 0.31],

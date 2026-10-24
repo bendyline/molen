@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/wx/wx4/n0396_st_joseph_s_church_beijing/',
+  '../../../content/worldgen/source/places/wx/wx4/st_josephs_church_beijing/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -892,7 +892,7 @@ export const buildBeijingJosephSkyline = (o) => build(o, 0),
   buildBeijingJosephCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const beijingJosephStudy = {
-  id: 'N0396',
+  id: 'st_josephs_church_beijing',
   key: 'st_joseph_s_church_beijing',
   title: "St. Joseph's Church, Beijing",
   category: 'cathedral',

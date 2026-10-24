@@ -367,8 +367,8 @@ function build(out) {
   baseDetails(out);
 }
 export const emleyMoor = {
-  id: 'n1006_emley_moor_transmitting_station',
-  planId: 'N1006',
+  id: 'emley_moor_transmitting_station',
+  planId: 'emley_moor_transmitting_station',
   title: 'Emley Moor transmitting station',
   wikidata: 'Q638586',
   build,

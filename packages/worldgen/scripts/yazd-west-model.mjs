@@ -1,11 +1,11 @@
-/** N0633 western member: Golestan dakhma, projecting entry landing and smaller recessed pit. */
+/** towers_of_silence_in_yazd western member: Golestan dakhma, projecting entry landing and smaller recessed pit. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildYazdWestDakhma } from './yazd-west-dakhma-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/tj/tjw/n0633_west_golestan_tower_of_silence/',
+    '../../../content/worldgen/source/places/tj/tjw/west_golestan_tower_of_silence/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -88,7 +88,7 @@ export const buildYazdWestSkyline = (o) => build(o, 0),
   buildYazdWestStreet = (o) => build(o, 2),
   buildYazdWestCloseup = (o) => build(o, 3);
 export const yazdWestStudy = {
-  id: 'N0633_WEST',
+  id: 'west_golestan_tower_of_silence',
   key: 'west_golestan_tower_of_silence',
   title: 'Golestan Tower of Silence, Yazd (west)',
   category: 'tower',

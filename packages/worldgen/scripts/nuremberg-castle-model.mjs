@@ -6,7 +6,7 @@ import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u0/u0z/n0297_nuremberg_castle/',
+  '../../../content/worldgen/source/places/u0/u0z/nuremberg_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
@@ -1002,7 +1002,7 @@ export function buildNurembergRuntime(o, level = 'closeup') {
 }
 export const buildNurembergSkyline = (o) => buildNurembergRuntime(o, 'skyline');
 export const nurembergStudy = {
-  id: 'N0297',
+  id: 'nuremberg_castle',
   key: 'nuremberg_castle',
   title: 'Nuremberg Castle',
   category: 'castle',

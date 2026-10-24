@@ -1,4 +1,4 @@
-/** 'N0529': N0529: Banteay Samré's own mapped enclosures and photographed sanctuary group. */
+/** 'banteay_samre': banteay_samre: Banteay Samré's own mapped enclosures and photographed sanctuary group. */
 import { box, corbel, loft, pediment, prism } from './khmer-structure-geometry.mjs';
 
 function pose(f, x, y, z, angle = 0) {

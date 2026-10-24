@@ -1,11 +1,11 @@
-/** 'N0742_HAREM': Notched multi-court Harem, domed halls, stepped ranges and tiled Twin Kiosk. */
+/** 'imperial_harem_topkapi_palace': Notched multi-court Harem, domed halls, stepped ranges and tiled Twin Kiosk. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiHarem } from './topkapi-harem-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_harem/',
+    '../../../content/worldgen/source/places/sx/sxk/imperial_harem_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -101,7 +101,7 @@ export const buildTopkapiHaremSkyline = (o) => build(o, 0),
   buildTopkapiHaremStreet = (o) => build(o, 2),
   buildTopkapiHaremCloseup = (o) => build(o, 3);
 export const topkapiHaremStudy = {
-  id: 'N0742_HAREM',
+  id: 'imperial_harem_topkapi_palace',
   key: 'harem',
   title: 'Imperial Harem, Topkapi Palace',
   category: 'castle',

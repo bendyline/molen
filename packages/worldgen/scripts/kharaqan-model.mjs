@@ -1,11 +1,11 @@
-/** 'N0597': mapped twin brick mausoleums with separately seated feet and open roof slots. */
+/** 'kharaqan_towers': mapped twin brick mausoleums with separately seated feet and open roof slots. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildKharaqanMasonry } from './kharaqan-masonry-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/tn/tn6/n0597_kharaqan_towers/',
+    '../../../content/worldgen/source/places/tn/tn6/kharaqan_towers/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -87,7 +87,7 @@ export const buildKharaqanSkyline = (o) => build(o, 0),
   buildKharaqanStreet = (o) => build(o, 2),
   buildKharaqanCloseup = (o) => build(o, 3);
 export const kharaqanStudy = {
-  id: 'N0597',
+  id: 'kharaqan_towers',
   key: 'kharaqan_towers',
   title: 'Kharaqan Towers',
   category: 'tower',

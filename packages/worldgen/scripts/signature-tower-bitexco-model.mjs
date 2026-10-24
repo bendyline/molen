@@ -298,7 +298,7 @@ function helipad(out, mapped) {
   );
   mappedCap(out, 'metal', topPlan, deckY, [0.24, 0.29, 0.28]);
   padRing(out, 'metal', deckY + 0.005, 0.993, 0.965, white);
-  const p = partsEvidence('n0209_bitexco_financial_tower').find((e) => e.id === 1231606415);
+  const p = partsEvidence('bitexco_financial_tower').find((e) => e.id === 1231606415);
   const square = clockwise(
     p.geometry.slice(0, -1).map((g) => localGeographic(mapped, g.lon, g.lat)),
   );
@@ -400,7 +400,7 @@ function helipad(out, mapped) {
 }
 
 function podium(out, mapped) {
-  const part = partsEvidence('n0209_bitexco_financial_tower').find((e) => e.id === 1222241873);
+  const part = partsEvidence('bitexco_financial_tower').find((e) => e.id === 1222241873);
   const plan = clockwise(
     part.geometry.slice(0, -1).map((g) => localGeographic(mapped, g.lon, g.lat)),
   );
@@ -515,7 +515,7 @@ function build(out, mapped) {
 }
 
 export const bitexcoStudy = {
-  id: 'N0209',
+  id: 'bitexco_financial_tower',
   key: 'bitexco_financial_tower',
   title: 'Bitexco Financial Tower',
   wikidataId: 'Q638512',

@@ -10,8 +10,9 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readPlacementSourcesSync } from '../../../../packages/worldgen-earth/scripts/placement-sources.mjs';
 import { categoryFor, classify, normalize, storyText } from './classify.mjs';
-import { next1000Entries, workAssignment } from './work-ownership.mjs';
+import { structureCatalogEntries, workAssignment } from './work-ownership.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '../../../..');
@@ -73,15 +74,19 @@ export function distanceKm(a, b) {
 export function loadCatalog(repository) {
   const files = [
     'content/worldgen/source/structure-index.json',
-    'content/worldgen/source/next-1000/candidates.json',
-    'content/worldgen/source/next-1000/collections.json',
+    'content/worldgen/source/structure-catalog/candidates.json',
+    'content/worldgen/source/structure-catalog/collections.json',
     'content/worldgen/project.json',
     'content/worldgen/stylepack.json',
-    'content/earth/structures/placements.json',
     'content/earth/structures/readiness.json',
   ];
   const documents = files.map((file) => read(path.join(repository, file)));
-  const [index, planned, collections, project, stylepack, placements, readiness] = documents;
+  const [index, planned, collections, project, stylepack, readiness] = documents;
+  const { catalog: placements } = readPlacementSourcesSync(
+    path.join(repository, 'content/earth/source/placements'),
+  );
+  files.push('content/earth/source/placements/');
+  documents.push(placements);
   const localReadinessPath = 'content/worldgen/source/qualla-structures/batches/readiness.json';
   const localReadinessFile = path.join(repository, localReadinessPath);
   const localReadiness = fs.existsSync(localReadinessFile)
@@ -187,7 +192,7 @@ export function loadCatalog(repository) {
     model.names = [...new Set(model.names.filter(Boolean))];
   }
   return {
-    next1000: next1000Entries(planned, collections),
+    structureCatalog: structureCatalogEntries(planned, collections),
     models: [...models.values()].sort((a, b) =>
       order(a.assetId ?? a.candidateId, b.assetId ?? b.candidateId),
     ),
@@ -645,7 +650,7 @@ export function scan({
   );
   for (const record of backlog) {
     record.stories.sort((a, b) => order(a.id, b.id));
-    record.workAssignment = workAssignment(record, catalog.next1000);
+    record.workAssignment = workAssignment(record, catalog.structureCatalog);
   }
   review.sort(
     (a, b) =>
@@ -671,7 +676,7 @@ export function scan({
     structureCount: backlog.length,
     statuses,
     workOwners: {
-      'next-1000-other-device': backlog.filter((r) => !r.workAssignment.localAuthoringAllowed)
+      'structure-catalog-other-device': backlog.filter((r) => !r.workAssignment.localAuthoringAllowed)
         .length,
       'qualla-local': backlog.filter((r) => r.workAssignment.localAuthoringAllowed).length,
     },
@@ -743,7 +748,7 @@ export function scan({
   writes += Number(
     writeIfChanged(
       path.join(output, 'OTHER-DEVICE.md'),
-      `# Qualla targets owned by the other device\n\nAll next-1,000 candidates and collection members are excluded from local production, regardless of whether they are planned, imported or ready. These **${otherDevice.length} targets** remain visible for story coverage and later model synchronization. Possible identity overlaps are held here until reconciled.\n\n${table(otherDevice)}\n`,
+      `# Qualla targets owned by the other device\n\nAll structure catalog candidates and collection members are excluded from local production, regardless of whether they are planned, imported or ready. These **${otherDevice.length} targets** remain visible for story coverage and later model synchronization. Possible identity overlaps are held here until reconciled.\n\n${table(otherDevice)}\n`,
       check,
     ),
   );
@@ -760,7 +765,7 @@ export function scan({
       .join('\n') +
     `\n\nExisting-ready means the current registry reports readiness and an active placement. Imported assets, previews, and old simplified models remain separate. ` +
     `Generic styles and reusable models do not count as accurate versions of named buildings.\n\n` +
-    `**${otherDevice.length} targets are reserved for the other device** because they match the next-1,000 lists. They remain in coverage tracking but are excluded from local batches. See [other-device ownership](OTHER-DEVICE.md).\n\n` +
+    `**${otherDevice.length} targets are reserved for the other device** because they match the structure catalog lists. They remain in coverage tracking but are excluded from local batches. See [other-device ownership](OTHER-DEVICE.md).\n\n` +
     `## Reviewed starting batch\n\n${starter.length ? table(starter) : 'No editorial starting batch yet.'}\n\n` +
     `## Complete lists\n\n| Category | Structures |\n| --- | ---: |\n` +
     Object.keys(byCategory)

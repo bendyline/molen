@@ -1,11 +1,11 @@
-/** N0716: existing Mestalla terraces, west canopy and three glazed circulation cores. */
+/** mestalla_stadium: existing Mestalla terraces, west canopy and three glazed circulation cores. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMestallaStadium } from './mestalla-terrace-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ez/ezp/n0716_mestalla_stadium/',
+    '../../../content/worldgen/source/places/ez/ezp/mestalla_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -77,7 +77,7 @@ export const buildMestallaSkyline = (o) => build(o, 0),
   buildMestallaStreet = (o) => build(o, 2),
   buildMestallaCloseup = (o) => build(o, 3);
 export const mestallaStudy = {
-  id: 'N0716',
+  id: 'mestalla_stadium',
   key: 'mestalla_stadium',
   title: 'Mestalla Stadium',
   category: 'stadium',

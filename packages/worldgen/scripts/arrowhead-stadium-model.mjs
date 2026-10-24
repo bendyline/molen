@@ -1,4 +1,4 @@
-/** 'N0733': Arrowhead's red saddle bowl, curled press roofs and circular ramp towers. */
+/** 'arrowhead_stadium': Arrowhead's red saddle bowl, curled press roofs and circular ramp towers. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
@@ -19,7 +19,7 @@ export function arrowheadRadius(poly, a) {
       u = cross(p, d) / den;
     if (t > 0 && u >= -1e-8 && u <= 1 + 1e-8) hits.push(t);
   }
-  if (!hits.length) throw Error('N0733: nonradial native boundary');
+  if (!hits.length) throw Error('arrowhead_stadium: nonradial native boundary');
   return Math.min(...hits);
 }
 export function arrowheadFoundationOutline(r, d) {

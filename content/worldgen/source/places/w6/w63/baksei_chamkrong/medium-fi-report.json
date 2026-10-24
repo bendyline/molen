@@ -1,0 +1,1029 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.baksei_chamkrong",
+  "sourceHash": "sha256:7b68191567258a188c741a423fd4c42642f4836347e9a0fdd658a98f53f36ac7",
+  "runtimeHash": "sha256:72a9908b2025d989799a121f629593e2c41f41bde93efec8b9bbacffb12e3b27",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:1c978970d1563c04473862d360d23fd96bd400b9d5b67dab75fada86f81d838d",
+      "bytes": 104084,
+      "gzipBytes": 18205,
+      "triangles": 998,
+      "cpuBytes": 102648,
+      "gpuBytes": 102648,
+      "errorMeters": 0.8,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:e6fb7b8c5e8f2b53110e4b70947ebac6fb55c3c044fbac3038d42cad198bcfb8",
+      "bytes": 255868,
+      "gzipBytes": 60325,
+      "triangles": 2760,
+      "cpuBytes": 250740,
+      "gpuBytes": 250740,
+      "errorMeters": 0.4,
+      "drawCalls": 4
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:312b81eddba621d2c0091d107ae2b956cf58d3531bd7747108e1043daa777587",
+      "bytes": 339184,
+      "gzipBytes": 76927,
+      "triangles": 3660,
+      "cpuBytes": 334044,
+      "gpuBytes": 334044,
+      "errorMeters": 0.15,
+      "drawCalls": 4
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:18d7dac3c661df3c873660a5987d0f9e0ca7d036bbd2366be4c20ac3cd93b43c",
+      "bytes": 365536,
+      "gzipBytes": 82428,
+      "triangles": 3948,
+      "cpuBytes": 360396,
+      "gpuBytes": 360396,
+      "errorMeters": 0.04,
+      "drawCalls": 4
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:98171eec750ffcf644d6800ce2ee61c3bbb3a7311062f94078ad65513d3ecb86"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:134f53ec03e6e26d8973151ff092bcf33c0571082d829c3fa2b741fcd677fcad"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:a80c43eca5862012c4ef0715b339c5bd3a11242082b1b68b1a32f464e3775516",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 43438,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          57.5731,
+          40.814,
+          99.59909999999999
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:155b40b43e283c2101fa0c4f007d025f46fc3bb5120a9ce2435d9352fe9df8ea",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 43438,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          57.5731,
+          40.814,
+          99.59909999999999
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:01937a07f07b1f2ed8be742d7ceb709fa6132fdc141ee29635f9af4c0ec5b5b7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 43438,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          57.5731,
+          40.814,
+          99.59909999999999
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:4ce9d7b6f93b3c4996cc89a20dbdceb641e91a4f94b4101c51a3b02d881c9fe5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 43438,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          57.5731,
+          40.814,
+          99.59909999999999
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:91f84887e6b901826c53d8dddf0b7cec68575efa52c3d8d77d9725433327f8ca",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 42250,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          116.3731,
+          84.014,
+          201.5991
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:4e820b950cc1f0c631e5a8ceffbeb7fa3200a9e44620ebfb118900ecf125defc",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 42250,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          116.3731,
+          84.014,
+          201.5991
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:5c97c131b388d117ed2b9cfc54416adb445a623ff46818d3006671a95844e237",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 42250,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          116.3731,
+          84.014,
+          201.5991
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:9afcbda90e3a2b8ad81d952f1b69598acce8716646ad96179230fb9471ab058b",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 42250,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          116.3731,
+          84.014,
+          201.5991
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:14619db1271f8dbab03a2a9c8fa98199730a810d7d6abb1365c204d347d3bdb0",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 40488,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          232.77309999999997,
+          129.614,
+          403.1991
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:49f15ae7cc2ff65b4e3a490aac238e43f9f4e9c88bb7a1944ef00d7b92a0e9f5",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40488,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          232.77309999999997,
+          129.614,
+          403.1991
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:1f8742f24a525262558bd342bbef7846e278c37c24e41e58cbbd50320699ca5b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 40488,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          232.77309999999997,
+          129.614,
+          403.1991
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:e50bf817b33c80ab95b905a4f5810e6b2f6920319b8fb02b62bc27634ba03e2e",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40488,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          232.77309999999997,
+          129.614,
+          403.1991
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:e4b50938996ce26d5eb7180c72b04555564b55c0e1ff130d99978fa0a3b186f3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 34792,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          232.77309999999997,
+          129.614,
+          403.1991
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-east-pyramid-four-tiers-and-shrine.png",
+      "hash": "sha256:664c7a56fe1cb8423eac3afa3d9b5a9acdc0b44ba9f8a302b2dde4735bda58cb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 43438,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          47.917393393757116,
+          24,
+          13.301255968814434
+        ],
+        "lookAt": [
+          -0.6981017370122019,
+          11,
+          -0.30439113781538774
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-east-doorway-brick-pilasters-and-eroded-crown.png",
+      "hash": "sha256:72475a2febd3384895e71d79d1ac11abe08a8b6061cc73cef0b235db0ca0a851",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 43438,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          18.949373077367433,
+          20,
+          8.119190844828221
+        ],
+        "lookAt": [
+          -0.6981017370122019,
+          16,
+          -0.30439113781538774
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/four-tier-setbacks-solid-stairs-and-cheeks.png",
+      "hash": "sha256:b364a3e279da80ba077bfd45940b96e52cc57ac0635659b8e1d8bdeb3a3a532e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 43438,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          30.12503831885681,
+          13,
+          -19.811160144913497
+        ],
+        "lookAt": [
+          8.01240518751635,
+          6,
+          -1.9497084682231525
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/baksei-skyline.png",
+      "hash": "sha256:640bd4b99a6023ae78464955bd22e712664da4c3d17888ab2e04d14acd60074a",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40488,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          59.63448873085695,
+          42,
+          58.37574628053414
+        ],
+        "lookAt": [
+          0,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/baksei-district.png",
+      "hash": "sha256:7237cd37d154ad79fe3ff279d94788cb60d75045d041cce99783b4af48dc82f3",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 42250,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          59.63448873085695,
+          42,
+          58.37574628053414
+        ],
+        "lookAt": [
+          0,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/baksei-street.png",
+      "hash": "sha256:4ee67a27b6fa8f7962ba2888271d3efda76ef309cbbeb5ecac41d1361e3a216d",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 43150,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          59.63448873085695,
+          42,
+          58.37574628053414
+        ],
+        "lookAt": [
+          0,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/baksei-closeup.png",
+      "hash": "sha256:0bf4ca321ead082b0cf2fcb0bcd6ee59537789419ed59a6dc0c772410f887fab",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 43438,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          59.63448873085695,
+          42,
+          58.37574628053414
+        ],
+        "lookAt": [
+          0,
+          10,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:239835bd1bd45d4b2b004bd8ab110b7e193b3ac0da9b7539faa74fc7c7907a07",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40488,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          116.3731,
+          84.014,
+          201.5991
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:4e820b950cc1f0c631e5a8ceffbeb7fa3200a9e44620ebfb118900ecf125defc",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 42250,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          116.3731,
+          84.014,
+          201.5991
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:4b094745645cb38bcdd13acdf43b297df367df1a00587c379ecb9a3e052da7dc",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 43150,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          116.3731,
+          84.014,
+          201.5991
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:398e017a90d9a9ee8cb8f0780e0cf3fe6ff0be9aa95ff189f9099e93ed281a3c",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 43438,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/baksei_chamkrong/terrain-review.height.png"
+        },
+        "position": [
+          116.3731,
+          84.014,
+          201.5991
+        ],
+        "lookAt": [
+          -0.0269,
+          22.814,
+          -0.0009
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

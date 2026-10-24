@@ -508,10 +508,13 @@ world/geographic conversion) and ticked on their sync.
 
 ## Geographic structures and regional styles
 
-The Earth pack may provide a `molen/structure-placements@1` document. Each record binds a
+The Earth pack may provide a regional `molen/structure-placement-index@1` directory, or a
+legacy flat `molen/structure-placements@1` document. Each placement binds a
 WGS84 `[longitude, latitude]` anchor to an asset ID from the style pack, with an optional
 heading, scale, terrain or sea-level datum, and minimum tile level. The Earth viewer loads the
-catalog with the packs, indexes it by three-character geohash, and draws each `preview` model
+regional directory with the packs, then reads compact `molen/structure-placement-data@1`
+regions as terrain tiles need them. Flat catalogs still load eagerly. Resident placements
+are indexed by three-character geohash, and the viewer draws each `preview` model
 in the terrain tile containing its anchor. `draft` records remain queryable but are not drawn.
 Long structures may supply `bounds: [west, south, east, north]`. Their extent is indexed across
 geohash cells and geometry is clipped to each resident tile, so a bridge end stays visible when
@@ -707,10 +710,33 @@ eviction. Rules require source classification evidence: a cafe with â€œWindmillâ
 not a windmill. Providers that omit POIs, classifications, or structure tags cannot imply that
 object. The semantic decoder preserves public structure tags and Wikidata IDs when supplied.
 
-`content.worldgen.structures.query([west, south, east, north])` returns preview placements in a
-geographic rectangle. Pass `true` as the second argument to include drafts. The default
-catalog and its source notes live in `content/earth/structures/placements.json` in the engine
-repository. Named model sources and previews live in
+`content.worldgen.structures.query([west, south, east, north])` returns resident preview
+placements in a geographic rectangle. Pass `true` as the second argument to include drafts.
+For a regional catalog, `isLoaded(bounds)` distinguishes complete coverage from an unloaded
+region. Use `await structures.queryAsync(bounds, { signal, viewingDate, includeDraft })` to
+load and query complete coverage; flat indexes expose only the synchronous query. Async
+results remain valid even when a large query exceeds the retained cache budget. Terrain
+renderers await coverage before replacing buildings, roads, water or ground. Parking avoids
+unloaded landmark coverage until nearby terrain has loaded it.
+
+Regional reads share in-flight requests, run at most four requests at once, and retain at most
+32 parsed regions or 4 MiB of serialized data (JavaScript object overhead is additional).
+Cancelling one query does not cancel another query sharing its read. `dispose()` on the
+regional stream cancels its reads and drops the cache. Directory coverage includes complete
+structure extents and mapped identity search neighborhoods across region boundaries and the
+antimeridian. Regions whose minimum tile level exceeds the requested level are skipped.
+
+In the engine repository, authoritative placements and their source notes live in individual
+`content/earth/source/placements/<gh2>/<gh3>/<placement-id>.json` files. A deterministic build
+produces the ignored `content/earth/structures/placements/index.json` and `cells/*.json` files.
+Runtime data retains titles and source URLs, all placement numbers, cutouts, statuses and
+historical dates, while omitting `note` and `basis` explanations. Detailed map evidence stays
+in the source; only `wikidata`, `names` and `maxDistance` are runtime matching fields.
+The compiler starts with geohash2 regions and subdivides regions over 192 KiB when possible.
+The pack keeps these files independently readable rather than combining them in solid blocks.
+The generated `authoring.json` aggregate supports local review fixtures and is excluded from packs.
+
+Named model sources and previews live in
 `content/worldgen/source/places/<gh2>/<gh3>/<source-key>/`; imported runtime bundles mirror
 that organization under `content/worldgen/assets/places/<gh2>/<gh3>/<source-key>/`.
 Each runtime bundle contains `asset.json`, `model.glb`, and any collision data. Reusable models

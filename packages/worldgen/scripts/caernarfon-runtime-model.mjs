@@ -7,7 +7,7 @@ import { buildCaernarfonRuntime } from './caernarfon-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/gc/gck/n0273_caernarfon_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/gc/gck/caernarfon_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

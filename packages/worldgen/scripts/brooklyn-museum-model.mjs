@@ -1,4 +1,4 @@
-/** 'N0766': Brooklyn Museum. */
+/** 'brooklyn_museum': Brooklyn Museum. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
@@ -6,7 +6,7 @@ import { buildBrooklynMuseum } from './brooklyn-museum-geometry.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/dr/dr5/n0766_brooklyn_museum/',
+    '../../../content/worldgen/source/places/dr/dr5/brooklyn_museum/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -105,7 +105,7 @@ export const buildBrooklynMuseumSkyline = (o) => build(o, 0),
   buildBrooklynMuseumStreet = (o) => build(o, 2),
   buildBrooklynMuseumCloseup = (o) => build(o, 3);
 export const brooklynMuseumStudy = {
-  id: 'N0766',
+  id: 'brooklyn_museum',
   key: 'brooklyn_museum',
   title: 'Brooklyn Museum',
   category: 'museum',

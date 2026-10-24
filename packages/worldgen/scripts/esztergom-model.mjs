@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u2m/n0383_esztergom_basilica/',
+  '../../../content/worldgen/source/places/u2/u2m/esztergom_basilica/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -924,7 +924,7 @@ export const buildEsztergomSkyline = (o) => build(o, 0),
   buildEsztergomCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const esztergomStudy = {
-  id: 'N0383',
+  id: 'esztergom_basilica',
   key: 'esztergom_basilica',
   title: 'Esztergom Basilica',
   category: 'cathedral',

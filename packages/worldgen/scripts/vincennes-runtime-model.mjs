@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u0/u09/n0265_chateau_de_vincennes/map-frame.json',
+      '../../../content/worldgen/source/places/u0/u09/chateau_de_vincennes/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -995,7 +995,7 @@ export function buildVincennesRuntime(o, level) {
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u0/u09/n0265_chateau_de_vincennes/site-grade.json',
+      '../../../content/worldgen/source/places/u0/u09/chateau_de_vincennes/site-grade.json',
       import.meta.url,
     ),
   ),

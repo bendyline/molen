@@ -1,11 +1,11 @@
-/** N0531: surviving Ankara cella, open portal, low rear remnants and steel conservation frame. */
+/** temple_of_augustus_in_ankara: surviving Ankara cella, open portal, low rear remnants and steel conservation frame. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { buildAnkaraRuins } from './ankara-ruins-model.mjs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxp/n0531_temple_of_augustus_in_ankara/',
+    '../../../content/worldgen/source/places/sx/sxp/temple_of_augustus_in_ankara/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -83,7 +83,7 @@ export const buildAnkaraSkyline = (o) => build(o, 0),
   buildAnkaraStreet = (o) => build(o, 2),
   buildAnkaraCloseup = (o) => build(o, 3);
 export const ankaraStudy = {
-  id: 'N0531',
+  id: 'temple_of_augustus_in_ankara',
   key: 'temple_of_augustus_in_ankara',
   title: 'Temple of Augustus in Ankara',
   category: 'temple',

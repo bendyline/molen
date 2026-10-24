@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sxh/n0483_bursa_grand_mosque/',
+  '../../../content/worldgen/source/places/sx/sxh/bursa_grand_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -737,7 +737,7 @@ export const buildBursaSkyline = (o) => build(o, 0),
   buildBursaCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const bursaStudy = {
-  id: 'N0483',
+  id: 'bursa_grand_mosque',
   key: 'bursa_grand_mosque',
   title: 'Bursa Grand Mosque',
   category: 'mosque',

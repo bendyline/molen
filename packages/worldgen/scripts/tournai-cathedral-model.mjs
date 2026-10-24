@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/',
+  '../../../content/worldgen/source/places/u0/u0f/tournai_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -789,7 +789,7 @@ export const buildTournaiDistrict = (out) => build(out, 1);
 export const buildTournaiStreet = (out) => build(out, 2);
 export const buildTournaiCloseup = (out) => build(out, 3);
 export const tournaiStudy = {
-  id: 'N0330',
+  id: 'tournai_cathedral',
   key: 'tournai_cathedral',
   title: 'Tournai Cathedral',
   category: 'cathedral',

@@ -1,11 +1,11 @@
-/** 'N0566': standing new tower, sparse oculi, open crown and separately preserved old stump. */
+/** 'dharahara': standing new tower, sparse oculi, open crown and separately preserved old stump. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildDharaharaTower } from './dharahara-tower-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/tu/tuu/n0566_dharahara/',
+    '../../../content/worldgen/source/places/tu/tuu/dharahara/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -84,7 +84,7 @@ export const buildDharaharaSkyline = (o) => build(o, 0),
   buildDharaharaStreet = (o) => build(o, 2),
   buildDharaharaCloseup = (o) => build(o, 3);
 export const dharaharaStudy = {
-  id: 'N0566',
+  id: 'dharahara',
   key: 'dharahara',
   title: 'Dharahara',
   category: 'tower',

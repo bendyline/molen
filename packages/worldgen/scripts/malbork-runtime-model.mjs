@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u3/u3t/n0243_malbork_castle/map-parts.json',
+      '../../../content/worldgen/source/places/u3/u3t/malbork_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -1192,7 +1192,7 @@ function _oldSkyline(out) {
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u3/u3t/n0243_malbork_castle/site-grade.json',
+      '../../../content/worldgen/source/places/u3/u3t/malbork_castle/site-grade.json',
       import.meta.url,
     ),
   ),

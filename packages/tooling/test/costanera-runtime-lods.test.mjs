@@ -9,7 +9,7 @@ import { encodeAuthoredAssembly } from '../../worldgen/scripts/authored-glb-asse
 import { granTorreCostaneraStudy } from '../../worldgen/scripts/gran-torre-costanera-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/66/66j/n0232_gran_torre_costanera'),
+const source = resolve('../../content/worldgen/source/places/66/66j/gran_torre_costanera'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -120,7 +120,7 @@ it('reconstitutes the original instanced master and independently reprojects exa
   expect(bytes.byteLength).toBe(1959180);
   execFileSync(
     process.execPath,
-    ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=N0232', '--check'],
+    ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=gran_torre_costanera', '--check'],
     { cwd: resolve('../..'), stdio: 'pipe' },
   );
   const spec = await read(`${source}/spec.json`);

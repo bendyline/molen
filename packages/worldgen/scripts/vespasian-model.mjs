@@ -1,11 +1,11 @@
-/** N0525: reproducible three-column Corinthian corner and low mapped remains. */
+/** temple_of_vespasian_and_titus: reproducible three-column Corinthian corner and low mapped remains. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildVespasianRemnants } from './vespasian-remnants-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0525_temple_of_vespasian_and_titus/',
+    '../../../content/worldgen/source/places/sr/sr2/temple_of_vespasian_and_titus/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -77,7 +77,7 @@ export const buildVespasianSkyline = (o) => build(o, 0),
   buildVespasianStreet = (o) => build(o, 2),
   buildVespasianCloseup = (o) => build(o, 3);
 export const vespasianStudy = {
-  id: 'N0525',
+  id: 'temple_of_vespasian_and_titus',
   key: 'temple_of_vespasian_and_titus',
   title: 'Temple of Vespasian and Titus',
   category: 'temple',

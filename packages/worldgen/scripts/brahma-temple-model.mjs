@@ -1,4 +1,4 @@
-/** 'N0559': Pushkar's blue mandapa, paired red domes and clustered curved shikhara. */
+/** 'brahma_temple': Pushkar's blue mandapa, paired red domes and clustered curved shikhara. */
 
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';

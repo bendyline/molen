@@ -1,11 +1,11 @@
-/** 'N0752_MERIDIAN': Meridian House, corner turrets, time ball and shared surfaces. */
+/** 'meridian_building_royal_observatory_greenwich': Meridian House, corner turrets, time ball and shared surfaces. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMeridian } from './meridian-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gc/gcp/n0752_meridian/',
+    '../../../content/worldgen/source/places/gc/gcp/meridian_building_royal_observatory_greenwich/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -103,7 +103,7 @@ export const buildMeridianSkyline = (o) => build(o, 0),
   buildMeridianStreet = (o) => build(o, 2),
   buildMeridianCloseup = (o) => build(o, 3);
 export const meridianStudy = {
-  id: 'N0752_MERIDIAN',
+  id: 'meridian_building_royal_observatory_greenwich',
   key: 'meridian',
   title: 'Meridian Building, Royal Observatory Greenwich',
   category: 'museum',

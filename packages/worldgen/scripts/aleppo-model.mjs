@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sy/sy6/n0432_great_mosque_of_aleppo/',
+  '../../../content/worldgen/source/places/sy/sy6/great_mosque_of_aleppo/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -916,7 +916,7 @@ export const buildAleppoSkyline = (o) => build(o, 0),
   buildAleppoCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const aleppoStudy = {
-  id: 'N0432',
+  id: 'great_mosque_of_aleppo',
   key: 'great_mosque_of_aleppo',
   title: 'Great Mosque of Aleppo',
   category: 'mosque',

@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/st/stq/n0462_mosque_of_amr_ibn_al_as/',
+  '../../../content/worldgen/source/places/st/stq/mosque_of_amr_ibn_al_as/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -688,7 +688,7 @@ export const buildAmrSkyline = (o) => build(o, 0),
   buildAmrCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const amrStudy = {
-  id: 'N0462',
+  id: 'mosque_of_amr_ibn_al_as',
   key: 'mosque_of_amr_ibn_al_as',
   title: 'Mosque of Amr ibn al-As',
   category: 'mosque',

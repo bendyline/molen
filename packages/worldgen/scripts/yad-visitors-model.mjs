@@ -1,11 +1,11 @@
-/** 'N0748_VISITORS': Visitors Centre frame, colonnades and shared surfaces. */
+/** 'visitors_centre_yad_vashem': Visitors Centre frame, colonnades and shared surfaces. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildYadVisitors } from './yad-visitors-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sv/sv9/n0748_visitors/',
+    '../../../content/worldgen/source/places/sv/sv9/visitors_centre_yad_vashem/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -100,7 +100,7 @@ export const buildYadVisitorsSkyline = (o) => build(o, 0),
   buildYadVisitorsStreet = (o) => build(o, 2),
   buildYadVisitorsCloseup = (o) => build(o, 3);
 export const yadVisitorsStudy = {
-  id: 'N0748_VISITORS',
+  id: 'visitors_centre_yad_vashem',
   key: 'visitors',
   title: 'Visitors Centre, Yad Vashem',
   category: 'museum',

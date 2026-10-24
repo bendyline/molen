@@ -1,11 +1,11 @@
-/** N0708: MetLife native stadium outline, open bowl and louvered shell. */
+/** metlife_stadium: MetLife native stadium outline, open bowl and louvered shell. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMetlifeStadium } from './metlife-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/dr/dr7/n0708_metlife_stadium/',
+    '../../../content/worldgen/source/places/dr/dr7/metlife_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -94,7 +94,7 @@ export const buildMetlifeSkyline = (o) => build(o, 0),
   buildMetlifeStreet = (o) => build(o, 2),
   buildMetlifeCloseup = (o) => build(o, 3);
 export const metlifeStudy = {
-  id: 'N0708',
+  id: 'metlife_stadium',
   key: 'metlife_stadium',
   title: 'MetLife Stadium',
   category: 'stadium',

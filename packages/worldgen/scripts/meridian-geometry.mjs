@@ -1,4 +1,4 @@
-/** 'N0752_MERIDIAN': connected transit rooms, shutters, gables and true three-arched entry. */
+/** 'meridian_building_royal_observatory_greenwich': connected transit rooms, shutters, gables and true three-arched entry. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildMeridian(face, detail, r) {

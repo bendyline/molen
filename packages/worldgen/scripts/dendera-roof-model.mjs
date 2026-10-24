@@ -1,10 +1,10 @@
-/** N0508: southwest Hathor kiosk, mapped roof rooms and the upper terrace stair. */
+/** dendera_temple_complex: southwest Hathor kiosk, mapped roof rooms and the upper terrace stair. */
 import {
   denderaBox as box,
   denderaCavetto as cavetto,
   denderaColumn as column,
 } from './dendera-temple-model.mjs';
-export const denderaRoofCandidateId = 'N0508';
+export const denderaRoofCandidateId = 'dendera_temple_complex';
 function translated(face, x, y, z, scale = 1) {
   return (role, ps, n) =>
     face(

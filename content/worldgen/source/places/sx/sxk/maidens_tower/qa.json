@@ -1,0 +1,360 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.maidens_tower",
+  "reviewedOn": "2026-10-09",
+  "inputHash": "sha256:d187d4e4ea506a31204a68e4778a699ca2763c053688b25b2bb25db0e0a2cc30",
+  "sourceHash": "sha256:3a502828ef109259fc7906731c1ad21ea4850adf33477961057d09468235908d",
+  "runtimeHash": "sha256:f883e18f728c81a5b8d4cf65689940c331256ad00cc08edc0e1ec3eb1f10f830",
+  "captureReportHash": "sha256:7ef07f9343df3e1b5557e43fd6751964fbe5eee80bc75df9def6acc23254841b",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-upper-room.png",
+      "shots/near-courtyard.png",
+      "shots/near-pavilion.png",
+      "shots/far-ensemble.png",
+      "shots/east-fatih-door.png",
+      "shots/timber-court-walk.png"
+    ],
+    "notes": "Inspected all11 final portable views: whole ensemble from four sides, upper octagonal room and dome, courtyard, pavilion side, full mast and the new east Fatih doorway and timber wall walks. The restored court stays open; its recessed arched door and upper north entry stair remain visible. Courtyard walks have continuous decks and rails. The new timber stair is partly occluded by the perimeter wall in the whole-court camera; the focused geometry test checks its top tread joins the4.1m deck. The west pavilion facade is partly screened by its historic outer wall; it is not interpreted as missing geometry."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:4de2f84526ca7a54d8a24a159517e1bf29bd2991360390c16ca9d2a54a65d4e9",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-upper-room.png",
+      "shots/shared/near-courtyard.png",
+      "shots/shared/near-pavilion.png",
+      "shots/shared/far-ensemble.png",
+      "shots/shared/east-fatih-door.png",
+      "shots/shared/timber-court-walk.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all11 final shared-material views including north-up actual shaft/fort/island controls. Six canonical256px graphs supply ashlar, lime plaster, ceramic tile, painted metal, timber and granite; every graph is read once and unload leaves zero live model geometries. No embedded images or copied reference textures. The open courtyard, doorway curvature and inset pane remain readable. Flat terrain is a placement inspection surface; host island terrain and water are separate."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:0f876fb117421029285f3e938f021e32163bf5491acab299899fb02b2ad05ba8",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-upper-room.png",
+      "medium-fi/near-courtyard.png",
+      "medium-fi/near-pavilion.png",
+      "medium-fi/far-ensemble.png",
+      "medium-fi/east-fatih-door.png",
+      "medium-fi/timber-court-walk.png",
+      "medium-fi/ensemble-district.png",
+      "medium-fi/court-street.png",
+      "medium-fi/east-door-street.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all26 final medium-fi frames: noon and late light, economy/high quality, synthetic cottage context, six source detail cameras, separate district ensemble/street courtyard/east-door views and all four transitions. Every level retains the complete square tower, octagonal room, curved cap, mast, crenellated court and west pavilion. District simplifies railing cross ornaments, window trim and roof seams while retaining recessed openings and timber walks. Skyline averages materials and simplifies cap profiles; distant detail is intentionally reduced. Near surfaces remain consistent under reflected sky lighting, with no missing primary mass or transition loss."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:6dd3d12868347d5b9cb006238dba843a2ccc5acfd6ccd17ab5f65f2d0202bea5",
+    "mapFrameHash": "sha256:c691a03b3b3b050ecc05344c59854488c0d6dde5a35894a952367ac99cbd5980",
+    "notes": "Actual OSM shaft398210643 sets the mean-corner center[29.004089875,41.021059] and6.4m square. The shaft part has no QID; it lies inside exact-Q848397 island103821246. Actual historic fort103821245, east court398210642 and west pavilion/wall398303919 fix the ensemble plan. Heading1.721295251 sends native+X north-northwest and+Z east-northeast; the pavilion falls west and the Fatih doorway east, consistent with Ministry restoration text. The dated2026-07-28 OSM snapshot contains older roof tags, used as plan controls rather than recreated roofs. Terrain contact uses host island elevation; no water offset or footprint replacement."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Primary operator restoration diary/scope and the Ministry May11,2023 opening report establish the one-storey western pavilion, removed1990s steel courtyard roof/mezzanine, reconstructed timber upper room/cone, wooden courtyard walks and reopened east Fatih-era door. Official homepage exterior/courtyard images were inspected; the courtyard image is an architectural illustration, not a survey photograph. The original buildMaiden master reproduces its exact historical hash; a separate reviewed source corrects fort/pavilion placement and adds arches, walks and twelve connected timber treads. The32.5m mast envelope, arch/window heights, coping and railing motifs are proportional reconstructions. Exact masonry, curved gate profile, full visitor/internal navigation, flag cloth, laser show and underground reinforcement are outside this static medium-fi exterior scope."
+  },
+  "legacyFidelityScope": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed exterior in Molen shared material style.",
+    "notes": "Detailed exterior in Molen shared material style using the operator restoration references and mapped tower/pavilion plan. Individual trim depths, masonry joints and roof curves are photo-proportioned; exterior scope does not assert construction-document measurements.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/sx/sxk/maidens_tower/models/source.glb",
+        "hash": "sha256:3a502828ef109259fc7906731c1ad21ea4850adf33477961057d09468235908d",
+        "bytes": 1450636,
+        "triangles": 18588,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -4.108631610870361,
+          0,
+          -11.609999656677246
+        ],
+        "max": [
+          16.010000228881836,
+          32.5,
+          11.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/sx/sxk/maidens_tower/model.glb",
+        "hash": "sha256:f883e18f728c81a5b8d4cf65689940c331256ad00cc08edc0e1ec3eb1f10f830",
+        "bytes": 1450004,
+        "triangles": 18588,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -4.108631610870361,
+          0,
+          -11.609999656677246
+        ],
+        "max": [
+          16.010000228881836,
+          32.5,
+          11.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/sx/sxk/maidens_tower/model.skyline.glb",
+        "hash": "sha256:116676306d55bd4cc1d18c74b7220f97bf25243b47f4bed7641bd6bfb60770ea",
+        "bytes": 76376,
+        "triangles": 908,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -4,
+          0,
+          -11.609999656677246
+        ],
+        "max": [
+          16.010000228881836,
+          32.5,
+          11.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/sx/sxk/maidens_tower/model.district.glb",
+        "hash": "sha256:27bea6c109edc1b9a411b0f5b50db97e7d6217d924b74a2584574c5cea48363e",
+        "bytes": 301104,
+        "triangles": 3856,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -4.107368469238281,
+          0,
+          -11.609999656677246
+        ],
+        "max": [
+          16.010000228881836,
+          32.5,
+          11.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/sx/sxk/maidens_tower/model.street.glb",
+        "hash": "sha256:be7d380b9787e3634c7e70b0b236109240dcb65b593c1f02f3602ee54ad1f5a9",
+        "bytes": 848072,
+        "triangles": 11396,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -4.107368469238281,
+          0,
+          -11.609999656677246
+        ],
+        "max": [
+          16.010000228881836,
+          32.5,
+          11.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/sx/sxk/maidens_tower/model.closeup.glb",
+        "hash": "sha256:b72f0dd3ec5810c37d93b3327e1cede426c0f978a9d99961db6a4bda36318063",
+        "bytes": 1319212,
+        "triangles": 18588,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -4.108631610870361,
+          0,
+          -11.609999656677246
+        ],
+        "max": [
+          16.010000228881836,
+          32.5,
+          11.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": [
+      "packages/tooling/test/maiden-tower-current-lods.test.mjs:3 passed",
+      "generate-lighthouse-models.mjs maidens_tower --check:source reproduction",
+      "check-medium-fi.mjs --ids=maidens_tower --strict:no findings",
+      "check-landmark-lods.mjs --ids=maidens_tower:four pinned derivatives"
+    ],
+    "notes": "Six current Khronos GLB validations report zero errors, zero warnings and no embedded images. Three focused tests pass: exact original master hash and real mapped identity/signed placement; complete mast and pavilion at every level with recessed east door and top timber tread connected to deck; byte-deterministic four-level regeneration, strict triangle/draw/download caps, six shared graphs and separate12-byte position streams. All regeneration finished before final capture, so reports bind the stable final files."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:96d7f71e38119f718f574ffb64a979e4bf563397a5115eefd0293871e8c49e33",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:116676306d55bd4cc1d18c74b7220f97bf25243b47f4bed7641bd6bfb60770ea",
+        "bytes": 76376,
+        "gzipBytes": 11583,
+        "triangles": 908,
+        "cpuBytes": 75000,
+        "gpuBytes": 75000,
+        "errorMeters": 0.25,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:27bea6c109edc1b9a411b0f5b50db97e7d6217d924b74a2584574c5cea48363e",
+        "bytes": 301104,
+        "gzipBytes": 47412,
+        "triangles": 3856,
+        "cpuBytes": 292704,
+        "gpuBytes": 292704,
+        "errorMeters": 0.12,
+        "drawCalls": 7
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:be7d380b9787e3634c7e70b0b236109240dcb65b593c1f02f3602ee54ad1f5a9",
+        "bytes": 848072,
+        "gzipBytes": 139338,
+        "triangles": 11396,
+        "cpuBytes": 839640,
+        "gpuBytes": 839640,
+        "errorMeters": 0.025,
+        "drawCalls": 7
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:b72f0dd3ec5810c37d93b3327e1cede426c0f978a9d99961db6a4bda36318063",
+        "bytes": 1319212,
+        "gzipBytes": 217894,
+        "triangles": 18588,
+        "cpuBytes": 1310760,
+        "gpuBytes": 1310760,
+        "errorMeters": 0,
+        "drawCalls": 7
+      }
+    ],
+    "initialBytes": 377480,
+    "notes": "The reviewed detailed source is1450636bytes and18588triangles; import1450004bytes. Four complete browser levels contain908/3856/11396/18588triangles within1000/4000/16000/64000caps and8draws. Skyline+district total377480bytes; close-up1319212bytes is fetched separately. Shared materials have no embedded image duplication. Initial transfer meets3MB phone/6MB laptop budgets; physical-device timing remains separate work."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Main shaft width/center, fort axis and pavilion side are mapped. Total mast height32.5m, restored pavilion roof/window proportions and seawall boundary follow official restoration images; these are photographic reconstructions, not measured survey elevations. Decorative railing motifs are geometric reconstructions and moving flag cloth is excluded from the architectural source."
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:b2dface41be6f6623423867e3f3e8a4e29e02a7e0f8396b3c96740922e5fb000",
+    "inputHash": "sha256:d187d4e4ea506a31204a68e4778a699ca2763c053688b25b2bb25db0e0a2cc30",
+    "previousQaHash": "sha256:862dff5014f590c430f2956090b1a22600596d016ea2dfafc7abcd8619031b39",
+    "sourceHash": "sha256:3a502828ef109259fc7906731c1ad21ea4850adf33477961057d09468235908d",
+    "runtimeHash": "sha256:f883e18f728c81a5b8d4cf65689940c331256ad00cc08edc0e1ec3eb1f10f830",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:116676306d55bd4cc1d18c74b7220f97bf25243b47f4bed7641bd6bfb60770ea"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:27bea6c109edc1b9a411b0f5b50db97e7d6217d924b74a2584574c5cea48363e"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:be7d380b9787e3634c7e70b0b236109240dcb65b593c1f02f3602ee54ad1f5a9"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:b72f0dd3ec5810c37d93b3327e1cede426c0f978a9d99961db6a4bda36318063"
+      }
+    ],
+    "sceneHash": "sha256:ba1fe05a8f41b9ed7bc47e036bb69309447c2bcbabfef03eda34f092565fece7",
+    "qaCamerasHash": "sha256:c9761d4f53a43c28a494fb62acfb1caa130eacac6ae207212432f94459754fce",
+    "placementHash": "sha256:6dd3d12868347d5b9cb006238dba843a2ccc5acfd6ccd17ab5f65f2d0202bea5",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:c691a03b3b3b050ecc05344c59854488c0d6dde5a35894a952367ac99cbd5980"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/stone_ashlar.matgraph.json",
+        "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    ],
+    "terrain": [],
+    "framesVerified": 48,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
+}

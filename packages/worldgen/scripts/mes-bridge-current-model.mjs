@@ -4,12 +4,10 @@ import { normalFor } from './authored-structure-mesh.mjs';
 import { buildMesBridge, mesStudy } from './mes-bridge-model.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(readFileSync(structureSourcePath('n0011_mes_bridge', 'map-frame.json')));
-const relief = JSON.parse(
-  readFileSync(structureSourcePath('n0011_mes_bridge', 'terrain-grid.json')),
-);
+const frame = JSON.parse(readFileSync(structureSourcePath('mes_bridge', 'map-frame.json')));
+const relief = JSON.parse(readFileSync(structureSourcePath('mes_bridge', 'terrain-grid.json')));
 const surfaceMeans = JSON.parse(
-  readFileSync(structureSourcePath('n0011_mes_bridge', 'surface-means.json')),
+  readFileSync(structureSourcePath('mes_bridge', 'surface-means.json')),
 );
 const { arches, deckProfile, baseProfile } = mesStudy.reconstruction;
 const grey = [0.57, 0.568, 0.517],

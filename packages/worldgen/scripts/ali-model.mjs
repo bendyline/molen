@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sv/svx/n0429_imam_ali_mosque/',
+  '../../../content/worldgen/source/places/sv/svx/imam_ali_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1064,7 +1064,7 @@ export const buildAliSkyline = (o) => build(o, 0),
   buildAliCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const aliStudy = {
-  id: 'N0429',
+  id: 'imam_ali_mosque',
   key: 'imam_ali_mosque',
   title: 'Imam Ali Mosque',
   category: 'mosque',

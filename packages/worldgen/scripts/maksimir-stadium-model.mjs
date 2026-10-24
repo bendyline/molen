@@ -1,4 +1,4 @@
-/** 'N0735': Maksimir's separate native stands, northern glazed offices and lattice floodlights. */
+/** 'stadion_maksimir': Maksimir's separate native stands, northern glazed offices and lattice floodlights. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 export const maksimirSegments = [2, 4, 16, 32];

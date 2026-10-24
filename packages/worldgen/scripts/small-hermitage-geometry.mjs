@@ -1,4 +1,4 @@
-/** 'N0741_SMALL': Two distinct pavilions, raised garden, galleries and six mapped passages. */
+/** 'small_hermitage': Two distinct pavilions, raised garden, galleries and six mapped passages. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

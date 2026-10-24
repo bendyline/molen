@@ -9,7 +9,7 @@ import {
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u2/u24/n0307_ljubljana_castle/',
+  '../../../content/worldgen/source/places/u2/u24/ljubljana_castle/',
   import.meta.url,
 );
 const frame = JSON.parse(readFileSync(new URL('map-frame.json', root))),
@@ -66,7 +66,7 @@ function distance(q, p) {
   );
 }
 it('builds deterministic four-level geometry within browser budgets with no embedded textures or duplicated GPU layout types', async () => {
-  const id = 'molen.worldgen.structure.n0307_ljubljana_castle',
+  const id = 'molen.worldgen.structure.ljubljana_castle',
     sizes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

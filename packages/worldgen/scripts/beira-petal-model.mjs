@@ -1,8 +1,8 @@
-/** N0721: Beira-Rio's pale petal canopy, open steel ribs and two red bowl tiers. */
+/** estadio_beira_rio: Beira-Rio's pale petal canopy, open steel ribs and two red bowl tiers. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
-const candidateId = 'N0721',
+const candidateId = 'estadio_beira_rio',
   tau = Math.PI * 2;
 export const beiraModules = [12, 24, 40, 65],
   beiraWidths = [1, 1, 2, 4];

@@ -1,8 +1,8 @@
-/** N0715: Nelson Mandela Bay's curved metal petals, membrane fields and open galleries. */
+/** nelson_mandela_bay_stadium: Nelson Mandela Bay's curved metal petals, membrane fields and open galleries. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
-const candidateId = 'N0715',
+const candidateId = 'nelson_mandela_bay_stadium',
   tau = Math.PI * 2;
 export function mandelaRadius(poly, a) {
   const d = [Math.cos(a), Math.sin(a)],

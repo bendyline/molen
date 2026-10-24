@@ -8,7 +8,7 @@ import { buildRumeliMaster } from '../../worldgen/scripts/rumeli-detail-model.mj
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/sx/sxk/n0670_rumeli_feneri'),
+const source = resolve('../../content/worldgen/source/places/sx/sxk/rumeli_feneri'),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
@@ -109,7 +109,7 @@ it('reproduces the historical inward-wound source exactly while preserving the r
   ).toBeCloseTo(6.05, 4);
   const s = await read(source + '/spec.json'),
     f = await read(source + '/map-frame.json'),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(p.anchor).toEqual([29.11214925, 41.23422865]);

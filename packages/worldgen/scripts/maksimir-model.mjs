@@ -1,11 +1,11 @@
-/** 'N0735': Stadion Maksimir's four separate blue stands, northern offices and lattice lights. */
+/** 'stadion_maksimir': Stadion Maksimir's four separate blue stands, northern offices and lattice lights. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMaksimirStadium } from './maksimir-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u2/u25/n0735_stadion_maksimir/',
+    '../../../content/worldgen/source/places/u2/u25/stadion_maksimir/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -78,7 +78,7 @@ export const buildMaksimirSkyline = (o) => build(o, 0),
   buildMaksimirStreet = (o) => build(o, 2),
   buildMaksimirCloseup = (o) => build(o, 3);
 export const maksimirStudy = {
-  id: 'N0735',
+  id: 'stadion_maksimir',
   key: 'stadion_maksimir',
   title: 'Stadion Maksimir',
   category: 'stadium',

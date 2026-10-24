@@ -109,12 +109,15 @@ describe('node helpers', () => {
     viaPath.close();
   });
 
-  it('extracts a pack to a source directory that builds back to the same bytes', async () => {
+  it.each([
+    { independent: [] },
+    { independent: ['types/'] },
+  ])('extracts a pack preserving independent paths $independent', async ({ independent }) => {
     const dir = await temp();
     const out = await temp();
     const extracted = await temp();
     const rebuilt = await temp();
-    await writeSource(dir);
+    await writeSource(dir, { independent });
     const built = await buildPack(dir, { outDir: out });
     const pack = await openFilePack(built.path);
     await extractPack(pack, extracted);

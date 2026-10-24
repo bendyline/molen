@@ -133,6 +133,7 @@ function optionsOf(config: PackSourceConfig): PackOptions {
     ids: config.ids,
     provides: config.provides,
     solid: config.solid,
+    independent: config.independent,
   };
 }
 
@@ -291,6 +292,9 @@ export async function extractPack(pack: Pack, outDir: string): Promise<string[]>
     ids: manifest.ids,
     provides: manifest.provides,
     solid: Object.keys(manifest.blocks).length > 0,
+    independent: Object.entries(manifest.entries)
+      .filter(([, entry]) => entry.block === undefined)
+      .map(([path]) => path),
   };
   await writeFile(join(root, PACK_SOURCE_FILE), `${JSON.stringify(config, null, 2)}\n`);
   return written;

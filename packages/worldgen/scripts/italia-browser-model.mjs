@@ -14,9 +14,7 @@ import {
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const map = JSON.parse(
-    readFileSync(structureSourcePath('n0150_edificio_italia', 'map-frame.json')),
-  ),
+const map = JSON.parse(readFileSync(structureSourcePath('edificio_italia', 'map-frame.json'))),
   MEANS = {
     stone: [0.7011092892788303, 0.7011092892788303, 0.7011092892788303],
     metal: [0.9088893864967214, 0.9088893864967214, 0.9088893864967214],

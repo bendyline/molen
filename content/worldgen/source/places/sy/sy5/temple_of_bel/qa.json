@@ -1,0 +1,663 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.temple_of_bel",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:0b3c9756551df772d74daf142c09d96ba344ef21a4418939518e2a0691ce1810",
+  "sourceHash": "sha256:8eed10c5b52758af9d52869040ea7b5c853f9cd2f886b29e43014d640f7c04ba",
+  "runtimeHash": "sha256:fb457c9a742bba0927a0a43efc64b09b2677e8fe4e13389e6090c969285bd438",
+  "captureReportHash": "sha256:0c65d9fdcb756d414c71b205802d6e297b91994f87c641814bbfd78915bac388",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-temenos-and-west-gate.png",
+      "shots/standing-cella-doorway.png",
+      "shots/doorway-cornice-and-horns.png",
+      "shots/fortified-west-gate.png",
+      "shots/destroyed-cella-rubble.png",
+      "shots/surviving-perimeter-remains.png",
+      "shots/mapped-complete-plan.png"
+    ],
+    "notes": "Inspected all 12 portable views. The specific surviving Temple of Bel precinct includes the mapped enclosing wall and fortified west gate, selected perimeter column remains, central podium, free-standing rectangular cella doorway and fallen-block/drum field. The doorway has battered jambs, layered architrave/frieze/cornice and raised corner blocks. The west gate has a real arched passage, projecting jamb trim and upper niche frame. No cella roof, intact cella walls or complete temple colonnade is restored. Current renders prompted seating the surviving beam on level column tops and breaking up the rubble silhouette. Perimeter column allocation and individual stones remain schematic."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-temenos-and-west-gate.png",
+      "shots/shared/standing-cella-doorway.png",
+      "shots/shared/doorway-cornice-and-horns.png",
+      "shots/shared/fortified-west-gate.png",
+      "shots/shared/destroyed-cella-rubble.png",
+      "shots/shared/surviving-perimeter-remains.png",
+      "shots/shared/mapped-complete-plan.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all 12 shared-material views. Three common 256-square graphs provide coursed sandstone walls, continuous raw sandstone for modeled stones and gravel for the exposed podium/rubble core. Metric UVs, linear tints, three near draws and one skyline draw; no embedded images or unique atlas. Each graph loads once and eviction releases model geometry. Flat-stage captures are material/framing evidence: they bury some terrain-following perimeter bases. Actual contact was inspected separately on the unchanged standard DEM.",
+    "captureReportHash": "sha256:50faacd60dc1940fb659631f9f30969e2084e53f494779924757b0e70d5d8a1f"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-temenos-and-west-gate.png",
+      "medium-fi/standing-cella-doorway.png",
+      "medium-fi/doorway-cornice-and-horns.png",
+      "medium-fi/fortified-west-gate.png",
+      "medium-fi/destroyed-cella-rubble.png",
+      "medium-fi/surviving-perimeter-remains.png",
+      "medium-fi/mapped-complete-plan.png",
+      "medium-fi/whole-ruins-skyline.png",
+      "medium-fi/whole-ruins-district.png",
+      "medium-fi/whole-ruins-street.png",
+      "medium-fi/whole-ruins-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 28 medium-fi views: street/block/skyline in Economy/High at noon and late afternoon, an untextured silhouette, seven architectural/site views, all four complete-ruin levels and transitions. Levels 586/3738/9414/10734 triangles preserve the enclosure, west gate opening, central podium and standing doorway. Skyline merges wall segments and keeps standing perimeter columns; district adds profiles, stumps and selected rubble; street adds broken coping and a denser angular stone/drum field; closeup keeps all185 schematic fallen blocks/drums. Initial skyline plus district geometry totals426140 bytes, plus three reused common graphs. Separate vertex streams avoid duplicate GPU uploads. Some broad-stage High close views show coarse shadow striping on the doorway cornice; the portable and actual-site captures show its geometry separately. Physical-device and dense-city measurements remain pending.",
+    "captureReportHash": "sha256:8fdebf333ed9fd9b12319fe943faed697ee209a8ad334e6d638018d81a0bdd35"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:c6db525fbc6d5be2eefb26c9d971d9b76988c7f625e043d7126b9bdb08309968",
+    "mapFrameHash": "sha256:237a9a7cdd2022fc0f44a3e5f1231a0265ffac6dfe5a656559f618b654c13614",
+    "notes": "Reviewed approximate full-site fit on the unchanged161-square/6m standard DEM. The mapped temenos boundary retains16 original vertices; the central cella/podium retains four original building vertices. Geometry uses raw east/south coordinates at heading0, with a4.589-degree internal compound rotation. The western boundary fixes the fortified gate; the cella doorway faces west on the long mapped side. Post-destruction2016/2018 pictures govern the isolated doorway and rubble; the enclosing gate form also uses an ordinary pre-destruction picture. Exact current damage, surviving column sections and heights remain uncertain. The small occupied podium clears all40 rendered terrain vertices in its bounds by at least0.2000005m. Outer walls and scattered fragments seat on local coarse grade; the open court keeps the original terrain. No ground/water cutout. Full loading replaces one obsolete generic cella building record, preserves17 independent tile buildings exactly, and leaves43 independent buildings in the retained extract outside the replacement envelope. One native water record retains51.800969034666196 square metres. Failed loads preserve all18 tile buildings; eviction frees all model geometry. Synthetic10m residency through the cella doorway keeps original terrain while clipping the rear podium/rubble and excluding the enclosing walls/gate; full architectural completeness requires surrounding tiles. Column count/positions, rubble layout, gate profiles and podium height remain medium-fi estimates; this is not a measured post-destruction survey."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted for the specific medium-fi surviving Temple of Bel ruin and approximate standard-map/DEM fit. The complete temenos retains16 original boundary vertices and the central cella/podium retains four original mapped building corners. The obsolete generic central building record is replaced with the post-destruction ruin. Two2016/2018 pictures show the isolated doorway, rubble, stumps and selected perimeter remains; an ordinary pre-destruction gate picture guides the surviving fortified entrance form. Geometry uses raw east/south coordinates at heading0; the compound rotates4.589 degrees and both principal doorways face west. The lost cella walls/roof and complete ancient colonnade remain absent. Exact present-day damage, surviving column count/positions, rubble arrangement, wall heights, 11.15m doorway cornice and 12.1m corner blocks above the conservative podium datum are medium-fi estimates. The gate form and stone colors are approximate; no measured recent survey or navigable interior is claimed. The central opaque podium clears all40 relevant original rendered DEM vertices by at least0.2000005m. Walls/fragments seat on local coarse grade, and the open court keeps its terrain. No ground/water opening. Synthetic10m residency through the doorway clips the rear ruin and excludes the outer enclosure; full completeness requires surrounding tiles. Only ordinary pictures and the standard map/DEM were used."
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:8eed10c5b52758af9d52869040ea7b5c853f9cd2f886b29e43014d640f7c04ba"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:fb457c9a742bba0927a0a43efc64b09b2677e8fe4e13389e6090c969285bd438"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:fc0680f6e8d1ac90c1bbdfb2dbad32511eb1fee00bc387d11d0d5279d44db7e6"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:fc2b80d6bdd91e0c966a8a48fe3dfe93223f55191c91858a7b2abda3894f9228"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:0739bedc88e6fcd54fc905e318559d33182faf19b06d6208fdaae85a038f9dbf"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:c5a662a6fe60c43a22cf27dd14bfc066958e0190410309f94f3c6eb52d04a582"
+      }
+    ],
+    "reports": [
+      {
+        "phase": "final",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 18,
+          "independentBuildings": 17,
+          "remainingBuildings": 17,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.gravel": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_bel"
+          ],
+          "rawTerrainRange": {
+            "min": -13.446807265901839,
+            "max": 3.2421927340981824
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 51.800969034666196,
+          "remainingWaterArea": 51.800969034666196,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:805fb2644d90dbed762bc07d65409d93d19630fc322301e0906aa40bc6f07e75",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-whole-temenos-and-west-gate.png",
+            "hash": "sha256:805fb2644d90dbed762bc07d65409d93d19630fc322301e0906aa40bc6f07e75",
+            "camera": "whole-temenos-and-west-gate"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-standing-cella-doorway.png",
+            "hash": "sha256:30fae69fe0046c66c83a34e0b0b3dc2413dd36d9b56699dc627e17f03a8131eb",
+            "camera": "standing-cella-doorway"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-doorway-cornice-and-horns.png",
+            "hash": "sha256:fb2d00fe65738684a66bf4089736398adac9f48b87cc2dcae19622665598071b",
+            "camera": "doorway-cornice-and-horns"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-fortified-west-gate.png",
+            "hash": "sha256:a983484420b08cb51dba42b090e82a3c887ab268c0e257085717a61c2c251c04",
+            "camera": "fortified-west-gate"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-destroyed-cella-rubble.png",
+            "hash": "sha256:48f6309ec7dbbb6443ac884f8db4f69cf5f926e70d62829bd097dac74cc9acd5",
+            "camera": "destroyed-cella-rubble"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-surviving-perimeter-remains.png",
+            "hash": "sha256:3fa41fdc1a0bd34ab7e4a5f579c923d2ae56a4b21b3dfad358fd28b77038b91c",
+            "camera": "surviving-perimeter-remains"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-mapped-complete-plan.png",
+            "hash": "sha256:d9c96be3553b4e4de2bba861c0126a9c30a0349599c7dab662c20b9c7f3f920d",
+            "camera": "mapped-complete-plan"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 18,
+          "independentBuildings": 17,
+          "remainingBuildings": 17,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.temple_of_bel"
+          ],
+          "rawTerrainRange": {
+            "min": -13.446807265901839,
+            "max": 3.2421927340981824
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 51.800969034666196,
+          "remainingWaterArea": 51.800969034666196,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:794d2d79c29ef0664d32b03a7b9b8a3edf7300ca403f647af12bdd2d0203aea0",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-standing-cella-doorway.png",
+            "hash": "sha256:f5382756d22b3430a345da9c694edef51c812fa79cb2dfc7e5e065f7e9bef843",
+            "camera": "standing-cella-doorway"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-fortified-west-gate.png",
+            "hash": "sha256:312c18d4bd276e490694c23438a24433c001112a8e1d8e7d71e08ca9206810ea",
+            "camera": "fortified-west-gate"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 18,
+          "independentBuildings": 17,
+          "remainingBuildings": 17,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.gravel": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_bel"
+          ],
+          "rawTerrainRange": {
+            "min": -13.446807265901839,
+            "max": 3.2421927340981824
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 51.800969034666196,
+          "remainingWaterArea": 51.800969034666196,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:2643a0fb81f683e3b71ab3d311a28309994d7d7eb501290df6deb1bb837d0638",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-district-standing-cella-doorway.png",
+            "hash": "sha256:fa1a321fd1d8202bd43b7e8347f4f5bf848a15bce9929829ffcc22e842b8e583",
+            "camera": "standing-cella-doorway"
+          },
+          {
+            "path": "shots/site-integration/final-district-fortified-west-gate.png",
+            "hash": "sha256:77dc4018eec6baca73986620957d397a0490509b9dabfc74376501a2f8f26aae",
+            "camera": "fortified-west-gate"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 18,
+          "independentBuildings": 17,
+          "remainingBuildings": 17,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.gravel": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_bel"
+          ],
+          "rawTerrainRange": {
+            "min": -13.446807265901839,
+            "max": 3.2421927340981824
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 51.800969034666196,
+          "remainingWaterArea": 51.800969034666196,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:34e0b4c28be352f8d2b69681970815b63b71e647907d207911e4b36d10e7e9a5",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-street-standing-cella-doorway.png",
+            "hash": "sha256:f8739595304ccc8b8973749b837cc84e9d9fe629c80df50ead006c7547de4292",
+            "camera": "standing-cella-doorway"
+          },
+          {
+            "path": "shots/site-integration/final-street-fortified-west-gate.png",
+            "hash": "sha256:5decba224ae6df5c56a370cf0a6a9a9b968ff3365762fe75b59b8b9f6d0bdc1e",
+            "camera": "fortified-west-gate"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 18,
+          "independentBuildings": 17,
+          "remainingBuildings": 18,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184675160368,
+              "area": 523.6172978486536
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.temple_of_bel"
+          ],
+          "rawTerrainRange": {
+            "min": -13.446807265901839,
+            "max": 3.2421927340981824
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 51.800969034666196,
+          "remainingWaterArea": 51.800969034666196,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:c7a0c6aaa9a00c98fbe4b6d13038ea8f2a7ec6ce64158ffa5b3310404b21c149",
+            "camera": "whole-site"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.gravel": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_bel"
+          ],
+          "rawTerrainRange": {
+            "min": -13.446807265901839,
+            "max": 3.2421927340981824
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 51.800969034666196,
+          "remainingWaterArea": 51.800969034666196,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-closeup-whole-site.png",
+            "hash": "sha256:64e1dbdb7a6693d7ccdd8270a58a39a80d54d4e8210b71196e2b4347dda2b7c1",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-standing-cella-doorway.png",
+            "hash": "sha256:4905973acc25ba811a8ff470acc80e1d544404bdc597d44845f7b405c12dbc6c",
+            "camera": "standing-cella-doorway"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-fortified-west-gate.png",
+            "hash": "sha256:9a3fc9103aa8a651dcf2178af17baa5e7eb6e3bbcc8fed74f878f2fbe4d4a844",
+            "camera": "fortified-west-gate"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_sandstone": 1,
+            "molen.worldgen.material.gravel": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.temple_of_bel"
+          ],
+          "rawTerrainRange": {
+            "min": -13.446807265901839,
+            "max": 3.2421927340981824
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 51.800969034666196,
+          "remainingWaterArea": 51.800969034666196,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-district-whole-site.png",
+            "hash": "sha256:05183d84ee56d892f91e06f76b8f79b41aa9d4659016e106139f1fbe9a9357ed",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-district-standing-cella-doorway.png",
+            "hash": "sha256:34ee841f37dc0237f4890987995d40556a8131db69af943f34dc90028b2050b4",
+            "camera": "standing-cella-doorway"
+          },
+          {
+            "path": "shots/site-integration/partial-district-fortified-west-gate.png",
+            "hash": "sha256:d2c62507dadbc0d45163e2df49f33e5a1829b6c3f57bcb259d2092a8777ed3b3",
+            "camera": "fortified-west-gate"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.temple_of_bel"
+          ],
+          "rawTerrainRange": {
+            "min": -13.446807265901839,
+            "max": 3.2421927340981824
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 51.800969034666196,
+          "remainingWaterArea": 51.800969034666196,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-failure-whole-site.png",
+            "hash": "sha256:6a0f4db16e6b7462a9a607e2c62916311ab258c3ececf7d60b697ccc9d6e36be",
+            "camera": "whole-site"
+          }
+        ]
+      }
+    ],
+    "floorCoverage": {
+      "checks": 4,
+      "samples": 360,
+      "missing": 0
+    },
+    "partialResidency": {
+      "status": "native-ground-preserved",
+      "notes": "Synthetic 10m residency clips the rear ruin and excludes the enclosure; original ground remains intact. Complete architecture requires surrounding tiles."
+    }
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sy/sy5/temple_of_bel/models/source.glb\",\"hash\":\"sha256:8eed10c5b52758af9d52869040ea7b5c853f9cd2f886b29e43014d640f7c04ba\",\"bytes\":1290540,\"triangles\":10734,\"materials\":3,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sy/sy5/temple_of_bel/model.glb\",\"hash\":\"sha256:fb457c9a742bba0927a0a43efc64b09b2677e8fe4e13389e6090c969285bd438\",\"bytes\":1290128,\"triangles\":10734,\"materials\":3,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sy/sy5/temple_of_bel/model.skyline.glb\",\"hash\":\"sha256:fc0680f6e8d1ac90c1bbdfb2dbad32511eb1fee00bc387d11d0d5279d44db7e6\",\"bytes\":62156,\"triangles\":586,\"materials\":1,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sy/sy5/temple_of_bel/model.district.glb\",\"hash\":\"sha256:fc2b80d6bdd91e0c966a8a48fe3dfe93223f55191c91858a7b2abda3894f9228\",\"bytes\":363984,\"triangles\":3738,\"materials\":3,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sy/sy5/temple_of_bel/model.street.glb\",\"hash\":\"sha256:0739bedc88e6fcd54fc905e318559d33182faf19b06d6208fdaae85a038f9dbf\",\"bytes\":888444,\"triangles\":9414,\"materials\":3,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sy/sy5/temple_of_bel/model.closeup.glb\",\"hash\":\"sha256:c5a662a6fe60c43a22cf27dd14bfc066958e0190410309f94f3c6eb52d04a582\",\"bytes\":1018336,\"triangles\":10734,\"materials\":3,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "90-doorway-gate-column-and-roofless-centre-probes",
+        "passed": true,
+        "notes": "Real open cella doorway and fortified gate, intact lintel/cornice, surviving perimeter shafts and absent cella roof pass in all six files."
+      },
+      {
+        "check": "360-occupied-floor-samples",
+        "passed": true,
+        "notes": "All four browser levels cover the mapped central podium."
+      },
+      {
+        "check": "20-original-map-vertices",
+        "passed": true,
+        "notes": "Four cella/podium vertices retain their raw east/south coordinates; the sixteen mapped temenos vertices retain the exact signed transformation (site-inspection.json)."
+      },
+      {
+        "check": "40-rendered-terrain-vertices",
+        "passed": true,
+        "notes": "Every grid cell intersecting the opaque central podium clears its top by at least0.2000005m. No ground or water cutout."
+      },
+      {
+        "check": "selected-source-runtime-placement-scene",
+        "passed": true,
+        "notes": "Selected source/import/LOD/placement checks, strict medium-fi, verified hashes, scene validation and sim30 pass."
+      }
+    ]
+  },
+  "limitations": [
+    "Surviving Temple of Bel ruin at Palmyra: approximately200m enclosed temenos with fortified west gate, selected perimeter columns/stumps, exposed central cella podium, standing monumental cella doorway and a field of fallen blocks/drums. The cella roof, walls and complete surrounding temple colonnade destroyed in2015 remain absent. Independent Palmyra monuments and modern visitor buildings remain native.",
+    "Q797481/way226891786 identifies the complete temenos boundary. Its original16 vertices are retained at the mapped anchor, with a4.589-degree internal rotation and west gate on the western boundary. PMTiles building35184675160368 supplies four original central cella/podium corners. That coarse generic building record is replaced by the surviving ruin, not extruded into the lost temple. Standing cella doorway position follows the west long side; exact doorway offset and surviving perimeter column positions are picture-guided estimates.",
+    "The ordinary article gives15m for the original temple and describes the cella destruction with surviving doorway, fortified gate and outer walls.2016/2018 pictures show the isolated rectangular doorway above rubble. The modeled doorway cornice rises11.15m above the conservative podium datum, horns12.1m. The west gate is approximately12.2m above adjacent coarse grade, most outer walls5.7m and west walls7.3–10m. Perimeter standing columns7.6m and stumps1.2–3.15m are schematic. Exact damage, block positions, temple heights and column survival were not surveyed.",
+    "The original161-square/6m Mapzen/USGS grid remains unchanged. Only the small mapped central cella footprint has an opaque podium floor; its top clears every original rendered grid-cell vertex in its bounds by0.2m. Outer walls, gate, perimeter stumps and scattered rubble use local standard DEM grade and extend slightly below it. No ground or water cutout is needed; the open court keeps its original terrain. Gate threshold and individual stones remain approximate.",
+    "Post-destruction exterior only. Perimeter column positions, standing sections, damaged profiles, rubble and exact thresholds are picture/map-guided approximations. The lost cella walls, roof and complete surrounding temple colonnade remain absent. The west-gate form uses a pre-destruction photo; exact current damage remains uncertain. Current acceptance is recorded in qa.json.",
+    "Accepted for the specific medium-fi surviving Temple of Bel ruin and approximate standard-map/DEM fit. The complete temenos retains16 original boundary vertices and the central cella/podium retains four original mapped building corners. The obsolete generic central building record is replaced with the post-destruction ruin. Two2016/2018 pictures show the isolated doorway, rubble, stumps and selected perimeter remains; an ordinary pre-destruction gate picture guides the surviving fortified entrance form. Geometry uses raw east/south coordinates at heading0; the compound rotates4.589 degrees and both principal doorways face west. The lost cella walls/roof and complete ancient colonnade remain absent. Exact present-day damage, surviving column count/positions, rubble arrangement, wall heights, 11.15m doorway cornice and 12.1m corner blocks above the conservative podium datum are medium-fi estimates. The gate form and stone colors are approximate; no measured recent survey or navigable interior is claimed. The central opaque podium clears all40 relevant original rendered DEM vertices by at least0.2000005m. Walls/fragments seat on local coarse grade, and the open court keeps its terrain. No ground/water opening. Synthetic10m residency through the doorway clips the rear ruin and excludes the outer enclosure; full completeness requires surrounding tiles. Only ordinary pictures and the standard map/DEM were used."
+  ],
+  "reviewMaintenance": {
+    "formatOnlyCheckpoint": {
+      "reviewedOn": "2026-10-19",
+      "previousInputHash": "sha256:a2a23c0bfa4ed33a6c4d9fa622d522cc4584524b86063ec5e2bd057dc0469aac",
+      "inputHash": "sha256:0b3c9756551df772d74daf142c09d96ba344ef21a4418939518e2a0691ce1810",
+      "proof": "TypeScript parser/printer equality of all non-import statements; same import bindings and explicit side-effect import order. Rebuilt selected source/runtime/fourLOD GLBs retain exact bytes. Source/view/camera/material metadata preserved. Existing reviews retained; no new visual approval added."
+    }
+  }
+}

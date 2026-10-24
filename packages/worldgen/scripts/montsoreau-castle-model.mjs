@@ -677,7 +677,7 @@ export const montsoreauMeshHelpers = {
   glass,
 };
 export const montsoreauStudy = {
-  id: 'N0236',
+  id: 'chateau_de_montsoreau',
   key: 'chateau_de_montsoreau',
   title: 'Château de Montsoreau',
   category: 'castle',

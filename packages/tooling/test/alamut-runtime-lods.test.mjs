@@ -9,7 +9,7 @@ import { alamutStudy } from '../../worldgen/scripts/alamut-castle-model.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 
-const source = resolve('../../content/worldgen/source/places/tn/tn7/n0249_alamut_castle'),
+const source = resolve('../../content/worldgen/source/places/tn/tn7/alamut_castle'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;

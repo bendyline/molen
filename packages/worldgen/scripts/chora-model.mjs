@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sxk/n0439_chora_church/',
+  '../../../content/worldgen/source/places/sx/sxk/chora_church/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -785,7 +785,7 @@ export const buildChoraSkyline = (o) => build(o, 0),
   buildChoraCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const choraStudy = {
-  id: 'N0439',
+  id: 'chora_church',
   key: 'chora_church',
   title: 'Chora Church',
   category: 'mosque',

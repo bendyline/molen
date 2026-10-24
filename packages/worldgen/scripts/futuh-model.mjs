@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/gc/gcp/n0481_baitul_futuh_mosque/',
+  '../../../content/worldgen/source/places/gc/gcp/baitul_futuh_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -722,7 +722,7 @@ export const buildFutuhSkyline = (o) => build(o, 0),
   buildFutuhCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const futuhStudy = {
-  id: 'N0481',
+  id: 'baitul_futuh_mosque',
   key: 'baitul_futuh_mosque',
   title: 'Baitul Futuh Mosque',
   category: 'mosque',

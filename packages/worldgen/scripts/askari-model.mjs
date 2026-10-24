@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sy/syp/n0453_al_askari_shrine/',
+  '../../../content/worldgen/source/places/sy/syp/al_askari_shrine/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -859,7 +859,7 @@ export const buildAskariSkyline = (o) => build(o, 0),
   buildAskariCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const askariStudy = {
-  id: 'N0453',
+  id: 'al_askari_shrine',
   key: 'al_askari_shrine',
   title: 'Al-Askari Shrine',
   category: 'mosque',

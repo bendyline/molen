@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/th/thq/n0424_sheikh_zayed_mosque/',
+  '../../../content/worldgen/source/places/th/thq/sheikh_zayed_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1151,7 +1151,7 @@ export const buildZayedSkyline = (o) => build(o, 0),
   buildZayedCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const zayedStudy = {
-  id: 'N0424',
+  id: 'sheikh_zayed_mosque',
   key: 'sheikh_zayed_mosque',
   title: 'Sheikh Zayed Mosque',
   category: 'mosque',

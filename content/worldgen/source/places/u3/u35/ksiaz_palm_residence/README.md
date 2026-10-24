@@ -4,7 +4,7 @@
 
 Own jogged residential footprint and west annex, broken red roof, timbered east gable and north/south cross-gables, stone base and three chimneys.
 
-Independent component of [Książ Castle and park complex](../n0291_ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
 
 ## Sources and reconstruction
 

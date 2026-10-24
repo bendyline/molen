@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/wq/wqj/n0449_great_mosque_of_xi_an/',
+  '../../../content/worldgen/source/places/wq/wqj/great_mosque_of_xi_an/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -894,7 +894,7 @@ export const buildXianSkyline = (o) => build(o, 0),
   buildXianCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const xianStudy = {
-  id: 'N0449',
+  id: 'great_mosque_of_xi_an',
   key: 'great_mosque_of_xi_an',
   title: "Great Mosque of Xi'an",
   category: 'mosque',

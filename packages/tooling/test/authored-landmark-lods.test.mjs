@@ -10,70 +10,70 @@ import {
   landmarkLodRecipeHash,
 } from '../scripts/authored-landmark-lods.mjs';
 
-const id = 'molen.worldgen.structure.n0230_nina_tower';
+const id = 'molen.worldgen.structure.nina_tower';
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 
 it.each([
   { id, height: 320.4 },
-  { id: 'molen.worldgen.structure.n0232_gran_torre_costanera', height: 300 },
-  { id: 'molen.worldgen.structure.n0233_china_world_trade_center_tower_iii', height: 329.8114 },
-  { id: 'molen.worldgen.structure.n0234_barolo_palace', height: 100 },
-  { id: 'molen.worldgen.structure.n0235_millennium_tower', height: 202 },
-  { id: 'molen.worldgen.structure.n0236_chateau_de_montsoreau', height: 38.4 },
-  { id: 'molen.worldgen.structure.n0237_neuschwanstein_castle', height: 65 },
-  { id: 'molen.worldgen.structure.n0239_windsor_castle', height: 52 },
-  { id: 'molen.worldgen.structure.n0240_prague_castle', height: 99.3 },
-  { id: 'molen.worldgen.structure.n0241_wartburg', height: 34 },
-  { id: 'molen.worldgen.structure.n0242_edinburgh_castle', height: 49 },
-  { id: 'molen.worldgen.structure.n0243_malbork_castle', height: 46 },
-  { id: 'molen.worldgen.structure.n0244_kronborg_castle', height: 64 },
-  { id: 'molen.worldgen.structure.n0245_hofburg_palace', height: 66 },
-  { id: 'molen.worldgen.structure.n0246_takht_e_soleyman', height: 23.2 },
-  { id: 'molen.worldgen.structure.n0247_karlstejn_castle', height: 75 },
-  { id: 'molen.worldgen.structure.n0248_bran_castle', height: 40.4 },
-  { id: 'molen.worldgen.structure.n0249_alamut_castle', height: 47.0286 },
-  { id: 'molen.worldgen.structure.n0250_mir_castle_complex', height: 31.75 },
-  { id: 'molen.worldgen.structure.n0251_kernave', height: 35.9431 },
-  { id: 'molen.worldgen.structure.n0252_hohenzollern_castle', height: 78 },
-  { id: 'molen.worldgen.structure.n0253_bratislava_castle', height: 57 },
-  { id: 'molen.worldgen.structure.n0254_nesvizh_castle', height: 37 },
-  { id: 'molen.worldgen.structure.n0255_buda_castle', height: 62 },
-  { id: 'molen.worldgen.structure.n0256_durham_castle', height: 30.2 },
-  { id: 'molen.worldgen.structure.n0257_citadel_of_salah_ed_din', height: 70 },
-  { id: 'molen.worldgen.structure.n0258_sforza_castle', height: 73 },
-  { id: 'molen.worldgen.structure.n0259_shanhai_pass', height: 25.7 },
-  { id: 'molen.worldgen.structure.n0260_khotyn_fortress', height: 54 },
-  { id: 'molen.worldgen.structure.n0261_royal_castle_in_warsaw', height: 44 },
-  { id: 'molen.worldgen.structure.n0262_stirling_castle', height: 34 },
-  { id: 'molen.worldgen.structure.n0263_toompea_castle', height: 45.6, minY: -12 },
-  { id: 'molen.worldgen.structure.n0264_riga_castle', height: 56.75 },
-  { id: 'molen.worldgen.structure.n0265_chateau_de_vincennes', height: 59, minY: -6 },
-  { id: 'molen.worldgen.structure.n0266_eltz_castle', height: 36.5 },
-  { id: 'molen.worldgen.structure.n0267_heidelberg_castle', height: 52 },
-  { id: 'molen.worldgen.structure.n0268_hohensalzburg_fortress', height: 60 },
-  { id: 'molen.worldgen.structure.n0269_vaduz_castle', height: 30 },
-  { id: 'molen.worldgen.structure.n0270_conwy_castle', height: 30 },
-  { id: 'molen.worldgen.structure.n0271_swallow_s_nest', height: 12 },
-  { id: 'molen.worldgen.structure.n0272_kuressaare_castle', height: 38.2 },
-  { id: 'molen.worldgen.structure.n0273_caernarfon_castle', height: 35 },
-  { id: 'molen.worldgen.structure.n0274_hermann_castle', height: 51 },
-  { id: 'molen.worldgen.structure.n0275_dublin_castle', height: 34 },
-  { id: 'molen.worldgen.structure.n0276_miramare_castle', height: 29 },
-  { id: 'molen.worldgen.structure.n0277_lubart_s_castle', height: 28 },
-  { id: 'molen.worldgen.structure.n0278_kamianets_podilskyi_castle', height: 35 },
-  { id: 'molen.worldgen.structure.n0279_gripsholm_castle', height: 42 },
-  { id: 'molen.worldgen.structure.n0280_trakai_island_castle', height: 33 },
-  { id: 'molen.worldgen.structure.n0281_acrocorinth', height: 312.85 },
-  { id: 'molen.worldgen.structure.n0282_akershus_fortress', height: 54 },
-  { id: 'molen.worldgen.structure.n0283_beaumaris_castle', height: 17.6 },
-  { id: 'molen.worldgen.structure.n0284_dover_castle', height: 112.5049578006 },
-  { id: 'molen.worldgen.structure.n0285_corvin_castle', height: 45 },
-  { id: 'molen.worldgen.structure.n0286_kromeriz_castle', height: 84 },
-  { id: 'molen.worldgen.structure.n0287_elmina_castle', height: 31 },
-  { id: 'molen.worldgen.structure.n0288_konopiste_castle', height: 49.5 },
-  { id: 'molen.worldgen.structure.n0289_castel_nuovo', height: 40 },
-  { id: 'molen.worldgen.structure.n0290_warwick_castle', height: 40 },
-  { id: 'molen.worldgen.structure.n0291_ksiaz_castle_and_park_complex', height: 60 },
+  { id: 'molen.worldgen.structure.gran_torre_costanera', height: 300 },
+  { id: 'molen.worldgen.structure.china_world_trade_center_tower_iii', height: 329.8114 },
+  { id: 'molen.worldgen.structure.barolo_palace', height: 100 },
+  { id: 'molen.worldgen.structure.millennium_tower', height: 202 },
+  { id: 'molen.worldgen.structure.chateau_de_montsoreau', height: 38.4 },
+  { id: 'molen.worldgen.structure.neuschwanstein_castle', height: 65 },
+  { id: 'molen.worldgen.structure.windsor_castle', height: 52 },
+  { id: 'molen.worldgen.structure.prague_castle', height: 99.3 },
+  { id: 'molen.worldgen.structure.wartburg', height: 34 },
+  { id: 'molen.worldgen.structure.edinburgh_castle', height: 49 },
+  { id: 'molen.worldgen.structure.malbork_castle', height: 46 },
+  { id: 'molen.worldgen.structure.kronborg_castle', height: 64 },
+  { id: 'molen.worldgen.structure.hofburg_palace', height: 66 },
+  { id: 'molen.worldgen.structure.takht_e_soleyman', height: 23.2 },
+  { id: 'molen.worldgen.structure.karlstejn_castle', height: 75 },
+  { id: 'molen.worldgen.structure.bran_castle', height: 40.4 },
+  { id: 'molen.worldgen.structure.alamut_castle', height: 47.0286 },
+  { id: 'molen.worldgen.structure.mir_castle_complex', height: 31.75 },
+  { id: 'molen.worldgen.structure.kernave', height: 35.9431 },
+  { id: 'molen.worldgen.structure.hohenzollern_castle', height: 78 },
+  { id: 'molen.worldgen.structure.bratislava_castle', height: 57 },
+  { id: 'molen.worldgen.structure.nesvizh_castle', height: 37 },
+  { id: 'molen.worldgen.structure.buda_castle', height: 62 },
+  { id: 'molen.worldgen.structure.durham_castle', height: 30.2 },
+  { id: 'molen.worldgen.structure.citadel_of_salah_ed_din', height: 70 },
+  { id: 'molen.worldgen.structure.sforza_castle', height: 73 },
+  { id: 'molen.worldgen.structure.shanhai_pass', height: 25.7 },
+  { id: 'molen.worldgen.structure.khotyn_fortress', height: 54 },
+  { id: 'molen.worldgen.structure.royal_castle_in_warsaw', height: 44 },
+  { id: 'molen.worldgen.structure.stirling_castle', height: 34 },
+  { id: 'molen.worldgen.structure.toompea_castle', height: 45.6, minY: -12 },
+  { id: 'molen.worldgen.structure.riga_castle', height: 56.75 },
+  { id: 'molen.worldgen.structure.chateau_de_vincennes', height: 59, minY: -6 },
+  { id: 'molen.worldgen.structure.eltz_castle', height: 36.5 },
+  { id: 'molen.worldgen.structure.heidelberg_castle', height: 52 },
+  { id: 'molen.worldgen.structure.hohensalzburg_fortress', height: 60 },
+  { id: 'molen.worldgen.structure.vaduz_castle', height: 30 },
+  { id: 'molen.worldgen.structure.conwy_castle', height: 30 },
+  { id: 'molen.worldgen.structure.swallows_nest', height: 12 },
+  { id: 'molen.worldgen.structure.kuressaare_castle', height: 38.2 },
+  { id: 'molen.worldgen.structure.caernarfon_castle', height: 35 },
+  { id: 'molen.worldgen.structure.hermann_castle', height: 51 },
+  { id: 'molen.worldgen.structure.dublin_castle', height: 34 },
+  { id: 'molen.worldgen.structure.miramare_castle', height: 29 },
+  { id: 'molen.worldgen.structure.lubarts_castle', height: 28 },
+  { id: 'molen.worldgen.structure.kamianets_podilskyi_castle', height: 35 },
+  { id: 'molen.worldgen.structure.gripsholm_castle', height: 42 },
+  { id: 'molen.worldgen.structure.trakai_island_castle', height: 33 },
+  { id: 'molen.worldgen.structure.acrocorinth', height: 312.85 },
+  { id: 'molen.worldgen.structure.akershus_fortress', height: 54 },
+  { id: 'molen.worldgen.structure.beaumaris_castle', height: 17.6 },
+  { id: 'molen.worldgen.structure.dover_castle', height: 112.5049578006 },
+  { id: 'molen.worldgen.structure.corvin_castle', height: 45 },
+  { id: 'molen.worldgen.structure.kromeriz_castle', height: 84 },
+  { id: 'molen.worldgen.structure.elmina_castle', height: 31 },
+  { id: 'molen.worldgen.structure.konopiste_castle', height: 49.5 },
+  { id: 'molen.worldgen.structure.castel_nuovo', height: 40 },
+  { id: 'molen.worldgen.structure.warwick_castle', height: 40 },
+  { id: 'molen.worldgen.structure.ksiaz_castle_and_park_complex', height: 60 },
 ])('keeps $id deterministic, within budget and free of mixed-type uploads', async ({
   id,
   height,
@@ -105,7 +105,7 @@ it.each([
 
 // Builds each of three detailed GLBs twice; this exceeded Vitest's 5 s default on CI.
 it('keeps Barolo detail levels deterministic, within download budgets, and bound to shared surfaces', async () => {
-  const id = 'molen.worldgen.structure.n0234_barolo_palace';
+  const id = 'molen.worldgen.structure.barolo_palace';
   const budgets = { district: 2_950_000, street: 9_000_000, closeup: 12_000_000 };
   let previousTriangles = 0;
   for (const [level, budget] of Object.entries(budgets)) {
@@ -175,59 +175,59 @@ it('reuses current outputs, repairs a missing derivative, and rejects a changed 
 });
 
 it.each([
-  'n0239_windsor_castle',
-  'n0240_prague_castle',
-  'n0241_wartburg',
-  'n0242_edinburgh_castle',
-  'n0243_malbork_castle',
-  'n0244_kronborg_castle',
-  'n0245_hofburg_palace',
-  'n0246_takht_e_soleyman',
-  'n0247_karlstejn_castle',
-  'n0248_bran_castle',
-  'n0249_alamut_castle',
-  'n0250_mir_castle_complex',
-  'n0251_kernave',
-  'n0252_hohenzollern_castle',
-  'n0253_bratislava_castle',
-  'n0254_nesvizh_castle',
-  'n0255_buda_castle',
-  'n0256_durham_castle',
-  'n0257_citadel_of_salah_ed_din',
-  'n0258_sforza_castle',
-  'n0259_shanhai_pass',
-  'n0260_khotyn_fortress',
-  'n0261_royal_castle_in_warsaw',
-  'n0262_stirling_castle',
-  'n0263_toompea_castle',
-  'n0264_riga_castle',
-  'n0265_chateau_de_vincennes',
-  'n0266_eltz_castle',
-  'n0267_heidelberg_castle',
-  'n0268_hohensalzburg_fortress',
-  'n0269_vaduz_castle',
-  'n0270_conwy_castle',
-  'n0271_swallow_s_nest',
-  'n0272_kuressaare_castle',
-  'n0273_caernarfon_castle',
-  'n0274_hermann_castle',
-  'n0275_dublin_castle',
-  'n0276_miramare_castle',
-  'n0277_lubart_s_castle',
-  'n0278_kamianets_podilskyi_castle',
-  'n0279_gripsholm_castle',
-  'n0280_trakai_island_castle',
-  'n0281_acrocorinth',
-  'n0282_akershus_fortress',
-  'n0283_beaumaris_castle',
-  'n0284_dover_castle',
-  'n0285_corvin_castle',
-  'n0286_kromeriz_castle',
-  'n0287_elmina_castle',
-  'n0288_konopiste_castle',
-  'n0289_castel_nuovo',
-  'n0290_warwick_castle',
-  'n0291_ksiaz_castle_and_park_complex',
+  'windsor_castle',
+  'prague_castle',
+  'wartburg',
+  'edinburgh_castle',
+  'malbork_castle',
+  'kronborg_castle',
+  'hofburg_palace',
+  'takht_e_soleyman',
+  'karlstejn_castle',
+  'bran_castle',
+  'alamut_castle',
+  'mir_castle_complex',
+  'kernave',
+  'hohenzollern_castle',
+  'bratislava_castle',
+  'nesvizh_castle',
+  'buda_castle',
+  'durham_castle',
+  'citadel_of_salah_ed_din',
+  'sforza_castle',
+  'shanhai_pass',
+  'khotyn_fortress',
+  'royal_castle_in_warsaw',
+  'stirling_castle',
+  'toompea_castle',
+  'riga_castle',
+  'chateau_de_vincennes',
+  'eltz_castle',
+  'heidelberg_castle',
+  'hohensalzburg_fortress',
+  'vaduz_castle',
+  'conwy_castle',
+  'swallows_nest',
+  'kuressaare_castle',
+  'caernarfon_castle',
+  'hermann_castle',
+  'dublin_castle',
+  'miramare_castle',
+  'lubarts_castle',
+  'kamianets_podilskyi_castle',
+  'gripsholm_castle',
+  'trakai_island_castle',
+  'acrocorinth',
+  'akershus_fortress',
+  'beaumaris_castle',
+  'dover_castle',
+  'corvin_castle',
+  'kromeriz_castle',
+  'elmina_castle',
+  'konopiste_castle',
+  'castel_nuovo',
+  'warwick_castle',
+  'ksiaz_castle_and_park_complex',
 ])('keeps %s detail levels within landmark budgets with reusable surfaces', async (key) => {
   const id = `molen.worldgen.structure.${key}`;
   let previous = 0;
@@ -247,7 +247,7 @@ it.each([
       g.materials.some(
         (m) =>
           m.extras?.molenSurface?.ref ===
-          `matgraph:molen.worldgen.material.${['n0291_ksiaz_castle_and_park_complex', 'n0290_warwick_castle'].includes(key) ? 'stone_sandstone' : key === 'n0289_castel_nuovo' ? 'stone_basalt' : key === 'n0282_akershus_fortress' ? 'stone_granite' : key === 'n0251_kernave' ? 'wood_plain' : ['n0248_bran_castle', 'n0250_mir_castle_complex', 'n0253_bratislava_castle', 'n0254_nesvizh_castle'].includes(key) ? 'plaster_lime' : ['n0243_malbork_castle', 'n0258_sforza_castle', 'n0259_shanhai_pass', 'n0280_trakai_island_castle'].includes(key) ? 'brick' : ['n0267_heidelberg_castle', 'n0266_eltz_castle', 'n0262_stirling_castle', 'n0256_durham_castle', 'n0241_wartburg', 'n0242_edinburgh_castle', 'n0244_kronborg_castle', 'n0249_alamut_castle', 'n0252_hohenzollern_castle'].includes(key) ? 'stone_sandstone' : 'stone_limestone'}`,
+          `matgraph:molen.worldgen.material.${['ksiaz_castle_and_park_complex', 'warwick_castle'].includes(key) ? 'stone_sandstone' : key === 'castel_nuovo' ? 'stone_basalt' : key === 'akershus_fortress' ? 'stone_granite' : key === 'kernave' ? 'wood_plain' : ['bran_castle', 'mir_castle_complex', 'bratislava_castle', 'nesvizh_castle'].includes(key) ? 'plaster_lime' : ['malbork_castle', 'sforza_castle', 'shanhai_pass', 'trakai_island_castle'].includes(key) ? 'brick' : ['heidelberg_castle', 'eltz_castle', 'stirling_castle', 'durham_castle', 'wartburg', 'edinburgh_castle', 'kronborg_castle', 'alamut_castle', 'hohenzollern_castle'].includes(key) ? 'stone_sandstone' : 'stone_limestone'}`,
       ),
     ).toBe(true);
     const types = new Map();
@@ -265,7 +265,7 @@ it.each([
   expect(initial).toBeLessThan(3_000_000);
 });
 
-it('leaves both n0288 courtyards open through all authored levels', async () => {
+it('leaves both konopiste_castle courtyards open through all authored levels', async () => {
   const { buildKonopisteRuntime } = await import(
     '../../worldgen/scripts/konopiste-castle-model.mjs'
   );
@@ -288,7 +288,7 @@ it('leaves both n0288 courtyards open through all authored levels', async () => 
   }
 });
 
-it('preserves n0289 courtyard and actual gate and arcade openings', async () => {
+it('preserves castel_nuovo courtyard and actual gate and arcade openings', async () => {
   const { buildCastelNuovoRuntime } = await import('../../worldgen/scripts/castel-nuovo-model.mjs');
   function hits(triangles, axes, point) {
     const result = [];
@@ -333,7 +333,7 @@ it('preserves n0289 courtyard and actual gate and arcade openings', async () => 
   }
 });
 
-it('leaves n0290 court and gate/barbican passage open at all levels', async () => {
+it('leaves warwick_castle court and gate/barbican passage open at all levels', async () => {
   const { buildWarwickRuntime } = await import('../../worldgen/scripts/warwick-castle-model.mjs');
   for (const level of ['skyline', 'district', 'street', 'closeup']) {
     const triangles = [];
@@ -363,7 +363,7 @@ it('leaves n0290 court and gate/barbican passage open at all levels', async () =
   }
 });
 
-it('keeps n0291 both mapped courtyard spaces open at every runtime level', async () => {
+it('keeps ksiaz_castle_and_park_complex both mapped courtyard spaces open at every runtime level', async () => {
   const { buildKsiazRuntime } = await import('../../worldgen/scripts/ksiaz-castle-model.mjs');
   for (const level of ['skyline', 'district', 'street', 'closeup']) {
     const triangles = [];
@@ -389,7 +389,7 @@ it('keeps n0291 both mapped courtyard spaces open at every runtime level', async
   }
 });
 
-it('keeps n0291 west gable outward and roof joins covered', async () => {
+it('keeps ksiaz_castle_and_park_complex west gable outward and roof joins covered', async () => {
   const { buildKsiazRuntime } = await import('../../worldgen/scripts/ksiaz-castle-model.mjs');
   function hits(triangles, axes, point) {
     const result = [];

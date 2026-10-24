@@ -514,7 +514,7 @@ export function buildVolkspark(out) {
   roof(out);
 }
 export const volksparkStudy = {
-  id: 'N0696',
+  id: 'volksparkstadion',
   key: 'volksparkstadion',
   wikidataId: 'Q150933',
   title: 'Volksparkstadion',

@@ -7,7 +7,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { build3Wtc } from '../../worldgen/scripts/signature-tower-3wtc-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/dr/dr5/n0195_3_world_trade_center'),
+const source = resolve('../../content/worldgen/source/places/dr/dr5/3_world_trade_center'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {

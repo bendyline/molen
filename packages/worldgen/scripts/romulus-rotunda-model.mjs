@@ -1,4 +1,4 @@
-/** 'N0548': Romulus's standing rotunda, layered roof, bronze portal and curved wings. */
+/** 'temple_of_romulus': Romulus's standing rotunda, layered roof, bronze portal and curved wings. */
 import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingShape, prepareOpening } from './authored-wall-openings.mjs';
 import { buildCorinthianColumn } from './corinthian-column-geometry.mjs';

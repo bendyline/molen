@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u3/u3b/n0244_kronborg_castle/map-parts.json',
+      '../../../content/worldgen/source/places/u3/u3b/kronborg_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -764,7 +764,7 @@ export function buildKronborgSkyline(out) {
   buildKronborgRuntime(out, 'skyline');
 }
 export const kronborgStudy = {
-  id: 'N0244',
+  id: 'kronborg_castle',
   key: 'kronborg_castle',
   title: 'Kronborg Castle',
   category: 'castle',

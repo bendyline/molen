@@ -1,4 +1,4 @@
-/** 'N0541': Santa Cruz stone west front, nave and actual open cloister court. */
+/** 'monastery_of_santa_cruz': Santa Cruz stone west front, nave and actual open cloister court. */
 import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingShape, prepareOpening } from './authored-wall-openings.mjs';

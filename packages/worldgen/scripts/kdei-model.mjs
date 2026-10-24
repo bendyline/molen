@@ -1,11 +1,11 @@
-/** N0524: mapped Khmer courts, ruined galleries and separate gateways. */
+/** banteay_kdei: mapped Khmer courts, ruined galleries and separate gateways. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildKdeiTemple } from './kdei-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/w6/w63/n0524_banteay_kdei/',
+    '../../../content/worldgen/source/places/w6/w63/banteay_kdei/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -77,7 +77,7 @@ export const buildKdeiSkyline = (o) => build(o, 0),
   buildKdeiStreet = (o) => build(o, 2),
   buildKdeiCloseup = (o) => build(o, 3);
 export const kdeiStudy = {
-  id: 'N0524',
+  id: 'banteay_kdei',
   key: 'banteay_kdei',
   title: 'Banteay Kdei',
   category: 'temple',

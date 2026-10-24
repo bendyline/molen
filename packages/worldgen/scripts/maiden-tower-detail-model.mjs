@@ -1,4 +1,4 @@
-/** N0638 source-local reviewed restoration; historical buildMaiden remains unchanged. */
+/** maidens_tower source-local reviewed restoration; historical buildMaiden remains unchanged. */
 import { beam, loft, radialRing } from './authored-structure-mesh.mjs';
 import { archBay, triangle } from './heritage-tower-detail-mesh.mjs';
 import { hipRoof } from './lighthouse-expansion-models.mjs';

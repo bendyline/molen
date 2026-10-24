@@ -10,7 +10,7 @@ import { rigaStudy } from '../../worldgen/scripts/riga-castle-model.mjs';
 import { rigaGround } from '../../worldgen/scripts/riga-runtime-model.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 
-const source = resolve('../../content/worldgen/source/places/ud/ud1/n0264_riga_castle'),
+const source = resolve('../../content/worldgen/source/places/ud/ud1/riga_castle'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;

@@ -1,11 +1,11 @@
-/** 'N0541': specific Santa Cruz west facade, pinnacles, nave and open cloister. */
+/** 'monastery_of_santa_cruz': specific Santa Cruz west facade, pinnacles, nave and open cloister. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildSantaCruzMonastery } from './santacruz-monastery-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ez/ez4/n0541_monastery_of_santa_cruz/',
+    '../../../content/worldgen/source/places/ez/ez4/monastery_of_santa_cruz/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -85,7 +85,7 @@ export const buildSantaCruzSkyline = (o) => build(o, 0),
   buildSantaCruzStreet = (o) => build(o, 2),
   buildSantaCruzCloseup = (o) => build(o, 3);
 export const santacruzStudy = {
-  id: 'N0541',
+  id: 'monastery_of_santa_cruz',
   key: 'monastery_of_santa_cruz',
   title: 'Monastery of Santa Cruz',
   category: 'temple',

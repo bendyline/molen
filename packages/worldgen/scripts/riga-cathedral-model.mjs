@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/ud/ud1/n0334_riga_cathedral/',
+  '../../../content/worldgen/source/places/ud/ud1/riga_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -850,7 +850,7 @@ export const buildRigaDistrict = (out) => build(out, 1);
 export const buildRigaStreet = (out) => build(out, 2);
 export const buildRigaCloseup = (out) => build(out, 3);
 export const rigaStudy = {
-  id: 'N0334',
+  id: 'riga_cathedral',
   key: 'riga_cathedral',
   title: 'Riga Cathedral',
   category: 'cathedral',

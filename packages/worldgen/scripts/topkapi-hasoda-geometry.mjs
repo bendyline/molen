@@ -1,4 +1,4 @@
-/** 'N0742_HASODA': Mapped dormitory range, open pointed colonnade and low lead crowns. */
+/** 'has_oda_kogusu_topkapi_palace': Mapped dormitory range, open pointed colonnade and low lead crowns. */
 
 import earcut from 'earcut';
 import { box, prism } from './khmer-structure-geometry.mjs';

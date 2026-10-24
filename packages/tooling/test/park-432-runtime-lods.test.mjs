@@ -5,7 +5,7 @@ import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { park432Center } from '../../worldgen/scripts/park-432-runtime-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/dr/dr5/n0197_432_park_avenue'),
+const source = resolve('../../content/worldgen/source/places/dr/dr5/432_park_avenue'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {

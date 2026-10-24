@@ -1,6 +1,6 @@
-/** N0527: granite entrance, red arched compound and slender pagoda at A-Ma. */
+/** a_ma_temple: granite entrance, red arched compound and slender pagoda at A-Ma. */
 import earcut from 'earcut';
-export const amaCandidateId = 'N0527';
+export const amaCandidateId = 'a_ma_temple';
 function prism(f, role, p, lo, hi) {
   const rings = [p.outline, ...(p.holes ?? [])],
     flat = rings.flat(),

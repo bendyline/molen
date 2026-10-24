@@ -1,11 +1,11 @@
-/** 'N0749': Pompidou exterior frame, circulation and shared surfaces. */
+/** 'centre_georges_pompidou': Pompidou exterior frame, circulation and shared surfaces. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildPompidou } from './pompidou-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u0/u09/n0749_centre_georges_pompidou/',
+    '../../../content/worldgen/source/places/u0/u09/centre_georges_pompidou/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -102,7 +102,7 @@ export const buildPompidouSkyline = (o) => build(o, 0),
   buildPompidouStreet = (o) => build(o, 2),
   buildPompidouCloseup = (o) => build(o, 3);
 export const pompidouStudy = {
-  id: 'N0749',
+  id: 'centre_georges_pompidou',
   key: 'centre_georges_pompidou',
   title: 'Centre Georges Pompidou',
   category: 'museum',

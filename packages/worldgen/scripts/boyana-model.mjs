@@ -1,11 +1,11 @@
-/** 'N0763': Boyana Church, brick arcades and stone annex. */
+/** 'boyana_church': Boyana Church, brick arcades and stone annex. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBoyana } from './boyana-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sx8/n0763_boyana_church/',
+    '../../../content/worldgen/source/places/sx/sx8/boyana_church/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -101,7 +101,7 @@ export const buildBoyanaSkyline = (o) => build(o, 0),
   buildBoyanaStreet = (o) => build(o, 2),
   buildBoyanaCloseup = (o) => build(o, 3);
 export const boyanaStudy = {
-  id: 'N0763',
+  id: 'boyana_church',
   key: 'boyana_church',
   title: 'Boyana Church, brick arcades and stone annex',
   category: 'museum',

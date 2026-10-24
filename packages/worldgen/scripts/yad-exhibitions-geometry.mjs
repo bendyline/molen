@@ -1,4 +1,4 @@
-/** 'N0748_EXHIBITIONS': open court, stair-pierced end wall and curved planted wing. */
+/** 'exhibitions_pavilion_yad_vashem': open court, stair-pierced end wall and curved planted wing. */
 import earcut from 'earcut';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

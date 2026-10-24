@@ -67,11 +67,11 @@ test('later batches write a separate resumable ledger and preserve the core ledg
       entries: [],
     });
     put('content/worldgen/source/qualla-structures/batches/readiness.json', { ready: 100 });
-    put('content/worldgen/source/next-1000/candidates.json', { candidates: [] });
-    put('content/worldgen/source/next-1000/collections.json', { collections: [] });
+    put('content/worldgen/source/structure-catalog/candidates.json', { candidates: [] });
+    put('content/worldgen/source/structure-catalog/collections.json', { collections: [] });
     put('content/worldgen/project.json', { assets: {} });
     put('content/worldgen/stylepack.json', { assets: {} });
-    put('content/earth/structures/placements.json', { entries: [] });
+    fs.mkdirSync(path.join(repository, 'content/earth/source/placements'), { recursive: true });
     fs.writeFileSync(path.join(output, 'structures.jsonl'), '{}\n');
     const core = fs.readFileSync(path.join(output, 'batches/readiness.json'));
     const counts = await buildProgress({ repository, output, batchName: 'qualla-002' });
@@ -122,13 +122,13 @@ test('a resolved other-device alias stays unresolved without blocking unrelated 
         },
       ],
     });
-    put('content/worldgen/source/next-1000/candidates.json', {
-      candidates: [{ id: 'N0475', title: 'Friday Mosque of Herat', modelRef: 'reserved.asset' }],
+    put('content/worldgen/source/structure-catalog/candidates.json', {
+      candidates: [{ id: 'friday_mosque_of_herat', title: 'Friday Mosque of Herat', modelRef: 'reserved.asset' }],
     });
-    put('content/worldgen/source/next-1000/collections.json', { collections: [] });
+    put('content/worldgen/source/structure-catalog/collections.json', { collections: [] });
     put('content/worldgen/project.json', { assets: {} });
     put('content/worldgen/stylepack.json', { assets: {} });
-    put('content/earth/structures/placements.json', { entries: [] });
+    fs.mkdirSync(path.join(repository, 'content/earth/source/placements'), { recursive: true });
     const stories = [{ url: 'https://qualla.com/example/' }];
     fs.writeFileSync(
       path.join(output, 'structures.jsonl'),
@@ -137,7 +137,7 @@ test('a resolved other-device alias stays unresolved without blocking unrelated 
           id: 'mosque',
           name: 'Great Mosque of Herat',
           stories,
-          existing: [{ candidateId: 'N0475' }],
+          existing: [{ candidateId: 'friday_mosque_of_herat' }],
         },
         { id: 'local', name: 'Local tomb', stories },
       ]
@@ -153,7 +153,7 @@ test('a resolved other-device alias stays unresolved without blocking unrelated 
       fs.readFileSync(path.join(output, 'batches/qualla-002.readiness.json')),
     );
     assert.equal(ledger.candidates[0].readiness, 'reserved-other-device');
-    assert.deepEqual(ledger.candidates[0].reservedCandidateIds, ['N0475']);
+    assert.deepEqual(ledger.candidates[0].reservedCandidateIds, ['friday_mosque_of_herat']);
     assert.equal(ledger.candidates[0].sourcePath, null);
     assert.equal(ledger.candidates[0].fidelityQa.hashBoundReviewPassed, false);
     assert.equal(ledger.candidates[1].readiness, 'not-started');

@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.les_eclaireurs_lighthouse",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:13ec796c8f6930d3bbd16d6771886c66ef51454125ca5f90f115f9b8b7735d80",
+  "sourceHash": "sha256:738d6fada7a6d09478850bb02aa34b5013a70907662f19fd4865b9ceceddd074",
+  "runtimeHash": "sha256:4fc45a0865df2a1e7e18d31071d3a374cd971da2f55d80ab56e19e1571578d04",
+  "captureReportHash": "sha256:f0c7abf0718d9aac8ba1a1f7ed7b3a93884a0a3794219ce0539339b9ce295afd",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-lantern.png",
+      "shots/near-panels.png",
+      "shots/near-door.png",
+      "shots/far-silhouette.png",
+      "shots/gallery-overhead.png"
+    ],
+    "notes": "Inspected all10 final portable detailed-master views against the exterior picture. Red/white/red taper, low recessed wooden door, open gallery, compact black lantern/pedestal, dome and paired panel racks are intact. Detailed8320-triangle tower master remains byte-for-byte unchanged."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:b28003ebba24930d2b51831aa751fed43384149d3840897d138cb9d86b9802d8",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-lantern.png",
+      "shots/shared/near-panels.png",
+      "shots/shared/near-door.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/gallery-overhead.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all10 final shared-material master views. Common lime-plaster/painted-metal/wood graphs plus local glass color remain readable; cache reuse and unload passed. Mapped node aligns location. Heading0 is explicitly approximate doorway/panel facing, not a measured bearing. Flat shared fixture checks master materials and alignment; browser tiers additionally use common weathered limestone for rock."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:12934552ef41425140cb7d61c39cc3b26bd50c5033854a29ad7f65ac57c23d93",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-lantern.png",
+      "medium-fi/near-panels.png",
+      "medium-fi/near-door.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/gallery-overhead.png",
+      "medium-fi/door-district.png",
+      "medium-fi/panels-district.png",
+      "medium-fi/whole-eclaireurs-skyline.png",
+      "medium-fi/whole-eclaireurs-district.png",
+      "medium-fi/whole-eclaireurs-street.png",
+      "medium-fi/whole-eclaireurs-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all28 final medium-fi browser views across light, quality, identity, silhouette and four matched levels. Four tiers retain the11m tower on a bounded roughly10m rock footing rising1.1m above the standard PMTiles zero datum. PMTiles do not resolve this small islet. Gallery, lantern, panel racks, door recess, paint bands and footing remain consistent across levels."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:ca6b408020bdb17801b9231261a8d87a3d45066078949120d9a00ba31e888ac6",
+    "mapFrameHash": "sha256:11789470a558fad55b28c1c068ad149fe70930d6f555dfd358ae9e773ed08963",
+    "notes": "The inspected picture supports the red/white/red tapered tower, low door, open black gallery/lantern and bounded rock under its base. Retained mapped node supplies location. Heading0 is an explicitly approximate south-facing doorway and north-facing panels, not a measured bearing. Standard viewer PMTiles are zero at this very small islet and do not resolve its rock. Browser tiers therefore include a bounded roughly10m rock footing rising1.1m above that datum and retain the11m tower height. This is an approximate visual footing, not the complete island or a surveyed tide/focal-height datum."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate current exterior and islet fit from inspected picture and standard viewer PMTiles. Door/panel compass phase is unknown and openly approximate. The bounded rock footing is a visual reconstruction, not the entire island, a surveyed tide/focal-height datum or shoreline. Birds, interiors, collision and physical-device timing excluded; footprint replacement remains off."
+  },
+  "legacyFidelityScope": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed exterior in Molen shared material style.",
+    "notes": "Provincial11m height and national tourism exterior photograph support the compact taper, three paint bands, low door, gallery lip, black lantern and paired inclined panels. Reusable rough paint surface captures the exterior character without individual copied weathering; natural rock and birds are host features.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/4q/4qp/les_eclaireurs_lighthouse/models/source.glb",
+        "hash": "sha256:738d6fada7a6d09478850bb02aa34b5013a70907662f19fd4865b9ceceddd074",
+        "bytes": 668840,
+        "triangles": 8320,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -1.5299999713897705,
+          0,
+          -1.5299999713897705
+        ],
+        "max": [
+          1.5299999713897705,
+          11,
+          1.5229089260101318
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/4q/4qp/les_eclaireurs_lighthouse/model.glb",
+        "hash": "sha256:4fc45a0865df2a1e7e18d31071d3a374cd971da2f55d80ab56e19e1571578d04",
+        "bytes": 668404,
+        "triangles": 8320,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -1.5299999713897705,
+          0,
+          -1.5299999713897705
+        ],
+        "max": [
+          1.5299999713897705,
+          11,
+          1.5229089260101318
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/4q/4qp/les_eclaireurs_lighthouse/model.skyline.glb",
+        "hash": "sha256:ae7dba31edb6c6dff90336e32949340a59336ba816efeb6c6dd75aba5a0455ff",
+        "bytes": 93848,
+        "triangles": 996,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -4.5701680183410645,
+          -0.07999999821186066,
+          -5.041979789733887
+        ],
+        "max": [
+          4.647035598754883,
+          12.100000381469727,
+          4.800000190734863
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/4q/4qp/les_eclaireurs_lighthouse/model.district.glb",
+        "hash": "sha256:552179bd58a8180dcc12b8387a219bc443da8175bb5a66eca7c2b3ce273b8eee",
+        "bytes": 190100,
+        "triangles": 1912,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -4.5701680183410645,
+          -0.07999999821186066,
+          -5.041979789733887
+        ],
+        "max": [
+          4.647035598754883,
+          12.100000381469727,
+          4.800000190734863
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/4q/4qp/les_eclaireurs_lighthouse/model.street.glb",
+        "hash": "sha256:9b5d13948d2ff4e84643da7b90d178cb2462489c396982c420b056c6cfde3fb0",
+        "bytes": 776436,
+        "triangles": 8360,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -4.5701680183410645,
+          -0.07999999821186066,
+          -5.041979789733887
+        ],
+        "max": [
+          4.647035598754883,
+          12.100000381469727,
+          4.800000190734863
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/4q/4qp/les_eclaireurs_lighthouse/model.closeup.glb",
+        "hash": "sha256:9b5d13948d2ff4e84643da7b90d178cb2462489c396982c420b056c6cfde3fb0",
+        "bytes": 776436,
+        "triangles": 8360,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -4.5701680183410645,
+          -0.07999999821186066,
+          -5.041979789733887
+        ],
+        "max": [
+          4.647035598754883,
+          12.100000381469727,
+          4.800000190734863
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed tower/hash/recipe preserved. Levels contain996/1912/8360/8360 triangles; initial skyline+district totals283948 bytes. Separate POSITION/NORMAL streams retained; rock far color uses actual shared graph means."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:b2acb137676472ee54bcc78bab7a80eb92a01b73852d89576679a47bf9fef814",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:ae7dba31edb6c6dff90336e32949340a59336ba816efeb6c6dd75aba5a0455ff",
+        "bytes": 93848,
+        "gzipBytes": 17322,
+        "triangles": 996,
+        "cpuBytes": 92412,
+        "gpuBytes": 92412,
+        "errorMeters": 0.12,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:552179bd58a8180dcc12b8387a219bc443da8175bb5a66eca7c2b3ce273b8eee",
+        "bytes": 190100,
+        "gzipBytes": 35029,
+        "triangles": 1912,
+        "cpuBytes": 183876,
+        "gpuBytes": 183876,
+        "errorMeters": 0.04,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:9b5d13948d2ff4e84643da7b90d178cb2462489c396982c420b056c6cfde3fb0",
+        "bytes": 776436,
+        "gzipBytes": 138708,
+        "triangles": 8360,
+        "cpuBytes": 770196,
+        "gpuBytes": 770196,
+        "errorMeters": 0.01,
+        "drawCalls": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:9b5d13948d2ff4e84643da7b90d178cb2462489c396982c420b056c6cfde3fb0",
+        "bytes": 776436,
+        "gzipBytes": 138708,
+        "triangles": 8360,
+        "cpuBytes": 770196,
+        "gpuBytes": 770196,
+        "errorMeters": 0.005,
+        "drawCalls": 5
+      }
+    ],
+    "initialBytes": 283948,
+    "notes": "skyline: 996 triangles, 93848 bytes, 1 draws; district: 1912 triangles, 190100 bytes, 5 draws; street: 8360 triangles, 776436 bytes, 5 draws; closeup: 8360 triangles, 776436 bytes, 5 draws. Initial skyline+district 283948 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate current exterior/facing from the inspected picture and standard viewer PMTiles. A mapped point cannot determine exact door/panel phase; heading0 is explicitly approximate.",
+    "Original8320-triangle detailed tower master preserved. Browser derivatives retain tower details and add a bounded roughly10m rock footing because coarse PMTiles do not resolve this small islet.",
+    "Four common lime-plaster/painted-metal/wood/weathered-limestone graphs across tiers, plus local glass color. Zero embedded images. Rock extent/base height are interpreted, not complete island reconstruction.",
+    "No tide/focal-height datum, bespoke survey, interiors/collision or physical-device timing claim. Footprint replacement remains off."
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:13011cf04bb400e78807e0d4ef14d6f505e2304dec607e8087673d133b67cb96",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:75912938d85751c5b7a4b077014339c07e4802a0c8e01bf3320fbf357d93e327",
+    "previousSharedCaptureReportHash": "sha256:721f7b4763cb2edd128007b40c18d85e4a67dc2d234dc5facec10d32a92608bc",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/eclaireurs-fit-model.mjs",
+        "beforeHash": "sha256:9ea3ad3685eca142891f34092d23972c1574620a59525e95671f3542ecd2dc75",
+        "afterHash": "sha256:bf5fe51b3a302ce9b32aa8e4e590ad0e66b11c9f39734aeac02fe2b4235dcee0",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/4q/4qp/les_eclaireurs_lighthouse/models/source.glb",
+        "hash": "sha256:738d6fada7a6d09478850bb02aa34b5013a70907662f19fd4865b9ceceddd074",
+        "bytes": 668840
+      },
+      {
+        "path": "content/worldgen/assets/places/4q/4qp/les_eclaireurs_lighthouse/model.glb",
+        "hash": "sha256:4fc45a0865df2a1e7e18d31071d3a374cd971da2f55d80ab56e19e1571578d04",
+        "bytes": 668404
+      },
+      {
+        "path": "content/worldgen/assets/places/4q/4qp/les_eclaireurs_lighthouse/model.skyline.glb",
+        "hash": "sha256:ae7dba31edb6c6dff90336e32949340a59336ba816efeb6c6dd75aba5a0455ff",
+        "bytes": 93848
+      },
+      {
+        "path": "content/worldgen/assets/places/4q/4qp/les_eclaireurs_lighthouse/model.district.glb",
+        "hash": "sha256:552179bd58a8180dcc12b8387a219bc443da8175bb5a66eca7c2b3ce273b8eee",
+        "bytes": 190100
+      },
+      {
+        "path": "content/worldgen/assets/places/4q/4qp/les_eclaireurs_lighthouse/model.street.glb",
+        "hash": "sha256:9b5d13948d2ff4e84643da7b90d178cb2462489c396982c420b056c6cfde3fb0",
+        "bytes": 776436
+      },
+      {
+        "path": "content/worldgen/assets/places/4q/4qp/les_eclaireurs_lighthouse/model.closeup.glb",
+        "hash": "sha256:9b5d13948d2ff4e84643da7b90d178cb2462489c396982c420b056c6cfde3fb0",
+        "bytes": 776436
+      }
+    ],
+    "retainedInspectedImageCount": 48
+  }
+}

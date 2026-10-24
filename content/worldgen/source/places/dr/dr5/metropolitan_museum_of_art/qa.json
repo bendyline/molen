@@ -1,0 +1,641 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.metropolitan_museum_of_art",
+  "reviewedOn": "2026-10-21",
+  "inputHash": "sha256:012ae91d75f5e9935953d52f2056e2639c299e3499645b1fbadd3cd6a82ae88b",
+  "sourceHash": "sha256:cefb98cd5ac443ee51d660c6e38fc4b46968594fec5be3ee439d51a8d8fb8c4e",
+  "runtimeHash": "sha256:76492d6a0dffab5596f0397f556a0ad1589bb5ae2226cc15c3f657ffea6be188",
+  "captureReportHash": "sha256:fd84d5a02824907887c483cce5368e9c2b26a1a8671171886462a0a1b0bf9346",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/fifth-avenue-arches-columns-and-entry-stair.png",
+      "shots/park-side-dendur-glass-and-roof.png",
+      "shots/lehman-wing-and-rear-gallery-roofs.png"
+    ],
+    "notes": "Inspected all48 current source/shared/medium-fi/native frames during one author/build/inspect/fix pass. Complete mapped Metropolitan Museum complex: three recessed entrance arches/eight paired fluted Corinthian columns/deep entablature and attic, broad front steps, classical wings/end pavilions, varied gallery roofs/rooflights, central historic core, rear polygonal Lehman hip and large glazed Rockefeller/Dendur/American Wing enclosures. Corrected the hidden park glazing, extra automatic arches inside entrance bays, rooflight end caps and terrain opening at recessed corners before acceptance. No temporary banners/copied inscriptions/artwork or furnished galleries."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/fifth-avenue-arches-columns-and-entry-stair.png",
+      "shots/shared/park-side-dendur-glass-and-roof.png",
+      "shots/shared/lehman-wing-and-rear-gallery-roofs.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Six existing256px graphs: stone_limestone, stone_limestone_raw, brick, metal_painted, metal_standing_seam and window_grid. Six merged near runtime draws/one skyline draw, no new graph/private atlas/embedded images. Metric UVs, linear palette tints, separate POSITION/NORMAL streams and equal CPU/GPU accounting. Each graph read once in shared/native contexts. Opaque shared glazing approximates architectural reflections; portable image-free fallback panes are pale and do not demonstrate shared-texture appearance.",
+    "captureReportHash": "sha256:fefc2fd75c57729b6da6edb861607968a47cb1dbdfd0dfd69534b1ef0fc78f5b"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/fifth-avenue-arches-columns-and-entry-stair.png",
+      "medium-fi/park-side-dendur-glass-and-roof.png",
+      "medium-fi/lehman-wing-and-rear-gallery-roofs.png",
+      "medium-fi/met-skyline.png",
+      "medium-fi/met-district.png",
+      "medium-fi/met-street.png",
+      "medium-fi/met-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored browser levels: 579/3189/14633/22509triangles, initial skyline plus district 361392bytes. Entrance/roof/wing silhouette retained far; rounded arches, paired columns, mullions, rooflights and coarse ornament appear near. All limits pass. Physical ordinary-laptop/phone/tablet and dense-city timing measurements remain pending.",
+    "captureReportHash": "sha256:5928ca163007a2a3c71f4cbc2cf720f5a848f0b7591b6a5f18a352d301a59ce0"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:81caaebdd502493c2530c85d006e34db5126b9137531e9affc2f46ac062dbd4c",
+    "mapFrameHash": "sha256:4ed366038a74d818624749ab0a55189b49a397773ad11fc33f1830e330ad18ab",
+    "notes": "Retained Q160236/relation3698894 and named native museum parent52776561832142 establish identity. Current standard PMTiles supplies a single39-point approximately305.7x189.7m outer footprint and unqualified26.8m height; it does not supply separate wing footprints. The retained undirected axis1.066209682834rad and ordinary photographs resolve positive internalX uptown/northeast and positiveZ toward Fifth Avenue. Anchor[-73.963549859,40.779486387]/world heading0/native east-south; wing subdivisions, roof forms and facade inventory are picture-led allocations clipped to the actual outer footprint, not mapped part controls. Only native museum parent52776561832142 is replaced. All483 independent resident records of484 originals and all988 independent wider records of989 remain unchanged. Original6m grid/native roads/484013.02426837385square metres water unchanged. Six actual PMTiles13/14/15 cases pass, including both detailed museum fragments. Detailed replacement uses99.5percent coverage; generalized tiles use bounded area clipping. Ground opening stays inside occupied geometry at recessed footprint corners. Failure retains484 originals; every LOD unload restores terrain/water and leaves zero live model geometry. Original standard6m Mapzen grid/roads/water and independent native buildings remain unchanged. Owned boundary samples span-3.6950338398745046..5.046267405826558m relative to anchor. Ground opening is limited to occupied museum and front stair surfaces present at every LOD; no Central Park precinct slab or flattening. Foundations extend from original boundary minimum into occupied bodies; coarse DEM at the park margins remains approximate. Detailed replacement uses99.5percent coverage, generalized tiles bounded area clipping. Failure retains original context; unloading restores terrain/water and disposes model geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Three ordinary pictures actually viewed: official2001 aerial,2025 Fifth Avenue entrance photograph and undated park-side travel photograph. Pictures inform visible form only/no copied pixels. Existing photographic configuration; future Tang wing, temporary exhibition art, collections/furnished rooms and hidden plant excluded. No bespoke archive/survey/terrain research. Native26.8m building height/28m elevation tags have unqualified datums. Working plaza floor-1.5093119261653207m relative to original anchor28.259306309605005m, entry3m above that plaza, classical front cornices22.4..26.8m, central historic roof30m, modern glazed wings18..26m and rear Lehman roof23m. These varied architectural heights, bays/columns/steps, rooflight and mullion inventories, ornament and facing are approximate visual allocations from ordinary photographs, not a survey or access/engineering certification. Shared opaque glazing approximates reflections and does not expose furnished galleries."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/dr/dr5/metropolitan_museum_of_art/models/source.glb\",\"hash\":\"sha256:cefb98cd5ac443ee51d660c6e38fc4b46968594fec5be3ee439d51a8d8fb8c4e\",\"bytes\":2704964,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/dr/dr5/metropolitan_museum_of_art/model.glb\",\"hash\":\"sha256:76492d6a0dffab5596f0397f556a0ad1589bb5ae2226cc15c3f657ffea6be188\",\"bytes\":2704392,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/dr/dr5/metropolitan_museum_of_art/model.skyline.glb\",\"hash\":\"sha256:c7b1c510e799816c865eb12f4a06de590c20d072d36cfde19e98b1466060da69\",\"bytes\":52864,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/dr/dr5/metropolitan_museum_of_art/model.district.glb\",\"hash\":\"sha256:bf3ba2949879455b72c2282182b438d53385ca53386b4c837477d483ec1d9cab\",\"bytes\":308528,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/dr/dr5/metropolitan_museum_of_art/model.street.glb\",\"hash\":\"sha256:d19cc8c38cdd25d260f0d791e978eda5b8524f142f5f0a2c85c14bf96bafffae\",\"bytes\":1391064,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/dr/dr5/metropolitan_museum_of_art/model.closeup.glb\",\"hash\":\"sha256:995663209e26690a69114aa0afd4169266e157d8449d3ebd48cc8f1d23bf206e\",\"bytes\":2156712,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "specific-museum-entrance-glazing-roofs-and-ground-contact",
+        "passed": true,
+        "notes": "647 actual mesh/contact checks across six GLBs: recessed closed entrance glazing/arched soffits/paired column shafts and capped capitals, closed glass roof shells and rooflight gables, exterior Dendur glass in front of masonry, original-contact stair treads at every LOD, occupied surfaces throughout triangulated ground opening and no neighboring precinct geometry. Six actual native map-level cases and bounded mask inclusion pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "inputHash": "sha256:012ae91d75f5e9935953d52f2056e2639c299e3499645b1fbadd3cd6a82ae88b",
+      "ownerRemainder": 0,
+      "independentBuildingsUnchanged": 483,
+      "widerIndependentBuildingsUnchanged": 988,
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            2412,
+            3077
+          ],
+          "id": 35184639023050,
+          "owned": false,
+          "covered": 0.07408929943729334,
+          "area": 155662.81962502358,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            2412,
+            3078
+          ],
+          "id": 35184535718760,
+          "owned": false,
+          "covered": 0.16375108615162953,
+          "area": 283427.1872119019,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            4825,
+            6155
+          ],
+          "id": 35184639023080,
+          "owned": false,
+          "covered": 0.08772765110132863,
+          "area": 76187.40671466853,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            4825,
+            6156
+          ],
+          "id": 35184637236390,
+          "owned": false,
+          "covered": 0.41257326849734965,
+          "area": 112126.01281055323,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            9651,
+            12311
+          ],
+          "id": 52776561832142,
+          "owned": true,
+          "covered": 0.9999999999965962,
+          "area": 4509.280901052762,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            9651,
+            12312
+          ],
+          "id": 52776561832142,
+          "owned": true,
+          "covered": 0.9999999999996301,
+          "area": 45507.36488865706,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "method": "Only native museum parent52776561832142 is replaced. All483 independent resident records of484 originals and all988 independent wider records of989 remain unchanged. Original6m grid/native roads/484013.02426837385square metres water unchanged. Six actual PMTiles13/14/15 cases pass, including both detailed museum fragments. Detailed replacement uses99.5percent coverage; generalized tiles use bounded area clipping. Ground opening stays inside occupied geometry at recessed footprint corners. Failure retains484 originals; every LOD unload restores terrain/water and leaves zero live model geometry."
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 484,
+          "independentBuildings": 483,
+          "remainingBuildings": 483,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.metropolitan_museum_of_art"
+          ],
+          "rawTerrainRange": {
+            "min": -13.681106309605005,
+            "max": 10.751593690394994
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 484013.02426837385,
+          "remainingWaterArea": 484013.02426837385,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:15b3d20349225792abc4820751a9722b9f1b404707539904c7f4176ee3294e3e",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 387710
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                436.9113574268946,
+                208.4906880738347,
+                -67.14510966100516
+              ],
+              "lookAt": [
+                0,
+                10.49068807383468,
+                0
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 484,
+          "independentBuildings": 483,
+          "remainingBuildings": 483,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.metropolitan_museum_of_art"
+          ],
+          "rawTerrainRange": {
+            "min": -13.681106309605005,
+            "max": 10.751593690394994
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 484013.02426837385,
+          "remainingWaterArea": 484013.02426837385,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:a9929a4d9b05b176c67ba66bdfa2b98d1c68a66bdf25bb2120ce5a7cd95e2387",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 390320
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                436.9113574268946,
+                208.4906880738347,
+                -67.14510966100516
+              ],
+              "lookAt": [
+                0,
+                10.49068807383468,
+                0
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 484,
+          "independentBuildings": 483,
+          "remainingBuildings": 483,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.metropolitan_museum_of_art"
+          ],
+          "rawTerrainRange": {
+            "min": -13.681106309605005,
+            "max": 10.751593690394994
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 484013.02426837385,
+          "remainingWaterArea": 484013.02426837385,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:0fc3b04608c24608a9b3b73190b50820520892d8a2abed41cea3e4f58e40f3bd",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 401764
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                436.9113574268946,
+                208.4906880738347,
+                -67.14510966100516
+              ],
+              "lookAt": [
+                0,
+                10.49068807383468,
+                0
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 484,
+          "independentBuildings": 483,
+          "remainingBuildings": 483,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.metropolitan_museum_of_art"
+          ],
+          "rawTerrainRange": {
+            "min": -13.681106309605005,
+            "max": 10.751593690394994
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 484013.02426837385,
+          "remainingWaterArea": 484013.02426837385,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:7f183c547b1c8a1d13ab8ea92f27a7a2764de62402df98f08dc9c601ff13277e",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 409640
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                436.9113574268946,
+                208.4906880738347,
+                -67.14510966100516
+              ],
+              "lookAt": [
+                0,
+                10.49068807383468,
+                0
+              ],
+              "fov": 43
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-fifth-avenue-arches-columns-and-entry-stair.png",
+            "hash": "sha256:ea63d8df3ffca5ad3c602ca38f73503b33602f1f62d771d891c9183ea857bc7d",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 409640
+            },
+            "camera": {
+              "name": "fifth-avenue-arches-columns-and-entry-stair",
+              "position": [
+                129.17741356422803,
+                6.490688073834679,
+                37.07014735412302
+              ],
+              "lookAt": [
+                72.6560739035538,
+                12.49068807383468,
+                40.12598814884599
+              ],
+              "fov": 70
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-park-side-dendur-glass-and-roof.png",
+            "hash": "sha256:58537aa77c2e06c9dc00989a7f064659f0ccec0c93dd4dd11a3115708d73e001",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 409640
+            },
+            "camera": {
+              "name": "park-side-dendur-glass-and-roof",
+              "position": [
+                -18.691190296039764,
+                28.49068807383468,
+                -210.23710282753905
+              ],
+              "lookAt": [
+                9.919608018341805,
+                13.49068807383468,
+                -111.04324102241634
+              ],
+              "fov": 67
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-lehman-wing-and-rear-gallery-roofs.png",
+            "hash": "sha256:63faa492bd1767b134e71b5b347592a66043f4680a9725d12bd3ca8b78e1d8a5",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 21,
+              "triangles": 409640
+            },
+            "camera": {
+              "name": "lehman-wing-and-rear-gallery-roofs",
+              "position": [
+                -182.90352969912803,
+                68.49068807383468,
+                -3.911371063987673
+              ],
+              "lookAt": [
+                -39.39184729710748,
+                13.49068807383468,
+                -21.755053815639393
+              ],
+              "fov": 74
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 484,
+          "independentBuildings": 483,
+          "remainingBuildings": 484,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 52776561832142,
+              "area": 46529.37073508938
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.metropolitan_museum_of_art"
+          ],
+          "rawTerrainRange": {
+            "min": -13.681106309605005,
+            "max": 10.751593690394994
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 484013.02426837385,
+          "remainingWaterArea": 484013.02426837385,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:be54f2a6b8ea277aeb72b465f3d801c31e9a0b815c29d8d3576ea1c7461e0023",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 389127
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                436.9113574268946,
+                208.4906880738347,
+                -67.14510966100516
+              ],
+              "lookAt": [
+                0,
+                10.49068807383468,
+                0
+              ],
+              "fov": 43
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Specific Metropolitan Museum of Art Fifth Avenue exterior: complete mapped irregular complex, three monumental recessed entrance arches and eight paired Corinthian columns, broad front stair, classical front wings/end pavilions, varied gallery roofs and rooflights, historic central core, rear polygonal Lehman wing, large sloping glazed Rockefeller and Dendur enclosures and American Wing court. Only the museum parent is replaced. Independent Central Park and Upper East Side buildings, streets and original terrain remain native. Existing photographic configuration; proposed Tang wing, temporary exhibitions/banners, copied inscriptions/artworks, furnished collection rooms and landscaping excluded.",
+    "Retained Q160236/relation3698894 and named native museum parent52776561832142 establish identity. Current standard PMTiles supplies a single39-point approximately305.7x189.7m outer footprint and unqualified26.8m height; it does not supply separate wing footprints. The retained undirected axis1.066209682834rad and ordinary photographs resolve positive internalX uptown/northeast and positiveZ toward Fifth Avenue. Anchor[-73.963549859,40.779486387]/world heading0/native east-south; wing subdivisions, roof forms and facade inventory are picture-led allocations clipped to the actual outer footprint, not mapped part controls.",
+    "Native26.8m building height/28m elevation tags have unqualified datums. Working plaza floor-1.5093119261653207m relative to original anchor28.259306309605005m, entry3m above that plaza, classical front cornices22.4..26.8m, central historic roof30m, modern glazed wings18..26m and rear Lehman roof23m. These varied architectural heights, bays/columns/steps, rooflight and mullion inventories, ornament and facing are approximate visual allocations from ordinary photographs, not a survey or access/engineering certification. Shared opaque glazing approximates reflections and does not expose furnished galleries.",
+    "Original standard6m Mapzen grid/roads/water and independent native buildings remain unchanged. Owned boundary samples span-3.6950338398745046..5.046267405826558m relative to anchor. Ground opening is limited to occupied museum and front stair surfaces present at every LOD; no Central Park precinct slab or flattening. Foundations extend from original boundary minimum into occupied bodies; coarse DEM at the park margins remains approximate. Detailed replacement uses99.5percent coverage, generalized tiles bounded area clipping. Failure retains original context; unloading restores terrain/water and disposes model geometry."
+  ]
+}

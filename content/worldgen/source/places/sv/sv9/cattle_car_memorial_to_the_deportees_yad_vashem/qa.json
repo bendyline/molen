@@ -1,0 +1,826 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.cattle_car_memorial_to_the_deportees_yad_vashem",
+  "reviewedOn": "2026-10-22",
+  "inputHash": "sha256:f1be91abc12f23d8b5c6eaa7cf998373d16283191cfbd1b4cd45c3c1debdb194",
+  "sourceHash": "sha256:1fd0d261f1d357ce949b6e965da02038466a9a39f72a26014a28930803d28387",
+  "runtimeHash": "sha256:4714753ccf964636dd0e11e994f56f6c424fe80bb32f20f0e7de01103580b426",
+  "captureReportHash": "sha256:d05b9f2e9c9bb1a4435edee4cdf66d304482ca5d740e04c13a1910c0ceb4f1e8",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/wagon-door-vents-and-wheels.png",
+      "shots/raised-brake-cabin-steps-and-buffers.png",
+      "shots/truncated-track-and-open-cantilever.png"
+    ],
+    "notes": "Built the red-brown two-axle wagon, barrel roof, closed braced sliding doors, recessed upper vents, four wheels/chassis, buffers/coupler and distinctive raised brake cabin with three inset windows, supported steps and handrails. Authored both open tapered trusses, gussets/cross-braces, ties and rails along the existing mapped line. Two ordinary photos guided this author/inspect/fix pass. Corrected truss/buffer joints, step stringers, wheel contact, distant budgets, color and duplicate procedural bridge. No copied lettering, car interior, visitors or independent campus objects."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/wagon-door-vents-and-wheels.png",
+      "shots/shared/raised-brake-cabin-steps-and-buffers.png",
+      "shots/shared/truncated-track-and-open-cantilever.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Four existing256px graphs across seven roles/five textured draws: wood_weatherboard on the wagon, wood_plain on cabin/sleepers, metal_painted as a restrained weathered-steel/roof substitute, storefront on three opaque inset panes. No new graph, private atlas or embedded image. Skyline uses one mean-color draw. Each requested graph reads once; all model geometries release on unload.",
+    "captureReportHash": "sha256:a901b9b80c7c693563d17e4472e0b35cba0277a9dbda1fd5d828fea69420814e"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/wagon-door-vents-and-wheels.png",
+      "medium-fi/raised-brake-cabin-steps-and-buffers.png",
+      "medium-fi/truncated-track-and-open-cantilever.png",
+      "medium-fi/yad-cattlecar-skyline.png",
+      "medium-fi/yad-cattlecar-district.png",
+      "medium-fi/yad-cattlecar-street.png",
+      "medium-fi/yad-cattlecar-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs:926/2836/6012/6780 triangles;90796/249156/538300/610804 bytes. Initial skyline plus district geometry339952 bytes. Separate POSITION/NORMAL streams and equal CPU/GPU accounting. Six GLBs:zero Khronos errors/warnings;86 mesh/contact probes;48 current source/shared/medium-fi/native frames inspected. Physical laptop/phone/tablet and dense-city timings pending.",
+    "captureReportHash": "sha256:becfd9ac726061c8547a139591501ac58fb0046382a3c8946446bfb356e9ec27"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:1fb9bff70bd898d0db0e55c5c5ea47ff2dcbc7eb34a33ec4e94e733f7bb951c6",
+    "mapFrameHash": "sha256:60058715ae031fc58fcb6497fab1967383aeec69b12cac5afd92098ce9820b71",
+    "notes": "Approximate native exterior fit accepted. Shared campus Q156591 plus independent named node5477091205/native17597663135621; disused rail ways1435803658/1435803659 fix the east-northeast axis and endpoints. Wagon occupies the western truncated end; brake cabin faces higher land. Photo GPS elsewhere on campus is not used. One actual level15 POI case; no matching13/14 point. Existing replaceRoads removes only the two authored bridge/connected-rail records after successful loading. All801 other transportation records and all153 resident/257 wider buildings remain unchanged; failure retains original rails/bridge. Original201x201/6m hill/roads input and zero-water-area input retained, no terrain cutout or modification. Far rail head sits0.35m above sampled land-end grade; the deeper truss enters the retained bank. All LOD/failure/unload/ground-water restoration and material-sharing checks pass. Exact cliff/bank excavation, track-bed engineering, path clearance and accessibility remain unverified."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Completed as a medium-fi mapped exterior visualization. Point and rail segments supply no vertical dimensions. Body8.6x2.68m, working1.435m gauge,0.43m wheel radius, barrel crest3.96m/brake cabin4.67m above rail and0.65..7.2m tapered truss depth are picture-led estimates. Exact wagon class, sections, panel/step/gusset inventory, original rust, hidden underside/cabin and foundation are unverified. Fine rivets/inscriptions omitted; no invented writing. Coarse original hill partly buries landward members. Every other campus building remains independent; four earlier fit drafts and North reference gap remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/models/source.glb\",\"hash\":\"sha256:1fd0d261f1d357ce949b6e965da02038466a9a39f72a26014a28930803d28387\",\"bytes\":650560,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/model.glb\",\"hash\":\"sha256:4714753ccf964636dd0e11e994f56f6c424fe80bb32f20f0e7de01103580b426\",\"bytes\":650032,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/model.skyline.glb\",\"hash\":\"sha256:19933a2d5bf63d91621a769de4e290609523dfa97b818cc2932f4600073ced18\",\"bytes\":90796,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/model.district.glb\",\"hash\":\"sha256:ca52053e48086783db48e0d0d23929a415fcaaca6e69119a5176984f59141b94\",\"bytes\":249156,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/model.street.glb\",\"hash\":\"sha256:77a49b079427d954b2c0bf11c5dda862f6605fce0703550eb9dac0d6ad88c735\",\"bytes\":538300,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/model.closeup.glb\",\"hash\":\"sha256:be3fdd29fde8b55bdc146b736449c8fb7dcea67adc719aead4840dbafb239050\",\"bytes\":610804,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "closed-wagon-brake-cabin-recesses-wheels-and-connected-open-trusses",
+        "passed": true,
+        "notes": "86 mesh/contact probes over six GLBs; material references, budgets and separate vertex streams checked."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Approximate native exterior fit accepted. Shared campus Q156591 plus independent named node5477091205/native17597663135621; disused rail ways1435803658/1435803659 fix the east-northeast axis and endpoints. Wagon occupies the western truncated end; brake cabin faces higher land. Photo GPS elsewhere on campus is not used. One actual level15 POI case; no matching13/14 point. Existing replaceRoads removes only the two authored bridge/connected-rail records after successful loading. All801 other transportation records and all153 resident/257 wider buildings remain unchanged; failure retains original rails/bridge. Original201x201/6m hill/roads input and zero-water-area input retained, no terrain cutout or modification. Far rail head sits0.35m above sampled land-end grade; the deeper truss enters the retained bank. All LOD/failure/unload/ground-water restoration and material-sharing checks pass. Exact cliff/bank excavation, track-bed engineering, path clearance and accessibility remain unverified."
+    },
+    "inputHash": "sha256:f1be91abc12f23d8b5c6eaa7cf998373d16283191cfbd1b4cd45c3c1debdb194",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:f1be91abc12f23d8b5c6eaa7cf998373d16283191cfbd1b4cd45c3c1debdb194",
+      "reviewedOn": "2026-10-22",
+      "method": "Actually inspected all48 current views in six labeled contact sheets, plus the native under-truss and brake-cabin views at full resolution. Corrected source member/buffer contacts, step stringers, wheel seating, skyline budget and shared colors. Used existing loaded-only rail replacement to remove the duplicate procedural bridge; failure visibly restores it. Approximate native fit accepted with explicit coarse-bank and engineering limits.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/preview.png",
+          "hash": "sha256:3bc557cf00b6c74069d93effb7fb3523890e6664b691455da8fd798400dbd9dd"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/turntable/angle_0.png",
+          "hash": "sha256:fb3d5b31317449b0c740099595af497fa228b11a4fde3b9e2c8334f908f6f975"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/turntable/angle_1.png",
+          "hash": "sha256:7e52d6a391411cd817be98238cace3bc0b4da8eb9805fd507f995606d6987733"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/turntable/angle_2.png",
+          "hash": "sha256:1332f6facf97e308148e5124c05dca1fe36940fcd6324c8f538df9d0d62007e6"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/turntable/angle_3.png",
+          "hash": "sha256:044fc4e2c08910789ab27f4093c538a7f197a4a2dfcab6d5edb29303a4e5df33"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/wagon-door-vents-and-wheels.png",
+          "hash": "sha256:fcd4d72a61247baf39c301fc61d9ddc92cab953ee46b2ca826ae1b0647943997"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/raised-brake-cabin-steps-and-buffers.png",
+          "hash": "sha256:db3a0d4fdb5219f7e82a4c3c0d16681d4d363ca56fb7f7402f001b42b3996f94"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/truncated-track-and-open-cantilever.png",
+          "hash": "sha256:d8f876b246d3f3b157a458162fcd4764cb17bf7c5c4a67b338393a5f6dffd8f1"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/shared/angle-0.png",
+          "hash": "sha256:46e6a4aada892523b3e09df26e7c84426012dfc470f2a922b161df3a8a208785"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/shared/angle-1.png",
+          "hash": "sha256:b5a269df6bd47873ea0ff6a697f871f2aae39fc62690dcf95a9cac304e962f2b"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/shared/angle-2.png",
+          "hash": "sha256:c3cbdafe44e16edc28471266a86839b965ab74786e506ad9bace33c235eec14c"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/shared/angle-3.png",
+          "hash": "sha256:af32696dd3a9fa36ea093e187b5e9b2c2eed2783c93909c06b09380d9a9bf7d2"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/shared/wagon-door-vents-and-wheels.png",
+          "hash": "sha256:60205564ad3d25b59f122dae5dd779c5da24b00b0056d657f2ef92441feedbfe"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/shared/raised-brake-cabin-steps-and-buffers.png",
+          "hash": "sha256:21b38c82ffd51f03cabc92edae10dbe134b6a28ce903279b95b081fe2e68fa70"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/shared/truncated-track-and-open-cantilever.png",
+          "hash": "sha256:c2a36c88a57106eed689b82f98e7e6b6c5d782bc5b02a173ac77282bbf77e761"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/shots/shared/placement.png",
+          "hash": "sha256:546bab2c205225b5848cdfc7f4c2f1c356179353e3f8b563a834686a66a5d73d"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/street-noon-economy.png",
+          "hash": "sha256:6e6575d0a12541de4ac324d05d053d81c5b4e4199849e9fb4be6664230acd0fb"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/street-noon-high.png",
+          "hash": "sha256:8334d3c3d45e137a6f18e2b98ca292c0de9975465942d131bc3fbe8f5709fed5"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/street-late-economy.png",
+          "hash": "sha256:3b7d00d0366555c4222d62bc796451e394a1f28bd623255ec1415fd6e301f138"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/street-late-high.png",
+          "hash": "sha256:a068bab098d04c9dd0d9a2121a4242ba65a28379e3ad7912280c0d7b5c799cdd"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/block-noon-economy.png",
+          "hash": "sha256:cc4ab8470f15ec782be8f4db6c6061e5501aac4cdb2c396c1d4f5f9b5404af70"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/block-noon-high.png",
+          "hash": "sha256:b72fc5f1a665dd78252e67031756720f534d1c0ef36b6f9453eef15cc7e500d3"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/block-late-economy.png",
+          "hash": "sha256:b8f140cb7a23e51c82a708a835d66225f97785e58e86dd4a264945af9d731b81"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/block-late-high.png",
+          "hash": "sha256:0109524f62da138ce926cf9c2b199585571080cc29be9e682438ee8bca511c78"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:061add8dae64131db9337da448820e9090fa5e35b0add49e5472d588da646fe7"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:5bfccfa66590baf114db90126d119d5edeb760cd538fd1b93e53959e8d407940"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:288e0055c036d264f195d3b929235cdbe50d0f9ff6aef6e369590736e5e72b34"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/skyline-late-high.png",
+          "hash": "sha256:334b2717009a9dd460e604804da5dc212aeed4817555656ca86535fd7e9b3919"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/silhouette.png",
+          "hash": "sha256:454a533a31ac0a1ac2e78e6b64bfb4d4460072ad152b38e00d42f38aa7a3d671"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/wagon-door-vents-and-wheels.png",
+          "hash": "sha256:9206b3b38f7f76611661e934238c5ba3c5d20be7195469f5ccb697962d7edb02"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/raised-brake-cabin-steps-and-buffers.png",
+          "hash": "sha256:8824d691b3143da4a0211f626b4d97bce37073c11aec5f996651e3d3c0e4e051"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/truncated-track-and-open-cantilever.png",
+          "hash": "sha256:c140d49b00d05b764db12c58e175b664d40a853875b5b4dd8db1ffc1c7874c22"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/yad-cattlecar-skyline.png",
+          "hash": "sha256:7c990b97784b4619a16e4ace3749499c9b4eec252aba56c9b381d8a92b271019"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/yad-cattlecar-district.png",
+          "hash": "sha256:761ad29caace88fa8c780de2717b3bc297322989f7800d8a47453737762372c2"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/yad-cattlecar-street.png",
+          "hash": "sha256:fbf36d3e6c1b49facf91427c975f120297c6902dc5a88bc5cdc2e0f1ace06ad5"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/yad-cattlecar-closeup.png",
+          "hash": "sha256:52838c9f10e2acac8ca8a82c2c0f72b229bf8f933657131b02fb059b1402cb2c"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/transition-skyline.png",
+          "hash": "sha256:2cf9436a06d61a0f8fe4e62f817bc263004eed92221dd9246d4f5950c9c25dec"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/transition-district.png",
+          "hash": "sha256:b72fc5f1a665dd78252e67031756720f534d1c0ef36b6f9453eef15cc7e500d3"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/transition-street.png",
+          "hash": "sha256:9e356cb3636148f0a931acfdd6d07876ad2b194f8f722a52eaaf7c880366d0ba"
+        },
+        {
+          "path": "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/medium-fi/transition-closeup.png",
+          "hash": "sha256:a282ccc764f1f5c943b795cbfe206b813fcd8eda613a5a460961dea022ae54e0"
+        },
+        {
+          "path": ".artifacts/yad-cattlecar-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:05153b397cb0d763cc392a0c6fee555e89e88fcbca87cfb6165cbb63732a8485"
+        },
+        {
+          "path": ".artifacts/yad-cattlecar-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:9cba53b41bbd58d2c50ab9c9d57143232b698bf673f4d1fdb653979482652341"
+        },
+        {
+          "path": ".artifacts/yad-cattlecar-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:7095c7e6ef5805e6c4ea9b308c9292137be5ea5c2dd9438d242be426c79535cb"
+        },
+        {
+          "path": ".artifacts/yad-cattlecar-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:fc2448dd02f42253a5886cf6329079a6239853ba77fbb29cee1d7c8221f245f4"
+        },
+        {
+          "path": ".artifacts/yad-cattlecar-integration/shots/final-closeup-wagon-door-vents-and-wheels.png",
+          "hash": "sha256:5f76bb31ad15fecf3f948e8116345418bdba4103013e120b85af82d5f12a074a"
+        },
+        {
+          "path": ".artifacts/yad-cattlecar-integration/shots/final-closeup-raised-brake-cabin-steps-and-buffers.png",
+          "hash": "sha256:21ddc4525d8dc2ad5132834e2624c0ad387f6baa1f16ce36456904eec554fdb8"
+        },
+        {
+          "path": ".artifacts/yad-cattlecar-integration/shots/final-closeup-truncated-track-and-open-cantilever.png",
+          "hash": "sha256:52bf62440bdbffab379d765c26569dbe8afb1b1c211897c2fe3658fed4e2fd7e"
+        },
+        {
+          "path": ".artifacts/yad-cattlecar-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:e37ecca547b75afe1c758cfbbd97626ff0464bf8e33938021cd7503250cf34f4"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:f1be91abc12f23d8b5c6eaa7cf998373d16283191cfbd1b4cd45c3c1debdb194",
+      "sourceHash": "sha256:1fd0d261f1d357ce949b6e965da02038466a9a39f72a26014a28930803d28387",
+      "runtimeHash": "sha256:4714753ccf964636dd0e11e994f56f6c424fe80bb32f20f0e7de01103580b426",
+      "files": {
+        "content/worldgen/source/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/models/source.glb": "sha256:1fd0d261f1d357ce949b6e965da02038466a9a39f72a26014a28930803d28387",
+        "content/worldgen/assets/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/model.glb": "sha256:4714753ccf964636dd0e11e994f56f6c424fe80bb32f20f0e7de01103580b426",
+        "content/worldgen/assets/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/model.skyline.glb": "sha256:19933a2d5bf63d91621a769de4e290609523dfa97b818cc2932f4600073ced18",
+        "content/worldgen/assets/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/model.district.glb": "sha256:ca52053e48086783db48e0d0d23929a415fcaaca6e69119a5176984f59141b94",
+        "content/worldgen/assets/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/model.street.glb": "sha256:77a49b079427d954b2c0bf11c5dda862f6605fce0703550eb9dac0d6ad88c735",
+        "content/worldgen/assets/places/sv/sv9/cattle_car_memorial_to_the_deportees_yad_vashem/model.closeup.glb": "sha256:be3fdd29fde8b55bdc146b736449c8fb7dcea67adc719aead4840dbafb239050"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [],
+      "mapLevels": [
+        {
+          "level": 15,
+          "tile": [
+            19585,
+            13331
+          ],
+          "id": 17597663135621,
+          "mapNode": 5477091205,
+          "name": "The Cattle Car - Memorial to the Deportees",
+          "offsetMeters": [
+            0,
+            0
+          ],
+          "identityPassed": true,
+          "buildingReplacement": false
+        }
+      ],
+      "roadReplacementAudit": {
+        "inputHash": "sha256:f1be91abc12f23d8b5c6eaa7cf998373d16283191cfbd1b4cd45c3c1debdb194",
+        "sourceFeatures": 803,
+        "retainedIndependent": 801,
+        "replacedRailIds": [
+          35185807892490,
+          35185807892491
+        ],
+        "sourceInputUnchanged": true,
+        "unrelatedRoadsAndPathsUnchanged": true,
+        "failedLoadKeepsOriginals": true,
+        "groundCutout": false
+      },
+      "residentIndependent": 153,
+      "widerIndependent": 257,
+      "originalGridRetained": true,
+      "groundCutout": false
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 153,
+          "independentBuildings": 153,
+          "remainingBuildings": 153,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.cattle_car_memorial_to_the_deportees_yad_vashem"
+          ],
+          "rawTerrainRange": {
+            "min": -186.15555110812727,
+            "max": 41.52104889187274
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:05153b397cb0d763cc392a0c6fee555e89e88fcbca87cfb6165cbb63732a8485",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 387259
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -15.648589819220359,
+                20.020151626910412,
+                43.6018535921329
+              ],
+              "lookAt": [
+                11.880492077587752,
+                -0.9798483730895896,
+                -1.8795752628588573
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 153,
+          "independentBuildings": 153,
+          "remainingBuildings": 153,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.wood_weatherboard": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.cattle_car_memorial_to_the_deportees_yad_vashem"
+          ],
+          "rawTerrainRange": {
+            "min": -186.15555110812727,
+            "max": 41.52104889187274
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:9cba53b41bbd58d2c50ab9c9d57143232b698bf673f4d1fdb653979482652341",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 17,
+              "triangles": 389169
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -15.648589819220359,
+                20.020151626910412,
+                43.6018535921329
+              ],
+              "lookAt": [
+                11.880492077587752,
+                -0.9798483730895896,
+                -1.8795752628588573
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 153,
+          "independentBuildings": 153,
+          "remainingBuildings": 153,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.wood_weatherboard": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.cattle_car_memorial_to_the_deportees_yad_vashem"
+          ],
+          "rawTerrainRange": {
+            "min": -186.15555110812727,
+            "max": 41.52104889187274
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:7095c7e6ef5805e6c4ea9b308c9292137be5ea5c2dd9438d242be426c79535cb",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 17,
+              "triangles": 392345
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -15.648589819220359,
+                20.020151626910412,
+                43.6018535921329
+              ],
+              "lookAt": [
+                11.880492077587752,
+                -0.9798483730895896,
+                -1.8795752628588573
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 153,
+          "independentBuildings": 153,
+          "remainingBuildings": 153,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.wood_weatherboard": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.cattle_car_memorial_to_the_deportees_yad_vashem"
+          ],
+          "rawTerrainRange": {
+            "min": -186.15555110812727,
+            "max": 41.52104889187274
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:fc2448dd02f42253a5886cf6329079a6239853ba77fbb29cee1d7c8221f245f4",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 17,
+              "triangles": 393113
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -15.648589819220359,
+                20.020151626910412,
+                43.6018535921329
+              ],
+              "lookAt": [
+                11.880492077587752,
+                -0.9798483730895896,
+                -1.8795752628588573
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-wagon-door-vents-and-wheels.png",
+            "hash": "sha256:5f76bb31ad15fecf3f948e8116345418bdba4103013e120b85af82d5f12a074a",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 17,
+              "triangles": 393113
+            },
+            "camera": {
+              "name": "wagon-door-vents-and-wheels",
+              "position": [
+                -8.34295171205889,
+                5.52015162691041,
+                17.303038944944138
+              ],
+              "lookAt": [
+                0.18419924120177694,
+                2.0201516269104105,
+                0.803097636602811
+              ],
+              "fov": 46
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-raised-brake-cabin-steps-and-buffers.png",
+            "hash": "sha256:21ddc4525d8dc2ad5132834e2624c0ad387f6baa1f16ce36456904eec554fdb8",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 385367
+            },
+            "camera": {
+              "name": "raised-brake-cabin-steps-and-buffers",
+              "position": [
+                16.40881464512358,
+                4.62015162691041,
+                4.444187433263565
+              ],
+              "lookAt": [
+                4.2779017339368695,
+                2.4201516269104104,
+                -0.13583787820877302
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-truncated-track-and-open-cantilever.png",
+            "hash": "sha256:52bf62440bdbffab379d765c26569dbe8afb1b1c211897c2fe3658fed4e2fd7e",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 17,
+              "triangles": 393113
+            },
+            "camera": {
+              "name": "truncated-track-and-open-cantilever",
+              "position": [
+                -11.490580996110523,
+                -1.4798483730895895,
+                16.999016100110723
+              ],
+              "lookAt": [
+                5.057654589695934,
+                -1.9798483730895895,
+                -0.31468273817288417
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtPortico": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 153,
+          "independentBuildings": 153,
+          "remainingBuildings": 153,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.cattle_car_memorial_to_the_deportees_yad_vashem"
+          ],
+          "rawTerrainRange": {
+            "min": -186.15555110812727,
+            "max": 41.52104889187274
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:e37ecca547b75afe1c758cfbbd97626ff0464bf8e33938021cd7503250cf34f4",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 386611
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -15.648589819220359,
+                20.020151626910412,
+                43.6018535921329
+              ],
+              "lookAt": [
+                11.880492077587752,
+                -0.9798483730895896,
+                -1.8795752628588573
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Cattle Car Memorial to the Deportees, Yad Vashem: independent red-brown two-axle wooden wagon on the mapped truncated railway, with shallow barrel roof, closed sliding doors, recessed upper side vents, metal ribs/chassis, buffers/coupler and the distinctive raised end brake cabin with three inset windows, side access steps and handrails. A tapered steel cantilever truss, cross bracing, ties and rails continue toward the higher land end. No copied lettering, car interior, visitors, forest, plaques or independent campus structures.",
+    "Shared campus Q156591 plus distinct named node5477091205/native17597663135621. Mapped disused rail ways1435803658/1435803659 (native35185807892490/491) fix the east-northeast long axis and real rail endpoints; the western end terminates by the wagon. The side and brake-cabin photographs fix the wagon/cantilever relationship and land-facing brake cabin at+X. Node is an approximate wagon location; rail center is offset0.8239509538657814m in internal+Z. Photo GPS can be displaced (the Gary Todd metadata points elsewhere on campus); named PMTiles node/rail geometry controls placement, not that GPS.",
+    "Map supplies a point and two rail segments, no wagon/truss heights. Body8.6m long/2.68m wide, floor1.14m above rail, barrel crest3.96m above rail, raised brake cabin4.65m, two axles/four wheels of0.43m radius and working1.435m gauge are picture-led visualization estimates. Truss depth tapers0.65..7.2m over the mapped45m approach. Exact wagon class, dimensions, axle spacing, truss/panel/step/rivet inventory, hidden underside, cabin interior and memorial inscriptions are unverified. Existing painted metal approximates weathered/rusted steel; no private patina texture.",
+    "Use original Protomaps20261020/Mapzen201x201/6m hill. Uncovered higher-land control internal[44.45803999180143,4.323950953865781] has datum797.6488511081272m; rail head is0.35m above original sampled grade at the mapped land end (modelY0.020151626910410392). Keep original ground under the elevated wagon/track and let the reconstructed truss root enter the retained bank; no ground/building cutout and no owned building. No raised terrain, invented pier or precinct flattening. Standard hill does not supply the exact excavated bank/cliff or track bed; inspect exposed truss, land attachment and approach before activation. Use the existing replaceRoads outline over the two authored disused rail ways, including their shared connected approach. After successful model loading only, suppress the covered bridge/rail visual; failed loading keeps it. Preserve original input data and every unrelated road/path. No terrain cutout or height modification. Corrected native whole/side/cabin/under-truss views inspected during this authoring pass. Approximate exterior fit accepted: the truncated western end stays elevated, open trusses enter the retained bank toward higher land, and the far rail end meets native grade at the working0.35m lift. Existing replaceRoads removes the duplicate procedural bridge/connected rail approach only after load. Original terrain, unrelated roads/paths and buildings remain intact. The coarse hill partly buries the deeper landward truss; exact historical cliff, bank excavation, pedestrian clearance and track-bed engineering are unverified.",
+    "Completed as a medium-fi mapped exterior visualization. Point and rail segments supply no vertical dimensions. Body8.6x2.68m, working1.435m gauge,0.43m wheel radius, barrel crest3.96m/brake cabin4.67m above rail and0.65..7.2m tapered truss depth are picture-led estimates. Exact wagon class, sections, panel/step/gusset inventory, original rust, hidden underside/cabin and foundation are unverified. Fine rivets/inscriptions omitted; no invented writing. Coarse original hill partly buries landward members. Every other campus building remains independent; four earlier fit drafts and North reference gap remain pending.",
+    "Approximate native exterior fit accepted. Shared campus Q156591 plus independent named node5477091205/native17597663135621; disused rail ways1435803658/1435803659 fix the east-northeast axis and endpoints. Wagon occupies the western truncated end; brake cabin faces higher land. Photo GPS elsewhere on campus is not used. One actual level15 POI case; no matching13/14 point. Existing replaceRoads removes only the two authored bridge/connected-rail records after successful loading. All801 other transportation records and all153 resident/257 wider buildings remain unchanged; failure retains original rails/bridge. Original201x201/6m hill/roads input and zero-water-area input retained, no terrain cutout or modification. Far rail head sits0.35m above sampled land-end grade; the deeper truss enters the retained bank. All LOD/failure/unload/ground-water restoration and material-sharing checks pass. Exact cliff/bank excavation, track-bed engineering, path clearance and accessibility remain unverified."
+  ]
+}

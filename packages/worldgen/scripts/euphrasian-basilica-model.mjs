@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u21/n0341_euphrasian_basilica/',
+  '../../../content/worldgen/source/places/u2/u21/euphrasian_basilica/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -881,7 +881,7 @@ export const buildEuphrasianSkyline = (o) => build(o, 0),
   buildEuphrasianStreet = (o) => build(o, 2),
   buildEuphrasianCloseup = (o) => build(o, 3);
 export const euphrasianStudy = {
-  id: 'N0341',
+  id: 'euphrasian_basilica',
   key: 'euphrasian_basilica',
   title: 'Euphrasian Basilica',
   category: 'cathedral',

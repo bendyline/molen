@@ -1,0 +1,704 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.imperial_council_hall_topkapi_palace",
+  "reviewedOn": "2026-10-21",
+  "inputHash": "sha256:58f0bce402de4a05f12950a109b87543f1c936a960fdbf4756b928237b946fc0",
+  "sourceHash": "sha256:2225c439d3cdabe44790b10d7abe72d7a361f9ea71719515fac54a4878a232ad",
+  "runtimeHash": "sha256:2c3d1cce002ff939daa4ef152b4488b43f327c9e5eabad5f1c2eca8d8562d383",
+  "captureReportHash": "sha256:d7f7f92016e9434acae12a0960dd1daebacf0046f4e1e2722b6435d6cd490a79",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/courtyard-portico-and-recessed-screen-front.png",
+      "shots/open-door-shared-rosette-screen-and-capitals.png",
+      "shots/lead-domed-bays-and-independent-neighbour-boundaries.png"
+    ],
+    "notes": "Inspected all48 final source/shared/medium-fi/native views in one continuous author/build/inspect/fix pass. Cream Council Hall, closed lead-domed working bays, broad hipped canopy and attached L-shaped open portico, pale mottled columns/stepped capitals/gold collars, real door openings into enclosed halls, raised room floors/three steps, pointed shared window screens and neutral original framed panels. The first native view exposed a separate procedural portico roof hiding the facade; included that actual attached map feature and rebuilt the mapped footprint and support/arch layout. Kept the independent Treasury, Tower of Justice and Harem unchanged. Refined the screen metric UV repeat4x and darkened backing tint to replace oversized bright motifs while reusing the same shared graph. No copied inscriptions, ceiling paintings, exact lattice artwork, furnishings or visitors."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/courtyard-portico-and-recessed-screen-front.png",
+      "shots/shared/open-door-shared-rosette-screen-and-capitals.png",
+      "shots/shared/lead-domed-bays-and-independent-neighbour-boundaries.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Eight reused256px graphs: plaster_lime, stone_marble, metal_standing_seam, wood_plain, metal_bronze_cast, stone_granite, window_grid and metal_rosette_screen. Ten surface roles merge into eight textured draws/one skyline draw. The existing rosette graph uses explicit metric UV quads at4x frequency; no unique image or new graph is needed. Each requested graph read once. No private atlas/embedded images. Separate POSITION/NORMAL streams and equal CPU/GPU accounting. Opaque shared glazing approximates dark interior backing behind the screen.",
+    "captureReportHash": "sha256:d8d7f1aea2995f39f639ef0a55f411200be120a793e4ad57049b4cb07b6aa019"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/courtyard-portico-and-recessed-screen-front.png",
+      "medium-fi/open-door-shared-rosette-screen-and-capitals.png",
+      "medium-fi/lead-domed-bays-and-independent-neighbour-boundaries.png",
+      "medium-fi/council-skyline.png",
+      "medium-fi/council-district.png",
+      "medium-fi/council-street.png",
+      "medium-fi/council-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored levels remain within1000/4000/16000/64000triangle ceilings; exact metrics are in the level table. Initial skyline plus district404368bytes. Skyline retains the hall, domed bays, genuine entry openings, attached courtyard/southwest portico floor, columns and open arcade with coarser profiles/bay spacing. District restores support inventory and shared screens; street adds capitals/collars, tie rods and roof ribs; closeup refines arches, domes and original frame/crown detail. Physical ordinary-laptop/phone/tablet/dense-city timings remain pending.",
+    "captureReportHash": "sha256:b60cca3cd35bdd725d32b3a5ca8fd24c62cc863af5dc46e192ac8a9c31495c83"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:0093c8d70d34967d53a62189a8e40ec9fb2cf0ebd7c58f635c80b18f92658f94",
+    "mapFrameHash": "sha256:f7b13e37d5e584db2f5045e34296e70f5f2b4b188690829043f14ced2c9bbfc4",
+    "notes": "Individual named OSM way103907772/native35184475996604, within Topkapi Palace site Q170495. The approximately26.7x11.6m four-corner hall/portico outline fixes dimensions and location. Site QID is retained with the exact mapped member; no unverified independent QID is invented. Native+X east/+Z south at heading0. Internal+X follows the long facade north-northeast; internal+Z faces the Second Courtyard east-southeast. The Outer Treasury and Tower of Justice have independent map identities and are excluded. The attached layer1 L-shaped portico is separately mapped as way335402671/native35184707491503. It wraps the Council Hall on its courtyard and southwest sides, corresponds to the photographed open portico, and belongs to this physical member. It is included in the source and replacement mask; adjacent Tower of Justice and Treasury remain independent. Original standard Protomaps20261020/Mapzen PMTiles retained. Existing front courtyard control internal[0,10] supplies Y0 independently of building-roof samples. Occupied portico remains level; hall floor is0.3m higher and foundations reach the existing perimeter minimum. The hall-and-attached-portico terrain opening is sealed by the occupied floor; independent buildings, courtyard, roads and native water are unchanged. No broad courtyard slab or terrain flattening. Native overall/front ground contact and signed facing were inspected2026-10-21 and accepted after including the separately mapped attached L-shaped portico. The independent Tower of Justice and Outer Treasury remain unchanged. Exact levels, thresholds and host terrain accuracy remain approximate. Only Council Hall way103907772/native35184475996604 and its attached layer1 L-shaped portico way335402671/native35184707491503 replaced. All257 independent resident records of259 and571 wider independent records of573 retained, including Outer Treasury and Tower of Justice. Ten actual overlapping PMTiles13/14/15 cases pass. Original161x161/6m samples, paths and3400906.0006393427square metres native water unchanged. Occupied hall-and-portico paving seals the corresponding bounded ground opening. Failure keeps259 originals; four LOD unloads restore terrain/water/zero model geometry. Native approximate exterior contact and signed facing toward the courtyard accepted. The initial obstruction was the attached Council portico itself, not an independent neighbour; its owned map feature is now included. Hall and covered paving stay level at the original front-path datum, with foundations reaching the original perimeter low. Exact thresholds, bearing within10degrees, historical levels and host terrain accuracy are approximate. Flat shared stages judge materials, not native placement."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Three ordinary exterior views actually inspected: courtyard context2023, close portico/screen2013 and southwest entrance/return2006. Standard PMTiles fixes the primary four-corner hall plus its attached L-shaped roof, independent neighbours and signed facing. Working picture-led portico shaft3.8m/capital to4.22m; pointed arcade crown5.25m and eaves5.65m; low lead roof crest6.4m, compact octagonal drums to7.15m, domes to10.2m and small finials10.95m. Raised hall floor0.3m above the occupied portico; three small entry steps. Front screen/opening width6.1m, lower door clear width2.16m and pointed crown2.65m. Heights, exact room/dome inventory, portico bays, inaccessible roof shape and fine decoration are explicit footprint/picture-led approximations, not surveyed architectural, historical-condition or access certification. Distinctive portico/screen/lead-domed hall massing is preserved; no exact decorative artwork is claimed. Trees obscure parts of the actual roof, so full dome/room inventory remains an explicit footprint-led three-bay reconstruction rather than a surveyed claim. Distinctive real portico and screen appearance guide recognition; original neutral motifs replace exact paintings and inscriptions. Topkapi Palace remains an18-member collection."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sx/sxk/imperial_council_hall_topkapi_palace/models/source.glb\",\"hash\":\"sha256:2225c439d3cdabe44790b10d7abe72d7a361f9ea71719515fac54a4878a232ad\",\"bytes\":1917360,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sx/sxk/imperial_council_hall_topkapi_palace/model.glb\",\"hash\":\"sha256:2c3d1cce002ff939daa4ef152b4488b43f327c9e5eabad5f1c2eca8d8562d383\",\"bytes\":1916636,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sx/sxk/imperial_council_hall_topkapi_palace/model.skyline.glb\",\"hash\":\"sha256:11be2219e7a5820644266e5c4d449f8d7fb795b47f5563ab6f1d6e84494eedb4\",\"bytes\":96264,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sx/sxk/imperial_council_hall_topkapi_palace/model.district.glb\",\"hash\":\"sha256:af39857ecce0b32aa5bce66e886b5c0452311a7b833209f82c0972aa96cc4f52\",\"bytes\":308104,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sx/sxk/imperial_council_hall_topkapi_palace/model.street.glb\",\"hash\":\"sha256:f390b42f5cb84ca1892a9b3643b7db8e0b4b7bf888b4b7eff91ae04c83f23a91\",\"bytes\":1015832,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sx/sxk/imperial_council_hall_topkapi_palace/model.closeup.glb\",\"hash\":\"sha256:12043d9fa11921d2772e769fca9f9d42dcfbec4b390a3f210ddfb797048e50f6\",\"bytes\":1591172,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "council-door-openings-enclosed-rooms-dome-caps-shared-screens-open-l-portico-and-occupied-floor",
+        "passed": true,
+        "notes": "239 actual mesh/contact probes across six GLBs. Real lower room entrances, enclosed rear wall, raised hall floors, closed dome caps/finials, recessed shared screens, courtyard and southwest-return shafts/open bays, occupied paving and complete terrain-opening seal. Independent Tower of Justice excluded."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:58f0bce402de4a05f12950a109b87543f1c936a960fdbf4756b928237b946fc0",
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "inputHash": "sha256:58f0bce402de4a05f12950a109b87543f1c936a960fdbf4756b928237b946fc0",
+      "ownerRemainder": 0,
+      "independentBuildingsUnchanged": 257,
+      "widerIndependentBuildingsUnchanged": 571,
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3070
+          ],
+          "id": 35184396894810,
+          "owned": false,
+          "covered": 0.00004563317631715279,
+          "area": 1516269.0837719175,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3071
+          ],
+          "id": 35184404484920,
+          "owned": false,
+          "covered": 0.0004724166148475015,
+          "area": 620059.4361485405,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            4755,
+            3071
+          ],
+          "id": 35184484263120,
+          "owned": false,
+          "covered": 0.45554518382849635,
+          "area": 888.9148670952991,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6142
+          ],
+          "id": 35184404484920,
+          "owned": false,
+          "covered": 0.0046889204756594555,
+          "area": 64902.51740062163,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9511,
+            6142
+          ],
+          "id": 35184707491500,
+          "owned": false,
+          "covered": 0.4823347174285979,
+          "area": 842.0123953944139,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184404484986,
+          "owned": false,
+          "covered": 0.0002557038579944818,
+          "area": 2296.0385276602688,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184475996604,
+          "owned": true,
+          "covered": 0.9999990782532088,
+          "area": 302.65729398702507,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184707491484,
+          "owned": false,
+          "covered": 4.0991569052845665e-7,
+          "area": 480.6462492167513,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184707491485,
+          "owned": false,
+          "covered": 0.000004292007162437984,
+          "area": 73.32304823015288,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19022,
+            12284
+          ],
+          "id": 35184707491503,
+          "owned": true,
+          "covered": 0.9999960615543693,
+          "area": 408.2646174150553,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "method": "Only Council Hall way103907772/native35184475996604 and its attached layer1 L-shaped portico way335402671/native35184707491503 replaced. All257 independent resident records of259 and571 wider independent records of573 retained, including Outer Treasury and Tower of Justice. Ten actual overlapping PMTiles13/14/15 cases pass. Original161x161/6m samples, paths and3400906.0006393427square metres native water unchanged. Occupied hall-and-portico paving seals the corresponding bounded ground opening. Failure keeps259 originals; four LOD unloads restore terrain/water/zero model geometry."
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 257,
+          "remainingBuildings": 257,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.imperial_council_hall_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -55.21131092238996,
+            "max": 1.0020890776100373
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:96eafbaba637801902df539e4606878478e1787db59922aba0aca1042a0254b3",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 11,
+              "triangles": 309782
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                66.73262370133241,
+                34,
+                -19.15089903728722
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 257,
+          "remainingBuildings": 257,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.imperial_council_hall_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -55.21131092238996,
+            "max": 1.0020890776100373
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:beec554ad112012e1635971437d0bb1bdb067cc0b47bf9776c37f115573bc1f4",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 311930
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                66.73262370133241,
+                34,
+                -19.15089903728722
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 257,
+          "remainingBuildings": 257,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.imperial_council_hall_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -55.21131092238996,
+            "max": 1.0020890776100373
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:58854c8d8d2f229ec9e7ff611f4ddadbdd945a6391839cca8692ad389aef3dec",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 319088
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                66.73262370133241,
+                34,
+                -19.15089903728722
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": false,
+          "failedLoad": false,
+          "sourceBuildings": 259,
+          "independentBuildings": 257,
+          "remainingBuildings": 257,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_bronze_cast": 1,
+            "molen.worldgen.material.metal_rosette_screen": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.imperial_council_hall_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -55.21131092238996,
+            "max": 1.0020890776100373
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:bca04476f722a4a2b71a50de47ce73bd51abb6e053d700f9026e65a564521852",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 324836
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                66.73262370133241,
+                34,
+                -19.15089903728722
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-courtyard-portico-and-recessed-screen-front.png",
+            "hash": "sha256:d420fd7774f1f5146ce916155b57fa81fd0c3452b172d4fe5c960db4ee16575a",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 326076
+            },
+            "camera": {
+              "name": "courtyard-portico-and-recessed-screen-front",
+              "position": [
+                37.99797653917603,
+                8,
+                22.542266499361332
+              ],
+              "lookAt": [
+                3.6951889974725236,
+                4,
+                6.1923806627950455
+              ],
+              "fov": 65
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-door-shared-rosette-screen-and-capitals.png",
+            "hash": "sha256:7019a95886cc5bb6bdaa4f2e91e2c30f339e041b299f39ba1f53c8e4f0526f96",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 326076
+            },
+            "camera": {
+              "name": "open-door-shared-rosette-screen-and-capitals",
+              "position": [
+                20.677844255843123,
+                5.5,
+                5.424643484238894
+              ],
+              "lookAt": [
+                4.964877144193928,
+                2.8,
+                2.366430844766173
+              ],
+              "fov": 58
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-lead-domed-bays-and-independent-neighbour-boundaries.png",
+            "hash": "sha256:7969813a88e027621b598d3e0c6d57e65fac96648c2b1ff51cf5b8601d485488",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 323926
+            },
+            "camera": {
+              "name": "lead-domed-bays-and-independent-neighbour-boundaries",
+              "position": [
+                -11.338674761139298,
+                33,
+                -31.991162133644078
+              ],
+              "lookAt": [
+                0,
+                6,
+                0
+              ],
+              "fov": 60
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 259,
+          "independentBuildings": 257,
+          "remainingBuildings": 259,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184475996604,
+              "area": 302.6566385042898
+            },
+            {
+              "id": 35184707491503,
+              "area": 408.2637332123184
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.imperial_council_hall_topkapi_palace"
+          ],
+          "rawTerrainRange": {
+            "min": -55.21131092238996,
+            "max": 1.0020890776100373
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 3400906.0006393427,
+          "remainingWaterArea": 3400906.0006393427,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:571b15ba19d32d91e22777720598708900e84d89e2c5c590f22155a1b78468fb",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 308686
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                66.73262370133241,
+                34,
+                -19.15089903728722
+              ],
+              "lookAt": [
+                0,
+                7,
+                0
+              ],
+              "fov": 42
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Imperial Council Hall (Kubbealti) with attached L-shaped portico, named OSM way103907772 and roof way335402671, fourth authored member of18 Topkapi Palace structures. Low cream hall, broad hipped lead portico cap, working courtyard and southwest-return pointed arcades, pale marble shafts with stepped capitals/gold collars, recessed large pointed gold-toned window screens and lower open arched doors into enclosed halls. Three compact domed bays are an explicit footprint-led roof reconstruction; exact inaccessible dome/room inventory and profiles remain approximate. Shared neutral rosette screening replaces bespoke lattice artwork. Tower of Justice, adjacent Outer Treasury, Harem and other independent buildings remain host context. No copied painted ceiling scenes, inscriptions/tughra, furniture or visitors.",
+    "Individual named OSM way103907772/native35184475996604, within Topkapi Palace site Q170495. The approximately26.7x11.6m four-corner hall/portico outline fixes dimensions and location. Site QID is retained with the exact mapped member; no unverified independent QID is invented. Native+X east/+Z south at heading0. Internal+X follows the long facade north-northeast; internal+Z faces the Second Courtyard east-southeast. The Outer Treasury and Tower of Justice have independent map identities and are excluded. The attached layer1 L-shaped portico is separately mapped as way335402671/native35184707491503. It wraps the Council Hall on its courtyard and southwest sides, corresponds to the photographed open portico, and belongs to this physical member. It is included in the source and replacement mask; adjacent Tower of Justice and Treasury remain independent.",
+    "Working picture-led portico shaft3.8m/capital to4.22m; pointed arcade crown5.25m and eaves5.65m; low lead roof crest6.4m, compact octagonal drums to7.15m, domes to10.2m and small finials10.95m. Raised hall floor0.3m above the occupied portico; three small entry steps. Front screen/opening width6.1m, lower door clear width2.16m and pointed crown2.65m. Heights, exact room/dome inventory, portico bays, inaccessible roof shape and fine decoration are explicit footprint/picture-led approximations, not surveyed architectural, historical-condition or access certification. Distinctive portico/screen/lead-domed hall massing is preserved; no exact decorative artwork is claimed.",
+    "Original standard Protomaps20261020/Mapzen PMTiles retained. Existing front courtyard control internal[0,10] supplies Y0 independently of building-roof samples. Occupied portico remains level; hall floor is0.3m higher and foundations reach the existing perimeter minimum. The hall-and-attached-portico terrain opening is sealed by the occupied floor; independent buildings, courtyard, roads and native water are unchanged. No broad courtyard slab or terrain flattening. Native overall/front ground contact and signed facing were inspected2026-10-21 and accepted after including the separately mapped attached L-shaped portico. The independent Tower of Justice and Outer Treasury remain unchanged. Exact levels, thresholds and host terrain accuracy remain approximate."
+  ]
+}

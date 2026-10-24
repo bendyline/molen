@@ -2,7 +2,7 @@
 import './install-deterministic-math.mjs';
 import earcut from 'earcut';
 
-export const karnakPtahTaharqaCandidateId = 'N0489';
+export const karnakPtahTaharqaCandidateId = 'karnak_temple_complex';
 
 function localFace(f, data) {
   const { origin, u, v } = data;

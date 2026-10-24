@@ -1,6 +1,6 @@
-/** Primary evidence for N0004; the exterior model records photo-scaled dimensions separately. */
+/** Primary evidence for stone_bridge_in_skopje; the exterior model records photo-scaled dimensions separately. */
 export const skopjeResearch = {
-  id: 'N0004',
+  id: 'stone_bridge_in_skopje',
   key: 'stone_bridge_in_skopje',
   wikidataId: 'Q1780883',
   title: 'Stone Bridge in Skopje',

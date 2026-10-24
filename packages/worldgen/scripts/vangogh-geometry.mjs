@@ -1,4 +1,4 @@
-/** 'N0754': mapped stepped museum, glazed stacks and elliptical exhibition/entry volumes. */
+/** 'van_gogh_museum': mapped stepped museum, glazed stacks and elliptical exhibition/entry volumes. */
 import './install-deterministic-math.mjs';
 import { prism } from './khmer-structure-geometry.mjs';
 

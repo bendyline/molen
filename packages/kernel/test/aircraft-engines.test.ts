@@ -38,14 +38,14 @@ const twin: AircraftSpec = {
       id: 'left',
       position: [2.5, 1, 1],
       power: engine.power / 2,
-      maxThrust: single.airplane.maxThrust / 2,
+      maxThrust: (engine.maxThrust ?? single.airplane.maxThrust) / 2,
     },
     {
       ...engine,
       id: 'right',
       position: [-2.5, 1, 1],
       power: engine.power / 2,
-      maxThrust: single.airplane.maxThrust / 2,
+      maxThrust: (engine.maxThrust ?? single.airplane.maxThrust) / 2,
     },
   ],
 };
@@ -163,6 +163,7 @@ describe('independent aircraft engines', () => {
         position: [x, 1, 1],
         power: engine.power / 4,
         maxThrust: 500,
+        propulsion: undefined, // Isolate the legacy static cap independently of altitude lapse.
         propellerEfficiency: 0.8,
         minPropellerSpeed: 30,
       })),

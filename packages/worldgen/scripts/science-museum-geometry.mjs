@@ -1,4 +1,4 @@
-/** 'N0768': Science Museum columned front, connected brick galleries and western modern wing. */
+/** 'science_museum': Science Museum columned front, connected brick galleries and western modern wing. */
 import './install-deterministic-math.mjs';
 import { createRequire } from 'node:module';
 import earcut from 'earcut';

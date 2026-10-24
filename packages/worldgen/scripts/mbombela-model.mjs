@@ -1,11 +1,11 @@
-/** N0722: Mbombela's orange mast-stayed canopy, zebra seating and green corner ramps. */
+/** mbombela_stadium: Mbombela's orange mast-stayed canopy, zebra seating and green corner ramps. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMbombelaStadium } from './mbombela-roof-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ke/kem/n0722_mbombela_stadium/',
+    '../../../content/worldgen/source/places/ke/kem/mbombela_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -74,7 +74,7 @@ export const buildMbombelaSkyline = (o) => build(o, 0),
   buildMbombelaStreet = (o) => build(o, 2),
   buildMbombelaCloseup = (o) => build(o, 3);
 export const mbombelaStudy = {
-  id: 'N0722',
+  id: 'mbombela_stadium',
   key: 'mbombela_stadium',
   title: 'Mbombela Stadium',
   category: 'stadium',

@@ -278,8 +278,8 @@ function buildRiga(out) {
 
 export const heritageTowers580More = [
   {
-    id: 'n0581_tughrul_tower',
-    planId: 'N0581',
+    id: 'tughrul_tower',
+    planId: 'tughrul_tower',
     title: 'Tughrul Tower',
     wikidata: 'Q3437688',
     build: buildTughrul,
@@ -331,8 +331,8 @@ export const heritageTowers580More = [
     ],
   },
   {
-    id: 'n0586_powder_tower',
-    planId: 'N0586',
+    id: 'powder_tower_riga',
+    planId: 'powder_tower_riga',
     title: 'Powder Tower, Riga',
     wikidata: 'Q186097',
     build: buildRiga,

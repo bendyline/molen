@@ -7423,14 +7423,14 @@
               "groundLevelRate": 2,
               "maxGroundPitch": 0.22,
               "camberAngle": 0.045,
-              "flapLift": 0.33,
+              "flapLift": 0.8,
               "postStallFlapEffect": 0.4,
               "stallAngle": 0.28,
               "stallTransitionAngle": 0.12,
               "pitchFrequency": 3.5,
               "pitchDamping": 0.7,
-              "maxLoadFactor": 3.8,
-              "minLoadFactor": -1.5,
+              "maxLoadFactor": 2.5,
+              "minLoadFactor": -1,
               "autoTrim": 1,
               "directionalStability": 4,
               "yawDamping": 1.2,
@@ -7440,10 +7440,10 @@
               "liftSlope": 4.8,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.028,
-              "inducedDrag": 0.06,
+              "profileDrag": 0.05365674351709247,
+              "inducedDrag": 0.03236171814332983,
               "gearDrag": 0.018,
-              "flapDrag": 0.035,
+              "flapDrag": 0.075,
               "gearTransitTime": 6,
               "flapTransitTime": 4,
               "stallDrag": 1.1,
@@ -7453,7 +7453,14 @@
               "lateralDamping": 0.35,
               "brakeDeceleration": 4,
               "rollingDeceleration": 0.22,
-              "groundTrackRate": 12
+              "groundTrackRate": 12,
+              "groundEffect": true,
+              "criticalMach": 0.62,
+              "waveDrag": 0.22,
+              "maxMach": 0.72,
+              "maxEquivalentAirspeed": 169.76666666666668,
+              "gearLimitSpeed": 91.95694444444445,
+              "flapLimitSpeed": 84.88333333333334
             },
             "engines": [
               {
@@ -7468,13 +7475,16 @@
                   0,
                   1
                 ],
-                "power": 2001176.4705882354,
+                "power": 2051000,
                 "idleRpm": 0.18,
                 "spoolRate": 0.25,
                 "rotorAngularSpeed": 180,
-                "maxThrust": 37800,
+                "maxThrust": 43583.75,
                 "minPropellerSpeed": 25,
-                "propellerEfficiency": 0.85
+                "propellerEfficiency": 0.85,
+                "propulsion": "propeller",
+                "densityExponent": 1,
+                "ratedDensityRatio": 0.55
               },
               {
                 "id": "engine-2",
@@ -7488,13 +7498,16 @@
                   0,
                   1
                 ],
-                "power": 2001176.4705882354,
+                "power": 2051000,
                 "idleRpm": 0.18,
                 "spoolRate": 0.25,
                 "rotorAngularSpeed": 180,
-                "maxThrust": 37800,
+                "maxThrust": 43583.75,
                 "minPropellerSpeed": 25,
-                "propellerEfficiency": 0.85
+                "propellerEfficiency": 0.85,
+                "propulsion": "propeller",
+                "densityExponent": 1,
+                "ratedDensityRatio": 0.55
               }
             ]
           }

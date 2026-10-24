@@ -1,4 +1,4 @@
-/** 'N0741_THEATRE': Giant-order river facade, courtyard and rounded canal-side roof corner. */
+/** 'hermitage_theatre': Giant-order river facade, courtyard and rounded canal-side roof corner. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

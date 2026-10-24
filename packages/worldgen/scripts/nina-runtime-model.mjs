@@ -4,7 +4,7 @@ import { beam, normalFor } from './authored-structure-mesh.mjs';
 import { box, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(readFileSync(structureSourcePath('n0230_nina_tower', 'map-frame.json')));
+const frame = JSON.parse(readFileSync(structureSourcePath('nina_tower', 'map-frame.json')));
 const rings = frame.orientationControl.nativeRings;
 const silver = [0.68, 0.71, 0.7],
   blue = [0.29, 0.43, 0.49],

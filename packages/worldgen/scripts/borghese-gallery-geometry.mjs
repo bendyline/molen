@@ -1,4 +1,4 @@
-/** 'N0769': Galleria Borghese villa, open arcade, terrace, tiled wings and rear towers. */
+/** 'galleria_borghese': Galleria Borghese villa, open arcade, terrace, tiled wings and rear towers. */
 import './install-deterministic-math.mjs';
 import { createRequire } from 'node:module';
 import earcut from 'earcut';

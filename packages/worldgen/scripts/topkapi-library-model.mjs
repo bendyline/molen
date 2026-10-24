@@ -1,11 +1,11 @@
-/** 'N0742_LIBRARY': Cross-plan marble library, raised pointed portico and lead domes. */
+/** 'library_of_ahmed_iii_topkapi_palace': Cross-plan marble library, raised pointed portico and lead domes. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiLibrary } from './topkapi-library-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_library/',
+    '../../../content/worldgen/source/places/sx/sxk/library_of_ahmed_iii_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -99,7 +99,7 @@ export const buildTopkapiLibrarySkyline = (o) => build(o, 0),
   buildTopkapiLibraryStreet = (o) => build(o, 2),
   buildTopkapiLibraryCloseup = (o) => build(o, 3);
 export const topkapiLibraryStudy = {
-  id: 'N0742_LIBRARY',
+  id: 'library_of_ahmed_iii_topkapi_palace',
   key: 'library',
   title: 'Library of Ahmed III, Topkapi Palace',
   category: 'castle',

@@ -503,7 +503,7 @@ export function buildEclaireurs(out) {
 
 export const lighthouseAtlanticStudies = [
   lighthouseStudy({
-    id: 'N0655',
+    id: 'chipiona_lighthouse',
     key: 'chipiona_lighthouse',
     title: 'Chipiona Lighthouse',
     wikidataId: 'Q1190267',
@@ -549,7 +549,7 @@ export const lighthouseAtlanticStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0656',
+    id: 'shabla_lighthouse',
     key: 'shabla_lighthouse',
     title: 'Shabla Lighthouse',
     wikidataId: 'Q21014964',
@@ -588,7 +588,7 @@ export const lighthouseAtlanticStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0657',
+    id: 'les_eclaireurs_lighthouse',
     key: 'les_eclaireurs_lighthouse',
     title: 'Les Éclaireurs Lighthouse',
     wikidataId: 'Q3378140',

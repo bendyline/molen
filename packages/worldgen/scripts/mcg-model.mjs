@@ -1,11 +1,11 @@
-/** N0724: Melbourne Cricket Ground, four tiers, two roof systems and six light towers. */
+/** melbourne_cricket_ground: Melbourne Cricket Ground, four tiers, two roof systems and six light towers. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMcgStadium } from './mcg-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/r1/r1r/n0724_melbourne_cricket_ground/',
+    '../../../content/worldgen/source/places/r1/r1r/melbourne_cricket_ground/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -74,7 +74,7 @@ export const buildMcgSkyline = (o) => build(o, 0),
   buildMcgStreet = (o) => build(o, 2),
   buildMcgCloseup = (o) => build(o, 3);
 export const mcgStudy = {
-  id: 'N0724',
+  id: 'melbourne_cricket_ground',
   key: 'melbourne_cricket_ground',
   title: 'Melbourne Cricket Ground',
   category: 'stadium',

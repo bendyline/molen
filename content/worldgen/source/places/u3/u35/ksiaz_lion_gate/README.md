@@ -4,7 +4,7 @@
 
 Tall square sandstone piers with broad cornices, seated lions holding shields, rising curved wing walls and open iron leaves; clear sky above the passage.
 
-Independent component of [Książ Castle and park complex](../n0291_ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
 
 ## Sources and reconstruction
 

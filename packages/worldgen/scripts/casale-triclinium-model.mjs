@@ -1,4 +1,4 @@
-/** 'N0765_TRICLINIUM': Triapsidal Triclinium conservation shelter, Villa Romana del Casale. */
+/** 'casale_triclinium': Triapsidal Triclinium conservation shelter, Villa Romana del Casale. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
@@ -6,7 +6,7 @@ import { buildCasaleTriclinium } from './casale-triclinium-geometry.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sq/sqd/n0765_casale_triclinium/',
+    '../../../content/worldgen/source/places/sq/sqd/casale_triclinium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -103,7 +103,7 @@ export const buildCasaleTricliniumSkyline = (o) => build(o, 0),
   buildCasaleTricliniumStreet = (o) => build(o, 2),
   buildCasaleTricliniumCloseup = (o) => build(o, 3);
 export const casaleTricliniumStudy = {
-  id: 'N0765_TRICLINIUM',
+  id: 'casale_triclinium',
   key: 'casale_triclinium',
   title: 'Triapsidal Triclinium conservation shelter, Villa Romana del Casale',
   category: 'museum',

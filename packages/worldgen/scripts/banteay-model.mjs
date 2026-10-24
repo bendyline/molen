@@ -1,11 +1,11 @@
-/** N0510: reproducible surviving Banteay Srei architecture. */
+/** banteay_srei: reproducible surviving Banteay Srei architecture. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBanteayTemple } from './banteay-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/w6/w63/n0510_banteay_srei/',
+    '../../../content/worldgen/source/places/w6/w63/banteay_srei/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -81,7 +81,7 @@ export const buildBanteaySkyline = (o) => build(o, 0),
   buildBanteayStreet = (o) => build(o, 2),
   buildBanteayCloseup = (o) => build(o, 3);
 export const banteayStudy = {
-  id: 'N0510',
+  id: 'banteay_srei',
   key: 'banteay_srei',
   title: 'Banteay Srei',
   category: 'temple',

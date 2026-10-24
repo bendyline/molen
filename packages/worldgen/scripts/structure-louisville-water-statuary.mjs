@@ -14,6 +14,7 @@ import {
   quatMul,
   quatRotateVec3,
 } from '../../kernel/dist/determinism.mjs';
+import { simplifyStaticSculpture } from '../../tooling/scripts/static-sculpture-lod.mjs';
 import { loft, normalFor, normalize, radialRing, sphere } from './authored-structure-mesh.mjs';
 import { rgb } from './landmark-model-helpers.mjs';
 import { box, tube } from './structure-mesh.mjs';
@@ -179,8 +180,10 @@ function anatomy(kind, d) {
       [ids[1], ids[2]] = [ids[2], ids[1]];
     triangles.push(ids.map((j) => vertices[j]));
   }
-  cache.set(key, triangles);
-  return triangles;
+  // Ten statues share the street budget with the colonnade and pump building.
+  const result = d === 2 ? simplifyStaticSculpture(triangles, 300, 0.08) : triangles;
+  cache.set(key, result);
+  return result;
 }
 function robe(o, kind, d) {
   const n = d > 2 ? 24 : d > 1 ? 8 : 4,

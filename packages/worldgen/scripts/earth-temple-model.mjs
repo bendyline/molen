@@ -1,11 +1,11 @@
-/** N0533: square Fangze altar, Lingxing gateways and mapped Huangqi hall court. */
+/** temple_of_earth: square Fangze altar, Lingxing gateways and mapped Huangqi hall court. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildEarthTempleCeremony } from './earth-temple-ceremony-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/wx/wx4/n0533_temple_of_earth/',
+    '../../../content/worldgen/source/places/wx/wx4/temple_of_earth/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -86,7 +86,7 @@ export const buildEarthTempleSkyline = (o) => build(o, 0),
   buildEarthTempleStreet = (o) => build(o, 2),
   buildEarthTempleCloseup = (o) => build(o, 3);
 export const earthTempleStudy = {
-  id: 'N0533',
+  id: 'temple_of_earth',
   key: 'temple_of_earth',
   title: 'Temple of Earth',
   category: 'temple',

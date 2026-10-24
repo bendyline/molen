@@ -1,11 +1,11 @@
-/** 'N0624': mapped Gregorian tower, stepped terraces and pedimented roof house. */
+/** 'gregorian_tower': mapped Gregorian tower, stepped terraces and pedimented roof house. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildGregorianMasonry } from './gregorian-masonry-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0624_gregorian_tower/',
+    '../../../content/worldgen/source/places/sr/sr2/gregorian_tower/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -88,7 +88,7 @@ export const buildGregorianSkyline = (o) => build(o, 0),
   buildGregorianStreet = (o) => build(o, 2),
   buildGregorianCloseup = (o) => build(o, 3);
 export const gregorianStudy = {
-  id: 'N0624',
+  id: 'gregorian_tower',
   key: 'gregorian_tower',
   title: 'Gregorian Tower',
   category: 'tower',

@@ -1,0 +1,186 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.harlech_castle",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:b995d11acd6c80caf30539eb21c808fc02e1018f123cd495fddfc32520a05c96",
+  "sourceHash": "sha256:87330f5cea9c40ae417765af0ee60336d9838e0865128dc45c39adffbac966c2",
+  "runtimeHash": "sha256:5afea0331bd679f6670ef4f95399ca9daf415e944932a7cc1163b9dde5cdeac8",
+  "captureReportHash": "sha256:7682de5b6ace9eea94f235dbe1a3ee0046d729fc60d6098ee9f7be7d58b78da3",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/gatehouse-and-bridge.png",
+      "shots/open-court-and-west-ruins.png",
+      "shots/hollow-corner-and-stair-turret.png",
+      "shots/gatehouse-window-voids.png",
+      "shots/concentric-curtain-and-crag.png",
+      "shots/mapped-plan-and-wells.png"
+    ],
+    "notes": "All11 current portable frames inspected: terrain overview,4 turntables and6 details. Four hollow corner towers, twin projecting gate drums, two rear stair turrets, roofless gate rooms, central passage, open grassy court, low western room ruins and lower concentric walls remain distinct. Early oversized wall foundations were separated from the crag; cliff normals and sparse grass/rock faces were corrected. Heights and ruin profiles are explicit picture-led approximations."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:bccfa594b0d000a4add1b46042f70d4bc53171a67c28b0faaf53a69ebd5b780b",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/gatehouse-and-bridge.png",
+      "shots/shared/open-court-and-west-ruins.png",
+      "shots/shared/hollow-corner-and-stair-turret.png",
+      "shots/shared/gatehouse-window-voids.png",
+      "shots/shared/concentric-curtain-and-crag.png",
+      "shots/shared/mapped-plan-and-wells.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All11 current geographic/shared frames inspected. Five existing256-square graphs provide rubble stone, granite, painted metal, wood and the entrance canopy panels with metricUVs and linear tints. Lawn is plain vertex color. Every graph is read once and unload leaves0 live model geometries. FlatY0 fixture clips negative crag footings; source-terrain medium-fi views provide the complementary ground review."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:5d92f2cbe5b58841882ec6196dcb1c42aed33ba47ac958c084444a59ef57ce2f",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/gatehouse-and-bridge.png",
+      "medium-fi/open-court-and-west-ruins.png",
+      "medium-fi/hollow-corner-and-stair-turret.png",
+      "medium-fi/gatehouse-window-voids.png",
+      "medium-fi/concentric-curtain-and-crag.png",
+      "medium-fi/mapped-plan-and-wells.png",
+      "medium-fi/whole-harlech-skyline.png",
+      "medium-fi/whole-harlech-district.png",
+      "medium-fi/whole-harlech-street.png",
+      "medium-fi/whole-harlech-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All27 current Earth-lighting frames inspected: Economy/High,noon/late,three distances,untextured skyline,6 details,4 matching views and4 transitions. Skyline retains hollow drums, gatehouse, rectangular court, lower curtain and curved bridge. District restores rear stair turrets and selected openings; street/closeup add wall/window rhythm, room remains, rough caps, stair treads and rails. All budgets pass. No whole-building loss at transitions; visible top-cap and railing changes are deliberate detail switches. Synthetic English terraces and the bounded terrain fixture are style context, not real neighbors."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:9851b874e896a2895f0527129a8affaa81ee32e2ed7b9afc742e88e78d0f13a8",
+    "mapFrameHash": "sha256:4ecd0067def5f949c1ec65c03a29f32de88060f106d2208d8a1a49d652c1ab1c",
+    "notes": "Current standard viewer castle Polygon with9 interior rings, actual bridge component and retained exact-QID way117407449 establish approximate identity,scale,anchor and facing. NativeX follows the castle-to-visitor bridge chord; architecture,cameras and terrain are transformed consistently. Actual road suppression removes all4 mapped approach segments while preserving unrelated path and a synthetic separate tunnel. NativeY0 is the retained DEM36.8763m sample. Picture-led courtyardY19 and nearly level bridge preserve pictured massing against coarse DEM. Crag height, terrain embedding and precise entrance/visitor joins remain approximate."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Individual Harlech exterior retains mapped six broad tower bulges and open wells, two rear stair turrets, roofless gatehouse with through-passage and genuine window voids, high inner curtain, open grassy courtyard, low domestic ruins, lower outer curtain and actual curved modern bridge. All current renders were inspected. Detailed deterministic master and four independent browser levels use shared materials. Height/thickness, ruin profile, crag/plateau and modern bridge/canopy engineering remain explicit approximations; no invented cone roofs or filled courtyard."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/gc/gcm/harlech_castle/models/source.glb\",\"hash\":\"sha256:87330f5cea9c40ae417765af0ee60336d9838e0865128dc45c39adffbac966c2\",\"bytes\":1861836,\"triangles\":15484,\"materials\":6,\"images\":0,\"min\":[-48.02812194824219,-14.514636993408203,-50.294334411621094],\"max\":[74.71501922607422,42.57856750488281,52.51494598388672],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/gc/gcm/harlech_castle/model.glb\",\"hash\":\"sha256:5afea0331bd679f6670ef4f95399ca9daf415e944932a7cc1163b9dde5cdeac8\",\"bytes\":1861256,\"triangles\":15484,\"materials\":6,\"images\":0,\"min\":[-48.02812194824219,-14.514636993408203,-50.294334411621094],\"max\":[74.71501922607422,42.57856750488281,52.51494598388672],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/gc/gcm/harlech_castle/model.skyline.glb\",\"hash\":\"sha256:e01dc54802e4da186d2d77b9fc93745ac10570bd83c335f269ecac52d992e7ff\",\"bytes\":87620,\"triangles\":864,\"materials\":1,\"images\":0,\"min\":[-48.02812194824219,-14.514636993408203,-50.294334411621094],\"max\":[74.63003540039062,42.099998474121094,52.51494598388672],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/gc/gcm/harlech_castle/model.district.glb\",\"hash\":\"sha256:e43c6ea6d333d4f004c2f5a0834e8ab2623a9cf1e9d80c6db69f03ec8eb1e218\",\"bytes\":155268,\"triangles\":1748,\"materials\":5,\"images\":0,\"min\":[-48.02812194824219,-14.514636993408203,-50.294334411621094],\"max\":[74.63480377197266,42.20000076293945,52.51494598388672],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/gc/gcm/harlech_castle/model.street.glb\",\"hash\":\"sha256:c94ef2b618de7b166739b0d96088733f69696c09bb32fbbe0ce13a682ea8a2b2\",\"bytes\":637316,\"triangles\":6712,\"materials\":6,\"images\":0,\"min\":[-48.02812194824219,-14.514636993408203,-50.294334411621094],\"max\":[74.71501922607422,42.56907272338867,52.51494598388672],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/gc/gcm/harlech_castle/model.closeup.glb\",\"hash\":\"sha256:8868a2cf0e71203354012443961b5aab0684edbda386b9ba604012c42270414a\",\"bytes\":1402364,\"triangles\":14912,\"materials\":6,\"images\":0,\"min\":[-48.02812194824219,-14.514636993408203,-50.294334411621094],\"max\":[74.71501922607422,42.57991409301758,52.51494598388672],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "hollow-main-tower-1",
+        "passed": true,
+        "notes": "{\"name\":\"hollow-main-tower-1\",\"start\":[9.881606223415073,42,-33.52363134335785],\"end\":[9.881606223415073,19.5,-33.52363134335785],\"segmentMeters\":22.5,\"hits\":0}"
+      },
+      {
+        "check": "hollow-main-tower-2",
+        "passed": true,
+        "notes": "{\"name\":\"hollow-main-tower-2\",\"start\":[28.423626494192,42.3,21.64595705711962],\"end\":[28.423626494192,19.5,21.64595705711962],\"segmentMeters\":22.799999999999997,\"hits\":0}"
+      },
+      {
+        "check": "hollow-main-tower-3",
+        "passed": true,
+        "notes": "{\"name\":\"hollow-main-tower-3\",\"start\":[-14.114727968507173,43.900000000000006,32.802049545341546],\"end\":[-14.114727968507173,19.5,32.802049545341546],\"segmentMeters\":24.400000000000006,\"hits\":0}"
+      },
+      {
+        "check": "hollow-main-tower-4",
+        "passed": true,
+        "notes": "{\"name\":\"hollow-main-tower-4\",\"start\":[-30.008475911857467,44.2,-15.868565576241295],\"end\":[-30.008475911857467,19.5,-15.868565576241295],\"segmentMeters\":24.700000000000003,\"hits\":0}"
+      },
+      {
+        "check": "hollow-main-tower-5",
+        "passed": true,
+        "notes": "{\"name\":\"hollow-main-tower-5\",\"start\":[21.03037462516212,44.900000000000006,-13.074243501072527],\"end\":[21.03037462516212,19.5,-13.074243501072527],\"segmentMeters\":25.400000000000006,\"hits\":0}"
+      },
+      {
+        "check": "hollow-main-tower-6",
+        "passed": true,
+        "notes": "{\"name\":\"hollow-main-tower-6\",\"start\":[25.00574397680347,45.1,-1.2228115826066963],\"end\":[25.00574397680347,19.5,-1.2228115826066963],\"segmentMeters\":25.6,\"hits\":0}"
+      },
+      {
+        "check": "hollow-rear-stair-turret--10.2",
+        "passed": true,
+        "notes": "{\"name\":\"hollow-rear-stair-turret--10.2\",\"start\":[4.4384510146580025,46,-12.179497222401315],\"end\":[4.4384510146580025,19.5,-12.179497222401315],\"segmentMeters\":26.5,\"hits\":0}"
+      },
+      {
+        "check": "hollow-rear-stair-turret-10.8",
+        "passed": true,
+        "notes": "{\"name\":\"hollow-rear-stair-turret-10.8\",\"start\":[10.957371069547772,46,7.783059761060397],\"end\":[10.957371069547772,19.5,7.783059761060397],\"segmentMeters\":26.5,\"hits\":0}"
+      },
+      {
+        "check": "clear-central-gate-passage",
+        "passed": true,
+        "notes": "{\"name\":\"clear-central-gate-passage\",\"start\":[27.20069028799382,21,-8.514396505721276],\"end\":[5.812236377141986,21,-1.5298393040536673],\"segmentMeters\":22.5,\"hits\":0}"
+      },
+      {
+        "check": "gatehouse-rear-pointed-window",
+        "passed": true,
+        "notes": "{\"name\":\"gatehouse-rear-pointed-window\",\"start\":[10.755345725427743,28.3,-3.1440480795501813],\"end\":[7.428252894850791,28.3,-2.05756140373522],\"segmentMeters\":3.4999999999999996,\"hits\":0}"
+      },
+      {
+        "check": "open-main-courtyard",
+        "passed": true,
+        "notes": "{\"name\":\"open-main-courtyard\",\"start\":[0,43,0],\"end\":[0,19.1,0],\"segmentMeters\":23.9,\"hits\":0}"
+      }
+    ]
+  },
+  "limitations": [
+    "Wall heights/thicknesses, ruin profiles, room partitions and outer curtain projections are picture-led approximations, not a measured conservation model.",
+    "Modern entrance canopy is a simplified light metal covering; exact glazing, bridge truss/support engineering, furnishings and certified walkable collision are excluded.",
+    "The standard viewer DEM blends the castle crag. Authored plateau/rock skirt and deck elevations are approximate; no runtime terrain carving or surveyed ground/approach contact is claimed.",
+    "Physical laptop and phone frame-rate measurements remain pending."
+  ]
+}

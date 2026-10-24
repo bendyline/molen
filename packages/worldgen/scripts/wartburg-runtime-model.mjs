@@ -7,7 +7,7 @@ import { box, quad, tube } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u1/u1p/n0241_wartburg/review-map-parts.json',
+      '../../../content/worldgen/source/places/u1/u1p/wartburg/review-map-parts.json',
       import.meta.url,
     ),
   ),
@@ -992,7 +992,7 @@ function _originalSkyline(out) {
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u1/u1p/n0241_wartburg/site-grade.json',
+      '../../../content/worldgen/source/places/u1/u1p/wartburg/site-grade.json',
       import.meta.url,
     ),
   ),

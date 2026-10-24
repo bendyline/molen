@@ -1,11 +1,11 @@
-/** 'N0752_SOUTH': South Building, cruciform terracotta observatory and copper dome. */
+/** 'south_building_royal_observatory_greenwich': South Building, cruciform terracotta observatory and copper dome. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildSouth } from './south-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gc/gcp/n0752_south/',
+    '../../../content/worldgen/source/places/gc/gcp/south_building_royal_observatory_greenwich/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -104,7 +104,7 @@ export const buildSouthSkyline = (o) => build(o, 0),
   buildSouthStreet = (o) => build(o, 2),
   buildSouthCloseup = (o) => build(o, 3);
 export const southStudy = {
-  id: 'N0752_SOUTH',
+  id: 'south_building_royal_observatory_greenwich',
   key: 'south',
   title: 'South Building, Royal Observatory Greenwich',
   category: 'museum',

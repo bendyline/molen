@@ -1,11 +1,11 @@
-/** 'N0733': Arrowhead Stadium with saddle bowl, circular access towers and curled side roofs. */
+/** 'arrowhead_stadium': Arrowhead Stadium with saddle bowl, circular access towers and curled side roofs. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { buildArrowheadStadium } from './arrowhead-stadium-model.mjs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/9y/9yu/n0733_arrowhead_stadium/',
+    '../../../content/worldgen/source/places/9y/9yu/arrowhead_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -78,7 +78,7 @@ export const buildArrowheadSkyline = (o) => build(o, 0),
   buildArrowheadStreet = (o) => build(o, 2),
   buildArrowheadCloseup = (o) => build(o, 3);
 export const arrowheadStudy = {
-  id: 'N0733',
+  id: 'arrowhead_stadium',
   key: 'arrowhead_stadium',
   title: 'Arrowhead Stadium',
   category: 'stadium',

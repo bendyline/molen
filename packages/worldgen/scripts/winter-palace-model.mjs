@@ -1,11 +1,11 @@
-/** 'N0894': Winter Palace Baroque exterior with native courtyards and open portals. */
+/** 'winter_palace': Winter Palace Baroque exterior with native courtyards and open portals. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildWinterPalace } from './winter-palace-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ud/udt/n0894_winter_palace/',
+    '../../../content/worldgen/source/places/ud/udt/winter_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -73,7 +73,7 @@ export const buildWinterSkyline = (o) => build(o, 0),
   buildWinterStreet = (o) => build(o, 2),
   buildWinterCloseup = (o) => build(o, 3);
 export const winterStudy = {
-  id: 'N0894',
+  id: 'winter_palace',
   key: 'winter_palace',
   title: 'Winter Palace',
   category: 'palace',

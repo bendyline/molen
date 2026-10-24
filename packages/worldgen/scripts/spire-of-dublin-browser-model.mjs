@@ -1,4 +1,4 @@
-/** N0975 whole browser reconstruction: exact master retained, perforations use daylight marks in budgeted close-up. */
+/** spire_of_dublin whole browser reconstruction: exact master retained, perforations use daylight marks in budgeted close-up. */
 import { cross, loft, radialRing } from './authored-structure-mesh.mjs';
 import { face, triangle } from './heritage-tower-detail-mesh.mjs';
 

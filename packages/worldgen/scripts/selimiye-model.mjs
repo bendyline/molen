@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sx6/n0420_selimiye_mosque/',
+  '../../../content/worldgen/source/places/sx/sx6/selimiye_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -952,7 +952,7 @@ export const buildSelimiyeSkyline = (o) => build(o, 0),
   buildSelimiyeCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const selimiyeStudy = {
-  id: 'N0420',
+  id: 'selimiye_mosque',
   key: 'selimiye_mosque',
   title: 'Selimiye Mosque',
   category: 'mosque',

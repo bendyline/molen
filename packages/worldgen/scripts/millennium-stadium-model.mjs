@@ -3,7 +3,7 @@ import earcut from 'earcut';
 import { beam, cross, normalize } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
-const candidateId = 'N0711';
+const candidateId = 'millennium_stadium';
 
 function quietOutline(input, tolerance) {
   const points = input.map((p, index) => ({ p, index }));

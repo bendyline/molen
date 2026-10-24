@@ -1,0 +1,1077 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.temple_of_hercules_victor",
+  "sourceHash": "sha256:db356c324a6aba533ddf443839aed5b8558aa65f1374c7483a6c26f411b9ee5c",
+  "runtimeHash": "sha256:485fd42120d57fb3e2236138a7fafe49380bb8d725e0c7f7fd769cfb7c9da853",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:7ad31ecf03f042570476227c7684eb865f68d63f22bdd451ce43fffbaa927307",
+      "bytes": 100016,
+      "gzipBytes": 15938,
+      "triangles": 956,
+      "cpuBytes": 98580,
+      "gpuBytes": 98580,
+      "errorMeters": 0.65,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:83db2adb9df4dbee1631625d6039c854159e61aca17c3542b76e1722868a86bd",
+      "bytes": 377572,
+      "gzipBytes": 102241,
+      "triangles": 3852,
+      "cpuBytes": 371268,
+      "gpuBytes": 371268,
+      "errorMeters": 0.27,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:a7134a97d0732add1d415ee23a4d4baa070e5dffb6dbd2d9dbc5b2b594f272cb",
+      "bytes": 1303784,
+      "gzipBytes": 413559,
+      "triangles": 13460,
+      "cpuBytes": 1297452,
+      "gpuBytes": 1297452,
+      "errorMeters": 0.1,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:ce15b9722f9b1c30f0670ba01babb962d486a6a0496904a180c683f0824080d5",
+      "bytes": 1942968,
+      "gzipBytes": 616600,
+      "triangles": 19764,
+      "cpuBytes": 1936620,
+      "gpuBytes": 1936620,
+      "errorMeters": 0.035,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:a5d328aeb2d0d7c85ba39576c4caba8fb9b8f7f2c9090fa8625d86cf4257e904"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:9c80575adb1d43e6b29eafbc41a161f4f463870808c2c58b00df55b82c4abd5c"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:0b2954b4567c9199b231038a20b1b4ec5a9f0adcc1671afaed3f43ff63202127",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 44662,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          63.99980000000001,
+          36.7242,
+          106.61970000000001
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:1c0ed342a9334f95fe687b5de7e703f5bdff22ef6087e59ed81b0bda1260cb6f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 44662,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          63.99980000000001,
+          36.7242,
+          106.61970000000001
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:8c2c68e19d83784382c2f6aae7b5e25a6551f91d1de47619bd4504cfd886fecd",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 44662,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          63.99980000000001,
+          36.7242,
+          106.61970000000001
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:6047bed30226f8c62eb568e150f9c7a37578f5a5ce6d33d88a07e46eaf73cd61",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 44662,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          63.99980000000001,
+          36.7242,
+          106.61970000000001
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:feeb23c45089725f17e428359a74f62329b111e3d5d8ca0525451ab24e25f980",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 28750,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          127.69980000000001,
+          83.52420000000001,
+          217.1197
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:f804ffd8ad2473976a399c4318424cbecfaf0e4c780deae93b0472f851195065",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 28750,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          127.69980000000001,
+          83.52420000000001,
+          217.1197
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:70d4c2e69a9a5e28423d38b84642cebf456e1590f7327d2d573bdd33c30ee362",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 28750,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          127.69980000000001,
+          83.52420000000001,
+          217.1197
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:fe84480815c6649f6735ec9f8103a078a31a093bb91a29b7fb9b6c19c1dc153b",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 28750,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          127.69980000000001,
+          83.52420000000001,
+          217.1197
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:51b9b5333a7816101e806666c7d5341b5ee6fc3ac8a3c976c70efa30bfcb77b3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25854,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          253.7998,
+          132.9242,
+          435.5197
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:79197cf527edae29118a9d237c9db66f265165dc987aa9d9698730606c8cbf35",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25854,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          253.7998,
+          132.9242,
+          435.5197
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:042fb576136cd04d860aca144953daef3f1f6808e5a7ad087de8481452430d62",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25854,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          253.7998,
+          132.9242,
+          435.5197
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:0d54d54c4078c3aa4872da95419d51599670c466d87200017950eb4376dc55d0",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25854,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          253.7998,
+          132.9242,
+          435.5197
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:78d7985598472abb06b74977e631c0fbc05cea3c50ae214e80639d5dd63253ed",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 20158,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          253.7998,
+          132.9242,
+          435.5197
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/east-entrance-and-nineteen-column-ring.png",
+      "hash": "sha256:7ae4c943a138fabab07e21a05ffee95b29aa8224dc47a392229b92a94e89ff6a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 44662,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          24.254177739702467,
+          4.975960194395219,
+          3.719680108181806
+        ],
+        "lookAt": [
+          1.2541777397024658,
+          4.675960194395219,
+          -1.2803198918181937
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/corinthian-capitals-and-timber-soffit.png",
+      "hash": "sha256:82528766c88b533b8e70f343d3e512142caf90443d16445dd53e4a0475c1497a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 44662,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          13.254177739702467,
+          7.575960194395218,
+          0.7196801081818063
+        ],
+        "lookAt": [
+          7.754177739702466,
+          7.625960194395219,
+          -1.2803198918181937
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/missing-shaft-base-and-complete-roof.png",
+      "hash": "sha256:d98aafc2193c1fd5d29abf928cda3d683b1ddf8eff1094f645170fd9babd682f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 44662,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          -9.745822260297533,
+          14.975960194395219,
+          -21.280319891818195
+        ],
+        "lookAt": [
+          1.2541777397024658,
+          4.275960194395219,
+          -1.2803198918181937
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-round-temple-skyline.png",
+      "hash": "sha256:dcc65fd563ed74cf8daa709fe40427c5c988ea985c8410535015df85ef12dfda",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25854,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          30.254177739702467,
+          18.97596019439522,
+          24.719680108181805
+        ],
+        "lookAt": [
+          1.2541777397024658,
+          4.775960194395219,
+          -1.2803198918181937
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-round-temple-district.png",
+      "hash": "sha256:2b90e035a2c48decbc2c95767f1e661d366c3a906ffd6b922700d2f882080e65",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 28750,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          30.254177739702467,
+          18.97596019439522,
+          24.719680108181805
+        ],
+        "lookAt": [
+          1.2541777397024658,
+          4.775960194395219,
+          -1.2803198918181937
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-round-temple-street.png",
+      "hash": "sha256:54de8d600e1b4c28a2104713050bd2862bbe200a2453c8d4381521ac8f9757c5",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 38358,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          30.254177739702467,
+          18.97596019439522,
+          24.719680108181805
+        ],
+        "lookAt": [
+          1.2541777397024658,
+          4.775960194395219,
+          -1.2803198918181937
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-round-temple-closeup.png",
+      "hash": "sha256:c5168c4ff25e2d11426db497e491b987741ef088eaa038c0a305ea7c9443d2cb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 44662,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          30.254177739702467,
+          18.97596019439522,
+          24.719680108181805
+        ],
+        "lookAt": [
+          1.2541777397024658,
+          4.775960194395219,
+          -1.2803198918181937
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:e2f9baaff82713cedf0df781385447f6137fed7af715d5fc6222d105feb04a47",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25854,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          127.69980000000001,
+          83.52420000000001,
+          217.1197
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:f804ffd8ad2473976a399c4318424cbecfaf0e4c780deae93b0472f851195065",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 28750,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          127.69980000000001,
+          83.52420000000001,
+          217.1197
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:73d2e0f282e9b7cab8748739a6fadcbf8cbe337be3a806b5b6dc8866f86d3ecc",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 38358,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          127.69980000000001,
+          83.52420000000001,
+          217.1197
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:5ad76f0f5e592b978d36ec060a060e2f12a4ab8394179a74f7af391efefcb3df",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 44662,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr2/temple_of_hercules_victor/terrain-review.height.png"
+        },
+        "position": [
+          127.69980000000001,
+          83.52420000000001,
+          217.1197
+        ],
+        "lookAt": [
+          1.5998,
+          17.2242,
+          -1.2803
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

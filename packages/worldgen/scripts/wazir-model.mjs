@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tt/tts/n0468_wazir_khan_mosque/',
+  '../../../content/worldgen/source/places/tt/tts/wazir_khan_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -849,7 +849,7 @@ export const buildWazirSkyline = (o) => build(o, 0),
   buildWazirCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const wazirStudy = {
-  id: 'N0468',
+  id: 'wazir_khan_mosque',
   key: 'wazir_khan_mosque',
   title: 'Wazir Khan Mosque',
   category: 'mosque',

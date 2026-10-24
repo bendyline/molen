@@ -1,0 +1,71 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.beijing_national_stadium",
+  "inputHash": "sha256:a047950580061a82e9cd1622c354471a0cd6e94e2753a7f0a57cad4ffea0b424",
+  "captureReportHash": "sha256:8a068a8bba8b58ecf5ee329143ce3dd5a0f6c5d26f65100798da5d684d3b7c38",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Detailed exterior and open bowl in Molen shared material style.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-open-steel-skin.png",
+      "shots/near-leaf-support.png",
+      "shots/near-public-stairs.png",
+      "shots/near-tangent-roof.png",
+      "shots/near-three-tier-bowl.png",
+      "shots/near-oval-track.png",
+      "shots/far-saddle.png"
+    ],
+    "notes": "All twelve portable and twelve shared frames inspected; full-resolution leaf support and public stair views confirm clean continuous promenade edges and unobstructed stair wells. No inverted membrane, unsupported slab-edge columns or repeated internal wedge faces remain. Distinct saddle, open steel lattice, red inner bowl, three seating tiers, track and oval aperture are present."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:52f25be20e0616269a3829360100ea7520872b94f87ad2b51983d03bfbfaba3e",
+    "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-open-steel-skin.png",
+      "shots/shared/near-leaf-support.png",
+      "shots/shared/near-public-stairs.png",
+      "shots/shared/near-tangent-roof.png",
+      "shots/shared/near-three-tier-bowl.png",
+      "shots/shared/near-oval-track.png",
+      "shots/shared/far-saddle.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Physical UV concrete, pale painted steel and membrane surfaces are coherent in geographic sky-PMREM renders. Local roof transparency is preserved. Terrain cutout, restoration and unload assertions passed."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:b4b471f22c01597470010554eed8c2b326416996c709d3dcb9712d140b48f32d",
+    "notes": "Exact mapped pitch polygon area centroid sets origin and its southward long axis sets heading. Published structural envelope matches the orthographic mapped outline within the documented mapping discrepancy. Native Y0 is the plaza; the below-grade athletics floor is protected by the terrain cutout."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Primary Arup engineering drawings and Beijing construction chronicle govern the saddle dimensions, 24 leaf supports, 1.2m continuous facade ribbons, primary trusses, fixed ETFE/PTFE roof and red bowl. Secondary member phases, stair flights, individual seats and ground-to-field offset are architectural reconstructions from the published diagrams; no claim of an exact fabrication-junction inventory is made. Temporary event content and enclosed service rooms are outside exterior scope."
+  }
+}

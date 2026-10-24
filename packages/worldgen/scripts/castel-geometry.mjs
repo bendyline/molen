@@ -1,4 +1,4 @@
-/** 'N0758': mapped keep and fortification envelope, terraces, corbels and roof figure. */
+/** 'castel_sant_angelo': mapped keep and fortification envelope, terraces, corbels and roof figure. */
 import './install-deterministic-math.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

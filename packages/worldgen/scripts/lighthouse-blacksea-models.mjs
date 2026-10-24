@@ -392,7 +392,7 @@ export function buildVorontsov(out) {
 
 export const lighthouseBlackseaStudies = [
   lighthouseStudy({
-    id: 'N0667',
+    id: 'vorontsov_lighthouse',
     key: 'vorontsov_lighthouse',
     title: 'Vorontsov Lighthouse',
     wikidataId: 'Q1976702',

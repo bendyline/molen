@@ -1,11 +1,11 @@
-/** 'N0748_REMEMBRANCE': Hall of Remembrance fieldstone base and floating roof. */
+/** 'hall_of_remembrance_yad_vashem': Hall of Remembrance fieldstone base and floating roof. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildYadRemembrance } from './yad-remembrance-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sv/sv9/n0748_remembrance/',
+    '../../../content/worldgen/source/places/sv/sv9/hall_of_remembrance_yad_vashem/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -104,7 +104,7 @@ export const buildYadRemembranceSkyline = (o) => build(o, 0),
   buildYadRemembranceStreet = (o) => build(o, 2),
   buildYadRemembranceCloseup = (o) => build(o, 3);
 export const yadRemembranceStudy = {
-  id: 'N0748_REMEMBRANCE',
+  id: 'hall_of_remembrance_yad_vashem',
   key: 'remembrance',
   title: 'Hall of Remembrance, Yad Vashem',
   category: 'museum',

@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u0/u0n/n0258_sforza_castle/map-parts.json',
+      '../../../content/worldgen/source/places/u0/u0n/sforza_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -1195,7 +1195,7 @@ function runtimeSite(o) {
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u0/u0n/n0258_sforza_castle/site-grade.json',
+      '../../../content/worldgen/source/places/u0/u0n/sforza_castle/site-grade.json',
       import.meta.url,
     ),
   ),

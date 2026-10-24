@@ -657,7 +657,7 @@ export function buildWembley(out) {
   arch(out);
 }
 export const wembleyStudy = {
-  id: 'N0684',
+  id: 'wembley_stadium',
   key: 'wembley_stadium',
   title: 'Wembley Stadium',
   wikidataId: 'Q128468',

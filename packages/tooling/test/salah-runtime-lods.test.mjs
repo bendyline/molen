@@ -10,7 +10,7 @@ import { salahStudy } from '../../worldgen/scripts/salah-citadel-model.mjs';
 import { createStructureIndex } from '../../worldgen-earth/dist/kernel.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 
-const source = resolve('../../content/worldgen/source/places/sy/sy3/n0257_citadel_of_salah_ed_din'),
+const source = resolve('../../content/worldgen/source/places/sy/sy3/citadel_of_salah_ed_din'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
@@ -159,8 +159,8 @@ it('opens the dated moat and gate at each tier without replacing the western lan
         l.name + ' Frankish gate ' + lateral,
       ).toBeGreaterThan(25);
   }
-  const catalog = await read(resolve('../../content/earth/structures/placements.json')),
-    placement = catalog.entries.find((p) => p.id === 'next1000.n0257'),
+  const catalog = await read(resolve('../../content/earth/structures/placements/authoring.json')),
+    placement = catalog.entries.find((p) => p.id === 'citadel.of.salah.ed.din'),
     index = createStructureIndex({ ...catalog, entries: [placement] }),
     bounds = [36.048, 35.59, 36.065, 35.601];
   expect(placement.status).toBe('historical');

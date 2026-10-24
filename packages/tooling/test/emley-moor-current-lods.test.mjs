@@ -9,7 +9,7 @@ import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve(
-    '../../content/worldgen/source/places/gc/gcw/n1006_emley_moor_transmitting_station',
+    '../../content/worldgen/source/places/gc/gcw/emley_moor_transmitting_station',
   ),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
@@ -108,7 +108,7 @@ it('reproduces the exact historical source and binds compass controls without st
   emleyMoor.decorateMesh(m);
   const s = await read(source + '/spec.json'),
     f = await read(source + '/map-frame.json'),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(p.anchor).toEqual([-1.664470242105263, 53.61206580526316]);

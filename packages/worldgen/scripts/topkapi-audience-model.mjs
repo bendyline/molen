@@ -1,11 +1,11 @@
-/** 'N0742_AUDIENCE': Raised Audience Chamber, round arcade, granite columns and broad coffered canopy. */
+/** 'audience_chamber_topkapi_palace': Raised Audience Chamber, round arcade, granite columns and broad coffered canopy. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiAudience } from './topkapi-audience-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_audience/',
+    '../../../content/worldgen/source/places/sx/sxk/audience_chamber_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -100,7 +100,7 @@ export const buildTopkapiAudienceSkyline = (o) => build(o, 0),
   buildTopkapiAudienceStreet = (o) => build(o, 2),
   buildTopkapiAudienceCloseup = (o) => build(o, 3);
 export const topkapiAudienceStudy = {
-  id: 'N0742_AUDIENCE',
+  id: 'audience_chamber_topkapi_palace',
   key: 'audience',
   title: 'Audience Chamber, Topkapi Palace',
   category: 'castle',

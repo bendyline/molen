@@ -6,7 +6,7 @@ import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u1/u1z/n0298_egeskov_castle/',
+  '../../../content/worldgen/source/places/u1/u1z/egeskov_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
@@ -963,7 +963,7 @@ export function buildEgeskovRuntime(o, level = 'closeup') {
 }
 export const buildEgeskovSkyline = (o) => buildEgeskovRuntime(o, 'skyline');
 export const egeskovStudy = {
-  id: 'N0298',
+  id: 'egeskov_castle',
   key: 'egeskov_castle',
   title: 'Egeskov Castle',
   category: 'castle',

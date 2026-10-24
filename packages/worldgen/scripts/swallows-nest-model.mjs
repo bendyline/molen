@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/sz/szb/n0271_swallow_s_nest/map-frame.json',
+      '../../../content/worldgen/source/places/sz/szb/swallows_nest/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -418,7 +418,7 @@ export const buildSwallowsNestSkyline = (o) =>
     'skyline',
   );
 export const swallowsNestStudy = {
-  id: 'N0271',
+  id: 'swallows_nest',
   key: 'swallow_s_nest',
   title: "Swallow's Nest",
   category: 'castle',

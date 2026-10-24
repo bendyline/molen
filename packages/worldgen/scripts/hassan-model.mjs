@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/ev/evf/n0426_hassan_ii_mosque/',
+  '../../../content/worldgen/source/places/ev/evf/hassan_ii_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1082,7 +1082,7 @@ export const buildHassanSkyline = (o) => build(o, 0),
   buildHassanCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const hassanStudy = {
-  id: 'N0426',
+  id: 'hassan_ii_mosque',
   key: 'hassan_ii_mosque',
   title: 'Hassan II Mosque',
   category: 'mosque',

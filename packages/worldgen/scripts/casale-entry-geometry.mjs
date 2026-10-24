@@ -1,4 +1,4 @@
-/** 'N0765_ENTRY': four broken entrance piers; the three ancient passages stay unbridged. */
+/** 'casale_entry': four broken entrance piers; the three ancient passages stay unbridged. */
 import './install-deterministic-math.mjs';
 import earcut from 'earcut';
 import { prism } from './khmer-structure-geometry.mjs';

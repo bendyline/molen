@@ -1,5 +1,5 @@
 /** Akshardham Delhi mandir, sculpted plinth and flanking forecourt pavilions. */
-export const akshardhamCandidateId = 'N0502';
+export const akshardhamCandidateId = 'akshardham';
 function box(f, role, x, y, z, w, h, depth, angle = 0) {
   const c = Math.cos(angle),
     s = Math.sin(angle),

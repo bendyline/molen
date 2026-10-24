@@ -1,4 +1,4 @@
-/** 'N0749': Pompidou exterior frame, gerberettes, escalator and service facade. */
+/** 'centre_georges_pompidou': Pompidou exterior frame, gerberettes, escalator and service facade. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildPompidou(face, detail, r) {

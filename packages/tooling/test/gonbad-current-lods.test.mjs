@@ -9,7 +9,7 @@ import { MATERIAL_REPEAT_METERS } from '../../worldgen/scripts/standard-material
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/tn/tnx/n0564_gonbad_e_qabus'),
+const source = resolve('../../content/worldgen/source/places/tn/tnx/gonbad_e_qabus'),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
@@ -82,12 +82,12 @@ it('reproduces the unchanged Gonbad draft and binds the published east-facing en
     )(surfaces, normalize, meshCross, MATERIAL_REPEAT_METERS),
     b = new MeshBufferBuilder(),
     used = new Map(),
-    draft = heritageTowers.find((s) => s.planId === 'N0564');
+    draft = heritageTowers.find((s) => s.planId === 'gonbad_e_qabus');
   draft.build(wrap(b, used, draft.componentMap));
   const s = await read(`${source}/spec.json`),
     scope = await read(`${source}/review-scope.json`),
     frame = await read(`${source}/map-frame.json`),
-    live = (await read('../../content/earth/structures/placements.json')).entries.find(
+    live = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(s.sourceGeometry.export).toBe('buildGonbadReviewed');

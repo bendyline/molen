@@ -525,7 +525,7 @@ export function buildSkopjeBridge(out) {
     }
 }
 export const skopjeStudy = {
-  id: 'N0004',
+  id: 'stone_bridge_in_skopje',
   key: 'stone_bridge_in_skopje',
   title: 'Stone Bridge in Skopje',
   wikidataId: 'Q1780883',

@@ -1,11 +1,11 @@
-/** 'N0742_IFTAR': Open six-post gilded canopy, curved roof, corner bulbs and low stone balusters. */
+/** 'kiosk_for_breaking_fast_topkapi_palace': Open six-post gilded canopy, curved roof, corner bulbs and low stone balusters. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiIftar } from './topkapi-iftar-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_iftar/',
+    '../../../content/worldgen/source/places/sx/sxk/kiosk_for_breaking_fast_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -101,7 +101,7 @@ export const buildTopkapiIftarSkyline = (o) => build(o, 0),
   buildTopkapiIftarStreet = (o) => build(o, 2),
   buildTopkapiIftarCloseup = (o) => build(o, 3);
 export const topkapiIftarStudy = {
-  id: 'N0742_IFTAR',
+  id: 'kiosk_for_breaking_fast_topkapi_palace',
   key: 'iftar',
   title: 'Kiosk for Breaking Fast, Topkapi Palace',
   category: 'castle',

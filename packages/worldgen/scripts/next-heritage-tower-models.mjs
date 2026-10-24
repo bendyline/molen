@@ -1150,8 +1150,8 @@ function buildSoyembika(target) {
 
 export const nextHeritageTowers = [
   {
-    id: 'n0565_mole_antonelliana',
-    planId: 'N0565',
+    id: 'mole_antonelliana',
+    planId: 'mole_antonelliana',
     title: 'Mole Antonelliana',
     wikidata: 'Q201902',
     build: buildMole,
@@ -1208,8 +1208,8 @@ export const nextHeritageTowers = [
     ],
   },
   {
-    id: 'n0574_soyembika_tower',
-    planId: 'N0574',
+    id: 'soyembika_tower',
+    planId: 'soyembika_tower',
     title: 'Söyembikä Tower',
     wikidata: 'Q2166466',
     build: buildSoyembika,
@@ -1259,8 +1259,8 @@ export const nextHeritageTowers = [
     ],
   },
   {
-    id: 'n0572_giotto_s_campanile',
-    planId: 'N0572',
+    id: 'giottos_campanile',
+    planId: 'giottos_campanile',
     componentMap: { limestone: 'marble' },
     title: 'Giotto’s Campanile',
     wikidata: 'Q1140023',
@@ -1311,8 +1311,8 @@ export const nextHeritageTowers = [
     ],
   },
   {
-    id: 'n0563_azadi_tower',
-    planId: 'N0563',
+    id: 'azadi_tower',
+    planId: 'azadi_tower',
     componentMap: { limestone: 'marble' },
     title: 'Azadi Tower',
     wikidata: 'Q1140026',

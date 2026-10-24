@@ -1,4 +1,4 @@
-/** 'N0617': Yueyang's three golden swept roofs and open red-timber balcony. */
+/** 'yueyang_tower': Yueyang's three golden swept roofs and open red-timber balcony. */
 import { cross, normalize } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

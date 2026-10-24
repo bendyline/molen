@@ -1,4 +1,4 @@
-/** 'N0542': three mapped Somanathapura shrine lobes, carved jagati and open precinct. */
+/** 'chennakesava_temple_at_somanathapura_mysore': three mapped Somanathapura shrine lobes, carved jagati and open precinct. */
 import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, prepareOpening } from './authored-wall-openings.mjs';
 import {

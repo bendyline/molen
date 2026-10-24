@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2s/n0253_bratislava_castle/map-parts-reviewed.json',
+      '../../../content/worldgen/source/places/u2/u2s/bratislava_castle/map-parts-reviewed.json',
       import.meta.url,
     ),
   ),
@@ -16,7 +16,7 @@ const map = JSON.parse(
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2s/n0253_bratislava_castle/site-grade.json',
+      '../../../content/worldgen/source/places/u2/u2s/bratislava_castle/site-grade.json',
       import.meta.url,
     ),
   ),
@@ -24,7 +24,7 @@ const grade = JSON.parse(
 const gateFrames = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2s/n0253_bratislava_castle/gate-frame.json',
+      '../../../content/worldgen/source/places/u2/u2s/bratislava_castle/gate-frame.json',
       import.meta.url,
     ),
   ),

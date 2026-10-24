@@ -1,7 +1,7 @@
 /** Stowe House: distinct north and south classical fronts and open curved colonnades. */
 import './install-deterministic-math.mjs';
-import earcut from 'earcut';
 import fs from 'node:fs';
+import earcut from 'earcut';
 import { beam, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
 import { B, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';

@@ -48,7 +48,7 @@ export async function registerSourceDocuments(dir, paths) {
 
 export async function authoredModels() {
   const collections = await readStructureCollections(
-    resolve(content, 'source/next-1000/collections.json'),
+    resolve(content, 'source/structure-catalog/collections.json'),
   );
   const selected = process.argv
     .find((arg) => arg.startsWith('--ids='))
@@ -138,7 +138,7 @@ export async function modelInputHash(dir, assetId) {
  * Unselected historical/site bundles retain their existing independent workflow. */
 export function authoredPlaceEntries(entries, selection) {
   return entries.filter(
-    (entry) => entry.collection === 'next-1000' || selection?.includes(entry.candidateId),
+    (entry) => entry.collection === 'structure-catalog' || selection?.includes(entry.candidateId),
   );
 }
 

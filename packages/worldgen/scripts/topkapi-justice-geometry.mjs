@@ -1,4 +1,4 @@
-/** 'N0742_JUSTICE': Square stone shaft, paired-column belvedere, curved pediments and lead spire. */
+/** 'tower_of_justice_topkapi_palace': Square stone shaft, paired-column belvedere, curved pediments and lead spire. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

@@ -5,12 +5,12 @@ import { readFileSync } from 'node:fs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/wx/wx4/n0488_temple_of_heaven/map-frame.json',
+      '../../../content/worldgen/source/places/wx/wx4/temple_of_heaven/map-frame.json',
       import.meta.url,
     ),
   ),
 );
-if (frame.candidateId !== 'N0488') throw new Error('Wrong Circular Mound source');
+if (frame.candidateId !== 'temple_of_heaven') throw new Error('Wrong Circular Mound source');
 const rec = frame.reconstruction.altar;
 const tau = Math.PI * 2;
 

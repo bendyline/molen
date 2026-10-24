@@ -1,5 +1,5 @@
 /** Present temple porch and the church/cella of San Lorenzo in Miranda. */
-export const antoninusCandidateId = 'N0504';
+export const antoninusCandidateId = 'temple_of_antoninus_and_faustina';
 function box(f, role, x, y, z, w, h, depth, skipFront = false) {
   const p = [
       [-w / 2, 0, -depth / 2],

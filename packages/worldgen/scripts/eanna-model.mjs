@@ -1,13 +1,10 @@
-/** N0528: reproducible exposed Eanna ziggurat constituent with mapped lower/core outlines. */
+/** eanna: reproducible exposed Eanna ziggurat constituent with mapped lower/core outlines. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildEannaRuins } from './eanna-ruins-model.mjs';
 
-const source = new URL(
-    '../../../content/worldgen/source/places/tj/tj8/n0528_eanna/',
-    import.meta.url,
-  ),
+const source = new URL('../../../content/worldgen/source/places/tj/tj8/eanna/', import.meta.url),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
   frame = read('map-frame.json'),
   r = frame.reconstruction,
@@ -77,7 +74,7 @@ export const buildEannaSkyline = (o) => build(o, 0),
   buildEannaStreet = (o) => build(o, 2),
   buildEannaCloseup = (o) => build(o, 3);
 export const eannaStudy = {
-  id: 'N0528',
+  id: 'eanna',
   key: 'eanna',
   title: 'Eanna',
   category: 'temple',

@@ -1,0 +1,44 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.gamla_bron",
+  "kind": "static-structure",
+  "title": "Gamla bron, Umeå",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.gamla_bron",
+        "output": "assets/places/u7/u7q/gamla_bron/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5eed00e4226f063f6e80b67517271c8874a8ddd3be04c9c87fc366b80742dd55"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-gamla-bron",
+        "path": "models/generate-gamla-bron.mjs"
+      },
+      {
+        "id": "gamla-bron-model",
+        "path": "models/gamla-bron-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "capture-report.json",
+      "import-report.json",
+      "map-frame.json",
+      "placement-report.json",
+      "qa.json",
+      "shared-capture-report.json"
+    ]
+  }
+}

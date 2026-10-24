@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/tj/tju/n0352_vank_cathedral/',
+  '../../../content/worldgen/source/places/tj/tju/vank_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1066,7 +1066,7 @@ const cam = (name, p, look, fov = 48) => ({
   fov,
 });
 export const vankStudy = {
-  id: 'N0352',
+  id: 'vank_cathedral',
   key: 'vank_cathedral',
   title: 'Vank Cathedral',
   category: 'cathedral',

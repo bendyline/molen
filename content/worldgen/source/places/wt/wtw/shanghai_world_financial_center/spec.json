@@ -1,0 +1,366 @@
+{
+  "planId": "shanghai_world_financial_center",
+  "id": "shanghai_world_financial_center",
+  "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+  "title": "Shanghai World Financial Center",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q80852",
+  "referenceCoordinate": {
+    "latitude": 31.236666666,
+    "longitude": 121.502777777
+  },
+  "visualBrief": "Compact SWFC exterior preserves the original curved six-sided envelope, real crown aperture, split piers, upper bridge, curtain-wall bands and representative lobby canopies. Detailed original source remains reproducible.",
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "size": [
+    82.26438903808594,
+    492,
+    82.10167694091797
+  ],
+  "actualBounds": {
+    "min": [
+      -41.13219451904297,
+      0,
+      -41.050838470458984
+    ],
+    "max": [
+      41.13219451904297,
+      492,
+      41.050838470458984
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the crown edge/58 m square diagonal",
+    "front": "+Z through the aperture",
+    "origin": "Ground-level center of the tower square; excludes wider retail podium"
+  },
+  "sourceFacts": {
+    "heightMeters": 492,
+    "floorsAboveGround": 101,
+    "standardSquareSideMeters": 58,
+    "observationLevels": [
+      94,
+      97,
+      100
+    ],
+    "highestObservationFloorMeters": 474,
+    "originalMasterHash": "sha256:7a026395f00bf0f68c68afdbacb6694fcc9701aa39199a2bacfeb72432c366ea",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-models.mjs#signatureTowers[shanghai_world_financial_center].build",
+    "reviewScope": "Original227144-triangle19082184-byte source reproduced exactly; detailed original recipe preserved. Independent browser derivatives retain the distinguishing exterior with tiered detail."
+  },
+  "appearance": {
+    "identity": "Blue-gray curved square tower with a genuinely open trapezoidal crown and narrow top bridge.",
+    "exclusions": "Interiors, underground works and neighboring city blocks."
+  },
+  "reconstruction": {
+    "diagonalMeters": 82.02438661763952,
+    "apertureFloorY": 439,
+    "apertureUpperFloorY": 474,
+    "apertureWidthsMeters": [
+      40,
+      50
+    ],
+    "curvedClipExponent": 1.66,
+    "facadeModuleMeters": 1.5,
+    "note": "Opening clear dimensions, exact cutback radius, floor/module schedule and local lobby details are reconstructed. Observation-floor elevations do not establish beam underside elevations."
+  },
+  "referencePages": [
+    "https://www.kpf.com/project/shanghai-world-financial-center",
+    "https://www.swfc-shanghai.com/about_intro.php?l=en",
+    "https://www.mori.co.jp/en/img/article/090828e.pdf",
+    "https://old.skyscraper.org/EXHIBITIONS/SUPERTALL/wfc.php"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed-approximation",
+    "anchor": [
+      121.503040546,
+      31.23657684
+    ],
+    "heading": 0.8736943961984482,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/10691100",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/10691100"
+    ],
+    "wikidataId": "Q80852",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:30d106cbeff562da185adeaca6d2a8f9348d3bcc6dd00550d72787e6903ea7ea",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Inspected architect skyline and oblique facade pictures confirm the curved square prism, blue-gray curtain wall and open trapezoidal crown. Preserve original492m height,58m structural square and aperture between439/474m. Existing mapped upper parts establish the crown ridge orientation and exact-QID anchor. Standard viewer PMTiles confirms the Lujiazui tower and road context; structural square remains smaller than the mapped roughly60m envelope. Off-footprint PMTiles point[-60,0]0.2921m sets approximate ground contact; center8.3629m contains coarse urban imprint. Bounded preview correction retains raw terrain separately. Exact cutback curvature, observation beam elevations, facade schedule and lobby thresholds remain authored approximations; wider retail podium excluded.",
+    "mapPartsDocument": "map-evidence.json",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected architect skyline and oblique facade pictures confirm the curved square prism, blue-gray curtain wall and open trapezoidal crown. Preserve original492m height,58m structural square and aperture between439/474m. Existing mapped upper parts establish the crown ridge orientation and exact-QID anchor. Standard viewer PMTiles confirms the Lujiazui tower and road context; structural square remains smaller than the mapped roughly60m envelope. Off-footprint PMTiles point[-60,0]0.2921m sets approximate ground contact; center8.3629m contains coarse urban imprint. Bounded preview correction retains raw terrain separately. Exact cutback curvature, observation beam elevations, facade schedule and lobby thresholds remain authored approximations; wider retail podium excluded.",
+    "terrainReference": {
+      "anchor": [
+        121.50263584812305,
+        31.23616359379043
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate off-footprint PMTiles ground contact; coarse urban elevation may include building imprint."
+    }
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Inspected architect skyline and oblique facade pictures confirm the curved square prism, blue-gray curtain wall and open trapezoidal crown. Preserve original492m height,58m structural square and aperture between439/474m. Existing mapped upper parts establish the crown ridge orientation and exact-QID anchor. Standard viewer PMTiles confirms the Lujiazui tower and road context; structural square remains smaller than the mapped roughly60m envelope. Off-footprint PMTiles point[-60,0]0.2921m sets approximate ground contact; center8.3629m contains coarse urban imprint. Bounded preview correction retains raw terrain separately. Exact cutback curvature, observation beam elevations, facade schedule and lobby thresholds remain authored approximations; wider retail podium excluded.",
+    "Two canonical concrete/painted-metal graphs reused; glazing retains opaque PBR without copied images. Low tiers merge facade levels and panels, retaining the crown opening. Physical-device timings remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "crown-front",
+      "position": [
+        0,
+        463,
+        115
+      ],
+      "lookAt": [
+        0,
+        463,
+        0
+      ]
+    },
+    {
+      "name": "crown-side",
+      "position": [
+        92,
+        473,
+        74
+      ],
+      "lookAt": [
+        0,
+        459,
+        0
+      ]
+    },
+    {
+      "name": "near-facade",
+      "position": [
+        29,
+        190,
+        65
+      ],
+      "lookAt": [
+        5,
+        177,
+        30
+      ]
+    },
+    {
+      "name": "lobby",
+      "position": [
+        55,
+        14,
+        73
+      ],
+      "lookAt": [
+        13,
+        5,
+        28
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        430,
+        340,
+        820
+      ],
+      "lookAt": [
+        0,
+        247,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/swfc-browser-model.mjs",
+    "export": "buildSwfcCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/swfc-browser-model.mjs",
+    "export": "buildSwfcSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSwfcDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildSwfcStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSwfcCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-shanghai_world_financial_center-skyline",
+      "position": [
+        530,
+        360,
+        820
+      ],
+      "lookAt": [
+        0,
+        246,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-shanghai_world_financial_center-district",
+      "position": [
+        530,
+        360,
+        820
+      ],
+      "lookAt": [
+        0,
+        246,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-shanghai_world_financial_center-street",
+      "position": [
+        530,
+        360,
+        820
+      ],
+      "lookAt": [
+        0,
+        246,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-shanghai_world_financial_center-closeup",
+      "position": [
+        530,
+        360,
+        820
+      ],
+      "lookAt": [
+        0,
+        246,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 27408,
+    "vertices": 82224,
+    "materials": 3,
+    "bytes": 3291320,
+    "sha256": "sha256:dcc6c7893926b740e19aa905f55dbf00e8b61d06bff7c943dd6838b9573efeab"
+  }
+}

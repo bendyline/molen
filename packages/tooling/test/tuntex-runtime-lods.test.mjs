@@ -7,7 +7,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineWorld } from '../../worldgen/scripts/signature-tower-world-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/ws/wsj/n0179_tuntex_sky_tower'),
+const source = resolve('../../content/worldgen/source/places/ws/wsj/tuntex_sky_tower'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2'),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -75,7 +75,7 @@ it('reproduces the original Tuntex master and independently verifies signed pron
       stainless: { graph: 'metal_stainless', slot: 'trim', roughness: 0.3, metallic: 1 },
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
     });
-  skylineWorld.find((p) => p.id === 'N0179').build(a.wrap(b), m);
+  skylineWorld.find((p) => p.id === 'tuntex_sky_tower').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`),
     independent = await read(`${source}/map-parts.json`);
   expect(m.elements).toHaveLength(7);

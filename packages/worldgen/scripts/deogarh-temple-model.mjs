@@ -1,4 +1,4 @@
-/** 'N0544': surviving Deogarh sanctuary, carved entrance and broken stone crown. */
+/** 'dashavatara_temple_deogarh': surviving Deogarh sanctuary, carved entrance and broken stone crown. */
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';
 
 export function buildDeogarhTemple(face, detail, r, sampleTerrain) {

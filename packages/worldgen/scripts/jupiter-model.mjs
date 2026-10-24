@@ -5,7 +5,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildJupiterFoundations, jupiterCandidateId } from './jupiter-foundation-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0507_temple_of_jupiter_optimus_maximus/',
+    '../../../content/worldgen/source/places/sr/sr2/temple_of_jupiter_optimus_maximus/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -63,7 +63,7 @@ export const buildJupiterSkyline = (o) => build(o, 0),
   buildJupiterStreet = (o) => build(o, 2),
   buildJupiterCloseup = (o) => build(o, 3);
 export const jupiterStudy = {
-  id: 'N0507',
+  id: 'temple_of_jupiter_optimus_maximus',
   key: 'temple_of_jupiter_optimus_maximus',
   title: 'Temple of Jupiter Optimus Maximus',
   category: 'temple',

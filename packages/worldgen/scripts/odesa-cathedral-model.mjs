@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u8/u8m/n0359_transfiguration_cathedral/',
+  '../../../content/worldgen/source/places/u8/u8m/transfiguration_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -910,7 +910,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const odesaStudy = {
-  id: 'N0359',
+  id: 'transfiguration_cathedral',
   key: 'transfiguration_cathedral',
   title: 'Transfiguration Cathedral',
   category: 'cathedral',

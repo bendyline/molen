@@ -8,7 +8,7 @@ import {
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u9/u99/n0306_gediminas_tower/',
+  '../../../content/worldgen/source/places/u9/u99/gediminas_tower/',
   import.meta.url,
 );
 const frame = JSON.parse(readFileSync(new URL('map-frame.json', root))),
@@ -74,7 +74,7 @@ function facadeRay(story, index, y, offset = 0) {
   return { origin: [c[0] + n[0], y, c[1] + n[1]], direction: [-n[0], 0, -n[1]] };
 }
 it('rebuilds compact deterministic four-level browser geometry with reusable shared surfaces', async () => {
-  const id = 'molen.worldgen.structure.n0306_gediminas_tower',
+  const id = 'molen.worldgen.structure.gediminas_tower',
     sizes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

@@ -1,11 +1,11 @@
-/** N0517: reproducible surviving Temple of Peace architecture. */
+/** temple_of_peace: reproducible surviving Temple of Peace architecture. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildPeaceRuins } from './peace-ruins-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0517_temple_of_peace/',
+    '../../../content/worldgen/source/places/sr/sr2/temple_of_peace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -82,7 +82,7 @@ export const buildPeaceSkyline = (o) => build(o, 0),
   buildPeaceStreet = (o) => build(o, 2),
   buildPeaceCloseup = (o) => build(o, 3);
 export const peaceStudy = {
-  id: 'N0517',
+  id: 'temple_of_peace',
   key: 'temple_of_peace',
   title: 'Temple of Peace',
   category: 'temple',

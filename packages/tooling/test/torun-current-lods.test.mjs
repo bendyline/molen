@@ -10,7 +10,7 @@ import { torunLeaningTower } from '../../worldgen/scripts/torun-leaning-tower-mo
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u3/u3m/n0595_leaning_tower_of_torun'),
+const source = resolve('../../content/worldgen/source/places/u3/u3m/leaning_tower_of_torun'),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
@@ -87,7 +87,7 @@ it('reproduces the unchanged Toruń master and binds the reviewed directed map f
   draft.build(wrap(b, used, draft.componentMap));
   const s = await read(`${source}/spec.json`),
     frame = await read(`${source}/map-frame.json`),
-    live = (await read('../../content/earth/structures/placements.json')).entries.find(
+    live = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(s.sourceGeometry.export).toBe('buildTorunReviewed');

@@ -4,7 +4,7 @@
 
 100 models retain their technical validation; 100 reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.
 
-Goal: finish the five pilots, then all remaining local models, using Qualla photographs and synchronizing story annotations after each verified completion. Every next-1,000 candidate and collection member remains assigned to the other device.
+Goal: finish the five pilots, then all remaining local models, using Qualla photographs and synchronizing story annotations after each verified completion. Every structure catalog candidate and collection member remains assigned to the other device.
 
 Completion is recomputed from current evidence; editing geometry, source references, material graphs, terrain or placement invalidates the affected approval. [Machine-readable ledger](readiness.json).
 

@@ -13,7 +13,7 @@ import {
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0172_aon_center',
+const key = 'aon_center_chicago',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'))),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json'))),
   white = [0.85, 0.86, 0.83],

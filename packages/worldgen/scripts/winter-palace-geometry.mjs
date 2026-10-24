@@ -1,4 +1,4 @@
-/** 'N0894': Native Winter Palace courts, Baroque bays, open passages and two cupolas. */
+/** 'winter_palace': Native Winter Palace courts, Baroque bays, open passages and two cupolas. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

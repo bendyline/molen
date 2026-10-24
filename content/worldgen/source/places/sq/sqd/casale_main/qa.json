@@ -1,0 +1,3197 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.casale_main",
+  "reviewedOn": "2026-10-23",
+  "inputHash": "sha256:db6787208ed29a0d8c963fc18b4bf27155bd8134a098d78dd3ad3d92e7cbee2d",
+  "sourceHash": "sha256:9438959e6e82b460a05bf7f43a3e06bcd8533b35f93fc7bc157eaec3d8a0f5a5",
+  "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+  "captureReportHash": "sha256:fc9ca5c12704ef4b52ead1942a3af77e972bb4b17946d7cbc553f995c24aa33d",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/open-peristyle-columns-and-timber-shelter.png",
+      "shots/conservation-roofs-basilica-and-hunt-range.png",
+      "shots/red-octagonal-frigidarium-skylight.png",
+      "shots/stepped-baths-and-pale-ruin-infill.png"
+    ],
+    "notes": "Main connected villa and bath conservation exterior: mapped apsidal rooms, actual open peristyle and 32 near columns with bases/capitals, timber shelter beams/rafters, generic tiled portico floor, dry shaped courtyard basin, pale infill above stone ruins, grey standing-seam shelters, higher basilica and Great Hunt ranges, stepped western baths and separate red octagonal frigidarium roof/faceted skylight. Closed roof undersides and stepped infill eliminate observed seams. Column bays and court are real voids. Skylight/high window glazing is an opaque exterior proxy; no furnished interior or copied figurative mosaics. Five detached collection members remain separate pending models."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/open-peristyle-columns-and-timber-shelter.png",
+      "shots/shared/conservation-roofs-basilica-and-hunt-range.png",
+      "shots/shared/red-octagonal-frigidarium-skylight.png",
+      "shots/shared/stepped-baths-and-pale-ruin-infill.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Nine roles use seven existing 256px shared graphs: plaster_lime, stone_limestone_raw (including cream columns), metal_standing_seam (grey/copper tint variants), metal_painted, storefront, wood_plain and tile_mosaic. Metric UVs use canonical graph repeat sizes; generic tile is a tonal proxy, not literal villa mosaic art. No embedded image, private atlas or new graph. Seven textured draws/one skyline draw; separate POSITION/NORMAL streams and equal CPU/GPU geometry bytes. Each used graph reads once per native run; unload disposes geometry.",
+    "captureReportHash": "sha256:7dc9e871dc6d56026e4707e0ea090c76b8458f967e95a8f22362dcf9c8daeece"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/open-peristyle-columns-and-timber-shelter.png",
+      "medium-fi/conservation-roofs-basilica-and-hunt-range.png",
+      "medium-fi/red-octagonal-frigidarium-skylight.png",
+      "medium-fi/stepped-baths-and-pale-ruin-infill.png",
+      "medium-fi/casale-main-skyline.png",
+      "medium-fi/casale-main-district.png",
+      "medium-fi/casale-main-street.png",
+      "medium-fi/casale-main-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 891 / 3812 / 7542 / 11126 triangles; initial skyline+district geometry 392552 bytes, closeup 886992 bytes. Six GLBs zero Khronos errors/warnings; 410 actual mesh/contact probes, three actual PMTiles 13/14/15 cases, one detailed owned parent. Inspected 52 current portable/shared/medium-fi/native frames. Every LOD/failure/unload preserves 42 resident / 43 wider independent buildings, original 201x201/6m terrain/roads and empty water layer. Courtyard/approaches remain original ground except the dry basin. Failure keeps all 43 original resident buildings; unload restores ground/water with zero live geometry.",
+    "captureReportHash": "sha256:ddcc5544328e7e097ce0ad6eb57159c73e2933a0823d918560966b44941eb49d"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:681a33576342cfd6e19830554d9af893256bf37904290a037b03a697bba8adb3",
+    "mapFrameHash": "sha256:c171095ce3a9640f06239da66d8e0e0eb2e3141dfe6d6e8a21e25398a9ccb297",
+    "notes": "Q505617 identifies the archaeological park way304804695; it is not a building footprint. This independent member uses the actual main covered building relation4063362/native52776562196610, including its four-point peristyle hole. Internal X follows the long court axis east-northeast toward the basilica; internal Z points south-southeast. Native east/up/south geometry is baked with heading0. Only the main covered footprint is replaced; all detached site buildings remain independent. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m terrain. Outside-building provider internal[-20,24] supplies the 544.1027338337185m datum. Main boundary grades -1.330..10.799m require reconstructed working terraces (543.2–551.0m absolute), pale infill and closed foundations at -1.480m relative. Current native views show connected shelters, open peristyle/column bays, clear outside approaches and supported low baths; downhill foundation and partial uphill base burial remain visible. The dry courtyard basin is an approximate raised exterior proxy. Exact excavated floors, paving/stairs, water state, historic room levels and accessible transitions are unverified. Five occupied masks cover only the main building minus its courtyard plus the basin; original courtyard garden and approaches remain. Preserve all 42 resident / 43 wider independent buildings, original ground/roads and empty native water layer. No bespoke terrain or flattening."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Photo-led medium-fi conservation exterior. No qualified mapped heights. Working absolute floor terraces: western baths543.2m, frigidarium544.2m, peristyle545.5m, north rooms547.4m, Great Hunt548.0m, eastern rooms549.2m and basilica551.0m. These roughly follow the retained standard DEM and photographed stepped roofscape; they are reconstructed working levels, not measured ancient floors. Shelter eaves3.5–6m above their working floor and simple gables/faceted apses/skylight preserve roof forms. Wall and roof subdivisions, room inventories, exact glazing/beam spacing and unseen elevations are approximate. Shared geometric tile flooring is a generic tonal proxy, not a recreation of the villa mosaics. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m terrain. Outside-building provider internal[-20,24] supplies the 544.1027338337185m datum. Main boundary grades -1.330..10.799m require reconstructed working terraces (543.2–551.0m absolute), pale infill and closed foundations at -1.480m relative. Current native views show connected shelters, open peristyle/column bays, clear outside approaches and supported low baths; downhill foundation and partial uphill base burial remain visible. The dry courtyard basin is an approximate raised exterior proxy. Exact excavated floors, paving/stairs, water state, historic room levels and accessible transitions are unverified. Five occupied masks cover only the main building minus its courtyard plus the basin; original courtyard garden and approaches remain. Preserve all 42 resident / 43 wider independent buildings, original ground/roads and empty native water layer. No bespoke terrain or flattening. Shared materials and reconstructed exterior proportions meet the current medium-fi standard. Roof subdivisions and exact red skylight junction, room/window/column inventories, unseen elevations, mosaic imagery, basin water state, ancient floor levels and accessibility remain approximate or unverified. Procedural detached neighbors are not completed unique models. Physical phone/laptop and dense-city timing measurements remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sq/sqd/casale_main/models/source.glb\",\"hash\":\"sha256:9438959e6e82b460a05bf7f43a3e06bcd8533b35f93fc7bc157eaec3d8a0f5a5\",\"bytes\":1000844,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sq/sqd/casale_main/model.glb\",\"hash\":\"sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52\",\"bytes\":1000160,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sq/sqd/casale_main/model.skyline.glb\",\"hash\":\"sha256:d2c4ea9bb757ab006bfd1ccee84e121a58a715e1d39f69e1205fe62eff5a4d91\",\"bytes\":86452,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sq/sqd/casale_main/model.district.glb\",\"hash\":\"sha256:fe740504f1163507747556015b9b6fde4ad3bd8036201541f0d094d2610fdaa6\",\"bytes\":306100,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sq/sqd/casale_main/model.street.glb\",\"hash\":\"sha256:84ffc789959b564a254d5e35110b5f50117a9e7094983f12c8ec8e2997554434\",\"bytes\":607428,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sq/sqd/casale_main/model.closeup.glb\",\"hash\":\"sha256:ae49d227301f7759204958ce06ca2d967077560614de22bbe00e961500be6053\",\"bytes\":886992,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "open-peristyle-32-columns-covered-portico-and-distinct-skylight",
+        "passed": true,
+        "notes": "410 actual mesh/contact probes over six current GLBs: open court/column bays, all 32 near shafts, covered portico, closed foundations, dry basin floor, raised basilica gable and separate faceted skylight. Current shared material references, hashes, finite vertex attributes, separate vertex streams and LOD caps checked."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Q505617 identifies the archaeological park way304804695; it is not a building footprint. This independent member uses the actual main covered building relation4063362/native52776562196610, including its four-point peristyle hole. Internal X follows the long court axis east-northeast toward the basilica; internal Z points south-southeast. Native east/up/south geometry is baked with heading0. Only the main covered footprint is replaced; all detached site buildings remain independent. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m terrain. Outside-building provider internal[-20,24] supplies the 544.1027338337185m datum. Main boundary grades -1.330..10.799m require reconstructed working terraces (543.2–551.0m absolute), pale infill and closed foundations at -1.480m relative. Current native views show connected shelters, open peristyle/column bays, clear outside approaches and supported low baths; downhill foundation and partial uphill base burial remain visible. The dry courtyard basin is an approximate raised exterior proxy. Exact excavated floors, paving/stairs, water state, historic room levels and accessible transitions are unverified. Five occupied masks cover only the main building minus its courtyard plus the basin; original courtyard garden and approaches remain. Preserve all 42 resident / 43 wider independent buildings, original ground/roads and empty native water layer. No bespoke terrain or flattening."
+    },
+    "inputHash": "sha256:db6787208ed29a0d8c963fc18b4bf27155bd8134a098d78dd3ad3d92e7cbee2d",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:db6787208ed29a0d8c963fc18b4bf27155bd8134a098d78dd3ad3d92e7cbee2d",
+      "reviewedOn": "2026-10-23",
+      "method": "Actually inspected all 52 current frames in eleven labeled contact sheets; full-resolution native peristyle, roofscape, red skylight, western baths and whole site also inspected with identical final model bytes. Four ordinary exterior pictures plus standard PMTiles/Mapzen guided one continuous author/inspect/fix pass. Corrected pale shared stone/columns, roof step infill, peristyle wall closure and roof-mode perimeter seams. No bespoke terrain research. Five detached required collection members remain unmodeled; procedural context is not their approval.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/preview.png",
+          "hash": "sha256:b62ac7e054f9b4f24def919763c7d4f103a47d69ef4209ecef39ccd40774cb24"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/turntable/angle_0.png",
+          "hash": "sha256:543858686dbf2d7a4a01b2349ae8a5f1b7c9afea75188ac650a67534645218d2"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/turntable/angle_1.png",
+          "hash": "sha256:36a2c8a0b6c15798a530fd36d95a7cc823e242514b1c0be4bff23ae3c693efd1"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/turntable/angle_2.png",
+          "hash": "sha256:c53927dbd9da126e712cb38690c22530759d4af9a86af33bec799c19c481b3be"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/turntable/angle_3.png",
+          "hash": "sha256:56a157401a5c39da026bbba565bd21c98bde0553449cf362de57bdf935ecfbc6"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/open-peristyle-columns-and-timber-shelter.png",
+          "hash": "sha256:103e04ae2ec84a1ba7c80d65ae650b341f78a8dab48248768418b12c19f2c487"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/conservation-roofs-basilica-and-hunt-range.png",
+          "hash": "sha256:95045f36a314b18bae1b011a697b653c60a708b17c3f1115fa68be98a3179cb3"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/red-octagonal-frigidarium-skylight.png",
+          "hash": "sha256:9daaaddf377fa654c993b763d3e048ad0fc1cd831b3dfac334014c936ce4ee9b"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/stepped-baths-and-pale-ruin-infill.png",
+          "hash": "sha256:a4a8d75bfc48a9c53511dfc54b66e74a3d60855cf0ae69ff82f8d9a825c21345"
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/shared/angle-0.png",
+          "hash": "sha256:feeedc926d6211ce6f433b4e70080597718073833eeafae626a8c2f0c5a7e6c2",
+          "camera": {
+            "name": "angle-0",
+            "angle": 0.6
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_main",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.main",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 11126,
+            "bounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "reviewGroundY": 1.3972661662814971,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "0d0b88a8-3442-4aac-9279-0b9d809ea70b",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e92d0d4b-02f8-471d-a5a5-20d7ca535ebb",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "8a0ce2ce-ddf8-4bbc-ac4a-d2230335dbd7",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "f0b47cfb-5e31-4a72-b4a9-9feffbe98bb0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "8270f0f8-1325-45e4-b62d-95b0b837043e",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "51af2854-1978-4dec-9fa2-e2618a4746a7",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "d7e7c475-1a08-4e60-8d8a-d5fe43131d94"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main"
+            ],
+            "selectionBounds": [
+              14.333278708708637,
+              37.363662601172514,
+              14.336172170388354,
+              37.36596228829978
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.main"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 11979
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/shared/angle-1.png",
+          "hash": "sha256:f4a7aabf6fd6fee37664dc30046fe7533e1d5bfcbbf2bd56611b0b868ffcec56",
+          "camera": {
+            "name": "angle-1",
+            "angle": 2.1707963267948966
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_main",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.main",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 11126,
+            "bounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "reviewGroundY": 1.3972661662814971,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "0d0b88a8-3442-4aac-9279-0b9d809ea70b",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e92d0d4b-02f8-471d-a5a5-20d7ca535ebb",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "8a0ce2ce-ddf8-4bbc-ac4a-d2230335dbd7",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "f0b47cfb-5e31-4a72-b4a9-9feffbe98bb0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "8270f0f8-1325-45e4-b62d-95b0b837043e",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "51af2854-1978-4dec-9fa2-e2618a4746a7",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "d7e7c475-1a08-4e60-8d8a-d5fe43131d94"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main"
+            ],
+            "selectionBounds": [
+              14.333278708708637,
+              37.363662601172514,
+              14.336172170388354,
+              37.36596228829978
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.main"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 11979
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/shared/angle-2.png",
+          "hash": "sha256:fb106991815f2d050c772293e841c21c13555e163c14a692f8e9ada3bd199e83",
+          "camera": {
+            "name": "angle-2",
+            "angle": 3.741592653589793
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_main",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.main",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 11126,
+            "bounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "reviewGroundY": 1.3972661662814971,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "0d0b88a8-3442-4aac-9279-0b9d809ea70b",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e92d0d4b-02f8-471d-a5a5-20d7ca535ebb",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "8a0ce2ce-ddf8-4bbc-ac4a-d2230335dbd7",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "f0b47cfb-5e31-4a72-b4a9-9feffbe98bb0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "8270f0f8-1325-45e4-b62d-95b0b837043e",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "51af2854-1978-4dec-9fa2-e2618a4746a7",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "d7e7c475-1a08-4e60-8d8a-d5fe43131d94"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main"
+            ],
+            "selectionBounds": [
+              14.333278708708637,
+              37.363662601172514,
+              14.336172170388354,
+              37.36596228829978
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.main"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 11979
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/shared/angle-3.png",
+          "hash": "sha256:f34a1455e4bf613dacb0f21c1815cea6784475851a1cd7d56da36bdf0e7b6f8a",
+          "camera": {
+            "name": "angle-3",
+            "angle": 5.312388980384689
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_main",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.main",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 11126,
+            "bounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "reviewGroundY": 1.3972661662814971,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "0d0b88a8-3442-4aac-9279-0b9d809ea70b",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e92d0d4b-02f8-471d-a5a5-20d7ca535ebb",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "8a0ce2ce-ddf8-4bbc-ac4a-d2230335dbd7",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "f0b47cfb-5e31-4a72-b4a9-9feffbe98bb0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "8270f0f8-1325-45e4-b62d-95b0b837043e",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "51af2854-1978-4dec-9fa2-e2618a4746a7",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "d7e7c475-1a08-4e60-8d8a-d5fe43131d94"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main"
+            ],
+            "selectionBounds": [
+              14.333278708708637,
+              37.363662601172514,
+              14.336172170388354,
+              37.36596228829978
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.main"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 11979
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/shared/open-peristyle-columns-and-timber-shelter.png",
+          "hash": "sha256:ecf4c6440e8bf07d6a269d5b1d6256743c3e3642273a14524684db8d946e2e11",
+          "camera": {
+            "name": "open-peristyle-columns-and-timber-shelter",
+            "position": [
+              -0.9481648786479213,
+              3.897266166281497,
+              5.7533454061874805
+            ],
+            "lookAt": [
+              -12.979539262412942,
+              3.5972661662814973,
+              -5.6152970122230395
+            ],
+            "fov": 68
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_main",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.main",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 11126,
+            "bounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "reviewGroundY": 1.3972661662814971,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "0d0b88a8-3442-4aac-9279-0b9d809ea70b",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e92d0d4b-02f8-471d-a5a5-20d7ca535ebb",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "8a0ce2ce-ddf8-4bbc-ac4a-d2230335dbd7",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "f0b47cfb-5e31-4a72-b4a9-9feffbe98bb0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "8270f0f8-1325-45e4-b62d-95b0b837043e",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "51af2854-1978-4dec-9fa2-e2618a4746a7",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "d7e7c475-1a08-4e60-8d8a-d5fe43131d94"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main"
+            ],
+            "selectionBounds": [
+              14.333278708708637,
+              37.363662601172514,
+              14.336172170388354,
+              37.36596228829978
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.main"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 11979
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/shared/conservation-roofs-basilica-and-hunt-range.png",
+          "hash": "sha256:959d9254dc2217df35eb66d14bee1eba94b6a43012cd7575f3b5c96630d3214d",
+          "camera": {
+            "name": "conservation-roofs-basilica-and-hunt-range",
+            "position": [
+              117.55227758673547,
+              72,
+              52.397156737470944
+            ],
+            "lookAt": [
+              13.209702980957996,
+              8,
+              -7.382665315106024
+            ],
+            "fov": 56
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_main",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.main",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 11126,
+            "bounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "reviewGroundY": 1.3972661662814971,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "0d0b88a8-3442-4aac-9279-0b9d809ea70b",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e92d0d4b-02f8-471d-a5a5-20d7ca535ebb",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "8a0ce2ce-ddf8-4bbc-ac4a-d2230335dbd7",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "f0b47cfb-5e31-4a72-b4a9-9feffbe98bb0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "8270f0f8-1325-45e4-b62d-95b0b837043e",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "51af2854-1978-4dec-9fa2-e2618a4746a7",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "d7e7c475-1a08-4e60-8d8a-d5fe43131d94"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main"
+            ],
+            "selectionBounds": [
+              14.333278708708637,
+              37.363662601172514,
+              14.336172170388354,
+              37.36596228829978
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.main"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 11979
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/shared/red-octagonal-frigidarium-skylight.png",
+          "hash": "sha256:ec06ea23bf3b6a23e5227a9ff6c8cf9434371b90293c50340006bc96190f65e9",
+          "camera": {
+            "name": "red-octagonal-frigidarium-skylight",
+            "position": [
+              -60.22147723893801,
+              31,
+              16.320958279466105
+            ],
+            "lookAt": [
+              -42.11447840585984,
+              7,
+              -11.285863219194447
+            ],
+            "fov": 52
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_main",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.main",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 11126,
+            "bounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "reviewGroundY": 1.3972661662814971,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "0d0b88a8-3442-4aac-9279-0b9d809ea70b",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e92d0d4b-02f8-471d-a5a5-20d7ca535ebb",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "8a0ce2ce-ddf8-4bbc-ac4a-d2230335dbd7",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "f0b47cfb-5e31-4a72-b4a9-9feffbe98bb0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "8270f0f8-1325-45e4-b62d-95b0b837043e",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "51af2854-1978-4dec-9fa2-e2618a4746a7",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "d7e7c475-1a08-4e60-8d8a-d5fe43131d94"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main"
+            ],
+            "selectionBounds": [
+              14.333278708708637,
+              37.363662601172514,
+              14.336172170388354,
+              37.36596228829978
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.main"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 11979
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/shared/stepped-baths-and-pale-ruin-infill.png",
+          "hash": "sha256:9d4909fd26fddecbbee8e84ab423a5b8eea16cee9b4e78010edeff9b3d0b5e04",
+          "camera": {
+            "name": "stepped-baths-and-pale-ruin-infill",
+            "position": [
+              -81.19139377287605,
+              23,
+              66.57294929036708
+            ],
+            "lookAt": [
+              -43.62417298573006,
+              5,
+              -4.234563886765672
+            ],
+            "fov": 53
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_main",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.main",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 11126,
+            "bounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "reviewGroundY": 1.3972661662814971,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "0d0b88a8-3442-4aac-9279-0b9d809ea70b",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e92d0d4b-02f8-471d-a5a5-20d7ca535ebb",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "8a0ce2ce-ddf8-4bbc-ac4a-d2230335dbd7",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "f0b47cfb-5e31-4a72-b4a9-9feffbe98bb0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "8270f0f8-1325-45e4-b62d-95b0b837043e",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "51af2854-1978-4dec-9fa2-e2618a4746a7",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "d7e7c475-1a08-4e60-8d8a-d5fe43131d94"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main"
+            ],
+            "selectionBounds": [
+              14.333278708708637,
+              37.363662601172514,
+              14.336172170388354,
+              37.36596228829978
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.main"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 8,
+            "renderedTriangles": 11979
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/shots/shared/placement.png",
+          "hash": "sha256:db8b08ffd0c0c5e92f6336878cc8eeadfa44af7671c19306cc04ca5713028cc0",
+          "camera": {
+            "name": "placement",
+            "placement": true
+          },
+          "state": {
+            "asset": "molen.worldgen.structure.casale_main",
+            "mode": "geographic-flat-terrain",
+            "placementId": "casale.main",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "heading": 0,
+            "meshes": 7,
+            "triangles": 11126,
+            "bounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "expectedBoundedPlacementBounds": {
+              "min": [
+                -68.82023620605469,
+                -1.4799585342407227,
+                -39.21528244018555
+              ],
+              "max": [
+                54.34425735473633,
+                15.897266387939453,
+                28.180526733398438
+              ]
+            },
+            "reviewGroundY": 1.3972661662814971,
+            "surfaces": {
+              "worldgen:matgraph:molen.worldgen.material.plaster_lime": "0d0b88a8-3442-4aac-9279-0b9d809ea70b",
+              "worldgen:matgraph:molen.worldgen.material.metal_painted": "e92d0d4b-02f8-471d-a5a5-20d7ca535ebb",
+              "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "8a0ce2ce-ddf8-4bbc-ac4a-d2230335dbd7",
+              "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "f0b47cfb-5e31-4a72-b4a9-9feffbe98bb0",
+              "worldgen:matgraph:molen.worldgen.material.wood_plain": "8270f0f8-1325-45e4-b62d-95b0b837043e",
+              "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "51af2854-1978-4dec-9fa2-e2618a4746a7",
+              "worldgen:matgraph:molen.worldgen.material.storefront": "d7e7c475-1a08-4e60-8d8a-d5fe43131d94"
+            },
+            "loads": [
+              "molen.worldgen.structure.casale_main"
+            ],
+            "selectionBounds": [
+              14.333278708708637,
+              37.363662601172514,
+              14.336172170388354,
+              37.36596228829978
+            ],
+            "terrainSamples": [
+              {
+                "placementId": "casale.main",
+                "coordinate": [
+                  14.334615152647519,
+                  37.364545851125
+                ],
+                "height": 0
+              }
+            ],
+            "visibleStructures": [
+              "casale.main"
+            ],
+            "groundCutoutActive": true,
+            "groundCoversCutoutProbe": false,
+            "groundCutoutProbes": 1,
+            "surfaceReads": {
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "draws": 9,
+            "renderedTriangles": 11979
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/street-noon-economy.png",
+          "hash": "sha256:bafdc49758bccb4cfaf7b1006042333076684a834245dd685b5a72f6d3b59c8e",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:ae49d227301f7759204958ce06ca2d967077560614de22bbe00e961500be6053",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 12,
+            "triangles": 17140,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/street-noon-high.png",
+          "hash": "sha256:cb1756e495fe9b0b97efc7b439c4719231624d5eaf4aab01adac2b2c18d4c138",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:ae49d227301f7759204958ce06ca2d967077560614de22bbe00e961500be6053",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 17140,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/street-late-economy.png",
+          "hash": "sha256:ca0b3dc016e4e4dc14e27dae837f7d6e027f3da809bea240f627ebfbefd05b7c",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:ae49d227301f7759204958ce06ca2d967077560614de22bbe00e961500be6053",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 12,
+            "triangles": 17140,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/street-late-high.png",
+          "hash": "sha256:a8bbe46c64107567c8d232d360985076473009b81d79002f6e90a36c364d23f0",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:ae49d227301f7759204958ce06ca2d967077560614de22bbe00e961500be6053",
+            "level": "closeup",
+            "distance": "street",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 17140,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              48,
+              26,
+              83
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/block-noon-economy.png",
+          "hash": "sha256:8b00b69a8074148fb2b7fde6ffdefa094a1fa58a5dcdf3fe5a4ee1fab83707ee",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:fe740504f1163507747556015b9b6fde4ad3bd8036201541f0d094d2610fdaa6",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 12,
+            "triangles": 9826,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/block-noon-high.png",
+          "hash": "sha256:ae62de29d23ddf842a9c33b0261815c0ceafccc75c8222de497d8a48ad1d941a",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:fe740504f1163507747556015b9b6fde4ad3bd8036201541f0d094d2610fdaa6",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 9826,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/block-late-economy.png",
+          "hash": "sha256:74af785587dbb272f8b24a1fb62b0d0a5f6db1087f1340671a7eac38c5f69c0d",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:fe740504f1163507747556015b9b6fde4ad3bd8036201541f0d094d2610fdaa6",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 12,
+            "triangles": 9826,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/block-late-high.png",
+          "hash": "sha256:cce69c04d8dbecb94874f55e9e8de1b7396f79f154f6330b017fd50cddf9a98f",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:fe740504f1163507747556015b9b6fde4ad3bd8036201541f0d094d2610fdaa6",
+            "level": "district",
+            "distance": "block",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 9826,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:bde39aa50ae961bf0039ca76186af7afb094aac0158ad61c3e7da56f587451cf",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:d2c4ea9bb757ab006bfd1ccee84e121a58a715e1d39f69e1205fe62eff5a4d91",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 6905,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:5ecb8bc6af45087cb2eaeb1d2f3a0aaecc47a80844de1d5be9bea0b6754845ff",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:d2c4ea9bb757ab006bfd1ccee84e121a58a715e1d39f69e1205fe62eff5a4d91",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6905,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:f3487d63c737ab8b27846f38106f360e58b9c8784025a172a903b3989ca744dc",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:d2c4ea9bb757ab006bfd1ccee84e121a58a715e1d39f69e1205fe62eff5a4d91",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "economy",
+            "drawCalls": 6,
+            "triangles": 6905,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/skyline-late-high.png",
+          "hash": "sha256:d5fa08e0b38ff8698746f88eed847f3db4fa385bae9fd3a39528c964c6de02a9",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:d2c4ea9bb757ab006bfd1ccee84e121a58a715e1d39f69e1205fe62eff5a4d91",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "late",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6905,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/silhouette.png",
+          "hash": "sha256:e3756677f03f2838cc4c18de3334784076e5e5dd228c18374c04c5b532cfd316",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:d2c4ea9bb757ab006bfd1ccee84e121a58a715e1d39f69e1205fe62eff5a4d91",
+            "level": "skyline",
+            "distance": "skyline",
+            "time": "noon",
+            "mode": "economy",
+            "drawCalls": 2,
+            "triangles": 1209,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              194,
+              100,
+              336
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/open-peristyle-columns-and-timber-shelter.png",
+          "hash": "sha256:12dc1d8c377187a693388218518f31b648928990f120123ea609c1880670ae01",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:ae49d227301f7759204958ce06ca2d967077560614de22bbe00e961500be6053",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 17140,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              -0.9481648786479213,
+              3.897266166281497,
+              5.7533454061874805
+            ],
+            "lookAt": [
+              -12.979539262412942,
+              3.5972661662814973,
+              -5.6152970122230395
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/conservation-roofs-basilica-and-hunt-range.png",
+          "hash": "sha256:ee986a04f8486e7d63bae1588ffc0a8c52edc5707a038a5a28e9113ecac9d2c6",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:ae49d227301f7759204958ce06ca2d967077560614de22bbe00e961500be6053",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 17140,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              117.55227758673547,
+              72,
+              52.397156737470944
+            ],
+            "lookAt": [
+              13.209702980957996,
+              8,
+              -7.382665315106024
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/red-octagonal-frigidarium-skylight.png",
+          "hash": "sha256:c87849a7a9a7fbca0ee8ca16564f645dbf3ec5f998257422da2785d70ce2ade1",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:ae49d227301f7759204958ce06ca2d967077560614de22bbe00e961500be6053",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 17140,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              -60.22147723893801,
+              31,
+              16.320958279466105
+            ],
+            "lookAt": [
+              -42.11447840585984,
+              7,
+              -11.285863219194447
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/stepped-baths-and-pale-ruin-infill.png",
+          "hash": "sha256:ec7f24f4c7388adb826fd195ff373688bb6a43fed5f5eb9395ff921f7ee06a98",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:ae49d227301f7759204958ce06ca2d967077560614de22bbe00e961500be6053",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 17140,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              -81.19139377287605,
+              23,
+              66.57294929036708
+            ],
+            "lookAt": [
+              -43.62417298573006,
+              5,
+              -4.234563886765672
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/casale-main-skyline.png",
+          "hash": "sha256:0f9efc04b5c8d7fafdca340009d15a41cd665535914f6ebbc7308dec0b7bf0b2",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:d2c4ea9bb757ab006bfd1ccee84e121a58a715e1d39f69e1205fe62eff5a4d91",
+            "level": "skyline",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6905,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              -75.80650966501102,
+              98,
+              175.2237800425747
+            ],
+            "lookAt": [
+              -3.893861778723882,
+              6,
+              -1.6845891036669114
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/casale-main-district.png",
+          "hash": "sha256:f5783ffe7324a898cc0971c06819e9b1bb4d312e06121710106b2230f2cb1e27",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:fe740504f1163507747556015b9b6fde4ad3bd8036201541f0d094d2610fdaa6",
+            "level": "district",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 9826,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              -75.80650966501102,
+              98,
+              175.2237800425747
+            ],
+            "lookAt": [
+              -3.893861778723882,
+              6,
+              -1.6845891036669114
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/casale-main-street.png",
+          "hash": "sha256:ac22864fc3f8e162429a0d691f948df4fcc2985aebbaf88fcbd88ba0d9a395c5",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:84ffc789959b564a254d5e35110b5f50117a9e7094983f12c8ec8e2997554434",
+            "level": "street",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 13556,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              -75.80650966501102,
+              98,
+              175.2237800425747
+            ],
+            "lookAt": [
+              -3.893861778723882,
+              6,
+              -1.6845891036669114
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/casale-main-closeup.png",
+          "hash": "sha256:204486482a18c75b385b0b38c5aa71b060d8debdf67bf6d8e5adc19e3ca1ab34",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:ae49d227301f7759204958ce06ca2d967077560614de22bbe00e961500be6053",
+            "level": "closeup",
+            "distance": "street",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 17140,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              -75.80650966501102,
+              98,
+              175.2237800425747
+            ],
+            "lookAt": [
+              -3.893861778723882,
+              6,
+              -1.6845891036669114
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/transition-skyline.png",
+          "hash": "sha256:0bb1cea46c60598f8dbb861ea15939ba6955f630f13eb6173c2843c4ba722822",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:d2c4ea9bb757ab006bfd1ccee84e121a58a715e1d39f69e1205fe62eff5a4d91",
+            "level": "skyline",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 6,
+            "triangles": 6905,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/transition-district.png",
+          "hash": "sha256:ae62de29d23ddf842a9c33b0261815c0ceafccc75c8222de497d8a48ad1d941a",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:fe740504f1163507747556015b9b6fde4ad3bd8036201541f0d094d2610fdaa6",
+            "level": "district",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 9826,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/transition-street.png",
+          "hash": "sha256:c124be7b12986ade84c05dd7c69bb6430e5dcd61d4f5abf576224347538b7064",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:84ffc789959b564a254d5e35110b5f50117a9e7094983f12c8ec8e2997554434",
+            "level": "street",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 13556,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": "content/worldgen/source/places/sq/sqd/casale_main/medium-fi/transition-closeup.png",
+          "hash": "sha256:5a682417ddc134cf7bacda3222e50cec6683576fcb6e445ef3ed83d54b9d74cb",
+          "state": {
+            "assetId": "molen.worldgen.structure.casale_main",
+            "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+            "lodHash": "sha256:ae49d227301f7759204958ce06ca2d967077560614de22bbe00e961500be6053",
+            "level": "closeup",
+            "distance": "block",
+            "time": "noon",
+            "mode": "high",
+            "drawCalls": 12,
+            "triangles": 17140,
+            "groundY": 1.3972661662814971,
+            "terrainFixture": null,
+            "position": [
+              97,
+              62,
+              168
+            ],
+            "lookAt": [
+              0,
+              11,
+              0
+            ],
+            "graphReads": {
+              "molen.worldgen.material.concrete_boardformed": 1,
+              "molen.worldgen.material.membrane": 1,
+              "molen.worldgen.material.window_punched": 1,
+              "molen.worldgen.material.plaster_lime": 1,
+              "molen.worldgen.material.metal_painted": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.stone_limestone_raw": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.tile_mosaic": 1,
+              "molen.worldgen.material.storefront": 1
+            },
+            "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+            "contextScale": 1,
+            "cameraYaw": 0,
+            "reflections": "sky-pmrem",
+            "groundOpening": {
+              "points": 62,
+              "outlines": 1,
+              "surfaces": 1,
+              "coverage": {
+                "probes": 8,
+                "covered": 0
+              },
+              "active": true,
+              "sourceValuesUnchanged": true
+            }
+          }
+        },
+        {
+          "path": ".artifacts/casale-main-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:ba13d11f79dccba7f67c114a17a63c49d8a42f17ca13278bdb19619acbfcc62b",
+          "state": {
+            "level": "skyline",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 11,
+            "triangles": 154293
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -75.80650966501102,
+              98,
+              175.2237800425747
+            ],
+            "lookAt": [
+              -3.893861778723882,
+              6,
+              -1.6845891036669114
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-main-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:5079d4cadb1c52ebad0b088ee72f46b9ac3c6e7b44bd1e2a3dc31dae7df03cde",
+          "state": {
+            "level": "district",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 17,
+            "triangles": 157214
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -75.80650966501102,
+              98,
+              175.2237800425747
+            ],
+            "lookAt": [
+              -3.893861778723882,
+              6,
+              -1.6845891036669114
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-main-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:2b406dd69ce74f8e7571978043c76cf2f7e0dda102589f4d23c26502722efa66",
+          "state": {
+            "level": "street",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 17,
+            "triangles": 160944
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -75.80650966501102,
+              98,
+              175.2237800425747
+            ],
+            "lookAt": [
+              -3.893861778723882,
+              6,
+              -1.6845891036669114
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-main-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:7a4d9fad144ea768a430c5b23229469e8d5ead7d724aec44b8b22c05834bd0f5",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 17,
+            "triangles": 164528
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -75.80650966501102,
+              98,
+              175.2237800425747
+            ],
+            "lookAt": [
+              -3.893861778723882,
+              6,
+              -1.6845891036669114
+            ],
+            "fov": 54
+          }
+        },
+        {
+          "path": ".artifacts/casale-main-integration/shots/final-closeup-open-peristyle-columns-and-timber-shelter.png",
+          "hash": "sha256:1340a371c01298e457fdec2ae825490c94f94f61be1393ad2278355419a4099f",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 17,
+            "triangles": 164528
+          },
+          "camera": {
+            "name": "open-peristyle-columns-and-timber-shelter",
+            "position": [
+              -0.9481648786479213,
+              3.897266166281497,
+              5.7533454061874805
+            ],
+            "lookAt": [
+              -12.979539262412942,
+              3.5972661662814973,
+              -5.6152970122230395
+            ],
+            "fov": 68
+          }
+        },
+        {
+          "path": ".artifacts/casale-main-integration/shots/final-closeup-conservation-roofs-basilica-and-hunt-range.png",
+          "hash": "sha256:a162f28ab4cd46852b7b66534a80f7886d6aa89f2e790a3f9a44bad08c036893",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 17,
+            "triangles": 164528
+          },
+          "camera": {
+            "name": "conservation-roofs-basilica-and-hunt-range",
+            "position": [
+              117.55227758673547,
+              72,
+              52.397156737470944
+            ],
+            "lookAt": [
+              13.209702980957996,
+              8,
+              -7.382665315106024
+            ],
+            "fov": 56
+          }
+        },
+        {
+          "path": ".artifacts/casale-main-integration/shots/final-closeup-red-octagonal-frigidarium-skylight.png",
+          "hash": "sha256:80283b50bbb84f5bab7f4f81af5772e3474fefd7ee7b4dd630508741c3c92582",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 17,
+            "triangles": 164528
+          },
+          "camera": {
+            "name": "red-octagonal-frigidarium-skylight",
+            "position": [
+              -60.22147723893801,
+              31,
+              16.320958279466105
+            ],
+            "lookAt": [
+              -42.11447840585984,
+              7,
+              -11.285863219194447
+            ],
+            "fov": 52
+          }
+        },
+        {
+          "path": ".artifacts/casale-main-integration/shots/final-closeup-stepped-baths-and-pale-ruin-infill.png",
+          "hash": "sha256:2f00854f392a8ef3833d138005674fa5f46815519ea5ba23fa4412d7a5f002a8",
+          "state": {
+            "level": "closeup",
+            "mode": "high",
+            "groundCutoutActive": true,
+            "draws": 17,
+            "triangles": 164528
+          },
+          "camera": {
+            "name": "stepped-baths-and-pale-ruin-infill",
+            "position": [
+              -81.19139377287605,
+              23,
+              66.57294929036708
+            ],
+            "lookAt": [
+              -43.62417298573006,
+              5,
+              -4.234563886765672
+            ],
+            "fov": 53
+          }
+        },
+        {
+          "path": ".artifacts/casale-main-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:0f41c65c5d1d3e1b346548e2415eb89c0f93d1fde44692c10ca874e6ded7f4ac",
+          "state": {
+            "level": "failure",
+            "mode": "high",
+            "groundCutoutActive": false,
+            "draws": 10,
+            "triangles": 156515
+          },
+          "camera": {
+            "name": "whole-site",
+            "position": [
+              -75.80650966501102,
+              98,
+              175.2237800425747
+            ],
+            "lookAt": [
+              -3.893861778723882,
+              6,
+              -1.6845891036669114
+            ],
+            "fov": 54
+          }
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:db6787208ed29a0d8c963fc18b4bf27155bd8134a098d78dd3ad3d92e7cbee2d",
+      "sourceHash": "sha256:9438959e6e82b460a05bf7f43a3e06bcd8533b35f93fc7bc157eaec3d8a0f5a5",
+      "runtimeHash": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+      "files": {
+        "content/worldgen/source/places/sq/sqd/casale_main/models/source.glb": "sha256:9438959e6e82b460a05bf7f43a3e06bcd8533b35f93fc7bc157eaec3d8a0f5a5",
+        "content/worldgen/assets/places/sq/sqd/casale_main/model.glb": "sha256:be8de05a83a772e175a9024b0f5f6e4a3be840f961fe3b2f8a150e17722e1b52",
+        "content/worldgen/assets/places/sq/sqd/casale_main/model.skyline.glb": "sha256:d2c4ea9bb757ab006bfd1ccee84e121a58a715e1d39f69e1205fe62eff5a4d91",
+        "content/worldgen/assets/places/sq/sqd/casale_main/model.district.glb": "sha256:fe740504f1163507747556015b9b6fde4ad3bd8036201541f0d094d2610fdaa6",
+        "content/worldgen/assets/places/sq/sqd/casale_main/model.street.glb": "sha256:84ffc789959b564a254d5e35110b5f50117a9e7094983f12c8ec8e2997554434",
+        "content/worldgen/assets/places/sq/sqd/casale_main/model.closeup.glb": "sha256:ae49d227301f7759204958ce06ca2d967077560614de22bbe00e961500be6053"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        52776562196610
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4422,
+            3178
+          ],
+          "id": 35184676888120,
+          "owned": false,
+          "covered": 0.5643163903389454,
+          "area": 7877.824484927484,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8844,
+            6356
+          ],
+          "id": 35184589838920,
+          "owned": false,
+          "covered": 0.4943297503043581,
+          "area": 8170.678896483211,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17688,
+            12712
+          ],
+          "id": 52776562196610,
+          "owned": true,
+          "covered": 0.9999941551960736,
+          "area": 4070.2165294401893,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 42,
+      "widerIndependent": 43,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000032150880784342917,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.casale_main"
+          ],
+          "rawTerrainRange": {
+            "min": -25.366933833718463,
+            "max": 145.37046616628152
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:ba13d11f79dccba7f67c114a17a63c49d8a42f17ca13278bdb19619acbfcc62b",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 11,
+              "triangles": 154293
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -75.80650966501102,
+                98,
+                175.2237800425747
+              ],
+              "lookAt": [
+                -3.893861778723882,
+                6,
+                -1.6845891036669114
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000032150880784342917,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.tile_mosaic": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.casale_main"
+          ],
+          "rawTerrainRange": {
+            "min": -25.366933833718463,
+            "max": 145.37046616628152
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:5079d4cadb1c52ebad0b088ee72f46b9ac3c6e7b44bd1e2a3dc31dae7df03cde",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 157214
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -75.80650966501102,
+                98,
+                175.2237800425747
+              ],
+              "lookAt": [
+                -3.893861778723882,
+                6,
+                -1.6845891036669114
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000032150880784342917,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.tile_mosaic": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.casale_main"
+          ],
+          "rawTerrainRange": {
+            "min": -25.366933833718463,
+            "max": 145.37046616628152
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:2b406dd69ce74f8e7571978043c76cf2f7e0dda102589f4d23c26502722efa66",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 160944
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -75.80650966501102,
+                98,
+                175.2237800425747
+              ],
+              "lookAt": [
+                -3.893861778723882,
+                6,
+                -1.6845891036669114
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000032150880784342917,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 42,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.tile_mosaic": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.casale_main"
+          ],
+          "rawTerrainRange": {
+            "min": -25.366933833718463,
+            "max": 145.37046616628152
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:7a4d9fad144ea768a430c5b23229469e8d5ead7d724aec44b8b22c05834bd0f5",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 164528
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -75.80650966501102,
+                98,
+                175.2237800425747
+              ],
+              "lookAt": [
+                -3.893861778723882,
+                6,
+                -1.6845891036669114
+              ],
+              "fov": 54
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-peristyle-columns-and-timber-shelter.png",
+            "hash": "sha256:1340a371c01298e457fdec2ae825490c94f94f61be1393ad2278355419a4099f",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 164528
+            },
+            "camera": {
+              "name": "open-peristyle-columns-and-timber-shelter",
+              "position": [
+                -0.9481648786479213,
+                3.897266166281497,
+                5.7533454061874805
+              ],
+              "lookAt": [
+                -12.979539262412942,
+                3.5972661662814973,
+                -5.6152970122230395
+              ],
+              "fov": 68
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-conservation-roofs-basilica-and-hunt-range.png",
+            "hash": "sha256:a162f28ab4cd46852b7b66534a80f7886d6aa89f2e790a3f9a44bad08c036893",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 164528
+            },
+            "camera": {
+              "name": "conservation-roofs-basilica-and-hunt-range",
+              "position": [
+                117.55227758673547,
+                72,
+                52.397156737470944
+              ],
+              "lookAt": [
+                13.209702980957996,
+                8,
+                -7.382665315106024
+              ],
+              "fov": 56
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-red-octagonal-frigidarium-skylight.png",
+            "hash": "sha256:80283b50bbb84f5bab7f4f81af5772e3474fefd7ee7b4dd630508741c3c92582",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 164528
+            },
+            "camera": {
+              "name": "red-octagonal-frigidarium-skylight",
+              "position": [
+                -60.22147723893801,
+                31,
+                16.320958279466105
+              ],
+              "lookAt": [
+                -42.11447840585984,
+                7,
+                -11.285863219194447
+              ],
+              "fov": 52
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-stepped-baths-and-pale-ruin-infill.png",
+            "hash": "sha256:2f00854f392a8ef3833d138005674fa5f46815519ea5ba23fa4412d7a5f002a8",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 164528
+            },
+            "camera": {
+              "name": "stepped-baths-and-pale-ruin-infill",
+              "position": [
+                -81.19139377287605,
+                23,
+                66.57294929036708
+              ],
+              "lookAt": [
+                -43.62417298573006,
+                5,
+                -4.234563886765672
+              ],
+              "fov": 53
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 43,
+          "independentBuildings": 42,
+          "remainingBuildings": 43,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 52776562196610,
+              "area": 4070.2477047991574
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.casale_main"
+          ],
+          "rawTerrainRange": {
+            "min": -25.366933833718463,
+            "max": 145.37046616628152
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 0,
+          "remainingWaterArea": 0,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:0f41c65c5d1d3e1b346548e2415eb89c0f93d1fde44692c10ca874e6ded7f4ac",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 156515
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -75.80650966501102,
+                98,
+                175.2237800425747
+              ],
+              "lookAt": [
+                -3.893861778723882,
+                6,
+                -1.6845891036669114
+              ],
+              "fov": 54
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Main connected villa and baths conservation complex only: mapped apsidal room outline and open rectangular peristyle, 32 near-view columns, shallow dry courtyard fountain, pale infill above weathered stone ruins, grey standing-seam roofs, higher basilica/Great Hunt ranges, stepped western baths and red octagonal frigidarium roof with faceted skylight. Triclinium, Xystus rooms/court, entrance remains and two eastern latrines are separate required models. Figurative mosaics, temporary art, furniture, signage and surrounding archaeological park are not copied into this exterior model.",
+    "Q505617 identifies the archaeological park way304804695; it is not a building footprint. This independent member uses the actual main covered building relation4063362/native52776562196610, including its four-point peristyle hole. Internal X follows the long court axis east-northeast toward the basilica; internal Z points south-southeast. Native east/up/south geometry is baked with heading0. Only the main covered footprint is replaced; all detached site buildings remain independent.",
+    "Photo-led medium-fi conservation exterior. No qualified mapped heights. Working absolute floor terraces: western baths543.2m, frigidarium544.2m, peristyle545.5m, north rooms547.4m, Great Hunt548.0m, eastern rooms549.2m and basilica551.0m. These roughly follow the retained standard DEM and photographed stepped roofscape; they are reconstructed working levels, not measured ancient floors. Shelter eaves3.5–6m above their working floor and simple gables/faceted apses/skylight preserve roof forms. Wall and roof subdivisions, room inventories, exact glazing/beam spacing and unseen elevations are approximate. Shared geometric tile flooring is a generic tonal proxy, not a recreation of the villa mosaics.",
+    "Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m terrain. Outside-building provider internal[-20,24] supplies the 544.1027338337185m datum. Main boundary grades -1.330..10.799m require reconstructed working terraces (543.2–551.0m absolute), pale infill and closed foundations at -1.480m relative. Current native views show connected shelters, open peristyle/column bays, clear outside approaches and supported low baths; downhill foundation and partial uphill base burial remain visible. The dry courtyard basin is an approximate raised exterior proxy. Exact excavated floors, paving/stairs, water state, historic room levels and accessible transitions are unverified. Five occupied masks cover only the main building minus its courtyard plus the basin; original courtyard garden and approaches remain. Preserve all 42 resident / 43 wider independent buildings, original ground/roads and empty native water layer. No bespoke terrain or flattening.",
+    "Photo-led medium-fi conservation exterior. No qualified mapped heights. Working absolute floor terraces: western baths543.2m, frigidarium544.2m, peristyle545.5m, north rooms547.4m, Great Hunt548.0m, eastern rooms549.2m and basilica551.0m. These roughly follow the retained standard DEM and photographed stepped roofscape; they are reconstructed working levels, not measured ancient floors. Shelter eaves3.5–6m above their working floor and simple gables/faceted apses/skylight preserve roof forms. Wall and roof subdivisions, room inventories, exact glazing/beam spacing and unseen elevations are approximate. Shared geometric tile flooring is a generic tonal proxy, not a recreation of the villa mosaics. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m terrain. Outside-building provider internal[-20,24] supplies the 544.1027338337185m datum. Main boundary grades -1.330..10.799m require reconstructed working terraces (543.2–551.0m absolute), pale infill and closed foundations at -1.480m relative. Current native views show connected shelters, open peristyle/column bays, clear outside approaches and supported low baths; downhill foundation and partial uphill base burial remain visible. The dry courtyard basin is an approximate raised exterior proxy. Exact excavated floors, paving/stairs, water state, historic room levels and accessible transitions are unverified. Five occupied masks cover only the main building minus its courtyard plus the basin; original courtyard garden and approaches remain. Preserve all 42 resident / 43 wider independent buildings, original ground/roads and empty native water layer. No bespoke terrain or flattening. Shared materials and reconstructed exterior proportions meet the current medium-fi standard. Roof subdivisions and exact red skylight junction, room/window/column inventories, unseen elevations, mosaic imagery, basin water state, ancient floor levels and accessibility remain approximate or unverified. Procedural detached neighbors are not completed unique models. Physical phone/laptop and dense-city timing measurements remain pending.",
+    "Q505617 identifies the archaeological park way304804695; it is not a building footprint. This independent member uses the actual main covered building relation4063362/native52776562196610, including its four-point peristyle hole. Internal X follows the long court axis east-northeast toward the basilica; internal Z points south-southeast. Native east/up/south geometry is baked with heading0. Only the main covered footprint is replaced; all detached site buildings remain independent. Qualified approximate native exterior fit on original Protomaps20261020/Mapzen 201x201/6m terrain. Outside-building provider internal[-20,24] supplies the 544.1027338337185m datum. Main boundary grades -1.330..10.799m require reconstructed working terraces (543.2–551.0m absolute), pale infill and closed foundations at -1.480m relative. Current native views show connected shelters, open peristyle/column bays, clear outside approaches and supported low baths; downhill foundation and partial uphill base burial remain visible. The dry courtyard basin is an approximate raised exterior proxy. Exact excavated floors, paving/stairs, water state, historic room levels and accessible transitions are unverified. Five occupied masks cover only the main building minus its courtyard plus the basin; original courtyard garden and approaches remain. Preserve all 42 resident / 43 wider independent buildings, original ground/roads and empty native water layer. No bespoke terrain or flattening."
+  ]
+}

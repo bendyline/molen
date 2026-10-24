@@ -1,4 +1,4 @@
-/** 'N0727': the mapped Arena Amazônia, with continuous diagonal basket shell. */
+/** 'arena_amazonia': the mapped Arena Amazônia, with continuous diagonal basket shell. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
@@ -17,7 +17,7 @@ export function amazoniaRadius(poly, a) {
       u = cross(p, d) / den;
     if (t > 0 && u >= -1e-8 && u <= 1 + 1e-8) hits.push(t);
   }
-  if (!hits.length) throw Error('N0727: missing native radial boundary');
+  if (!hits.length) throw Error('arena_amazonia: missing native radial boundary');
   return Math.min(...hits);
 }
 export function amazoniaFoundationOutline(r, detail) {

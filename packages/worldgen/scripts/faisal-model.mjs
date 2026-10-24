@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tt/ttg/n0425_faisal_mosque/',
+  '../../../content/worldgen/source/places/tt/ttg/faisal_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1099,7 +1099,7 @@ export const buildFaisalSkyline = (o) => build(o, 0),
   buildFaisalCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const faisalStudy = {
-  id: 'N0425',
+  id: 'faisal_mosque',
   key: 'faisal_mosque',
   title: 'Faisal Mosque',
   category: 'mosque',

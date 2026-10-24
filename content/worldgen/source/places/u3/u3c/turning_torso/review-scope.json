@@ -1,0 +1,354 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/turning-torso-runtime-model.mjs",
+    "export": "buildTorsoReviewedMaster"
+  },
+  "brief": "Complete nine-unit white twisting tower with punched windows, exposed glass triangular wing, separate steel spine, visible circular service crown and mapped southwest arrival.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X northeast ground wing/spine",
+    "front": "-X southwest Lilla Varvsgatan14 entrance",
+    "origin": "Ground contact in exactQ206435 mapped frame"
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+    "scale": 2
+  },
+  "appearance": {
+    "identity": "Nine white twisting units, recessed dark bands, glazed triangular wing and separate spiraling steel spine.",
+    "scope": "Complete medium-fi Turning Torso tower retains nine five-floor twisted units, recessed interstitial bands, independent circular core,90degree sweep and separate spiraling external steel spine. Original62506-triangle master recipe is preserved unchanged and reproducible. Reviewed source corrects the two triangular-wing elevations to exposed dark curtain glazing, as seen in architect photos03/06/08, retaining punched windows within white aluminum on the broad elevations. Last-unit roof188m leaves the circular service crown visible to published190m; tiny tube tips are clipped to190m. Nine equal cycles and exact window counts remain original reconstruction rather than measured floor levels. Primary architect publishes190m,10.6m core inner diameter with2.5m base/.4m top wall, curved aluminum and flat glass; owner confirms nine units/five floors/54including intermediate levels and90degree twist. Mapped entrance gets reconstructed paired glazing, handles and short granite arrival path; no surveyed doorway hardware or threshold. Three canonical shared granite/concrete/painted-metal graphs; palette PBR glass; no copied or embedded photographs. Closeup retains fine facade joints, truss and floor struts; street drops tiny joints/frames and reduces tube facets; district merges broad window strips and retains major truss plus two pairs of floor struts per unit; skyline retains whole asymmetric twisted mass, nine bands, exposed glass wing, separate major spine/diagonals and core crown while omitting minor struts/windows. Separate Turning Torso Gallery parking parcel and its corridor, reflecting pool, surrounding canal, interior, temporary construction and exact panel curvature are outside this tower bundle; they are disclosed site context, not missing tower parts. Base and upper outlines follow unchanged map controls; upper overhang is intentional. Ground grade, night and physical-device timing/full-scene memory unmeasured."
+  },
+  "sourceFacts": {
+    "heightMeters": 190,
+    "floors": 54,
+    "units": 9,
+    "floorsPerUnit": 5,
+    "twistDegrees": 90,
+    "coreInnerDiameterMeters": 10.6,
+    "coreBaseWallMeters": 2.5,
+    "facade": "Curved aluminum panels with flat glass windows",
+    "originalMasterHash": "sha256:be84b21e562aaca4bc4f0f36f0358ed26a4e91315f5d277267c21aff8976f630",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-next-models.mjs#skylineNext[turning_torso].build",
+    "mappedComponents": 11,
+    "surfaceMeans": {
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "concrete_plain": [
+        0.710816,
+        0.710816,
+        0.681928
+      ]
+    }
+  },
+  "reconstruction": {
+    "plan": "Exact asymmetric ground footprint and mapped circular core establish the center and signed 90-degree sweep; independent mapped units confirm rotation handedness",
+    "unitDatums": "Nine equal cycles from4 m to190 m; five occupied floors and a recessed2 m interstitial band per unit. Published190 m exterior datum replaces the coarse184 m mapped top unit.",
+    "wing": "Two triangular-wing faces use exposed dark curtain glazing; broad elevations use punched windows.",
+    "crown": "Last-unit188m roof and circular190m service crown; reconstructed heights within published total."
+  },
+  "limitations": [
+    "Complete medium-fi Turning Torso tower retains nine five-floor twisted units, recessed interstitial bands, independent circular core,90degree sweep and separate spiraling external steel spine. Original62506-triangle master recipe is preserved unchanged and reproducible. Reviewed source corrects the two triangular-wing elevations to exposed dark curtain glazing, as seen in architect photos03/06/08, retaining punched windows within white aluminum on the broad elevations. Last-unit roof188m leaves the circular service crown visible to published190m; tiny tube tips are clipped to190m. Nine equal cycles and exact window counts remain original reconstruction rather than measured floor levels. Primary architect publishes190m,10.6m core inner diameter with2.5m base/.4m top wall, curved aluminum and flat glass; owner confirms nine units/five floors/54including intermediate levels and90degree twist. Mapped entrance gets reconstructed paired glazing, handles and short granite arrival path; no surveyed doorway hardware or threshold. Three canonical shared granite/concrete/painted-metal graphs; palette PBR glass; no copied or embedded photographs. Closeup retains fine facade joints, truss and floor struts; street drops tiny joints/frames and reduces tube facets; district merges broad window strips and retains major truss plus two pairs of floor struts per unit; skyline retains whole asymmetric twisted mass, nine bands, exposed glass wing, separate major spine/diagonals and core crown while omitting minor struts/windows. Separate Turning Torso Gallery parking parcel and its corridor, reflecting pool, surrounding canal, interior, temporary construction and exact panel curvature are outside this tower bundle; they are disclosed site context, not missing tower parts. Base and upper outlines follow unchanged map controls; upper overhang is intentional. Ground grade, night and physical-device timing/full-scene memory unmeasured."
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "graph": "stone_granite",
+      "slot": "foundation",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "concrete": {
+      "graph": "concrete_plain",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "geographic": {
+    "heading": 1.098498019742,
+    "reviewStatus": "reviewed medium-fi signed placement",
+    "orientationConfidence": "footprint-directed",
+    "notes": "Fresh public OSM API2026-10-10 confirms exactQ206435 asymmetric base30926877, circular core940786326 and nine independent upper units940786317–325 unchanged. Named entrance1620585234 is a member of the tower base and gives independent southwest arrival control. Native+X points northeast to ground triangular wing/external spine; -X southwest to the named Lilla Varvsgatan14 entrance; +Z southeast. Positive native90degree sweep rotates the wing from northeast toward southeast around the independent circular core. Retain anchor/heading and scale. Coarse mapped184m top unit is reconciled to published190m total. Accepted plan tolerance2m/1degree; Y0 ground contact, absolute grade/slope unmeasured. Footprint replacement disabled; intended rotated upper overhang remains.",
+    "evidence": "Fresh public OSM API2026-10-10 confirms exactQ206435 asymmetric base30926877, circular core940786326 and nine independent upper units940786317–325 unchanged. Named entrance1620585234 is a member of the tower base and gives independent southwest arrival control. Native+X points northeast to ground triangular wing/external spine; -X southwest to the named Lilla Varvsgatan14 entrance; +Z southeast. Positive native90degree sweep rotates the wing from northeast toward southeast around the independent circular core. Retain anchor/heading and scale. Coarse mapped184m top unit is reconciled to published190m total. Accepted plan tolerance2m/1degree; Y0 ground contact, absolute grade/slope unmeasured. Footprint replacement disabled; intended rotated upper overhang remains.",
+    "replaceFootprint": false
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/turning-torso-runtime-model.mjs",
+    "export": "buildTorsoSkyline",
+    "errorMeters": 2.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTorsoDistrict",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildTorsoStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTorsoCloseup",
+        "errorMeters": 0.01,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "mapped-southwest-arrival",
+      "position": [
+        -34,
+        3,
+        -4
+      ],
+      "lookAt": [
+        -18.6,
+        1.8,
+        -1.5
+      ]
+    },
+    {
+      "name": "circular-service-crown",
+      "position": [
+        37,
+        205,
+        40
+      ],
+      "lookAt": [
+        -3,
+        186,
+        0
+      ]
+    },
+    {
+      "name": "whole-twisted-tower",
+      "position": [
+        310,
+        195,
+        350
+      ],
+      "lookAt": [
+        0,
+        92,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        310,
+        195,
+        350
+      ],
+      "lookAt": [
+        0,
+        92,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        310,
+        195,
+        350
+      ],
+      "lookAt": [
+        0,
+        92,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        310,
+        195,
+        350
+      ],
+      "lookAt": [
+        0,
+        92,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        310,
+        195,
+        350
+      ],
+      "lookAt": [
+        0,
+        92,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "street-exposed-glass-wing",
+      "position": [
+        67,
+        74,
+        29
+      ],
+      "lookAt": [
+        14,
+        73,
+        8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-steel-spine",
+      "position": [
+        34,
+        133,
+        50
+      ],
+      "lookAt": [
+        8,
+        129,
+        21
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-service-crown",
+      "position": [
+        35,
+        204,
+        35
+      ],
+      "lookAt": [
+        -3,
+        188,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-arrival",
+      "position": [
+        -30,
+        2.7,
+        -4
+      ],
+      "lookAt": [
+        -18.6,
+        1.7,
+        -1.5
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

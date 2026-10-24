@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tk/tk1/n0464_sultan_qaboos_grand_mosque/',
+  '../../../content/worldgen/source/places/tk/tk1/sultan_qaboos_grand_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -838,7 +838,7 @@ export const buildQaboosSkyline = (o) => build(o, 0),
   buildQaboosCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const qaboosStudy = {
-  id: 'N0464',
+  id: 'sultan_qaboos_grand_mosque',
   key: 'sultan_qaboos_grand_mosque',
   title: 'Sultan Qaboos Grand Mosque',
   category: 'mosque',

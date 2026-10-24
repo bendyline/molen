@@ -1,0 +1,289 @@
+{
+  "planId": "7_world_trade_center",
+  "id": "7_world_trade_center",
+  "assetId": "molen.worldgen.structure.7_world_trade_center",
+  "title": "7 World Trade Center",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q270066",
+  "referenceCoordinate": {
+    "latitude": 40.7133,
+    "longitude": -74.012
+  },
+  "visualBrief": "The current2006 tower: a mapped oblique parallelogram of pale reflective glazing, concave stainless-steel spandrels, detailed triangular metal scrim above the ground lobby, and mapped rooftop service volumes.",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.brownstone",
+    "scale": 3
+  },
+  "size": [
+    81.71539306640625,
+    226.02999877929688,
+    49.66821098327637
+  ],
+  "actualBounds": {
+    "min": [
+      -40.85774230957031,
+      0,
+      -24.834115982055664
+    ],
+    "max": [
+      40.85765075683594,
+      226.02999877929688,
+      24.834095001220703
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "completion": 2006,
+    "floors": 52,
+    "heightFeet": 741,
+    "heightMeters": 225.8568,
+    "facade": "Low-iron glass, concave316 stainless steel spandrels, triangular metal scrim"
+  },
+  "appearance": {
+    "identity": "Current2006 oblique pale glass tower, concave floor spandrels, podium steel scrim, ground lobby and offset mapped roof plant.",
+    "epoch": "Current2006 building; owner identifies52floors and741ft; map snapshot2026-09-27.",
+    "master": "Original4832-triangle detail recipe retained; current master adds a continuous support curb beneath the offset roof plant. Original detailed geometry and shared surfaces are preserved.",
+    "exclusions": "Individual micro-prism orientations, LED art, lobby interior, exact facade hardware and sidewalk survey."
+  },
+  "reconstruction": {
+    "plan": "Exact current-building way277890516; roof parts1530740417/418; source map-parts.json",
+    "heightDatum": "SOM741 ft preferred to rounded228 m OSM roof value",
+    "podiumScrimHeightMeters": [
+      8,
+      24.3
+    ]
+  },
+  "referencePages": [
+    "https://www.som.com/projects/7-world-trade-center/",
+    "https://wtc.com/work-place/7wtc/",
+    "https://www.imoa.info/molybdenum-uses/molybdenum-grade-stainless-steels/architecture/world-trade-center.php",
+    "https://www.openstreetmap.org/way/277890516"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -74.01207728,
+      40.713396197
+    ],
+    "heading": 1.381492736976,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/277890516",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/277890516",
+      "way/1530740417",
+      "way/1530740418",
+      "way/1547351734"
+    ],
+    "wikidataId": "Q270066",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7ee5df1d0d8ed36889abe466433dec5cdac765b23433a30bc7275e0b89d32f05",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Signed mapped oblique footprint is the completed2006 building, with exact-QID start_date2006 and independently mapped roof service part. Ground datumY0; no historical destroyed building substituted."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Static daylight facade. The scrim uses continuous modeled triangular strips with panel seams; the individual micro-prism orientation field and nighttime LED art are not reconstructed. Roof services are simplified within mapped extents."
+  ],
+  "qaCameras": [
+    {
+      "name": "steel-scrim",
+      "position": [
+        -68,
+        24,
+        97
+      ],
+      "lookAt": [
+        -8,
+        17,
+        24
+      ]
+    },
+    {
+      "name": "concave-spandrels",
+      "position": [
+        -34,
+        110,
+        69
+      ],
+      "lookAt": [
+        0,
+        105,
+        24
+      ]
+    },
+    {
+      "name": "roof-plant",
+      "position": [
+        78,
+        265,
+        118
+      ],
+      "lookAt": [
+        6,
+        223,
+        0
+      ]
+    },
+    {
+      "name": "ground-lobby",
+      "position": [
+        -45,
+        7,
+        86
+      ],
+      "lookAt": [
+        -8,
+        4,
+        24
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -354,
+        202,
+        529
+      ],
+      "lookAt": [
+        0,
+        112,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/seven-wtc-runtime-model.mjs",
+    "export": "buildSevenWtcCurrent"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/seven-wtc-runtime-model.mjs",
+    "export": "buildSevenWtcSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSevenWtcDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "steel-scrim-district",
+      "position": [
+        -68,
+        24,
+        97
+      ],
+      "lookAt": [
+        -8,
+        17,
+        24
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "roof-plant-district",
+      "position": [
+        78,
+        265,
+        118
+      ],
+      "lookAt": [
+        6,
+        223,
+        0
+      ],
+      "reviewLod": "district"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 4852,
+    "vertices": 13672,
+    "materials": 5,
+    "bytes": 553576,
+    "sha256": "sha256:5c0b77ec0b6773166e023dfdfce7d1e141097c51b27588dea8792468c0ca867e"
+  }
+}

@@ -1,4 +1,4 @@
-/** N0632: restored square belfry, flared pyramid and open rounded-corner arcade. */
+/** st_urban_tower: restored square belfry, flared pyramid and open rounded-corner arcade. */
 import earcut from 'earcut';
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';
 

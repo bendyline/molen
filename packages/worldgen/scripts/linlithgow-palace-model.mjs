@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gc/gcv/n0322_linlithgow_palace/',
+    '../../../content/worldgen/source/places/gc/gcv/linlithgow_palace/',
     import.meta.url,
   ),
   read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -639,7 +639,7 @@ export const buildLinlithgowDistrict = (out) => build(out, 1);
 export const buildLinlithgowStreet = (out) => build(out, 2);
 export const buildLinlithgowCloseup = (out) => build(out, 3);
 export const linlithgowStudy = {
-  id: 'N0322',
+  id: 'linlithgow_palace',
   key: 'linlithgow_palace',
   title: 'Linlithgow Palace',
   category: 'castle',

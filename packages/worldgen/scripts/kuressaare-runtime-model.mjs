@@ -7,7 +7,7 @@ import { buildKuressaareRuntime } from './kuressaare-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u6/u6r/n0272_kuressaare_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u6/u6r/kuressaare_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

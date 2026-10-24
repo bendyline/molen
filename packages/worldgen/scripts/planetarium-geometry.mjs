@@ -1,4 +1,4 @@
-/** 'N0752_PLANETARIUM': mapped bronze cone with a closed inclined metal cap. */
+/** 'peter_harrison_planetarium_royal_observatory_greenwich': mapped bronze cone with a closed inclined metal cap. */
 import './install-deterministic-math.mjs';
 import { createRequire } from 'node:module';
 

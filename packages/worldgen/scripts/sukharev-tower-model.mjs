@@ -24,10 +24,7 @@ const roofGreen = [0.24, 0.37, 0.31],
   roofOchre = [0.48, 0.4, 0.23];
 const glass = [0.1, 0.15, 0.17],
   iron = [0.065, 0.068, 0.064];
-const mapBytes = readFileSync(
-  structureSourcePath('n0607_sukharev_tower', 'map-frame.json'),
-  'utf8',
-);
+const mapBytes = readFileSync(structureSourcePath('sukharev_tower', 'map-frame.json'), 'utf8');
 const map = JSON.parse(mapBytes);
 
 function line(out, slot, points, width, color) {
@@ -717,8 +714,8 @@ function buildSukharev(out) {
 }
 
 export const sukharevTower = {
-  id: 'n0607_sukharev_tower',
-  planId: 'N0607',
+  id: 'sukharev_tower',
+  planId: 'sukharev_tower',
   title: 'Sukharev Tower — museum exterior, 1930',
   wikidata: 'Q913949',
   build: buildSukharev,

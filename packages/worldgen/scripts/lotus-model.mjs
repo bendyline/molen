@@ -5,7 +5,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildLotusTemple, lotusCandidateId } from './lotus-temple-model.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/tt/ttn/n0492_lotus_temple/',
+  '../../../content/worldgen/source/places/tt/ttn/lotus_temple/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source))),
@@ -71,7 +71,7 @@ const view = (name, theta, distance, height, lookAt = [0, 14, 0]) => ({
   lookAt,
 });
 export const lotusStudy = {
-  id: 'N0492',
+  id: 'lotus_temple',
   key: 'lotus_temple',
   title: 'Lotus Temple',
   category: 'temple',

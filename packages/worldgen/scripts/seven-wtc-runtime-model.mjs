@@ -9,11 +9,11 @@ import {
 import { skylineNext } from './signature-tower-next-models.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-export const sevenWtcRuntimeAssetId = 'molen.worldgen.structure.n0153_7_world_trade_center';
+export const sevenWtcRuntimeAssetId = 'molen.worldgen.structure.7_world_trade_center';
 const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0153_7_world_trade_center', 'map-frame.json'), 'utf8'),
+  readFileSync(structureSourcePath('7_world_trade_center', 'map-frame.json'), 'utf8'),
 );
-const parts = partsEvidence('n0153_7_world_trade_center');
+const parts = partsEvidence('7_world_trade_center');
 const plan = (id) =>
   partPlan(
     frame,
@@ -33,7 +33,7 @@ export function buildSevenWtcSkyline(out) {
   mappedSolid(out, 'wall', plan(1530740417), 223, 226.03, [0.42, 0.47, 0.49]);
 }
 export function buildSevenWtcCurrent(out, mapped = frame) {
-  skylineNext.find((s) => s.id === 'N0153').build(out, mapped);
+  skylineNext.find((s) => s.id === '7_world_trade_center').build(out, mapped);
   // The original roof service volume starts0.85m above the roof; add its continuous support curb.
   mappedSolid(out, 'concrete', plan(1530740417), 223, 223.85, [0.63, 0.65, 0.64]);
 }

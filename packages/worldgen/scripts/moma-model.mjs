@@ -1,11 +1,11 @@
-/** 'N0747': MoMA mapped galleries, facade and shared surfaces. */
+/** 'museum_of_modern_art': MoMA mapped galleries, facade and shared surfaces. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMoma } from './moma-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/dr/dr5/n0747_museum_of_modern_art/',
+    '../../../content/worldgen/source/places/dr/dr5/museum_of_modern_art/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -101,7 +101,7 @@ export const buildMomaSkyline = (o) => build(o, 0),
   buildMomaStreet = (o) => build(o, 2),
   buildMomaCloseup = (o) => build(o, 3);
 export const momaStudy = {
-  id: 'N0747',
+  id: 'museum_of_modern_art',
   key: 'museum_of_modern_art',
   title: 'Museum of Modern Art',
   category: 'museum',

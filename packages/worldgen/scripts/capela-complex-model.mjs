@@ -1,4 +1,4 @@
-/** 'N0546': connected São Francisco host shell and specific bone chapel. */
+/** 'capela_dos_ossos': connected São Francisco host shell and specific bone chapel. */
 import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, prepareOpening } from './authored-wall-openings.mjs';
 import { buildCapelaInterior } from './capela-interior-model.mjs';

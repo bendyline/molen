@@ -7,7 +7,7 @@ import { buildGripsholmRuntime } from './gripsholm-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u6/u6s/gripsholm_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

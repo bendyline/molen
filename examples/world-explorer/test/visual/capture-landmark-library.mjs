@@ -1,4 +1,4 @@
-/** node examples/world-explorer/test/visual/capture-landmark-library.mjs --ids=N0637,N0641
+/** node examples/world-explorer/test/visual/capture-landmark-library.mjs --ids=tower_of_hercules,kopu_lighthouse
  * Optional --target-only reviews selected placements without loading other-device neighbors.
  * Optional --turntable-padding=1.2 gives elongated groups extra room in the four whole views.
  */
@@ -40,7 +40,7 @@ if (viewingDate !== undefined && !isStructureViewingDate(viewingDate))
   throw new Error('--viewing-date needs a valid YYYY-MM-DD calendar date');
 if (outputIndex >= 0 && !outputDirectory) throw new Error('--out-dir needs a directory');
 const placements = await readOptionalJson(
-  resolve(root, 'content/earth/structures/placements.json'),
+  resolve(root, 'content/earth/structures/placements/authoring.json'),
 );
 const geography = await readOptionalJson(
   resolve(root, 'content/earth/structures/georeferencing.json'),
@@ -134,7 +134,7 @@ try {
   });
   if (targetOnly) {
     const assets = new Set(selected.map(({ spec }) => spec.assetId));
-    await page.route('**/earth/structures/placements.json', (route) =>
+    await page.route('**/earth/structures/placements/authoring.json', (route) =>
       route.fulfill({
         contentType: 'application/json',
         body: JSON.stringify({

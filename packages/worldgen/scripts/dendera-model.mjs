@@ -7,7 +7,7 @@ import { buildDenderaRoof } from './dendera-roof-model.mjs';
 import { buildDenderaTemple, denderaCandidateId } from './dendera-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ss/ssx/n0508_dendera_temple_complex/',
+    '../../../content/worldgen/source/places/ss/ssx/dendera_temple_complex/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -76,7 +76,7 @@ export const buildDenderaSkyline = (o) => build(o, 0),
   buildDenderaStreet = (o) => build(o, 2),
   buildDenderaCloseup = (o) => build(o, 3);
 export const denderaStudy = {
-  id: 'N0508',
+  id: 'dendera_temple_complex',
   key: 'dendera_temple_complex',
   title: 'Dendera Temple complex',
   category: 'temple',

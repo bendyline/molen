@@ -1,4 +1,4 @@
-/** 'N0535': Specific octagonal Quba Mere Diwane exterior and its open east portico. */
+/** 'quba_mere_diwane': Specific octagonal Quba Mere Diwane exterior and its open east portico. */
 import { box, loft, prism } from './khmer-structure-geometry.mjs';
 
 export function buildQubaDiwaneTemple(emit, detail, r, sampleTerrain) {

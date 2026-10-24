@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/gc/gcu/n0365_glasgow_cathedral/',
+  '../../../content/worldgen/source/places/gc/gcu/glasgow_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -910,7 +910,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const glasgowCathedralStudy = {
-  id: 'N0365',
+  id: 'glasgow_cathedral',
   key: 'glasgow_cathedral',
   title: 'Glasgow Cathedral',
   category: 'cathedral',

@@ -16,7 +16,7 @@ const ids = process.argv
   .split(',');
 if (!ids?.length)
   throw new Error(
-    'Usage: node examples/world-explorer/test/visual/capture-medium-fi.mjs --ids=n0259_shanhai_pass',
+    'Usage: node examples/world-explorer/test/visual/capture-medium-fi.mjs --ids=shanhai_pass',
   );
 const { chromium } = createRequire(resolve(root, 'packages/tooling/package.json'))('playwright');
 const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;

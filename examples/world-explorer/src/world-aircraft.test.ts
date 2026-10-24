@@ -102,7 +102,9 @@ describe('world aircraft', () => {
     expect(flight.state?.crashed).toBe(false);
     expect(flight.state?.grounded).toBe(false);
     const end = vehicles.world.get('aircraft-airliner', Transform)?.pos[2] ?? 0;
-    expect(end - start).toBeGreaterThan(800);
+    // At the authored 42 t operating mass, static jet thrust and the revised flap lift
+    // shorten the ground roll relative to the former propeller-power approximation.
+    expect(end - start).toBeGreaterThan(500);
     expect(end - start).toBeLessThan(1600);
     flight.dispose();
     vehicles.dispose();

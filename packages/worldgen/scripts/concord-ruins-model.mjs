@@ -1,6 +1,6 @@
-/** N0519: eroded mapped foundations, pale fragments and shallow gated recesses. */
+/** temple_of_concord: eroded mapped foundations, pale fragments and shallow gated recesses. */
 import earcut from 'earcut';
-export const concordCandidateId = 'N0519';
+export const concordCandidateId = 'temple_of_concord';
 const area = (p) =>
   p.reduce((n, a, i) => {
     const b = p[(i + 1) % p.length];

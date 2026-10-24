@@ -643,8 +643,8 @@ function buildGonbad(out) {
 
 export const heritageTowers = [
   {
-    id: 'n0562_maiden_tower',
-    planId: 'N0562',
+    id: 'maiden_tower',
+    planId: 'maiden_tower',
     title: 'Maiden Tower',
     wikidata: 'Q842822',
     build: buildMaiden,
@@ -692,8 +692,8 @@ export const heritageTowers = [
     ],
   },
   {
-    id: 'n0564_gonbad_e_qabus',
-    planId: 'N0564',
+    id: 'gonbad_e_qabus',
+    planId: 'gonbad_e_qabus',
     title: 'Gonbad-e Qabus',
     wikidata: 'Q606763',
     build: buildGonbad,
@@ -746,8 +746,8 @@ export const heritageTowers = [
     ],
   },
   {
-    id: 'n0575_ka_ba_ye_zartosht',
-    planId: 'N0575',
+    id: 'ka_ba_ye_zartosht',
+    planId: 'ka_ba_ye_zartosht',
     title: "Ka'ba-ye Zartosht",
     wikidata: 'Q2363092',
     build: buildKaba,

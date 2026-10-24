@@ -1,11 +1,11 @@
-/** N0720: Al Bayt's peaked tent, striped fabric and red-lined burgundy bowl. */
+/** al_bayt_stadium: Al Bayt's peaked tent, striped fabric and red-lined burgundy bowl. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBaytStadium } from './bayt-tent-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/th/ths/n0720_al_bayt_stadium/',
+    '../../../content/worldgen/source/places/th/ths/al_bayt_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -78,7 +78,7 @@ export const buildBaytSkyline = (o) => build(o, 0),
   buildBaytStreet = (o) => build(o, 2),
   buildBaytCloseup = (o) => build(o, 3);
 export const baytStudy = {
-  id: 'N0720',
+  id: 'al_bayt_stadium',
   key: 'al_bayt_stadium',
   title: 'Al Bayt Stadium',
   category: 'stadium',

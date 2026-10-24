@@ -5,7 +5,7 @@ import earcut from 'earcut';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/75/75c/n0378_rio_de_janeiro_cathedral/',
+  '../../../content/worldgen/source/places/75/75c/rio_de_janeiro_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -418,7 +418,7 @@ export const buildRioCathedralSkyline = (o) => build(o, 0),
   buildRioCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const rioCathedralStudy = {
-  id: 'N0378',
+  id: 'rio_de_janeiro_cathedral',
   key: 'rio_de_janeiro_cathedral',
   title: 'Rio de Janeiro Cathedral',
   category: 'cathedral',

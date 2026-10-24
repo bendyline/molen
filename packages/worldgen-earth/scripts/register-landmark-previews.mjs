@@ -1,12 +1,12 @@
 /** Register explicit authored geographic proposals; never promote coordinate-only candidates. */
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { formatJson } from '../../worldgen/scripts/format-json.mjs';
 import {
   authoredMapMatchRadius,
   distinctMappedCollectionPlacement,
   readStructureCollections,
 } from '../../worldgen/scripts/structure-collections.mjs';
+import { structurePlacementId } from '../../worldgen/scripts/structure-identity.mjs';
 import {
   authoredModels,
   content,
@@ -14,20 +14,19 @@ import {
   readOptionalJson,
   registerSourceDocuments,
   root,
-  writeIndex,
 } from '../../worldgen/scripts/structure-model-files.mjs';
 import { createStructureIndex } from '../dist/kernel.mjs';
 import { hasAuthoredGroundContact } from './authored-ground-contact.mjs';
 import { authoredHistoricalAppearance } from './historical-placement.mjs';
+import { readStructurePlacements, writeStructurePlacement } from './placement-sources.mjs';
 
 if (!process.argv.some((arg) => arg.startsWith('--ids=')))
-  throw new Error('Select an explicit authored batch with --ids=N0637,N0641');
-const path = resolve(root, 'content/earth/structures/placements.json');
-const catalog = JSON.parse(await readFile(path, 'utf8'));
+  throw new Error('Select an explicit authored batch with --ids=tower_of_hercules,kopu_lighthouse');
+const catalog = await readStructurePlacements();
 const project = JSON.parse(await readFile(resolve(content, 'project.json'), 'utf8'));
 const check = process.argv.includes('--check');
 const collections = await readStructureCollections(
-  resolve(content, 'source/next-1000/collections.json'),
+  resolve(content, 'source/structure-catalog/collections.json'),
 );
 for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
   const proposal = spec.geographicProposal;
@@ -65,7 +64,7 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
     appearance !== undefined && (proposal.elevationMode === 'terrain-contact' || absolute);
   const active = preview || historical;
   const entry = {
-    id: `next1000.${spec.id.toLowerCase().replaceAll('_', '-')}`,
+    id: structurePlacementId(spec.assetId),
     title: spec.title,
     asset: spec.assetId,
     anchor: proposal.anchor,
@@ -112,7 +111,7 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
       catalog.entries[catalog.entries.indexOf(existing)] = entry;
     } else if (!existing) catalog.entries.push(entry);
     createStructureIndex(catalog);
-    await writeIndex(path, `${formatJson(catalog)}\n`);
+    await writeStructurePlacement(entry);
     await writeFile(
       reportPath,
       `${JSON.stringify(

@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sxk/n0476_sokollu_mehmed_pasha_i_mosque/',
+  '../../../content/worldgen/source/places/sx/sxk/sokollu_mehmed_pasha_i_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -784,7 +784,7 @@ export const buildSokolluSkyline = (o) => build(o, 0),
   buildSokolluCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const sokolluStudy = {
-  id: 'N0476',
+  id: 'sokollu_mehmed_pasha_i_mosque',
   key: 'sokollu_mehmed_pasha_i_mosque',
   title: 'Sokollu Mehmed Pasha I Mosque',
   category: 'mosque',

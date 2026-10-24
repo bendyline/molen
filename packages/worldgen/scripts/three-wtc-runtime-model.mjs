@@ -14,7 +14,7 @@ import { box, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
 const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0195_3_world_trade_center', 'map-frame.json')),
+  readFileSync(structureSourcePath('3_world_trade_center', 'map-frame.json')),
 );
 
 const silver = [0.62, 0.67, 0.69],
@@ -358,7 +358,7 @@ function entrance(out, base) {
     beam(out, 'stainless', roof[i], roof[(i + 1) % 4], 0.13, 0.17, silver);
 }
 function buildNative(out, mapped) {
-  const ev = partsEvidence('n0195_3_world_trade_center'),
+  const ev = partsEvidence('3_world_trade_center'),
     base = cleanPlan(localOutline(mapped));
   // Raw mapped shoulder traces are irregular/overlapping; the architect's typical
   // floor plan confirms four reentrant corners and eight corner offices.

@@ -1,4 +1,4 @@
-/** 'N0746': Bilbao's mapped gallery masses, flared titanium shells and river atrium. */
+/** 'guggenheim_museum_bilbao': Bilbao's mapped gallery masses, flared titanium shells and river atrium. */
 import earcut from 'earcut';
 import { prism } from './khmer-structure-geometry.mjs';
 

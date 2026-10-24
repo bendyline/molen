@@ -909,7 +909,7 @@
               "groundLevelRate": 2,
               "maxGroundPitch": 0.22,
               "camberAngle": 0.045,
-              "flapLift": 0.33,
+              "flapLift": 0.8,
               "postStallFlapEffect": 0.4,
               "stallAngle": 0.28,
               "stallTransitionAngle": 0.12,
@@ -926,10 +926,10 @@
               "liftSlope": 4.8,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.028,
-              "inducedDrag": 0.06,
-              "gearDrag": 0.018,
-              "flapDrag": 0.035,
+              "profileDrag": 0.07692957231717407,
+              "inducedDrag": 0.04646968599659071,
+              "gearDrag": 0.004,
+              "flapDrag": 0.075,
               "gearTransitTime": 0,
               "flapTransitTime": 4,
               "stallDrag": 1.1,
@@ -940,7 +940,13 @@
               "brakeDeceleration": 4,
               "rollingDeceleration": 0.22,
               "groundTrackRate": 12,
-              "fixedGear": true
+              "fixedGear": true,
+              "groundEffect": true,
+              "criticalMach": 0.62,
+              "waveDrag": 0.22,
+              "maxMach": 0.72,
+              "maxEquivalentAirspeed": 77.16666666666667,
+              "flapLimitSpeed": 45
             },
             "engines": [
               {
@@ -955,13 +961,16 @@
                   0,
                   1
                 ],
-                "power": 444705.8823529412,
+                "power": 410000,
                 "idleRpm": 0.18,
                 "spoolRate": 0.25,
                 "rotorAngularSpeed": 180,
-                "maxThrust": 8400,
+                "maxThrust": 8712.5,
                 "minPropellerSpeed": 25,
-                "propellerEfficiency": 0.85
+                "propellerEfficiency": 0.85,
+                "propulsion": "propeller",
+                "densityExponent": 1,
+                "ratedDensityRatio": 0.7
               }
             ]
           }

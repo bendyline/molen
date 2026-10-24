@@ -1,4 +1,4 @@
-/** 'N0748_VISITORS': pale square frame, recessed colonnades and notched car-park entrance. */
+/** 'visitors_centre_yad_vashem': pale square frame, recessed colonnades and notched car-park entrance. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildYadVisitors(face, detail, r) {

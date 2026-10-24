@@ -1,13 +1,10 @@
-/** N0513: reproducible surviving Baphuon architecture. */
+/** baphuon: reproducible surviving Baphuon architecture. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBaphuonTemple } from './baphuon-temple-model.mjs';
 
-const source = new URL(
-    '../../../content/worldgen/source/places/w6/w63/n0513_baphuon/',
-    import.meta.url,
-  ),
+const source = new URL('../../../content/worldgen/source/places/w6/w63/baphuon/', import.meta.url),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
   frame = read('map-frame.json'),
   r = frame.reconstruction,
@@ -76,7 +73,7 @@ export const buildBaphuonSkyline = (o) => build(o, 0),
   buildBaphuonStreet = (o) => build(o, 2),
   buildBaphuonCloseup = (o) => build(o, 3);
 export const baphuonStudy = {
-  id: 'N0513',
+  id: 'baphuon',
   key: 'baphuon',
   title: 'Baphuon',
   category: 'temple',

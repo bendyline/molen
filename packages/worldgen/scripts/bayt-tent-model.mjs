@@ -1,8 +1,8 @@
-/** N0720: Al Bayt's peaked tent, striped fabric enclosure and red-lined bowl. */
+/** al_bayt_stadium: Al Bayt's peaked tent, striped fabric enclosure and red-lined bowl. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
-const candidateId = 'N0720',
+const candidateId = 'al_bayt_stadium',
   tau = Math.PI * 2;
 export const baytSegments = [8, 20, 36, 84];
 export function baytAngles(r, detail) {

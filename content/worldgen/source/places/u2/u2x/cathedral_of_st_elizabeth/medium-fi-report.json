@@ -1,0 +1,1200 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.cathedral_of_st_elizabeth",
+  "sourceHash": "sha256:38825707555cf6b1699d35d1d464f3c432888f9e3fa1dfb1709bfff99ce5d212",
+  "runtimeHash": "sha256:7ed77b5585e853e9ecf4858feda7f99fad9de2600c5bfaf94004ad7c9f797fa3",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 13320,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:ee0ad82ab4eb0635e97739cc9ca789813d6a00ad206764a8dbaefd17e6b1a346",
+      "bytes": 97208,
+      "gzipBytes": 17877,
+      "triangles": 920,
+      "cpuBytes": 95772,
+      "gpuBytes": 95772,
+      "errorMeters": 1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:50973df8d0c66c2af48ae802ad1113a6be9a8843cbe354b29944d9957391372a",
+      "bytes": 352024,
+      "gzipBytes": 102243,
+      "triangles": 3832,
+      "cpuBytes": 343544,
+      "gpuBytes": 343544,
+      "errorMeters": 0.4,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:96c3589064deeafc541f255f082f4343eccca395479e070dd772776aa94fec53",
+      "bytes": 1238796,
+      "gzipBytes": 346704,
+      "triangles": 14797,
+      "cpuBytes": 1230276,
+      "gpuBytes": 1230276,
+      "errorMeters": 0.15,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:aea9b471c98c42cf332e06be0fdc815d291ffa733a5626bf096720825ab0e5b8",
+      "bytes": 2687000,
+      "gzipBytes": 764761,
+      "triangles": 31686,
+      "cpuBytes": 2678444,
+      "gpuBytes": 2678444,
+      "errorMeters": 0.05,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:95029c592549d6fb27c32b7e3ef46667ea9302d5efc9e033fda7fb29f8aeeb58"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:a97d8bc8792fd6f9c9a95d2972196c8a3905da3e041570d9b62892865fe1e1d3"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:e78992891ed57b4f2b7fa877ca1670952bd4c475052c17a82d302bd29eb9e231",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 65808,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          57.62389999999999,
+          60.6081,
+          99.4097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:186c4aacdf64a424e7384eeeff359ab6baa11a09dbb18c4171be1553eb4faa18",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65808,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          57.62389999999999,
+          60.6081,
+          99.4097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:d8459dee623cfbd70eea8f5643b79321079a5586c5974d14f0f3756aad4e784a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 65808,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          57.62389999999999,
+          60.6081,
+          99.4097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:eaeb0648e479efa2ce756f6f78415e188dd65243732e72594097c4054ae683b7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65808,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          57.62389999999999,
+          60.6081,
+          99.4097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:2828453657e7239dfca8de47c0a9e9022f7a9298fb5bee00ef2cab5801d2130b",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 37954,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          116.42389999999999,
+          103.8081,
+          201.4097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:9af15d72b919b8a7fee475843265149a97ec2c3a60bd6407bce7672cddb0b4f9",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 37954,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          116.42389999999999,
+          103.8081,
+          201.4097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:51798d33999dc127cb33a24b488f6cd69f2c835d7a8b18ce1024a4ebc2c35e32",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 37954,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          116.42389999999999,
+          103.8081,
+          201.4097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:c1b0a2f837697c37e79cf3496e0d914b199b517e6fc6a61923dab4c85d5be595",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 37954,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          116.42389999999999,
+          103.8081,
+          201.4097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:e690a8f6c3c780051f8e237c16f3cb0b55b96de19f0f3dbe709a9132b29aefb1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 35042,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          232.82389999999998,
+          149.4081,
+          403.0097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:350667339750f23a8299fcec040cacf81ac4697a284aa847c691f67487f25c84",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 35042,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          232.82389999999998,
+          149.4081,
+          403.0097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:e086eb937a1645f245f4e863b7b08f44b5bfdcb88e39a98fc978a94df9028aca",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 35042,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          232.82389999999998,
+          149.4081,
+          403.0097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:ba24abe89fbad28a469bac65e73776cf157b1046112a254ce7bd104f88fa4162",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 35042,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          232.82389999999998,
+          149.4081,
+          403.0097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:8b109b4ec07f8cc1e16bed2f993969d0f0e35c5f36501cba9f14915944e2052c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21722,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          232.82389999999998,
+          149.4081,
+          403.0097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-clock-onion-crown.png",
+      "hash": "sha256:e778592d492f2ad9406d22552c9833d6eb482fc25ea7726eb17dcbc7a7934711",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65808,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          -48,
+          50,
+          -42
+        ],
+        "lookAt": [
+          -23.786676211768068,
+          47,
+          -14.176293943415915
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-portal-and-unequal-towers.png",
+      "hash": "sha256:41421aebbc984eb34ac5e0d2a30097e0e8228c9b6ecfe365ad0753e5e8f86d93",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65808,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          -69,
+          25,
+          -2
+        ],
+        "lookAt": [
+          -26,
+          20,
+          -1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northern-transept-portal-and-gable.png",
+      "hash": "sha256:1c8730d2dbc4da3b43eaf6bd6bbf162f6bbfa5e8a0be63b2a47282cb4ff91a02",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65808,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          -2,
+          25,
+          -52
+        ],
+        "lookAt": [
+          -5.2,
+          17,
+          -17.8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/southern-portal-and-aisles.png",
+      "hash": "sha256:25265c45e7056b51ea247ed6dc39d0cab2bb5be5fd23a2c5f8c04a4664e57214",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65808,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          11,
+          23,
+          55
+        ],
+        "lookAt": [
+          -4,
+          14,
+          15
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/patterned-choir-roof-and-central-fleche.png",
+      "hash": "sha256:e379f9a90005fb08a73bbf9972bc1634f705103cc59d326ed840f3c856409293",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65808,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          63,
+          40,
+          -32
+        ],
+        "lookAt": [
+          17,
+          24,
+          -2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-roof-plan.png",
+      "hash": "sha256:9084983cf0323df6491343039cf0588ec910223bde281c481e7e6a2ce0a03f85",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65808,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          130,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kosice-cathedral-skyline.png",
+      "hash": "sha256:0211eb29481c24ee0ba06a3491ec27a289ba618fffe3f9e5a384c7b47d50087a",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 35042,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          -94,
+          73,
+          -96
+        ],
+        "lookAt": [
+          0,
+          24,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kosice-cathedral-district.png",
+      "hash": "sha256:bc7a2e22fe8252ad77756fc8e7cfd3229e9c0a519adfc84fd07ffe73c1e2e73a",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 37954,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          -94,
+          73,
+          -96
+        ],
+        "lookAt": [
+          0,
+          24,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kosice-cathedral-street.png",
+      "hash": "sha256:eeb0db5c8c65b311d0b847b65b5ed92628e9fda580362ff308fe1bb593f2d723",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48919,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          -94,
+          73,
+          -96
+        ],
+        "lookAt": [
+          0,
+          24,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kosice-cathedral-closeup.png",
+      "hash": "sha256:60f6a6e6188836d5eec957a1b1bad6647edbf3fad805e2d494e52a0fab10a0b0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65808,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          -94,
+          73,
+          -96
+        ],
+        "lookAt": [
+          0,
+          24,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:1fee09506b9a432f4a9b80d568a9671e1647c9aee4b1c6b817d8c72e86b84e38",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 35042,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          116.42389999999999,
+          103.8081,
+          201.4097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:9af15d72b919b8a7fee475843265149a97ec2c3a60bd6407bce7672cddb0b4f9",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 37954,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          116.42389999999999,
+          103.8081,
+          201.4097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:5df2ba20e19c128de5f390d642b658ee43fd487a7f729220a104c67fd14249d4",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48919,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          116.42389999999999,
+          103.8081,
+          201.4097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:583ad54d170e47bbc87c91b27c07b7cb9e0f50b0ad6cef89f621e6dc3cae9ec8",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 65808,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/terrain-review.height.png"
+        },
+        "position": [
+          116.42389999999999,
+          103.8081,
+          201.4097
+        ],
+        "lookAt": [
+          0.0239,
+          42.6081,
+          -0.1903
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.austrian_inn",
+        "contextScale": 1.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -5,11 +5,11 @@ import { openingBuilder, prepareOpening } from './authored-wall-openings.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 import { buildTurkuPart, turkuParts, turkuSurfaces } from './turku-castle-model.mjs';
 
-const read = (p) => JSON.parse(readFileSync(structureSourcePath('n0305_turku_castle', p)));
+const read = (p) => JSON.parse(readFileSync(structureSourcePath('turku_castle', p)));
 const frame = read('map-frame.json'),
   relief = read('terrain-grid.json'),
   k = frame.controls;
-export const turkuCurrentRuntimeAssetId = 'molen.worldgen.structure.n0305_turku_castle';
+export const turkuCurrentRuntimeAssetId = 'molen.worldgen.structure.turku_castle';
 export const turkuCurrentSurfaces = {
   ...turkuSurfaces,
   masonry: { ...turkuSurfaces.masonry, graph: 'stone_drywall' },

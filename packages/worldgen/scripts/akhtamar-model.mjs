@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sy/syy/n0399_armenian_cathedral_of_the_holy_cross/',
+  '../../../content/worldgen/source/places/sy/syy/armenian_cathedral_of_the_holy_cross/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -859,7 +859,7 @@ export const buildAkhtamarSkyline = (o) => build(o, 0),
   buildAkhtamarCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const akhtamarStudy = {
-  id: 'N0399',
+  id: 'armenian_cathedral_of_the_holy_cross',
   key: 'armenian_cathedral_of_the_holy_cross',
   title: 'Armenian Cathedral of the Holy Cross',
   category: 'cathedral',

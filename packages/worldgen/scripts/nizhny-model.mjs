@@ -1,11 +1,11 @@
-/** N0717: Nizhny Novgorod circular colonnade, blue panel roof and two-tier bowl. */
+/** nizhny_novgorod_stadium: Nizhny Novgorod circular colonnade, blue panel roof and two-tier bowl. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildNizhnyStadium } from './nizhny-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/uf/ufp/n0717_nizhny_novgorod_stadium/',
+    '../../../content/worldgen/source/places/uf/ufp/nizhny_novgorod_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -76,7 +76,7 @@ export const buildNizhnySkyline = (o) => build(o, 0),
   buildNizhnyStreet = (o) => build(o, 2),
   buildNizhnyCloseup = (o) => build(o, 3);
 export const nizhnyStudy = {
-  id: 'N0717',
+  id: 'nizhny_novgorod_stadium',
   key: 'nizhny_novgorod_stadium',
   title: 'Nizhny Novgorod Stadium',
   category: 'stadium',

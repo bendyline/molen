@@ -10,12 +10,12 @@ import { structureSourcePath } from './structure-source-paths.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u9/u9c/n0251_kernave/map-parts.json',
+      '../../../content/worldgen/source/places/u9/u9c/kernave/map-parts.json',
       import.meta.url,
     ),
   ),
 );
-const fit = JSON.parse(readFileSync(structureSourcePath('n0251_kernave', 'pmtiles-fit.json'))),
+const fit = JSON.parse(readFileSync(structureSourcePath('kernave', 'pmtiles-fit.json'))),
   MEANS = {
     wood: [0.8251277774132705, 0.8251277774132705, 0.8251277774132705],
     aggregate: [0.6893546167686782, 0.6750929657086415, 0.6305210116163465],

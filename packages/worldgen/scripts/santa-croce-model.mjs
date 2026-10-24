@@ -1,4 +1,4 @@
-/** 'N0770': Basilica of Santa Croce. */
+/** 'basilica_of_santa_croce': Basilica of Santa Croce. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
@@ -6,7 +6,7 @@ import { buildSantaCroce } from './santa-croce-geometry.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/srb/n0770_basilica_of_santa_croce/',
+    '../../../content/worldgen/source/places/sr/srb/basilica_of_santa_croce/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -105,7 +105,7 @@ export const buildSantaCroceSkyline = (o) => build(o, 0),
   buildSantaCroceStreet = (o) => build(o, 2),
   buildSantaCroceCloseup = (o) => build(o, 3);
 export const santaCroceStudy = {
-  id: 'N0770',
+  id: 'basilica_of_santa_croce',
   key: 'basilica_of_santa_croce',
   title: 'Basilica of Santa Croce',
   category: 'museum',

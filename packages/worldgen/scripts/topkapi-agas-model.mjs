@@ -1,11 +1,11 @@
-/** 'N0742_AGAS': Striped stone and brick mosque, pointed windows and shallow lead barrel roof. */
+/** 'mosque_of_the_agas_topkapi_palace': Striped stone and brick mosque, pointed windows and shallow lead barrel roof. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiAgas } from './topkapi-agas-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_agas/',
+    '../../../content/worldgen/source/places/sx/sxk/mosque_of_the_agas_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -154,7 +154,7 @@ export const buildTopkapiAgasSkyline = (o) => build(o, 0),
   buildTopkapiAgasStreet = (o) => build(o, 2),
   buildTopkapiAgasCloseup = (o) => build(o, 3);
 export const topkapiAgasStudy = {
-  id: 'N0742_AGAS',
+  id: 'mosque_of_the_agas_topkapi_palace',
   key: 'agas',
   title: 'Mosque of the Agas, Topkapi Palace',
   category: 'mosque',

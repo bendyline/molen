@@ -1,5 +1,5 @@
-/** N0494: the mapped roofless Ġgantija wall mass and its large limestone faces. */
-export const ggantijaCandidateId = 'N0494';
+/** ggantija: the mapped roofless Ġgantija wall mass and its large limestone faces. */
+export const ggantijaCandidateId = 'ggantija';
 
 function stone(f, block, detail) {
   const { center, width, depth, bottom, height, angle, seed } = block,

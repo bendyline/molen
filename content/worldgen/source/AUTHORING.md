@@ -14,10 +14,10 @@ specifications, material graphs, sidecars and review records belong in Git.
 | Editable recipes and registered generator commands | [authoring-index.json](authoring-index.json) |
 | Runtime sidecars | `../assets/places/<geohash2>/<geohash3>/<model-key>/asset.json` |
 | Shared material graphs | `../materials/*.matgraph.json` |
-| All 1,000 candidates and current readiness | [production progress](next-1000/PROGRESS.md) |
-| Selected round, pause state and completion gates | [CURRENT-ROUND.md](next-1000/CURRENT-ROUND.md) |
-| Existing-output and review reconciliation | [STATUS-RECONCILIATION.json](next-1000/STATUS-RECONCILIATION.json) |
-| Next production selection | [NEXT-300.json](next-1000/NEXT-300.json) |
+| All 1,000 candidates and current readiness | [production progress](structure-catalog/PROGRESS.md) |
+| Selected round, pause state and completion gates | [CURRENT-ROUND.md](structure-catalog/CURRENT-ROUND.md) |
+| Existing-output and review reconciliation | [STATUS-RECONCILIATION.json](structure-catalog/STATUS-RECONCILIATION.json) |
+| Next production selection | [NEXT-300.json](structure-catalog/NEXT-300.json) |
 | Target look, palette bands and polygon budgets | [medium-fi style guide](../../../docs-src/guide/medium-fi.md) |
 | Corpus audit against that look, and its backlog | [MEDIUM-FI-REVIEW.md](MEDIUM-FI-REVIEW.md) |
 
@@ -26,7 +26,7 @@ reachable from several generator jobs because they import common helpers. Its
 `generatorCandidates` field lists those jobs; the bundle README names the targeted command.
 The index helps locate source; the full asset build proves that it reconstructs the locked GLBs.
 
-Source folders follow location, while the candidate inventory remains in `next-1000/`.
+Source folders follow location, while the candidate inventory remains in `structure-catalog/`.
 Those candidate IDs are stable identifiers, not file counters. Collection candidates still
 require every independently located member, and reusable models never count as named replicas.
 
@@ -34,22 +34,22 @@ Keep dedicated place generators and recipes in the owning geographic bundle's `m
 directory and inventory them in `source.json`. A site-wide authoring bundle can own a generator
 and shared recipe for several independently placed components, as with the Książ park gates.
 Use its registered command in `asset-build.json`; keep general mesh and material helpers in
-`packages/worldgen/scripts/`. Batch labels such as `next-1000` are production metadata.
+`packages/worldgen/scripts/`. Batch labels such as `structure-catalog` are production metadata.
 
 ## Edit, rebuild and review
 
 The current owner-authorized work is the fixed213 authored/incomplete candidates in
-[QA-BACKLOG.json](next-1000/QA-BACKLOG.json). New candidate generation is outside this round.
-Haapsalu N0309 is the first completed repair; its48 inspected frames, source/terrain/placement
+[QA-BACKLOG.json](structure-catalog/QA-BACKLOG.json). New candidate generation is outside this round.
+Haapsalu haapsalu_castle is the first completed repair; its48 inspected frames, source/terrain/placement
 evidence and four browser LODs are recorded in its source-local QA bundle. The backlog tracker
 counts only current, verified completions and retains each candidate's original blockers.
 
 1. Find the model's recipe in the index or bundle README. Edit the recipe and its evidence
    together. For generated fields, edit the recipe rather than only its emitted `spec.json`.
 2. Run the bundle's targeted generator. For example:
-   `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N1007`.
+   `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=roter_sand`.
 3. For a new bundle, regenerate `index-structure-sources.mjs`, then import with
-   `node packages/worldgen/scripts/import-and-register-next-1000.mjs --ids=N1007`.
+   `node packages/worldgen/scripts/import-and-register-structures.mjs --ids=roter_sand`.
 4. Capture portable and viewer/shared-material views, inspect the actual images, and record
    QA bound to the model's `inputHash` (the readiness ledger lists it per model). Correct
    location, compass orientation and elevation datum require their own
@@ -63,7 +63,7 @@ counts only current, verified completions and retains each candidate's original 
 node packages/worldgen/scripts/index-structure-sources.mjs
 node packages/worldgen/scripts/index-structure-authoring.mjs
 node packages/worldgen-earth/scripts/build-structure-readiness.mjs
-node packages/worldgen/scripts/build-next-1000-gallery.mjs
+node packages/worldgen/scripts/build-structure-gallery.mjs
 node packages/worldgen/scripts/build-place-gallery.mjs
 ```
 
@@ -102,13 +102,13 @@ The updated source build reconstructs **728 generated GLBs** byte for byte again
 structure assets** to their registered generator candidates and editable recipes. All **550
 logical source bundles** pass the source check.
 
-Roter Sand (N1007) adds an original, survey-informed offshore lighthouse with shared painted
+Roter Sand (roter_sand) adds an original, survey-informed offshore lighthouse with shared painted
 metal and wood surfaces. Its 18 portable/viewer images were inspected. It remains a preview:
 porthole apertures, junction details and the offshore elevation datum need further review.
 The next-300 selection also records initial Montelbaanstoren research and an unresolved height
 discrepancy, so an uncertain dimension cannot silently become a model specification.
 
-The next-1,000 ledger now contains **221 authored/imported models and 159 completed candidates**.
+The structure catalog ledger now contains **221 authored/imported models and 159 completed candidates**.
 Fresh captures preserve Telekom Tower's approval. Mordovia Arena and Rostec Arena return to
 pending visual/fidelity review because their perforated facades show visible aliasing. Their
 geographic reviews remain current; these two candidates are not counted complete.
@@ -129,7 +129,7 @@ sorting remains a limitation of the chosen blending path.
 
 All **66** new portable and viewer frames were inspected, including facade close-ups, distant
 views and placement fixtures. Both stadiums pass their existing scoped exterior reviews again;
-their documented geometric reconstruction limitations remain. The current next-1,000 ledger
+their documented geometric reconstruction limitations remain. The current structure catalog ledger
 therefore contains **221 authored/imported models and 161 completed candidates**. Roter Sand
 remains pending. The next-300 queue records the two resolved sampling follow-ups.
 
@@ -251,15 +251,15 @@ changed colors, scene metadata and captured specification values.
 
 Two additional editable recipes now have geographic source bundles and normal runtime imports:
 
-- **N0622 Montelbaanstoren**: `montelbaanstoren-model.mjs`, with its bundle at
-  `places/u1/u17/n0622_montelbaanstoren/`. The Amsterdam BMA measured section supplies the
+- **montelbaanstoren Montelbaanstoren**: `montelbaanstoren-model.mjs`, with its bundle at
+  `places/u1/u17/montelbaanstoren/`. The Amsterdam BMA measured section supplies the
   working 42.05 m height; the conflicting historical 48 m statement remains explicit. PDOK AHN4
   surface/nearby-ground samples support the smaller envelope without being treated as a survey.
   The model contains 123,692 triangles, four shared material graphs and 19 inspected current
   portable/shared renders. Irregular masonry, facade details and signed site placement still
   require review; this model is not counted complete.
-- **N0616 Grunewald Tower**: `grunewald-tower-model.mjs`, with its bundle at
-  `places/u3/u33/n0616_grunewald_tower/`. The 1899 published section/elevation, Berlin's 55 m
+- **grunewald_tower Grunewald Tower**: `grunewald-tower-model.mjs`, with its bundle at
+  `places/u3/u33/grunewald_tower/`. The 1899 published section/elevation, Berlin's 55 m
   tower and 36 m viewing-floor records, and mapped 26 m terrace supply the reconstruction
   frame. The model contains 296,070 triangles, five shared graphs and 21 inspected current
   portable/shared renders. Open arches, pierced rails, roof courses, closed gable backs and
@@ -274,7 +274,7 @@ and passed unload checks; these isolated renders do not certify real-site placem
 
 The lock is now **`assets-dfb378404ec57a7e`**, covering **738 generated GLBs** and **370 imports**.
 Together with the five documented binary masters, the library contains 743 GLBs. The earlier
-739-file validator scan and the four new source/runtime validations cover that total. Next-1000
+739-file validator scan and the four new source/runtime validations cover that total. structure catalog
 readiness is **223 authored, 221 portable reviews, 218 shared-material reviews, 192 maximum
 exterior reviews and 161 complete**; **777 sources remain to author**. The queue records the
 new sources and the next Bitexco research references without promoting unfinished geometry.
@@ -290,15 +290,15 @@ evidence, not release content.
 
 Two more candidates now have editable recipes, geographic source bundles and normal imports:
 
-- **N0209 Bitexco Financial Tower**: `signature-tower-bitexco-model.mjs`, with its source at
-  `places/w3/w3g/n0209_bitexco_financial_tower/`. The curved shaft, inclined crown, projecting
+- **bitexco_financial_tower Bitexco Financial Tower**: `signature-tower-bitexco-model.mjs`, with its source at
+  `places/w3/w3g/bitexco_financial_tower/`. The curved shaft, inclined crown, projecting
   helipad and retail podium contain **315,402 triangles** in a **27,557,128-byte** source.
   Four shared surface graphs supply stone and metal; glass/recesses use local PBR factors.
   The engineer photographs, published form study and mapped building parts are recorded in
   the spec. Curvature, soffit panels, equipment, storefront details and geographic fit need
   further work. The model is not counted complete.
-- **N0498 Garni Temple**: `garni-temple-model.mjs`, with its source at
-  `places/sz/szp/n0498_garni_temple/`. Sahinyan's published restoration measurements constrain
+- **garni_temple Garni Temple**: `garni-temple-model.mjs`, with its source at
+  `places/sz/szp/garni_temple/`. Sahinyan's published restoration measurements constrain
   the podium, 24 smooth drum columns, order and cella doorway. Capitals, carved bands,
   pediments, roof tiles, portico coffers and stair relief motifs are original geometry.
   The **1,209,054-triangle**, **99,368,824-byte** source uses the shared raw-basalt graph.
@@ -319,7 +319,7 @@ adjusted during authoring, before the final captures. That separate change is no
 
 The lock is **`assets-8aa31909c22e04f4`**, covering **742 generated GLBs** and **372 imports**.
 Including the five documented masters, there are 747 GLBs. The source index covers 557 logical
-bundles, with recipes indexed for 327 structure assets. Next-1000 readiness is **225 authored,
+bundles, with recipes indexed for 327 structure assets. structure catalog readiness is **225 authored,
 223 portable reviews, 220 shared-material reviews, 192 maximum-exterior reviews and 161
 complete**. **775 candidates still need sources**; the remaining authored candidates need
 their outstanding reviews or detail work. The queue now includes the primary Arup and Network
@@ -334,9 +334,9 @@ All four repository gates passed for this snapshot: `verify`, `smoke:packed`,
 
 ## King's Cross component assembly — 2026-10-02
 
-**N0791 London King's Cross railway station** now has an editable recipe in
+**london_kings_cross_railway_station London King's Cross railway station** now has an editable recipe in
 `packages/worldgen/scripts/kings-cross-station-model.mjs` and a geographic source bundle at
-`places/gc/gcp/n0791_london_king_s_cross_railway_station/`. The registered heritage generator
+`places/gc/gcp/london_kings_cross_railway_station/`. The registered heritage generator
 builds the twin train sheds, southern clock facade, office ranges, tapered suburban shed and
 western concourse. Arup's published sections, plan, photographs and three-circle roof diagram
 were inspected; the specification distinguishes measured dimensions from reconstructed ones.
@@ -383,15 +383,15 @@ and `test:golden`, with logs in that research directory. Readiness at this point
 
 Three individual sources now have registered recipes and normal geographic imports:
 
-- **N0963 Gateway Arch**: the published weighted catenary, triangular sections, 32 true
+- **gateway_arch Gateway Arch**: the published weighted catenary, triangular sections, 32 true
   observation apertures, ground-clipped feet and plate joints. Its source stores 50,314
   triangles in 5,032,464 bytes, with shared stainless steel and no embedded bitmap images.
-- **N0975 Spire of Dublin**: a 120 m tapered shaft, original geological base pattern,
+- **spire_of_dublin Spire of Dublin**: a 120 m tapered shaft, original geological base pattern,
   concentric grating and 11,884 physical tip perforations. GPU instancing shares repeated
   hole-rim geometry: 193,294 stored triangles expand to 1,313,806 rendered triangles in a
   14,914,312-byte source. New polished and bead-blasted stainless graphs bring the common
   architectural material library to 67 surfaces.
-- **N1006 Emley Moor transmitting station**: the original engineering dimensions constrain
+- **emley_moor_transmitting_station Emley Moor transmitting station**: the original engineering dimensions constrain
   the concrete shaft and 20-bay turret; dated photographs inform the shortened modern mast,
   antenna mounts and lower platforms. The source contains 271,888 triangles in 21,855,100
   bytes and binds three shared graphs. Flush concrete construction bands avoid the tiny
@@ -425,7 +425,7 @@ contact sheets are under `.artifacts/gateway-arch-research/` and `.artifacts/eml
 
 ## Monnow bank approaches and geographic review — 2026-10-02
 
-N0015 now includes its mapped retaining walls and sloped bank approaches. Independent Welsh
+monnow_bridge now includes its mapped retaining walls and sloped bank approaches. Independent Welsh
 Government 1 m DTM/DSM samples constrain the crown, roof envelope and road slopes. Raw terrain
 is unchanged; a dry-bank reference transfers model height through the host sampler. The source
 preserves the mapped bridge/gate outlines and adds a separately documented approach input.
@@ -492,7 +492,7 @@ remains `assets-a408c8af67fb6bbf`; no GLBs need committing or republishing for t
 
 ## ATTO main-tower source and inspected preview — 2026-10-02
 
-N0621 now has an original editable main-tower recipe with a 3 × 3 m square lattice,
+amazon_tall_tower_observatory now has an original editable main-tower recipe with a 3 × 3 m square lattice,
 325 m structural height, 331 m lightning tip, open angle-section braces, bolted joints,
 1,500 grated treads, service rails, top instruments and a stationary RoLi carriage.
 Published dimensions and the independently documented lift-corner azimuth are recorded
@@ -518,9 +518,9 @@ gates recorded above precede this addition. No release was published.
 
 ## Kärnan source and inspected exterior preview — 2026-10-02
 
-N0620 now has an editable, individually authored recipe under
+karnan now has an editable, individually authored recipe under
 `packages/worldgen/scripts/karnan-model.mjs` and a geographic source bundle at
-`places/u3/u3c/n0620_karnan`. The signed OSM footprint and published historical plan
+`places/u3/u3c/karnan`. The signed OSM footprint and published historical plan
 establish the southwest stair facade and northwest privy shaft. City references,
 the 2002 preservation plan, operator photographs and the pre-restoration section
 are recorded separately from proportional reconstruction assumptions.
@@ -548,9 +548,9 @@ The full repository gates recorded above predate this addition. No release was p
 
 ## Circle Bridge source and inspected exterior preview — 2026-10-02
 
-N0033 now has an original editable recipe at
+circle_bridge now has an original editable recipe at
 `packages/worldgen/scripts/circle-bridge-model.mjs` and a geographic source bundle at
-`places/u3/u3b/n0033_circle_bridge`. The five offset platforms use an independently
+`places/u3/u3b/circle_bridge`. The five offset platforms use an independently
 interpreted engineering plan and the exact-QID mapped outline. The 2012 design-stage
 drawings and 2015 completion facts are distinguished in the source evidence.
 
@@ -584,9 +584,9 @@ run used the established software WebGL configuration with WebGPU explicitly ski
 
 ## Pont del Diable: connected crossing and sampled elevation profile
 
-N0031 now has a deterministic source recipe in
+pont_del_diable now has a deterministic source recipe in
 `packages/worldgen/scripts/pont-del-diable-model.mjs`, registered with the researched-bridges
-generator. Its bundle is `places/sp/sp3/n0031_pont_del_diable`.
+generator. Its bundle is `places/sp/sp3/pont_del_diable`.
 Three connected exact-QID OSM ways cover the full route and the summit passage; the former
 single western stair segment did not cover the entire bridge. The eastern Roman gateway is
 independently identified by the heritage inventory.
@@ -611,7 +611,7 @@ bank datum for placements with a separate terrain reference. Its regression test
 this bridge. The fixture tests the real placement code but does not establish actual terrain fit.
 
 The ledger is **233 authored / 167 complete**. Geographic and maximum-fidelity approval
-remain pending for N0031: actual bank/water integration, intrados dimensions, individual
+remain pending for pont_del_diable: actual bank/water integration, intrados dimensions, individual
 stonework, shelter/gateway depth, and fine restoration details need further review. The
 new bridge is a usable preview, not an additional completed model.
 
@@ -631,7 +631,7 @@ previous hashes and the precise metadata edits. No image, fidelity approval or g
 approval was replaced by this reconciliation. The resulting ledger remains **233 authored /
 167 complete**, with 231 portable and 229 shared-surface reviews.
 
-The separate-bank placement regression passed for five landmarks including N0031. Its
+The separate-bank placement regression passed for five landmarks including pont_del_diable. Its
 current source/import/placement and shared-capture checks pass. Detailed build, reconciliation
 and regression logs are under `.artifacts/pont-del-diable-research/`. No release was published.
 
@@ -648,9 +648,9 @@ geographic approval statuses.
 
 ## Rembrandt Tower: retained Dutch roof and footprint evidence
 
-N0623 now has an original deterministic recipe in
+rembrandt_tower now has an original deterministic recipe in
 `packages/worldgen/scripts/rembrandt-tower-model.mjs`, registered with the signature-towers
-generator. Its source bundle is `places/u1/u17/n0623_rembrandt_tower`.
+generator. Its source bundle is `places/u1/u17/rembrandt_tower`.
 
 The exterior includes the stepped podium, fourteen-bay granite facades, recessed corner
 glazing, open crown galleries, four glazed corner towers, cross-shaped mechanical cap,
@@ -670,7 +670,7 @@ All 32 current portable/shared frames were inspected. Crown undersides, louver r
 corner glazing directions and preview framing were corrected before final capture. Both
 GLBs pass Khronos validation with zero errors and warnings. Four material graphs load once
 each, and unloading leaves no live model geometry. The shared placement fixture now accepts
-a source-specific outline caption; N0623 credits 3DBAG instead of mislabeling it as OSM.
+a source-specific outline caption; rembrandt_tower credits 3DBAG instead of mislabeling it as OSM.
 Existing OSM captions remain valid. Its four footprint-helper tests pass.
 
 Maximum-fidelity and geographic approval remain pending: exact floor elevations, the
@@ -697,9 +697,9 @@ These checks do not change model fidelity or geographic approval statuses.
 
 ## Montevideo: quay footprint and articulated exterior
 
-N0619 now has an original deterministic recipe in
+montevideo now has an original deterministic recipe in
 `packages/worldgen/scripts/montevideo-tower-model.mjs`, registered with the signature-towers
-generator. Its source bundle is `places/u1/u15/n0619_montevideo`.
+generator. Its source bundle is `places/u1/u15/montevideo`.
 
 The exterior includes the offset upper tower, deep glazed loggias, circular windows,
 separate facade panels and frames, stepped lower wing, open quay cantilever and braces,
@@ -748,9 +748,9 @@ geographic approval statuses. No release was published.
 
 ## One Canada Square: published facade modules and separate lower envelope
 
-N0222 now has an original deterministic recipe in
+one_canada_square now has an original deterministic recipe in
 `packages/worldgen/scripts/one-canada-square-model.mjs`, registered with the signature-towers
-generator. Its source bundle is `places/gc/gcp/n0222_one_canada_square`.
+generator. Its source bundle is `places/gc/gcp/one_canada_square`.
 
 The model includes the stepped corners, individual metal panels and recessed paired windows,
 four narrower upper storeys, western terrace, folded pyramid louvres and nine four-wing
@@ -795,9 +795,9 @@ pending geographic and maximum-fidelity review statuses. No release was publishe
 
 ## 4 World Trade Center: independent office plans and flush glazing
 
-N0218 now has an original deterministic recipe in
+4_world_trade_center now has an original deterministic recipe in
 `packages/worldgen/scripts/four-world-trade-center-model.mjs`, registered with the signature-towers
-generator. Its source bundle is `places/dr/dr5/n0218_4_world_trade_center`.
+generator. Its source bundle is `places/dr/dr5/4_world_trade_center`.
 
 The lower notched parallelogram and upper trapezoid are independent of the mapped retail
 envelope. Geometry includes the northwest triangular terrace, individually jointed glass,
@@ -835,16 +835,16 @@ validation checked 681 source/runtime GLBs. World Explorer passed all nine visua
 files: ten tests passed and two WebGPU tests were explicitly skipped under the established
 software WebGL configuration. Earth View passed both visual tests. The read-only Git
 check found zero unmerged index entries, and `asset-lock.json` parses successfully.
-The lock comparison found only the two new N0218 GLBs, with no changes to earlier binary
+The lock comparison found only the two new 4_world_trade_center GLBs, with no changes to earlier binary
 hashes. Logs are `verify-final.log`, `smoke-packed-final.log`, `docs-site-check-final.log`,
 and `test-golden-final.log` in the evidence directory above. These checks do not approve
 the pending geographic or maximum-fidelity reviews. No release was published.
 
 ## Edifício Copan: curved brises and reusable open geometry
 
-N0223 now has an original deterministic recipe in `packages/worldgen/scripts/copan-model.mjs`,
+edificio_copan now has an original deterministic recipe in `packages/worldgen/scripts/copan-model.mjs`,
 registered with the heritage-towers generator. The geographic source bundle is
-`places/6g/6gy/n0223_edificio_copan`. Its references include the FAUUSP conservation study,
+`places/6g/6gy/edificio_copan`. Its references include the FAUUSP conservation study,
 the architect's foundation, IBGE's site report and restoration-contractor photographs.
 
 The mapped S-shaped slab has three projecting brise blades per typical floor, recessed
@@ -895,9 +895,9 @@ pending geographic or maximum-fidelity reviews. No release was published.
 
 ## First Canadian Place: shared frit and reusable facade floors
 
-N0227 now has an original deterministic recipe in
+first_canadian_place now has an original deterministic recipe in
 `packages/worldgen/scripts/first-canadian-place-model.mjs`, registered with the signature-towers
-generator. Its geographic source bundle is `places/dp/dpz/n0227_first_canadian_place`.
+generator. Its geographic source bundle is `places/dp/dpz/first_canadian_place`.
 References include the recladding design architect, B+H's renewal study and finished colonnade
 photograph, Brookfield's leasing plan and building specifications, Halsall's facade-engineering
 presentation, the height registry and original 2022 rooftop photography. Construction and
@@ -967,7 +967,7 @@ geographic or maximum-fidelity work. No release was published.
 
 ### Next candidate: Two Prudential Plaza research
 
-N0228 primary research is saved in `.artifacts/two-prudential-research/`. The owner's
+two_prudential_plaza primary research is saved in `.artifacts/two-prudential-research/`. The owner's
 [leasing plans for floors 28–30](https://www.theprulife.com/wp-content/uploads/2021/06/OTP_Large-Block-Plans_All-28-30.pdf)
 were retrieved; pages 3 and 5 were visually inspected. Their north arrow and street labels
 establish the long north-south axis and projecting central north/south bays, with differing
@@ -991,10 +991,10 @@ occluded in these photographs; the reconstruction below adds original exterior p
 
 ### Two Prudential Plaza source reconstruction — 2026-10-03
 
-N0228 now has a deterministic recipe in
+two_prudential_plaza now has a deterministic recipe in
 `packages/worldgen/scripts/two-prudential-plaza-model.mjs`, registered with the signature-tower
 generator. Source evidence and reviews live in
-`places/dp/dp3/n0228_two_prudential_plaza/`; the matching runtime sidecar uses the same geography.
+`places/dp/dp3/two_prudential_plaza/`; the matching runtime sidecar uses the same geography.
 Original 2012 photographs by Chicago Architecture Today and a 2016 photograph by MusikAnimal
 were inspected alongside the owner plans. References are linked and attributed in the source
 bundle; no photographs or downloaded meshes are used as model content.
@@ -1042,7 +1042,7 @@ model workflow: no repeated whole-repository rebuilds or dependency audits for e
 
 ### Next candidate: Istanbul Sapphire research
 
-N0229 research is saved in `.artifacts/istanbul-sapphire-research/research-notes.json`.
+istanbul_sapphire research is saved in `.artifacts/istanbul-sapphire-research/research-notes.json`.
 The [architect's project description](https://www.tabanlioglu.com/project/sapphire/) and its
 Murat Germen exterior photograph were inspected. They establish a double facade, vertical
 gardens, four residential zones and a glass skin curving outward into the retail canopy.
@@ -1054,12 +1054,12 @@ architectural height, a 234.9 m observatory, 55 above-ground floors and ten base
 Cached exact-QID OSM way 673790538 instead tags 235 m and 64 levels on a building part.
 Keep these datums separate. Floor plans, the upper blade/crown, facade cavities, signed canopy
 orientation and the retail podium remain to be researched. The following reconstruction now
-provides N0229's source and runtime preview; it does not constitute completion approval.
+provides istanbul_sapphire's source and runtime preview; it does not constitute completion approval.
 
 ### Istanbul Sapphire source reconstruction — 2026-10-03
 
-N0229 is authored by `packages/worldgen/scripts/istanbul-sapphire-model.mjs`, with source
-evidence in `places/sx/sxk/n0229_istanbul_sapphire/`. The architect-hosted March 2013
+istanbul_sapphire is authored by `packages/worldgen/scripts/istanbul-sapphire-model.mjs`, with source
+evidence in `places/sx/sxk/istanbul_sapphire/`. The architect-hosted March 2013
 Architecture and Urbanism section and winter-garden photograph were inspected alongside the
 exterior photograph. The recipe separates the outer weather skin from recessed apartment
 glazing, projecting wood balcony fascias, rails, plants and support bands. It also includes
@@ -1088,7 +1088,7 @@ ground contact. Roof datums, facade divisions, detailed planting and site fit re
 This model is **not counted complete**.
 
 The ledger is **241 authored / 167 complete**, with 239 portable and 237 shared reviews.
-The targeted generator `--ids=N0229 --check` reproduced the current bytes after source formatting.
+The targeted generator `--ids=istanbul_sapphire --check` reproduced the current bytes after source formatting.
 No repository-wide builds or dependency audits were run for this model. A local
 `assets:build --no-generate --update-lock` checkpoint took 25 seconds and pins 774 GLBs in
 `assets-4004fddbffb6150d`; only Sapphire's source/runtime pair was added, with all 772 prior
@@ -1099,7 +1099,7 @@ Runtime hash: `6d9ff0dce95bf6b3cdf8225f85d664d6cd9dfe03a531048a39e9623153444a7f`
 
 ### Next candidate: Nina Tower research
 
-N0230 needs the full two-tower complex and curved skybridge over its shared podium.
+nina_tower needs the full two-tower complex and curved skybridge over its shared podium.
 The [height registry](https://www.skyscrapercenter.com/building/nina-tower/421) gives the tall
 tower 320.4 m tip, 301.1 m highest occupied level and 80 floors. Its separate `/104` record
 describes the earlier 518 m proposal and must not be substituted for the built structure.
@@ -1115,8 +1115,8 @@ model is authored at this checkpoint. Geometry reuse for Sapphire is the immedia
 
 ### Nina Tower source reconstruction — 2026-10-04
 
-N0230 now has an original deterministic recipe in `packages/worldgen/scripts/nina-tower-model.mjs`
-and a source bundle at `places/we/wec/n0230_nina_tower/`. The hotel factsheet, planning annex
+nina_tower now has an original deterministic recipe in `packages/worldgen/scripts/nina-tower-model.mjs`
+and a source bundle at `places/we/wec/nina_tower/`. The hotel factsheet, planning annex
 plans/sections and Sika's exterior reference were inspected. The model includes both rounded
 towers, curved open crowns, refuge louvres, modular facade bays, enclosed curved skybridge,
 triangular bridge trusses and a shared podium. Entrances and the podium are still schematic.
@@ -1141,8 +1141,8 @@ the catalog coordinate is not a verified tower center. OSM endpoints returned 40
 research. The placement is an **inactive draft**, with footprint replacement disabled.
 Maximum exterior fidelity and geographic fit are pending; this model is not counted complete.
 
-The inventory is now **344 registered structures**: 242 from the next-1000 plan and 102 older
-landmarks/reusable structures. The next-1000 ledger remains **167 complete**, with 758 models
+The inventory is now **344 registered structures**: 242 from the structure-catalog plan and 102 older
+landmarks/reusable structures. The structure-catalog ledger remains **167 complete**, with 758 models
 still unauthored. Current source/runtime reproducibility, geometry, shared materials and the
 four LODs passed targeted checks. Authored-LOD tests cover determinism, download/layout budgets,
 cache reuse, missing-file repair and stale-master rejection. No repository-wide build or
@@ -1160,9 +1160,9 @@ local checkpoint with targeted source reproduction, not a fresh full-catalog sou
 
 ### Gran Torre Costanera source reconstruction — 2026-10-04
 
-N0232 now has an original deterministic recipe in
+gran_torre_costanera now has an original deterministic recipe in
 `packages/worldgen/scripts/gran-torre-costanera-model.mjs` and a source bundle at
-`places/66/66j/n0232_gran_torre_costanera/`. The architect's exterior, crown and observatory
+`places/66/66j/gran_torre_costanera/`. The architect's exterior, crown and observatory
 photographs and the owner's floor-60 plan and brochure were inspected. They establish four
 folded, tapering walls, recessed corner strips and projecting crown screens with visible steel
 lattice. The model also includes the observatory floor, glass canopy, supporting rods and doors.
@@ -1191,7 +1191,7 @@ not prove the entrance direction, actual terrain contact or neighboring site bou
 The signed yaw, geographic fit and maximum exterior fidelity remain pending. Surrounding
 mall buildings are separate identities and are not represented by this tower model.
 
-The catalog now has **345 registered structures**: 243 from the next-1000 plan and 102 older
+The catalog now has **345 registered structures**: 243 from the structure-catalog plan and 102 older
 or reusable structures. The plan remains **167 complete**, with **757 still unauthored**.
 There are 241 current portable reviews, 239 shared-material reviews and 229 active previews.
 The targeted source generator and import checks reproduce the current bytes. No whole-engine
@@ -1210,9 +1210,9 @@ current import. It is not a fresh full-catalog source rebuild.
 
 ### China World Tower A source reconstruction — 2026-10-04
 
-N0233 now has an original deterministic recipe in
+china_world_trade_center_tower_iii now has an original deterministic recipe in
 `packages/worldgen/scripts/china-world-tower-model.mjs` and a source bundle at
-`places/wx/wx4/n0233_china_world_trade_center_tower_iii/`. SOM's Tim Griffith photographs
+`places/wx/wx4/china_world_trade_center_tower_iii/`. SOM's Tim Griffith photographs
 and pages 10–11 of Meinhardt's facade brochure were inspected. The brochure establishes
 600 mm external glass fins and curtain-wall planes that alternate their slope between floors.
 The recipe models those features, recessed corner glazing, service louvre belts, large diamond
@@ -1244,7 +1244,7 @@ real terrain contact and adjoining site fit remain unapproved. Crown details, ro
 vestibules and facade dimensions remain reconstructions; the glass frit pattern and night
 lighting are also pending. This is not maximum-fidelity completion.
 
-The inventory is **346 registered structures**: **244 next-1000 models** plus 102 older or
+The inventory is **346 registered structures**: **244 structure-catalog models** plus 102 older or
 reusable structures. The plan remains **167 complete**, with **756 still unauthored**. There
 are 242 portable reviews, 240 shared-material reviews and 230 active previews. No whole-engine
 build, full-catalog generation or dependency audit was run for this addition.
@@ -1262,7 +1262,7 @@ full-catalog source rebuild.
 
 ### Next candidate: Palacio Barolo research
 
-N0234 has useful primary reference leads. The
+barolo_palace has useful primary reference leads. The
 [building's historical account](https://palaciobarolo.com.ar/palacio-barolo/resena-historica/)
 specifies a 30.88 m frontage on a 1,365 m² parcel, 22 floors and two basements, a 90 m dome
 and a 100 m tip including the lantern. Its through-passage links Avenida de Mayo to Hipólito
@@ -1275,9 +1275,9 @@ at this checkpoint.
 
 ### Palacio Barolo source reconstruction — 2026-10-04
 
-N0234 now has an original deterministic recipe in
+barolo_palace now has an original deterministic recipe in
 `packages/worldgen/scripts/barolo-palace-model.mjs` and source bundle at
-`places/69/69y/n0234_barolo_palace/`. Owner photographs, the municipal heritage book,
+`places/69/69y/barolo_palace/`. Owner photographs, the municipal heritage book,
 national heritage entry, a rear photograph and an aerial view were inspected. The recipe
 models the H-plan light courts, through passage, projecting bow windows, green mansards,
 paired circular balconies, pointed arches, layered cornices, ribbed crown and glazed lantern.
@@ -1313,7 +1313,7 @@ Full rear elevation, court proportions, fine figurative ornament, inscriptions, 
 modern equipment and measured roof profiles remain pending. This is not maximum-fidelity
 completion or geographic approval.
 
-The catalog now has **347 registered structures**: **245 next-1000 models** plus 102 older
+The catalog now has **347 registered structures**: **245 structure-catalog models** plus 102 older
 or reusable structures. The plan remains **167 complete**, with **755 still unauthored**;
 243 portable and 241 shared-material reviews are current, and 230 geographic previews are
 active. Only targeted authoring/LOD checks were run for this addition.
@@ -1329,17 +1329,17 @@ earlier authored skyline recipes received new fingerprints because their registr
 authored intermediate levels; their GLB bytes are unchanged. The 89-second local checkpoint
 reused current imports and is not a fresh full-catalog source rebuild.
 
-Next sequential candidate is N0235, **Millennium Tower in Vienna (Q80495)**. Resolve its
+Next sequential candidate is millennium_tower, **Millennium Tower in Vienna (Q80495)**. Resolve its
 specific identity and primary architectural references before modeling; the next candidates
-N0236 Château de Montsoreau and N0237 Neuschwanstein Castle require independent heritage
+chateau_de_montsoreau Château de Montsoreau and neuschwanstein_castle Neuschwanstein Castle require independent heritage
 research rather than reuse of the tower recipe. Barolo's geographic conflict and fine-detail
 work remain recorded in its source and readiness ledger.
 
 ### Millennium Tower, Vienna source reconstruction — 2026-10-04
 
-N0235 now has an original deterministic recipe in
+millennium_tower now has an original deterministic recipe in
 `packages/worldgen/scripts/millennium-tower-model.mjs` and source bundle at
-`places/u2/u2e/n0235_millennium_tower/`. Owner architecture, office grid and floor plan,
+`places/u2/u2e/millennium_tower/`. Owner architecture, office grid and floor plan,
 Podrecca's exterior and facade photographs, ATP's project description and the structural
 engineers' abstract establish this specific Vienna tower (Q80495). Two separately fitted
 circles reproduce the mapped footprint, with radial RMS residuals of 0.189 and 0.129 m.
@@ -1375,7 +1375,7 @@ documented 202 m antenna tip. Measured tier elevations, exact lamella profiles, 
 and renovated entrance are outstanding. Maximum-fidelity and geographic approvals remain
 pending; render integrity does not complete this candidate.
 
-Inventory is now **348 registered structures**: **246 next-1000 models** plus 102 older or
+Inventory is now **348 registered structures**: **246 structure-catalog models** plus 102 older or
 reusable structures. The plan has **167 complete**, **754 still unauthored**, 244 current
 portable reviews, 242 shared-material reviews and 231 active geographic previews.
 Only the changed model was generated/imported and visually captured. Source generation and
@@ -1394,7 +1394,7 @@ rebuild. No assets were committed or published.
 
 ### Next candidate: Château de Montsoreau
 
-N0236 (Q1143049) has a substantial primary
+chateau_de_montsoreau (Q1143049) has a substantial primary
 [regional heritage dossier, IA49009670](https://gertrude.paysdelaloire.fr/dossier/IA49009670),
 with 83 illustrations and a reference to Salleron's 1886–1888 north exterior drawing. Its text
 describes a tuffeau main range, two quadrangular towers, asymmetric return wings and two
@@ -1403,12 +1403,12 @@ discs in its terrace guard. Historical tower roofs are no longer present: curren
 states must be distinguished. Its northern riverside face and southern courtyard need separate
 study. The [museum's owner page](https://www.chateau-montsoreau.com/wordpress/fr/100-chateau-100-contemporain/le-chateau/)
 is another primary reference. These pages were read; the dossier's image plates and drawings
-have not yet been visually inspected. No N0236 geometry is authored at this checkpoint.
+have not yet been visually inspected. No chateau_de_montsoreau geometry is authored at this checkpoint.
 
-## N0236 Château de Montsoreau checkpoint — 2026-10-04
+## chateau_de_montsoreau Château de Montsoreau checkpoint — 2026-10-04
 
 Added an individually authored source master and runtime asset under
-`places/u0/u02/n0236_chateau_de_montsoreau/`. The regional Inventaire Général dossier,
+`places/u0/u02/chateau_de_montsoreau/`. The regional Inventaire Général dossier,
 five inspected exterior/detail photographs and the museum owner's publication establish the
 current castle's distinguishing features. The source separates the two flat square terraces,
 four river dormers, three courtyard dormers, unequal return wings, western pointed stair and
@@ -1441,12 +1441,12 @@ default for other previews. A flat-terrain overlay confirms registration only. S
 terrain/road datum, retained walls and exact occupied bounds remain outstanding. The owner's
 35 m terrace statement has an unclear datum and is not adopted as a surveyed model height.
 Renaissance figurative panels, medallions, deer and putti remain unsculpted. **Geographic and
-maximum-fidelity approvals remain pending**, so render acceptance does not complete N0236.
+maximum-fidelity approvals remain pending**, so render acceptance does not complete chateau_de_montsoreau.
 
-Inventory is **349 registered structures**, including **247 next-1000 authored/imported models**
+Inventory is **349 registered structures**, including **247 structure-catalog authored/imported models**
 and 102 older or reusable structures. The plan has **167 fully complete**, **753 unauthored**,
 245 portable reviews, 243 shared-material reviews and 232 active geographic previews.
-Source generation/import/placement checks reproduce N0236's exact current hashes. Work stayed
+Source generation/import/placement checks reproduce chateau_de_montsoreau's exact current hashes. Work stayed
 within the targeted model loop, with no engine build, dependency audit or full source rebuild.
 
 Source hash: `240687e26cd3d6e3a759349ef19141ddba00b69ab800da659c8723431dc23a5f`.
@@ -1454,7 +1454,7 @@ Runtime hash: `ca0ea042ded1f01dfa79b2207165d55ac48ab2ab738e614c9db5a63a46f2ccbe`
 References, limitations and hash-bound reviews live with the source bundle; local validation
 and comparison sheets are in `.artifacts/montsoreau-research/`.
 
-Inventory checkpoint **`assets-72ce6873e9e2360a`** pins **2,182 GLBs**. Only N0236's source,
+Inventory checkpoint **`assets-72ce6873e9e2360a`** pins **2,182 GLBs**. Only chateau_de_montsoreau's source,
 runtime master and four detail levels were added; all **2,176 previous hashes are unchanged**.
 The local checkpoint reused current imports in 86 seconds. Five earlier authored-LOD sidecars
 received updated recipe fingerprints without changing their GLB bytes. No Git mutation or
@@ -1462,18 +1462,18 @@ asset publication was performed.
 
 ### Next candidate: Neuschwanstein Castle
 
-N0237 (Q4152) has an [official building history and labeled complex plan](https://www.neuschwanstein.de/englisch/palace/history.htm)
+neuschwanstein_castle (Q4152) has an [official building history and labeled complex plan](https://www.neuschwanstein.de/englisch/palace/history.htm)
 from the Bavarian Palace Administration. The text distinguishes the Gateway Building, Palas,
 Bower, Square Tower and connecting ranges; the later Bower and Square Tower were completed
 in 1892 in simplified form. Current architecture must be distinguished from unrealized designs.
 The cached exact-QID map record is way/221601969, anchor `[10.749533954, 47.557554931]`,
 heading `0.381105898007`. The official text was read; its plan image and exterior photographs
-have not yet been inspected for this recipe. No N0237 geometry is counted at this checkpoint.
+have not yet been inspected for this recipe. No neuschwanstein_castle geometry is counted at this checkpoint.
 
-## N0237 Neuschwanstein Castle checkpoint — 2026-10-04
+## neuschwanstein_castle Neuschwanstein Castle checkpoint — 2026-10-04
 
 Added an individually arranged source master under
-`places/u0/u0r/n0237_neuschwanstein_castle/`, registered through the standard importer and
+`places/u0/u0r/neuschwanstein_castle/`, registered through the standard importer and
 catalog. The Bavarian Palace Administration's labeled plan and five detailed photographic
 views establish the cranked Palas, unequal stair towers, western open galleries, Bower,
 Knights' House, Square Tower, connecting ranges and two open courts. The gatehouse has
@@ -1508,9 +1508,9 @@ plan. The cached 65 m height is unreferenced, and the two retained court levels,
 occupied boundaries and vertical datum are not surveyed. `replaceFootprint` remains false;
 the draft is discoverable in the catalog but inactive in world placement. Painted murals,
 heraldic relief, statues, capitals and exact tracery still need dedicated work. **Geographic
-fit and maximum exterior fidelity remain pending**; render review does not complete N0237.
+fit and maximum exterior fidelity remain pending**; render review does not complete neuschwanstein_castle.
 
-Inventory is now **350 registered structures**: **248 authored/imported next-1000 models**
+Inventory is now **350 registered structures**: **248 authored/imported structure-catalog models**
 and 102 older or reusable models. The plan has **167 fully complete**, **752 unauthored**,
 246 portable reviews, 244 shared-material reviews and 232 active geographic previews.
 Source-generation, import and placement checks reproduce the current model hashes.
@@ -1523,7 +1523,7 @@ sheets are in `.artifacts/neuschwanstein-research/`.
 Lock **`assets-4e5f7660b5e46200`** pins **2,188 GLBs**. The lock conflict was resolved by
 concurrent owner work before this checkpoint, yielding `assets-b6322d023cc8cb8d`; its four
 updated aircraft files were verified locally. A broad update-lock command was rejected by
-automatic approval. The completed narrower checkpoint adds only N0237's six verified files,
+automatic approval. The completed narrower checkpoint adds only neuschwanstein_castle's six verified files,
 preserves all **2,182 prior entries exactly**, recomputes the snapshot through `createLock`,
 and refuses concurrent edits. Six earlier authored-LOD sidecars receive current shared-recipe
 fingerprints; all thirty of their master/LOD runtime files still match the preserved lock.
@@ -1531,7 +1531,7 @@ No full source rebuild, engine suite, dependency audit, Git mutation or publicat
 
 ### Windsor Castle research handoff (superseded by the checkpoint below)
 
-N0239 (Q42646) is still unauthored. The Royal Collection Trust's
+windsor_castle (Q42646) is still unauthored. The Royal Collection Trust's
 [building history](https://www.rct.uk/visit/windsor-castle/who-built-windsor-castle) was read:
 its current exterior includes the nineteenth-century raising of the Round Tower and
 Wyatville's remodelling, so earlier drawings cannot be treated as the current building.
@@ -1545,9 +1545,9 @@ individual reconstruction; the precinct must not be extruded as one building.
 
 ## Windsor Castle source checkpoint — 2026-10-04
 
-N0239 now has a reproducible individual exterior recipe at
+windsor_castle now has a reproducible individual exterior recipe at
 `packages/worldgen/scripts/windsor-castle-model.mjs` and a source bundle at
-`places/gc/gcp/n0239_windsor_castle/`. The bundle records individual OSM ways,
+`places/gc/gcp/windsor_castle/`. The bundle records individual OSM ways,
 courtyard holes, references, model, scene, import, placement and hash-bound render reviews.
 Horizontal geometry uses the signed cached map frame; mapped palace ranges remain separate
 from the gardens and open wards. The Round Tower, chapel, cloister, towers, roofs and
@@ -1581,10 +1581,10 @@ load once each, and unloading leaves zero live model geometries. Source generati
 **Geographic fit and maximum exterior fidelity are pending.** The draft keeps
 `replaceFootprint=false`. Cross-site elevations, motte/terrain contact, window bay spacing,
 roof profiles, tracery, heraldic beasts, statues and relief require further work. Studio
-render approval does not count N0239 as a completed maximum-fidelity landmark.
+render approval does not count windsor_castle as a completed maximum-fidelity landmark.
 
 Current inventory: **351 registered structures**, including **249 authored/imported
-next-1000 models**, **167 fully complete**, and **751 unauthored**. Portable reviews are
+structure-catalog models**, **167 fully complete**, and **751 unauthored**. Portable reviews are
 247; shared-material reviews are 245; active geographic previews remain 232.
 
 Source hash: `e9e70f934d7a05e8f2c5b4d091c1759e1dfacf58f82306cc6c85dc8e93c90396`.
@@ -1593,12 +1593,12 @@ Lock **`assets-bf11c2155d6cd5e9`** pins **2,194 GLBs**: only Windsor's six entri
 added, with all 2,188 previous entries preserved exactly. The seven earlier authored-LOD
 sidecars have current shared-recipe fingerprints; their 35 master/LOD files still match
 the prior lock. No full rebuild, engine suite, dependency audit, Git mutation or
-publication was run. **N0240 Prague Castle is the next unauthored candidate.**
+publication was run. **prague_castle Prague Castle is the next unauthored candidate.**
 
 ## Prague Castle source checkpoint — 2026-10-04
 
-N0240 now has an individual recipe at `packages/worldgen/scripts/prague-castle-model.mjs`
-and source bundle at `places/u2/u2f/n0240_prague_castle/`. Individual attributed OSM
+prague_castle now has an individual recipe at `packages/worldgen/scripts/prague-castle-model.mjs`
+and source bundle at `places/u2/u2f/prague_castle/`. Individual attributed OSM
 polygons retain the palace court holes, cathedral chapel and tower positions, churches,
 palaces and Golden Lane houses. The owner's illustrated plan and three exterior
 photographs were inspected; references and their use are recorded in the bundle.
@@ -1633,7 +1633,7 @@ stays draft with `replaceFootprint=false`. Physical-device performance measureme
 also pending. Studio render integrity does not certify architectural or geographic accuracy.
 
 Inventory now has **352 registered structures**, including **250 authored/imported
-next-1000 models**, **167 fully complete**, and **750 unauthored**. Portable reviews are
+structure-catalog models**, **167 fully complete**, and **750 unauthored**. Portable reviews are
 248; shared-material reviews are 246; active geographic previews remain 232.
 
 Source hash: `80beee517c6a4c2b3e50ceea71e4e24d6270c97381b6f2b3d11533180f662ff0`.
@@ -1642,12 +1642,12 @@ Lock **`assets-c821a6356fc84326`** pins **2,200 GLBs**: added Prague's six valid
 and preserved all 2,194 preceding entries exactly. The eight earlier authored-LOD sidecars
 have refreshed common-registry fingerprints; their 40 master/LOD files still match the
 previous lock. No repository-wide rebuild, engine suite, dependency audit, Git mutation
-or publication was run. **N0241 Wartburg is the next unauthored candidate.**
+or publication was run. **wartburg Wartburg is the next unauthored candidate.**
 
 ## Wartburg source checkpoint — 2026-10-04
 
-N0241 now has an individual recipe at `packages/worldgen/scripts/wartburg-castle-model.mjs`
-and source bundle at `places/u1/u1p/n0241_wartburg/`. The exact Q151545 map point anchors
+wartburg now has an individual recipe at `packages/worldgen/scripts/wartburg-castle-model.mjs`
+and source bundle at `places/u1/u1p/wartburg/`. The exact Q151545 map point anchors
 a signed meter frame from the South Tower toward the northern gatehouse. Twenty-one
 attributed component ways describe buildings and walls; their envelope is not an occupied
 precinct footprint. Two courtyards remain open. The owner plan and four linked exterior
@@ -1681,7 +1681,7 @@ description conflicts with OSM's 40–46 m tags. The reconstructed top is 34 m, 
 the documented 3.8 m cross. Court elevations, exact roof profiles, facade spacing,
 Palas lions/capitals, Gothic oriel tracery and terrain contact need further work.
 
-Inventory: **353 registered structures**, including **251 authored/imported next-1000
+Inventory: **353 registered structures**, including **251 authored/imported structure-catalog
 models**, **167 fully complete**, and **749 unauthored**. Portable reviews are 249;
 shared-material reviews are 247; active geographic previews remain 232.
 
@@ -1690,12 +1690,12 @@ Runtime hash: `9e41999a6648e196df41877c925edb153f83c68f87320821285478154a1cd52f`
 Lock **`assets-692ef1d30a6da0e6`** pins **2,206 GLBs**: only Wartburg's six validated files
 were added; all 2,200 existing entries are preserved. Nine earlier authored-LOD sidecars
 have current common-registry fingerprints and their 45 master/LOD files retain the locked
-bytes. **N0242 Edinburgh Castle is the next unauthored candidate.**
+bytes. **edinburgh_castle Edinburgh Castle is the next unauthored candidate.**
 
 ## Edinburgh Castle source checkpoint — 2026-10-04
 
-N0242 now has an individual recipe at `packages/worldgen/scripts/edinburgh-castle-model.mjs`
-and a source bundle at `places/gc/gcv/n0242_edinburgh_castle/`. Attributed OSM component
+edinburgh_castle now has an individual recipe at `packages/worldgen/scripts/edinburgh-castle-model.mjs`
+and a source bundle at `places/gc/gcv/edinburgh_castle/`. Attributed OSM component
 polygons preserve the palace, Great Hall, Queen Anne range, memorial, chapel, barracks,
 Hospital Square, gateways and defensive walls. The official plan labels and inspected
 exterior photographs inform the reconstruction. Crown Square and Hospital Square remain
@@ -1726,7 +1726,7 @@ Castle Rock, exact gate and roof details, facade openings, heraldry, memorial sc
 Foogs Gate need further work. The current retaining plinths do not establish real terrain
 fit. Placement remains draft with `replaceFootprint=false`.
 
-Inventory: **354 registered structures**, including **252 authored/imported next-1000
+Inventory: **354 registered structures**, including **252 authored/imported structure-catalog
 models**, **167 fully complete**, and **748 unauthored**. Portable reviews are 250;
 shared-material reviews are 248; active geographic previews remain 232.
 
@@ -1735,12 +1735,12 @@ Runtime hash: `237f5465a63525801cde32c93ddba3c8b2b5d39102ef9c8a0ad1f09ed1868f7c`
 Lock **`assets-188597fa0ccb3703`** pins **2,212 GLBs**: only Edinburgh's six validated files
 were added; all 2,206 previous entries were preserved exactly. Ten earlier authored-LOD
 sidecars have refreshed registry fingerprints and their 50 master/LOD files retain their
-locked bytes. **N0243 Malbork Castle is the next unauthored candidate.**
+locked bytes. **malbork_castle Malbork Castle is the next unauthored candidate.**
 
 ## Malbork Castle source checkpoint — 2026-10-04
 
-N0243 now has an individual recipe at `packages/worldgen/scripts/malbork-castle-model.mjs`
-and source bundle at `places/u3/u3t/n0243_malbork_castle/`. The source records 103 attributed
+malbork_castle now has an individual recipe at `packages/worldgen/scripts/malbork-castle-model.mjs`
+and source bundle at `places/u3/u3t/malbork_castle/`. The source records 103 attributed
 OSM features. The exact Q71279 relation covers the High and Middle Castle precinct; named
 Lower Castle buildings and towers extend the component frame northward. High Castle retains
 its courtyard hole, raised Dansker gallery and keep. Middle Castle retains its U-shaped court,
@@ -1775,7 +1775,7 @@ is explicitly provisional. Terrain, moat depths, exact roof joins, windows, dorm
 Madonna mosaic, fine tracery and complete outer earthworks need further work. Current render
 integrity approval does not certify those architectural or geographic details.
 
-Inventory: **355 registered structures**, including **253 authored/imported next-1000
+Inventory: **355 registered structures**, including **253 authored/imported structure-catalog
 models**, **167 fully complete**, and **747 unauthored**. Portable reviews are 251;
 shared-material reviews are 249; active geographic previews remain 232.
 
@@ -1785,13 +1785,13 @@ Lock **`assets-6182ee003d4146e8`** pins **2,218 GLBs**: Malbork's six validated 
 added while all 2,212 prior entries were preserved. Eleven earlier authored-LOD sidecars
 have refreshed registry fingerprints; all 55 earlier master/LOD files still match their
 locked bytes. The shared capture emitted an unrelated stale terrain-export dependency-scan
-warning, but completed every landmark frame and unload check. **N0244 Kronborg Castle is
+warning, but completed every landmark frame and unload check. **kronborg_castle Kronborg Castle is
 the next unauthored candidate.**
 
 ## Kronborg Castle source checkpoint — 2026-10-04
 
-N0244 now has its own recipe at `packages/worldgen/scripts/kronborg-castle-model.mjs`
-and source bundle at `places/u3/u3b/n0244_kronborg_castle/`. Thirteen attributed OSM
+kronborg_castle now has its own recipe at `packages/worldgen/scripts/kronborg-castle-model.mjs`
+and source bundle at `places/u3/u3b/kronborg_castle/`. Thirteen attributed OSM
 features, the north-east lighthouse node, museum plan, aerial views and courtyard views
 establish the horizontal reconstruction. Separate wings keep the courtyard and north
 passage open. The model distinguishes the flat Cannon/Telegraph Tower, tall Trumpeter,
@@ -1825,7 +1825,7 @@ five-meter courtyard elevation above fortress wall foot is provisional. Other to
 exact openings, roof joins, copper patches, clock faces, heraldic sculpture and complete
 outer crownwork/ravelins require refinement. Render-integrity approval does not certify them.
 
-Inventory: **356 registered structures**, including **254 authored/imported next-1000 models**,
+Inventory: **356 registered structures**, including **254 authored/imported structure-catalog models**,
 **167 fully complete**, and **746 unauthored**. Portable reviews are 252; shared-material
 reviews are 250; active geographic previews remain 232.
 
@@ -1835,15 +1835,15 @@ Lock **`assets-2df7416071d762b4`** pins **2,224 GLBs**: only Kronborg's six vali
 were added, preserving all 2,218 previous entries. Twelve earlier authored-LOD sidecars have
 refreshed registry fingerprints; all 60 earlier master/LOD files retain their locked bytes.
 The shared-capture fixture again emitted the unrelated stale terrain-export dependency-scan
-warning but completed every landmark frame and unload check. **N0245 Hofburg Palace is next.**
+warning but completed every landmark frame and unload check. **hofburg_palace Hofburg Palace is next.**
 
 ## 2026-10-04 — Hofburg Palace source and runtime checkpoint
 
-Added **N0245 Hofburg Palace** as an individual source recipe with attributed map parts,
+Added **hofburg_palace Hofburg Palace** as an individual source recipe with attributed map parts,
 reference observations, import, draft placement and four browser LODs. The model follows
 separate palace wings and open courts, the Michaeler domes and mapped columns, Amalien clock,
 Neue Burg curve and colonnade, library dome, Augustinian spire, Stallburg, Albertina terrace
-and Palmenhaus. Source: `places/u2/u2e/n0245_hofburg_palace/`.
+and Palmenhaus. Source: `places/u2/u2e/hofburg_palace/`.
 
 The source master contains **606,293 triangles**, **1,258,179 vertices**, eleven material
 slots and **zero embedded images**. Ten canonical material graphs cover limestone, carved
@@ -1874,7 +1874,7 @@ opening positions, imperial sculpture, fountains, capitals, court arcades, Swiss
 Palmenhaus central pavilion and Albertina lower levels need further authoring. Render-integrity
 reviews do not certify architectural fidelity or real-world fit.
 
-Inventory: **357 registered structures**, **255 authored/imported next-1000 models**,
+Inventory: **357 registered structures**, **255 authored/imported structure-catalog models**,
 **167 fully complete**, **745 unauthored**, 253 portable reviews, 251 shared-material reviews,
 and 232 active geographic previews.
 
@@ -1886,18 +1886,18 @@ all 65 earlier master/LOD files remain byte-identical to their pins. The capture
 the existing unrelated `updateTerrainSurfaceSignals` dependency-scan warning; all landmark
 frames and unload checks completed. No repository-wide build or npm audit was run.
 
-**Next: N0246 Takht-e Soleyman.** The cached identity has no resolved physical footprint.
+**Next: takht_e_soleyman Takht-e Soleyman.** The cached identity has no resolved physical footprint.
 UNESCO provides an official nomination dossier and site description at
 <https://whc.unesco.org/en/list/1077> and <https://whc.unesco.org/uploads/nominations/1077.pdf>.
 Current ruins, site layout and terrain must be distinguished from historical reconstructions.
 
 ## 2026-10-04 — Takht-e Soleyman source and runtime checkpoint
 
-Added **N0246 Takht-e Soleyman** as a reproducible source recipe, imported model, draft
+Added **takht_e_soleyman Takht-e Soleyman** as a reproducible source recipe, imported model, draft
 geographic placement and four authored browser LODs. The mapped oval enclosure and spring
 lake surround roofless temple rooms, western column halls, the broken west iwan, two octagonal
 foundations and an oblique red-stone four-column hall. Source:
-`places/tn/tn9/n0246_takht_e_soleyman/`.
+`places/tn/tn9/takht_e_soleyman/`.
 
 The source master has **817,410 triangles**, **1,641,262 vertices**, eight material groups,
 six reusable graphs and **zero embedded images**. Graphs cover coursed limestone, raw limestone,
@@ -1928,7 +1928,7 @@ phase plans, not surveyed coordinates. Individual bastion stations, erosion prof
 arches and the 22 m iwan peak need measured refinement. Stone courses remain overly regular.
 The 1.2 m contact slab is provisional; it does not recreate the geological mound above the valley.
 
-Inventory: **358 registered structures**, **256 authored/imported next-1000 models**,
+Inventory: **358 registered structures**, **256 authored/imported structure-catalog models**,
 **167 fully complete**, **744 unauthored**, 254 portable reviews, 252 shared-material reviews,
 and 232 active geographic previews. This addition is not counted as maximum-fidelity complete.
 
@@ -1940,16 +1940,16 @@ previous master/LOD files remain byte-identical to their pins. The first shared 
 the existing unrelated `updateTerrainSurfaceSignals` dependency-scan warning; all final frames
 and unload checks completed. No repository-wide rebuild or dependency audit was run.
 
-**Next: N0247 Karlstejn Castle** (catalog title Karlštejn Castle), exact mapped identity
+**Next: karlstejn_castle Karlstejn Castle** (catalog title Karlštejn Castle), exact mapped identity
 Q266698 / relation 6706848. Its cached 150 by 143 m enclosure has only an undirected axis;
 separate palace/tower outlines, signed orientation and the stepped hill datum need research.
 
 ## 2026-10-04 — Karlštejn Castle source and runtime checkpoint
 
-Added **N0247 Karlštejn Castle** with separately mapped Great Tower, Marian Tower,
+Added **karlstejn_castle Karlštejn Castle** with separately mapped Great Tower, Marian Tower,
 Imperial Palace and round eastern turret, Burgrave House, well tower, gatehouses,
 curtain walls and two raised covered passages. Source:
-`places/u2/u2f/n0247_karlstejn_castle/`. The deterministic recipe includes window
+`places/u2/u2f/karlstejn_castle/`. The deterministic recipe includes window
 apertures, timber galleries, half-timber framing, dormers and slate shingle relief.
 
 The source master has **556,934 triangles**, **1,115,998 vertices**, nine material groups,
@@ -1980,7 +1980,7 @@ Stepped terrace elevations, terrain contact, Burgrave roof junctions, obscured f
 chimneys and bridge support details need measured refinement. Regular stone courses and
 LOD-dependent slate contrast also need fidelity work. No maximum-fidelity approval is asserted.
 
-Inventory: **359 registered structures**, **257 authored/imported next-1000 models**,
+Inventory: **359 registered structures**, **257 authored/imported structure-catalog models**,
 **167 fully complete**, **743 unauthored**, 255 portable reviews, 253 shared-material reviews,
 and 232 active geographic previews.
 
@@ -1993,13 +1993,13 @@ capture fixture emitted the existing unrelated `updateTerrainSurfaceSignals` dep
 warning; final landmark frames and unload checks completed. No repository-wide rebuild or
 dependency audit was run.
 
-**Next: N0248 Bran Castle**, Q390275, reference coordinate `[25.3671,45.515]`.
+**Next: bran_castle Bran Castle**, Q390275, reference coordinate `[25.3671,45.515]`.
 Research its individually shaped towers, compact courtyard, roof levels and rocky terrain
 before authoring; do not substitute a generic castle.
 
-## 2026-10-04 — N0248 Bran Castle source and runtime checkpoint
+## 2026-10-04 — bran_castle Bran Castle source and runtime checkpoint
 
-Added `places/u8/u84/n0248_bran_castle/` from a deterministic authored recipe,
+Added `places/u8/u84/bran_castle/` from a deterministic authored recipe,
 OSM outer/inner rings and five mapped tower parts. The castle includes an open courtyard,
 round western tower, southern stair turret, steep single-slope keep roof, scalloped rear
 parapet, timber belfry, projecting eastern tower chamber, galleries, well and entrance stairs.
@@ -2032,7 +2032,7 @@ rhythms, chimney placement and four-meter rock contact are estimates. This is no
 castle or complete terrain hill. Rounded tile detail, plaster weathering and stone texture
 need further refinement; material contrast still differs across levels.
 
-Inventory: **360 registered structures**, **258 authored/imported next-1000 models**,
+Inventory: **360 registered structures**, **258 authored/imported structure-catalog models**,
 **167 fully complete**, **742 unauthored**, 256 portable reviews, 254 shared-material reviews,
 and 232 active geographic previews.
 
@@ -2044,16 +2044,16 @@ entries preserved. Sixteen previous authored-LOD fingerprints were refreshed onc
 The capture fixture still logs the unrelated `updateTerrainSurfaceSignals` dependency-scan
 warning; landmark frames and unload checks succeeded. No repository-wide build or audit ran.
 
-**Next: N0249 Alamut Castle**, Q4706020. Cached exact OSM way/590499418 has a 176.148 ×
+**Next: alamut_castle Alamut Castle**, Q4706020. Cached exact OSM way/590499418 has a 176.148 ×
 53.917 m envelope and a draft map axis. UNESCO nomination 1770 identifies surviving ruins,
 rock-cut structures and water systems. Research the present remains and levels; do not invent
 an intact medieval reconstruction. The public nomination document was too large for the web
 reader and direct download hit a JavaScript challenge; the UNESCO listing and evaluation
 remain available for research.
 
-## 2026-10-04 — N0249 Alamut Castle source and runtime checkpoint
+## 2026-10-04 — alamut_castle Alamut Castle source and runtime checkpoint
 
-Added `places/tn/tn7/n0249_alamut_castle/` from a deterministic authored recipe,
+Added `places/tn/tn7/alamut_castle/` from a deterministic authored recipe,
 OSM upper-castle outline and ten mapped ruin groups. Roofless chambers, northwest ridge
 cells, five interpreted rock-cut reservoirs, brick arches, broken masonry, patches of
 plaster, local cliff contact and approach stairs are included. The 2024 UNESCO photographs
@@ -2089,7 +2089,7 @@ mountain. The lower/onion castle and passing zone need separate source coverage.
 plateau geometry, regular mortar patterns, rock strata and the lighter skyline material
 need refinement; no maximum-fidelity approval is asserted.
 
-Inventory: **361 registered structures**, **259 authored/imported next-1000 models**,
+Inventory: **361 registered structures**, **259 authored/imported structure-catalog models**,
 **167 fully complete**, **741 unauthored**, 257 portable reviews, 255 shared-material reviews,
 and 232 active geographic previews.
 
@@ -2101,7 +2101,7 @@ entries preserved. Seventeen previous authored-LOD fingerprints were refreshed o
 the existing unrelated `updateTerrainSurfaceSignals` dependency-scan warning; landmark
 captures and unload checks succeeded. No repository-wide build or dependency audit ran.
 
-**Next: N0250 Mir Castle Complex**, Q209643. Exact OSM relation/1579104 has an outer
+**Next: mir_castle_complex Mir Castle Complex**, Q209643. Exact OSM relation/1579104 has an outer
 ring and courtyard hole, draft anchor `[26.472922093,53.451203802]`, heading
 `-0.224560956675` and mapped envelope 78.855 × 75.802 m. The public OSM area response is
 cached in `.artifacts/mir-research/map-raw.json`. The ICOMOS evaluation available at
@@ -2111,9 +2111,9 @@ are historical evidence; current restoration state and all five tower facades st
 visual inspection. The 17 MB nomination exceeded the web reader's size limit, while the
 small evaluation text was readable (PDF screenshot requests returned cache misses).
 
-## 2026-10-04 — N0250 Mir Castle source and runtime checkpoint
+## 2026-10-04 — mir_castle_complex Mir Castle source and runtime checkpoint
 
-Added `places/u9/u9d/n0250_mir_castle_complex/` with a deterministic geometry recipe,
+Added `places/u9/u9d/mir_castle_complex/` with a deterministic geometry recipe,
 mapped building-part polygons and reference notes from the official museum photographs.
 The five towers have separate brick/plaster ornament; the L-shaped palace surrounds an
 open courtyard. Covered wall walks, west gate passage, north arched bridge, timber gallery,
@@ -2147,7 +2147,7 @@ The separate chapel-crypt, guardhouse, moat, park, ramparts and later palace rem
 outside this castle-and-bridge geometry. Fieldstone texture and cross-LOD color need further
 refinement. No full-complex or maximum-fidelity approval is asserted.
 
-Inventory: **362 registered structures**, **260 authored/imported next-1000 models**,
+Inventory: **362 registered structures**, **260 authored/imported structure-catalog models**,
 **167 fully complete**, **740 unauthored**, 258 portable reviews, 256 shared-material reviews,
 and 232 active geographic previews. The source index contains 363 bundles.
 
@@ -2159,18 +2159,18 @@ master/LOD files remain byte-identical to the lock. The capture fixture still em
 unrelated `updateTerrainSurfaceSignals` dependency-scan warning; model captures and unload
 checks succeeded. No repository-wide build or dependency audit ran.
 
-**Next: N0251 Kernavė**, Q215315. The candidate currently identifies a town and has no exact
+**Next: kernave Kernavė**, Q215315. The candidate currently identifies a town and has no exact
 mapped castle footprint. The [UNESCO property](https://whc.unesco.org/en/list/1137/) describes
 an archaeological landscape with five surviving hillforts; the
 [reserve's official site](https://www.kernave.org/) also identifies an outdoor exhibition of
 reconstructed medieval homesteads. Research and map these separately. Do not place an invented
 intact castle at the town coordinate or silently substitute the reconstruction exhibit for
-the five hillforts. N0252 Hohenzollern Castle has exact OSM way/93612350 with a 175.611 ×
+the five hillforts. hohenzollern_castle Hohenzollern Castle has exact OSM way/93612350 with a 175.611 ×
 88.98 m enclosure outline, but its palace/tower parts still need research and mapping.
 
-## 2026-10-04 — N0251 Kernavė source and runtime checkpoint
+## 2026-10-04 — kernave Kernavė source and runtime checkpoint
 
-Added `places/u9/u9c/n0251_kernave/` and the source recipe
+Added `places/u9/u9c/kernave/` and the source recipe
 `packages/worldgen/scripts/kernave-landscape-model.mjs`. The candidate Q215315 is a town,
 so the model explicitly covers five independently identified hillforts and the separate
 modern museum reconstruction. OSM fixes component positions, twelve wooden building
@@ -2203,7 +2203,7 @@ steep-slope shading, ground material, vegetation, exact timber details and the w
 need further work. Do not treat the standalone patch surfaces as verified world terrain.
 The archaeological landscape is not a single building footprint and is not activated.
 
-Inventory: **363 registered structures**, **261 authored/imported next-1000 models**,
+Inventory: **363 registered structures**, **261 authored/imported structure-catalog models**,
 **167 fully complete**, **739 unauthored**, 259 portable reviews, 257 shared-material reviews,
 232 active geographic previews and 192 maximum-fidelity approvals. Source index: 364 bundles.
 
@@ -2215,14 +2215,14 @@ previous master/LOD files still match their lock hashes. The visual fixture's un
 `updateTerrainSurfaceSignals` dependency-scan warning remains; landmark captures succeeded.
 No repository-wide build or dependency audit ran.
 
-**Next: N0252 Hohenzollern Castle**, Q156457. Exact OSM way/93612350 is the enclosure,
+**Next: hohenzollern_castle Hohenzollern Castle**, Q156457. Exact OSM way/93612350 is the enclosure,
 not the palace roof footprint. Cached georeferencing gives anchor `[8.967537148,48.323560831]`,
 heading `-0.254203978258`, and envelope 175.611 × 88.98 m. Research palace/tower parts and
 current official photographs before authoring; do not extrude the enclosure into a building.
 
-## 2026-10-04 — N0252 Hohenzollern Castle source and runtime checkpoint
+## 2026-10-04 — hohenzollern_castle Hohenzollern Castle source and runtime checkpoint
 
-Added `places/u0/u0w/n0252_hohenzollern_castle/` and the editable recipe
+Added `places/u0/u0w/hohenzollern_castle/` and the editable recipe
 `packages/worldgen/scripts/hohenzollern-castle-model.mjs`. The mapped enclosure is kept
 separate from three palace wings, named towers, two chapels, gatehouses and spiral entry
 ramps. Original architectural reconstruction uses the operator's visitor plan, Stüler's
@@ -2258,7 +2258,7 @@ rhythms, crown details and roof joins need further work. Forest, ivy, statuary, 
 parking buildings and interiors are outside the asset. It is registered for asset review
 but is not an approved geographic replacement.
 
-Inventory: **364 registered structures**, **262 authored/imported next-1000 models**,
+Inventory: **364 registered structures**, **262 authored/imported structure-catalog models**,
 **167 fully complete**, **738 unauthored**, 260 portable reviews, 258 shared-material reviews,
 232 active geographic previews and 192 maximum-fidelity approvals. Source index: 365 bundles.
 
@@ -2270,15 +2270,15 @@ previous master/LOD files remain byte-identical to the lock. Capture fixtures st
 the unrelated `updateTerrainSurfaceSignals` dependency-scan warning; landmark captures and
 unload checks succeed. No repository-wide build or dependency audit ran.
 
-**Next: N0253 Bratislava Castle**, Q593311. Cached exact OSM way/1128350263 has an approximately
+**Next: bratislava_castle Bratislava Castle**, Q593311. Cached exact OSM way/1128350263 has an approximately
 334.485 × 310.572 m site envelope, anchor `[17.100792149,48.142390437]`, heading
 `1.019493535917`. This is the castle grounds, not the four-towered palace roof. Research and
 map the palace, open courtyard, terraces, gardens, surviving gates and surrounding buildings
-individually before authoring. N0254 Nesvizh Castle and N0255 Buda Castle follow in the list.
+individually before authoring. nesvizh_castle Nesvizh Castle and buda_castle Buda Castle follow in the list.
 
-## 2026-10-04 — N0253 Bratislava Castle source and runtime checkpoint
+## 2026-10-04 — bratislava_castle Bratislava Castle source and runtime checkpoint
 
-Added `places/u2/u2s/n0253_bratislava_castle/` and the editable recipe
+Added `places/u2/u2s/bratislava_castle/` and the editable recipe
 `packages/worldgen/scripts/bratislava-castle-model.mjs`. The independent palace wings,
 four unequal corner towers, open courtyard, Court of Honour pavilions, surrounding barracks,
 riding hall, four gates, hedge parterres and archaeological foundations use saved map parts.
@@ -2316,7 +2316,7 @@ further refinement. The equestrian figure is an interpretive silhouette; detaile
 garden figures, mature trees and interiors are unfinished. This is an authored exterior asset,
 not a maximum-fidelity or geographic approval.
 
-Inventory: **365 registered structures**, **263 authored/imported next-1000 assets**,
+Inventory: **365 registered structures**, **263 authored/imported structure-catalog assets**,
 **167 fully complete**, **737 unauthored**, 261 portable reviews, 259 shared-material reviews,
 232 active geographic previews and 192 maximum-fidelity approvals. Source index: 366 bundles.
 
@@ -2328,14 +2328,14 @@ all 105 previous master/LOD files still match their pinned bytes. The existing u
 `updateTerrainSurfaceSignals` dependency-scan warning occurred; model capture succeeded.
 No repository-wide build or dependency audit ran.
 
-**Next: N0254 Nesvizh Castle**, Q719422. Cached map evidence matches relation/14560856,
+**Next: nesvizh_castle Nesvizh Castle**, Q719422. Cached map evidence matches relation/14560856,
 anchor `[26.691942596,53.222787871]`, heading `-0.47453422597`, envelope 230.213 × 188.624 m.
 Research the palace, gate, courtyard and bastion parts before authoring; the grounds envelope
-must not be extruded as one building. N0255 Buda Castle and N0256 Durham Castle follow.
+must not be extruded as one building. buda_castle Buda Castle and durham_castle Durham Castle follow.
 
-## 2026-10-04 — N0254 Nesvizh Castle source and runtime checkpoint
+## 2026-10-04 — nesvizh_castle Nesvizh Castle source and runtime checkpoint
 
-Added `places/u9/u96/n0254_nesvizh_castle/` with the editable recipe
+Added `places/u9/u96/nesvizh_castle/` with the editable recipe
 `packages/worldgen/scripts/nesvizh-castle-model.mjs`. The six-sided court remains open;
 individual mapped palace/roof parts, two unequal towers, curved western galleries,
 ceremonial gate, three-arch bridge, service buildings and grass bastions form the exterior.
@@ -2377,7 +2377,7 @@ further reference refinement. Heraldic shapes are geometric interpretations. Int
 park trees, water and the separate Corpus Christi Church are outside this exterior asset.
 This technical render review is not a maximum-fidelity or geographic approval.
 
-Inventory: **366 registered structures**, **264 authored/imported next-1000 assets**,
+Inventory: **366 registered structures**, **264 authored/imported structure-catalog assets**,
 **167 fully complete**, **736 unauthored**, 262 portable reviews, 260 shared-material reviews,
 232 active geographic previews and 192 maximum-fidelity approvals. Source index: 367 bundles.
 
@@ -2389,15 +2389,15 @@ once; all 110 previous master/LOD files remain byte-identical to the lock. Captu
 still emit the unrelated `updateTerrainSurfaceSignals` dependency-scan warning; landmark
 captures and eviction checks succeed. No repository-wide build or npm audit ran.
 
-**Next: N0255 Buda Castle**, Q46313. Cached exact map relation/6486918 has anchor
+**Next: buda_castle Buda Castle**, Q46313. Cached exact map relation/6486918 has anchor
 `[19.039308745,47.495824657]`, heading `-0.853630134323`, envelope 339.728 × 149.092 m.
 Research the present palace state, separate wings, dome, courtyards and terraced retaining
 walls before authoring. Historic restorations must be distinguished from current buildings.
-N0256 Durham Castle follows.
+durham_castle Durham Castle follows.
 
-## 2026-10-04 — N0255 Buda Castle source and runtime checkpoint
+## 2026-10-04 — buda_castle Buda Castle source and runtime checkpoint
 
-Added `places/u2/u2m/n0255_buda_castle/` and editable recipe
+Added `places/u2/u2m/buda_castle/` and editable recipe
 `packages/worldgen/scripts/buda-castle-model.mjs`. The A–F palace wings, long Danube
 frontage, ribbed postwar dome, open Lions Court, library pavilion, South Range and
 immediate terraces form the exterior. Attributed map geometry and reference metadata
@@ -2440,7 +2440,7 @@ stands in for the missing sculptural works. Interiors, separate Guardhouse/Ridin
 Mace/Karakash towers, Castle Garden Bazaar and entire Castle Hill terrain are outside this
 palace exterior asset. The technical render approval does not approve architectural fidelity.
 
-Inventory: **367 registered structures**, **265 authored/imported next-1000 assets**,
+Inventory: **367 registered structures**, **265 authored/imported structure-catalog assets**,
 **167 fully complete**, **735 unauthored**, 263 portable reviews, 261 shared-material reviews,
 232 active geographic previews and 192 maximum-fidelity approvals. Source index: 368 bundles.
 
@@ -2452,15 +2452,15 @@ Lock **`assets-ecf236b68efa0d77`** pins **2,290 GLBs**, adding six while preserv
 unrelated `updateTerrainSurfaceSignals` dependency-scan warning persists; landmark captures
 and disposal checks succeed. No repository-wide build, security audit or Git operation ran.
 
-**Next: N0256 Durham Castle**, Q752266. Cached way/81522967, anchor
+**Next: durham_castle Durham Castle**, Q752266. Cached way/81522967, anchor
 `[-1.576564741,54.775561357]`, heading `0.524419899749`, envelope 98.284 × 67.703 m.
 This mapped wing outline is not the whole castle: research the separate keep, motte,
 Great Hall, chapel, gateway and courtyard before authoring. Do not omit the keep just
 because the exact-QID building outline excludes it.
 
-## N0256 Durham Castle checkpoint — 2026-10-04
+## durham_castle Durham Castle checkpoint — 2026-10-04
 
-Added `places/gc/gcw/n0256_durham_castle/` with a deterministic source recipe,
+Added `places/gc/gcw/durham_castle/` with a deterministic source recipe,
 attributed map components, reference metadata, imported master, four authored runtime
 levels, draft geographic record and hash-bound render evidence. The main range's
 exact-QID OSM outline excludes the keep; the model explicitly includes the separately
@@ -2500,7 +2500,7 @@ complete carvings. Interiors, Cathedral, Palace Green Library and surrounding ci
 outside this castle exterior asset. Technical rendering approval does not certify those
 architectural details or terrain placement.
 
-Inventory: **368 registered structures**, **266 authored/imported next-1000 assets**,
+Inventory: **368 registered structures**, **266 authored/imported structure-catalog assets**,
 **167 fully complete**, **734 unauthored**, 264 portable reviews, 262 shared-material
 reviews, 232 active geographic previews and 192 maximum-fidelity approvals. Source index:
 369 bundles.
@@ -2514,13 +2514,13 @@ The unrelated `updateTerrainSurfaceSignals` dependency-scan warning appeared dur
 first shared capture; all landmark capture and disposal checks succeeded. No repository-wide
 build, security audit or Git mutation ran.
 
-**Next: N0257 Citadel of Salah Ed-Din**, Q277531, reference coordinate
+**Next: citadel_of_salah_ed_din Citadel of Salah Ed-Din**, Q277531, reference coordinate
 `[36.057222,35.595833]`. Research the actual Syrian citadel and surviving fabric before
-modeling; do not conflate it with the Cairo citadel of a similar name. N0258 is Sforza Castle.
+modeling; do not conflate it with the Cairo citadel of a similar name. sforza_castle is Sforza Castle.
 
-## N0257 Citadel of Salah Ed-Din checkpoint — 2026-10-04
+## citadel_of_salah_ed_din Citadel of Salah Ed-Din checkpoint — 2026-10-04
 
-Added `places/sy/sy3/n0257_citadel_of_salah_ed_din/`, Q277531, the Syrian citadel near
+Added `places/sy/sy3/citadel_of_salah_ed_din/`, Q277531, the Syrian citadel near
 Al-Haffah. The source bundle contains the exact-identity OSM ridge and mapped tower
 footprints, interpreted components from AKTC's phased site and palace plans, primary
 reference metadata, a deterministic recipe, imported master and four authored runtime
@@ -2565,7 +2565,7 @@ platform Y=53; these are relative, inferred levels. The bedrock must be fitted t
 terrain before approval. Asset-review rendering does not certify that fit. Complete,
 navigable interiors and the modern village are outside the modeled exterior scope.
 
-Inventory: **369 registered structures**, **267 authored/imported next-1000 assets**,
+Inventory: **369 registered structures**, **267 authored/imported structure-catalog assets**,
 **167 fully complete**, **733 unauthored**, 265 portable reviews, 263 shared-material
 reviews, 232 active geographic previews and 192 maximum-fidelity approvals. Source
 index: 370 bundles.
@@ -2579,16 +2579,16 @@ preserved. Refreshed 25 earlier authored-LOD registry fingerprints once and veri
 and disposal checks completed. No repository-wide build, dependency audit or Git mutation
 ran.
 
-**Next: N0258 Sforza Castle**, Q23354, Milan. Cached exact-QID relation/1918, anchor
+**Next: sforza_castle Sforza Castle**, Q23354, Milan. Cached exact-QID relation/1918, anchor
 `[9.179624311,45.470327662]`, heading `0.746042938648`, envelope 219.957 × 200.243 m.
 Research the different courtyards, Filarete tower, round corner towers, Rocchetta and
 Ducal Court, roofs, moat and park-facing elevations before authoring. Preserve the
 courtyards instead of extruding the entire compound as one filled block.
 
 
-## N0258 Sforza Castle checkpoint — 2026-10-04
+## sforza_castle Sforza Castle checkpoint — 2026-10-04
 
-Added `places/u0/u0n/n0258_sforza_castle/`, exact Q23354 / OSM relation 1918 in Milan.
+Added `places/u0/u0n/sforza_castle/`, exact Q23354 / OSM relation 1918 in Milan.
 The deterministic source recipe uses mapped building-part footprints, three open courts,
 Filarete clock tower and octagonal crown, two round stone city towers, square rear towers,
 Torre di Bona, roofed wall walks, museum ranges, courtyard porticoes, moat bridges and the
@@ -2628,7 +2628,7 @@ Draft anchor `[9.179624311,45.470327662]`, heading `0.746042938648`; native +X n
 Asset-review rendering does not approve terrain fit. Enclosed museum interiors, collections,
 the public fountain and nearby civic sculpture are outside this exterior's current scope.
 
-Inventory: **370 registered structures**, **268 authored/imported next-1000 assets**,
+Inventory: **370 registered structures**, **268 authored/imported structure-catalog assets**,
 **167 fully complete**, **732 unauthored**; 266 portable reviews, 264 shared-material
 reviews, 232 active geographic previews, 192 maximum-fidelity approvals, 371 source bundles.
 
@@ -2640,14 +2640,14 @@ preserved. Refreshed 26 earlier authored-LOD registry fingerprints once and veri
 `updateTerrainSurfaceSignals` dependency-scan warning did not prevent landmark captures.
 No repository-wide build, dependency audit, upload or Git mutation ran.
 
-**Next: N0259 Shanhai Pass**, Q1048381, reference `[119.75357,40.00916]`. Research the
+**Next: shanhai_pass Shanhai Pass**, Q1048381, reference `[119.75357,40.00916]`. Research the
 specific pass gate and associated wall extent before authoring; distinguish the gate,
 fortified town, Great Wall and coastal Laolongtou rather than merging separate sites.
-N0260 is Khotyn Fortress, Q141012.
+khotyn_fortress is Khotyn Fortress, Q141012.
 
 ### Owner-requested wind-down — 2026-10-04
 
-Stopped after N0258 Sforza Castle. No N0259 model source or geometry was started.
+Stopped after sforza_castle Sforza Castle. No shanhai_pass model source or geometry was started.
 Sforza's source master, imported master, four runtime levels, shared materials,
 27 inspected captures, source registry, geographic draft, galleries, readiness ledger and
 six lock entries are saved. The final close-out check confirms all six files match their
@@ -2675,7 +2675,7 @@ records lost their GLB hashes and stay unbound. The migration left readiness unc
 portable, 196 shared-material and 133 maximum-fidelity reviews, 232 previews and 108 complete.
 `reviewed-glb-encoding.mjs` is retired.
 
-### Resumed under medium-fi — 2026-10-07 — N0259 Shanhai Pass
+### Resumed under medium-fi — 2026-10-07 — shanhai_pass Shanhai Pass
 
 The owner's revised `docs-src/guide/medium-fi.md` supersedes the earlier maximum-detail
 request for new work. Preserve recognizable forms, linear glTF colors, shared 256² graphs,
@@ -2689,7 +2689,7 @@ coastal Laolongtou. The mapped feature has no Wikidata tag. Anchor
 `[119.753742,40.009332]`, heading `2.5025517303973333` radians, remains a **draft** with
 `replaceFootprint=false` until actual terrain and orientation are reviewed.
 
-Source bundle: `places/wx/wxj/n0259_shanhai_pass/`.
+Source bundle: `places/wx/wxj/shanhai_pass/`.
 Recipe: `packages/worldgen/scripts/shanhai-pass-model.mjs`.
 The source itself is **5,338 triangles / 460,532 bytes**, with four merged material groups
 and three existing graphs (brick, slate, wood). No bitmap textures are embedded.
@@ -2715,7 +2715,7 @@ phone/laptop performance remain unmeasured. The older loader fixture's lighting 
 as the medium-fi lighting approval.
 
 Repeat the context capture with:
-`node examples/world-explorer/test/visual/capture-medium-fi.mjs --ids=n0259_shanhai_pass`.
+`node examples/world-explorer/test/visual/capture-medium-fi.mjs --ids=shanhai_pass`.
 Inspect every frame before recording approval. The readiness ledger now accepts the declared
 medium-fi standard only with the required hash-bound evidence; four targeted rejection tests
 cover stale LODs/images, missing views, wrong lighting, excessive triangles and unsafe paths.
@@ -2731,24 +2731,24 @@ The refreshed local ledger reports **269 authored/imported candidates**, 193 dec
 reviews and 108 fully ready candidates. The drop from the previous ready count reflects existing
 local output/metadata differences and changed shared graphs, not deletion of models: 68 older
 candidates fail source/runtime hash checks, and only 199 shared-material reviews are current.
-Example local GLBs for N0138, N0139, N0142 and N0143 also differ from their existing lock pins.
+Example local GLBs for mirante_do_vale, abeno_harukas, abraj_al_bait and ryugyong_hotel also differ from their existing lock pins.
 Their files and pins were preserved. Reconcile those outputs separately; do not label an old
 review current after a material or geometry change. There are **371 registered structures**
 across the full library and **372 source bundles**.
 
-**Next authoring candidate: N0260 Khotyn Fortress, Q141012.** Use the medium-fi standard and
+**Next authoring candidate: khotyn_fortress Khotyn Fortress, Q141012.** Use the medium-fi standard and
 the new context review. The desktop's long-running goal still reports `paused`; this turn
 resumed model work under the owner's message, without changing the goal's stale maximum-detail
 objective or claiming that its automatic continuation was resumed.
 
 ## 2026-10-07 — Khotyn Fortress, medium-fi
 
-N0260 now has a reproducible inner-citadel source recipe, imported asset and four authored
+khotyn_fortress now has a reproducible inner-citadel source recipe, imported asset and four authored
 runtime levels. The state reserve's plan, photographs and component dimensions inform the
 five towers, curved walls, brick bands, palace, chapel, well pavilion and entrance bridge.
 The wider outer fortress is excluded. See
-[source bundle](places/u8/u8d/n0260_khotyn_fortress/README.md) and
-[recorded limitations](places/u8/u8d/n0260_khotyn_fortress/spec.json).
+[source bundle](places/u8/u8d/khotyn_fortress/README.md) and
+[recorded limitations](places/u8/u8d/khotyn_fortress/spec.json).
 
 The source itself has 8,615 triangles and five material groups. Limestone, brick, cedar
 shingles and wood come from four central material graphs; no private images are embedded.
@@ -2786,15 +2786,15 @@ and **108 fully ready** candidates. The 68 pre-existing stale local outputs rema
 The full library contains **372 registered structures** and **373 source bundles**.
 
 The long-running goal now reports **active**. The owner's medium-fi direction supersedes
-the older maximum-fidelity wording in its objective. **Next candidate: N0261 Royal Castle
+the older maximum-fidelity wording in its objective. **Next candidate: royal_castle_in_warsaw Royal Castle
 in Warsaw (Q756098)**, followed by Stirling Castle and Toompea Castle. Continue the targeted
 authoring loop; no repository-wide audit, unrelated regeneration, Git mutation or upload is
 needed for each model.
 
 ## 2026-10-07 — Royal Castle in Warsaw, medium-fi
 
-N0261 is authored, imported and visually reviewed. Its
-[source bundle](places/u3/u3q/n0261_royal_castle_in_warsaw/README.md) contains an attributed
+royal_castle_in_warsaw is authored, imported and visually reviewed. Its
+[source bundle](places/u3/u3q/royal_castle_in_warsaw/README.md) contains an attributed
 OSM palace/courtyard frame and linked museum references. The original recipe constructs the
 five-wing exterior, Clock Gate and tower, paired corner crowns, Wladyslaw courtyard tower,
 Gothic brick wall, three pale river pavilions and low library wing. The lower gardens,
@@ -2835,8 +2835,8 @@ placement. Its status stays `draft`, with `replaceFootprint=false`. Physical-dev
 timing and continuous-motion shimmer remain unmeasured.
 
 Lock **`assets-a78ecf6703d99d17`** pins **2,326 GLBs**: six added and all 2,320 prior pins
-preserved. No Git operations or uploads were performed. **Next candidate: N0262 Stirling
-Castle (Q756268)**, then N0263 Toompea Castle. Continue with the medium-fi standard and the
+preserved. No Git operations or uploads were performed. **Next candidate: stirling_castle Stirling
+Castle (Q756268)**, then toompea_castle Toompea Castle. Continue with the medium-fi standard and the
 targeted authoring loop.
 
 The refreshed ledger reports **271 authored/imported candidates**, 203 verified source/runtime
@@ -2852,8 +2852,8 @@ and [overview route plan](https://www.historicenvironment.scot/publications/all/
 
 ## 2026-10-07 — Stirling Castle, medium-fi
 
-N0262 is authored, imported and visually reviewed. Its
-[source bundle](places/gc/gcv/n0262_stirling_castle/README.md) contains attributed OSM
+stirling_castle is authored, imported and visually reviewed. Its
+[source bundle](places/gc/gcv/stirling_castle/README.md) contains attributed OSM
 component footprints and linked Historic Environment Scotland references. The castle boundary
 is treated as a compound: the ochre Great Hall, palace and open Lion's Den, Chapel Royal,
 King's Old Building, truncated Forework, magazines and defensive enclosure are separate forms.
@@ -2898,14 +2898,14 @@ preserved. The ledger now reports **272 authored/imported candidates**, 204 curr
 **108 fully ready** candidates. The existing 68 stale local output pairs remain untouched.
 The whole library has **374 registered structures** and **375 source bundles**.
 
-**Next candidate: N0263 Toompea Castle (Q859010).** Continue using the medium-fi standard,
+**Next candidate: toompea_castle Toompea Castle (Q859010).** Continue using the medium-fi standard,
 individual source recipes, shared materials and targeted review. The active goal's older
 maximum-fidelity wording is superseded by the owner's medium-fi instruction.
 
 ## 2026-10-07 — Toompea Castle, medium-fi
 
-N0263 is authored, imported and visually reviewed. Its
-[source bundle](places/ud/ud9/n0263_toompea_castle/README.md) contains attributed OSM component
+toompea_castle is authored, imported and visually reviewed. Its
+[source bundle](places/ud/ud9/toompea_castle/README.md) contains attributed OSM component
 footprints and linked Riigikogu references. The pink palace, curved central gable, grey courtyard
 parliament, western limestone curtain, Tall Hermann, Pilsticker and Landskrone are individually
 represented. The demolished fourth tower, neighboring cathedral, gardens and cliff terrain are
@@ -2951,14 +2951,14 @@ preserved. The ledger reports **273 authored/imported candidates**, 205 current 
 **108 fully ready** candidates. The 68 existing stale local output pairs remain untouched.
 The whole library has **375 registered structures** and **376 source bundles**.
 
-**Next candidate: N0264 Riga Castle (Q322183)**, followed by N0265 Château de Vincennes.
+**Next candidate: riga_castle Riga Castle (Q322183)**, followed by chateau_de_vincennes Château de Vincennes.
 Continue using the medium-fi standard, individual source recipes, shared materials and targeted
 review. No Git operations or uploads were performed.
 
 ## 2026-10-07 — Riga Castle, medium-fi
 
-N0264 is authored, imported and visually reviewed. Its
-[source bundle](places/ud/ud1/n0264_riga_castle/README.md) records the attributed OSM compound
+riga_castle is authored, imported and visually reviewed. Its
+[source bundle](places/ud/ud1/riga_castle/README.md) records the attributed OSM compound
 outline, two courtyard holes, official presidency/museum references and Sudraba Arhitektura's
 restoration drawings. White medieval ranges, Holy Spirit and Lead towers, square stair towers,
 yellow presidential forecourt, Erker and the Three Stars steeple are individually represented.
@@ -3005,14 +3005,14 @@ preserved. The ledger reports **274 authored/imported candidates**, 206 current 
 **108 fully ready** candidates. The 68 existing stale local output pairs remain untouched.
 The whole library has **376 registered structures** and **377 source bundles**.
 
-**Next candidate: N0265 Château de Vincennes (Q663673).** Continue the medium-fi standard,
+**Next candidate: chateau_de_vincennes Château de Vincennes (Q663673).** Continue the medium-fi standard,
 individual source recipes, shared materials and targeted review. No Git operations or uploads
 were performed.
 
 ## 2026-10-07 — Château de Vincennes, medium-fi
 
-N0265 is authored, imported and visually reviewed. The
-[source bundle](places/u0/u09/n0265_chateau_de_vincennes/README.md) retains the exact-QID OSM
+chateau_de_vincennes is authored, imported and visually reviewed. The
+[source bundle](places/u0/u09/chateau_de_vincennes/README.md) retains the exact-QID OSM
 compound frame and fourteen attributed IGN BD TOPO component features, including stable CLEABS
 identifiers and reported precision. CMN's official visitor plan and current photographs guide
 the reconstruction. The keep, covered chemise and châtelet, Sainte-Chapelle, Tour du Village,
@@ -3060,14 +3060,14 @@ preserved. The ledger reports **275 authored/imported candidates**, 207 current 
 **108 fully ready** candidates. The 68 existing stale local output pairs remain untouched.
 The whole library has **377 registered structures** and **378 source bundles**.
 
-**Next candidate: N0266 Eltz Castle (Q153426)**, followed by N0267 Heidelberg Castle.
+**Next candidate: eltz_castle Eltz Castle (Q153426)**, followed by heidelberg_castle Heidelberg Castle.
 Continue using the owner's medium-fi standard, source recipes, shared materials and targeted
 review. No Git operations or uploads were performed.
 
 ## 2026-10-07 — Eltz Castle, medium-fi
 
-N0266 is authored, imported and visually reviewed. Its
-[source bundle](places/u0/u0v/n0266_eltz_castle/README.md) records the exact-QID OSM main-building
+eltz_castle is authored, imported and visually reviewed. Its
+[source bundle](places/u0/u0v/eltz_castle/README.md) records the exact-QID OSM main-building
 frame and links the owner's numbered plan, scaled section and exterior/courtyard photographs.
 The eight adjoining family houses, open court, steep slate roofs, polygonal timber bays,
 Rübenach white upper band, Platt-Eltz and projecting Kempenich gable are individually represented.
@@ -3118,13 +3118,13 @@ existing pins. The ledger reports **276 authored/imported candidates**, 208 curr
 **108 fully ready** candidates. The 68 existing stale local output pairs remain untouched.
 The whole library has **378 registered structures** and **379 source bundles**.
 
-**Next candidate: N0267 Heidelberg Castle (Q327265).** Continue individual medium-fi recipes,
+**Next candidate: heidelberg_castle Heidelberg Castle (Q327265).** Continue individual medium-fi recipes,
 shared materials and targeted review. No Git operations or uploads were performed.
 
 ## 2026-10-07 — Heidelberg Castle, medium-fi
 
-N0267 is authored, imported and visually reviewed. Its
-[source bundle](places/u0/u0y/n0267_heidelberg_castle/README.md) links the owner's current-site
+heidelberg_castle is authored, imported and visually reviewed. Its
+[source bundle](places/u0/u0y/heidelberg_castle/README.md) links the owner's current-site
 isometric plan, wing photographs and architectural history. The model preserves restored
 Friedrich twin gables, roofless Ottheinrich and English wings, open bell-tower crown, gate tower,
 broken Dicker/Krautturm masonry, detached fallen wall, north viewing terrace and west moat walls.
@@ -3171,13 +3171,13 @@ reviews, 207 shared-material reviews, 201 declared-fidelity reviews and **108 fu
 The 68 pre-existing stale local output pairs are untouched. The whole library has **379
 registered structures** and **380 source bundles**.
 
-Continue with the next unauthored candidate after N0267, using medium-fi and individual source
+Continue with the next unauthored candidate after heidelberg_castle, using medium-fi and individual source
 recipes. No Git operations or uploads were performed.
 
 ## 2026-10-07 — Hohensalzburg Fortress, medium-fi
 
-N0268 is authored, imported and visually reviewed. Its
-[source bundle](places/u2/u23/n0268_hohensalzburg_fortress/README.md) links current owner
+hohensalzburg_fortress is authored, imported and visually reviewed. Its
+[source bundle](places/u2/u23/hohensalzburg_fortress/README.md) links current owner
 photographs, Salzburg's municipal architecture history and the Salzburg Museum Hettwer plan.
 The broad white high palace, eight shallow parallel roofs, corner fire walls, green Krautturm
 lantern, chapel spire, open courts and stepped artillery terraces survive all four levels.
@@ -3225,13 +3225,13 @@ while preserving all 2,362 previous entries. Readiness reports **278 authored/im
 reviews and **108 fully ready**. The 68 pre-existing stale local pairs remain untouched.
 The complete library contains **380 registered structures** and **381 source bundles**.
 
-Continue with the next unauthored candidate after N0268, using the medium-fi standard.
+Continue with the next unauthored candidate after hohensalzburg_fortress, using the medium-fi standard.
 No Git operations or uploads were performed.
 
 ## 2026-10-07 — Vaduz Castle, medium-fi
 
-N0269 is authored, imported and visually reviewed. Its
-[source bundle](places/u0/u0q/n0269_vaduz_castle/README.md) links municipal heritage information,
+vaduz_castle is authored, imported and visually reviewed. Its
+[source bundle](places/u0/u0q/vaduz_castle/README.md) links municipal heritage information,
 current official tourism imagery, architectural history and the published Amt für Kultur
 research model. The square keep, roofed southern roundel with timber hoarding, open northern
 roundel, cream residence, crossed gables and valley curtain establish the silhouette. Red/white
@@ -3276,13 +3276,13 @@ while preserving all 2,368 previous entries. Readiness reports **279 authored/im
 reviews and **108 fully ready**. The 68 pre-existing stale local pairs remain untouched.
 The complete library contains **381 registered structures** and **382 source bundles**.
 
-Continue with N0270 Conwy Castle, using the medium-fi standard. No Git operations or uploads
+Continue with conwy_castle Conwy Castle, using the medium-fi standard. No Git operations or uploads
 were performed.
 
 ## 2026-10-07 — Conwy Castle, medium-fi
 
-N0270 is authored, imported and visually reviewed. Its
-[source bundle](places/gc/gcm/n0270_conwy_castle/README.md) links Cadw's ground plan, current
+conwy_castle is authored, imported and visually reviewed. Its
+[source bundle](places/gc/gcm/conwy_castle/README.md) links Cadw's ground plan, current
 operator photographs and architectural records. Eight open round towers, four taller eastern
 stair turrets, the bent southern hall range, two wards and low end barbicans carry recognition.
 The current ruin stays roofless except for the documented recessed slate chapel roof.
@@ -3329,13 +3329,13 @@ while preserving all 2,374 previous entries. Readiness reports **280 authored/im
 reviews and **108 fully ready**. The 68 pre-existing stale local pairs remain untouched.
 The complete library contains **382 registered structures** and **383 source bundles**.
 
-Continue with N0271 Swallow's Nest, using the medium-fi standard. No Git operations or uploads
+Continue with swallows_nest Swallow's Nest, using the medium-fi standard. No Git operations or uploads
 were performed.
 
 ## 2026-10-07 — Swallow's Nest, medium-fi
 
-N0271 is authored, imported and visually reviewed. Its
-[source bundle](places/sz/szb/n0271_swallow_s_nest/README.md) records the exact mapped building,
+swallows_nest is authored, imported and visually reviewed. Its
+[source bundle](places/sz/szb/swallows_nest/README.md) records the exact mapped building,
 museum gallery references and photographs after the November 2020 restoration. The small
 limestone folly has three stepped masses, a round eastern tower with four crown spires,
 four lower hall pinnacles, a projecting balcony and a narrow wraparound terrace.
@@ -3380,13 +3380,13 @@ while preserving all 2,380 previous entries. Readiness reports **281 authored/im
 reviews and **108 fully ready**. The 68 pre-existing stale local pairs remain untouched.
 The full library contains **383 registered structures** and **384 source bundles**.
 
-Continue with N0272 Kuressaare Castle under the medium-fi standard. No Git operations or uploads
+Continue with kuressaare_castle Kuressaare Castle under the medium-fi standard. No Git operations or uploads
 were performed.
 
 ## 2026-10-07 — Kuressaare Castle, medium-fi
 
-N0272 is authored, imported and visually reviewed. Its
-[source bundle](places/u6/u6r/n0272_kuressaare_castle/README.md) records museum dimensions,
+kuressaare_castle is authored, imported and visually reviewed. Its
+[source bundle](places/u6/u6r/kuressaare_castle/README.md) records museum dimensions,
 the exact mapped building/courtyard, LUMIA's floor plans and cross-section, and operator tour
 photographs. The square dolomite convent building retains northern Sturvolt, slender eastern
 Tall Hermann, red pyramidal roofs, inward-sloping main roof fields, an open L-shaped court,
@@ -3434,13 +3434,13 @@ hash pairs, 280 portable reviews, 212 shared-material reviews, 206 declared-fide
 **108 fully ready**. The 68 pre-existing stale local pairs remain untouched. The full library
 contains **384 registered structures** and **385 source bundles**.
 
-Continue with N0273 Caernarfon Castle under the medium-fi standard. No Git operations or uploads
+Continue with caernarfon_castle Caernarfon Castle under the medium-fi standard. No Git operations or uploads
 were performed.
 
 ## 2026-10-07 — Caernarfon Castle, medium-fi
 
-N0273 is authored, imported and visually reviewed. Its
-[source bundle](places/gc/gck/n0273_caernarfon_castle/README.md) records the mapped perimeter,
+caernarfon_castle is authored, imported and visually reviewed. Its
+[source bundle](places/gc/gck/caernarfon_castle/README.md) records the mapped perimeter,
 Cadw ground plan and listed-building inventory, plus current operator and Buttress architect
 photographs/drawings. Recognition comes from the polygonal towers, Eagle Tower's three turrets,
 banded river curtain, two open wards and contrasting gatehouses. The near levels include
@@ -3489,12 +3489,12 @@ current hash pairs, 281 portable reviews, 213 shared-material reviews, 207 decla
 reviews and **108 fully ready**. The 68 pre-existing stale local pairs remain untouched. Full
 library: **385 registered structures**, **386 source bundles**.
 
-Continue with N0274 under the medium-fi standard. No Git operations or uploads were performed.
+Continue with hermann_castle under the medium-fi standard. No Git operations or uploads were performed.
 
 ## 2026-10-07 — Hermann Castle, medium-fi
 
-N0274 is authored, imported and visually reviewed. Its
-[source bundle](places/ud/uds/n0274_hermann_castle/README.md) records the exact mapped site,
+hermann_castle is authored, imported and visually reviewed. Its
+[source bundle](places/ud/uds/hermann_castle/README.md) records the exact mapped site,
 Narva Museum's Western Yard site plan, architectural history and current restored photographs.
 The off-white Tall Hermann, red gable and projecting dark timber gallery/oriel, inward roof ring,
 open inner court and southwest octagonal turret establish identity. Stone Hall, northern/western
@@ -3547,12 +3547,12 @@ pairs, 282 portable reviews, 214 shared-material reviews, 208 declared-fidelity 
 **108 fully ready**. The 68 pre-existing stale local pairs remain untouched. Full library:
 **386 registered structures**, **387 source bundles**.
 
-Continue with N0275 under docs-src/guide/medium-fi.md. No Git operations or uploads were performed.
+Continue with dublin_castle under docs-src/guide/medium-fi.md. No Git operations or uploads were performed.
 
 ## 2026-10-07 — Dublin Castle, medium-fi
 
-N0275 is authored, imported and visually reviewed. Its
-[source bundle](places/gc/gc7/n0275_dublin_castle/README.md) records the exact mapped campus,
+dublin_castle is authored, imported and visually reviewed. Its
+[source bundle](places/gc/gc7/dublin_castle/README.md) records the exact mapped campus,
 OPW site plans, architectural descriptions and current exterior/aerial photographs. Recognition
 comes from the round Record Tower beside the pinnacled Gothic Chapel Royal, the Bedford octagonal
 clock tower and green ogee dome above an open Upper Court, and the circular Dubh Linn garden
@@ -3605,12 +3605,12 @@ Readiness: **285 authored/imported**, 217 current hash pairs, 283 portable revie
 reviews, 209 declared-fidelity reviews and **108 fully ready**. The 68 pre-existing stale local pairs
 remain untouched. Full library: **387 registered structures**, **388 source bundles**.
 
-Continue with N0276 under docs-src/guide/medium-fi.md. No Git operations or uploads were performed.
+Continue with miramare_castle under docs-src/guide/medium-fi.md. No Git operations or uploads were performed.
 
 ## 2026-10-07 — Miramare Castle, medium-fi
 
-N0276 is authored, imported and visually reviewed. Its
-[source bundle](places/u2/u21/n0276_miramare_castle/README.md) preserves the exact mapped
+miramare_castle is authored, imported and visually reviewed. Its
+[source bundle](places/u2/u21/miramare_castle/README.md) preserves the exact mapped
 building outline, primary museum architecture/tower references and links to current government
 museum photographs. Recognition comes from ivory angled crenellated wings, the square southwest
 clock tower and four corner turrets, and selected rounded window groups, recessed tall stair
@@ -3661,12 +3661,12 @@ Readiness: **286 authored/imported**, 218 current hash pairs, 284 portable revie
 reviews, 210 declared-fidelity reviews and **108 fully ready**. The 68 pre-existing stale local
 pairs remain untouched. Full library: **388 registered structures**, **389 source bundles**.
 
-Continue with N0277 under docs-src/guide/medium-fi.md. No Git operations or uploads were performed.
+Continue with lubarts_castle under docs-src/guide/medium-fi.md. No Git operations or uploads were performed.
 
 ## 2026-10-07 — Lubart's Castle, medium-fi
 
-N0277 is authored, imported and visually reviewed. Its
-[source bundle](places/u9/u94/n0277_lubart_s_castle/README.md) preserves the corrected whole-castle
+lubarts_castle is authored, imported and visually reviewed. Its
+[source bundle](places/u9/u94/lubarts_castle/README.md) preserves the corrected whole-castle
 compound outline and linked primary museum aerial/exterior photographs, city tower description
 and regional architecture references. Recognition comes from three differently capped brick
 towers in an irregular triangular enclosure, the buttressed west entry with a real open portal,
@@ -3719,12 +3719,12 @@ Readiness: **287 authored/imported**, 219 current hash pairs, 285 portable revie
 reviews, 211 declared-fidelity reviews and **108 fully ready**. The 68 pre-existing stale local
 pairs remain untouched. Full library: **389 registered structures**, **390 source bundles**.
 
-Continue with N0278 under docs-src/guide/medium-fi.md. No Git operations or uploads were performed.
+Continue with kamianets_podilskyi_castle under docs-src/guide/medium-fi.md. No Git operations or uploads were performed.
 
 ## 2026-10-07 — Kamianets-Podilskyi Castle, medium-fi
 
-N0278 is authored, imported and visually reviewed. Its
-[source bundle](places/u8/u8d/n0278_kamianets_podilskyi_castle/README.md) contains an interpretive
+kamianets_podilskyi_castle is authored, imported and visually reviewed. Its
+[source bundle](places/u8/u8d/kamianets_podilskyi_castle/README.md) contains an interpretive
 trace of the original Sitsinsky ground plan, qualified by the city architectural walk and current
 municipal photograph. Recognition comes from the irregular open limestone court, tall pointed
 northern roofs with warm arched crown bands, broad-capped square/octagonal/round Papal tower,
@@ -3776,13 +3776,13 @@ Readiness: **288 authored/imported**, 220 current hash pairs, 286 portable revie
 reviews, 212 declared-fidelity reviews and **108 fully ready**. The 68 pre-existing stale local
 pairs remain untouched. Full library: **390 registered structures**, **391 source bundles**.
 
-Continue with N0279 Gripsholm Castle under docs-src/guide/medium-fi.md. No Git operations or
+Continue with gripsholm_castle Gripsholm Castle under docs-src/guide/medium-fi.md. No Git operations or
 uploads were performed. The active project still has 712 candidates without authored models.
 
 ## 2026-10-07 — Gripsholm and Trakai, medium-fi
 
-N0279 [Gripsholm Castle](places/u6/u6s/n0279_gripsholm_castle/README.md) and N0280
-[Trakai Island Castle](places/u9/u99/n0280_trakai_island_castle/README.md) are authored,
+gripsholm_castle [Gripsholm Castle](places/u6/u6s/gripsholm_castle/README.md) and trakai_island_castle
+[Trakai Island Castle](places/u9/u99/trakai_island_castle/README.md) are authored,
 imported and visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md).
 Editable recipes, qualified map controls, primary references, source/runtime metadata,
 four runtime levels and hash-bound reviews are registered with the source build.
@@ -3847,12 +3847,12 @@ pairs, 288 portable reviews, 220 shared reviews, 214 fidelity reviews and **108 
 The 68 existing stale local pairs remain untouched. Full library: **392 registered
 structures**, **393 source bundles**. Catalogs, readiness and both galleries are current.
 
-Continue with **N0281 Acrocorinth** using the medium-fi guide. The active project has
+Continue with **acrocorinth Acrocorinth** using the medium-fi guide. The active project has
 710 candidates without authored models. No Git operations or uploads were performed.
 
 ## 2026-10-07 — Acrocorinth, medium-fi
 
-N0281 [Acrocorinth](places/sw/sw8/n0281_acrocorinth/README.md) is authored, imported and
+acrocorinth [Acrocorinth](places/sw/sw8/acrocorinth/README.md) is authored, imported and
 visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md). The deterministic
 [recipe](../../../packages/worldgen/scripts/acrocorinth-model.mjs) and its source controls,
 licensed archaeological lines, terrain grid and references reconstruct the surviving
@@ -3920,7 +3920,7 @@ roads, vegetation, visitor fixtures, interiors and buried archaeology are outsid
 The adapted archaeological data and this asset's model geometry are **CC-BY-SA-4.0**,
 credited to James A. Herbst, Corinth Excavations, American School of Classical Studies
 at Athens. Generator code keeps the repository license. The source bundle retains
-[license and attribution](places/sw/sw8/n0281_acrocorinth/LICENSE.md), OSM identity/frame
+[license and attribution](places/sw/sw8/acrocorinth/LICENSE.md), OSM identity/frame
 attribution and Copernicus/EU-DEM terrain credits. Research photographs remain external
 evidence and do not ship as textures or images.
 
@@ -3931,12 +3931,12 @@ Readiness: **291 authored/imported**, 223 current hash pairs, 289 portable revie
 pairs remain untouched. Full library: **393 registered structures / 394 source bundles**.
 Catalogs, readiness and both galleries are current.
 
-Continue with **N0282 Akershus Fortress**, following medium-fi. **709** candidates lack
+Continue with **akershus_fortress Akershus Fortress**, following medium-fi. **709** candidates lack
 authored models. The project remains active; no Git operations or uploads were performed.
 
 ## 2026-10-07 — Akershus Fortress, medium-fi
 
-N0282 [Akershus Fortress](places/u4/u4x/n0282_akershus_fortress/README.md) is authored,
+akershus_fortress [Akershus Fortress](places/u4/u4x/akershus_fortress/README.md) is authored,
 imported and visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md).
 The deterministic [recipe](../../../packages/worldgen/scripts/akershus-fortress-model.mjs)
 and source controls reconstruct an open-court castle, two broad-capped clock spires,
@@ -4005,12 +4005,12 @@ reviews, 222 shared reviews, 216 fidelity reviews and **108 fully ready**. The 6
 stale local pairs remain untouched. Full library: **394 registered structures / 395
 source bundles**. Catalogs, readiness and both galleries are current.
 
-Continue with **N0283 Beaumaris Castle**, following medium-fi. **708** candidates lack
+Continue with **beaumaris_castle Beaumaris Castle**, following medium-fi. **708** candidates lack
 authored models. The project remains active; no Git mutations or uploads were performed.
 
 ## 2026-10-08 — Beaumaris Castle, medium-fi
 
-N0283 [Beaumaris Castle](places/gc/gcm/n0283_beaumaris_castle/README.md) is authored,
+beaumaris_castle [Beaumaris Castle](places/gc/gcm/beaumaris_castle/README.md) is authored,
 imported and visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md).
 The deterministic [recipe](../../../packages/worldgen/scripts/beaumaris-castle-model.mjs)
 reconstructs the present-day squat, roofless concentric defenses: six inner towers,
@@ -4085,12 +4085,12 @@ reviews, 223 shared reviews, 217 fidelity reviews and **108 fully ready**. The 6
 stale local pairs remain untouched. Full library: **395 registered structures / 396
 source bundles**. Catalogs, readiness and both galleries are current.
 
-Continue with **N0284 Dover Castle**, following medium-fi. **707** candidates lack
+Continue with **dover_castle Dover Castle**, following medium-fi. **707** candidates lack
 authored models. The project remains active; no Git mutations or uploads were performed.
 
 ## 2026-10-08 — Dover Castle, medium-fi
 
-N0284 [Dover Castle](places/u1/u10/n0284_dover_castle/README.md) is authored, imported
+dover_castle [Dover Castle](places/u1/u10/dover_castle/README.md) is authored, imported
 and visually reviewed against [medium-fi](../../../docs-src/guide/medium-fi.md).
 The deterministic [recipe](../../../packages/worldgen/scripts/dover-castle-model.mjs)
 keeps the square Great Tower and stepped forebuilding, layered hill defenses, northern
@@ -4164,12 +4164,12 @@ Readiness: **294 authored/imported**, 226 current hash pairs, 292 portable revie
 pairs remain untouched. Full library: **396 registered structures / 397 source bundles**.
 Catalogs, readiness and both galleries are current.
 
-Continue with **N0285 Corvin Castle** under medium-fi. **706** candidates lack authored
+Continue with **corvin_castle Corvin Castle** under medium-fi. **706** candidates lack authored
 models. The project remains active; no Git mutations or uploads were performed.
 
 ## 2026-10-08 — Corvin Castle, medium-fi
 
-N0285 [Corvin Castle](places/u8/u80/n0285_corvin_castle/README.md) is authored, imported
+corvin_castle [Corvin Castle](places/u8/u80/corvin_castle/README.md) is authored, imported
 and visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md).
 The deterministic [recipe](../../../packages/worldgen/scripts/corvin-castle-model.mjs)
 keeps the steep flared square gate roof, conical patterned tower, four projecting palace
@@ -4238,12 +4238,12 @@ Readiness: **295 authored/imported**, 227 current hash pairs, 293 portable revie
 pairs remain untouched. Full library: **397 registered structures / 398 source bundles**.
 Catalogs, readiness and both galleries are current.
 
-Continue with **N0286 Kroměříž Castle**, following medium-fi. **705** candidates lack authored
+Continue with **kromeriz_castle Kroměříž Castle**, following medium-fi. **705** candidates lack authored
 models. The project remains active; no Git mutations or uploads were performed.
 
 ## 2026-10-08 — Kroměříž Castle, medium-fi
 
-N0286 [Kroměříž Castle](places/u2/u2u/n0286_kromeriz_castle/README.md) is authored,
+kromeriz_castle [Kroměříž Castle](places/u2/u2u/kromeriz_castle/README.md) is authored,
 imported and visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md).
 The deterministic [recipe](../../../packages/worldgen/scripts/kromeriz-castle-model.mjs)
 retains the mapped open courtyard, quadrangular Baroque palace, cream facade rhythm,
@@ -4309,12 +4309,12 @@ Readiness: **296 authored/imported**, 228 current hash pairs, 294 portable revie
 pairs remain untouched. Full library: **398 registered structures / 399 source bundles**.
 Catalogs, readiness and both galleries are current.
 
-Continue with **N0287 Elmina Castle** under medium-fi. **704** candidates lack authored
+Continue with **elmina_castle Elmina Castle** under medium-fi. **704** candidates lack authored
 models. The project remains active; no Git mutations or uploads were performed.
 
 ## 2026-10-08 — Elmina Castle, medium-fi
 
-N0287 [Elmina Castle](places/eb/ebz/n0287_elmina_castle/README.md) is authored,
+elmina_castle [Elmina Castle](places/eb/ebz/elmina_castle/README.md) is authored,
 imported and visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md).
 Its deterministic [recipe](../../../packages/worldgen/scripts/elmina-castle-model.mjs)
 represents battered white fort walls and projecting bastions, stepped governor blocks
@@ -4373,12 +4373,12 @@ Readiness: **297 authored/imported**, 229 current hash pairs, 295 portable revie
 pairs remain untouched. Full library: **399 registered structures / 400 source bundles**.
 Catalogs, readiness and both galleries are current.
 
-Continue with **N0288 Konopiště Castle** under medium-fi. **703** candidates lack authored
+Continue with **konopiste_castle Konopiště Castle** under medium-fi. **703** candidates lack authored
 models. The project remains active; no Git mutations or uploads were performed.
 
 ## 2026-10-08 — Konopiště Castle, medium-fi
 
-N0288 [Konopiště Castle](places/u2/u2f/n0288_konopiste_castle/README.md) is authored,
+konopiste_castle [Konopiště Castle](places/u2/u2f/konopiste_castle/README.md) is authored,
 imported and visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md).
 Its deterministic [recipe](../../../packages/worldgen/scripts/konopiste-castle-model.mjs)
 represents two genuinely open mapped courtyards, cream quadrangular wings and red roofs,
@@ -4450,15 +4450,15 @@ Readiness: **298 authored/imported**, 230 current hash pairs, 296 portable revie
 pairs remain untouched. Full library: **400 registered structures / 401 source bundles**.
 Catalogs, readiness and both galleries are current.
 
-Continue with **N0289 Castel Nuovo** under medium-fi. **702** candidates lack authored models.
+Continue with **castel_nuovo Castel Nuovo** under medium-fi. **702** candidates lack authored models.
 The project remains active; no Git mutations or uploads were performed. Use a full source
 rebuild once at the upcoming 300-authored milestone to check batch reproducibility.
 
 ## 2026-10-08 — Castel Nuovo medium-fi checkpoint
 
-**N0289 Castel Nuovo** is source-authored, imported and appearance-reviewed under
+**castel_nuovo Castel Nuovo** is source-authored, imported and appearance-reviewed under
 [medium-fi](../../../../docs-src/guide/medium-fi.md). Source bundle:
-`places/sr/sr6/n0289_castel_nuovo`; deterministic recipe:
+`places/sr/sr6/castel_nuovo`; deterministic recipe:
 `packages/worldgen/scripts/castel-nuovo-model.mjs`.
 
 Seven primary architectural photos were inspected: three operator/ministry images and four
@@ -4515,15 +4515,15 @@ remain untouched. Full library: **401 registered structures /402 source bundles*
 readiness and both galleries are current. This scoped checkpoint does not prove a clean
 cross-platform source rebuild.
 
-Continue with **N0290 Warwick Castle** under medium-fi;**701** candidates lack authored models.
+Continue with **warwick_castle Warwick Castle** under medium-fi;**701** candidates lack authored models.
 The full1000 project remains active. Perform one full source rebuild at the upcoming
 300-authored milestone to check batch reproducibility. No Git mutations or uploads performed.
 
 ## 2026-10-08 — Warwick Castle medium-fi / 300-authored milestone
 
-**N0290 Warwick Castle** is source-authored, imported and appearance-reviewed under
+**warwick_castle Warwick Castle** is source-authored, imported and appearance-reviewed under
 [medium-fi](../../../../docs-src/guide/medium-fi.md). Source bundle:
-`places/gc/gcq/n0290_warwick_castle`; deterministic recipe:
+`places/gc/gcq/warwick_castle`; deterministic recipe:
 `packages/worldgen/scripts/warwick-castle-model.mjs`.
 
 Seven operator/photographer images were inspected, covering the courtyard, river face,
@@ -4587,7 +4587,7 @@ all2,494 previous entries. GLBs remain ignored build outputs; no Git mutations o
 The verifying build preserved existing metadata and reported69 differences. Inspection found
 **58 stale LOD recipe cache hashes**; these were refreshed from the successful build, with all
 other sidecar fields, model bytes and level hashes preserved. **11 existing specifications retain
-earlier map-frame hashes**:N0164,N0175,N0183,N0189,N0191,N0193,N0194,N0199,N0205,N0206,N0207.
+earlier map-frame hashes**:citic_plaza,almas_tower,lotte_world_tower,yokohama_landmark_tower,flame_towers,metropolitan_life_insurance_company_tower,emirates_office_tower,jumeirah_emirates_towers_hotel,seagram_building,the_center,bank_of_america_plaza.
 Their direct recipe facts match; geographic proposal comparisons differ only in mapGeometryHash.
 Those evidence discrepancies remain explicit for reviewed reconciliation.
 
@@ -4600,14 +4600,14 @@ the former local files. No approval was transferred to rebuilt bytes without evi
 library: **402 registered structures /403 source bundles**. Catalogs, readiness and both galleries
 are current. No repository-wide engine CI, dependency audit or unrelated documentation build.
 
-Continue with **N0291 Książ Castle and park complex** under medium-fi, retaining the named complex
+Continue with **ksiaz_castle_and_park_complex Książ Castle and park complex** under medium-fi, retaining the named complex
 scope. **700 candidates lack authored models**. The full1,000 project remains active; older
 capture/evidence renewal and geographic fit remain required before claiming completion.
 
 ## 2026-10-08 — Książ castle core / shared-texture preview
 
-Authored/imported **N0291 Książ Castle and park complex — castle/terrace core only** under
-`docs-src/guide/medium-fi.md`. Source: `places/u3/u35/n0291_ksiaz_castle_and_park_complex`;
+Authored/imported **ksiaz_castle_and_park_complex Książ Castle and park complex — castle/terrace core only** under
+`docs-src/guide/medium-fi.md`. Source: `places/u3/u35/ksiaz_castle_and_park_complex`;
 recipe: `packages/worldgen/scripts/ksiaz-castle-model.mjs`. Exact-Q738109 relation9821066
 provides the98.17×61.243m castle ring and two courtyards. Operator47m central tower and the
 academic10.5×11.5m original tower plan inform the model. Common datum,courtY13 to towerY60,
@@ -4628,7 +4628,7 @@ Metric repeat UVs,linear palette tint and actual graph means preserve distant co
 or unique textures,research photograph pixels,baked shadows or AO. Shared material references
 resolve through the world viewer's shared cache;each graph read once across the captured views.
 The source README now chooses the shared textured capture via an optional study preview path;
-the next-1000 gallery also uses the hash-reviewed shared image. **Use textured runtime views
+the structure-catalog gallery also uses the hash-reviewed shared image. **Use textured runtime views
 as primary catalog/appearance evidence for subsequent models**;portable flat captures remain
 separate geometry fallback evidence. Reuse the canonical graph even when its pattern is an
 approximation;do not fork a texture simply for a model's color.
@@ -4649,7 +4649,7 @@ pending,with inactive draft and replaceFootprint=false.
 
 Lock **assets-9960504e56112263** pins **2506 outputs**,adding only six new validated files while
 preserving2500prior entries. GLBs remain ignored outputs. Catalogs/source recipe index refreshed:
-**301 authored/imported next-1000 candidates**,231portable reviews,229shared reviews,
+**301 authored/imported structure-catalog candidates**,231portable reviews,229shared reviews,
 165fidelity reviews,232active geographic previews and **108fully ready**. Full library:
 403registered structures/404source bundles.699candidates still lack models,and N0291has only
 its core. The older68portable review renewals and11map-frame evidence reconciliations recorded
@@ -4696,7 +4696,7 @@ This correction adds no new completed candidate. No full rebuild,audit,Git mutat
 ## 2026-10-08 — Książ entrance components / partial site
 
 Following the missing-section repair, authored four independently addressable components beside
-N0291: KSI_A01 gatehouse, KSI_A02 northern side wing, KSI_A03 southern side wing and KSI_A04
+ksiaz_castle_and_park_complex: KSI_A01 gatehouse, KSI_A02 northern side wing, KSI_A03 southern side wing and KSI_A04
 Hotel Zamkowy. Source and runtime folders are under `places/u3/u35/ksiaz_*`; stable asset IDs
 are `molen.worldgen.structure.ksiaz_*`. Each has its own attributed OSM way, outline, origin
 and signed forecourt axis. No independent Wikidata IDs were invented. The whole castle/park
@@ -4707,7 +4707,7 @@ Recipes: `packages/worldgen/scripts/ksiaz-entrance-models.mjs` and
 `generate-ksiaz-entrances.mjs`, registered as `worldgen-ksiaz-entrances` in asset-build.json.
 The normal full source-build import plan discovers all four source manifests, with optimization
 disabled. Explicit auxiliary IDs can use the existing targeted import/capture tools; default
-next-1000 discovery continues its existing scope. Four dedicated runtime recipes generate
+structure-catalog discovery continues its existing scope. Four dedicated runtime recipes generate
 skyline, district, street and closeup levels. Masters remain source outputs; GLBs remain ignored.
 
 Reviewed recognizable gatehouse twin octagonal upper towers/domes and arched library facade,
@@ -4752,11 +4752,11 @@ Four **inactive drafts** record own OSM anchors, heading 0.617948990682 and esti
 contact, with replaceFootprint=false. Coordinate round-trip errors are below 1.1mm; that verifies
 the reconstruction, not surveyed source accuracy or real terrain fit. No broad map name matcher
 or parent QID is reused for these components. Facade/vertical fit and final whole-site coverage
-remain pending. Other N0291 park, stable and Palm House groups still need independent models.
+remain pending. Other ksiaz_castle_and_park_complex park, stable and Palm House groups still need independent models.
 
 Lock **assets-7ef0f380be67a3b0** pins **2530 outputs**, adding only 24 validated files and preserving
 2506 earlier entries. Source/recipe indexes and galleries refreshed: **407 registered structure
-models / 408 source bundles**. Next-1000 remains **301 authored/imported candidates**, 231 portable
+models / 408 source bundles**. structure catalog remains **301 authored/imported candidates**, 231 portable
 reviews, 229 shared reviews, 165 fidelity reviews, 232 active previews and **108 fully ready**;
 these auxiliary components do not advance complete-candidate counts. 699 candidates still lack
 models. The earlier portable-review and map-frame reconciliation debt remains outstanding.
@@ -4805,8 +4805,8 @@ views do not prove adaptive streaming, network upgrades, motion or physical-devi
 
 Lock assets-9f50c1331e769e1e adds only twelve validated outputs and preserves all 2530 earlier entries,
 for 2542 total. Indexes/galleries now contain 409 registered models / 410 source bundles.
-Next-1000 remains 301 authored/imported candidates and 108 fully ready; these separate site
-components do not count as newly completed plan candidates. The full N0291 complex is still
+structure catalog remains 301 authored/imported candidates and 108 fully ready; these separate site
+components do not count as newly completed plan candidates. The full ksiaz_castle_and_park_complex complex is still
 incomplete. Prior portable-review and map-frame reconciliation debt remains outstanding.
 No full-library rebuild, engine CI, dependency audit, Git mutation or upload was run this batch.
 
@@ -4837,14 +4837,14 @@ streaming performance, physical-device timing or real geographic fit.
 
 Lock assets-30b25a83b4979c5e adds twelve outputs while preserving all 2542 earlier entries,
 for 2554 total. Catalogs contain 411 registered models / 412 source bundles; the geographic
-gallery has 411 imported entries. Next-1000 remains 301 authored/imported candidates and 108
+gallery has 411 imported entries. structure catalog remains 301 authored/imported candidates and 108
 fully ready. Auxiliary site models do not count as newly completed plan candidates.
 
-The full N0291 ensemble remains incomplete. The third Lion Gate has independent map/photo
+The full ksiaz_castle_and_park_complex ensemble remains incomplete. The third Lion Gate has independent map/photo
 research but no model yet. A separately mapped Powder Tower is approximately 119 m from the
 castle recipe's approximate tower control. site-parts.json records this unresolved placement;
 direct identification and terrace attachment are required before replacing existing geometry.
-The castle's current west gable and roof joins are present in saved captures. Four focused N0291
+The castle's current west gable and roof joins are present in saved captures. Four focused ksiaz_castle_and_park_complex
 regression checks passed when investigating the user's further missing-section report; no
 additional castle geometry was changed without identifying the affected section.
 
@@ -4853,7 +4853,7 @@ No engine-wide suite, dependency audit, full-library rebuild, Git mutation or up
 ## 2026-10-08 — Książ Lion Gate exterior
 
 Added KSI_G03 ksiaz_lion_gate under places/u3/u35 as an independently addressable component
-of N0291. Its own Brama Lwów node/2618881852 and three adjoining path controls establish anchor
+of ksiaz_castle_and_park_complex. Its own Brama Lwów node/2618881852 and three adjoining path controls establish anchor
 [16.3176525,50.8512115] and native heading -0.3083258982962207. Dimensions, signed sculpture/
 facade facing, current restoration and terrain datum remain provisional. The placement is an
 inactive draft with replaceFootprint=false, without a parent QID or broad map-name matcher.
@@ -4889,15 +4889,15 @@ or physical-device timing. Geographic and whole-site fidelity remain pending.
 Lock assets-fedf2ab30094c2bc adds exactly six outputs while preserving 2554 earlier entries,
 for 2560 total. Source/authoring indexes and galleries contain 413 source bundles / 412
 registered imported models. All three park-gate exteriors are recorded in site-parts.json;
-N0291 remains incomplete, including stable/Palm House/landscape groups and the Powder Tower
-placement discrepancy. Next-1000 stays at 301 authored/imported candidates and 108 fully ready.
+ksiaz_castle_and_park_complex remains incomplete, including stable/Palm House/landscape groups and the Powder Tower
+placement discrepancy. structure catalog stays at 301 authored/imported candidates and 108 fully ready.
 These site components do not count as separately completed plan candidates. No engine-wide
 CI, npm audit, full-library rebuild, Git mutation or upload ran in this batch.
 
 ## 2026-10-08 — Książ forester’s house exterior
 
 Added KSI_S01 ksiaz_forester_house under places/u3/u35 as an independently addressable
-component of N0291. Own way/262236292 at Jeździecka 9 supplies 17 distinct footprint vertices,
+component of ksiaz_castle_and_park_complex. Own way/262236292 at Jeździecka 9 supplies 17 distinct footprint vertices,
 anchor [16.30370172124799,50.84432313943821] and native heading -0.8912217878661122.
 All outline vertices reconstruct within 0.6 mm; that proves coordinate arithmetic only.
 Facade facing, heights, current appearance and terrain fit remain pending. The placement is
@@ -4930,9 +4930,9 @@ authoring lint pass. The registered Assets generator and normal import plan incl
 
 Lock assets-2307be1e8a345f4b adds exactly six outputs, preserving all 2560 previous entries,
 for 2566 total. Catalogs now contain 414 source bundles / 413 registered imported models.
-The forester exterior is recorded in site-parts.json; N0291 remains incomplete, including
+The forester exterior is recorded in site-parts.json; ksiaz_castle_and_park_complex remains incomplete, including
 Swiss houses, stable/Palm House/landscape groups and the Powder Tower placement discrepancy.
-Next-1000 remains 301 authored/imported candidates and 108 fully ready; auxiliary site
+structure catalog remains 301 authored/imported candidates and 108 fully ready; auxiliary site
 components do not count as separately completed plan candidates. No repository-wide CI,
 npm audit, full-library rebuild, Git mutation or upload ran for this model.
 
@@ -4971,13 +4971,13 @@ registered Assets generator include both models.
 
 Lock assets-47e3f12d16574f23 adds exactly 12 outputs, preserving all 2566 prior entries, for
 2578 total. Catalogs contain 416 source bundles / 415 registered imported models. Both exteriors
-are recorded in site-parts.json; N0291 remains incomplete, including stable/Palm House/landscape
-groups and the Powder Tower placement discrepancy. Next-1000 remains 301 authored/imported
+are recorded in site-parts.json; ksiaz_castle_and_park_complex remains incomplete, including stable/Palm House/landscape
+groups and the Powder Tower placement discrepancy. structure catalog remains 301 authored/imported
 candidates and 108 fully ready; auxiliary components are not extra completed plan candidates.
 
 ## 2026-10-08 — Old Książ surviving-wall exterior
 
-Added KSI_R01 old_ksiaz_ruins under places/u3/u35 as a separate N0291 component. Own ruin
+Added KSI_R01 old_ksiaz_ruins under places/u3/u35 as a separate ksiaz_castle_and_park_complex component. Own ruin
 way/239074431 carries Q9386558 and NID A/5214/621. Its envelope is a site boundary, not a solid
 building footprint. Geometry follows four individually mapped wall traces: 805533435,
 805533436, 805533437 and 898350440. All 36 source coordinate samples reconstruct within
@@ -5010,10 +5010,10 @@ and registered Assets generator include the source-built model.
 
 Lock assets-7270414e4073035b adds six outputs while preserving all 2578 prior entries, for
 2584 total. Catalogs contain 417 source bundles / 416 registered imported models. Placement
-ksiaz.old-ruins remains an inactive draft without footprint replacement. N0291 stays incomplete:
+ksiaz.old-ruins remains an inactive draft without footprint replacement. ksiaz_castle_and_park_complex stays incomplete:
 stable/Palm House/landscape groups, ruin terrain and unmapped remains, geographic reviews and
 the Powder Tower discrepancy remain outstanding. This auxiliary model does not increment
-the next-1000 completion count. No full-library rebuild, repository CI, audit or upload ran.
+the structure-catalog completion count. No full-library rebuild, repository CI, audit or upload ran.
 
 ## 2026-10-08 — Książ stable ensemble exterior
 
@@ -5051,15 +5051,15 @@ collision, adaptive streaming and physical device performance remain unreviewed.
 
 Lock `assets-7f3651e893f2df17` adds six outputs, preserves all 2584 prior entries and pins 2590
 files. `ksiaz.stable-ensemble` remains an inactive draft with footprint replacement disabled.
-The Assets generator and normal import plan reproduce the model from source. N0291 remains
+The Assets generator and normal import plan reproduce the model from source. ksiaz_castle_and_park_complex remains
 incomplete: Palm House/landscape, geographic reviews, ruin terrain/unmapped remains and the
 Powder Tower discrepancy still need work. This connected auxiliary asset does not increment
-the next-1000 candidate completion count. No full-library rebuild, repository CI, audit,
+the structure-catalog candidate completion count. No full-library rebuild, repository CI, audit,
 upload or Git mutation ran.
 
 ### 2026-10-08 — KSI_L01 Lubiechów Palm House connected exterior
 
-Added an independently identified N0291 auxiliary source bundle at
+Added an independently identified ksiaz_castle_and_park_complex auxiliary source bundle at
 `places/u3/u35/ksiaz_palm_house` and source generator
 `packages/worldgen/scripts/generate-ksiaz-palm-house.mjs`. Own OSM relation 3532583
 retains the outer ring, both courtyard holes and main entrance; 54 map coordinate
@@ -5090,8 +5090,8 @@ pinning 2596 files. Normal import plan and Assets source generator are registere
 Arithmetic and synthetic-ground appearance do not approve real terrain, measured
 dimensions, collision, adaptive streaming or physical-device performance. The
 independent greenhouse group, boiler, administration, utility building, residence
-and garden/landscape remain pending; N0291 whole-site completion stays incomplete.
-This auxiliary asset does not increment next-1000 candidate completion. No full
+and garden/landscape remain pending; ksiaz_castle_and_park_complex whole-site completion stays incomplete.
+This auxiliary asset does not increment structure-catalog candidate completion. No full
 library rebuild, engine CI, npm audit, upload or Git mutation ran for this batch.
 
 ### 2026-10-08 — KSI_L02–L05 Palm House service exteriors
@@ -5131,13 +5131,13 @@ pinning 2620 files. Normal source import and the Assets generator are registered
 Placements remain inactive drafts, with footprint replacement disabled. Synthetic
 composition does not approve actual slopes, vertical datums, current-state fidelity,
 collision, adaptive streaming or physical-device performance. Separate greenhouse
-groups and landscape remain unmodeled; N0291 whole-site completion remains incomplete.
-These auxiliaries do not increment next-1000 candidate completion.
+groups and landscape remain unmodeled; ksiaz_castle_and_park_complex whole-site completion remains incomplete.
+These auxiliaries do not increment structure-catalog candidate completion.
 
-### 2026-10-08 — N0292 Devín Castle draft
+### 2026-10-08 — devin_castle Devín Castle draft
 
 Added the reproducible Devín source bundle under
-`places/u2/u2s/n0292_devin_castle`, generated by
+`places/u2/u2s/devin_castle`, generated by
 `packages/worldgen/scripts/devin-castle-model.mjs` through the existing signature
 generator and normal source-import workflow. Own east/south map frame preserves
 41 surviving masonry features separately from the site envelope. Model includes
@@ -5169,7 +5169,7 @@ openings, current-state fidelity, collision and physical-device/streaming review
 remain pending. Placement is inactive and footprint replacement disabled. This
 is an authored medium-fi draft, not a completed unique landmark/site.
 
-### 2026-10-08 — N0292 Devín missing-section correction
+### 2026-10-08 — devin_castle Devín missing-section correction
 
 Connected every mapped upper-cliff boundary vertex to the rock cap. The previous
 sparse side perimeter made the upper entrance sample coarse DEM about43m below
@@ -5199,10 +5199,10 @@ dimensions and associations, current-state fidelity, collision, continuous LOD
 transition and physical-device review remain pending. Placement stays inactive
 with footprint replacement disabled; this revision is not a newly completed site.
 
-### 2026-10-08 — N0293 Rumeli Hisarı draft
+### 2026-10-08 — rumeli_hisar Rumeli Hisarı draft
 
 Added the reproducible source bundle under
-`places/sx/sxk/n0293_rumeli_hisar`, with checked-in map frame, coarse attributed
+`places/sx/sxk/rumeli_hisar`, with checked-in map frame, coarse attributed
 DEM, shared-material means, references and independent authored LOD recipes in
 `packages/worldgen/scripts/rumeli-fortress-model.mjs`. Existing signature
 generator and normal source-import workflow recreate every output. Preserved
@@ -5236,10 +5236,10 @@ visitor infrastructure, fidelity and physical-device/streaming measurements
 remain pending. Placement is an inactive draft with footprint replacement off.
 This is an authored draft and does not increment fully completed landmarks.
 
-### 2026-10-08 — N0294 Aljafería draft
+### 2026-10-08 — aljaferia Aljafería draft
 
 Added the original reproducible source bundle under
-`places/ez/ezr/n0294_aljaferia`, with own attributed map-frame/courtyard/entrance
+`places/ez/ezr/aljaferia`, with own attributed map-frame/courtyard/entrance
 and bridge controls, private-reference URLs/hashes, shared-material means, and
 `packages/worldgen/scripts/aljaferia-palace-model.mjs`. The existing signature
 generator, normal source import and four authored LOD recipes rebuild all outputs.
@@ -5275,9 +5275,9 @@ authored drafts, not fully completed landmarks. Current source-input-based
 asset workflow owns full-bundle stamping/publishing; no output lock or release
 is created during this targeted model pass.
 
-### 2026-10-08 — N0295 Pembroke Castle draft
+### 2026-10-08 — pembroke_castle Pembroke Castle draft
 
-Original source bundle: `places/gc/gch/n0295_pembroke_castle`, with separately
+Original source bundle: `places/gc/gch/pembroke_castle`, with separately
 attributed map point/components and oblique entrance route, published keep and
 Wogan dimensions, original editable geometry controls, raw Terrarium reference
 grid and existing shared-material means.
@@ -5318,9 +5318,9 @@ laptop/phone timing and continuous streaming/upgrades remain pending. Placement
 stays inactive with footprint replacement off; this adds an authored draft,not
 a fully completed landmark.
 
-### 2026-10-08 — N0296 Kalmar Castle draft
+### 2026-10-08 — kalmar_castle Kalmar Castle draft
 
-Source bundle: `places/u6/u65/n0296_kalmar_castle`. Exact-QID relation,
+Source bundle: `places/u6/u65/kalmar_castle`. Exact-QID relation,
 separately attributed map components, original editable controls, owner/operator
 references and shared-material means drive `kalmar-castle-model.mjs`, registered
 through the signature generator, source import and four authored browser levels.
@@ -5360,7 +5360,7 @@ circulation/collision are incomplete. Physical laptop/phone timing and continuou
 streaming/upgrades remain pending. Placement stays inactive with footprint
 replacement off; this is an authored exterior draft, not a completed landmark.
 
-### 2026-10-08 — N0296 mapped palace roof coverage repair
+### 2026-10-08 — kalmar_castle mapped palace roof coverage repair
 
 The owner reported a missing building section. Inspection found the four-corner
 roof envelope stopped inside the mapped eastern and northern palace walls,
@@ -5377,9 +5377,9 @@ validations pass; six existing shared graphs, no embedded or new textures.
 Current-site fidelity and geographic/terrain review remain pending; placement
 remains an inactive draft.
 
-### 2026-10-08 — N0297 Nuremberg Castle draft
+### 2026-10-08 — nuremberg_castle Nuremberg Castle draft
 
-Source bundle: `places/u0/u0z/n0297_nuremberg_castle`. Exact-QID node,
+Source bundle: `places/u0/u0z/nuremberg_castle`. Exact-QID node,
 separately attributed building/tower/fortification traces, primary operator
 plans/photos and city guide drive `nuremberg-castle-model.mjs`. Registered
 source import and four authored browser levels reproduce the GLBs.
@@ -5411,9 +5411,9 @@ provisional. Real terrain/approach/vertical registration and current-site
 fidelity need review. Placement remains inactive with footprint replacement
 off. This is an authored exterior draft, not a completed landmark.
 
-### 2026-10-08 — N0298 Egeskov Castle draft
+### 2026-10-08 — egeskov_castle Egeskov Castle draft
 
-Source: `places/u1/u1z/n0298_egeskov_castle`, deterministic
+Source: `places/u1/u1z/egeskov_castle`, deterministic
 `egeskov-castle-model.mjs`, attributed exact-QID main footprint and
 separate current gate/annex/passages/east footbridge traces. Primary operator
 architecture and heritage-research photos guide original exterior geometry.
@@ -5440,9 +5440,9 @@ fit remain provisional. Current exterior fidelity/geographic review pending;
 placement inactive and footprint replacement off. This is an authored draft,
 not a completed landmark.
 
-### 2026-10-08 — N0299 Wawel Castle draft
+### 2026-10-08 — wawel_castle Wawel Castle draft
 
-Source: `places/u2/u2y/n0299_wawel_castle`, deterministic
+Source: `places/u2/u2y/wawel_castle`, deterministic
 `wawel-castle-model.mjs`, exact-QID palace relation2270819, courtyard
 way117749419 and separately attributed roofs,towers and two entry routes.
 Current museum/city references guide three residential wings,southern
@@ -5474,7 +5474,7 @@ Full exterior fidelity/geographic review pending; placement inactive and
 footprint replacement off. This is an authored draft,not a completed
 landmark.
 
-### 2026-10-08 — N0298 Egeskov entrance correction
+### 2026-10-08 — egeskov_castle Egeskov entrance correction
 
 Passed each passage's source-defined floor height separately from detail
 level to the aperture helper; the old call incorrectly used detail1/2/3
@@ -5492,9 +5492,9 @@ and six Khronos validations without errors/warnings pass. Current hashes
 and source inventory refreshed. Geographic/current-site fidelity remain
 pending; existing inactive placement preserved.
 
-### 2026-10-08 — N0300 Saint Michael's Castle draft
+### 2026-10-08 — saint_michaels_castle Saint Michael's Castle draft
 
-Source: `places/ud/udt/n0300_saint_michael_s_castle`, original deterministic
+Source: `places/ud/udt/saint_michaels_castle`, original deterministic
 `saint-michaels-castle-model.mjs`. Exact-QID castle relation238571,
 three separately attributed courtyard rings and mapped south passage.
 Museum descriptions/photos and original courtyard,west and aerial
@@ -5528,9 +5528,9 @@ are excluded or separate objects. Real-site fit/full fidelity pending;
 placement inactive and footprint replacement off. Authored draft,
 not a completed landmark.
 
-### 2026-10-08 — N0301 Hochosterwitz Castle draft
+### 2026-10-08 — hochosterwitz_castle Hochosterwitz Castle draft
 
-Source: `places/u2/u26/n0301_hochosterwitz_castle`, original deterministic
+Source: `places/u2/u26/hochosterwitz_castle`, original deterministic
 `hochosterwitz-castle-model.mjs`. Exact-QID summit castle122050909,
 14 separately named mapped gates/passages,church/chapel,45defensive
 wall polygons,18secondary footprints and attributed approach routes.
@@ -5566,9 +5566,9 @@ are excluded or separate. Full medium-fi,geographic and exterior-fidelity
 reviews pending;draft placement inactive,footprint replacement off.
 This is an authored draft,not a completed landmark.
 
-### 2026-10-09 — N0302 Liechtenstein Castle draft
+### 2026-10-09 — liechtenstein_castle Liechtenstein Castle draft
 
-Source: `places/u2/u2e/n0302_liechtenstein_castle`,original deterministic
+Source: `places/u2/u2e/liechtenstein_castle`,original deterministic
 `liechtenstein-castle-model.mjs`,exact-QID Austrian castle and separately
 mapped east tower/gatehouse/curtain wall/services/access traces. Primary operator
 photos/Oliver Bolch guide the west keep/corbel gallery/round oriel,continuous
@@ -5593,9 +5593,9 @@ height verified. Rocky ridge,terrace/stair grades and facade/geographic fit
 require actual-site review. Medium-fi/geographic/fidelity status pending;
 placement inactive,replacement off. Authored draft,not a completed landmark.
 
-### 2026-10-09 — N0303 Arundel Castle draft
+### 2026-10-09 — arundel_castle Arundel Castle draft
 
-Source: `places/gc/gcp/n0303_arundel_castle`, original deterministic
+Source: `places/gc/gcp/arundel_castle`, original deterministic
 `arundel-castle-model.mjs`. Exact-QID relation1118816, both mapped voids,
 separate keep and service route retain attributed original controls. Operator
 exteriors and VisitEngland aerial guide the hollow shell keep/motte, northern
@@ -5624,9 +5624,9 @@ bailey datum, facade fit and exterior fidelity require actual-site review.
 Medium-fi/geographic/fidelity pending; placement inactive, replacement off.
 Authored draft, not a completed landmark.
 
-### 2026-10-09 — N0304 Leeds Castle draft
+### 2026-10-09 — leeds_castle Leeds Castle draft
 
-Source: `places/u1/u10/n0304_leeds_castle`, original deterministic
+Source: `places/u1/u10/leeds_castle`, original deterministic
 `leeds-castle-model.mjs`. Exact-QID relation6941053, current component footprints,
 Gloriette courtyard, island, curtain and entrance routes preserve attributed
 original controls. Operator exterior/aerial photographs and Historic England
@@ -5657,9 +5657,9 @@ lake/shore datum, terrain, facade fit, exterior fidelity and physical device
 performance remain pending. Medium-fi/geographic/fidelity pending; placement
 inactive, replacement off. Authored draft, not a completed landmark.
 
-### 2026-10-09 — N0305 Turku Castle draft
+### 2026-10-09 — turku_castle Turku Castle draft
 
-Source: `places/u6/u6x/n0305_turku_castle`, original deterministic
+Source: `places/u6/u6x/turku_castle`, original deterministic
 `turku-castle-model.mjs`. Exact-QID castle way466736288, two separately mapped
 sections,17 building parts, three courtyard surfaces and mapped passage routes
 preserve attributed original controls. Museum tower totals38/32m agree with OSM.
@@ -5690,9 +5690,9 @@ continuous LOD switches and physical device performance pending. Medium-fi/
 geographic/fidelity pending; placement inactive, replacement off. Authored draft,
 not a completed landmark.
 
-### 2026-10-09 — N0306 Gediminas' Tower exterior
+### 2026-10-09 — gediminas_tower Gediminas' Tower exterior
 
-Source: `places/u9/u99/n0306_gediminas_tower`; original deterministic
+Source: `places/u9/u99/gediminas_tower`; original deterministic
 `gediminas-tower-model.mjs`. Exact tower way24569542 and two actual upper
 parts90844046/90844047 preserve octagons and6/12m floor setbacks. Broader
 same-QID Upper Castle node325130082 excluded. Current three-storey tower,
@@ -5718,9 +5718,9 @@ mapper/photo estimates. Flat geographic fixture does not certify the rocky
 hill micrograde; local grading, interior access and physical-device timings
 remain unverified. This is an exterior visualization, not a measured survey.
 
-### 2026-10-09 — N0307 Ljubljana Castle exterior draft
+### 2026-10-09 — ljubljana_castle Ljubljana Castle exterior draft
 
-Source: `places/u2/u24/n0307_ljubljana_castle`, original deterministic
+Source: `places/u2/u24/ljubljana_castle`, original deterministic
 `ljubljana-castle-model.mjs`. Exact-QID castle way5821190, relation2326426,
 courtyard hole174281987, fifteen mapped building parts and east passage/bridge
 retain attributed original controls. Current operator photographs and component
@@ -5757,9 +5757,9 @@ Visual/shared rendering accepted; medium-fi/geographic/fidelity pending.
 Placement inactive/draft; footprint replacement off. Authored exterior draft,
 not a completed landmark.
 
-### 2026-10-09 — N0308 São Jorge exterior draft
+### 2026-10-09 — castle_of_saint_george São Jorge exterior draft
 
-Source: `places/ey/eyc/n0308_castle_of_saint_george`, original deterministic
+Source: `places/ey/eyc/castle_of_saint_george`, original deterministic
 `sao-jorge-castle-model.mjs`. Exact castle1382432568/Q636780, southern/eastern
 barbican27022973, current museum168984058, actual hillside tower591833135 and
 149-step link83388706 retain223 attributed coordinate samples. Operator current
@@ -5798,7 +5798,7 @@ Visual/shared rendering accepted; medium-fi/geographic/fidelity pending.
 Placement inactive/draft; footprint replacement off. Authored exterior draft,
 not a completed landmark.
 
-### 2026-10-09 — N0308 terrain contact investigation
+### 2026-10-09 — castle_of_saint_george terrain contact investigation
 
 Added separate17x17 research hill from289 attributed coarse Mapzen Terrarium
 samples, numeric PNG16 and source/height comparison records. DGT public
@@ -5823,7 +5823,7 @@ The user’s unnamed missing-building section remains unidentified.
 ### 2026-10-09 — paused model status reconciliation
 
 Goal and generation remain paused. Refreshed the offline readiness ledger and
-progress table: 319 authored/imported next-1000 models, 681 without source
+progress table: 319 authored/imported structure-catalog models, 681 without source
 models, and 106 existing readiness approvals. Stream-hashed all existing
 source/runtime/LOD files without generating, importing or capturing models.
 All 319 source-manifest/import hashes match their existing files. Found
@@ -5834,8 +5834,8 @@ not revoked solely for different rebuilt bytes. Fourteen existing ready
 records also match spec/integrity and current LOD checks; that intersection
 is not a new complete-model count or a visual/geographic certification.
 
-The next selected round is N0309 Haapsalu Castle only, documented in
-[CURRENT-ROUND.md](next-1000/CURRENT-ROUND.md). Its entrance-side wall
+The next selected round is haapsalu_castle Haapsalu Castle only, documented in
+[CURRENT-ROUND.md](structure-catalog/CURRENT-ROUND.md). Its entrance-side wall
 source change is unbuilt; existing 4905-triangle source/import remain.
 Runtime LOD files/registration are missing, twelve portable captures
 use older inputs, and shared/medium-fi/geographic review is unfinished.

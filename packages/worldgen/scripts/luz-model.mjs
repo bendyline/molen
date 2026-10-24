@@ -1,11 +1,11 @@
-/** N0718: Luz Novgorod four red bow arches, wave roof and three-tier red bowl. */
+/** estadio_da_luz: Luz Novgorod four red bow arches, wave roof and three-tier red bowl. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildLuzStadium } from './luz-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ey/eyc/n0718_estadio_da_luz/',
+    '../../../content/worldgen/source/places/ey/eyc/estadio_da_luz/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -74,7 +74,7 @@ export const buildLuzSkyline = (o) => build(o, 0),
   buildLuzStreet = (o) => build(o, 2),
   buildLuzCloseup = (o) => build(o, 3);
 export const luzStudy = {
-  id: 'N0718',
+  id: 'estadio_da_luz',
   key: 'estadio_da_luz',
   title: 'Estádio da Luz',
   category: 'stadium',

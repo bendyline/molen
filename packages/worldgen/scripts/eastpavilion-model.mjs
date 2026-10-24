@@ -1,11 +1,11 @@
-/** 'N0752_EASTPAVILION': EastPavilion House, corner turrets, time ball and shared surfaces. */
+/** 'eastern_pavilion_and_camera_obscura_royal_observatory_greenwich': EastPavilion House, corner turrets, time ball and shared surfaces. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildEastPavilion } from './eastpavilion-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gc/gcp/n0752_eastpavilion/',
+    '../../../content/worldgen/source/places/gc/gcp/eastern_pavilion_and_camera_obscura_royal_observatory_greenwich/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -102,7 +102,7 @@ export const buildEastPavilionSkyline = (o) => build(o, 0),
   buildEastPavilionStreet = (o) => build(o, 2),
   buildEastPavilionCloseup = (o) => build(o, 3);
 export const eastpavilionStudy = {
-  id: 'N0752_EASTPAVILION',
+  id: 'eastern_pavilion_and_camera_obscura_royal_observatory_greenwich',
   key: 'eastpavilion',
   title: 'Eastern pavilion and Camera Obscura, Royal Observatory Greenwich',
   category: 'museum',

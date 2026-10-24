@@ -876,7 +876,7 @@
                 1.7,
                 0
               ],
-              "wingArea": 23.22576,
+              "wingArea": 23.23,
               "controlAuthoritySpeed": 45,
               "maxControlAuthority": 1.8,
               "pitchAuthority": 0.18,
@@ -889,7 +889,7 @@
               "groundLevelRate": 2,
               "maxGroundPitch": 0.22,
               "camberAngle": 0.045,
-              "flapLift": 0.33,
+              "flapLift": 0.8,
               "postStallFlapEffect": 0.4,
               "stallAngle": 0.28,
               "stallTransitionAngle": 0.12,
@@ -906,10 +906,10 @@
               "liftSlope": 4.8,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.028,
-              "inducedDrag": 0.06,
-              "gearDrag": 0.018,
-              "flapDrag": 0.035,
+              "profileDrag": 0.04869754154331233,
+              "inducedDrag": 0.04212821756676095,
+              "gearDrag": 0.004,
+              "flapDrag": 0.075,
               "gearTransitTime": 0,
               "flapTransitTime": 4,
               "stallDrag": 1.1,
@@ -920,7 +920,13 @@
               "brakeDeceleration": 4,
               "rollingDeceleration": 0.22,
               "groundTrackRate": 12,
-              "fixedGear": true
+              "fixedGear": true,
+              "groundEffect": true,
+              "criticalMach": 0.62,
+              "waveDrag": 0.22,
+              "maxMach": 0.72,
+              "maxEquivalentAirspeed": 76.54933333333334,
+              "flapLimitSpeed": 45
             },
             "engines": [
               {
@@ -935,13 +941,16 @@
                   0,
                   1
                 ],
-                "power": 400235.29411764705,
+                "power": 335600,
                 "idleRpm": 0.18,
                 "spoolRate": 0.25,
                 "rotorAngularSpeed": 240.85543677521747,
-                "maxThrust": 7560,
+                "maxThrust": 7131.5,
                 "minPropellerSpeed": 25,
-                "propellerEfficiency": 0.85
+                "propellerEfficiency": 0.85,
+                "propulsion": "propeller",
+                "densityExponent": 1,
+                "ratedDensityRatio": 1
               }
             ]
           }

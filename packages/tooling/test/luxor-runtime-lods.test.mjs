@@ -8,7 +8,7 @@ import { smoothMeshNormals } from '../../worldgen/scripts/authored-structure-mes
 import { buildLuxor } from '../../worldgen/scripts/signature-tower-luxor-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/9q/9qq/n0204_luxor_resort_casino'),
+const source = resolve('../../content/worldgen/source/places/9q/9qq/luxor_resort_casino'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {

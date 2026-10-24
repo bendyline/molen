@@ -7,10 +7,11 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readPlacementSources } from '../../../../packages/worldgen-earth/scripts/placement-sources.mjs';
 import { inspectLocalModel } from './progress.mjs';
 import { contentHash, loadCatalog } from './scan.mjs';
 import { loadQuallaManager, modelAnnotations, reconcileAnnotation } from './sync-qualla.mjs';
-import { next1000Matches } from './work-ownership.mjs';
+import { structureCatalogMatches } from './work-ownership.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '../../../..');
@@ -130,8 +131,8 @@ export async function syncCompleted({
       !target ||
       !physicalTarget ||
       entry.workOwner !== batch.id ||
-      next1000Matches(target, catalog.next1000, entry.modelIdentity).length ||
-      next1000Matches(physicalTarget, catalog.next1000, physicalIdentity).length
+      structureCatalogMatches(target, catalog.structureCatalog, entry.modelIdentity).length ||
+      structureCatalogMatches(physicalTarget, catalog.structureCatalog, physicalIdentity).length
     )
       throw Error(`Local ownership unavailable: ${entry.modelIdentity}`);
     const dir = inside(repository, entry.sourcePath),
@@ -143,7 +144,9 @@ export async function syncCompleted({
       repository,
       project: read(path.join(repository, 'content/worldgen/project.json')),
       stylepack: read(path.join(repository, 'content/worldgen/stylepack.json')),
-      placements: read(path.join(repository, 'content/earth/structures/placements.json')),
+      placements: (
+        await readPlacementSources(path.join(repository, 'content/earth/source/placements'))
+      ).catalog,
       currentReferences: read(path.join(output, `references/${entry.structureId}.json`)),
       imageryPolicy: batch.policy?.imagery,
       qualla,

@@ -1,4 +1,4 @@
-/** 'N0738': Footprint-specific Forbidden City galleries and articulated ceremonial structures. */
+/** 'forbidden_city': Footprint-specific Forbidden City galleries and articulated ceremonial structures. */
 import earcut from 'earcut';
 import { beam } from './authored-structure-mesh.mjs';
 import { buildChineseHipRoof } from './chinese-roof-geometry.mjs';

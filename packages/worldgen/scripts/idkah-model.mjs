@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tx/txn/n0479_id_kah_mosque/',
+  '../../../content/worldgen/source/places/tx/txn/id_kah_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -695,7 +695,7 @@ export const buildIdkahSkyline = (o) => build(o, 0),
   buildIdkahCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const idkahStudy = {
-  id: 'N0479',
+  id: 'id_kah_mosque',
   key: 'id_kah_mosque',
   title: 'Id Kah Mosque',
   category: 'mosque',

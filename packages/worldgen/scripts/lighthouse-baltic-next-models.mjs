@@ -900,7 +900,7 @@ export function buildPilsum(out) {
 }
 export const lighthouseBalticNextStudies = [
   lighthouseStudy({
-    id: 'N0673',
+    id: 'ruhnu_lighthouse',
     key: 'ruhnu_lighthouse',
     title: 'Ruhnu Lighthouse',
     wikidataId: 'Q3376563',
@@ -955,7 +955,7 @@ export const lighthouseBalticNextStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0674',
+    id: 'ristna_lighthouse',
     key: 'ristna_lighthouse',
     title: 'Ristna Lighthouse',
     wikidataId: 'Q3376573',
@@ -1007,7 +1007,7 @@ export const lighthouseBalticNextStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0675',
+    id: 'pilsum_lighthouse',
     key: 'pilsum_lighthouse',
     title: 'Pilsum Lighthouse',
     wikidataId: 'Q539709',

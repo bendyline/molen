@@ -562,7 +562,7 @@ export function buildBrasilia(out) {
   roof(out);
 }
 export const brasiliaStudy = {
-  id: 'N0703',
+  id: 'estadio_nacional_de_brasilia',
   key: 'estadio_nacional_de_brasilia',
   wikidataId: 'Q336088',
   title: 'Estádio Nacional de Brasília',

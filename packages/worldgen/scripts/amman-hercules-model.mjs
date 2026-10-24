@@ -1,11 +1,11 @@
-/** 'N0557': Amman Temple of Hercules plain-shaft portico and low surviving ruins. */
+/** 'temple_of_hercules': Amman Temple of Hercules plain-shaft portico and low surviving ruins. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { buildAmmanHerculesRemains } from './amman-hercules-remains-model.mjs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sv/sv9/n0557_temple_of_hercules/',
+    '../../../content/worldgen/source/places/sv/sv9/temple_of_hercules/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -83,7 +83,7 @@ export const buildAmmanHerculesSkyline = (o) => build(o, 0),
   buildAmmanHerculesStreet = (o) => build(o, 2),
   buildAmmanHerculesCloseup = (o) => build(o, 3);
 export const ammanHerculesStudy = {
-  id: 'N0557',
+  id: 'temple_of_hercules',
   key: 'temple_of_hercules',
   title: 'Temple of Hercules',
   category: 'temple',

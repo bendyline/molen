@@ -1,4 +1,4 @@
-/** 'N0748_HISTORY': buried triangular museum, splayed west wings and integrated roof light. */
+/** 'holocaust_history_museum_yad_vashem': buried triangular museum, splayed west wings and integrated roof light. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildYadHistory(face, detail, r) {

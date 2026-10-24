@@ -87,6 +87,7 @@ export {
 export type {
   StructureCatalogDoc,
   StructureIndex,
+  StructureLoadOptions,
   StructureMapRule,
   StructurePlacement,
   StructureQueryOptions,
@@ -95,6 +96,7 @@ export type {
 export {
   createStructureIndex,
   encodeStructureGeohash,
+  structurePlacementBounds,
   suggestStructureStyles,
 } from './kernel/structure-index';
 export { registerStructurePlacementsSchema } from './kernel/structure-index-schema';
@@ -136,3 +138,10 @@ registerWildlifeRangesSchema();
 registerRegionalCatalogSchema();
 registerBusinessCatalogSchema();
 registerStructurePlacementsSchema();
+
+export type { StructureDirectory, StructureShard } from './kernel/structure-directory';
+export { parseStructureDirectory, structureRegionBounds } from './kernel/structure-directory';
+
+import { registerStructureDirectorySchema } from './kernel/structure-directory';
+
+registerStructureDirectorySchema();

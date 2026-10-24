@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tn/tnb/n0467_blue_mosque/',
+  '../../../content/worldgen/source/places/tn/tnb/blue_mosque_tabriz/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -734,7 +734,7 @@ export const buildTabrizBlueSkyline = (o) => build(o, 0),
   buildTabrizBlueCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const tabrizBlueStudy = {
-  id: 'N0467',
+  id: 'blue_mosque_tabriz',
   key: 'blue_mosque',
   title: 'Blue Mosque (Tabriz)',
   category: 'mosque',

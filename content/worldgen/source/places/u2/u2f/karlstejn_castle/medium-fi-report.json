@@ -1,0 +1,1446 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.karlstejn_castle",
+  "sourceHash": "sha256:d499036d2457d914fb3877bffc6d39b5e8552241c2bb8fbe8dfc5ea3d46bfff5",
+  "runtimeHash": "sha256:52fe934f5c1a6a1a1389d7601294ee553b2091dd8ca1dc6f3dcf6ffe5ddec0fd",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:74e3311f8029c380afd07a6f19a7ad3a487de153bc45db479e6779f59fee96cc",
+      "bytes": 71764,
+      "gzipBytes": 15965,
+      "triangles": 900,
+      "cpuBytes": 70344,
+      "gpuBytes": 70344,
+      "errorMeters": 5,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:73e960b30ada1440454273750b13c5a7bf6dafd86735c828bd4b10fd08921624",
+      "bytes": 254204,
+      "gzipBytes": 72749,
+      "triangles": 3968,
+      "cpuBytes": 245644,
+      "gpuBytes": 245644,
+      "errorMeters": 2,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:7967b2c64a667c4aab48b8195d73eaa5c2226d3031942961a6b75e62cb45c8d5",
+      "bytes": 1016404,
+      "gzipBytes": 262808,
+      "triangles": 14056,
+      "cpuBytes": 1007808,
+      "gpuBytes": 1007808,
+      "errorMeters": 0.8,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:c2e714efd942a8c9a7b08e6bcefc6e95a9a06052a553ac0044779ae01b7d4c5c",
+      "bytes": 4406960,
+      "gzipBytes": 1016133,
+      "triangles": 57524,
+      "cpuBytes": 4398312,
+      "gpuBytes": 4398312,
+      "errorMeters": 0.3,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:d282f5f2b1cd7823d54e18cc01484d74b838bf430fd2b84df03a8f7fdfc0dfd8"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:4e10f95cfa8f50b8231c1185c748deb927514798ef9e5dbb23bc0297e5ea2e17"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:3c7d6acedd2d43351e89b4150ae330450b5ab14bad36929d3b7cb6bf08c23a8b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          144.4164,
+          102.7962,
+          248.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:3e10ba9ade1a96f121c4ccb9fe473c7f26463134dfd2636ca578db6bd00c2b30",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          144.4164,
+          102.7962,
+          248.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:11c41f136cf7805613824ce23108f57bb5f2e83f0a3a6e111626e36335d5b708",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          144.4164,
+          102.7962,
+          248.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:1845fa82ea5807da5de5d500beb67f7946aeee88b4a639d634e6f8d6a82b8152",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          144.4164,
+          102.7962,
+          248.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:13f607efb88a0fdafa001fb380cc4efb2051da0b18201387d9666c8d5b285ff9",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 31010,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.4164,
+          210.7962,
+          503.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:b20c9b64d16a858d73dcff55a5bb70a9516adb8b72d184a1ef7ec12604c18cef",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 31010,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.4164,
+          210.7962,
+          503.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:4b85e51c21d868878042cb5916d22941f1114a3232b792111a6a88eb7fbf9ab8",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 31010,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.4164,
+          210.7962,
+          503.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:9cdada965b008e62b790bee87759286b5f181654b84fdca93f955fc921172ec0",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 31010,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.4164,
+          210.7962,
+          503.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:e970bc56333d02d87b6e98bfc1fc0cef1624f5aa57c01493bedcb842ce62639c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 27942,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.4164,
+          324.7962,
+          1007.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:132e9ae2a5179bea077c201b4ad007189b0d36ca2c8850e5e2f47b48df18abe4",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27942,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.4164,
+          324.7962,
+          1007.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:426dde7b541865703d8c7283e53f8cf8be615be93504ab6c26e13ec4a27dc7cb",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 27942,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.4164,
+          324.7962,
+          1007.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:ec169accd274d028aae7357a3f4af8ba93872112ca08dd652ad7e2a71d000050",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27942,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.4164,
+          324.7962,
+          1007.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:9bff67fcae1b6b60a339d2e682a349efb245cfda95b09a57a2a19727a4b867cc",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21702,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.4164,
+          324.7962,
+          1007.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/great-tower-chapel-windows.png",
+      "hash": "sha256:7051abb68fad2a39fdac73008dabf4905cfdcc0f5eef374abcebaa33f6f8c590",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          7,
+          49,
+          -70
+        ],
+        "lookAt": [
+          52,
+          41,
+          -19
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/great-tower-east.png",
+      "hash": "sha256:4706a363141bac0567e70ff3d6c398290c86ff59fc367573b4758aa5f1a5e141",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          121,
+          42,
+          -18
+        ],
+        "lookAt": [
+          53,
+          44,
+          -20
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/marian-lantern-and-gallery.png",
+      "hash": "sha256:247da6961eef3f8726cdb04b90120b686af67d0b784224642af72f167a87cca5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          -4,
+          38,
+          35
+        ],
+        "lookAt": [
+          43,
+          29,
+          27
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/imperial-palace-loggia.png",
+      "hash": "sha256:876601652893f7d9ca894e07f094ed56b848818c7a35d7d77fb00ce18834451a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          37,
+          18,
+          101
+        ],
+        "lookAt": [
+          37,
+          17,
+          53
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/palace-eastern-turret.png",
+      "hash": "sha256:76edff992771813e3fc46b8cfe25eeed89aaec9633e1cdf90c7513f2e41acebf",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          105,
+          32,
+          72
+        ],
+        "lookAt": [
+          61,
+          20,
+          50
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/burgrave-timber-gallery.png",
+      "hash": "sha256:21013609675dc4fcd9caf932f62b71d9e8e756bea04a90f11cf418e7d5c5f8a5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          -45,
+          18,
+          100
+        ],
+        "lookAt": [
+          -15,
+          15,
+          63
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/well-court.png",
+      "hash": "sha256:d68707fe8910afb7e308e8154efd1b3482aaef461c0655d3396068e6f643067f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          -89,
+          20,
+          72
+        ],
+        "lookAt": [
+          -54,
+          6,
+          51
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/elevated-timber-skyway.png",
+      "hash": "sha256:18f0d89ca05135a5f7469e7dcf7adf6901c6c7da2acda591ceaed8e271eca366",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          19,
+          29,
+          2
+        ],
+        "lookAt": [
+          48,
+          26,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mapped-courtyard-plan.png",
+      "hash": "sha256:779247a43f0251ea90cbbd1545919a91b1dc468b0cfede6b874eadf62cb78a7c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          220,
+          2
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/reconstructed-great-tower-datum.png",
+      "hash": "sha256:265f99a419b0b273db04f4bc830492fb4e7fe3f48a605a30ae1c3b06066a1820",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          118,
+          54,
+          -30
+        ],
+        "lookAt": [
+          56,
+          56,
+          -20
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/lower-well-terrain-contact.png",
+      "hash": "sha256:b2f5ee0167c0f58c86adea4bfe68f46b00cd230d17c187379e253bf383f281d4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          -100,
+          2,
+          80
+        ],
+        "lookAt": [
+          -70,
+          -8,
+          44
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/graded-clock-gate-stair-route.png",
+      "hash": "sha256:9a7e10770837bd5011a3c1d0e0637f3a8fbe1827e8e6dd557c981355b5088b59",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          -7,
+          12,
+          61
+        ],
+        "lookAt": [
+          12,
+          8,
+          40
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-karlstejn-skyline.png",
+      "hash": "sha256:8e9fa7a114ef767bfe9cbdfffc31d5fe38908aa63cc302043a831408e0900c8f",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27942,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          -160,
+          120,
+          190
+        ],
+        "lookAt": [
+          5,
+          30,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-karlstejn-district.png",
+      "hash": "sha256:a02fbc89d60d11da3f44c1f58bb02dc146a4e8e3956f70c851bf818889931fc6",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 31010,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          -160,
+          120,
+          190
+        ],
+        "lookAt": [
+          5,
+          30,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-karlstejn-street.png",
+      "hash": "sha256:fceaefcb521a375ad17312e42fe058080a527fad9f7e626baf98ee2c78553cf7",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 41098,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          -160,
+          120,
+          190
+        ],
+        "lookAt": [
+          5,
+          30,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-karlstejn-closeup.png",
+      "hash": "sha256:af495ae07ec52d8fdd6894752da033388a21b399faa5f1836014d066bbedc834",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          -160,
+          120,
+          190
+        ],
+        "lookAt": [
+          5,
+          30,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:019162ef58f49750c617e6270f04f485c1ca7e45cc1fa3cd656dd08ff4ac977b",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27942,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.4164,
+          210.7962,
+          503.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:b20c9b64d16a858d73dcff55a5bb70a9516adb8b72d184a1ef7ec12604c18cef",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 31010,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.4164,
+          210.7962,
+          503.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:99891d8926444de0eb6bf76a237d3ec62cee20a926303897040777ea29313103",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 41098,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.4164,
+          210.7962,
+          503.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:2ae0bb81f3cab2a5d09aa02b78ec522090d089775539c0cf4acaee29dd35bda4",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 84566,
+        "groundY": -74,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2f/karlstejn_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.4164,
+          210.7962,
+          503.7381
+        ],
+        "lookAt": [
+          0.4164,
+          57.7962,
+          -0.2619
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

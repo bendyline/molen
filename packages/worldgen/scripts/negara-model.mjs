@@ -5,7 +5,7 @@ import earcut from 'earcut';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/w2/w28/n0460_national_mosque_of_malaysia/',
+  '../../../content/worldgen/source/places/w2/w28/national_mosque_of_malaysia/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -484,7 +484,7 @@ export const buildNegaraSkyline = (o) => build(o, 0),
   buildNegaraCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const negaraStudy = {
-  id: 'N0460',
+  id: 'national_mosque_of_malaysia',
   key: 'national_mosque_of_malaysia',
   title: 'National Mosque of Malaysia',
   category: 'mosque',

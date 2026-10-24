@@ -1,11 +1,11 @@
-/** 'N0560': round gilded shrine, eight stupas, teardrop terrace and mapped stair. */
+/** 'buddha_dhatu_jadi': round gilded shrine, eight stupas, teardrop terrace and mapped stair. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildDhatuTemple } from './dhatu-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/w5/w5c/n0560_buddha_dhatu_jadi/',
+    '../../../content/worldgen/source/places/w5/w5c/buddha_dhatu_jadi/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -87,7 +87,7 @@ export const buildDhatuSkyline = (o) => build(o, 0),
   buildDhatuStreet = (o) => build(o, 2),
   buildDhatuCloseup = (o) => build(o, 3);
 export const dhatuStudy = {
-  id: 'N0560',
+  id: 'buddha_dhatu_jadi',
   key: 'buddha_dhatu_jadi',
   title: 'Buddha Dhatu Jadi',
   category: 'temple',

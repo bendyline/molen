@@ -1,0 +1,331 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/trump-tower-runtime-model.mjs",
+    "export": "buildTrumpReviewedMaster"
+  },
+  "brief": "Complete Fifth Avenue bronze-glass sawtooth tower, six setback roofs, five planted upper terraces and mapped recessed entrance.",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.brownstone",
+    "scale": 3
+  },
+  "appearance": {
+    "identity": "Bronze-glass angular sawtooth shaft with stepped planted southwestern corner and monumental Fifth Avenue portal.",
+    "scope": "Whole medium-fi exterior preserves the seven mapped footprints,202.4m sawtooth shaft, six stepped roofs and five upper planted terraces. Original19067-triangle recipe remains reproducible in Git. Reviewed source moves its five previously floating planters onto their corresponding mapped roof strips and replaces repeated storefront slabs at the independently mapped main entry with an original recessed bronze/gold portal. Entrance dimensions, glazing panels, concave spandrels, planting species and exact present hardware are reconstructed. CTBUH202.4m/58physical floors differs from owner marketing68; completion dates differ across owner1983/1984 and CTBUH1982 and are left attributed rather than invented into geometry. Owner brochure2019 plans and exterior photographs establish entrance/sawtooth identity, not a current hardware survey. Skyline keeps full silhouette with graph-mean colors; district simplifies vertical bars and combines spandrel rows; street keeps full bay strips; closeup keeps original concave spandrels and planted forms. Zero embedded images; canonical shared surfaces only. Interiors, branding, separate adjoining East57th public terrace, street clock and temporary security barriers are outside this exterior asset. Ground grade, night rendering and physical-device timing remain unmeasured."
+  },
+  "sourceFacts": {
+    "heightMeters": 202.4,
+    "occupiedFloors": 58,
+    "marketedFloors": 68,
+    "architect": "Der Scutt",
+    "lowerSetbackHeightsMeters": [
+      20,
+      25,
+      30,
+      35,
+      40,
+      45
+    ],
+    "originalMasterHash": "sha256:c534470f26e47b0f2ea1ad40540fd82626bf3ff1d7139d297a493d32eb3ba93e",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-next-models.mjs#skylineNext[trump_tower].build",
+    "mappedComponents": 7,
+    "physicalSetbackRoofs": 6,
+    "plantedUpperTerraces": 5,
+    "surfaceMeans": {
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ],
+      "concrete_plain": [
+        0.710816,
+        0.710816,
+        0.681928
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ]
+    }
+  },
+  "limitations": [
+    "Whole medium-fi exterior preserves the seven mapped footprints,202.4m sawtooth shaft, six stepped roofs and five upper planted terraces. Original19067-triangle recipe remains reproducible in Git. Reviewed source moves its five previously floating planters onto their corresponding mapped roof strips and replaces repeated storefront slabs at the independently mapped main entry with an original recessed bronze/gold portal. Entrance dimensions, glazing panels, concave spandrels, planting species and exact present hardware are reconstructed. CTBUH202.4m/58physical floors differs from owner marketing68; completion dates differ across owner1983/1984 and CTBUH1982 and are left attributed rather than invented into geometry. Owner brochure2019 plans and exterior photographs establish entrance/sawtooth identity, not a current hardware survey. Skyline keeps full silhouette with graph-mean colors; district simplifies vertical bars and combines spandrel rows; street keeps full bay strips; closeup keeps original concave spandrels and planted forms. Zero embedded images; canonical shared surfaces only. Interiors, branding, separate adjoining East57th public terrace, street clock and temporary security barriers are outside this exterior asset. Ground grade, night rendering and physical-device timing remain unmeasured."
+  ],
+  "geographic": {
+    "heading": -0.504303352022,
+    "reviewStatus": "reviewed medium-fi signed placement",
+    "orientationConfidence": "footprint-directed",
+    "notes": "Fresh public OSM API2026-10-10 confirms Q868772 ground outline265345374 and all seven mapped footprints unchanged. Native-X points northwest to Fifth Avenue, +Z southwest to East56th Street, +X southeast toward the rear. Main entrance node6812091609 lies at[-26.21749,-9.68453]; owner brochure pages1/3/8 show the distinct recessed gold/bronze Fifth Avenue portal. Sawtooth steps and five upper planted setbacks resolve the signed frame. Retain anchor/heading without scaling. Accepted map/reconstruction tolerance2m/1degree; groundY0 is contact datum, actual street slope and absolute grade unmeasured. Footprint replacement disabled. Separate adjoining East57th Street public terrace and its connecting interior are outside this parcel.",
+    "evidence": "Fresh public OSM API2026-10-10 confirms Q868772 ground outline265345374 and all seven mapped footprints unchanged. Native-X points northwest to Fifth Avenue, +Z southwest to East56th Street, +X southeast toward the rear. Main entrance node6812091609 lies at[-26.21749,-9.68453]; owner brochure pages1/3/8 show the distinct recessed gold/bronze Fifth Avenue portal. Sawtooth steps and five upper planted setbacks resolve the signed frame. Retain anchor/heading without scaling. Accepted map/reconstruction tolerance2m/1degree; groundY0 is contact datum, actual street slope and absolute grade unmeasured. Footprint replacement disabled. Separate adjoining East57th Street public terrace and its connecting interior are outside this parcel.",
+    "replaceFootprint": false
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/trump-tower-runtime-model.mjs",
+    "export": "buildTrumpSkyline",
+    "errorMeters": 1.7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTrumpDistrict",
+        "errorMeters": 1.7,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          }
+        }
+      },
+      "street": {
+        "export": "buildTrumpStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTrumpCloseup",
+        "errorMeters": 0.02,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "mapped-main-portal",
+      "position": [
+        -55,
+        8,
+        -9.685
+      ],
+      "lookAt": [
+        -26.22,
+        4,
+        -9.685
+      ]
+    },
+    {
+      "name": "terraces-from-above",
+      "position": [
+        -67,
+        71,
+        63
+      ],
+      "lookAt": [
+        -12,
+        30,
+        14
+      ]
+    },
+    {
+      "name": "complete-rear",
+      "position": [
+        125,
+        125,
+        -171
+      ],
+      "lookAt": [
+        0,
+        100,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        -255,
+        180,
+        355
+      ],
+      "lookAt": [
+        0,
+        100,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        -255,
+        180,
+        355
+      ],
+      "lookAt": [
+        0,
+        100,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        -255,
+        180,
+        355
+      ],
+      "lookAt": [
+        0,
+        100,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        -255,
+        180,
+        355
+      ],
+      "lookAt": [
+        0,
+        100,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "street-terraces",
+      "position": [
+        -66,
+        68,
+        69
+      ],
+      "lookAt": [
+        -14,
+        31,
+        14
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-main-portal",
+      "position": [
+        -48,
+        7,
+        -9.685
+      ],
+      "lookAt": [
+        -26.22,
+        4,
+        -9.685
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "street-main-portal",
+      "position": [
+        -48,
+        7,
+        -9.685
+      ],
+      "lookAt": [
+        -26.22,
+        4,
+        -9.685
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-concave-spandrels",
+      "position": [
+        -40,
+        126,
+        28
+      ],
+      "lookAt": [
+        -11,
+        124,
+        5
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

@@ -43,6 +43,8 @@ external data with `weatherSchema.parse` before using it in typed code.
 
 | Parameter | Meaning |
 | --- | --- |
+| `atmosphere.model` | `standard` (default): layered Earth atmosphere; `isothermal`: uniform temperature, including alternate-world use. |
+| `atmosphere.moistAir` | Apply humidity's ideal-gas density correction; default false for dry reference air. |
 | `atmosphere.temperatureK` | Kelvin at the reference altitude; default 288.15 K (15 °C). |
 | `atmosphere.pressurePa` | Absolute pressure at the reference altitude; default 101325 Pa. Zero allows vacuum. |
 | `atmosphere.relativeHumidity` | 0–1; stored for consumers, independent of precipitation. |
@@ -76,16 +78,19 @@ if (current) molen.patch('conditions', 'weather', {
 
 Typed systems use `Weather`, `weatherOf(world)` and `sampleAtmosphere(data, altitude, gravity?)`
 from `@bendyline/molen-kernel`. The sample contains `temperatureK`, `pressurePa`, `densityKgM3`,
-`relativeHumidity` and `windVelocity`. It uses deterministic math, ideal-gas density
-`pressure / (gasConstant * temperature)` and an isothermal hydrostatic pressure profile.
-Gravity defaults to 9.80665 m/s². Humidity is informational: there is no moist-air correction,
-temperature lapse rate or fluid simulation.
+`relativeHumidity`, `windVelocity` and `speedOfSound`. It uses deterministic math and the
+US Standard Atmosphere 1976 lower-atmosphere lapse layers, with geometric-to-geopotential
+altitude conversion, anchored to authored reference temperature/pressure. The supported range
+is -2 to 100 km; values beyond it sample the nearest endpoint. Gravity defaults to 9.80665 m/s².
+`model: 'isothermal'` retains the former uniform-temperature hydrostatic profile.
+Dry ideal-gas density is the default; `moistAir: true` adds a water-vapor correction using
+relative humidity and saturation vapor pressure. This does not select rain/snow or simulate fluid flow.
 
 `installAircraft` reads the world's weather each physics tick. Wind changes airspeed, and
 temperature/pressure change aerodynamic density. Explicit `AircraftEnvironment.weather`
 overrides the component; explicit `wind` overrides its wind with a uniform velocity. `stepAircraft`
-accepts the same optional weather value and a `time`. Without weather, aircraft retain their
-existing altitude-density model exactly. Ground friction and character temperature exposure are
+accepts the same optional weather value and a `time`. Without weather, aircraft use the dry
+standard atmosphere. Ground friction and character temperature exposure are
 not implicitly changed.
 
 ## Wind shear, turbulence and gusts

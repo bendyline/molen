@@ -1,0 +1,1227 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.al_askari_shrine",
+  "sourceHash": "sha256:b5f3de6d622267dcf794b8659e7e015e4d769d7fd9cdadbb4d462ddde1b70626",
+  "runtimeHash": "sha256:2255e1964bae7e78725de43d913685d12b480b4d488652574fd4bc1f57bbfe8b",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 10478,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:41a83dc4a1473e120ae231bd8ba38ac4a1f8a7f8ccc2fd0b649449d8d0c136bc",
+      "bytes": 59744,
+      "gzipBytes": 9829,
+      "triangles": 580,
+      "cpuBytes": 58308,
+      "gpuBytes": 58308,
+      "errorMeters": 0.8,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:cb64e3e5c991895afcadfe97fb0d57ed895146155406e69ddd98f60add51ecef",
+      "bytes": 156228,
+      "gzipBytes": 39400,
+      "triangles": 1745,
+      "cpuBytes": 147740,
+      "gpuBytes": 147740,
+      "errorMeters": 0.35,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:1ec79de348dbcd582f24e308ab9e2361d19ff734192bbd90b6d378c279532c32",
+      "bytes": 469660,
+      "gzipBytes": 109795,
+      "triangles": 5358,
+      "cpuBytes": 461128,
+      "gpuBytes": 461128,
+      "errorMeters": 0.12,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:d622210b862e50884cc37b72c8b0e600e11560b8d7c869d45580cc09319f8341",
+      "bytes": 743288,
+      "gzipBytes": 181669,
+      "triangles": 8564,
+      "cpuBytes": 734740,
+      "gpuBytes": 734740,
+      "errorMeters": 0.06,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:bf713cead749e0c9bf0367127ef70278a32a15500f1f8a645e8193a20a9fca3f"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:e4f51d2890315acc53d3be0cb4b5ac5bdaa0e32f85d2a9587b5dfb4a6056c959"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:5a5aff775c1ff1718691f89d991b91bbc82041889d6f32d032dce5151264e6c1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 39844,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          47.9679,
+          42.9307,
+          83.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:7733291cb93d0ef103c41028eb09c0349572c50a92a08d242ef85e8a6eb44d65",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 39844,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          47.9679,
+          42.9307,
+          83.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:05c624aad2cffb3c2d8f4d7555270af0d782d7789e8793fa6d3389e243b07b72",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 39844,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          47.9679,
+          42.9307,
+          83.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:c722fccd58b02abaf2ac28e46dafc1d0ebf86e6f7b71c619bc14c06c0b943094",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 39844,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          47.9679,
+          42.9307,
+          83.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:cbf1423b493546fe7098f762e2f9605a14cbf17d7f9b616fd1305e01ab1703cc",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 33025,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          96.9679,
+          78.9307,
+          168.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:6bb08ab001c56c75355dba5b0843746fcb7b72db281fff039352518cd4ed23b6",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33025,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          96.9679,
+          78.9307,
+          168.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:c42a81c7c2767f9b1733090aedb2d09c61bd3ae85867937a099ab334d7f8b40d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 33025,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          96.9679,
+          78.9307,
+          168.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:37ef66bd7dde89879b919045e13cf10138a3b2efe0b22f0116746fd701ed2a59",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33025,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          96.9679,
+          78.9307,
+          168.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:efb9ad8075dfc557d5c953b8a5a8ed7197773dad022a3fc9bb9869d3e7a8f1d8",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 31860,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          193.9679,
+          116.9307,
+          336.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:ca253867f88cbde3a3bb6d9c4d5fcb458155e0f4efe602a5da8eff717c1f1b44",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31860,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          193.9679,
+          116.9307,
+          336.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:f26ed865d4292f150a2eea6532ff41c8291ba9573f14d87d85f7c625a18d3735",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 31860,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          193.9679,
+          116.9307,
+          336.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:242f7f4a72b3e33e37c2e5bdb0402803e9d52be3ea9eb5686bf4a304e48f05c1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31860,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          193.9679,
+          116.9307,
+          336.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:8a39aeb1939b20de8e594cce2a956e742d52b18ce106844897261375d036249c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21382,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          193.9679,
+          116.9307,
+          336.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/gold-dome-and-blue-drum.png",
+      "hash": "sha256:8f21b43d0442c0a943caab4234dde5fd5a55594382ffebcc4042df999f681507",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 39844,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          40,
+          32,
+          33
+        ],
+        "lookAt": [
+          0,
+          23,
+          -5.6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/gilded-iwan-and-marble-portico.png",
+      "hash": "sha256:c0ee4b791b381a23985a096f0a4cef4e84c3f1cd21842e76b687ca2ba1f7fa08",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 39844,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          10,
+          61
+        ],
+        "lookAt": [
+          0,
+          9,
+          24
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/single-balcony-gold-minarets.png",
+      "hash": "sha256:034d1858ae8ab15ed93df52fdba289dcf3d26eaa1610e8727e3d118853f36aab",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 39844,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          39,
+          32,
+          51
+        ],
+        "lookAt": [
+          14.4,
+          29,
+          15.2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-portico-and-rear-doors.png",
+      "hash": "sha256:9dd5153a8d7925af6d644120f628692100865748faf9a2bb1cc71d953386de21",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 39844,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          -31,
+          7,
+          43
+        ],
+        "lookAt": [
+          -14,
+          5,
+          16
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-and-side-window-rhythm.png",
+      "hash": "sha256:0cee94c3b1ab93476d42d32a9fc69301a36a85cf80db0a942dd136ede02d7985",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 39844,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          -72,
+          27,
+          -65
+        ],
+        "lookAt": [
+          -5,
+          7,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-up-core-footprint.png",
+      "hash": "sha256:9e40fffb5961f825b86f7e4f06a3465837017f0c556192ae03eebf2bc478e1fe",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 39844,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          190,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          7,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-askari-skyline.png",
+      "hash": "sha256:f064b3b47a8a75e16fa177e50ea890a1a8a9bf91b7c7815b62c0848fe50a01c5",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31860,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          91,
+          60,
+          107
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-askari-district.png",
+      "hash": "sha256:9916928641b9f86f232d2649211d0f4398f68f6e5158304aaf3ce5293dc3e138",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33025,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          91,
+          60,
+          107
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-askari-street.png",
+      "hash": "sha256:6dc5ce2aaa7fd0c1dd70c45907c6060aaf0f6cd3009fd190bd658792a73b1fef",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 36638,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          91,
+          60,
+          107
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-askari-closeup.png",
+      "hash": "sha256:25dde601784aa5d9aec91f5777d2958718acf51b7cffc92dca28b8867b101b0c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 39844,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          91,
+          60,
+          107
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:e1c214e212bb97640f45be5b850e892f9c8348b40606e4f68b26e0e6cf57ef77",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31860,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          96.9679,
+          78.9307,
+          168.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:6bb08ab001c56c75355dba5b0843746fcb7b72db281fff039352518cd4ed23b6",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 33025,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          96.9679,
+          78.9307,
+          168.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:0f79019053497726bcc5b342768ce23925187713f08c2e0e1612beec6f43248c",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 36638,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          96.9679,
+          78.9307,
+          168.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:5c090f599735d8ef69c1042ceea9778b427a1589e083a5227c33492d15ff95db",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 39844,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sy/syp/al_askari_shrine/terrain-review.height.png"
+        },
+        "position": [
+          96.9679,
+          78.9307,
+          168.024
+        ],
+        "lookAt": [
+          -0.0321,
+          27.9307,
+          0.024
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

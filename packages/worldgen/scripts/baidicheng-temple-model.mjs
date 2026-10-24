@@ -1,4 +1,4 @@
-/** 'N0537': Eight mapped Baidicheng core envelopes, open courts and the decorated arched gateway. */
+/** 'baidicheng': Eight mapped Baidicheng core envelopes, open courts and the decorated arched gateway. */
 import { buildChineseHipRoof } from './chinese-roof-geometry.mjs';
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';
 

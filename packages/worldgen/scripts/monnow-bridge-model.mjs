@@ -10,9 +10,7 @@ import {
 import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0015_monnow_bridge', 'map-frame.json')),
-);
+const frame = JSON.parse(readFileSync(structureSourcePath('monnow_bridge', 'map-frame.json')));
 const red = [0.235, 0.158, 0.112],
   buff = [0.31, 0.286, 0.212],
   mortar = [0.24, 0.217, 0.17],
@@ -852,7 +850,7 @@ function geographicProposal() {
   };
 }
 export const monnowStudy = {
-  id: 'N0015',
+  id: 'monnow_bridge',
   key: 'monnow_bridge',
   title: 'Monnow Bridge and Gatehouse',
   wikidataId: 'Q250115',

@@ -1,4 +1,4 @@
-/** N0564 complete medium-fi exterior. Original heritage draft remains unchanged. Measured envelopes; local carved and brick ornament is proportional reconstruction. */
+/** gonbad_e_qabus complete medium-fi exterior. Original heritage draft remains unchanged. Measured envelopes; local carved and brick ornament is proportional reconstruction. */
 import { loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
 import { box, quad } from './structure-mesh.mjs';
 

@@ -1,0 +1,77 @@
+{
+  "format": "molen/scene@3",
+  "name": "Has Oda Kogusu, Topkapi Palace asset preview",
+  "seed": "has_oda_kogusu_topkapi_palace",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.has_oda_kogusu_topkapi_palace",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      18.950624287568406,
+      33.770623599202736,
+      74.1004307619829
+    ],
+    "lookAt": [
+      -1.3840699407537074,
+      7.570623599202737,
+      2.66164430364052
+    ],
+    "fov": 46
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

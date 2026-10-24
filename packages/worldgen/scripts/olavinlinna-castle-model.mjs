@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/ud/udu/n0315_olavinlinna_castle/',
+  '../../../content/worldgen/source/places/ud/udu/olavinlinna_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -477,7 +477,7 @@ const rotateCamera = ({ position, lookAt, ...rest }) => {
   return { ...rest, position: p(position), lookAt: p(lookAt) };
 };
 export const olavinlinnaStudy = {
-  id: 'N0315',
+  id: 'olavinlinna_castle',
   key: 'olavinlinna_castle',
   title: 'Olavinlinna Castle',
   category: 'castle',

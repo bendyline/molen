@@ -1,11 +1,11 @@
-/** N0526: reproducible Hathor temple stela groups and approximate rock-chapel remains. */
+/** serabit_el_khadim: reproducible Hathor temple stela groups and approximate rock-chapel remains. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildSerabitRuins } from './serabit-ruins-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/st/stp/n0526_serabit_el_khadim/',
+    '../../../content/worldgen/source/places/st/stp/serabit_el_khadim/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -82,7 +82,7 @@ export const buildSerabitSkyline = (o) => build(o, 0),
   buildSerabitStreet = (o) => build(o, 2),
   buildSerabitCloseup = (o) => build(o, 3);
 export const serabitStudy = {
-  id: 'N0526',
+  id: 'serabit_el_khadim',
   key: 'serabit_el_khadim',
   title: 'Serabit el-Khadim',
   category: 'temple',

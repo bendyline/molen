@@ -5,7 +5,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { belCandidateId, buildBel } from './bel-ruin-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sy/sy5/n0505_temple_of_bel/',
+    '../../../content/worldgen/source/places/sy/sy5/temple_of_bel/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -66,7 +66,7 @@ export const buildBelSkyline = (o) => build(o, 0),
   buildBelStreet = (o) => build(o, 2),
   buildBelCloseup = (o) => build(o, 3);
 export const belStudy = {
-  id: 'N0505',
+  id: 'temple_of_bel',
   key: 'temple_of_bel',
   title: 'Temple of Bel',
   category: 'temple',

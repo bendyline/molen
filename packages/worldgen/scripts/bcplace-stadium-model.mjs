@@ -670,7 +670,7 @@ export function buildBcPlace(out) {
   roof(out);
 }
 export const bcplaceStudy = {
-  id: 'N0705',
+  id: 'bc_place',
   key: 'bc_place',
   wikidataId: 'Q612227',
   title: 'BC Place',

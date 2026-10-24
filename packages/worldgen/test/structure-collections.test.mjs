@@ -12,54 +12,58 @@ import {
 
 const document = JSON.parse(
   await readFile(
-    new URL('../../../content/worldgen/source/next-1000/collections.json', import.meta.url),
+    new URL('../../../content/worldgen/source/structure-catalog/collections.json', import.meta.url),
   ),
 );
 const catalog = JSON.parse(
   await readFile(
-    new URL('../../../content/worldgen/source/next-1000/candidates.json', import.meta.url),
+    new URL('../../../content/worldgen/source/structure-catalog/candidates.json', import.meta.url),
   ),
 );
 const collections = validateStructureCollections(document, catalog.candidates);
-const collection = collections.find((entry) => entry.id === 'N0208');
+const collection = collections.find((entry) => entry.id === 'seven_sisters');
 
 describe('independent landmark collections', () => {
   it('keeps node-mapped memorials independent from campus building members', () => {
-    const site = collections.find((entry) => entry.id === 'N0748');
+    const site = collections.find((entry) => entry.id === 'yad_vashem');
     expect(site.requiredCount).toBe(10);
-    const memorial = site.members.find((member) => member.id === 'N0748_CHILDREN');
+    const memorial = site.members.find((member) => member.id === 'childrens_memorial_yad_vashem');
     expect(memorial.featureId).toBe('node/13197000158');
     expect(memorial.assetId).not.toBe(site.members[0].assetId);
     const spec = { ...memorial, collectionId: site.id, mapFeatureId: memorial.featureId };
     expect(validateCollectionSpec(spec, collections)).toEqual(memorial);
     for (const invalid of ['node/0', 'node/-1', 'node/../1', 'point/13197000158']) {
       const changed = structuredClone(document);
-      const c = changed.collections.find((entry) => entry.id === 'N0748');
+      const c = changed.collections.find((entry) => entry.id === 'yad_vashem');
       c.members.find((member) => member.id === memorial.id).featureId = invalid;
       c.membershipEvidence.featureIds = c.members.map((member) => member.featureId);
       expect(() => validateStructureCollections(changed, catalog.candidates)).toThrow();
     }
   });
   it('keeps serialized imports bounded while accepting member IDs and check mode', () => {
-    expect(structureImportArgs(['--check', '--ids=N0207,N0208_MSU'])).toEqual([
-      '--ids=N0207,N0208_MSU',
-      '--check',
+    expect(
+      structureImportArgs(['--check', '--ids=bank_of_america_plaza,msu_main_building']),
+    ).toEqual(['--ids=bank_of_america_plaza,msu_main_building', '--check']);
+    expect(structureImportArgs(['--ids=bank_of_america_plaza'])).toEqual([
+      '--ids=bank_of_america_plaza',
     ]);
-    expect(structureImportArgs(['--ids=N0207'])).toEqual(['--ids=N0207']);
     for (const args of [
       [],
-      ['--ids=../N0207'],
-      ['--ids=N0207', '--force'],
-      ['--ids=N0207', '--ids=N0208'],
-      ['--ids=N0207', '--check', '--check'],
+      ['--ids=../bank_of_america_plaza'],
+      ['--ids=bank_of_america_plaza', '--force'],
+      ['--ids=bank_of_america_plaza', '--ids=seven_sisters'],
+      ['--ids=bank_of_america_plaza', '--check', '--check'],
     ])
       expect(() => structureImportArgs(args)).toThrow('Usage');
   });
   it('expands a collection into its complete distinct member set and deduplicates explicit selection', () => {
     expect(collection.members).toHaveLength(7);
-    expect(selectedStructureIds(['N0208', collection.members[0].id, 'N0207'], collections)).toEqual(
-      [...collection.members.map((member) => member.id), 'N0207'],
-    );
+    expect(
+      selectedStructureIds(
+        ['seven_sisters', collection.members[0].id, 'bank_of_america_plaza'],
+        collections,
+      ),
+    ).toEqual([...collection.members.map((member) => member.id), 'bank_of_america_plaza']);
     expect(selectedStructureIds(undefined, collections)).toBeUndefined();
     expect(collection.members.some((member) => member.wikidataId === 'Q2387534')).toBe(true);
     expect(collection.members.some((member) => member.wikidataId === 'Q13164')).toBe(false);
@@ -92,7 +96,7 @@ describe('independent landmark collections', () => {
   it('requires reuse when a building identity already has a catalog asset', () => {
     const member = collection.members[0];
     const existing = {
-      id: 'N0999',
+      id: 'existing_registered_building',
       wikidataId: member.wikidataId,
       modelRef: 'molen.worldgen.structure.existing',
     };
@@ -112,16 +116,16 @@ describe('independent landmark collections', () => {
 
   it('cannot import a composite or unknown member, and only lists actually registered member assets', () => {
     const member = collection.members[0];
-    expect(validateCollectionSpec({ ...member, collectionId: 'N0208' }, collections)).toEqual(
-      member,
-    );
-    expect(() => validateCollectionSpec({ id: 'N0208' }, collections)).toThrow('composite');
+    expect(
+      validateCollectionSpec({ ...member, collectionId: 'seven_sisters' }, collections),
+    ).toEqual(member);
+    expect(() => validateCollectionSpec({ id: 'seven_sisters' }, collections)).toThrow('composite');
     expect(() => validateCollectionSpec({ ...member, wikidataId: 'Q42' }, collections)).toThrow(
       'identity',
     );
-    expect(() => validateCollectionSpec({ id: 'N0208_UNKNOWN' }, collections)).toThrow(
-      'undeclared',
-    );
+    expect(() =>
+      validateCollectionSpec({ id: 'unknown_building', collectionId: collection.id }, collections),
+    ).toThrow('undeclared');
     expect(collectionModelRefs(collection, {})).toEqual([]);
     expect(collectionModelRefs(collection, { [member.assetId]: 'asset.json' })).toEqual([
       { id: member.id, wikidataId: member.wikidataId, asset: member.assetId },
@@ -129,9 +133,12 @@ describe('independent landmark collections', () => {
   });
 
   it('uses distinct attributed map members when a site has no separate member QIDs', () => {
-    const site = collections.find((entry) => entry.id === 'N0633');
+    const site = collections.find((entry) => entry.id === 'towers_of_silence_in_yazd');
     expect(site.identityKind).toBe('osm-members');
-    expect(selectedStructureIds(['N0633'], collections)).toEqual(['N0633_EAST', 'N0633_WEST']);
+    expect(selectedStructureIds(['towers_of_silence_in_yazd'], collections)).toEqual([
+      'east_maneckji_tower_of_silence',
+      'west_golestan_tower_of_silence',
+    ]);
     expect(new Set(site.members.map((entry) => entry.featureId)).size).toBe(2);
     for (const member of site.members) {
       const spec = { ...member, mapFeatureId: member.featureId, collectionId: site.id };
@@ -161,7 +168,7 @@ describe('independent landmark collections', () => {
   });
 
   it('never permits overlapping site-QID matching radii, repeated members or moved anchors', () => {
-    const site = collections.find((entry) => entry.id === 'N0633');
+    const site = collections.find((entry) => entry.id === 'towers_of_silence_in_yazd');
     const [east, west] = site.members;
     const anchor = (member) => [
       member.referenceCoordinate.longitude,
@@ -204,7 +211,7 @@ describe('independent landmark collections', () => {
     ).toBe(false);
     expect(
       distinctMappedCollectionPlacement(
-        { ...spec, collectionId: 'N0208' },
+        { ...spec, collectionId: 'seven_sisters' },
         proposal,
         existing,
         collections,
@@ -214,7 +221,8 @@ describe('independent landmark collections', () => {
 
   it('retains a mapped member own identity only with an explicit identity source', () => {
     const changed = structuredClone(document);
-    const member = changed.collections.find((entry) => entry.id === 'N0633').members[0];
+    const member = changed.collections.find((entry) => entry.id === 'towers_of_silence_in_yazd')
+      .members[0];
     member.wikidataId = 'Q42';
     expect(() => validateStructureCollections(changed, catalog.candidates)).toThrow();
     member.identitySource = 'https://www.wikidata.org/wiki/Q42';
@@ -222,7 +230,9 @@ describe('independent landmark collections', () => {
   });
 
   it('permits dense mapped members only when explicit identity radii remain disjoint', () => {
-    const site = structuredClone(collections.find((entry) => entry.id === 'N0633'));
+    const site = structuredClone(
+      collections.find((entry) => entry.id === 'towers_of_silence_in_yazd'),
+    );
     site.members[1].referenceCoordinate = {
       longitude: site.members[0].referenceCoordinate.longitude + 0.0003,
       latitude: site.members[0].referenceCoordinate.latitude,
@@ -270,7 +280,7 @@ describe('independent landmark collections', () => {
   });
 
   it('keeps the declared dense Topkapi shared-site member radii disjoint', () => {
-    const site = collections.find((entry) => entry.id === 'N0742');
+    const site = collections.find((entry) => entry.id === 'topkap_palace');
     const members = site.members.filter((m) => m.wikidataId === site.wikidataId);
     const anchor = (m) => [m.referenceCoordinate.longitude, m.referenceCoordinate.latitude];
     for (const a of members)

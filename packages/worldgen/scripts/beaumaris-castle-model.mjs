@@ -5,7 +5,7 @@ import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 
-const root = '../../../content/worldgen/source/places/gc/gcm/n0283_beaumaris_castle/';
+const root = '../../../content/worldgen/source/places/gc/gcm/beaumaris_castle/';
 const frame = JSON.parse(readFileSync(new URL(`${root}map-frame.json`, import.meta.url)));
 const refs = JSON.parse(readFileSync(new URL(`${root}reference-metadata.json`, import.meta.url)));
 export const beaumarisPalette = {
@@ -558,7 +558,7 @@ export const buildBeaumarisSkyline = (o) =>
     0,
   );
 export const beaumarisStudy = {
-  id: 'N0283',
+  id: 'beaumaris_castle',
   key: 'beaumaris_castle',
   title: 'Beaumaris Castle',
   category: 'castle',

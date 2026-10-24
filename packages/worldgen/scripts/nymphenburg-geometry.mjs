@@ -1,4 +1,4 @@
-/** 'N0761': Nymphenburg's mapped palace ranges, red hip roofs, four courts and raised galleries. */
+/** 'nymphenburg_palace': Nymphenburg's mapped palace ranges, red hip roofs, four courts and raised galleries. */
 import './install-deterministic-math.mjs';
 import { createRequire } from 'node:module';
 import earcut from 'earcut';

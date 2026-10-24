@@ -1,4 +1,4 @@
-/** 'N0547': Pompeii Apollo's standing podium, broken colonnades and open precinct. */
+/** 'temple_of_apollo': Pompeii Apollo's standing podium, broken colonnades and open precinct. */
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';
 
 export function buildApolloPompeiiRuins(face, detail, r, sample) {

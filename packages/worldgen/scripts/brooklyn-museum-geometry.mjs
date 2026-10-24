@@ -1,4 +1,4 @@
-/** 'N0766': connected Brooklyn Museum wings, six Ionic columns and stepped glass pavilion. */
+/** 'brooklyn_museum': connected Brooklyn Museum wings, six Ionic columns and stepped glass pavilion. */
 import './install-deterministic-math.mjs';
 import { createRequire } from 'node:module';
 import earcut from 'earcut';

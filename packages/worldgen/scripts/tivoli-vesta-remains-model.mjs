@@ -1,4 +1,4 @@
-/** 'N0554': Tivoli's roofless cella, surviving column arc and original simplified frieze. */
+/** 'temple_of_vesta_tivoli': Tivoli's roofless cella, surviving column arc and original simplified frieze. */
 import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 import { buildCorinthianColumn } from './corinthian-column-geometry.mjs';

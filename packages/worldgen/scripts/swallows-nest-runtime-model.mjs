@@ -7,7 +7,7 @@ import { buildSwallowsNestRuntime } from './swallows-nest-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/sz/szb/n0271_swallow_s_nest/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/sz/szb/swallows_nest/pmtiles-fit.json',
         import.meta.url,
       ),
     ),
@@ -35,7 +35,7 @@ function rockApron(o, level, far) {
   const frame = JSON.parse(
       readFileSync(
         new URL(
-          '../../../content/worldgen/source/places/sz/szb/n0271_swallow_s_nest/map-frame.json',
+          '../../../content/worldgen/source/places/sz/szb/swallows_nest/map-frame.json',
           import.meta.url,
         ),
       ),

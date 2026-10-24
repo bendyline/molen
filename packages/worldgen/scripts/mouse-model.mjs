@@ -1,11 +1,11 @@
-/** N0634: current pale Mouse Tower, projecting stair turret and crenellated crowns. */
+/** mouse_tower: current pale Mouse Tower, projecting stair turret and crenellated crowns. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMouseTower } from './mouse-tower-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u0/u0v/n0634_mouse_tower/',
+    '../../../content/worldgen/source/places/u0/u0v/mouse_tower/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -88,7 +88,7 @@ export const buildMouseSkyline = (o) => build(o, 0),
   buildMouseStreet = (o) => build(o, 2),
   buildMouseCloseup = (o) => build(o, 3);
 export const mouseStudy = {
-  id: 'N0634',
+  id: 'mouse_tower',
   key: 'mouse_tower',
   title: 'Mouse Tower',
   category: 'tower',

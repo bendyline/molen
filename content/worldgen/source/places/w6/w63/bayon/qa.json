@@ -1,0 +1,686 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.bayon",
+  "reviewedOn": "2026-10-18",
+  "inputHash": "sha256:c324c47590b85cde8a2e901f539fc987b344202c55924e2168c8000100b46ebe",
+  "sourceHash": "sha256:b150b83822611039fafe580d92110f3b1647de14f8dfcf8655de5e2f34c41cc9",
+  "runtimeHash": "sha256:d83e2391b3fdd9e42798808ae7698a440b9c97699fbdf173c7171eb11af3bc15",
+  "captureReportHash": "sha256:8861739b85bd119e406ddd76ac39d918c5e5195b552f979f3171d79a0fb4695a",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/east-galleries-and-towers.png",
+      "shots/central-stone-faces.png",
+      "shots/face-relief-close.png",
+      "shots/inner-platform-and-courts.png",
+      "shots/outer-colonnade-and-library.png",
+      "shots/mapped-temple-plan.png"
+    ],
+    "notes": "Inspected all 11 current portable views. The mapped outer compound, cruciform raised platform, taller central sanctuary, staggered face-tower cluster, open colonnades and interrupted gallery roofs distinguish Bayon. Two separately mapped eastern libraries remain separate forms within the gallery compound. Near levels use actual four-sided facial relief: broad noses, cheeks, downcast eyelids, shallow smiling lips and elongated ears; these are faceted visualization geometry, not photo decals. The first draft had an oversized square central head and too many complete gallery roofs; the central lower core, head proportions and broken roof rhythm were revised against the ordinary pictures."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/east-galleries-and-towers.png",
+      "shots/shared/central-stone-faces.png",
+      "shots/shared/face-relief-close.png",
+      "shots/shared/inner-platform-and-courts.png",
+      "shots/shared/outer-colonnade-and-library.png",
+      "shots/shared/mapped-temple-plan.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all 11 current shared-material views. Three common 256-square ashlar, sandstone-grain and dry-stone material graphs use metric UVs and linear tints. Three near draws and one skyline draw; no embedded images, unique atlas or model-specific image load. Each material graph loads once and eviction frees model geometry. The shared flat stage exposes terrain-following foundation depth and does not establish geographic contact.",
+    "captureReportHash": "sha256:af8b180bdb0d3b15fd2c23bdf515a04f944fcc3bbf518f0f13c074d95545d501"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/east-galleries-and-towers.png",
+      "medium-fi/central-stone-faces.png",
+      "medium-fi/face-relief-close.png",
+      "medium-fi/inner-platform-and-courts.png",
+      "medium-fi/outer-colonnade-and-library.png",
+      "medium-fi/mapped-temple-plan.png",
+      "medium-fi/whole-temple-skyline.png",
+      "medium-fi/whole-temple-district.png",
+      "medium-fi/whole-temple-street.png",
+      "medium-fi/whole-temple-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 27 current medium-fi frames: street, block and skyline ranges beside procedural buildings at noon and late afternoon, Economy and High, untextured silhouette, six architectural details, four whole-temple levels and all transitions. The standard context camera scale was widened to 2.2 so procedural neighbors remain visible at street range. Skyline 972 triangles preserves the compound and clustered tower mass; district 3890 adds coarse mapped faces and sparse colonnades; street 15720 adds open portals, selected facial shape and grouped bays; closeup 42784 refines the faces and stepped lotus crowns. Initial skyline plus district geometry is 494096 bytes, plus three shared material graphs. Separate attribute streams prevent duplicate GPU uploads. Close-range shape changes between coarse and detailed face/crown levels remain visible; physical-device and dense-city measurements are pending.",
+    "captureReportHash": "sha256:4a6eb23d2b754cc7c48dc23f758d3b7b02cebf920385fa77d211a0fcdc488829"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:5e88ba0aeff17ac635bdeea5301d3c2ef7fe8568f1ee90340e9ce73bcd9462f7",
+    "mapFrameHash": "sha256:5c4c4e93c793cd421c8baf74995bdd8abc4b9684223ddbd9df870d12859aaed9",
+    "notes": "Reviewed approximate full-site placement on the unchanged 161-square/6m standard DEM. Raw east/south coordinates preserve the nearly cardinal gallery grid and eastern approach. The opaque cruciform platform supports the principal cluster. Gallery supports, outer tower feet and library foundations extend below sampled terrain; district gallery supports include extra depth for their longer grouped bays. No terrain or water excavation is requested. Full-site loading replaces 12 temple records and preserves all 52 independent buildings in the 960m tile exactly. Eight native water features retain 438179.1610115951 square metres. Failure retains all 64 native buildings; eviction preserves surfaces and frees model geometry. A synthetic 64m partial tile retains original terrain beneath clipped pieces. Its empty semantic context checks clipping/lifecycle only; temporary cut faces are not permanent temple geometry. Coarse canopy-influenced DEM levels are not archaeological survey elevations."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted for the specific medium-fi Bayon exterior and approximate normal-map/DEM placement. Twelve standard-map records control the outer compound, inner cruciform platform, eight principal tower parts and two eastern libraries. The 37 rendered tower forms include 29 secondary position/height estimates from ordinary pictures and a modern explanatory layout whose caption explicitly says upper-terrace dimensions are approximate. This is not a surveyed current tower, face or damage inventory. The nominal 43m central top, subsidiary heights, crown tiers, face proportions, roof survivors, stairs and archaeological thresholds remain visualization estimates. Exact carvings, inscriptions, lichen patterns, navigable interiors, surrounding monuments and historic complete roofs are outside scope. Coarse canopy-influenced terrain does not resolve the actual archaeological paving levels. No bespoke survey or archival research was used."
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:b150b83822611039fafe580d92110f3b1647de14f8dfcf8655de5e2f34c41cc9"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:d83e2391b3fdd9e42798808ae7698a440b9c97699fbdf173c7171eb11af3bc15"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:5f6436893ce424b995e5064920223d477ce9a424c1408571ef7f8bd19a7f08af"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:1f2281521ec97d0a3395652259614fb4040021419ea8eff7feb3cd7eb1e65325"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:1781f00be393feb1690c1145681afb8b4007827b26f83b7e368009f9a8f26dc1"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:d92b1358f8cb78bbe50648d558cf09055b2dce8a3624fc1238e3886a17cac2c1"
+      }
+    ],
+    "reports": [
+      {
+        "phase": "final",
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 64,
+          "independentBuildings": 52,
+          "remainingBuildings": 52,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.bayon"
+          ],
+          "rawTerrainRange": {
+            "min": -15.386182764596644,
+            "max": 22.165117235403358
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 438179.1610115951,
+          "remainingWaterArea": 438179.1610115951,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:4946d1abd86728e398601640cd5721bca1cf4708753f6b99243376c83c05b744",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-face-relief-close.png",
+            "hash": "sha256:e6e90f956b24a9580c4e48d495ec978142eeef0e5b1c7892c61ce805ae38bd01",
+            "camera": "face-relief-close"
+          },
+          {
+            "path": "shots/site-integration/final-skyline-outer-colonnade-and-library.png",
+            "hash": "sha256:c14130ab7dc95fa0e45dd4d7e08c73fe7ba59e2a4b87007b9df74b027e6e8509",
+            "camera": "outer-colonnade-and-library"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 64,
+          "independentBuildings": 52,
+          "remainingBuildings": 52,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.stone_drywall": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.bayon"
+          ],
+          "rawTerrainRange": {
+            "min": -15.386182764596644,
+            "max": 22.165117235403358
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 438179.1610115951,
+          "remainingWaterArea": 438179.1610115951,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:568dc183f80c673fe493cb1a602336dc3a6ecf352c516d1bd5c29f8264b00d93",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-district-face-relief-close.png",
+            "hash": "sha256:d89ae729770c06476a43d9396aadf83c00861216b72d0aa43e21d168fb03a5fe",
+            "camera": "face-relief-close"
+          },
+          {
+            "path": "shots/site-integration/final-district-outer-colonnade-and-library.png",
+            "hash": "sha256:44dd79a193970901db78f5121a329aa134c8deebda004b102ee681dca77ff135",
+            "camera": "outer-colonnade-and-library"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 64,
+          "independentBuildings": 52,
+          "remainingBuildings": 52,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.stone_drywall": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.bayon"
+          ],
+          "rawTerrainRange": {
+            "min": -15.386182764596644,
+            "max": 22.165117235403358
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 438179.1610115951,
+          "remainingWaterArea": 438179.1610115951,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:ee73837809f2644e25fd41d88d44ba258c7d4f48d27a5c79a5e09d1a60b8b92a",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-street-face-relief-close.png",
+            "hash": "sha256:e4ec8f12b4aeaa3f8966b8a3e32bc39288783ca9481c8818088fd543b78fede0",
+            "camera": "face-relief-close"
+          },
+          {
+            "path": "shots/site-integration/final-street-outer-colonnade-and-library.png",
+            "hash": "sha256:bd59de0dac523c7aa77476ccc66e39bcdae1571ad2f1397858ca967b001b67bd",
+            "camera": "outer-colonnade-and-library"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 64,
+          "independentBuildings": 52,
+          "remainingBuildings": 52,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.stone_drywall": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.bayon"
+          ],
+          "rawTerrainRange": {
+            "min": -15.386182764596644,
+            "max": 22.165117235403358
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 438179.1610115951,
+          "remainingWaterArea": 438179.1610115951,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:3840ff39976ee003be7f752e455bf7cbb6033b83fc3e35ff5424d9dbab45a04d",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-east-galleries-and-towers.png",
+            "hash": "sha256:477619abbc215f49f7b2771464f08a3d6d7bb70832c011cdacb66aece3905daa",
+            "camera": "east-galleries-and-towers"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-central-stone-faces.png",
+            "hash": "sha256:850c5dfbcc52792e83492f51d322618c6740beea43923f2788d274376a3006c0",
+            "camera": "central-stone-faces"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-face-relief-close.png",
+            "hash": "sha256:cfa6b994a131eed04bd29c059667f23ba8ae8c72b6179d55fbc5b96161dd017a",
+            "camera": "face-relief-close"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-inner-platform-and-courts.png",
+            "hash": "sha256:e881055140f9c5ac06b80cb4c6b820796fdb2400cc801e31fc2d8cef968c3255",
+            "camera": "inner-platform-and-courts"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-outer-colonnade-and-library.png",
+            "hash": "sha256:ecd58045ec6409f123c29e375c0062f774470db8274082acf37d930f5c78ff87",
+            "camera": "outer-colonnade-and-library"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-mapped-temple-plan.png",
+            "hash": "sha256:5c507d7fbf2100e5e15a316c31ca80668ecfa61899e4c70171a19981f74f1c13",
+            "camera": "mapped-temple-plan"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 64,
+          "independentBuildings": 52,
+          "remainingBuildings": 64,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184875407665,
+              "area": 128.1039275822593
+            },
+            {
+              "id": 35184944476207,
+              "area": 322.4520844962825
+            },
+            {
+              "id": 35184944476208,
+              "area": 35.08303353127218
+            },
+            {
+              "id": 35184944476209,
+              "area": 43.769485932077146
+            },
+            {
+              "id": 35184944476210,
+              "area": 40.48047821757734
+            },
+            {
+              "id": 35184944476211,
+              "area": 60.08816616131867
+            },
+            {
+              "id": 35184944476212,
+              "area": 36.39023686906455
+            },
+            {
+              "id": 35184944476214,
+              "area": 15.306664119415814
+            },
+            {
+              "id": 35184944476215,
+              "area": 10.879124849981281
+            },
+            {
+              "id": 35184948835000,
+              "area": 140.54281321035091
+            },
+            {
+              "id": 52776565123471,
+              "area": 8890.43411608873
+            },
+            {
+              "id": 52776569058355,
+              "area": 2667.450727690746
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.bayon"
+          ],
+          "rawTerrainRange": {
+            "min": -15.386182764596644,
+            "max": 22.165117235403358
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 438179.1610115951,
+          "remainingWaterArea": 438179.1610115951,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:d93143038e549b0e7a65c06adaf5a7ae6c0eab3a4aa602560362932016817f75",
+            "camera": "whole-site"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.stone_drywall": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.bayon"
+          ],
+          "rawTerrainRange": {
+            "min": -15.386182764596644,
+            "max": 22.165117235403358
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 438179.1610115951,
+          "remainingWaterArea": 438179.1610115951,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-closeup-whole-site.png",
+            "hash": "sha256:9d33215de1eb93506d529b50659c939d263595d66dc68b7613c224c03204ce33",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-face-relief-close.png",
+            "hash": "sha256:88f92e53ea58c606eee7ef029c60a5dda76865fe12b1758c192ba12e5fb80eef",
+            "camera": "face-relief-close"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-outer-colonnade-and-library.png",
+            "hash": "sha256:5a4476dd3fa686b6621dccb8463524b7f4659e172475dd95dcfe1fe55b8f4cf5",
+            "camera": "outer-colonnade-and-library"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_ashlar": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.stone_drywall": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.bayon"
+          ],
+          "rawTerrainRange": {
+            "min": -15.386182764596644,
+            "max": 22.165117235403358
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 438179.1610115951,
+          "remainingWaterArea": 438179.1610115951,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-district-whole-site.png",
+            "hash": "sha256:1f3226ac260da0cd9e9ca98d3151a232456d247593235a77bdd681ecb761be68",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-district-face-relief-close.png",
+            "hash": "sha256:9ff2f9443b60c8e26c73eab3b49df4e9ba3717089409c7e21f0dbbe0659ceb35",
+            "camera": "face-relief-close"
+          },
+          {
+            "path": "shots/site-integration/partial-district-outer-colonnade-and-library.png",
+            "hash": "sha256:cd263b4267d23ed93508ac6a56b6b78edbde8057c8b2590e760462b18101d528",
+            "camera": "outer-colonnade-and-library"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": true,
+          "groundOutsideResidentTile": true,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.bayon"
+          ],
+          "rawTerrainRange": {
+            "min": -15.386182764596644,
+            "max": 22.165117235403358
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 438179.1610115951,
+          "remainingWaterArea": 438179.1610115951,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-failure-whole-site.png",
+            "hash": "sha256:4673d46783b6af2c2b107b0cfd77447f0156f2c1b4fc28037903ca6c6a1ea34f",
+            "camera": "whole-site"
+          }
+        ]
+      }
+    ],
+    "floorCoverage": {
+      "checks": 4,
+      "samples": 824,
+      "missing": 0
+    },
+    "partialResidency": {
+      "status": "original-ground-preserved",
+      "notes": "No ground excavation; synthetic64m residency retains original terrain under clipped temple pieces. Temporary cut faces are not permanent geometry."
+    }
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/w6/w63/bayon/models/source.glb\",\"hash\":\"sha256:b150b83822611039fafe580d92110f3b1647de14f8dfcf8655de5e2f34c41cc9\",\"bytes\":6557380,\"triangles\":54624,\"materials\":3,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/w6/w63/bayon/model.glb\",\"hash\":\"sha256:d83e2391b3fdd9e42798808ae7698a440b9c97699fbdf173c7171eb11af3bc15\",\"bytes\":6557028,\"triangles\":54624,\"materials\":3,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/w6/w63/bayon/model.skyline.glb\",\"hash\":\"sha256:5f6436893ce424b995e5064920223d477ce9a424c1408571ef7f8bd19a7f08af\",\"bytes\":106700,\"triangles\":972,\"materials\":1,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/w6/w63/bayon/model.district.glb\",\"hash\":\"sha256:1f2281521ec97d0a3395652259614fb4040021419ea8eff7feb3cd7eb1e65325\",\"bytes\":387396,\"triangles\":3890,\"materials\":3,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/w6/w63/bayon/model.street.glb\",\"hash\":\"sha256:1781f00be393feb1690c1145681afb8b4007827b26f83b7e368009f9a8f26dc1\",\"bytes\":1666816,\"triangles\":15720,\"materials\":3,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/w6/w63/bayon/model.closeup.glb\",\"hash\":\"sha256:d92b1358f8cb78bbe50648d558cf09055b2dce8a3624fc1238e3886a17cac2c1\",\"bytes\":4753856,\"triangles\":42784,\"materials\":3,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "18-peak-face-relief-and-opening-probes",
+        "passed": true,
+        "notes": "All six files retain the nominal central top. Source, runtime, street and closeup levels retain actual facial depth and open base portals; coarse face levels are explicit simplifications."
+      },
+      {
+        "check": "824-compound-floor-samples",
+        "passed": true,
+        "notes": "Complete occupied floor coverage in all four browser levels."
+      },
+      {
+        "check": "128-raw-map-vertices",
+        "passed": true,
+        "notes": "Every mapped control outline and courtyard-hole vertex retains its raw east/south coordinates."
+      },
+      {
+        "check": "selected-source-runtime-placement-scene",
+        "passed": true,
+        "notes": "Selected generator/import/placement checks, strict medium-fi audit, scene validate and sim30 passed."
+      }
+    ]
+  },
+  "limitations": [
+    "Specific Bayon exterior: actual outer gallery compound and inner cruciform platform, a43m central stepped sanctuary, seven other mapped principal tower parts, two separately mapped eastern libraries and29 picture/layout-guided secondary tower estimates. Four-sided shallow stone face reliefs carry the identity near the camera. Open colonnades, surviving lintels, interrupted gallery roofs, cardinal approaches and terraces remain distinct. Independent nearby buildings are preserved.",
+    "Q654024/relation6990223 and standard PMTiles compound52776565123471 define the approximately121-by113m outer gallery. Inner building52776569058355 preserves its21-point cruciform platform; eight independent tower parts fix principal centers, including the19-point central sanctuary. Two mapped buildings on either side of the eastern entrance match the ordinary article’s courtyard libraries. Raw east/south coordinates preserve the almost cardinal grid and eastern approach. The ordinary modern layout picture guides secondary tower distribution within the inner cluster and at outer gopuras; its caption explicitly says the upper terrace dimensions are approximate. Tower/face inventories are not surveyed.",
+    "The ordinary article gives a43m central tower and37 surviving towers, but does not establish an exact present inventory. The main tower retains the nominal43m top above its datum. Other tower heights, subsidiary positions, stepped crowns, damaged roof sections and facial relief are picture-guided approximations. Fine carvings, exact stone/lichen inventories, inscriptions and historical complete roofs are omitted.",
+    "Retain the unchanged161-square/6m standard Mapzen-USGS grid and36.679m reference datum. The cruciform platform has a complete opaque top; its foundation feet and gallery supports extend below local standard terrain. Local gallery/tower bases follow coarse terrain samples. No ground or water excavation is requested; surveyed archaeological levels remain unknown.",
+    "Secondary tower positions, exact face counts, library roofs and damaged gallery sections are visualization estimates. The ordinary modern layout picture has approximate upper-terrace dimensions; it is not a surveyed present inventory. Fine carvings, lichen, inscriptions, individual damaged stones and hidden interiors are omitted. Current visual/site acceptance is pending.",
+    "Accepted for the specific medium-fi Bayon exterior and approximate normal-map/DEM placement. Twelve standard-map records control the outer compound, inner cruciform platform, eight principal tower parts and two eastern libraries. The 37 rendered tower forms include 29 secondary position/height estimates from ordinary pictures and a modern explanatory layout whose caption explicitly says upper-terrace dimensions are approximate. This is not a surveyed current tower, face or damage inventory. The nominal 43m central top, subsidiary heights, crown tiers, face proportions, roof survivors, stairs and archaeological thresholds remain visualization estimates. Exact carvings, inscriptions, lichen patterns, navigable interiors, surrounding monuments and historic complete roofs are outside scope. Coarse canopy-influenced terrain does not resolve the actual archaeological paving levels. No bespoke survey or archival research was used."
+  ]
+}

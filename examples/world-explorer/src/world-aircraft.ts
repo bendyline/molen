@@ -414,15 +414,24 @@ export class WorldAircraft {
       ? 'Impact — R recover'
       : s.waitingForTerrain
         ? 'Waiting for terrain'
-        : s.stalled
-          ? 'STALL — nose down, power up, wings level'
-          : this.message ||
-            (s.grounded
-              ? airplane && s.airspeed >= (kind === 'airliner' ? 65 : 42)
-                ? 'Rotate gently — S'
-                : 'On ground'
-              : 'Airborne');
+        : (s.departure ?? 0) > 0.8 && Math.abs(s.yawRate ?? 0) > 0.8
+          ? 'DEPARTURE / SPIN'
+          : s.overspeed
+            ? 'OVERSPEED — reduce speed / check gear and flaps'
+            : s.stalled
+              ? 'STALL — nose down, power up, wings level'
+              : this.message ||
+                (s.grounded
+                  ? airplane && s.airspeed >= (kind === 'airliner' ? 65 : 42)
+                    ? 'Rotate gently — S'
+                    : 'On ground'
+                  : 'Airborne');
     const load = airplane && !s.grounded ? `${(s.loadFactor ?? 1).toFixed(1)} g · ` : '';
+    const reheat = Math.max(
+      0,
+      ...Object.values(s.engines ?? {}).map((engine) => engine.afterburner ?? 0),
+    );
+    const airData = `${s.mach === undefined ? '' : `M ${s.mach.toFixed(2)} · `}${s.equivalentAirspeed === undefined ? '' : `${(s.equivalentAirspeed * 1.94384).toFixed(0)} KEAS · `}${reheat > 0 ? `AB ${Math.round(reheat * 100)}% · ` : ''}`;
     // The selection, until the gear and flaps actually get there.
     const gearPosition = s.gearPosition ?? Number(this.inputs.gear);
     const flapPosition = s.flapPosition ?? Number(this.inputs.flaps);
@@ -440,7 +449,7 @@ export class WorldAircraft {
         : flapPosition === 0
           ? 'up'
           : `${Math.round(flapPosition * 100)}%`;
-    return `${spec.label} · ${(s.airspeed * 1.94384).toFixed(0)} kt · ${(s.altitudeAGL * 3.28084).toFixed(0)} ft AGL · ${(s.verticalSpeed * 196.85).toFixed(0)} ft/min · ${load}${airplane ? 'Throttle' : 'Collective'} ${(this.inputs.power * 100).toFixed(0)}% · RPM ${(s.rpm * 100).toFixed(0)}% · ${this.inputs.engine ? 'Engine on' : 'Engine off'} · ${airplane ? `Gear ${gear} · Flaps ${flaps} · ` : ''}${spec.poweredLift ? `Vector ${Math.round((s.thrustVectorPosition ?? 0) * 90)}° · ` : ''}${alert}`;
+    return `${spec.label} · ${(s.airspeed * 1.94384).toFixed(0)} KTAS · ${airData}${(s.altitudeAGL * 3.28084).toFixed(0)} ft AGL · ${(s.verticalSpeed * 196.85).toFixed(0)} ft/min · ${load}${airplane ? 'Throttle' : 'Collective'} ${(this.inputs.power * 100).toFixed(0)}% · RPM ${(s.rpm * 100).toFixed(0)}% · ${this.inputs.engine ? 'Engine on' : 'Engine off'} · ${airplane ? `Gear ${gear} · Flaps ${flaps} · ` : ''}${spec.poweredLift ? `Vector ${Math.round((s.thrustVectorPosition ?? 0) * 90)}° · ` : ''}${alert}`;
   }
   exitHint(): void {
     this.message =

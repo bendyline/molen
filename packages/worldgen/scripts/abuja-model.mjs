@@ -5,7 +5,7 @@ import earcut from 'earcut';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/s1/s1t/n0485_abuja_national_mosque/',
+  '../../../content/worldgen/source/places/s1/s1t/abuja_national_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -503,7 +503,7 @@ const cam = (name, position, lookAt) => ({
   fov: 48,
 });
 export const abujaStudy = {
-  id: 'N0485',
+  id: 'abuja_national_mosque',
   key: 'abuja_national_mosque',
   title: 'Abuja National Mosque',
   category: 'mosque',

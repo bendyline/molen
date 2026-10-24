@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u23/n0268_hohensalzburg_fortress/map-frame.json',
+      '../../../content/worldgen/source/places/u2/u23/hohensalzburg_fortress/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -755,7 +755,7 @@ export function buildHohensalzburgRuntime(o, level = 'closeup') {
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u23/n0268_hohensalzburg_fortress/pmtiles-fit.json',
+      '../../../content/worldgen/source/places/u2/u23/hohensalzburg_fortress/pmtiles-fit.json',
       import.meta.url,
     ),
   ),

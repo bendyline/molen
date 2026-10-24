@@ -8,7 +8,7 @@ import { buildCalifornia } from '../../worldgen/scripts/lighthouse-americas-mode
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/d6/d6n/n0668_california_lighthouse'),
+const source = resolve('../../content/worldgen/source/places/d6/d6n/california_lighthouse'),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
@@ -79,7 +79,7 @@ it('preserves exact original source and the actual tower center with explicitly 
   smoothMeshNormals(m, ['wall', 'trim'], 32);
   const s = await read(source + '/spec.json'),
     f = await read(source + '/map-frame.json'),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(p.anchor).toEqual([-70.0513486, 12.6137665]);

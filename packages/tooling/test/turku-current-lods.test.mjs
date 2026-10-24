@@ -5,8 +5,8 @@ import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { buildTurkuCurrentRuntime } from '../../worldgen/scripts/turku-castle-current-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u6/u6x/n0305_turku_castle');
-const runtime = resolve('../../content/worldgen/assets/places/u6/u6x/n0305_turku_castle');
+const source = resolve('../../content/worldgen/source/places/u6/u6x/turku_castle');
+const runtime = resolve('../../content/worldgen/assets/places/u6/u6x/turku_castle');
 const read = async (p) => JSON.parse(await readFile(p));
 const triangles = (level) => {
   const out = [];

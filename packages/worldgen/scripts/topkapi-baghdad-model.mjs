@@ -1,11 +1,11 @@
-/** 'N0742_BAGHDAD': Mapped blue-tiled cross-room, open terrace, broad lead hip and garden undercroft. */
+/** 'baghdad_kiosk_topkapi_palace': Mapped blue-tiled cross-room, open terrace, broad lead hip and garden undercroft. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiBaghdad } from './topkapi-baghdad-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_baghdad/',
+    '../../../content/worldgen/source/places/sx/sxk/baghdad_kiosk_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -103,7 +103,7 @@ export const buildTopkapiBaghdadSkyline = (o) => build(o, 0),
   buildTopkapiBaghdadStreet = (o) => build(o, 2),
   buildTopkapiBaghdadCloseup = (o) => build(o, 3);
 export const topkapiBaghdadStudy = {
-  id: 'N0742_BAGHDAD',
+  id: 'baghdad_kiosk_topkapi_palace',
   key: 'baghdad',
   title: 'Baghdad Kiosk, Topkapi Palace',
   category: 'castle',

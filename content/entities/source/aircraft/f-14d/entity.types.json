@@ -7656,12 +7656,12 @@
                 2.1,
                 0
               ],
-              "wingArea": 52.4902176,
+              "wingArea": 52.49,
               "controlAuthoritySpeed": 120,
               "maxControlAuthority": 1.8,
               "pitchAuthority": 0.25,
               "pitchResponse": 2.5,
-              "stallPitchRate": 0.18,
+              "stallPitchRate": 0.08,
               "rollAuthority": 1.8,
               "rollResponse": 2,
               "rudderAuthority": 1,
@@ -7669,7 +7669,7 @@
               "groundLevelRate": 2,
               "maxGroundPitch": 0.22,
               "camberAngle": 0.045,
-              "flapLift": 0.33,
+              "flapLift": 0.6,
               "postStallFlapEffect": 0.4,
               "stallAngle": 0.28,
               "stallTransitionAngle": 0.12,
@@ -7686,10 +7686,10 @@
               "liftSlope": 4.8,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.025,
-              "inducedDrag": 0.06,
+              "profileDrag": 0.018,
+              "inducedDrag": 0.06073864280026564,
               "gearDrag": 0.018,
-              "flapDrag": 0.035,
+              "flapDrag": 0.065,
               "gearTransitTime": 6,
               "flapTransitTime": 4,
               "stallDrag": 1.1,
@@ -7699,7 +7699,23 @@
               "lateralDamping": 0.35,
               "brakeDeceleration": 4,
               "rollingDeceleration": 0.22,
-              "groundTrackRate": 12
+              "groundTrackRate": 12,
+              "groundEffect": true,
+              "criticalMach": 0.85,
+              "waveDrag": 0.03846645173817271,
+              "maxMach": 2.34,
+              "maxEquivalentAirspeed": 411.75366710698523,
+              "gearLimitSpeed": 130,
+              "flapLimitSpeed": 125,
+              "departure": {
+                "onsetAngle": 0.4,
+                "fullAngle": 1.05,
+                "yawInstability": 4.5,
+                "yawSaturationRate": 3.14,
+                "rudderBlanking": 0.97,
+                "pitchBlanking": 0.98,
+                "aileronReversal": 0.9
+              }
             },
             "engines": [
               {
@@ -7718,9 +7734,17 @@
                 "idleRpm": 0.18,
                 "spoolRate": 0.2,
                 "rotorAngularSpeed": 150,
-                "maxThrust": 69300,
+                "maxThrust": 123660.56090533998,
                 "minPropellerSpeed": 160,
-                "propellerEfficiency": 0.85
+                "propellerEfficiency": 0.85,
+                "propulsion": "jet",
+                "densityExponent": 0.38726441434106107,
+                "dryThrust": 74000,
+                "ramRise": 0.2,
+                "afterburnerThrust": 123660.56090533998,
+                "afterburnerDetent": 0.85,
+                "highAltitudeDensityRatio": 0.2470758786900125,
+                "highAltitudeExponent": 1.2
               },
               {
                 "id": "engine-2",
@@ -7738,9 +7762,17 @@
                 "idleRpm": 0.18,
                 "spoolRate": 0.2,
                 "rotorAngularSpeed": 150,
-                "maxThrust": 69300,
+                "maxThrust": 123660.56090533998,
                 "minPropellerSpeed": 160,
-                "propellerEfficiency": 0.85
+                "propellerEfficiency": 0.85,
+                "propulsion": "jet",
+                "densityExponent": 0.38726441434106107,
+                "dryThrust": 74000,
+                "ramRise": 0.2,
+                "afterburnerThrust": 123660.56090533998,
+                "afterburnerDetent": 0.85,
+                "highAltitudeDensityRatio": 0.2470758786900125,
+                "highAltitudeExponent": 1.2
               }
             ]
           }

@@ -1,11 +1,11 @@
-/** 'N0737': British Museum wings, Ionic colonnade and Great Court lattice. */
+/** 'british_museum': British Museum wings, Ionic colonnade and Great Court lattice. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBritishMuseum } from './british-museum-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gc/gcp/n0737_british_museum/',
+    '../../../content/worldgen/source/places/gc/gcp/british_museum/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -77,7 +77,7 @@ export const buildBritishSkyline = (o) => build(o, 0),
   buildBritishStreet = (o) => build(o, 2),
   buildBritishCloseup = (o) => build(o, 3);
 export const britishStudy = {
-  id: 'N0737',
+  id: 'british_museum',
   key: 'british_museum',
   title: 'British Museum',
   category: 'museum',

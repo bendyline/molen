@@ -1,4 +1,4 @@
-/** 'N0737': Native museum wings, mapped Ionic columns, curved Great Court and Reading Room. */
+/** 'british_museum': Native museum wings, mapped Ionic columns, curved Great Court and Reading Room. */
 import { beam, cross, normalize } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
@@ -17,7 +17,7 @@ export function britishRadius(poly, center, a) {
       u = cross(p, d) / den;
     if (t > 0 && u >= -1e-8 && u <= 1 + 1e-8) hits.push(t);
   }
-  if (!hits.length) throw Error('N0737 missing radial native boundary');
+  if (!hits.length) throw Error('british_museum missing radial native boundary');
   return Math.min(...hits);
 }
 export function britishCourtTriangles(r, detail) {

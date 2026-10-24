@@ -1,11 +1,11 @@
-/** 'N0547': Pompeii Apollo's roofless podium and surviving court colonnades. */
+/** 'temple_of_apollo': Pompeii Apollo's roofless podium and surviving court colonnades. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { buildApolloPompeiiRuins } from './apollo-pompeii-ruins-model.mjs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr4/n0547_temple_of_apollo/',
+    '../../../content/worldgen/source/places/sr/sr4/temple_of_apollo/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -83,7 +83,7 @@ export const buildApolloPompeiiSkyline = (o) => build(o, 0),
   buildApolloPompeiiStreet = (o) => build(o, 2),
   buildApolloPompeiiCloseup = (o) => build(o, 3);
 export const apolloPompeiiStudy = {
-  id: 'N0547',
+  id: 'temple_of_apollo',
   key: 'temple_of_apollo',
   title: 'Temple of Apollo, Pompeii',
   category: 'temple',

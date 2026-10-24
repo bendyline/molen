@@ -10,7 +10,7 @@ import { parseArcGrid, sampleArcGrid } from './arc-grid.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const cache = resolve(root, '.artifacts/bridge-terrain/poland');
 const output = resolve(root, 'content/earth/structures/evidence/bridge-terrain/gugik');
-const folder = 'n0029_poniatowski_bridge';
+const folder = 'poniatowski_bridge';
 const specBytes = await readFile(structureSourcePath(folder, 'spec.json'));
 const spec = JSON.parse(specBytes);
 const inputHash = await modelInputHash(
@@ -52,7 +52,7 @@ for (let row = 0; row < resolution; row++)
 const valid = heights.filter((value) => value !== null);
 const document = {
   format: 'molen/bridge-terrain-evidence@1',
-  candidateId: 'N0029',
+  candidateId: 'poniatowski_bridge',
   title: spec.title,
   modelFolder: folder,
   inputHash,
@@ -103,7 +103,10 @@ const document = {
   ],
 };
 await mkdir(output, { recursive: true });
-await writeFile(resolve(output, 'N0029.json'), `${JSON.stringify(document, null, 2)}\n`);
+await writeFile(
+  resolve(output, 'poniatowski_bridge.json'),
+  `${JSON.stringify(document, null, 2)}\n`,
+);
 const frameBytes = await readFile(structureSourcePath(folder, 'map-frame.json'));
 const frame = JSON.parse(frameBytes);
 if (
@@ -135,7 +138,7 @@ const station = (x) => {
 };
 const profile = {
   format: 'molen/bridge-surface-evidence@1',
-  candidateId: 'N0029',
+  candidateId: 'poniatowski_bridge',
   anchor,
   heading,
   mapFrameHash: hash(frameBytes),
@@ -200,13 +203,13 @@ const profile = {
   limitations: document.limitations,
 };
 await writeFile(
-  resolve(output, 'N0029-deck-profile.json'),
+  resolve(output, 'poniatowski_bridge-deck-profile.json'),
   `${JSON.stringify(profile, null, 2)}\n`,
 );
 console.log(
   JSON.stringify(
     {
-      candidateId: 'N0029',
+      candidateId: 'poniatowski_bridge',
       valid: valid.length,
       noData: document.noDataCount,
       anchorElevation: document.anchorElevation,

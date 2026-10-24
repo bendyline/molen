@@ -1,11 +1,11 @@
-/** N0540: specific Metekhi stone church, triple apses, twelve-sided drum and pointed north porch. */
+/** metekhi_church: specific Metekhi stone church, triple apses, twelve-sided drum and pointed north porch. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMetekhiChurch } from './metekhi-church-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sz/szr/n0540_metekhi_church/',
+    '../../../content/worldgen/source/places/sz/szr/metekhi_church/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -85,7 +85,7 @@ export const buildMetekhiSkyline = (o) => build(o, 0),
   buildMetekhiStreet = (o) => build(o, 2),
   buildMetekhiCloseup = (o) => build(o, 3);
 export const metekhiStudy = {
-  id: 'N0540',
+  id: 'metekhi_church',
   key: 'metekhi_church',
   title: 'Metekhi church',
   category: 'temple',

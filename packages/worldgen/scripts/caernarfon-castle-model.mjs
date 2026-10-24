@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/gc/gck/n0273_caernarfon_castle/map-frame.json',
+      '../../../content/worldgen/source/places/gc/gck/caernarfon_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -661,7 +661,7 @@ export const buildCaernarfonSkyline = (o) =>
     'skyline',
   );
 export const caernarfonStudy = {
-  id: 'N0273',
+  id: 'caernarfon_castle',
   key: 'caernarfon_castle',
   title: 'Caernarfon Castle',
   category: 'castle',

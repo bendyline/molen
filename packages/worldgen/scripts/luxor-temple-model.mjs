@@ -1,5 +1,5 @@
 /** Specific Luxor exterior; parameters retain the independently mapped temple parts. */
-export const luxorCandidateId = 'N0491';
+export const luxorCandidateId = 'luxor_temple';
 
 function box(f, role, x, y, z, w, h, d, tint) {
   const a = x - w / 2,

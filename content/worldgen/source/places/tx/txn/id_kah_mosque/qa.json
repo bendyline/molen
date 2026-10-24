@@ -1,0 +1,151 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.id_kah_mosque",
+  "reviewedOn": "2026-10-18",
+  "inputHash": "sha256:1af78d7f7ea88ca5ddcdaa26b2e8ee4b08348eb65cbe447f9baa56dfd5ee48db",
+  "sourceHash": "sha256:646d9e506bb13b677f3f5325ef44eaf53ac31af0d3c0764d2dc042e12808dbfd",
+  "runtimeHash": "sha256:b0f849cf38e12915fb0845f6cb8e21c689280c91eaabbbe5bfa5fa14b92b1702",
+  "captureReportHash": "sha256:20ee8d2b95af52e1ca1d44acd31b40de9511e2e9ff2216cd99a55a03d9792a10",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/yellow-gateway-and-open-passage.png",
+      "shots/white-blind-niche-and-tile-bands.png",
+      "shots/open-minaret-lanterns.png",
+      "shots/green-veranda-columns.png",
+      "shots/white-beams-and-brackets.png",
+      "shots/irregular-ring-and-open-courtyard.png"
+    ],
+    "notes": "Inspected 11 current portable views, including the retained 1024×640 summary. The irregular low ring and open courtyard, yellow portal and wings, white pointed blind-arch trim, deep pointed recess and clear rectangular passage, paired tapered minarets with blue bands and open capped lanterns, and west veranda with green columns and white beams/brackets are present. Removed the low roof strip that crossed the passage and removed a duplicate yellow ceiling reveal over the veranda plaster. Fine historic decoration and inscriptions are abstracted; garden, trees, street furniture, carpets, furnished interiors and adjacent buildings are excluded."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/yellow-gateway-and-open-passage.png",
+      "shots/shared/white-blind-niche-and-tile-bands.png",
+      "shots/shared/open-minaret-lanterns.png",
+      "shots/shared/green-veranda-columns.png",
+      "shots/shared/white-beams-and-brackets.png",
+      "shots/shared/irregular-ring-and-open-courtyard.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected 11 current shared-material/geographic-flat views, including the placement overlay. Seven existing 256² graphs provide yellow glazed brick, pale raw/coursed limestone, lime plaster, green timber, blue ceramic and cast bronze. Seven merged roles use metric UVs and linear tints, with no embedded images or unique atlas. Graphs are read once and model geometry is disposed on eviction. Precise building subtraction preserves all 60 nearby buildings, including a southern building sharing boundary vertices with zero area overlap; the coarse occupancy raster would incorrectly claim that neighbor, so its fallback is disabled by the explicit cutout. Two exact notched terrain masks retain the courtyard ground. Corrected final views show land in the courtyard, and unload restores the terrain opening state.",
+    "captureReportHash": "sha256:3a349c2fc6946522e3f923206affeb1f90a08cc0c3d3f859339654af2bc71d20"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/yellow-gateway-and-open-passage.png",
+      "medium-fi/white-blind-niche-and-tile-bands.png",
+      "medium-fi/open-minaret-lanterns.png",
+      "medium-fi/green-veranda-columns.png",
+      "medium-fi/white-beams-and-brackets.png",
+      "medium-fi/irregular-ring-and-open-courtyard.png",
+      "medium-fi/whole-idkah-skyline.png",
+      "medium-fi/whole-idkah-district.png",
+      "medium-fi/whole-idkah-street.png",
+      "medium-fi/whole-idkah-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected 27 current medium-fi views: Economy/High, noon/late light, street/block/skyline, silhouette, six details, four matched LODs and four transitions. The low irregular compound, open courtyard, yellow gate, twin tower silhouettes and sheltered green colonnade remain visible. Skyline retains 11 coarse columns, a clear gate and four-post open lanterns; district restores 21 columns, blind niches and three blue bands; street restores 42 columns, joists, finer lanterns and original coarse band diamonds; closeup adds brackets and backing panels. Street overview cameras favor the courtyard and crop the gateway; dedicated details cover the gate and veranda. Context houses are synthetic. Physical laptop/phone/tablet and full-city timings remain unmeasured.",
+    "captureReportHash": "sha256:671942fa3b9f7effc250c9ffdf186603ee9ce684a3cc024837f2a7112dba8d12"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:48284f2a07af43e40dc21d63d8e115338b2797a52ea18622728b8371b7141e83",
+    "mapFrameHash": "sha256:86927f18974276ba3d80bc4968c5f309713c70b70bd46d9a8900082ae124ff65",
+    "notes": "Retained Q1325825 reference anchor is unchanged. Current PMTiles has one named Id Kah Mosque point inside a single large courtyard building,52776572429281,with13 outer and27 inner vertices. The building has no exact Wikidata tag;selection is a reviewed approximate association from the named point,location and compound shape. The west outer edge supplies an undirected alignment;the eastern projecting gate and inspected gateway picture supply approximate facing. The courtyard hole stays open. No measured facade,roof partition or signed survey bearing is claimed. Standard Protomaps20261014 and Mapzen/USGS viewer extractN0479;datum 1300.191498056187 m. The floor is the median of 344 outer/court edge samples plus0.25 m. 1103 mapped-ring samples range -2.956909692738691 to 2.7874161669869864 m. Footings follow sampled grade;the exact court hole remains open in the replacement mask. The synthetic fixture seats only the mapped ring and a3 m margin to avoid raster interpolation at walls. Exact steps,thresholds,drains and finished ground levels remain approximate. Independently reproduced 13 outer and 27 courtyard vertices, the named point, the mapped4 m height and the west-edge alignment0.29271244284415965 rad. The selected building has no exact Wikidata identity tag; the source records a reviewed approximate association. Two simple notched polygons partition the exact mapped ring for ground cutting. Separate precise building subtraction leaves all60 neighbors unchanged. All366 placement/host-area checks and1,561 FrontSide probes pass for the open entrance/head, closed blind niches, open courtyard, green stems, plaster ceiling, tower tips, open lanterns and both outer/court foundations. Standard DEM reproduces1,103 ring samples,344 edge samples and549 seated fixture points and the16-bit heightmap. Preview terrain seating and contact remain approximate."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Individual Id Kah Mosque compound: retained irregular ring and open courtyard,yellow entrance portal and wings with white pointed blind-arch trim,a real central passage,two tapered minarets with blue geometric bands and open capped lanterns,low pale roof ranges and a sheltered west prayer-hall veranda with green timber columns,white beams and coarse brackets. Garden,trees,street furniture,adjacent buildings,inscriptions,carpets,furnished interiors and engineering are excluded. The mapped whole-building height4 m controls the low courtyard ranges. Estimated levels above the local floor: prayer-hall roof4 m,veranda ceiling3.8 m,front wings7.2 m,portal13.8 m and two minarets22.6 m including finials. Gate dimensions,blind niches,tower positions/profiles,columns,brackets and roof details are visual estimates. No retained dimensional facts or individual part height tags exist. The reference anchor, named map point and compound shape support approximate placement. Building identity is not an exact Wikidata-tag match. The two inspected2011/2007 pictures establish gateway and hall vocabulary, not a measured full facade or complete current condition. Portal and minaret dimensions/positions, blind-niche counts, internal layout, veranda rows, roof construction, vertical datum, precise steps and thresholds remain estimates. The whole mapped4 m height supplies the low ranges only; the taller gateway/towers are explicitly estimated. Garden, furnishings, inscriptions, historic artwork and engineering are unverified or omitted."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/tx/txn/id_kah_mosque/models/source.glb\",\"hash\":\"sha256:646d9e506bb13b677f3f5325ef44eaf53ac31af0d3c0764d2dc042e12808dbfd\",\"bytes\":1182636,\"triangles\":9819,\"materials\":7,\"images\":0,\"min\":[-53.66008758544922,-3.3298442363739014,-67.94764709472656],\"max\":[65.3173828125,23.169343948364258,72.63578033447266],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/tx/txn/id_kah_mosque/model.glb\",\"hash\":\"sha256:b0f849cf38e12915fb0845f6cb8e21c689280c91eaabbbe5bfa5fa14b92b1702\",\"bytes\":1182008,\"triangles\":9819,\"materials\":7,\"images\":0,\"min\":[-53.66008758544922,-3.3298442363739014,-67.94764709472656],\"max\":[65.3173828125,23.169343948364258,72.63578033447266],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/tx/txn/id_kah_mosque/model.skyline.glb\",\"hash\":\"sha256:d176785cb3153c363f6e38f86e7493d2d35a7e6cd9d25cb2124131defdeff492\",\"bytes\":85740,\"triangles\":918,\"materials\":1,\"images\":0,\"min\":[-53.66008758544922,-3.3069097995758057,-67.94764709472656],\"max\":[65.3173828125,23.169343948364258,72.63578033447266],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/tx/txn/id_kah_mosque/model.district.glb\",\"hash\":\"sha256:a1f6919eb9a62d45a1348f48c5af4869da853c1403698039f2ab098ae09699e1\",\"bytes\":201092,\"triangles\":2385,\"materials\":7,\"images\":0,\"min\":[-53.66008758544922,-3.3298442363739014,-67.94764709472656],\"max\":[65.3173828125,23.169343948364258,72.63578033447266],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/tx/txn/id_kah_mosque/model.street.glb\",\"hash\":\"sha256:978f928b5c2bdda79e38b7c002952369dc166f7c9bc64ca8abb89f36fdef1c09\",\"bytes\":720032,\"triangles\":7781,\"materials\":7,\"images\":0,\"min\":[-53.66008758544922,-3.3298442363739014,-67.94764709472656],\"max\":[65.3173828125,23.169343948364258,72.63578033447266],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/tx/txn/id_kah_mosque/model.closeup.glb\",\"hash\":\"sha256:5db4649c7080a0c2a8ed50d722c393216bddd373a21dc6840fff08815d2ba5a4\",\"bytes\":859492,\"triangles\":9429,\"materials\":7,\"images\":0,\"min\":[-53.66008758544922,-3.3298442363739014,-67.94764709472656],\"max\":[65.3173828125,23.169343948364258,72.63578033447266],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "1561-current-FrontSide-probes",
+        "passed": true,
+        "notes": "Retained Q1325825 reference anchor is unchanged. Current PMTiles has one named Id Kah Mosque point inside a single large courtyard building,52776572429281,with13 outer and27 inner vertices. The building has no exact Wikidata tag;selection is a reviewed approximate association from the named point,location and compound shape. The west outer edge supplies an undirected alignment;the eastern projecting gate and inspected gateway picture supply approximate facing. The courtyard hole stays open. No measured facade,roof partition or signed survey bearing is claimed. Standard Protomaps20261014 and Mapzen/USGS viewer extractN0479;datum 1300.191498056187 m. The floor is the median of 344 outer/court edge samples plus0.25 m. 1103 mapped-ring samples range -2.956909692738691 to 2.7874161669869864 m. Footings follow sampled grade;the exact court hole remains open in the replacement mask. The synthetic fixture seats only the mapped ring and a3 m margin to avoid raster interpolation at walls. Exact steps,thresholds,drains and finished ground levels remain approximate. Independently reproduced 13 outer and 27 courtyard vertices, the named point, the mapped4 m height and the west-edge alignment0.29271244284415965 rad. The selected building has no exact Wikidata identity tag; the source records a reviewed approximate association. Two simple notched polygons partition the exact mapped ring for ground cutting. Separate precise building subtraction leaves all60 neighbors unchanged. All366 placement/host-area checks and1,561 FrontSide probes pass for the open entrance/head, closed blind niches, open courtyard, green stems, plaster ceiling, tower tips, open lanterns and both outer/court foundations. Standard DEM reproduces1,103 ring samples,344 edge samples and549 seated fixture points and the16-bit heightmap. Preview terrain seating and contact remain approximate."
+      },
+      {
+        "check": "366-placement-and-host-preservation-checks",
+        "passed": true,
+        "notes": "Retained Q1325825 reference anchor is unchanged. Current PMTiles has one named Id Kah Mosque point inside a single large courtyard building,52776572429281,with13 outer and27 inner vertices. The building has no exact Wikidata tag;selection is a reviewed approximate association from the named point,location and compound shape. The west outer edge supplies an undirected alignment;the eastern projecting gate and inspected gateway picture supply approximate facing. The courtyard hole stays open. No measured facade,roof partition or signed survey bearing is claimed. Standard Protomaps20261014 and Mapzen/USGS viewer extractN0479;datum 1300.191498056187 m. The floor is the median of 344 outer/court edge samples plus0.25 m. 1103 mapped-ring samples range -2.956909692738691 to 2.7874161669869864 m. Footings follow sampled grade;the exact court hole remains open in the replacement mask. The synthetic fixture seats only the mapped ring and a3 m margin to avoid raster interpolation at walls. Exact steps,thresholds,drains and finished ground levels remain approximate. Independently reproduced 13 outer and 27 courtyard vertices, the named point, the mapped4 m height and the west-edge alignment0.29271244284415965 rad. The selected building has no exact Wikidata identity tag; the source records a reviewed approximate association. Two simple notched polygons partition the exact mapped ring for ground cutting. Separate precise building subtraction leaves all60 neighbors unchanged. All366 placement/host-area checks and1,561 FrontSide probes pass for the open entrance/head, closed blind niches, open courtyard, green stems, plaster ceiling, tower tips, open lanterns and both outer/court foundations. Standard DEM reproduces1,103 ring samples,344 edge samples and549 seated fixture points and the16-bit heightmap. Preview terrain seating and contact remain approximate."
+      },
+      {
+        "check": "49-current-render-views-and-shared-lifecycle",
+        "passed": true,
+        "notes": "Inspected 11 current shared-material/geographic-flat views, including the placement overlay. Seven existing 256² graphs provide yellow glazed brick, pale raw/coursed limestone, lime plaster, green timber, blue ceramic and cast bronze. Seven merged roles use metric UVs and linear tints, with no embedded images or unique atlas. Graphs are read once and model geometry is disposed on eviction. Precise building subtraction preserves all 60 nearby buildings, including a southern building sharing boundary vertices with zero area overlap; the coarse occupancy raster would incorrectly claim that neighbor, so its fallback is disabled by the explicit cutout. Two exact notched terrain masks retain the courtyard ground. Corrected final views show land in the courtyard, and unload restores the terrain opening state. Inspected 27 current medium-fi views: Economy/High, noon/late light, street/block/skyline, silhouette, six details, four matched LODs and four transitions. The low irregular compound, open courtyard, yellow gate, twin tower silhouettes and sheltered green colonnade remain visible. Skyline retains 11 coarse columns, a clear gate and four-post open lanterns; district restores 21 columns, blind niches and three blue bands; street restores 42 columns, joists, finer lanterns and original coarse band diamonds; closeup adds brackets and backing panels. Street overview cameras favor the courtyard and crop the gateway; dedicated details cover the gate and veranda. Context houses are synthetic. Physical laptop/phone/tablet and full-city timings remain unmeasured."
+      },
+      {
+        "check": "source-scene-and-layout",
+        "passed": true,
+        "notes": "Targeted source/placement checks, scene validate/sim30, selected LOD layout and recipe/registration Biome pass. Simulation sha256:8ce415086c355c4c6947c238aae7e697b4c1f1fc4663f06cf58b9a68255db3b8. Existing builds reused."
+      }
+    ]
+  },
+  "limitations": [
+    "Retained Q1325825 reference anchor is unchanged. Current PMTiles has one named Id Kah Mosque point inside a single large courtyard building,52776572429281,with13 outer and27 inner vertices. The building has no exact Wikidata tag;selection is a reviewed approximate association from the named point,location and compound shape. The west outer edge supplies an undirected alignment;the eastern projecting gate and inspected gateway picture supply approximate facing. The courtyard hole stays open. No measured facade,roof partition or signed survey bearing is claimed.",
+    "The mapped whole-building height4 m controls the low courtyard ranges. Estimated levels above the local floor: prayer-hall roof4 m,veranda ceiling3.8 m,front wings7.2 m,portal13.8 m and two minarets22.6 m including finials. Gate dimensions,blind niches,tower positions/profiles,columns,brackets and roof details are visual estimates. No retained dimensional facts or individual part height tags exist.",
+    "Standard Protomaps20261014 and Mapzen/USGS viewer extractN0479;datum 1300.191498056187 m. The floor is the median of 344 outer/court edge samples plus0.25 m. 1103 mapped-ring samples range -2.956909692738691 to 2.7874161669869864 m. Footings follow sampled grade;the exact court hole remains open in the replacement mask. The synthetic fixture seats only the mapped ring and a3 m margin to avoid raster interpolation at walls. Exact steps,thresholds,drains and finished ground levels remain approximate.",
+    "Gateway and hall pictures establish vocabulary only. Exact current condition,internal layout,front facade measurements,garden,interiors,engineering and physical-device/full-city performance remain unverified."
+  ]
+}

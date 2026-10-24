@@ -1,11 +1,11 @@
-/** N0632: restored square belfry, steep flared pyramid and open rounded-corner arcade. */
+/** st_urban_tower: restored square belfry, steep flared pyramid and open rounded-corner arcade. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildUrbanTower } from './urban-tower-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u2/u2x/n0632_st_urban_tower/',
+    '../../../content/worldgen/source/places/u2/u2x/st_urban_tower/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -89,7 +89,7 @@ export const buildUrbanSkyline = (o) => build(o, 0),
   buildUrbanStreet = (o) => build(o, 2),
   buildUrbanCloseup = (o) => build(o, 3);
 export const urbanStudy = {
-  id: 'N0632',
+  id: 'st_urban_tower',
   key: 'st_urban_tower',
   title: 'St. Urban Tower',
   category: 'tower',

@@ -1843,6 +1843,60 @@ const airplanePhysicsSchema = z.strictObject(
     flapLift: num.nonnegative(),
     postStallFlapEffect: num.nonnegative(),
     stallAngle: num.positive(),
+    criticalMach: num
+      .positive()
+      .optional()
+      .describe('Mach at which compressibility wave drag begins; omitted disables wave drag.'),
+    waveDrag: num
+      .nonnegative()
+      .optional()
+      .describe('Wave drag coefficient at criticalMach + 0.25; default 0.'),
+    maxEquivalentAirspeed: num
+      .positive()
+      .optional()
+      .describe('Airframe operating limit in m/s equivalent airspeed; alert only.'),
+    maxMach: num.positive().optional().describe('Airframe Mach operating limit; alert only.'),
+    gearLimitSpeed: num
+      .positive()
+      .optional()
+      .describe('Maximum equivalent airspeed with gear extended, m/s; alert only.'),
+    flapLimitSpeed: num
+      .positive()
+      .optional()
+      .describe('Maximum equivalent airspeed with flaps extended, m/s; alert only.'),
+    groundEffect: z
+      .boolean()
+      .optional()
+      .describe('Reduce wing induced drag near the ground; default false.'),
+    departure: z
+      .strictObject({
+        onsetAngle: num
+          .min(0)
+          .max(Math.PI / 2)
+          .describe('High-alpha departure onset, radians.'),
+        fullAngle: num
+          .positive()
+          .max(Math.PI / 2)
+          .describe('Fully developed departure incidence, radians; greater than onsetAngle.'),
+        yawInstability: num.nonnegative().describe('Separated-flow yaw growth rate, per second.'),
+        yawSaturationRate: num
+          .positive()
+          .describe('Autorotation saturation scale, radians per second.'),
+        rudderBlanking: num
+          .min(0)
+          .max(1)
+          .describe('Fraction of rudder authority lost at full departure.'),
+        pitchBlanking: num
+          .min(0)
+          .max(1)
+          .describe('Fraction of pitch stability and control lost at full departure.'),
+        aileronReversal: num
+          .min(0)
+          .max(1)
+          .describe('Aileron reversal: 0 unchanged, 0.5 ineffective, 1 reversed.'),
+      })
+      .refine((d) => d.fullAngle > d.onsetAngle, 'Full departure angle must exceed onset.')
+      .optional(),
     stallTransitionAngle: num
       .positive()
       .optional()
@@ -1952,6 +2006,40 @@ const helicopterPhysicsSchema = z.strictObject(
   describedFields({
     rotorPosition: vec3,
     rotorRadius: num.positive(),
+    powerLimitedRotor: z
+      .boolean()
+      .optional()
+      .describe(
+        'Govern rotor RPM and limit thrust using installed shaft power and actuator-disc momentum theory.',
+      ),
+    rotorEfficiency: num
+      .positive()
+      .max(1)
+      .optional()
+      .describe('Rotor induced-power efficiency; default 0.75.'),
+    profilePowerFraction: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe(
+        'Installed shaft-power fraction spent on rotor profile drag at governed RPM; default 0.12.',
+      ),
+    vortexRing: z
+      .boolean()
+      .optional()
+      .describe('Enable estimated powered-descent vortex-ring loss of lift; default false.'),
+    retreatingBladeSpeed: num
+      .positive()
+      .optional()
+      .describe(
+        'Sea-level TAS for estimated retreating-blade onset, m/s; decreases with density and rotor RPM.',
+      ),
+    rotorDiscs: num
+      .int()
+      .min(1)
+      .max(2)
+      .optional()
+      .describe('Effective lifting-disc count, 2 for a tandem rotor; default 1.'),
     cyclicTilt: num.positive(),
     cyclicResponse: num.positive(),
     cyclicDamping: num.nonnegative(),
@@ -1970,13 +2058,65 @@ const helicopterPhysicsSchema = z.strictObject(
 );
 const aircraftEngineSchema = z.strictObject(
   describedFields({
+    propulsion: z
+      .enum(['propeller', 'jet'])
+      .optional()
+      .describe('Installed propulsion type; omitted preserves the legacy constant-power model.'),
+    dryThrust: num
+      .positive()
+      .optional()
+      .describe('Sea-level static dry jet thrust in newtons, per engine.'),
+    afterburnerThrust: num
+      .positive()
+      .optional()
+      .describe(
+        'Total sea-level static augmented thrust in newtons, per engine; must exceed dry thrust.',
+      ),
+    afterburnerDetent: num
+      .min(0.1)
+      .max(0.99)
+      .optional()
+      .describe('Throttle fraction where reheat starts; default 0.85.'),
+    densityExponent: num
+      .nonnegative()
+      .max(3)
+      .optional()
+      .describe('Installed power/thrust density lapse exponent.'),
+    highAltitudeDensityRatio: num
+      .positive()
+      .max(1)
+      .optional()
+      .describe('Density ratio where upper-altitude engine lapse begins; continuous at this knee.'),
+    highAltitudeExponent: num
+      .nonnegative()
+      .max(3)
+      .optional()
+      .describe(
+        'Density lapse exponent below highAltitudeDensityRatio; defaults to densityExponent.',
+      ),
+    ratedDensityRatio: num
+      .positive()
+      .max(1)
+      .optional()
+      .describe('Lowest density ratio retaining flat-rated power or thrust; default 1.'),
+    ramRise: num
+      .nonnegative()
+      .max(2)
+      .optional()
+      .describe(
+        'Jet net-thrust multiplier per Mach squared, representing inlet ram recovery; default 0.',
+      ),
     position: vec3.describe(
       'Engine thrust application point in aircraft-local meters, relative to the landing-contact origin.',
     ),
     thrustAxis: vec3
       .refine((axis) => axis.some((value) => value !== 0), 'Thrust axis must be nonzero.')
       .describe('Local thrust direction; normalized by the solver.'),
-    power: num.positive().describe('Maximum shaft power in watts, for this engine only.'),
+    power: num
+      .positive()
+      .describe(
+        'Maximum shaft power in watts, per engine; retained as compatibility metadata for jets.',
+      ),
     idleRpm: num.min(0).max(1),
     spoolRate: num.positive(),
     rotorAngularSpeed: num.positive(),
@@ -2113,6 +2253,27 @@ const aircraftSpecSchema = z
         path: ['poweredLift'],
         message: 'Powered lift requires an airplane with a vectored engine.',
       });
+    for (const [index, engine] of installations.entries()) {
+      const path = value.engine ? ['engine'] : ['engines', index];
+      if (
+        engine.propulsion === 'jet' &&
+        (engine.dryThrust === undefined || value.model !== 'airplane')
+      )
+        ctx.addIssue({
+          code: 'custom',
+          path,
+          message: 'Jet propulsion requires dryThrust and model airplane.',
+        });
+      if (
+        engine.afterburnerThrust !== undefined &&
+        (engine.propulsion !== 'jet' || engine.afterburnerThrust <= (engine.dryThrust ?? 0))
+      )
+        ctx.addIssue({
+          code: 'custom',
+          path,
+          message: 'Afterburner thrust requires a jet and must exceed dry thrust.',
+        });
+    }
     for (const engine of installations)
       if (
         engine.vectored &&
@@ -2282,7 +2443,9 @@ registerComponent(
         'Per-engine pilot overrides by id. Failures live in aircraftState and cannot be cleared by pilot input.',
       ),
     gear: z.boolean().describe('Landing gear extended; helicopter skids are fixed.'),
-    flaps: z.boolean().describe('Plane landing flaps extended.'),
+    flaps: z
+      .union([z.boolean(), num.min(0).max(1)])
+      .describe('Plane flap selection: boolean up/down or fraction 0..1.'),
     thrustVector: num
       .min(0)
       .max(1)
@@ -2301,6 +2464,23 @@ registerComponent(
 registerComponent(
   'aircraftState',
   z.strictObject({
+    mach: num.nonnegative().optional().describe('True airspeed divided by local speed of sound.'),
+    equivalentAirspeed: num
+      .nonnegative()
+      .optional()
+      .describe('Airspeed normalized to standard sea-level density, m/s; not calibrated IAS.'),
+    overspeed: z
+      .boolean()
+      .optional()
+      .describe(
+        'An airframe, surface or rotor speed limit is exceeded; informational, not a speed clamp.',
+      ),
+    departure: num.min(0).max(1).optional().describe('Developed high-alpha departure fraction.'),
+    vortexRing: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe('Rotor vortex-ring severity in powered slow descent.'),
     velocity: vec3.describe('World velocity in meters per second.'),
     yaw: num.describe(
       'Heading in radians, zero +Z. Airplanes report it from transform.rot, which is authoritative.',
@@ -2352,6 +2532,7 @@ registerComponent(
           rpm: num.min(0).max(1),
           rotorAngle: num,
           failed: z.boolean(),
+          afterburner: num.min(0).max(1).optional(),
           thrust: num
             .nonnegative()
             .describe('Current propeller thrust in newtons; zero for the helicopter shaft engine.'),

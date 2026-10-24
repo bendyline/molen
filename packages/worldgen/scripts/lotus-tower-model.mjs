@@ -418,8 +418,8 @@ function buildLotus(out) {
 }
 
 export const lotusTower = {
-  id: 'n0583_lotus_tower',
-  planId: 'N0583',
+  id: 'lotus_tower',
+  planId: 'lotus_tower',
   title: 'Lotus Tower',
   wikidata: 'Q3449463',
   build: buildLotus,

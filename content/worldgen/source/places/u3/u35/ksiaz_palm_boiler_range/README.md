@@ -4,7 +4,7 @@
 
 Own north service range with low flanking wings, central timbered boiler gable, polygonal stair oriel, red tile roof and two square brick stacks.
 
-Independent component of [Książ Castle and park complex](../n0291_ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
 
 ## Sources and reconstruction
 

@@ -10,7 +10,7 @@ import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lo
 const frame = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u6/u65/n0296_kalmar_castle/map-frame.json',
+        '../../../content/worldgen/source/places/u6/u65/kalmar_castle/map-frame.json',
         import.meta.url,
       ),
     ),
@@ -61,7 +61,7 @@ function rayHit(origin, direction, p) {
   return u < -1e-5 || v < -1e-5 || u + v > 1.00001 ? null : dot(e2, cross(q, e1)) / det;
 }
 it('builds deterministic shared-material levels within all four browser budgets', async () => {
-  const id = 'molen.worldgen.structure.n0296_kalmar_castle',
+  const id = 'molen.worldgen.structure.kalmar_castle',
     bytes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

@@ -1,4 +1,4 @@
-/** 'N0553': Ritan's low altar, four approaches, red circular wall and stone portals. */
+/** 'temple_of_the_sun': Ritan's low altar, four approaches, red circular wall and stone portals. */
 import { box, loft } from './khmer-structure-geometry.mjs';
 
 export function buildRitanCore(face, detail, r, sample) {

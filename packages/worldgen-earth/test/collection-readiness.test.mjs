@@ -5,7 +5,7 @@ import { createStructureIndex } from '../src/kernel/structure-index';
 
 const collection = JSON.parse(
   await readFile(
-    new URL('../../../content/worldgen/source/next-1000/collections.json', import.meta.url),
+    new URL('../../../content/worldgen/source/structure-catalog/collections.json', import.meta.url),
   ),
 ).collections[0];
 const complete = (member) => ({
@@ -22,7 +22,7 @@ const complete = (member) => ({
   },
   geographic: {
     verified: true,
-    activePlacement: `next1000.${member.id.toLowerCase().replaceAll('_', '-')}`,
+    activePlacement: member.sourceKey.replaceAll('_', '.'),
     mappedFeatureIds: [],
   },
   visualQa: {

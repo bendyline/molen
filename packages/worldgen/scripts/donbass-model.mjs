@@ -1,11 +1,11 @@
-/** N0728: Donbass Arena with inclined saucer canopy, flared glass facade and three-tier bowl. */
+/** donbass_arena: Donbass Arena with inclined saucer canopy, flared glass facade and three-tier bowl. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildDonbassStadium } from './donbass-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ub/ubd/n0728_donbass_arena/',
+    '../../../content/worldgen/source/places/ub/ubd/donbass_arena/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -71,7 +71,7 @@ export const buildDonbassSkyline = (o) => build(o, 0),
   buildDonbassStreet = (o) => build(o, 2),
   buildDonbassCloseup = (o) => build(o, 3);
 export const donbassStudy = {
-  id: 'N0728',
+  id: 'donbass_arena',
   key: 'donbass_arena',
   title: 'Donbass Arena',
   category: 'stadium',

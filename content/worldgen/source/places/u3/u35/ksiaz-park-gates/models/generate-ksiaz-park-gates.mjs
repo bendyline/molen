@@ -133,7 +133,7 @@ for (const model of ksiazGateModels.filter(
     ...(model.wikidata ? { wikidataId: model.wikidata } : {}),
     quality: 'detailed',
     sitePart: {
-      candidateId: 'N0291',
+      candidateId: 'ksiaz_castle_and_park_complex',
       componentKey: model.component,
       identity: { type: 'node', id: model.node },
     },
@@ -154,7 +154,7 @@ for (const model of ksiazGateModels.filter(
       mappedTags: frame.elements[0].tags,
       independentWikidataIdKnown: !!model.wikidata,
       roofAndDatumSurveyed: false,
-      parentSite: 'N0291',
+      parentSite: 'ksiaz_castle_and_park_complex',
       primaryDescription:
         model.primaryDescription ??
         'Independent heritage gate node with map-linked primary photograph. Own point and adjoining path define the proposed axis; pillars, wing walls and ornamental proportions are original photographic interpretations.',
@@ -192,7 +192,7 @@ for (const model of ksiazGateModels.filter(
     sourceLicense:
       'Original authored geometry under repository license. Mapped point/path controls © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.',
     limitations: [
-      'One of three park gates; the full N0291 complex remains incomplete.',
+      'One of three park gates; the full ksiaz_castle_and_park_complex complex remains incomplete.',
       'Map data locates the opening and adjoining path only. Widths, heights and wing-wall curves are photographic estimates.',
       model.referenceYear
         ? `Exterior follows the ${model.referenceYear} primary photograph. Current restoration state is unconfirmed; present-day activation requires review.`
@@ -291,7 +291,7 @@ for (const model of ksiazGateModels.filter(
     '\n\n![Shared Molen preview](shots/shared/angle-0.png)\n\n' +
     spec.visualBrief +
     '\n\n' +
-    'Independent component of [Książ Castle and park complex](../n0291_ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
+    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
     '## Sources and reconstruction\n\n' +
     refs.map((url) => `- [Reference](${url})`).join('\n') +
     '\n\n' +

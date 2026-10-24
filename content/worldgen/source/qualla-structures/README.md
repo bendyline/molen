@@ -132,7 +132,7 @@ targets, but those must be identified separately.
 | `scan/<geohash2>.jsonl` | Persistent per-source-record `building3dScan` marker, semantic content hash and result, including exclusions |
 | [decisions.json](decisions.json) | Hand-edited editorial decisions; never overwritten by the scanner |
 | [scan-summary.json](scan-summary.json) | Corpus, algorithm, decisions and catalog fingerprints; counts and duplicate-ID conflicts |
-| [OTHER-DEVICE.md](OTHER-DEVICE.md), `workAssignment` in each target | Next-1,000 ownership, kept separate from readiness and excluded from local production |
+| [OTHER-DEVICE.md](OTHER-DEVICE.md), `workAssignment` in each target | structure catalog ownership, kept separate from readiness and excluded from local production |
 | [classify.mjs](classify.mjs), [scan.mjs](scan.mjs) | Offline triage and reproducible aggregation |
 | [sync-qualla.mjs](sync-qualla.mjs) | Refresh durable `molen3d` model links in Qualla's per-story curation catalog |
 
@@ -163,18 +163,18 @@ The scanner reconciles these registries on **every run**, even when story triage
 
 1. `content/worldgen/source/structure-index.json`: named source bundles, stable asset IDs and
    actual source paths. Reusable recipes are kept separate.
-2. `content/worldgen/source/next-1000/candidates.json` and `collections.json`: planned targets
+2. `content/worldgen/source/structure-catalog/candidates.json` and `collections.json`: planned targets
    and individually named collection members, including those without a model.
 3. `content/worldgen/project.json` and `stylepack.json`: imported runtime registrations.
-4. `content/earth/structures/placements.json`: geographic placement IDs, statuses and notes.
+4. `content/earth/source/placements/`: individual geographic placement records, statuses and notes.
 5. `content/earth/structures/readiness.json`: current reported readiness, fidelity and blockers.
 
 The source index retains `hasModel` for a hash-pinned source-model declaration even when the
 ignored GLB is not cached on this machine. Refreshing a local index must not forget existing
 model coverage. This flag reports authored model presence, not verified local bytes or readiness.
 
-This covers the World Explorer's original named models and the ongoing next-1,000 work.
-**Every next-1,000 candidate and collection member is owned by a separate device**, per the
+This covers the World Explorer's original named models and the ongoing structure catalog work.
+**Every structure catalog candidate and collection member is owned by a separate device**, per the
 owner's instruction. Keep its Qualla coverage visible and sync model links as that work arrives,
 but do not generate, refine or duplicate it in this local workstream, regardless of its current
 planned/imported/ready status. Possible matches are held out of local production until identity
@@ -309,13 +309,13 @@ hash, so syncing coverage never causes a rescan loop.
 links, reviewed exterior scopes and reserved identities. Its editable manifest is
 [batches/qualla-001.json](batches/qualla-001.json). Keep completed targets in this manifest;
 do not silently refill it whenever a new model is imported. Record any intentional replacement
-and its reason. All next-1,000 work belongs to the other device. Kensington Palace (`N0904`)
+and its reason. All structure catalog work belongs to the other device. Kensington Palace (`kensington_palace`)
 was removed from local slot 19 and replaced by Liebermann Villa; its original entry and
 accepted reference evidence remain in `deferredEntries` and `references/`. The manifest's
 `replacementHistory` records the change. The distinct 13 Kensington Palace Gardens remains local.
 
 Before resolving any images, preparation checks the complete local batch against the current
-next-1,000 candidate/member IDs, asset IDs, existing matches and exact names at nearby
+structure catalog candidate/member IDs, asset IDs, existing matches and exact names at nearby
 coordinates. It rejects overlaps even if the full story scan predates a new reservation.
 Refresh the scan before authoring to reconcile aliases and possible matches too.
 
@@ -360,10 +360,10 @@ these models by their ordinary structure IDs:
 ```sh
 node packages/worldgen/scripts/generate-authored-places.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex
 node packages/worldgen/scripts/generate-authored-places.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex --check
-node packages/worldgen/scripts/import-next-1000-models.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex
+node packages/worldgen/scripts/import-structure-models.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex
 node packages/tooling/scripts/generate-landmark-lods.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex --concurrency=2
 node packages/tooling/scripts/check-medium-fi.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex --strict
-node packages/worldgen/scripts/capture-next-1000-models.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex --reflections --antialias --fit-shadows
+node packages/worldgen/scripts/capture-structure-models.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex --reflections --antialias --fit-shadows
 node examples/world-explorer/test/visual/capture-landmark-library.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex --reflections --adaptive-clipping
 ```
 
@@ -381,12 +381,12 @@ The reference workflow, scan/resume behavior and catalog synchronization have is
 The active production goal is the fixed `batches/qualla-001.json` inventory, with the five
 pilots completed before starting the remaining 95. [Completion progress](batches/PROGRESS.md)
 is generated by `progress.mjs` from current source, runtime, reference, capture and placement
-evidence. A draft or imported GLB never counts as complete. Every next-1,000 candidate and
+evidence. A draft or imported GLB never counts as complete. Every structure catalog candidate and
 collection member remains assigned to the other device, including already imported entries.
 
 Each recipe is independent so later model edits do not invalidate earlier completions.
 Finish each model through story synchronization in the same authoring cycle. For subsequent
-batches, select eligible targets beyond the next-1,000 reservations with usable public-domain
+batches, select eligible targets beyond the structure catalog reservations with usable public-domain
 references before authoring: start with cleared Qualla images, reuse saved source decisions,
 and park uncertain sources after a bounded search without repeatedly reopening the same gap.
 Work in groups of 10–20 fully completed models rather than accumulating unfinished imports.
@@ -449,7 +449,7 @@ responsible for withdrawals and global reconciliation. A successful bounded comp
 does not certify that the complete corpus scan is current.
 
 `batches/readiness.json` is the local batch's readiness export; the scanner also reads the
-separate next-1,000 ledger. Neither process transfers model ownership. Capture archives remain
+separate structure catalog ledger. Neither process transfers model ownership. Capture archives remain
 local/ignored, and story annotations record catalog readiness rather than claiming a new
 independent editorial certification.
 

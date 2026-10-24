@@ -1,4 +1,4 @@
-/** Original reusable ossuary relief vocabulary; first consumer 'N0546'. */
+/** Original reusable ossuary relief vocabulary; first consumer 'capela_dos_ossos'. */
 import earcut from 'earcut';
 
 /** Small original cranial relief with actual eye/nose cavities, not an image decal. */

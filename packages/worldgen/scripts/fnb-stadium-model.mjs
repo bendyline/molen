@@ -479,7 +479,7 @@ export function buildFnb(out) {
   canopy(out);
 }
 export const fnbStudy = {
-  id: 'N0687',
+  id: 'fnb_stadium',
   key: 'fnb_stadium',
   title: 'FNB Stadium',
   wikidataId: 'Q163521',

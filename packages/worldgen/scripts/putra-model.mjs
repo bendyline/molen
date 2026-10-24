@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/w2/w28/n0478_putra_mosque/',
+  '../../../content/worldgen/source/places/w2/w28/putra_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -752,7 +752,7 @@ export const buildPutraSkyline = (o) => build(o, 0),
   buildPutraCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const putraStudy = {
-  id: 'N0478',
+  id: 'putra_mosque',
   key: 'putra_mosque',
   title: 'Putra Mosque',
   category: 'mosque',

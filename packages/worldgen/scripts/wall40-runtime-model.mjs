@@ -15,7 +15,7 @@ import {
 import { tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0177_40_wall_street',
+const key = '40_wall_street',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'))),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json')));
 const settings = {

@@ -7,7 +7,7 @@ import { buildLubartRuntime, buildLubartSkyline } from './lubart-castle-model.mj
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u9/u94/n0277_lubart_s_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u9/u94/lubarts_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

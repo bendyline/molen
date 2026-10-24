@@ -173,7 +173,7 @@ function baked(d, kind) {
       0,
     ]).map((v, i) => (v + model[j + i]) * k + (i === 1 && crouch ? 1.1 : 0));
   const result = { ...geometry, head: center, headWidth: body.rig.metrics.headWidth * k, kind };
-  if (d === 2) result.triangles = simplifyStaticSculpture(result.triangles, 400, 0.08);
+  if (d === 2) result.triangles = simplifyStaticSculpture(result.triangles, 380, 0.08);
   cache.set(key, result);
   return result;
 }
@@ -249,7 +249,9 @@ export function treviHorseAnatomy(out, d, fierce, color, triangle) {
     // The old local frame has rear haunches in rock and the forequarters above them.
     for (const p of new Set(b.triangles.flat())) p[1] -= y;
     for (const p of Object.values(b.joints)) p[1] -= y;
-    if (d === 2) b.triangles = simplifyStaticSculpture(b.triangles, 640, 0.04);
+    // Keep the enlarged neck and rearing limbs within 4 cm; the human figures use less
+    // of the street budget so both horses can retain this silhouette.
+    if (d === 2) b.triangles = simplifyStaticSculpture(b.triangles, 1000, 0.04);
     cache.set(key, b);
   }
   const b = cache.get(key);

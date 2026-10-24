@@ -431,7 +431,7 @@ const refs = [
   'https://www.servcorp.ae/en/serviced-offices/locations/dubai/emirates-tower/',
 ];
 export const emiratesStudies = [false, true].map((hotel) => ({
-  id: hotel ? 'N0199' : 'N0194',
+  id: hotel ? 'jumeirah_emirates_towers_hotel' : 'emirates_office_tower',
   key: hotel ? 'jumeirah_emirates_towers_hotel' : 'emirates_office_tower',
   wikidataId: hotel ? 'Q1049027' : 'Q845182',
   title: hotel ? 'Jumeirah Emirates Towers Hotel' : 'Emirates Office Tower',

@@ -1,4 +1,4 @@
-/** 'N0742_HAREM': Multi-court Harem, stepped lead roofs, principal domes and the tiled Twin Kiosk. */
+/** 'imperial_harem_topkapi_palace': Multi-court Harem, stepped lead roofs, principal domes and the tiled Twin Kiosk. */
 
 import { buildGradedLandmarkFloor, sampleLandmarkGrade } from './graded-landmark-site.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';

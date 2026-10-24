@@ -9,7 +9,7 @@ import { encodeAuthoredAssembly } from '../../worldgen/scripts/authored-glb-asse
 import { baroloPalaceStudy } from '../../worldgen/scripts/barolo-palace-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/69/69y/n0234_barolo_palace'),
+const source = resolve('../../content/worldgen/source/places/69/69y/barolo_palace'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -117,7 +117,7 @@ it('preserves the exact original detailed instanced master and reconciles source
   expect(bytes.byteLength).toBe(49608172);
   execFileSync(
     process.execPath,
-    ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=N0234', '--check'],
+    ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=barolo_palace', '--check'],
     { cwd: resolve('../..'), stdio: 'pipe' },
   );
   const spec = await read(`${source}/spec.json`);

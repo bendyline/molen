@@ -1,11 +1,11 @@
-/** 'N0542': Somanathapura's specific three stellate shrines, carved mandapa and open precinct. */
+/** 'chennakesava_temple_at_somanathapura_mysore': Somanathapura's specific three stellate shrines, carved mandapa and open precinct. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildSomanathapuraTemple } from './somanathapura-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/td/tdn/n0542_chennakesava_temple_at_somanathapura_mysore/',
+    '../../../content/worldgen/source/places/td/tdn/chennakesava_temple_at_somanathapura_mysore/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -82,7 +82,7 @@ export const buildSomanathapuraSkyline = (o) => build(o, 0),
   buildSomanathapuraStreet = (o) => build(o, 2),
   buildSomanathapuraCloseup = (o) => build(o, 3);
 export const somanathapuraStudy = {
-  id: 'N0542',
+  id: 'chennakesava_temple_at_somanathapura_mysore',
   key: 'chennakesava_temple_at_somanathapura_mysore',
   title: 'Chennakesava Temple at Somanathapura Mysore',
   category: 'temple',

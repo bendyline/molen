@@ -21,7 +21,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 declare const __LANDMARK_CONTENT_ROOT__: string;
-const folder = 'worldgen/source/places/sy/sy3/n0257_citadel_of_salah_ed_din';
+const folder = 'worldgen/source/places/sy/sy3/citadel_of_salah_ed_din';
 const content = `/@fs/${__LANDMARK_CONTENT_ROOT__}/`;
 async function json<T>(path: string): Promise<T> {
   const r = await fetch(content + path);
@@ -38,8 +38,8 @@ const grade = await json<{
 const pack = await resolveStylePackDocuments(await json('worldgen/stylepack.json'), (p) =>
   json(`worldgen/${p}`),
 );
-const catalog = await json<StructureCatalogDoc>('earth/structures/placements.json');
-const entry = catalog.entries.find((e) => e.id === 'next1000.n0257');
+const catalog = await json<StructureCatalogDoc>('earth/structures/placements/authoring.json');
+const entry = catalog.entries.find((e) => e.id === 'citadel.of.salah.ed.din');
 if (!entry?.terrainReference || entry.status !== 'historical')
   throw Error('Missing reviewed Salah street reference');
 const selectedEntry = entry;

@@ -1,11 +1,11 @@
-/** 'N0554': Tivoli's standing round cella, surviving column arc and partial coffered entablature. */
+/** 'temple_of_vesta_tivoli': Tivoli's standing round cella, surviving column arc and partial coffered entablature. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTivoliVestaRemains } from './tivoli-vesta-remains-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr3/n0554_temple_of_vesta/',
+    '../../../content/worldgen/source/places/sr/sr3/temple_of_vesta_tivoli/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -88,7 +88,7 @@ export const buildTivoliVestaSkyline = (o) => build(o, 0),
   buildTivoliVestaStreet = (o) => build(o, 2),
   buildTivoliVestaCloseup = (o) => build(o, 3);
 export const tivoliVestaStudy = {
-  id: 'N0554',
+  id: 'temple_of_vesta_tivoli',
   key: 'temple_of_vesta',
   title: 'Temple of Vesta',
   category: 'temple',

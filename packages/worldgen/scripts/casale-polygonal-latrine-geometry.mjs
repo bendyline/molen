@@ -1,4 +1,4 @@
-/** 'N0765_POLYGONALLATRINE': exact octagonal latrine masonry, open center and west entrance gap. */
+/** 'casale_polygonal_latrine': exact octagonal latrine masonry, open center and west entrance gap. */
 import './install-deterministic-math.mjs';
 import earcut from 'earcut';
 import { prism } from './khmer-structure-geometry.mjs';

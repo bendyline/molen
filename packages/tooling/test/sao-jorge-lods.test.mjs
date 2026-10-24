@@ -12,7 +12,7 @@ import {
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 const root = new URL(
-    '../../../content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/',
+    '../../../content/worldgen/source/places/ey/eyc/castle_of_saint_george/',
     import.meta.url,
   ),
   frame = JSON.parse(readFileSync(new URL('map-frame.json', root))),
@@ -97,7 +97,7 @@ const downward = (m, x, z, y = 60) =>
     .sort((a, b) => a.t - b.t);
 
 it('builds deterministic four-level models within browser budgets using existing shared graphs', async () => {
-  const id = 'molen.worldgen.structure.n0308_castle_of_saint_george',
+  const id = 'molen.worldgen.structure.castle_of_saint_george',
     sizes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

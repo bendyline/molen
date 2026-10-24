@@ -1,11 +1,11 @@
-/** N0529: reproducible exposed Samre ziggurat constituent with mapped lower/core outlines. */
+/** banteay_samre: reproducible exposed Samre ziggurat constituent with mapped lower/core outlines. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildSamreTemple } from './samre-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/w6/w63/n0529_banteay_samre/',
+    '../../../content/worldgen/source/places/w6/w63/banteay_samre/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -77,7 +77,7 @@ export const buildSamreSkyline = (o) => build(o, 0),
   buildSamreStreet = (o) => build(o, 2),
   buildSamreCloseup = (o) => build(o, 3);
 export const samreStudy = {
-  id: 'N0529',
+  id: 'banteay_samre',
   key: 'banteay_samre',
   title: 'Banteay Samré',
   category: 'temple',

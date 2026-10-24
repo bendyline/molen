@@ -1,6 +1,6 @@
-/** N0526: Hathor temple stelae, low walls and approximate rock-chapel entrances. */
+/** serabit_el_khadim: Hathor temple stelae, low walls and approximate rock-chapel entrances. */
 import earcut from 'earcut';
-export const serabitCandidateId = 'N0526';
+export const serabitCandidateId = 'serabit_el_khadim';
 function prism(f, role, p, lo, hi, bottom = true) {
   const rings = [p.outline, ...(p.holes ?? [])],
     flat = rings.flat(),

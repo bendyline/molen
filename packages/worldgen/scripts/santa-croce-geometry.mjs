@@ -1,4 +1,4 @@
-/** 'N0770': Santa Croce church, marble front, gabled aisles and independent mapped campanile. */
+/** 'basilica_of_santa_croce': Santa Croce church, marble front, gabled aisles and independent mapped campanile. */
 import './install-deterministic-math.mjs';
 import { createRequire } from 'node:module';
 import earcut from 'earcut';

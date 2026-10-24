@@ -1,0 +1,1200 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.lucca_cathedral",
+  "sourceHash": "sha256:3f40beaf937d4b7caa162339f437af4dfec541f56d8c01cf2f9cea726cdf19a4",
+  "runtimeHash": "sha256:9886a1973a786816afbe832d712a2b1eb0db357f83624d31c8571689b03ac911",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4268,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:432ef57864dd10ef207fcbef9f62d3e54dc0684a14f0ae6e6f075eb2cdd4839c",
+      "bytes": 59716,
+      "gzipBytes": 13606,
+      "triangles": 667,
+      "cpuBytes": 58292,
+      "gpuBytes": 58292,
+      "errorMeters": 1.5,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:7c3ed7de2640c0428156e1fd64b8a4518bebc31ba2ce1d5e2d03fccd75b71abb",
+      "bytes": 136364,
+      "gzipBytes": 35437,
+      "triangles": 1492,
+      "cpuBytes": 128080,
+      "gpuBytes": 128080,
+      "errorMeters": 0.6,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:6f76db17de8cf3df91713dda9796fa9ee26de14ed78a566e70db1b49d938f902",
+      "bytes": 1159332,
+      "gzipBytes": 329473,
+      "triangles": 13271,
+      "cpuBytes": 1150920,
+      "gpuBytes": 1150920,
+      "errorMeters": 0.22,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:7ba52d7bf92d8c7e28da3c67720d3c899a63ccd80d2ec594ba9fbea1818d2169",
+      "bytes": 2309644,
+      "gzipBytes": 695918,
+      "triangles": 25603,
+      "cpuBytes": 2301236,
+      "gpuBytes": 2301236,
+      "errorMeters": 0.06,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:069f304201f21ea2c7fff34499bf1384fa6bc2dd7a28c5ee0c089b36841a19fa"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:5f9d8a7cb5098bd72e147965c9a1496eb331c14cf15f4df0bff276fdbc5f0a3c"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:78010e62d4e94bf45e758976c29a3a7e8e4fd708e5a95bb821387f90d0954003",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 50673,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          62.27530000000001,
+          69.4024,
+          107.89500000000001
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:d6493c345d742d4f459cfaaa2228dc9e17a8844d41914c9c19aa3030833fcf2b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 50673,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          62.27530000000001,
+          69.4024,
+          107.89500000000001
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:5896e56eb584460780bc6279a27ffa0100863ff92293517e5e08ef5ea39bcb78",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 50673,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          62.27530000000001,
+          69.4024,
+          107.89500000000001
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:631be124c5a56af7e5f5a4375ec0353a0b1a826ecfbe9c750e9ad794b28704e8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 50673,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          62.27530000000001,
+          69.4024,
+          107.89500000000001
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:a5bd92b21acaa3fe9f834770eed44112a9f9461fb0735d4bd8b3377e804cf07a",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 26562,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          125.9753,
+          116.20240000000001,
+          218.395
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:35aa1e5de2a1d2bbaf56fe4a5ae5ec93f8aa50bb62a7e714db3edd71d9757640",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 26562,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          125.9753,
+          116.20240000000001,
+          218.395
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:23fedd7d233f14bc2ff173822bb4dfe2188ba00ac51e3f973cde4c08b705a2da",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 26562,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          125.9753,
+          116.20240000000001,
+          218.395
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:c05dce843ecb7c526b9c376079e6ca0c31d13731b2590e4b41b44958e10c6687",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 26562,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          125.9753,
+          116.20240000000001,
+          218.395
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:7420cb9e4c96f68cd25bbf87095b993580986e367d08f76e2082423ff8356761",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25737,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          252.07530000000003,
+          165.6024,
+          436.795
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:04b50c9c699443b524b24e5f1b497092b27ae40b629b5844b71fd14d2a40f2e7",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25737,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          252.07530000000003,
+          165.6024,
+          436.795
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:983b49cd9130af1037fb098222df46a816799074d87364fdc44b14dfdf3f279a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25737,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          252.07530000000003,
+          165.6024,
+          436.795
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:f5846617c732a95cc0fbf93b069896bc8167a3e560e5359de1e7075a05da984b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25737,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          252.07530000000003,
+          165.6024,
+          436.795
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:4f0d211fa8d1a8c802f3fe7ec5fe5f5e99e339c3331a39692a9b587fadbc9b6c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21469,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          252.07530000000003,
+          165.6024,
+          436.795
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-unequal-portico.png",
+      "hash": "sha256:3b97e70537bac992f7822320c6b5de5c8c99ff07b52e3ae728fd70d27b25979c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 50673,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -105,
+          23,
+          -3
+        ],
+        "lookAt": [
+          -42,
+          13,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-three-arcaded-tiers.png",
+      "hash": "sha256:f24a3ee9f78a808c243da4f3a9c3bc012e25d8d6de7fef7832ef0fbd558d1f75",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 50673,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -99,
+          43,
+          -29
+        ],
+        "lookAt": [
+          -44,
+          24,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/campanile-belfry-and-merlons.png",
+      "hash": "sha256:7e05db5e28e31df8533a63cebb21bb086b96937bf47aceb5ab431c7b908cedfc",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 50673,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -91,
+          71,
+          65
+        ],
+        "lookAt": [
+          -45,
+          51,
+          15
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-aisle-and-tiled-roof.png",
+      "hash": "sha256:decc3dbefe6b92fe96568cbe11f01dfe888b7cd65331d39a763ad1c8efce0ca6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 50673,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -18,
+          38,
+          -83
+        ],
+        "lookAt": [
+          0,
+          21,
+          -9
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/east-transept-and-round-apse.png",
+      "hash": "sha256:c7b4d2ddc7f5b03e2407b46777ccaf9970b827b71158b8f98ef7cd68b191933d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 50673,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          103,
+          49,
+          72
+        ],
+        "lookAt": [
+          32,
+          23,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roof-and-signed-plan.png",
+      "hash": "sha256:86fefb902df802bb5d1832f9f9cdef41e24f4d631b8837a9af2feec2528b83fb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 50673,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          180,
+          1
+        ],
+        "lookAt": [
+          0,
+          25,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-lucca-skyline.png",
+      "hash": "sha256:76f011d6eec9d2b004df5e6350897ecef5fb741a126bfe4726b1f48c49d54d5d",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25737,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -170,
+          141,
+          -153
+        ],
+        "lookAt": [
+          0,
+          32,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-lucca-district.png",
+      "hash": "sha256:1aceb52f886a98d3e87c2e1c9861084e0a1344a4a581ff231aacf1f6a51901c5",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 26562,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -170,
+          141,
+          -153
+        ],
+        "lookAt": [
+          0,
+          32,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-lucca-street.png",
+      "hash": "sha256:a06879ae86cb8e93f8c416c0354e72b9f7edb57851d46af9a6494755ca95b2ca",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 38341,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -170,
+          141,
+          -153
+        ],
+        "lookAt": [
+          0,
+          32,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-lucca-closeup.png",
+      "hash": "sha256:a76dd282902c6fe38d11ffcdab23cdf844e9ef55c61e1135f9b602b30feab5ee",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 50673,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -170,
+          141,
+          -153
+        ],
+        "lookAt": [
+          0,
+          32,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:4015d9ef93959416a9b5049a9d8cb92b7ec2b6ca7084bca696638cce183d4305",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25737,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          125.9753,
+          116.20240000000001,
+          218.395
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:35aa1e5de2a1d2bbaf56fe4a5ae5ec93f8aa50bb62a7e714db3edd71d9757640",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 26562,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          125.9753,
+          116.20240000000001,
+          218.395
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:f21116e5c7226082f7e3cfa5967b10bd33fc2d5d0defe819ece2f80c6a6cc34b",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 38341,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          125.9753,
+          116.20240000000001,
+          218.395
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:aadebf24efb73f6e74c62d3d56ab919b5f2062adebf38b45398f2886f7f0ece9",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 50673,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spz/lucca_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          125.9753,
+          116.20240000000001,
+          218.395
+        ],
+        "lookAt": [
+          -0.1247,
+          49.9024,
+          -0.005
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,11 +1,11 @@
-/** N0725: Gillette's open blue-red bowl and completed2023 north-end lighthouse/atrium. */
+/** gillette_stadium: Gillette's open blue-red bowl and completed2023 north-end lighthouse/atrium. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildGilletteStadium } from './gillette-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/dr/drm/n0725_gillette_stadium/',
+    '../../../content/worldgen/source/places/dr/drm/gillette_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -73,7 +73,7 @@ export const buildGilletteSkyline = (o) => build(o, 0),
   buildGilletteStreet = (o) => build(o, 2),
   buildGilletteCloseup = (o) => build(o, 3);
 export const gilletteStudy = {
-  id: 'N0725',
+  id: 'gillette_stadium',
   key: 'gillette_stadium',
   title: 'Gillette Stadium',
   category: 'stadium',

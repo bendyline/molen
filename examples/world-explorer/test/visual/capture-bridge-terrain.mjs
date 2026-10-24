@@ -16,7 +16,7 @@ const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex
 const require = createRequire(resolve(root, 'packages/tooling/package.json'));
 const { chromium } = require('playwright');
 const ids = (
-  process.argv.find((arg) => arg.startsWith('--ids='))?.slice(6) ?? 'N0011,N0012,N0014'
+  process.argv.find((arg) => arg.startsWith('--ids='))?.slice(6) ?? 'mes_bridge,kazarma_mycenaean_bridge,haghtanak_bridge'
 ).split(',');
 const terrainSet = process.argv.find((arg) => arg.startsWith('--terrain-set='))?.slice(14) ?? '';
 const reviewRoads = process.argv.includes('--with-roads');
@@ -87,18 +87,18 @@ try {
     const state = await page.evaluate((candidate) => window.bridgeTerrainQA.mount(candidate), id);
     const half =
       evidence.reviewHalfLength ??
-      (id === 'N0011'
+      (id === 'mes_bridge'
         ? 62
-        : id === 'N0012'
+        : id === 'kazarma_mycenaean_bridge'
           ? 11
           : (spec.actualBounds.max[0] - spec.actualBounds.min[0]) / 2);
     const deck =
       evidence.reviewDeckHeight ??
-      (id === 'N0011'
+      (id === 'mes_bridge'
         ? 9
-        : id === 'N0012'
+        : id === 'kazarma_mycenaean_bridge'
           ? 4
-          : id === 'N0014'
+          : id === 'haghtanak_bridge'
             ? 34
             : spec.actualBounds.max[1] * 0.6);
     const range = evidence.reviewCameraRange ?? half * 3.8;
@@ -139,7 +139,7 @@ try {
       half - 0.5,
     ];
     const centerline =
-      id === 'N0011'
+      id === 'mes_bridge'
         ? JSON.parse(await readFile(resolve(source, 'map-frame.json'))).centerline
         : [
             [-half, 0],

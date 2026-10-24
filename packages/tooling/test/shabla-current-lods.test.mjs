@@ -8,7 +8,7 @@ import { buildShablaMaster } from '../../worldgen/scripts/shabla-detail-model.mj
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/sx/sxs/n0656_shabla_lighthouse'),
+const source = resolve('../../content/worldgen/source/places/sx/sxs/shabla_lighthouse'),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
@@ -120,7 +120,7 @@ it('reproduces the original source master and uses municipal tower position with
   expect(m.triangleCount).toBe(7738);
   const s = await read(source + '/spec.json'),
     f = await read(source + '/map-frame.json'),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(p.anchor).toEqual([28.606973081938126, 43.540340797833935]);

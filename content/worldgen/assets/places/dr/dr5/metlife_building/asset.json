@@ -1,0 +1,179 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.metlife_building",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
+  },
+  "hash": "sha256:ba65ebd868e8b002d41ea55351c4e8be5b91fd04ac7454a2ff2d81aa2ec24f50",
+  "sourceHash": "sha256:2c0bbc6601eff8d6ad06210a87c69ad1de9c2300646d4eb5271ab807eedcb79a",
+  "bounds": {
+    "aabb": {
+      "min": [
+        -57.1025,
+        0,
+        -46.9752
+      ],
+      "max": [
+        57.1024,
+        246.3,
+        46.9757
+      ]
+    },
+    "sphere": {
+      "center": [
+        0,
+        123.15,
+        0.0003
+      ],
+      "radius": 142.9972
+    }
+  },
+  "stats": {
+    "triangles": 30667,
+    "vertices": 88917,
+    "meshes": 1,
+    "primitives": 4,
+    "materials": 4,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 3571408
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 30667
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "concrete_plain-wall",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "stone_travertine-wall",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "metal_painted-trim",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "window-window",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -57.1025,
+          0,
+          -46.9752,
+          -57.1025,
+          0,
+          46.9757,
+          -57.1025,
+          246.3,
+          -46.9752,
+          -57.1025,
+          246.3,
+          46.9757,
+          57.1024,
+          0,
+          -46.9752,
+          57.1024,
+          0,
+          46.9757,
+          57.1024,
+          246.3,
+          -46.9752,
+          57.1024,
+          246.3,
+          46.9757
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": [],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:50eb202352c9a9a3cfb8c2004c2da755691bc514708ffe7c582912d6c9213227",
+    "masterHash": "sha256:ba65ebd868e8b002d41ea55351c4e8be5b91fd04ac7454a2ff2d81aa2ec24f50",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:25d51214581b1cc551611e8f0d6f46e9acf705700ec16aaeba028a31e7c1f26f",
+        "bytes": 96628,
+        "gzipBytes": 16477,
+        "triangles": 977,
+        "cpuBytes": 95216,
+        "gpuBytes": 95216,
+        "errorMeters": 1.5,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:ff5ae852dca0beb0d4affe15115a465df80fb4b2c4a3259f8476e11c575c5326",
+        "bytes": 221248,
+        "gzipBytes": 49529,
+        "triangles": 2793,
+        "cpuBytes": 216308,
+        "gpuBytes": 216308,
+        "errorMeters": 0.75,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:d8cedb327b23d02f999758db07a1c6bbafbedc01a39d30ef00294b3293f28824",
+        "bytes": 1029888,
+        "gzipBytes": 229506,
+        "triangles": 12103,
+        "cpuBytes": 1024928,
+        "gpuBytes": 1024928,
+        "errorMeters": 0.5,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:ba55535fbf9bb095d2b5ad365bc6c425fa1bd4c5b957f3026ebad5ede951c59d",
+        "bytes": 2529384,
+        "gzipBytes": 508667,
+        "triangles": 30667,
+        "cpuBytes": 2524400,
+        "gpuBytes": 2524400,
+        "errorMeters": 0.1,
+        "drawCalls": 4
+      }
+    ]
+  }
+}

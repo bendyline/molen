@@ -1,0 +1,1173 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.cathedral_of_our_lady_immaculate",
+  "sourceHash": "sha256:7b6c0a029638f1310409c99d1c9ec77fd87abc0007ad869d875acaa7a4d4aeb5",
+  "runtimeHash": "sha256:5f2b7f83d72ed4d8b8af9d299ab30ffe1ae9b7821a5d26da4d10cd6b226fb6bc",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4268,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:f4a901327d81ecce7ffe45590c9fe7b955e874c9f41e0c652a53693ab96bc4b3",
+      "bytes": 62476,
+      "gzipBytes": 10905,
+      "triangles": 654,
+      "cpuBytes": 61056,
+      "gpuBytes": 61056,
+      "errorMeters": 3.5,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:00d51bdbe01f77136d4936507e9ebad855ece4aeeee9df59001353331aa253df",
+      "bytes": 304796,
+      "gzipBytes": 73729,
+      "triangles": 3856,
+      "cpuBytes": 298684,
+      "gpuBytes": 298684,
+      "errorMeters": 1.2,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:1aea473f43483afc4f3d5e0f60b6ef4cd7327ce563eca1480814aaeff9839227",
+      "bytes": 998384,
+      "gzipBytes": 270239,
+      "triangles": 12673,
+      "cpuBytes": 991160,
+      "gpuBytes": 991160,
+      "errorMeters": 0.3,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:6d33a44134b440ebefb107b84ae3a48cf1d22aed2eb203e874755d7504afb92d",
+      "bytes": 3747992,
+      "gzipBytes": 1151455,
+      "triangles": 42641,
+      "cpuBytes": 3740720,
+      "gpuBytes": 3740720,
+      "errorMeters": 0.08,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:09b1b26857744f9ec6a9a3aa5d861d49373c1514052edac625975ee07547ab6f"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:987434a79a0672fca2179da25fef797d6b932496b0dffe0b2d2dcb4331e008af"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:0553326e479ad59628c2cb8da1711348fe0268268de823d6fa57a571a7c02be6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 67711,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          60.78810000000001,
+          43.4876,
+          110.0582
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:42862892a1e8a30e069c356cb6ae0eaed4c2ab1a29908a5ddd49332b9477070e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 67711,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          60.78810000000001,
+          43.4876,
+          110.0582
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:f65db4b61f380c58ab4d11d54cfd0486d43ce1af0728870f2a0667168f754771",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 67711,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          60.78810000000001,
+          43.4876,
+          110.0582
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:a9d656655cd85655f97baae2e1be465b4300d59c59d965b68ed98bb6cc4b6818",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 67711,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          60.78810000000001,
+          43.4876,
+          110.0582
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:63b9df4c12490ce91bdb4f0f806f0518afc5c8d261ea2a520e98cf14f32ab913",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 28926,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          124.4881,
+          90.28760000000001,
+          220.5582
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:f34a813bd8cf7c553c88c1a1fb3cde4fd9926237efb046cf20411acb1be092d5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 28926,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          124.4881,
+          90.28760000000001,
+          220.5582
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:e7c6347d64d0b416e5ebcfdf8ebc851bec9d3663bfae7020967263b11ca3c464",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 28926,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          124.4881,
+          90.28760000000001,
+          220.5582
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:9da4b9988608753e96a6a172664be128742524ae22aeeb614ff39f1aabcdbbf2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 28926,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          124.4881,
+          90.28760000000001,
+          220.5582
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:39f809074311466e8c58abe2d44d2490523158a3f19a12de055e7e25083f1f7f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25724,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          250.58810000000003,
+          139.6876,
+          438.95820000000003
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:7e9ac6f1da53b1f395b2036b8ab69af4364f2cdddd9e1581c3d0df4fb5efcfa8",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25724,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          250.58810000000003,
+          139.6876,
+          438.95820000000003
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:208d1ffc7bab14da4b60136d6a366d546f7ca1347a32bd58205e293525b7174d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25724,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          250.58810000000003,
+          139.6876,
+          438.95820000000003
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:e5f64b9db988965c74b5a51e8cbe5742e1b30bfece6be9ba4721941c7cab012a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25724,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          250.58810000000003,
+          139.6876,
+          438.95820000000003
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:fb58b8209d42c0db6d1c1426241ce14affb8acbcdc48bf0a77865f232419bbf3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21456,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          250.58810000000003,
+          139.6876,
+          438.95820000000003
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/three-deep-porches-and-paired-columns.png",
+      "hash": "sha256:4ee129862cdbfaa0dc2d4124ac025bab5c7e3b89762ad3f656dff982c6767d27",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 67711,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          -82,
+          16,
+          -16
+        ],
+        "lookAt": [
+          -36,
+          8,
+          0.65
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/rose-clustered-windows-and-raised-gable.png",
+      "hash": "sha256:ed34165cc71e83d0db6c8458e1bd3a078537dedf4e30a6b1a1016ae159e409a4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 67711,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          -81,
+          35,
+          2
+        ],
+        "lookAt": [
+          -36,
+          22,
+          0.65
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-transept-and-round-window-tiers.png",
+      "hash": "sha256:36116026e297cef25929f730608b67d35886858540379f7dbddb0ef33fc01994",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 67711,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          11,
+          28,
+          -61
+        ],
+        "lookAt": [
+          8,
+          16,
+          -15
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/paired-open-belfries-and-octagonal-lantern.png",
+      "hash": "sha256:d931aea0be9e24fe72596bafc50353759e8b0fc12dbfb5a7291ac8c10a88e150",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 67711,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          47,
+          43,
+          -43
+        ],
+        "lookAt": [
+          16,
+          26,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/scalloped-apse-and-rounded-east-chapel.png",
+      "hash": "sha256:6d82b2d658f87af6e5f14de69f06b400c48451a02c7054ae6af98ab356a37d63",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 67711,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          83,
+          42,
+          34
+        ],
+        "lookAt": [
+          28,
+          13,
+          4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roof-and-corrected-map-axis.png",
+      "hash": "sha256:a13c5c5178bd3d2b69fdd2f7ac4bee97e9eee458d0191fcbe2c31ee96ace7539",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 67711,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          165,
+          1
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-monaco-cathedral-skyline.png",
+      "hash": "sha256:9e6b812e10db1e0f38a16cc262268f66b95f814358a9817ea52a43432a0fe93c",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25724,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          -170,
+          112,
+          -160
+        ],
+        "lookAt": [
+          0,
+          14,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-monaco-cathedral-district.png",
+      "hash": "sha256:91a621a21442da0b1237df563cd0f5811cd58750d8a56bf3ccd2b09af7689ae8",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 28926,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          -170,
+          112,
+          -160
+        ],
+        "lookAt": [
+          0,
+          14,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-monaco-cathedral-street.png",
+      "hash": "sha256:522a0b85ccda11a4673b04331045a46d9aafd2268a21cdb8eb539c09af65bb0d",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 37743,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          -170,
+          112,
+          -160
+        ],
+        "lookAt": [
+          0,
+          14,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-monaco-cathedral-closeup.png",
+      "hash": "sha256:f0b09bdc8d3ab016a4f21bfd8fd8f9771a4e796aff36b577c91f2988286c0edc",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 67711,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          -170,
+          112,
+          -160
+        ],
+        "lookAt": [
+          0,
+          14,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:d5a28ab7bf06bdab1ba5f9fd7f342d6cad09c75307304bc906e615765d258fd6",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25724,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          124.4881,
+          90.28760000000001,
+          220.5582
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:f34a813bd8cf7c553c88c1a1fb3cde4fd9926237efb046cf20411acb1be092d5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 28926,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          124.4881,
+          90.28760000000001,
+          220.5582
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:db42ebed01438045d2180f346f9b76d7120dc247120cb511c892961cccec52b1",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 37743,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          124.4881,
+          90.28760000000001,
+          220.5582
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:23970c76ff4fb5f8c6b09d7fdc88841cc1e6c998a6a4835c4d322e528a1a6411",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 67711,
+        "groundY": -60,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spv/cathedral_of_our_lady_immaculate/terrain-review.height.png"
+        },
+        "position": [
+          124.4881,
+          90.28760000000001,
+          220.5582
+        ],
+        "lookAt": [
+          -1.6119,
+          23.9876,
+          2.1582
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

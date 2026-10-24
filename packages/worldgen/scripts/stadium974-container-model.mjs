@@ -1,8 +1,8 @@
-/** N0714: mapped Stadium 974, modular containers and a complete open steel roof ring. */
+/** stadium_974: mapped Stadium 974, modular containers and a complete open steel roof ring. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
-const candidateId = 'N0714';
+const candidateId = 'stadium_974';
 export function stadium974Radius(poly, angle) {
   const d = [Math.cos(angle), Math.sin(angle)],
     hits = [],

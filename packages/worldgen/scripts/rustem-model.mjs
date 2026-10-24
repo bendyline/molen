@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sxk/n0473_rustem_pasha_mosque/',
+  '../../../content/worldgen/source/places/sx/sxk/rustem_pasha_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -830,7 +830,7 @@ export const buildRustemSkyline = (o) => build(o, 0),
   buildRustemCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const rustemStudy = {
-  id: 'N0473',
+  id: 'rustem_pasha_mosque',
   key: 'rustem_pasha_mosque',
   title: 'Rüstem Pasha Mosque',
   category: 'mosque',

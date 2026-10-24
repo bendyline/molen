@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sv/sv9/n0413_al_aqsa_mosque/',
+  '../../../content/worldgen/source/places/sv/sv9/al_aqsa_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -890,7 +890,7 @@ export const buildAlAqsaSkyline = (o) => build(o, 0),
   buildAlAqsaCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const alAqsaStudy = {
-  id: 'N0413',
+  id: 'al_aqsa_mosque',
   key: 'al_aqsa_mosque',
   title: 'Al-Aqsa Mosque — Al-Qibli prayer hall',
   category: 'mosque',

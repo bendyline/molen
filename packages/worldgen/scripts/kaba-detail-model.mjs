@@ -1,4 +1,4 @@
-/** N0575 source-local reviewed exterior and four complete browser derivatives. The original heritage draft is preserved. */
+/** ka_ba_ye_zartosht source-local reviewed exterior and four complete browser derivatives. The original heritage draft is preserved. */
 import { normalFor } from './authored-structure-mesh.mjs';
 import { box, quad } from './structure-mesh.mjs';
 

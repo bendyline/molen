@@ -576,7 +576,7 @@ export class EarthAircraft {
       engine: this.controls.engine,
       rpm: state.rpm,
       gearDown: this.controls.gear,
-      flaps: this.controls.flaps,
+      flaps: Number(this.controls.flaps) > 0,
       gearPosition: state.gearPosition ?? Number(this.controls.gear),
       flapPosition: state.flapPosition ?? Number(this.controls.flaps),
       ...(aircraft.spec.poweredLift

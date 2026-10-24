@@ -1,11 +1,11 @@
-/** 'N0751': Pergamon mapped museum wings, courtyard and shared surfaces. */
+/** 'pergamon_museum': Pergamon mapped museum wings, courtyard and shared surfaces. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildPergamon } from './pergamon-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u3/u33/n0751_pergamon_museum/',
+    '../../../content/worldgen/source/places/u3/u33/pergamon_museum/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -102,7 +102,7 @@ export const buildPergamonSkyline = (o) => build(o, 0),
   buildPergamonStreet = (o) => build(o, 2),
   buildPergamonCloseup = (o) => build(o, 3);
 export const pergamonStudy = {
-  id: 'N0751',
+  id: 'pergamon_museum',
   key: 'pergamon_museum',
   title: 'Pergamon Museum',
   category: 'museum',

@@ -9,7 +9,7 @@ import { copan } from '../../worldgen/scripts/copan-model.mjs';
 import { MATERIAL_REPEAT_METERS } from '../../worldgen/scripts/standard-materials.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/6g/6gy/n0223_edificio_copan'),
+const source = resolve('../../content/worldgen/source/places/6g/6gy/edificio_copan'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {

@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u0/u0v/n0266_eltz_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u0/u0v/eltz_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -778,7 +778,7 @@ export const buildEltzSkyline = (o) =>
     'skyline',
   );
 export const eltzStudy = {
-  id: 'N0266',
+  id: 'eltz_castle',
   key: 'eltz_castle',
   title: 'Eltz Castle',
   category: 'castle',

@@ -1,4 +1,4 @@
-/** Independent source-specific forecourt components; N0291 remains a partial site. */
+/** Independent source-specific forecourt components; ksiaz_castle_and_park_complex remains a partial site. */
 import '../../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { normalFor } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
@@ -46,9 +46,7 @@ const frames = new Map(
   ]),
 );
 const means = JSON.parse(
-  readFileSync(
-    new URL('../../n0291_ksiaz_castle_and_park_complex/surface-means.json', import.meta.url),
-  ),
+  readFileSync(new URL('../../ksiaz_castle_and_park_complex/surface-means.json', import.meta.url)),
 );
 function face(o, p, color = 'wall', slot = 'plaster', target) {
   p = p.map((v) => v.map(Math.fround));

@@ -7,7 +7,7 @@ import { column, facade, face, transform, triangle } from './heritage-tower-deta
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const mapBytes = readFileSync(structureSourcePath('n0605_torre_dei_lamberti', 'map-frame.json'));
+const mapBytes = readFileSync(structureSourcePath('torre_dei_lamberti', 'map-frame.json'));
 const map = JSON.parse(mapBytes);
 const brick = [0.64, 0.37, 0.255],
   tuff = [0.82, 0.75, 0.6],
@@ -487,8 +487,8 @@ function build(out) {
   belfry(out);
 }
 export const lambertiTower = {
-  id: 'n0605_torre_dei_lamberti',
-  planId: 'N0605',
+  id: 'torre_dei_lamberti',
+  planId: 'torre_dei_lamberti',
   title: 'Torre dei Lamberti',
   wikidata: 'Q1819804',
   authoringFile: 'lamberti-tower-model.mjs',

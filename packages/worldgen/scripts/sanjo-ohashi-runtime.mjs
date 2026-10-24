@@ -3,7 +3,7 @@ import './install-deterministic-math.mjs';
 import { beam, cross, loft, normalize, radialRing } from './authored-structure-mesh.mjs';
 import { box, quad } from './structure-mesh.mjs';
 
-export const sanjoRuntimeCandidateId = 'N0021';
+export const sanjoRuntimeCandidateId = 'sanjo_ohashi_bridge';
 
 export const sanjoRuntimeSurfaces = {
   concrete: { slot: 'foundation', graph: 'concrete_plain', roughness: 0.9, metallic: 0 },

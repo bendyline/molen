@@ -32,6 +32,8 @@ export interface PackOptions {
   provides?: Record<string, string | readonly string[]>;
   /** Group small text files into compressed solid blocks (default true). */
   solid?: boolean;
+  /** Files or directory prefixes (ending /) kept as independent ZIP members. */
+  independent?: readonly string[];
   /**
    * `auto` (default) deflates a member when that saves at least 10%. `store` writes every member
    * uncompressed: the manifest and contents are identical, only the archive is larger, so a pack
@@ -248,7 +250,14 @@ export async function createPack(
   const blockMembers: ZipMemberInput[] = [];
   const pending = new Map<string, PackFile[]>();
   for (const file of sorted) {
-    if (options.solid !== false && isTextPath(file.path) && file.bytes.length < OWN_MEMBER_LIMIT) {
+    if (
+      options.solid !== false &&
+      !options.independent?.some(
+        (path) => file.path === path || (path.endsWith('/') && file.path.startsWith(path)),
+      ) &&
+      isTextPath(file.path) &&
+      file.bytes.length < OWN_MEMBER_LIMIT
+    ) {
       const group = groupOf(file.path);
       pending.set(group, [...(pending.get(group) ?? []), file]);
     } else {

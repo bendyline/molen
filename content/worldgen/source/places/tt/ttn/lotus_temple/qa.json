@@ -1,0 +1,619 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.lotus_temple",
+  "reviewedOn": "2026-10-18",
+  "inputHash": "sha256:f605a92d5fd32ab398ed927c4afdabbebfb8aff832964634953e12411b5b253c",
+  "sourceHash": "sha256:4f1bdf5f1dafbecc8b441163f455fb140215cc674c45b7c9c631526161ceb31b",
+  "runtimeHash": "sha256:1ee518a0b56455294125490de5177065f05a39f1cac28cd1bf4c892d54a402c2",
+  "captureReportHash": "sha256:8f2d903cc3917b8d090f8757593708a9413abdd078cb6d088f0df1aac51755d2",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/front-petals-and-main-stair.png",
+      "shots/three-shell-families.png",
+      "shots/porch-open-arches.png",
+      "shots/raised-base-and-bands.png",
+      "shots/nine-pools-and-plan.png",
+      "shots/shell-ridges-and-crown.png"
+    ],
+    "notes": "Inspected all11 current portable views. The specific27-shell arrangement has a pointed fluted crown, intermediate petals and low outward canopies around nine open porches. The raised red/white base retains continuous glazing bands; the broad southwest stair and eight related approaches connect the terrace to the mapped radial corridors. Nine mapped pools retain their independent outlines. Profiles, heights, shell thickness, stair counts and individual entry designation are picture-guided approximations. Fine panel joints, shell engineering, planting and hidden interiors are omitted."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/front-petals-and-main-stair.png",
+      "shots/shared/three-shell-families.png",
+      "shots/shared/porch-open-arches.png",
+      "shots/shared/raised-base-and-bands.png",
+      "shots/shared/nine-pools-and-plan.png",
+      "shots/shared/shell-ridges-and-crown.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all11 current shared-material views. Four common256² graphs supply marble, sandstone, limestone and storefront glazing; metric UVs and linear tints. Water uses an explicit teal/reflection constant. Five material draws nearby, no embedded images or unique atlas. Every shared graph loads once, and eviction disposes all model geometry. The flat shared fixture usesY-10 ground and reveals below-grade basin/foundation geometry; its visible cutout voids do not establish terrain contact. Actual fit uses the separate unchanged standard DEM.",
+    "captureReportHash": "sha256:a6365e71be130bdc1488991e83b4873eff8a66f9181990c4d88506cb07db0985"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/front-petals-and-main-stair.png",
+      "medium-fi/three-shell-families.png",
+      "medium-fi/porch-open-arches.png",
+      "medium-fi/raised-base-and-bands.png",
+      "medium-fi/nine-pools-and-plan.png",
+      "medium-fi/shell-ridges-and-crown.png",
+      "medium-fi/whole-site-skyline.png",
+      "medium-fi/whole-site-district.png",
+      "medium-fi/whole-site-street.png",
+      "medium-fi/whole-site-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all27 current medium-fi views: three distances, noon/late, Economy/High, untextured silhouette, all detail cameras and four level/transition comparisons. The980-triangle skyline keeps the fluted blossom, ninefold low canopy/pool layout and raised base/approaches. Its large facets, ramped stairs and omitted subpixel fascia/glazing are visible when forced close; district/street/closeup restore curvature, bands, undersides and steps. All four levels meet1000/4000/16000/64000triangle and eight-draw limits. Initial skyline+district458020bytes plus shared textures. Separate GPU attribute streams avoid duplicate uploads. Physical laptop/phone/tablet and dense-city measurements remain pending.",
+    "captureReportHash": "sha256:59a7058f7631031d2c15e672c1382c31da7f8f1638b663f6540da0e6abc6175e"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:f19c3e30d466aadff4624e883c0e7e3fb25d2909ec75b87df00443c2b92a695a",
+    "mapFrameHash": "sha256:eef8cb871fbc131c43616b55d60305ca0d1a5a12376caab737ad84504b1bad7a",
+    "notes": "Mapped principal building,18 roof parts and nine pools establish plan/rhythm and approximate fit to the retained unchanged161-square/6m DEM. Arches face the mapped radial approach gaps; individual shell phase is uncertain by up to20degrees within the repeated40-degree pattern. Full-site loading removes all19 authored records and preserves all192 independent tile buildings. It replaces3773.2267m² of pool water while retaining1845.1839m² of unrelated native water.64m partial residency retains5283.8121m² of water, including unloaded pool portions. Failure keeps all211 map records and original5618.4106m² of water; eviction restores both surfaces and frees geometry.181 control vertices retain raw-map positions.8052 floor samples cover all36 pool/LOD combinations. The partial fixture has empty semantic buildings and proves clipping/lifecycle only; visibly exposed temporary domain edges are not accepted contact outside residency."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted for the specific medium-fi exterior and approximate normal-map/terrain scope. Upper/middle/low shell elevations34.5/24.3/11.2m, platform4.4m, Bézier shell curvature,24cm shell thickness, stair counts, radial phase and entry designation are estimates. Pool levels use independent local medians from the coarse DEM and can differ from surveyed levels. Basin banks/foundations are visualization fits. Fine marble joints, exact engineering, detailed glazing, landscaping, navigable interiors and surveyed thresholds are omitted. Native neighboring facades and green landcover are generic fixture context. No bespoke survey or terrain research was added."
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:4f1bdf5f1dafbecc8b441163f455fb140215cc674c45b7c9c631526161ceb31b"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:1ee518a0b56455294125490de5177065f05a39f1cac28cd1bf4c892d54a402c2"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:f3d91745610f000ba7f8bfd53ae606d78ca69cc3b4d5d563863b19f7779ec940"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:fd37c8c6accecf5b115106d5da0af6d567e0204604c02e61507441455aa6c6f7"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:0c061143c201587cca4ff49f26d5fe00b8416176078967d0b0b31103dd02ef61"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:7054c90f941833b407a917e38203f5e0e48516ac69421c652447d70597d20b5d"
+      }
+    ],
+    "reports": [
+      {
+        "phase": "final",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "failedLoad": false,
+          "sourceBuildings": 211,
+          "independentBuildings": 192,
+          "remainingBuildings": 192,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.lotus_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -25.716733544823995,
+            "max": 12.539066455175998
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": true,
+          "sourceWaterArea": 5618.410575351096,
+          "remainingWaterArea": 1845.1838917167624,
+          "nativeWaterUnchanged": false
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:130a0a6d45ad982e4094e5153ab8294a652e5a0722d88e44e71625d3d93126bb",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-front-petals-and-main-stair.png",
+            "hash": "sha256:157cbc3ad35a98e1fd3071fc8dcdce447667dc57b0df9e58334264ae14451310",
+            "camera": "front-petals-and-main-stair"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-three-shell-families.png",
+            "hash": "sha256:1b247702a10d42654df1d8a6ba19b669ec03a2237d1d8af6c1f91e4c48f4270e",
+            "camera": "three-shell-families"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-porch-open-arches.png",
+            "hash": "sha256:05f7687aada71fad5cb1fc38c9841688f0df2ecae51935623348460a86333049",
+            "camera": "porch-open-arches"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-raised-base-and-bands.png",
+            "hash": "sha256:c9fdc3b521dbad91134afef1eb0ce9777eaad55fca1c3c45a18125b3df8f852a",
+            "camera": "raised-base-and-bands"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-nine-pools-and-plan.png",
+            "hash": "sha256:f0be7cc86adb64bd4dd89ba9777c722c2637e8a608668856c5c3430a78d58fcd",
+            "camera": "nine-pools-and-plan"
+          },
+          {
+            "path": "shots/site-integration/final-closeup-shell-ridges-and-crown.png",
+            "hash": "sha256:f0652eebfcd93e39f3aafa3337632d8a6b9e91a5948e0bfb588b7d9add3fac44",
+            "camera": "shell-ridges-and-crown"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "failedLoad": false,
+          "sourceBuildings": 211,
+          "independentBuildings": 192,
+          "remainingBuildings": 192,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.lotus_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -25.716733544823995,
+            "max": 12.539066455175998
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": true,
+          "sourceWaterArea": 5618.410575351096,
+          "remainingWaterArea": 1845.1838917167624,
+          "nativeWaterUnchanged": false
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:c7bdb1ee4dd651715648f5b7ab13fb9c6aee5a5c4adb0ee276f4af499caee00d",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-district-front-petals-and-main-stair.png",
+            "hash": "sha256:fdc46338ee31c1d1283b61db0002a38b4f2d88230a416f0b74dd39e5734672b3",
+            "camera": "front-petals-and-main-stair"
+          },
+          {
+            "path": "shots/site-integration/final-district-nine-pools-and-plan.png",
+            "hash": "sha256:a1771287ea8385a90cc1ccd1b28c0d6af9f621c85219f37e7d219cbff2150f21",
+            "camera": "nine-pools-and-plan"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "failedLoad": false,
+          "sourceBuildings": 211,
+          "independentBuildings": 192,
+          "remainingBuildings": 192,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.lotus_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -25.716733544823995,
+            "max": 12.539066455175998
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": true,
+          "sourceWaterArea": 5618.410575351096,
+          "remainingWaterArea": 1845.1838917167624,
+          "nativeWaterUnchanged": false
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:92efab704a909b45628a91809d847530b16fe1f17a49fdd7eaa5d6b8d92849ef",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/final-street-front-petals-and-main-stair.png",
+            "hash": "sha256:d4621ce4451024aedf98fa83f11e33af8f7e7ba5791038cc334789d1b93b0bb2",
+            "camera": "front-petals-and-main-stair"
+          },
+          {
+            "path": "shots/site-integration/final-street-nine-pools-and-plan.png",
+            "hash": "sha256:e9acdd0b0a84a56b66611944ccfed008057d5fa11afe3c2aeba6550b30b0aa44",
+            "camera": "nine-pools-and-plan"
+          }
+        ]
+      },
+      {
+        "phase": "final",
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "failedLoad": true,
+          "sourceBuildings": 211,
+          "independentBuildings": 192,
+          "remainingBuildings": 211,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184416916110,
+              "area": 3266.4651246300805
+            },
+            {
+              "id": 35184492000831,
+              "area": 107.9557821217108
+            },
+            {
+              "id": 35184492000832,
+              "area": 84.29430952451469
+            },
+            {
+              "id": 35184492000834,
+              "area": 107.40557886224593
+            },
+            {
+              "id": 35184492000835,
+              "area": 106.85522943815187
+            },
+            {
+              "id": 35184492000836,
+              "area": 75.3179053089724
+            },
+            {
+              "id": 35184492000838,
+              "area": 107.4743123010137
+            },
+            {
+              "id": 35184492000840,
+              "area": 102.62522963951426
+            },
+            {
+              "id": 35184492000841,
+              "area": 106.71777098017259
+            },
+            {
+              "id": 35184492000842,
+              "area": 106.44275034481296
+            },
+            {
+              "id": 35184492000845,
+              "area": 106.95863560885641
+            },
+            {
+              "id": 35184492000848,
+              "area": 108.12789449817046
+            },
+            {
+              "id": 35184492001298,
+              "area": 81.40555920088133
+            },
+            {
+              "id": 35184492001299,
+              "area": 69.67776266416905
+            },
+            {
+              "id": 35184492001302,
+              "area": 84.22541951983789
+            },
+            {
+              "id": 35184492001304,
+              "area": 82.78124722281177
+            },
+            {
+              "id": 35184492001305,
+              "area": 79.92665434516368
+            },
+            {
+              "id": 35184492001307,
+              "area": 71.50044620998415
+            },
+            {
+              "id": 35184492001310,
+              "area": 76.34987484072724
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.lotus_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -25.716733544823995,
+            "max": 12.539066455175998
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 5618.410575351096,
+          "remainingWaterArea": 5618.410575351096,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:559868f1a75cf72c648c445a8c43b6530a7d2a3e0d11c093c0e42a43be0223f7",
+            "camera": "whole-site"
+          }
+        ]
+      },
+      {
+        "phase": "skyline",
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "failedLoad": false,
+          "sourceBuildings": 211,
+          "independentBuildings": 192,
+          "remainingBuildings": 192,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.lotus_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -25.716733544823995,
+            "max": 12.539066455175998
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": true,
+          "sourceWaterArea": 5618.410575351096,
+          "remainingWaterArea": 1845.1838917167624,
+          "nativeWaterUnchanged": false
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/skyline-skyline-whole-site.png",
+            "hash": "sha256:d3841cb6b2ac4e26a0bdfb72d938fabf0f7dcb13affba052196f3a729d2b3223",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/skyline-skyline-front-petals-and-main-stair.png",
+            "hash": "sha256:cea9269b5b07049a5d31532c59550df820d9fba9eaad6d0fe7e6d3cd7875e9c0",
+            "camera": "front-petals-and-main-stair"
+          },
+          {
+            "path": "shots/site-integration/skyline-skyline-nine-pools-and-plan.png",
+            "hash": "sha256:7b638f0f6274052e52c2856db5f1c7360212e4c9fba33b8bc351a7ad65e05620",
+            "camera": "nine-pools-and-plan"
+          }
+        ]
+      },
+      {
+        "phase": "partial",
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": true,
+          "groundOutsideResidentTile": false,
+          "failedLoad": false,
+          "sourceBuildings": 0,
+          "independentBuildings": 0,
+          "remainingBuildings": 0,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_marble": 1,
+            "molen.worldgen.material.stone_sandstone_raw": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.lotus_temple"
+          ],
+          "rawTerrainRange": {
+            "min": -25.716733544823995,
+            "max": 12.539066455175998
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": true,
+          "sourceWaterArea": 5618.410575351096,
+          "remainingWaterArea": 5283.812089147861,
+          "nativeWaterUnchanged": false
+        },
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "inspectedFrames": [
+          {
+            "path": "shots/site-integration/partial-closeup-whole-site.png",
+            "hash": "sha256:030c48fe55e872b9b98d29f6c3856f84e1c7241d94c745fcea4f6d0637db0131",
+            "camera": "whole-site"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-front-petals-and-main-stair.png",
+            "hash": "sha256:8dd3efceb00c7fa94d467a1bc73e5700d953c202d547dc3ca6190f575f173766",
+            "camera": "front-petals-and-main-stair"
+          },
+          {
+            "path": "shots/site-integration/partial-closeup-nine-pools-and-plan.png",
+            "hash": "sha256:982369791ab6fd12add9621ff5e394f710d2cd984df2dbbc0ee60b01e6f2a1d6",
+            "camera": "nine-pools-and-plan"
+          }
+        ]
+      }
+    ],
+    "floorCoverage": {
+      "checks": 36,
+      "samples": 8052,
+      "missing": 0
+    }
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/tt/ttn/lotus_temple/models/source.glb\",\"hash\":\"sha256:4f1bdf5f1dafbecc8b441163f455fb140215cc674c45b7c9c631526161ceb31b\",\"bytes\":4370720,\"triangles\":36395,\"materials\":5,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/tt/ttn/lotus_temple/model.glb\",\"hash\":\"sha256:1ee518a0b56455294125490de5177065f05a39f1cac28cd1bf4c892d54a402c2\",\"bytes\":4370224,\"triangles\":36395,\"materials\":5,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/tt/ttn/lotus_temple/model.skyline.glb\",\"hash\":\"sha256:f3d91745610f000ba7f8bfd53ae606d78ca69cc3b4d5d563863b19f7779ec940\",\"bytes\":102236,\"triangles\":980,\"materials\":1,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/tt/ttn/lotus_temple/model.district.glb\",\"hash\":\"sha256:fd37c8c6accecf5b115106d5da0af6d567e0204604c02e61507441455aa6c6f7\",\"bytes\":355784,\"triangles\":3629,\"materials\":5,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/tt/ttn/lotus_temple/model.street.glb\",\"hash\":\"sha256:0c061143c201587cca4ff49f26d5fe00b8416176078967d0b0b31103dd02ef61\",\"bytes\":851956,\"triangles\":8321,\"materials\":5,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/tt/ttn/lotus_temple/model.closeup.glb\",\"hash\":\"sha256:7054c90f941833b407a917e38203f5e0e48516ac69421c652447d70597d20b5d\",\"bytes\":1826396,\"triangles\":17153,\"materials\":5,\"errors\":0,\"warnings\":0,\"images\":0}"
+      },
+      {
+        "check": "324-FrontSide-probes",
+        "passed": true,
+        "notes": "Nine porch voids, all three shell families, stair/ramp floors and nine opaque pool surfaces pass across six files."
+      },
+      {
+        "check": "36-pool-LOD-combinations",
+        "passed": true,
+        "notes": "8052 samples; zero missing pool surfaces across36 opening/LOD combinations."
+      },
+      {
+        "check": "181-independent-control-coordinate-round-trips",
+        "passed": true,
+        "notes": "The principal building and18 roof-part native vertices retain raw PMTiles control positions."
+      },
+      {
+        "check": "selected-source-import-placement-and-budget-checks",
+        "passed": true,
+        "notes": "Selected generator --check, import --check, placement --check, strict medium-fi, scene validation and sim30 passed; no engine changes or dependency audit."
+      }
+    ]
+  },
+  "limitations": [
+    "Specific Lotus Temple exterior:27 curved petal shells in three ninefold groups, open porch arches, raised red/white base with continuous glazing bands, nine stepped/ramped approaches and nine independently mapped pools. Fine panel joints, exact shell engineering, hidden interiors and landscaping are omitted.",
+    "Q940843/way44827278 identifies the principal building. Standard PMTiles building35184416916110 and18 independent roof-part outlines establish the70m plan and ninefold rhythm. Nine mapped water polygons establish the pool layout. The main approach is chosen along the southwest garden corridor; the radial building has nine related entrances. Pointed shell arches face the mapped radial approach gaps; individual shell phase is picture-guided with up to20degrees uncertainty.",
+    "No architectural heights in the retained mapped controls. The34.5m upper shell elevation,24.3m intermediate tips,11.2m outer tips,4.4m platform, shell thickness and stair counts are picture-guided estimates. The mapped outline and component rhythm are retained; shell engineering is not surveyed.",
+    "Retained unmodified161-square/6m standard Protomaps/Mapzen-USGS extract. NativeY0 uses the terrain sample at the retained building center. The platform remains level; foundations and pool retaining edges meet the coarse neighboring terrain. Source preview seating is separate from actual-site contact verification.",
+    "Each pool is fixed to its mapped outline and a neighborhood median from the unchanged standard DEM, plus12cm. These levels and visible coping/retaining edges are approximate; the coarse source cannot establish surveyed basin levels.",
+    "The broad southwest stair and eight secondary entries follow related mapped radial corridors; exact entry designation is approximate. Fine shell joints,glazing mullions,hidden interiors,landscaping and surveyed thresholds are omitted.",
+    "Accepted for the specific medium-fi exterior and approximate normal-map/terrain scope. Upper/middle/low shell elevations34.5/24.3/11.2m, platform4.4m, Bézier shell curvature,24cm shell thickness, stair counts, radial phase and entry designation are estimates. Pool levels use independent local medians from the coarse DEM and can differ from surveyed levels. Basin banks/foundations are visualization fits. Fine marble joints, exact engineering, detailed glazing, landscaping, navigable interiors and surveyed thresholds are omitted. Native neighboring facades and green landcover are generic fixture context. No bespoke survey or terrain research was added."
+  ],
+  "reviewMaintenance": {
+    "canonicalPlacement": {
+      "reviewedOn": "2026-10-19",
+      "previousInputHash": "sha256:1b8f948ccc1eeb0d1e3b5586d933169676760bd9f75601e98921199944216f59",
+      "inputHash": "sha256:f605a92d5fd32ab398ed927c4afdabbebfb8aff832964634953e12411b5b253c",
+      "previousPlacementHash": "sha256:c6eb509944820790b22a5b02f5b426cdeb3178c764ead4b41267b3a2b1d554fd",
+      "placementHash": "sha256:f19c3e30d466aadff4624e883c0e7e3fb25d2909ec75b87df00443c2b92a695a",
+      "proof": "Removed only unsupported empty holes and redundant water outline equal to outlines[0]. Canonical placement is otherwise exactly equal. Selected source masters rebuilt byte-identically; all six GLBs, camera/material/scene metadata and every retained image hash unchanged. Prior reviews carried forward; no new visual approval."
+    }
+  }
+}

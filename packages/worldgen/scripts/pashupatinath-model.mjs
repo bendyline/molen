@@ -5,7 +5,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildPashupatinath, pashupatinathCandidateId } from './pashupatinath-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/tu/tuu/n0496_pashupatinath_temple/',
+    '../../../content/worldgen/source/places/tu/tuu/pashupatinath_temple/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -68,7 +68,7 @@ export const buildPashupatinathSkyline = (o) => build(o, 0),
   buildPashupatinathStreet = (o) => build(o, 2),
   buildPashupatinathCloseup = (o) => build(o, 3);
 export const pashupatinathStudy = {
-  id: 'N0496',
+  id: 'pashupatinath_temple',
   key: 'pashupatinath_temple',
   title: 'Pashupatinath Temple',
   category: 'temple',

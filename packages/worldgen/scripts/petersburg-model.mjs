@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/ud/udt/n0444_saint_petersburg_mosque/',
+  '../../../content/worldgen/source/places/ud/udt/saint_petersburg_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -894,7 +894,7 @@ export const buildPetersburgSkyline = (o) => build(o, 0),
   buildPetersburgCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const petersburgStudy = {
-  id: 'N0444',
+  id: 'saint_petersburg_mosque',
   key: 'saint_petersburg_mosque',
   title: 'Saint Petersburg Mosque',
   category: 'mosque',

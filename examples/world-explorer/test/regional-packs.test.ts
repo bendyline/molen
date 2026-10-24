@@ -2,13 +2,68 @@ import { writeFileSync } from 'node:fs';
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
+import { sha256 } from '@bendyline/molen-pack';
 import { openFilePack } from '@bendyline/molen-pack/node';
 import { describe, expect, it } from 'vitest';
 import { stageContentPacks } from '../../../docs-site/scripts/stage-content-packs.mjs';
 import { buildRegionalPacks, groupRegionalModels } from '../scripts/build-regional-packs.mjs';
 
 describe('regional content build', () => {
-  it('stages the public site with regional routes and validates a reusable archive cache', async () => {
+  it('rejects stale model metadata before building archives and still detects changes during a build', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'molen-regional-hashes-'));
+    if (!resolve(root).startsWith(join(resolve(tmpdir()), 'molen-regional-hashes-')))
+      throw new Error('Unexpected temporary directory');
+    try {
+      const source = join(root, 'source');
+      const outDir = join(root, 'out');
+      await mkdir(join(source, 'model'), { recursive: true });
+      await writeFile(
+        join(source, 'molen-pack.source.json'),
+        JSON.stringify({ format: 'molen/pack-source@1', id: 'example.styles', version: '1' }),
+      );
+      const bytes = new Uint8Array(1000).fill(17);
+      const sidecar = {
+        format: 'molen/asset@1',
+        kind: 'model',
+        id: 'example.model',
+        files: { main: 'model.glb' },
+        hash: await sha256(bytes),
+      };
+      const path = join(source, 'model/asset.json');
+      await writeFile(path, JSON.stringify(sidecar));
+      await writeFile(join(source, 'model/model.glb'), bytes);
+      await buildRegionalPacks(source, { outDir });
+      const previous = await readFile(join(outDir, 'index.json'), 'utf8');
+      const changed = new Uint8Array(1200).fill(23);
+      await writeFile(join(source, 'model/model.glb'), changed);
+      let built = 0;
+      await expect(buildRegionalPacks(source, { outDir, onBuilt: () => built++ })).rejects.toThrow(
+        'Stale model metadata before regional build: model/asset.json',
+      );
+      expect(built).toBe(0);
+      expect(await readFile(join(outDir, 'index.json'), 'utf8')).toBe(previous);
+
+      const staleHash = sidecar.hash;
+      sidecar.hash = await sha256(changed);
+      await writeFile(path, JSON.stringify(sidecar));
+      await buildRegionalPacks(source, { outDir });
+      const repaired = await readFile(join(outDir, 'index.json'), 'utf8');
+      await expect(
+        buildRegionalPacks(source, {
+          outDir,
+          onBuilt: () => writeFileSync(path, JSON.stringify({ ...sidecar, hash: staleHash })),
+        }),
+      ).rejects.toThrow('Model changed during regional build: model/asset.json');
+      expect(await readFile(join(outDir, 'index.json'), 'utf8')).toBe(repaired);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  });
+
+  it.each([
+    false,
+    true,
+  ])('stages the public site with a regional placement directory: %s', async (regional) => {
     const root = await mkdtemp(join(tmpdir(), 'molen-hosted-regions-'));
     if (
       !resolve(root).startsWith(`${resolve(tmpdir())}\\`) &&
@@ -52,8 +107,43 @@ describe('regional content build', () => {
       );
       await writeFile(
         join(content, 'earth/placements.json'),
-        JSON.stringify({ entries: [{ asset: 'example.seattle', anchor: [-122.3, 47.6] }] }),
+        JSON.stringify({
+          format: 'molen/structure-placements@1',
+          title: 'Test',
+          entries: [
+            {
+              id: 'seattle',
+              title: 'Seattle',
+              status: 'preview',
+              source: 'https://example.com',
+              asset: 'example.seattle',
+              anchor: [-122.3, 47.6],
+            },
+          ],
+        }),
       );
+      if (regional) {
+        const text = await readFile(join(content, 'earth/placements.json'), 'utf8');
+        await writeFile(
+          join(content, 'earth/c2.json'),
+          text.replace('molen/structure-placements@1', 'molen/structure-placement-data@1'),
+        );
+        await writeFile(
+          join(content, 'earth/placements.json'),
+          JSON.stringify({
+            format: 'molen/structure-placement-index@1',
+            cells: { c2: ['c2'] },
+            shards: {
+              c2: {
+                path: 'c2.json',
+                bytes: Buffer.byteLength(await readFile(join(content, 'earth/c2.json'))),
+                count: 1,
+                minLevel: 11,
+              },
+            },
+          }),
+        );
+      }
       const first = await stageContentPacks(content, cache);
       expect(first).toContain('example.styles@1 + 1 model archives');
       expect(first).toContain('example.earth@1');

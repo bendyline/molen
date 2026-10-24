@@ -5,7 +5,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildPortunus, portunusCandidateId } from './portunus-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0506_temple_of_portunus/',
+    '../../../content/worldgen/source/places/sr/sr2/temple_of_portunus/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -68,7 +68,7 @@ export const buildPortunusSkyline = (o) => build(o, 0),
   buildPortunusStreet = (o) => build(o, 2),
   buildPortunusCloseup = (o) => build(o, 3);
 export const portunusStudy = {
-  id: 'N0506',
+  id: 'temple_of_portunus',
   key: 'temple_of_portunus',
   title: 'Temple of Portunus',
   category: 'temple',

@@ -1,11 +1,11 @@
-/** 'N0741_OLD': Old (Great) Hermitage river facade, low green roof and covered canal arch. */
+/** 'old_hermitage': Old (Great) Hermitage river facade, low green roof and covered canal arch. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildOldHermitage } from './old-hermitage-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ud/udt/n0741_old_hermitage/',
+    '../../../content/worldgen/source/places/ud/udt/old_hermitage/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -72,7 +72,7 @@ export const buildOldHermitageSkyline = (o) => build(o, 0),
   buildOldHermitageStreet = (o) => build(o, 2),
   buildOldHermitageCloseup = (o) => build(o, 3);
 export const oldHermitageStudy = {
-  id: 'N0741_OLD',
+  id: 'old_hermitage',
   key: 'old_hermitage',
   title: 'Old (Great) Hermitage',
   category: 'museum',

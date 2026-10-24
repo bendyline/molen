@@ -395,7 +395,7 @@ export function buildChinaWorldSkyline(o) {
 }
 
 export const chinaWorldTowerStudy = {
-  id: 'N0233',
+  id: 'china_world_trade_center_tower_iii',
   key: 'china_world_trade_center_tower_iii',
   title: 'China World Trade Center Tower III',
   wikidataId: 'Q2006129',

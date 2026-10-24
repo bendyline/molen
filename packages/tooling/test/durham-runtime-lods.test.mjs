@@ -9,7 +9,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { durhamStudy } from '../../worldgen/scripts/durham-castle-model.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 
-const source = resolve('../../content/worldgen/source/places/gc/gcw/n0256_durham_castle'),
+const source = resolve('../../content/worldgen/source/places/gc/gcw/durham_castle'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;

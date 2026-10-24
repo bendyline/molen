@@ -1,4 +1,4 @@
-/** N0622 reviewed source-local reconstruction. The original measured-section draft remains unchanged. */
+/** montelbaanstoren reviewed source-local reconstruction. The original measured-section draft remains unchanged. */
 import { readFileSync } from 'node:fs';
 import {
   beam,
@@ -21,7 +21,7 @@ import { box, tube as sourceTube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
 const footprint = JSON.parse(
-  readFileSync(structureSourcePath('n0622_montelbaanstoren', 'map-frame.json')),
+  readFileSync(structureSourcePath('montelbaanstoren', 'map-frame.json')),
 ).geometry.outline;
 function detail(out, mode) {
   const select = (master, close, street, district) =>

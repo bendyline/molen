@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sr/sr2/n0477_moschea_di_roma/',
+  '../../../content/worldgen/source/places/sr/sr2/moschea_di_roma/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -634,7 +634,7 @@ export const buildRomaSkyline = (o) => build(o, 0),
   buildRomaCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const romaStudy = {
-  id: 'N0477',
+  id: 'moschea_di_roma',
   key: 'moschea_di_roma',
   title: 'Moschea di Roma',
   category: 'mosque',

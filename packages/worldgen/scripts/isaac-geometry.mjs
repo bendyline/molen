@@ -1,4 +1,4 @@
-/** 'N0760': Saint Isaac cathedral, mapped porticos, drum colonnade and five domes. */
+/** 'saint_isaacs_cathedral': Saint Isaac cathedral, mapped porticos, drum colonnade and five domes. */
 import './install-deterministic-math.mjs';
 import { normalize, cross as vectorCross } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';

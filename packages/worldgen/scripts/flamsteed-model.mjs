@@ -1,11 +1,11 @@
-/** 'N0752_FLAMSTEED': Flamsteed House, corner turrets, time ball and shared surfaces. */
+/** 'flamsteed_house_royal_observatory_greenwich': Flamsteed House, corner turrets, time ball and shared surfaces. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildFlamsteed } from './flamsteed-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gc/gcp/n0752_flamsteed/',
+    '../../../content/worldgen/source/places/gc/gcp/flamsteed_house_royal_observatory_greenwich/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -102,7 +102,7 @@ export const buildFlamsteedSkyline = (o) => build(o, 0),
   buildFlamsteedStreet = (o) => build(o, 2),
   buildFlamsteedCloseup = (o) => build(o, 3);
 export const flamsteedStudy = {
-  id: 'N0752_FLAMSTEED',
+  id: 'flamsteed_house_royal_observatory_greenwich',
   key: 'flamsteed',
   title: 'Flamsteed House, Royal Observatory Greenwich',
   category: 'museum',

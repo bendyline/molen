@@ -1,0 +1,367 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.nuremberg_castle",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:33c56c90814de124825ef238b6ff9850098172d78a626c967a0193b6bd274fe9",
+  "sourceHash": "sha256:984ff94c7f3a2738254c5f4fbd58cd7f392a1548ab362b33c9c233580e4ec6fe",
+  "runtimeHash": "sha256:d3034804ee48a27c5a5d3b20c61c56251ad951de7e0fbc67f6cb0d0669500eef",
+  "captureReportHash": "sha256:be4ef1472c1285332163c29a7bd309381aa2b140079041c36917864f637e998b",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/sinwell-renaissance-helm.png",
+      "shots/imperial-inner-court.png",
+      "shots/timber-well-and-bailey.png",
+      "shots/hasenburg-passage.png",
+      "shots/palas-chapel-city-front.png",
+      "shots/stables-and-eastern-towers.png",
+      "shots/mapped-bastions.png"
+    ],
+    "notes": "Inspected all12 final portable views. Round Sinwell with capped roof/observation band, square towers, imperial court, timber well/bailey wings, true Hasenburg passage, Palas/chapel city face, stables/dormers and bounded bastions remain readable. The inspected aerial picture supports tower/court/roof-group identity."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:7f99a61526b542e6ae5d18dc8334d974cee618f858c9c1293dc11c5ef45c4aab",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/sinwell-renaissance-helm.png",
+      "shots/shared/imperial-inner-court.png",
+      "shots/shared/timber-well-and-bailey.png",
+      "shots/shared/hasenburg-passage.png",
+      "shots/shared/palas-chapel-city-front.png",
+      "shots/shared/stables-and-eastern-towers.png",
+      "shots/shared/mapped-bastions.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all12 final shared-material views. Five common sandstone/plaster/wood/tile/aggregate graphs plus explicit glass/foliage color slots are reused. Timber facades, tiled dormers, court and gate passage read correctly. Retained east/south map geometry supports approximate heading0 placement; cache reuse and unload passed."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:09f646262097158463dfac89fce2ce17363253c87314745487d570e18d94b7c0",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/sinwell-renaissance-helm.png",
+      "medium-fi/imperial-inner-court.png",
+      "medium-fi/timber-well-and-bailey.png",
+      "medium-fi/hasenburg-passage.png",
+      "medium-fi/palas-chapel-city-front.png",
+      "medium-fi/stables-and-eastern-towers.png",
+      "medium-fi/mapped-bastions.png",
+      "medium-fi/whole-nuremberg-skyline.png",
+      "medium-fi/whole-nuremberg-district.png",
+      "medium-fi/whole-nuremberg-street.png",
+      "medium-fi/whole-nuremberg-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all28 final medium-fi views across noon/late light, high/economy quality, identity views, silhouette and four matched levels. The old study is translated-15m; lower reconstructed building/tower floors are raised only where coarse PMTiles would bury them. Bounded terrace toes reach ground and the approach endpoint follows its PMTiles sample. Tower/roof masses remain consistent."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:9d9efe12cdf105d651db1f385f2480e9d44277af4c4f048c9b31efd4866afe45",
+    "mapFrameHash": "sha256:6a0e6bebce1abdc3ce9f63528a1aa4dcddf6547e36fdd32ddb2148e5c3c8235e",
+    "notes": "The inspected aerial picture supports Sinwell's cylindrical body/capped roof, square towers, open court, red tiled roof groups and timber/plaster wings. Retained east/south map geometry sets approximate extent and orientation. Standard viewer PMTiles supply surrounding ground; the old study is translated-15m, lower reconstructed building/tower floors are raised only as needed above sampled coarse terrain, terrace toes reach it and the outer approach joins its sampled endpoint. Original detailed master remains preserved. Anchor 11.0753908,49.4580789; heading 0; standard PMTiles datum 337.1664037330291m. Floors are reconstructed and foundations extend below the coarse sampled ground."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate current exterior and fit from an inspected aerial picture and standard viewer PMTiles. Individual floor adjustments and bounded sandstone terraces are reconstruction choices; roof/restoration details, interiors, exact archaeological ruins and collision are excluded. Surrounding hill supplied by host. No bespoke survey or exact thresholds. Footprint replacement stays off; physical-device timing unmeasured."
+  },
+  "legacyFidelityScope": {
+    "status": "pending",
+    "target": "medium-fi",
+    "notes": "Primary operator plan/exterior photographs and city castle guide support the three historic precincts, Sinwell helm, open imperial court, double chapel, half-timbered bailey/well house and eastern stables/Pentagonal Tower/Luginsland. Exact mapped footprints retain component attribution and map extrapolation warnings. Only Sinwell 41m is a verified primary numeric height; other vertical dimensions and roof partitions remain photographic estimates or unverified raw map values. Current architectural/terrain section requires further evidence. Gardens and rock/foundation supports are schematic. Selected exterior rhythm is represented; interior chapels/well shaft/museums, exact sculpture/heraldry and walkable collision are outside this exterior draft. No full current-site fidelity approval.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u0/u0z/nuremberg_castle/models/source.glb",
+        "hash": "sha256:984ff94c7f3a2738254c5f4fbd58cd7f392a1548ab362b33c9c233580e4ec6fe",
+        "bytes": 984248,
+        "triangles": 8168,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -144.4199981689453,
+          -14.147411346435547,
+          -84.78099822998047
+        ],
+        "max": [
+          212.82400512695312,
+          45.951805114746094,
+          77.69000244140625
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u0/u0z/nuremberg_castle/model.glb",
+        "hash": "sha256:d3034804ee48a27c5a5d3b20c61c56251ad951de7e0fbc67f6cb0d0669500eef",
+        "bytes": 983616,
+        "triangles": 8168,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -144.4199981689453,
+          -14.147411346435547,
+          -84.78099822998047
+        ],
+        "max": [
+          212.82400512695312,
+          45.951805114746094,
+          77.69000244140625
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u0/u0z/nuremberg_castle/model.skyline.glb",
+        "hash": "sha256:853acd1a6d6c00842bc008c994a9c1f769ffc1d9b234f935bab36f5456cbf91b",
+        "bytes": 103720,
+        "triangles": 985,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -144.4199981689453,
+          -14.147411346435547,
+          -84.78099822998047
+        ],
+        "max": [
+          212.69400024414062,
+          45.951805114746094,
+          77.69000244140625
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u0/u0z/nuremberg_castle/model.district.glb",
+        "hash": "sha256:b76d80f1e381ba27fbf02f368c047377dcb41d022c328fb6d63958dca9c16bcc",
+        "bytes": 311776,
+        "triangles": 3293,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -144.4199981689453,
+          -14.147411346435547,
+          -84.78099822998047
+        ],
+        "max": [
+          212.82400512695312,
+          45.951805114746094,
+          77.69000244140625
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u0/u0z/nuremberg_castle/model.street.glb",
+        "hash": "sha256:9a02e1d3f7ec965541aa49a9a261bbef76aeacf73b37a4524c985bec8b0d6f5c",
+        "bytes": 505216,
+        "triangles": 5309,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -144.4199981689453,
+          -14.147411346435547,
+          -84.78099822998047
+        ],
+        "max": [
+          212.82400512695312,
+          45.951805114746094,
+          77.69000244140625
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u0/u0z/nuremberg_castle/model.closeup.glb",
+        "hash": "sha256:db00d0bfa2a328578621b5e7aec72f26f0358a1cb1d91da161195a121b72cceb",
+        "bytes": 768728,
+        "triangles": 8168,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -144.4199981689453,
+          -14.147411346435547,
+          -84.78099822998047
+        ],
+        "max": [
+          212.82400512695312,
+          45.951805114746094,
+          77.69000244140625
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed master/hash/recipe preserved. Levels contain985/3293/5309/8168 triangles; initial skyline+district download totals415496 bytes. Separate POSITION/NORMAL streams retained."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:7a88e2e1528d95b5dbc4d6a856c4e27e1847b1f646440658e252f85d1bf4ef9a",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:853acd1a6d6c00842bc008c994a9c1f769ffc1d9b234f935bab36f5456cbf91b",
+        "bytes": 103720,
+        "gzipBytes": 20746,
+        "triangles": 985,
+        "cpuBytes": 102284,
+        "gpuBytes": 102284,
+        "errorMeters": 1,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:b76d80f1e381ba27fbf02f368c047377dcb41d022c328fb6d63958dca9c16bcc",
+        "bytes": 311776,
+        "gzipBytes": 95352,
+        "triangles": 3293,
+        "cpuBytes": 303336,
+        "gpuBytes": 303336,
+        "errorMeters": 0.7,
+        "drawCalls": 7
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:9a02e1d3f7ec965541aa49a9a261bbef76aeacf73b37a4524c985bec8b0d6f5c",
+        "bytes": 505216,
+        "gzipBytes": 145225,
+        "triangles": 5309,
+        "cpuBytes": 496728,
+        "gpuBytes": 496728,
+        "errorMeters": 0.3,
+        "drawCalls": 7
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:db00d0bfa2a328578621b5e7aec72f26f0358a1cb1d91da161195a121b72cceb",
+        "bytes": 768728,
+        "gzipBytes": 217187,
+        "triangles": 8168,
+        "cpuBytes": 760232,
+        "gpuBytes": 760232,
+        "errorMeters": 0.1,
+        "drawCalls": 7
+      }
+    ],
+    "initialBytes": 415496,
+    "notes": "skyline: 985 triangles, 103720 bytes, 1 draws; district: 3293 triangles, 311776 bytes, 7 draws; street: 5309 triangles, 505216 bytes, 7 draws; closeup: 8168 triangles, 768728 bytes, 7 draws. Initial skyline+district 415496 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate exterior and fit from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Building floors, terrace/ruin detail, roof partitioning and restoration fixtures are interpreted; interiors and collision excluded.",
+    "Five common graphs plus explicit glass/foliage color slots; zero embedded images. Bounded courts/gardens/terraces retained, surrounding hill supplied by host.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:6d3d81cfe5ab88ced31b261bae4c645d6ddb2121b76029165a3f0f281a47d0f6",
+    "inputHash": "sha256:33c56c90814de124825ef238b6ff9850098172d78a626c967a0193b6bd274fe9",
+    "previousQaHash": "sha256:b552718e70c49835ac6f78e4c002ed24ac5e07cc02247a06531785e80bd68bd4",
+    "sourceHash": "sha256:984ff94c7f3a2738254c5f4fbd58cd7f392a1548ab362b33c9c233580e4ec6fe",
+    "runtimeHash": "sha256:d3034804ee48a27c5a5d3b20c61c56251ad951de7e0fbc67f6cb0d0669500eef",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:853acd1a6d6c00842bc008c994a9c1f769ffc1d9b234f935bab36f5456cbf91b"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:b76d80f1e381ba27fbf02f368c047377dcb41d022c328fb6d63958dca9c16bcc"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:9a02e1d3f7ec965541aa49a9a261bbef76aeacf73b37a4524c985bec8b0d6f5c"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:db00d0bfa2a328578621b5e7aec72f26f0358a1cb1d91da161195a121b72cceb"
+      }
+    ],
+    "sceneHash": "sha256:0aaae3c78630a3f4054771466ae211c47add01c57cbcc3c5700e05ec8848c3ec",
+    "qaCamerasHash": "sha256:c56f8aa8ac62643fadffbdaa4fe85fb400b05b398bcd07e38ba52fb2a28224b3",
+    "placementHash": "sha256:9d9efe12cdf105d651db1f385f2480e9d44277af4c4f048c9b31efd4866afe45",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:6a0e6bebce1abdc3ce9f63528a1aa4dcddf6547e36fdd32ddb2148e5c3c8235e"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      {
+        "path": "materials/gravel.matgraph.json",
+        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:b37b6f12a128a0b9df81b287015acb74f1c39d87556ff596eab5a493a0ce9560"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:6136099dd75f0044f13c79c6e5d46ef1c586e001c32a730a3a0994dcbf26f40c"
+      }
+    ],
+    "framesVerified": 52,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
+}

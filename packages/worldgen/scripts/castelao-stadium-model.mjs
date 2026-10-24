@@ -1,8 +1,8 @@
-/** N0712: mapped Castelão membrane ring, exterior lattice fins and two pale seating tiers. */
+/** castelao: mapped Castelão membrane ring, exterior lattice fins and two pale seating tiers. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
-const candidateId = 'N0712';
+const candidateId = 'castelao';
 export function castelaoRadius(poly, angle) {
   const d = [Math.cos(angle), Math.sin(angle)],
     cross = (a, b) => a[0] * b[1] - a[1] * b[0],

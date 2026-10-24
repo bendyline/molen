@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sr/srq/n0472_sarena_mosque/',
+  '../../../content/worldgen/source/places/sr/srq/sarena_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -773,7 +773,7 @@ export const buildSarenaSkyline = (o) => build(o, 0),
   buildSarenaCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const sarenaStudy = {
-  id: 'N0472',
+  id: 'sarena_mosque',
   key: 'sarena_mosque',
   title: 'Šarena Mosque',
   category: 'mosque',

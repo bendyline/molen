@@ -1,4 +1,4 @@
-/** 'N0765_TRICLINIUM': a pale framed shelter over the mapped triapsidal dining hall. */
+/** 'casale_triclinium': a pale framed shelter over the mapped triapsidal dining hall. */
 import './install-deterministic-math.mjs';
 import earcut from 'earcut';
 import { box, prism } from './khmer-structure-geometry.mjs';

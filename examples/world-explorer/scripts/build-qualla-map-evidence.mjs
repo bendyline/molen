@@ -4,8 +4,8 @@ import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  next1000Entries,
-  next1000Matches,
+  structureCatalogEntries,
+  structureCatalogMatches,
 } from '../../../content/worldgen/source/qualla-structures/work-ownership.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
@@ -25,9 +25,9 @@ const targets = fs
   .trim()
   .split('\n')
   .map(JSON.parse);
-const reserved = next1000Entries(
-  json('content/worldgen/source/next-1000/candidates.json'),
-  json('content/worldgen/source/next-1000/collections.json'),
+const reserved = structureCatalogEntries(
+  json('content/worldgen/source/structure-catalog/candidates.json'),
+  json('content/worldgen/source/structure-catalog/collections.json'),
 );
 const qualla = path.resolve(
   root,
@@ -57,7 +57,7 @@ fs.mkdirSync(out, { recursive: true });
 for (const id of ids) {
   const e = batch.entries.find((e) => e.structureId === id),
     target = targets.find((t) => t.id === id);
-  if (!e || !target || next1000Matches(target, reserved, e.modelIdentity).length)
+  if (!e || !target || structureCatalogMatches(target, reserved, e.modelIdentity).length)
     throw Error(`Not available for local authoring: ${id}`);
   const refs = json(`content/worldgen/source/qualla-structures/references/${id}.json`);
   const article = JSON.parse(fs.readFileSync(path.resolve(qualla, refs.stories[0].sourcePath)));

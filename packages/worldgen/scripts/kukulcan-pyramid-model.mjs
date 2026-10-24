@@ -1,5 +1,5 @@
 /** Kukulcan's mapped stage/step controls with picture-guided panels and serpent terminals. */
-export const kukulcanCandidateId = 'N0499';
+export const kukulcanCandidateId = 'temple_of_kukulcan';
 
 const ring = (b, y) => [
   [b[0], y, b[1]],

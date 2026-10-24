@@ -1,11 +1,11 @@
-/** N0523: reproducible surviving granite column and paired sphinx group. */
+/** serapeum_of_alexandria: reproducible surviving granite column and paired sphinx group. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildSerapeumRemnants } from './serapeum-remnants-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/st/stt/n0523_serapeum_of_alexandria/',
+    '../../../content/worldgen/source/places/st/stt/serapeum_of_alexandria/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -81,7 +81,7 @@ export const buildSerapeumSkyline = (o) => build(o, 0),
   buildSerapeumStreet = (o) => build(o, 2),
   buildSerapeumCloseup = (o) => build(o, 3);
 export const serapeumStudy = {
-  id: 'N0523',
+  id: 'serapeum_of_alexandria',
   key: 'serapeum_of_alexandria',
   title: 'Serapeum of Alexandria',
   category: 'temple',

@@ -1,6 +1,6 @@
-/** N0522: ribbed gold dome, eighteen-window drum and open stone arcade. */
+/** shrine_of_the_bab: ribbed gold dome, eighteen-window drum and open stone arcade. */
 import earcut from 'earcut';
-export const babCandidateId = 'N0522';
+export const babCandidateId = 'shrine_of_the_bab';
 function prism(f, role, p, lo, hi) {
   const rings = [p.outline, ...(p.holes ?? [])],
     flat = rings.flat(),

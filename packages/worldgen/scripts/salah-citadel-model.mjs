@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/sy/sy3/n0257_citadel_of_salah_ed_din/map-parts.json',
+      '../../../content/worldgen/source/places/sy/sy3/citadel_of_salah_ed_din/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -1070,7 +1070,7 @@ export function buildSalahRuntime(out, detail) {
 }
 export const buildSalahSkyline = (o) => buildSalahRuntime(o, 'skyline');
 export const salahStudy = {
-  id: 'N0257',
+  id: 'citadel_of_salah_ed_din',
   key: 'citadel_of_salah_ed_din',
   title: 'Citadel of Salah Ed-Din',
   category: 'castle',

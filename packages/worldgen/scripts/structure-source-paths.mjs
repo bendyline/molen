@@ -116,19 +116,18 @@ export function knownSourceEntries() {
 export function proposedStructureSourcePath(key) {
   validateSourceKey(key);
   const catalog = JSON.parse(
-    readFileSync(resolve(structureSourceRoot, 'next-1000/candidates.json'), 'utf8'),
+    readFileSync(resolve(structureSourceRoot, 'structure-catalog/candidates.json'), 'utf8'),
   );
   const collections = JSON.parse(
-    readFileSync(resolve(structureSourceRoot, 'next-1000/collections.json'), 'utf8'),
+    readFileSync(resolve(structureSourceRoot, 'structure-catalog/collections.json'), 'utf8'),
   );
   const member = collections.collections
     .flatMap((collection) => collection.members)
     .find((entry) => entry.sourceKey === key);
-  const candidateId = key.match(/^(n\d{4})(?:_|$)/)?.[1].toUpperCase();
-  const candidate = member ?? catalog.candidates.find((entry) => entry.id === candidateId);
+  const candidate = member ?? catalog.candidates.find((entry) => entry.id === key);
   // A collection parent is not a single geographic object. Require a member key.
   const coordinate =
-    !member && collections.collections.some((entry) => entry.id === candidateId)
+    !member && collections.collections.some((entry) => entry.id === key)
       ? undefined
       : candidate?.referenceCoordinate;
   const geohash3 = coordinate

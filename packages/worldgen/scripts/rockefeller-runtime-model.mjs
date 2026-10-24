@@ -15,7 +15,7 @@ import { buildRockefeller } from './signature-tower-rockefeller-model.mjs';
 import { box, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0190_30_rockefeller_plaza';
+const key = '30_rockefeller_plaza';
 const frameMap = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'), 'utf8'));
 const scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json'), 'utf8'));
 const stone = [0.73, 0.71, 0.66],

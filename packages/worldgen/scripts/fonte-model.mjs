@@ -1,11 +1,11 @@
-/** 'N0734': Arena Fonte Nova's southern opening, green bowl and cable-supported oval roof. */
+/** 'arena_fonte_nova': Arena Fonte Nova's southern opening, green bowl and cable-supported oval roof. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildFonteStadium } from './fonte-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/7j/7js/n0734_arena_fonte_nova/',
+    '../../../content/worldgen/source/places/7j/7js/arena_fonte_nova/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -79,7 +79,7 @@ export const buildFonteSkyline = (o) => build(o, 0),
   buildFonteStreet = (o) => build(o, 2),
   buildFonteCloseup = (o) => build(o, 3);
 export const fonteStudy = {
-  id: 'N0734',
+  id: 'arena_fonte_nova',
   key: 'arena_fonte_nova',
   title: 'Arena Fonte Nova',
   category: 'stadium',

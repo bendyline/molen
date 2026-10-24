@@ -1,5 +1,5 @@
 /** Bayon's specific galleries and stone face towers; secondary positions are declared estimates. */
-export const bayonCandidateId = 'N0497';
+export const bayonCandidateId = 'bayon';
 function box(f, role, x, y, z, w, h, d) {
   const a = x - w / 2,
     b = x + w / 2,

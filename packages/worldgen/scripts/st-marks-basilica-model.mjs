@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u20/n0328_st_mark_s_basilica/',
+  '../../../content/worldgen/source/places/u2/u20/st_marks_basilica/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -845,7 +845,7 @@ export const buildStMarksDistrict = (out) => build(out, 1);
 export const buildStMarksStreet = (out) => build(out, 2);
 export const buildStMarksCloseup = (out) => build(out, 3);
 export const stMarksStudy = {
-  id: 'N0328',
+  id: 'st_marks_basilica',
   key: 'st_mark_s_basilica',
   title: "St Mark's Basilica",
   category: 'cathedral',

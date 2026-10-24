@@ -4,10 +4,7 @@ import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBulguksa, bulguksaCandidateId } from './bulguksa-compound-model.mjs';
 
-const source = new URL(
-    '../../../content/worldgen/source/places/wy/wy7/n0500_bulguksa/',
-    import.meta.url,
-  ),
+const source = new URL('../../../content/worldgen/source/places/wy/wy7/bulguksa/', import.meta.url),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
   frame = read('map-frame.json'),
   r = frame.reconstruction,
@@ -69,7 +66,7 @@ export const buildBulguksaSkyline = (o) => build(o, 0),
   buildBulguksaStreet = (o) => build(o, 2),
   buildBulguksaCloseup = (o) => build(o, 3);
 export const bulguksaStudy = {
-  id: 'N0500',
+  id: 'bulguksa',
   key: 'bulguksa',
   title: 'Bulguksa',
   category: 'temple',

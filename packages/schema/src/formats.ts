@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { assetId } from './asset-id';
 import type { AssetSidecar } from './assets';
 import type { SoundbankDoc } from './audio';
 import { compileCommandPayload } from './commands';
@@ -90,7 +91,7 @@ const eventSchema = z.strictObject({
 });
 
 // Dotted identifier grammars shared by the type registry and project manifest.
-// namespaceId: 1+ dot-segments (also the asset-id grammar); dottedId: 2+ (a type id always
+// namespaceId: 1+ dot-segments; dottedId: 2+ (a type id always
 // carries its namespace as the first segment).
 const namespaceId = z.string().regex(/^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)*$/, {
   error: 'must be dotted lower_snake segments, e.g. "train" or "train.rolling_stock"',
@@ -1081,7 +1082,7 @@ const entityTypeSchema = z.strictObject({
     .describe('Default component map for entities of this type (a partial when extends is set).')
     .default({}),
   assets: z
-    .array(namespaceId)
+    .array(assetId)
     .describe('Project asset ids this type references (e.g. its gltf model).')
     .default([]),
   scripts: z
@@ -1224,7 +1225,7 @@ const projectSchema = z.strictObject({
     .describe('Project-relative paths of molen/types@1 documents to load.')
     .default([]),
   assets: z
-    .record(namespaceId, relPath)
+    .record(assetId, relPath)
     .describe('Asset id to project-relative path of its molen/asset@1 sidecar (asset.json).')
     .default({}),
   reservations: z

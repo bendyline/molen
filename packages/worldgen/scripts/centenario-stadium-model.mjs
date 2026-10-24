@@ -1,4 +1,4 @@
-/** 'N0732': Centenario's three banks, America canopy and fluted Torre de los Homenajes. */
+/** 'estadio_centenario': Centenario's three banks, America canopy and fluted Torre de los Homenajes. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
@@ -17,7 +17,7 @@ export function centenarioRadius(poly, a) {
       u = cross(p, d) / den;
     if (t > 0 && u >= -1e-8 && u <= 1 + 1e-8) hits.push(t);
   }
-  if (!hits.length) throw Error('N0732: nonradial native boundary');
+  if (!hits.length) throw Error('estadio_centenario: nonradial native boundary');
   return Math.min(...hits);
 }
 export function centenarioFoundationOutline(r, d) {

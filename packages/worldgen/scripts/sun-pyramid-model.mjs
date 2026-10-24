@@ -5,7 +5,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildSunPyramid, sunPyramidCandidateId } from './sun-pyramid-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/9g/9g9/n0493_pyramid_of_the_sun/',
+    '../../../content/worldgen/source/places/9g/9g9/pyramid_of_the_sun/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -67,7 +67,7 @@ export const buildSunPyramidSkyline = (o) => build(o, 0),
   buildSunPyramidStreet = (o) => build(o, 2),
   buildSunPyramidCloseup = (o) => build(o, 3);
 export const sunPyramidStudy = {
-  id: 'N0493',
+  id: 'pyramid_of_the_sun',
   key: 'pyramid_of_the_sun',
   title: 'Pyramid of the Sun',
   category: 'temple',

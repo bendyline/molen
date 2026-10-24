@@ -1,11 +1,11 @@
-/** 'N0756': Drottningholm Palace, connected courtyard wings and domed ends. */
+/** 'drottningholm_palace': Drottningholm Palace, connected courtyard wings and domed ends. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildDrottningholm } from './drottningholm-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u6/u6s/n0756_drottningholm_palace/',
+    '../../../content/worldgen/source/places/u6/u6s/drottningholm_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -100,7 +100,7 @@ export const buildDrottningholmSkyline = (o) => build(o, 0),
   buildDrottningholmStreet = (o) => build(o, 2),
   buildDrottningholmCloseup = (o) => build(o, 3);
 export const drottningholmStudy = {
-  id: 'N0756',
+  id: 'drottningholm_palace',
   key: 'drottningholm_palace',
   title: 'Drottningholm Palace, main building and connected courtyard wings',
   category: 'palace',

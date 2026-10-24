@@ -4,7 +4,7 @@ import { expect, it } from 'vitest';
 import { kihnuPorts, kihnuRadius } from '../../worldgen/scripts/kihnu-browser-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/ud/ud3/n0671_kihnu_lighthouse'),
+const source = resolve('../../content/worldgen/source/places/ud/ud3/kihnu_lighthouse'),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {

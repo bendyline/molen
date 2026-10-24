@@ -83,7 +83,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sn/snr/n0436_great_mosque_of_kairouan/',
+  '../../../content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -933,7 +933,7 @@ export const buildKairouanSkyline = (o) => build(o, 0),
   buildKairouanCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const kairouanStudy = {
-  id: 'N0436',
+  id: 'great_mosque_of_kairouan',
   key: 'great_mosque_of_kairouan',
   title: 'Great Mosque of Kairouan',
   category: 'mosque',

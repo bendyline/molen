@@ -1,4 +1,4 @@
-/** 'N0747': Mapped MoMA galleries, recessed entrance and knife-edge canopy. */
+/** 'museum_of_modern_art': Mapped MoMA galleries, recessed entrance and knife-edge canopy. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildMoma(face, detail, r) {

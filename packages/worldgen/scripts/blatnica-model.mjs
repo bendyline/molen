@@ -1,11 +1,11 @@
-/** N0628: narrow roofless castle with jagged crowns, hollow rooms and exposed ridge. */
+/** blatnica_castle: narrow roofless castle with jagged crowns, hollow rooms and exposed ridge. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBlatnicaMasonry } from './blatnica-masonry-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u2/u2t/n0628_blatnica_castle/',
+    '../../../content/worldgen/source/places/u2/u2t/blatnica_castle/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -82,7 +82,7 @@ export const buildBlatnicaSkyline = (o) => build(o, 0),
   buildBlatnicaStreet = (o) => build(o, 2),
   buildBlatnicaCloseup = (o) => build(o, 3);
 export const blatnicaStudy = {
-  id: 'N0628',
+  id: 'blatnica_castle',
   key: 'blatnica_castle',
   title: 'Blatnica Castle',
   category: 'tower',

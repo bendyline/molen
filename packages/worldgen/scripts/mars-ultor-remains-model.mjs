@@ -1,4 +1,4 @@
-/** 'N0550': Mars Ultor's mapped standing columns, broad stair and pierced rear firewall. */
+/** 'temple_of_mars_ultor': Mars Ultor's mapped standing columns, broad stair and pierced rear firewall. */
 import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 import { buildCorinthianColumn } from './corinthian-column-geometry.mjs';

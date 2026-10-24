@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sv/svc/n0416_umayyad_mosque/',
+  '../../../content/worldgen/source/places/sv/svc/umayyad_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1017,7 +1017,7 @@ export const buildUmayyadSkyline = (o) => build(o, 0),
   buildUmayyadCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const umayyadStudy = {
-  id: 'N0416',
+  id: 'umayyad_mosque',
   key: 'umayyad_mosque',
   title: 'Umayyad Mosque — Damascus',
   category: 'mosque',

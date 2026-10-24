@@ -1,11 +1,11 @@
-/** N0509: deterministic medium-fi Sarmizegetusa surviving exterior. */
+/** sarmizegetusa_regia: deterministic medium-fi Sarmizegetusa surviving exterior. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildSarmizegetusaRuins } from './sarmizegetusa-ruins-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u8/u80/n0509_sarmizegetusa_regia/',
+    '../../../content/worldgen/source/places/u8/u80/sarmizegetusa_regia/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -81,7 +81,7 @@ export const buildSarmiSkyline = (o) => build(o, 0),
   buildSarmiStreet = (o) => build(o, 2),
   buildSarmiCloseup = (o) => build(o, 3);
 export const sarmizegetusaStudy = {
-  id: 'N0509',
+  id: 'sarmizegetusa_regia',
   key: 'sarmizegetusa_regia',
   title: 'Sarmizegetusa Regia',
   category: 'temple',

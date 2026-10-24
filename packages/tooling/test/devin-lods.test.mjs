@@ -10,7 +10,7 @@ import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lo
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2s/n0292_devin_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u2/u2s/devin_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -31,7 +31,7 @@ function ray(x, z, p) {
     : null;
 }
 it('builds deterministic browser levels with reusable graphs and homogeneous GPU views', async () => {
-  const id = 'molen.worldgen.structure.n0292_devin_castle',
+  const id = 'molen.worldgen.structure.devin_castle',
     bytes = [];
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -108,7 +108,7 @@ it('seats approach-wall bottoms on rendered cliff triangles rather than detached
 const apertures = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2s/n0292_devin_castle/openings.json',
+      '../../../content/worldgen/source/places/u2/u2s/devin_castle/openings.json',
       import.meta.url,
     ),
   ),

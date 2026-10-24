@@ -7,7 +7,7 @@ import { buildBeaumarisRuntime } from './beaumaris-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/gc/gcm/n0283_beaumaris_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/gc/gcm/beaumaris_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

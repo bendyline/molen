@@ -4,7 +4,7 @@
 
 163 models retain their technical validation; 163 reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.
 
-Finish each model using Qualla photographs, current renders and story synchronization in the same authoring pass. Every next-1,000 candidate and collection member remains assigned to the other device.
+Finish each model using Qualla photographs, current renders and story synchronization in the same authoring pass. Every structure catalog candidate and collection member remains assigned to the other device.
 
 Completion is recomputed from current evidence; editing geometry, source references, material graphs, terrain or placement invalidates the affected approval. [Machine-readable ledger](qualla-002.readiness.json).
 
@@ -206,7 +206,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 194 | [Kaptai Dam](https://qualla.com/kaptai-dam/) | Not started | source-model-missing |
 | 195 | [Gawhar Shad Mausoleum](https://qualla.com/gawhar-shad-mausoleum/) | Complete | All required evidence current |
 | 196 | [Mubarak Mandi Palace](https://qualla.com/mubarak-mandi-palace/) | Not started | source-model-missing |
-| 197 | [Great Mosque of Herat](https://qualla.com/great-mosque-of-herat/) | Other device | next-1000-other-device |
+| 197 | [Great Mosque of Herat](https://qualla.com/great-mosque-of-herat/) | Other device | structure-catalog-other-device |
 | 198 | [Wazir Mansion](https://qualla.com/wazir-mansion/) | Complete | All required evidence current |
 | 199 | [Great Pyramid of Giza](https://qualla.com/great-pyramid-of-giza/) | Complete | All required evidence current |
 | 200 | [Dona Ana Bridge](https://qualla.com/dona-ana-bridge/) | Complete | All required evidence current |

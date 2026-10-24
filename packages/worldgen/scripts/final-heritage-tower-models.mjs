@@ -8,9 +8,7 @@ import { annulus, archBay, face, tau, transform, triangle } from './heritage-tow
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const hermannFrameBytes = readFileSync(
-  structureSourcePath('n0571_hermannsdenkmal', 'map-frame.json'),
-);
+const hermannFrameBytes = readFileSync(structureSourcePath('hermannsdenkmal', 'map-frame.json'));
 
 function polygon(out, slot, ring, bottom, top, color) {
   const p = ring.slice();
@@ -480,10 +478,7 @@ function buildHermann(out) {
 
 function buildVasco(out) {
   const data = JSON.parse(
-    readFileSync(
-      structureSourcePath('n0577_vasco_da_gama_tower', 'reference-metadata.json'),
-      'utf8',
-    ),
+    readFileSync(structureSourcePath('vasco_da_gama_tower', 'reference-metadata.json'), 'utf8'),
   );
   const c = Math.cos(data.heading),
     s = Math.sin(data.heading),
@@ -712,8 +707,8 @@ function buildVasco(out) {
 
 export const finalHeritageTowers = [
   {
-    id: 'n0571_hermannsdenkmal',
-    planId: 'N0571',
+    id: 'hermannsdenkmal',
+    planId: 'hermannsdenkmal',
     componentMap: { copper: 'metal' },
     title: 'Hermannsdenkmal',
     wikidata: 'Q664245',
@@ -769,8 +764,8 @@ export const finalHeritageTowers = [
     ],
   },
   {
-    id: 'n0577_vasco_da_gama_tower',
-    planId: 'N0577',
+    id: 'vasco_da_gama_tower',
+    planId: 'vasco_da_gama_tower',
     title: 'Vasco da Gama Tower',
     wikidata: 'Q1756313',
     build: buildVasco,

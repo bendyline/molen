@@ -11,7 +11,7 @@ import { budaGround } from '../../worldgen/scripts/buda-runtime-model.mjs';
 import { createStructureIndex } from '../../worldgen-earth/dist/kernel.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u2/u2m/n0255_buda_castle'),
+const source = resolve('../../content/worldgen/source/places/u2/u2m/buda_castle'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
@@ -117,7 +117,7 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.groundCutout).toBeUndefined();
   expect(spec.geographicProposal.terrainReference.modelHeight).toBe(0);
-  const catalog = await read('../../content/earth/structures/placements.json'),
+  const catalog = await read('../../content/earth/structures/placements/authoring.json'),
     placement = catalog.entries.find((e) => e.asset === spec.assetId),
     index = createStructureIndex({ ...catalog, entries: [placement] }),
     bounds = [19.03, 47.49, 19.05, 47.51];

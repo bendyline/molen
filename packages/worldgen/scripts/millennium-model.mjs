@@ -1,11 +1,11 @@
-/** N0711: Millennium open roof, tapered masts, red bowl and lower north stand. */
+/** millennium_stadium: Millennium open roof, tapered masts, red bowl and lower north stand. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMillenniumStadium } from './millennium-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gc/gcj/n0711_millennium_stadium/',
+    '../../../content/worldgen/source/places/gc/gcj/millennium_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -98,7 +98,7 @@ export const buildMillenniumSkyline = (o) => build(o, 0),
   buildMillenniumStreet = (o) => build(o, 2),
   buildMillenniumCloseup = (o) => build(o, 3);
 export const millenniumStudy = {
-  id: 'N0711',
+  id: 'millennium_stadium',
   key: 'millennium_stadium',
   title: 'Millennium Stadium',
   category: 'stadium',

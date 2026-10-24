@@ -1,6 +1,6 @@
 # Qualla compat — next 300
 
-**Paused — 163 / 300 completed.** The core100 are complete. Finish geometry, current render inspection, catalog/placement integration and story annotation in each authoring pass. All next1000 candidates and collection members remain reserved for the other device. Public-domain/CC0 imagery only, starting with cleared published Qualla media.
+**Paused — 163 / 300 completed.** The core100 are complete. Finish geometry, current render inspection, catalog/placement integration and story annotation in each authoring pass. All structureCatalog candidates and collection members remain reserved for the other device. Public-domain/CC0 imagery only, starting with cleared published Qualla media.
 
 | # | Structure / Qualla story | Region | Category | State |
 | ---: | --- | --- | --- | --- |

@@ -12,7 +12,7 @@ export const kazarmaBrowserSurfaces = {
 const stone = [0.655, 0.637, 0.574],
   earth = [0.54, 0.498, 0.413];
 const means = JSON.parse(
-  readFileSync(structureSourcePath('n0012_kazarma_mycenaean_bridge', 'surface-means.json')),
+  readFileSync(structureSourcePath('kazarma_mycenaean_bridge', 'surface-means.json')),
 );
 export const kazarmaRoadHeight = (x) => 3.88 - Math.abs(x) * 0.043 + Math.sin(x * 0.8) * 0.035;
 function triangle(out, slot, p, color, flat) {

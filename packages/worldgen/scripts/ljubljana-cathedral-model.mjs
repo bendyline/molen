@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u24/n0360_ljubljana_cathedral/',
+  '../../../content/worldgen/source/places/u2/u24/ljubljana_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -941,7 +941,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const ljubljanaStudy = {
-  id: 'N0360',
+  id: 'ljubljana_cathedral',
   key: 'ljubljana_cathedral',
   title: 'Ljubljana Cathedral',
   category: 'cathedral',

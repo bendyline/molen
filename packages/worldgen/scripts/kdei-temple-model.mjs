@@ -1,7 +1,7 @@
-/** N0524: mapped courts, ruined Khmer galleries and the outer eastern face gateway. */
+/** banteay_kdei: mapped courts, ruined Khmer galleries and the outer eastern face gateway. */
 import earcut from 'earcut';
 import { bayonFaceDepth } from './bayon-temple-model.mjs';
-export const kdeiCandidateId = 'N0524';
+export const kdeiCandidateId = 'banteay_kdei';
 function prism(f, role, p, lo, hi, bottom = true) {
   const rings = [p.outline, ...(p.holes ?? [])],
     flat = rings.flat(),

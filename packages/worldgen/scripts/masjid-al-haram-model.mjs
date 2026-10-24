@@ -5,7 +5,7 @@ import earcut from 'earcut';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sg/sgu/n0412_al_masjid_al_haram/',
+  '../../../content/worldgen/source/places/sg/sgu/al_masjid_al_haram/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -777,7 +777,7 @@ export const buildMasjidHaramSkyline = (o) => build(o, 0),
   buildMasjidHaramCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const masjidHaramStudy = {
-  id: 'N0412',
+  id: 'al_masjid_al_haram',
   key: 'al_masjid_al_haram',
   title: 'Al-Masjid Al-Haram',
   category: 'mosque',

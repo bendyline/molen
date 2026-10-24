@@ -1,4 +1,4 @@
-/** 'N0759': Fontainebleau's mapped palace ranges, slate roofscape and horseshoe stairs. */
+/** 'palace_of_fontainebleau': Fontainebleau's mapped palace ranges, slate roofscape and horseshoe stairs. */
 import './install-deterministic-math.mjs';
 import { createRequire } from 'node:module';
 import earcut from 'earcut';

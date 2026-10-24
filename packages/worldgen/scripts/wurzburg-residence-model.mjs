@@ -1,4 +1,4 @@
-/** 'N0771': Würzburg Residence. */
+/** 'wurzburg_residence': Würzburg Residence. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
@@ -6,7 +6,7 @@ import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 import { buildWurzburgResidence } from './wurzburg-residence-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u0/u0z/n0771_wurzburg_residence/',
+    '../../../content/worldgen/source/places/u0/u0z/wurzburg_residence/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -104,7 +104,7 @@ export const buildWurzburgResidenceSkyline = (o) => build(o, 0),
   buildWurzburgResidenceStreet = (o) => build(o, 2),
   buildWurzburgResidenceCloseup = (o) => build(o, 3);
 export const wurzburgResidenceStudy = {
-  id: 'N0771',
+  id: 'wurzburg_residence',
   key: 'wurzburg_residence',
   title: 'Würzburg Residence',
   category: 'museum',

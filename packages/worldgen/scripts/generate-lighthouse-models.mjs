@@ -45,7 +45,10 @@ for (const arg of process.argv.slice(2))
   if (arg !== '--check' && !arg.startsWith('--ids=')) throw new Error(`Unknown argument ${arg}`);
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const candidates = JSON.parse(
-  await readFile(resolve(root, 'content/worldgen/source/next-1000/candidates.json'), 'utf8'),
+  await readFile(
+    resolve(root, 'content/worldgen/source/structure-catalog/candidates.json'),
+    'utf8',
+  ),
 ).candidates;
 const studySources = new Map(
   [
@@ -126,7 +129,7 @@ for (const id of selected ?? [])
 for (const asset of studies.filter((study) => !selected || selected.includes(study.id))) {
   if (candidates.find((candidate) => candidate.id === asset.id)?.wikidataId !== asset.wikidataId)
     throw new Error(`${asset.id}: catalog identity changed`);
-  const key = `${asset.id.toLowerCase()}_${asset.key}`,
+  const key = asset.id,
     assetId = `molen.worldgen.structure.${key}`,
     dir = structureSourceDirectory(key),
     modelPath = resolve(dir, 'models/source.glb');
@@ -284,7 +287,8 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
           renderable: {
             kind: 'primitive',
             ref: 'box',
-            materialRef: asset.id === 'N0643' ? 'palette:#4c6e77' : 'palette:#858878',
+            materialRef:
+              asset.id === 'kiipsaare_lighthouse' ? 'palette:#4c6e77' : 'palette:#858878',
             shadows: { receive: true },
           },
         },

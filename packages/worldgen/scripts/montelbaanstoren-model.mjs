@@ -427,8 +427,8 @@ export function buildMontelbaanstoren(out) {
 }
 
 export const montelbaanstoren = {
-  id: 'n0622_montelbaanstoren',
-  planId: 'N0622',
+  id: 'montelbaanstoren',
+  planId: 'montelbaanstoren',
   title: 'Montelbaanstoren',
   wikidata: 'Q1946061',
   authoringFile: 'montelbaanstoren-model.mjs',

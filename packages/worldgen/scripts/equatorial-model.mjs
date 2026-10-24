@@ -1,11 +1,11 @@
-/** 'N0752_EQUATORIAL': Great Equatorial Building, octagonal gallery and green onion dome. */
+/** 'great_equatorial_building_royal_observatory_greenwich': Great Equatorial Building, octagonal gallery and green onion dome. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildEquatorial } from './equatorial-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gc/gcp/n0752_equatorial/',
+    '../../../content/worldgen/source/places/gc/gcp/great_equatorial_building_royal_observatory_greenwich/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -103,7 +103,7 @@ export const buildEquatorialSkyline = (o) => build(o, 0),
   buildEquatorialStreet = (o) => build(o, 2),
   buildEquatorialCloseup = (o) => build(o, 3);
 export const equatorialStudy = {
-  id: 'N0752_EQUATORIAL',
+  id: 'great_equatorial_building_royal_observatory_greenwich',
   key: 'equatorial',
   title: 'Great Equatorial Building, Royal Observatory Greenwich',
   category: 'museum',

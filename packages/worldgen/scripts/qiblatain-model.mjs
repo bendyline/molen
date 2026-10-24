@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/su/suk/n0461_masjid_al_qiblatain/',
+  '../../../content/worldgen/source/places/su/suk/masjid_al_qiblatain/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -718,7 +718,7 @@ export const buildQiblatainSkyline = (o) => build(o, 0),
   buildQiblatainCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const qiblatainStudy = {
-  id: 'N0461',
+  id: 'masjid_al_qiblatain',
   key: 'masjid_al_qiblatain',
   title: 'Masjid al-Qiblatain',
   category: 'mosque',

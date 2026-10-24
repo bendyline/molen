@@ -1,0 +1,1200 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.great_mosque_of_kairouan",
+  "sourceHash": "sha256:71d2c8f9d8a7899542d84c2edb7f1a097d62543af3fae8afe84577c753beaaad",
+  "runtimeHash": "sha256:703ecb3e05b2fede7da9b5ab26fc77b6f615baea8a50d4f10bfeac7f671e02be",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 10478,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:8d2b76517397c8c05ceea4c5034ae1f764d84e91923cd020727abb0df4b535de",
+      "bytes": 98512,
+      "gzipBytes": 17343,
+      "triangles": 946,
+      "cpuBytes": 97080,
+      "gpuBytes": 97080,
+      "errorMeters": 0.8,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:d388962acccb44e50aefd8d4843daa793345fd82dc287a9e22528910672bf948",
+      "bytes": 363668,
+      "gzipBytes": 102422,
+      "triangles": 3501,
+      "cpuBytes": 355016,
+      "gpuBytes": 355016,
+      "errorMeters": 0.35,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:d6e9a2e1cb2201770d712d8b1dc1de3c91589afec1b2e786b8a55f7594b9b7ec",
+      "bytes": 1473788,
+      "gzipBytes": 441818,
+      "triangles": 14183,
+      "cpuBytes": 1465088,
+      "gpuBytes": 1465088,
+      "errorMeters": 0.12,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:14c8f62aaef407080bbeeb31b71dc526c46f0b3e9b6f70030e6cb6a235fe3e1e",
+      "bytes": 2103764,
+      "gzipBytes": 605611,
+      "triangles": 20315,
+      "cpuBytes": 2095052,
+      "gpuBytes": 2095052,
+      "errorMeters": 0.05,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:574d4a2fd197044b5219a2a69dea22e9182a9d3bfe94821ec98ccece9b084f17"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:22e98e775d3bb18a2c4a5ce81d09ca040eac4ce786d71e2f8376e9428050e295"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:f8ed97a258d455d92b918eb17bd93d14a82f19fe9ace8dcd477995d47b33b7fb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 51595,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          62.50130000000001,
+          49.2884,
+          107.88480000000001
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:c63098e7b7a218efeea5624e0a70b410d9a3b73199f6cfef623911c54ebd011b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51595,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          62.50130000000001,
+          49.2884,
+          107.88480000000001
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:935fe4aaecf4a8827ba38a57b85b746e8099e168b55861d2bf4ccc359d56de07",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 51595,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          62.50130000000001,
+          49.2884,
+          107.88480000000001
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:fcd9ce15aa676c0e66688ad0888d3d2581448a899335ddf2b8e3007dcb97c8ca",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51595,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          62.50130000000001,
+          49.2884,
+          107.88480000000001
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:b1b462764a24a6f108f3f1d1a10ea1b42861a1f8ee79f526082add021eb4593b",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 34781,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          126.2013,
+          96.08840000000001,
+          218.3848
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:26fbf02dbd4ce27e327b0db9164b0daaef92871ef751964bc8886ae1516ed485",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34781,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          126.2013,
+          96.08840000000001,
+          218.3848
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:aa4f75f784f5b9bc10a93a85909614f8a6d5690d0eeb4518d2234c24ad32ef97",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 34781,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          126.2013,
+          96.08840000000001,
+          218.3848
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:cb728cdcae1f8d448901c9fdd2bb09bcef55828ec7cdce6472b4b359552a7ce4",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34781,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          126.2013,
+          96.08840000000001,
+          218.3848
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:2ed70e560baf3683ff69a68524b829707b7f1e6493410d71022678f7bc91284e",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 32226,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          252.30130000000003,
+          145.4884,
+          436.7848
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:562397760799ec6d2e8d7dda294c2e1c9b5fb4689f2c33d8c04a47386f7d1d2f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32226,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          252.30130000000003,
+          145.4884,
+          436.7848
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:03b6f6a1f35e69c00758dc63a3e7bab1006c188d98884a9710e9f279a996fb29",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 32226,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          252.30130000000003,
+          145.4884,
+          436.7848
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:b28217b7931b56f2663be970f435666cb54857ceca76ec39bb8f6680826c67b2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32226,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          252.30130000000003,
+          145.4884,
+          436.7848
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:adb81c23ad8a62567d0eaeaf04df105e5b6ef23fd35462fe1a874f220f6b8cd1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21748,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          252.30130000000003,
+          145.4884,
+          436.7848
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/three-stage-square-minaret.png",
+      "hash": "sha256:d5c6790523f3b23594dfae1689252cc9d8eff0b8cc3ab197ff8d0e069076009b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51595,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          -26,
+          23,
+          22
+        ],
+        "lookAt": [
+          -56,
+          18,
+          -5.6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/prayer-portal-and-ribbed-dome.png",
+      "hash": "sha256:3d024668827267efff4e668f8a43c0ee81ca1ffe059ba3842e1f751c0489b9e5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51595,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          -13,
+          15,
+          13
+        ],
+        "lookAt": [
+          11,
+          12,
+          -0.8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/horseshoe-bays-and-paired-columns.png",
+      "hash": "sha256:b2c3628a046fb39384061b064e7d541b22dc7e10f25743554deb6aa4d3d64d11",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51595,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          -10,
+          7,
+          11
+        ],
+        "lookAt": [
+          -10,
+          7,
+          25
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/pale-rear-mihrab-dome.png",
+      "hash": "sha256:dd0b40b0618e7c5e783296c60613c21f94981962e0df71dbc67789422c7d8d32",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51595,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          82,
+          27,
+          19
+        ],
+        "lookAt": [
+          56.5,
+          15,
+          -0.8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mapped-court-and-prayer-range.png",
+      "hash": "sha256:112d3c795304f7711324850b104a005565d1ee399881cb2053612b1add0a439a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51595,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          150,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/minaret-upper-arches-and-cap.png",
+      "hash": "sha256:b8ec6465f83f213462e0d57610e75716a43068d4c5b38c8e84abb4e5b9163428",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51595,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          -40,
+          33,
+          11
+        ],
+        "lookAt": [
+          -56,
+          29,
+          -5.6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kairouan-skyline.png",
+      "hash": "sha256:e2624c9196820c347ac6351a49d3dc04027d2043fc78af8897c85e93b333a1f9",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32226,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          -135,
+          100,
+          130
+        ],
+        "lookAt": [
+          0,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kairouan-district.png",
+      "hash": "sha256:44aefd10e8ae0d504c39eaf30e8a9a83f468daf3c8efb49026ea753dfda7fa7e",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34781,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          -135,
+          100,
+          130
+        ],
+        "lookAt": [
+          0,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kairouan-street.png",
+      "hash": "sha256:6c181a1b857f33f4ad87d9720859a68d280018338d5c0611555a5d7ef2768528",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 45463,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          -135,
+          100,
+          130
+        ],
+        "lookAt": [
+          0,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kairouan-closeup.png",
+      "hash": "sha256:f133b9cf34daedca45a977e68868e64583611f21d4b63b9d349e2551be9dac5c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51595,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          -135,
+          100,
+          130
+        ],
+        "lookAt": [
+          0,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:16367d1bd14143897b0573ecbb8b0104f36a373dab78fc3a52eed3d7e1c054bc",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 32226,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          126.2013,
+          96.08840000000001,
+          218.3848
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:26fbf02dbd4ce27e327b0db9164b0daaef92871ef751964bc8886ae1516ed485",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 34781,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          126.2013,
+          96.08840000000001,
+          218.3848
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:2404ff4a31e0fa0bcde7c9c0cc652a109e76764d7076f443998d5ab9c21ff4b3",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 45463,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          126.2013,
+          96.08840000000001,
+          218.3848
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:2186d83986181b3661c1bbb2badd5ebb81197789533bab62252ea6ecaadb6176",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 51595,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sn/snr/great_mosque_of_kairouan/terrain-review.height.png"
+        },
+        "position": [
+          126.2013,
+          96.08840000000001,
+          218.3848
+        ],
+        "lookAt": [
+          0.1013,
+          29.788400000000003,
+          -0.0152
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.mediterranean.attached",
+        "contextScale": 1.3,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

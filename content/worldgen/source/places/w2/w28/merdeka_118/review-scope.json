@@ -1,0 +1,383 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "The Kuala Lumpur crystalline supertall with its clipped diamond plan, independently glazed triangular facade planes, offset angular160.4m spire, stepped observation crown, dense floor/panel grid and folded metal atrium canopies with V supports.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X northeast minimum-rectangle edge",
+    "front": "+Z southeast",
+    "origin": "Ground-level mapped tower frame at entry datum"
+  },
+  "sourceFacts": {
+    "heightMeters": 678.9,
+    "externalSpireMeters": 160.4,
+    "structuralSpireMeters": 169,
+    "externalSpireBaseMeters": 518.5,
+    "storeys": 118,
+    "officeLevels": [
+      8,
+      96
+    ],
+    "hotelLevels": [
+      98,
+      112
+    ],
+    "observationLevels": [
+      115,
+      116
+    ],
+    "architect": "Fender Katsalidis with RSP Architects",
+    "engineer": "Leslie E.Robertson Associates; Arup; Robert Bird Group",
+    "outriggerLevels": [
+      [
+        40,
+        43
+      ],
+      [
+        75,
+        78
+      ],
+      [
+        113,
+        116
+      ]
+    ],
+    "completionYear": 2023,
+    "originalMasterHash": "sha256:6faf97465cf2e2fce389a437b66e2f24842d88032fcca8ff162681d62c29c112",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-world-models.mjs#skylineWorld[merdeka_118].build",
+    "surfaceMeans": {
+      "stone_travertine": [
+        0.911101,
+        0.911101,
+        0.911101
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "metal_stainless": [
+        0.81896,
+        0.822889,
+        0.822889
+      ]
+    }
+  },
+  "reconstruction": {
+    "plan": "The exact-QID mapped rhombus retains its signed frame. Completed architect sky-lobby and engineer typical-floor plans corroborate the clipped diamond and distinguish its long diagonal from the minimum-rectangle edge axis. Both acute ends are clipped in the occupied shaft; the separately mapped mast fixes the north-eastern crown corner.",
+    "facade": "Large inclined triangular planes, alternating blue/cyan glass facets, physical mullion strips and continuous diagonal edge ribs reconstruct the architect’s completed-building north elevation and daytime close photographs. Old construction-era OSM125/250/375/500/550/635m tags are deliberately not used as final vertical dimensions.",
+    "crown": "Completed PAM2025 close views establish the asymmetric flat glass upper face, diagonal returns, lower observation terrace and slender angular metal spire. Published678.9m total and160.4m external spire set the current vertical envelope;169m structural spire includes embedded structure.",
+    "entry": "Glazed low atrium, warm stone columns, broad folded metal canopy and paired V struts follow the architect’s current exterior photograph. Canopy projection and exact pane schedule are photo reconstructions."
+  },
+  "limitations": [
+    "Original 144834-triangle, 17086960-byte detailed master remains exactly reproducible from the unchanged world-tower recipe. Reviewed source/four levels preserve clipped diamond plans, every inclined triangular facade plane, lower 509.2 m mechanical deck, stepped 509.5/518.5 m crown and northeast angular spire to 678.9 m. Continuous planar glass backings with long clipped mullion strips replace independent framed cells. Near levels retain diagonal ribs, folded closed canopies/V supports, travertine-toned lobby columns, roof plant and observation bands. Skyline reduces pane/rail/plant details; district/street aggregate panes/floors. Glass tint contrast is reduced for medium-fi without flattening facet geometry. Source master uses independently linked published plans/photos; facet ring offsets, pane pitch, canopy projection and mast section widths remain reconstructions. Arup/PAM/main engineer text agree on 678.9 m; engineer abstract says 679.9 m and is documented as a conflicting figure. Three shared 256 px graphs, four near draw groups, opaque glass and zero images. Grey foundation reuses tinted travertine graph. Separate mall, landscape/water park, stadiums, below-grade parking, interiors, moving equipment, aircraft obstruction/night LEDs and tenant lettering are excluded. 1.5 / .75 / .3 / .1 m finite-probe allowances exclude omitted thin mullions/rail bars. No physical-device or surveyed grade claim."
+  ],
+  "surfaceOverrides": {
+    "foundation": {
+      "graph": "stone_travertine",
+      "slot": "wall",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "cladding": {
+      "graph": "stone_travertine",
+      "slot": "wall",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "stainless": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "geographic": {
+    "heading": 1.546962847249,
+    "reviewStatus": "reviewed medium-fi signed placement",
+    "orientationConfidence": "mapped independent northeast mast and completed site plan",
+    "notes": "Fresh OSM API on 2026-10-10 confirms exact Q7969454 whole outline 645604854 and nine unchanged separately retained parts. Heading 1.546962847249 retained: native +X northeast, +Z southeast. Native +X follows the minimum rectangle edge, not the long diamond diagonal. Separately mapped mast 629116778 is at the northeast crown corner; independently reprojected mast center corroborates native [30.18,15.74]. PAM completed north elevation, sky-lobby plan and site aerial corroborate the clipped diamond, Stadium Negara east and Stadium Merdeka south. Whole map height now 678.9 m agrees with engineer/architect; 2021 part heights 125/250/375/500/550/635 m remain construction evidence only. Ground Y=0 is tower entry level. Accept 2 m footprint / 1 degree reconstruction allowance; automatic replacement disabled. Mall, park and below-grade terrain are separate context.",
+    "evidence": "Fresh OSM API on 2026-10-10 confirms exact Q7969454 whole outline 645604854 and nine unchanged separately retained parts. Heading 1.546962847249 retained: native +X northeast, +Z southeast. Native +X follows the minimum rectangle edge, not the long diamond diagonal. Separately mapped mast 629116778 is at the northeast crown corner; independently reprojected mast center corroborates native [30.18,15.74]. PAM completed north elevation, sky-lobby plan and site aerial corroborate the clipped diamond, Stadium Negara east and Stadium Merdeka south. Whole map height now 678.9 m agrees with engineer/architect; 2021 part heights 125/250/375/500/550/635 m remain construction evidence only. Ground Y=0 is tower entry level. Accept 2 m footprint / 1 degree reconstruction allowance; automatic replacement disabled. Mall, park and below-grade terrain are separate context.",
+    "replaceFootprint": false
+  },
+  "geographicNote": "Fresh OSM API on 2026-10-10 confirms exact Q7969454 whole outline 645604854 and nine unchanged separately retained parts. Heading 1.546962847249 retained: native +X northeast, +Z southeast. Native +X follows the minimum rectangle edge, not the long diamond diagonal. Separately mapped mast 629116778 is at the northeast crown corner; independently reprojected mast center corroborates native [30.18,15.74]. PAM completed north elevation, sky-lobby plan and site aerial corroborate the clipped diamond, Stadium Negara east and Stadium Merdeka south. Whole map height now 678.9 m agrees with engineer/architect; 2021 part heights 125/250/375/500/550/635 m remain construction evidence only. Ground Y=0 is tower entry level. Accept 2 m footprint / 1 degree reconstruction allowance; automatic replacement disabled. Mall, park and below-grade terrain are separate context.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/merdeka-runtime-model.mjs",
+    "export": "buildMerdekaReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/merdeka-runtime-model.mjs",
+    "export": "buildMerdekaSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMerdekaDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildMerdekaStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMerdekaCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-tower",
+      "position": [
+        590,
+        400,
+        850
+      ],
+      "lookAt": [
+        5,
+        322,
+        0
+      ]
+    },
+    {
+      "name": "above-stepped-crown",
+      "position": [
+        76,
+        558,
+        104
+      ],
+      "lookAt": [
+        16,
+        511,
+        9
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        590,
+        400,
+        850
+      ],
+      "lookAt": [
+        5,
+        322,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        590,
+        400,
+        850
+      ],
+      "lookAt": [
+        5,
+        322,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        590,
+        400,
+        850
+      ],
+      "lookAt": [
+        5,
+        322,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        590,
+        400,
+        850
+      ],
+      "lookAt": [
+        5,
+        322,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-crystal-planes",
+      "position": [
+        -118,
+        298,
+        171
+      ],
+      "lookAt": [
+        0,
+        250,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-folded-lobby",
+      "position": [
+        -64,
+        21,
+        -77
+      ],
+      "lookAt": [
+        -13,
+        13,
+        -17
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-roof-and-mast",
+      "position": [
+        76,
+        558,
+        104
+      ],
+      "lookAt": [
+        16,
+        511,
+        9
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-facet-mullions",
+      "position": [
+        110,
+        290,
+        119
+      ],
+      "lookAt": [
+        22,
+        270,
+        11
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

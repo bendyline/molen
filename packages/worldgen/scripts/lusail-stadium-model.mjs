@@ -523,7 +523,7 @@ export function buildLusail(target) {
   podium(out);
 }
 export const lusailStudy = {
-  id: 'N0691',
+  id: 'lusail_stadium',
   key: 'lusail_stadium',
   wikidataId: 'Q1186333',
   title: 'Lusail Stadium',

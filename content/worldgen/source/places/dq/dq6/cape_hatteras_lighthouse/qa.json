@@ -1,0 +1,72 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.cape_hatteras_lighthouse",
+  "inputHash": "sha256:ce6af9e88d828ae6e9da0f0450a7cada0e8e63c371b93429ab3348ff98c467c8",
+  "captureReportHash": "sha256:61b50c94d6a2eb22645cdf28baac12193027208e9ff01862ba97666b579c39dc",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Detailed exterior and portable materials.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-entry.png",
+      "shots/near-stripes.png",
+      "shots/near-brackets.png",
+      "shots/near-lantern.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "All ten portable and ten shared frames inspected, including full-resolution shared spiral/window view after continuous metric UV correction. Smooth tapered shaft, two black spiral daymarks, seven recessed windows, octagonal brick/granite base, bronze double door, nine steps, pierced scroll brackets, gallery balustrades, lantern framing and roof rod are connected and visible. No missing geometry or false striping remains in the inspected views."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:73dcd79a666b9045b272c466e9cb5ed0546be61644fd56908987d60eddec0806",
+    "fixtureHash": "sha256:3dc3824114fb46029b6a424af8098d75a98b8b5bd306db741d028163415abde5",
+    "inputHash": "sha256:ce6af9e88d828ae6e9da0f0450a7cada0e8e63c371b93429ab3348ff98c467c8",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_granite": {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-entry.png",
+      "shots/shared/near-stripes.png",
+      "shots/shared/near-brackets.png",
+      "shots/shared/near-lantern.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Brick, stone trim, painted iron and lime-plaster surfaces share the central physical-scale material library. Both daymark colors use the same continuous shaft UV parameterization with analytic cone normals; the prior horizontal bands are resolved."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:4f5d3ac02f878098b37c2c6c23cb135a66d5427c411b5e107e5e69548571a81d",
+    "notes": "Tower is anchored at the current post-1999 footprint way295324032, not its former shoreline location. Mapped north approach path fixes the native+Z entry heading -3.0773rad. North-up orthographic placement shows the octagonal base centered within the measured mapped tower/approach extent; ground contact is at the bottom granite step datum."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed pre-restoration operating exterior in Molen shared material style.",
+    "notes": "NPS published feet/inches dimensions constrain tower, shaft taper, gallery, windows and stair. NPS photographs and National Register facade documentation constrain bronze doors, scroll brackets and rail ornaments. Appearance deliberately represents the post-1999 operating daymark before the 2024-2026 restoration; ongoing work has removed paint and does not provide a completed replacement exterior to reproduce. Minor molding/ornament proportions are photograph-derived. Interior rooms, temporary work scaffolding and detached keeper buildings are outside this tower exterior scope."
+  }
+}

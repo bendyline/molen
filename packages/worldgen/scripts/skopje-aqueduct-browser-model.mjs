@@ -4,9 +4,7 @@ import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(
-    readFileSync(structureSourcePath('n0018_skopje_aqueduct', 'map-frame.json')),
-  ),
+const frame = JSON.parse(readFileSync(structureSourcePath('skopje_aqueduct', 'map-frame.json'))),
   line = frame.geometry.centerlines[0],
   stations = [0];
 for (let i = 1; i < line.length; i++)

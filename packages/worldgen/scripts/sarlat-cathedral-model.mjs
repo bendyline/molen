@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sp/spb/n0402_sarlat_cathedral/',
+  '../../../content/worldgen/source/places/sp/spb/sarlat_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -885,7 +885,7 @@ export const buildSarlatSkyline = (o) => build(o, 0),
   buildSarlatCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const sarlatCathedralStudy = {
-  id: 'N0402',
+  id: 'sarlat_cathedral',
   key: 'sarlat_cathedral',
   title: 'Sarlat Cathedral',
   category: 'cathedral',

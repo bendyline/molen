@@ -1,11 +1,11 @@
-/** N0521: reproducible surviving Dakshineswar Kali Temple architecture. */
+/** dakshineswar_kali_temple: reproducible surviving Dakshineswar Kali Temple architecture. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildDakshineswarTemple } from './dakshineswar-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/tu/tun/n0521_dakshineswar_kali_temple/',
+    '../../../content/worldgen/source/places/tu/tun/dakshineswar_kali_temple/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -81,7 +81,7 @@ export const buildDakshineswarSkyline = (o) => build(o, 0),
   buildDakshineswarStreet = (o) => build(o, 2),
   buildDakshineswarCloseup = (o) => build(o, 3);
 export const dakshineswarStudy = {
-  id: 'N0521',
+  id: 'dakshineswar_kali_temple',
   key: 'dakshineswar_kali_temple',
   title: 'Dakshineswar Kali Temple',
   category: 'temple',

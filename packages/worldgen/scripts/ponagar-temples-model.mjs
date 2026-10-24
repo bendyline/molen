@@ -1,4 +1,4 @@
-/** 'N0543': four specific Po Nagar brick tower forms and unroofed mandapa. */
+/** 'po_nagar': four specific Po Nagar brick tower forms and unroofed mandapa. */
 import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, prepareOpening } from './authored-wall-openings.mjs';

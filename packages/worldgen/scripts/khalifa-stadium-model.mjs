@@ -816,7 +816,7 @@ export function buildKhalifa(out) {
   museum(out);
 }
 export const khalifaStudy = {
-  id: 'N0706',
+  id: 'khalifa_international_stadium',
   key: 'khalifa_international_stadium',
   wikidataId: 'Q772988',
   title: 'Khalifa International Stadium',

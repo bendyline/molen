@@ -1,11 +1,11 @@
-/** 'N0748_HEROISM': Curved Pillar of Heroism and shared pale facing. */
+/** 'pillar_of_heroism_yad_vashem': Curved Pillar of Heroism and shared pale facing. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildYadHeroism } from './yad-heroism-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sv/sv9/n0748_heroism/',
+    '../../../content/worldgen/source/places/sv/sv9/pillar_of_heroism_yad_vashem/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -97,7 +97,7 @@ export const buildYadHeroismSkyline = (o) => build(o, 0),
   buildYadHeroismStreet = (o) => build(o, 2),
   buildYadHeroismCloseup = (o) => build(o, 3);
 export const yadHeroismStudy = {
-  id: 'N0748_HEROISM',
+  id: 'pillar_of_heroism_yad_vashem',
   key: 'heroism',
   title: 'Pillar of Heroism, Yad Vashem',
   category: 'memorial',

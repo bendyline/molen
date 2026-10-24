@@ -1,11 +1,11 @@
-/** 'N0752_ALTAZIMUTH': Altazimuth Pavilion, round brick pavilion, two portals and ribbed dome. */
+/** 'altazimuth_pavilion_royal_observatory_greenwich': Altazimuth Pavilion, round brick pavilion, two portals and ribbed dome. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { buildAltazimuth } from './altazimuth-geometry.mjs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gc/gcp/n0752_altazimuth/',
+    '../../../content/worldgen/source/places/gc/gcp/altazimuth_pavilion_royal_observatory_greenwich/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -103,7 +103,7 @@ export const buildAltazimuthSkyline = (o) => build(o, 0),
   buildAltazimuthStreet = (o) => build(o, 2),
   buildAltazimuthCloseup = (o) => build(o, 3);
 export const altazimuthStudy = {
-  id: 'N0752_ALTAZIMUTH',
+  id: 'altazimuth_pavilion_royal_observatory_greenwich',
   key: 'altazimuth',
   title: 'Altazimuth Pavilion, Royal Observatory Greenwich',
   category: 'museum',

@@ -8,7 +8,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { montsoreauStudy } from '../../worldgen/scripts/montsoreau-castle-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u0/u02/n0236_chateau_de_montsoreau'),
+const source = resolve('../../content/worldgen/source/places/u0/u02/chateau_de_montsoreau'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -98,7 +98,11 @@ it('preserves the original detailed castle and independently projects its occupi
   montsoreauStudy.build(a.wrap(b));
   execFileSync(
     process.execPath,
-    ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=N0236', '--check'],
+    [
+      'packages/worldgen/scripts/generate-signature-towers.mjs',
+      '--ids=chateau_de_montsoreau',
+      '--check',
+    ],
     { cwd: resolve('../..'), stdio: 'pipe' },
   );
   const f = await read(`${source}/map-frame.json`),

@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/u6/u6x/n0305_turku_castle/',
+  '../../../content/worldgen/source/places/u6/u6x/turku_castle/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
@@ -591,7 +591,7 @@ export function buildTurkuRuntime(o, level = 'closeup') {
 }
 export const buildTurkuSkyline = (o) => buildTurkuRuntime(o, 'skyline');
 export const turkuStudy = {
-  id: 'N0305',
+  id: 'turku_castle',
   key: 'turku_castle',
   title: 'Turku Castle',
   category: 'castle',

@@ -15499,7 +15499,7 @@
               "groundLevelRate": 2,
               "maxGroundPitch": 0.22,
               "camberAngle": 0.045,
-              "flapLift": 0.33,
+              "flapLift": 0.8,
               "postStallFlapEffect": 0.4,
               "stallAngle": 0.28,
               "stallTransitionAngle": 0.12,
@@ -15516,10 +15516,10 @@
               "liftSlope": 4.8,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.028,
-              "inducedDrag": 0.06,
+              "profileDrag": 0.029330707772004416,
+              "inducedDrag": 0.037663125498903376,
               "gearDrag": 0.018,
-              "flapDrag": 0.035,
+              "flapDrag": 0.075,
               "gearTransitTime": 6,
               "flapTransitTime": 4,
               "stallDrag": 1.1,
@@ -15529,7 +15529,14 @@
               "lateralDamping": 0.35,
               "brakeDeceleration": 4,
               "rollingDeceleration": 0.22,
-              "groundTrackRate": 12
+              "groundTrackRate": 12,
+              "groundEffect": true,
+              "criticalMach": 0.62,
+              "waveDrag": 0.22,
+              "maxMach": 0.72,
+              "maxEquivalentAirspeed": 179.02666666666667,
+              "gearLimitSpeed": 96.9727777777778,
+              "flapLimitSpeed": 89.51333333333334
             },
             "engines": [
               {
@@ -15544,13 +15551,16 @@
                   0,
                   1
                 ],
-                "power": 889411.7647058824,
+                "power": 895000,
                 "idleRpm": 0.18,
                 "spoolRate": 0.25,
                 "rotorAngularSpeed": 178.0235837034216,
-                "maxThrust": 16800,
+                "maxThrust": 19018.75,
                 "minPropellerSpeed": 25,
-                "propellerEfficiency": 0.85
+                "propellerEfficiency": 0.85,
+                "propulsion": "propeller",
+                "densityExponent": 1,
+                "ratedDensityRatio": 0.45
               }
             ]
           }

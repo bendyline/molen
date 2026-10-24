@@ -1,11 +1,11 @@
-/** 'N0551': Yuetan's standing bell tower, roofed gate, hall and surviving enclosure. */
+/** 'temple_of_the_moon': Yuetan's standing bell tower, roofed gate, hall and surviving enclosure. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMoonTempleHeritage } from './moon-temple-heritage-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/wx/wx4/n0551_temple_of_the_moon/',
+    '../../../content/worldgen/source/places/wx/wx4/temple_of_the_moon/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -89,7 +89,7 @@ export const buildMoonTempleSkyline = (o) => build(o, 0),
   buildMoonTempleStreet = (o) => build(o, 2),
   buildMoonTempleCloseup = (o) => build(o, 3);
 export const moonTempleStudy = {
-  id: 'N0551',
+  id: 'temple_of_the_moon',
   key: 'temple_of_the_moon',
   title: 'Temple of the Moon',
   category: 'temple',

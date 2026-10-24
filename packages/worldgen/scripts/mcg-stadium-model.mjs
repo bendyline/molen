@@ -1,4 +1,4 @@
-/** 'N0724': MCG's two roof systems, four-tier oval and six tapered light towers. */
+/** 'melbourne_cricket_ground': MCG's two roof systems, four-tier oval and six tapered light towers. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
@@ -17,7 +17,7 @@ export function mcgRadius(poly, a) {
       u = cross(p, d) / den;
     if (t > 0 && u >= -1e-8 && u <= 1 + 1e-8) hits.push(t);
   }
-  if (!hits.length) throw Error('N0724: missing native radial boundary');
+  if (!hits.length) throw Error('melbourne_cricket_ground: missing native radial boundary');
   return Math.min(...hits);
 }
 export function mcgAngles(r, d) {

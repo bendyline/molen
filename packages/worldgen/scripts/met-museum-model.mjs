@@ -1,11 +1,11 @@
-/** 'N0740': Met Fifth Avenue facade, gallery roofs and glazed park wings. */
+/** 'metropolitan_museum_of_art': Met Fifth Avenue facade, gallery roofs and glazed park wings. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMetMuseum } from './met-museum-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/dr/dr5/n0740_metropolitan_museum_of_art/',
+    '../../../content/worldgen/source/places/dr/dr5/metropolitan_museum_of_art/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -73,7 +73,7 @@ export const buildMetSkyline = (o) => build(o, 0),
   buildMetStreet = (o) => build(o, 2),
   buildMetCloseup = (o) => build(o, 3);
 export const metStudy = {
-  id: 'N0740',
+  id: 'metropolitan_museum_of_art',
   key: 'metropolitan_museum_of_art',
   title: 'Metropolitan Museum of Art',
   category: 'museum',

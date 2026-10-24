@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sy/syq/n0469_great_mosque_of_al_nuri/',
+  '../../../content/worldgen/source/places/sy/syq/great_mosque_of_al_nuri/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -860,7 +860,7 @@ export const buildNuriSkyline = (o) => build(o, 0),
   buildNuriCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const nuriStudy = {
-  id: 'N0469',
+  id: 'great_mosque_of_al_nuri',
   key: 'great_mosque_of_al_nuri',
   title: 'Great Mosque of al-Nuri',
   category: 'mosque',

@@ -7,7 +7,7 @@ import { buildLjubljanaRuntime } from './ljubljana-castle-model.mjs';
 const OLD_MEANS = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u24/n0307_ljubljana_castle/surface-means.json',
+      '../../../content/worldgen/source/places/u2/u24/ljubljana_castle/surface-means.json',
       import.meta.url,
     ),
   ),
@@ -15,7 +15,7 @@ const OLD_MEANS = JSON.parse(
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u2/u24/n0307_ljubljana_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u2/u24/ljubljana_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

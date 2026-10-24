@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u1/u15/n0391_liege_cathedral/',
+  '../../../content/worldgen/source/places/u1/u15/liege_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1024,7 +1024,7 @@ export const buildLiegeCathedralSkyline = (o) => build(o, 0),
   buildLiegeCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const liegeCathedralStudy = {
-  id: 'N0391',
+  id: 'liege_cathedral',
   key: 'liege_cathedral',
   title: 'Liège Cathedral',
   category: 'cathedral',

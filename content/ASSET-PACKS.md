@@ -165,13 +165,13 @@ Use the existing package builds until a generator dependency or runtime package 
 For an individual structure, generate and import only its ID. For example:
 
 ```sh
-node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0228
+node packages/worldgen/scripts/generate-signature-towers.mjs --ids=two_prudential_plaza
 # Only when a new source bundle was added:
 node packages/worldgen/scripts/index-structure-sources.mjs
 # When a source bundle or model recipe was added, before import and review captures:
 node packages/worldgen/scripts/index-structure-authoring.mjs
-node packages/worldgen/scripts/import-next-1000-models.mjs --ids=N0228
-node packages/tooling/scripts/generate-landmark-lods.mjs --ids=N0228
+node packages/worldgen/scripts/import-structure-models.mjs --ids=two_prudential_plaza
+node packages/tooling/scripts/generate-landmark-lods.mjs --ids=two_prudential_plaza
 ```
 
 Validate the changed GLB's attributes, winding, bounds, material bindings and source/runtime
@@ -199,7 +199,7 @@ or a failing batch check. Catalog refreshes, lock updates and broad reproducibil
 at batch milestones.
 
 After accepting a changed model, refresh its readiness record with
-`node packages/worldgen-earth/scripts/build-structure-readiness.mjs --ids=N0518` (comma-separated
+`node packages/worldgen-earth/scripts/build-structure-readiness.mjs --ids=temple_of_hercules_victor` (comma-separated
 IDs are supported). This runs the ordinary evidence checks for those candidates and retains
 the other records from the last full ledger; it does not re-approve or rehash unchanged models.
 The selected mode requires an existing ledger with matching catalog identities and collection
@@ -295,7 +295,7 @@ For Qualla-linked structures, also refresh the [story backlog and Qualla model a
 after the source, registration, placement and readiness catalogs are current. The explicit
 scan/sync step remembers model IDs in the sibling Qualla curation catalog, including models
 that still need review; an asset build alone does not update story coverage.
-For the Qualla workstream, every next-1,000 candidate and collection member is reserved for
+For the Qualla workstream, every structure catalog candidate and collection member is reserved for
 production on a separate device. Retain coverage links, but exclude these models from local
 authoring and refinement; the Qualla batch preparation check enforces this ownership rule.
 After the selected generators and imports have run, a local lock checkpoint can use
@@ -341,11 +341,11 @@ Assets workflow rebuilds and verifies these files through `asset-build.json`; re
 For a targeted visual comparison and integrity check:
 
 ```sh
-node examples/world-explorer/test/performance/review-lods.mjs --ids=n0229_istanbul_sapphire
+node examples/world-explorer/test/performance/review-lods.mjs --ids=istanbul_sapphire
 node packages/tooling/scripts/check-landmark-lods.mjs
 ```
 
-For one model, pass `--ids=N0230` to the LOD checker. Source-authored skyline overrides
+For one model, pass `--ids=nina_tower` to the LOD checker. Source-authored skyline overrides
 live beside the detailed model recipes and are registered in
 `packages/tooling/scripts/authored-landmark-lods.mjs`. Use these when automatic reduction
 loses characteristic openings or crowns. The normal LOD generator and release source build
@@ -366,7 +366,7 @@ reviews and integration should already be complete; do not restart them here unl
 checkpoint exposes a relevant change or failure.
 
 1. Edit the generator, spec, material graph or texture. Iterate with the bundle's own command,
-   for example `node packages/worldgen/scripts/generate-stadium-models.mjs --ids=N0692`.
+   for example `node packages/worldgen/scripts/generate-stadium-models.mjs --ids=munich_olympic_stadium`.
 2. Once the batch is stable, run `pnpm assets:build --update-lock`. It regenerates, re-imports and rewrites
    `asset-lock.json` for whatever the source now produces.
 3. Review the diff: generator code, regenerated metadata (`source.json`, `spec.json`, sidecars,
@@ -385,11 +385,14 @@ To add a generator, append it to `generators` in `asset-build.json`. Every GLB t
 must be in the lock, and every locked GLB must be produced. A GLB that is neither locked nor a
 listed master fails `pnpm assets:check`.
 
-Generators also rewrite their JSON and Markdown metadata. A plain `pnpm assets:build` keeps
-every committed file as it was and lists the ones the generators would change; CI annotates
-them. A lock update accepts real changes. Either way, a file whose content is unchanged keeps
-its committed bytes even if a generator lays it out differently, because review evidence pins
-some of these files byte for byte.
+Generators also rewrite their JSON and Markdown metadata. A successful `pnpm assets:build`
+keeps generated runtime `assets/**/asset.json` sidecars with the GLBs they describe, including
+their hashes, bounds, statistics and detail-level metadata. Restoring older sidecars would leave
+the built models unusable for verified packaging. Authored source and review documents retain
+their original bytes; the build lists proposed changes to those files and CI annotates them.
+A failed build restores all original text. A file whose content is unchanged keeps its original
+bytes even if a generator lays it out differently, because review evidence pins some of these
+files byte for byte.
 
 ## Determinism
 

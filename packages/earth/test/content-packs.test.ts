@@ -252,7 +252,7 @@ describe('Earth structure catalogs', () => {
     const earth = fakePack('molen.earth', 'earth', {
       atlas: ['world.atlas.json'],
       businesses: ['businesses/catalog.json'],
-      structures: ['structures/placements.json', 'structures/map-rules.json'],
+      structures: ['structures/placements/authoring.json', 'structures/map-rules.json'],
     });
     const content = await loadEarthContent([style, earth]);
     expect(content.worldgenError).toBeUndefined();
@@ -282,4 +282,55 @@ describe('Earth structure catalogs', () => {
     ).toBe(true);
     expect(binaryRead).not.toHaveBeenCalled();
   });
+});
+
+it('loads the placement directory at startup and reads geographic regions only on request', async () => {
+  const reads: string[] = [];
+  const close = vi.fn();
+  const fakePack = (id: string, folder: string, provides: Record<string, string[]>): Pack =>
+    ({
+      manifest: { id, version: '0.0.1', provides },
+      close,
+      readJson: async (path: string) => {
+        reads.push(folder + '/' + path);
+        return JSON.parse(
+          await readFile(
+            new URL('../../../content/' + folder + '/' + path, import.meta.url),
+            'utf8',
+          ),
+        );
+      },
+      readBytes: async () => {
+        throw new Error('Unexpected model download');
+      },
+    }) as unknown as Pack;
+  const content = await loadEarthContent([
+    fakePack('molen.worldgen.default', 'worldgen', {
+      stylepack: ['stylepack.json'],
+      landmarks: ['landmarks/catalog.json'],
+    }),
+    fakePack('molen.earth', 'earth', {
+      atlas: ['world.atlas.json'],
+      businesses: ['businesses/catalog.json'],
+      structures: ['structures/placements/index.json', 'structures/map-rules.json'],
+    }),
+  ]);
+  expect(content.worldgenError).toBeUndefined();
+  expect(reads.filter((path) => path.includes('/cells/'))).toEqual([]);
+  const structures = content.worldgen?.structures;
+  expect(structures?.isLoaded?.([-122.4, 47.5, -122.2, 47.7])).toBe(false);
+  const nearby = await structures?.queryAsync?.([-122.4, 47.5, -122.2, 47.7]);
+  expect(nearby?.map((e) => e.id)).toContain('seattle.space-needle');
+  expect(reads.filter((path) => path.includes('/cells/'))).toEqual([
+    'earth/structures/placements/cells/c2.json',
+  ]);
+  expect(
+    nearby?.every(
+      (entry) => entry.note === undefined && entry.terrainReference?.basis === undefined,
+    ),
+  ).toBe(true);
+  content.packs.close();
+  expect(close).toHaveBeenCalledTimes(2);
+  expect(structures?.isLoaded?.([-122.4, 47.5, -122.2, 47.7])).toBe(false);
+  await expect(structures?.queryAsync?.([-122.4, 47.5, -122.2, 47.7])).rejects.toThrow();
 });

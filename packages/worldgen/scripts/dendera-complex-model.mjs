@@ -1,6 +1,6 @@
-/** N0508: surviving ancillary monuments and the eroded precinct, in the mapped frame. */
+/** dendera_temple_complex: surviving ancillary monuments and the eroded precinct, in the mapped frame. */
 import { denderaBox as box, denderaCavetto as cavetto } from './dendera-temple-model.mjs';
-export const denderaComplexCandidateId = 'N0508';
+export const denderaComplexCandidateId = 'dendera_temple_complex';
 
 function placed(face, part) {
   const co = Math.cos(part.rotation ?? 0),

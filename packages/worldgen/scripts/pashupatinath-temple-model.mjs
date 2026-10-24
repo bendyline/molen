@@ -1,5 +1,5 @@
 /** Principal Pashupatinath pagoda, not the surrounding multi-temple precinct. */
-export const pashupatinathCandidateId = 'N0496';
+export const pashupatinathCandidateId = 'pashupatinath_temple';
 function box(f, role, x, y, z, w, h, d) {
   const a = x - w / 2,
     b = x + w / 2,

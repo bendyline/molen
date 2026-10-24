@@ -94,7 +94,7 @@ test('source-local signed frame overrides unrelated global footprint without mov
   const bytes = Buffer.from(JSON.stringify(frame, null, 2));
   const hash = `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
   const spec = {
-    id: 'N0189',
+    id: 'yokohama_landmark_tower',
     geographicProposal: { mapGeometrySource: 'map-frame.json', mapGeometryHash: hash },
   };
   const result = sourceLocalFootprint(spec, bytes);
@@ -113,7 +113,7 @@ test('source-local signed frame overrides unrelated global footprint without mov
 });
 
 test('global evidence capture path remains unchanged for ordinary placements', () => {
-  assert.equal(sourceLocalFootprint({ id: 'N0188' }, undefined), undefined);
+  assert.equal(sourceLocalFootprint({ id: '70_pine_street' }, undefined), undefined);
   assert.equal(
     sourceLocalFootprint(
       { geographicProposal: { mapGeometrySource: 'content/earth/structures/georeferencing.json' } },

@@ -9,7 +9,7 @@ import { MATERIAL_REPEAT_METERS } from '../../worldgen/scripts/standard-material
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/9y/9yz/n0963_gateway_arch'),
+const source = resolve('../../content/worldgen/source/places/9y/9yz/gateway_arch'),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
 function geometry(b) {
@@ -88,7 +88,7 @@ it('reproduces the unchanged Gateway Arch master and binds the reviewed directed
   draft.decorateMesh(m);
   const s = await read(`${source}/spec.json`),
     frame = await read(`${source}/map-frame.json`),
-    live = (await read('../../content/earth/structures/placements.json')).entries.find(
+    live = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(live.anchor).toEqual([-90.1849746, 38.624611275]);

@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/te/tep/n0430_charminar/',
+  '../../../content/worldgen/source/places/te/tep/charminar/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -947,7 +947,7 @@ export const buildCharminarSkyline = (o) => build(o, 0),
   buildCharminarCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const charminarStudy = {
-  id: 'N0430',
+  id: 'charminar',
   key: 'charminar',
   title: 'Charminar',
   category: 'mosque',

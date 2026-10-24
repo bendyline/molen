@@ -1,8 +1,8 @@
-/** N0722: Mbombela's orange giraffe masts, stayed canopy, zebra bowl and green ramps. */
+/** mbombela_stadium: Mbombela's orange giraffe masts, stayed canopy, zebra bowl and green ramps. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
-const candidateId = 'N0722',
+const candidateId = 'mbombela_stadium',
   tau = Math.PI * 2;
 export const mbombelaSegments = [12, 24, 40, 84];
 export function mbombelaRadius(poly, a) {

@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/gc/gcm/n0270_conwy_castle/map-frame.json',
+      '../../../content/worldgen/source/places/gc/gcm/conwy_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -768,7 +768,7 @@ export const buildConwySkyline = (o) =>
     'skyline',
   );
 export const conwyStudy = {
-  id: 'N0270',
+  id: 'conwy_castle',
   key: 'conwy_castle',
   title: 'Conwy Castle',
   category: 'castle',

@@ -1,11 +1,11 @@
-/** N0715: Nelson Mandela Bay petal roof, galleries and three red seating bands. */
+/** nelson_mandela_bay_stadium: Nelson Mandela Bay petal roof, galleries and three red seating bands. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMandelaStadium } from './mandela-petal-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/k9/k9f/n0715_nelson_mandela_bay_stadium/',
+    '../../../content/worldgen/source/places/k9/k9f/nelson_mandela_bay_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -72,7 +72,7 @@ export const buildMandelaSkyline = (o) => build(o, 0),
   buildMandelaStreet = (o) => build(o, 2),
   buildMandelaCloseup = (o) => build(o, 3);
 export const mandelaStudy = {
-  id: 'N0715',
+  id: 'nelson_mandela_bay_stadium',
   key: 'nelson_mandela_bay_stadium',
   title: 'Nelson Mandela Bay Stadium',
   category: 'stadium',

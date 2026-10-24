@@ -1,4 +1,4 @@
-/** 'N0741_NEW': Two courts, raised corner halls, classical frontage and ten-figure portico. */
+/** 'new_hermitage': Two courts, raised corner halls, classical frontage and ten-figure portico. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

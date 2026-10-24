@@ -610,8 +610,8 @@ function buildGarni(out) {
 }
 
 export const reviewedGarniTemple = {
-  id: 'n0498_garni_temple',
-  planId: 'N0498',
+  id: 'garni_temple',
+  planId: 'garni_temple',
   category: 'temple',
   title: 'Garni Temple',
   wikidata: 'Q684072',

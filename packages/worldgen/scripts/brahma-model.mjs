@@ -1,11 +1,11 @@
-/** 'N0559': Pushkar blue-column mandapa, paired red domes and curved red shikhara. */
+/** 'brahma_temple': Pushkar blue-column mandapa, paired red domes and curved red shikhara. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBrahmaTemple } from './brahma-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ts/tst/n0559_brahma_temple/',
+    '../../../content/worldgen/source/places/ts/tst/brahma_temple/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -85,7 +85,7 @@ export const buildBrahmaSkyline = (o) => build(o, 0),
   buildBrahmaStreet = (o) => build(o, 2),
   buildBrahmaCloseup = (o) => build(o, 3);
 export const brahmaStudy = {
-  id: 'N0559',
+  id: 'brahma_temple',
   key: 'brahma_temple',
   title: 'Brahma Temple, Pushkar',
   category: 'temple',

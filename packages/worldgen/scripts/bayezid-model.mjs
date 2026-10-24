@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sxk/n0482_bayezid_ii_mosque/',
+  '../../../content/worldgen/source/places/sx/sxk/bayezid_ii_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -869,7 +869,7 @@ export const buildBayezidSkyline = (o) => build(o, 0),
   buildBayezidCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const bayezidStudy = {
-  id: 'N0482',
+  id: 'bayezid_ii_mosque',
   key: 'bayezid_ii_mosque',
   title: 'Bayezid II Mosque',
   category: 'mosque',

@@ -2,9 +2,7 @@
 import { readFileSync } from 'node:fs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const mapped = JSON.parse(
-  readFileSync(structureSourcePath('n0192_metlife_building', 'map-frame.json')),
-);
+const mapped = JSON.parse(readFileSync(structureSourcePath('metlife_building', 'map-frame.json')));
 
 import { ShapeUtils, Vector2 } from 'three';
 import { loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
@@ -462,7 +460,7 @@ function base(out, plan) {
 }
 
 function buildNative(out, mapped) {
-  const parts = partsEvidence('n0192_metlife_building'),
+  const parts = partsEvidence('metlife_building'),
     get = (id) =>
       clean(
         partPlan(

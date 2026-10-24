@@ -7,7 +7,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineGlobal } from '../../worldgen/scripts/signature-tower-global-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/ws/ws1/n0167_shun_hing_square'),
+const source = resolve('../../content/worldgen/source/places/ws/ws1/shun_hing_square'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2'),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -74,7 +74,7 @@ it('reproduces preserved master and binds main tower, twin masts and independent
       cladding: { graph: 'stone_granite', slot: 'wall', roughness: 0.8, metallic: 0 },
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
     });
-  skylineGlobal.find((p) => p.id === 'N0167').build(a.wrap(b), m);
+  skylineGlobal.find((p) => p.id === 'shun_hing_square').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`);
   expect(m.elements).toHaveLength(13);
   expect(m.elements.find((p) => p.id === 64601041).tags.wikidata).toBe('Q236201');

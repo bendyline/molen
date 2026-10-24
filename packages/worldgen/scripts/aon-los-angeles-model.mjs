@@ -234,8 +234,8 @@ function buildAonLosAngeles(out) {
 }
 
 export const aonLosAngeles = {
-  id: 'n0580_aon_center',
-  planId: 'N0580',
+  id: 'aon_center_los_angeles',
+  planId: 'aon_center_los_angeles',
   title: 'Aon Center (Los Angeles)',
   wikidata: 'Q607743',
   build: buildAonLosAngeles,

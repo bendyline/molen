@@ -1,11 +1,11 @@
-/** 'N0754': South Building, stepped brick/glass museum and elliptical wing. */
+/** 'van_gogh_museum': South Building, stepped brick/glass museum and elliptical wing. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildVangogh } from './vangogh-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u1/u17/n0754_van_gogh_museum/',
+    '../../../content/worldgen/source/places/u1/u17/van_gogh_museum/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -102,7 +102,7 @@ export const buildVangoghSkyline = (o) => build(o, 0),
   buildVangoghStreet = (o) => build(o, 2),
   buildVangoghCloseup = (o) => build(o, 3);
 export const vangoghStudy = {
-  id: 'N0754',
+  id: 'van_gogh_museum',
   key: 'van_gogh_museum',
   title: 'Van Gogh Museum, Rietveld building and Kurokawa wing',
   category: 'museum',

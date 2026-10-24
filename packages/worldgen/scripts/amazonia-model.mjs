@@ -1,11 +1,11 @@
-/** N0727: Arena Amazônia with continuous lozenge enclosure, diagonal canopy and open two-tier bowl. */
+/** arena_amazonia: Arena Amazônia with continuous lozenge enclosure, diagonal canopy and open two-tier bowl. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { buildAmazoniaStadium } from './amazonia-stadium-model.mjs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/6x/6xm/n0727_arena_amazonia/',
+    '../../../content/worldgen/source/places/6x/6xm/arena_amazonia/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -70,7 +70,7 @@ export const buildAmazoniaSkyline = (o) => build(o, 0),
   buildAmazoniaStreet = (o) => build(o, 2),
   buildAmazoniaCloseup = (o) => build(o, 3);
 export const amazoniaStudy = {
-  id: 'N0727',
+  id: 'arena_amazonia',
   key: 'arena_amazonia',
   title: 'Arena Amazônia',
   category: 'stadium',

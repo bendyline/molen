@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/v1/v1f/n0433_qol_sarif_mosque/',
+  '../../../content/worldgen/source/places/v1/v1f/qol_sarif_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1012,7 +1012,7 @@ export const buildQolSkyline = (o) => build(o, 0),
   buildQolCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const qolStudy = {
-  id: 'N0433',
+  id: 'qol_sarif_mosque',
   key: 'qol_sarif_mosque',
   title: 'Qol Şärif Mosque',
   category: 'mosque',

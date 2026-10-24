@@ -9,7 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { inspectImageryPolicy, originalHeroPath, PUBLIC_DOMAIN_POLICY } from './imagery-policy.mjs';
-import { next1000Entries, next1000Matches } from './work-ownership.mjs';
+import { structureCatalogEntries, structureCatalogMatches } from './work-ownership.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '../../../..');
@@ -176,9 +176,9 @@ export function prepareBatch({
   ids,
 }) {
   const batch = read(batchPath);
-  const reserved = next1000Entries(
-    read(path.join(repository, 'content/worldgen/source/next-1000/candidates.json')),
-    read(path.join(repository, 'content/worldgen/source/next-1000/collections.json')),
+  const reserved = structureCatalogEntries(
+    read(path.join(repository, 'content/worldgen/source/structure-catalog/candidates.json')),
+    read(path.join(repository, 'content/worldgen/source/structure-catalog/collections.json')),
   );
   const all = fs
     .readFileSync(path.join(output, 'structures.jsonl'), 'utf8')
@@ -209,11 +209,11 @@ export function prepareBatch({
     const structure = byId.get(entry.structureId);
     if (!structure)
       throw new Error(`Batch target disappeared; reconcile explicitly: ${entry.name}`);
-    const external = next1000Matches(structure, reserved, entry.modelIdentity);
+    const external = structureCatalogMatches(structure, reserved, entry.modelIdentity);
     if (
       external.length ||
       structure.workAssignment?.localAuthoringAllowed === false ||
-      entry.workOwner === 'next-1000-other-device'
+      entry.workOwner === 'structure-catalog-other-device'
     )
       throw new Error(
         `Other-device work cannot enter the local batch: ${entry.name} (${external.map((m) => m.id).join(', ')}). Record a replacement; retain its coverage link.`,
@@ -327,7 +327,7 @@ export function prepareBatch({
           `| ${e.order}${e.pilot ? ' · pilot' : ''} | [${e.name.replaceAll('|', '/')}](${r.stories[0].url}) | ${e.sourcePath ? `[${e.modelState}](../../${e.sourcePath.replace(/^content\/worldgen\/source\//, '')}/README.md)` : e.modelState} | [${r.review.state}: ${r.references.length} / ${r.candidateCount} candidates](../references/${e.structureId}.json) | ${e.scope.replaceAll('|', '/')} |`,
       )
       .join('\n') +
-    '\n\n## Reserved for the other device\n\nAll next-1,000 candidates and collection members are excluded from local production. Preparation rechecks current list identities and rejects overlaps before writing evidence.\n\n' +
+    '\n\n## Reserved for the other device\n\nAll structure catalog candidates and collection members are excluded from local production. Preparation rechecks current list identities and rejects overlaps before writing evidence.\n\n' +
     (batch.deferredEntries ?? [])
       .map(
         (e) =>

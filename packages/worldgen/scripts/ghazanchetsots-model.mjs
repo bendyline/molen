@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/tp/tp1/n0366_ghazanchetsots_cathedral/',
+  '../../../content/worldgen/source/places/tp/tp1/ghazanchetsots_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -978,7 +978,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const ghazanchetsotsStudy = {
-  id: 'N0366',
+  id: 'ghazanchetsots_cathedral',
   key: 'ghazanchetsots_cathedral',
   title: 'Ghazanchetsots Cathedral',
   category: 'cathedral',

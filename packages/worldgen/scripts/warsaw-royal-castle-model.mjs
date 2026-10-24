@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u3/u3q/n0261_royal_castle_in_warsaw/map-frame.json',
+      '../../../content/worldgen/source/places/u3/u3q/royal_castle_in_warsaw/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -608,7 +608,7 @@ export const buildWarsawSkyline = (o) =>
     'skyline',
   );
 export const warsawStudy = {
-  id: 'N0261',
+  id: 'royal_castle_in_warsaw',
   key: 'royal_castle_in_warsaw',
   title: 'Royal Castle in Warsaw',
   category: 'castle',

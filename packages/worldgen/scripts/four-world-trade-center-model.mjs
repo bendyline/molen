@@ -5,9 +5,7 @@ import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frameBytes = readFileSync(
-  structureSourcePath('n0218_4_world_trade_center', 'map-frame.json'),
-);
+const frameBytes = readFileSync(structureSourcePath('4_world_trade_center', 'map-frame.json'));
 const frame = JSON.parse(frameBytes);
 const glass = [0.44, 0.555, 0.595],
   clear = [0.67, 0.76, 0.77];
@@ -412,7 +410,7 @@ function build(out) {
 }
 
 export const fourWorldTradeCenterStudy = {
-  id: 'N0218',
+  id: '4_world_trade_center',
   key: '4_world_trade_center',
   title: '4 World Trade Center',
   wikidataId: 'Q1351208',

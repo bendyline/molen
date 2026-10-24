@@ -4,9 +4,11 @@
 // GLBs. The result is stamped with the key of those inputs (scripts/asset-inputs.mjs), never
 // compared with bytes built elsewhere. CI runs exactly this when no bundle exists for its inputs.
 import { spawn, spawnSync } from 'node:child_process';
+import { createWriteStream } from 'node:fs';
 import { copyFile, lstat, mkdir, readdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { availableParallelism, totalmem } from 'node:os';
 import { dirname, join, relative, resolve, sep } from 'node:path';
+import { createInterface } from 'node:readline';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { isDeepStrictEqual, parseArgs } from 'node:util';
 import { createAssetFileCache } from './asset-file-cache.mjs';
@@ -321,7 +323,7 @@ export async function preparePython(
   return local;
 }
 
-function run(command, { root, log, label, python, trace }) {
+function run(command, { root, log, label, python, trace, progress }) {
   const [program, ...args] = command;
   const executable = program === 'node' ? process.execPath : python;
   const heap = /--max-old-space-size/.test(process.env.NODE_OPTIONS ?? '')
@@ -347,15 +349,23 @@ function run(command, { root, log, label, python, trace }) {
       stdio: ['ignore', 'pipe', 'pipe'],
     });
     const output = [];
-    child.stdout.on('data', (bytes) => output.push(bytes));
-    child.stderr.on('data', (bytes) => output.push(bytes));
+    const file = createWriteStream(log);
+    file.on('error', fail);
+    for (const stream of [child.stdout, child.stderr]) {
+      stream.on('data', (bytes) => {
+        output.push(bytes);
+        file.write(bytes);
+      });
+      if (progress) createInterface({ input: stream, crlfDelay: Infinity }).on('line', progress);
+    }
     child.on('error', fail);
-    child.on('close', async (code) => {
-      const text = Buffer.concat(output).toString('utf8');
-      await writeFile(log, text);
-      const seconds = Math.round((Date.now() - started) / 1000);
-      if (code === 0) done(seconds);
-      else fail(new Error(`${label} failed (exit ${code}); log: ${log}\n${text.slice(-4000)}`));
+    child.on('close', (code) => {
+      file.end(() => {
+        const text = Buffer.concat(output).toString('utf8');
+        const seconds = Math.round((Date.now() - started) / 1000);
+        if (code === 0) done(seconds);
+        else fail(new Error(`${label} failed (exit ${code}); log: ${log}\n${text.slice(-4000)}`));
+      });
     });
   });
 }
@@ -420,13 +430,14 @@ async function biomeFormat(root, text) {
 }
 
 /**
- * A verifying build leaves committed text as it found it and reports what the generators would
- * change; `accept` keeps real changes, laid out as the committed file was.
+ * Preserve authored text, but keep successful runtime sidecars with the GLBs they describe.
+ * Failed builds restore all text. Semantically unchanged documents retain their original bytes.
  */
-async function reconcileText(root, before, accept) {
+async function reconcileText(root, before, { keepRuntimeAssets = false } = {}) {
   const after = await readText(root);
   const changed = [];
   const added = [];
+  const updated = [];
   for (const [path, now] of after) {
     const old = before.get(path);
     if (!old) {
@@ -434,12 +445,14 @@ async function reconcileText(root, before, accept) {
       continue;
     }
     if (old.equals(now)) continue;
-    if (sameContent(old, now) || !accept) {
+    const runtimeAsset =
+      keepRuntimeAssets && /(?:^|\/)assets\/.*\/asset\.json$/.test(posix(root, path));
+    if (sameContent(old, now) || !runtimeAsset) {
       if (!sameContent(old, now)) changed.push(posix(root, path));
       await writeSettled(path, old);
       continue;
     }
-    changed.push(posix(root, path));
+    updated.push(posix(root, path));
     // Keep a document in the compact layout it was committed in, so its diff is the change.
     if (path.endsWith('.json')) {
       const oldText = old.toString('utf8').replaceAll('\r\n', '\n');
@@ -450,7 +463,7 @@ async function reconcileText(root, before, accept) {
       if (formattedOld === oldText && formattedNow) await writeSettled(path, formattedNow);
     }
   }
-  return { changed: changed.sort(), added: added.sort() };
+  return { changed: changed.sort(), added: added.sort(), updated: updated.sort() };
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -474,21 +487,15 @@ async function copyModel(root, entry) {
   const output = resolve(root, entry.output);
   const info = await fileInfo(source);
   const sidecarPath = resolve(root, entry.sidecar);
-  const text = await readFile(sidecarPath, 'utf8');
-  const sidecar = JSON.parse(text);
+  const sidecar = await readJson(sidecarPath);
   await mkdir(dirname(output), { recursive: true });
   await copyFile(source, output);
   if (sidecar.hash === sha(info)) return;
   if (sidecar.stats?.sizeBytes === undefined)
     throw new Error(`${entry.sidecar}: copied model sidecar has no size to update.`);
-  await writeFile(
-    sidecarPath,
-    text
-      .replace(`"hash": "${sidecar.hash}"`, `"hash": "${sha(info)}"`)
-      .replace(`"sizeBytes": ${sidecar.stats.sizeBytes}`, `"sizeBytes": ${info.size}`),
-  );
-  if ((await readJson(sidecarPath)).hash !== sha(info))
-    throw new Error(`${entry.sidecar}: could not update the copied model hash.`);
+  sidecar.hash = sha(info);
+  sidecar.stats.sizeBytes = info.size;
+  await writeFile(sidecarPath, `${JSON.stringify(sidecar, null, 2)}\n`);
 }
 
 async function importCurrent(root, entry) {
@@ -544,13 +551,20 @@ async function restoreMoved(root, moved, backup, keep) {
   }
 }
 
-// Windows refuses to rewrite a file while an indexer or scanner has it mapped (EUNKNOWN). The
-// jobs are idempotent, so one rerun separates that from a real failure.
-async function withWindowsRetry(work) {
+// Retry individual imports only for transient Windows file locks. A failed batch (especially
+// the LOD pass) must report its error rather than silently rerunning every successful model.
+async function withWindowsRetry(work, log) {
   try {
     return await work();
   } catch (error) {
-    if (process.platform !== 'win32') throw error;
+    if (
+      process.platform !== 'win32' ||
+      !/\b(?:EBUSY|EPERM|EACCES|EUNKNOWN|UNKNOWN): (?:resource busy or locked|operation not permitted|permission denied|unknown error), (?:open|read|write|rename|unlink|copyfile)\b/i.test(
+        error.message,
+      )
+    )
+      throw error;
+    log('  Import hit a Windows file lock; retrying once in 2 seconds.');
     await new Promise((done) => setTimeout(done, 2000));
     return work();
   }
@@ -606,7 +620,7 @@ export async function buildAssetsFromSource({
     format: 'molen/asset-build-report@1',
     generators: [...current].map((id) => ({ id, cached: true })),
     imports: { run: 0, current: 0 },
-    metadata: { changed: [], added: [] },
+    metadata: { changed: [], added: [], updated: [] },
   };
   const text = await readText(root);
 
@@ -633,15 +647,13 @@ export async function buildAssetsFromSource({
         await cache.restore(job);
       await pool(jobs, concurrency, async (job) => {
         const trace = await cache.begin(job);
-        const seconds = await withWindowsRetry(() =>
-          run(job.command, {
-            root,
-            python,
-            log: join(logs, `${job.id}.log`),
-            label: `Generator ${job.id}`,
-            trace,
-          }),
-        );
+        const seconds = await run(job.command, {
+          root,
+          python,
+          log: join(logs, `${job.id}.log`),
+          label: `Generator ${job.id}`,
+          trace,
+        });
         await cache.complete(job, trace);
         report.generators.push({ id: job.id, seconds });
         log(`  ${job.id}: ${seconds}s`);
@@ -649,7 +661,7 @@ export async function buildAssetsFromSource({
     } catch (error) {
       // Leave the checkout as it was: every GLB that was not rebuilt, and every committed file.
       await restoreMoved(root, moved, backup, () => true);
-      await reconcileText(root, text, false);
+      await reconcileText(root, text);
       await cache.save();
       throw error;
     }
@@ -691,12 +703,14 @@ export async function buildAssetsFromSource({
       else {
         // One process per import bounds the importer's memory on the largest stadiums.
         const encoded = Buffer.from(JSON.stringify({ ...entry, root })).toString('base64url');
-        await withWindowsRetry(() =>
-          run(['node', 'scripts/build-assets.mjs', '--import-one', encoded], {
-            root,
-            log: join(logs, `import-${entry.id}.log`),
-            label: `Import ${entry.id}`,
-          }),
+        await withWindowsRetry(
+          () =>
+            run(['node', 'scripts/build-assets.mjs', '--import-one', encoded], {
+              root,
+              log: join(logs, `import-${entry.id}.log`),
+              label: `Import ${entry.id}`,
+            }),
+          log,
         );
       }
       await imported.get(entry.id)();
@@ -710,24 +724,24 @@ export async function buildAssetsFromSource({
         continue;
       }
       const trace = await cache.begin(job);
-      const seconds = await withWindowsRetry(() =>
-        run(job.command, {
-          root,
-          python,
-          log: join(logs, `${job.id}.log`),
-          label: `After-import ${job.id}`,
-          trace,
-        }),
-      );
+      log(`Running ${job.id} (log: ${join(logs, `${job.id}.log`)}).`);
+      const seconds = await run(job.command, {
+        root,
+        python,
+        log: join(logs, `${job.id}.log`),
+        label: `After-import ${job.id}`,
+        trace,
+        progress: (line) => log(`  ${line}`),
+      });
       await cache.complete(job, trace);
       log(`  ${job.id}: ${seconds}s`);
     }
   } catch (error) {
-    await reconcileText(root, text, false);
+    await reconcileText(root, text);
     await cache.save();
     throw error;
   }
-  report.metadata = await reconcileText(root, text, false);
+  report.metadata = await reconcileText(root, text, { keepRuntimeAssets: true });
   await cache.save();
 
   const built = await bundleFiles(root, { fileCache });
@@ -740,6 +754,8 @@ export async function buildAssetsFromSource({
   await rm(join(out, 'previous'), { recursive: true, force: true });
 
   const annotate = process.env.GITHUB_ACTIONS === 'true';
+  if (report.metadata.updated.length)
+    log(`Updated ${report.metadata.updated.length} runtime asset sidecars to match built GLBs.`);
   if (report.metadata.changed.length || report.metadata.added.length) {
     log(
       `Generators would change ${report.metadata.changed.length} committed metadata files (kept as committed) and added ${report.metadata.added.length}:`,

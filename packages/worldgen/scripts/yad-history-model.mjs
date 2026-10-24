@@ -1,11 +1,11 @@
-/** 'N0748_HISTORY': Yad Vashem History Museum and shared surfaces. */
+/** 'holocaust_history_museum_yad_vashem': Yad Vashem History Museum and shared surfaces. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildYadHistory } from './yad-history-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sv/sv9/n0748_history/',
+    '../../../content/worldgen/source/places/sv/sv9/holocaust_history_museum_yad_vashem/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -99,7 +99,7 @@ export const buildYadHistorySkyline = (o) => build(o, 0),
   buildYadHistoryStreet = (o) => build(o, 2),
   buildYadHistoryCloseup = (o) => build(o, 3);
 export const yadHistoryStudy = {
-  id: 'N0748_HISTORY',
+  id: 'holocaust_history_museum_yad_vashem',
   key: 'history',
   title: 'Holocaust History Museum, Yad Vashem',
   category: 'museum',

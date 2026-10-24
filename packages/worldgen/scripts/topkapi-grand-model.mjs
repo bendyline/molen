@@ -1,11 +1,11 @@
-/** 'N0742_GRAND': Long plaster hall, round entries, pale carved cornice and lead parapet. */
+/** 'grand_kiosk_topkapi_palace': Long plaster hall, round entries, pale carved cornice and lead parapet. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiGrand } from './topkapi-grand-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_grand/',
+    '../../../content/worldgen/source/places/sx/sxk/grand_kiosk_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -101,7 +101,7 @@ export const buildTopkapiGrandSkyline = (o) => build(o, 0),
   buildTopkapiGrandStreet = (o) => build(o, 2),
   buildTopkapiGrandCloseup = (o) => build(o, 3);
 export const topkapiGrandStudy = {
-  id: 'N0742_GRAND',
+  id: 'grand_kiosk_topkapi_palace',
   key: 'grand',
   title: 'Grand Kiosk, Topkapi Palace',
   category: 'castle',

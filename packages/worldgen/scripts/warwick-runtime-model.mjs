@@ -7,7 +7,7 @@ import { buildWarwickRuntime } from './warwick-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/gc/gcq/n0290_warwick_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/gc/gcq/warwick_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

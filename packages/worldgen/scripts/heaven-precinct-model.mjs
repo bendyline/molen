@@ -4,12 +4,12 @@ import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/wx/wx4/n0488_temple_of_heaven/',
+  '../../../content/worldgen/source/places/wx/wx4/temple_of_heaven/',
   import.meta.url,
 );
 const frame = JSON.parse(readFileSync(new URL('map-frame.json', root))),
   fit = JSON.parse(readFileSync(new URL('pmtiles-fit.json', root)));
-if (frame.candidateId !== 'N0488') throw new Error('Wrong Temple precinct source');
+if (frame.candidateId !== 'temple_of_heaven') throw new Error('Wrong Temple precinct source');
 const rec = frame.reconstruction.precinct;
 const linear = (hex) =>
   hex

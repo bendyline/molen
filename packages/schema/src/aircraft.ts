@@ -7,6 +7,24 @@ export type AircraftKind = string;
 export type FlightModel = 'airplane' | 'helicopter';
 
 export interface AircraftEngineSpec extends JsonObject {
+  /** Omitted retains legacy constant-power propulsion. Jets produce thrust, not shaft power. */
+  propulsion?: 'propeller' | 'jet';
+  /** Sea-level static dry jet thrust, N. */
+  dryThrust?: number;
+  /** Sea-level static thrust at full reheat, N (total, not an increment). */
+  afterburnerThrust?: number;
+  /** Common throttle detent; above it reheat increases from 0 to 1. Default 0.85. */
+  afterburnerDetent?: number;
+  /** Density exponent for installed power/thrust lapse. Default 1 with explicit propulsion. */
+  densityExponent?: number;
+  /** Density-ratio knee for the upper-altitude installed-engine lapse. Optional. */
+  highAltitudeDensityRatio?: number;
+  /** Lapse exponent below that density ratio, continuous at the knee. */
+  highAltitudeExponent?: number;
+  /** Flat-rated shaft engine holds power to this density ratio; default 1. */
+  ratedDensityRatio?: number;
+  /** Jet net-thrust multiplier per Mach squared, representing inlet ram recovery. Default 0. */
+  ramRise?: number;
   position: [number, number, number];
   thrustAxis: [number, number, number];
   power: number;
@@ -42,11 +60,34 @@ export interface AircraftEngineStateData extends JsonObject {
   rotorAngle: number;
   /** Latched failure; pilot throttle/switch changes cannot clear it. */
   failed: boolean;
-  /** Current propeller thrust in newtons (zero for the helicopter's shaft engine). */
+  /** Current engine thrust in newtons (zero for the helicopter's shaft engine). */
   thrust: number;
+  /** Actual reheat fraction, 0..1, after spool/ignition delay. */
+  afterburner?: number;
 }
 
 export interface AirplanePhysicsSpec extends JsonObject {
+  /** Mach at which wave drag starts rising. Omitted disables compressibility drag. */
+  criticalMach?: number;
+  /** Added wave-drag coefficient at criticalMach + 0.25. Default 0. */
+  waveDrag?: number;
+  /** Operating limits flag overspeed; they do not clamp velocity. Speeds in m/s EAS. */
+  maxEquivalentAirspeed?: number;
+  maxMach?: number;
+  gearLimitSpeed?: number;
+  flapLimitSpeed?: number;
+  /** Wing ground effect: reduction of induced drag close to the surface. Default false. */
+  groundEffect?: boolean;
+  /** Optional nonlinear high-alpha departure model; coefficients are empirical estimates. */
+  departure?: {
+    onsetAngle: number;
+    fullAngle: number;
+    yawInstability: number;
+    yawSaturationRate: number;
+    rudderBlanking: number;
+    pitchBlanking: number;
+    aileronReversal: number;
+  };
   wingPosition: [number, number, number];
   wingArea: number;
   /** Reference equivalent airspeed in m/s for the control and stability rates below. */
@@ -131,6 +172,18 @@ export interface AirplanePhysicsSpec extends JsonObject {
 }
 
 export interface HelicopterPhysicsSpec extends JsonObject {
+  /** Govern rotor RPM independently of collective and limit lift to available shaft power. */
+  powerLimitedRotor?: boolean;
+  /** Induced-power efficiency, 0..1; default 0.75. */
+  rotorEfficiency?: number;
+  /** Shaft-power fraction used by rotor profile drag at governed RPM; default 0.12. */
+  profilePowerFraction?: number;
+  /** Optional rotor aerodynamic penalties; assisted rotor model, not blade-element dynamics. */
+  vortexRing?: boolean;
+  /** Sea-level TAS for retreating-blade stall onset, m/s; decreases with density and rotor RPM. */
+  retreatingBladeSpeed?: number;
+  /** Effective lifting disc count (e.g. 2 for tandem rotors), default 1. */
+  rotorDiscs?: number;
   rotorPosition: [number, number, number];
   rotorRadius: number;
   cyclicTilt: number;
@@ -235,11 +288,21 @@ export interface AircraftInputData extends JsonObject {
   /** Optional per-engine switch/throttle overrides, keyed by engine id. */
   engines?: Record<string, AircraftEngineInputData>;
   gear: boolean;
-  flaps: boolean;
+  flaps: boolean | number;
   /** Powered-lift lever: 0 forward, 1 vertical. Omitted selects forward thrust. */
   thrustVector?: number;
 }
 export interface AircraftStateData extends JsonObject {
+  /** Air-relative speed divided by local speed of sound. */
+  mach?: number;
+  /** Equivalent airspeed (density-corrected TAS), m/s; not compressible calibrated IAS. */
+  equivalentAirspeed?: number;
+  /** Exceeding an authored airframe or deployed-surface limit. */
+  overspeed?: boolean;
+  /** Nonlinear departure intensity, 0..1; diagnostic, not a scripted spin switch. */
+  departure?: number;
+  /** Rotor vortex-ring lift-loss fraction, 0..1. */
+  vortexRing?: number;
   velocity: [number, number, number];
   yaw: number;
   pitch: number;

@@ -1,4 +1,4 @@
-/** 'N0731': Rajko Mitic's excavated oval, single western canopy and red-banded entrance. */
+/** 'rajko_mitic_stadium': Rajko Mitic's excavated oval, single western canopy and red-banded entrance. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
@@ -17,7 +17,7 @@ export function rajkoRadius(poly, a) {
       u = cross(p, d) / den;
     if (t > 0 && u >= -1e-8 && u <= 1 + 1e-8) hits.push(t);
   }
-  if (!hits.length) throw Error('N0731: nonradial native boundary');
+  if (!hits.length) throw Error('rajko_mitic_stadium: nonradial native boundary');
   return Math.min(...hits);
 }
 export function rajkoCapsule(radius, steps) {

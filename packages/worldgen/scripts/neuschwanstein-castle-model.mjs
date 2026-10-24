@@ -1175,7 +1175,7 @@ export function buildNeuschwansteinSkyline(out) {
   }
 }
 export const neuschwansteinStudy = {
-  id: 'N0237',
+  id: 'neuschwanstein_castle',
   key: 'neuschwanstein_castle',
   title: 'Neuschwanstein Castle',
   category: 'castle',

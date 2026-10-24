@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tt/ttn/n0422_jama_masjid_delhi/',
+  '../../../content/worldgen/source/places/tt/ttn/jama_masjid_delhi/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1068,7 +1068,7 @@ export const buildJamaDelhiSkyline = (o) => build(o, 0),
   buildJamaDelhiCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const jamaDelhiStudy = {
-  id: 'N0422',
+  id: 'jama_masjid_delhi',
   key: 'jama_masjid_delhi',
   title: 'Jama Masjid, Delhi',
   category: 'mosque',

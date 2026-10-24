@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/w3/w3g/n0410_saigon_notre_dame_basilica/',
+  '../../../content/worldgen/source/places/w3/w3g/saigon_notre_dame_basilica/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -984,7 +984,7 @@ export const buildSaigonSkyline = (o) => build(o, 0),
   buildSaigonCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const saigonNotreDameStudy = {
-  id: 'N0410',
+  id: 'saigon_notre_dame_basilica',
   key: 'saigon_notre_dame_basilica',
   title: 'Saigon Notre-Dame Basilica',
   category: 'cathedral',

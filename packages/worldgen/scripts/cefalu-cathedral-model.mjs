@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sq/sqc/n0357_cefalu_cathedral/',
+  '../../../content/worldgen/source/places/sq/sqc/cefalu_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1009,7 +1009,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const cefaluStudy = {
-  id: 'N0357',
+  id: 'cefalu_cathedral',
   key: 'cefalu_cathedral',
   title: 'Cefalù Cathedral',
   category: 'cathedral',

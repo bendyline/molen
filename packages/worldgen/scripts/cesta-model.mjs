@@ -1,11 +1,11 @@
-/** 'N0592': Cesta pentagonal keep, corbel arches, crenellated enclosure and bounded rock footing. */
+/** 'de_la_fratta': Cesta pentagonal keep, corbel arches, crenellated enclosure and bounded rock footing. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildCestaFortress } from './cesta-fortress-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/srb/n0592_de_la_fratta/',
+    '../../../content/worldgen/source/places/sr/srb/de_la_fratta/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -84,7 +84,7 @@ export const buildCestaSkyline = (o) => build(o, 0),
   buildCestaStreet = (o) => build(o, 2),
   buildCestaCloseup = (o) => build(o, 3);
 export const cestaStudy = {
-  id: 'N0592',
+  id: 'de_la_fratta',
   key: 'de_la_fratta',
   title: 'De La Fratta',
   category: 'castle',

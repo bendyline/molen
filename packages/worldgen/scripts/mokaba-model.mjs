@@ -1,11 +1,11 @@
-/** N0713: Peter Mokaba's completed western canopy, oval bowl and four ramp trunks. */
+/** peter_mokaba_stadium: Peter Mokaba's completed western canopy, oval bowl and four ramp trunks. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMokabaStadium } from './mokaba-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ke/kes/n0713_peter_mokaba_stadium/',
+    '../../../content/worldgen/source/places/ke/kes/peter_mokaba_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -71,7 +71,7 @@ export const buildMokabaSkyline = (o) => build(o, 0),
   buildMokabaStreet = (o) => build(o, 2),
   buildMokabaCloseup = (o) => build(o, 3);
 export const mokabaStudy = {
-  id: 'N0713',
+  id: 'peter_mokaba_stadium',
   key: 'peter_mokaba_stadium',
   title: 'Peter Mokaba Stadium',
   category: 'stadium',

@@ -1,11 +1,11 @@
-/** N0626: Hanoi's mapped terraces, octagonal shaft and national flag. */
+/** flag_tower_of_hanoi: Hanoi's mapped terraces, octagonal shaft and national flag. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildHanoiMasonry } from './hanoi-masonry-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/w7/w7e/n0626_flag_tower_of_hanoi/',
+    '../../../content/worldgen/source/places/w7/w7e/flag_tower_of_hanoi/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -90,7 +90,7 @@ export const buildHanoiSkyline = (o) => build(o, 0),
   buildHanoiStreet = (o) => build(o, 2),
   buildHanoiCloseup = (o) => build(o, 3);
 export const hanoiStudy = {
-  id: 'N0626',
+  id: 'flag_tower_of_hanoi',
   key: 'flag_tower_of_hanoi',
   title: 'Flag Tower of Hanoi',
   category: 'tower',

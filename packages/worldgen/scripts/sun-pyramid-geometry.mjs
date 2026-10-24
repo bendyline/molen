@@ -1,5 +1,5 @@
-/** N0493: mapped Teotihuacan terrace profiles and the west stair/platform. */
-export const sunPyramidCandidateId = 'N0493';
+/** pyramid_of_the_sun: mapped Teotihuacan terrace profiles and the west stair/platform. */
+export const sunPyramidCandidateId = 'pyramid_of_the_sun';
 
 function ring(b, y) {
   return [

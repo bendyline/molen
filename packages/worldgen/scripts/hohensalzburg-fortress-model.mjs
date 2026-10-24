@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u23/n0268_hohensalzburg_fortress/map-frame.json',
+      '../../../content/worldgen/source/places/u2/u23/hohensalzburg_fortress/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -770,7 +770,7 @@ export const buildHohensalzburgSkyline = (o) =>
     'skyline',
   );
 export const hohensalzburgStudy = {
-  id: 'N0268',
+  id: 'hohensalzburg_fortress',
   key: 'hohensalzburg_fortress',
   title: 'Hohensalzburg Fortress',
   category: 'castle',

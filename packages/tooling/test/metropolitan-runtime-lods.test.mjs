@@ -8,7 +8,7 @@ import { buildMetropolitan } from '../../worldgen/scripts/signature-tower-metrop
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve(
-    '../../content/worldgen/source/places/dr/dr5/n0193_metropolitan_life_insurance_company_tower',
+    '../../content/worldgen/source/places/dr/dr5/metropolitan_life_insurance_company_tower',
   ),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p));

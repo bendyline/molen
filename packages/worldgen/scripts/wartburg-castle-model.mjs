@@ -7,7 +7,7 @@ import { box, quad, tube } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u1/u1p/n0241_wartburg/map-parts.json',
+      '../../../content/worldgen/source/places/u1/u1p/wartburg/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -856,7 +856,7 @@ export function buildWartburgSkyline(out) {
   buildWartburgRuntime(out, 'skyline');
 }
 export const wartburgStudy = {
-  id: 'N0241',
+  id: 'wartburg',
   key: 'wartburg',
   title: 'Wartburg',
   category: 'castle',

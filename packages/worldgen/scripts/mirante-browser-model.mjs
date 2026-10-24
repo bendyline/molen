@@ -12,9 +12,7 @@ import {
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const map = JSON.parse(
-    readFileSync(structureSourcePath('n0138_mirante_do_vale', 'map-frame.json')),
-  ),
+const map = JSON.parse(readFileSync(structureSourcePath('mirante_do_vale', 'map-frame.json'))),
   MEANS = {
     stone: [0.7011092892788303, 0.7011092892788303, 0.7011092892788303],
     concrete: [0.7108161524542215, 0.7108161524542215, 0.6819278525713045],

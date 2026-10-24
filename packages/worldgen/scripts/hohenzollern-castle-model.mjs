@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u0/u0w/n0252_hohenzollern_castle/map-parts.json',
+      '../../../content/worldgen/source/places/u0/u0w/hohenzollern_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -1045,7 +1045,7 @@ export function buildHohenzollernRuntime(out, detail) {
 }
 export const buildHohenzollernSkyline = (out) => buildHohenzollernRuntime(out, 'skyline');
 export const hohenzollernStudy = {
-  id: 'N0252',
+  id: 'hohenzollern_castle',
   key: 'hohenzollern_castle',
   title: 'Hohenzollern Castle',
   category: 'castle',

@@ -1,11 +1,11 @@
-/** N0520: reproducible surviving Temple of Baalshamin architecture. */
+/** temple_of_baalshamin: reproducible surviving Temple of Baalshamin architecture. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBaalshaminTemple } from './baalshamin-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sy/sy5/n0520_temple_of_baalshamin/',
+    '../../../content/worldgen/source/places/sy/sy5/temple_of_baalshamin/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -76,7 +76,7 @@ export const buildBaalshaminSkyline = (o) => build(o, 0),
   buildBaalshaminStreet = (o) => build(o, 2),
   buildBaalshaminCloseup = (o) => build(o, 3);
 export const baalshaminStudy = {
-  id: 'N0520',
+  id: 'temple_of_baalshamin',
   key: 'temple_of_baalshamin',
   title: 'Temple of Baalshamin',
   category: 'temple',

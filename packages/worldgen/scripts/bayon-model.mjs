@@ -4,10 +4,7 @@ import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { bayonCandidateId, buildBayon } from './bayon-temple-model.mjs';
 
-const source = new URL(
-    '../../../content/worldgen/source/places/w6/w63/n0497_bayon/',
-    import.meta.url,
-  ),
+const source = new URL('../../../content/worldgen/source/places/w6/w63/bayon/', import.meta.url),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
   frame = read('map-frame.json'),
   r = frame.reconstruction,
@@ -62,7 +59,7 @@ export const buildBayonSkyline = (o) => build(o, 0),
   buildBayonStreet = (o) => build(o, 2),
   buildBayonCloseup = (o) => build(o, 3);
 export const bayonStudy = {
-  id: 'N0497',
+  id: 'bayon',
   key: 'bayon',
   title: 'Bayon',
   category: 'temple',

@@ -1,11 +1,11 @@
-/** 'N0760': Saint Isaac cathedral, five domes and four porticos. */
+/** 'saint_isaacs_cathedral': Saint Isaac cathedral, five domes and four porticos. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildIsaac } from './isaac-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ud/udt/n0760_saint_isaac_s_cathedral/',
+    '../../../content/worldgen/source/places/ud/udt/saint_isaacs_cathedral/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -102,7 +102,7 @@ export const buildIsaacSkyline = (o) => build(o, 0),
   buildIsaacStreet = (o) => build(o, 2),
   buildIsaacCloseup = (o) => build(o, 3);
 export const isaacStudy = {
-  id: 'N0760',
+  id: 'saint_isaacs_cathedral',
   key: 'saint_isaac_s_cathedral',
   title: 'Saint Isaac cathedral, five domes and four porticos',
   category: 'museum',

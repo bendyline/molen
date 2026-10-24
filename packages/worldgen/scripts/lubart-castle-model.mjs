@@ -5,7 +5,7 @@ import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 
-const root = '../../../content/worldgen/source/places/u9/u94/n0277_lubart_s_castle/';
+const root = '../../../content/worldgen/source/places/u9/u94/lubarts_castle/';
 const frame = JSON.parse(readFileSync(new URL(`${root}map-frame.json`, import.meta.url)));
 const references = JSON.parse(
   readFileSync(new URL(`${root}reference-metadata.json`, import.meta.url)),
@@ -589,7 +589,7 @@ export const buildLubartSkyline = (o) =>
     0,
   );
 export const lubartStudy = {
-  id: 'N0277',
+  id: 'lubarts_castle',
   key: 'lubart_s_castle',
   title: "Lubart's Castle",
   category: 'castle',

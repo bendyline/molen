@@ -1,4 +1,4 @@
-/** 'N0560': round gilded Dhatu Jadi shrine, eight stupas and mapped upper approach. */
+/** 'buddha_dhatu_jadi': round gilded Dhatu Jadi shrine, eight stupas and mapped upper approach. */
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';
 

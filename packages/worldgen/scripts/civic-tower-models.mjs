@@ -711,8 +711,8 @@ function buildVelasca(out) {
 
 export const civicTowers = [
   {
-    id: 'n0588_michael_s_gate',
-    planId: 'N0588',
+    id: 'michaels_gate',
+    planId: 'michaels_gate',
     title: 'Michael’s Gate',
     wikidata: 'Q1717975',
     build: buildMichael,
@@ -764,8 +764,8 @@ export const civicTowers = [
     ],
   },
   {
-    id: 'n0589_torre_velasca',
-    planId: 'N0589',
+    id: 'torre_velasca',
+    planId: 'torre_velasca',
     title: 'Torre Velasca',
     wikidata: 'Q1156274',
     build: buildVelasca,

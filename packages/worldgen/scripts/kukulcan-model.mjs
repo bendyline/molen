@@ -5,7 +5,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildKukulcan, kukulcanCandidateId } from './kukulcan-pyramid-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/d5/d59/n0499_temple_of_kukulcan/',
+    '../../../content/worldgen/source/places/d5/d59/temple_of_kukulcan/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -62,7 +62,7 @@ export const buildKukulcanSkyline = (o) => build(o, 0),
   buildKukulcanStreet = (o) => build(o, 2),
   buildKukulcanCloseup = (o) => build(o, 3);
 export const kukulcanStudy = {
-  id: 'N0499',
+  id: 'temple_of_kukulcan',
   key: 'temple_of_kukulcan',
   title: 'Temple of Kukulcan',
   category: 'temple',

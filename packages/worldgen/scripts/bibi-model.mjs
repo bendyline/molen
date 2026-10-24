@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tr/trp/n0442_bibi_khanym_mosque/',
+  '../../../content/worldgen/source/places/tr/trp/bibi_khanym_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -766,7 +766,7 @@ export const buildBibiSkyline = (o) => build(o, 0),
   buildBibiCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const bibiStudy = {
-  id: 'N0442',
+  id: 'bibi_khanym_mosque',
   key: 'bibi_khanym_mosque',
   title: 'Bibi-Khanym Mosque',
   category: 'mosque',

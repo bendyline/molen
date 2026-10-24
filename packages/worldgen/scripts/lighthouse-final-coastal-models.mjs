@@ -238,7 +238,7 @@ export function buildTahkuna(out) {
 }
 export const lighthouseFinalCoastalStudies = [
   lighthouseStudy({
-    id: 'N0661',
+    id: 'tahkuna_lighthouse',
     key: 'tahkuna_lighthouse',
     title: 'Tahkuna Lighthouse',
     wikidataId: 'Q3361471',
@@ -686,7 +686,7 @@ export function buildArMen(out) {
 }
 lighthouseFinalCoastalStudies.push(
   lighthouseStudy({
-    id: 'N0662',
+    id: 'nosy_alanana_light',
     key: 'nosy_alanana_light',
     title: 'Nosy Alañaña Light',
     wikidataId: 'Q3378451',
@@ -731,7 +731,7 @@ lighthouseFinalCoastalStudies.push(
     ],
   }),
   lighthouseStudy({
-    id: 'N0663',
+    id: 'ar_men',
     key: 'ar_men',
     title: 'Ar Men',
     wikidataId: 'Q623540',

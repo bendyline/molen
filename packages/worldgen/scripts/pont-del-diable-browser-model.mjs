@@ -5,11 +5,9 @@ import { beam, cross, loft, normalFor } from './authored-structure-mesh.mjs';
 import { box, quad } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0031_pont_del_diable', 'map-frame.json')),
-);
+const frame = JSON.parse(readFileSync(structureSourcePath('pont_del_diable', 'map-frame.json')));
 const elevation = JSON.parse(
-  readFileSync(structureSourcePath('n0031_pont_del_diable', 'terrain-profile.json')),
+  readFileSync(structureSourcePath('pont_del_diable', 'terrain-profile.json')),
 );
 const start = frame.geometry.centerlines[0][0][0],
   end = frame.geometry.centerlines[0].at(-1)[0];

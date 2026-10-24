@@ -1,11 +1,11 @@
-/** 'N0558': Hibis roofed sanctuary, open varied-capital portico and pictured gateway. */
+/** 'temple_of_hibis': Hibis roofed sanctuary, open varied-capital portico and pictured gateway. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildHibisTemple } from './hibis-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ss/sst/n0558_temple_of_hibis/',
+    '../../../content/worldgen/source/places/ss/sst/temple_of_hibis/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -83,7 +83,7 @@ export const buildHibisSkyline = (o) => build(o, 0),
   buildHibisStreet = (o) => build(o, 2),
   buildHibisCloseup = (o) => build(o, 3);
 export const hibisStudy = {
-  id: 'N0558',
+  id: 'temple_of_hibis',
   key: 'temple_of_hibis',
   title: 'Temple of Hibis',
   category: 'temple',

@@ -351,7 +351,7 @@ export function buildStariMostDetailed(out) {
 }
 
 export const stariMostStudy = {
-  id: 'N0001',
+  id: 'stari_most',
   key: 'stari_most',
   title: 'Stari Most',
   wikidataId: 'Q188528',

@@ -1,13 +1,10 @@
-/** N0712: Castelão open membrane roof, exterior lattice fins and pale two-tier bowl. */
+/** castelao: Castelão open membrane roof, exterior lattice fins and pale two-tier bowl. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildCastelaoStadium } from './castelao-stadium-model.mjs';
 
-const source = new URL(
-    '../../../content/worldgen/source/places/7p/7pk/n0712_castelao/',
-    import.meta.url,
-  ),
+const source = new URL('../../../content/worldgen/source/places/7p/7pk/castelao/', import.meta.url),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
   frame = read('map-frame.json'),
   r = frame.reconstruction,
@@ -98,7 +95,7 @@ export const buildCastelaoSkyline = (o) => build(o, 0),
   buildCastelaoStreet = (o) => build(o, 2),
   buildCastelaoCloseup = (o) => build(o, 3);
 export const castelaoStudy = {
-  id: 'N0712',
+  id: 'castelao',
   key: 'castelao',
   title: 'Castelão',
   category: 'stadium',

@@ -1,4 +1,4 @@
-/** 'N0742_COUNCIL': Council hall, lead-domed bays, open portico and shared ornamental screens. */
+/** 'imperial_council_hall_topkapi_palace': Council hall, lead-domed bays, open portico and shared ornamental screens. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

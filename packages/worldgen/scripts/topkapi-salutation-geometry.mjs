@@ -1,4 +1,4 @@
-/** 'N0742_SALUTATION': Two octagonal towers, true gate passage and open rear arcade. */
+/** 'gate_of_salutation_topkapi_palace': Two octagonal towers, true gate passage and open rear arcade. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

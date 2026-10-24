@@ -16,6 +16,7 @@ import {
   quatMul,
   quatRotateVec3,
 } from '../../kernel/dist/determinism.mjs';
+import { simplifyStaticSculpture } from '../../tooling/scripts/static-sculpture-lod.mjs';
 import {
   beam,
   cross,
@@ -340,8 +341,10 @@ function anatomy(d) {
       result.push(ids.map((j) => vertices[j]));
     }
   }
-  anatomyCache.set(d, result);
-  return result;
+  // Keep the posed arms while reserving skyline geometry for the gown and enclosure.
+  const triangles = d === 0 ? simplifyStaticSculpture(result, 80, 0.08) : result;
+  anatomyCache.set(d, triangles);
+  return triangles;
 }
 function dress(o, d) {
   const n = [8, 20, 40, 72][d],

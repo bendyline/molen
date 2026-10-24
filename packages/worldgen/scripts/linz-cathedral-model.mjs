@@ -64,7 +64,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u2d/n0392_new_cathedral_linz/',
+  '../../../content/worldgen/source/places/u2/u2d/new_cathedral_linz/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -970,7 +970,7 @@ export const buildLinzCathedralSkyline = (o) => build(o, 0),
   buildLinzCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const linzCathedralStudy = {
-  id: 'N0392',
+  id: 'new_cathedral_linz',
   key: 'new_cathedral_linz',
   title: 'New Cathedral, Linz',
   category: 'cathedral',

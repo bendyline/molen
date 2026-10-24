@@ -6,7 +6,7 @@ import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-    '../../../content/worldgen/source/places/u6/u65/n0296_kalmar_castle/',
+    '../../../content/worldgen/source/places/u6/u65/kalmar_castle/',
     import.meta.url,
   ),
   read = (name) => JSON.parse(readFileSync(new URL(name, root))),
@@ -937,7 +937,7 @@ const camera = (name, position, lookAt) => ({
   })(),
 });
 export const kalmarStudy = {
-  id: 'N0296',
+  id: 'kalmar_castle',
   key: 'kalmar_castle',
   title: 'Kalmar Castle',
   category: 'castle',

@@ -4,12 +4,8 @@ import { normalFor } from './authored-structure-mesh.mjs';
 import { box, quad } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const site = JSON.parse(
-  readFileSync(structureSourcePath('n0015_monnow_bridge', 'site-approaches.json')),
-);
-const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0015_monnow_bridge', 'map-frame.json')),
-);
+const site = JSON.parse(readFileSync(structureSourcePath('monnow_bridge', 'site-approaches.json')));
+const frame = JSON.parse(readFileSync(structureSourcePath('monnow_bridge', 'map-frame.json')));
 const ring = frame.geometry.outline.slice(0, -1);
 const atX = (a, b, x) => [x, a[1] + ((b[1] - a[1]) * (x - a[0])) / (b[0] - a[0])];
 const west = site.walls['172233193'].localPoints;

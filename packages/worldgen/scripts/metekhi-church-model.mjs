@@ -1,4 +1,4 @@
-/** 'N0540': mapped Metekhi stone body, three apses, arcaded drum and north porch. */
+/** 'metekhi_church': mapped Metekhi stone body, three apses, arcaded drum and north porch. */
 
 import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingShape, prepareOpening } from './authored-wall-openings.mjs';

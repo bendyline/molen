@@ -547,7 +547,7 @@ export function buildMineirao(out) {
   surroundings(out);
 }
 export const mineiraoStudy = {
-  id: 'N0690',
+  id: 'mineirao',
   key: 'mineirao',
   wikidataId: 'Q910370',
   title: 'Mineirão',

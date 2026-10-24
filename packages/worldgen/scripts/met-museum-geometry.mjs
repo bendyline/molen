@@ -1,4 +1,4 @@
-/** 'N0740': Met Fifth Avenue arches, paired columns, mapped wings and park glazing. */
+/** 'metropolitan_museum_of_art': Met Fifth Avenue arches, paired columns, mapped wings and park glazing. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

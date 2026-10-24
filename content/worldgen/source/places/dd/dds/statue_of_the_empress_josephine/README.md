@@ -20,4 +20,4 @@ Exact1200x1608published Qualla1899Salles/BNF/Gallicaoriginal controls the appear
 
 Intrinsic narrow enclosure curb is retained; no whole-site platform or terrain flattening. Fixed southern approach point was chosen before terrain acquisition. Footing extends.28m beneath approximate datum; exact1899grade/foundation/host-terrain contact remain unverified. Wreath curls/face, cloth folds, pedestal relief and fence scroll detail simplify with distance.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=statue_of_the_empress_josephine`. Add `--check` to verify exact regeneration. 36878 triangles; 4 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=statue_of_the_empress_josephine`. Add `--check` to verify exact regeneration. 37316 triangles; 4 materials; no embedded photographs.

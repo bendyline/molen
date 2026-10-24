@@ -66,8 +66,8 @@ function fixture(t) {
   put('structures.jsonl', `${JSON.stringify(structure)}\n`);
   const batch = { id: 'test', targetCount: 1, entries: [entry] };
   put('batch.json', batch);
-  put('content/worldgen/source/next-1000/candidates.json', { candidates: [] });
-  put('content/worldgen/source/next-1000/collections.json', { collections: [] });
+  put('content/worldgen/source/structure-catalog/candidates.json', { candidates: [] });
+  put('content/worldgen/source/structure-catalog/collections.json', { collections: [] });
   const run = (opts = {}) =>
     prepareBatch({
       qualla: dir,
@@ -257,11 +257,11 @@ test('duplicate frozen identities and duplicate selected sources are rejected', 
   assert.throws(() => f.run(), /distinct reference/);
 });
 
-test('a new next-1,000 reservation rejects a stale local selection before writing', (t) => {
+test('a new structure catalog reservation rejects a stale local selection before writing', (t) => {
   const f = fixture(t);
-  f.put('content/worldgen/source/next-1000/candidates.json', {
+  f.put('content/worldgen/source/structure-catalog/candidates.json', {
     candidates: [
-      { id: 'N0904', title: f.entry.name, referenceCoordinate: { longitude: 0, latitude: 0 } },
+      { id: 'kensington_palace', title: f.entry.name, referenceCoordinate: { longitude: 0, latitude: 0 } },
     ],
   });
   assert.throws(() => f.run(), /Other-device work cannot enter the local batch/);
@@ -271,10 +271,10 @@ test('a new next-1,000 reservation rejects a stale local selection before writin
 test('collection member aliases remain reserved even when a model is already ready', (t) => {
   const f = fixture(t);
   f.structure.status = 'existing-ready';
-  f.structure.existing = [{ candidateId: 'N0208_MSU', basis: 'editorial-identity' }];
+  f.structure.existing = [{ candidateId: 'msu_main_building', basis: 'editorial-identity' }];
   f.put('structures.jsonl', `${JSON.stringify(f.structure)}\n`);
-  f.put('content/worldgen/source/next-1000/collections.json', {
-    collections: [{ id: 'N0208', members: [{ id: 'N0208_MSU', title: 'Different named alias' }] }],
+  f.put('content/worldgen/source/structure-catalog/collections.json', {
+    collections: [{ id: 'seven_sisters', members: [{ id: 'msu_main_building', title: 'Different named alias' }] }],
   });
   assert.throws(() => f.run(), /Other-device work cannot enter the local batch/);
 });

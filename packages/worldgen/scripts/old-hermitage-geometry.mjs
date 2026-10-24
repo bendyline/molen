@@ -1,4 +1,4 @@
-/** 'N0741_OLD': Long river facade, central arched bays and covered Winter Canal arch. */
+/** 'old_hermitage': Long river facade, central arched bays and covered Winter Canal arch. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

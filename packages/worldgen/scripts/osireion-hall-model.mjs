@@ -1,4 +1,4 @@
-/** 'N0556': Osireion's open granite hall, low-water island and bounded excavation. */
+/** 'osireion': Osireion's open granite hall, low-water island and bounded excavation. */
 import { box, prism, rect } from './khmer-structure-geometry.mjs';
 
 export function buildOsireionHall(emit, detail, r, sample) {

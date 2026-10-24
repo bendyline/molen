@@ -4,7 +4,7 @@ import { ring, shell } from './lighthouse-expansion-models.mjs';
 import { lantern, lathe, railRing, transformed } from './lighthouse-models.mjs';
 import { tube } from './structure-mesh.mjs';
 
-export const sorveRuntimeAssetId = 'molen.worldgen.structure.n0648_sorve_lighthouse';
+export const sorveRuntimeAssetId = 'molen.worldgen.structure.sorve_lighthouse';
 const profile = [
   [0, 4.12],
   [0.5, 4.08],

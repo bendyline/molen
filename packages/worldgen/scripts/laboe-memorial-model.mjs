@@ -7,7 +7,7 @@ import { facade, face, transform } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const mapBytes = readFileSync(structureSourcePath('n0600_laboe_naval_memorial', 'map-frame.json'));
+const mapBytes = readFileSync(structureSourcePath('laboe_naval_memorial', 'map-frame.json'));
 const map = JSON.parse(mapBytes);
 const brick = [0.31, 0.18, 0.12],
   granite = [0.24, 0.235, 0.205],
@@ -466,8 +466,8 @@ function build(out) {
 }
 
 export const laboeMemorial = {
-  id: 'n0600_laboe_naval_memorial',
-  planId: 'N0600',
+  id: 'laboe_naval_memorial',
+  planId: 'laboe_naval_memorial',
   title: 'Laboe Naval Memorial',
   wikidata: 'Q538382',
   authoringFile: 'laboe-memorial-model.mjs',

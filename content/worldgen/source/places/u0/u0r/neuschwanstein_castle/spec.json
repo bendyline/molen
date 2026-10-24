@@ -1,0 +1,764 @@
+{
+  "planId": "neuschwanstein_castle",
+  "id": "neuschwanstein_castle",
+  "assetId": "molen.worldgen.structure.neuschwanstein_castle",
+  "title": "Neuschwanstein Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q4152",
+  "referenceCoordinate": {
+    "latitude": 47.557488542,
+    "longitude": 10.749441807
+  },
+  "visualBrief": "Individually arranged cranked Palas and Throne Hall, unequal spiral stair towers, open galleries, paired Romanesque windows, copper dormers, Bower, Knights’ House, Square Tower and red-brick/yellow-stone gatehouse around two open courts.",
+  "size": [
+    140.59417724609375,
+    72,
+    46.849998474121094
+  ],
+  "actualBounds": {
+    "min": [
+      -75.89418029785156,
+      -7,
+      -20.799999237060547
+    ],
+    "max": [
+      64.69999694824219,
+      65,
+      26.049999237060547
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X from western Palas toward eastern gatehouse",
+    "front": "+Z toward the southern Marienbrücke view",
+    "origin": "Signed OSM precinct frame;Y0 is the photographic Palas structural datum, with embedded foundations toY-7 and lower-court terrain contact atY1."
+  },
+  "sourceFacts": {
+    "constructionStarted": 1869,
+    "gatehouseOccupied": 1873,
+    "palasToppingOut": 1880,
+    "bowerAndSquareTowerCompleted": 1892,
+    "wallConstruction": "Brick with light limestone cladding",
+    "planSource": "Bavarian Palace Administration labeled complex plan",
+    "cachedHeightMeters": 65,
+    "cachedHeightReliability": "Unreferenced Wikidata statement; treated as a provisional overall scale, not a surveyed elevation.",
+    "originalMasterHash": "sha256:c78849de7780d2383656cb12873fabfc55a14e03a6ec92bc96be18d2d7ed3c8f",
+    "originalMasterRecipe": "packages/worldgen/scripts/neuschwanstein-castle-model.mjs#neuschwansteinStudy.build",
+    "siteGrade": "Public DGM1-based bare-earth heights, rounded by the service to0.1m and sampled here at3m spacing. Building interiors are interpolated ground, not floor measurements; edge/cliff samples and model footprint approximations remain uncertain. The model uses upper courtY8.2 and lower court/entryY1.0:7.2m difference from open-court samples, withY0 at960.7m DHHN2016 only for this evidence fixture. Production uses the explicit lower-court terrain reference, not an absolute height. The owner section and plan establish the stepped arrangement; architectural heights remain a photographic reconstruction. Host terrain must preserve the local ridge/court profile; coarse Mapzen terrain cannot establish correct contact."
+  },
+  "reconstruction": {
+    "basis": "Signed individual map plan, owner plan and actually inspected longitudinal sections, with public DGM1 open-court elevations.",
+    "planImageMetersPerPixelApprox": 0.194,
+    "planImageCenterPixels": [
+      395,
+      155
+    ],
+    "palasWesternWingRotationRadians": 0.21,
+    "palasEaveY": 41.5,
+    "palasRidgeY": 54.5,
+    "mainStairTipY": 65,
+    "upperCourtY": 8.2,
+    "lowerCourtY": 1,
+    "datum": "Public DGM1-based bare-earth heights, rounded by the service to0.1m and sampled here at3m spacing. Building interiors are interpolated ground, not floor measurements; edge/cliff samples and model footprint approximations remain uncertain. The model uses upper courtY8.2 and lower court/entryY1.0:7.2m difference from open-court samples, withY0 at960.7m DHHN2016 only for this evidence fixture. Production uses the explicit lower-court terrain reference, not an absolute height. The owner section and plan establish the stepped arrangement; architectural heights remain a photographic reconstruction. Host terrain must preserve the local ridge/court profile; coarse Mapzen terrain cannot establish correct contact.",
+    "gatewayVerticalCorrection": -5.5,
+    "foundationBaseY": -7
+  },
+  "referencePages": [
+    "https://www.neuschwanstein.de/englisch/palace/history.htm",
+    "https://www.neuschwanstein.de/englisch/palace/index.htm",
+    "https://www.neuschwanstein.de/bilder/schloss/grundriss790.png",
+    "https://commons.wikimedia.org/wiki/File:Schloss_Neuschwanstein_2013.jpg",
+    "https://commons.wikimedia.org/wiki/File:Aerial_image_of_Neuschwanstein_Castle_(view_from_the_northwest).jpg",
+    "https://commons.wikimedia.org/wiki/File:Schloss_Neuschwanstein_im_November_2020_(9).jpg",
+    "https://commons.wikimedia.org/wiki/File:Neuschwanstein_pano1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Neuschwanstein_pano2.jpg",
+    "https://www.openstreetmap.org/way/221601969"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed signed placement with DGM1 lower-court datum",
+    "anchor": [
+      10.749533954,
+      47.557554931
+    ],
+    "heading": 0.381105898007,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=10.7477,47.5567,10.7518,47.5586",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/221601969",
+      "way/221599090",
+      "way/221599097",
+      "way/221599087",
+      "way/223311650",
+      "way/221599098",
+      "way/221599096",
+      "way/223140028"
+    ],
+    "wikidataId": "Q4152",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:07ef4bdbb9c91b43d103b38c633ec5d8d51fa9ca7c160183df1188c02131f4be",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "orientationConfidence": "Signed owner plan and south/northwest/inner-gate photographs",
+    "notes": "Fresh exact-Q4152 precinct and seven distinct occupied ways establish the signed plan; the owner plan and actually inspected south/northwest/court photographs resolve +X111.84° toward the east-southeast gate, +Z201.84° toward Marienbruecke. Individual ranges are fitted independently, without extruding or stretching the precinct. Actually inspected owner complex and Palas section drawings show a lower gate wing and substantial stepped foundations; there are no printed elevation dimensions, so they are used as relative architectural evidence. Bavaria’s public DGM1 height API resolves open upper court968.9m and lower court961.7m DHHN2016:7.2m difference. Correct the upper court edge to the owner plan’s cranked partition nearx39, lower the gateway/connecting range5.5m, replace the former1.7m step by the mapped north stair route and extend embedded foundations toY-7. Use the independently sampled lower-court point[54,1,3.4] as explicit terrain reference. No scaling of the whole ensemble; footprint replacement remains off. The old17m coarse-Mapzen difference is rejected as unsuitable ridge evidence. DGM heights round to0.1m;3m sampling and photo-fitted architectural heights are approximate. Placement is a medium-fi preview requiring host terrain that retains the local ridge profile, not a promise of contact on coarse global terrain.",
+    "evidence": "Fresh exact-Q4152 precinct and seven distinct occupied ways establish the signed plan; the owner plan and actually inspected south/northwest/court photographs resolve +X111.84° toward the east-southeast gate, +Z201.84° toward Marienbruecke. Individual ranges are fitted independently, without extruding or stretching the precinct. Actually inspected owner complex and Palas section drawings show a lower gate wing and substantial stepped foundations; there are no printed elevation dimensions, so they are used as relative architectural evidence. Bavaria’s public DGM1 height API resolves open upper court968.9m and lower court961.7m DHHN2016:7.2m difference. Correct the upper court edge to the owner plan’s cranked partition nearx39, lower the gateway/connecting range5.5m, replace the former1.7m step by the mapped north stair route and extend embedded foundations toY-7. Use the independently sampled lower-court point[54,1,3.4] as explicit terrain reference. No scaling of the whole ensemble; footprint replacement remains off. The old17m coarse-Mapzen difference is rejected as unsuitable ridge evidence. DGM heights round to0.1m;3m sampling and photo-fitted architectural heights are approximate. Placement is a medium-fi preview requiring host terrain that retains the local ridge profile, not a promise of contact on coarse global terrain.",
+    "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        10.75021803,
+        47.55770701
+      ],
+      "modelHeight": 1,
+      "basis": "Public DGM1-based bare-earth heights, rounded by the service to0.1m and sampled here at3m spacing. Building interiors are interpolated ground, not floor measurements; edge/cliff samples and model footprint approximations remain uncertain. The model uses upper courtY8.2 and lower court/entryY1.0:7.2m difference from open-court samples, withY0 at960.7m DHHN2016 only for this evidence fixture. Production uses the explicit lower-court terrain reference, not an absolute height. The owner section and plan establish the stepped arrangement; architectural heights remain a photographic reconstruction. Host terrain must preserve the local ridge/court profile; coarse Mapzen terrain cannot establish correct contact."
+    },
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y0 retains the photographic Palas structural datum and is1m below the lower-court contact plane. Embedded masonry extends toY-7. The explicit lower-court terrain reference samples modelY1 at the retained public DGM1 point961.7m; open upper-court samples confirm7.2m relative rise. Source-local grade fixture uses960.7m datum only for verification. No absolute elevation or flat ridge is imposed at runtime.",
+    "groundCutout": {
+      "outline": [
+        [
+          -17,
+          -5.7
+        ],
+        [
+          37.7,
+          -5.7
+        ],
+        [
+          37.7,
+          -9.3
+        ],
+        [
+          54.5,
+          -9.3
+        ],
+        [
+          54.5,
+          -14.5
+        ],
+        [
+          62.1,
+          -14.5
+        ],
+        [
+          63.9,
+          21.4
+        ],
+        [
+          28.5,
+          21.4
+        ],
+        [
+          28.5,
+          19.5
+        ],
+        [
+          9.6,
+          22.7
+        ],
+        [
+          9.6,
+          21
+        ],
+        [
+          7.7,
+          21
+        ],
+        [
+          7.7,
+          13.2
+        ],
+        [
+          -14.4,
+          13.2
+        ],
+        [
+          -17,
+          10
+        ]
+      ],
+      "basis": "Exact reviewed upper/lower court platform union in signed source-local XZ. Production terrain masking replaces only ground under the retained closed paving/platform; the surrounding ridge and all occupied building footprints are retained. Prevents0.1m-rounded DGM1 samples poking through the reconstructed court plane. Model unload restores terrain; no precinct-wide flattening or alteration of source heights."
+    }
+  },
+  "scaleBasis": "OSM precinct establishes horizontal envelope and axis. Official plan establishes distinct parts. 65 m unreferenced cached height and photographic proportions are provisional vertical scale; no surveyed elevation drawing inspected.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "The detailed 20017068-byte234177-triangle original master remains independently reproducible at sha256:c78849de7780d2383656cb12873fabfc55a14e03a6ec92bc96be18d2d7ed3c8f from packages/worldgen/scripts/neuschwanstein-castle-model.mjs#neuschwansteinStudy.build. A separate reviewed model repairs individual occupied ranges against fresh attributable map polygons, including unequal stair towers, cranked Palas, open western galleries, dormers, Bower, Knights House, Square Tower, two open raised courts, connecting range and brick/ochre gatehouse with a genuinely open vaulted entry. Six common limestone, slate, painted metal, wood, copper and brick graphs use vertex tint; limestone is also a deliberately approximate common grain for carved/weathered and yellow gate stone, without claiming sandstone-specific bonds. Opaque glass/recess bring the near draw count to eight; no embedded images. Skyline uses baked common-graph linear means, district omits carved reveals and collapses fine paired openings, street/close retain framed arched windows and coarser circular roofs/crowns. Palas eave41.5/ridge54.5, stairs65/59.2, upper/lower courts8.2/1.0 and gate28.4 are photo-fitted working architecture; the7.2m open-court step is independently confirmed by public DGM1 heights and the relative arrangement by owner sections. OSM height65 for north stair is independent map evidence, not a surveyed datum. Murals, sculpture, animals, heraldic relief and exact carving/tracery remain schematic or omitted; no visitor interiors, mountain mesh, forest, terrain, unbuilt keep/chapel or reference photograph textures. Gate vault, precinct edges and footprint approximations are not restoration-survey accuracy. Physical phone/laptop timings remain unmeasured. Embedded foundations extend toY-7; the lower-court terrain reference usesY1. Three-metre bare-earth sampling verifies a7.2m upper/lower step, not precise foundation or restoration-survey geometry. Host terrain must retain that profile; coarse Mapzen terrain remains unsuitable for local contact. No absolute elevation is forced at runtime. A reversible court-only ground cutout prevents small DEM interpolation bumps from protruding through paving; it does not flatten or supply surrounding terrain."
+  ],
+  "qaCameras": [
+    {
+      "name": "southern-palas-and-bower",
+      "position": [
+        -45,
+        38,
+        165
+      ],
+      "lookAt": [
+        -27,
+        28,
+        3
+      ]
+    },
+    {
+      "name": "northwest-towers",
+      "position": [
+        -115,
+        70,
+        -146
+      ],
+      "lookAt": [
+        -14,
+        28,
+        -6
+      ]
+    },
+    {
+      "name": "palas-court-gable",
+      "position": [
+        26,
+        31,
+        5
+      ],
+      "lookAt": [
+        -13,
+        30,
+        0
+      ]
+    },
+    {
+      "name": "western-open-galleries",
+      "position": [
+        -109,
+        32,
+        23
+      ],
+      "lookAt": [
+        -71,
+        28,
+        5
+      ]
+    },
+    {
+      "name": "main-stair-crown",
+      "position": [
+        -81,
+        54,
+        -49
+      ],
+      "lookAt": [
+        -52,
+        53,
+        -16
+      ]
+    },
+    {
+      "name": "knights-house-and-square-tower",
+      "position": [
+        20,
+        36,
+        -92
+      ],
+      "lookAt": [
+        19,
+        25,
+        -18
+      ]
+    },
+    {
+      "name": "gatehouse-outer-brick",
+      "position": [
+        128,
+        23,
+        7
+      ],
+      "lookAt": [
+        74,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "gatehouse-inner-clock",
+      "position": [
+        33,
+        24,
+        2
+      ],
+      "lookAt": [
+        68,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "two-courtyards-and-roofs",
+      "position": [
+        -5,
+        165,
+        55
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "whole-reviewed-neuschwanstein",
+      "position": [
+        -155,
+        95,
+        180
+      ],
+      "lookAt": [
+        -5,
+        28,
+        0
+      ]
+    },
+    {
+      "name": "signed-occupied-plan",
+      "position": [
+        0,
+        180,
+        0.1
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "open-gateway-through",
+      "position": [
+        96,
+        4.5,
+        3.4
+      ],
+      "lookAt": [
+        50,
+        4.5,
+        3.4
+      ]
+    },
+    {
+      "name": "corrected-north-stair",
+      "position": [
+        -85,
+        64,
+        -34
+      ],
+      "lookAt": [
+        -55.2,
+        53,
+        -8
+      ]
+    },
+    {
+      "name": "corrected-inner-clock",
+      "position": [
+        28,
+        24,
+        3.4
+      ],
+      "lookAt": [
+        55,
+        22,
+        3.4
+      ]
+    },
+    {
+      "name": "corrected-seven-metre-court-step",
+      "position": [
+        49,
+        4,
+        1
+      ],
+      "lookAt": [
+        43,
+        5,
+        -8.2
+      ]
+    },
+    {
+      "name": "lower-court-open-vault",
+      "position": [
+        48,
+        4,
+        3.4
+      ],
+      "lookAt": [
+        60,
+        5,
+        3.4
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/neuschwanstein-runtime-model.mjs",
+    "export": "buildNeuschwansteinReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/neuschwanstein-runtime-model.mjs",
+    "export": "buildNeuschwansteinReviewedSkyline",
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildNeuschwansteinReviewedDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "weathered": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "sandstone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.58,
+            "metallic": 0.6
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildNeuschwansteinReviewedStreet",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "weathered": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "sandstone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.58,
+            "metallic": 0.6
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildNeuschwansteinReviewedCloseup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "weathered": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "sandstone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.58,
+            "metallic": 0.6
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-neuschwanstein-skyline",
+      "position": [
+        -155,
+        95,
+        180
+      ],
+      "lookAt": [
+        -5,
+        28,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-neuschwanstein-district",
+      "position": [
+        -155,
+        95,
+        180
+      ],
+      "lookAt": [
+        -5,
+        28,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-neuschwanstein-street",
+      "position": [
+        -155,
+        95,
+        180
+      ],
+      "lookAt": [
+        -5,
+        28,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-neuschwanstein-closeup",
+      "position": [
+        -155,
+        95,
+        180
+      ],
+      "lookAt": [
+        -5,
+        28,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 58313,
+    "vertices": 119487,
+    "materials": 8,
+    "bytes": 5005812,
+    "sha256": "sha256:d70ed386c9739982a3e43b68f16cb31edb67039a96c13edea006dd705cac7080"
+  }
+}

@@ -195,8 +195,8 @@ function shell(out) {
 }
 
 export const gatewayArch = {
-  id: 'n0963_gateway_arch',
-  planId: 'N0963',
+  id: 'gateway_arch',
+  planId: 'gateway_arch',
   title: 'Gateway Arch',
   category: 'monument',
   wikidata: 'Q2027162',

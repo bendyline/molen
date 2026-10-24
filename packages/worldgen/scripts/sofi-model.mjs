@@ -1,11 +1,11 @@
-/** N0710: SoFi swept canopy, sunken bowl, suspended oval and attached theater. */
+/** sofi_stadium: SoFi swept canopy, sunken bowl, suspended oval and attached theater. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildSofiCanopy } from './sofi-canopy-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/9q/9q5/n0710_sofi_stadium/',
+    '../../../content/worldgen/source/places/9q/9q5/sofi_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -100,7 +100,7 @@ export const buildSofiSkyline = (o) => build(o, 0),
   buildSofiStreet = (o) => build(o, 2),
   buildSofiCloseup = (o) => build(o, 3);
 export const sofiStudy = {
-  id: 'N0710',
+  id: 'sofi_stadium',
   key: 'sofi_stadium',
   title: 'SoFi Stadium',
   category: 'stadium',

@@ -7,7 +7,7 @@ import { facade, face, transform, triangle } from './heritage-tower-detail-mesh.
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const mapBytes = readFileSync(structureSourcePath('n0609_st_agatha_s_tower', 'map-frame.json'));
+const mapBytes = readFileSync(structureSourcePath('st_agathas_tower', 'map-frame.json'));
 const map = JSON.parse(mapBytes),
   red = [0.61, 0.22, 0.2],
   pale = [0.75, 0.58, 0.47],
@@ -515,8 +515,8 @@ function build(raw) {
   fittings(raw);
 }
 export const agathaTower = {
-  id: 'n0609_st_agatha_s_tower',
-  planId: 'N0609',
+  id: 'st_agathas_tower',
+  planId: 'st_agathas_tower',
   title: 'St. Agatha’s Tower',
   wikidata: 'Q1738896',
   authoringFile: 'agatha-tower-model.mjs',

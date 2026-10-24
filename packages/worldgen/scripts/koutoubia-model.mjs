@@ -83,7 +83,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/ev/evd/n0443_koutoubia_mosque/',
+  '../../../content/worldgen/source/places/ev/evd/koutoubia_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -824,7 +824,7 @@ export const buildKoutoubiaSkyline = (o) => build(o, 0),
   buildKoutoubiaCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const koutoubiaStudy = {
-  id: 'N0443',
+  id: 'koutoubia_mosque',
   key: 'koutoubia_mosque',
   title: 'Koutoubia Mosque',
   category: 'mosque',

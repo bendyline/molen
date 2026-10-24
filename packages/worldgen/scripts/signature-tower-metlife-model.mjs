@@ -448,7 +448,7 @@ function base(out, plan) {
 }
 
 export function buildMetlife(out, mapped) {
-  const parts = partsEvidence('n0192_metlife_building'),
+  const parts = partsEvidence('metlife_building'),
     get = (id) =>
       clean(
         partPlan(

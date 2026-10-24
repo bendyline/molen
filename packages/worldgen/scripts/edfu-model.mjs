@@ -5,7 +5,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildEdfu, edfuCandidateId } from './edfu-temple-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ss/ssr/n0495_temple_of_edfu/',
+    '../../../content/worldgen/source/places/ss/ssr/temple_of_edfu/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -67,7 +67,7 @@ export const buildEdfuSkyline = (o) => build(o, 0),
   buildEdfuStreet = (o) => build(o, 2),
   buildEdfuCloseup = (o) => build(o, 3);
 export const edfuStudy = {
-  id: 'N0495',
+  id: 'temple_of_edfu',
   key: 'temple_of_edfu',
   title: 'Temple of Edfu',
   category: 'temple',

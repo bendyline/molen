@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 
-const root = '../../../content/worldgen/source/places/u1/u10/n0284_dover_castle/';
+const root = '../../../content/worldgen/source/places/u1/u10/dover_castle/';
 const read = (name) => JSON.parse(readFileSync(new URL(root + name, import.meta.url)));
 const frame = read('map-frame.json'),
   _relief = read('relief-grid.json'),

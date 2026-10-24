@@ -88,7 +88,7 @@ Build settings for a content pack, kept as molen-pack.source.json in the directo
       "type": "object",
       "propertyNames": {
         "type": "string",
-        "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+        "pattern": "^[a-z][a-z0-9_]*(\\.[a-z0-9][a-z0-9_]*)*$"
       },
       "additionalProperties": {
         "type": "string",
@@ -122,6 +122,16 @@ Build settings for a content pack, kept as molen-pack.source.json in the directo
         ]
       },
       "description": "Role (e.g. types, stylepack, stars) to the file or files that provide it."
+    },
+    "independent": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^(?![A-Za-z]:|[/\\\\])(?!.*\\\\)(?!.*(?:^|\\/)\\.\\.?(?:\\/|$)).+$"
+      },
+      "description": "Files or directory prefixes ending / kept independently readable."
     },
     "solid": {
       "default": true,

@@ -1,11 +1,11 @@
-/** 'N0742_HASODA': Mapped dormitory, pointed open colonnade and low lead crowns. */
+/** 'has_oda_kogusu_topkapi_palace': Mapped dormitory, pointed open colonnade and low lead crowns. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTopkapiHasoda } from './topkapi-hasoda-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sx/sxk/n0742_hasoda/',
+    '../../../content/worldgen/source/places/sx/sxk/has_oda_kogusu_topkapi_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -99,7 +99,7 @@ export const buildTopkapiHasodaSkyline = (o) => build(o, 0),
   buildTopkapiHasodaStreet = (o) => build(o, 2),
   buildTopkapiHasodaCloseup = (o) => build(o, 3);
 export const topkapiHasodaStudy = {
-  id: 'N0742_HASODA',
+  id: 'has_oda_kogusu_topkapi_palace',
   key: 'hasoda',
   title: 'Has Oda Kogusu, Topkapi Palace',
   category: 'castle',

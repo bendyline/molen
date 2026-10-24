@@ -1,0 +1,1173 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.wawel_cathedral",
+  "sourceHash": "sha256:816765b11c4bb87a2e62048100e205957a72193561ba5464ad035bbb1add5a79",
+  "runtimeHash": "sha256:c76be28f8fc07ac998557131ae10e34103836969b1456ad5f01f52bf73c76ae6",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4556,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:bf424e7e03f3b783bdfc160992e7b127ef67fbf11d3b759e28112a2900888477",
+      "bytes": 100688,
+      "gzipBytes": 18126,
+      "triangles": 987,
+      "cpuBytes": 99272,
+      "gpuBytes": 99272,
+      "errorMeters": 1.5,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:8cccdcd1c141a1d64497cec2a1c917abfabf83fcd2bc5076f1c2fdc25a1400fc",
+      "bytes": 333432,
+      "gzipBytes": 93666,
+      "triangles": 3841,
+      "cpuBytes": 323724,
+      "gpuBytes": 323724,
+      "errorMeters": 0.6,
+      "drawCalls": 8
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:edf631ce492de6c3d138358d723530b3f35c6485ebb56a0d5cddcc2619f0e1fe",
+      "bytes": 992856,
+      "gzipBytes": 294872,
+      "triangles": 11662,
+      "cpuBytes": 983116,
+      "gpuBytes": 983116,
+      "errorMeters": 0.16,
+      "drawCalls": 8
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:290e4004c9ca7c2f5432f62f0c0147b066de7aa6470171f5b96fba552178f10f",
+      "bytes": 1504856,
+      "gzipBytes": 466086,
+      "triangles": 17316,
+      "cpuBytes": 1495084,
+      "gpuBytes": 1495084,
+      "errorMeters": 0.06,
+      "drawCalls": 8
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:39ff239f9d40dfcf1d86428bd2041acbb5c5c7459c952cb303e7b93a06000d63"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:e3630d8927589f9140a0c5847e23c3a7c4d3782d5a30db96a5e350d2e7bd4a9f"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:09f51a2324fe31bd226a4f63cbb950117413572fba2de0ecf7a1bb9718da7912",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 42674,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          51.25580000000001,
+          50.936,
+          85.46360000000001
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:8fa35f61dc90df5dc72ae81fd87831d17a20bca373f9de6a35e2df6791e5765d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 42674,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          51.25580000000001,
+          50.936,
+          85.46360000000001
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:d00c21eb888abc2694893ddd5b68073512abcfa57f685dbb022906fc2eb9edf7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 42674,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          51.25580000000001,
+          50.936,
+          85.46360000000001
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:abbdf850d9967f60d9c0e66785b47ce3bd883e7e425f96485cf6fcb3c51da3a0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 42674,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          51.25580000000001,
+          50.936,
+          85.46360000000001
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:3b689691c8fe130c1b9c25220c8346da7507058bb156e9b460c45b40769caee7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 29199,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          105.1558,
+          90.536,
+          178.9636
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:aa65950f9e105ab7ce1d78580d0f48e8bafcf4b94561d3b571869f9354cb926f",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 29199,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          105.1558,
+          90.536,
+          178.9636
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:65b4e791844ed7596907efca8f4dbdce76253d3dec225980b83dc37263364944",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 29199,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          105.1558,
+          90.536,
+          178.9636
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:e25a41d2a2146bd7f52d38b4b66e2675fc8ad8305556cb2d6c97311a30838c35",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 29199,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          105.1558,
+          90.536,
+          178.9636
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:b3cf2214534f249a4109fffc4b8c4a421fc2ca52dd47c9876164434370195303",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 26345,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          211.85580000000002,
+          132.336,
+          363.7636
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:c8ee0cebe6b15cc6a006756046374263d8534368e5c26bae4a6ed3c175c9e352",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26345,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          211.85580000000002,
+          132.336,
+          363.7636
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:02a6a9c46dc9480e25b5aea9f4112db8932769b7b2fd6e079a063df416a8424a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 26345,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          211.85580000000002,
+          132.336,
+          363.7636
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:6a68d68b19560b4d348ed1bbd6159ccb09ea70a2be55c107590d0cbfe5f8feaf",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26345,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          211.85580000000002,
+          132.336,
+          363.7636
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:28808da649e653a89e6e99e0fb1b804d3946dd1ca8b43bb557bc3c8ce46b06c5",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21789,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          211.85580000000002,
+          132.336,
+          363.7636
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-gable-portico-and-clock.png",
+      "hash": "sha256:32189e5006078f3d54303403744f9c34240831a7203598160d6ec84ed4b623fe",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 42674,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -88,
+          30,
+          -5
+        ],
+        "lookAt": [
+          -28,
+          22,
+          -1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/clock-open-copper-stages.png",
+      "hash": "sha256:61ee3b41c288e44e8c7a3d6eab188c083c632602c38b5804511cb79841f8c7ba",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 42674,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -47,
+          54,
+          -36
+        ],
+        "lookAt": [
+          -24,
+          36,
+          -14
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silver-bells-and-southern-domes.png",
+      "hash": "sha256:1c9dd57bdcf4ad26f74d9289585ea871b4496aa0a76cefd7ff8c20e1c511b55f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 42674,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -38,
+          35,
+          52
+        ],
+        "lookAt": [
+          -13,
+          17,
+          14
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/sigismund-north-tower-and-treasury.png",
+      "hash": "sha256:32ef47b89e78e01809f65f7e77261c577b4ae43e7076846e7d0f9d06c5be4ff5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 42674,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          9,
+          49,
+          -72
+        ],
+        "lookAt": [
+          1,
+          22,
+          -26
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/choir-and-transept-roofs.png",
+      "hash": "sha256:9da9080b87e089a64b09224e21f296e1d68fc04bd98913b51059801b2b70ce07",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 42674,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          64,
+          49,
+          48
+        ],
+        "lookAt": [
+          12,
+          23,
+          5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-entry-and-plaza-contact.png",
+      "hash": "sha256:197aaa0e6141fff4b7bb3131b04924a887aa8996c72beeb86ec9aa5d11bd88f9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 42674,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -54,
+          10,
+          13
+        ],
+        "lookAt": [
+          -37,
+          7,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-wawel-cathedral-skyline.png",
+      "hash": "sha256:5786f9af5eed78408a8245450be0392dbed3567173726152643db2ad2e3df6e7",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26345,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -112,
+          78,
+          100
+        ],
+        "lookAt": [
+          -2,
+          23,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-wawel-cathedral-district.png",
+      "hash": "sha256:6288523be02235ffaadb751a5e3eeb440f41fb8d6dbf97baeb9eaf90885ac3c1",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 29199,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -112,
+          78,
+          100
+        ],
+        "lookAt": [
+          -2,
+          23,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-wawel-cathedral-street.png",
+      "hash": "sha256:4cf94a3ecb3aa2c0e3058a64ca188f3d5d447bf393e2aab3fc604e69a70212e8",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 37020,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -112,
+          78,
+          100
+        ],
+        "lookAt": [
+          -2,
+          23,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-wawel-cathedral-closeup.png",
+      "hash": "sha256:1be6f2d947d809c51d0f9d23a5764a16aded35f336b321ec547f3e15845873db",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 42674,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -112,
+          78,
+          100
+        ],
+        "lookAt": [
+          -2,
+          23,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:85802e20c27d3e304a14b8d8917f0d1c61155f1b9b54eb8168c3038d5f010f34",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26345,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          105.1558,
+          90.536,
+          178.9636
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:aa65950f9e105ab7ce1d78580d0f48e8bafcf4b94561d3b571869f9354cb926f",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 29199,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          105.1558,
+          90.536,
+          178.9636
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:5a9e54d1f6f8f459cd1c9439a80ad8489c23fdfa43e67c6ec5a5772dea6b1e92",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 37020,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          105.1558,
+          90.536,
+          178.9636
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:39574c843f32ba4b002bf9525bd99a6eb300aedffdebc90c9627d4487015efd6",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 42674,
+        "groundY": -20,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2y/wawel_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          105.1558,
+          90.536,
+          178.9636
+        ],
+        "lookAt": [
+          -1.5442,
+          34.436,
+          -5.8364
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

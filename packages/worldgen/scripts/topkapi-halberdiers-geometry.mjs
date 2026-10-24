@@ -1,4 +1,4 @@
-/** 'N0742_HALBERDIERS': Notched service range, narrow timber court and pierced chimney cowls. */
+/** 'halberdiers_quarters_topkapi_palace': Notched service range, narrow timber court and pierced chimney cowls. */
 import earcut from 'earcut';
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';

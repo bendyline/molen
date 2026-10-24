@@ -265,7 +265,7 @@ node examples/world-explorer/test/performance/run-landmarks.mjs
 node examples/world-explorer/test/performance/run-landmarks.mjs --counts=41 --shadows
 node examples/world-explorer/test/performance/run-landmarks.mjs --counts=41 --streaming=phone
 node examples/world-explorer/test/performance/run-landmarks.mjs --counts=41 --streaming=laptop
-node examples/world-explorer/test/performance/review-lods.mjs --ids=n0229_istanbul_sapphire,n0001_stari_most,n0695_mordovia_arena,sr_520_floating_bridge
+node examples/world-explorer/test/performance/review-lods.mjs --ids=istanbul_sapphire,stari_most,mordovia_arena,sr_520_floating_bridge
 ```
 
 `--sync-materials` reproduces the blocking review path. `--small-viewport` uses

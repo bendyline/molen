@@ -1,4 +1,4 @@
-/** N0562 complete static medium-fi exterior. The exact original heritage source remains unchanged. */
+/** maiden_tower complete static medium-fi exterior. The exact original heritage source remains unchanged. */
 import { loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
 

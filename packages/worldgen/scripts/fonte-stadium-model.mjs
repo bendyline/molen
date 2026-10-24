@@ -1,4 +1,4 @@
-/** 'N0734': Arena Fonte Nova's open southern bowl, louvered enclosure and membrane roof. */
+/** 'arena_fonte_nova': Arena Fonte Nova's open southern bowl, louvered enclosure and membrane roof. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
@@ -17,7 +17,7 @@ export function fonteRadius(poly, a) {
       u = cross(p, d) / den;
     if (t > 0 && u >= -1e-8 && u <= 1 + 1e-8) hits.push(t);
   }
-  if (!hits.length) throw Error('N0734: nonradial native boundary');
+  if (!hits.length) throw Error('arena_fonte_nova: nonradial native boundary');
   return Math.min(...hits);
 }
 export function fonteFoundationOutline(r, d) {

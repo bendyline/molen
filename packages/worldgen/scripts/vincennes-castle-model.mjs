@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u0/u09/n0265_chateau_de_vincennes/map-frame.json',
+      '../../../content/worldgen/source/places/u0/u09/chateau_de_vincennes/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -1004,7 +1004,7 @@ export const buildVincennesSkyline = (o) =>
     'skyline',
   );
 export const vincennesStudy = {
-  id: 'N0265',
+  id: 'chateau_de_vincennes',
   key: 'chateau_de_vincennes',
   title: 'Château de Vincennes',
   category: 'castle',

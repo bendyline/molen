@@ -940,8 +940,8 @@ function buildKrakow(out) {
 
 export const civicTowersMore = [
   {
-    id: 'n0587_beyaz_t_tower',
-    planId: 'N0587',
+    id: 'beyaz_t_tower',
+    planId: 'beyaz_t_tower',
     title: 'Beyazıt Tower',
     wikidata: 'Q853029',
     build: buildBeyazit,
@@ -997,8 +997,8 @@ export const civicTowersMore = [
     ],
   },
   {
-    id: 'n0590_town_hall_tower',
-    planId: 'N0590',
+    id: 'town_hall_tower',
+    planId: 'town_hall_tower',
     title: 'Town Hall Tower (Kraków)',
     wikidata: 'Q1786361',
     build: buildKrakow,

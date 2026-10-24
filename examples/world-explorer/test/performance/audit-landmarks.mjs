@@ -33,7 +33,7 @@ export async function audit() {
       variants: Object.keys(sidecar.files.variants ?? {}),
     });
   }
-  const sapphire = candidates.find((entry) => entry.id === 'N0229');
+  const sapphire = candidates.find((entry) => entry.id === 'istanbul_sapphire');
   if (!sapphire) throw new Error('Build Istanbul Sapphire before running this benchmark.');
   const selected = candidates
     .filter((entry) => entry !== sapphire)

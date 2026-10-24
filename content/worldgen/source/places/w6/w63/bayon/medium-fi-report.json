@@ -1,0 +1,1146 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.bayon",
+  "sourceHash": "sha256:b150b83822611039fafe580d92110f3b1647de14f8dfcf8655de5e2f34c41cc9",
+  "runtimeHash": "sha256:d83e2391b3fdd9e42798808ae7698a440b9c97699fbdf173c7171eb11af3bc15",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:5f6436893ce424b995e5064920223d477ce9a424c1408571ef7f8bd19a7f08af",
+      "bytes": 106700,
+      "gzipBytes": 20710,
+      "triangles": 972,
+      "cpuBytes": 105264,
+      "gpuBytes": 105264,
+      "errorMeters": 1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:1f2281521ec97d0a3395652259614fb4040021419ea8eff7feb3cd7eb1e65325",
+      "bytes": 387396,
+      "gzipBytes": 111310,
+      "triangles": 3890,
+      "cpuBytes": 383448,
+      "gpuBytes": 383448,
+      "errorMeters": 0.6,
+      "drawCalls": 3
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:1781f00be393feb1690c1145681afb8b4007827b26f83b7e368009f9a8f26dc1",
+      "bytes": 1666816,
+      "gzipBytes": 551650,
+      "triangles": 15720,
+      "cpuBytes": 1662840,
+      "gpuBytes": 1662840,
+      "errorMeters": 0.25,
+      "drawCalls": 3
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:d92b1358f8cb78bbe50648d558cf09055b2dce8a3624fc1238e3886a17cac2c1",
+      "bytes": 4753856,
+      "gzipBytes": 1664053,
+      "triangles": 42784,
+      "cpuBytes": 4749864,
+      "gpuBytes": 4749864,
+      "errorMeters": 0.12,
+      "drawCalls": 3
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:f2f1966f715c49347fc7392a4a02944958e4aab31ece40f14001f8a57a6b8ecc"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:96cfd24dfcd0a10f324441936b3f3f3cae8c3bd527fc0b1b9f6de64cfef16273"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:de6b06f6377a5ef5f0c3efbcdab7a53898ab3c386566c0a325fd9f41ef31c143",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 100962,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          125.19630000000001,
+          75.3499,
+          185.85500000000002
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:e2b38a4eb40b105f8e3649b5abaa98ff8a408fda1f8c51074bba17e582b3afb1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 100962,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          125.19630000000001,
+          75.3499,
+          185.85500000000002
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:ca6a67bb3b24d05f5dedcdfdb4beb0b8dc091b88d34126d2038c032dc90a2caa",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 100962,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          125.19630000000001,
+          75.3499,
+          185.85500000000002
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:6e00038b51abb7c43b3f2907e87981653bf0045ab074407c634003817ec5dc62",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 100962,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          125.19630000000001,
+          75.3499,
+          185.85500000000002
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:25eee5f00361aa7886bf52449b35fe039e0e3fc7d31a16b58281cd2c1b2b1c0f",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 62068,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          232.99630000000002,
+          154.5499,
+          372.855
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:69677e78ae9d0c54f66c25661fc91e9e4a2e170088e7a388595bf42adb32efc8",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 62068,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          232.99630000000002,
+          154.5499,
+          372.855
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:51b5f9a8fff23c81a42616930fa71a3a2311e9bbabadcef5e1078622fa9e1ca5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 62068,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          232.99630000000002,
+          154.5499,
+          372.855
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:ef7421f3175859672f9250542655d78f7577dcf2224122ef2d037d5838aba939",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 62068,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          232.99630000000002,
+          154.5499,
+          372.855
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:d20246936b767273f8f4a28df54fa08b164d56209f4d7a2186923707adec1acf",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 59150,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          446.3963,
+          238.14990000000003,
+          742.455
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:30cd0c53d5f40f5b95855c382bbeaedaf0b69dd25e7254ca5822294b31f1843a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 59150,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          446.3963,
+          238.14990000000003,
+          742.455
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:7e5ab311418bac78638c6eefb627f356491433ca1fd6e220646aa203b2b2266d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 59150,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          446.3963,
+          238.14990000000003,
+          742.455
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:e42f7891a5f3a9d2c3eb18e7930d4a6b18468f5db43c58f4df8a5ab89ab9c2cd",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 59150,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          446.3963,
+          238.14990000000003,
+          742.455
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:a9df43f9e2f1b95f6236ad6e206a4ed80c1cee80473dd045a69f96b216fb816a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 53454,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          446.3963,
+          238.14990000000003,
+          742.455
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/east-galleries-and-towers.png",
+      "hash": "sha256:6a6c76818b18f0a3cccef23debcb35a567a0d1f851368ec146d47e3f308fa21c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 100962,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          162,
+          49,
+          42
+        ],
+        "lookAt": [
+          20,
+          15,
+          3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/central-stone-faces.png",
+      "hash": "sha256:f536b7f54d86147d24d26f9226415bbe9af9bd1aeeda96b0a5343aee736ee56a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 100962,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          44,
+          35,
+          28
+        ],
+        "lookAt": [
+          12,
+          30,
+          4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/face-relief-close.png",
+      "hash": "sha256:393a8a224820fe1aa6bf80c9191609c6247bc1cb37e050ea1c7c60c490969844",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 100962,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          47,
+          21,
+          15
+        ],
+        "lookAt": [
+          31,
+          17,
+          4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/inner-platform-and-courts.png",
+      "hash": "sha256:5a7c30bbedf153a1b36222eba048c6b6b6b768045d1898e881653e6c03295c69",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 100962,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          -62,
+          70,
+          64
+        ],
+        "lookAt": [
+          14,
+          8,
+          4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/outer-colonnade-and-library.png",
+      "hash": "sha256:b8c01d8fcec6a48a387c229eacb261ab5b52a4a207e9588160d324d9f713bfbe",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 100962,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          106,
+          18,
+          66
+        ],
+        "lookAt": [
+          68,
+          7,
+          36
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mapped-temple-plan.png",
+      "hash": "sha256:b8da4643a7d67723b2ad608273a93b5ec1e323fe29eda97e275773550d54415a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 100962,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          20,
+          280,
+          4
+        ],
+        "lookAt": [
+          20,
+          0,
+          3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-temple-skyline.png",
+      "hash": "sha256:9eb584e400ec4acfd39654dec5b4d4ed17a53bd352d95d0cf096b3809d1c2686",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 59150,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          177,
+          103,
+          157
+        ],
+        "lookAt": [
+          17,
+          14,
+          4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-temple-district.png",
+      "hash": "sha256:ce7edcc20cc1ce93e0c7f33cb585ce5fd524cb2dd7d04343fcac3f988cab6bd2",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 62068,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          177,
+          103,
+          157
+        ],
+        "lookAt": [
+          17,
+          14,
+          4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-temple-street.png",
+      "hash": "sha256:6277c6eaafd216e1222f235c94d301ed43c183e17971ad9ba529b57f6d0be496",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 73898,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          177,
+          103,
+          157
+        ],
+        "lookAt": [
+          17,
+          14,
+          4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-temple-closeup.png",
+      "hash": "sha256:e54a99ff7457ccd928dbf4cd2137973960cadff76f92c14e6c3f8be46e31ad7c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 100962,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          177,
+          103,
+          157
+        ],
+        "lookAt": [
+          17,
+          14,
+          4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:7b92e16c532e4436317015ff3d2afc67fc56b97537714f819b631a75a1473d15",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 59150,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          232.99630000000002,
+          154.5499,
+          372.855
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:69677e78ae9d0c54f66c25661fc91e9e4a2e170088e7a388595bf42adb32efc8",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 62068,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          232.99630000000002,
+          154.5499,
+          372.855
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:a9b81c2de681138773fb3d563367cd24dae4f43f85ea5e02c438d071197960f5",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 73898,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          232.99630000000002,
+          154.5499,
+          372.855
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:5cfb6f04d278e2024ee60fd40f0727db6532c4934e5d6154353dd58c1d71f0f3",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 100962,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/w6/w63/bayon/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/w6/w63/bayon/terrain-review.height.png"
+        },
+        "position": [
+          232.99630000000002,
+          154.5499,
+          372.855
+        ],
+        "lookAt": [
+          19.5963,
+          42.349900000000005,
+          3.255
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_drywall": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 2.2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

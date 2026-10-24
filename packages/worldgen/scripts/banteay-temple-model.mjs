@@ -1,6 +1,6 @@
-/** N0510: pink sandstone towers, curved pediments, libraries and surviving enclosures. */
+/** banteay_srei: pink sandstone towers, curved pediments, libraries and surviving enclosures. */
 import earcut from 'earcut';
-export const banteayCandidateId = 'N0510';
+export const banteayCandidateId = 'banteay_srei';
 
 function box(f, role, x, y, z, w, h, d) {
   const a = [

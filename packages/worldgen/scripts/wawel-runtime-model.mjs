@@ -7,7 +7,7 @@ import { buildWawelRuntime } from './wawel-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u2/u2y/n0299_wawel_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u2/u2y/wawel_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

@@ -27,7 +27,7 @@ export interface StructurePlacement {
   /** Vertical offset from datum, in world meters (lake surfaces need not be sea level). */
   elevation?: number;
   /** Ground at another known site point; modelHeight is that point's native model Y in metres. */
-  terrainReference?: { anchor: [number, number]; modelHeight: number; basis: string };
+  terrainReference?: { anchor: [number, number]; modelHeight: number; basis?: string };
   /** WGS84 extent [west, south, east, north]. Ground-opening models stay whole; others clip per tile. */
   bounds?: [number, number, number, number];
   /** Suppress mapped bridge centerlines inside this model-local rectangle (meters). */
@@ -51,7 +51,7 @@ export interface StructurePlacement {
     outlines?: [number, number][][];
     /** Separate excavations appended to outline when outlines is omitted; at most 63 rings. */
     additionalOutlines?: [number, number][][];
-    basis: string;
+    basis?: string;
   };
   /** Remove only this native X/Z area from mapped buildings; overrides whole-footprint replacement. */
   buildingCutout?: {
@@ -60,10 +60,10 @@ export interface StructurePlacement {
     outlines?: [number, number][][];
     /** Replace a whole mapped building only above this covered-area fraction; preserve others intact. */
     minimumCoverage?: number;
-    basis: string;
+    basis?: string;
   };
   /** Replace only native water in these model-local X/Z polygons while the model is resident. */
-  waterCutout?: { outlines: [number, number][][]; basis: string };
+  waterCutout?: { outlines: [number, number][][]; basis?: string };
   /** Optional confirmed map identity used to refine orientation from a nearby feature. */
   mapIdentity?: { wikidata?: string; names?: string[]; maxDistance?: number };
   /** Fixed is the catalog heading; mapped follows a confirmed footprint or bridge axis. */
@@ -107,13 +107,28 @@ export interface StructureMapRule {
 }
 
 export interface StructureCatalogDoc {
-  format: 'molen/structure-placements@1';
+  format: 'molen/structure-placements@1' | 'molen/structure-placement-data@1';
   title: string;
   entries: StructurePlacement[];
   rules?: StructureMapRule[];
 }
 
+export interface StructureLoadOptions extends StructureQueryOptions {
+  signal?: AbortSignal;
+  /** Skip regions whose placements all require finer tiles. */
+  level?: number;
+}
+
 export interface StructureIndex {
+  /** Release an optional regional loader when the owning content is closed. */
+  dispose?(): void;
+  /** Present for regional catalogs. Returned records do not depend on cache residency. */
+  queryAsync?(
+    bounds: readonly [number, number, number, number],
+    options?: StructureLoadOptions,
+  ): Promise<StructurePlacement[]>;
+  /** False means coverage is not loaded; an empty synchronous query is then incomplete. */
+  isLoaded?(bounds: readonly [number, number, number, number]): boolean;
   readonly entries: readonly StructurePlacement[];
   readonly cells: ReadonlyMap<string, readonly StructurePlacement[]>;
   readonly rules: readonly StructureMapRule[];
@@ -198,7 +213,7 @@ function candidateCells(bounds: readonly [number, number, number, number]): stri
 
 type GeographicBox = [number, number, number, number];
 
-function lookupBounds(entry: StructurePlacement): GeographicBox[] {
+export function structurePlacementBounds(entry: StructurePlacement): GeographicBox[] {
   if (entry.bounds) return [entry.bounds];
   const [longitude, latitude] = entry.anchor;
   if (entry.orientation !== 'mapped') return [[longitude, latitude, longitude, latitude]];
@@ -228,8 +243,12 @@ function lookupBounds(entry: StructurePlacement): GeographicBox[] {
 }
 
 export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
-  if (doc.format !== 'molen/structure-placements@1')
+  if (
+    doc.format !== 'molen/structure-placements@1' &&
+    doc.format !== 'molen/structure-placement-data@1'
+  )
     throw new Error('invalid structure catalog format');
+  const evidence = doc.format === 'molen/structure-placements@1';
   const ids = new Set<string>();
   for (const rule of doc.rules ?? []) {
     if (ids.has(rule.id)) throw new Error(`duplicate structure map rule ${rule.id}`);
@@ -277,7 +296,7 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
     ids.add(entry.id);
     if (
       entry.waterCutout &&
-      (!entry.waterCutout.basis?.trim() ||
+      ((evidence && !entry.waterCutout.basis?.trim()) ||
         !entry.bounds ||
         !Array.isArray(entry.waterCutout.outlines) ||
         entry.waterCutout.outlines.length < 1 ||
@@ -295,7 +314,7 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
       );
     if (
       entry.groundCutout &&
-      (!entry.groundCutout.basis?.trim() ||
+      ((evidence && !entry.groundCutout.basis?.trim()) ||
         (entry.groundCutout.additionalOutlines?.length ?? 0) > 63 ||
         (entry.groundCutout.additionalOutlines ?? []).some(
           (outline) =>
@@ -325,7 +344,7 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
     if (
       entry.buildingCutout &&
       (!entry.bounds ||
-        !entry.buildingCutout.basis?.trim() ||
+        (evidence && !entry.buildingCutout.basis?.trim()) ||
         (entry.buildingCutout.minimumCoverage !== undefined &&
           (!Number.isFinite(entry.buildingCutout.minimumCoverage) ||
             entry.buildingCutout.minimumCoverage <= 0 ||
@@ -367,7 +386,7 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
       if (
         entry.datum === 'sea-level' ||
         !Number.isFinite(reference.modelHeight) ||
-        !reference.basis?.trim()
+        (evidence && !reference.basis?.trim())
       )
         throw new Error(`invalid structure terrain reference ${entry.id}`);
       encodeStructureGeohash(...reference.anchor);
@@ -413,7 +432,7 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
       )
         throw new Error(`invalid structure road replacement ${entry.id}`);
     }
-    const extent = lookupBounds(entry);
+    const extent = structurePlacementBounds(entry);
     boxes.set(entry.id, extent);
     const keys = new Set<string>();
     for (const box of extent) {

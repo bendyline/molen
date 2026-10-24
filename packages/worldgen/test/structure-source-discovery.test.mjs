@@ -78,7 +78,7 @@ it('does not exempt a collection manifest that also defines a standalone model',
 });
 
 it('includes explicitly selected auxiliary components without sweeping in other site bundles', () => {
-  const core = { candidateId: 'N0291', collection: 'next-1000' },
+  const core = { candidateId: 'ksiaz_castle_and_park_complex', collection: 'structure-catalog' },
     gate = { candidateId: 'KSI_A01', collection: 'site-structures' },
     legacy = { candidateId: 'A02', collection: 'site-structures' };
   expect(authoredPlaceEntries([core, gate, legacy])).toEqual([core]);

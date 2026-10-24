@@ -1,4 +1,4 @@
-/** 'N0750': Balmoral's mapped connected ranges, clock tower and Baronial roofline. */
+/** 'balmoral_castle': Balmoral's mapped connected ranges, clock tower and Baronial roofline. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildBalmoral(face, detail, r) {

@@ -1,8 +1,8 @@
-/** N0717: circular white colonnade, blue panel roof and open two-tier bowl. */
+/** nizhny_novgorod_stadium: circular white colonnade, blue panel roof and open two-tier bowl. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
-const candidateId = 'N0717',
+const candidateId = 'nizhny_novgorod_stadium',
   tau = Math.PI * 2;
 export function nizhnyRadius(poly, a) {
   const d = [Math.cos(a), Math.sin(a)],

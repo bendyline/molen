@@ -5,9 +5,7 @@ import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frameBytes = readFileSync(
-  structureSourcePath('n0228_two_prudential_plaza', 'map-frame.json'),
-);
+const frameBytes = readFileSync(structureSourcePath('two_prudential_plaza', 'map-frame.json'));
 const frame = JSON.parse(frameBytes);
 const X = 28.0845,
   Z = 20.4255,
@@ -389,7 +387,7 @@ const parts = [
 ];
 
 export const twoPrudentialPlazaStudy = {
-  id: 'N0228',
+  id: 'two_prudential_plaza',
   key: 'two_prudential_plaza',
   title: 'Two Prudential Plaza',
   wikidataId: 'Q1121971',

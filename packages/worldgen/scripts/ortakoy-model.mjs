@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sxk/n0452_ortakoy_mosque/',
+  '../../../content/worldgen/source/places/sx/sxk/ortakoy_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -930,7 +930,7 @@ export const buildOrtakoySkyline = (o) => build(o, 0),
   buildOrtakoyCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const ortakoyStudy = {
-  id: 'N0452',
+  id: 'ortakoy_mosque',
   key: 'ortakoy_mosque',
   title: 'Ortaköy Mosque',
   category: 'mosque',

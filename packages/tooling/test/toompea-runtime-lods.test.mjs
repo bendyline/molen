@@ -10,7 +10,7 @@ import { toompeaStudy } from '../../worldgen/scripts/toompea-castle-model.mjs';
 import { toompeaGround } from '../../worldgen/scripts/toompea-runtime-model.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 
-const source = resolve('../../content/worldgen/source/places/ud/ud9/n0263_toompea_castle'),
+const source = resolve('../../content/worldgen/source/places/ud/ud9/toompea_castle'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;

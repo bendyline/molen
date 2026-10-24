@@ -24,7 +24,7 @@ import {
 import { box, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const map = JSON.parse(readFileSync(structureSourcePath('n0142_abraj_al_bait', 'map-frame.json'))),
+const map = JSON.parse(readFileSync(structureSourcePath('abraj_al_bait', 'map-frame.json'))),
   MEANS = {
     stone: [0.7011092892788303, 0.7011092892788303, 0.7011092892788303],
     cladding: [0.7011092892788303, 0.7011092892788303, 0.7011092892788303],
@@ -361,7 +361,7 @@ function build(target, tier) {
     for (let y = 7; y < 76; y += [100, 72, 36, 18][tier])
       bandPlan(out, p, y, 0.6, 0.65, [0.74, 0.68, 0.56], 'cladding');
   }
-  for (const part of partsEvidence('n0142_abraj_al_bait').filter((p) => p.id !== 958867174)) {
+  for (const part of partsEvidence('abraj_al_bait').filter((p) => p.id !== 958867174)) {
     const p = partPlan(m, part),
       top = Number(part.tags.height),
       bottom = Math.max(76, Number(part.tags.min_height));

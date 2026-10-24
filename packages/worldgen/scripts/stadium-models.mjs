@@ -633,7 +633,7 @@ export function buildMaracana(out) {
 
 export const stadiumStudies = [
   {
-    id: 'N0681',
+    id: 'maracana',
     key: 'maracana',
     title: 'Maracanã',
     wikidataId: 'Q155174',

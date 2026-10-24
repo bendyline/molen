@@ -7,7 +7,7 @@ import { buildSaintMichaelRuntime } from './saint-michaels-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/ud/udt/n0300_saint_michael_s_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/ud/udt/saint_michaels_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

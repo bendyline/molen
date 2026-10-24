@@ -5,7 +5,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingShape, prepareOpening } from './authored-wall-openings.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/te/tet/n0486_ajanta_caves/',
+    '../../../content/worldgen/source/places/te/tet/ajanta_caves/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source)));
@@ -535,7 +535,7 @@ const cam = (name, p, distance, y, lookY) => ({
   }),
   cave = (n) => rec.caves.find((p) => p.number === n);
 export const ajantaStudy = {
-  id: 'N0486',
+  id: 'ajanta_caves',
   key: 'ajanta_caves',
   title: 'Ajanta Caves',
   category: 'temple',

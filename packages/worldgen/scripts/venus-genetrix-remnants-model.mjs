@@ -1,7 +1,7 @@
 /** Three re-erected Venus Genetrix columns and their mapped low surviving remains. */
 import { buildCorinthianColumn } from './corinthian-column-geometry.mjs';
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';
-export const venusGenetrixCandidateId = 'N0532';
+export const venusGenetrixCandidateId = 'temple_of_venus_genetrix';
 
 function scroll(f, x, y, z, side, detail) {
   const n = detail === 3 ? 22 : 14,

@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tj/tju/n0427_jameh_mosque_of_isfahan/',
+  '../../../content/worldgen/source/places/tj/tju/jameh_mosque_of_isfahan/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -923,7 +923,7 @@ export const buildIsfahanSkyline = (o) => build(o, 0),
   buildIsfahanCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const isfahanStudy = {
-  id: 'N0427',
+  id: 'jameh_mosque_of_isfahan',
   key: 'jameh_mosque_of_isfahan',
   title: 'Jameh Mosque of Isfahan',
   category: 'mosque',

@@ -9,7 +9,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { mirStudy } from '../../worldgen/scripts/mir-castle-model.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u9/u9d/n0250_mir_castle_complex'),
+const source = resolve('../../content/worldgen/source/places/u9/u9d/mir_castle_complex'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;

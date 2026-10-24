@@ -1,4 +1,4 @@
-/** 'N0765_MAIN': the mapped main villa/baths, with its genuine open peristyle. */
+/** 'casale_main': the mapped main villa/baths, with its genuine open peristyle. */
 import './install-deterministic-math.mjs';
 import { createRequire } from 'node:module';
 import earcut from 'earcut';

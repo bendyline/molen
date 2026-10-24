@@ -83,7 +83,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u0/u09/n0434_grand_mosque_of_paris/',
+  '../../../content/worldgen/source/places/u0/u09/grand_mosque_of_paris/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1141,7 +1141,7 @@ export const buildParisSkyline = (o) => build(o, 0),
   buildParisCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 46 });
 export const parisMosqueStudy = {
-  id: 'N0434',
+  id: 'grand_mosque_of_paris',
   key: 'grand_mosque_of_paris',
   title: 'Grand Mosque of Paris',
   category: 'mosque',

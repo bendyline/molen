@@ -8,7 +8,7 @@ import { takhtStudy } from '../../worldgen/scripts/takht-e-soleyman-model.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/tn/tn9/n0246_takht_e_soleyman'),
+const source = resolve('../../content/worldgen/source/places/tn/tn9/takht_e_soleyman'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {

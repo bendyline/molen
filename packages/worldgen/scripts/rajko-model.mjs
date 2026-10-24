@@ -1,11 +1,11 @@
-/** 'N0731': Rajko Mitic Stadium with open oval bowl and single western canopy. */
+/** 'rajko_mitic_stadium': Rajko Mitic Stadium with open oval bowl and single western canopy. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildRajkoStadium } from './rajko-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sry/n0731_rajko_mitic_stadium/',
+    '../../../content/worldgen/source/places/sr/sry/rajko_mitic_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -78,7 +78,7 @@ export const buildRajkoSkyline = (o) => build(o, 0),
   buildRajkoStreet = (o) => build(o, 2),
   buildRajkoCloseup = (o) => build(o, 3);
 export const rajkoStudy = {
-  id: 'N0731',
+  id: 'rajko_mitic_stadium',
   key: 'rajko_mitic_stadium',
   title: 'Rajko Mitić Stadium',
   category: 'stadium',

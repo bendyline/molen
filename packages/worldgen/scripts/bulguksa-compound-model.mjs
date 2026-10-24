@@ -1,5 +1,5 @@
 /** Bulguksa's mapped halls, raised courts, entrance bridges and distinct stone pagodas. */
-export const bulguksaCandidateId = 'N0500';
+export const bulguksaCandidateId = 'bulguksa';
 const ring = (x, z, y) => [
   [-x, y, -z],
   [x, y, -z],

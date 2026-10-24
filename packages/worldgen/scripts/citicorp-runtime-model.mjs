@@ -15,9 +15,7 @@ import {
 import { box, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0198_citigroup_center', 'map-frame.json')),
-);
+const frame = JSON.parse(readFileSync(structureSourcePath('citigroup_center', 'map-frame.json')));
 function render(out, m) {
   const detail = out.detail;
   function partPlan(m, p) {
@@ -869,7 +867,7 @@ function render(out, m) {
     );
   }
   function buildNative(out, m) {
-    const parts = partsEvidence('n0198_citigroup_center');
+    const parts = partsEvidence('citigroup_center');
     shaft(out, m, parts);
     market(out, m, parts);
     church(out, m, parts);

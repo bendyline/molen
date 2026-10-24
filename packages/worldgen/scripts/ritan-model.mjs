@@ -1,11 +1,11 @@
-/** 'N0553': Ritan ritual core, low altar, four stairs, curved wall and stone portals. */
+/** 'temple_of_the_sun': Ritan ritual core, low altar, four stairs, curved wall and stone portals. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildRitanCore } from './ritan-core-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/wx/wx4/n0553_temple_of_the_sun/',
+    '../../../content/worldgen/source/places/wx/wx4/temple_of_the_sun/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -83,7 +83,7 @@ export const buildRitanSkyline = (o) => build(o, 0),
   buildRitanStreet = (o) => build(o, 2),
   buildRitanCloseup = (o) => build(o, 3);
 export const ritanStudy = {
-  id: 'N0553',
+  id: 'temple_of_the_sun',
   key: 'temple_of_the_sun',
   title: 'Temple of the Sun',
   category: 'temple',

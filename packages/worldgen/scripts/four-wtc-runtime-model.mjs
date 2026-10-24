@@ -519,9 +519,7 @@ const levels = {
   },
 };
 function buildLevel(out, frame, name) {
-  frame ??= JSON.parse(
-    readFileSync(structureSourcePath('n0218_4_world_trade_center', 'map-frame.json')),
-  );
+  frame ??= JSON.parse(readFileSync(structureSourcePath('4_world_trade_center', 'map-frame.json')));
   base = clockwise(frame.geometry.outline.slice(0, -1));
   detail = { ...levels[name], level: name };
   const target = { detail };

@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u20/n0407_padua_cathedral/',
+  '../../../content/worldgen/source/places/u2/u20/padua_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1018,7 +1018,7 @@ export const buildPaduaSkyline = (o) => build(o, 0),
   buildPaduaCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const paduaCathedralStudy = {
-  id: 'N0407',
+  id: 'padua_cathedral',
   key: 'padua_cathedral',
   title: 'Padua Cathedral',
   category: 'cathedral',

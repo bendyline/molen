@@ -9,7 +9,7 @@ import { encodeAuthoredAssembly } from '../../worldgen/scripts/authored-glb-asse
 import { istanbulSapphireStudy } from '../../worldgen/scripts/istanbul-sapphire-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/sx/sxk/n0229_istanbul_sapphire'),
+const source = resolve('../../content/worldgen/source/places/sx/sxk/istanbul_sapphire'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -122,7 +122,11 @@ it('reproduces the preserved detailed instanced master and retains independently
   expect(bytes.byteLength).toBe(79531556);
   execFileSync(
     process.execPath,
-    ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=N0229', '--check'],
+    [
+      'packages/worldgen/scripts/generate-signature-towers.mjs',
+      '--ids=istanbul_sapphire',
+      '--check',
+    ],
     { cwd: resolve('../..'), stdio: 'pipe' },
   );
   const spec = await read(`${source}/spec.json`);

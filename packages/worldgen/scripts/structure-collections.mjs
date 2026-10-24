@@ -1,9 +1,10 @@
 /** Authoring collections contain independent assets, never an aggregate runtime placement. */
 import { readFile } from 'node:fs/promises';
+import { structureKeyPattern, validateStructureCandidateIds } from './structure-identity.mjs';
 
 const qid = /^Q[1-9][0-9]*$/;
 const asset = /^molen\.worldgen\.structure\.[a-z0-9_]+$/;
-const id = /^N\d+(?:_[A-Z0-9]+)?$/;
+const id = structureKeyPattern;
 const featureId = /^(?:node|way|relation)\/[1-9][0-9]*$/;
 
 /** Keep the serialized wrapper bounded to explicit IDs and optional read-only verification. */
@@ -11,18 +12,22 @@ export function structureImportArgs(args) {
   const selected = args.find((arg) => arg.startsWith('--ids='));
   if (
     !selected ||
-    !/^--ids=N\d{4}(?:_[A-Z0-9]+)?(?:,N\d{4}(?:_[A-Z0-9]+)?)*$/.test(selected) ||
+    !selected
+      .slice(6)
+      .split(',')
+      .every((value) => id.test(value)) ||
     args.filter((arg) => arg === selected).length !== 1 ||
     args.filter((arg) => arg === '--check').length > 1 ||
     args.some((arg) => arg !== selected && arg !== '--check')
   )
     throw new Error(
-      'Usage: node import-and-register-next-1000.mjs --ids=N0001,N0208_MSU [--check]',
+      'Usage: node import-and-register-structures.mjs --ids=stari_most,msu_main_building [--check]',
     );
   return [selected, ...(args.includes('--check') ? ['--check'] : [])];
 }
 
 export function validateStructureCollections(document, candidates = []) {
+  validateStructureCandidateIds(candidates);
   if (document?.format !== 'molen/structure-collections@1' || !Array.isArray(document.collections))
     throw new Error('Invalid structure collection manifest');
   const identities = new Map(),
@@ -30,7 +35,7 @@ export function validateStructureCollections(document, candidates = []) {
     assets = new Map();
   const collectionIds = new Set();
   for (const collection of document.collections) {
-    if (!/^N\d+$/.test(collection.id) || collectionIds.has(collection.id))
+    if (!id.test(collection.id) || collectionIds.has(collection.id))
       throw new Error('Duplicate or invalid collection candidate id');
     collectionIds.add(collection.id);
     const candidate = candidates.find((entry) => entry.id === collection.id);
@@ -70,7 +75,7 @@ export function validateStructureCollections(document, candidates = []) {
           : member.wikidataId === collection.wikidataId || member.featureId !== undefined) ||
         !member.title ||
         !asset.test(member.assetId) ||
-        !/^[a-z0-9_]+$/.test(member.sourceKey) ||
+        !structureKeyPattern.test(member.sourceKey) ||
         member.assetId !== `molen.worldgen.structure.${member.sourceKey}` ||
         !Number.isFinite(member.referenceCoordinate?.longitude) ||
         !Number.isFinite(member.referenceCoordinate?.latitude)
@@ -138,8 +143,7 @@ export function validateCollectionSpec(spec, collections) {
   if (collections.some((collection) => collection.id === spec.id))
     throw new Error(`${spec.id}: a collection cannot have a composite source model`);
   const member = collectionMember(collections, spec.id);
-  if (/^N\d+_/.test(spec.id) && !member)
-    throw new Error(`${spec.id}: undeclared collection member`);
+  if (spec.collectionId && !member) throw new Error(`${spec.id}: undeclared collection member`);
   if (
     member &&
     (spec.wikidataId !== member.wikidataId ||

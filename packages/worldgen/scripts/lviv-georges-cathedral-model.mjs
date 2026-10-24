@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u8/u8c/n0344_saint_george_s_cathedral/',
+  '../../../content/worldgen/source/places/u8/u8c/saint_georges_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -890,7 +890,7 @@ export const buildLvivSkyline = (o) => build(o, 0),
   buildLvivStreet = (o) => build(o, 2),
   buildLvivCloseup = (o) => build(o, 3);
 export const lvivStudy = {
-  id: 'N0344',
+  id: 'saint_georges_cathedral',
   key: 'saint_george_s_cathedral',
   title: "Saint George's Cathedral",
   category: 'cathedral',

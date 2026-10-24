@@ -4,7 +4,7 @@
 
 Own five-vertex plaster pavilion with pink blind panels, a red hipped mansard roof, central curved dormer with an oval window, cream cornices and a brick chimney.
 
-Independent component of [Książ Castle and park complex](../n0291_ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
+Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.
 
 ## Sources and reconstruction
 

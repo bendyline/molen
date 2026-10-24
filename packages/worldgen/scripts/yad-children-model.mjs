@@ -1,11 +1,11 @@
-/** 'N0748_CHILDREN': Children's Memorial cave mouth, hewn approach and unfinished pillars. */
+/** 'childrens_memorial_yad_vashem': Children's Memorial cave mouth, hewn approach and unfinished pillars. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildYadChildren } from './yad-children-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sv/sv9/n0748_children/',
+    '../../../content/worldgen/source/places/sv/sv9/childrens_memorial_yad_vashem/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -98,7 +98,7 @@ export const buildYadChildrenSkyline = (o) => build(o, 0),
   buildYadChildrenStreet = (o) => build(o, 2),
   buildYadChildrenCloseup = (o) => build(o, 3);
 export const yadChildrenStudy = {
-  id: 'N0748_CHILDREN',
+  id: 'childrens_memorial_yad_vashem',
   key: 'children',
   title: "Children's Memorial, Yad Vashem",
   category: 'memorial',

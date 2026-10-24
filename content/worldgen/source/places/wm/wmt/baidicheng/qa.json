@@ -1,0 +1,644 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.baidicheng",
+  "reviewedOn": "2026-10-19",
+  "inputHash": "sha256:622db40bd7b29a3d2ac16fe43c01a012b1d6b968f74347f81470b8dcd9c1dd31",
+  "sourceHash": "sha256:5f9a552e7b12692a53284d5b8fab54455c1f75a70caac07a12c743b2fc594c80",
+  "runtimeHash": "sha256:09228359db564e560dd5b3d7414431e9bf433bf7f23eea693d5d55d0c20f5c5e",
+  "captureReportHash": "sha256:8ad207670fe8713a66f547be9860ebf280baad46cc508fd5e358e247e61f0659",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/decorated-rounded-arch-gateway-and-stone-guardians.png",
+      "shots/mapped-gray-roof-ranges-and-open-courts.png",
+      "shots/white-house-and-timber-hall-facades.png"
+    ],
+    "notes": "Inspected 48 final current source/shared/medium-fi/native-site/fallback views in the same brief/build/inspect/fix round. Eight named core mapped envelopes articulated into twenty grey swept tile roof ranges, open main and eastern courts, taller White House, northern U/L exhibition ranges, ochre/red Baidi gateway with a real rounded arch and rear passage, three roof crests, original simplified panel/scroll ornament, centered stairs and two simplified stone guardians. Same-round map coverage checks added omitted northern projections, actual terrain contact probes corrected a floating foundation edge, and numeric mask cleanup removed a duplicate vertex. No copied readable text, narrative murals or exact sculpture inventory."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/decorated-rounded-arch-gateway-and-stone-guardians.png",
+      "shots/shared/mapped-gray-roof-ranges-and-open-courts.png",
+      "shots/shared/white-house-and-timber-hall-facades.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Four reused shared 256-square graphs: stone_limestone_raw for buried foundations/arch/guardians, plaster_lime for pale walls and ochre gateway, wood_plain for muted red and blue-green timber/panels and dark doors, tile_ceramic for grey swept roofs. Seven material roles share these four graphs with metric UVs and linear muted tints; each graph read once by the production resolver. Four levels meet triangle/draw/download caps; initial geometry 438,636 bytes, at most six draws. Zero embedded images or unique atlas, separate GPU streams and matching CPU/GPU accounting. Eviction releases all model geometry.",
+    "captureReportHash": "sha256:dc1723989a59dfec6807033800d4f0ed6e5c22b0c45c5521b5b180bda555a681"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/decorated-rounded-arch-gateway-and-stone-guardians.png",
+      "medium-fi/mapped-gray-roof-ranges-and-open-courts.png",
+      "medium-fi/white-house-and-timber-hall-facades.png",
+      "medium-fi/baidicheng-skyline.png",
+      "medium-fi/baidicheng-district.png",
+      "medium-fi/baidicheng-street.png",
+      "medium-fi/baidicheng-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected noon/late, economy/high, full silhouette, decorated arch/guardians, mapped roof ranges/open courts, White House/timber facades, all four levels and transitions. Skyline retains the eight mapped groups, twenty roof masses, true arch passage and open courts within 933 triangles. District adds articulated bases/roof bands and openings; street/close add tile ridges, original panel/scroll detail and guardian forms. Flat shared stages can hide terrain-relative low terraces or expose their foundations; native/source terrain carries contact judgment. Green native fixture ground and procedural neighboring facades remain host context, not a reconstruction of actual island vegetation or paving.",
+    "captureReportHash": "sha256:815e120045a141af87e6228eed9fdae0cd02f0e33b1ccda8fd87405034c735af"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:47dbd88dc2e1866f97c47816050997c1158b9d077e25be978c30f3cb20e4b825",
+    "mapFrameHash": "sha256:39c34627e96cbafc15f6ae665e84ec4751d4896b754ceafcc7e3a2c7a5eee443",
+    "notes": "Anchor 109.570541373,31.043489997; heading 0, internal local+x angle +0.412rad. Named Baidi Castle POI17594597153029 / OSM node2411108613 correlates position with the eight named core building/POI envelopes35185207107684 through35185207107691: Bright Goodness Hall, Baidi Temple, Eight Tactical Arrays Hall, Crusade Against Wu Hall, Suspending Coffin Hall, Ten Wistom Hall (map spelling), Cultural Relics Showroom and White House. This is not an exact-QID building-footprint match. Replace only those eight matching controls with 2cm numeric tolerance, preserving the one independent in-tile building input byte-for-byte and native 6m ground/water geometry unchanged. Each roof range has a local level floor and a buried constant base sampled along its boundary; open courts retain native ground. Loaded levels retain one native record; failure retains all nine originals; unloading releases geometry. No broad island slab, flattening or ground/water cutout."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi standing core from the inspected ordinary front gateway picture and closer aerial, plus standard PMTiles/Mapzen. A wider aerial established island context before the close aerial filled a specific roof-layout gap. Named hall envelopes establish approximate horizontal allocation; internal roof/court/gateway arrangement, individual heights, painted trim, timber opening inventory, guardian forms, hidden facades and exact terrace/paved threshold levels remain picture/map approximations. Coarse wooded DEM does not resolve exact terraces, passages, shoreline reservoir elevations or thresholds. No surveyed-fit or exact water-level claim. Island landform, trees, shoreline, bridge, external paths and independent buildings remain host context. No intact ancient fortress restoration, copied readable inscription/narrative painting, full museum interior or bespoke research. Physical-device/dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/wm/wmt/baidicheng/models/source.glb\",\"hash\":\"sha256:5f9a552e7b12692a53284d5b8fab54455c1f75a70caac07a12c743b2fc594c80\",\"bytes\":1137388,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/wm/wmt/baidicheng/model.glb\",\"hash\":\"sha256:09228359db564e560dd5b3d7414431e9bf433bf7f23eea693d5d55d0c20f5c5e\",\"bytes\":1136832,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/wm/wmt/baidicheng/model.skyline.glb\",\"hash\":\"sha256:aaa5b6a747bdce88865d88930076935330b59929a897efff8b6be45a657a3095\",\"bytes\":99084,\"errors\":0,\"warnings\":0,\"triangles\":933,\"draws\":1}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/wm/wmt/baidicheng/model.district.glb\",\"hash\":\"sha256:1743e04277aa328c4acee2ee849a28f89d3d38498a72bdac2c8fc8e01806aee6\",\"bytes\":339552,\"errors\":0,\"warnings\":0,\"triangles\":3426,\"draws\":6}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/wm/wmt/baidicheng/model.street.glb\",\"hash\":\"sha256:4a800a6f83bb073563e1d83bc0addc96841c5ea76c16d690543716cdabe0f81c\",\"bytes\":915908,\"errors\":0,\"warnings\":0,\"triangles\":9446,\"draws\":6}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/wm/wmt/baidicheng/model.closeup.glb\",\"hash\":\"sha256:4a800a6f83bb073563e1d83bc0addc96841c5ea76c16d690543716cdabe0f81c\",\"bytes\":915908,\"errors\":0,\"warnings\":0,\"triangles\":9446,\"draws\":6}"
+      },
+      {
+        "check": "twenty-roof-ranges-two-open-courts-true-gateway-arch-and-boundary-burial",
+        "passed": true,
+        "notes": "842 actual mesh probes across source/runtime/four levels verify twenty specific roof ranges, open main/eastern courts and central garden, true rounded gateway arch and rear passage, solid crown/piers, ascending stairs, guardian heads and buried foundation edges sampled along mapped boundaries."
+      },
+      {
+        "check": "shared-materials-layout-and-browser-budgets",
+        "passed": true,
+        "notes": "Four reused graphs, zero embedded images, separate GPU streams and all triangle/draw/download caps pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-full-site-fit",
+    "modelHashes": [
+      {
+        "name": "source",
+        "hash": "sha256:5f9a552e7b12692a53284d5b8fab54455c1f75a70caac07a12c743b2fc594c80"
+      },
+      {
+        "name": "runtime",
+        "hash": "sha256:09228359db564e560dd5b3d7414431e9bf433bf7f23eea693d5d55d0c20f5c5e"
+      },
+      {
+        "name": "skyline",
+        "hash": "sha256:aaa5b6a747bdce88865d88930076935330b59929a897efff8b6be45a657a3095"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:1743e04277aa328c4acee2ee849a28f89d3d38498a72bdac2c8fc8e01806aee6"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:4a800a6f83bb073563e1d83bc0addc96841c5ea76c16d690543716cdabe0f81c"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:4a800a6f83bb073563e1d83bc0addc96841c5ea76c16d690543716cdabe0f81c"
+      }
+    ],
+    "reports": [
+      {
+        "level": "closeup",
+        "state": {
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 9,
+          "independentBuildings": 1,
+          "remainingBuildings": 1,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.baidicheng"
+          ],
+          "rawTerrainRange": {
+            "min": -222.27728424481614,
+            "max": 3.210215755183839
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2302920.407697702,
+          "remainingWaterArea": 2302920.407697702,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:2b33e739e34dc52736764b875f715dda43ee118782d86da43349f456f117a53a",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 73323
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -170.6022092728225,
+                100,
+                78.22970146454657
+              ],
+              "lookAt": [
+                -13.05220918832579,
+                5,
+                7.391876304713429
+              ],
+              "fov": 45
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-decorated-rounded-arch-gateway-and-stone-guardians.png",
+            "hash": "sha256:1b15f96adaf8dd0b3d3fef36bc5ec1682afca28f923aca3c4b4130bc23c0fe47",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 73323
+            },
+            "camera": {
+              "name": "decorated-rounded-arch-gateway-and-stone-guardians",
+              "position": [
+                -38.94009121710287,
+                9.064225004700374,
+                -8.286693912756045
+              ],
+              "lookAt": [
+                -34.373684750912375,
+                5.064225004700375,
+                12.479575178863028
+              ],
+              "fov": 49
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-mapped-gray-roof-ranges-and-open-courts.png",
+            "hash": "sha256:2861252f83a49968cffa87480fcb696d77dce64846a6b6dbdc129e2b6a91ce7b",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 73323
+            },
+            "camera": {
+              "name": "mapped-gray-roof-ranges-and-open-courts",
+              "position": [
+                10.353420255925627,
+                65,
+                113.65652946049421
+              ],
+              "lookAt": [
+                -19.05168270202221,
+                7,
+                38.60095058701881
+              ],
+              "fov": 50
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-white-house-and-timber-hall-facades.png",
+            "hash": "sha256:a17bcce602af9727e69ba6e9cb9bf3c67e5173b6d045800f2d1a1a8bbf2aa2f2",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 74165
+            },
+            "camera": {
+              "name": "white-house-and-timber-hall-facades",
+              "position": [
+                -92.29612219700391,
+                24,
+                16.41419591072683
+              ],
+              "lookAt": [
+                -50.66836780965258,
+                7,
+                16.05355111823431
+              ],
+              "fov": 51
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 9,
+          "independentBuildings": 1,
+          "remainingBuildings": 1,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.baidicheng"
+          ],
+          "rawTerrainRange": {
+            "min": -222.27728424481614,
+            "max": 3.210215755183839
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2302920.407697702,
+          "remainingWaterArea": 2302920.407697702,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:2b33e739e34dc52736764b875f715dda43ee118782d86da43349f456f117a53a",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 73323
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -170.6022092728225,
+                100,
+                78.22970146454657
+              ],
+              "lookAt": [
+                -13.05220918832579,
+                5,
+                7.391876304713429
+              ],
+              "fov": 45
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 9,
+          "independentBuildings": 1,
+          "remainingBuildings": 1,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.stone_limestone_raw": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.baidicheng"
+          ],
+          "rawTerrainRange": {
+            "min": -222.27728424481614,
+            "max": 3.210215755183839
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2302920.407697702,
+          "remainingWaterArea": 2302920.407697702,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:e877472e22d17b4a954a5c2a7d135b4d42c2f66701e282d746ceb41311317075",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 10,
+              "triangles": 67303
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -170.6022092728225,
+                100,
+                78.22970146454657
+              ],
+              "lookAt": [
+                -13.05220918832579,
+                5,
+                7.391876304713429
+              ],
+              "fov": 45
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "skyline",
+        "state": {
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": false,
+          "sourceBuildings": 9,
+          "independentBuildings": 1,
+          "remainingBuildings": 1,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.baidicheng"
+          ],
+          "rawTerrainRange": {
+            "min": -222.27728424481614,
+            "max": 3.210215755183839
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2302920.407697702,
+          "remainingWaterArea": 2302920.407697702,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:4e7bce5e697f150f4d55776ed38fd7459c1ef4f508973f1b9111a40a0ddbc062",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 5,
+              "triangles": 64810
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -170.6022092728225,
+                100,
+                78.22970146454657
+              ],
+              "lookAt": [
+                -13.05220918832579,
+                5,
+                7.391876304713429
+              ],
+              "fov": 45
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "terrainAtCompoundCenter": true,
+          "failedLoad": true,
+          "sourceBuildings": 9,
+          "independentBuildings": 1,
+          "remainingBuildings": 9,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35185207107685,
+              "area": 758.8329536785722
+            },
+            {
+              "id": 35185207107688,
+              "area": 448.3475416069041
+            },
+            {
+              "id": 35185207107689,
+              "area": 881.9938119816243
+            },
+            {
+              "id": 35185207107690,
+              "area": 637.8382193954621
+            },
+            {
+              "id": 35185207107691,
+              "area": 145.70871542415205
+            },
+            {
+              "id": 35185207107684,
+              "area": 783.0267353730619
+            },
+            {
+              "id": 35185207107686,
+              "area": 400.2501908757978
+            },
+            {
+              "id": 35185207107687,
+              "area": 383.46443184572934
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.baidicheng"
+          ],
+          "rawTerrainRange": {
+            "min": -222.27728424481614,
+            "max": 3.210215755183839
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 2302920.407697702,
+          "remainingWaterArea": 2302920.407697702,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:b9cc692c705768e939d80f8dab1ab644cee673697e28427d8a96fc12b5cdfade",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 9,
+              "triangles": 73627
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                -170.6022092728225,
+                100,
+                78.22970146454657
+              ],
+              "lookAt": [
+                -13.05220918832579,
+                5,
+                7.391876304713429
+              ],
+              "fov": 45
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Specific Baidicheng core: eight named mapped hall/temple footprints articulated into gray swept tile roof ranges, open main/eastern courts, a taller White House, northern U/L exhibition ranges and an ochre/red decorated Baidi gateway with a real rounded arch, triple roof crests, original simplified painted-panel/scroll vocabulary, stairs and two simplified stone guardians. Island landform, trees, shoreline, bridge, external paths and independent buildings remain host context. No complete ancient fortress restoration, copied text/narrative painting or museum interior.",
+    "Named standard PMTiles Baidi Castle node2411108613 lies about10m from the candidate coordinate. Eight named building/POI controls35185207107684 through35185207107691 fix the core envelopes: Bright Goodness Hall, Baidi Temple, Eight Tactical Arrays Hall, Crusade Against Wu Hall, Suspending Coffin Hall, Ten Wistom Hall (map spelling), Cultural Relics Showroom and White House. Root heading0, internal angle+.412rad from native east toward south. Roof/court splits and the gateway on the north edge of the main Baidi envelope are explicit picture/map-led allocations, not surveyed interior plans or an exact-QID footprint claim.",
+    "Picture-led one-story hall bodies about4.2m with swept gray roofs rising2.5m, some larger halls4.8m/3m roof rise; White House about7m body/2.6m roof. Decorated gateway about8.2m and4m arch crown above its local threshold. Eight horizontal envelopes come from standard map; individual roof splits, gallery facades, levels, internal courts, gate location and sculptural inventory remain exterior approximations.",
+    "Retain original standard6m Mapzen hill terrain and water. Each hall/roof section has a separate local level floor with grade-buried base edges. Main/eastern courts and central garden remain open native ground, without a broad flattened island platform or ground/water cutout. Short gateway stairs/threshold connect to sampled local grade. Wooded coarse DEM does not resolve individual terrace levels, paving, covered passages, shoreline reservoir elevations or thresholds.",
+    "Twenty roof splits, court openings, gateway assignment/facing, facades, heights, guardian pair and painted relief are ordinary-picture/map approximations. No copied readable text/narrative mural, complete interiors or ancient fortress restoration. Island landscape, bridge, shoreline and independent buildings remain host context."
+  ],
+  "sourceBindingMaintenance": {
+    "reviewedOn": "2026-10-19",
+    "status": "carried-existing-acceptance-after-source-equivalence",
+    "previousInputHash": "sha256:5107bb1362169cebbb1d27fe5345395e371119603981858d0ada6aecc96afaa6",
+    "inputHash": "sha256:622db40bd7b29a3d2ac16fe43c01a012b1d6b968f74347f81470b8dcd9c1dd31",
+    "originalVisualReviewOn": "2026-10-19",
+    "sourceRelease": "assets-3ad02ba96a6d989f",
+    "modelPins": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/wm/wmt/baidicheng/models/source.glb",
+        "hash": "sha256:5f9a552e7b12692a53284d5b8fab54455c1f75a70caac07a12c743b2fc594c80"
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/wm/wmt/baidicheng/model.glb",
+        "hash": "sha256:09228359db564e560dd5b3d7414431e9bf433bf7f23eea693d5d55d0c20f5c5e"
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/wm/wmt/baidicheng/model.skyline.glb",
+        "hash": "sha256:aaa5b6a747bdce88865d88930076935330b59929a897efff8b6be45a657a3095"
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/wm/wmt/baidicheng/model.district.glb",
+        "hash": "sha256:1743e04277aa328c4acee2ee849a28f89d3d38498a72bdac2c8fc8e01806aee6"
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/wm/wmt/baidicheng/model.street.glb",
+        "hash": "sha256:4a800a6f83bb073563e1d83bc0addc96841c5ea76c16d690543716cdabe0f81c"
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/wm/wmt/baidicheng/model.closeup.glb",
+        "hash": "sha256:4a800a6f83bb073563e1d83bc0addc96841c5ea76c16d690543716cdabe0f81c"
+      }
+    ],
+    "change": "Exact prior input reconstructed using prior recipe list and preserved helper text. Seven helper edits change only the first comment line, making existing source recipes explicit. All six approved model files are unchanged.",
+    "scope": "Existing inspected images, materials, LODs and placement retained; no new visual inspection is claimed."
+  }
+}

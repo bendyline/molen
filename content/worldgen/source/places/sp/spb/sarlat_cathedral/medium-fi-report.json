@@ -1,0 +1,1173 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.sarlat_cathedral",
+  "sourceHash": "sha256:7969653a3eb8f566c9b0de0f8a1970d7681b9879b54fb7e32ba3fbc981a4ab7d",
+  "runtimeHash": "sha256:0a68f14479a3da5e70910697e46e4834a04e27dde7e2fc44ad389c317f31e7c7",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5312,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:9574e3a8e7355bfe8aa88d67c412d51482b6d95a76a56caaf3f201bf0888af44",
+      "bytes": 58080,
+      "gzipBytes": 12504,
+      "triangles": 581,
+      "cpuBytes": 56660,
+      "gpuBytes": 56660,
+      "errorMeters": 1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:b097c81a06733c25888ec0ac6e79a88ad1eb1b6c370665dfdfe493e2c441922a",
+      "bytes": 306100,
+      "gzipBytes": 96782,
+      "triangles": 3041,
+      "cpuBytes": 298764,
+      "gpuBytes": 298764,
+      "errorMeters": 0.4,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:c8f055ef6f693b224a05db3363e8124e338a017edbb17fa45434fbd174687ec4",
+      "bytes": 748420,
+      "gzipBytes": 208592,
+      "triangles": 7812,
+      "cpuBytes": 741064,
+      "gpuBytes": 741064,
+      "errorMeters": 0.15,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:211f1bf94026478e9fbc1e620b62a523b06659b3fc709d818d9f0b3a374581ad",
+      "bytes": 867324,
+      "gzipBytes": 251415,
+      "triangles": 8957,
+      "cpuBytes": 859964,
+      "gpuBytes": 859964,
+      "errorMeters": 0.05,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:5967529dd5beaefe243558ee9dd6a96f2ca102c9b590f0abf13fa5d5ae9d5650"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:3e169a428ab26cc675c604fcc1f9fb10dd457086c05536e7e24e292a4dad9bf0"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:bc790a3f735421caaf7968bc5200bec7c56f0ea4aaeaecd3366354533b8c82f6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 35071,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          95.4664,
+          77.1661,
+          166.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:bb304e0c3706dce277a053035ffaec4a6973cc3521a9887f591cc5bff0801f27",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35071,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          95.4664,
+          77.1661,
+          166.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:d189afc96888eef86db6c6f9f58d827e3c149b10b257baec07c1b32826570fdd",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 35071,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          95.4664,
+          77.1661,
+          166.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:da332faa8f00ca823b330731c7b470c4264b1f069dec7eda38787d0815b1aff4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35071,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          95.4664,
+          77.1661,
+          166.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:e18af1bb2e989563feb6485aa772b94eef7b3073aea55f5b9c1728b0c187ba75",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 29155,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          193.4664,
+          149.1661,
+          336.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:83992c972ea7a4d77f0f5e7ab7d4c48be351abd89007e735e978c247a0ac1e50",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 29155,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          193.4664,
+          149.1661,
+          336.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:b6378845d0eee38f5cf2e415edbd2ef59f4af8f86b25b4212d11b8b6c1c8868e",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 29155,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          193.4664,
+          149.1661,
+          336.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:a6d5a3ee78753230d4d8f92cd0ff59cd354e134901fe7ddd73d1c47b1409ac9f",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 29155,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          193.4664,
+          149.1661,
+          336.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:27f9d471c9fa2e06e4c58254bd5d6a7beff77a17e3008700cf82d2463fce0cbd",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 26695,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          387.4664,
+          225.1661,
+          672.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:6f52080d5b6d6d33f64db8c4d6b9deeb9eb511b86c8372eafc6f2116e32bbd6c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26695,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          387.4664,
+          225.1661,
+          672.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:268a4bd5b249a340cf602bf72bdb72c0c3f713208b620f837aac599d3814f172",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 26695,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          387.4664,
+          225.1661,
+          672.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:286695c96415a59e1b326799b54676c4dc6bd4bc5c4dbc0ed438d984b10fb9a7",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26695,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          387.4664,
+          225.1661,
+          672.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:79b8e6e4adafc4d7016dcd2d88999098cbb1495ee962ddcb3e34ed0b67a824a6",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21383,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          387.4664,
+          225.1661,
+          672.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-tower-porch-and-small-clock.png",
+      "hash": "sha256:4476cb369823412f0af3c92ab3550958c3fad962662da347f5fe26b464164dd7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35071,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -76,
+          27,
+          38
+        ],
+        "lookAt": [
+          -25.6,
+          16,
+          10.9
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/layered-slate-bulb-and-open-lantern.png",
+      "hash": "sha256:ebf40045e02a15b73f7d7e5d34205d8cf1b0e85efb8d267b5217bb3a8e84094a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35071,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -49,
+          48,
+          41
+        ],
+        "lookAt": [
+          -25.6,
+          38,
+          10.9
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-nave-flying-buttresses.png",
+      "hash": "sha256:d0ca6fa61c508c4f0035c8020b6d63e9dea384229daf2d07328b5ba017299c7a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35071,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -22,
+          30,
+          -68
+        ],
+        "lookAt": [
+          -1,
+          15,
+          -5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/east-choir-and-chapels.png",
+      "hash": "sha256:48140cd80e4d1d8b6ccc2bf9998381619ca39d646911c59e77942107e6f17cf8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35071,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          74,
+          30,
+          -29
+        ],
+        "lookAt": [
+          22,
+          15,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-wing-and-stair-turret.png",
+      "hash": "sha256:a57ccd52f3cc96daa05d97056fb0f947fd17243396957c5fbdf8b4bf4ff4c159",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35071,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          49,
+          38,
+          54
+        ],
+        "lookAt": [
+          9,
+          14,
+          3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roof-and-signed-plan.png",
+      "hash": "sha256:aa93dd1b9f4716a1fa496ad241d95dbf5fe23d84c5b694d15847d70c9b479dc4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35071,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          150,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-sarlat-skyline.png",
+      "hash": "sha256:c2057d5a2d2a866241f816815825ee32759debc9e9e55d1eb9ead5adbeeeabf0",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26695,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -89,
+          67,
+          91
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-sarlat-district.png",
+      "hash": "sha256:b1c074a23487db02526a34f3d218a642a5ec3956537a67adde906b9f49db3b3b",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 29155,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -89,
+          67,
+          91
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-sarlat-street.png",
+      "hash": "sha256:797765cf89a425719c2ef257cfc3b8768d9b69fcffe40448a85f4d1abbe4a6cc",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33926,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -89,
+          67,
+          91
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-sarlat-closeup.png",
+      "hash": "sha256:cc01d31d67cbc355c8e6a159909d3c691f6f26c342ca38ac10043cb93e2e5001",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35071,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -89,
+          67,
+          91
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:523df7f373e6e817ab095a3cf68a05f552bb8c9758f0cb17070f266107e53afa",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 26695,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          193.4664,
+          149.1661,
+          336.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:83992c972ea7a4d77f0f5e7ab7d4c48be351abd89007e735e978c247a0ac1e50",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 29155,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          193.4664,
+          149.1661,
+          336.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:ea9d931d5ded3b1cdc001ef7b82331a692271dfacadc37d274a9ea2980bd677b",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33926,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          193.4664,
+          149.1661,
+          336.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:4dbbbf32e7c2e8aa2925e03da1a286dd91648de08a9e1a1377872cfac72b0569",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 35071,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sp/spb/sarlat_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          193.4664,
+          149.1661,
+          336.0557
+        ],
+        "lookAt": [
+          -0.5336,
+          47.1661,
+          0.0557
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

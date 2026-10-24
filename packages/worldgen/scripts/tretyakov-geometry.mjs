@@ -1,4 +1,4 @@
-/** 'N0753': connected gallery ranges, Vasnetsov facade, recessed arch and roof lanterns. */
+/** 'tretyakov_gallery': connected gallery ranges, Vasnetsov facade, recessed arch and roof lanterns. */
 import './install-deterministic-math.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

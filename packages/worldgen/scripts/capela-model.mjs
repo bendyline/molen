@@ -1,11 +1,11 @@
-/** 'N0546': Capela dos Ossos interior inside its mapped São Francisco host. */
+/** 'capela_dos_ossos': Capela dos Ossos interior inside its mapped São Francisco host. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildCapelaComplex } from './capela-complex-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ey/eyf/n0546_capela_dos_ossos/',
+    '../../../content/worldgen/source/places/ey/eyf/capela_dos_ossos/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -86,7 +86,7 @@ export const buildCapelaSkyline = (o) => build(o, 0),
   buildCapelaStreet = (o) => build(o, 2),
   buildCapelaCloseup = (o) => build(o, 3);
 export const capelaStudy = {
-  id: 'N0546',
+  id: 'capela_dos_ossos',
   key: 'capela_dos_ossos',
   title: 'Capela dos Ossos',
   category: 'temple',

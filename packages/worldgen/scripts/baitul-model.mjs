@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/wh/wh0/n0456_baitul_mukarram_national_mosque/',
+  '../../../content/worldgen/source/places/wh/wh0/baitul_mukarram_national_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -815,7 +815,7 @@ export const buildBaitulSkyline = (o) => build(o, 0),
   buildBaitulCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const baitulStudy = {
-  id: 'N0456',
+  id: 'baitul_mukarram_national_mosque',
   key: 'baitul_mukarram_national_mosque',
   title: 'Baitul Mukarram National Mosque',
   category: 'mosque',

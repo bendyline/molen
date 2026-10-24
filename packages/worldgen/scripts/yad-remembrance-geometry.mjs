@@ -1,4 +1,4 @@
-/** 'N0748_REMEMBRANCE': square floating concrete roof over a faceted fieldstone base. */
+/** 'hall_of_remembrance_yad_vashem': square floating concrete roof over a faceted fieldstone base. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildYadRemembrance(face, detail, r) {

@@ -1,4 +1,4 @@
-/** 'N0757': mapped Ashdod museum, folded roofs and recessed entrance. */
+/** 'museum_of_philistine_culture': mapped Ashdod museum, folded roofs and recessed entrance. */
 import './install-deterministic-math.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

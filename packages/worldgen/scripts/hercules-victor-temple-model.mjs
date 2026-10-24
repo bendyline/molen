@@ -1,6 +1,6 @@
-/** N0518: mapped nineteen-column peristyle, circular cella and present roof. */
+/** temple_of_hercules_victor: mapped nineteen-column peristyle, circular cella and present roof. */
 import earcut from 'earcut';
-export const herculesVictorCandidateId = 'N0518';
+export const herculesVictorCandidateId = 'temple_of_hercules_victor';
 function prism(f, role, p, lo, hi) {
   const rings = [p.outline, ...(p.holes ?? [])],
     flat = rings.flat(),

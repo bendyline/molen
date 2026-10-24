@@ -49,7 +49,7 @@ const ids = process.argv
   ?.slice(6)
   .split(',');
 const catalog = JSON.parse(
-  await readFile(resolve(root, 'content/worldgen/source/next-1000/candidates.json')),
+  await readFile(resolve(root, 'content/worldgen/source/structure-catalog/candidates.json')),
 );
 const mapBytes = await readFile(resolve(root, 'content/earth/structures/georeferencing.json'));
 const evidence = JSON.parse(mapBytes);
@@ -183,7 +183,7 @@ for (let study of [
     mapped = evidence.candidates.find((c) => c.candidateId === study.id);
   if (candidate?.wikidataId !== study.wikidataId || mapped?.wikidataId !== study.wikidataId)
     throw new Error(`Bridge identity changed: ${study.id}`);
-  const key = `${study.id.toLowerCase()}_${study.key}`,
+  const key = study.id,
     assetId = `molen.worldgen.structure.${key}`,
     dir = structureSourceDirectory(key);
   const reviewScope = await readOptionalJson(resolve(dir, 'review-scope.json'));
@@ -429,7 +429,7 @@ for (let study of [
       ],
     },
   };
-  const readme = `# ${study.title}\n\n![Molen preview](preview.png)\n\n${study.brief}\n\n## Evidence\n\n${study.refs.map((u) => `- [Primary reference](${u})`).join('\n')}\n\nPublished dimensions and reconstruction assumptions are separated in spec.json. Source photos were consulted; no photos or third-party geometry are embedded. Map plan attribution: © OpenStreetMap contributors, ODbL-1.0.\n\n## Source\n\n${mesh.triangleCount} triangles; ${glb.length} bytes; ${mesh.groups.length} material groups. SHA256: ${hashBytes(glb)}.\n\nShared surfaces (${[...new Set([...used.values()].filter((surface) => surface.graph).map((surface) => surface.graph))].join(', ')}) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.\n\nRegenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs --ids=${study.id}; append --check to verify. Import and capture through the standard next-1000 scripts. Geometry validation does not substitute for current-frame visual review.\n\n## Reconstruction limits\n\n${study.limitations.map((s) => `- ${s}`).join('\n')}\n`;
+  const readme = `# ${study.title}\n\n![Molen preview](preview.png)\n\n${study.brief}\n\n## Evidence\n\n${study.refs.map((u) => `- [Primary reference](${u})`).join('\n')}\n\nPublished dimensions and reconstruction assumptions are separated in spec.json. Source photos were consulted; no photos or third-party geometry are embedded. Map plan attribution: © OpenStreetMap contributors, ODbL-1.0.\n\n## Source\n\n${mesh.triangleCount} triangles; ${glb.length} bytes; ${mesh.groups.length} material groups. SHA256: ${hashBytes(glb)}.\n\nShared surfaces (${[...new Set([...used.values()].filter((surface) => surface.graph).map((surface) => surface.graph))].join(', ')}) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.\n\nRegenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs --ids=${study.id}; append --check to verify. Import and capture through the standard structure-catalog scripts. Geometry validation does not substitute for current-frame visual review.\n\n## Reconstruction limits\n\n${study.limitations.map((s) => `- ${s}`).join('\n')}\n`;
   await emit(modelPath, glb);
   for (const [name, data] of [
     ['spec.json', spec],

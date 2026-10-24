@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/st/stq/n0466_muhammad_ali_mosque/',
+  '../../../content/worldgen/source/places/st/stq/muhammad_ali_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -917,7 +917,7 @@ export const buildMuhammadAliSkyline = (o) => build(o, 0),
   buildMuhammadAliCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const muhammadAliStudy = {
-  id: 'N0466',
+  id: 'muhammad_ali_mosque',
   key: 'muhammad_ali_mosque',
   title: 'Muhammad Ali Mosque',
   category: 'mosque',

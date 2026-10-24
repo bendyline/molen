@@ -1,4 +1,4 @@
-/** Original Hoysala stone vocabulary; current specific consumer 'N0542'. */
+/** Original Hoysala stone vocabulary; current specific consumer 'chennakesava_temple_at_somanathapura_mysore'. */
 import { box, loft } from './khmer-structure-geometry.mjs';
 
 export function hoysalaStar(x, z, radius, teeth = 16) {

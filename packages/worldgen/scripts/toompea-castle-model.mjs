@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/ud/ud9/n0263_toompea_castle/map-frame.json',
+      '../../../content/worldgen/source/places/ud/ud9/toompea_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -775,7 +775,7 @@ export const buildToompeaSkyline = (o) =>
     'skyline',
   );
 export const toompeaStudy = {
-  id: 'N0263',
+  id: 'toompea_castle',
   key: 'toompea_castle',
   title: 'Toompea Castle',
   category: 'castle',

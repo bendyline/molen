@@ -1,5 +1,5 @@
 /** Dendera primary Hathor temple. The full complex remains under construction. */
-export const denderaCandidateId = 'N0508';
+export const denderaCandidateId = 'dendera_temple_complex';
 
 function box(face, role, x, y, z, w, h, depth) {
   const a = [

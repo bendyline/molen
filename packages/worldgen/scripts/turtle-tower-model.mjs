@@ -7,7 +7,7 @@ import { facade, face, transform, triangle } from './heritage-tower-detail-mesh.
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const mapBytes = readFileSync(structureSourcePath('n0608_turtle_tower', 'map-frame.json'));
+const mapBytes = readFileSync(structureSourcePath('turtle_tower', 'map-frame.json'));
 const map = JSON.parse(mapBytes),
   tau = Math.PI * 2;
 const stone = [0.73, 0.71, 0.65],
@@ -394,8 +394,8 @@ function build(raw) {
   lights(raw);
 }
 export const turtleTower = {
-  id: 'n0608_turtle_tower',
-  planId: 'N0608',
+  id: 'turtle_tower',
+  planId: 'turtle_tower',
   title: 'Turtle Tower',
   wikidata: 'Q1134533',
   authoringFile: 'turtle-tower-model.mjs',

@@ -5,7 +5,7 @@ import { akshardhamCandidateId, buildAkshardham } from './akshardham-mandir-mode
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/tt/ttn/n0502_akshardham/',
+    '../../../content/worldgen/source/places/tt/ttn/akshardham/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -67,7 +67,7 @@ export const buildAkshardhamSkyline = (o) => build(o, 0),
   buildAkshardhamStreet = (o) => build(o, 2),
   buildAkshardhamCloseup = (o) => build(o, 3);
 export const akshardhamStudy = {
-  id: 'N0502',
+  id: 'akshardham',
   key: 'akshardham',
   title: 'Akshardham',
   category: 'temple',

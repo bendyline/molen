@@ -7,7 +7,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineNext } from '../../worldgen/scripts/signature-tower-next-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/w3/w3g/n0163_landmark_81'),
+const source = resolve('../../content/worldgen/source/places/w3/w3g/landmark_81'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2'),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -68,7 +68,7 @@ function nearest(ts, o, d) {
 it('reproduces the preserved master and retains independent tower, hotel and signed mast controls', async () => {
   const m = (
       await read(resolve('../../content/earth/structures/georeferencing.json'))
-    ).candidates.find((p) => p.candidateId === 'N0163'),
+    ).candidates.find((p) => p.candidateId === 'landmark_81'),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring({
       stone: { graph: 'stone_granite', slot: 'foundation', roughness: 0.85, metallic: 0 },
@@ -77,7 +77,7 @@ it('reproduces the preserved master and retains independent tower, hotel and sig
       glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
       recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
     });
-  skylineNext.find((p) => p.id === 'N0163').build(a.wrap(b), m);
+  skylineNext.find((p) => p.id === 'landmark_81').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`),
     f = await read(`${source}/map-frame.json`);
   expect(f.wikidataId).toBe('Q18640924');

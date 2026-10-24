@@ -15,7 +15,7 @@ import {
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
-const catalog = await readJson('content/worldgen/source/next-1000/candidates.json');
+const catalog = await readJson('content/worldgen/source/structure-catalog/candidates.json');
 const details = await readJson('content/earth/structures/evidence/wikidata-details.json');
 const osm = await readJson('content/earth/structures/evidence/osm-features.json');
 const review = await readJson('content/earth/structures/identity-review.json').catch(() => ({
@@ -29,13 +29,6 @@ for (const feature of osm.elements)
     bucket.push(feature);
     byIdentity.set(id, bucket);
   }
-const slug = (value) =>
-  value
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '_')
-    .replace(/^_|_$/g, '');
 const rounded = (value, precision = 5) => Math.round(value * 10 ** precision) / 10 ** precision;
 const quantity = (entity, property) => {
   const statements = (entity?.claims?.[property] ?? []).filter(
@@ -109,9 +102,7 @@ const records = catalog.candidates.map((candidate) => {
     candidateId: candidate.id,
     wikidataId: candidate.wikidataId,
     title: candidate.title,
-    asset:
-      candidate.modelRef ??
-      `molen.worldgen.structure.${candidate.id.toLowerCase()}_${slug(candidate.title)}`,
+    asset: candidate.modelRef ?? `molen.worldgen.structure.${candidate.id}`,
     category: candidate.category,
     description: entity?.description,
     referenceAnchor: reference,

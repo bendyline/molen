@@ -5,7 +5,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildVesta, vestaCandidateId } from './vesta-ruin-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0501_temple_of_vesta/',
+    '../../../content/worldgen/source/places/sr/sr2/temple_of_vesta_rome/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -67,7 +67,7 @@ export const buildVestaSkyline = (o) => build(o, 0),
   buildVestaStreet = (o) => build(o, 2),
   buildVestaCloseup = (o) => build(o, 3);
 export const vestaStudy = {
-  id: 'N0501',
+  id: 'temple_of_vesta_rome',
   key: 'temple_of_vesta',
   title: 'Temple of Vesta',
   category: 'temple',

@@ -523,7 +523,7 @@ function hallGlass(o, d) {
 const frame = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/map-frame.json',
+        '../../../content/worldgen/source/places/u0/u0y/heidelberg_castle/map-frame.json',
         import.meta.url,
       ),
     ),
@@ -531,7 +531,7 @@ const frame = JSON.parse(
   grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u0/u0y/heidelberg_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

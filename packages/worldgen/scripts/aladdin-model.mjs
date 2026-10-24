@@ -1,11 +1,11 @@
-/** 'N0625': mapped Varamin mausoleum with32 flutes, conical brick roof and pointed porch. */
+/** 'aladdin_tower': mapped Varamin mausoleum with32 flutes, conical brick roof and pointed porch. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { buildAladdinMasonry } from './aladdin-masonry-model.mjs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/tn/tnk/n0625_aladdin_tower/',
+    '../../../content/worldgen/source/places/tn/tnk/aladdin_tower/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -90,7 +90,7 @@ export const buildAladdinSkyline = (o) => build(o, 0),
   buildAladdinStreet = (o) => build(o, 2),
   buildAladdinCloseup = (o) => build(o, 3);
 export const aladdinStudy = {
-  id: 'N0625',
+  id: 'aladdin_tower',
   key: 'aladdin_tower',
   title: 'Aladdin Tower',
   category: 'tower',

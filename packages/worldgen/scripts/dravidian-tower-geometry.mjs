@@ -1,4 +1,4 @@
-/** Receding Dravidian gateway vocabulary; current reviewed consumer: 'N0539'. */
+/** Receding Dravidian gateway vocabulary; current reviewed consumer: 'kapaleeshwarar_temple'. */
 import { box, loft } from './khmer-structure-geometry.mjs';
 
 function diamond(f, role, x, y, z, w, h, d) {

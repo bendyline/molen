@@ -1,5 +1,5 @@
 /** The surviving eight-column Temple of Saturn ruin, not the missing Roman temple. */
-export const saturnCandidateId = 'N0503';
+export const saturnCandidateId = 'temple_of_saturn';
 function box(f, role, x, y, z, width, height, depth, skipFront = false) {
   const p = [
     [-width / 2, 0, -depth / 2],

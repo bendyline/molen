@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u2e/n0364_cathedral_of_st_peter_and_paul/',
+  '../../../content/worldgen/source/places/u2/u2e/cathedral_of_st_peter_and_paul/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -893,7 +893,7 @@ const cam = (name, p, look) => ({
   fov: 48,
 });
 export const brnoPetrovStudy = {
-  id: 'N0364',
+  id: 'cathedral_of_st_peter_and_paul',
   key: 'cathedral_of_st_peter_and_paul',
   title: 'Cathedral of St. Peter and Paul, Brno',
   category: 'cathedral',

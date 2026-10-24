@@ -83,7 +83,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/st/stq/n0445_al_azhar_mosque/',
+  '../../../content/worldgen/source/places/st/stq/al_azhar_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -943,7 +943,7 @@ export const buildAzharSkyline = (o) => build(o, 0),
   buildAzharCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const azharStudy = {
-  id: 'N0445',
+  id: 'al_azhar_mosque',
   key: 'al_azhar_mosque',
   title: 'al-Azhar Mosque',
   category: 'mosque',

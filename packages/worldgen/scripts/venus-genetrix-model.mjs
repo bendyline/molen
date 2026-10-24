@@ -1,11 +1,11 @@
-/** N0532: three mapped Venus Genetrix columns, broken entablature and low remains. */
+/** temple_of_venus_genetrix: three mapped Venus Genetrix columns, broken entablature and low remains. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildVenusGenetrixRemnants } from './venus-genetrix-remnants-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0532_temple_of_venus_genetrix/',
+    '../../../content/worldgen/source/places/sr/sr2/temple_of_venus_genetrix/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -82,7 +82,7 @@ export const buildVenusGenetrixSkyline = (o) => build(o, 0),
   buildVenusGenetrixStreet = (o) => build(o, 2),
   buildVenusGenetrixCloseup = (o) => build(o, 3);
 export const venusGenetrixStudy = {
-  id: 'N0532',
+  id: 'temple_of_venus_genetrix',
   key: 'temple_of_venus_genetrix',
   title: 'Temple of Venus Genetrix',
   category: 'temple',

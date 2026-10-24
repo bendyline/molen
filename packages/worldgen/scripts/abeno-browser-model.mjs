@@ -19,7 +19,7 @@ import {
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const map = JSON.parse(readFileSync(structureSourcePath('n0139_abeno_harukas', 'map-frame.json'))),
+const map = JSON.parse(readFileSync(structureSourcePath('abeno_harukas', 'map-frame.json'))),
   MEANS = {
     foundation: [0.7108161524542215, 0.7108161524542215, 0.6819278525713045],
     concrete: [0.7108161524542215, 0.7108161524542215, 0.6819278525713045],
@@ -109,7 +109,7 @@ function build(target, tier) {
   const plan = localOutline(m);
   const towerPlan = partPlan(
     m,
-    partsEvidence('n0139_abeno_harukas').find((p) => p.id === 488467176),
+    partsEvidence('abeno_harukas').find((p) => p.id === 488467176),
   );
   mappedSolid(out, 'foundation', plan, 0, 0.5, [0.5, 0.52, 0.51]);
   for (let i = 0; i < plan.length; i++) {

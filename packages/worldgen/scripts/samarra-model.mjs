@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sy/syp/n0441_great_mosque_of_samarra/',
+  '../../../content/worldgen/source/places/sy/syp/great_mosque_of_samarra/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -683,7 +683,7 @@ export const buildSamarraSkyline = (o) => build(o, 0),
   buildSamarraCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const samarraStudy = {
-  id: 'N0441',
+  id: 'great_mosque_of_samarra',
   key: 'great_mosque_of_samarra',
   title: 'Great Mosque of Samarra',
   category: 'mosque',

@@ -763,8 +763,8 @@ function build(out) {
 }
 
 export const torreDelMangia = {
-  id: 'n0596_torre_del_mangia',
-  planId: 'N0596',
+  id: 'torre_del_mangia',
+  planId: 'torre_del_mangia',
   title: 'Torre del Mangia',
   wikidata: 'Q2472396',
   authoringFile: 'torre-del-mangia-model.mjs',

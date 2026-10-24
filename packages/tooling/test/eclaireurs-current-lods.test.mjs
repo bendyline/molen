@@ -9,7 +9,7 @@ import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve(
-    '../../content/worldgen/source/places/4q/4qp/n0657_les_eclaireurs_lighthouse',
+    '../../content/worldgen/source/places/4q/4qp/les_eclaireurs_lighthouse',
   ),
   runtime = source.replace('/source/', '/assets/').replace('\\source\\', '\\assets\\');
 const read = async (p) => JSON.parse(await readFile(p));
@@ -116,7 +116,7 @@ it('reproduces the original source master and labels the preview doorway bearing
   smoothMeshNormals(m, ['trim', 'foundation', 'wall'], 32);
   expect(m.triangleCount).toBe(8320);
   const s = await read(source + '/spec.json'),
-    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+    p = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
       (p) => p.asset === s.assetId,
     );
   expect(s.sourceFacts.heightMeters).toBe(11);

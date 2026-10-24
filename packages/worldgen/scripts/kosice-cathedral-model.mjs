@@ -64,7 +64,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u2x/n0394_cathedral_of_st_elizabeth/',
+  '../../../content/worldgen/source/places/u2/u2x/cathedral_of_st_elizabeth/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1188,7 +1188,7 @@ export const buildKosiceCathedralSkyline = (o) => build(o, 0),
   buildKosiceCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const kosiceCathedralStudy = {
-  id: 'N0394',
+  id: 'cathedral_of_st_elizabeth',
   key: 'cathedral_of_st_elizabeth',
   title: 'Cathedral of St. Elizabeth',
   category: 'cathedral',

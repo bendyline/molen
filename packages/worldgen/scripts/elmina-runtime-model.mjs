@@ -7,7 +7,7 @@ import { buildElminaRuntime } from './elmina-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/eb/ebz/n0287_elmina_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/eb/ebz/elmina_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

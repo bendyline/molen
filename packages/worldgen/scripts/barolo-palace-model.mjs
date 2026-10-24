@@ -863,7 +863,7 @@ export function buildBaroloSkyline(o) {
 }
 
 export const baroloPalaceStudy = {
-  id: 'N0234',
+  id: 'barolo_palace',
   key: 'barolo_palace',
   title: 'Palacio Barolo',
   wikidataId: 'Q571763',

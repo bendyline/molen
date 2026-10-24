@@ -1,4 +1,4 @@
-/** N0668 complete restored tower; original detailed master remains unchanged. */
+/** california_lighthouse complete restored tower; original detailed master remains unchanged. */
 import {
   beam,
   loft,

@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
 import { normalFor } from './authored-structure-mesh.mjs';
 
-const root = '../../../content/worldgen/source/places/u8/u80/n0285_corvin_castle/';
+const root = '../../../content/worldgen/source/places/u8/u80/corvin_castle/';
 const read = (n) => JSON.parse(readFileSync(new URL(root + n, import.meta.url)));
 const frame = read('map-frame.json'),
   refs = read('reference-metadata.json'),
@@ -609,7 +609,7 @@ export const buildCorvinSkyline = (o) =>
     0,
   );
 export const corvinStudy = {
-  id: 'N0285',
+  id: 'corvin_castle',
   key: 'corvin_castle',
   title: 'Corvin Castle',
   category: 'castle',

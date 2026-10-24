@@ -11,7 +11,7 @@ import {
 import { buildRockefeller } from '../../worldgen/scripts/signature-tower-rockefeller-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/dr/dr5/n0190_30_rockefeller_plaza'),
+const source = resolve('../../content/worldgen/source/places/dr/dr5/30_rockefeller_plaza'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -92,7 +92,7 @@ const surfaces = {
 it('reconstitutes the preserved original master exactly and retains fresh signed full-complex map controls', async () => {
   const m = (
       await read(resolve('../../content/earth/structures/georeferencing.json'))
-    ).candidates.find((p) => p.candidateId === 'N0190'),
+    ).candidates.find((p) => p.candidateId === '30_rockefeller_plaza'),
     out = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(surfaces);
   buildRockefeller(a.wrap(out), m);

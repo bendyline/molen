@@ -1,11 +1,11 @@
-/** 'N0552': specific pictured Ancient Shiva Temple Bhainsdehi and modern shelter. */
+/** 'bhainsdehi': specific pictured Ancient Shiva Temple Bhainsdehi and modern shelter. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBhainsdehiRemains } from './bhainsdehi-remains-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/te/tez/n0552_bhainsdehi/',
+    '../../../content/worldgen/source/places/te/tez/bhainsdehi/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -84,7 +84,7 @@ export const buildBhainsdehiSkyline = (o) => build(o, 0),
   buildBhainsdehiStreet = (o) => build(o, 2),
   buildBhainsdehiCloseup = (o) => build(o, 3);
 export const bhainsdehiStudy = {
-  id: 'N0552',
+  id: 'bhainsdehi',
   key: 'bhainsdehi',
   title: 'Ancient Shiva Temple Bhainsdehi',
   category: 'temple',

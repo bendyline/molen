@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sq/sq6/n0347_st_john_s_co_cathedral/',
+  '../../../content/worldgen/source/places/sq/sq6/st_johns_co_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -970,7 +970,7 @@ export const buildVallettaSkyline = (o) => build(o, 0),
   buildVallettaStreet = (o) => build(o, 2),
   buildVallettaCloseup = (o) => build(o, 3);
 export const vallettaStudy = {
-  id: 'N0347',
+  id: 'st_johns_co_cathedral',
   key: 'st_john_s_co_cathedral',
   title: "St. John's Co-Cathedral",
   category: 'cathedral',

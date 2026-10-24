@@ -14,7 +14,7 @@ Original deterministic geometry from `packages/worldgen/scripts/map-structure-mo
 
 15,730 source triangles, 31,324 vertices, 8 material groups, 1,321,080 bytes. Source SHA-256: `sha256:2b3179965cc3b66a6bb337915e467d42e8c1f8cfa35f8b1c7cdd973e7ff5944f`.
 
-Regenerate with `node packages/worldgen/scripts/generate-map-structures.mjs`; verify reproducibility with `--check`. Import through `import-next-1000-models.mjs` or the normal `molen asset import` workflow with `--no-optimize`. Runtime asset: `molen.worldgen.structure.map_smock_windmill`. The generator refuses to overwrite a GLB whose hash differs from its source manifest.
+Regenerate with `node packages/worldgen/scripts/generate-map-structures.mjs`; verify reproducibility with `--check`. Import through `import-structure-models.mjs` or the normal `molen asset import` workflow with `--no-optimize`. Runtime asset: `molen.worldgen.structure.map_smock_windmill`. The generator refuses to overwrite a GLB whose hash differs from its source manifest.
 
 ## Remaining limitations
 

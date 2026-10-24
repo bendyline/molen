@@ -8,7 +8,7 @@ import { encodeAuthoredAssembly } from '../../worldgen/scripts/authored-glb-asse
 import { firstCanadianPlaceStudy } from '../../worldgen/scripts/first-canadian-place-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/dp/dpz/n0227_first_canadian_place'),
+const source = resolve('../../content/worldgen/source/places/dp/dpz/first_canadian_place'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {

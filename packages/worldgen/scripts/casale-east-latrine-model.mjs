@@ -1,4 +1,4 @@
-/** 'N0765_EASTLATRINE': Eastern latrine masonry remains, Villa Romana del Casale. */
+/** 'casale_east_latrine': Eastern latrine masonry remains, Villa Romana del Casale. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
@@ -6,7 +6,7 @@ import { buildCasaleEastLatrine } from './casale-east-latrine-geometry.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sq/sqd/n0765_casale_east_latrine/',
+    '../../../content/worldgen/source/places/sq/sqd/casale_east_latrine/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -97,7 +97,7 @@ export const buildCasaleEastLatrineSkyline = (o) => build(o, 0),
   buildCasaleEastLatrineStreet = (o) => build(o, 2),
   buildCasaleEastLatrineCloseup = (o) => build(o, 3);
 export const casaleEastLatrineStudy = {
-  id: 'N0765_EASTLATRINE',
+  id: 'casale_east_latrine',
   key: 'casale_east_latrine',
   title: 'Eastern latrine masonry remains, Villa Romana del Casale',
   category: 'museum',

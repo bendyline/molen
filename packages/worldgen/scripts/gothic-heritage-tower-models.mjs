@@ -1064,8 +1064,8 @@ function buildVictoria(out) {
 
 export const gothicHeritageTowers = [
   {
-    id: 'n0569_saint_jacques_tower',
-    planId: 'N0569',
+    id: 'saint_jacques_tower',
+    planId: 'saint_jacques_tower',
     title: 'Saint-Jacques Tower',
     wikidata: 'Q1431547',
     build: buildSaintJacques,
@@ -1113,8 +1113,8 @@ export const gothicHeritageTowers = [
     ],
   },
   {
-    id: 'n0570_powder_tower',
-    planId: 'N0570',
+    id: 'powder_tower_prague',
+    planId: 'powder_tower_prague',
     title: 'Powder Tower',
     wikidata: 'Q1488700',
     build: buildPowder,
@@ -1164,8 +1164,8 @@ export const gothicHeritageTowers = [
     ],
   },
   {
-    id: 'n0578_victoria_tower',
-    planId: 'N0578',
+    id: 'victoria_tower',
+    planId: 'victoria_tower',
     title: 'Victoria Tower',
     wikidata: 'Q1858077',
     build: buildVictoria,

@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sq/sq6/n0375_st_paul_s_cathedral_mdina/',
+  '../../../content/worldgen/source/places/sq/sq6/st_pauls_cathedral_mdina/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -917,7 +917,7 @@ export const buildMdinaSkyline = (o) => build(o, 0),
   buildMdinaCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const mdinaStudy = {
-  id: 'N0375',
+  id: 'st_pauls_cathedral_mdina',
   key: 'st_paul_s_cathedral_mdina',
   title: "St. Paul's Cathedral, Mdina",
   category: 'cathedral',

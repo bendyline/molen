@@ -5,7 +5,7 @@ import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frameBytes = readFileSync(structureSourcePath('n0229_istanbul_sapphire', 'map-frame.json'));
+const frameBytes = readFileSync(structureSourcePath('istanbul_sapphire', 'map-frame.json'));
 const frame = JSON.parse(frameBytes);
 const X = 24.416,
   Z = 13.29,
@@ -448,7 +448,7 @@ const parts = [
 ];
 
 export const istanbulSapphireStudy = {
-  id: 'N0229',
+  id: 'istanbul_sapphire',
   key: 'istanbul_sapphire',
   title: 'Istanbul Sapphire',
   wikidataId: 'Q166882',

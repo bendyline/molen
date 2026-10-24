@@ -1,11 +1,11 @@
-/** N0519: reproducible surviving Temple of Concord architecture. */
+/** temple_of_concord: reproducible surviving Temple of Concord architecture. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildConcordRuins } from './concord-ruins-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0519_temple_of_concord/',
+    '../../../content/worldgen/source/places/sr/sr2/temple_of_concord/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -81,7 +81,7 @@ export const buildConcordSkyline = (o) => build(o, 0),
   buildConcordStreet = (o) => build(o, 2),
   buildConcordCloseup = (o) => build(o, 3);
 export const concordStudy = {
-  id: 'N0519',
+  id: 'temple_of_concord',
   key: 'temple_of_concord',
   title: 'Temple of Concord',
   category: 'temple',

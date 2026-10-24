@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u26/n0404_gurk_cathedral/',
+  '../../../content/worldgen/source/places/u2/u26/gurk_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -866,7 +866,7 @@ export const buildGurkSkyline = (o) => build(o, 0),
   buildGurkCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const gurkCathedralStudy = {
-  id: 'N0404',
+  id: 'gurk_cathedral',
   key: 'gurk_cathedral',
   title: 'Gurk Cathedral',
   category: 'cathedral',

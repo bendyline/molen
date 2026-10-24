@@ -1,0 +1,372 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "Chicago riverfront tower with four rounded glass volumes, asymmetric terraces, stainless bands, mapped ornamental spire and river-facing lettering.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X northeast",
+    "front": "+Z southeast riverfront",
+    "origin": "Ground-level center of signed mapped footprint at the tower entrance datum"
+  },
+  "sourceFacts": {
+    "heightMeters": 423.2,
+    "occupiedHeightMeters": 340.1,
+    "marketedStoreys": 92,
+    "setbackLevels": [
+      16,
+      29,
+      51
+    ],
+    "facadeCladding": "ALPOLIC/fr hairline stainless metal on columns, spandrels and soffits",
+    "signWidthMeters": 42.672,
+    "signLevel": 15,
+    "originalMasterHash": "sha256:7a028673ed911e3fb83fa61973e4bcb0286e843a407a7323196e9a0a65188944",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-global-models.mjs#skylineGlobal[trump_international_hotel_and_tower].build",
+    "currentCvuAboveGroundFloors": 98,
+    "surfaceMeans": {
+      "concrete_plain": [
+        0.710816,
+        0.710816,
+        0.681928
+      ],
+      "metal_stainless": [
+        0.81896,
+        0.822889,
+        0.822889
+      ],
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ]
+    }
+  },
+  "reconstruction": {
+    "plan": "Exact signed whole-building and seven independent upper/antenna outlines",
+    "floors": "Published92 marketed storeys distributed through mapped60/120/200/345 m stages; intermediate map heights are approximate",
+    "sign": "Original serif strokes approximate the installed stainless lettering, using the installer’s140ft overall span"
+  },
+  "limitations": [
+    "Original 80651-triangle, 7471112-byte detailed master remains exactly reproducible from the unchanged global recipe. Reviewed source and four browser levels retain four rounded asymmetric mapped volumes, three setbacks, pale stainless floor bands, tall offset crown and a three-section 423.2 m spire. Near levels retain the reconstructed Wabash canopy, terrace rails/selected planting and original geometric serif sign. Distant levels aggregate floor/column coverage and terrace detail; skyline keeps a sign band instead of legible letters. Continuous glazing plus long strips replace per-cell frames, and the canopy uses thin opaque upper/lower daylight glazing faces. Intermediate stage heights are approximate map data, not surveyed sections; marketed 92 floors differ from current CVU 98, while occupied height 340.1 m and architectural/tip height 423.2 m agree. Crown/antenna radii derive from the mapped parts; panel rhythm, canopy ribs/curvature, serif stroke widths, planting and exact sign elevation are reconstructed. The 140 ft sign span follows its installer. Three shared 256 px concrete, stainless and granite graphs; no embedded images or copied photographic textures. Riverwalk descending terraces, underground/double-helix parking ramp, interiors, exact entrance thresholds and terrain slope remain outside the tower-shell asset. No terrain-grade or physical phone/laptop performance claim."
+  ],
+  "surfaceOverrides": {
+    "foundation": {
+      "graph": "concrete_plain",
+      "slot": "foundation",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "stainless": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "metal": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "stone": {
+      "graph": "stone_granite",
+      "slot": "foundation",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "geographic": {
+    "heading": 0.753576679582,
+    "reviewStatus": "reviewed medium-fi signed placement",
+    "orientationConfidence": "footprint-directed with river/Wabash evidence",
+    "notes": "Fresh OSM API on 2026-10-10 confirms unchanged exact Q546221 ground outline 64594680 and seven independent upper/crown/spire parts. Native +X northeast, +Z southeast; the sign faces the river on +Z and the canopy lies at the southwest Wabash end. Signed asymmetric setbacks, mapped mast positions and entrance datum Y=0 are retained. Intermediate 60/120/200/345 m stages use approximate map heights; crown reaches 357 m and ornamental spire 423.2 m. Exact entry threshold, lower riverwalk and terrain slope are unmeasured. Accepted footprint 2 m / 1 degree; replacement disabled.",
+    "evidence": "Fresh OSM API on 2026-10-10 confirms unchanged exact Q546221 ground outline 64594680 and seven independent upper/crown/spire parts. Native +X northeast, +Z southeast; the sign faces the river on +Z and the canopy lies at the southwest Wabash end. Signed asymmetric setbacks, mapped mast positions and entrance datum Y=0 are retained. Intermediate 60/120/200/345 m stages use approximate map heights; crown reaches 357 m and ornamental spire 423.2 m. Exact entry threshold, lower riverwalk and terrain slope are unmeasured. Accepted footprint 2 m / 1 degree; replacement disabled.",
+    "replaceFootprint": false
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/trump-chicago-runtime-model.mjs",
+    "export": "buildTrumpChicagoReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/trump-chicago-runtime-model.mjs",
+    "export": "buildTrumpChicagoSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTrumpChicagoDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildTrumpChicagoStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTrumpChicagoCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-tower",
+      "position": [
+        420,
+        360,
+        710
+      ],
+      "lookAt": [
+        0,
+        206,
+        0
+      ]
+    },
+    {
+      "name": "terrace-and-round-plan",
+      "position": [
+        106,
+        91,
+        96
+      ],
+      "lookAt": [
+        32,
+        61,
+        0
+      ]
+    },
+    {
+      "name": "seated-spire",
+      "position": [
+        60,
+        413,
+        94
+      ],
+      "lookAt": [
+        -18,
+        384,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        420,
+        360,
+        710
+      ],
+      "lookAt": [
+        0,
+        206,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        420,
+        360,
+        710
+      ],
+      "lookAt": [
+        0,
+        206,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        420,
+        360,
+        710
+      ],
+      "lookAt": [
+        0,
+        206,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        420,
+        360,
+        710
+      ],
+      "lookAt": [
+        0,
+        206,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-stepped-curtain",
+      "position": [
+        190,
+        218,
+        275
+      ],
+      "lookAt": [
+        0,
+        147,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-riverfront-sign",
+      "position": [
+        -8,
+        68,
+        107
+      ],
+      "lookAt": [
+        -9,
+        54,
+        20
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-wabash-canopy",
+      "position": [
+        -79,
+        21,
+        3
+      ],
+      "lookAt": [
+        -44,
+        9,
+        -8
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-crown-spire",
+      "position": [
+        52,
+        408,
+        79
+      ],
+      "lookAt": [
+        -15,
+        382,
+        -2
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

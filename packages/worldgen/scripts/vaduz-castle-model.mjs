@@ -8,7 +8,7 @@ import { box } from './structure-mesh.mjs';
 const frame = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u0/u0q/n0269_vaduz_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u0/u0q/vaduz_castle/map-frame.json',
       import.meta.url,
     ),
   ),
@@ -698,7 +698,7 @@ export const buildVaduzSkyline = (o) =>
     'skyline',
   );
 export const vaduzStudy = {
-  id: 'N0269',
+  id: 'vaduz_castle',
   key: 'vaduz_castle',
   title: 'Vaduz Castle',
   category: 'castle',

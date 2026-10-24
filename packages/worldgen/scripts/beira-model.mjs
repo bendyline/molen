@@ -1,11 +1,11 @@
-/** N0721: Beira-Rio's pale petal roof, steel structure and two red tiers. */
+/** estadio_beira_rio: Beira-Rio's pale petal roof, steel structure and two red tiers. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBeiraStadium } from './beira-petal-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/6f/6fe/n0721_estadio_beira_rio/',
+    '../../../content/worldgen/source/places/6f/6fe/estadio_beira_rio/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -72,7 +72,7 @@ export const buildBeiraSkyline = (o) => build(o, 0),
   buildBeiraStreet = (o) => build(o, 2),
   buildBeiraCloseup = (o) => build(o, 3);
 export const beiraStudy = {
-  id: 'N0721',
+  id: 'estadio_beira_rio',
   key: 'estadio_beira_rio',
   title: 'Estádio Beira-Rio',
   category: 'stadium',

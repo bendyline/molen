@@ -4,10 +4,10 @@ import { beam, loft, normalFor, radialRing, torus } from './authored-structure-m
 import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const frameBytes = readFileSync(structureSourcePath('n0623_rembrandt_tower', 'map-frame.json'));
+const frameBytes = readFileSync(structureSourcePath('rembrandt_tower', 'map-frame.json'));
 const _frame = JSON.parse(frameBytes);
 const heights = JSON.parse(
-  readFileSync(structureSourcePath('n0623_rembrandt_tower', 'roof-envelope.json')),
+  readFileSync(structureSourcePath('rembrandt_tower', 'roof-envelope.json')),
 );
 const roofHeight = (surface) => {
   const range = heights.roofs.find((r) => r.surface === surface).heightsAboveGround;

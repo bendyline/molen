@@ -1,6 +1,6 @@
-/** N0521: nine-spired Bengali temple and open riverfront compound. */
+/** dakshineswar_kali_temple: nine-spired Bengali temple and open riverfront compound. */
 import earcut from 'earcut';
-export const dakshineswarCandidateId = 'N0521';
+export const dakshineswarCandidateId = 'dakshineswar_kali_temple';
 function prism(f, role, p, lo, hi) {
   const rings = [p.outline, ...(p.holes ?? [])],
     flat = rings.flat(),

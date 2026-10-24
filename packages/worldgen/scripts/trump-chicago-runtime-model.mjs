@@ -12,7 +12,7 @@ import {
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0174_trump_international_hotel_and_tower',
+const key = 'trump_international_hotel_and_tower',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'))),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json')));
 const settings = {

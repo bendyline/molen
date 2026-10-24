@@ -6,7 +6,7 @@ import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-    '../../../content/worldgen/source/places/gc/gch/n0295_pembroke_castle/',
+    '../../../content/worldgen/source/places/gc/gch/pembroke_castle/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, root)));
@@ -747,7 +747,7 @@ export const buildPembrokeSkyline = (o) =>
     0,
   );
 export const pembrokeStudy = {
-  id: 'N0295',
+  id: 'pembroke_castle',
   key: 'pembroke_castle',
   title: 'Pembroke Castle',
   category: 'castle',

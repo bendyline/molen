@@ -7,7 +7,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineWorld } from '../../worldgen/scripts/signature-tower-world-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/th/thr/n0182_23_marina'),
+const source = resolve('../../content/worldgen/source/places/th/thr/23_marina'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2'),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -86,7 +86,7 @@ it('reproduces 23 Marina original master and signs the independent triangular ma
       },
       recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
     });
-  skylineWorld.find((p) => p.id === 'N0182').build(a.wrap(b), m);
+  skylineWorld.find((p) => p.id === '23_marina').build(a.wrap(b), m);
 
   const independent = await read(`${source}/map-parts.json`),
     spec = await read(`${source}/spec.json`);

@@ -133,7 +133,7 @@ for (const model of ksiazParkModels.filter(
     ...(model.wikidata ? { wikidataId: model.wikidata } : {}),
     quality: 'detailed',
     sitePart: {
-      candidateId: 'N0291',
+      candidateId: 'ksiaz_castle_and_park_complex',
       componentKey: model.component,
       identity: { type: 'way', id: model.way },
     },
@@ -154,7 +154,7 @@ for (const model of ksiazParkModels.filter(
       mappedTags: frame.elements[0].tags,
       independentWikidataIdKnown: !!model.wikidata,
       roofAndDatumSurveyed: false,
-      parentSite: 'N0291',
+      parentSite: 'ksiaz_castle_and_park_complex',
       primaryDescription:
         model.component === 'mausoleum'
           ? 'Independent mapped chapel/pavilion in the official castle park ensemble. Exterior forms follow the primary conservation report and a post-restoration southeast photograph.'
@@ -193,7 +193,7 @@ for (const model of ksiazParkModels.filter(
     sourceLicense:
       'Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.',
     limitations: [
-      'Exterior component only; the full N0291 site remains incomplete.',
+      'Exterior component only; the full ksiaz_castle_and_park_complex site remains incomplete.',
       'Footprint is attributed map geometry. Heights, openings, roof profiles and details are photographic interpretations.',
       ...(model.wikidata ? [] : ['No independent Wikidata identifier known.']),
       model.component === 'mausoleum'
@@ -289,7 +289,7 @@ for (const model of ksiazParkModels.filter(
     '\n\n![Shared Molen preview](shots/shared/angle-0.png)\n\n' +
     spec.visualBrief +
     '\n\n' +
-    'Independent component of [Książ Castle and park complex](../n0291_ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
+    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
     '## Sources and reconstruction\n\n' +
     refs.map((url) => `- [Reference](${url})`).join('\n') +
     '\n\n' +

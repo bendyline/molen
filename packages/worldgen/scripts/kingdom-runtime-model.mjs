@@ -13,7 +13,7 @@ import {
 } from './signature-tower-expansion-models.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0166_kingdom_centre',
+const key = 'kingdom_centre',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'))),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json')));
 const settings = {

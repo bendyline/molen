@@ -1,11 +1,11 @@
-/** N0723: Royal Bafokeng's west cantilever, asymmetric uncovered bowl and athletics track. */
+/** royal_bafokeng_stadium: Royal Bafokeng's west cantilever, asymmetric uncovered bowl and athletics track. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBafokengStadium } from './bafokeng-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ke/ke7/n0723_royal_bafokeng_stadium/',
+    '../../../content/worldgen/source/places/ke/ke7/royal_bafokeng_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -74,7 +74,7 @@ export const buildBafokengSkyline = (o) => build(o, 0),
   buildBafokengStreet = (o) => build(o, 2),
   buildBafokengCloseup = (o) => build(o, 3);
 export const bafokengStudy = {
-  id: 'N0723',
+  id: 'royal_bafokeng_stadium',
   key: 'royal_bafokeng_stadium',
   title: 'Royal Bafokeng Stadium',
   category: 'stadium',

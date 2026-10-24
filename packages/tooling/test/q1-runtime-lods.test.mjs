@@ -7,7 +7,7 @@ import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/arch
 import { skylineNext } from '../../worldgen/scripts/signature-tower-next-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
-const source = resolve('../../content/worldgen/source/places/r7/r7j/n0162_q1_tower'),
+const source = resolve('../../content/worldgen/source/places/r7/r7j/q1_tower'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2'),
   read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
@@ -68,7 +68,7 @@ function nearest(ts, o, d) {
 it('reproduces the original master and keeps the separately mapped podium and Pacific-facing mast', async () => {
   const m = (
       await read(resolve('../../content/earth/structures/georeferencing.json'))
-    ).candidates.find((p) => p.candidateId === 'N0162'),
+    ).candidates.find((p) => p.candidateId === 'q1_tower'),
     b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring({
       stone: { graph: 'stone_granite', slot: 'foundation', roughness: 0.85, metallic: 0 },
@@ -85,7 +85,7 @@ it('reproduces the original master and keeps the separately mapped podium and Pa
         doubleSided: true,
       },
     });
-  skylineNext.find((p) => p.id === 'N0162').build(a.wrap(b), m);
+  skylineNext.find((p) => p.id === 'q1_tower').build(a.wrap(b), m);
   const spec = await read(`${source}/spec.json`),
     f = await read(`${source}/map-frame.json`);
   expect(f.wikidataId).toBe('Q125846');

@@ -64,7 +64,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u26/n0393_graz_cathedral/',
+  '../../../content/worldgen/source/places/u2/u26/graz_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -996,7 +996,7 @@ export const buildGrazCathedralSkyline = (o) => build(o, 0),
   buildGrazCathedralCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const grazCathedralStudy = {
-  id: 'N0393',
+  id: 'graz_cathedral',
   key: 'graz_cathedral',
   title: 'Graz Cathedral',
   category: 'cathedral',

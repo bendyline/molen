@@ -10,7 +10,7 @@ import { vincennesStudy } from '../../worldgen/scripts/vincennes-castle-model.mj
 import { vincennesGround } from '../../worldgen/scripts/vincennes-runtime-model.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 
-const source = resolve('../../content/worldgen/source/places/u0/u09/n0265_chateau_de_vincennes'),
+const source = resolve('../../content/worldgen/source/places/u0/u09/chateau_de_vincennes'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
 const read = async (p) => JSON.parse(await readFile(p)),
   hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;

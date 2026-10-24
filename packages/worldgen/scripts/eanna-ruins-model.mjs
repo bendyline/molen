@@ -1,4 +1,4 @@
-/** 'N0528': N0528: mapped exposed Eanna ziggurat core, without restoring the ancient temple. */
+/** 'eanna': eanna: mapped exposed Eanna ziggurat core, without restoring the ancient temple. */
 import earcut from 'earcut';
 
 function subdivide(outline, edge) {

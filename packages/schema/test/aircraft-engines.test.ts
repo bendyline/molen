@@ -15,6 +15,35 @@ const twin = {
 const valid = (spec: unknown) => component.zod.safeParse({ kind: 'test.twin', spec }).success;
 
 describe('aircraft engine authoring', () => {
+  it('validates jet ratings, reheat detents, departure angles and fractional flap input', () => {
+    const jet = {
+      ...sample.spec,
+      engine: { ...engine, propulsion: 'jet', dryThrust: 60000, afterburnerThrust: 100000 },
+    };
+    expect(valid(jet)).toBe(true);
+    expect(valid({ ...jet, engine: { ...jet.engine, dryThrust: undefined } })).toBe(false);
+    expect(valid({ ...jet, engine: { ...jet.engine, afterburnerThrust: 50000 } })).toBe(false);
+    expect(valid({ ...jet, engine: { ...jet.engine, propulsion: 'propeller' } })).toBe(false);
+    expect(valid({ ...jet, engine: { ...jet.engine, afterburnerDetent: 1 } })).toBe(false);
+    const departure = {
+      onsetAngle: 0.4,
+      fullAngle: 1,
+      yawInstability: 4,
+      yawSaturationRate: 3,
+      rudderBlanking: 0.9,
+      pitchBlanking: 0.9,
+      aileronReversal: 0.8,
+    };
+    expect(valid({ ...jet, airplane: { ...jet.airplane, departure } })).toBe(true);
+    expect(
+      valid({ ...jet, airplane: { ...jet.airplane, departure: { ...departure, fullAngle: 0.2 } } }),
+    ).toBe(false);
+    const input = getComponent('aircraftInput');
+    for (const flaps of [false, true, 0, 0.25, 1])
+      expect(input?.zod.safeParse({ ...input.meta.examples[0], flaps }).success).toBe(true);
+    for (const flaps of [-0.1, 1.1, NaN])
+      expect(input?.zod.safeParse({ ...input.meta.examples[0], flaps }).success).toBe(false);
+  });
   it('validates powered-lift geometry and finite actuator/control parameters', () => {
     const poweredLift = {
       transitTime: 12,

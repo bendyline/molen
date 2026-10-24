@@ -1,7 +1,7 @@
 /** Blue House, Hong Kong: four connected shophouse units and their own balconies/access stairs. */
 import './install-deterministic-math.mjs';
-import earcut from 'earcut';
 import fs from 'node:fs';
+import earcut from 'earcut';
 import { beam, normalFor } from './authored-structure-mesh.mjs';
 import { B, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
@@ -332,7 +332,7 @@ function closeCraft(o) {
   const solid = (slot, rings, back, front, col) => {
     flat(slot, rings, back, -1, col);
     flat(slot, rings, front, 1, col);
-    rings.forEach((ring, j) =>
+    rings.forEach((ring, j) => {
       ring.forEach((a, i) => {
         const b = ring[(i + 1) % ring.length],
           p = [
@@ -343,8 +343,8 @@ function closeCraft(o) {
           ];
         if (j) p.reverse();
         Q(slot, p, col);
-      }),
-    );
+      });
+    });
   };
   const box = (slot, x0, y0, x1, y1, back, front, col) =>
     solid(slot, [rect(x0, y0, x1, y1)], back, front, col);

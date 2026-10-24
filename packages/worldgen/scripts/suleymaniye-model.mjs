@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sxk/n0418_suleymaniye_mosque/',
+  '../../../content/worldgen/source/places/sx/sxk/suleymaniye_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1045,7 +1045,7 @@ export const buildSuleymaniyeSkyline = (o) => build(o, 0),
   buildSuleymaniyeCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const suleymaniyeStudy = {
-  id: 'N0418',
+  id: 'suleymaniye_mosque',
   key: 'suleymaniye_mosque',
   title: 'Süleymaniye Mosque',
   category: 'mosque',

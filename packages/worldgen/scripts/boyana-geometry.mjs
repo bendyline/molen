@@ -1,4 +1,4 @@
-/** 'N0763': Boyana's connected stone annex, brick arcades and tiled octagonal drum. */
+/** 'boyana_church': Boyana's connected stone annex, brick arcades and tiled octagonal drum. */
 import './install-deterministic-math.mjs';
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';
 

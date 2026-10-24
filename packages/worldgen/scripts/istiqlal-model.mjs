@@ -83,7 +83,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/qq/qqg/n0446_istiqlal_mosque/',
+  '../../../content/worldgen/source/places/qq/qqg/istiqlal_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -912,7 +912,7 @@ export const buildIstiqlalSkyline = (o) => build(o, 0),
   buildIstiqlalCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const istiqlalStudy = {
-  id: 'N0446',
+  id: 'istiqlal_mosque',
   key: 'istiqlal_mosque',
   title: 'Istiqlal Mosque',
   category: 'mosque',

@@ -1,4 +1,4 @@
-/** N0662 source-local entry/landing repair and full browser tower; historical buildNosyAlanana is preserved. */
+/** nosy_alanana_light source-local entry/landing repair and full browser tower; historical buildNosyAlanana is preserved. */
 import {
   beam,
   loft,

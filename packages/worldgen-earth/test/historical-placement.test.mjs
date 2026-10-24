@@ -7,7 +7,7 @@ import {
 } from '../scripts/historical-placement.mjs';
 
 const spec = {
-  id: 'N0607',
+  id: 'sukharev_tower',
   geographicProposal: { status: 'historical-proposal' },
   appearance: {
     kind: 'historical',

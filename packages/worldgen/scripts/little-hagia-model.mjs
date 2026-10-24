@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sxk/n0459_little_hagia_sophia/',
+  '../../../content/worldgen/source/places/sx/sxk/little_hagia_sophia/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -836,7 +836,7 @@ export const buildLittleHagiaSkyline = (o) => build(o, 0),
   buildLittleHagiaCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const littleHagiaStudy = {
-  id: 'N0459',
+  id: 'little_hagia_sophia',
   key: 'little_hagia_sophia',
   title: 'Little Hagia Sophia',
   category: 'mosque',

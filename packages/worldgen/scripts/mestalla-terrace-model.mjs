@@ -1,9 +1,9 @@
-/** N0716: existing Mestalla, unequal steep terraces, western canopy and three glazed cores. */
+/** mestalla_stadium: existing Mestalla, unequal steep terraces, western canopy and three glazed cores. */
 import earcut from 'earcut';
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 
-const candidateId = 'N0716',
+const candidateId = 'mestalla_stadium',
   tau = Math.PI * 2;
 export function mestallaRadius(poly, a) {
   const d = [Math.cos(a), Math.sin(a)],

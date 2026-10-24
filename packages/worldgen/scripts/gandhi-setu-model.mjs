@@ -6,7 +6,7 @@ import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
 const frame = JSON.parse(
-  readFileSync(structureSourcePath('n0020_mahatma_gandhi_setu', 'map-frame.json')),
+  readFileSync(structureSourcePath('mahatma_gandhi_setu', 'map-frame.json')),
 );
 const length = 45 * 121.065 + 2 * 65.53;
 const half = length / 2;
@@ -352,7 +352,7 @@ export function buildGandhiSetu(out) {
   }
 }
 export const gandhiSetuStudy = {
-  id: 'N0020',
+  id: 'mahatma_gandhi_setu',
   key: 'mahatma_gandhi_setu',
   title: 'Mahatma Gandhi Setu',
   wikidataId: 'Q2724307',

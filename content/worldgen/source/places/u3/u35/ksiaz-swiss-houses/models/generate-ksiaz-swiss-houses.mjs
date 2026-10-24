@@ -133,7 +133,7 @@ for (const model of ksiazSwissModels.filter(
     ...(model.wikidata ? { wikidataId: model.wikidata } : {}),
     quality: 'detailed',
     sitePart: {
-      candidateId: 'N0291',
+      candidateId: 'ksiaz_castle_and_park_complex',
       componentKey: model.component,
       identity: { type: 'way', id: model.way },
     },
@@ -154,7 +154,7 @@ for (const model of ksiazSwissModels.filter(
       mappedTags: frame.elements[0].tags,
       independentWikidataIdKnown: !!model.wikidata,
       roofAndDatumSurveyed: false,
-      parentSite: 'N0291',
+      parentSite: 'ksiaz_castle_and_park_complex',
       primaryDescription: model.primaryDescription,
     },
     reconstruction: frame.reconstruction,
@@ -190,7 +190,7 @@ for (const model of ksiazSwissModels.filter(
     sourceLicense:
       'Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.',
     limitations: [
-      'Exterior component only; the full N0291 site remains incomplete.',
+      'Exterior component only; the full ksiaz_castle_and_park_complex site remains incomplete.',
       'Own attributed mapped footprint. Heights, roof subdivisions, openings and unseen details are photographic interpretations.',
       'No independent Wikidata identifier is asserted; main facade facing remains provisional.',
       'References show 2012 appearance; current restoration state is unconfirmed.',
@@ -285,7 +285,7 @@ for (const model of ksiazSwissModels.filter(
     '\n\n![Shared Molen preview](shots/shared/angle-0.png)\n\n' +
     spec.visualBrief +
     '\n\n' +
-    'Independent component of [Książ Castle and park complex](../n0291_ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
+    'Independent component of [Książ Castle and park complex](../ksiaz_castle_and_park_complex/README.md). Full site scope and geographic activation remain pending.\n\n' +
     '## Sources and reconstruction\n\n' +
     refs.map((url) => `- [Reference](${url})`).join('\n') +
     '\n\n' +

@@ -1891,12 +1891,16 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       const { latitude, longitude } = toLatLon(x, z);
       const dLat = 0.0015;
       const dLon = dLat / Math.max(0.1, Math.cos((latitude * Math.PI) / 180));
-      for (const entry of structures.query([
+      const bounds: [number, number, number, number] = [
         longitude - dLon,
         latitude - dLat,
         longitude + dLon,
         latitude + dLat,
-      ])) {
+      ];
+      // Until regional placement coverage arrives, do not park on a possible landmark.
+      // Nearby terrain creation owns the async read; this synchronous check never starts I/O.
+      if (structures.isLoaded && !structures.isLoaded(bounds)) return true;
+      for (const entry of structures.query(bounds)) {
         const box = entry.bounds;
         if (
           box !== undefined &&

@@ -1,4 +1,4 @@
-/** 'N0752_SOUTH': cruciform terracotta observatory, mansards, chimneys and copper dome. */
+/** 'south_building_royal_observatory_greenwich': cruciform terracotta observatory, mansards, chimneys and copper dome. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildSouth(face, detail, r) {

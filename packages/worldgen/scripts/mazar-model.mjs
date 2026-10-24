@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tq/tqx/n0437_blue_mosque/',
+  '../../../content/worldgen/source/places/tq/tqx/blue_mosque_mazar_i_sharif/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -914,7 +914,7 @@ export const buildMazarSkyline = (o) => build(o, 0),
   buildMazarCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const mazarStudy = {
-  id: 'N0437',
+  id: 'blue_mosque_mazar_i_sharif',
   key: 'blue_mosque',
   title: 'Blue Mosque (Mazar-i-Sharif)',
   category: 'mosque',

@@ -1,11 +1,11 @@
-/** 'N0593': ten paired crossing ribbons, tiled diamonds and open petal crown. */
+/** 'omar_khayyam_mausoleum': ten paired crossing ribbons, tiled diamonds and open petal crown. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildKhayyamRibbons } from './khayyam-ribbon-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/tq/tq3/n0593_omar_khayyam_mausoleum/',
+    '../../../content/worldgen/source/places/tq/tq3/omar_khayyam_mausoleum/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -86,7 +86,7 @@ export const buildKhayyamSkyline = (o) => build(o, 0),
   buildKhayyamStreet = (o) => build(o, 2),
   buildKhayyamCloseup = (o) => build(o, 3);
 export const khayyamStudy = {
-  id: 'N0593',
+  id: 'omar_khayyam_mausoleum',
   key: 'omar_khayyam_mausoleum',
   title: 'Omar Khayyam Mausoleum',
   category: 'tower',

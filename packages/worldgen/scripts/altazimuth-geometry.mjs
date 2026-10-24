@@ -1,4 +1,4 @@
-/** 'N0752_ALTAZIMUTH': round brick pavilion, distinct portals and a pale ribbed dome. */
+/** 'altazimuth_pavilion_royal_observatory_greenwich': round brick pavilion, distinct portals and a pale ribbed dome. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildAltazimuth(face, detail, r) {

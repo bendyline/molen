@@ -1,11 +1,11 @@
-/** N0729: Tottenham Hotspur Stadium with silver shell, supported roof and distinctive south bank/tree atrium. */
+/** tottenham_hotspur_stadium: Tottenham Hotspur Stadium with silver shell, supported roof and distinctive south bank/tree atrium. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildTottenhamStadium } from './tottenham-stadium-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/gc/gcp/n0729_tottenham_hotspur_stadium/',
+    '../../../content/worldgen/source/places/gc/gcp/tottenham_hotspur_stadium/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -73,7 +73,7 @@ export const buildTottenhamSkyline = (o) => build(o, 0),
   buildTottenhamStreet = (o) => build(o, 2),
   buildTottenhamCloseup = (o) => build(o, 3);
 export const tottenhamStudy = {
-  id: 'N0729',
+  id: 'tottenham_hotspur_stadium',
   key: 'tottenham_hotspur_stadium',
   title: 'Tottenham Hotspur Stadium',
   category: 'stadium',

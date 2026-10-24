@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/tq/tq6/n0465_goharshad_mosque/',
+  '../../../content/worldgen/source/places/tq/tq6/goharshad_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -725,7 +725,7 @@ export const buildGoharshadSkyline = (o) => build(o, 0),
   buildGoharshadCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const goharshadStudy = {
-  id: 'N0465',
+  id: 'goharshad_mosque',
   key: 'goharshad_mosque',
   title: 'Goharshad Mosque',
   category: 'mosque',

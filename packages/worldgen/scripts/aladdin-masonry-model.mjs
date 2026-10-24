@@ -1,4 +1,4 @@
-/** 'N0625': thirty-two brick flutes, conical cap and original nonliteral frieze cells. */
+/** 'aladdin_tower': thirty-two brick flutes, conical cap and original nonliteral frieze cells. */
 import earcut from 'earcut';
 import { cross, normalize } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';

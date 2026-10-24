@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sx/sxp/n0450_kocatepe_mosque/',
+  '../../../content/worldgen/source/places/sx/sxp/kocatepe_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1146,7 +1146,7 @@ export const buildKocatepeSkyline = (o) => build(o, 0),
   buildKocatepeCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const kocatepeStudy = {
-  id: 'N0450',
+  id: 'kocatepe_mosque',
   key: 'kocatepe_mosque',
   title: 'Kocatepe Mosque',
   category: 'mosque',

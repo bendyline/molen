@@ -15,7 +15,7 @@ const server = await createServer({
 });
 const ids = (
   process.argv.find((arg) => arg.startsWith('--ids='))?.slice(6) ??
-  'n0229_istanbul_sapphire,n0001_stari_most,sr_520_floating_bridge,n0695_mordovia_arena'
+  'istanbul_sapphire,stari_most,sr_520_floating_bridge,mordovia_arena'
 ).split(',');
 let browser;
 try {

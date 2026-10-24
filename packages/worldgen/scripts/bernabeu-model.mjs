@@ -644,7 +644,7 @@ export function buildBernabeu(out) {
   }
 }
 export const bernabeuStudy = {
-  id: 'N0682',
+  id: 'santiago_bernabeu_stadium',
   key: 'santiago_bernabeu_stadium',
   title: 'Santiago Bernabéu Stadium',
   wikidataId: 'Q164027',

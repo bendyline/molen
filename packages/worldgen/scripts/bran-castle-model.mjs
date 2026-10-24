@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u8/u84/n0248_bran_castle/map-parts.json',
+      '../../../content/worldgen/source/places/u8/u84/bran_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -797,7 +797,7 @@ export function buildBranSkyline(out) {
   buildBranRuntime(out, 'skyline');
 }
 export const branStudy = {
-  id: 'N0248',
+  id: 'bran_castle',
   key: 'bran_castle',
   title: 'Bran Castle',
   category: 'castle',

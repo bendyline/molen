@@ -4,9 +4,7 @@ import { normalFor } from './authored-structure-mesh.mjs';
 import { buildLeedsRuntime, leedsSurfaces } from './leeds-castle-model.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const relief = JSON.parse(
-  readFileSync(structureSourcePath('n0304_leeds_castle', 'terrain-grid.json')),
-);
+const relief = JSON.parse(readFileSync(structureSourcePath('leeds_castle', 'terrain-grid.json')));
 export const leedsCurrentSurfaces = Object.fromEntries(
   Object.entries(leedsSurfaces).map(([name, surface]) => [
     name,

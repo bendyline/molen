@@ -236,8 +236,8 @@ export async function createJobCache(root, plan, { force = false, inputs = [], f
         .sort();
       const inputs = [...dependencies.values()].filter((entry) => {
         if (outputs.includes(entry.path)) return false;
-        // Import/LOD sidecars are generated, then restored by metadata reconciliation. Replay
-        // the generated sidecar for downstream jobs; model bytes remain explicit dependencies.
+        // Import/LOD sidecars are generated outputs. Replay them for downstream jobs and after
+        // a failed build restores older metadata; model bytes remain explicit dependencies.
         if (writes.has(entry.path) && derivedSidecar(entry.path)) return false;
         if (entry.kind === 'exists' && writes.has(entry.path)) return false;
         if (entry.value === null && writes.has(entry.path)) return false;

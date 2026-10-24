@@ -1,4 +1,4 @@
-/** 'N0545': specific Philae pylons, sanctuary courts and occupied colonnades. */
+/** 'temple_of_isis_in_philae': specific Philae pylons, sanctuary courts and occupied colonnades. */
 import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, prepareOpening } from './authored-wall-openings.mjs';
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';

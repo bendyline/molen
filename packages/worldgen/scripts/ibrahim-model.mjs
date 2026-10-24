@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/ey/eyk/n0480_ibrahim_al_ibrahim_mosque/',
+  '../../../content/worldgen/source/places/ey/eyk/ibrahim_al_ibrahim_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -685,7 +685,7 @@ export const buildIbrahimSkyline = (o) => build(o, 0),
   buildIbrahimCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const ibrahimStudy = {
-  id: 'N0480',
+  id: 'ibrahim_al_ibrahim_mosque',
   key: 'ibrahim_al_ibrahim_mosque',
   title: 'Ibrahim-al-Ibrahim Mosque',
   category: 'mosque',

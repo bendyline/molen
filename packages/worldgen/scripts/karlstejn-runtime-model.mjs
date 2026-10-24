@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2f/n0247_karlstejn_castle/map-parts.json',
+      '../../../content/worldgen/source/places/u2/u2f/karlstejn_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -16,7 +16,7 @@ const map = JSON.parse(
 const grade = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2f/n0247_karlstejn_castle/site-grade.json',
+      '../../../content/worldgen/source/places/u2/u2f/karlstejn_castle/site-grade.json',
       import.meta.url,
     ),
   ),

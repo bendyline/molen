@@ -493,7 +493,7 @@ export function buildSchalke(out) {
 }
 
 export const schalkeStudy = {
-  id: 'N0688',
+  id: 'arena_aufschalke',
   wikidataId: 'Q150961',
   key: 'arena_aufschalke',
   title: 'Arena AufSchalke',

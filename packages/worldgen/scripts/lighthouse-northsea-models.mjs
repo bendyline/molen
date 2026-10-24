@@ -705,7 +705,7 @@ export function buildLindesnes(out) {
 
 export const lighthouseNorthseaStudies = [
   lighthouseStudy({
-    id: 'N0658',
+    id: 'flannan_isles_lighthouse',
     key: 'flannan_isles_lighthouse',
     title: 'Flannan Isles Lighthouse',
     wikidataId: 'Q15217844',
@@ -749,7 +749,7 @@ export const lighthouseNorthseaStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0659',
+    id: 'slettnes_lighthouse',
     key: 'slettnes_lighthouse',
     title: 'Slettnes Lighthouse',
     wikidataId: 'Q385142',
@@ -789,7 +789,7 @@ export const lighthouseNorthseaStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0660',
+    id: 'lindesnes_lighthouse',
     key: 'lindesnes_lighthouse',
     title: 'Lindesnes Lighthouse',
     wikidataId: 'Q773320',

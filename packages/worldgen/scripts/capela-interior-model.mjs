@@ -1,4 +1,4 @@
-/** 'N0546': original bone chapel interior, vaults and traversable portal. */
+/** 'capela_dos_ossos': original bone chapel interior, vaults and traversable portal. */
 
 import { normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, prepareOpening } from './authored-wall-openings.mjs';

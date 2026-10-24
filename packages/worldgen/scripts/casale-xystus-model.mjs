@@ -1,4 +1,4 @@
-/** 'N0765_XYSTUS': Xystus portico rooms and oval court remains, Villa Romana del Casale. */
+/** 'casale_xystus': Xystus portico rooms and oval court remains, Villa Romana del Casale. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
@@ -6,7 +6,7 @@ import { buildCasaleXystus } from './casale-xystus-geometry.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sq/sqd/n0765_casale_xystus/',
+    '../../../content/worldgen/source/places/sq/sqd/casale_xystus/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -105,7 +105,7 @@ export const buildCasaleXystusSkyline = (o) => build(o, 0),
   buildCasaleXystusStreet = (o) => build(o, 2),
   buildCasaleXystusCloseup = (o) => build(o, 3);
 export const casaleXystusStudy = {
-  id: 'N0765_XYSTUS',
+  id: 'casale_xystus',
   key: 'casale_xystus',
   title: 'Xystus portico rooms and oval court remains, Villa Romana del Casale',
   category: 'museum',

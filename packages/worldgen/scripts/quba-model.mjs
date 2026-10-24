@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/su/suk/n0421_quba_mosque/',
+  '../../../content/worldgen/source/places/su/suk/quba_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -1033,7 +1033,7 @@ export const buildQubaSkyline = (o) => build(o, 0),
   buildQubaCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const qubaStudy = {
-  id: 'N0421',
+  id: 'quba_mosque',
   key: 'quba_mosque',
   title: 'Quba Mosque',
   category: 'mosque',

@@ -1,0 +1,1227 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.saint_petersburg_mosque",
+  "sourceHash": "sha256:a51e9215391682a187aac55af4ce8fa9a2a56d210b4141fd15efc3084c862925",
+  "runtimeHash": "sha256:36dc199efe2e9e51b21b7bfed2a3f620db4407ea2eed4be0c1255086ffcb822c",
+  "fixtureHash": "sha256:c5526df0fa1f2feaced322480952319f9de71bfe2598304e5792f00661e05fee",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 3440,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:4f1882c2c1ae634b9fc58b16a4f4a85d89b7023b2754086c539b8005e43e6552",
+      "bytes": 99852,
+      "gzipBytes": 19788,
+      "triangles": 953,
+      "cpuBytes": 98420,
+      "gpuBytes": 98420,
+      "errorMeters": 0.5,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:2ebdb0ff4c3e66e04e39176bd0abf2eec217f8ccc4d4b76c5742e666ad4c2472",
+      "bytes": 327324,
+      "gzipBytes": 96888,
+      "triangles": 3252,
+      "cpuBytes": 317528,
+      "gpuBytes": 317528,
+      "errorMeters": 0.25,
+      "drawCalls": 8
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:c54ffef1791f181c235496c60b532965e5aac1cdc51a6f1d982a4b5c6d4bf9ee",
+      "bytes": 811784,
+      "gzipBytes": 264855,
+      "triangles": 7840,
+      "cpuBytes": 801968,
+      "gpuBytes": 801968,
+      "errorMeters": 0.08,
+      "drawCalls": 8
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:4f837e2c1d799f3d800ff0d4446e71a99b44e46bff1e17561dbb9133f73ca11d",
+      "bytes": 1075816,
+      "gzipBytes": 364863,
+      "triangles": 10233,
+      "cpuBytes": 1065984,
+      "gpuBytes": 1065984,
+      "errorMeters": 0.04,
+      "drawCalls": 8
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:75ea94a0f2c9c823fcdc1da464ae6411d0eb7571ff75dd5ebcee2fce4f38acac"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:e831eb8c85623cc33c1268ec7a19b09e2410b531a9f09d83ba960682e79e5c2e"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:1d82bb8390c5e2acd78e1c2a610fbb6d865eb36ed80d9c72e053243d6eb4199c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 34475,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          76.88640000000001,
+          61.9448,
+          132.80180000000001
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:9f7cb4c05666d191e81825a8e23a07abd7c7ddca5e4a36ab175b1de56a1cce93",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34475,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          76.88640000000001,
+          61.9448,
+          132.80180000000001
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:3ca8d739c55e08a180e9f5a440a4a73a2fde86fbf2435faa6f396acc40d70de6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 34475,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          76.88640000000001,
+          61.9448,
+          132.80180000000001
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:99b353f9eec8dadf16bc4df1cf3977f68fa7699405d969d2349d287e29c69176",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34475,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          76.88640000000001,
+          61.9448,
+          132.80180000000001
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:31dae0e13b948729aba8771d4f4e4f9b5adafcc124ee4f6b7d3e48752b7bb113",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 27494,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          155.28640000000001,
+          119.54480000000001,
+          268.8018
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:4f4a684de5a0f7e35470a71b37f27556cd39b5b86e6e4eed04279e4e3292f29d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 27494,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          155.28640000000001,
+          119.54480000000001,
+          268.8018
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:3b511e00fcd0e4d79ad830acd61e92ed81cbd5a6d2f98a9a0ef3bab7f05b7ac7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 27494,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          155.28640000000001,
+          119.54480000000001,
+          268.8018
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:02302f5ff829cf7db9484e91a722b2b0ee386eda33a1565a70983f45dc8463a0",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 27494,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          155.28640000000001,
+          119.54480000000001,
+          268.8018
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:b0ac925a5aeb463939e91ad5b3fbd0a050c60479b06f74c75494269de110d7d5",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25195,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          310.48640000000006,
+          180.3448,
+          537.6018
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:b69b2858ca396e4ea0a7ced0b9ec9025e6c0da9dc531c565beee36644eb593c0",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25195,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          310.48640000000006,
+          180.3448,
+          537.6018
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:cecc1a20e5fd65b08ff8691e94169c38fa6a3a2e0c1fe9efabcf68cfae16d208",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 25195,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          310.48640000000006,
+          180.3448,
+          537.6018
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:15c508791eb741ca7decbca8ab7bb8483e8cf098d0b4632878fafafe41f3871e",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25195,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          310.48640000000006,
+          180.3448,
+          537.6018
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:f1d1dfed8a664d4e466e505391a25fc7cfb3c1b67c331ccd66abd66da7eca8bd",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21755,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          310.48640000000006,
+          180.3448,
+          537.6018
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/tiled-main-portal.png",
+      "hash": "sha256:0e990df0b244ad6834901859ff6e2b20ae334dff63f467432e4e1d7bf372de81",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34475,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -62,
+          20,
+          0
+        ],
+        "lookAt": [
+          -23,
+          12,
+          -1.7
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/projecting-side-portal.png",
+      "hash": "sha256:8ffe225ba4519cc482a1dd67fb1191f34a6da323c2ada143e26acb1943e26aad",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34475,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -18,
+          16,
+          51
+        ],
+        "lookAt": [
+          -12.75,
+          9,
+          17.7
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/blue-ribbed-dome.png",
+      "hash": "sha256:ba60930c4402bc26db093ce88bb924c71b8cc715d1c34b28cd558e9b017d227c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34475,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          41,
+          44,
+          36
+        ],
+        "lookAt": [
+          6.7,
+          29,
+          -1.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/twin-tapered-minarets.png",
+      "hash": "sha256:2399bfa05194e0fb3bbb559ea4d63f45a9995bb188992ea13259f9f2227e569e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34475,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -55,
+          39,
+          32
+        ],
+        "lookAt": [
+          -18,
+          31,
+          -2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/arched-stone-windows.png",
+      "hash": "sha256:996c7efdf3574d6c1b56b3071538e1c8cfaaf1c1a2d039bc54ed882f170976fa",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34475,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          44,
+          17,
+          37
+        ],
+        "lookAt": [
+          14,
+          11,
+          14
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mapped-body-and-three-caps.png",
+      "hash": "sha256:a6c0c655e75d12bdb8db769cd35f416edd6ec93e505207bf90a4179b9bf3c3e6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34475,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          170,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-petersburg-skyline.png",
+      "hash": "sha256:f5ff614c2b6ef4e23e58283db23b85d068e300dc0fb52404a4bb6a8194c395a1",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25195,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -88,
+          57,
+          69
+        ],
+        "lookAt": [
+          0,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-petersburg-district.png",
+      "hash": "sha256:23f5b186a87122397736bc7d9623b01052b1d9820ce4437550594cd0fc73ab4c",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 27494,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -88,
+          57,
+          69
+        ],
+        "lookAt": [
+          0,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-petersburg-street.png",
+      "hash": "sha256:6a72b9b670ff80e5f30d09f50be099f89d6ac51dccdc52782d5ab0c29fe86961",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 32082,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -88,
+          57,
+          69
+        ],
+        "lookAt": [
+          0,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-petersburg-closeup.png",
+      "hash": "sha256:1103f58f7b9801402f5bc33723f2e02dc055bf0ffe57acbcccc16eb19a5ee4fe",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34475,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          -88,
+          57,
+          69
+        ],
+        "lookAt": [
+          0,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:1bf1d2d047d89e747d3aceca34eb1855e9b723dfa45ce7980c760a86ed9f6afd",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 25195,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          155.28640000000001,
+          119.54480000000001,
+          268.8018
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:4f4a684de5a0f7e35470a71b37f27556cd39b5b86e6e4eed04279e4e3292f29d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 27494,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          155.28640000000001,
+          119.54480000000001,
+          268.8018
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:ab6c5ecc5a18197765a6d27670360aad7b8bc7817afe58383a740660d672fcfe",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 32082,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          155.28640000000001,
+          119.54480000000001,
+          268.8018
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:77e09ad0bc570c5d2937e6e3e9f21c8b12869322b8b5b51f620a500f200d84d0",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 34475,
+        "groundY": -9,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/saint_petersburg_mosque/terrain-review.height.png"
+        },
+        "position": [
+          155.28640000000001,
+          119.54480000000001,
+          268.8018
+        ],
+        "lookAt": [
+          0.0864,
+          37.9448,
+          0.0018
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.continental.attached",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

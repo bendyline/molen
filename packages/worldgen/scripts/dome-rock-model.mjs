@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sv/sv9/n0415_dome_of_the_rock/',
+  '../../../content/worldgen/source/places/sv/sv9/dome_of_the_rock/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -876,7 +876,7 @@ export const buildDomeRockSkyline = (o) => build(o, 0),
   buildDomeRockCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const domeRockStudy = {
-  id: 'N0415',
+  id: 'dome_of_the_rock',
   key: 'dome_of_the_rock',
   title: 'Dome of the Rock',
   category: 'mosque',

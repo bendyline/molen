@@ -1,11 +1,11 @@
-/** N0522: reproducible gold dome, drum, octagon and open stone arcade. */
+/** shrine_of_the_bab: reproducible gold dome, drum, octagon and open stone arcade. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildBabShrine } from './bab-shrine-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sv/svb/n0522_shrine_of_the_bab/',
+    '../../../content/worldgen/source/places/sv/svb/shrine_of_the_bab/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -82,7 +82,7 @@ export const buildBabSkyline = (o) => build(o, 0),
   buildBabStreet = (o) => build(o, 2),
   buildBabCloseup = (o) => build(o, 3);
 export const babStudy = {
-  id: 'N0522',
+  id: 'shrine_of_the_bab',
   key: 'shrine_of_the_bab',
   title: 'Shrine of the Báb',
   category: 'temple',

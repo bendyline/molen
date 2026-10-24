@@ -1,11 +1,11 @@
-/** N0631: connected unequal bridge towers, pointed gate and steep slate roofs. */
+/** mala_strana_bridge_tower: connected unequal bridge towers, pointed gate and steep slate roofs. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildMalaStranaMasonry } from './mala-strana-masonry-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u2/u2f/n0631_mala_strana_bridge_tower/',
+    '../../../content/worldgen/source/places/u2/u2f/mala_strana_bridge_tower/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -88,7 +88,7 @@ export const buildMalaStranaSkyline = (o) => build(o, 0),
   buildMalaStranaStreet = (o) => build(o, 2),
   buildMalaStranaCloseup = (o) => build(o, 3);
 export const malaStranaStudy = {
-  id: 'N0631',
+  id: 'mala_strana_bridge_tower',
   key: 'mala_strana_bridge_tower',
   title: 'Malá Strana Bridge Tower',
   category: 'tower',

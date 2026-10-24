@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/ez/ez3/n0400_porto_cathedral/',
+  '../../../content/worldgen/source/places/ez/ez3/porto_cathedral/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -923,7 +923,7 @@ export const buildPortoSkyline = (o) => build(o, 0),
   buildPortoCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const portoCathedralStudy = {
-  id: 'N0400',
+  id: 'porto_cathedral',
   key: 'porto_cathedral',
   title: 'Porto Cathedral',
   category: 'cathedral',

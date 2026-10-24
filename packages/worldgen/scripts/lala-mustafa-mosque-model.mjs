@@ -11,7 +11,7 @@ import {
 } from './authored-wall-openings.mjs';
 
 const source = new URL(
-  '../../../content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/',
+  '../../../content/worldgen/source/places/sy/sy0/lala_mustafa_pasha_mosque/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -862,7 +862,7 @@ export const buildLalaDistrict = (out) => build(out, 1);
 export const buildLalaStreet = (out) => build(out, 2);
 export const buildLalaCloseup = (out) => build(out, 3);
 export const lalaStudy = {
-  id: 'N0333',
+  id: 'lala_mustafa_pasha_mosque',
   key: 'lala_mustafa_pasha_mosque',
   title: 'Lala Mustafa Pasha Mosque',
   category: 'cathedral',

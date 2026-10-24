@@ -12,7 +12,7 @@ import {
 import { authoredDetail, authoredSkyline } from '../scripts/authored-landmark-lods.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/',
+  '../../../content/worldgen/source/places/ud/ud2/haapsalu_castle/',
   import.meta.url,
 );
 const frame = JSON.parse(readFileSync(new URL('map-frame.json', root))),
@@ -185,7 +185,7 @@ it('emits Float32 nondegenerate faces with normals that follow winding', () => {
 });
 
 it('ships deterministic browser levels inside budgets with shared graphs and no embedded images', async () => {
-  const id = 'molen.worldgen.structure.n0309_haapsalu_castle',
+  const id = 'molen.worldgen.structure.haapsalu_castle',
     sizes = [];
   for (const [level, cap] of Object.entries({
     skyline: 1000,

@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { readinessRefresh } from '../scripts/readiness-refresh.mjs';
 
 const candidates = [
-  { id: 'N0001', wikidataId: 'Q1', title: 'First' },
-  { id: 'N0002', wikidataId: 'Q2', title: 'Second' },
+  { id: 'stari_most', wikidataId: 'Q1', title: 'First' },
+  { id: 'pont_de_normandie', wikidataId: 'Q2', title: 'Second' },
 ];
 const previous = {
   format: 'molen/structure-readiness@1',
@@ -18,39 +18,48 @@ const previous = {
 
 describe('selected readiness refresh', () => {
   it('selects requested candidates while retaining previous records and their blockers', () => {
-    const refresh = readinessRefresh(candidates, previous, [' n0002 ', 'N0002']);
-    expect([...refresh.selected]).toEqual(['N0002']);
-    expect(refresh.records.get('N0001')).toBe(previous.candidates[0]);
-    expect(refresh.records.get('N0001').readiness).toBe('incomplete');
-    expect(refresh.records.get('N0001').blockers).toEqual(['visual-review-missing-or-unbound']);
+    const refresh = readinessRefresh(candidates, previous, [
+      ' pont_de_normandie ',
+      'pont_de_normandie',
+    ]);
+    expect([...refresh.selected]).toEqual(['pont_de_normandie']);
+    expect(refresh.records.get('stari_most')).toBe(previous.candidates[0]);
+    expect(refresh.records.get('stari_most').readiness).toBe('incomplete');
+    expect(refresh.records.get('stari_most').blockers).toEqual([
+      'visual-review-missing-or-unbound',
+    ]);
     expect(previous.candidates.every((candidate) => candidate.readiness === 'incomplete')).toBe(
       true,
     );
   });
 
   it('rejects empty or unknown selections instead of silently doing no work', () => {
-    for (const ids of [[], [''], ['N0001', ''], ['N0003']])
+    for (const ids of [[], [''], ['stari_most', ''], ['gamla_bron']])
       expect(() => readinessRefresh(candidates, previous, ids)).toThrow();
   });
 
   it('requires a full refresh after catalog membership or identity changes', () => {
-    expect(() => readinessRefresh(candidates, undefined, ['N0001'])).toThrow(/full/);
-    expect(() => readinessRefresh(candidates.slice(1), previous, ['N0002'])).toThrow(/full/);
+    expect(() => readinessRefresh(candidates, undefined, ['stari_most'])).toThrow(/full/);
+    expect(() => readinessRefresh(candidates.slice(1), previous, ['pont_de_normandie'])).toThrow(
+      /full/,
+    );
     expect(() =>
       readinessRefresh(candidates, { ...previous, candidates: [previous.candidates[0]] }, [
-        'N0001',
+        'stari_most',
       ]),
     ).toThrow(/full/);
     expect(() =>
       readinessRefresh(
         candidates,
         { ...previous, candidates: [previous.candidates[0], previous.candidates[0]] },
-        ['N0001'],
+        ['stari_most'],
       ),
     ).toThrow(/full/);
     for (const changed of [{ title: 'Renamed' }, { wikidataId: 'Q99' }])
       expect(() =>
-        readinessRefresh([candidates[0], { ...candidates[1], ...changed }], previous, ['N0001']),
+        readinessRefresh([candidates[0], { ...candidates[1], ...changed }], previous, [
+          'stari_most',
+        ]),
       ).toThrow(/identity changed/);
   });
 
@@ -63,19 +72,22 @@ describe('selected readiness refresh', () => {
       ],
     };
     expect(() =>
-      readinessRefresh(candidates, collection, ['N0002'], {
-        collections: [{ id: 'N0001' }],
+      readinessRefresh(candidates, collection, ['pont_de_normandie'], {
+        collections: [{ id: 'stari_most' }],
         hash: 'new',
       }),
     ).toThrow(/collection membership/);
     expect(() =>
-      readinessRefresh(candidates, previous, ['N0002'], {
-        collections: [{ id: 'N0001' }],
+      readinessRefresh(candidates, previous, ['pont_de_normandie'], {
+        collections: [{ id: 'stari_most' }],
         hash: 'new',
       }),
     ).toThrow(/collection membership/);
     expect(() =>
-      readinessRefresh(candidates, collection, ['N0002'], { collections: [], hash: 'old' }),
+      readinessRefresh(candidates, collection, ['pont_de_normandie'], {
+        collections: [],
+        hash: 'old',
+      }),
     ).toThrow(/collection membership/);
   });
 });

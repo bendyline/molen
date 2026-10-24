@@ -1,4 +1,4 @@
-/** 'N0762': Charlottenburg's mapped palace ranges and distinctive copper cupola. */
+/** 'charlottenburg_palace': Charlottenburg's mapped palace ranges and distinctive copper cupola. */
 import './install-deterministic-math.mjs';
 import { createRequire } from 'node:module';
 import earcut from 'earcut';

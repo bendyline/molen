@@ -1,11 +1,11 @@
-/** 'N0617': mapped Yueyang tower, three swept golden roofs and open timber balcony. */
+/** 'yueyang_tower': mapped Yueyang tower, three swept golden roofs and open timber balcony. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildYueyangPavilion } from './yueyang-pavilion-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/wt/wt0/n0617_yueyang_tower/',
+    '../../../content/worldgen/source/places/wt/wt0/yueyang_tower/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -88,7 +88,7 @@ export const buildYueyangSkyline = (o) => build(o, 0),
   buildYueyangStreet = (o) => build(o, 2),
   buildYueyangCloseup = (o) => build(o, 3);
 export const yueyangStudy = {
-  id: 'N0617',
+  id: 'yueyang_tower',
   key: 'yueyang_tower',
   title: 'Yueyang Tower',
   category: 'tower',

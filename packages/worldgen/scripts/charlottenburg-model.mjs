@@ -1,11 +1,11 @@
-/** 'N0762': Charlottenburg Palace, copper dome and long wings. */
+/** 'charlottenburg_palace': Charlottenburg Palace, copper dome and long wings. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildCharlottenburg } from './charlottenburg-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/u3/u33/n0762_charlottenburg_palace/',
+    '../../../content/worldgen/source/places/u3/u33/charlottenburg_palace/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -102,7 +102,7 @@ export const buildCharlottenburgSkyline = (o) => build(o, 0),
   buildCharlottenburgStreet = (o) => build(o, 2),
   buildCharlottenburgCloseup = (o) => build(o, 3);
 export const charlottenburgStudy = {
-  id: 'N0762',
+  id: 'charlottenburg_palace',
   key: 'charlottenburg_palace',
   title: 'Charlottenburg Palace, copper dome and long wings',
   category: 'museum',

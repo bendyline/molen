@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sy/syg/n0448_divrigi_great_mosque_and_hospital/',
+  '../../../content/worldgen/source/places/sy/syg/divrigi_great_mosque_and_hospital/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -823,7 +823,7 @@ export const buildDivrigiSkyline = (o) => build(o, 0),
   buildDivrigiCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const divrigiStudy = {
-  id: 'N0448',
+  id: 'divrigi_great_mosque_and_hospital',
   key: 'divrigi_great_mosque_and_hospital',
   title: 'Divriği Great Mosque and Hospital',
   category: 'mosque',

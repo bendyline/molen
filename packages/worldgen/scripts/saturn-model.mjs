@@ -5,7 +5,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildSaturn, saturnCandidateId } from './saturn-ruin-model.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/sr/sr2/n0503_temple_of_saturn/',
+    '../../../content/worldgen/source/places/sr/sr2/temple_of_saturn/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source))),
@@ -69,7 +69,7 @@ export const buildSaturnSkyline = (o) => build(o, 0),
   buildSaturnStreet = (o) => build(o, 2),
   buildSaturnCloseup = (o) => build(o, 3);
 export const saturnStudy = {
-  id: 'N0503',
+  id: 'temple_of_saturn',
   key: 'temple_of_saturn',
   title: 'Temple of Saturn',
   category: 'temple',

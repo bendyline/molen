@@ -1,4 +1,4 @@
-/** 'N0597': paired octagonal brick tomb towers; original relief, not traced inscriptions. */
+/** 'kharaqan_towers': paired octagonal brick tomb towers; original relief, not traced inscriptions. */
 import earcut from 'earcut';
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';

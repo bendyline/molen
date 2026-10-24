@@ -1,4 +1,4 @@
-/** N0631: connected unequal bridge towers, open pointed gate and slate roof silhouettes. */
+/** mala_strana_bridge_tower: connected unequal bridge towers, open pointed gate and slate roof silhouettes. */
 import earcut from 'earcut';
 import { box, loft, prism, rect } from './khmer-structure-geometry.mjs';
 

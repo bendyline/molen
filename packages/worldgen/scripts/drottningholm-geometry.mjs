@@ -1,4 +1,4 @@
-/** 'N0756': connected palace, open courtyards, hipped roofs and two domed ends. */
+/** 'drottningholm_palace': connected palace, open courtyards, hipped roofs and two domed ends. */
 import './install-deterministic-math.mjs';
 import { box, prism, rect } from './khmer-structure-geometry.mjs';
 

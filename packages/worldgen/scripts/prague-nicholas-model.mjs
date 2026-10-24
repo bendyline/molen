@@ -46,7 +46,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/u2/u2f/n0408_church_of_saint_nicholas/',
+  '../../../content/worldgen/source/places/u2/u2f/church_of_saint_nicholas/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -980,7 +980,7 @@ export const buildPragueNicholasSkyline = (o) => build(o, 0),
   buildPragueNicholasCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const pragueNicholasStudy = {
-  id: 'N0408',
+  id: 'church_of_saint_nicholas',
   key: 'church_of_saint_nicholas',
   title: 'Church of Saint Nicholas',
   category: 'cathedral',

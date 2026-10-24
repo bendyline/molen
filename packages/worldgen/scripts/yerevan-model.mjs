@@ -68,7 +68,7 @@ function prepareOpening(h, b, d) {
   return { ...v, ring, planes };
 }
 const source = new URL(
-  '../../../content/worldgen/source/places/sz/szp/n0440_blue_mosque/',
+  '../../../content/worldgen/source/places/sz/szp/blue_mosque_yerevan/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, source)));
@@ -814,7 +814,7 @@ export const buildYerevanSkyline = (o) => build(o, 0),
   buildYerevanCloseup = (o) => build(o, 3);
 const cam = (name, position, lookAt) => ({ name, position, lookAt, fov: 48 });
 export const yerevanStudy = {
-  id: 'N0440',
+  id: 'blue_mosque_yerevan',
   key: 'blue_mosque',
   title: 'Blue Mosque',
   category: 'mosque',

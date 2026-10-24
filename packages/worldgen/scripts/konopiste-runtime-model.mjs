@@ -7,7 +7,7 @@ import { buildKonopisteRuntime } from './konopiste-castle-model.mjs';
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/u2/u2f/n0288_konopiste_castle/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/u2/u2f/konopiste_castle/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

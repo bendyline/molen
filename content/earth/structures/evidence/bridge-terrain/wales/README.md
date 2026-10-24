@@ -34,15 +34,15 @@ the bank reference. A coarse elevation archive cannot reproduce this 1 m terrain
 
 ## Reproduction
 
-Cache the official TIFFs and OSTN15 grid at the paths recorded in `N0015.json`, plus the
+Cache the official TIFFs and OSTN15 grid at the paths recorded in `monnow_bridge.json`, plus the
 recorded OSM map response and survey catalogue. The research builder requires Pillow,
 NumPy and pyproj 3.7.2 and refuses a fallback coordinate transform without OSTN15:
 
 ```sh
 python examples/world-explorer/scripts/build-welsh-bridge-evidence.py
-node packages/worldgen/scripts/generate-researched-bridges.mjs --ids=N0015 --check
-node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=wales --ids=N0015
-node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=wales --ids=N0015 --with-roads
+node packages/worldgen/scripts/generate-researched-bridges.mjs --ids=monnow_bridge --check
+node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=wales --ids=monnow_bridge
+node examples/world-explorer/test/visual/capture-bridge-terrain.mjs --terrain-set=wales --ids=monnow_bridge --with-roads
 ```
 
 Capture reports bind the source, runtime, spec, fixture, terrain, placement and each image.

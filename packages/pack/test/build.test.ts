@@ -116,3 +116,20 @@ describe('createPack', () => {
     ).rejects.toThrow(/invalid pack/);
   });
 });
+
+it('keeps selected regional files independently readable without disabling other solid blocks', async () => {
+  const json = new TextEncoder().encode('{"entries":[]}');
+  const { bytes, manifest } = await createPack(
+    [
+      { path: 'structures/placements/cells/c2.json', bytes: json },
+      { path: 'structures/placements/cells/u0.json', bytes: json },
+      { path: 'structures/map-rules.json', bytes: json },
+    ],
+    { id: 'test.regions', version: '1.0.0', independent: ['structures/placements/'] },
+  );
+  const members = unzipSync(bytes);
+  expect(manifest.entries['structures/placements/cells/c2.json']?.block).toBeUndefined();
+  expect(manifest.entries['structures/placements/cells/u0.json']?.block).toBeUndefined();
+  expect(manifest.entries['structures/map-rules.json']?.block).toBe('structures');
+  expect(members['structures/placements/cells/c2.json']).toEqual(json);
+});

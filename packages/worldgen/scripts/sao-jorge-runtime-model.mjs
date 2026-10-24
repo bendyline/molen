@@ -6,7 +6,7 @@ import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { openingBuilder, openingReveals, prepareOpening } from './authored-wall-openings.mjs';
 
 const root = new URL(
-  '../../../content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/',
+  '../../../content/worldgen/source/places/ey/eyc/castle_of_saint_george/',
   import.meta.url,
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root))),
@@ -707,7 +707,7 @@ export const buildSaoJorgeSkyline = (o) => buildSaoJorgeRuntime(o, 'skyline');
 const grade = JSON.parse(
     readFileSync(
       new URL(
-        '../../../content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/pmtiles-fit.json',
+        '../../../content/worldgen/source/places/ey/eyc/castle_of_saint_george/pmtiles-fit.json',
         import.meta.url,
       ),
     ),

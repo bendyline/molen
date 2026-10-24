@@ -299,7 +299,7 @@ function buildSorve(out) {
 
 export const lighthouseOffshoreStudies = [
   lighthouseStudy({
-    id: 'N0646',
+    id: 'eddystone_lighthouse',
     key: 'eddystone_lighthouse',
     title: 'Eddystone Lighthouse',
     wikidataId: 'Q546122',
@@ -340,7 +340,7 @@ export const lighthouseOffshoreStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0647',
+    id: 'thridrangaviti_lighthouse',
     key: 'thridrangaviti_lighthouse',
     title: 'Thridrangaviti Lighthouse',
     wikidataId: 'Q28375893',
@@ -379,7 +379,7 @@ export const lighthouseOffshoreStudies = [
     ],
   }),
   lighthouseStudy({
-    id: 'N0648',
+    id: 'sorve_lighthouse',
     key: 'sorve_lighthouse',
     title: 'Sõrve Lighthouse',
     wikidataId: 'Q3376479',

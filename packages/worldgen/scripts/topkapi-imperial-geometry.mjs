@@ -1,4 +1,4 @@
-/** 'N0742_IMPERIAL': Low brick gatehouse, marble portals and inclined vaulted passage. */
+/** 'imperial_gate_topkapi_palace': Low brick gatehouse, marble portals and inclined vaulted passage. */
 import { beam } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';
 

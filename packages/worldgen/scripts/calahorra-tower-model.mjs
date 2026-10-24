@@ -473,8 +473,8 @@ function buildCalahorra(out) {
 }
 
 export const calahorraTower = {
-  id: 'n0603_torre_de_la_calahorra',
-  planId: 'N0603',
+  id: 'torre_de_la_calahorra',
+  planId: 'torre_de_la_calahorra',
   title: 'Torre de la Calahorra',
   wikidata: 'Q97625199',
   authoringFile: 'calahorra-tower-model.mjs',
@@ -506,7 +506,7 @@ export const calahorraTower = {
     planRegistrationResidualMeters: 1.5,
     restorationCompletionYear: 2008,
     bridgeRelationship: {
-      candidateId: 'N0009',
+      candidateId: 'puente_romano',
       bridgeSouthDeckSeaLevelMeters: 97.15,
       courtyardOriginSeaLevelMeters: 93.85,
       entranceLocalY: 3.3,
@@ -528,7 +528,7 @@ export const calahorraTower = {
       'Exact mapped entrance fixes the model origin. Municipal plans and the primary restoration architect show that the broad exact-QID map ring includes the low barbican; the tall building follows the smaller asymmetric plan, with its entrance toward the Roman Bridge. The signed frame is fitted to entrance and paired southern bastions.',
     orientationConfidence: 'primary-plan-and-exact-mapped-entrance',
     limitations:
-      'Horizontal map/plan fit is approximate, within about 1.5 m at the lower bastions. Entrance Y=3.3 m is above the model courtyard datum. The provisional shared datum places the courtyard origin at 93.85 m and the entrance at 97.15 m, matching N0009 Roman Bridge south deck. This is a coherent reconstructed connection, not a surveyed height; adjust both assets together when a reliable common datum is available.',
+      'Horizontal map/plan fit is approximate, within about 1.5 m at the lower bastions. Entrance Y=3.3 m is above the model courtyard datum. The provisional shared datum places the courtyard origin at 93.85 m and the entrance at 97.15 m, matching puente_romano Roman Bridge south deck. This is a coherent reconstructed connection, not a surveyed height; adjust both assets together when a reliable common datum is available.',
   },
   limits: [
     'The monumental castle and complete low barbican are included. The Roman Bridge, outer moat terrain and surrounding urban paving are separate assets.',

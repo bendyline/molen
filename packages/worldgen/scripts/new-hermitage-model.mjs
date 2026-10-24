@@ -1,11 +1,11 @@
-/** 'N0741_NEW': Two courtyards, raised halls and ten-figure entrance portico. */
+/** 'new_hermitage': Two courtyards, raised halls and ten-figure entrance portico. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildNewHermitage } from './new-hermitage-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ud/udt/n0741_new_hermitage/',
+    '../../../content/worldgen/source/places/ud/udt/new_hermitage/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -74,7 +74,7 @@ export const buildNewHermitageSkyline = (o) => build(o, 0),
   buildNewHermitageStreet = (o) => build(o, 2),
   buildNewHermitageCloseup = (o) => build(o, 3);
 export const newHermitageStudy = {
-  id: 'N0741_NEW',
+  id: 'new_hermitage',
   key: 'new_hermitage',
   title: 'New Hermitage',
   category: 'museum',

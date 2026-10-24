@@ -1,4 +1,4 @@
-/** 'N0598': mapped Baghdad broadcast tower; photo-led glazing and shared cladding. */
+/** 'baghdad_tower': mapped Baghdad broadcast tower; photo-led glazing and shared cladding. */
 import { cross, normalize } from './authored-structure-mesh.mjs';
 import { prism } from './khmer-structure-geometry.mjs';
 

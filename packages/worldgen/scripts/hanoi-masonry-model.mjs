@@ -1,4 +1,4 @@
-/** N0626: mapped terraces, pierced parapets, rosette shaft and open octagonal crown. */
+/** flag_tower_of_hanoi: mapped terraces, pierced parapets, rosette shaft and open octagonal crown. */
 import earcut from 'earcut';
 import { cross, normalize } from './authored-structure-mesh.mjs';
 import { box, prism } from './khmer-structure-geometry.mjs';

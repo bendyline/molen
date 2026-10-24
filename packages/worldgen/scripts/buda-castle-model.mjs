@@ -7,7 +7,7 @@ import { box, quad } from './structure-mesh.mjs';
 const map = JSON.parse(
   readFileSync(
     new URL(
-      '../../../content/worldgen/source/places/u2/u2m/n0255_buda_castle/map-parts.json',
+      '../../../content/worldgen/source/places/u2/u2m/buda_castle/map-parts.json',
       import.meta.url,
     ),
   ),
@@ -742,7 +742,7 @@ export function buildBudaRuntime(out, detail) {
 }
 export const buildBudaSkyline = (o) => buildBudaRuntime(o, 'skyline');
 export const budaStudy = {
-  id: 'N0255',
+  id: 'buda_castle',
   key: 'buda_castle',
   title: 'Buda Castle',
   category: 'castle',

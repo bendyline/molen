@@ -784,10 +784,7 @@ const mean = {
 };
 function build(out, detail, m) {
   m ??= JSON.parse(
-    readFileSync(
-      resolve(structureSourcePath('n0207_bank_of_america_plaza'), 'map-frame.json'),
-      'utf8',
-    ),
+    readFileSync(resolve(structureSourcePath('bank_of_america_plaza'), 'map-frame.json'), 'utf8'),
   );
   const target = { detail };
   for (const method of ['addTriangle', 'addQuad', 'addConvexPolygon'])

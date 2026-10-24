@@ -1,4 +1,4 @@
-/** 'N0752_EQUATORIAL': octagonal stock brick, projecting gallery and green onion dome. */
+/** 'great_equatorial_building_royal_observatory_greenwich': octagonal stock brick, projecting gallery and green onion dome. */
 import { box, prism } from './khmer-structure-geometry.mjs';
 
 export function buildEquatorial(face, detail, r) {

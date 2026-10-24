@@ -1,11 +1,11 @@
-/** 'N0741_THEATRE': Giant-order river facade, courtyard and rounded canal-side roof corner. */
+/** 'hermitage_theatre': Giant-order river facade, courtyard and rounded canal-side roof corner. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { buildHermitageTheatre } from './hermitage-theatre-geometry.mjs';
 
 const source = new URL(
-    '../../../content/worldgen/source/places/ud/udt/n0741_hermitage_theatre/',
+    '../../../content/worldgen/source/places/ud/udt/hermitage_theatre/',
     import.meta.url,
   ),
   read = (n) => JSON.parse(readFileSync(new URL(n, source), 'utf8')),
@@ -73,7 +73,7 @@ export const buildHermitageTheatreSkyline = (o) => build(o, 0),
   buildHermitageTheatreStreet = (o) => build(o, 2),
   buildHermitageTheatreCloseup = (o) => build(o, 3);
 export const hermitageTheatreStudy = {
-  id: 'N0741_THEATRE',
+  id: 'hermitage_theatre',
   key: 'hermitage_theatre',
   title: 'Hermitage Theatre',
   category: 'theatre',

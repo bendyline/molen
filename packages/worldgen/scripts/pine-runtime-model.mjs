@@ -17,7 +17,7 @@ import { build70Pine } from './signature-tower-pine-model.mjs';
 import { tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
-const key = 'n0188_70_pine_street',
+const key = '70_pine_street',
   map = JSON.parse(readFileSync(structureSourcePath(key, 'map-frame.json'), 'utf8')),
   scope = JSON.parse(readFileSync(structureSourcePath(key, 'review-scope.json'), 'utf8'));
 const stone = [0.71, 0.685, 0.62],

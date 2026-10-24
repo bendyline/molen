@@ -13,7 +13,7 @@ import {
   scan,
   storyUrl,
 } from './scan.mjs';
-import { next1000Entries, workAssignment } from './work-ownership.mjs';
+import { structureCatalogEntries, workAssignment } from './work-ownership.mjs';
 
 const article = (id, title, summary, lat = 51.5, lng = -0.1) => ({
   id,
@@ -24,11 +24,11 @@ const article = (id, title, summary, lat = 51.5, lng = -0.1) => ({
   categories: [],
 });
 
-test('next-1,000 ownership covers planned, imported, ready and possible member matches', () => {
-  const entries = next1000Entries(
-    { candidates: [{ id: 'N0904', title: 'Kensington Palace' }] },
+test('structure catalog ownership covers planned, imported, ready and possible member matches', () => {
+  const entries = structureCatalogEntries(
+    { candidates: [{ id: 'kensington_palace', title: 'Kensington Palace' }] },
     {
-      collections: [{ members: [{ id: 'N0208_MSU', title: 'MSU', assetId: 'molen.msu' }] }],
+      collections: [{ members: [{ id: 'msu_main_building', title: 'MSU', assetId: 'molen.msu' }] }],
     },
   );
   for (const status of [
@@ -38,10 +38,10 @@ test('next-1,000 ownership covers planned, imported, ready and possible member m
     'identity-review',
   ]) {
     const assigned = workAssignment(
-      { name: 'Palace', status, existing: [{ candidateId: 'N0904' }] },
+      { name: 'Palace', status, existing: [{ candidateId: 'kensington_palace' }] },
       entries,
     );
-    assert.equal(assigned.owner, 'next-1000-other-device');
+    assert.equal(assigned.owner, 'structure-catalog-other-device');
     assert.equal(assigned.localAuthoringAllowed, false);
   }
   assert.equal(
@@ -192,11 +192,11 @@ test('bounded scans resume, preserve IDs across catalog progress, and retire rem
       .map(JSON.parse);
   try {
     repo('content/worldgen/source/structure-index.json', { entries: [] });
-    repo('content/worldgen/source/next-1000/candidates.json', { candidates: [] });
-    repo('content/worldgen/source/next-1000/collections.json', { collections: [] });
+    repo('content/worldgen/source/structure-catalog/candidates.json', { candidates: [] });
+    repo('content/worldgen/source/structure-catalog/collections.json', { collections: [] });
     repo('content/worldgen/project.json', { assets: {} });
     repo('content/worldgen/stylepack.json', { assets: {} });
-    repo('content/earth/structures/placements.json', { entries: [] });
+    fs.mkdirSync(path.join(repository, 'content/earth/source/placements'), { recursive: true });
     repo('content/earth/structures/readiness.json', { candidates: [], counts: { ready: 0 } });
     put(path.join(qualla, '_c/idx/slug-exceptions.json'), {});
     const aPath = path.join(qualla, '_c/art/g/c/p/v/plain-hotel-wp.json');
@@ -213,7 +213,7 @@ test('bounded scans resume, preserve IDs across catalog progress, and retire rem
     assert.equal(complete.structureCount, 2);
     assert.equal(scan({ qualla, repository, output, check: true }).run.filesChanged, 0);
     const stableId = records().find((item) => item.name === 'Plain Hotel').id;
-    repo('content/worldgen/source/next-1000/candidates.json', {
+    repo('content/worldgen/source/structure-catalog/candidates.json', {
       candidates: [
         {
           id: 'N1',
