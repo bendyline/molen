@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { basename, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import { after, test } from 'node:test';
 import { publishPackRelease } from '../publish-pack-release.mjs';
 
@@ -150,6 +150,55 @@ test('a dry run changes nothing', async () => {
   assert.equal(
     github.commands.some((c) => c.includes('POST') || c[1] === 'upload' || c[1] === 'edit'),
     false,
+  );
+});
+
+test('publishes an unzipped pack as its smallest zip, named in the release index', async () => {
+  const indexPath = await packsDir({ 'molen.sky': 'stars' });
+  const dir = dirname(indexPath);
+  const contentHash = `sha256:${'b'.repeat(64)}`;
+  const manifest = 'molen.entities/bbbbbbbbbbbb/molen-pack.json';
+  await mkdir(join(dir, dirname(manifest)), { recursive: true });
+  await writeFile(join(dir, manifest), '{}\n');
+  // Two builds of the pack (stored and deflated) and an older version.
+  const zips = {
+    'molen.entities-000000000001.zip': ['stored models', contentHash],
+    'molen.entities-000000000002.zip': ['models', contentHash],
+    'molen.entities-000000000003.zip': ['old', `sha256:${'c'.repeat(64)}`],
+  };
+  for (const [name, [text]] of Object.entries(zips)) await writeFile(join(dir, name), text);
+  const index = JSON.parse(readFileSync(indexPath, 'utf8'));
+  const entry = { version: '1.0.0', file: manifest, contentHash, size: 3 };
+  index.packs['molen.entities'] = entry;
+  await writeFile(indexPath, JSON.stringify(index));
+  const contentHashOf = async (path) => zips[basename(path)][1];
+
+  const github = fakeGitHub();
+  let released;
+  const runGh = (args) => {
+    if (args[1] === 'upload' && basename(args[3]) === 'index.json')
+      released = JSON.parse(readFileSync(args[3], 'utf8'));
+    return github.runGh(args);
+  };
+  const result = await publish({ runGh }, indexPath, { contentHashOf });
+  assert.deepEqual(
+    result.uploaded.filter((name) => name.startsWith('molen.entities')),
+    ['molen.entities-000000000002.zip'],
+  );
+  assert.deepEqual(released.packs['molen.entities'], {
+    ...entry,
+    file: 'molen.entities-000000000002.zip',
+    size: 6,
+  });
+  assert.deepEqual(released.packs['molen.sky'], index.packs['molen.sky']);
+  // The explorer's own index still serves the pack unzipped.
+  assert.deepEqual(JSON.parse(readFileSync(indexPath, 'utf8')).packs['molen.entities'], entry);
+
+  await rm(join(dir, 'molen.entities-000000000001.zip'));
+  await rm(join(dir, 'molen.entities-000000000002.zip'));
+  await assert.rejects(
+    publish(fakeGitHub(), indexPath, { contentHashOf }),
+    /no molen\.entities-\*\.zip beside the index has its contentHash/,
   );
 });
 
