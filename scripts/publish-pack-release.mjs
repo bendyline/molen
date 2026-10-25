@@ -12,6 +12,9 @@
 // run uploads the packs the release lacks, then replaces index.json, then deletes the packs the
 // new index no longer lists, so the published index never names a missing file. Every attachment's
 // size and SHA-256 digest is checked against the local file before a new release is published.
+// Release assets are flat, so a pack the build serves unzipped (`<id>/<version>/molen-pack.json`,
+// see examples/world-explorer/scripts/build-entity-pack.mjs) is published as its zip, which the
+// build keeps beside the index, and the release's index.json names that zip.
 // The Release workflow runs this after building the docs site; `--dry-run` lists what would change.
 //
 // Usage: node scripts/publish-pack-release.mjs --target <commit sha> [--index <path>]
@@ -20,7 +23,7 @@
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { createReadStream } from 'node:fs';
-import { mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises';
+import { mkdtemp, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -29,6 +32,7 @@ import { parseArgs } from 'node:util';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DEFAULT_INDEX = join(ROOT, 'examples/world-explorer/public/packs/index.json');
 const INDEX = 'index.json';
+const MANIFEST = 'molen-pack.json';
 
 const sha256File = (path) =>
   new Promise((resolvePromise, reject) => {
@@ -38,6 +42,26 @@ const sha256File = (path) =>
       .on('error', reject)
       .on('end', () => resolvePromise(hash.digest('hex')));
   });
+
+/** A built pack zip's contentHash, read with the workspace's built pack package. */
+async function packContentHash(path) {
+  const { openFilePack } = await import('../packages/pack/dist/node.mjs');
+  const pack = await openFilePack(path);
+  try {
+    return pack.manifest.contentHash;
+  } finally {
+    pack.close();
+  }
+}
+
+async function inTempDir(use) {
+  const dir = await mkdtemp(join(tmpdir(), 'molen-pack-release-'));
+  try {
+    return await use(dir);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+}
 
 /** The release's description: what it is and how to use it. */
 function releaseNotes(repo, tag, target, count) {
@@ -52,14 +76,40 @@ function releaseNotes(repo, tag, target, count) {
   ].join('\n');
 }
 
-/** The pack files an index lists, checked against the files beside it. */
-async function localFiles(indexPath) {
+/**
+ * The index entry of the zip beside the index that holds the same pack as an unzipped entry.
+ * Several zips can hold it (a `MOLEN_PACK_COMPRESSION=store` build leaves one behind); any of them
+ * is that pack, so the smallest is published.
+ */
+async function zippedEntry(dir, id, entry, contentHashOf) {
+  const zips = [];
+  for (const name of await readdir(dir)) {
+    if (!name.startsWith(`${id}-`) || !/^[0-9a-f]{12}\.zip$/.test(name.slice(id.length + 1)))
+      continue;
+    if ((await contentHashOf(join(dir, name))) !== entry.contentHash) continue;
+    zips.push({ name, size: (await stat(join(dir, name))).size });
+  }
+  zips.sort((a, b) => a.size - b.size || (a.name < b.name ? -1 : 1));
+  if (zips.length === 0)
+    throw new Error(
+      `${id}: ${entry.file} is unzipped, and no ${id}-*.zip beside the index has its contentHash.`,
+    );
+  return { ...entry, file: zips[0].name, size: zips[0].size };
+}
+
+/** The pack files an index lists, checked against the files beside it, and the release's index. */
+async function localFiles(indexPath, contentHashOf) {
   const index = JSON.parse(await readFile(indexPath, 'utf8'));
   if (index?.format !== 'molen/pack-index@1' || typeof index.packs !== 'object')
     throw new Error(`${indexPath} is not a molen/pack-index@1 document.`);
   const dir = dirname(indexPath);
   const files = [];
-  for (const [id, entry] of Object.entries(index.packs)) {
+  const packs = {};
+  for (const [id, listed] of Object.entries(index.packs)) {
+    const entry =
+      typeof listed?.file === 'string' && listed.file.endsWith(`/${MANIFEST}`)
+        ? await zippedEntry(dir, id, listed, contentHashOf)
+        : listed;
     // Release assets are flat: a file must sit beside the index.
     if (typeof entry?.file !== 'string' || !/^[A-Za-z0-9._-]+$/.test(entry.file))
       throw new Error(`${id}: "${entry?.file}" is not a plain file name beside the index.`);
@@ -70,11 +120,17 @@ async function localFiles(indexPath) {
         `${id}: ${entry.file} is ${size ?? 'missing'}, the index says ${entry.size} bytes.`,
       );
     files.push({ name: entry.file, path, size, sha256: await sha256File(path) });
+    packs[id] = entry;
   }
-  const indexSize = (await stat(indexPath)).size;
+  const bytes = Buffer.from(`${JSON.stringify({ ...index, packs }, null, 2)}\n`);
   return {
     packs: files,
-    index: { name: INDEX, path: indexPath, size: indexSize, sha256: await sha256File(indexPath) },
+    index: {
+      name: INDEX,
+      bytes,
+      size: bytes.length,
+      sha256: createHash('sha256').update(bytes).digest('hex'),
+    },
   };
 }
 
@@ -89,6 +145,7 @@ export async function publishPackRelease({
   target,
   dryRun = false,
   runGh,
+  contentHashOf = packContentHash,
   log = console.log,
 } = {}) {
   if (!/^[a-f0-9]{40}$/.test(target ?? ''))
@@ -105,7 +162,7 @@ export async function publishPackRelease({
         stdio: ['ignore', 'pipe', 'pipe'],
         maxBuffer: 64 * 1024 ** 2,
       }));
-  const { packs, index } = await localFiles(resolve(indexPath));
+  const { packs, index } = await localFiles(resolve(indexPath), contentHashOf);
   const notes = releaseNotes(repo, tag, target, packs.length);
 
   // List releases rather than treating arbitrary authentication/network failures as "not found".
@@ -151,8 +208,7 @@ export async function publishPackRelease({
 
   let created = false;
   if (release === undefined) {
-    const dir = await mkdtemp(join(tmpdir(), 'molen-pack-release-'));
-    try {
+    release = await inTempDir(async (dir) => {
       const request = join(dir, 'release-request.json');
       await writeFile(
         request,
@@ -166,12 +222,10 @@ export async function publishPackRelease({
         }),
       );
       // Use the create response's ID: GitHub's release list can lag behind a new draft.
-      release = JSON.parse(
+      return JSON.parse(
         gh(['api', '--method', 'POST', `repos/${repo}/releases`, '--input', request]),
       );
-    } finally {
-      await rm(dir, { recursive: true, force: true });
-    }
+    });
     if (!release?.draft) throw new Error(`Could not create the draft ${tag} release.`);
     created = true;
   }
@@ -186,7 +240,11 @@ export async function publishPackRelease({
   // The index goes up only once every pack it names is there.
   if (replaceIndex) {
     log(`Uploading ${INDEX}`);
-    gh(['release', 'upload', tag, index.path, '--repo', repo, '--clobber']);
+    await inTempDir(async (dir) => {
+      const path = join(dir, INDEX);
+      await writeFile(path, index.bytes);
+      gh(['release', 'upload', tag, path, '--repo', repo, '--clobber']);
+    });
   }
   for (const asset of stale) {
     log(`Deleting ${asset.name}`);
