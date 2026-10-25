@@ -1,3 +1,21 @@
+## @bendyline/molen-ambient [0.0.12](https://github.com/bendyline/molen/compare/@bendyline/molen-ambient@0.0.11...@bendyline/molen-ambient@0.0.12) (2026-10-25)
+
+### Bug Fixes
+
+* Configure Biome ignores and reformat sources ([f213134](https://github.com/bendyline/molen/commit/f213134007886ec7e86063ac00ad15ae8bdb7be8))
+* More buildings, road shields, etc. ([4f1e6ab](https://github.com/bendyline/molen/commit/4f1e6ab3bf0228e6868cbc641fa8918fc4b8daae))
+* More graphics work ([4c3a14f](https://github.com/bendyline/molen/commit/4c3a14f89b408dedcb332c37c426ed8eb0c9e2d1))
+* Update test issues ([481f2f7](https://github.com/bendyline/molen/commit/481f2f77d6f811c9eacbaf2601781eef1a9d8767))
+
+
+### Dependencies
+
+* **@bendyline/molen-figures:** upgraded to 0.0.10
+* **@bendyline/molen-kernel:** upgraded to 0.0.8
+* **@bendyline/molen-schema:** upgraded to 0.0.8
+* **@bendyline/molen-terrain:** upgraded to 0.0.12
+* **@bendyline/molen-client:** upgraded to 0.0.10
+
 ## @bendyline/molen-ambient [0.0.11](https://github.com/bendyline/molen/compare/@bendyline/molen-ambient@0.0.10...@bendyline/molen-ambient@0.0.11) (2026-10-16)
 
 ### Bug Fixes

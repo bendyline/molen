@@ -1,3 +1,23 @@
+## @bendyline/molen-client [0.0.10](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.9...@bendyline/molen-client@0.0.10) (2026-10-25)
+
+### Bug Fixes
+
+* Add earth soundscape and world ambience ([baa190e](https://github.com/bendyline/molen/commit/baa190e6fca948a27c686c7ae52c85e113f3be83))
+* Graphics updates ([ba4fdd0](https://github.com/bendyline/molen/commit/ba4fdd04c605801753d3d1b782cbc97bf1edd368))
+* Handle missing InstanceNode in Three r185+ ([e4d677c](https://github.com/bendyline/molen/commit/e4d677c1f46e5b8b0e3635693884398998270916))
+* Lazy variant builds, localLights option, simplify WebGPU instancing ([dc43533](https://github.com/bendyline/molen/commit/dc4353337a63eff3e09ac596439fc2baf8773a21))
+* More buildings, road shields, etc. ([4f1e6ab](https://github.com/bendyline/molen/commit/4f1e6ab3bf0228e6868cbc641fa8918fc4b8daae))
+* More graphics work ([022440e](https://github.com/bendyline/molen/commit/022440ed2989006d17aaae0bfff0ff9e5bf42ef3))
+* More graphics work ([4c3a14f](https://github.com/bendyline/molen/commit/4c3a14f89b408dedcb332c37c426ed8eb0c9e2d1))
+* Optimize WebGPU instancing and collision prep ([3c5e510](https://github.com/bendyline/molen/commit/3c5e510b2c4f59bae3ffe057bd3c1de1c1e5b07f))
+* Re-org models ([abefd93](https://github.com/bendyline/molen/commit/abefd93e48545769e609be0d731eaa7257dbcb4d))
+
+
+### Dependencies
+
+* **@bendyline/molen-materials:** upgraded to 0.0.9
+* **@bendyline/molen-schema:** upgraded to 0.0.8
+
 ## @bendyline/molen-client [0.0.9](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.8...@bendyline/molen-client@0.0.9) (2026-10-15)
 
 ### Bug Fixes

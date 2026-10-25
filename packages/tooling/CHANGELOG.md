@@ -1,3 +1,31 @@
+## @bendyline/molen-tooling [0.0.12](https://github.com/bendyline/molen/compare/@bendyline/molen-tooling@0.0.11...@bendyline/molen-tooling@0.0.12) (2026-10-25)
+
+### Bug Fixes
+
+* Add more models and assets ([131bafd](https://github.com/bendyline/molen/commit/131bafdee9529244b262e5b930502bc5f2a9f01a))
+* Configure Biome ignores and reformat sources ([f213134](https://github.com/bendyline/molen/commit/f213134007886ec7e86063ac00ad15ae8bdb7be8))
+* Handle missing InstanceNode in Three r185+ ([e4d677c](https://github.com/bendyline/molen/commit/e4d677c1f46e5b8b0e3635693884398998270916))
+* Isolate runtime LOD tests from installed assets ([ad4f5a1](https://github.com/bendyline/molen/commit/ad4f5a1a8b1d3f252bb89d0df7772f31016a9974))
+* More buildings, road shields, etc. ([4f1e6ab](https://github.com/bendyline/molen/commit/4f1e6ab3bf0228e6868cbc641fa8918fc4b8daae))
+* More updates ([bd66d2a](https://github.com/bendyline/molen/commit/bd66d2a2c81e7b6bace09e8b0518d8d6b6d63cc0))
+* Re-org models ([abefd93](https://github.com/bendyline/molen/commit/abefd93e48545769e609be0d731eaa7257dbcb4d))
+* Regenerate types for boats and cycle support ([9a7f514](https://github.com/bendyline/molen/commit/9a7f51423ac3ce2d3fd7c4cb43c338b3c172fa53))
+
+
+### Dependencies
+
+* **@bendyline/molen-ambient:** upgraded to 0.0.12
+* **@bendyline/molen-client:** upgraded to 0.0.10
+* **@bendyline/molen-figures:** upgraded to 0.0.10
+* **@bendyline/molen-kernel:** upgraded to 0.0.8
+* **@bendyline/molen-materials:** upgraded to 0.0.9
+* **@bendyline/molen-pack:** upgraded to 0.0.9
+* **@bendyline/molen-physics-rapier:** upgraded to 0.0.8
+* **@bendyline/molen-schema:** upgraded to 0.0.8
+* **@bendyline/molen-terrain:** upgraded to 0.0.12
+* **@bendyline/molen-worldgen:** upgraded to 0.0.11
+* **@bendyline/molen-worldgen-earth:** upgraded to 0.0.12
+
 ## @bendyline/molen-tooling [0.0.11](https://github.com/bendyline/molen/compare/@bendyline/molen-tooling@0.0.10...@bendyline/molen-tooling@0.0.11) (2026-10-16)
 
 ### Bug Fixes

@@ -1,3 +1,18 @@
+## @bendyline/molen-entities [0.0.11](https://github.com/bendyline/molen/compare/@bendyline/molen-entities@0.0.10...@bendyline/molen-entities@0.0.11) (2026-10-25)
+
+### Bug Fixes
+
+* Configure Biome ignores and reformat sources ([f213134](https://github.com/bendyline/molen/commit/f213134007886ec7e86063ac00ad15ae8bdb7be8))
+* More buildings, road shields, etc. ([4f1e6ab](https://github.com/bendyline/molen/commit/4f1e6ab3bf0228e6868cbc641fa8918fc4b8daae))
+* Re-org models ([abefd93](https://github.com/bendyline/molen/commit/abefd93e48545769e609be0d731eaa7257dbcb4d))
+
+
+### Dependencies
+
+* **@bendyline/molen-kernel:** upgraded to 0.0.8
+* **@bendyline/molen-schema:** upgraded to 0.0.8
+* **@bendyline/molen-pack:** upgraded to 0.0.9
+
 ## @bendyline/molen-entities [0.0.10](https://github.com/bendyline/molen/compare/@bendyline/molen-entities@0.0.9...@bendyline/molen-entities@0.0.10) (2026-10-16)
 
 ### Bug Fixes

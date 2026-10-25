@@ -1,3 +1,15 @@
+## @bendyline/molen-pack [0.0.9](https://github.com/bendyline/molen/compare/@bendyline/molen-pack@0.0.8...@bendyline/molen-pack@0.0.9) (2026-10-25)
+
+### Bug Fixes
+
+* More buildings, road shields, etc. ([4f1e6ab](https://github.com/bendyline/molen/commit/4f1e6ab3bf0228e6868cbc641fa8918fc4b8daae))
+* Re-org models ([abefd93](https://github.com/bendyline/molen/commit/abefd93e48545769e609be0d731eaa7257dbcb4d))
+
+
+### Dependencies
+
+* **@bendyline/molen-schema:** upgraded to 0.0.8
+
 ## @bendyline/molen-pack [0.0.8](https://github.com/bendyline/molen/compare/@bendyline/molen-pack@0.0.7...@bendyline/molen-pack@0.0.8) (2026-10-15)
 
 

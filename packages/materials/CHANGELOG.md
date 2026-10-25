@@ -1,3 +1,15 @@
+## @bendyline/molen-materials [0.0.9](https://github.com/bendyline/molen/compare/@bendyline/molen-materials@0.0.8...@bendyline/molen-materials@0.0.9) (2026-10-25)
+
+### Bug Fixes
+
+* Graphics updates ([ba4fdd0](https://github.com/bendyline/molen/commit/ba4fdd04c605801753d3d1b782cbc97bf1edd368))
+* More buildings, road shields, etc. ([4f1e6ab](https://github.com/bendyline/molen/commit/4f1e6ab3bf0228e6868cbc641fa8918fc4b8daae))
+
+
+### Dependencies
+
+* **@bendyline/molen-schema:** upgraded to 0.0.8
+
 ## @bendyline/molen-materials [0.0.8](https://github.com/bendyline/molen/compare/@bendyline/molen-materials@0.0.7...@bendyline/molen-materials@0.0.8) (2026-10-15)
 
 
