@@ -1,5 +1,6 @@
 /** Original, meter-scale polygonal airframes. +Y up, +Z forward, +X pilot's left.
- * No image textures. Each airframe has a hollow shell, authored planform and cockpit aperture.
+ * Each airframe has a hollow shell, authored planform and cockpit aperture.
+ * Selected cabins use original procedural finishes embedded by the aircraft exporter.
  */
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import * as T from 'three';

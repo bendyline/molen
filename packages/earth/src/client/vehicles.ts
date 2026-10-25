@@ -48,6 +48,7 @@ import type {
 import * as THREE from 'three';
 import { Capsule } from 'three/addons/math/Capsule.js';
 import { OBB } from 'three/addons/math/OBB.js';
+import { Livery, selectLivery, tintLivery } from './liveries';
 import { EARTH_WATER_CONDITIONS, EarthWater } from './water';
 
 const PLAYER = 'world-player';
@@ -96,6 +97,7 @@ export interface EarthSpawnOptions {
   retain?: boolean;
   /** Paint for the type's `paintMaterial` (CSS color); without it the authored paint stays. */
   color?: string;
+  livery?: string;
 }
 
 export class EarthVehicles {
@@ -444,6 +446,11 @@ export class EarthVehicles {
     options: EarthSpawnOptions = {},
   ): string | undefined {
     const components = this.types.components(kind);
+    if (options.livery !== undefined)
+      components.livery = selectLivery(
+        components.livery as import('@bendyline/molen-schema').LiveryData | undefined,
+        options.livery,
+      );
     const vehicle = (components.vehicle ?? components.boat) as unknown as
       | VehicleData
       | BoatData
@@ -477,6 +484,11 @@ export class EarthVehicles {
       return undefined;
     }
     if (options.color !== undefined) vehicle.color = options.color;
+    if (options.color !== undefined && components.livery)
+      components.livery = tintLivery(
+        components.livery as import('@bendyline/molen-schema').LiveryData,
+        options.color,
+      );
     components.transform = { pos: [...position], rot: vehicleRotation(yaw, 0, 0) };
     if (components.boat) components.boatState = initialBoatState(yaw);
     else components.vehicleState = initialVehicleState(yaw);
@@ -508,6 +520,7 @@ export class EarthVehicles {
       ...(options.id !== undefined ? { id: options.id } : {}),
       ...(options.retain !== undefined ? { retain: options.retain } : {}),
       ...(options.color !== undefined ? { color: options.color } : {}),
+      ...(options.livery !== undefined ? { livery: options.livery } : {}),
     };
     const components = this.types.components(kind);
     const vehicle = (components.vehicle ?? components.boat) as unknown as
@@ -769,12 +782,26 @@ export class EarthVehicles {
     };
   }
   /** Repaint a car's `paintMaterial` (its `vehicle.color`): the loaded model now, later loads too. */
+  setLivery(id: string, selected: string): void {
+    const data = selectLivery(this.world.get(id, Livery), selected);
+    this.world.set(id, Livery, data);
+    this.active.get(id)?.setLivery(data);
+  }
+
+  /** Repaint a car's `paintMaterial` (its `vehicle.color`): the loaded model now, later loads too. */
   setColor(id: string, color: string): void {
     const v = this.data(id);
     if (!v) return;
     if (this.isBoat(id)) this.world.set(id, Boat, { ...v, color } as BoatData);
     else this.world.set(id, Vehicle, { ...v, color } as VehicleData);
     const visual = this.active.get(id);
+    const livery = this.world.get(id, Livery);
+    if (livery) {
+      const tinted = tintLivery(livery, color);
+      this.world.set(id, Livery, tinted);
+      visual?.setLivery(tinted);
+      return;
+    }
     if (visual === undefined) return;
     const tint = new THREE.Color(color);
     visual.object.traverse((object) => {
@@ -875,7 +902,11 @@ export class EarthVehicles {
     this.loading.set(id, controller);
     try {
       const model = await this.loadModel(vehicle.kind, controller.signal);
-      const visual = createVehicleVisual(model, vehicle);
+      const visual = createVehicleVisual(
+        model,
+        this.data(id) ?? vehicle,
+        this.world.get(id, Livery),
+      );
       if (
         this.disposed ||
         controller.signal.aborted ||

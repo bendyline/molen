@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Molen · Cockpit gallery</title>
+<style>
+:root{color-scheme:dark;--bg:#101719;--card:#192326;--muted:#a0b2b7;--line:#304045;--accent:#bde3bd}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#edf3f1;font:15px/1.5 system-ui,sans-serif}button,input,select{font:inherit}button,select{cursor:pointer}button,input,select{color:inherit;background:#202e32;border:1px solid var(--line);border-radius:8px;padding:9px 13px}button:hover{border-color:var(--accent)}:focus-visible{outline:3px solid var(--accent);outline-offset:3px}button:disabled{opacity:.4;cursor:default}main{max-width:1560px;margin:auto;padding:44px 32px 110px}.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}h1{font-size:clamp(32px,4vw,54px);font-weight:580;letter-spacing:-.045em;margin:9px 0}header p{max-width:730px;color:var(--muted);font-size:17px;margin:0 0 25px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;padding:18px 0 24px;align-items:center}.toolbar input[type=search]{flex:1;min-width:190px;max-width:420px}.toolbar label{display:flex;gap:8px;align-items:center;color:var(--muted)}.count{margin-left:auto;color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}.photo{display:block;border:0;border-radius:0;padding:0;width:100%;position:relative;overflow:hidden;background:#0c1113}.photo img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .2s}.photo:hover img{transform:scale(1.025)}.badge{position:absolute;top:12px;left:12px;border:1px solid #78927c;background:#203d2ee8;border-radius:5px;padding:3px 8px;font-size:11px;color:#d5edd5;letter-spacing:.03em}.card-body{padding:17px 18px 18px}.category{text-transform:uppercase;font-size:11px;letter-spacing:.12em;color:var(--muted)}h2{font-size:19px;letter-spacing:-.02em;margin:4px 0 8px}.note{font-size:13px;color:var(--muted);margin:0;min-height:59px}.card-actions{display:flex;justify-content:space-between;align-items:center;margin-top:15px;gap:10px}.card-actions button{font-size:12px;padding:6px 10px}.card-actions label{font-size:12px;color:var(--muted);display:flex;gap:7px;align-items:center}input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px}.empty{padding:40px;color:var(--muted);grid-column:1/-1}.comparebar{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#243337f5;box-shadow:0 10px 40px #0008;border:1px solid #577169;border-radius:12px;padding:12px 16px;display:flex;gap:18px;align-items:center;z-index:3}.comparebar[hidden]{display:none}.comparebar span{font-size:13px}.primary{background:var(--accent);color:#183226;border:0}dialog{width:min(1480px,96vw);max-height:94vh;padding:0;background:#141f22;color:inherit;border:1px solid #526668;border-radius:12px}dialog::backdrop{background:#050a0ce6}.modal-head{padding:17px 22px;display:flex;gap:18px;align-items:center;border-bottom:1px solid var(--line)}.modal-head h2{margin:0;flex:1}.close{font-size:20px;padding:2px 13px}.viewer{padding:18px 22px 24px}.view-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}.view-tabs button[aria-pressed=true]{background:var(--accent);color:#183226}.full-image{display:block;width:100%;max-height:65vh;object-fit:contain;background:#0b1113;border-radius:5px}.viewer p{color:var(--muted);font-size:13px}.comparison{display:grid;grid-template-columns:1fr 1fr;gap:18px}.comparison img{width:100%;border-radius:6px}.comparison h3{margin:6px 0}.comparison select{width:100%;margin:8px 0}.fineprint{color:var(--muted);font-size:12px;margin-top:28px}a{color:var(--accent)}@media(min-width:1400px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:950px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){main{padding:25px 16px 110px}.grid{grid-template-columns:1fr}.count{margin-left:0;width:100%}.comparison{grid-template-columns:1fr}.comparebar{width:calc(100% - 24px);gap:8px;justify-content:space-between}.comparebar span{max-width:130px}.modal-head,.viewer{padding:14px}.note{min-height:0}}
+</style>
+</head>
+<body><main>
+<header><div class="eyebrow">Molen / Aircraft study</div><h1>Inside the cockpit.</h1><p>Explore the fleet’s instrument panels, controls and cabin materials. Start with the three refined cockpits, then compare them with the rest of the collection.</p></header>
+<div class="toolbar"><input id="search" type="search" aria-label="Search aircraft" placeholder="Search aircraft…"><select id="category" aria-label="Aircraft category"><option value="">All aircraft</option></select><label><input id="refined" type="checkbox"> Refined cockpits</label><span class="count" id="count" aria-live="polite"></span></div>
+<div class="grid" id="grid"></div><p class="fineprint">Rendered from the current Molen models under the same lighting. The P-51D, OH-6A and Cessna 172S have the new cockpit finishes; other aircraft show their existing interiors.</p>
+</main>
+<div class="comparebar" id="comparebar" hidden><span id="selection"></span><button type="button" class="primary" id="compare" disabled>Compare two</button><button type="button" id="clear">Clear</button></div>
+<dialog id="dialog" aria-labelledby="dialog-title"><div class="modal-head"><h2 id="dialog-title">Cockpit details</h2><button type="button" class="close" id="close" aria-label="Close detail view">×</button></div><div class="viewer" id="viewer"></div></dialog>
+<script>
+const { entries } = { entries: [] } /* GALLERY_DATA */;
+const $ = (id) => document.getElementById(id);
+const selected = new Set();
+const categories = { helicopter:'Helicopters', fighter:'Fighters', airliner:'Airliners', ga:'General aviation', turboprop:'Turboprops', business:'Business jets', cargo:'Cargo aircraft', tiltrotor:'Tiltrotors', warbird:'Warbirds', heritage:'Historic aircraft', regional:'Regional aircraft', utility:'Utility aircraft', vtol:'VTOL aircraft' };
+const categoryName = (id) => categories[id] || id.replaceAll('-', ' ');
+function node(tag, className, text){ const el=document.createElement(tag); if(className)el.className=className;if(text)el.textContent=text;return el; }
+for(const id of [...new Set(entries.map(e=>e.category))].sort()){$('category').add(new Option(categoryName(id),id));}
+function selectionChanged(){
+  $('comparebar').hidden=selected.size===0;
+  $('selection').textContent=`${selected.size} of 2 cockpits selected`;
+  $('compare').disabled=selected.size!==2;
+  for(const input of document.querySelectorAll('[data-compare]')){input.checked=selected.has(input.dataset.compare);input.disabled=selected.size===2&&!input.checked;}
+}
+function render(){
+  const query=$('search').value.trim().toLowerCase();
+  const visible=entries.filter(e=>(!query||`${e.title} ${e.note}`.toLowerCase().includes(query))&&(!$('category').value||e.category===$('category').value)&&(!$('refined').checked||e.featured));
+  $('count').textContent=`${visible.length} / ${entries.length} aircraft`;
+  $('grid').replaceChildren();
+  for(const e of visible){
+    const card=node('article','card');const photo=node('button','photo');photo.setAttribute('aria-label',`Explore ${e.title}`);
+    const img=node('img');img.src=e.views[0].file;img.alt=`${e.title} cockpit`;img.loading='lazy';photo.append(img);
+    if(e.featured)photo.append(node('span','badge','REFINED COCKPIT'));photo.onclick=()=>show(e);card.append(photo);
+    const body=node('div','card-body');body.append(node('div','category',categoryName(e.category)),node('h2','',e.title),node('p','note',e.note));
+    const actions=node('div','card-actions'),detail=node('button','',e.views.length>1?'Explore details ↗':'Enlarge ↗');detail.onclick=()=>show(e);
+    const label=node('label'),check=node('input');check.type='checkbox';check.dataset.compare=e.slug;check.onchange=()=>{check.checked?selected.add(e.slug):selected.delete(e.slug);selectionChanged();};label.append(check,document.createTextNode('Compare'));actions.append(detail,label);body.append(actions);card.append(body);$('grid').append(card);
+  }
+  if(!visible.length)$('grid').append(node('p','empty','No aircraft match these filters.'));
+  selectionChanged();
+}
+function show(e){
+  $('dialog-title').textContent=e.title;$('viewer').replaceChildren();
+  const tabs=node('div','view-tabs'),img=node('img','full-image'),caption=node('p');
+  const activate=(v)=>{img.src=v.file;img.alt=`${e.title}: ${v.label}`;caption.textContent=`${v.label} · ${e.note}`;for(const b of tabs.children)b.setAttribute('aria-pressed',String(b.dataset.kind===v.kind));};
+  for(const v of e.views){const b=node('button','',v.label);b.dataset.kind=v.kind;b.onclick=()=>activate(v);tabs.append(b);}
+  $('viewer').append(tabs,img,caption);activate(e.views[0]);$('dialog').showModal();
+}
+$('compare').onclick=()=>{
+  $('dialog-title').textContent='Cockpit comparison';const wrap=node('div','comparison');
+  for(const slug of selected){const e=entries.find(e=>e.slug===slug),column=node('section'),select=node('select'),img=node('img');select.setAttribute('aria-label',`${e.title} view`);for(const v of e.views)select.add(new Option(v.label,v.kind));
+    const update=()=>{const v=e.views.find(v=>v.kind===select.value);img.src=v.file;img.alt=`${e.title}: ${v.label}`;};select.onchange=update;update();column.append(node('h3','',e.title),select,img,node('p','',e.note));wrap.append(column);}
+  $('viewer').replaceChildren(wrap);$('dialog').showModal();
+};
+$('close').onclick=()=>$('dialog').close();
+$('dialog').addEventListener('click',e=>{if(e.target===$('dialog')){const r=$('dialog').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('dialog').close();}});
+$('clear').onclick=()=>{selected.clear();selectionChanged();};
+for(const id of ['search','category','refined'])$(id).addEventListener(id==='search'?'input':'change',render);
+render();
+</script></body></html>

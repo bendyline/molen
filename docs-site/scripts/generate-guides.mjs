@@ -95,6 +95,7 @@ const GUIDE_ORDER = [
   'vehicles',
   'aircraft',
   'vehicle-interiors',
+  'liveries',
   'ambient-life',
   'dioramas',
   'materials',

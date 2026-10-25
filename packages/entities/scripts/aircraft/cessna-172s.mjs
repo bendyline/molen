@@ -3,6 +3,7 @@
  * The published three-view is schematic: see reference-review.json for residuals.
  */
 import { panelTools } from '../vehicle-interiors.mjs';
+import { finishCockpit } from './cockpit-surfaces.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -470,6 +471,7 @@ function cockpit(root, m) {
   const { bindings, derived, ink, black, red } = instruments;
   const face = mat('Skyhawk-panel', '#666861'),
     seats = mat('Skyhawk-seats', '#b5afa0'),
+    piping = mat('Skyhawk-upholstery-piping', '#898579', { metalness: 0, roughness: 0.9 }),
     belt = mat('Skyhawk-belts', '#454b49', { side: T.DoubleSide });
   const k = 0.29972 / 334,
     px = (u) => (700 - u) * k,
@@ -859,6 +861,13 @@ function cockpit(root, m) {
       beveledBox(d, [0.43, 0.105, 0.46], [x, 0.81, zz], seats);
       beveledBox(d, [0.43, 0.47, 0.105], [x, 1.06, zz - 0.2], seats);
       beveledBox(d, [0.22, 0.13, 0.09], [x, 1.36, zz - 0.22], seats, 0.014);
+      // Sewn cushion channels and perimeter welting; retain the measured seat envelope.
+      for (const sx of [-0.16, 0.16]) {
+        d.rod([x + sx, 0.865, zz - 0.16], [x + sx, 0.865, zz + 0.17], 0.002, piping);
+        d.rod([x + sx, 0.87, zz - 0.145], [x + sx, 1.25, zz - 0.145], 0.002, piping);
+      }
+      for (const yy of [0.94, 1.04, 1.14])
+        d.rod([x - 0.15, yy, zz - 0.146], [x + 0.15, yy, zz - 0.146], 0.0015, piping);
       for (const side of [-1, 1])
         d.rod(
           [x + side * 0.14, 0.64, zz - 0.15],
@@ -897,5 +906,10 @@ function cockpit(root, m) {
     }
   }
   d.finish();
+  finishCockpit(cabin, (mesh) => {
+    if (mesh.material === face) return 'panel';
+    if (mesh.material === seats || mesh.material === piping) return 'vinyl';
+    if (mesh.material === belt) return 'webbing';
+  });
   return { nodes: ['cockpit'], sources, derived, bindings };
 }

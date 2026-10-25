@@ -1,5 +1,5 @@
 /**
- * Deterministic P-51D Mustang master. No network, bitmap textures or private dependencies.
+ * Deterministic P-51D Mustang master with original procedural cockpit finishes.
  *
  * Frame: the nose faces +Z, +X is the pilot's left, Y is up and the origin is on the ground under
  * the wing. The airframe rests level on its wheels, as the airplane solver holds it on the ground,
@@ -30,6 +30,10 @@ import { fileURLToPath } from 'node:url';
 import * as T from 'three';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import {
+  embedCockpitTextures,
+  writeCockpitTextures,
+} from '../../../../../../packages/entities/scripts/aircraft/cockpit-surfaces.mjs';
 import { addRivetRows } from '../../../../../../packages/entities/scripts/vehicle-detail.mjs';
 import { addInterior } from './interior.mjs';
 
@@ -1758,8 +1762,8 @@ const pinned = JSON.parse(sourceText).files.models.find(
   (model) => model.path === 'models/source.glb',
 )?.sha256;
 if (!pinned) throw new Error(`${sourcePath}: models/source.glb has no sha256 pin`);
-const bytes = Buffer.from(
-  await new GLTFExporter().parseAsync(mustang(), { binary: true, onlyVisible: false }),
+const bytes = embedCockpitTextures(
+  Buffer.from(await new GLTFExporter().parseAsync(mustang(), { binary: true, onlyVisible: false })),
 );
 const path = resolve(root, 'source.glb');
 const current = await readFile(path).catch(() => undefined);
@@ -1784,6 +1788,8 @@ if (current && hash(current) !== pinned && !current.equals(bytes)) {
 }
 await mkdir(root, { recursive: true });
 if (!current?.equals(bytes)) await writeFile(path, bytes);
-if (pinned !== generatedHash)
-  await writeFile(sourcePath, sourceText.replace(pinned, generatedHash));
+const source = JSON.parse(sourceText);
+source.files.models.find((model) => model.path === 'models/source.glb').sha256 = generatedHash;
+source.files.textures = await writeCockpitTextures(resolve(root, '..'), bytes);
+await writeFile(sourcePath, `${JSON.stringify(source, null, 2)}\n`);
 console.log(`p51d: ${bytes.length} bytes, ${generatedHash}`);

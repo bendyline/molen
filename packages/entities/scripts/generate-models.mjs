@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdir, readdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { validate } from '@bendyline/molen-schema';
+import { liverySchema, validate } from '@bendyline/molen-schema';
 
 const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 // The entities content (a Molen project: types, assets, scenes, source bundles) lives outside the
@@ -11,6 +11,12 @@ const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const root = resolve(packageRoot, '../../content/entities');
 const sourceRoot = resolve(root, 'source');
 const check = process.argv.includes('--check');
+const liveries = JSON.parse(await readFile(resolve(sourceRoot, 'liveries.json'), 'utf8')).models;
+for (const [id, livery] of Object.entries(liveries)) {
+  const checked = liverySchema.safeParse(livery);
+  if (!checked.success)
+    throw new Error(`Invalid livery catalog for ${id}: ${checked.error.message}`);
+}
 const biome = resolve(packageRoot, 'node_modules/@biomejs/biome/bin/biome');
 
 function formatJson(value, path) {
@@ -119,6 +125,8 @@ function aggregateTypes(bundles, kind, doc) {
   const types = {};
   for (const bundle of bundles.filter((candidate) => candidate.manifest.kind === kind)) {
     const definition = structuredClone(bundle.definition.types[bundle.manifest.id]);
+    const livery = liveries[bundle.manifest.id];
+    if (livery) definition.components.livery = livery;
     if (definition.scripts !== undefined) {
       definition.scripts = definition.scripts.map((script) => {
         const owned = bundle.manifest.files.scripts.find((entry) => entry.id === script.id);
@@ -164,6 +172,7 @@ function projectDocument(bundles) {
       'us-vehicles': 'scenes/us-vehicles.scene.json',
       'variety-vehicles': 'scenes/variety-vehicles.scene.json',
       rvs: 'scenes/rvs.scene.json',
+      liveries: 'scenes/liveries.scene.json',
       'regional-vehicles': 'scenes/regional-vehicles.scene.json',
       'mini-acura': 'scenes/mini-acura.scene.json',
       cycles: 'scenes/cycles.scene.json',

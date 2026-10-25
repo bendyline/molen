@@ -1,5 +1,7 @@
 /** P-51D station: black asymmetric panel, K-14 sight, bucket seat and sidewall controls. */
 import * as T from 'three';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { finishCockpit } from '../../../../../../packages/entities/scripts/aircraft/cockpit-surfaces.mjs';
 import { instrumentParts } from './instruments.mjs';
 
 export function addInterior(parent, layout, api) {
@@ -171,8 +173,20 @@ export function addInterior(parent, layout, api) {
     0.028,
   );
   box(cabin, 'seat-pan', [0.46, 0.05, 0.49], [0, 1.49, -0.15], green);
-  mesh(cabin, 'seat-cushion', new T.BoxGeometry(0.39, 0.1, 0.41), api.brown, [0, 1.56, -0.13]);
-  box(cabin, 'seat-back-pad', [0.36, 0.41, 0.06], [0, 1.85, -0.353], api.brown);
+  mesh(
+    cabin,
+    'seat-cushion',
+    new RoundedBoxGeometry(0.39, 0.1, 0.41, 2, 0.018),
+    api.brown,
+    [0, 1.56, -0.13],
+  );
+  mesh(
+    cabin,
+    'seat-back-pad',
+    new RoundedBoxGeometry(0.36, 0.41, 0.06, 2, 0.012),
+    api.brown,
+    [0, 1.85, -0.353],
+  );
   for (const x of [-0.14, 0.14])
     rod(cabin, `cushion-seam-${x}`, [x, 1.67, -0.319], [x, 2.02, -0.319], 0.0018, dark);
   for (const x of [-0.18, 0.18])
@@ -227,4 +241,21 @@ export function addInterior(parent, layout, api) {
         dark,
       );
   }
+  for (const name of ['instrument-panel', 'lower-switch-panel']) {
+    const panel = cabin.getObjectByName(name);
+    panel.material = panel.material.clone();
+    panel.material.color.set('#343a3b');
+  }
+  finishCockpit(cabin, (mesh) => {
+    if (['instrument-panel', 'lower-switch-panel'].includes(mesh.name)) return 'panel';
+    if (/^(shoulder-harness-|lap-belt-)/.test(mesh.name) && mesh.material === api.white)
+      return 'webbing';
+    if (['seat-cushion', 'seat-back-pad'].includes(mesh.name)) return 'canvas';
+    if (['padded-instrument-coaming', 'headrest', 'stick-boot'].includes(mesh.name)) return 'vinyl';
+    if (
+      ['floor', 'seat-pan', 'seat-bucket-back'].includes(mesh.name) ||
+      mesh.name.startsWith('side-console-')
+    )
+      return 'paint';
+  });
 }

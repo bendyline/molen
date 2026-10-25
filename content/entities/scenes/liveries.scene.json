@@ -1,0 +1,107 @@
+{
+  "format": "molen/scene@3",
+  "name": "Vehicle liveries",
+  "seed": "livery-showroom",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "f16",
+      "type": "molen.entities.aircraft.f_16b",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            -10
+          ]
+        },
+        "livery": {
+          "selected": "aggressor-blue"
+        }
+      }
+    },
+    {
+      "id": "rv",
+      "type": "molen.entities.vehicle.winnebago_view_2022",
+      "components": {
+        "transform": {
+          "pos": [
+            9,
+            0,
+            7
+          ]
+        },
+        "livery": {
+          "selected": "mineral-ii"
+        }
+      }
+    },
+    {
+      "id": "car",
+      "type": "molen.entities.vehicle.ford_mustang_2024",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            9
+          ]
+        },
+        "livery": {
+          "selected": "race-red"
+        }
+      }
+    },
+    {
+      "id": "gallery-ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.1,
+            0
+          ],
+          "scale": [
+            38,
+            0.2,
+            28
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#66715d",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "gallery-environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dbe6e8",
+            "ground": "#5d6257",
+            "intensity": 1.15
+          },
+          "sun": {
+            "direction": [
+              7,
+              12,
+              6
+            ],
+            "color": "#fff1d1",
+            "intensity": 2.1,
+            "castShadow": true
+          },
+          "background": "#b7ced4",
+          "toneMapping": "agx",
+          "exposure": 1.1,
+          "shadows": "high"
+        }
+      }
+    }
+  ]
+}

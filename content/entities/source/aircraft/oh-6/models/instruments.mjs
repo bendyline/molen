@@ -1,6 +1,10 @@
 /** Small, portable mechanical instrument parts; aircraft layout stays in interior.json. */
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import {
+  domeDepth,
+  instrumentDome,
+} from '../../../../../../packages/entities/scripts/aircraft/rounded-instruments.mjs';
 
 const GLYPHS = {
   A: '010/101/111/101/101',
@@ -161,7 +165,12 @@ export function instrumentParts(api) {
         for (const sy of [-1, 1])
           screw(instrument, `${id}-screw-${sx}-${sy}`, sx * r, sy * r, -0.001, r * 0.055);
     }
-    mesh(instrument, `${id}-bezel`, new T.TorusGeometry(r, r * 0.065, 5, 24), bezel);
+    mesh(
+      instrument,
+      `${id}-bezel`,
+      new T.TorusGeometry(r, r * 0.065, type === 'horizon' ? 12 : 5, type === 'horizon' ? 64 : 24),
+      bezel,
+    );
     const face = mesh(
       instrument,
       `${id}-dial`,
@@ -197,25 +206,33 @@ export function instrumentParts(api) {
     text(instrument, `${id}-units`, units, 0, -r * 0.45, -0.008, r * 0.024);
     if (type === 'horizon') {
       const ball = group(instrument, 'attitude-ball', [0, 0, -0.011]);
+      const radius = r * 0.72,
+        depth = r * 0.18;
+      const curvedLine = (name, y, width, thickness, material) => {
+        const points = Array.from({ length: 17 }, (_, i) => {
+          const x = (i / 16 - 0.5) * width;
+          return new T.Vector3(x, y, domeDepth(x, y, radius, depth) - thickness);
+        });
+        mesh(
+          ball,
+          name,
+          new T.TubeGeometry(new T.CatmullRomCurve3(points), 16, thickness, 6, false),
+          material,
+        );
+      };
       for (const [name, offset, material] of [
         ['sky', 0, blue],
         ['earth', Math.PI, brown],
       ]) {
-        const half = mesh(
-          ball,
-          `horizon-${name}`,
-          new T.CircleGeometry(r * 0.72, 36, offset, Math.PI),
-          material,
-        );
-        half.rotation.y = Math.PI;
+        mesh(ball, `horizon-${name}`, instrumentDome(radius, depth, offset, Math.PI), material);
       }
-      box(ball, 'horizon-line', [r * 1.4, r * 0.018, 0.001], [0, 0, -0.002], white);
+      curvedLine('horizon-line', 0, r * 1.4, r * 0.009, white);
       for (const pitch of [-2, -1, 1, 2]) {
-        box(
-          ball,
+        curvedLine(
           `pitch-mark-${pitch}`,
-          [r * (Math.abs(pitch) === 1 ? 0.55 : 0.38), r * 0.015, 0.001],
-          [0, pitch * r * 0.17, -0.004],
+          pitch * r * 0.17,
+          r * (Math.abs(pitch) === 1 ? 0.55 : 0.38),
+          r * 0.0075,
           paper,
         );
       }
@@ -224,14 +241,14 @@ export function instrumentParts(api) {
           instrument,
           `horizon-wing-${side}`,
           [r * 0.45, r * 0.035, 0.002],
-          [side * r * 0.29, 0, -0.018],
+          [side * r * 0.29, 0, -0.016 - depth],
           yellow,
         );
       box(
         instrument,
         'horizon-aircraft',
         [r * 0.06, r * 0.12, 0.002],
-        [0, -r * 0.04, -0.019],
+        [0, -r * 0.04, -0.017 - depth],
         yellow,
       );
     } else if (type === 'turn') {
@@ -283,11 +300,11 @@ export function instrumentParts(api) {
     const cover = mesh(
       instrument,
       `${id}-cover`,
-      new T.CircleGeometry(r * 0.94, 48),
+      type === 'horizon' ? instrumentDome(r * 0.94, r * 0.025) : new T.CircleGeometry(r * 0.94, 48),
       lens,
-      [0, 0, -0.023],
+      [0, 0, type === 'horizon' ? -0.022 - r * 0.18 : -0.023],
     );
-    cover.rotation.y = Math.PI;
+    if (type !== 'horizon') cover.rotation.y = Math.PI;
     return instrument;
   }
   function toggle(parent, name, position, label = '') {

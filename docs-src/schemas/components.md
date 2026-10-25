@@ -63,6 +63,7 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `kinematicBody` | kernel/kinematics | Velocity-driven body for the kinematic collision layer. |
 | `lifetime` | kernel | Auto-despawn countdown in ticks. |
 | `light` | client | A light source at the entity transform (directional/point/spot). |
+| `livery` | client | Reusable model paint slots, bound surface markings and selectable liveries. Visual only. |
 | `localTransform` | kernel/gameplay | Parent-relative transform for entities carrying `parent`. |
 | `model.signals` | client | Bind same-entity simulation fields and named numeric expressions to GLB transforms and visibility. Supports calibration, cyclic needles and timed response. Visual only; no physics writes. |
 | `mountable` | kernel/vehicles | Mount points in local meters, ordered safe exit candidates, and interaction reach. Seat position is the rider camera anchor. |
@@ -2412,6 +2413,386 @@ Required: `type`
   },
   "required": [
     "type"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
+### `livery`
+
+Reusable model paint slots, bound surface markings and selectable liveries. Visual only.
+
+Required: `selected`, `slots`, `variants`
+
+```json
+{
+  "selected": "red",
+  "slots": {
+    "body": {
+      "materials": [
+        "body-paint"
+      ]
+    }
+  },
+  "variants": [
+    {
+      "id": "red",
+      "label": "Red",
+      "provenance": {
+        "kind": "original",
+        "note": "Original paint.",
+        "references": []
+      },
+      "paints": {
+        "body": {
+          "color": "#b8463d"
+        }
+      }
+    }
+  ]
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "selected": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "Selected variant id; patch only this field to change the livery."
+    },
+    "slots": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "materials": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          },
+          "node": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "materials"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "anchors": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "slot": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "position": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false,
+            "minItems": 3,
+            "maxItems": 3
+          },
+          "size": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 4
+              },
+              {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 4
+              },
+              {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 4
+              }
+            ],
+            "items": false,
+            "minItems": 3,
+            "maxItems": 3
+          },
+          "rotation": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false,
+            "minItems": 3,
+            "maxItems": 3
+          }
+        },
+        "required": [
+          "slot",
+          "position",
+          "size",
+          "rotation"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "variants": {
+      "minItems": 1,
+      "maxItems": 64,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "provenance": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "photo",
+                  "inspired",
+                  "original"
+                ]
+              },
+              "note": {
+                "type": "string",
+                "minLength": 1
+              },
+              "references": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "url"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "note",
+              "references"
+            ],
+            "additionalProperties": false
+          },
+          "paints": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "roughness": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "metalness": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "camouflage": {
+                  "type": "object",
+                  "properties": {
+                    "colors": {
+                      "minItems": 2,
+                      "maxItems": 4,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      }
+                    },
+                    "scale": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "maximum": 100
+                    },
+                    "seed": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 4294967295
+                    }
+                  },
+                  "required": [
+                    "colors",
+                    "scale",
+                    "seed"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "color"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "markings": {
+            "maxItems": 32,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "anchor": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                "graphic": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "maxLength": 256
+                    },
+                    "shapes": {
+                      "minItems": 1,
+                      "maxItems": 4096,
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          },
+                          "points": {
+                            "minItems": 3,
+                            "maxItems": 512,
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "prefixItems": [
+                                {
+                                  "type": "number",
+                                  "minimum": 0,
+                                  "maximum": 1
+                                },
+                                {
+                                  "type": "number",
+                                  "minimum": 0,
+                                  "maximum": 1
+                                }
+                              ],
+                              "items": false,
+                              "minItems": 2,
+                              "maxItems": 2
+                            }
+                          }
+                        },
+                        "required": [
+                          "color",
+                          "points"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "shapes"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "anchor",
+                "graphic"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "provenance",
+          "paints"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "selected",
+    "slots",
+    "variants"
   ],
   "additionalProperties": false
 }

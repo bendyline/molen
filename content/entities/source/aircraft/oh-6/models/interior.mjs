@@ -1,5 +1,7 @@
 /** OH-6A: narrow center pedestal, tubular cyclics, collectives and light tubular seats. */
 import * as T from 'three';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { finishCockpit } from '../../../../../../packages/entities/scripts/aircraft/cockpit-surfaces.mjs';
 import { instrumentParts } from './instruments.mjs';
 
 export function addInterior(parent, layout, api) {
@@ -92,8 +94,18 @@ export function addInterior(parent, layout, api) {
     }
     rod(seat, 'seat-upper-rail', [x - 0.19, 1.62, 0.08], [x + 0.19, 1.62, 0.08], 0.015, silver);
     box(seat, 'seat-pan', [0.43, 0.035, 0.46], [x, 0.99, 0.38], gray);
-    box(seat, 'seat-cushion', [0.39, 0.105, 0.4], [x, 1.055, 0.39], fabric);
-    const back = box(seat, 'seat-back', [0.38, 0.5, 0.07], [x, 1.37, 0.135], fabric);
+    mesh(seat, 'seat-cushion', new RoundedBoxGeometry(0.39, 0.105, 0.4, 2, 0.018), fabric, [
+      x,
+      1.055,
+      0.39,
+    ]);
+    const back = mesh(
+      seat,
+      'seat-back',
+      new RoundedBoxGeometry(0.38, 0.5, 0.07, 2, 0.014),
+      fabric,
+      [x, 1.37, 0.135],
+    );
     back.rotation.x = -0.12;
     for (const dx of [-0.095, 0.095]) {
       const strap = box(
@@ -166,4 +178,11 @@ export function addInterior(parent, layout, api) {
     );
     box(cabin, `door-map-pocket-${side}`, [0.035, 0.2, 0.26], [side * 0.73, 0.9, 0.24], rubber);
   }
+  finishCockpit(cabin, (mesh) => {
+    if (['instrument-panel', 'pedestal-body', 'center-console'].includes(mesh.name)) return 'panel';
+    if (mesh.material === fabric) return 'canvas';
+    if (/harness|belt/.test(mesh.name) && mesh.material === white) return 'webbing';
+    if (mesh.material === gray) return 'paint';
+    if (/^(cyclic-boot|door-map-pocket-)/.test(mesh.name)) return 'vinyl';
+  });
 }

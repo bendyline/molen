@@ -1,6 +1,7 @@
-import type { VehicleData, VehiclePlacement } from '@bendyline/molen-schema';
+import type { LiveryData, VehicleData, VehiclePlacement } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { applyLivery } from './livery';
 import { createModelSignalVisual, type ModelSignalVisual } from './model-signals';
 import {
   createVehicleInteriorVisual,
@@ -14,6 +15,7 @@ export type { VehicleInteriorSignals, VehicleInteriorVisual } from './vehicle-in
 export { createVehicleInteriorVisual } from './vehicle-interior';
 
 export interface VehicleVisual {
+  setLivery(data: LiveryData | undefined): void;
   object: THREE.Object3D;
   interior?: VehicleInteriorVisual;
   /** The visual's exterior `animation` bindings, posed from the same signals as the interior. */
@@ -57,6 +59,7 @@ export function createVehicleVisual(
     color?: string;
     spec?: { length: number; cycle?: unknown };
   },
+  livery?: LiveryData,
 ): VehicleVisual {
   const interior =
     vehicle.visual.interior === undefined
@@ -119,7 +122,12 @@ export function createVehicleVisual(
   if (vehicle.visual.steeringWheelNode !== undefined)
     steeringWheel = nodes.get(vehicle.visual.steeringWheelNode)?.[0];
 
+  let appearance = livery === undefined ? undefined : applyLivery(model, livery);
   return {
+    setLivery(data) {
+      appearance?.dispose();
+      appearance = data === undefined ? undefined : applyLivery(model, data);
+    },
     object: model,
     interior,
     animation,
@@ -149,6 +157,7 @@ export function createVehicleVisual(
       animation?.update(telemetry, timeSeconds);
     },
     dispose() {
+      appearance?.dispose();
       const geometries = new Set<THREE.BufferGeometry>();
       const materials = new Set<THREE.Material>();
       model.traverse((object) => {

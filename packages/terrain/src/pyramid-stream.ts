@@ -192,6 +192,10 @@ export type TerrainSurfaceColor = (
 ) => readonly [number, number, number] | undefined;
 
 export interface TerrainPyramidStreamStats extends TerrainStreamStats {
+  /** Future-view leaves requested for hidden preparation, within the resident budget. */
+  preloading: number;
+  /** Future-view leaves with terrain and all enabled layers prepared for display. */
+  preloaded: number;
   /** Semantic layer requests that exhausted their retry budget. */
   failedLayers: number;
   /** Semantic layer requests waiting for or performing another attempt. */
@@ -212,7 +216,11 @@ export interface TerrainPyramidStream {
    * every tile's world matrix); after moving it, call `object.updateMatrix()`.
    */
   readonly object: THREE.Group;
-  update(view: TerrainPyramidView): void;
+  /**
+   * Optional future views prepare a bounded set of leaves, including layers and GPU resources,
+   * without changing displayed coverage. Supply nearest-in-time views first; omit to stop.
+   */
+  update(view: TerrainPyramidView, preloadViews?: readonly TerrainPyramidView[]): void;
   /** Replan in place. Surface resolution affects newly loaded tiles, preserving resident draping. */
   setBudget(budget: Partial<TerrainPyramidBudget>): void;
   getBudget(): TerrainPyramidBudget;
@@ -966,6 +974,10 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private readonly wanted = new Map<string, WantedTile>();
   private readonly coarseWanted = new Set<string>();
   private readonly selected = new Map<string, TerrainPyramidTileAddress>();
+  private readonly preloading = new Set<string>();
+  private preloadViews: readonly TerrainPyramidView[] = [];
+  private preloadMemoryHold = false;
+  private readonly rejectedPreloads = new Map<string, number>();
   private displayed = new Set<string>();
   /** Surface cut being prepared behind the currently displayed, complete tiles. */
   private replacementTiles = new Set<string>();
@@ -1061,9 +1073,15 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     if (options.initialView !== undefined) this.update(options.initialView);
   }
 
-  update(view: TerrainPyramidView): void {
+  update(view: TerrainPyramidView, preloadViews: readonly TerrainPyramidView[] = []): void {
     if (this.disposed) return;
     requireView(view);
+    for (const future of preloadViews) requireView(future);
+    this.preloadViews = preloadViews.map((future) => ({
+      ...future,
+      position: [...future.position],
+      ...(future.direction === undefined ? {} : { direction: [...future.direction] }),
+    }));
     this.view = {
       ...view,
       position: [...view.position],
@@ -1077,6 +1095,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     this.selected.clear();
     this.wanted.clear();
     this.coarseWanted.clear();
+    this.preloading.clear();
     const loadWanted = new Set<string>();
     const addWanted = (address: TerrainPyramidTileAddress): void => {
       const key = terrainPyramidTileKey(address);
@@ -1112,8 +1131,72 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       }
       for (let level = this.descriptor.minLevel; level <= leaf.level; level++) {
         const ancestor = terrainPyramidAncestor(leaf, level);
-        addWanted(ancestor);
+        // Finer resident ground already covers older ancestors. Keep those parents as an
+        // ordinary warm cache, not protected demand: otherwise a long flight fills the
+        // resident budget with redundant levels and evicts the prepared route first.
+        // Displayed parents remain protected independently until their layers can hand off.
+        if (level >= coveredLevel) addWanted(ancestor);
         if (level > coveredLevel) loadWanted.add(terrainPyramidTileKey(ancestor));
+      }
+    }
+    // Prepare future leaves directly: speculative ancestors consume slots and memory without
+    // improving current coverage. Keep the real selection/error budget for each future view;
+    // reducing its selection budget would predict coarser tiles than travel actually needs.
+    const byteCap = this.budget.maxResidentBytes;
+    // A full hidden cache is reclaimable. Only displayed pressure should suspend the route;
+    // otherwise a long flight would permanently stop preloading once its cache first fills.
+    if (byteCap === undefined || this.displayedBytes < byteCap * 0.8)
+      this.preloadMemoryHold = false;
+    else if (this.displayedBytes >= byteCap) this.preloadMemoryHold = true;
+    const preloadLimit = this.preloadMemoryHold
+      ? 0
+      : Math.max(
+          0,
+          Math.min(
+            Math.floor(this.budget.maxSelectedTiles / 4),
+            this.budget.maxResidentTiles - this.wanted.size,
+          ),
+        );
+    for (const future of this.preloadViews) {
+      if (this.preloading.size >= preloadLimit) break;
+      const distance = (address: TerrainPyramidTileAddress): number =>
+        distanceToBounds(future.position, tileBounds(this.descriptor, address), this.descriptor.height);
+      const nearest = selectTerrainPyramidTiles(this.descriptor, future, this.budget).tiles.sort(
+        (a, b) => distance(a) - distance(b) || b.level - a.level || a.z - b.z || a.x - b.x,
+      )[0];
+      if (nearest === undefined) continue;
+      // Prepare the approach's complete refinement family. A lone ready leaf stays hidden
+      // behind its detailed parent until siblings settle; distant leaves from an entire
+      // future frustum spend that lead time without releasing the ground on the flight path.
+      const leaves = nearest.level === 0
+        ? [nearest]
+        : childAddresses(terrainPyramidAncestor(nearest, nearest.level - 1));
+      leaves.sort(
+        (a, b) =>
+          distance(a) - distance(b) ||
+          b.level - a.level ||
+          a.z - b.z ||
+          a.x - b.x,
+      );
+      for (const leaf of leaves) {
+        if (this.preloading.size >= preloadLimit) break;
+        if (this.descriptor.coverage !== undefined &&
+          !boxesIntersect(tileBounds(this.descriptor, leaf), this.descriptor.coverage)) continue;
+        const key = terrainPyramidTileKey(leaf);
+        if (this.wanted.has(key)) continue;
+        if ((this.rejectedPreloads.get(key) ?? 0) > this.usage) continue;
+        this.rejectedPreloads.delete(key);
+        this.preloading.add(key);
+        addWanted(leaf);
+        loadWanted.add(key);
+      }
+    }
+    // A route change must not leave all height slots occupied by obsolete requests. Delete
+    // before restarting; the old request's identity-checked settlement cannot delete a retry.
+    for (const [key, request] of this.pending) {
+      if (!this.wanted.has(key) && !this.visiblyRetains(key)) {
+        request.controller.abort();
+        this.pending.delete(key);
       }
     }
     for (const [key, tile] of this.resident) {
@@ -1131,9 +1214,13 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       })
       .sort(
         (a, b) =>
-          a.address.level - b.address.level ||
+          Number(this.preloading.has(terrainPyramidTileKey(a.address))) -
+            Number(this.preloading.has(terrainPyramidTileKey(b.address))) ||
+          Number(this.coarseWanted.has(terrainPyramidTileKey(b.address))) -
+            Number(this.coarseWanted.has(terrainPyramidTileKey(a.address))) ||
           Number(b.inView) - Number(a.inView) ||
           a.distance - b.distance ||
+          a.address.level - b.address.level ||
           a.address.z - b.address.z ||
           a.address.x - b.address.x,
       );
@@ -1156,7 +1243,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     )
       return;
     this.budget = next;
-    if (this.view !== undefined) this.update(this.view);
+    this.rejectedPreloads.clear();
+    if (this.view !== undefined) this.update(this.view, this.preloadViews);
     else {
       this.selection.effectiveScreenSpaceError = next.maxScreenSpaceError;
       this.selection.effectiveViewDistance = next.viewDistance;
@@ -1362,7 +1450,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     if (this.disposed || this.view === undefined) return;
     this.retries.clearAll();
     this.layerRetries.clearAll();
-    this.update(this.view);
+    this.update(this.view, this.preloadViews);
   }
 
   stats(): TerrainPyramidStreamStats {
@@ -1382,6 +1470,11 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       if (!this.resident.has(terrainPyramidTileKey(address))) fallbackLeaves++;
     }
     return {
+      preloading: this.preloading.size,
+      preloaded: [...this.preloading].filter((key) => {
+        const tile = this.resident.get(key);
+        return tile !== undefined && this.layersReady(tile);
+      }).length,
       failedLayers: layerFailures.failed,
       retryingLayers: layerFailures.retrying,
       desired: this.selected.size,
@@ -1451,9 +1544,17 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         this.resident.size >= this.budget.maxResidentTiles
           ? this.queue.findIndex((tile) => this.replacesDisplayedDescendants(tile.address))
           : -1;
-      const wanted = (
-        transitionIndex >= 0 ? this.queue.splice(transitionIndex, 1)[0] : this.queue.shift()
-      ) as WantedTile;
+      // Keep bounded capacity making forward progress during continuous travel. Requiring the visible
+      // queue to empty first starves preparation precisely when flight outruns the pipeline.
+      const preloadIndex = this.reservePreloadSlot(
+        this.pending.values(),
+        this.budget.maxConcurrentLoads,
+      )
+        ? this.queue.findIndex((tile) => this.preloading.has(terrainPyramidTileKey(tile.address)))
+        : -1;
+      const nextIndex =
+        transitionIndex >= 0 ? transitionIndex : preloadIndex >= 0 ? preloadIndex : 0;
+      const wanted = this.queue.splice(nextIndex, 1)[0] as WantedTile;
       const key = terrainPyramidTileKey(wanted.address);
       if (!this.wanted.has(key) || this.resident.has(key) || this.pending.has(key)) continue;
       const controller = new AbortController();
@@ -1510,7 +1611,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       this.resolveIdleIfNeeded();
       return;
     }
-    this.update(this.view);
+    this.update(this.view, this.preloadViews);
     this.resolveIdleIfNeeded();
   }
 
@@ -1703,10 +1804,12 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       // Intermediate families keep the handoff atomic while allowing nearby families to
       // finish independently. Missing/evicted intermediates do not block resident leaves.
       let replacementLevel = leaf.level;
+      const readyLeaf = this.resident.get(terrainPyramidTileKey(leaf));
       for (const previousKey of previousDisplayed) {
         const previous = this.resident.get(previousKey);
         if (
           previous &&
+          !(readyLeaf && this.layersReady(readyLeaf)) &&
           previous.address.level < leaf.level &&
           pyramidAddressesOverlap(previous.address, leaf) &&
           [...this.displayedLayers.values()].some((keys) => keys.has(previousKey)) &&
@@ -1837,6 +1940,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private wantsLayers(address: TerrainPyramidTileAddress): boolean {
     const peripheral = (this.budget.peripheralDegrees ?? 0) > 0;
     return (
+      this.preloading.has(terrainPyramidTileKey(address)) ||
       !peripheral ||
       this.view === undefined ||
       intersectsHorizontalView(this.view, tileBounds(this.descriptor, address))
@@ -2002,15 +2106,19 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     );
   }
 
-  private startEnabledLayers(tile: ResidentTile): void {
-    for (const layer of this.layerById.values()) {
-      if (
-        this.layerVisibility.get(layer.id) === true &&
-        this.layerEligible(layer, tile.address.level)
-      ) {
-        this.startLayerLoad(tile, layer);
-      }
+  private reservePreloadSlot(
+    pending: Iterable<{ address: TerrainPyramidTileAddress }>,
+    limit: number,
+  ): boolean {
+    if (limit < 3 || this.preloading.size === 0) return false;
+    let count = 0;
+    let preparing = 0;
+    for (const job of pending) {
+      if (this.preloading.has(terrainPyramidTileKey(job.address))) preparing++;
+      count++;
     }
+    const reserved = Math.floor(limit / 2);
+    return preparing < reserved && count >= limit - reserved;
   }
 
   private startLayerLoad(tile: ResidentTile, layer: TerrainPyramidTileLayer): void {
@@ -2134,30 +2242,59 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private startQueuedLayerLoads(): void {
     if (this.pendingLayers.size >= this.budget.maxConcurrentLayerLoads) return;
     const view = this.view;
+    const detailedParents = new Set<string>();
+    for (const [id, keys] of this.displayedLayers)
+      for (const key of keys) if (this.resident.get(key)?.layers.has(id)) detailedParents.add(key);
     // Selected leaves already in the resident cache can prepare their detail while another
     // child's terrain is still loading. Publication remains coverage-safe in updateLayerVisibility.
     // The selection's camera guard band also warms detail just outside the current view.
     const candidates = [
-      ...new Set([...this.displayed, ...this.replacementTiles, ...this.selected.keys()]),
+      ...new Set([
+        ...this.displayed,
+        ...this.replacementTiles,
+        ...this.selected.keys(),
+        ...this.preloading,
+      ]),
     ]
       .map((key) => this.resident.get(key))
       .filter((tile): tile is ResidentTile => tile !== undefined && this.wantsLayers(tile.address))
       .map((tile) => {
         const bounds = tileBounds(this.descriptor, tile.address);
+        const distance =
+          view === undefined ? 0 : distanceToBounds(view.position, bounds, this.descriptor.height);
+        // A detailed parent stays visible until its replacement family is ready. Give the
+        // whole family its parent's distance, or a ready tile beneath the aircraft can stay
+        // hidden while unrelated, individually nearer leaves consume every layer slot.
+        let familyDistance = distance;
+        let inView = view === undefined || intersectsHorizontalView(view, bounds, 0);
+        for (
+          let level = tile.address.level - 1;
+          view && level >= this.descriptor.minLevel;
+          level--
+        ) {
+          const parent = terrainPyramidAncestor(tile.address, level);
+          const key = terrainPyramidTileKey(parent);
+          if (!detailedParents.has(key)) continue;
+          const parentBounds = tileBounds(this.descriptor, parent);
+          familyDistance = distanceToBounds(view.position, parentBounds, this.descriptor.height);
+          inView = intersectsHorizontalView(view, parentBounds, 0);
+          break;
+        }
         return {
           tile,
-          inView: view === undefined || intersectsHorizontalView(view, bounds, 0),
+          preload: this.preloading.has(terrainPyramidTileKey(tile.address)),
+          inView,
           selected: this.selected.has(terrainPyramidTileKey(tile.address)),
           replacement: this.replacementTiles.has(terrainPyramidTileKey(tile.address)),
-          distance:
-            view === undefined
-              ? 0
-              : distanceToBounds(view.position, bounds, this.descriptor.height),
+          familyDistance,
+          distance,
         };
       })
       .sort(
         (a, b) =>
+          Number(a.preload) - Number(b.preload) ||
           Number(b.inView) - Number(a.inView) ||
+          a.familyDistance - b.familyDistance ||
           Number(b.replacement) - Number(a.replacement) ||
           Number(b.selected) - Number(a.selected) ||
           a.distance - b.distance ||
@@ -2165,9 +2302,30 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           a.tile.address.z - b.tile.address.z ||
           a.tile.address.x - b.tile.address.x,
       );
-    for (const { tile } of candidates) {
-      this.startEnabledLayers(tile);
-      if (this.pendingLayers.size >= this.budget.maxConcurrentLayerLoads) return;
+    const jobs = candidates.flatMap(({ tile, preload }) =>
+      [...this.layerById.values()]
+        .filter((layer) => {
+          const key = `${terrainPyramidTileKey(tile.address)}:${layer.id}`;
+          return (
+            this.layerVisibility.get(layer.id) === true &&
+            this.layerEligible(layer, tile.address.level) &&
+            !tile.layers.has(layer.id) &&
+            !tile.emptyLayers.has(layer.id) &&
+            !this.pendingLayers.has(key) &&
+            !this.layerRetries.isBlocked(key)
+          );
+        })
+        .map((layer) => ({ tile, layer, preload })),
+    );
+    while (jobs.length > 0 && this.pendingLayers.size < this.budget.maxConcurrentLayerLoads) {
+      const preloadIndex = this.reservePreloadSlot(
+        this.pendingLayers.values(),
+        this.budget.maxConcurrentLayerLoads,
+      )
+        ? jobs.findIndex((job) => job.preload)
+        : -1;
+      const job = jobs.splice(preloadIndex >= 0 ? preloadIndex : 0, 1)[0];
+      if (job) this.startLayerLoad(job.tile, job.layer);
     }
   }
 
@@ -2187,6 +2345,11 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   }
 
   private evictUnused(): void {
+    if (
+      this.budget.maxResidentBytes !== undefined &&
+      this.displayedBytes >= this.budget.maxResidentBytes
+    )
+      this.preloadMemoryHold = true;
     const availableLoadSlots = Math.max(
       0,
       Math.min(this.queue.length, this.budget.maxConcurrentLoads - this.pending.size),
@@ -2204,6 +2367,25 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       );
     for (const [key] of stale) {
       if (underBudget()) break;
+      this.evict(key);
+    }
+
+    // Speculation is reclaimable before any current-view parent. Drop its queue entry too,
+    // otherwise a full cache would continually rebuild and evict the same speculative leaf.
+    for (const key of [...this.preloading].reverse()) {
+      if (underBudget()) break;
+      if (this.visiblyRetains(key)) continue;
+      this.preloading.delete(key);
+      // An unusually large future tile may not fit even after reclaiming stale cache. Do not
+      // rebuild it every camera update; visible demand bypasses this short speculative backoff.
+      this.rejectedPreloads.delete(key);
+      this.rejectedPreloads.set(key, this.usage + 100);
+      while (this.rejectedPreloads.size > this.budget.maxSelectedTiles)
+        this.rejectedPreloads.delete(this.rejectedPreloads.keys().next().value as string);
+      this.wanted.delete(key);
+      this.queue = this.queue.filter((tile) => terrainPyramidTileKey(tile.address) !== key);
+      this.pending.get(key)?.controller.abort();
+      this.pending.delete(key);
       this.evict(key);
     }
 

@@ -23,6 +23,7 @@ import {
   createEarthFog,
   createEarthRoadSigns,
   createEarthSky,
+  createEarthTilePreloader,
   createEarthWorldgen,
   createRegionalGroundColor,
   EARTH_SHADOW_CASTER_HEIGHT,
@@ -65,6 +66,7 @@ import {
   type TerrainPyramidHeightSource,
   type TerrainPyramidStreamStats,
   type TerrainPyramidTileLayer,
+  type TerrainPyramidView,
   type TerrainQualityPreset,
   type TerrainStreamStats,
   type TerrainTileArchive,
@@ -1698,6 +1700,7 @@ async function main(): Promise<void> {
   let lastTime = performance.now();
   let statusTime = 0;
   let streamTime = -Infinity;
+  const tilePreloader = createEarthTilePreloader();
   let streamedPosition: [number, number, number] = [...camera.pos];
   let streamedDirection: [number, number, number] = [...initialDirection];
   const immediateStreamMove = Math.max(8, finestTileSize / 8);
@@ -1960,13 +1963,14 @@ async function main(): Promise<void> {
       streamTime = now;
       if (fixedEarth !== undefined) fixedEarth.stream.update(camera.pos);
       else {
-        pyramidEarth?.stream.update({
+        const streamView: TerrainPyramidView = {
           position: camera.pos,
           verticalFov: THREE.MathUtils.degToRad(60),
           viewportHeight: canvas.height,
           direction: viewDirection,
           aspect: window.innerWidth / window.innerHeight,
-        });
+        };
+        pyramidEarth?.stream.update(streamView, tilePreloader.views(now, streamView, true));
       }
       streamedPosition = [...camera.pos];
       streamedDirection = [...viewDirection];
@@ -2182,6 +2186,8 @@ async function main(): Promise<void> {
     if (now - statusTime > 250) {
       statusTime = now;
       const stats: TerrainStreamStats | TerrainPyramidStreamStats = stream.stats();
+      status.dataset.preloading = String(isPyramidStats(stats) ? stats.preloading : 0);
+      status.dataset.preloaded = String(isPyramidStats(stats) ? stats.preloaded : 0);
       const rendered = viewer.renderer.stats();
       const surfaceStats = surfaceRenderer.stats();
       streamingBusy =

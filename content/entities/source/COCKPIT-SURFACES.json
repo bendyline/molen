@@ -1,0 +1,345 @@
+{
+  "date": "2026-10-24",
+  "scope": "Cockpit gallery of 53 aircraft; refined backboards on P-51D, OH-6A and Cessna 172S; curved mechanical horizons on P-51D and OH-6A.",
+  "gallery": {
+    "generator": "packages/entities/scripts/cockpit-gallery.mjs",
+    "instructions": "packages/entities/scripts/COCKPIT-GALLERY.md",
+    "output": ".artifacts/cockpit-gallery/index.html",
+    "aircraft": 53,
+    "images": 61,
+    "lighting": {
+      "background": "#b2cde4",
+      "ambient": {
+        "sky": "#e0e8ed",
+        "ground": "#9a8f70",
+        "intensity": 2
+      },
+      "sun": {
+        "direction": [
+          7,
+          12,
+          6
+        ],
+        "color": "#fff1d8",
+        "intensity": 4.4,
+        "castShadow": true
+      },
+      "toneMapping": "aces",
+      "exposure": 1.05,
+      "shadows": "high"
+    }
+  },
+  "preview": "content/entities/cockpit-surfaces-preview.png",
+  "previewLayout": "Columns P-51D, OH-6A, Cessna 172S. Top row backboards; bottom row two artificial horizons and Cessna upholstery.",
+  "changes": [
+    "256x256 fine-grained enamel-panel base color, tangent normal and packed metallic-roughness maps on main backboards and selected console surfaces.",
+    "Existing 128x128 paint, vinyl, canvas and webbing finishes and cushion/stitching details retained.",
+    "Smooth shallow spherical horizon faces and covers, curved pitch markings and 64-segment rounded bezels; existing pitch/roll pivots and fixed aircraft symbols retained.",
+    "Standalone gallery with search, category/refinement filters, enlarged details and independent views in two-aircraft comparison."
+  ],
+  "method": {
+    "textureGenerator": "packages/entities/scripts/aircraft/cockpit-surfaces.mjs",
+    "geometryGenerator": "packages/entities/scripts/aircraft/rounded-instruments.mjs",
+    "provenance": "Original deterministic procedural material data. No reference-image pixels, baked lighting or AI image assets.",
+    "repeatsMetres": {
+      "panel": 0.12,
+      "paint": 0.12,
+      "vinyl": 0.1,
+      "canvas": 0.08,
+      "webbing": 0.06
+    },
+    "colorSpace": "Base color sRGB; normals and metallic-roughness linear; roughness G, metalness B."
+  },
+  "validation": {
+    "tests": "136 targeted tests passed: 135 in the combined run, plus the isolated AW139 test on rerun. AW139 exceeded its 5-second timeout during concurrent fleet rendering; isolated rerun passed in 3.94 seconds total with a 15-second timeout.",
+    "files": [
+      "cockpit-surfaces",
+      "aircraft-shell",
+      "aircraft-controls",
+      "aircraft-instruments",
+      "aircraft-expansion",
+      "vehicle-interiors"
+    ],
+    "assets": "All three CLI asset inspect --verify checks pass. Independent candidate rebuilds byte-match their masters.",
+    "catalog": "generate-models.mjs --check verified 198 logical entity source bundles.",
+    "visual": "Reviewed all 53 cockpit frames in contact sheets, adjusted two Bell helicopter cameras to clear seat backs, inspected refined panel/seat/horizon closeups and gallery comparison controls."
+  },
+  "commands": [
+    "node packages/entities/scripts/cockpit-gallery.mjs --serve",
+    "node packages/entities/scripts/cockpit-gallery.mjs --ids=p-51,oh-6,cessna-172s",
+    "node packages/entities/scripts/generate-models.mjs --check",
+    "node content/entities/source/aircraft/p-51/models/generate.mjs --out .artifacts/cockpit-repeat-p51.glb",
+    "node content/entities/source/aircraft/oh-6/models/generate.mjs --out .artifacts/cockpit-repeat-oh6.glb",
+    "node packages/entities/scripts/generate-aircraft.mjs --ids=cessna-172s --out .artifacts/cockpit-repeat-c172.glb"
+  ],
+  "limitations": [
+    "Only the three featured aircraft received new material work. Other gallery aircraft retain their current interior quality and reference-ledger limitations.",
+    "Mechanical horizons use shallow curved approximations; screen graphics and instrument markings remain diagrammatic. No new systems or calibration changes.",
+    "Bulk review imagery stays local in ignored .artifacts/. No screenshot publication or review-lock updates.",
+    "Asset-only targeted checks reused current package builds. Full engine CI and unrelated model rebuilds were not run."
+  ],
+  "models": [
+    {
+      "slug": "p-51",
+      "id": "molen.entities.aircraft.p51d",
+      "sourceSha256": "sha256:9215f4291a57e48bb6f62883b36260c8512d32cf79af2da5b46efe5d7dc52c22",
+      "runtimeSha256": "sha256:d74e075a6d30b7be686ba2882359b0a8e95a6f7e2848f37937ae0974fd5c7000",
+      "stats": {
+        "triangles": 52842,
+        "vertices": 49554,
+        "meshes": 304,
+        "primitives": 304,
+        "materials": 29,
+        "textures": 15,
+        "animations": 0,
+        "sizeBytes": 1745720
+      },
+      "textureCount": 15,
+      "estimatedTextureMiBIncludingMips": 2,
+      "deterministicRebuild": true,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              0,
+              2.28,
+              -0.25
+            ],
+            "lookAt": [
+              0,
+              1.8599999999999999,
+              0.7000000000000001
+            ],
+            "fov": 78
+          },
+          "path": ".artifacts/cockpit-gallery/images/p-51-cabin.png",
+          "sha256": "sha256:c520cec7a5d86288a71cb8beb26a4599830c66644dd08c79aad5d9c103f3bba8"
+        },
+        {
+          "kind": "panel",
+          "camera": {
+            "position": [
+              0,
+              2.05,
+              0.2
+            ],
+            "lookAt": [
+              0,
+              1.9,
+              0.8
+            ],
+            "fov": 70
+          },
+          "path": ".artifacts/cockpit-gallery/images/p-51-panel.png",
+          "sha256": "sha256:884de9a6ed34bbb9ea8c0d94389734c55b4b814b5ad3d07a89fa7a7cda291c7e"
+        },
+        {
+          "kind": "seat",
+          "camera": {
+            "position": [
+              0,
+              2.12,
+              0.57
+            ],
+            "lookAt": [
+              0,
+              1.77,
+              -0.25
+            ],
+            "fov": 65
+          },
+          "path": ".artifacts/cockpit-gallery/images/p-51-seat.png",
+          "sha256": "sha256:fff30009173080869665cb18fe88c96861cf68e38951d9d37ddeb5b4fab0fd06"
+        },
+        {
+          "kind": "horizon",
+          "camera": {
+            "position": [
+              0.08,
+              2.05,
+              0.537
+            ],
+            "lookAt": [
+              0.025,
+              2.025,
+              0.782
+            ],
+            "fov": 46
+          },
+          "path": ".artifacts/cockpit-gallery/images/p-51-horizon.png",
+          "sha256": "sha256:f5c4aaed5e3be3c6506d352e6c0cd0fee720534da2513f5b59bbec3a62bcd43d"
+        }
+      ]
+    },
+    {
+      "slug": "oh-6",
+      "id": "molen.entities.aircraft.oh6",
+      "sourceSha256": "sha256:d0be771f8d423998b9a79d134cd5fef22091e33b24768293f7dd411292a687bc",
+      "runtimeSha256": "sha256:8c7f18f63b516d9ac08489f146d2cf92d595d7a376bf92dd2b95a2cab3cc4dc6",
+      "stats": {
+        "triangles": 40262,
+        "vertices": 32377,
+        "meshes": 255,
+        "primitives": 255,
+        "materials": 24,
+        "textures": 15,
+        "animations": 0,
+        "sizeBytes": 1371680
+      },
+      "textureCount": 15,
+      "estimatedTextureMiBIncludingMips": 2,
+      "deterministicRebuild": true,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "position": [
+              -0.38,
+              1.7,
+              0.3
+            ],
+            "lookAt": [
+              -0.38,
+              1.28,
+              1.25
+            ],
+            "fov": 78
+          },
+          "path": ".artifacts/cockpit-gallery/images/oh-6-cabin.png",
+          "sha256": "sha256:29597fcd49b41728d7c0a919389a222bbaedcd7b1851ebbaa6e52efa4447f635"
+        },
+        {
+          "kind": "panel",
+          "camera": {
+            "position": [
+              0,
+              1.48,
+              0.65
+            ],
+            "lookAt": [
+              0,
+              1.32,
+              1.32
+            ],
+            "fov": 70
+          },
+          "path": ".artifacts/cockpit-gallery/images/oh-6-panel.png",
+          "sha256": "sha256:034eb4bbe361a984f3e26920ae7e6130fb75a7baa39c4a2ad22441c3c5f612d3"
+        },
+        {
+          "kind": "seat",
+          "camera": {
+            "position": [
+              0,
+              1.7,
+              1.08
+            ],
+            "lookAt": [
+              0,
+              1.08,
+              0.2
+            ],
+            "fov": 65
+          },
+          "path": ".artifacts/cockpit-gallery/images/oh-6-seat.png",
+          "sha256": "sha256:d6d77096daf210dec191fc0dc2374e886d2fad99d26d342e310402e31a2c404b"
+        },
+        {
+          "kind": "horizon",
+          "camera": {
+            "position": [
+              0.325,
+              1.5,
+              1.0670000000000002
+            ],
+            "lookAt": [
+              0.27,
+              1.475,
+              1.312
+            ],
+            "fov": 46
+          },
+          "path": ".artifacts/cockpit-gallery/images/oh-6-horizon.png",
+          "sha256": "sha256:da1d043639faca60f8327f990a7fe29b06ae2898ba0a006285faff5c71a62140"
+        }
+      ]
+    },
+    {
+      "slug": "cessna-172s",
+      "id": "molen.entities.aircraft.cessna_172s",
+      "sourceSha256": "sha256:b890dca6dfbb223742e5157ed40a44abb51dfc15dfb5cba6c0d38d87a164dba6",
+      "runtimeSha256": "sha256:76bd4b89bc0a5b116b58bf60c164fc893c7a2bc42d3093574da22798d01ec466",
+      "stats": {
+        "triangles": 59769,
+        "vertices": 120286,
+        "meshes": 102,
+        "primitives": 102,
+        "materials": 25,
+        "textures": 9,
+        "animations": 0,
+        "sizeBytes": 2764424
+      },
+      "textureCount": 9,
+      "estimatedTextureMiBIncludingMips": 1.5,
+      "deterministicRebuild": true,
+      "views": [
+        {
+          "kind": "cabin",
+          "camera": {
+            "mode": "fixed",
+            "position": [
+              0,
+              1.69,
+              -0.22
+            ],
+            "lookAt": [
+              0,
+              1.2,
+              1.1
+            ],
+            "fov": 77
+          },
+          "path": ".artifacts/cockpit-gallery/images/cessna-172s-cabin.png",
+          "sha256": "sha256:000c717e4bd86febe5b55eacac97b78a51bf85b080e464fa5aed678dc6c3beb5"
+        },
+        {
+          "kind": "panel",
+          "camera": {
+            "position": [
+              0,
+              1.47,
+              0.44
+            ],
+            "lookAt": [
+              0,
+              1.32,
+              1.1
+            ],
+            "fov": 70
+          },
+          "path": ".artifacts/cockpit-gallery/images/cessna-172s-panel.png",
+          "sha256": "sha256:a6e11bc024ad716756b6dce991a55a06b32d796bda3991a378b7f9f74bb51b78"
+        },
+        {
+          "kind": "seat",
+          "camera": {
+            "position": [
+              0,
+              1.57,
+              0.78
+            ],
+            "lookAt": [
+              0,
+              0.98,
+              -0.05
+            ],
+            "fov": 65
+          },
+          "path": ".artifacts/cockpit-gallery/images/cessna-172s-seat.png",
+          "sha256": "sha256:cb5d1178901f87598b94cb6ff85692ad5d2b32dc9ac5a00dc30e45765031efb2"
+        }
+      ]
+    }
+  ]
+}

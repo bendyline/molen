@@ -150,6 +150,7 @@ export {
   earthPrefetchTargets,
   extrapolateTrack,
 } from './client/prefetch';
+export { createEarthTilePreloader } from './client/preload';
 export { createRegionalGroundColor } from './client/regional-ground';
 export {
   createEarthRoadSigns,

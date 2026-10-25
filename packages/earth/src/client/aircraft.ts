@@ -48,6 +48,7 @@ import type {
 } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { OBB } from 'three/addons/math/OBB.js';
+import { Livery, selectLivery } from './liveries';
 
 /** The actor that boards vehicles; shared with {@link EarthVehicles}. */
 const PLAYER = 'world-player';
@@ -247,7 +248,7 @@ export class EarthAircraft {
   spawn(
     typeId: string,
     placement: EarthAircraftPlacement,
-    options: { id?: string; retain?: boolean } = {},
+    options: { id?: string; retain?: boolean; livery?: string } = {},
   ): string {
     const data = this.types.component<AircraftData>(typeId, 'aircraft');
     const id = options.id ?? `earth-aircraft-${++this.sequence}`;
@@ -255,6 +256,11 @@ export class EarthAircraft {
     if (options.retain === true) this.owned.add(id);
     const yaw = headingToYaw(placement.heading);
     const components = this.types.components(typeId);
+    if (options.livery !== undefined)
+      components.livery = selectLivery(
+        components.livery as import('@bendyline/molen-schema').LiveryData | undefined,
+        options.livery,
+      );
     components.transform = {
       pos: [...placement.position],
       rot: vehicleRotation(yaw, 0, 0),
@@ -274,7 +280,7 @@ export class EarthAircraft {
     void this.loadModel(typeId)
       .then((model) => {
         if (this.disposed || !this.world.exists(id)) return;
-        const visual = createAircraftVisual(model, data.spec);
+        const visual = createAircraftVisual(model, data.spec, this.world.get(id, Livery));
         this.visuals.set(id, visual);
         this.object.add(visual.object);
         this.render();
@@ -284,6 +290,13 @@ export class EarthAircraft {
         this.message = `Aircraft model could not load: ${String(error)}`;
       });
     return id;
+  }
+
+  /** Put the pilot in `id`'s seat, wherever the pilot is. False when it is occupied. */
+  setLivery(id: string, selected: string): void {
+    const data = selectLivery(this.world.get(id, Livery), selected);
+    this.world.set(id, Livery, data);
+    this.visuals.get(id)?.setLivery(data);
   }
 
   /** Put the pilot in `id`'s seat, wherever the pilot is. False when it is occupied. */

@@ -3,6 +3,7 @@ import { audioEnvironmentSchema, audioSourceSchema, audioZoneSchema } from './au
 import { boatInputSchema, boatSpecSchema, boatStateSchema, waterSettingsSchema } from './boats';
 import type { ValidationIssue } from './issues';
 import type { JsonObject, JsonValue } from './json';
+import { liverySchema } from './livery';
 import { type ModelSignalSpec, modelSignalSpecSchema, modelSignalsSchema } from './model-signals';
 import { unsafePatterns } from './regex-safety';
 import { skySchema } from './sky';
@@ -758,6 +759,27 @@ function registerRenderableComponent(): void {
   );
 }
 registerRenderableComponent();
+
+registerComponent('livery', liverySchema, {
+  description:
+    'Reusable model paint slots, bound surface markings and selectable liveries. Visual only.',
+  owner: 'client',
+  docsRef: 'guide/liveries.md',
+  examples: [
+    {
+      selected: 'red',
+      slots: { body: { materials: ['body-paint'] } },
+      variants: [
+        {
+          id: 'red',
+          label: 'Red',
+          provenance: { kind: 'original', note: 'Original paint.', references: [] },
+          paints: { body: { color: '#b8463d' } },
+        },
+      ],
+    },
+  ],
+});
 
 registerComponent('model.signals', modelSignalsSchema, {
   description:

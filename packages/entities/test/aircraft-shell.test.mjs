@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { Raycaster, Vector3 } from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { describe, expect, it } from 'vitest';
+import { GLTFLoader } from './helpers/gltf-loader.mjs';
 
 async function load(kind, version) {
   const sourceDirectory = kind === 'p51d' ? 'p-51' : 'oh-6';

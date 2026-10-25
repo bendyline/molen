@@ -1,8 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import { Vector3 } from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { expect, it } from 'vitest';
 import { createAircraftVisual } from '../../client/dist/aircraft.mjs';
+import { GLTFLoader } from './helpers/gltf-loader.mjs';
 
 const base = new URL('../../../content/entities/', import.meta.url);
 const json = async (path) => JSON.parse(await readFile(new URL(path, base)));

@@ -129,8 +129,9 @@ unless `materialCache=0`.
 Terrain and content bytes persist the same way through a `BlockCache` from
 `@bendyline/molen-pack/cache`, passed to `mountEarthView` as `byteCache` (see
 [the Earth view](earth-view.md)). It saves network and decompression time, not frame time: decoding
-and meshing still run for every tile the stream loads. Prefetching reads bytes only, so it never
-competes with tile construction on the main thread.
+and meshing still run for every tile the stream loads. Long-horizon byte prefetch reads bytes only.
+The Earth view also prepares nearby future tiles through the normal construction and GPU queues,
+so aircraft can arrive over already prepared terrain and layers even without persistent caching.
 
 World-generation workers also prepare building spatial cells and full/structural LOD indices.
 The renderer requests `renderCellsOnly` when using cell LODs so it does not retain a redundant
@@ -169,12 +170,15 @@ hysteresis band retains detail near boundaries. Pass `previousTiles` when using 
 selector; the stream supplies its previous selection automatically. Pitched views use a
 conservative field of view to retain ground beneath the camera.
 
-Terrain requests preserve parent-first coverage and prioritize the camera view before the
-12-degree turn margin at each level. Distance is measured to tile bounds rather than tile
-centers, so large tiles do not push nearby ground behind more distant requests. Semantic layers
+Terrain requests establish coarse coverage first, then prioritize nearby visible ground before
+distant refinement and the 12-degree turn margin. Ancestors precede equally distant descendants.
+Distance is measured to tile bounds rather than tile centers, so large tiles do not push nearby
+ground behind more distant requests. Semantic layers
 use the same view priority and prepare resident selected leaves before the terrain handoff,
-even while a slow sibling still holds the parent surface on screen. Selected leaves take
-precedence over temporary fallback detail. The existing layer concurrency and residency limits
+even while a slow sibling still holds the parent surface on screen. A replacement family shares
+its displayed parent's view and distance priority: finishing its siblings releases prepared
+nearby detail instead of leaving it hidden behind the old parent. Within that priority, the
+replacement family finishes before finer leaves that it would keep hidden. The existing layer concurrency and residency limits
 also bound this preparation. The previous terrain surface and its layers remain visible until
 all enabled, level-eligible layers of the replacement tiles have finished construction and GPU
 preparation. Surfaces, land use, roads and buildings then switch together; new terrain cannot
@@ -187,6 +191,17 @@ the old tiles until `retryFailed()` succeeds or the layer is disabled; on cold g
 layers can still appear after another layer fails. Hidden layers do not delay a handoff. This
 stages scene geometry rather than rendering a second full-screen image, and retains old visual
 coverage under residency pressure until its replacement can safely take over.
+
+`stream.update(view, futureViews)` additionally prepares the nearest refinement family at each
+future position, at the same selection quality, including semantic layers and GPU resources.
+Future views are ordered by time; at most a quarter of `maxSelectedTiles` is prepared speculatively.
+With at least three concurrent slots, up to half of each queue's existing capacity keeps future
+preparation progressing while visible work remains queued.
+The remaining slots prioritize current coverage, and unused capacity can prepare more of the route.
+Obsolete surface requests are cancelled on route changes. Redundant hidden ancestors become
+reclaimable cache once finer terrain is resident. Speculative tiles yield to displayed
+coverage under memory pressure; oversized speculative tiles back off instead of rebuilding on
+every update. `preloading` and `preloaded` in stream stats distinguish requested and ready leaves.
 
 `morphMilliseconds` enables refinement height morphs for bare surfaces; call
 `stream.updateTransitions(nowMs)` in the frame loop. Vertices start on the actual parent

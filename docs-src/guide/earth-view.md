@@ -405,7 +405,20 @@ for `terrainchange` to refresh an attribution panel when the package changes. Di
 completed flights resolve the destination immediately; manual panning rechecks the host source
 after about five kilometers. A second jump while a region is loading follows the latest target.
 
-## Byte cache and prefetch
+## Tile preparation, byte cache and prefetch
+
+During flight and fast driving, nearby terrain is prepared ahead of travel automatically, even
+without a byte cache. The view predicts camera positions 4, 8 and 12 seconds ahead (up to 4 km),
+selects their tiles at the current detail budget, and builds terrain, enabled layers and GPU
+resources into the hidden resident cache. Arrival reuses that work. Predictions reset after
+teleports, re-anchoring and camera-entry animations, and follow turns with a short velocity filter.
+
+Preparation is bounded to a quarter of the selected-tile budget and shares the existing tile,
+layer and memory limits. With three or more load slots, one slot can advance the predicted route
+while visible work remains queued; smaller budgets use spare slots. Displayed coverage takes
+priority under memory pressure. `view.stats()` reports `preloadingTiles` and `preloadedTiles` counts.
+This reduces late detail but cannot guarantee readiness when downloads or generation take longer
+than the available lead time. The separate byte prefetch below warms a longer route.
 
 Terrain, landcover, feature and building tiles, content packs and the small documents that name
 them can persist across visits in a byte cache from `@bendyline/molen-pack/cache`. Ground a viewer

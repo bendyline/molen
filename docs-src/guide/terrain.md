@@ -340,6 +340,14 @@ function frame(position: [number, number, number]) {
 }
 ```
 
+For moving cameras, `stream.update(view, futureViews)` accepts optional predicted views, nearest
+in time first. It prepares a bounded set of future leaves, semantic layers and GPU resources in
+the hidden resident cache without changing the current selection. Omit the second argument to
+stop prediction. Both the Earth view and World Explorer use `createEarthTilePreloader` from
+`@bendyline/molen-earth/client` to predict 4, 8 and 12 seconds of fast travel, capped at 4 km.
+Its `views(nowMs, view, steady)` takes positions already in the Earth adapter's metric world frame;
+pass `steady: false` during scripted camera animations and call `reset()` when changing frames.
+
 The selector measures projected source-sample spacing, adapts its error/range to the selected-tile
 budget, requests ancestors before descendants, and retains a displayed parent until all selected
 descendant coverage is resident. A selected tile that is not resident yet shows through its

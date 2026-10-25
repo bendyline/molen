@@ -1,5 +1,11 @@
-import type { AircraftInputData, AircraftSpec, AircraftStateData } from '@bendyline/molen-schema';
+import type {
+  AircraftInputData,
+  AircraftSpec,
+  AircraftStateData,
+  LiveryData,
+} from '@bendyline/molen-schema';
 import * as THREE from 'three';
+import { applyLivery } from './livery';
 import {
   createModelSignalVisual,
   type ModelSignals,
@@ -9,6 +15,7 @@ import type { VehicleCameraOptions, VehicleCameraPose } from './vehicle-camera';
 import { createVehicleInteriorVisual, type VehicleInteriorVisual } from './vehicle-interior';
 
 export interface AircraftVisual {
+  setLivery(data: LiveryData | undefined): void;
   object: THREE.Object3D;
   interior?: VehicleInteriorVisual;
   /** The spec's exterior `animation` bindings (gear legs and doors, control surfaces). */
@@ -28,7 +35,11 @@ export interface AircraftVisual {
  * The gear and flaps follow `state.gearPosition` and `state.flapPosition` as they travel, or the
  * selection in `input` when the state has no positions (helicopters, hosts that animate only).
  */
-export function createAircraftVisual(model: THREE.Object3D, spec: AircraftSpec): AircraftVisual {
+export function createAircraftVisual(
+  model: THREE.Object3D,
+  spec: AircraftSpec,
+  livery?: LiveryData,
+): AircraftVisual {
   const interior =
     spec.visual.interior === undefined
       ? undefined
@@ -51,7 +62,12 @@ export function createAircraftVisual(model: THREE.Object3D, spec: AircraftSpec):
   const turn = (name: string, axis: 'x' | 'y' | 'z', angle: number): void => {
     for (const node of moving.get(name) ?? []) node.rotation[axis] = angle;
   };
+  let appearance = livery === undefined ? undefined : applyLivery(model, livery);
   return {
+    setLivery(data) {
+      appearance?.dispose();
+      appearance = data === undefined ? undefined : applyLivery(model, data);
+    },
     object: model,
     interior,
     animation,
@@ -155,6 +171,7 @@ export function createAircraftVisual(model: THREE.Object3D, spec: AircraftSpec):
       animation?.update(telemetry, timeSeconds);
     },
     dispose() {
+      appearance?.dispose();
       const geometries = new Set<THREE.BufferGeometry>(),
         materials = new Set<THREE.Material>();
       model.traverse((o) => {

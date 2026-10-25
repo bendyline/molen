@@ -1,5 +1,6 @@
 import type { BoatEnvironment } from '@bendyline/molen-kernel/boats';
-import type { WaterSettings } from '@bendyline/molen-schema';
+import type { LiveryData, LiveryVariant, WaterSettings } from '@bendyline/molen-schema';
+import { selectLivery } from './liveries';
 import { EARTH_WATER_CONDITIONS } from './water';
 // mountEarthView: one call that turns a canvas into an explorable real-world 3D view. It composes
 // the viewer, the streamed terrain pyramid (in a metric frame at the viewed latitude), semantic
@@ -66,6 +67,7 @@ import {
   type TerrainPyramidHeightSource,
   type TerrainPyramidStream,
   type TerrainPyramidTileLayer,
+  type TerrainPyramidView,
   type TerrainQualityPreset,
   type TerrainSurfaceRenderer,
   type TerrainTileArchive,
@@ -146,6 +148,7 @@ import {
   type EarthPrefetchResult,
   type EarthPrefetchStats,
 } from './prefetch';
+import { createEarthTilePreloader } from './preload';
 import { createRegionalGroundColor } from './regional-ground';
 import { createEarthRoadSigns } from './road-signs';
 import { EarthVehicles } from './vehicles';
@@ -462,6 +465,8 @@ export interface EarthVehicleSpec {
   heading: number;
   /** Paint for a car's `paintMaterial` (CSS color). */
   color?: string;
+  /** A variant from the type's livery component. */
+  livery?: string;
   /** Aircraft: start flying at `altitude` meters above the ground (default 300) and `speed` m/s. */
   airborne?: boolean | { altitude?: number; speed?: number };
 }
@@ -498,7 +503,11 @@ export interface EarthOwnedVehicles {
   /** Step out of whatever the viewer is in, at once; owned vehicles stay where they are. */
   release(): void;
   remove(id: string): void;
-  /** Repaint a car (`vehicle.color`); aircraft keep their authored paint. */
+  /** Available livery recipes for this owned vehicle. */
+  liveries(id: string): readonly LiveryVariant[];
+  /** Select a livery for a car, boat or aircraft; retained across terrain re-anchors. */
+  setLivery(id: string, selected: string): void;
+  /** Repaint a car's base paint. */
   setColor(id: string, color: string): void;
   /** Resolves once the vehicle's entity is placed; rejects on abort, removal or when it cannot be placed. */
   whenPlaced(id: string, options?: { signal?: AbortSignal }): Promise<void>;
@@ -557,6 +566,9 @@ export interface EarthViewStats {
   memoryPressure: number;
   displayedTiles: number;
   loadingTiles: number;
+  /** Future-view tiles selected for preparation, and those ready for arrival. */
+  preloadingTiles: number;
+  preloadedTiles: number;
   failedTiles: number;
   maxDisplayedLevel: number | undefined;
   markers: number;
@@ -1559,6 +1571,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       kind: 'car' | 'boat' | 'aircraft';
       geo: { latitude: number; longitude: number; heading: number; altitude: number | undefined };
       color: string | undefined;
+      livery: string | undefined;
       airborne: EarthVehicleSpec['airborne'];
       placed: boolean;
       blocked: boolean;
@@ -1652,6 +1665,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             id: entry.id,
             retain: true,
             ...(entry.color !== undefined ? { color: entry.color } : {}),
+            ...(entry.livery !== undefined ? { livery: entry.livery } : {}),
           };
           const yaw = Math.PI - entry.geo.heading;
           const placed =
@@ -1683,7 +1697,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 ? { airborne: choice.speed !== undefined ? { speed: choice.speed } : {} }
                 : {}),
             },
-            { id: entry.id, retain: true },
+            {
+              id: entry.id,
+              retain: true,
+              ...(entry.livery !== undefined ? { livery: entry.livery } : {}),
+            },
           );
           // A flight placed once is parked after that: nobody flies it while the host is away.
           entry.airborne = undefined;
@@ -2370,6 +2388,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           throw new Error(`${spec.type} is not a car, boat or aircraft type in the content packs`);
         const id = spec.id ?? `owned-${kind}-${++ownedSequence}`;
         if (owned.has(id)) throw new Error(`Owned vehicle ${id} already exists`);
+        if (spec.livery !== undefined)
+          selectLivery(
+            content?.types?.components(spec.type).livery as LiveryData | undefined,
+            spec.livery,
+          );
         owned.set(id, {
           id,
           type: spec.type,
@@ -2381,6 +2404,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             altitude: undefined,
           },
           color: spec.color,
+          livery: spec.livery,
           airborne: spec.airborne,
           placed: false,
           blocked: false,
@@ -2443,6 +2467,28 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         owned.delete(id);
         settleOwned(entry, new Error(`Vehicle ${id} was removed`));
         emit('vehiclechange', { id, change: 'removed' });
+      },
+      liveries(id) {
+        const entry = owned.get(id);
+        return entry === undefined
+          ? []
+          : ((content?.types?.components(entry.type).livery as LiveryData | undefined)?.variants ??
+              []);
+      },
+      setLivery(id, selected) {
+        const entry = owned.get(id);
+        if (entry === undefined) return;
+        selectLivery(
+          content?.types?.components(entry.type).livery as LiveryData | undefined,
+          selected,
+        );
+        entry.livery = selected;
+        entry.color = undefined;
+        if (entry.placed) {
+          if (entry.kind === 'aircraft') stack?.aircraft?.setLivery(id, selected);
+          else stack?.vehicles?.setLivery(id, selected);
+        }
+        emit('vehiclechange', { id, change: 'painted' });
       },
       setColor(id, color) {
         const entry = owned.get(id);
@@ -2668,6 +2714,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     let frames = 0;
     let last = performance.now();
     let streamTime = -Infinity;
+    const tilePreloader = createEarthTilePreloader();
+    let preloadStack: EarthStack | undefined;
     let streamed = { position: pose.position, direction: pose.direction };
     let lastEmit = 0;
     let lastEmitted = '';
@@ -3028,13 +3076,20 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         ) {
           streamTime = now;
           const [w, h] = viewport();
-          current.stream.update({
+          const streamView: TerrainPyramidView = {
             position: pose.position,
             verticalFov: VERTICAL_FOV,
             viewportHeight: canvas.height || h,
             direction: pose.direction,
             aspect: w / h,
-          });
+          };
+          if (preloadStack !== current) {
+            tilePreloader.reset();
+            preloadStack = current;
+          }
+          const steady =
+            anchoring === undefined && pending === undefined && !(mode === 'orbit' && orbit.flying);
+          current.stream.update(streamView, tilePreloader.views(now, streamView, steady));
           streamed = { position: pose.position, direction: pose.direction };
         }
         if (anchoring === undefined) {
@@ -3322,6 +3377,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           memoryPressure: (stack?.stream.pressure().displayedBytes ?? 0) / memoryBudget,
           displayedTiles: streamStats?.displayed ?? 0,
           loadingTiles: (streamStats?.loading ?? 0) + (streamStats?.loadingLayers ?? 0),
+          preloadingTiles: streamStats?.preloading ?? 0,
+          preloadedTiles: streamStats?.preloaded ?? 0,
           failedTiles: (streamStats?.failed ?? 0) + (streamStats?.failedLayers ?? 0),
           maxDisplayedLevel: streamStats?.maxDisplayedLevel,
           markers: markers.ids().length,
